@@ -43,7 +43,6 @@ import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.Library;
-import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -163,7 +162,7 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 			EObject eObject = tit.next();
 			if ((eObject instanceof org.eclipse.ocl.examples.pivot.Class) && !(eObject instanceof Enumeration) && !(eObject instanceof LambdaType) &&
 				!(eObject instanceof CollectionType) && !(eObject instanceof PrimitiveType) &&
-				!(eObject instanceof Metaclass<?>) && !(eObject instanceof TupleType) &&
+				!(eObject instanceof TupleType) &&
 				(((org.eclipse.ocl.examples.pivot.Class)eObject).isTemplateParameter() == null)) {
 				allElements.put(((org.eclipse.ocl.examples.pivot.Class)eObject).getName(), (org.eclipse.ocl.examples.pivot.Class)eObject);
 			}

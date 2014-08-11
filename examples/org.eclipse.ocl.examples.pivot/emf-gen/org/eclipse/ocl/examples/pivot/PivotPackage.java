@@ -86,7 +86,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOCLExpression()
 	 * @generated
 	 */
-	int OCL_EXPRESSION = 61;
+	int OCL_EXPRESSION = 60;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CallExpImpl <em>Call Exp</em>}' class.
@@ -116,7 +116,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getNavigationCallExp()
 	 * @generated
 	 */
-	int NAVIGATION_CALL_EXP = 58;
+	int NAVIGATION_CALL_EXP = 57;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.AssociationClassCallExpImpl <em>Association Class Call Exp</em>}' class.
@@ -176,7 +176,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPrimitiveLiteralExp()
 	 * @generated
 	 */
-	int PRIMITIVE_LITERAL_EXP = 70;
+	int PRIMITIVE_LITERAL_EXP = 69;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.BooleanLiteralExpImpl <em>Boolean Literal Exp</em>}' class.
@@ -286,7 +286,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVariable()
 	 * @generated
 	 */
-	int VARIABLE = 109;
+	int VARIABLE = 108;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.IfExpImpl <em>If Exp</em>}' class.
@@ -306,7 +306,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getNumericLiteralExp()
 	 * @generated
 	 */
-	int NUMERIC_LITERAL_EXP = 60;
+	int NUMERIC_LITERAL_EXP = 59;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.IntegerLiteralExpImpl <em>Integer Literal Exp</em>}' class.
@@ -376,7 +376,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getSendSignalAction()
 	 * @generated
 	 */
-	int SEND_SIGNAL_ACTION = 82;
+	int SEND_SIGNAL_ACTION = 81;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.SignalImpl <em>Signal</em>}' class.
@@ -386,7 +386,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getSignal()
 	 * @generated
 	 */
-	int SIGNAL = 85;
+	int SIGNAL = 84;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.MessageTypeImpl <em>Message Type</em>}' class.
@@ -406,7 +406,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getNullLiteralExp()
 	 * @generated
 	 */
-	int NULL_LITERAL_EXP = 59;
+	int NULL_LITERAL_EXP = 58;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationCallExpImpl <em>Operation Call Exp</em>}' class.
@@ -416,7 +416,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOperationCallExp()
 	 * @generated
 	 */
-	int OPERATION_CALL_EXP = 63;
+	int OPERATION_CALL_EXP = 62;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OrderedSetTypeImpl <em>Ordered Set Type</em>}' class.
@@ -426,7 +426,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOrderedSetType()
 	 * @generated
 	 */
-	int ORDERED_SET_TYPE = 65;
+	int ORDERED_SET_TYPE = 64;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PrimitiveTypeImpl <em>Primitive Type</em>}' class.
@@ -436,7 +436,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPrimitiveType()
 	 * @generated
 	 */
-	int PRIMITIVE_TYPE = 71;
+	int PRIMITIVE_TYPE = 70;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyCallExpImpl <em>Property Call Exp</em>}' class.
@@ -446,7 +446,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPropertyCallExp()
 	 * @generated
 	 */
-	int PROPERTY_CALL_EXP = 75;
+	int PROPERTY_CALL_EXP = 74;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.RealLiteralExpImpl <em>Real Literal Exp</em>}' class.
@@ -456,7 +456,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getRealLiteralExp()
 	 * @generated
 	 */
-	int REAL_LITERAL_EXP = 77;
+	int REAL_LITERAL_EXP = 76;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.SequenceTypeImpl <em>Sequence Type</em>}' class.
@@ -466,7 +466,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getSequenceType()
 	 * @generated
 	 */
-	int SEQUENCE_TYPE = 83;
+	int SEQUENCE_TYPE = 82;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.SetTypeImpl <em>Set Type</em>}' class.
@@ -476,7 +476,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getSetType()
 	 * @generated
 	 */
-	int SET_TYPE = 84;
+	int SET_TYPE = 83;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.StateImpl <em>State</em>}' class.
@@ -486,7 +486,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getState()
 	 * @generated
 	 */
-	int STATE = 87;
+	int STATE = 86;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.StateExpImpl <em>State Exp</em>}' class.
@@ -496,7 +496,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getStateExp()
 	 * @generated
 	 */
-	int STATE_EXP = 88;
+	int STATE_EXP = 87;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.StringLiteralExpImpl <em>String Literal Exp</em>}' class.
@@ -506,7 +506,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getStringLiteralExp()
 	 * @generated
 	 */
-	int STRING_LITERAL_EXP = 91;
+	int STRING_LITERAL_EXP = 90;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TupleLiteralExpImpl <em>Tuple Literal Exp</em>}' class.
@@ -516,7 +516,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTupleLiteralExp()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_EXP = 99;
+	int TUPLE_LITERAL_EXP = 98;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TupleLiteralPartImpl <em>Tuple Literal Part</em>}' class.
@@ -526,7 +526,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTupleLiteralPart()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_PART = 100;
+	int TUPLE_LITERAL_PART = 99;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TupleTypeImpl <em>Tuple Type</em>}' class.
@@ -536,7 +536,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTupleType()
 	 * @generated
 	 */
-	int TUPLE_TYPE = 101;
+	int TUPLE_TYPE = 100;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeExpImpl <em>Type Exp</em>}' class.
@@ -546,7 +546,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTypeExp()
 	 * @generated
 	 */
-	int TYPE_EXP = 103;
+	int TYPE_EXP = 102;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.UnlimitedNaturalLiteralExpImpl <em>Unlimited Natural Literal Exp</em>}' class.
@@ -556,7 +556,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getUnlimitedNaturalLiteralExp()
 	 * @generated
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP = 106;
+	int UNLIMITED_NATURAL_LITERAL_EXP = 105;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.UnspecifiedValueExpImpl <em>Unspecified Value Exp</em>}' class.
@@ -566,7 +566,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getUnspecifiedValueExp()
 	 * @generated
 	 */
-	int UNSPECIFIED_VALUE_EXP = 107;
+	int UNSPECIFIED_VALUE_EXP = 106;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.VariableExpImpl <em>Variable Exp</em>}' class.
@@ -576,7 +576,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVariableExp()
 	 * @generated
 	 */
-	int VARIABLE_EXP = 111;
+	int VARIABLE_EXP = 110;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.VoidTypeImpl <em>Void Type</em>}' class.
@@ -586,7 +586,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVoidType()
 	 * @generated
 	 */
-	int VOID_TYPE = 114;
+	int VOID_TYPE = 113;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.util.Pivotable <em>Pivotable</em>}' class.
@@ -596,7 +596,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPivotable()
 	 * @generated
 	 */
-	int PIVOTABLE = 68;
+	int PIVOTABLE = 67;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.util.Visitable <em>Visitable</em>}' class.
@@ -606,7 +606,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVisitable()
 	 * @generated
 	 */
-	int VISITABLE = 113;
+	int VISITABLE = 112;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ElementImpl <em>Element</em>}' class.
@@ -626,7 +626,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getNamedElement()
 	 * @generated
 	 */
-	int NAMED_ELEMENT = 56;
+	int NAMED_ELEMENT = 55;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.AnnotationImpl <em>Annotation</em>}' class.
@@ -646,7 +646,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getType()
 	 * @generated
 	 */
-	int TYPE = 102;
+	int TYPE = 101;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl <em>Class</em>}' class.
@@ -666,7 +666,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateableElement()
 	 * @generated
 	 */
-	int TEMPLATEABLE_ELEMENT = 96;
+	int TEMPLATEABLE_ELEMENT = 95;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateBindingImpl <em>Template Binding</em>}' class.
@@ -676,7 +676,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateBinding()
 	 * @generated
 	 */
-	int TEMPLATE_BINDING = 92;
+	int TEMPLATE_BINDING = 91;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateSignatureImpl <em>Template Signature</em>}' class.
@@ -686,7 +686,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateSignature()
 	 * @generated
 	 */
-	int TEMPLATE_SIGNATURE = 95;
+	int TEMPLATE_SIGNATURE = 94;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterImpl <em>Template Parameter</em>}' class.
@@ -696,7 +696,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateParameter()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER = 93;
+	int TEMPLATE_PARAMETER = 92;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterSubstitutionImpl <em>Template Parameter Substitution</em>}' class.
@@ -706,7 +706,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateParameterSubstitution()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION = 94;
+	int TEMPLATE_PARAMETER_SUBSTITUTION = 93;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl <em>Package</em>}' class.
@@ -716,7 +716,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPackage()
 	 * @generated
 	 */
-	int PACKAGE = 66;
+	int PACKAGE = 65;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.NamespaceImpl <em>Namespace</em>}' class.
@@ -726,7 +726,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getNamespace()
 	 * @generated
 	 */
-	int NAMESPACE = 57;
+	int NAMESPACE = 56;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PrecedenceImpl <em>Precedence</em>}' class.
@@ -736,7 +736,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPrecedence()
 	 * @generated
 	 */
-	int PRECEDENCE = 69;
+	int PRECEDENCE = 68;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl <em>Property</em>}' class.
@@ -746,7 +746,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getProperty()
 	 * @generated
 	 */
-	int PROPERTY = 74;
+	int PROPERTY = 73;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TypedElementImpl <em>Typed Element</em>}' class.
@@ -756,7 +756,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTypedElement()
 	 * @generated
 	 */
-	int TYPED_ELEMENT = 105;
+	int TYPED_ELEMENT = 104;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.AssociationClassImpl <em>Association Class</em>}' class.
@@ -776,7 +776,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOperation()
 	 * @generated
 	 */
-	int OPERATION = 62;
+	int OPERATION = 61;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ParameterImpl <em>Parameter</em>}' class.
@@ -786,7 +786,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getParameter()
 	 * @generated
 	 */
-	int PARAMETER = 67;
+	int PARAMETER = 66;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.VariableDeclarationImpl <em>Variable Declaration</em>}' class.
@@ -796,7 +796,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVariableDeclaration()
 	 * @generated
 	 */
-	int VARIABLE_DECLARATION = 110;
+	int VARIABLE_DECLARATION = 109;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CommentImpl <em>Comment</em>}' class.
@@ -826,7 +826,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getValueSpecification()
 	 * @generated
 	 */
-	int VALUE_SPECIFICATION = 108;
+	int VALUE_SPECIFICATION = 107;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.domain.elements.Nameable <em>Nameable</em>}' class.
@@ -836,7 +836,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getNameable()
 	 * @generated
 	 */
-	int NAMEABLE = 55;
+	int NAMEABLE = 54;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.DetailImpl <em>Detail</em>}' class.
@@ -1258,16 +1258,6 @@ public interface PivotPackage
 	int LAMBDA_TYPE = 45;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.MetaclassImpl <em>Metaclass</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.MetaclassImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getMetaclass()
-	 * @generated
-	 */
-	int METACLASS = 53;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.util.MorePivotable <em>More Pivotable</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1275,7 +1265,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getMorePivotable()
 	 * @generated
 	 */
-	int MORE_PIVOTABLE = 54;
+	int MORE_PIVOTABLE = 53;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.VertexImpl <em>Vertex</em>}' class.
@@ -1285,7 +1275,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVertex()
 	 * @generated
 	 */
-	int VERTEX = 112;
+	int VERTEX = 111;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ConnectionPointReferenceImpl <em>Connection Point Reference</em>}' class.
@@ -1335,7 +1325,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getProfile()
 	 * @generated
 	 */
-	int PROFILE = 72;
+	int PROFILE = 71;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PseudostateImpl <em>Pseudostate</em>}' class.
@@ -1345,7 +1335,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPseudostate()
 	 * @generated
 	 */
-	int PSEUDOSTATE = 76;
+	int PSEUDOSTATE = 75;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.ReferringElement <em>Referring Element</em>}' class.
@@ -1355,7 +1345,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getReferringElement()
 	 * @generated
 	 */
-	int REFERRING_ELEMENT = 78;
+	int REFERRING_ELEMENT = 77;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.RegionImpl <em>Region</em>}' class.
@@ -1365,7 +1355,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getRegion()
 	 * @generated
 	 */
-	int REGION = 79;
+	int REGION = 78;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.RootImpl <em>Root</em>}' class.
@@ -1375,7 +1365,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getRoot()
 	 * @generated
 	 */
-	int ROOT = 80;
+	int ROOT = 79;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.SelfTypeImpl <em>Self Type</em>}' class.
@@ -1385,7 +1375,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getSelfType()
 	 * @generated
 	 */
-	int SELF_TYPE = 81;
+	int SELF_TYPE = 80;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.FinalStateImpl <em>Final State</em>}' class.
@@ -1425,7 +1415,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOppositePropertyCallExp()
 	 * @generated
 	 */
-	int OPPOSITE_PROPERTY_CALL_EXP = 64;
+	int OPPOSITE_PROPERTY_CALL_EXP = 63;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -2373,13 +2363,22 @@ public interface PivotPackage
 	int TYPED_ELEMENT__IS_REQUIRED = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_ELEMENT__IS_TYPEOF = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT__TYPE = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int TYPED_ELEMENT__TYPE = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Typed Element</em>' class.
@@ -2388,7 +2387,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int TYPED_ELEMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -2497,6 +2496,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int OCL_EXPRESSION__IS_REQUIRED = TYPED_ELEMENT__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_EXPRESSION__IS_TYPEOF = TYPED_ELEMENT__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2623,6 +2631,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int CALL_EXP__IS_REQUIRED = OCL_EXPRESSION__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_EXP__IS_TYPEOF = OCL_EXPRESSION__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2767,6 +2784,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int FEATURE_CALL_EXP__IS_REQUIRED = CALL_EXP__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CALL_EXP__IS_TYPEOF = CALL_EXP__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2920,6 +2946,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int NAVIGATION_CALL_EXP__IS_REQUIRED = FEATURE_CALL_EXP__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATION_CALL_EXP__IS_TYPEOF = FEATURE_CALL_EXP__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -3091,6 +3126,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ASSOCIATION_CLASS_CALL_EXP__IS_REQUIRED = NAVIGATION_CALL_EXP__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS_CALL_EXP__IS_TYPEOF = NAVIGATION_CALL_EXP__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -4398,6 +4442,15 @@ public interface PivotPackage
 	int LITERAL_EXP__IS_REQUIRED = OCL_EXPRESSION__IS_REQUIRED;
 
 	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXP__IS_TYPEOF = OCL_EXPRESSION__IS_TYPEOF;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4524,6 +4577,15 @@ public interface PivotPackage
 	int PRIMITIVE_LITERAL_EXP__IS_REQUIRED = LITERAL_EXP__IS_REQUIRED;
 
 	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_LITERAL_EXP__IS_TYPEOF = LITERAL_EXP__IS_TYPEOF;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4648,6 +4710,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int BOOLEAN_LITERAL_EXP__IS_REQUIRED = PRIMITIVE_LITERAL_EXP__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL_EXP__IS_TYPEOF = PRIMITIVE_LITERAL_EXP__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -4884,6 +4955,15 @@ public interface PivotPackage
 	int COLLECTION_LITERAL_PART__IS_REQUIRED = TYPED_ELEMENT__IS_REQUIRED;
 
 	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_PART__IS_TYPEOF = TYPED_ELEMENT__IS_TYPEOF;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5008,6 +5088,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_ITEM__IS_REQUIRED = COLLECTION_LITERAL_PART__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_ITEM__IS_TYPEOF = COLLECTION_LITERAL_PART__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -5152,6 +5241,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_LITERAL_EXP__IS_REQUIRED = LITERAL_EXP__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_EXP__IS_TYPEOF = LITERAL_EXP__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -5341,6 +5439,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_RANGE__IS_REQUIRED = COLLECTION_LITERAL_PART__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_RANGE__IS_TYPEOF = COLLECTION_LITERAL_PART__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -6000,6 +6107,15 @@ public interface PivotPackage
 	int CONSTRUCTOR_EXP__IS_REQUIRED = OCL_EXPRESSION__IS_REQUIRED;
 
 	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRUCTOR_EXP__IS_TYPEOF = OCL_EXPRESSION__IS_TYPEOF;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6142,6 +6258,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int CONSTRUCTOR_PART__IS_REQUIRED = TYPED_ELEMENT__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRUCTOR_PART__IS_TYPEOF = TYPED_ELEMENT__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -7098,6 +7223,15 @@ public interface PivotPackage
 	int VALUE_SPECIFICATION__IS_REQUIRED = TYPED_ELEMENT__IS_REQUIRED;
 
 	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_SPECIFICATION__IS_TYPEOF = TYPED_ELEMENT__IS_TYPEOF;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7276,6 +7410,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DYNAMIC_VALUE_SPECIFICATION__IS_REQUIRED = VALUE_SPECIFICATION__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_VALUE_SPECIFICATION__IS_TYPEOF = VALUE_SPECIFICATION__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -7744,6 +7887,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ENUM_LITERAL_EXP__IS_REQUIRED = LITERAL_EXP__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUM_LITERAL_EXP__IS_TYPEOF = LITERAL_EXP__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -8431,6 +8583,15 @@ public interface PivotPackage
 	int LANGUAGE_EXPRESSION__IS_REQUIRED = VALUE_SPECIFICATION__IS_REQUIRED;
 
 	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LANGUAGE_EXPRESSION__IS_TYPEOF = VALUE_SPECIFICATION__IS_TYPEOF;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8636,6 +8797,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int EXPRESSION_IN_OCL__IS_REQUIRED = LANGUAGE_EXPRESSION__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_IN_OCL__IS_TYPEOF = LANGUAGE_EXPRESSION__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -8881,6 +9051,15 @@ public interface PivotPackage
 	int FEATURE__IS_REQUIRED = TYPED_ELEMENT__IS_REQUIRED;
 
 	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__IS_TYPEOF = TYPED_ELEMENT__IS_TYPEOF;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8978,7 +9157,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getProfileApplication()
 	 * @generated
 	 */
-	int PROFILE_APPLICATION = 73;
+	int PROFILE_APPLICATION = 72;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.SlotImpl <em>Slot</em>}' class.
@@ -8988,7 +9167,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getSlot()
 	 * @generated
 	 */
-	int SLOT = 86;
+	int SLOT = 85;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.StateMachineImpl <em>State Machine</em>}' class.
@@ -8998,7 +9177,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getStateMachine()
 	 * @generated
 	 */
-	int STATE_MACHINE = 89;
+	int STATE_MACHINE = 88;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.StereotypeImpl <em>Stereotype</em>}' class.
@@ -9008,7 +9187,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getStereotype()
 	 * @generated
 	 */
-	int STEREOTYPE = 90;
+	int STEREOTYPE = 89;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TransitionImpl <em>Transition</em>}' class.
@@ -9018,7 +9197,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTransition()
 	 * @generated
 	 */
-	int TRANSITION = 97;
+	int TRANSITION = 96;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TriggerImpl <em>Trigger</em>}' class.
@@ -9028,7 +9207,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTrigger()
 	 * @generated
 	 */
-	int TRIGGER = 98;
+	int TRIGGER = 97;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -9670,6 +9849,15 @@ public interface PivotPackage
 	int IF_EXP__IS_REQUIRED = OCL_EXPRESSION__IS_REQUIRED;
 
 	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_EXP__IS_TYPEOF = OCL_EXPRESSION__IS_TYPEOF;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9922,6 +10110,15 @@ public interface PivotPackage
 	int NUMERIC_LITERAL_EXP__IS_REQUIRED = PRIMITIVE_LITERAL_EXP__IS_REQUIRED;
 
 	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERIC_LITERAL_EXP__IS_TYPEOF = PRIMITIVE_LITERAL_EXP__IS_TYPEOF;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10046,6 +10243,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int INTEGER_LITERAL_EXP__IS_REQUIRED = NUMERIC_LITERAL_EXP__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTEGER_LITERAL_EXP__IS_TYPEOF = NUMERIC_LITERAL_EXP__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -10190,6 +10396,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int INVALID_LITERAL_EXP__IS_REQUIRED = LITERAL_EXP__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_LITERAL_EXP__IS_TYPEOF = LITERAL_EXP__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -10570,6 +10785,15 @@ public interface PivotPackage
 	int LOOP_EXP__IS_REQUIRED = CALL_EXP__IS_REQUIRED;
 
 	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP_EXP__IS_TYPEOF = CALL_EXP__IS_TYPEOF;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10757,6 +10981,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATE_EXP__IS_REQUIRED = LOOP_EXP__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_EXP__IS_TYPEOF = LOOP_EXP__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -10991,6 +11224,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int OPERATION__IS_REQUIRED = FEATURE__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__IS_TYPEOF = FEATURE__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -11306,6 +11548,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATION__IS_REQUIRED = OPERATION__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION__IS_TYPEOF = OPERATION__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -11639,6 +11890,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATOR_EXP__IS_REQUIRED = LOOP_EXP__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATOR_EXP__IS_TYPEOF = LOOP_EXP__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -12415,6 +12675,15 @@ public interface PivotPackage
 	int LET_EXP__IS_REQUIRED = OCL_EXPRESSION__IS_REQUIRED;
 
 	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LET_EXP__IS_TYPEOF = OCL_EXPRESSION__IS_TYPEOF;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12901,6 +13170,15 @@ public interface PivotPackage
 	int MESSAGE_EXP__IS_REQUIRED = OCL_EXPRESSION__IS_REQUIRED;
 
 	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_EXP__IS_TYPEOF = OCL_EXPRESSION__IS_TYPEOF;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13288,267 +13566,6 @@ public interface PivotPackage
 	int MESSAGE_TYPE_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Comment</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS__COMMENT = CLASS__COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS__EXTENSION = CLASS__EXTENSION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS__OWNED_ANNOTATION = CLASS__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS__OWNED_COMMENT = CLASS__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS__NAME = CLASS__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS__EXTENDED_BYS = CLASS__EXTENDED_BYS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS__OWNED_RULE = CLASS__OWNED_RULE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS__OWNED_TEMPLATE_BINDINGS = CLASS__OWNED_TEMPLATE_BINDINGS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS__OWNED_TEMPLATE_SIGNATURE = CLASS__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS__IS_ABSTRACT = CLASS__IS_ABSTRACT;
-
-	/**
-	 * The feature id for the '<em><b>Is Active</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS__IS_ACTIVE = CLASS__IS_ACTIVE;
-
-	/**
-	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS__IS_INTERFACE = CLASS__IS_INTERFACE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS__OWNED_INVARIANTS = CLASS__OWNED_INVARIANTS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS__OWNED_OPERATIONS = CLASS__OWNED_OPERATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
-
-	/**
-	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS__OWNING_PACKAGE = CLASS__OWNING_PACKAGE;
-
-	/**
-	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS__SUPER_CLASSES = CLASS__SUPER_CLASSES;
-
-	/**
-	 * The feature id for the '<em><b>Instance Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS__INSTANCE_TYPE = CLASS_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Metaclass</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>All Owned Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS___ALL_OWNED_ELEMENTS = CLASS___ALL_OWNED_ELEMENTS;
-
-	/**
-	 * The operation id for the '<em>Get Value</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
-
-	/**
-	 * The operation id for the '<em>Is Class</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS___IS_CLASS = CLASS___IS_CLASS;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
-
-	/**
-	 * The operation id for the '<em>Specialize In</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
-
-	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The number of operations of the '<em>Metaclass</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>More Pivotable</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13646,6 +13663,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int NULL_LITERAL_EXP__IS_REQUIRED = PRIMITIVE_LITERAL_EXP__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_LITERAL_EXP__IS_TYPEOF = PRIMITIVE_LITERAL_EXP__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -13772,6 +13798,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int OPERATION_CALL_EXP__IS_REQUIRED = FEATURE_CALL_EXP__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CALL_EXP__IS_TYPEOF = FEATURE_CALL_EXP__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -13970,6 +14005,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int OPPOSITE_PROPERTY_CALL_EXP__IS_REQUIRED = NAVIGATION_CALL_EXP__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__IS_TYPEOF = NAVIGATION_CALL_EXP__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -14449,6 +14493,15 @@ public interface PivotPackage
 	int VARIABLE_DECLARATION__IS_REQUIRED = TYPED_ELEMENT__IS_REQUIRED;
 
 	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_DECLARATION__IS_TYPEOF = TYPED_ELEMENT__IS_TYPEOF;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14573,6 +14626,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PARAMETER__IS_REQUIRED = VARIABLE_DECLARATION__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__IS_TYPEOF = VARIABLE_DECLARATION__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -15367,6 +15429,15 @@ public interface PivotPackage
 	int PROPERTY__IS_REQUIRED = FEATURE__IS_REQUIRED;
 
 	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__IS_TYPEOF = FEATURE__IS_TYPEOF;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15698,6 +15769,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PROPERTY_CALL_EXP__IS_REQUIRED = NAVIGATION_CALL_EXP__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP__IS_TYPEOF = NAVIGATION_CALL_EXP__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -16058,6 +16138,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int REAL_LITERAL_EXP__IS_REQUIRED = NUMERIC_LITERAL_EXP__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REAL_LITERAL_EXP__IS_TYPEOF = NUMERIC_LITERAL_EXP__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -17770,6 +17859,15 @@ public interface PivotPackage
 	int STATE_EXP__IS_REQUIRED = OCL_EXPRESSION__IS_REQUIRED;
 
 	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_EXP__IS_TYPEOF = OCL_EXPRESSION__IS_TYPEOF;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18461,6 +18559,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STRING_LITERAL_EXP__IS_REQUIRED = PRIMITIVE_LITERAL_EXP__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL_EXP__IS_TYPEOF = PRIMITIVE_LITERAL_EXP__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -19399,6 +19506,15 @@ public interface PivotPackage
 	int TUPLE_LITERAL_EXP__IS_REQUIRED = LITERAL_EXP__IS_REQUIRED;
 
 	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_EXP__IS_TYPEOF = LITERAL_EXP__IS_TYPEOF;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19532,6 +19648,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TUPLE_LITERAL_PART__IS_REQUIRED = VARIABLE_DECLARATION__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_PART__IS_TYPEOF = VARIABLE_DECLARATION__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -19939,6 +20064,15 @@ public interface PivotPackage
 	int TYPE_EXP__IS_REQUIRED = OCL_EXPRESSION__IS_REQUIRED;
 
 	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_EXP__IS_TYPEOF = OCL_EXPRESSION__IS_TYPEOF;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20027,7 +20161,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTypeExtension()
 	 * @generated
 	 */
-	int TYPE_EXTENSION = 104;
+	int TYPE_EXTENSION = 103;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -20192,6 +20326,15 @@ public interface PivotPackage
 	int UNLIMITED_NATURAL_LITERAL_EXP__IS_REQUIRED = NUMERIC_LITERAL_EXP__IS_REQUIRED;
 
 	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNLIMITED_NATURAL_LITERAL_EXP__IS_TYPEOF = NUMERIC_LITERAL_EXP__IS_TYPEOF;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20327,6 +20470,15 @@ public interface PivotPackage
 	int UNSPECIFIED_VALUE_EXP__IS_REQUIRED = OCL_EXPRESSION__IS_REQUIRED;
 
 	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSPECIFIED_VALUE_EXP__IS_TYPEOF = OCL_EXPRESSION__IS_TYPEOF;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20451,6 +20603,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VARIABLE__IS_REQUIRED = VARIABLE_DECLARATION__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE__IS_TYPEOF = VARIABLE_DECLARATION__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -20613,6 +20774,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VARIABLE_EXP__IS_REQUIRED = OCL_EXPRESSION__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_EXP__IS_TYPEOF = OCL_EXPRESSION__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -20964,7 +21134,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getWildcardType()
 	 * @generated
 	 */
-	int WILDCARD_TYPE = 115;
+	int WILDCARD_TYPE = 114;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -21244,7 +21414,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getAssociativityKind()
 	 * @generated
 	 */
-	int ASSOCIATIVITY_KIND = 116;
+	int ASSOCIATIVITY_KIND = 115;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.CollectionKind <em>Collection Kind</em>}' enum.
@@ -21254,7 +21424,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCollectionKind()
 	 * @generated
 	 */
-	int COLLECTION_KIND = 117;
+	int COLLECTION_KIND = 116;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.PseudostateKind <em>Pseudostate Kind</em>}' enum.
@@ -21264,7 +21434,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPseudostateKind()
 	 * @generated
 	 */
-	int PSEUDOSTATE_KIND = 118;
+	int PSEUDOSTATE_KIND = 117;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.TransitionKind <em>Transition Kind</em>}' enum.
@@ -21274,7 +21444,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTransitionKind()
 	 * @generated
 	 */
-	int TRANSITION_KIND = 119;
+	int TRANSITION_KIND = 118;
 
 	/**
 	 * The meta object id for the '<em>Boolean</em>' data type.
@@ -21283,7 +21453,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getBoolean()
 	 * @generated
 	 */
-	int BOOLEAN = 120;
+	int BOOLEAN = 119;
 
 	/**
 	 * The meta object id for the '<em>Integer</em>' data type.
@@ -21293,7 +21463,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getInteger()
 	 * @generated
 	 */
-	int INTEGER = 121;
+	int INTEGER = 120;
 
 	/**
 	 * The meta object id for the '<em>Library Feature</em>' data type.
@@ -21303,7 +21473,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getLibraryFeature()
 	 * @generated
 	 */
-	int LIBRARY_FEATURE = 122;
+	int LIBRARY_FEATURE = 121;
 
 	/**
 	 * The meta object id for the '<em>Object</em>' data type.
@@ -21313,7 +21483,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getObject()
 	 * @generated
 	 */
-	int OBJECT = 123;
+	int OBJECT = 122;
 
 	/**
 	 * The meta object id for the '<em>Real</em>' data type.
@@ -21323,7 +21493,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getReal()
 	 * @generated
 	 */
-	int REAL = 124;
+	int REAL = 123;
 
 	/**
 	 * The meta object id for the '<em>String</em>' data type.
@@ -21333,7 +21503,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getString()
 	 * @generated
 	 */
-	int STRING = 125;
+	int STRING = 124;
 
 	/**
 	 * The meta object id for the '<em>Throwable</em>' data type.
@@ -21343,7 +21513,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getThrowable()
 	 * @generated
 	 */
-	int THROWABLE = 126;
+	int THROWABLE = 125;
 
 	/**
 	 * The meta object id for the '<em>Unlimited Natural</em>' data type.
@@ -21353,7 +21523,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getUnlimitedNatural()
 	 * @generated
 	 */
-	int UNLIMITED_NATURAL = 127;
+	int UNLIMITED_NATURAL = 126;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.Annotation <em>Annotation</em>}'.
@@ -23107,27 +23277,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getMessageType_ReferredOperation();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.Metaclass <em>Metaclass</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Metaclass</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Metaclass
-	 * @generated
-	 */
-	EClass getMetaclass();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.Metaclass#getInstanceType <em>Instance Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Instance Type</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Metaclass#getInstanceType()
-	 * @see #getMetaclass()
-	 * @generated
-	 */
-	EReference getMetaclass_InstanceType();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.util.MorePivotable <em>More Pivotable</em>}'.
@@ -25110,6 +25259,17 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EAttribute getTypedElement_IsRequired();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.TypedElement#isTypeof <em>Is Typeof</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Typeof</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.TypedElement#isTypeof()
+	 * @see #getTypedElement()
+	 * @generated
+	 */
+	EAttribute getTypedElement_IsTypeof();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.AssociationClass <em>Association Class</em>}'.
@@ -27508,24 +27668,6 @@ public interface PivotPackage
 		EReference MESSAGE_TYPE__REFERRED_OPERATION = eINSTANCE.getMessageType_ReferredOperation();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.MetaclassImpl <em>Metaclass</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.MetaclassImpl
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getMetaclass()
-		 * @generated
-		 */
-		EClass METACLASS = eINSTANCE.getMetaclass();
-
-		/**
-		 * The meta object literal for the '<em><b>Instance Type</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference METACLASS__INSTANCE_TYPE = eINSTANCE.getMetaclass_InstanceType();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.util.MorePivotable <em>More Pivotable</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -29108,6 +29250,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EAttribute TYPED_ELEMENT__IS_REQUIRED = eINSTANCE.getTypedElement_IsRequired();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Typeof</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TYPED_ELEMENT__IS_TYPEOF = eINSTANCE.getTypedElement_IsTypeof();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.AssociationClassImpl <em>Association Class</em>}' class.

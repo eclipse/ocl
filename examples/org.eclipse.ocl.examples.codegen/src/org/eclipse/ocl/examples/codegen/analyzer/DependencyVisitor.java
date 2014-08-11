@@ -49,7 +49,6 @@ import org.eclipse.ocl.examples.domain.ids.EnumerationId;
 import org.eclipse.ocl.examples.domain.ids.EnumerationLiteralId;
 import org.eclipse.ocl.examples.domain.ids.IdVisitor;
 import org.eclipse.ocl.examples.domain.ids.LambdaTypeId;
-import org.eclipse.ocl.examples.domain.ids.MetaclassId;
 import org.eclipse.ocl.examples.domain.ids.NestedPackageId;
 import org.eclipse.ocl.examples.domain.ids.NsURIPackageId;
 import org.eclipse.ocl.examples.domain.ids.OclInvalidTypeId;
@@ -371,14 +370,6 @@ public class DependencyVisitor extends AbstractExtendingCGModelVisitor<Object, C
 		public @Nullable Object visitLambdaTypeId(@NonNull LambdaTypeId id) {
 			// TODO Auto-generated method stub
 			return visiting(id);
-		}
-		
-		@Override
-		public @Nullable Object visitMetaclassId(final @NonNull MetaclassId id) {
-			if (id != TypeId.METACLASS) {
-				addElementIdDependency(id, id.getElementId());
-			}
-			return null;
 		}
 	
 		@Override

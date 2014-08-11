@@ -190,6 +190,8 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return isMany();
 			case PivotPackage.ITERATION__IS_REQUIRED:
 				return isRequired();
+			case PivotPackage.ITERATION__IS_TYPEOF:
+				return isTypeof();
 			case PivotPackage.ITERATION__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -268,6 +270,9 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return;
 			case PivotPackage.ITERATION__IS_REQUIRED:
 				setIsRequired((Boolean)newValue);
+				return;
+			case PivotPackage.ITERATION__IS_TYPEOF:
+				setIsTypeof((Boolean)newValue);
 				return;
 			case PivotPackage.ITERATION__TYPE:
 				setType((Type)newValue);
@@ -370,6 +375,9 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__IS_REQUIRED:
 				setIsRequired(IS_REQUIRED_EDEFAULT);
 				return;
+			case PivotPackage.ITERATION__IS_TYPEOF:
+				setIsTypeof(IS_TYPEOF_EDEFAULT);
+				return;
 			case PivotPackage.ITERATION__TYPE:
 				setType((Type)null);
 				return;
@@ -458,6 +466,8 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.ITERATION__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
+			case PivotPackage.ITERATION__IS_TYPEOF:
+				return ((eFlags & IS_TYPEOF_EFLAG) != 0) != IS_TYPEOF_EDEFAULT;
 			case PivotPackage.ITERATION__TYPE:
 				return type != null;
 			case PivotPackage.ITERATION__IMPLEMENTATION:

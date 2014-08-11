@@ -126,7 +126,7 @@ public class SelfTypeImpl extends ClassImpl implements SelfType
 			if (templateSignature != null) {
 				MetaModelManager metaModelManager = PivotUtil.findMetaModelManager((EObject) expr);
 				if (metaModelManager != null) {
-					return metaModelManager.specializeType((Type)selfType, (CallExp) expr, (Type)selfType); // FIXME is this a no-op
+					return metaModelManager.specializeType((Type)selfType, false, (CallExp) expr, (Type)selfType, false); // FIXME is this a no-op
 				}
 				else {
 					return null;

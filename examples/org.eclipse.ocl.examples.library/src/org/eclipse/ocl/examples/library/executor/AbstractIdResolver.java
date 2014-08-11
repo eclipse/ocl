@@ -50,13 +50,11 @@ import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.examples.domain.ids.ClassId;
 import org.eclipse.ocl.examples.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.examples.domain.ids.DataTypeId;
-import org.eclipse.ocl.examples.domain.ids.ElementId;
 import org.eclipse.ocl.examples.domain.ids.EnumerationId;
 import org.eclipse.ocl.examples.domain.ids.EnumerationLiteralId;
 import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.domain.ids.IdVisitor;
 import org.eclipse.ocl.examples.domain.ids.LambdaTypeId;
-import org.eclipse.ocl.examples.domain.ids.MetaclassId;
 import org.eclipse.ocl.examples.domain.ids.NestedPackageId;
 import org.eclipse.ocl.examples.domain.ids.NsURIPackageId;
 import org.eclipse.ocl.examples.domain.ids.OclInvalidTypeId;
@@ -126,10 +124,6 @@ public abstract class AbstractIdResolver implements IdResolver
 		}
 
 		public @Nullable Object visitLambdaTypeId(@NonNull LambdaTypeId id) {
-			throw new UnsupportedOperationException();
-		}
-
-		public @Nullable Object visitMetaclassId(@NonNull MetaclassId id) {
 			throw new UnsupportedOperationException();
 		}
 
@@ -618,17 +612,6 @@ public abstract class AbstractIdResolver implements IdResolver
 		return type;
 	}
 
-	public @NonNull DomainClass getMetaclass(@NonNull MetaclassId metaclassId) {
-		if (metaclassId == TypeId.METACLASS) {
-			return standardLibrary.getMetaclassType();
-		}
-		else {
-			ElementId elementId = metaclassId.getElementId();
-			DomainType elementType = getType((TypeId)elementId, null);
-			return standardLibrary.getMetaclass(elementType);
-		}
-	}
-
 	public @NonNull DomainOperation getOperation(@NonNull OperationId operationId) {
 		DomainElement element = operationId.accept(this);
 		if (element instanceof DomainOperation) {
@@ -976,13 +959,8 @@ public abstract class AbstractIdResolver implements IdResolver
 			throw new UnsupportedOperationException();
 		}
 		CollectionTypeId collectionTypeId = id.getGeneralizedId();
-		if (collectionTypeId == TypeId.METACLASS) {
-			return standardLibrary.getMetaclass(elementType);
-		}
-		else {
-			DomainClass collectionType = getCollectionType(collectionTypeId);
-			return standardLibrary.getCollectionType(collectionType, elementType, null, null);
-		}
+		DomainClass collectionType = getCollectionType(collectionTypeId);
+		return standardLibrary.getCollectionType(collectionType, elementType, null, null);
 	}
 
 	public @NonNull DomainType visitCollectionTypeId(@NonNull CollectionTypeId id) {
@@ -1034,10 +1012,6 @@ public abstract class AbstractIdResolver implements IdResolver
 
 	public @NonNull DomainType visitLambdaTypeId(@NonNull LambdaTypeId id) {
 		throw new UnsupportedOperationException();
-	}
-
-	public @NonNull DomainType visitMetaclassId(@NonNull MetaclassId id) {
-		return getMetaclass(id);
 	}
 
 	public @NonNull DomainPackage visitNestedPackageId(@NonNull NestedPackageId packageId) {

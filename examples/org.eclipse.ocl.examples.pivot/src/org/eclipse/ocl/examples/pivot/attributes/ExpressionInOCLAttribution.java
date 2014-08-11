@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.DomainNamespace;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -52,7 +51,7 @@ public class ExpressionInOCLAttribution extends AbstractAttribution
 				type = metaModelManager.getOclVoidType();
 			}
 			if (!environmentView.hasFinalResult()) {
-				Type userType = type instanceof Metaclass<?> ? ((Metaclass<?>)type).getInstanceType() : type;// FIXME is this really right - needed by test_stereotypeM2Navigation for implicit self of an base_xxx
+				Type userType = /*type instanceof Metaclass<?> ? ((Metaclass<?>)type).getInstanceType() :*/ type;// FIXME is this really right - needed by test_stereotypeM2Navigation for implicit self of an base_xxx
 				if (userType instanceof org.eclipse.ocl.examples.pivot.Class) {
 					Package contextPackage = ((org.eclipse.ocl.examples.pivot.Class)userType).getOwningPackage();
 					if (contextPackage != null) {

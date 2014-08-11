@@ -22,7 +22,6 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.LambdaType;
-import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -268,17 +267,6 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 		s.append(ITERATION_PREFIX);
 		appendOperation(object);
 		return true;
-	}
-
-	@Override
-	public @Nullable Boolean visitMetaclass(@NonNull Metaclass<?> object) {
-		if (object.getOwnedTemplateBindings().isEmpty()) {
-			appendName(object.getName());
-			return true;
-		}
-		else {
-			return false;
-		}
 	}
 
 	@Override

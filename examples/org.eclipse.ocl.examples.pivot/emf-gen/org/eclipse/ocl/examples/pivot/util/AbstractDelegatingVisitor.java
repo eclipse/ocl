@@ -267,10 +267,6 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 		return delegate.visitMessageType(object);
 	}
 
-	public @Nullable R visitMetaclass(@NonNull org.eclipse.ocl.examples.pivot.Metaclass<?> object) {
-		return delegate.visitMetaclass(object);
-	}
-
 	public @Nullable R visitNamedElement(@NonNull org.eclipse.ocl.examples.pivot.NamedElement object) {
 		return delegate.visitNamedElement(object);
 	}

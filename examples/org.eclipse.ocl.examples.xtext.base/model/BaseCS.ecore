@@ -322,6 +322,9 @@
         changeable="false" volatile="true" transient="true" derived="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedTemplateBinding" eType="#//TemplateBindingCS"
         containment="true" eOpposite="#//TemplateBindingCS/owningTemplateBindableElement"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeof" lowerBound="1"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
+        defaultValueLiteral="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VisitableCS" instanceClassName="org.eclipse.ocl.examples.xtext.base.basecs.util.VisitableCS"
       abstract="true" interface="true"/>

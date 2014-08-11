@@ -23,12 +23,9 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
-import org.eclipse.ocl.examples.domain.elements.DomainMetaclass;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
-import org.eclipse.ocl.examples.domain.types.AbstractMetaclass;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.library.ecore.EcoreExecutorPackage;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
 
@@ -37,8 +34,8 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 	private @NonNull Map<String, WeakReference<EcoreExecutorPackage>> ePackageMap = new WeakHashMap<String, WeakReference<EcoreExecutorPackage>>();
 	private Map<DomainPackage, WeakReference<DomainReflectivePackage>> domainPackageMap = null;
 	private /*@LazyNonNull*/ Map<EcoreExecutorPackage, List<EcoreExecutorPackage>> extensions = null;
+	private /*@LazyNonNull*/ DomainClass classType = null;
 	private /*@LazyNonNull*/ DomainClass enumerationType = null;
-	private /*@LazyNonNull*/ DomainClass metaclassType = null;
 	
 	public ExecutorStandardLibrary(EcoreExecutorPackage... execPackages) {
 		OCLstdlibTables.PACKAGE.getClass();
@@ -72,10 +69,25 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 //		}
 	}
 
-	@Override
-	protected @NonNull DomainMetaclass createMetaclass(@NonNull DomainType classType) {
-		DomainMetaclass metaclass = new AbstractMetaclass(this, classType);
-		return metaclass;
+	public @NonNull DomainClass getClassType() {
+		Map<EcoreExecutorPackage, List<EcoreExecutorPackage>> extensions2 = extensions;
+		if (extensions2 == null) {
+			throw new IllegalStateException("No extension package registered to define Class type"); //$NON-NLS-1$
+		}
+		if (classType != null) {
+			return classType;
+		}
+		for (EcoreExecutorPackage basePackage : extensions2.keySet()) {
+			for (EcoreExecutorPackage extensionPackage : extensions2.get(basePackage)) {
+				for (DomainClass type : extensionPackage.getOwnedClasses()) {
+					if ("Class".equals(type.getName())) { //$NON-NLS-1$
+						classType = type;
+						return type;
+					}
+				}
+			}
+		}
+		throw new IllegalStateException("No extension package defines Class type"); //$NON-NLS-1$
 	}
 
 	public @NonNull DomainClass getEnumerationType() {
@@ -103,12 +115,12 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 		if (type instanceof DomainInheritance) {
 			return (DomainInheritance) type;
 		}
-		if (type instanceof DomainMetaclass) {
+/*		if (type instanceof DomainMetaclass) {
 			DomainType instanceType = DomainUtil.nonNullPivot(((DomainMetaclass)type).getInstanceType());
-			DomainMetaclass metaclass = getMetaclass(instanceType);
-			DomainType containerType = metaclass.getContainerType();
+			DomainClass metaclass = getMetaclass(instanceType);
+			DomainType containerType = metaclass;//.getContainerType();
 			return containerType.getInheritance(this);
-		}
+		} */
 		if (type instanceof DomainCollectionType) {
 			DomainType containerType = ((DomainCollectionType)type).getContainerType();
 			if ((containerType != null) && (containerType != type)) {
@@ -152,27 +164,6 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 			}
 			return domainExecutorPackage.getInheritance(type);
 		}
-	}
-
-	public @NonNull DomainClass getMetaclassType() {
-		Map<EcoreExecutorPackage, List<EcoreExecutorPackage>> extensions2 = extensions;
-		if (extensions2 == null) {
-			throw new IllegalStateException("No extension package registered to define Metaclass type"); //$NON-NLS-1$
-		}
-		if (metaclassType != null) {
-			return metaclassType;
-		}
-		for (EcoreExecutorPackage basePackage : extensions2.keySet()) {
-			for (EcoreExecutorPackage extensionPackage : extensions2.get(basePackage)) {
-				for (DomainClass type : extensionPackage.getOwnedClasses()) {
-					if ("Metaclass".equals(type.getName())) { //$NON-NLS-1$
-						metaclassType = type;
-						return type;
-					}
-				}
-			}
-		}
-		throw new IllegalStateException("No extension package defines Metaclass type"); //$NON-NLS-1$
 	}
 
 	@Override

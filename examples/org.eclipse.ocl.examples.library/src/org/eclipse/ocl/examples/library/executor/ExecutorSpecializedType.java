@@ -27,13 +27,8 @@ public class ExecutorSpecializedType extends AbstractClass implements ExecutorTy
 
 	public ExecutorSpecializedType(@NonNull DomainStandardLibrary standardLibrary, @NonNull String name, @NonNull ExecutorTypeArgument... typeArguments) {
 		super(standardLibrary, name);
-		if (TypeId.METACLASS_NAME.equals(name)) {
-			typeId = TypeId.METACLASS.getSpecializedId(typeArguments[0].getTypeId());
-		}
-		else {
-			CollectionTypeId collectionTypeId = IdManager.getCollectionTypeId(name);
-			typeId = (TypeId) collectionTypeId.specialize(IdManager.getBindingsId(typeArguments));
-		}
+		CollectionTypeId collectionTypeId = IdManager.getCollectionTypeId(name);
+		typeId = (TypeId) collectionTypeId.specialize(IdManager.getBindingsId(typeArguments));
 	}
 
 	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {

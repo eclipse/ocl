@@ -66,7 +66,6 @@ import org.eclipse.ocl.examples.pivot.LiteralExp;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.MessageType;
-import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.NavigationCallExp;
@@ -139,7 +138,7 @@ import org.eclipse.ocl.examples.pivot.WildcardType;
  * @see org.eclipse.ocl.examples.pivot.PivotPackage
  * @generated
  */
-public class PivotSwitch<T1> extends Switch<T1> {
+public class PivotSwitch<T> extends Switch<T> {
 
 	/**
 	 * The cached model package
@@ -184,13 +183,13 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @generated
 	 */
 	@Override
-	protected T1 doSwitch(int classifierID, EObject theEObject) {
+	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID)
 		{
 			case PivotPackage.ANNOTATION:
 			{
 				Annotation annotation = (Annotation)theEObject;
-				T1 result = caseAnnotation(annotation);
+				T result = caseAnnotation(annotation);
 				if (result == null) result = caseNamedElement(annotation);
 				if (result == null) result = caseElement(annotation);
 				if (result == null) result = caseNameable(annotation);
@@ -201,7 +200,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.ANY_TYPE:
 			{
 				AnyType anyType = (AnyType)theEObject;
-				T1 result = caseAnyType(anyType);
+				T result = caseAnyType(anyType);
 				if (result == null) result = caseClass(anyType);
 				if (result == null) result = caseType(anyType);
 				if (result == null) result = caseNamespace(anyType);
@@ -216,7 +215,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.ASSOCIATION_CLASS:
 			{
 				AssociationClass associationClass = (AssociationClass)theEObject;
-				T1 result = caseAssociationClass(associationClass);
+				T result = caseAssociationClass(associationClass);
 				if (result == null) result = caseClass(associationClass);
 				if (result == null) result = caseType(associationClass);
 				if (result == null) result = caseNamespace(associationClass);
@@ -231,7 +230,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP:
 			{
 				AssociationClassCallExp associationClassCallExp = (AssociationClassCallExp)theEObject;
-				T1 result = caseAssociationClassCallExp(associationClassCallExp);
+				T result = caseAssociationClassCallExp(associationClassCallExp);
 				if (result == null) result = caseNavigationCallExp(associationClassCallExp);
 				if (result == null) result = caseFeatureCallExp(associationClassCallExp);
 				if (result == null) result = caseCallExp(associationClassCallExp);
@@ -247,7 +246,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.BAG_TYPE:
 			{
 				BagType bagType = (BagType)theEObject;
-				T1 result = caseBagType(bagType);
+				T result = caseBagType(bagType);
 				if (result == null) result = caseCollectionType(bagType);
 				if (result == null) result = caseDataType(bagType);
 				if (result == null) result = caseClass(bagType);
@@ -264,7 +263,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.BEHAVIOR:
 			{
 				Behavior behavior = (Behavior)theEObject;
-				T1 result = caseBehavior(behavior);
+				T result = caseBehavior(behavior);
 				if (result == null) result = caseClass(behavior);
 				if (result == null) result = caseType(behavior);
 				if (result == null) result = caseNamespace(behavior);
@@ -279,7 +278,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.BOOLEAN_LITERAL_EXP:
 			{
 				BooleanLiteralExp booleanLiteralExp = (BooleanLiteralExp)theEObject;
-				T1 result = caseBooleanLiteralExp(booleanLiteralExp);
+				T result = caseBooleanLiteralExp(booleanLiteralExp);
 				if (result == null) result = casePrimitiveLiteralExp(booleanLiteralExp);
 				if (result == null) result = caseLiteralExp(booleanLiteralExp);
 				if (result == null) result = caseOCLExpression(booleanLiteralExp);
@@ -294,7 +293,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.CALL_EXP:
 			{
 				CallExp callExp = (CallExp)theEObject;
-				T1 result = caseCallExp(callExp);
+				T result = caseCallExp(callExp);
 				if (result == null) result = caseOCLExpression(callExp);
 				if (result == null) result = caseTypedElement(callExp);
 				if (result == null) result = caseNamedElement(callExp);
@@ -307,7 +306,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.CALL_OPERATION_ACTION:
 			{
 				CallOperationAction callOperationAction = (CallOperationAction)theEObject;
-				T1 result = caseCallOperationAction(callOperationAction);
+				T result = caseCallOperationAction(callOperationAction);
 				if (result == null) result = caseNamedElement(callOperationAction);
 				if (result == null) result = caseElement(callOperationAction);
 				if (result == null) result = caseNameable(callOperationAction);
@@ -318,7 +317,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.CLASS:
 			{
 				org.eclipse.ocl.examples.pivot.Class class_ = (org.eclipse.ocl.examples.pivot.Class)theEObject;
-				T1 result = caseClass(class_);
+				T result = caseClass(class_);
 				if (result == null) result = caseType(class_);
 				if (result == null) result = caseNamespace(class_);
 				if (result == null) result = caseTemplateableElement(class_);
@@ -332,7 +331,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.COLLECTION_ITEM:
 			{
 				CollectionItem collectionItem = (CollectionItem)theEObject;
-				T1 result = caseCollectionItem(collectionItem);
+				T result = caseCollectionItem(collectionItem);
 				if (result == null) result = caseCollectionLiteralPart(collectionItem);
 				if (result == null) result = caseTypedElement(collectionItem);
 				if (result == null) result = caseNamedElement(collectionItem);
@@ -345,7 +344,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.COLLECTION_LITERAL_EXP:
 			{
 				CollectionLiteralExp collectionLiteralExp = (CollectionLiteralExp)theEObject;
-				T1 result = caseCollectionLiteralExp(collectionLiteralExp);
+				T result = caseCollectionLiteralExp(collectionLiteralExp);
 				if (result == null) result = caseLiteralExp(collectionLiteralExp);
 				if (result == null) result = caseOCLExpression(collectionLiteralExp);
 				if (result == null) result = caseTypedElement(collectionLiteralExp);
@@ -359,7 +358,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.COLLECTION_LITERAL_PART:
 			{
 				CollectionLiteralPart collectionLiteralPart = (CollectionLiteralPart)theEObject;
-				T1 result = caseCollectionLiteralPart(collectionLiteralPart);
+				T result = caseCollectionLiteralPart(collectionLiteralPart);
 				if (result == null) result = caseTypedElement(collectionLiteralPart);
 				if (result == null) result = caseNamedElement(collectionLiteralPart);
 				if (result == null) result = caseElement(collectionLiteralPart);
@@ -371,7 +370,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.COLLECTION_RANGE:
 			{
 				CollectionRange collectionRange = (CollectionRange)theEObject;
-				T1 result = caseCollectionRange(collectionRange);
+				T result = caseCollectionRange(collectionRange);
 				if (result == null) result = caseCollectionLiteralPart(collectionRange);
 				if (result == null) result = caseTypedElement(collectionRange);
 				if (result == null) result = caseNamedElement(collectionRange);
@@ -384,7 +383,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.COLLECTION_TYPE:
 			{
 				CollectionType collectionType = (CollectionType)theEObject;
-				T1 result = caseCollectionType(collectionType);
+				T result = caseCollectionType(collectionType);
 				if (result == null) result = caseDataType(collectionType);
 				if (result == null) result = caseClass(collectionType);
 				if (result == null) result = caseType(collectionType);
@@ -400,7 +399,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.COMMENT:
 			{
 				Comment comment = (Comment)theEObject;
-				T1 result = caseComment(comment);
+				T result = caseComment(comment);
 				if (result == null) result = caseElement(comment);
 				if (result == null) result = caseVisitable(comment);
 				if (result == null) result = defaultCase(theEObject);
@@ -409,7 +408,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.CONNECTION_POINT_REFERENCE:
 			{
 				ConnectionPointReference connectionPointReference = (ConnectionPointReference)theEObject;
-				T1 result = caseConnectionPointReference(connectionPointReference);
+				T result = caseConnectionPointReference(connectionPointReference);
 				if (result == null) result = caseVertex(connectionPointReference);
 				if (result == null) result = caseNamedElement(connectionPointReference);
 				if (result == null) result = caseElement(connectionPointReference);
@@ -421,7 +420,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.CONSTRAINT:
 			{
 				Constraint constraint = (Constraint)theEObject;
-				T1 result = caseConstraint(constraint);
+				T result = caseConstraint(constraint);
 				if (result == null) result = caseNamedElement(constraint);
 				if (result == null) result = caseElement(constraint);
 				if (result == null) result = caseNameable(constraint);
@@ -432,7 +431,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.CONSTRUCTOR_EXP:
 			{
 				ConstructorExp constructorExp = (ConstructorExp)theEObject;
-				T1 result = caseConstructorExp(constructorExp);
+				T result = caseConstructorExp(constructorExp);
 				if (result == null) result = caseOCLExpression(constructorExp);
 				if (result == null) result = caseTypedElement(constructorExp);
 				if (result == null) result = caseNamedElement(constructorExp);
@@ -445,7 +444,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.CONSTRUCTOR_PART:
 			{
 				ConstructorPart constructorPart = (ConstructorPart)theEObject;
-				T1 result = caseConstructorPart(constructorPart);
+				T result = caseConstructorPart(constructorPart);
 				if (result == null) result = caseTypedElement(constructorPart);
 				if (result == null) result = caseNamedElement(constructorPart);
 				if (result == null) result = caseElement(constructorPart);
@@ -457,7 +456,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.DATA_TYPE:
 			{
 				DataType dataType = (DataType)theEObject;
-				T1 result = caseDataType(dataType);
+				T result = caseDataType(dataType);
 				if (result == null) result = caseClass(dataType);
 				if (result == null) result = caseType(dataType);
 				if (result == null) result = caseNamespace(dataType);
@@ -472,7 +471,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.DETAIL:
 			{
 				Detail detail = (Detail)theEObject;
-				T1 result = caseDetail(detail);
+				T result = caseDetail(detail);
 				if (result == null) result = caseNamedElement(detail);
 				if (result == null) result = caseElement(detail);
 				if (result == null) result = caseNameable(detail);
@@ -483,7 +482,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.DYNAMIC_BEHAVIOR:
 			{
 				DynamicBehavior dynamicBehavior = (DynamicBehavior)theEObject;
-				T1 result = caseDynamicBehavior(dynamicBehavior);
+				T result = caseDynamicBehavior(dynamicBehavior);
 				if (result == null) result = caseDynamicType(dynamicBehavior);
 				if (result == null) result = caseBehavior(dynamicBehavior);
 				if (result == null) result = caseClass(dynamicBehavior);
@@ -501,7 +500,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.DYNAMIC_ELEMENT:
 			{
 				DynamicElement dynamicElement = (DynamicElement)theEObject;
-				T1 result = caseDynamicElement(dynamicElement);
+				T result = caseDynamicElement(dynamicElement);
 				if (result == null) result = caseElement(dynamicElement);
 				if (result == null) result = caseVisitable(dynamicElement);
 				if (result == null) result = defaultCase(theEObject);
@@ -510,7 +509,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.DYNAMIC_PROPERTY:
 			{
 				DynamicProperty dynamicProperty = (DynamicProperty)theEObject;
-				T1 result = caseDynamicProperty(dynamicProperty);
+				T result = caseDynamicProperty(dynamicProperty);
 				if (result == null) result = caseElement(dynamicProperty);
 				if (result == null) result = caseVisitable(dynamicProperty);
 				if (result == null) result = defaultCase(theEObject);
@@ -519,7 +518,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.DYNAMIC_TYPE:
 			{
 				DynamicType dynamicType = (DynamicType)theEObject;
-				T1 result = caseDynamicType(dynamicType);
+				T result = caseDynamicType(dynamicType);
 				if (result == null) result = caseClass(dynamicType);
 				if (result == null) result = caseDynamicElement(dynamicType);
 				if (result == null) result = caseType(dynamicType);
@@ -535,7 +534,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.DYNAMIC_VALUE_SPECIFICATION:
 			{
 				DynamicValueSpecification dynamicValueSpecification = (DynamicValueSpecification)theEObject;
-				T1 result = caseDynamicValueSpecification(dynamicValueSpecification);
+				T result = caseDynamicValueSpecification(dynamicValueSpecification);
 				if (result == null) result = caseValueSpecification(dynamicValueSpecification);
 				if (result == null) result = caseTypedElement(dynamicValueSpecification);
 				if (result == null) result = caseNamedElement(dynamicValueSpecification);
@@ -548,7 +547,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.ELEMENT:
 			{
 				Element element = (Element)theEObject;
-				T1 result = caseElement(element);
+				T result = caseElement(element);
 				if (result == null) result = caseVisitable(element);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -556,7 +555,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.ELEMENT_EXTENSION:
 			{
 				ElementExtension elementExtension = (ElementExtension)theEObject;
-				T1 result = caseElementExtension(elementExtension);
+				T result = caseElementExtension(elementExtension);
 				if (result == null) result = caseClass(elementExtension);
 				if (result == null) result = caseType(elementExtension);
 				if (result == null) result = caseNamespace(elementExtension);
@@ -571,7 +570,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.ENUM_LITERAL_EXP:
 			{
 				EnumLiteralExp enumLiteralExp = (EnumLiteralExp)theEObject;
-				T1 result = caseEnumLiteralExp(enumLiteralExp);
+				T result = caseEnumLiteralExp(enumLiteralExp);
 				if (result == null) result = caseLiteralExp(enumLiteralExp);
 				if (result == null) result = caseOCLExpression(enumLiteralExp);
 				if (result == null) result = caseTypedElement(enumLiteralExp);
@@ -585,7 +584,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.ENUMERATION:
 			{
 				Enumeration enumeration = (Enumeration)theEObject;
-				T1 result = caseEnumeration(enumeration);
+				T result = caseEnumeration(enumeration);
 				if (result == null) result = caseDataType(enumeration);
 				if (result == null) result = caseClass(enumeration);
 				if (result == null) result = caseType(enumeration);
@@ -601,7 +600,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.ENUMERATION_LITERAL:
 			{
 				EnumerationLiteral enumerationLiteral = (EnumerationLiteral)theEObject;
-				T1 result = caseEnumerationLiteral(enumerationLiteral);
+				T result = caseEnumerationLiteral(enumerationLiteral);
 				if (result == null) result = caseInstanceSpecification(enumerationLiteral);
 				if (result == null) result = caseNamedElement(enumerationLiteral);
 				if (result == null) result = caseElement(enumerationLiteral);
@@ -613,7 +612,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.EXPRESSION_IN_OCL:
 			{
 				ExpressionInOCL expressionInOCL = (ExpressionInOCL)theEObject;
-				T1 result = caseExpressionInOCL(expressionInOCL);
+				T result = caseExpressionInOCL(expressionInOCL);
 				if (result == null) result = caseLanguageExpression(expressionInOCL);
 				if (result == null) result = caseValueSpecification(expressionInOCL);
 				if (result == null) result = caseTypedElement(expressionInOCL);
@@ -627,7 +626,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.FEATURE:
 			{
 				Feature feature = (Feature)theEObject;
-				T1 result = caseFeature(feature);
+				T result = caseFeature(feature);
 				if (result == null) result = caseTypedElement(feature);
 				if (result == null) result = caseNamedElement(feature);
 				if (result == null) result = caseElement(feature);
@@ -639,7 +638,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.FEATURE_CALL_EXP:
 			{
 				FeatureCallExp featureCallExp = (FeatureCallExp)theEObject;
-				T1 result = caseFeatureCallExp(featureCallExp);
+				T result = caseFeatureCallExp(featureCallExp);
 				if (result == null) result = caseCallExp(featureCallExp);
 				if (result == null) result = caseOCLExpression(featureCallExp);
 				if (result == null) result = caseTypedElement(featureCallExp);
@@ -653,7 +652,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.FINAL_STATE:
 			{
 				FinalState finalState = (FinalState)theEObject;
-				T1 result = caseFinalState(finalState);
+				T result = caseFinalState(finalState);
 				if (result == null) result = caseState(finalState);
 				if (result == null) result = caseNamespace(finalState);
 				if (result == null) result = caseVertex(finalState);
@@ -667,7 +666,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.IF_EXP:
 			{
 				IfExp ifExp = (IfExp)theEObject;
-				T1 result = caseIfExp(ifExp);
+				T result = caseIfExp(ifExp);
 				if (result == null) result = caseOCLExpression(ifExp);
 				if (result == null) result = caseTypedElement(ifExp);
 				if (result == null) result = caseNamedElement(ifExp);
@@ -680,7 +679,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.IMPORT:
 			{
 				Import import_ = (Import)theEObject;
-				T1 result = caseImport(import_);
+				T result = caseImport(import_);
 				if (result == null) result = caseNamedElement(import_);
 				if (result == null) result = caseElement(import_);
 				if (result == null) result = caseNameable(import_);
@@ -691,7 +690,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.INSTANCE_SPECIFICATION:
 			{
 				InstanceSpecification instanceSpecification = (InstanceSpecification)theEObject;
-				T1 result = caseInstanceSpecification(instanceSpecification);
+				T result = caseInstanceSpecification(instanceSpecification);
 				if (result == null) result = caseNamedElement(instanceSpecification);
 				if (result == null) result = caseElement(instanceSpecification);
 				if (result == null) result = caseNameable(instanceSpecification);
@@ -702,7 +701,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.INTEGER_LITERAL_EXP:
 			{
 				IntegerLiteralExp integerLiteralExp = (IntegerLiteralExp)theEObject;
-				T1 result = caseIntegerLiteralExp(integerLiteralExp);
+				T result = caseIntegerLiteralExp(integerLiteralExp);
 				if (result == null) result = caseNumericLiteralExp(integerLiteralExp);
 				if (result == null) result = casePrimitiveLiteralExp(integerLiteralExp);
 				if (result == null) result = caseLiteralExp(integerLiteralExp);
@@ -718,7 +717,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.INVALID_LITERAL_EXP:
 			{
 				InvalidLiteralExp invalidLiteralExp = (InvalidLiteralExp)theEObject;
-				T1 result = caseInvalidLiteralExp(invalidLiteralExp);
+				T result = caseInvalidLiteralExp(invalidLiteralExp);
 				if (result == null) result = caseLiteralExp(invalidLiteralExp);
 				if (result == null) result = caseOCLExpression(invalidLiteralExp);
 				if (result == null) result = caseTypedElement(invalidLiteralExp);
@@ -732,7 +731,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.INVALID_TYPE:
 			{
 				InvalidType invalidType = (InvalidType)theEObject;
-				T1 result = caseInvalidType(invalidType);
+				T result = caseInvalidType(invalidType);
 				if (result == null) result = caseClass(invalidType);
 				if (result == null) result = caseType(invalidType);
 				if (result == null) result = caseNamespace(invalidType);
@@ -747,7 +746,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.ITERATE_EXP:
 			{
 				IterateExp iterateExp = (IterateExp)theEObject;
-				T1 result = caseIterateExp(iterateExp);
+				T result = caseIterateExp(iterateExp);
 				if (result == null) result = caseLoopExp(iterateExp);
 				if (result == null) result = caseReferringElement(iterateExp);
 				if (result == null) result = caseCallExp(iterateExp);
@@ -763,7 +762,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.ITERATION:
 			{
 				Iteration iteration = (Iteration)theEObject;
-				T1 result = caseIteration(iteration);
+				T result = caseIteration(iteration);
 				if (result == null) result = caseOperation(iteration);
 				if (result == null) result = caseFeature(iteration);
 				if (result == null) result = caseNamespace(iteration);
@@ -779,7 +778,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.ITERATOR_EXP:
 			{
 				IteratorExp iteratorExp = (IteratorExp)theEObject;
-				T1 result = caseIteratorExp(iteratorExp);
+				T result = caseIteratorExp(iteratorExp);
 				if (result == null) result = caseLoopExp(iteratorExp);
 				if (result == null) result = caseReferringElement(iteratorExp);
 				if (result == null) result = caseCallExp(iteratorExp);
@@ -795,7 +794,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.LAMBDA_TYPE:
 			{
 				LambdaType lambdaType = (LambdaType)theEObject;
-				T1 result = caseLambdaType(lambdaType);
+				T result = caseLambdaType(lambdaType);
 				if (result == null) result = caseDataType(lambdaType);
 				if (result == null) result = caseClass(lambdaType);
 				if (result == null) result = caseType(lambdaType);
@@ -811,7 +810,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.LANGUAGE_EXPRESSION:
 			{
 				LanguageExpression languageExpression = (LanguageExpression)theEObject;
-				T1 result = caseLanguageExpression(languageExpression);
+				T result = caseLanguageExpression(languageExpression);
 				if (result == null) result = caseValueSpecification(languageExpression);
 				if (result == null) result = caseTypedElement(languageExpression);
 				if (result == null) result = caseNamedElement(languageExpression);
@@ -824,7 +823,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.LET_EXP:
 			{
 				LetExp letExp = (LetExp)theEObject;
-				T1 result = caseLetExp(letExp);
+				T result = caseLetExp(letExp);
 				if (result == null) result = caseOCLExpression(letExp);
 				if (result == null) result = caseTypedElement(letExp);
 				if (result == null) result = caseNamedElement(letExp);
@@ -837,7 +836,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.LIBRARY:
 			{
 				Library library = (Library)theEObject;
-				T1 result = caseLibrary(library);
+				T result = caseLibrary(library);
 				if (result == null) result = casePackage(library);
 				if (result == null) result = caseNamespace(library);
 				if (result == null) result = caseNamedElement(library);
@@ -850,7 +849,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.LITERAL_EXP:
 			{
 				LiteralExp literalExp = (LiteralExp)theEObject;
-				T1 result = caseLiteralExp(literalExp);
+				T result = caseLiteralExp(literalExp);
 				if (result == null) result = caseOCLExpression(literalExp);
 				if (result == null) result = caseTypedElement(literalExp);
 				if (result == null) result = caseNamedElement(literalExp);
@@ -863,7 +862,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.LOOP_EXP:
 			{
 				LoopExp loopExp = (LoopExp)theEObject;
-				T1 result = caseLoopExp(loopExp);
+				T result = caseLoopExp(loopExp);
 				if (result == null) result = caseCallExp(loopExp);
 				if (result == null) result = caseOCLExpression(loopExp);
 				if (result == null) result = caseTypedElement(loopExp);
@@ -877,7 +876,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.MESSAGE_EXP:
 			{
 				MessageExp messageExp = (MessageExp)theEObject;
-				T1 result = caseMessageExp(messageExp);
+				T result = caseMessageExp(messageExp);
 				if (result == null) result = caseOCLExpression(messageExp);
 				if (result == null) result = caseTypedElement(messageExp);
 				if (result == null) result = caseNamedElement(messageExp);
@@ -890,7 +889,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.MESSAGE_TYPE:
 			{
 				MessageType messageType = (MessageType)theEObject;
-				T1 result = caseMessageType(messageType);
+				T result = caseMessageType(messageType);
 				if (result == null) result = caseClass(messageType);
 				if (result == null) result = caseType(messageType);
 				if (result == null) result = caseNamespace(messageType);
@@ -902,39 +901,24 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PivotPackage.METACLASS:
-			{
-				Metaclass<?> metaclass = (Metaclass<?>)theEObject;
-				T1 result = caseMetaclass(metaclass);
-				if (result == null) result = caseClass(metaclass);
-				if (result == null) result = caseType(metaclass);
-				if (result == null) result = caseNamespace(metaclass);
-				if (result == null) result = caseTemplateableElement(metaclass);
-				if (result == null) result = caseNamedElement(metaclass);
-				if (result == null) result = caseElement(metaclass);
-				if (result == null) result = caseNameable(metaclass);
-				if (result == null) result = caseVisitable(metaclass);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case PivotPackage.MORE_PIVOTABLE:
 			{
 				MorePivotable morePivotable = (MorePivotable)theEObject;
-				T1 result = caseMorePivotable(morePivotable);
+				T result = caseMorePivotable(morePivotable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case PivotPackage.NAMEABLE:
 			{
 				Nameable nameable = (Nameable)theEObject;
-				T1 result = caseNameable(nameable);
+				T result = caseNameable(nameable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case PivotPackage.NAMED_ELEMENT:
 			{
 				NamedElement namedElement = (NamedElement)theEObject;
-				T1 result = caseNamedElement(namedElement);
+				T result = caseNamedElement(namedElement);
 				if (result == null) result = caseElement(namedElement);
 				if (result == null) result = caseNameable(namedElement);
 				if (result == null) result = caseVisitable(namedElement);
@@ -944,7 +928,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.NAMESPACE:
 			{
 				Namespace namespace = (Namespace)theEObject;
-				T1 result = caseNamespace(namespace);
+				T result = caseNamespace(namespace);
 				if (result == null) result = caseNamedElement(namespace);
 				if (result == null) result = caseElement(namespace);
 				if (result == null) result = caseNameable(namespace);
@@ -955,7 +939,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.NAVIGATION_CALL_EXP:
 			{
 				NavigationCallExp navigationCallExp = (NavigationCallExp)theEObject;
-				T1 result = caseNavigationCallExp(navigationCallExp);
+				T result = caseNavigationCallExp(navigationCallExp);
 				if (result == null) result = caseFeatureCallExp(navigationCallExp);
 				if (result == null) result = caseCallExp(navigationCallExp);
 				if (result == null) result = caseOCLExpression(navigationCallExp);
@@ -970,7 +954,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.NULL_LITERAL_EXP:
 			{
 				NullLiteralExp nullLiteralExp = (NullLiteralExp)theEObject;
-				T1 result = caseNullLiteralExp(nullLiteralExp);
+				T result = caseNullLiteralExp(nullLiteralExp);
 				if (result == null) result = casePrimitiveLiteralExp(nullLiteralExp);
 				if (result == null) result = caseLiteralExp(nullLiteralExp);
 				if (result == null) result = caseOCLExpression(nullLiteralExp);
@@ -985,7 +969,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.NUMERIC_LITERAL_EXP:
 			{
 				NumericLiteralExp numericLiteralExp = (NumericLiteralExp)theEObject;
-				T1 result = caseNumericLiteralExp(numericLiteralExp);
+				T result = caseNumericLiteralExp(numericLiteralExp);
 				if (result == null) result = casePrimitiveLiteralExp(numericLiteralExp);
 				if (result == null) result = caseLiteralExp(numericLiteralExp);
 				if (result == null) result = caseOCLExpression(numericLiteralExp);
@@ -1000,7 +984,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.OCL_EXPRESSION:
 			{
 				OCLExpression oclExpression = (OCLExpression)theEObject;
-				T1 result = caseOCLExpression(oclExpression);
+				T result = caseOCLExpression(oclExpression);
 				if (result == null) result = caseTypedElement(oclExpression);
 				if (result == null) result = caseNamedElement(oclExpression);
 				if (result == null) result = caseElement(oclExpression);
@@ -1012,7 +996,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.OPERATION:
 			{
 				Operation operation = (Operation)theEObject;
-				T1 result = caseOperation(operation);
+				T result = caseOperation(operation);
 				if (result == null) result = caseFeature(operation);
 				if (result == null) result = caseNamespace(operation);
 				if (result == null) result = caseTemplateableElement(operation);
@@ -1027,7 +1011,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.OPERATION_CALL_EXP:
 			{
 				OperationCallExp operationCallExp = (OperationCallExp)theEObject;
-				T1 result = caseOperationCallExp(operationCallExp);
+				T result = caseOperationCallExp(operationCallExp);
 				if (result == null) result = caseFeatureCallExp(operationCallExp);
 				if (result == null) result = caseReferringElement(operationCallExp);
 				if (result == null) result = caseCallExp(operationCallExp);
@@ -1043,7 +1027,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP:
 			{
 				OppositePropertyCallExp oppositePropertyCallExp = (OppositePropertyCallExp)theEObject;
-				T1 result = caseOppositePropertyCallExp(oppositePropertyCallExp);
+				T result = caseOppositePropertyCallExp(oppositePropertyCallExp);
 				if (result == null) result = caseNavigationCallExp(oppositePropertyCallExp);
 				if (result == null) result = caseFeatureCallExp(oppositePropertyCallExp);
 				if (result == null) result = caseCallExp(oppositePropertyCallExp);
@@ -1059,7 +1043,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.ORDERED_SET_TYPE:
 			{
 				OrderedSetType orderedSetType = (OrderedSetType)theEObject;
-				T1 result = caseOrderedSetType(orderedSetType);
+				T result = caseOrderedSetType(orderedSetType);
 				if (result == null) result = caseCollectionType(orderedSetType);
 				if (result == null) result = caseDataType(orderedSetType);
 				if (result == null) result = caseClass(orderedSetType);
@@ -1076,7 +1060,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.PACKAGE:
 			{
 				org.eclipse.ocl.examples.pivot.Package package_ = (org.eclipse.ocl.examples.pivot.Package)theEObject;
-				T1 result = casePackage(package_);
+				T result = casePackage(package_);
 				if (result == null) result = caseNamespace(package_);
 				if (result == null) result = caseNamedElement(package_);
 				if (result == null) result = caseElement(package_);
@@ -1088,7 +1072,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.PARAMETER:
 			{
 				Parameter parameter = (Parameter)theEObject;
-				T1 result = caseParameter(parameter);
+				T result = caseParameter(parameter);
 				if (result == null) result = caseVariableDeclaration(parameter);
 				if (result == null) result = caseTypedElement(parameter);
 				if (result == null) result = caseNamedElement(parameter);
@@ -1101,14 +1085,14 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.PIVOTABLE:
 			{
 				Pivotable pivotable = (Pivotable)theEObject;
-				T1 result = casePivotable(pivotable);
+				T result = casePivotable(pivotable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case PivotPackage.PRECEDENCE:
 			{
 				Precedence precedence = (Precedence)theEObject;
-				T1 result = casePrecedence(precedence);
+				T result = casePrecedence(precedence);
 				if (result == null) result = caseNamedElement(precedence);
 				if (result == null) result = caseElement(precedence);
 				if (result == null) result = caseNameable(precedence);
@@ -1119,7 +1103,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.PRIMITIVE_LITERAL_EXP:
 			{
 				PrimitiveLiteralExp primitiveLiteralExp = (PrimitiveLiteralExp)theEObject;
-				T1 result = casePrimitiveLiteralExp(primitiveLiteralExp);
+				T result = casePrimitiveLiteralExp(primitiveLiteralExp);
 				if (result == null) result = caseLiteralExp(primitiveLiteralExp);
 				if (result == null) result = caseOCLExpression(primitiveLiteralExp);
 				if (result == null) result = caseTypedElement(primitiveLiteralExp);
@@ -1133,7 +1117,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.PRIMITIVE_TYPE:
 			{
 				PrimitiveType primitiveType = (PrimitiveType)theEObject;
-				T1 result = casePrimitiveType(primitiveType);
+				T result = casePrimitiveType(primitiveType);
 				if (result == null) result = caseDataType(primitiveType);
 				if (result == null) result = caseClass(primitiveType);
 				if (result == null) result = caseType(primitiveType);
@@ -1149,7 +1133,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.PROFILE:
 			{
 				Profile profile = (Profile)theEObject;
-				T1 result = caseProfile(profile);
+				T result = caseProfile(profile);
 				if (result == null) result = casePackage(profile);
 				if (result == null) result = caseNamespace(profile);
 				if (result == null) result = caseNamedElement(profile);
@@ -1162,7 +1146,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.PROFILE_APPLICATION:
 			{
 				ProfileApplication profileApplication = (ProfileApplication)theEObject;
-				T1 result = caseProfileApplication(profileApplication);
+				T result = caseProfileApplication(profileApplication);
 				if (result == null) result = caseElement(profileApplication);
 				if (result == null) result = caseVisitable(profileApplication);
 				if (result == null) result = defaultCase(theEObject);
@@ -1171,7 +1155,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.PROPERTY:
 			{
 				Property property = (Property)theEObject;
-				T1 result = caseProperty(property);
+				T result = caseProperty(property);
 				if (result == null) result = caseFeature(property);
 				if (result == null) result = caseTypedElement(property);
 				if (result == null) result = caseNamedElement(property);
@@ -1184,7 +1168,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.PROPERTY_CALL_EXP:
 			{
 				PropertyCallExp propertyCallExp = (PropertyCallExp)theEObject;
-				T1 result = casePropertyCallExp(propertyCallExp);
+				T result = casePropertyCallExp(propertyCallExp);
 				if (result == null) result = caseNavigationCallExp(propertyCallExp);
 				if (result == null) result = caseReferringElement(propertyCallExp);
 				if (result == null) result = caseFeatureCallExp(propertyCallExp);
@@ -1201,7 +1185,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.PSEUDOSTATE:
 			{
 				Pseudostate pseudostate = (Pseudostate)theEObject;
-				T1 result = casePseudostate(pseudostate);
+				T result = casePseudostate(pseudostate);
 				if (result == null) result = caseVertex(pseudostate);
 				if (result == null) result = caseNamedElement(pseudostate);
 				if (result == null) result = caseElement(pseudostate);
@@ -1213,7 +1197,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.REAL_LITERAL_EXP:
 			{
 				RealLiteralExp realLiteralExp = (RealLiteralExp)theEObject;
-				T1 result = caseRealLiteralExp(realLiteralExp);
+				T result = caseRealLiteralExp(realLiteralExp);
 				if (result == null) result = caseNumericLiteralExp(realLiteralExp);
 				if (result == null) result = casePrimitiveLiteralExp(realLiteralExp);
 				if (result == null) result = caseLiteralExp(realLiteralExp);
@@ -1229,14 +1213,14 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.REFERRING_ELEMENT:
 			{
 				ReferringElement referringElement = (ReferringElement)theEObject;
-				T1 result = caseReferringElement(referringElement);
+				T result = caseReferringElement(referringElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case PivotPackage.REGION:
 			{
 				Region region = (Region)theEObject;
-				T1 result = caseRegion(region);
+				T result = caseRegion(region);
 				if (result == null) result = caseNamespace(region);
 				if (result == null) result = caseNamedElement(region);
 				if (result == null) result = caseElement(region);
@@ -1248,7 +1232,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.ROOT:
 			{
 				Root root = (Root)theEObject;
-				T1 result = caseRoot(root);
+				T result = caseRoot(root);
 				if (result == null) result = caseNamespace(root);
 				if (result == null) result = caseNamedElement(root);
 				if (result == null) result = caseElement(root);
@@ -1260,7 +1244,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.SELF_TYPE:
 			{
 				SelfType selfType = (SelfType)theEObject;
-				T1 result = caseSelfType(selfType);
+				T result = caseSelfType(selfType);
 				if (result == null) result = caseClass(selfType);
 				if (result == null) result = caseType(selfType);
 				if (result == null) result = caseNamespace(selfType);
@@ -1275,7 +1259,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.SEND_SIGNAL_ACTION:
 			{
 				SendSignalAction sendSignalAction = (SendSignalAction)theEObject;
-				T1 result = caseSendSignalAction(sendSignalAction);
+				T result = caseSendSignalAction(sendSignalAction);
 				if (result == null) result = caseNamedElement(sendSignalAction);
 				if (result == null) result = caseElement(sendSignalAction);
 				if (result == null) result = caseNameable(sendSignalAction);
@@ -1286,7 +1270,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.SEQUENCE_TYPE:
 			{
 				SequenceType sequenceType = (SequenceType)theEObject;
-				T1 result = caseSequenceType(sequenceType);
+				T result = caseSequenceType(sequenceType);
 				if (result == null) result = caseCollectionType(sequenceType);
 				if (result == null) result = caseDataType(sequenceType);
 				if (result == null) result = caseClass(sequenceType);
@@ -1303,7 +1287,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.SET_TYPE:
 			{
 				SetType setType = (SetType)theEObject;
-				T1 result = caseSetType(setType);
+				T result = caseSetType(setType);
 				if (result == null) result = caseCollectionType(setType);
 				if (result == null) result = caseDataType(setType);
 				if (result == null) result = caseClass(setType);
@@ -1320,7 +1304,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.SIGNAL:
 			{
 				Signal signal = (Signal)theEObject;
-				T1 result = caseSignal(signal);
+				T result = caseSignal(signal);
 				if (result == null) result = caseClass(signal);
 				if (result == null) result = caseType(signal);
 				if (result == null) result = caseNamespace(signal);
@@ -1335,7 +1319,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.SLOT:
 			{
 				Slot slot = (Slot)theEObject;
-				T1 result = caseSlot(slot);
+				T result = caseSlot(slot);
 				if (result == null) result = caseElement(slot);
 				if (result == null) result = caseVisitable(slot);
 				if (result == null) result = defaultCase(theEObject);
@@ -1344,7 +1328,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.STATE:
 			{
 				State state = (State)theEObject;
-				T1 result = caseState(state);
+				T result = caseState(state);
 				if (result == null) result = caseNamespace(state);
 				if (result == null) result = caseVertex(state);
 				if (result == null) result = caseNamedElement(state);
@@ -1357,7 +1341,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.STATE_EXP:
 			{
 				StateExp stateExp = (StateExp)theEObject;
-				T1 result = caseStateExp(stateExp);
+				T result = caseStateExp(stateExp);
 				if (result == null) result = caseOCLExpression(stateExp);
 				if (result == null) result = caseTypedElement(stateExp);
 				if (result == null) result = caseNamedElement(stateExp);
@@ -1370,7 +1354,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.STATE_MACHINE:
 			{
 				StateMachine stateMachine = (StateMachine)theEObject;
-				T1 result = caseStateMachine(stateMachine);
+				T result = caseStateMachine(stateMachine);
 				if (result == null) result = caseBehavior(stateMachine);
 				if (result == null) result = caseClass(stateMachine);
 				if (result == null) result = caseType(stateMachine);
@@ -1386,7 +1370,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.STEREOTYPE:
 			{
 				Stereotype stereotype = (Stereotype)theEObject;
-				T1 result = caseStereotype(stereotype);
+				T result = caseStereotype(stereotype);
 				if (result == null) result = caseClass(stereotype);
 				if (result == null) result = caseType(stereotype);
 				if (result == null) result = caseNamespace(stereotype);
@@ -1401,7 +1385,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.STRING_LITERAL_EXP:
 			{
 				StringLiteralExp stringLiteralExp = (StringLiteralExp)theEObject;
-				T1 result = caseStringLiteralExp(stringLiteralExp);
+				T result = caseStringLiteralExp(stringLiteralExp);
 				if (result == null) result = casePrimitiveLiteralExp(stringLiteralExp);
 				if (result == null) result = caseLiteralExp(stringLiteralExp);
 				if (result == null) result = caseOCLExpression(stringLiteralExp);
@@ -1416,7 +1400,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.TEMPLATE_BINDING:
 			{
 				TemplateBinding templateBinding = (TemplateBinding)theEObject;
-				T1 result = caseTemplateBinding(templateBinding);
+				T result = caseTemplateBinding(templateBinding);
 				if (result == null) result = caseElement(templateBinding);
 				if (result == null) result = caseVisitable(templateBinding);
 				if (result == null) result = defaultCase(theEObject);
@@ -1425,7 +1409,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.TEMPLATE_PARAMETER:
 			{
 				TemplateParameter templateParameter = (TemplateParameter)theEObject;
-				T1 result = caseTemplateParameter(templateParameter);
+				T result = caseTemplateParameter(templateParameter);
 				if (result == null) result = caseType(templateParameter);
 				if (result == null) result = caseNamedElement(templateParameter);
 				if (result == null) result = caseElement(templateParameter);
@@ -1437,7 +1421,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION:
 			{
 				TemplateParameterSubstitution templateParameterSubstitution = (TemplateParameterSubstitution)theEObject;
-				T1 result = caseTemplateParameterSubstitution(templateParameterSubstitution);
+				T result = caseTemplateParameterSubstitution(templateParameterSubstitution);
 				if (result == null) result = caseElement(templateParameterSubstitution);
 				if (result == null) result = caseVisitable(templateParameterSubstitution);
 				if (result == null) result = defaultCase(theEObject);
@@ -1446,7 +1430,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.TEMPLATE_SIGNATURE:
 			{
 				TemplateSignature templateSignature = (TemplateSignature)theEObject;
-				T1 result = caseTemplateSignature(templateSignature);
+				T result = caseTemplateSignature(templateSignature);
 				if (result == null) result = caseElement(templateSignature);
 				if (result == null) result = caseVisitable(templateSignature);
 				if (result == null) result = defaultCase(theEObject);
@@ -1455,7 +1439,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.TEMPLATEABLE_ELEMENT:
 			{
 				TemplateableElement templateableElement = (TemplateableElement)theEObject;
-				T1 result = caseTemplateableElement(templateableElement);
+				T result = caseTemplateableElement(templateableElement);
 				if (result == null) result = caseElement(templateableElement);
 				if (result == null) result = caseVisitable(templateableElement);
 				if (result == null) result = defaultCase(theEObject);
@@ -1464,7 +1448,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.TRANSITION:
 			{
 				Transition transition = (Transition)theEObject;
-				T1 result = caseTransition(transition);
+				T result = caseTransition(transition);
 				if (result == null) result = caseNamespace(transition);
 				if (result == null) result = caseNamedElement(transition);
 				if (result == null) result = caseElement(transition);
@@ -1476,7 +1460,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.TRIGGER:
 			{
 				Trigger trigger = (Trigger)theEObject;
-				T1 result = caseTrigger(trigger);
+				T result = caseTrigger(trigger);
 				if (result == null) result = caseNamedElement(trigger);
 				if (result == null) result = caseElement(trigger);
 				if (result == null) result = caseNameable(trigger);
@@ -1487,7 +1471,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.TUPLE_LITERAL_EXP:
 			{
 				TupleLiteralExp tupleLiteralExp = (TupleLiteralExp)theEObject;
-				T1 result = caseTupleLiteralExp(tupleLiteralExp);
+				T result = caseTupleLiteralExp(tupleLiteralExp);
 				if (result == null) result = caseLiteralExp(tupleLiteralExp);
 				if (result == null) result = caseOCLExpression(tupleLiteralExp);
 				if (result == null) result = caseTypedElement(tupleLiteralExp);
@@ -1501,7 +1485,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.TUPLE_LITERAL_PART:
 			{
 				TupleLiteralPart tupleLiteralPart = (TupleLiteralPart)theEObject;
-				T1 result = caseTupleLiteralPart(tupleLiteralPart);
+				T result = caseTupleLiteralPart(tupleLiteralPart);
 				if (result == null) result = caseVariableDeclaration(tupleLiteralPart);
 				if (result == null) result = caseTypedElement(tupleLiteralPart);
 				if (result == null) result = caseNamedElement(tupleLiteralPart);
@@ -1514,7 +1498,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.TUPLE_TYPE:
 			{
 				TupleType tupleType = (TupleType)theEObject;
-				T1 result = caseTupleType(tupleType);
+				T result = caseTupleType(tupleType);
 				if (result == null) result = caseDataType(tupleType);
 				if (result == null) result = caseClass(tupleType);
 				if (result == null) result = caseType(tupleType);
@@ -1530,7 +1514,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.TYPE:
 			{
 				Type type = (Type)theEObject;
-				T1 result = caseType(type);
+				T result = caseType(type);
 				if (result == null) result = caseNamedElement(type);
 				if (result == null) result = caseElement(type);
 				if (result == null) result = caseNameable(type);
@@ -1541,7 +1525,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.TYPE_EXP:
 			{
 				TypeExp typeExp = (TypeExp)theEObject;
-				T1 result = caseTypeExp(typeExp);
+				T result = caseTypeExp(typeExp);
 				if (result == null) result = caseOCLExpression(typeExp);
 				if (result == null) result = caseReferringElement(typeExp);
 				if (result == null) result = caseTypedElement(typeExp);
@@ -1555,7 +1539,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.TYPE_EXTENSION:
 			{
 				TypeExtension typeExtension = (TypeExtension)theEObject;
-				T1 result = caseTypeExtension(typeExtension);
+				T result = caseTypeExtension(typeExtension);
 				if (result == null) result = caseElement(typeExtension);
 				if (result == null) result = caseVisitable(typeExtension);
 				if (result == null) result = defaultCase(theEObject);
@@ -1564,7 +1548,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.TYPED_ELEMENT:
 			{
 				TypedElement typedElement = (TypedElement)theEObject;
-				T1 result = caseTypedElement(typedElement);
+				T result = caseTypedElement(typedElement);
 				if (result == null) result = caseNamedElement(typedElement);
 				if (result == null) result = caseElement(typedElement);
 				if (result == null) result = caseNameable(typedElement);
@@ -1575,7 +1559,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP:
 			{
 				UnlimitedNaturalLiteralExp unlimitedNaturalLiteralExp = (UnlimitedNaturalLiteralExp)theEObject;
-				T1 result = caseUnlimitedNaturalLiteralExp(unlimitedNaturalLiteralExp);
+				T result = caseUnlimitedNaturalLiteralExp(unlimitedNaturalLiteralExp);
 				if (result == null) result = caseNumericLiteralExp(unlimitedNaturalLiteralExp);
 				if (result == null) result = casePrimitiveLiteralExp(unlimitedNaturalLiteralExp);
 				if (result == null) result = caseLiteralExp(unlimitedNaturalLiteralExp);
@@ -1591,7 +1575,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.UNSPECIFIED_VALUE_EXP:
 			{
 				UnspecifiedValueExp unspecifiedValueExp = (UnspecifiedValueExp)theEObject;
-				T1 result = caseUnspecifiedValueExp(unspecifiedValueExp);
+				T result = caseUnspecifiedValueExp(unspecifiedValueExp);
 				if (result == null) result = caseOCLExpression(unspecifiedValueExp);
 				if (result == null) result = caseTypedElement(unspecifiedValueExp);
 				if (result == null) result = caseNamedElement(unspecifiedValueExp);
@@ -1604,7 +1588,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.VALUE_SPECIFICATION:
 			{
 				ValueSpecification valueSpecification = (ValueSpecification)theEObject;
-				T1 result = caseValueSpecification(valueSpecification);
+				T result = caseValueSpecification(valueSpecification);
 				if (result == null) result = caseTypedElement(valueSpecification);
 				if (result == null) result = caseNamedElement(valueSpecification);
 				if (result == null) result = caseElement(valueSpecification);
@@ -1616,7 +1600,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.VARIABLE:
 			{
 				Variable variable = (Variable)theEObject;
-				T1 result = caseVariable(variable);
+				T result = caseVariable(variable);
 				if (result == null) result = caseVariableDeclaration(variable);
 				if (result == null) result = caseTypedElement(variable);
 				if (result == null) result = caseNamedElement(variable);
@@ -1629,7 +1613,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.VARIABLE_DECLARATION:
 			{
 				VariableDeclaration variableDeclaration = (VariableDeclaration)theEObject;
-				T1 result = caseVariableDeclaration(variableDeclaration);
+				T result = caseVariableDeclaration(variableDeclaration);
 				if (result == null) result = caseTypedElement(variableDeclaration);
 				if (result == null) result = caseNamedElement(variableDeclaration);
 				if (result == null) result = caseElement(variableDeclaration);
@@ -1641,7 +1625,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.VARIABLE_EXP:
 			{
 				VariableExp variableExp = (VariableExp)theEObject;
-				T1 result = caseVariableExp(variableExp);
+				T result = caseVariableExp(variableExp);
 				if (result == null) result = caseOCLExpression(variableExp);
 				if (result == null) result = caseReferringElement(variableExp);
 				if (result == null) result = caseTypedElement(variableExp);
@@ -1655,7 +1639,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.VERTEX:
 			{
 				Vertex vertex = (Vertex)theEObject;
-				T1 result = caseVertex(vertex);
+				T result = caseVertex(vertex);
 				if (result == null) result = caseNamedElement(vertex);
 				if (result == null) result = caseElement(vertex);
 				if (result == null) result = caseNameable(vertex);
@@ -1666,14 +1650,14 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.VISITABLE:
 			{
 				Visitable visitable = (Visitable)theEObject;
-				T1 result = caseVisitable(visitable);
+				T result = caseVisitable(visitable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case PivotPackage.VOID_TYPE:
 			{
 				VoidType voidType = (VoidType)theEObject;
-				T1 result = caseVoidType(voidType);
+				T result = caseVoidType(voidType);
 				if (result == null) result = caseClass(voidType);
 				if (result == null) result = caseType(voidType);
 				if (result == null) result = caseNamespace(voidType);
@@ -1688,7 +1672,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			case PivotPackage.WILDCARD_TYPE:
 			{
 				WildcardType wildcardType = (WildcardType)theEObject;
-				T1 result = caseWildcardType(wildcardType);
+				T result = caseWildcardType(wildcardType);
 				if (result == null) result = caseClass(wildcardType);
 				if (result == null) result = caseType(wildcardType);
 				if (result == null) result = caseNamespace(wildcardType);
@@ -1715,7 +1699,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseAnnotation(Annotation object) {
+	public T caseAnnotation(Annotation object) {
 		return null;
 	}
 
@@ -1730,7 +1714,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseNamedElement(NamedElement object) {
+	public T caseNamedElement(NamedElement object) {
 		return null;
 	}
 
@@ -1745,7 +1729,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseElement(Element object) {
+	public T caseElement(Element object) {
 		return null;
 	}
 
@@ -1760,7 +1744,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseElementExtension(ElementExtension object)
+	public T caseElementExtension(ElementExtension object)
 	{
 		return null;
 	}
@@ -1776,7 +1760,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseBagType(BagType object) {
+	public T caseBagType(BagType object) {
 		return null;
 	}
 
@@ -1791,7 +1775,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseBehavior(Behavior object)
+	public T caseBehavior(Behavior object)
 	{
 		return null;
 	}
@@ -1807,7 +1791,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseCollectionType(CollectionType object) {
+	public T caseCollectionType(CollectionType object) {
 		return null;
 	}
 
@@ -1822,7 +1806,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseDataType(DataType object) {
+	public T caseDataType(DataType object) {
 		return null;
 	}
 
@@ -1837,7 +1821,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseBooleanLiteralExp(BooleanLiteralExp object) {
+	public T caseBooleanLiteralExp(BooleanLiteralExp object) {
 		return null;
 	}
 
@@ -1852,7 +1836,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 casePrimitiveLiteralExp(PrimitiveLiteralExp object) {
+	public T casePrimitiveLiteralExp(PrimitiveLiteralExp object) {
 		return null;
 	}
 
@@ -1867,7 +1851,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseLiteralExp(LiteralExp object) {
+	public T caseLiteralExp(LiteralExp object) {
 		return null;
 	}
 
@@ -1882,7 +1866,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseCallOperationAction(CallOperationAction object) {
+	public T caseCallOperationAction(CallOperationAction object) {
 		return null;
 	}
 
@@ -1897,7 +1881,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseCollectionItem(CollectionItem object) {
+	public T caseCollectionItem(CollectionItem object) {
 		return null;
 	}
 
@@ -1912,7 +1896,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseCollectionLiteralPart(CollectionLiteralPart object) {
+	public T caseCollectionLiteralPart(CollectionLiteralPart object) {
 		return null;
 	}
 
@@ -1927,7 +1911,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseCollectionLiteralExp(CollectionLiteralExp object) {
+	public T caseCollectionLiteralExp(CollectionLiteralExp object) {
 		return null;
 	}
 
@@ -1942,7 +1926,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseCollectionRange(CollectionRange object) {
+	public T caseCollectionRange(CollectionRange object) {
 		return null;
 	}
 
@@ -1957,7 +1941,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseEnumLiteralExp(EnumLiteralExp object) {
+	public T caseEnumLiteralExp(EnumLiteralExp object) {
 		return null;
 	}
 
@@ -1972,7 +1956,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseEnumerationLiteral(EnumerationLiteral object) {
+	public T caseEnumerationLiteral(EnumerationLiteral object) {
 		return null;
 	}
 
@@ -1987,7 +1971,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseExpressionInOCL(ExpressionInOCL object)
+	public T caseExpressionInOCL(ExpressionInOCL object)
 	{
 		return null;
 	}
@@ -2003,7 +1987,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseEnumeration(Enumeration object) {
+	public T caseEnumeration(Enumeration object) {
 		return null;
 	}
 
@@ -2018,7 +2002,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseFeature(Feature object) {
+	public T caseFeature(Feature object) {
 		return null;
 	}
 
@@ -2033,7 +2017,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseVariable(Variable object) {
+	public T caseVariable(Variable object) {
 		return null;
 	}
 
@@ -2048,7 +2032,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIfExp(IfExp object) {
+	public T caseIfExp(IfExp object) {
 		return null;
 	}
 
@@ -2063,7 +2047,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseImport(Import object)
+	public T caseImport(Import object)
 	{
 		return null;
 	}
@@ -2079,7 +2063,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseInstanceSpecification(InstanceSpecification object)
+	public T caseInstanceSpecification(InstanceSpecification object)
 	{
 		return null;
 	}
@@ -2095,7 +2079,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIntegerLiteralExp(IntegerLiteralExp object) {
+	public T caseIntegerLiteralExp(IntegerLiteralExp object) {
 		return null;
 	}
 
@@ -2110,7 +2094,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseNumericLiteralExp(NumericLiteralExp object) {
+	public T caseNumericLiteralExp(NumericLiteralExp object) {
 		return null;
 	}
 
@@ -2125,7 +2109,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseOCLExpression(OCLExpression object)
+	public T caseOCLExpression(OCLExpression object)
 	{
 		return null;
 	}
@@ -2141,7 +2125,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseInvalidLiteralExp(InvalidLiteralExp object) {
+	public T caseInvalidLiteralExp(InvalidLiteralExp object) {
 		return null;
 	}
 
@@ -2156,7 +2140,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseInvalidType(InvalidType object) {
+	public T caseInvalidType(InvalidType object) {
 		return null;
 	}
 
@@ -2171,7 +2155,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIterateExp(IterateExp object)
+	public T caseIterateExp(IterateExp object)
 	{
 		return null;
 	}
@@ -2187,7 +2171,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIteration(Iteration object)
+	public T caseIteration(Iteration object)
 	{
 		return null;
 	}
@@ -2203,7 +2187,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseIteratorExp(IteratorExp object)
+	public T caseIteratorExp(IteratorExp object)
 	{
 		return null;
 	}
@@ -2219,7 +2203,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseLambdaType(LambdaType object)
+	public T caseLambdaType(LambdaType object)
 	{
 		return null;
 	}
@@ -2235,7 +2219,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseLanguageExpression(LanguageExpression object)
+	public T caseLanguageExpression(LanguageExpression object)
 	{
 		return null;
 	}
@@ -2251,7 +2235,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseLetExp(LetExp object) {
+	public T caseLetExp(LetExp object) {
 		return null;
 	}
 
@@ -2266,7 +2250,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseLibrary(Library object)
+	public T caseLibrary(Library object)
 	{
 		return null;
 	}
@@ -2282,7 +2266,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseLoopExp(LoopExp object) {
+	public T caseLoopExp(LoopExp object) {
 		return null;
 	}
 
@@ -2297,7 +2281,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseMessageExp(MessageExp object) {
+	public T caseMessageExp(MessageExp object) {
 		return null;
 	}
 
@@ -2312,7 +2296,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseSendSignalAction(SendSignalAction object) {
+	public T caseSendSignalAction(SendSignalAction object) {
 		return null;
 	}
 
@@ -2327,7 +2311,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseSignal(Signal object) {
+	public T caseSignal(Signal object) {
 		return null;
 	}
 
@@ -2342,7 +2326,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseSlot(Slot object)
+	public T caseSlot(Slot object)
 	{
 		return null;
 	}
@@ -2358,23 +2342,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseMessageType(MessageType object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Metaclass</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Metaclass</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public <T> T1 caseMetaclass(Metaclass<T> object)
-	{
+	public T caseMessageType(MessageType object) {
 		return null;
 	}
 
@@ -2389,7 +2357,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseMorePivotable(MorePivotable object)
+	public T caseMorePivotable(MorePivotable object)
 	{
 		return null;
 	}
@@ -2405,7 +2373,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseNameable(Nameable object)
+	public T caseNameable(Nameable object)
 	{
 		return null;
 	}
@@ -2421,7 +2389,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseNullLiteralExp(NullLiteralExp object) {
+	public T caseNullLiteralExp(NullLiteralExp object) {
 		return null;
 	}
 
@@ -2436,7 +2404,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseOperationCallExp(OperationCallExp object) {
+	public T caseOperationCallExp(OperationCallExp object) {
 		return null;
 	}
 
@@ -2451,7 +2419,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseOrderedSetType(OrderedSetType object) {
+	public T caseOrderedSetType(OrderedSetType object) {
 		return null;
 	}
 
@@ -2466,7 +2434,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 casePrimitiveType(PrimitiveType object) {
+	public T casePrimitiveType(PrimitiveType object) {
 		return null;
 	}
 
@@ -2481,7 +2449,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseProfile(Profile object)
+	public T caseProfile(Profile object)
 	{
 		return null;
 	}
@@ -2497,7 +2465,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseProfileApplication(ProfileApplication object)
+	public T caseProfileApplication(ProfileApplication object)
 	{
 		return null;
 	}
@@ -2513,7 +2481,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 casePropertyCallExp(PropertyCallExp object) {
+	public T casePropertyCallExp(PropertyCallExp object) {
 		return null;
 	}
 
@@ -2528,7 +2496,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 casePseudostate(Pseudostate object)
+	public T casePseudostate(Pseudostate object)
 	{
 		return null;
 	}
@@ -2544,7 +2512,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseRealLiteralExp(RealLiteralExp object) {
+	public T caseRealLiteralExp(RealLiteralExp object) {
 		return null;
 	}
 
@@ -2559,7 +2527,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseReferringElement(ReferringElement object)
+	public T caseReferringElement(ReferringElement object)
 	{
 		return null;
 	}
@@ -2575,7 +2543,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseRegion(Region object)
+	public T caseRegion(Region object)
 	{
 		return null;
 	}
@@ -2591,7 +2559,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseRoot(Root object)
+	public T caseRoot(Root object)
 	{
 		return null;
 	}
@@ -2607,7 +2575,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseSelfType(SelfType object)
+	public T caseSelfType(SelfType object)
 	{
 		return null;
 	}
@@ -2623,7 +2591,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseSequenceType(SequenceType object) {
+	public T caseSequenceType(SequenceType object) {
 		return null;
 	}
 
@@ -2638,7 +2606,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseSetType(SetType object) {
+	public T caseSetType(SetType object) {
 		return null;
 	}
 
@@ -2653,7 +2621,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseState(State object) {
+	public T caseState(State object) {
 		return null;
 	}
 
@@ -2668,7 +2636,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseStateExp(StateExp object) {
+	public T caseStateExp(StateExp object) {
 		return null;
 	}
 
@@ -2683,7 +2651,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseStateMachine(StateMachine object)
+	public T caseStateMachine(StateMachine object)
 	{
 		return null;
 	}
@@ -2699,7 +2667,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseStereotype(Stereotype object)
+	public T caseStereotype(Stereotype object)
 	{
 		return null;
 	}
@@ -2715,7 +2683,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseStringLiteralExp(StringLiteralExp object) {
+	public T caseStringLiteralExp(StringLiteralExp object) {
 		return null;
 	}
 
@@ -2730,7 +2698,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseTupleLiteralExp(TupleLiteralExp object) {
+	public T caseTupleLiteralExp(TupleLiteralExp object) {
 		return null;
 	}
 
@@ -2745,7 +2713,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseTupleLiteralPart(TupleLiteralPart object) {
+	public T caseTupleLiteralPart(TupleLiteralPart object) {
 		return null;
 	}
 
@@ -2760,7 +2728,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseTupleType(TupleType object) {
+	public T caseTupleType(TupleType object) {
 		return null;
 	}
 
@@ -2775,7 +2743,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseTypeExp(TypeExp object) {
+	public T caseTypeExp(TypeExp object) {
 		return null;
 	}
 
@@ -2790,7 +2758,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseTypeExtension(TypeExtension object)
+	public T caseTypeExtension(TypeExtension object)
 	{
 		return null;
 	}
@@ -2806,7 +2774,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseUnlimitedNaturalLiteralExp(UnlimitedNaturalLiteralExp object) {
+	public T caseUnlimitedNaturalLiteralExp(UnlimitedNaturalLiteralExp object) {
 		return null;
 	}
 
@@ -2821,7 +2789,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseUnspecifiedValueExp(UnspecifiedValueExp object) {
+	public T caseUnspecifiedValueExp(UnspecifiedValueExp object) {
 		return null;
 	}
 
@@ -2836,7 +2804,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseVariableExp(VariableExp object) {
+	public T caseVariableExp(VariableExp object) {
 		return null;
 	}
 
@@ -2851,7 +2819,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseVertex(Vertex object)
+	public T caseVertex(Vertex object)
 	{
 		return null;
 	}
@@ -2867,7 +2835,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseVoidType(VoidType object) {
+	public T caseVoidType(VoidType object) {
 		return null;
 	}
 
@@ -2882,7 +2850,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseWildcardType(WildcardType object)
+	public T caseWildcardType(WildcardType object)
 	{
 		return null;
 	}
@@ -2898,7 +2866,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 casePivotable(Pivotable object) {
+	public T casePivotable(Pivotable object) {
 		return null;
 	}
 
@@ -2913,7 +2881,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseVisitable(Visitable object) {
+	public T caseVisitable(Visitable object) {
 		return null;
 	}
 
@@ -2928,7 +2896,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseClass(org.eclipse.ocl.examples.pivot.Class object) {
+	public T caseClass(org.eclipse.ocl.examples.pivot.Class object) {
 		return null;
 	}
 
@@ -2943,7 +2911,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseType(Type object) {
+	public T caseType(Type object) {
 		return null;
 	}
 
@@ -2958,7 +2926,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseTemplateableElement(TemplateableElement object) {
+	public T caseTemplateableElement(TemplateableElement object) {
 		return null;
 	}
 
@@ -2973,7 +2941,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseTransition(Transition object)
+	public T caseTransition(Transition object)
 	{
 		return null;
 	}
@@ -2989,7 +2957,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseTrigger(Trigger object)
+	public T caseTrigger(Trigger object)
 	{
 		return null;
 	}
@@ -3005,7 +2973,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseTemplateBinding(TemplateBinding object) {
+	public T caseTemplateBinding(TemplateBinding object) {
 		return null;
 	}
 
@@ -3020,7 +2988,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseTemplateSignature(TemplateSignature object) {
+	public T caseTemplateSignature(TemplateSignature object) {
 		return null;
 	}
 
@@ -3035,7 +3003,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseTemplateParameter(TemplateParameter object) {
+	public T caseTemplateParameter(TemplateParameter object) {
 		return null;
 	}
 
@@ -3050,7 +3018,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseTemplateParameterSubstitution(
+	public T caseTemplateParameterSubstitution(
 			TemplateParameterSubstitution object) {
 		return null;
 	}
@@ -3066,7 +3034,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 casePackage(org.eclipse.ocl.examples.pivot.Package object) {
+	public T casePackage(org.eclipse.ocl.examples.pivot.Package object) {
 		return null;
 	}
 
@@ -3081,7 +3049,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseNamespace(Namespace object) {
+	public T caseNamespace(Namespace object) {
 		return null;
 	}
 
@@ -3096,7 +3064,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 casePrecedence(Precedence object) {
+	public T casePrecedence(Precedence object) {
 		return null;
 	}
 
@@ -3111,7 +3079,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseProperty(Property object) {
+	public T caseProperty(Property object) {
 		return null;
 	}
 
@@ -3126,7 +3094,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseTypedElement(TypedElement object) {
+	public T caseTypedElement(TypedElement object) {
 		return null;
 	}
 
@@ -3141,7 +3109,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseAssociationClass(AssociationClass object) {
+	public T caseAssociationClass(AssociationClass object) {
 		return null;
 	}
 
@@ -3156,7 +3124,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseOperation(Operation object) {
+	public T caseOperation(Operation object) {
 		return null;
 	}
 
@@ -3171,7 +3139,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseParameter(Parameter object) {
+	public T caseParameter(Parameter object) {
 		return null;
 	}
 
@@ -3186,7 +3154,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseVariableDeclaration(VariableDeclaration object) {
+	public T caseVariableDeclaration(VariableDeclaration object) {
 		return null;
 	}
 
@@ -3201,7 +3169,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseOppositePropertyCallExp(OppositePropertyCallExp object)
+	public T caseOppositePropertyCallExp(OppositePropertyCallExp object)
 	{
 		return null;
 	}
@@ -3217,7 +3185,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseComment(Comment object) {
+	public T caseComment(Comment object) {
 		return null;
 	}
 
@@ -3232,7 +3200,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseConnectionPointReference(ConnectionPointReference object)
+	public T caseConnectionPointReference(ConnectionPointReference object)
 	{
 		return null;
 	}
@@ -3248,7 +3216,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseConstraint(Constraint object) {
+	public T caseConstraint(Constraint object) {
 		return null;
 	}
 
@@ -3263,7 +3231,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseConstructorExp(ConstructorExp object)
+	public T caseConstructorExp(ConstructorExp object)
 	{
 		return null;
 	}
@@ -3279,7 +3247,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseConstructorPart(ConstructorPart object)
+	public T caseConstructorPart(ConstructorPart object)
 	{
 		return null;
 	}
@@ -3295,7 +3263,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseValueSpecification(ValueSpecification object) {
+	public T caseValueSpecification(ValueSpecification object) {
 		return null;
 	}
 
@@ -3310,7 +3278,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseDetail(Detail object) {
+	public T caseDetail(Detail object) {
 		return null;
 	}
 
@@ -3325,7 +3293,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseDynamicBehavior(DynamicBehavior object)
+	public T caseDynamicBehavior(DynamicBehavior object)
 	{
 		return null;
 	}
@@ -3341,7 +3309,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseDynamicElement(DynamicElement object)
+	public T caseDynamicElement(DynamicElement object)
 	{
 		return null;
 	}
@@ -3357,7 +3325,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseDynamicProperty(DynamicProperty object)
+	public T caseDynamicProperty(DynamicProperty object)
 	{
 		return null;
 	}
@@ -3373,7 +3341,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseDynamicType(DynamicType object)
+	public T caseDynamicType(DynamicType object)
 	{
 		return null;
 	}
@@ -3389,7 +3357,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseDynamicValueSpecification(DynamicValueSpecification object)
+	public T caseDynamicValueSpecification(DynamicValueSpecification object)
 	{
 		return null;
 	}
@@ -3405,7 +3373,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseAnyType(AnyType object) {
+	public T caseAnyType(AnyType object) {
 		return null;
 	}
 
@@ -3420,7 +3388,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseAssociationClassCallExp(AssociationClassCallExp object) {
+	public T caseAssociationClassCallExp(AssociationClassCallExp object) {
 		return null;
 	}
 
@@ -3435,7 +3403,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseNavigationCallExp(NavigationCallExp object) {
+	public T caseNavigationCallExp(NavigationCallExp object) {
 		return null;
 	}
 
@@ -3450,7 +3418,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseFeatureCallExp(FeatureCallExp object) {
+	public T caseFeatureCallExp(FeatureCallExp object) {
 		return null;
 	}
 
@@ -3465,7 +3433,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseFinalState(FinalState object)
+	public T caseFinalState(FinalState object)
 	{
 		return null;
 	}
@@ -3481,7 +3449,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseCallExp(CallExp object) {
+	public T caseCallExp(CallExp object) {
 		return null;
 	}
 
@@ -3497,7 +3465,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @generated
 	 */
 	@Override
-	public T1 defaultCase(EObject object) {
+	public T defaultCase(EObject object) {
 		return null;
 	}
 

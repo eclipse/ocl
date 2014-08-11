@@ -18,7 +18,6 @@ import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
@@ -104,19 +103,6 @@ public class ASSaverResolveVisitor extends AbstractExtendingVisitor<Object, ASSa
 		Iteration resolvedIteration = context.resolveOperation(referredIteration);
 		object.setReferredIteration(resolvedIteration);
 		return super.visitLoopExp(object);
-	}
-
-	@Override
-	public Object visitMetaclass(@NonNull Metaclass<?> object) {
-		Type referredType = DomainUtil.nonNullModel(object.getInstanceType());
-		org.eclipse.ocl.examples.pivot.Class referredClass = referredType.isClass();
-		if (referredClass != null) {
-			Type resolvedType = context.resolveType(referredClass);
-			if (resolvedType != referredType) {
-				object.setInstanceType(resolvedType);
-			}
-		}
-		return super.visitMetaclass(object);
 	}
 
 	@Override

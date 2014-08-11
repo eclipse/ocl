@@ -217,6 +217,8 @@ public class PivotTestCase extends TestCase
 
 	public static void assertNoValidationErrors(@NonNull String string, @NonNull EObject eObject) {
 		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
+		Resource eResource = DomainUtil.nonNullState(eObject.eResource());
+		PivotUtil.getMetaModelManager(eResource);	// FIXME oclIsKindOf fails because ExecutableStandardLibrary.getMetaclass is bad
 		Diagnostic diagnostic = Diagnostician.INSTANCE.validate(eObject, validationContext);
 		List<Diagnostic> children = diagnostic.getChildren();
 		if (children.size() <= 0) {

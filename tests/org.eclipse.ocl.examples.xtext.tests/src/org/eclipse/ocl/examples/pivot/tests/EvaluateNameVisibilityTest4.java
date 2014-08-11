@@ -97,18 +97,18 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		assertSemanticErrorQuery("let a : Type = null in a.Package()", OCLMessages.UnresolvedOperation_ERROR_, "Type", "Package");
 		assertSemanticErrorQuery("let a : Set(Type) = null in a.Package", OCLMessages.UnresolvedProperty_ERROR_, "Set(Type)", "Package");
 		assertSemanticErrorQuery("let a : Set(Type) = null in a.Package()", OCLMessages.UnresolvedOperation_ERROR_, "Set(Type)", "Package");
-		assertSemanticErrorQuery("Type.Package", OCLMessages.UnresolvedProperty_ERROR_, "Metaclass(Type)", "Package");
-		assertSemanticErrorQuery("Type.Package()", OCLMessages.UnresolvedOperation_ERROR_, "Metaclass(Type)", "Package");
-		assertSemanticErrorQuery("Set(Type).Package", OCLMessages.UnresolvedProperty_ERROR_, "Metaclass(Set(Type))", "Package");
-		assertSemanticErrorQuery("Set(Type).Package()", OCLMessages.UnresolvedOperation_ERROR_, "Metaclass(Set(Type))", "Package");
+		assertSemanticErrorQuery("Type.Package", OCLMessages.UnresolvedStaticProperty_ERROR_, "Type", "Package");
+		assertSemanticErrorQuery("Type.Package()", OCLMessages.UnresolvedStaticOperationCall_ERROR_, "Type", "Package", "");
+		assertSemanticErrorQuery("Set(Type).Package", OCLMessages.UnresolvedStaticProperty_ERROR_, "Set(Type)", "Package");
+		assertSemanticErrorQuery("Set(Type).Package()", OCLMessages.UnresolvedStaticOperationCall_ERROR_, "Set(Type)", "Package", "");
 		assertSemanticErrorQuery("let a : Type = null in a->Package", OCLMessages.UnresolvedProperty_ERROR_, "Set(Type)", "Package");
 		assertSemanticErrorQuery("let a : Type = null in a->Package()", OCLMessages.UnresolvedOperation_ERROR_, "Set(Type)", "Package");
 		assertSemanticErrorQuery("let a : Set(Type) = null in a->Package", OCLMessages.UnresolvedProperty_ERROR_, "Set(Type)", "Package");
 		assertSemanticErrorQuery("let a : Set(Type) = null in a->Package()", OCLMessages.UnresolvedOperation_ERROR_, "Set(Type)", "Package");
-		assertSemanticErrorQuery("Type->Package", OCLMessages.UnresolvedProperty_ERROR_, "Set(Metaclass(Type))", "Package");
-		assertSemanticErrorQuery("Type->Package()", OCLMessages.UnresolvedOperation_ERROR_, "Set(Metaclass(Type))", "Package");
-		assertSemanticErrorQuery("Set(Type)->Package", OCLMessages.UnresolvedProperty_ERROR_, "Set(Metaclass(Set(Type)))", "Package");
-		assertSemanticErrorQuery("Set(Type)->Package()", OCLMessages.UnresolvedOperation_ERROR_, "Set(Metaclass(Set(Type)))", "Package");
+		assertSemanticErrorQuery("Type->Package", OCLMessages.UnresolvedProperty_ERROR_, "Set(Type)", "Package");
+		assertSemanticErrorQuery("Type->Package()", OCLMessages.UnresolvedOperation_ERROR_, "Set(Type)", "Package");
+		assertSemanticErrorQuery("Set(Type)->Package", OCLMessages.UnresolvedProperty_ERROR_, "Set(Type)", "Package");
+		assertSemanticErrorQuery("Set(Type)->Package()", OCLMessages.UnresolvedOperation_ERROR_, "Set(Type)", "Package");
 		assertSemanticErrorQuery("let a : Type = null in a.if", "no viable alternative following input ''if''");
 		assertSemanticErrorQuery("let a : Type = null in a->if", "no viable alternative following input ''if''");
 	}
@@ -118,7 +118,13 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
         assertQueryTrue(metaModelManager.getOclAnyType().getOwningPackage(), "let name : String = 'String' in ownedClasses->select(name = 'Integer') = Set{Integer}");
         assertQueryTrue(-1, "let type : Class = oclType() in type.owningPackage.ownedClasses->select(name = type.name) = Set{Integer}");
         assertQueryTrue(metaModelManager.getOclAnyType().getOwningPackage(), "ownedPackages->select(oclIsKindOf(Integer))->isEmpty()");
-        assertQueryTrue(metaModelManager.getOclAnyType().getOwningPackage(), "ownedPackages->select(oclIsKindOf(Package))->isEmpty()");	// Fails unless implicit Package disambiguated away by argument type expectation
+        assertQueryTrue(metaModelManager.getOclAnyType().getOwningPackage(), "ownedPackages->select(oclIsKindOf(ocl::Package))->isEmpty()");
+        assertSemanticErrorQuery2(metaModelManager.getPivotType("Package"), "ownedPackages->select(oclIsKindOf(Package))->isEmpty()", OCLMessages.UnresolvedOperationCall_ERROR_, "Set(Package)", "oclIsKindOf", "Bag(Package)");
+//
+//		The following test used to pass because the expectation of a type argument was pushed down to effect a Type rather than Property lookup.
+//		The consequent irregularity does not seem justified or necessary.
+//
+//        assertQueryTrue(metaModelManager.getOclAnyType().getOwningPackage(), "ownedPackages->select(oclIsKindOf(Package))->isEmpty()");
     }
 
 	@Test public void test_iterator_scope() {

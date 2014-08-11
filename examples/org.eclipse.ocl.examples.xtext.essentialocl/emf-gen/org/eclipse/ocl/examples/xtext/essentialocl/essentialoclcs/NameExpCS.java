@@ -30,6 +30,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getRoundBracketedClause <em>Round Bracketed Clause</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getSquareBracketedClauses <em>Square Bracketed Clauses</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getSourceType <em>Source Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#isSourceTypeof <em>Source Typeof</em>}</li>
  * </ul>
  * </p>
  *
@@ -191,4 +192,31 @@ public interface NameExpCS
 	 * @generated
 	 */
 	void setSourceType(Type value);
+
+	/**
+	 * Returns the value of the '<em><b>Source Typeof</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Typeof</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Source Typeof</em>' attribute.
+	 * @see #setSourceTypeof(boolean)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getNameExpCS_SourceTypeof()
+	 * @model default="false" required="true" transient="true"
+	 * @generated
+	 */
+	boolean isSourceTypeof();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#isSourceTypeof <em>Source Typeof</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Source Typeof</em>' attribute.
+	 * @see #isSourceTypeof()
+	 * @generated
+	 */
+	void setSourceTypeof(boolean value);
 } // NamedElementRefCS

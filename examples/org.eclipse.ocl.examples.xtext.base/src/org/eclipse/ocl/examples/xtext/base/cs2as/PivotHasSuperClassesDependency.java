@@ -16,7 +16,6 @@ import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.InvalidType;
-import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -39,7 +38,7 @@ public class PivotHasSuperClassesDependency extends AbstractDependency<TypedType
 		if (type instanceof AnyType) {
 			return true;
 		}
-		if ((type instanceof DataType) && !(type instanceof CollectionType) && !(type instanceof Metaclass)) {
+		if ((type instanceof DataType) && !(type instanceof CollectionType)) {
 			return true;
 		}
 		if (type instanceof InvalidType) {

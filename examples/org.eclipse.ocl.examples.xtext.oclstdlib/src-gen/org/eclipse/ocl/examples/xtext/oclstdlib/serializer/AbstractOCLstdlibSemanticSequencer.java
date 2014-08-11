@@ -986,7 +986,7 @@ public abstract class AbstractOCLstdlibSemanticSequencer extends EssentialOCLSem
 	
 	/**
 	 * Constraint:
-	 *     (pathName=LibPathNameCS ownedTemplateBinding=TemplateBindingCS? multiplicity=MultiplicityCS?)
+	 *     (((typeof?='typeof' pathName=LibPathNameCS) | (pathName=LibPathNameCS ownedTemplateBinding=TemplateBindingCS?)) multiplicity=MultiplicityCS?)
 	 */
 	protected void sequence_TypedMultiplicityRefCS_TypedTypeRefCS(EObject context, TypedTypeRefCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -995,7 +995,7 @@ public abstract class AbstractOCLstdlibSemanticSequencer extends EssentialOCLSem
 	
 	/**
 	 * Constraint:
-	 *     (pathName=LibPathNameCS ownedTemplateBinding=TemplateBindingCS?)
+	 *     ((typeof?='typeof' pathName=LibPathNameCS) | (pathName=LibPathNameCS ownedTemplateBinding=TemplateBindingCS?))
 	 */
 	protected void sequence_TypedTypeRefCS(EObject context, TypedTypeRefCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

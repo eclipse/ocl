@@ -1878,6 +1878,16 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getTypedTypeRefCS_Typeof()
+	{
+		return (EAttribute)typedTypeRefCSEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getVisitableCS()
 	{
 		return visitableCSEClass;
@@ -2147,6 +2157,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		createEReference(typedTypeRefCSEClass, TYPED_TYPE_REF_CS__PATH_NAME);
 		createEReference(typedTypeRefCSEClass, TYPED_TYPE_REF_CS__TYPE);
 		createEReference(typedTypeRefCSEClass, TYPED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING);
+		createEAttribute(typedTypeRefCSEClass, TYPED_TYPE_REF_CS__TYPEOF);
 
 		visitableCSEClass = createEClass(VISITABLE_CS);
 
@@ -2476,6 +2487,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		initEReference(getTypedTypeRefCS_PathName(), this.getPathNameCS(), null, "pathName", null, 0, 1, TypedTypeRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTypedTypeRefCS_Type(), thePivotPackage.getType(), null, "type", null, 0, 1, TypedTypeRefCS.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTypedTypeRefCS_OwnedTemplateBinding(), this.getTemplateBindingCS(), this.getTemplateBindingCS_OwningTemplateBindableElement(), "ownedTemplateBinding", null, 0, 1, TypedTypeRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getTypedTypeRefCS_Typeof(), theEcorePackage.getEBoolean(), "typeof", "false", 1, 1, TypedTypeRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
 		initEClass(visitableCSEClass, VisitableCS.class, "VisitableCS", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -2518,8 +2530,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		   source, 
 		   new String[] 
 		   {
-			 "ecore", "http://www.eclipse.org/emf/2002/Ecore", //$NON-NLS-1$ //$NON-NLS-2$
-			 "pivot", "../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#/" //$NON-NLS-1$ //$NON-NLS-2$
+			 "ecore", "http://www.eclipse.org/emf/2002/Ecore" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 
@@ -2592,7 +2603,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		   source, 
 		   new String[] 
 		   {
-			 "body", "ocl::Package{\n\t\t\t\t-- TODO\n\t\t\t\tname = name,\n\t\t\t\tnestedPackage = ownedNestedPackage.ast()\n\t\t\t}" //$NON-NLS-1$ //$NON-NLS-2$
+			 "body", "ocl::Package{\n\t\t\t\t-- TODO\n\t\t\t\tname = name,\n\t\t\t\townedPackages = ownedNestedPackage.ast()\n\t\t\t}" //$NON-NLS-1$ //$NON-NLS-2$
 		   });	
 		addAnnotation
 		  (parameterCSEClass.getEOperations().get(0), 

@@ -98,7 +98,7 @@ public abstract class FeatureImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IS_STATIC_EFLAG = 1 << 9;
+	protected static final int IS_STATIC_EFLAG = 1 << 10;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -212,6 +212,8 @@ public abstract class FeatureImpl
 				return isMany();
 			case PivotPackage.FEATURE__IS_REQUIRED:
 				return isRequired();
+			case PivotPackage.FEATURE__IS_TYPEOF:
+				return isTypeof();
 			case PivotPackage.FEATURE__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -258,6 +260,9 @@ public abstract class FeatureImpl
 			case PivotPackage.FEATURE__IS_REQUIRED:
 				setIsRequired((Boolean)newValue);
 				return;
+			case PivotPackage.FEATURE__IS_TYPEOF:
+				setIsTypeof((Boolean)newValue);
+				return;
 			case PivotPackage.FEATURE__TYPE:
 				setType((Type)newValue);
 				return;
@@ -302,6 +307,9 @@ public abstract class FeatureImpl
 			case PivotPackage.FEATURE__IS_REQUIRED:
 				setIsRequired(IS_REQUIRED_EDEFAULT);
 				return;
+			case PivotPackage.FEATURE__IS_TYPEOF:
+				setIsTypeof(IS_TYPEOF_EDEFAULT);
+				return;
 			case PivotPackage.FEATURE__TYPE:
 				setType((Type)null);
 				return;
@@ -342,6 +350,8 @@ public abstract class FeatureImpl
 				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.FEATURE__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
+			case PivotPackage.FEATURE__IS_TYPEOF:
+				return ((eFlags & IS_TYPEOF_EFLAG) != 0) != IS_TYPEOF_EDEFAULT;
 			case PivotPackage.FEATURE__TYPE:
 				return type != null;
 			case PivotPackage.FEATURE__IMPLEMENTATION:

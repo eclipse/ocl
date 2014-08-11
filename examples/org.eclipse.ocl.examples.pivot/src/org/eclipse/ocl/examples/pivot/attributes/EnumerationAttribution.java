@@ -12,7 +12,6 @@ package org.eclipse.ocl.examples.pivot.attributes;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
@@ -25,8 +24,8 @@ public class EnumerationAttribution extends AbstractAttribution
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		org.eclipse.ocl.examples.pivot.Enumeration targetEnumeration = (org.eclipse.ocl.examples.pivot.Enumeration) target;
 		environmentView.addAllEnumerationLiterals(targetEnumeration);
-		environmentView.addAllOperations(targetEnumeration, FeatureFilter.SELECT_NON_STATIC);
-		environmentView.addAllProperties(targetEnumeration, FeatureFilter.SELECT_NON_STATIC);
+		environmentView.addAllOperations(targetEnumeration, null);
+		environmentView.addAllProperties(targetEnumeration, null);
 		environmentView.addAllTemplateParameters(targetEnumeration);
 		return scopeView.getParent();
 	}

@@ -29,7 +29,6 @@ import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.examples.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.examples.domain.ids.EnumerationLiteralId;
 import org.eclipse.ocl.examples.domain.ids.IdVisitor;
-import org.eclipse.ocl.examples.domain.ids.MetaclassId;
 import org.eclipse.ocl.examples.domain.ids.OperationId;
 import org.eclipse.ocl.examples.domain.ids.PropertyId;
 import org.eclipse.ocl.examples.domain.ids.TupleTypeId;
@@ -87,8 +86,6 @@ public interface IdResolver extends IdVisitor<DomainElement>
 	@Nullable DomainType getDynamicTypeOf(@NonNull Iterable<?> values);
 	
 	@NonNull DomainClass getJavaType(@NonNull Class<?> javaClass);
-
-	@NonNull DomainType getMetaclass(@NonNull MetaclassId metaclassId);
 
 	@NonNull DomainOperation getOperation(@NonNull OperationId operationId);
 

@@ -17,8 +17,11 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation;
+import org.eclipse.ocl.examples.library.iterator.CollectIteration;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.LoopExp;
+import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.Type;
 
 /**
@@ -31,6 +34,10 @@ public abstract class TemplateParameterSubstitutionHelper
 {
 	public void resolveUnmodeledTemplateParameterSubstitutions(@NonNull TemplateParameterSubstitutionVisitor templateParameterSubstitutions, @NonNull CallExp callExp) {}
 
+	public @Nullable Type resolveReturnType(@NonNull MetaModelManager metaModelManager, @NonNull CallExp callExp, @Nullable Type returnType) {
+		return returnType;
+	}
+
 	private static @NonNull Map<Class<? extends LibraryFeature>, TemplateParameterSubstitutionHelper> className2helper = new HashMap<Class<? extends LibraryFeature>, TemplateParameterSubstitutionHelper>();
 	
 	public static void addHelper(@NonNull Class<? extends LibraryFeature> className, @NonNull TemplateParameterSubstitutionHelper helper) {
@@ -39,6 +46,33 @@ public abstract class TemplateParameterSubstitutionHelper
 
 	public static @Nullable TemplateParameterSubstitutionHelper getHelper(@NonNull Class<? extends LibraryFeature> className) {
 		return className2helper.get(className);
+	}
+
+	//
+	//	Special case processing for collect() return type.
+	//
+	private static class CollectionCollectHelper extends TemplateParameterSubstitutionHelper
+	{
+		@Override
+		public @Nullable Type resolveReturnType(@NonNull MetaModelManager metaModelManager, @NonNull CallExp callExp, @Nullable Type returnType) {
+			LoopExp loopExp = (LoopExp)callExp;
+			OCLExpression body = loopExp.getBody();
+			Type bodyType = body != null ? metaModelManager.getUnencodedType(body) : null;
+			if (bodyType != null) {
+				@NonNull Type elementType = bodyType;
+//				if (bodyType instanceof CollectionType) {
+					while (elementType instanceof CollectionType) {
+						Type elementType2 = ((CollectionType)elementType).getElementType();
+						if (elementType2 != null) {
+							elementType = elementType2;
+						}
+					}
+//				}
+				boolean isOrdered = (returnType instanceof CollectionType) && ((CollectionType)returnType).isOrdered();
+				returnType = metaModelManager.getCollectionType(isOrdered, false, elementType, null, null);	// FIXME null, null
+			}
+			return returnType;
+		}
 	}
 
 	//
@@ -58,6 +92,7 @@ public abstract class TemplateParameterSubstitutionHelper
 	
 	static
 	{
+		addHelper(CollectIteration.class, new CollectionCollectHelper());
 		addHelper(CollectionFlattenOperation.class, new CollectionFlattenHelper());
 	}
 }

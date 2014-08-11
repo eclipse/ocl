@@ -48,7 +48,6 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -1025,6 +1024,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 		TypedRefCS ownedType = csTypedElement.getOwnedType();
 		Type pivotType = null;
 		boolean isRequired = false;
+		boolean isTypeof = false;
 		if (ownedType != null) {
 			pivotType = PivotUtil.getPivot(Type.class, ownedType);
 			int lower = ElementUtil.getLower(csTypedElement);
@@ -1035,12 +1035,15 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 			else {
 				isRequired = true;
 			}
+			if (ownedType instanceof TypedTypeRefCS) {
+				isTypeof = ((TypedTypeRefCS)ownedType).isTypeof();
+			}
 		}
 		if (pivotType == null) {
 			pivotType = metaModelManager.getOclVoidType();
 			isRequired = false;
 		}
-		setType(pivotElement, pivotType, isRequired);
+		setType(pivotElement, pivotType, isRequired, isTypeof);
 		return pivotType;
 	}
 
@@ -1180,7 +1183,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 					templateParameterSubstitutions.add(templateParameterSubstitution);
 				}
 			}
-			TypeRefCS csActualParameter = csTemplateParameterSubstitution.getActualParameter();
+			TypeRefCS csActualParameter = csTemplateParameterSubstitution.getOwnedActualParameter();
 			if (csActualParameter instanceof WildcardTypeRefCS) {
 				templateParameterSubstitution.setActual(null);		// null is the wildcard
 			}
@@ -1214,18 +1217,13 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 		if (specializedPivotElement == null) {
 			if (unspecializedPivotElement instanceof CollectionType) {
 				TemplateParameterSubstitutionCS csTemplateParameterSubstitution = ownedTemplateBinding.getOwnedParameterSubstitution().get(0);
-				Type templateArgument = PivotUtil.getPivot(Type.class, csTemplateParameterSubstitution.getActualParameter());
+				Type templateArgument = PivotUtil.getPivot(Type.class, csTemplateParameterSubstitution.getOwnedActualParameter());
 				specializedPivotElement = templateArgument != null ? metaModelManager.getCollectionType((CollectionType) unspecializedPivotElement, templateArgument, null, null) : unspecializedPivotElement;
-			}
-			else if (unspecializedPivotElement instanceof Metaclass) {
-				TemplateParameterSubstitutionCS csTemplateParameterSubstitution = ownedTemplateBinding.getOwnedParameterSubstitution().get(0);
-				Type templateArgument = PivotUtil.getPivot(Type.class, csTemplateParameterSubstitution.getActualParameter());
-				specializedPivotElement = templateArgument != null ? metaModelManager.getMetaclass(templateArgument) : unspecializedPivotElement;
 			}
 			else {
 				List<Type> templateArguments = new ArrayList<Type>();
 				for (TemplateParameterSubstitutionCS csTemplateParameterSubstitution : ownedTemplateBinding.getOwnedParameterSubstitution()) {
-					Type templateArgument = PivotUtil.getPivot(Type.class, csTemplateParameterSubstitution.getActualParameter());
+					Type templateArgument = PivotUtil.getPivot(Type.class, csTemplateParameterSubstitution.getOwnedActualParameter());
 					templateArguments.add(templateArgument);
 				}
 				specializedPivotElement = metaModelManager.getLibraryType(unspecializedPivotElement, templateArguments);

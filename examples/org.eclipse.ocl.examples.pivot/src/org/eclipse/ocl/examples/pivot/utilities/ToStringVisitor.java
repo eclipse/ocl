@@ -57,7 +57,6 @@ import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
-import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.NavigationCallExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
@@ -226,7 +225,14 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 			append(NULL_PLACEHOLDER);
 		}
 		else {
+			boolean isTypeof = typedElement.isTypeof();
+			if (isTypeof) {
+				append("typeof(");
+			}
 			safeVisit(typedElement.getType());
+			if (isTypeof) {
+				append(")");
+			}
 			if (!typedElement.isRequired()) {
 				append("[?]");
 			}
@@ -258,9 +264,15 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 
 			appendName(parm);
 			append(" : "); //$NON-NLS-1$
-
 			if (parm.getType() != null) {
+				boolean isTypeof = parm.isTypeof();
+				if (isTypeof) {
+					append("typeof(");
+				}
 				appendElementType(parm);
+				if (isTypeof) {
+					append(")");
+				}
 			} else {
 				append(TypeId.OCL_VOID_NAME);
 			}
@@ -855,21 +867,6 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
             prefix = ", "; //$NON-NLS-1$
 		}
 		append(")");
-		return null;
-	}
-
-	@Override
-	public String visitMetaclass(@NonNull Metaclass<?> object) {
-		appendName(object);
-		if (object.getOwnedTemplateBindings().size() > 0) {
-			appendTemplateBindings(object.getOwnedTemplateBindings());
-		}
-		else if (object.getInstanceType() != null) {
-			append("<");
-			appendQualifiedName(object.getInstanceType());
-			append(">");
-		}
-		appendTemplateSignature(object.getOwnedTemplateSignature());
 		return null;
 	}
 

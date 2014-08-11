@@ -106,7 +106,7 @@ public interface PackageCS extends PackageOwnerCS, NamespaceCS {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='ocl::Package{\n\t\t\t\t-- TODO\n\t\t\t\tname = name,\n\t\t\t\tnestedPackage = ownedNestedPackage.ast()\n\t\t\t}'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='ocl::Package{\n\t\t\t\t-- TODO\n\t\t\t\tname = name,\n\t\t\t\townedPackages = ownedNestedPackage.ast()\n\t\t\t}'"
 	 * @generated
 	 */
 	org.eclipse.ocl.examples.pivot.Package ast();

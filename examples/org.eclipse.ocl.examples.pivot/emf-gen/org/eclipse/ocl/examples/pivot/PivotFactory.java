@@ -50,15 +50,6 @@ public interface PivotFactory
 	Class createClass();
 
 	/**
-	 * Returns a new object of class '<em>Metaclass</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Metaclass</em>'.
-	 * @generated
-	 */
-	<T> Metaclass<T> createMetaclass();
-
-	/**
 	 * Returns a new object of class '<em>Template Binding</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -76,7 +76,6 @@ import org.eclipse.ocl.examples.pivot.LiteralExp;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.MessageType;
-import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.NavigationCallExp;
@@ -453,13 +452,6 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EClass messageTypeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass metaclassEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2743,26 +2735,6 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMetaclass()
-	{
-		return metaclassEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMetaclass_InstanceType()
-	{
-		return (EReference)metaclassEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getMorePivotable()
 	{
 		return morePivotableEClass;
@@ -4530,7 +4502,7 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	public EReference getTypedElement_Type() {
-		return (EReference)typedElementEClass.getEStructuralFeatures().get(2);
+		return (EReference)typedElementEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -4561,6 +4533,16 @@ public class PivotPackageImpl
 	public EAttribute getTypedElement_IsRequired()
 	{
 		return (EAttribute)typedElementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTypedElement_IsTypeof()
+	{
+		return (EAttribute)typedElementEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -5711,9 +5693,6 @@ public class PivotPackageImpl
 		createEReference(messageTypeEClass, MESSAGE_TYPE__REFERRED_OPERATION);
 		createEReference(messageTypeEClass, MESSAGE_TYPE__REFERRED_SIGNAL);
 
-		metaclassEClass = createEClass(METACLASS);
-		createEReference(metaclassEClass, METACLASS__INSTANCE_TYPE);
-
 		morePivotableEClass = createEClass(MORE_PIVOTABLE);
 
 		nameableEClass = createEClass(NAMEABLE);
@@ -5956,6 +5935,7 @@ public class PivotPackageImpl
 		typedElementEClass = createEClass(TYPED_ELEMENT);
 		createEAttribute(typedElementEClass, TYPED_ELEMENT__IS_MANY);
 		createEAttribute(typedElementEClass, TYPED_ELEMENT__IS_REQUIRED);
+		createEAttribute(typedElementEClass, TYPED_ELEMENT__IS_TYPEOF);
 		createEReference(typedElementEClass, TYPED_ELEMENT__TYPE);
 		createEOperation(typedElementEClass, TYPED_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION);
 		createEOperation(typedElementEClass, TYPED_ELEMENT___MAKE_PARAMETER);
@@ -6040,7 +6020,6 @@ public class PivotPackageImpl
 		setNsURI(eNS_URI);
 
 		// Create type parameters
-		addETypeParameter(metaclassEClass, "T"); //$NON-NLS-1$
 
 		// Set bounds for type parameters
 
@@ -6104,7 +6083,6 @@ public class PivotPackageImpl
 		loopExpEClass.getESuperTypes().add(this.getCallExp());
 		messageExpEClass.getESuperTypes().add(this.getOCLExpression());
 		messageTypeEClass.getESuperTypes().add(this.getClass_());
-		metaclassEClass.getESuperTypes().add(this.getClass_());
 		namedElementEClass.getESuperTypes().add(this.getElement());
 		namedElementEClass.getESuperTypes().add(this.getNameable());
 		namespaceEClass.getESuperTypes().add(this.getNamedElement());
@@ -6847,9 +6825,6 @@ public class PivotPackageImpl
 		initEReference(getMessageType_ReferredOperation(), this.getOperation(), null, "referredOperation", null, 0, 1, MessageType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getMessageType_ReferredSignal(), this.getSignal(), null, "referredSignal", null, 0, 1, MessageType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(metaclassEClass, Metaclass.class, "Metaclass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getMetaclass_InstanceType(), this.getType(), null, "instanceType", null, 1, 1, Metaclass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(morePivotableEClass, MorePivotable.class, "MorePivotable", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(nameableEClass, Nameable.class, "Nameable", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -7177,6 +7152,7 @@ public class PivotPackageImpl
 		initEClass(typedElementEClass, TypedElement.class, "TypedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getTypedElement_IsMany(), this.getBoolean(), "isMany", null, 1, 1, TypedElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getTypedElement_IsRequired(), this.getBoolean(), "isRequired", "true", 1, 1, TypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getTypedElement_IsTypeof(), this.getBoolean(), "isTypeof", "false", 1, 1, TypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEReference(getTypedElement_Type(), this.getType(), null, "type", null, 0, 1, TypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		op = initEOperation(getTypedElement__CompatibleBody__ValueSpecification(), this.getBoolean(), "CompatibleBody", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$

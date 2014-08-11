@@ -66,7 +66,7 @@ public class VariableExpImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IMPLICIT_EFLAG = 1 << 9;
+	protected static final int IMPLICIT_EFLAG = 1 << 10;
 
 	/**
 	 * The cached value of the '{@link #getReferredVariable() <em>Referred Variable</em>}' reference.
@@ -183,6 +183,8 @@ public class VariableExpImpl
 				return isMany();
 			case PivotPackage.VARIABLE_EXP__IS_REQUIRED:
 				return isRequired();
+			case PivotPackage.VARIABLE_EXP__IS_TYPEOF:
+				return isTypeof();
 			case PivotPackage.VARIABLE_EXP__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -227,6 +229,9 @@ public class VariableExpImpl
 			case PivotPackage.VARIABLE_EXP__IS_REQUIRED:
 				setIsRequired((Boolean)newValue);
 				return;
+			case PivotPackage.VARIABLE_EXP__IS_TYPEOF:
+				setIsTypeof((Boolean)newValue);
+				return;
 			case PivotPackage.VARIABLE_EXP__TYPE:
 				setType((Type)newValue);
 				return;
@@ -267,6 +272,9 @@ public class VariableExpImpl
 			case PivotPackage.VARIABLE_EXP__IS_REQUIRED:
 				setIsRequired(IS_REQUIRED_EDEFAULT);
 				return;
+			case PivotPackage.VARIABLE_EXP__IS_TYPEOF:
+				setIsTypeof(IS_TYPEOF_EDEFAULT);
+				return;
 			case PivotPackage.VARIABLE_EXP__TYPE:
 				setType((Type)null);
 				return;
@@ -303,6 +311,8 @@ public class VariableExpImpl
 				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.VARIABLE_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
+			case PivotPackage.VARIABLE_EXP__IS_TYPEOF:
+				return ((eFlags & IS_TYPEOF_EFLAG) != 0) != IS_TYPEOF_EDEFAULT;
 			case PivotPackage.VARIABLE_EXP__TYPE:
 				return type != null;
 			case PivotPackage.VARIABLE_EXP__IMPLICIT:

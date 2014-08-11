@@ -240,7 +240,7 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 		if (!(ast instanceof TypedElement)) {
 			return false;
 		}
-		Type type = ((TypedElement)ast).getType();
+		Type type = metaModelManager.getUnencodedType((TypedElement)ast);
 		if (type == null) {
 			return false;
 		}

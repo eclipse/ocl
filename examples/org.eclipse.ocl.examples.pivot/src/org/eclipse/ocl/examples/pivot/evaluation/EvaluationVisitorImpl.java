@@ -688,8 +688,6 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		//
 		//	Resolve source dispatch type
 		//
- 		PivotIdResolver idResolver = metaModelManager.getIdResolver();
-		DomainClass actualSourceType = idResolver.getStaticTypeOf(sourceValue);
 		List<Parameter> ownedParameters = apparentOperation.getOwnedParameter();
 		if ((ownedParameters.size() == 1) && (ownedParameters.get(0).getType() instanceof SelfType)) {
 			//
@@ -697,12 +695,20 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			//
 			List<OCLExpression> arguments = operationCallExp.getArgument();
 			Object onlyArgument = arguments.get(0).accept(undecoratedVisitor);
-			if (onlyArgument != null) {
-				DomainClass actualArgType = idResolver.getStaticTypeOf(onlyArgument);
-				actualSourceType = (DomainClass)actualSourceType.getCommonType(idResolver, actualArgType);
+			DomainOperation actualOperation;
+			if (apparentOperation.isStatic()) {
+				actualOperation = apparentOperation;
 			}
-			Operation actualOperation = (Operation) actualSourceType.lookupActualOperation(metaModelManager, apparentOperation);
-			LibraryBinaryOperation implementation = (LibraryBinaryOperation) metaModelManager.getImplementation(actualOperation);
+			else {
+		 		PivotIdResolver idResolver = metaModelManager.getIdResolver();
+				DomainClass actualSourceType = idResolver.getStaticTypeOf(sourceValue);
+				if (onlyArgument != null) {
+					DomainClass actualArgType = idResolver.getStaticTypeOf(onlyArgument);
+					actualSourceType = (DomainClass)actualSourceType.getCommonType(idResolver, actualArgType);
+				}
+				actualOperation = actualSourceType.lookupActualOperation(metaModelManager, apparentOperation);
+			}
+			LibraryBinaryOperation implementation = (LibraryBinaryOperation) metaModelManager.getImplementation((Operation)actualOperation);	// FIXME cast
 			try {
 				Object result = implementation.evaluate(evaluator, operationCallExp.getTypeId(), sourceValue, onlyArgument);
 				assert !(result instanceof NullValue);
@@ -719,7 +725,15 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			//
 			//	Resolve and dispatch regular operation
 			//
-			DomainOperation actualOperation = actualSourceType.lookupActualOperation(metaModelManager, apparentOperation);
+			DomainOperation actualOperation;
+			if (apparentOperation.isStatic()) {
+				actualOperation = apparentOperation;
+			}
+			else {
+		 		PivotIdResolver idResolver = metaModelManager.getIdResolver();
+				DomainClass actualSourceType = idResolver.getStaticTypeOf(sourceValue);
+				actualOperation = actualSourceType.lookupActualOperation(metaModelManager, apparentOperation);
+			}
 			LibraryOperation implementation = (LibraryOperation) metaModelManager.getImplementation((Operation)actualOperation);
 			try {
 				Object result = implementation.dispatch(evaluator, operationCallExp, sourceValue);

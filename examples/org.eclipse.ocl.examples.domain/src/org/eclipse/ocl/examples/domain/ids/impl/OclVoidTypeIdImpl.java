@@ -16,7 +16,6 @@ import org.eclipse.ocl.examples.domain.elements.DomainElement;
 import org.eclipse.ocl.examples.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.examples.domain.ids.ElementId;
 import org.eclipse.ocl.examples.domain.ids.IdVisitor;
-import org.eclipse.ocl.examples.domain.ids.MetaclassId;
 import org.eclipse.ocl.examples.domain.ids.OclVoidTypeId;
 import org.eclipse.ocl.examples.domain.ids.BindingsId;
 import org.eclipse.ocl.examples.domain.ids.TuplePartId;
@@ -84,10 +83,6 @@ public class OclVoidTypeIdImpl extends UnscopedId implements OclVoidTypeId
 	}
 
 	public @NonNull OclVoidTypeIdImpl getSpecializedId(@NonNull BindingsId templateBindings) {
-		return this;
-	}
-
-	public @NonNull MetaclassId getSpecializedId(@NonNull ElementId elementId) {
 		return this;
 	}
 

@@ -19,7 +19,6 @@ import org.eclipse.ocl.examples.domain.ids.EnumerationId;
 import org.eclipse.ocl.examples.domain.ids.EnumerationLiteralId;
 import org.eclipse.ocl.examples.domain.ids.IdVisitor;
 import org.eclipse.ocl.examples.domain.ids.LambdaTypeId;
-import org.eclipse.ocl.examples.domain.ids.MetaclassId;
 import org.eclipse.ocl.examples.domain.ids.NestedPackageId;
 import org.eclipse.ocl.examples.domain.ids.NsURIPackageId;
 import org.eclipse.ocl.examples.domain.ids.OclInvalidTypeId;
@@ -73,11 +72,6 @@ public class Id2JavaInterfaceVisitor implements IdVisitor<Class<? extends Elemen
 	@Override
 	public Class<? extends ElementId> visitLambdaTypeId(@NonNull LambdaTypeId id) {
 		return LambdaTypeId.class;
-	}
-
-	@Override
-	public Class<? extends ElementId> visitMetaclassId(@NonNull MetaclassId id) {
-		return MetaclassId.class;
 	}
 
 	@Override

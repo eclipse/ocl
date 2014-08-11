@@ -14,7 +14,6 @@ package org.eclipse.ocl.examples.pivot.attributes;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
@@ -27,7 +26,6 @@ public class ClassAttribution extends AbstractAttribution
 	@Override
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		org.eclipse.ocl.examples.pivot.Class targetClass = (org.eclipse.ocl.examples.pivot.Class) target;
-		assert !(target instanceof Metaclass<?>);
 		if (targetClass.getOwnedTemplateBindings().size() == 0) {
 			EObject scopeTarget = scopeView.getTarget();
 			if (scopeTarget instanceof Pivotable) {

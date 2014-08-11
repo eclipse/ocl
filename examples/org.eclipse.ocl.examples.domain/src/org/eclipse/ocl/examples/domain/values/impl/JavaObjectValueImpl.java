@@ -58,7 +58,7 @@ public class JavaObjectValueImpl extends ObjectValueImpl
 				typeId = typeId2 = TypeId.OCL_COMPARABLE;
 			}
 			else {
-				typeId = typeId2 = TypeId.METACLASS;
+				typeId = typeId2 = TypeId.OCL_ANY;// METACLASS
 			}
 		}
 		return typeId2;

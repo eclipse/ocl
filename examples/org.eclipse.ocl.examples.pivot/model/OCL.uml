@@ -380,15 +380,6 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpnTAn7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_dwZ4sGvPEeC4JdmQ7RJG7A" name="Metaclass">
-        <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_5FSQEPBgEeKSb5VYoRDkkA" parameter="_7ECbwPBgEeKSb5VYoRDkkA">
-          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_7ECbwPBgEeKSb5VYoRDkkA" parameteredElement="__7bBcPBgEeKSb5VYoRDkkA">
-            <ownedParameteredElement xmi:type="uml:Class" xmi:id="__7bBcPBgEeKSb5VYoRDkkA" name="T" templateParameter="_7ECbwPBgEeKSb5VYoRDkkA"/>
-          </ownedParameter>
-        </ownedTemplateSignature>
-        <generalization xmi:id="_XpnTBH7VEeOu79LxSz8Ylw" general="_Pbq4UA27EeSm6471J7pVhQ"/>
-        <ownedAttribute xmi:id="_dwZ4smvPEeC4JdmQ7RJG7A" name="instanceType" type="_TQWD0A27EeSm6471J7pVhQ"/>
-      </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_HcolrogHEd-aGOJuUCcZBA" name="OrderedSetType">
         <generalization xmi:id="_Xpwc8H7VEeOu79LxSz8Ylw" general="_Hcolo4gHEd-aGOJuUCcZBA"/>
       </packagedElement>

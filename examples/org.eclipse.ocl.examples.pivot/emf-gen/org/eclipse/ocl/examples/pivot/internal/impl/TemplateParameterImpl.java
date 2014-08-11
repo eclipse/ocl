@@ -565,7 +565,7 @@ public class TemplateParameterImpl
 			Resource eResource = ((EObject) expr).eResource();
 			if ((eResource != null) && (selfType instanceof Type)) {
 				MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(eResource);
-				return metaModelManager.specializeType(this, (CallExp) expr, (Type)selfType);
+				return metaModelManager.specializeType(this, false, (CallExp) expr, (Type)selfType, false);
 			}
 		}
 		return null;

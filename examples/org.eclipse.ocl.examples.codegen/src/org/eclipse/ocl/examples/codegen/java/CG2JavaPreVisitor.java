@@ -57,7 +57,6 @@ import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.examples.domain.ids.ElementId;
 import org.eclipse.ocl.examples.domain.ids.EnumerationLiteralId;
-import org.eclipse.ocl.examples.domain.ids.MetaclassId;
 import org.eclipse.ocl.examples.domain.ids.NestedTypeId;
 import org.eclipse.ocl.examples.domain.ids.OclVoidTypeId;
 import org.eclipse.ocl.examples.domain.ids.PrimitiveTypeId;
@@ -112,9 +111,6 @@ public class CG2JavaPreVisitor extends AbstractExtendingCGModelVisitor<Object, J
 //			}
 			if (typeId instanceof CollectionTypeId) {
 				addOwnedTypeId(cgConstantExp, ((CollectionTypeId)typeId).getElementTypeId());
-			}
-			else if (typeId instanceof MetaclassId) {
-				addOwnedTypeId(cgConstantExp, ((MetaclassId)typeId).getElementId());
 			}
 			else if (typeId instanceof TupleTypeId) {
 				for (@SuppressWarnings("null")@NonNull TuplePartId partId : ((TupleTypeId)typeId).getPartIds()) {

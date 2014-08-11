@@ -38,7 +38,6 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.Library;
-import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
@@ -254,14 +253,7 @@ public class EnvironmentView
 			attribution = PivotUtil.getAttribution(asPackage);
 			attribution.computeLookup(asPackage, this, scopeView);
 		}
-		if (asClass instanceof Metaclass<?>) {
-			Type instanceType = ((Metaclass<?>)asClass).getInstanceType();
-			if (instanceType != null) {
-				attribution = PivotUtil.getAttribution(instanceType);
-				attribution.computeLookup(instanceType, this, scopeView);
-			}
-		}
-		else {	// FIXME redundant
+		{	// FIXME redundant
 			asPackage = asUnspecializedClass.getOwningPackage();
 			if (asPackage != null) {
 				attribution = PivotUtil.getAttribution(asPackage);

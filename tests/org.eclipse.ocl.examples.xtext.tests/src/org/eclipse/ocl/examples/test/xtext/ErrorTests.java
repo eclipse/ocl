@@ -54,7 +54,7 @@ public class ErrorTests extends XtextTestCase
 		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
 		xtextResource.load(inputStream, null);
 		assertResourceErrors("Loading Xtext", xtextResource,
-			DomainUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, "Set(test::Test)", "iterate", "w, h; acc : String = ''| true"));
+			DomainUtil.bind(OCLMessages.UnresolvedIterationCall_ERROR_, "Set(test::Test)", "iterate", "w, h; acc : String = ''| true"));
         //
 		metaModelManager.dispose();
 	}
@@ -79,7 +79,7 @@ public class ErrorTests extends XtextTestCase
 		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
 		xtextResource.load(inputStream, null);
 		assertResourceErrors("Loading Xtext", xtextResource,
-			DomainUtil.bind(OCLMessages.UnresolvedProperty_ERROR_, "Metaclass(test::Test)", "allInstances"));
+			DomainUtil.bind(OCLMessages.UnresolvedStaticProperty_ERROR_, "test::Test", "allInstances"));
         //
 		metaModelManager.dispose();
 	}

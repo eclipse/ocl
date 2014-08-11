@@ -12,7 +12,6 @@ package org.eclipse.ocl.examples.domain.ids;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.ids.impl.GeneralizedMetaclassIdImpl;
 import org.eclipse.ocl.examples.domain.ids.impl.OclInvalidTypeIdImpl;
 import org.eclipse.ocl.examples.domain.ids.impl.OclVoidTypeIdImpl;
 
@@ -92,7 +91,6 @@ public interface TypeId extends ElementId
 
 	public static final @NonNull CollectionTypeId BAG = IdManager.getCollectionTypeId(BAG_NAME);
 	public static final @NonNull CollectionTypeId COLLECTION = IdManager.getCollectionTypeId(COLLECTION_NAME);
-	public static final @NonNull MetaclassId METACLASS = new GeneralizedMetaclassIdImpl();
 	public static final @NonNull CollectionTypeId ORDERED_COLLECTION = IdManager.getCollectionTypeId(ORDERED_COLLECTION_NAME);
 	public static final @NonNull CollectionTypeId ORDERED_SET = IdManager.getCollectionTypeId(ORDERED_SET_NAME);
 	public static final @NonNull CollectionTypeId SEQUENCE = IdManager.getCollectionTypeId(SEQUENCE_NAME);

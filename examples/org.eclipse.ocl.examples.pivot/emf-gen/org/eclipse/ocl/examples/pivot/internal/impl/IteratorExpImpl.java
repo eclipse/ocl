@@ -50,6 +50,7 @@ import org.eclipse.ocl.examples.library.oclany.OclComparableCompareToOperation;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
+import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PivotTables;
 import org.eclipse.ocl.examples.pivot.ReferringElement;
@@ -142,9 +143,11 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		Diagnostic diagnostic = null;
 		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(DomainUtil.nonNullState(eResource()));
 		try {
-			Type sourceType = this.getSource().getType();
-			Type bodyType = this.getBody().getType();
-			Type specializedBodyType = bodyType != null ? TemplateParameterSubstitutionVisitor.specializeType(bodyType, this, metaModelManager, sourceType) : null;
+			OCLExpression source2 = this.getSource();
+			OCLExpression body2 = this.getBody();
+			Type sourceType = source2.getType();
+			Type bodyType = body2.getType();
+			Type specializedBodyType = bodyType != null ? TemplateParameterSubstitutionVisitor.specializeType(bodyType, body2.isTypeof(), this, metaModelManager, sourceType, source2.isTypeof()) : null;
 			DomainInheritance comparableType = metaModelManager.getOclComparableType().getInheritance(metaModelManager);
 			DomainInheritance selfType = metaModelManager.getOclSelfType().getInheritance(metaModelManager);
 			DomainOperation staticOperation = comparableType.lookupLocalOperation(metaModelManager, LibraryConstants.COMPARE_TO, selfType);

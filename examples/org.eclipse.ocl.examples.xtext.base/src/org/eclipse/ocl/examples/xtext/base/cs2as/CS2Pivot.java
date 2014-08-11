@@ -34,7 +34,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Iteration;
-import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -254,7 +253,7 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 				return true;
 			}
 			if (object instanceof TypedElement) {
-				return ((TypedElement)object).getType() instanceof Metaclass<?>;
+				return false; //((TypedElement)object).getType() instanceof Metaclass<?>;
 			}
 			return false;
 		}
@@ -544,6 +543,26 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 	public @Nullable Type lookupType(@NonNull ElementCS csElement, @NonNull PathNameCS csPathName) {
 		setElementType(csPathName, PivotPackage.Literals.TYPE, csElement, null);
 		Element namedElement = csPathName.getElement();
+		if (namedElement instanceof Type) {
+			return (Type) namedElement;
+		}
+		else {
+			return null;
+		}
+	}
+
+	public @Nullable Type lookupTypeQualifier(@NonNull PathNameCS csPathName) {
+		List<PathElementCS> path = csPathName.getPath();
+		int iMax = path.size();
+		if (iMax <= 1) {
+			return null;
+		}
+		PathElementCS pathElementCS = path.get(iMax-2);
+		refreshElementType(pathElementCS, PivotPackage.Literals.TYPE);
+		for (int i = 0; i < iMax-2; i++) {
+			refreshElementType(path.get(i), PivotPackage.Literals.NAMESPACE);
+		}
+		Element namedElement = pathElementCS.getElement();
 		if (namedElement instanceof Type) {
 			return (Type) namedElement;
 		}

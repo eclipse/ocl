@@ -185,9 +185,13 @@ public abstract class AbstractBase2PivotConversion extends AbstractConversion im
 	 */
 	@Deprecated
 	public void setType(@NonNull TypedElement pivotElement, Type type) {
-		setType(pivotElement, type, pivotElement.isRequired());
+		setType(pivotElement, type, pivotElement.isRequired(), false);
 	}
+	@Deprecated
 	public void setType(@NonNull TypedElement pivotElement, Type type, boolean isRequired) {
+		setType(pivotElement, type, isRequired, false);
+	}
+	public void setType(@NonNull TypedElement pivotElement, Type type, boolean isRequired, boolean isTypeof) {
 	//	PivotUtil.debugObjectUsage("setType ", pivotElement);
 	//	PivotUtil.debugObjectUsage(" to ", type);
 //		if (type != null) {
@@ -206,6 +210,10 @@ public abstract class AbstractBase2PivotConversion extends AbstractConversion im
 		boolean wasRequired = pivotElement.isRequired();
 		if (wasRequired != isRequired) {
 			pivotElement.setIsRequired(isRequired);
+		}
+		boolean wasTypeof = pivotElement.isTypeof();
+		if (wasTypeof != isTypeof) {
+			pivotElement.setIsTypeof(isTypeof);
 		}
 		if (primaryType != null) {
 			PivotUtil.debugWellContainedness(primaryType);

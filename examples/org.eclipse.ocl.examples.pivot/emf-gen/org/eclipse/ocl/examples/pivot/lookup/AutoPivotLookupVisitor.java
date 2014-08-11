@@ -11,6 +11,7 @@ package org.eclipse.ocl.examples.pivot.lookup;
 
 import java.util.Iterator;
 import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -57,13 +58,11 @@ import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Library;
-import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.lookup.Environment;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 
@@ -591,16 +590,6 @@ public class AutoPivotLookupVisitor
             symbol_0 = parentEnv;
         }
         return symbol_0;
-    }
-    
-    /**
-     * visitMetaclass(element : Metaclass) : env::Environment[?]
-     * 
-     * null
-     */
-    @Override
-    public @Nullable /*@NonInvalid*/ Environment visitMetaclass(final @NonNull /*@NonInvalid*/ Metaclass<?> element_8) {
-        return null;
     }
     
     /**

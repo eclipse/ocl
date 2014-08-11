@@ -13,7 +13,6 @@ package org.eclipse.ocl.examples.codegen.java.types;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.codegen.generator.GenModelHelper;
@@ -32,7 +31,6 @@ import org.eclipse.ocl.examples.domain.ids.EnumerationId;
 import org.eclipse.ocl.examples.domain.ids.EnumerationLiteralId;
 import org.eclipse.ocl.examples.domain.ids.IdVisitor;
 import org.eclipse.ocl.examples.domain.ids.LambdaTypeId;
-import org.eclipse.ocl.examples.domain.ids.MetaclassId;
 import org.eclipse.ocl.examples.domain.ids.NestedPackageId;
 import org.eclipse.ocl.examples.domain.ids.NsURIPackageId;
 import org.eclipse.ocl.examples.domain.ids.OclInvalidTypeId;
@@ -261,16 +259,6 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 	@Override
 	public @NonNull BoxedDescriptor visitLambdaTypeId(@NonNull LambdaTypeId id) {
 		return new SimpleValueDescriptor(id, DomainLambdaType.class);
-	}
-	
-	@Override
-	public @NonNull BoxedDescriptor visitMetaclassId(@NonNull MetaclassId id) {
-		if (id.getElementId() instanceof EnumerationLiteralId) {
-			return new BoxedValueDescriptor(id, EnumerationLiteralId.class, new UnboxedValueDescriptor(id, Enumerator.class));
-		}
-		else {
-			return new SimpleValueDescriptor(id, DomainType.class);
-		}
 	}
 
 	@Override

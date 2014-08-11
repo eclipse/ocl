@@ -57,7 +57,6 @@ import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.Library;
-import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
@@ -403,18 +402,6 @@ public class OCLinEcoreTablesUtils
 				s.append(", ");
 				parameterType.accept(this);
 			}
-			s.append(")");
-			return null;
-		}
-
-		@Override
-		public @Nullable Object visitMetaclass(@NonNull Metaclass<?> metaclass) {
-			s.append("new ");
-			s.appendClassReference(ExecutorSpecializedType.class);
-			s.append("(LIBRARY, ");
-			s.appendString(DomainUtil.nonNullModel(metaclass.getName()));
-			s.append(", ");
-			metaclass.getInstanceType().accept(this);
 			s.append(")");
 			return null;
 		}

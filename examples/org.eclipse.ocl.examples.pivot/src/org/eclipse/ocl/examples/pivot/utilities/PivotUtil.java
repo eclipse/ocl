@@ -64,7 +64,6 @@ import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
@@ -405,17 +404,6 @@ public class PivotUtil extends DomainUtil
 		asLetExp.setIsRequired(asIn.isRequired());
 		asLetExp.setVariable(asVariable);
 		return asLetExp;
-	}
-
-	/**
-	 * @since 3.5
-	 */
-	public static @NonNull Metaclass<?> createMetaclass(@NonNull Metaclass<?> unspecializedMetaclass, @NonNull Type instanceType) {
-		Metaclass<?> pivotType = PivotFactory.eINSTANCE.createMetaclass();
-		pivotType.setName(unspecializedMetaclass.getName());
-		pivotType.setUnspecializedElement(unspecializedMetaclass);
-		pivotType.setInstanceType(instanceType);
-		return pivotType;
 	}
 	
 	/**

@@ -207,7 +207,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 			TemplateBindingCS csTemplateBinding = csElement.getOwnedTemplateBinding();
 			if (csTemplateBinding != null) {
 				for (TemplateParameterSubstitutionCS csTemplateParameterSubstitution : csTemplateBinding.getOwnedParameterSubstitution()) {
-					TypeRefCS csTemplateParameter = csTemplateParameterSubstitution.getActualParameter();
+					TypeRefCS csTemplateParameter = csTemplateParameterSubstitution.getOwnedActualParameter();
 					if (csTemplateParameter != null) {
 						Dependency dependency = context.createTypeIsReferenceableDependency(csTemplateParameter);
 						if (dependency != null) {
@@ -216,7 +216,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 					}
 				}
 				for (TemplateParameterSubstitutionCS csTemplateParameterSubstitution : csTemplateBinding.getOwnedParameterSubstitution()) {
-					TypeRefCS csActualParameter = csTemplateParameterSubstitution.getActualParameter();
+					TypeRefCS csActualParameter = csTemplateParameterSubstitution.getOwnedActualParameter();
 					dependencies.add(new PivotDependency(csActualParameter));	// FIXME may be a redundant duplicate
 				}
 			}
@@ -245,7 +245,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 				TemplateBindingCS csTemplateBinding = csElement.getOwnedTemplateBinding();
 				if (csTemplateBinding != null)  {
 					for (TemplateParameterSubstitutionCS csTemplateParameterSubstitution : csTemplateBinding.getOwnedParameterSubstitution()) {
-						TypeRefCS ownedActualParameter = csTemplateParameterSubstitution.getActualParameter();
+						TypeRefCS ownedActualParameter = csTemplateParameterSubstitution.getOwnedActualParameter();
 						if (ownedActualParameter instanceof WildcardTypeRefCS) {
 							return true;
 						}

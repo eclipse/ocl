@@ -50,6 +50,7 @@ RestrictedKeywords:
 |	'static'
 |	'super'
 |	'type'
+|	'typeof'
 |	'validating'
 //|	'Lambda'
 //|	'Tuple'
@@ -265,7 +266,8 @@ TypedRefCS returns base::TypedRefCS:
 ;
 
 TypedTypeRefCS returns base::TypedTypeRefCS:
-	pathName=LibPathNameCS (ownedTemplateBinding=TemplateBindingCS)?
+    (typeof?='typeof' '(' pathName=LibPathNameCS ')')
+  | (pathName=LibPathNameCS (ownedTemplateBinding=TemplateBindingCS)?)
 ;
 
 WildcardTypeRefCS returns base::WildcardTypeRefCS:

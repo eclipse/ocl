@@ -50,7 +50,6 @@ import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -101,9 +100,9 @@ public final class DebugAction extends Action
 			PivotIdResolver idResolver = metaModelManager.getIdResolver();
 			DomainClass staticType = idResolver.getStaticTypeOf(contextObject);
 			org.eclipse.ocl.examples.pivot.Class contextType = metaModelManager.getType(staticType);
-			if (contextType instanceof Metaclass) {
-				contextType = (org.eclipse.ocl.examples.pivot.Class)((Metaclass<?>)contextType).getInstanceType();	// FIXME cast
-			}
+//			if (contextType instanceof Metaclass) {
+//				contextType = (org.eclipse.ocl.examples.pivot.Class)((Metaclass<?>)contextType).getInstanceType();	// FIXME cast
+//			}
 			org.eclipse.ocl.examples.pivot.Package contextPackage = contextType.getOwningPackage();
 			IPath documentPath = XtextConsolePlugin.getInstance().getStateLocation().append("debug" + EcoreUtil.generateUUID() + ".ocl");
 			IFileStore documentStore = EFS.getLocalFileSystem().getStore(documentPath);

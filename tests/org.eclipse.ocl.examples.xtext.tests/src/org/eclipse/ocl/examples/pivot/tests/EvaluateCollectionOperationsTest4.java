@@ -1535,8 +1535,6 @@ public class EvaluateCollectionOperationsTest4 extends PivotTestSuite
 	}
 
 	@Test public void testCollectionSelectByKind() {
-		assertQueryResults(null, "Sequence{'TEST'}", "Sequence{4, 4, 5.0, 'test'}->selectByKind(String).toUpper()");
-//
 		assertQueryResults(null, "Bag{4,4}", "Bag{4, 4, 5.0, 'test', null}->selectByKind(Integer)");
 		assertQueryResults(null, "OrderedSet{4}", "OrderedSet{4, 4, 5.0, 'test', null}->selectByKind(Integer)");
 		assertQueryResults(null, "Sequence{4,4}", "Sequence{4, 4, 5.0, 'test', null}->selectByKind(Integer)");

@@ -113,8 +113,8 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 		return new EssentialOCLPrettyPrintVisitor(prettyPrinter);
 	}
 	
-	public @NonNull TemplateParameterSubstitutionVisitor createTemplateParameterSubstitutionVisitor(@NonNull MetaModelManager metaModelManager, @Nullable Type selfType) {
-		return new TemplateParameterSubstitutionVisitor(metaModelManager, selfType);
+	public @NonNull TemplateParameterSubstitutionVisitor createTemplateParameterSubstitutionVisitor(@NonNull MetaModelManager metaModelManager, @Nullable Type selfType, boolean selfIsTypeof) {
+		return new TemplateParameterSubstitutionVisitor(metaModelManager, selfType, selfIsTypeof);
 	}
 
 	public @NonNull ToStringVisitor createToStringVisitor(@NonNull StringBuilder s) {

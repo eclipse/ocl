@@ -64,21 +64,6 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String declareMetaclasses(Package pkg) {
-		'''
-			«FOR metaclass : pkg.getRootPackage().getSortedMetaclasses()»
-				«IF metaclass.getOwnedTemplateSignature() != null»
-					private final @NonNull Metaclass<?> «metaclass.getPrefixedSymbolName("_" + metaclass.partialName())» = createMetaclass("«metaclass.name»", «metaclass.instanceType.getSymbolName()»«IF metaclass.getOwnedTemplateSignature() != null»«FOR templateParameter : metaclass.getOwnedTemplateSignature().getOwnedTemplateParameters()»«ENDFOR»«ENDIF»);
-				«ENDIF»
-			«ENDFOR»
-			«FOR metaclass : pkg.getRootPackage().getSortedMetaclasses()»
-				«IF metaclass.getOwnedTemplateSignature() == null»
-					private final @NonNull Metaclass<?> «metaclass.getPrefixedSymbolName("_" + metaclass.partialName())» = createMetaclass(«metaclass.getUnspecializedElement().getSymbolName()», «metaclass.instanceType.getSymbolName()»);
-				«ENDIF»
-			«ENDFOR»
-		'''
-	}
-
 	protected def String declareOclTypes(Package pkg) {
 		'''
 			«FOR type : pkg.getSortedOclTypes()»
@@ -194,6 +179,9 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 						«IF iteration.isStatic»
 							iteration.setIsStatic(true);
 						«ENDIF»
+						«IF iteration.isTypeof»
+							iteration.setIsTypeof(true);
+						«ENDIF»
 						«IF iteration.isValidating»
 							iteration.setIsValidating(true);
 						«ENDIF»
@@ -201,18 +189,27 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 							ownedParameters = iteration.getOwnedIterator();
 							«FOR parameter : iteration.ownedIterator»
 								ownedParameters.add(parameter = createParameter("«parameter.name»", «parameter.type.getSymbolName()», «parameter.isRequired»));
+								«IF parameter.isTypeof»
+									parameter.setIsTypeof(true);
+								«ENDIF»
 							«ENDFOR»
 						«ENDIF»
 						«IF iteration.ownedAccumulator.size() > 0»
 							ownedParameters = iteration.getOwnedAccumulator();
 							«FOR parameter : iteration.ownedAccumulator»
 								ownedParameters.add(parameter = createParameter("«parameter.name»", «parameter.type.getSymbolName()», «parameter.isRequired»));
+								«IF parameter.isTypeof»
+									parameter.setIsTypeof(true);
+								«ENDIF»
 							«ENDFOR»
 						«ENDIF»
 						«IF iteration.ownedParameter.size() > 0»
 							ownedParameters = iteration.getOwnedParameter();
 							«FOR parameter : iteration.ownedParameter»
 								ownedParameters.add(parameter = createParameter("«parameter.name»", «parameter.type.getSymbolName()», «parameter.isRequired»));
+								«IF parameter.isTypeof»
+									parameter.setIsTypeof(true);
+								«ENDIF»
 							«ENDFOR»
 						«ENDIF»
 					«ENDFOR»
@@ -242,29 +239,6 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 					«ENDFOR»
 					type.setResultType(«type.resultType.getSymbolName()»);
 					«type.emitSuperClasses("type")»
-				«ENDFOR»
-			}
-		'''
-	}
-
-	protected def String defineMetaclasses(Package pkg) {
-		var allMetaclasses = pkg.getRootPackage().getSortedMetaclasses();
-		var orphanPackage = pkg.getOrphanPackage();
-		'''
-			private void installMetaclasses() {
-				final List<Class> ownedTypes = «pkg.getSymbolName()».getOwnedClasses();
-				«IF orphanPackage != null»
-					final List<Class> orphanTypes = «orphanPackage.getSymbolName()».getOwnedClasses();
-				«ENDIF»
-				Metaclass<?> metaclass;
-				List<Class> superClasses;
-				«FOR metaclass : allMetaclasses»
-					«IF metaclass.unspecializedElement == null»
-						ownedTypes.add(metaclass = «metaclass.getSymbolName()»);
-					«ELSE»
-						orphanTypes.add(metaclass = «metaclass.getSymbolName()»);
-					«ENDIF»
-					«metaclass.emitSuperClasses("metaclass")»
 				«ENDFOR»
 			}
 		'''
@@ -314,6 +288,9 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 						«IF operation.isStatic»
 							operation.setIsStatic(true);
 						«ENDIF»
+						«IF operation.isTypeof»
+							operation.setIsTypeof(true);
+						«ENDIF»
 						«IF operation.isValidating»
 							operation.setIsValidating(true);
 						«ENDIF»
@@ -324,6 +301,9 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 							ownedParameters = operation.getOwnedParameter();
 							«FOR parameter : operation.ownedParameter»
 								ownedParameters.add(parameter = createParameter("«parameter.name»", «parameter.type.getSymbolName()», «parameter.isRequired»));
+								«IF parameter.isTypeof»
+									parameter.setIsTypeof(true);
+								«ENDIF»
 							«ENDFOR»
 						«ENDIF»
 					«ENDFOR»
@@ -441,6 +421,9 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 						«ENDIF»
 						«IF property.isTransient»
 							property.setIsTransient(true);
+						«ENDIF»
+						«IF property.isTypeof»
+							property.setIsTypeof(true);
 						«ENDIF»
 						«IF property.isUnsettable»
 							property.setIsUnsettable(true);

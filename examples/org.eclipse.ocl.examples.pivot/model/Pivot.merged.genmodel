@@ -405,6 +405,9 @@
       <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//TypedElement/isMany"/>
       </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//TypedElement/isTypeof"/>
+      </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="Pivot.ecore#//State"/>
@@ -1097,15 +1100,6 @@
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//MessageType/referredOperation"/>
-      </genFeatures>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass">
-      <genTypeParameters>
-        <ecoreTypeParameter href="Pivot.ecore#//Metaclass/T"/>
-      </genTypeParameters>
-      <ecoreClass href="Pivot.ecore#//Metaclass"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Metaclass/instanceType"/>
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">

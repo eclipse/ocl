@@ -23,8 +23,8 @@ public class BinaryOperationMatcher extends AbstractOperationMatcher
 {
 	protected final OCLExpression asArgument;
 	
-	public BinaryOperationMatcher(@NonNull MetaModelManager metaModelManager, @Nullable Type sourceType, @Nullable ExpCS csArgument) {
-		super(metaModelManager, sourceType);
+	public BinaryOperationMatcher(@NonNull MetaModelManager metaModelManager, @Nullable Type sourceType, boolean sourceIsTypeof, @Nullable ExpCS csArgument) {
+		super(metaModelManager, sourceType, sourceIsTypeof);
 		this.asArgument = PivotUtil.getPivot(OCLExpression.class, csArgument);
 	}
 

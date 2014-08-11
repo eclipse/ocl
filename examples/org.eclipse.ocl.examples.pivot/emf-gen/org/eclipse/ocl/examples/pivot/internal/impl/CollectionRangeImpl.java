@@ -227,6 +227,8 @@ public class CollectionRangeImpl
 				return isMany();
 			case PivotPackage.COLLECTION_RANGE__IS_REQUIRED:
 				return isRequired();
+			case PivotPackage.COLLECTION_RANGE__IS_TYPEOF:
+				return isTypeof();
 			case PivotPackage.COLLECTION_RANGE__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -270,6 +272,9 @@ public class CollectionRangeImpl
 			case PivotPackage.COLLECTION_RANGE__IS_REQUIRED:
 				setIsRequired((Boolean)newValue);
 				return;
+			case PivotPackage.COLLECTION_RANGE__IS_TYPEOF:
+				setIsTypeof((Boolean)newValue);
+				return;
 			case PivotPackage.COLLECTION_RANGE__TYPE:
 				setType((Type)newValue);
 				return;
@@ -310,6 +315,9 @@ public class CollectionRangeImpl
 			case PivotPackage.COLLECTION_RANGE__IS_REQUIRED:
 				setIsRequired(IS_REQUIRED_EDEFAULT);
 				return;
+			case PivotPackage.COLLECTION_RANGE__IS_TYPEOF:
+				setIsTypeof(IS_TYPEOF_EDEFAULT);
+				return;
 			case PivotPackage.COLLECTION_RANGE__TYPE:
 				setType((Type)null);
 				return;
@@ -346,6 +354,8 @@ public class CollectionRangeImpl
 				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.COLLECTION_RANGE__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
+			case PivotPackage.COLLECTION_RANGE__IS_TYPEOF:
+				return ((eFlags & IS_TYPEOF_EFLAG) != 0) != IS_TYPEOF_EDEFAULT;
 			case PivotPackage.COLLECTION_RANGE__TYPE:
 				return type != null;
 			case PivotPackage.COLLECTION_RANGE__FIRST:

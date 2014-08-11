@@ -73,7 +73,6 @@ import org.eclipse.ocl.examples.pivot.LiteralExp;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.MessageType;
-import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.NavigationCallExp;
@@ -806,8 +805,6 @@ public class PivotValidator
 				return validateMessageExp((MessageExp)value, diagnostics, context);
 			case PivotPackage.MESSAGE_TYPE:
 				return validateMessageType((MessageType)value, diagnostics, context);
-			case PivotPackage.METACLASS:
-				return validateMetaclass((Metaclass<?>)value, diagnostics, context);
 			case PivotPackage.MORE_PIVOTABLE:
 				return validateMorePivotable((MorePivotable)value, diagnostics, context);
 			case PivotPackage.NAMEABLE:
@@ -2731,26 +2728,6 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)messageType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)messageType, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_validateUniqueInvariantName(messageType, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateMetaclass(Metaclass<?> metaclass, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		if (!validate_NoCircularContainment((EObject)metaclass, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms((EObject)metaclass, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)metaclass, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)metaclass, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)metaclass, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)metaclass, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID((EObject)metaclass, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)metaclass, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)metaclass, diagnostics, context);
-		if (result || diagnostics != null) result &= validateClass_validateUniqueInvariantName(metaclass, diagnostics, context);
 		return result;
 	}
 

@@ -44,7 +44,6 @@ import org.eclipse.ocl.examples.domain.ids.EnumerationId;
 import org.eclipse.ocl.examples.domain.ids.EnumerationLiteralId;
 import org.eclipse.ocl.examples.domain.ids.IdVisitor;
 import org.eclipse.ocl.examples.domain.ids.LambdaTypeId;
-import org.eclipse.ocl.examples.domain.ids.MetaclassId;
 import org.eclipse.ocl.examples.domain.ids.NestedPackageId;
 import org.eclipse.ocl.examples.domain.ids.NestedTypeId;
 import org.eclipse.ocl.examples.domain.ids.NsURIPackageId;
@@ -255,11 +254,6 @@ public class NameManager
 		@Override
 		public @NonNull String visitLambdaTypeId(@NonNull LambdaTypeId id) {
 			return "LAMBid_" + id.getName();
-		}
-
-		@Override
-		public @NonNull String visitMetaclassId(@NonNull MetaclassId id) {
-			return "METAid_" + id.getName();
 		}
 
 		@Override

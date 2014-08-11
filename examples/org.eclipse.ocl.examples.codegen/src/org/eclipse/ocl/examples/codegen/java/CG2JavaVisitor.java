@@ -103,7 +103,6 @@ import org.eclipse.ocl.examples.domain.ids.ClassId;
 import org.eclipse.ocl.examples.domain.ids.ElementId;
 import org.eclipse.ocl.examples.domain.ids.EnumerationId;
 import org.eclipse.ocl.examples.domain.ids.EnumerationLiteralId;
-import org.eclipse.ocl.examples.domain.ids.MetaclassId;
 import org.eclipse.ocl.examples.domain.ids.NestedTypeId;
 import org.eclipse.ocl.examples.domain.ids.TuplePartId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
@@ -560,9 +559,6 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 
 	protected boolean isBoxedType2(@NonNull CGValuedElement cgValue) {
 		TypeId typeId = cgValue.getASTypeId();
-		if (typeId instanceof MetaclassId) {
-			return true;
-		}
 		if (typeId instanceof NestedTypeId) {
 			return true;
 		}

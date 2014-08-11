@@ -106,18 +106,13 @@ public class EcoreExecutorType extends ExecutorType
 						typeId2 = IdManager.getTypeId(eClassifier2);
 					}
 					else {
-						if (TypeId.METACLASS_NAME.equals(name)) {
-							typeId2 = TypeId.METACLASS;
+						PackageId packageTypeId = evaluationPackage.getPackageId(); //IdManager.getPackageId(evaluationPackage);
+						DomainTypeParameters typeParameters = getTypeParameters();
+						if (eClassifier instanceof EDataType) {
+							typeId2 = packageTypeId.getDataTypeId(name, typeParameters.parametersSize());
 						}
 						else {
-							PackageId packageTypeId = evaluationPackage.getPackageId(); //IdManager.getPackageId(evaluationPackage);
-							DomainTypeParameters typeParameters = getTypeParameters();
-							if (eClassifier instanceof EDataType) {
-								typeId2 = packageTypeId.getDataTypeId(name, typeParameters.parametersSize());
-							}
-							else {
-								typeId2 = packageTypeId.getClassId(name, typeParameters.parametersSize());
-							}
+							typeId2 = packageTypeId.getClassId(name, typeParameters.parametersSize());
 						}
 					}
 					typeId = typeId2;

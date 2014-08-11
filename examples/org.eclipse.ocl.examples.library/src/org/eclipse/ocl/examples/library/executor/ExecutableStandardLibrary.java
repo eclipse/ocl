@@ -19,7 +19,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
-import org.eclipse.ocl.examples.domain.elements.DomainMetaclass;
 import org.eclipse.ocl.examples.domain.elements.DomainTupleType;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.TemplateParameterId;
@@ -34,11 +33,6 @@ import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
 
 public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary
 {
-	/**
-	 * Shared cache of the lazily created lazily deleted Classifier types of each type. 
-	 */
-	private @NonNull Map<DomainType, WeakReference<DomainMetaclass>> classifiers = new WeakHashMap<DomainType, WeakReference<DomainMetaclass>>();
-	
 	/**
 	 * Shared cache of the lazily created lazily deleted specializations of each type. 
 	 */
@@ -57,8 +51,6 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary
 //		return new EcoreIdResolver(emptyList, this);
 //	}
 
-	protected abstract @NonNull DomainMetaclass createMetaclass(@NonNull DomainType classType);
-	
 	public @NonNull DomainClass getBagType() {
 		return OCLstdlibTables.Types._Bag;
 	}
@@ -106,13 +98,9 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary
 		return OCLstdlibTables.Types._Integer;
 	}
 
-	public synchronized @NonNull DomainMetaclass getMetaclass(@NonNull DomainType classType) {
-		DomainMetaclass metaclass = weakGet(classifiers, classType);
-		if (metaclass == null) {
-			metaclass = createMetaclass(classType);
-			classifiers.put(classType, new WeakReference<DomainMetaclass>(metaclass));
-		}
-		return metaclass;
+	// FIXME cf MetaModelManager
+	public @NonNull DomainClass getMetaclass(@NonNull DomainType classType) {
+		return OCLstdlibTables.Types._OclType;
 	}
 
 	public @NonNull DomainClass getOclAnyType() {

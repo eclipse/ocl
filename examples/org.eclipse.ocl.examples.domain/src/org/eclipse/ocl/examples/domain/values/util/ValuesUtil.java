@@ -29,7 +29,6 @@ import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
 import org.eclipse.ocl.examples.domain.elements.DomainEnumerationLiteral;
-import org.eclipse.ocl.examples.domain.elements.DomainMetaclass;
 import org.eclipse.ocl.examples.domain.elements.DomainParameterTypes;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
@@ -176,15 +175,6 @@ public abstract class ValuesUtil
 		}
 		else {
 			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.INTEGER_NAME, getTypeName(value));
-		}
-	}
-
-	public static @NonNull DomainMetaclass asMetaclass(@Nullable Object value) {
-		if (value instanceof DomainMetaclass) {
-			return (DomainMetaclass)value;
-		}
-		else {
-			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, "Metaclass", getTypeName(value));
 		}
 	}
 

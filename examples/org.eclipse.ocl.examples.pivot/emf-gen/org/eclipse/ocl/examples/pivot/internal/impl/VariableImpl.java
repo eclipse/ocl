@@ -28,10 +28,12 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainExpression;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.examples.domain.types.IdResolver;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.library.classifier.OclTypeConformsToOperation;
@@ -41,7 +43,9 @@ import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.PivotTables;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.util.PivotValidator;
@@ -86,7 +90,7 @@ public class VariableImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IMPLICIT_EFLAG = 1 << 9;
+	protected static final int IMPLICIT_EFLAG = 1 << 10;
 
 	/**
 	 * The cached value of the '{@link #getInitExpression() <em>Init Expression</em>}' containment reference.
@@ -223,9 +227,13 @@ public class VariableImpl
 		/**
 		 * 
 		 * inv CompatibleInitialiserType: initExpression <> null implies
-		 *   initExpression.type.conformsTo(type)
+		 *   if initExpression.isTypeof
+		 *   then Class
+		 *   else initExpression.type
+		 *   endif
+		 *   .conformsTo(type)
 		 */
-		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
+		@NonNull /*@Caught*/ Object CAUGHT_symbol_9;
 		try {
 		    @NonNull /*@Caught*/ Object CAUGHT_self_70;
 		    try {
@@ -239,82 +247,95 @@ public class VariableImpl
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
-		        final @Nullable /*@Thrown*/ DomainExpression initExpression_0 = this.getInitExpression();
-		        if (initExpression_0 == null) {
+		        final @Nullable /*@Thrown*/ DomainExpression initExpression_1 = this.getInitExpression();
+		        if (initExpression_1 == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
-		        final @Nullable /*@Thrown*/ DomainType type = initExpression_0.getType();
+		        final @Nullable /*@Thrown*/ Boolean isTypeof = ((TypedElement)initExpression_1).isTypeof();
+		        if (isTypeof == null) {
+		            throw new InvalidValueException("Null if condition");
+		        }
+		        @Nullable /*@Thrown*/ DomainType symbol_0;
+		        if (isTypeof) {
+		            final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
+		            final @NonNull /*@NonInvalid*/ DomainClass TYP_Class_0 = idResolver.getClass(PivotTables.CLSSid_Class, null);
+		            symbol_0 = TYP_Class_0;
+		        }
+		        else {
+		            final @Nullable /*@Thrown*/ DomainType type = initExpression_1.getType();
+		            symbol_0 = type;
+		        }
 		        final @Nullable /*@Thrown*/ DomainType type_0 = this.getType();
-		        final /*@Thrown*/ boolean b = OclTypeConformsToOperation.INSTANCE.evaluate(evaluator, type, type_0).booleanValue();
+		        final /*@Thrown*/ boolean b = OclTypeConformsToOperation.INSTANCE.evaluate(evaluator, symbol_0, type_0).booleanValue();
 		        CAUGHT_b = b;
 		    }
 		    catch (Exception e) {
 		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_70 instanceof InvalidValueException;
-		    /*@Thrown*/ boolean symbol_8;
-		    if (symbol_0) {
-		        final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
-		        /*@Thrown*/ boolean symbol_3;
-		        if (symbol_1) {
+		    final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_self_70 instanceof InvalidValueException;
+		    /*@Thrown*/ boolean symbol_9;
+		    if (symbol_1) {
+		        final /*@NonInvalid*/ boolean symbol_2 = CAUGHT_b instanceof InvalidValueException;
+		        /*@Thrown*/ boolean symbol_4;
+		        if (symbol_2) {
 		            if (CAUGHT_self_70 instanceof InvalidValueException) {
 		                throw (InvalidValueException)CAUGHT_self_70;
 		            }
-		            symbol_3 = (Boolean)CAUGHT_self_70;
+		            symbol_4 = (Boolean)CAUGHT_self_70;
 		        }
 		        else {
-		            /*@Thrown*/ boolean symbol_2;
+		            /*@Thrown*/ boolean symbol_3;
 		            if (CAUGHT_b == Boolean.TRUE) {
-		                symbol_2 = ValuesUtil.TRUE_VALUE;
+		                symbol_3 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
 		                if (CAUGHT_self_70 instanceof InvalidValueException) {
 		                    throw (InvalidValueException)CAUGHT_self_70;
 		                }
-		                symbol_2 = (Boolean)CAUGHT_self_70;
+		                symbol_3 = (Boolean)CAUGHT_self_70;
 		            }
-		            symbol_3 = symbol_2;
+		            symbol_4 = symbol_3;
 		        }
-		        symbol_8 = symbol_3;
+		        symbol_9 = symbol_4;
 		    }
 		    else {
 		        if (CAUGHT_self_70 instanceof InvalidValueException) {
 		            throw (InvalidValueException)CAUGHT_self_70;
 		        }
 		        final /*@Thrown*/ boolean eq = CAUGHT_self_70 == Boolean.FALSE;
-		        /*@Thrown*/ boolean symbol_7;
+		        /*@Thrown*/ boolean symbol_8;
 		        if (eq) {
-		            symbol_7 = ValuesUtil.TRUE_VALUE;
+		            symbol_8 = ValuesUtil.TRUE_VALUE;
 		        }
 		        else {
-		            final /*@NonInvalid*/ boolean symbol_4 = CAUGHT_b instanceof InvalidValueException;
-		            /*@Thrown*/ boolean symbol_6;
-		            if (symbol_4) {
+		            final /*@NonInvalid*/ boolean symbol_5 = CAUGHT_b instanceof InvalidValueException;
+		            /*@Thrown*/ boolean symbol_7;
+		            if (symbol_5) {
 		                if (CAUGHT_b instanceof InvalidValueException) {
 		                    throw (InvalidValueException)CAUGHT_b;
 		                }
-		                symbol_6 = (Boolean)CAUGHT_b;
+		                symbol_7 = (Boolean)CAUGHT_b;
 		            }
 		            else {
-		                /*@NonInvalid*/ boolean symbol_5;
+		                /*@NonInvalid*/ boolean symbol_6;
 		                if (CAUGHT_b == Boolean.TRUE) {
-		                    symbol_5 = ValuesUtil.TRUE_VALUE;
+		                    symbol_6 = ValuesUtil.TRUE_VALUE;
 		                }
 		                else {
-		                    symbol_5 = ValuesUtil.FALSE_VALUE;
+		                    symbol_6 = ValuesUtil.FALSE_VALUE;
 		                }
-		                symbol_6 = symbol_5;
+		                symbol_7 = symbol_6;
 		            }
-		            symbol_7 = symbol_6;
+		            symbol_8 = symbol_7;
 		        }
-		        symbol_8 = symbol_7;
+		        symbol_9 = symbol_8;
 		    }
-		    CAUGHT_symbol_8 = symbol_8;
+		    CAUGHT_symbol_9 = symbol_9;
 		}
 		catch (Exception e) {
-		    CAUGHT_symbol_8 = ValuesUtil.createInvalidValue(e);
+		    CAUGHT_symbol_9 = ValuesUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_symbol_8 == ValuesUtil.TRUE_VALUE) {
+		if (CAUGHT_symbol_9 == ValuesUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {
@@ -395,6 +416,8 @@ public class VariableImpl
 				return isMany();
 			case PivotPackage.VARIABLE__IS_REQUIRED:
 				return isRequired();
+			case PivotPackage.VARIABLE__IS_TYPEOF:
+				return isTypeof();
 			case PivotPackage.VARIABLE__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -441,6 +464,9 @@ public class VariableImpl
 			case PivotPackage.VARIABLE__IS_REQUIRED:
 				setIsRequired((Boolean)newValue);
 				return;
+			case PivotPackage.VARIABLE__IS_TYPEOF:
+				setIsTypeof((Boolean)newValue);
+				return;
 			case PivotPackage.VARIABLE__TYPE:
 				setType((Type)newValue);
 				return;
@@ -484,6 +510,9 @@ public class VariableImpl
 			case PivotPackage.VARIABLE__IS_REQUIRED:
 				setIsRequired(IS_REQUIRED_EDEFAULT);
 				return;
+			case PivotPackage.VARIABLE__IS_TYPEOF:
+				setIsTypeof(IS_TYPEOF_EDEFAULT);
+				return;
 			case PivotPackage.VARIABLE__TYPE:
 				setType((Type)null);
 				return;
@@ -523,6 +552,8 @@ public class VariableImpl
 				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.VARIABLE__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
+			case PivotPackage.VARIABLE__IS_TYPEOF:
+				return ((eFlags & IS_TYPEOF_EFLAG) != 0) != IS_TYPEOF_EDEFAULT;
 			case PivotPackage.VARIABLE__TYPE:
 				return type != null;
 			case PivotPackage.VARIABLE__IMPLICIT:

@@ -35,11 +35,17 @@ public class NavigationOperatorCSAttribution extends AbstractAttribution
 		EObject child = scopeView.getChild();
 		ExpCS argument = targetElement.getArgument();
 		if ((child == argument) && (child instanceof NameExpCS)) {
-			Type type = ((NameExpCS)child).getSourceType();
-			if (type != null) {
-				environmentView.addElementsOfScope(type, scopeView);
-				return null;											// Explicit navigation must be resolved in source
+			boolean isTypeof = ((NameExpCS)child).isSourceTypeof();
+			if (isTypeof) {
+				environmentView.addElementsOfScope(environmentView.getMetaModelManager().getClassType(), scopeView);
 			}
+			if (!environmentView.hasFinalResult()) {
+				Type type = ((NameExpCS)child).getSourceType();
+				if (type != null) {
+					environmentView.addElementsOfScope(type, scopeView);
+				}
+			}
+			return null;											// Explicit navigation must be resolved in source
 		}
 		return scopeView.getParent();
 	}

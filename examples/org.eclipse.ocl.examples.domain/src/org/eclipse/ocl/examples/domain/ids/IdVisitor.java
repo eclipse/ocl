@@ -25,7 +25,6 @@ public interface IdVisitor<R>
 	@Nullable R visitEnumerationLiteralId(@NonNull EnumerationLiteralId id);
 	@Nullable R visitInvalidId(@NonNull OclInvalidTypeId id);
 	@Nullable R visitLambdaTypeId(@NonNull LambdaTypeId id);
-	@Nullable R visitMetaclassId(@NonNull MetaclassId id);
 	@Nullable R visitNestedPackageId(@NonNull NestedPackageId id);
 	@Nullable R visitNsURIPackageId(@NonNull NsURIPackageId id);
 	@Nullable R visitNullId(@NonNull OclVoidTypeId id);

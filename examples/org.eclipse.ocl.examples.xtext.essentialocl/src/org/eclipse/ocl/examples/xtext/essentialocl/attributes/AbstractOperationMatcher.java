@@ -17,7 +17,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.elements.DomainMetaclass;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Iteration;
@@ -37,11 +36,13 @@ public abstract class AbstractOperationMatcher
 {
 	protected final @NonNull MetaModelManager metaModelManager;
 	protected final @Nullable Type sourceType;
+	protected final boolean sourceIsTypeof;
 	private @Nullable List<EObject> ambiguities = null;
 
-	protected AbstractOperationMatcher(@NonNull MetaModelManager metaModelManager, @Nullable Type sourceType) {
+	protected AbstractOperationMatcher(@NonNull MetaModelManager metaModelManager, @Nullable Type sourceType, boolean sourceIsTypeof) {
 		this.metaModelManager = metaModelManager;
 		this.sourceType = sourceType != null ? PivotUtil.getType(sourceType) : null;		// FIXME redundant
+		this.sourceIsTypeof = sourceIsTypeof;
 	}
 
 	protected int compareMatches(@NonNull Object match1, @NonNull TemplateParameterSubstitutions referenceBindings,
@@ -71,9 +72,9 @@ public abstract class AbstractOperationMatcher
 		int referenceConversions = 0;
 		int candidateConversions = 0;
 		DomainType comparedSourceType = sourceType;
-		if (comparedSourceType instanceof DomainMetaclass) {
-			comparedSourceType = ((DomainMetaclass)comparedSourceType).getInstanceType();
-		}
+//		if (comparedSourceType instanceof DomainMetaclass) {
+//			comparedSourceType = ((DomainMetaclass)comparedSourceType).getInstanceType();
+//		}
 		if (comparedSourceType != specializedReferenceType) {
 			referenceConversions++;
 		}
@@ -209,54 +210,45 @@ public abstract class AbstractOperationMatcher
 		return false;
 	}
 
-/*	protected @Nullable TemplateParameterSubstitutions getOperationBindings(@NonNull MetaModelManager metaModelManager, @NonNull Operation candidateOperation) {
-		Type sourceType = this.sourceType;
-//		TemplateParameterSubstitutions bindings = new ArrayList<Type>();
-		org.eclipse.ocl.examples.pivot.Class containingType = candidateOperation.getOwningClass();
-		if ((containingType instanceof CollectionType) && (sourceType != null)) {
-			if (!(sourceType instanceof CollectionType)) {
-				sourceType = metaModelManager.getSetType(sourceType, null, null);		// Implicit oclAsSet()
-			}			
-			Type elementType;
-			if (sourceType instanceof CollectionType) {
-				elementType = ((CollectionType)sourceType).getElementType();
-			}
-			else {
-				elementType = metaModelManager.getOclInvalidType();
-			}
-			bindings.put(containingType.getOwnedTemplateSignature().getOwnedTemplateParameters().get(0), elementType);
-		}			
-		if (sourceType instanceof TemplateableElement) {
-			bindings = PivotUtil.getAllTemplateParameterSubstitutions(bindings, (TemplateableElement)sourceType);
-		}
-		TemplateSignature templateSignature = candidateOperation.getOwnedTemplateSignature();
-		if (templateSignature != null) {
-			for (TemplateParameter templateParameter : templateSignature.getOwnedTemplateParameters()) {
-				assert bindings != null;
-				bindings.put(templateParameter, null);
-			}
-		}
-		return sourceType != null ? TemplateParameterSubstitutionVisitor.createBindings(metaModelManager, sourceType, candidateOperation) : null;
-	} */
-
 	protected @Nullable TemplateParameterSubstitutions matches(@NonNull Operation candidateOperation) {
 		List<Parameter> candidateParameters = candidateOperation.getOwnedParameter();
 		int iSize = getArgumentCount();
 		if (iSize != candidateParameters.size()) {
 			return null;
 		}
-		TemplateParameterSubstitutions bindings = TemplateParameterSubstitutionVisitor.createBindings(metaModelManager, sourceType, candidateOperation);
+		TemplateParameterSubstitutions bindings = TemplateParameterSubstitutionVisitor.createBindings(metaModelManager, sourceType, sourceIsTypeof, candidateOperation);
 		for (int i = 0; i < iSize; i++) {
 			Parameter candidateParameter = candidateParameters.get(i);
 			if (candidateParameter != null) {
 				OCLExpression expression = getArgument(i);
-				Type candidateType = PivotUtil.getType(candidateParameter);
-				Type expressionType = PivotUtil.getType(expression);
-				if ((expressionType == null) || (candidateType == null)) {
+				if (expression == null) {
 					return null;
 				}
-				if (!metaModelManager.conformsTo(expressionType, TemplateParameterSubstitutions.EMPTY, candidateType, bindings)) {
+				Type candidateType = PivotUtil.getType(candidateParameter);
+				if (candidateType == null) {
 					return null;
+				}
+				if (!candidateParameter.isTypeof()) {
+					Type expressionType = metaModelManager.getUnencodedType(expression);
+//					Type expressionType = expression.isTypeof() ? metaModelManager.getClassType() : PivotUtil.getType(expression);		// FIXME deep getType
+					if (expressionType == null) {
+						return null;
+					}
+					if (!metaModelManager.conformsTo(expressionType, TemplateParameterSubstitutions.EMPTY, candidateType, bindings)) {
+						return null;
+					}
+				}
+				else {
+					if (!expression.isTypeof()) {
+						return null;
+					}
+					Type expressionType = PivotUtil.getType(expression); //ApparentTypeVisitor.getApparentType(metaModelManager, expression);
+					if (expressionType == null) {
+						return null;
+					}
+					if (!metaModelManager.conformsTo(expressionType, TemplateParameterSubstitutions.EMPTY, candidateType, bindings)) {
+						return null;
+					}
 				}
 			}
 		}

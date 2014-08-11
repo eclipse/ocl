@@ -321,6 +321,8 @@ public class ExpressionInOCLImpl
 				return isMany();
 			case PivotPackage.EXPRESSION_IN_OCL__IS_REQUIRED:
 				return isRequired();
+			case PivotPackage.EXPRESSION_IN_OCL__IS_TYPEOF:
+				return isTypeof();
 			case PivotPackage.EXPRESSION_IN_OCL__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -373,6 +375,9 @@ public class ExpressionInOCLImpl
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__IS_REQUIRED:
 				setIsRequired((Boolean)newValue);
+				return;
+			case PivotPackage.EXPRESSION_IN_OCL__IS_TYPEOF:
+				setIsTypeof((Boolean)newValue);
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__TYPE:
 				setType((Type)newValue);
@@ -427,6 +432,9 @@ public class ExpressionInOCLImpl
 			case PivotPackage.EXPRESSION_IN_OCL__IS_REQUIRED:
 				setIsRequired(IS_REQUIRED_EDEFAULT);
 				return;
+			case PivotPackage.EXPRESSION_IN_OCL__IS_TYPEOF:
+				setIsTypeof(IS_TYPEOF_EDEFAULT);
+				return;
 			case PivotPackage.EXPRESSION_IN_OCL__TYPE:
 				setType((Type)null);
 				return;
@@ -475,6 +483,8 @@ public class ExpressionInOCLImpl
 				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.EXPRESSION_IN_OCL__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
+			case PivotPackage.EXPRESSION_IN_OCL__IS_TYPEOF:
+				return ((eFlags & IS_TYPEOF_EFLAG) != 0) != IS_TYPEOF_EDEFAULT;
 			case PivotPackage.EXPRESSION_IN_OCL__TYPE:
 				return type != null;
 			case PivotPackage.EXPRESSION_IN_OCL__BODY:

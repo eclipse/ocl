@@ -66,7 +66,6 @@ import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.MessageType;
-import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
@@ -212,7 +211,6 @@ public class PivotFactoryImpl
 			case PivotPackage.LIBRARY: return (EObject)createLibrary();
 			case PivotPackage.MESSAGE_EXP: return (EObject)createMessageExp();
 			case PivotPackage.MESSAGE_TYPE: return (EObject)createMessageType();
-			case PivotPackage.METACLASS: return (EObject)createMetaclass();
 			case PivotPackage.NULL_LITERAL_EXP: return (EObject)createNullLiteralExp();
 			case PivotPackage.OPERATION: return (EObject)createOperation();
 			case PivotPackage.OPERATION_CALL_EXP: return (EObject)createOperationCallExp();
@@ -357,17 +355,6 @@ public class PivotFactoryImpl
 	public org.eclipse.ocl.examples.pivot.Class createClass() {
 		ClassImpl class_ = new ClassImpl();
 		return class_;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public <T> Metaclass<T> createMetaclass()
-	{
-		MetaclassImpl<T> metaclass = new MetaclassImpl<T>();
-		return metaclass;
 	}
 
 	/**

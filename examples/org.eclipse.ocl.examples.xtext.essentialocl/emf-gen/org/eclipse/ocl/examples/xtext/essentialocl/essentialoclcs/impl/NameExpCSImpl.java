@@ -48,6 +48,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getRoundBracketedClause <em>Round Bracketed Clause</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getSquareBracketedClauses <em>Square Bracketed Clauses</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getSourceType <em>Source Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#isSourceTypeof <em>Source Typeof</em>}</li>
  * </ul>
  * </p>
  *
@@ -126,6 +127,26 @@ public class NameExpCSImpl
 	 * @ordered
 	 */
 	protected Type sourceType;
+
+	/**
+	 * The default value of the '{@link #isSourceTypeof() <em>Source Typeof</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSourceTypeof()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean SOURCE_TYPEOF_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isSourceTypeof() <em>Source Typeof</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSourceTypeof()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean sourceTypeof = SOURCE_TYPEOF_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -215,6 +236,29 @@ public class NameExpCSImpl
 		sourceType = newSourceType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPE, oldSourceType, sourceType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSourceTypeof()
+	{
+		return sourceTypeof;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSourceTypeof(boolean newSourceTypeof)
+	{
+		boolean oldSourceTypeof = sourceTypeof;
+		sourceTypeof = newSourceTypeof;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPEOF, oldSourceTypeof, sourceTypeof));
 	}
 
 	/**
@@ -448,6 +492,8 @@ public class NameExpCSImpl
 				return getSquareBracketedClauses();
 			case EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPE:
 				return getSourceType();
+			case EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPEOF:
+				return isSourceTypeof();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -481,6 +527,9 @@ public class NameExpCSImpl
 			case EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPE:
 				setSourceType((Type)newValue);
 				return;
+			case EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPEOF:
+				setSourceTypeof((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -512,6 +561,9 @@ public class NameExpCSImpl
 			case EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPE:
 				setSourceType((Type)null);
 				return;
+			case EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPEOF:
+				setSourceTypeof(SOURCE_TYPEOF_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -537,6 +589,8 @@ public class NameExpCSImpl
 				return squareBracketedClauses != null && !squareBracketedClauses.isEmpty();
 			case EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPE:
 				return sourceType != null;
+			case EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPEOF:
+				return sourceTypeof != SOURCE_TYPEOF_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

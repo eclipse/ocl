@@ -17,6 +17,7 @@ import org.eclipse.ocl.examples.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingService;
 
 /**
  * Tests for OclAny operations.
@@ -30,8 +31,9 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
 
 	@Override
     protected void setUp() throws Exception {
+		EssentialOCLLinkingService.DEBUG_RETRY = true;
         super.setUp();
-        helper.setContext(metaModelManager.getMetaclassType());
+        helper.setContext(metaModelManager.getClassType());
     }
 
 	/**
@@ -43,17 +45,17 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
 		assertQueryResults(null, "Set{null}", "OclVoid.allInstances()");
 		assertQueryResults(null, "Set{}", "ocl::Package.allInstances()");
 		assertQueryEquals(pkg1, 8, "Package.allInstances()->size()");
-		assertSemanticErrorQuery("Integer.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "Metaclass(Integer)", "allInstances");
-		assertSemanticErrorQuery("String.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "Metaclass(String)", "allInstances");
-		assertSemanticErrorQuery("Set(Integer).allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "Metaclass(Set(Integer))", "allInstances");
-		assertSemanticErrorQuery("Tuple(a:Integer).allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "Metaclass(Tuple(a:Integer))", "allInstances");
-		assertSemanticErrorQuery("OclAny.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "Metaclass(OclAny)", "allInstances");
-		assertSemanticErrorQuery("4.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "UnlimitedNatural", "allInstances");
-//		assertSemanticErrorQuery("true.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "Boolean", "allInstances");
-		assertQueryInvalid(null, "true.allInstances()");
+		assertSemanticErrorQuery("Integer.allInstances()", OCLMessages.UnresolvedStaticOperationCall_ERROR_, "Integer", "allInstances", "");
+		assertSemanticErrorQuery("String.allInstances()", OCLMessages.UnresolvedStaticOperationCall_ERROR_, "String", "allInstances", "");
+		assertSemanticErrorQuery("Set(Integer).allInstances()", OCLMessages.UnresolvedStaticOperationCall_ERROR_, "Set(Integer)", "allInstances", "");
+		assertSemanticErrorQuery("Tuple(a:Integer).allInstances()", OCLMessages.UnresolvedStaticOperationCall_ERROR_, "Tuple(a:Integer)", "allInstances", "");
+		assertSemanticErrorQuery("OclAny.allInstances()", OCLMessages.UnresolvedStaticOperationCall_ERROR_, "OclAny", "allInstances", "");
+		assertSemanticErrorQuery("4.allInstances()", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "allInstances", "");
+		assertSemanticErrorQuery("true.allInstances()", OCLMessages.UnresolvedOperationCall_ERROR_, "Boolean", "allInstances", "");
+//		assertQueryInvalid(null, "true.allInstances()");
 //		assertQueryResults(null, "Set{true,false}", "true.allInstances()");
-		assertSemanticErrorQuery("Set{1}.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "Set(UnlimitedNatural)", "allInstances");
-		assertSemanticErrorQuery("Tuple{a:Integer=1}.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "Tuple(a:Integer)", "allInstances");
+		assertSemanticErrorQuery("Set{1}.allInstances()", OCLMessages.UnresolvedOperationCall_ERROR_, "Set(UnlimitedNatural)", "allInstances", "");
+		assertSemanticErrorQuery("Tuple{a:Integer=1}.allInstances()", OCLMessages.UnresolvedOperationCall_ERROR_, "Tuple(a:Integer)", "allInstances", "");
 		assertQueryInvalid(null, "OclInvalid.allInstances()");
 	}
 	
@@ -61,6 +63,7 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
 	 * Tests the conformsTo() operator.
 	 */
 	public void test_conformsTo() {
+//		assertQueryTrue(null, "true.conformsTo(Boolean)");
 		assertQueryTrue(null, "Boolean.conformsTo(Boolean)");
 		assertQueryFalse(null, "String.conformsTo(Boolean)");
 		assertQueryFalse(null, "Boolean.conformsTo(String)");

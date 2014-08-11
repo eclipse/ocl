@@ -34,6 +34,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TypedTypeRefCSImpl#getPathName <em>Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TypedTypeRefCSImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TypedTypeRefCSImpl#getOwnedTemplateBinding <em>Owned Template Binding</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TypedTypeRefCSImpl#isTypeof <em>Typeof</em>}</li>
  * </ul>
  * </p>
  *
@@ -58,6 +59,25 @@ public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS
 	 * @ordered
 	 */
 	protected TemplateBindingCS ownedTemplateBinding;
+
+	/**
+	 * The default value of the '{@link #isTypeof() <em>Typeof</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isTypeof()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean TYPEOF_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isTypeof() <em>Typeof</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isTypeof()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean typeof = TYPEOF_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -179,6 +199,39 @@ public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isTypeof()
+	{
+		return typeof;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTypeof(boolean newTypeof)
+	{
+		boolean oldTypeof = typeof;
+		typeof = newTypeof;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.TYPED_TYPE_REF_CS__TYPEOF, oldTypeof, typeof));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String toString()
+	{
+		return super.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
@@ -225,6 +278,8 @@ public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS
 				return getType();
 			case BaseCSPackage.TYPED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING:
 				return getOwnedTemplateBinding();
+			case BaseCSPackage.TYPED_TYPE_REF_CS__TYPEOF:
+				return isTypeof();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -243,6 +298,9 @@ public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS
 				return;
 			case BaseCSPackage.TYPED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING:
 				setOwnedTemplateBinding((TemplateBindingCS)newValue);
+				return;
+			case BaseCSPackage.TYPED_TYPE_REF_CS__TYPEOF:
+				setTypeof((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -263,6 +321,9 @@ public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS
 			case BaseCSPackage.TYPED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING:
 				setOwnedTemplateBinding((TemplateBindingCS)null);
 				return;
+			case BaseCSPackage.TYPED_TYPE_REF_CS__TYPEOF:
+				setTypeof(TYPEOF_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -282,6 +343,8 @@ public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS
 				return getType() != null;
 			case BaseCSPackage.TYPED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING:
 				return ownedTemplateBinding != null;
+			case BaseCSPackage.TYPED_TYPE_REF_CS__TYPEOF:
+				return typeof != TYPEOF_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -72,7 +72,6 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 		if (pkg == null) {
 			return null;
 		}
-		var allMetaclasses  = root.getAllMetaclasses();
 		var allCollectionTypes = root.getAllCollectionTypes();
 		var allEnumerations = root.getAllEnumerations();
 		var allLambdaTypes = root.getAllLambdaTypes();
@@ -201,9 +200,6 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 						«IF allCollectionTypes.size() > 0»
 						installCollectionTypes();
 						«ENDIF»
-						«IF allMetaclasses.size() > 0»
-						installMetaclasses();
-						«ENDIF»
 						«IF allLambdaTypes.size() > 0»
 						installLambdaTypes();
 						«ENDIF»
@@ -239,10 +235,6 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 
 					«pkg.declareCollectionTypes()»
 					«ENDIF»
-					«IF allMetaclasses.size() > 0»
-
-					«pkg.declareMetaclasses()»
-					«ENDIF»
 					«IF allTupleTypes.size() > 0»
 
 					«pkg.declareTupleTypes()»
@@ -260,10 +252,6 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 					«IF allCollectionTypes.size() > 0»
 
 					«pkg.defineCollectionTypes()»
-					«ENDIF»
-					«IF allMetaclasses.size() > 0»
-
-					«pkg.defineMetaclasses()»
 					«ENDIF»
 					«IF allTupleTypes.size() > 0»
 

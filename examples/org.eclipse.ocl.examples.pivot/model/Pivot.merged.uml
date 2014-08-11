@@ -687,15 +687,6 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TMessageType.PreferredOperation.lV"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TMetaclass" name="Metaclass">
-      <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="Ppivot.TMetaclass.oTS" parameter="Ppivot.TMetaclass.oTS.oP0">
-        <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="Ppivot.TMetaclass.oTS.oP0" parameteredElement="Ppivot.TMetaclass.oTS.oP0.oPE">
-          <ownedParameteredElement xmi:type="uml:Class" xmi:id="Ppivot.TMetaclass.oTS.oP0.oPE" name="T" templateParameter="Ppivot.TMetaclass.oTS.oP0"/>
-        </ownedParameter>
-      </ownedTemplateSignature>
-      <generalization xmi:id="Ppivot.TMetaclass.g0" general="Ppivot.TClass"/>
-      <ownedAttribute xmi:id="Ppivot.TMetaclass.PinstanceType" name="instanceType" type="Ppivot.TType"/>
-    </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TNamedElement" name="NamedElement" isAbstract="true">
       <ownedComment xmi:id="Ppivot.TNamedElement.oC0" annotatedElement="Ppivot.TNamedElement">
         <body>A named element represents an element with a name.</body>
@@ -1540,6 +1531,9 @@
         <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TTypedElement.PisRequired.dlV" value="true"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TTypedElement.PisMany" name="isMany" type="Ppivot.TBoolean" isReadOnly="true" isDerived="true"/>
+      <ownedAttribute xmi:id="Ppivot.TTypedElement.PisTypeof" name="isTypeof" type="Ppivot.TBoolean">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TTypedElement.PisTypeof.dlV" value="false"/>
+      </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TUnlimitedNaturalLiteralExp" name="UnlimitedNaturalLiteralExp">
       <generalization xmi:id="Ppivot.TUnlimitedNaturalLiteralExp.g0" general="Ppivot.TNumericLiteralExp"/>

@@ -299,7 +299,6 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 			«ENDIF»
 						installParameterTypes();
 						installCollectionTypes();
-						installMetaclasses();
 						installLambdaTypes();
 						installTupleTypes();
 						installOperations();
@@ -327,8 +326,6 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 
 					«lib.declareCollectionTypes()»
 
-					«lib.declareMetaclasses()»
-
 					«lib.defineOclTypes()»
 
 					«lib.definePrimitiveTypes()»
@@ -340,8 +337,6 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 					«lib.defineParameterTypes()»
 
 					«lib.defineCollectionTypes()»
-
-					«lib.defineMetaclasses()»
 
 					«lib.defineTupleTypes()»
 

@@ -53,6 +53,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypedElementImpl#isMany <em>Is Many</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypedElementImpl#isRequired <em>Is Required</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypedElementImpl#isTypeof <em>Is Typeof</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypedElementImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
@@ -91,6 +92,24 @@ public abstract class TypedElementImpl
 	 */
 	protected static final int IS_REQUIRED_EFLAG = 1 << 8;
 
+	/**
+	 * The default value of the '{@link #isTypeof() <em>Is Typeof</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isTypeof()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_TYPEOF_EDEFAULT = false;
+	/**
+	 * The flag representing the value of the '{@link #isTypeof() <em>Is Typeof</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isTypeof()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int IS_TYPEOF_EFLAG = 1 << 9;
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -225,6 +244,29 @@ public abstract class TypedElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isTypeof()
+	{
+		return (eFlags & IS_TYPEOF_EFLAG) != 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsTypeof(boolean newIsTypeof)
+	{
+		boolean oldIsTypeof = (eFlags & IS_TYPEOF_EFLAG) != 0;
+		if (newIsTypeof) eFlags |= IS_TYPEOF_EFLAG; else eFlags &= ~IS_TYPEOF_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TYPED_ELEMENT__IS_TYPEOF, oldIsTypeof, newIsTypeof));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
@@ -243,6 +285,8 @@ public abstract class TypedElementImpl
 				return isMany();
 			case PivotPackage.TYPED_ELEMENT__IS_REQUIRED:
 				return isRequired();
+			case PivotPackage.TYPED_ELEMENT__IS_TYPEOF:
+				return isTypeof();
 			case PivotPackage.TYPED_ELEMENT__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -282,6 +326,9 @@ public abstract class TypedElementImpl
 			case PivotPackage.TYPED_ELEMENT__IS_REQUIRED:
 				setIsRequired((Boolean)newValue);
 				return;
+			case PivotPackage.TYPED_ELEMENT__IS_TYPEOF:
+				setIsTypeof((Boolean)newValue);
+				return;
 			case PivotPackage.TYPED_ELEMENT__TYPE:
 				setType((Type)newValue);
 				return;
@@ -316,6 +363,9 @@ public abstract class TypedElementImpl
 			case PivotPackage.TYPED_ELEMENT__IS_REQUIRED:
 				setIsRequired(IS_REQUIRED_EDEFAULT);
 				return;
+			case PivotPackage.TYPED_ELEMENT__IS_TYPEOF:
+				setIsTypeof(IS_TYPEOF_EDEFAULT);
+				return;
 			case PivotPackage.TYPED_ELEMENT__TYPE:
 				setType((Type)null);
 				return;
@@ -346,6 +396,8 @@ public abstract class TypedElementImpl
 				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.TYPED_ELEMENT__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
+			case PivotPackage.TYPED_ELEMENT__IS_TYPEOF:
+				return ((eFlags & IS_TYPEOF_EFLAG) != 0) != IS_TYPEOF_EDEFAULT;
 			case PivotPackage.TYPED_ELEMENT__TYPE:
 				return type != null;
 		}

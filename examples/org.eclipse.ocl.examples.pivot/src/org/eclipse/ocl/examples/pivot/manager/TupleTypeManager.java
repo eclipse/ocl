@@ -95,7 +95,7 @@ public class TupleTypeManager
 		protected final @NonNull Map<Integer, TemplateParameter> templateParameters = new HashMap<Integer, TemplateParameter>();
 		
 		public TemplateParameterReferencesVisitor(@NonNull MetaModelManager metaModelManager, Collection<? extends Type> partValues) {
-			super(metaModelManager, null);
+			super(metaModelManager, null, false);
 			for (Type partValue : partValues) {
 				analyzeType(partValue, partValue);
 			}

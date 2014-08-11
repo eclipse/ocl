@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/OCL/Import ecore='http://www.eclipse.org/emf/2002/Ecore' pivot='../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#/'"
+ *        annotation="http://www.eclipse.org/OCL/Import ecore='http://www.eclipse.org/emf/2002/Ecore'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL' validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL'"
  * @generated
  */
@@ -4290,13 +4290,22 @@ public interface BaseCSPackage extends EPackage {
 	int TYPED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING = TYPED_REF_CS_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_TYPE_REF_CS__TYPEOF = TYPED_REF_CS_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Typed Type Ref CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_TYPE_REF_CS_FEATURE_COUNT = TYPED_REF_CS_FEATURE_COUNT + 3;
+	int TYPED_TYPE_REF_CS_FEATURE_COUNT = TYPED_REF_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -5557,11 +5566,11 @@ public interface BaseCSPackage extends EPackage {
 	EReference getTemplateParameterSubstitutionCS_OwningTemplateBinding();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS#getActualParameter <em>Owned Actual Parameter</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS#getOwnedActualParameter <em>Owned Actual Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Owned Actual Parameter</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS#getActualParameter()
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS#getOwnedActualParameter()
 	 * @see #getTemplateParameterSubstitutionCS()
 	 * @generated
 	 */
@@ -5820,6 +5829,17 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTypedTypeRefCS_OwnedTemplateBinding();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#isTypeof <em>Typeof</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Typeof</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#isTypeof()
+	 * @see #getTypedTypeRefCS()
+	 * @generated
+	 */
+	EAttribute getTypedTypeRefCS_Typeof();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.basecs.util.VisitableCS <em>Visitable CS</em>}'.
@@ -7106,6 +7126,14 @@ public interface BaseCSPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TYPED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING = eINSTANCE.getTypedTypeRefCS_OwnedTemplateBinding();
+
+		/**
+		 * The meta object literal for the '<em><b>Typeof</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TYPED_TYPE_REF_CS__TYPEOF = eINSTANCE.getTypedTypeRefCS_Typeof();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.util.VisitableCS <em>Visitable CS</em>}' class.

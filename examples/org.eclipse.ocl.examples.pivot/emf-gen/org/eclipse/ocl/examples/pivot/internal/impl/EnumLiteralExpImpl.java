@@ -188,6 +188,8 @@ public class EnumLiteralExpImpl
 				return isMany();
 			case PivotPackage.ENUM_LITERAL_EXP__IS_REQUIRED:
 				return isRequired();
+			case PivotPackage.ENUM_LITERAL_EXP__IS_TYPEOF:
+				return isTypeof();
 			case PivotPackage.ENUM_LITERAL_EXP__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -230,6 +232,9 @@ public class EnumLiteralExpImpl
 			case PivotPackage.ENUM_LITERAL_EXP__IS_REQUIRED:
 				setIsRequired((Boolean)newValue);
 				return;
+			case PivotPackage.ENUM_LITERAL_EXP__IS_TYPEOF:
+				setIsTypeof((Boolean)newValue);
+				return;
 			case PivotPackage.ENUM_LITERAL_EXP__TYPE:
 				setType((Type)newValue);
 				return;
@@ -267,6 +272,9 @@ public class EnumLiteralExpImpl
 			case PivotPackage.ENUM_LITERAL_EXP__IS_REQUIRED:
 				setIsRequired(IS_REQUIRED_EDEFAULT);
 				return;
+			case PivotPackage.ENUM_LITERAL_EXP__IS_TYPEOF:
+				setIsTypeof(IS_TYPEOF_EDEFAULT);
+				return;
 			case PivotPackage.ENUM_LITERAL_EXP__TYPE:
 				setType((Type)null);
 				return;
@@ -300,6 +308,8 @@ public class EnumLiteralExpImpl
 				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.ENUM_LITERAL_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
+			case PivotPackage.ENUM_LITERAL_EXP__IS_TYPEOF:
+				return ((eFlags & IS_TYPEOF_EFLAG) != 0) != IS_TYPEOF_EDEFAULT;
 			case PivotPackage.ENUM_LITERAL_EXP__TYPE:
 				return type != null;
 			case PivotPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL:

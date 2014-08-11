@@ -29,7 +29,7 @@ public class OclAnyOclIsKindOfOperation extends AbstractUntypedBinaryOperation
 		DomainStandardLibrary standardLibrary = evaluator.getStandardLibrary();
 		DomainType sourceType = evaluator.getIdResolver().getDynamicTypeOf(sourceVal);
 		DomainType argType = asType(argVal);
-		boolean result = sourceType.conformsTo(standardLibrary, argType);
+		boolean result = sourceType.conformsTo(standardLibrary, argType);	// FIXME this fails because ExecutableStandardLibrary.getMetaclass is bad
 		return result;
 	}
 }

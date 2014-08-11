@@ -19,8 +19,8 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 public class UnaryOperationMatcher extends AbstractOperationMatcher
 {
-	public UnaryOperationMatcher(@NonNull MetaModelManager metaModelManager, @Nullable Type sourceType) {
-		super(metaModelManager, sourceType);
+	public UnaryOperationMatcher(@NonNull MetaModelManager metaModelManager, @Nullable Type sourceType, boolean sourceIsTypeof) {
+		super(metaModelManager, sourceType, sourceIsTypeof);
 	}
 
 	@Override

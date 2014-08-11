@@ -662,13 +662,6 @@ public class PackageManager implements PackageServerParent
 						specializedClass.getSuperClasses().add(specializedSuperClass);
 					}
 				}
-				else if ((superTypeServer instanceof MetaclassServer) && (superSpecializedTemplateParameterSubstitutions.size() == 1)) {
-					Type templateArgument = superSpecializedTemplateParameterSubstitutions.get(0).getActual();
-					if (templateArgument != null) {
-						org.eclipse.ocl.examples.pivot.Class superMetaclass = ((MetaclassServer)superTypeServer).getMetaclass(templateArgument);
-						specializedClass.getSuperClasses().add(superMetaclass);
-					}
-				}
 				else if (superTypeServer instanceof TemplateableTypeServer) {
 					List<Type> superTemplateArgumentList = new ArrayList<Type>(superSpecializedTemplateParameterSubstitutions.size());
 					for (TemplateParameterSubstitution superSpecializedTemplateParameterSubstitution : superSpecializedTemplateParameterSubstitutions) {

@@ -24,7 +24,6 @@ import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.LanguageExpression;
-import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
@@ -45,9 +44,9 @@ public class StereotypeProperty extends ConstrainedProperty
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		IdResolver idResolver = evaluator.getIdResolver();
 		EObject eObject = asNavigableObject(sourceValue, property);
-		if (eObject instanceof Metaclass<?>) {
-			eObject = ((Metaclass<?>)eObject).getInstanceType();
-		}
+//		if (eObject instanceof Metaclass<?>) {
+//			eObject = ((Metaclass<?>)eObject).getInstanceType();
+//		}
 		Object boxedValue = null;
 		if (eObject instanceof UMLElementExtension) {
 			Object unboxedValue = ((UMLElementExtension)eObject).getValue(idResolver, property);

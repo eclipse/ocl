@@ -17,7 +17,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
-import org.eclipse.ocl.examples.domain.elements.DomainMetaclass;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
@@ -26,7 +25,6 @@ import org.eclipse.ocl.examples.library.LibraryConstants;
 import org.eclipse.ocl.examples.library.ecore.EcoreExecutorPackage;
 import org.eclipse.ocl.examples.library.executor.ExecutableStandardLibrary;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
-import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotTables;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -55,16 +53,6 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 		metaModelManager.setDefaultStandardLibraryURI(LibraryConstants.STDLIB_URI);
 		PivotTables.PACKAGE.getClass();
 	}
-
-	@Override
-	protected @NonNull DomainMetaclass createMetaclass(@NonNull DomainType typeType) {
-		Metaclass<?> metaclassType = getMetaclassType();
-		Metaclass<?> metaclass = PivotFactory.eINSTANCE.createMetaclass();
-		metaclass.setName(metaclassType.getName());
-		metaclass.setUnspecializedElement(metaclassType);
-		metaclass.setInstanceType(getType(typeType));
-		return metaclass;
-	}
 	
 //	@Override
 //	public @NonNull DomainEvaluator createEvaluator(@NonNull EObject contextObject, @Nullable Map<Object, Object> contextMap) {
@@ -90,12 +78,12 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 		return pivotType;
 	}
 
-	public @NonNull org.eclipse.ocl.examples.pivot.Class getEnumerationType() {
-		return metaModelManager.getEnumerationType();
+	public @NonNull org.eclipse.ocl.examples.pivot.Class getClassType() {
+		return metaModelManager.getClassType();
 	}
 
-	public @NonNull Metaclass<?> getMetaclassType() {
-		return metaModelManager.getMetaclassType();
+	public @NonNull org.eclipse.ocl.examples.pivot.Class getEnumerationType() {
+		return metaModelManager.getEnumerationType();
 	}
 
 	public @NonNull DomainInheritance getInheritance(@NonNull DomainClass type) {

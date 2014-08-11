@@ -19,7 +19,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainLambdaType;
-import org.eclipse.ocl.examples.domain.elements.DomainMetaclass;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainTemplateParameter;
@@ -55,10 +54,6 @@ public class TemplateSpecialisation
 		}
 		if (referencedType instanceof DomainCollectionType) {
 			DomainType elementType = ((DomainCollectionType)referencedType).getElementType();
-			return needsSpecialisation(elementType);
-		}
-		if (referencedType instanceof DomainMetaclass) {
-			DomainType elementType = ((DomainMetaclass)referencedType).getInstanceType();
 			return needsSpecialisation(elementType);
 		}
 		if (referencedType instanceof DomainTupleType) {
@@ -124,14 +119,6 @@ public class TemplateSpecialisation
 			DomainClass containerType = DomainUtil.nonNullState(collectionType.getContainerType());
 			return standardLibrary.getCollectionType(containerType, elementType, collectionType.getLowerValue(), collectionType.getUpperValue());
 		}
-		if (referencedType instanceof DomainMetaclass) {
-			DomainMetaclass metaclass = (DomainMetaclass)referencedType;
-			DomainType instanceType = getResolution(metaclass.getInstanceType());
-			if (instanceType == null) {
-				instanceType = standardLibrary.getOclAnyType();
-			}
-			return standardLibrary.getMetaclass(instanceType);
-		}
 		if (referencedType instanceof DomainTupleType) {
 //			DomainTupleType tupleType = (DomainTupleType)referencedType;
 			throw new UnsupportedOperationException();
@@ -154,9 +141,6 @@ public class TemplateSpecialisation
 		}
 		if (referencedType == null) {
 			return;
-		}
-		if (referencedType instanceof DomainMetaclass) {
-			referencedType = DomainUtil.nonNullState(((DomainMetaclass)referencedType).getInstanceType());			// FIXME must be a more regular way
 		}
 		DomainTemplateParameter templateParameter = referencedType.isTemplateParameter();
 		if (templateParameter != null) {

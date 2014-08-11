@@ -87,7 +87,7 @@ public interface ASResourceFactory extends Resource.Factory
 	/**
 	 * Create a visitor to resolve template substitutions. 
 	 */
-	@NonNull TemplateParameterSubstitutionVisitor createTemplateParameterSubstitutionVisitor(@NonNull MetaModelManager metaModelManager, @Nullable Type selfType);
+	@NonNull TemplateParameterSubstitutionVisitor createTemplateParameterSubstitutionVisitor(@NonNull MetaModelManager metaModelManager, @Nullable Type selfType, boolean selfIsTypeof);
 
 	/**
 	 * Create a visitor to provide a debug representation of one or more elements in the resource. 

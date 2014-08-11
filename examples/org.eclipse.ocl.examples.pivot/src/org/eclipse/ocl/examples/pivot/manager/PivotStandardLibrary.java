@@ -27,7 +27,6 @@ import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.BagType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.InvalidType;
-import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
@@ -68,7 +67,6 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 	private @Nullable CollectionType collectionType = null;
 	private @Nullable org.eclipse.ocl.examples.pivot.Class enumerationType = null;
 	private @Nullable PrimitiveType integerType = null;
-	private @Nullable Metaclass<?> metaclassType = null;
 	private @Nullable AnyType oclAnyType = null;
 	private @Nullable org.eclipse.ocl.examples.pivot.Class oclComparableType = null;
 	private @Nullable org.eclipse.ocl.examples.pivot.Class oclElementType = null;
@@ -189,12 +187,9 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		return nameToLibraryTypeMap2.get(typeName);
 	}
 
-	public @NonNull Metaclass<?> getMetaclassType() {
-		Metaclass<?> metaclassType2 = metaclassType;
-		if (metaclassType2 == null) {
-			metaclassType2 = metaclassType = resolveRequiredTemplateableType(Metaclass.class, TypeId.METACLASS_NAME, 1);		
-		}
-		return metaclassType2;
+	@Deprecated
+	public @NonNull org.eclipse.ocl.examples.pivot.Class getMetaclassType() {
+		return getClassType();
 	}
 
 	public @NonNull AnyType getOclAnyType() {
@@ -428,7 +423,6 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		collectionType = null;
 		enumerationType = null;
 		integerType = null;
-		metaclassType = null;
 		oclAnyType = null;
 		oclElementType = null;
 		oclInvalidType = null;

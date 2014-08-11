@@ -23,7 +23,6 @@ import org.eclipse.ocl.examples.domain.ids.EnumerationLiteralId;
 import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.domain.ids.IdVisitor;
 import org.eclipse.ocl.examples.domain.ids.LambdaTypeId;
-import org.eclipse.ocl.examples.domain.ids.MetaclassId;
 import org.eclipse.ocl.examples.domain.ids.NestedPackageId;
 import org.eclipse.ocl.examples.domain.ids.NsURIPackageId;
 import org.eclipse.ocl.examples.domain.ids.OclInvalidTypeId;
@@ -128,18 +127,6 @@ public class Id2JavaExpressionVisitor implements IdVisitor<Object>
 	public @Nullable Object visitLambdaTypeId(@NonNull LambdaTypeId id) {
 		// TODO Auto-generated method stub
 		return visiting(id);
-	}
-	
-	@Override
-	public @Nullable Object visitMetaclassId(@NonNull MetaclassId id) {
-		js.appendClassReference(TypeId.class);
-		js.append(".METACLASS");
-		if (id != TypeId.METACLASS) {
-			js.append(".getSpecializedId(");
-			js.appendIdReference(id.getElementId());
-			js.append(")");
-		}
-		return null;
 	}
 
 	@Override

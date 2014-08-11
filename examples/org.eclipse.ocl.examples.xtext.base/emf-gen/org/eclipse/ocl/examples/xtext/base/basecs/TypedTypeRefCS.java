@@ -23,6 +23,7 @@ import org.eclipse.ocl.examples.pivot.Type;
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getPathName <em>Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getOwnedTemplateBinding <em>Owned Template Binding</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#isTypeof <em>Typeof</em>}</li>
  * </ul>
  * </p>
  *
@@ -99,5 +100,32 @@ public interface TypedTypeRefCS extends TypedRefCS {
 	 * @generated
 	 */
 	void setOwnedTemplateBinding(TemplateBindingCS value);
+
+	/**
+	 * Returns the value of the '<em><b>Typeof</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Typeof</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Typeof</em>' attribute.
+	 * @see #setTypeof(boolean)
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTypedTypeRefCS_Typeof()
+	 * @model default="false" required="true"
+	 * @generated
+	 */
+	boolean isTypeof();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#isTypeof <em>Typeof</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Typeof</em>' attribute.
+	 * @see #isTypeof()
+	 * @generated
+	 */
+	void setTypeof(boolean value);
 
 } // TypedTypeRefCS

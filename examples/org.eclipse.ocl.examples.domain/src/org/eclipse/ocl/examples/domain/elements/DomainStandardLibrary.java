@@ -53,6 +53,14 @@ public interface DomainStandardLibrary
 	@NonNull DomainClass getBooleanType();
 	
     /**
+     * Obtains the single instance of the DomainClass metatype, named
+     * <tt>Class</tt>.
+     * 
+     * @return the <tt>Class</tt> type (an instance of Class)
+     */
+	@NonNull DomainClass getClassType();
+	
+    /**
      * Obtains the generic instance of the CollectionType metatype, named
      * <tt>Collection(T)</tt>.
      * 
@@ -94,15 +102,7 @@ public interface DomainStandardLibrary
 	/**
 	 * Return the instance of the Metaclass metatype whose class is classType.
 	 */
-	@NonNull DomainMetaclass getMetaclass(@NonNull DomainType classType);
-	
-    /**
-     * Obtains the single instance of the DomainMetaclass metatype, named
-     * <tt>Metaclass</tt>.
-     * 
-     * @return the <tt>Metaclass</tt> type (an instance of Metaclass)
-     */
-	@NonNull DomainClass getMetaclassType();
+	@NonNull DomainClass getMetaclass(@NonNull DomainType classType);
 
     /**
      * Returns the meta-type of a given type.

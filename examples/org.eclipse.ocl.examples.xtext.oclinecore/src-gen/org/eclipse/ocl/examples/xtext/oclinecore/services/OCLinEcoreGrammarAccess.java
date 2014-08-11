@@ -3100,10 +3100,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		public ParserRule getRule() { return rule; }
 
 		//ownedActualParameter=TypeRefCS
-		public Assignment getActualParameterAssignment() { return cOwnedActualParameterAssignment; }
+		public Assignment getOwnedActualParameterAssignment() { return cOwnedActualParameterAssignment; }
 
 		//TypeRefCS
-		public RuleCall getActualParameterTypeRefCSParserRuleCall_0() { return cOwnedActualParameterTypeRefCSParserRuleCall_0; }
+		public RuleCall getOwnedActualParameterTypeRefCSParserRuleCall_0() { return cOwnedActualParameterTypeRefCSParserRuleCall_0; }
 	}
 
 	public class TemplateSignatureCSElements extends AbstractParserRuleElementFinder {

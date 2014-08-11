@@ -23,7 +23,7 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Library;
-import org.eclipse.ocl.examples.pivot.Metaclass;
+
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
@@ -77,14 +77,6 @@ public class AbstractContents extends PivotUtil
 		}
 		pivotLibrary.setURI(nsURI);
 		return pivotLibrary;
-	}
-
-	protected @NonNull Metaclass<?> createMetaclass(@NonNull String name, @NonNull TemplateParameter templateParameter) {
-		Metaclass<?> pivotType = PivotFactory.eINSTANCE.createMetaclass();
-		pivotType.setName(name);
-		initTemplateParameters(pivotType, templateParameter);
-		pivotType.setInstanceType(templateParameter);
-		return pivotType;
 	}
 	
 	protected @NonNull Operation createOperation(@NonNull String name, @NonNull Type type, @Nullable String implementationClass, @Nullable LibraryFeature implementation, TemplateParameter... templateParameters) {

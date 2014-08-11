@@ -438,7 +438,7 @@ public class ElementUtil
 		TypedTypeRefCS csTypedTypeRef = csTemplateBinding.getOwningTemplateBindableElement();
 		Element type = csTypedTypeRef.getPivot();
 		for (TemplateParameterSubstitutionCS csTemplateParameterSubstitution : csTemplateBinding.getOwnedParameterSubstitution()) {
-			TypeRefCS ownedActualParameter = csTemplateParameterSubstitution.getActualParameter();
+			TypeRefCS ownedActualParameter = csTemplateParameterSubstitution.getOwnedActualParameter();
 			if (ownedActualParameter instanceof WildcardTypeRefCS) {
 				return true;
 			}

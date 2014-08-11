@@ -50,8 +50,8 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
     public static final int T__60=60;
     public static final int EOF=-1;
     public static final int T__55=55;
-    public static final int T__56=56;
     public static final int T__19=19;
+    public static final int T__56=56;
     public static final int T__57=57;
     public static final int T__58=58;
     public static final int T__51=51;

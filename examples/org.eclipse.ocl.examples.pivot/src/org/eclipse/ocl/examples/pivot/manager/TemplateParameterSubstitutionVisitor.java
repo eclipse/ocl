@@ -32,12 +32,12 @@ import org.eclipse.ocl.examples.domain.types.IdResolver;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LambdaType;
-import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
@@ -70,13 +70,13 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisitor<Object, Map<Integer, Type>> implements TemplateParameterSubstitutions
 {	
 	public static @NonNull TemplateParameterSubstitutions createBindings(@NonNull MetaModelManager metaModelManager, @NonNull Type formalType, @NonNull Type actualType) {
-		TemplateParameterSubstitutionVisitor visitor = createVisitor(actualType, metaModelManager, null);
+		TemplateParameterSubstitutionVisitor visitor = createVisitor(actualType, metaModelManager, null, false);
 		visitor.analyzeType(formalType, actualType);
 		return visitor;
 	}
 	
-	public static @NonNull TemplateParameterSubstitutions createBindings(@NonNull MetaModelManager metaModelManager, @Nullable Type sourceType, @NonNull Operation candidateOperation) {
-		TemplateParameterSubstitutionVisitor visitor = createVisitor(candidateOperation, metaModelManager, sourceType);
+	public static @NonNull TemplateParameterSubstitutions createBindings(@NonNull MetaModelManager metaModelManager, @Nullable Type sourceType, boolean sourceIsTypeof, @NonNull Operation candidateOperation) {
+		TemplateParameterSubstitutionVisitor visitor = createVisitor(candidateOperation, metaModelManager, sourceType, sourceIsTypeof);
 		visitor.analyzeType(candidateOperation.getOwningClass(), sourceType);
 		for (EObject eObject = candidateOperation; eObject != null; eObject = eObject.eContainer()) {
 			if (eObject instanceof TemplateableElement) {
@@ -94,13 +94,13 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		return TemplateParameterSubstitutions.EMPTY;
 	}
 
-	protected static @NonNull TemplateParameterSubstitutionVisitor createVisitor(@NonNull EObject eObject, @NonNull MetaModelManager metaModelManager, @Nullable Type selfType) {
+	protected static @NonNull TemplateParameterSubstitutionVisitor createVisitor(@NonNull EObject eObject, @NonNull MetaModelManager metaModelManager, @Nullable Type selfType, boolean selfIsTypeof) {
 		Resource resource = eObject.eResource();
 		if (resource instanceof ASResource) {
-			return ((ASResource)resource).getASResourceFactory().createTemplateParameterSubstitutionVisitor(metaModelManager, selfType);
+			return ((ASResource)resource).getASResourceFactory().createTemplateParameterSubstitutionVisitor(metaModelManager, selfType, selfIsTypeof);
 		}
 		else {
-			return new TemplateParameterSubstitutionVisitor(metaModelManager, selfType);
+			return new TemplateParameterSubstitutionVisitor(metaModelManager, selfType, selfIsTypeof);
 		}
 	}
 
@@ -108,24 +108,26 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	 * Return the specialized form of type analyzing expr to determine the formal to actual parameter mappings under the
 	 * supervision of a metaModelManager and using selfType as the value of OclSelf.
 	 */
-	public static @NonNull Type specializeType(@NonNull Type type, @NonNull CallExp callExp, @NonNull MetaModelManager metaModelManager, @Nullable Type selfType) {
-		TemplateParameterSubstitutionVisitor visitor = createVisitor(callExp, metaModelManager, selfType);
+	public static @NonNull Type specializeType(@NonNull Type type, boolean isTypeof, @NonNull CallExp callExp, @NonNull MetaModelManager metaModelManager, @Nullable Type selfType, boolean selfIsTypeof) {
+		TemplateParameterSubstitutionVisitor visitor = createVisitor(callExp, metaModelManager, selfType, selfIsTypeof);
 		visitor.visit(callExp);
-		return visitor.specializeType(type);
+		return visitor.specializeType(type, isTypeof, false);
 	}
 
 	private final @NonNull MetaModelManager metaModelManager;
 	private final @Nullable Type selfType;
+	private final boolean selfIsTypeof;
 	
 	/**
 	 * Internal variable used to pass the actual corresponding to the visited formal.
 	 */
 	private DomainType actual;
 	
-	public TemplateParameterSubstitutionVisitor(@NonNull MetaModelManager metaModelManager, @Nullable Type selfType) {
+	public TemplateParameterSubstitutionVisitor(@NonNull MetaModelManager metaModelManager, @Nullable Type selfType, boolean selfIsTypeof) {
 		super(new HashMap<Integer, Type>());
 		this.metaModelManager = metaModelManager;
 		this.selfType = selfType;
+		this.selfIsTypeof = selfIsTypeof;
 	}
 	
 	protected void analyzeFeature(@Nullable Feature formalFeature, @Nullable DomainTypedElement actualElement) {
@@ -149,9 +151,9 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	}
 
 	protected void analyzeTypedElement(@Nullable TypedElement formalElement, @Nullable DomainTypedElement actualElement) {
-		if ((formalElement != null) && (actualElement != null)) {
+		if ((formalElement != null) && (actualElement instanceof Element)) {
 			Type formalType = formalElement.getType();
-			DomainType actualType = actualElement.getType();
+			DomainType actualType = ApparentTypeVisitor.getApparentType(metaModelManager, (Element) actualElement);
 			analyzeType(formalType, actualType);
 		}
 	}
@@ -181,7 +183,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		return context.get(templateParameter.getTemplateParameterId().getIndex());
 	}
 
-	protected @NonNull TupleType getSpecializedTupleType(@NonNull TupleType type) {
+	protected @NonNull TupleType getSpecializedTupleType(@NonNull TupleType type, boolean isTypeof) {
 		TupleType specializedTupleType = type;
 		Map<String, Type> resolutions =  null;
 		List<Property> parts = specializedTupleType.getOwnedProperties();
@@ -189,7 +191,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 			if (part != null) {
 				Type propertyType = PivotUtil.getType(part);
 				if (propertyType != null) {
-					Type resolvedPropertyType = specializeType(propertyType);
+					Type resolvedPropertyType = specializeType(propertyType, isTypeof, true);
 					if (resolvedPropertyType != propertyType) {
 						if (resolutions == null) {
 							resolutions = new HashMap<String, Type>();
@@ -219,7 +221,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 				DomainType type1 = part.getType();
 				if (type1 != null) {
 					Type type2 = metaModelManager.getType(type1);
-					Type type3 = specializeType(type2);
+					Type type3 = specializeType(type2, isTypeof, true);
 					partMap.put(part.getName(), type3);
 				}
 			}
@@ -254,7 +256,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		}
 	}
 
-	public @NonNull Type specializeType(@NonNull Type type) {
+	public @NonNull Type specializeType(@NonNull Type type, boolean isTypeof, boolean isNested) {
 		TemplateParameter asTemplateParameter = type.isTemplateParameter();
 		if (asTemplateParameter != null) {
 			int index = asTemplateParameter.getTemplateParameterId().getIndex();
@@ -262,35 +264,29 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 			return actualType != null ? actualType : type;
 		}
 		if (type instanceof SelfType) {
-			return selfType != null ? selfType : type;
+			return DomainUtil.nonNullState(selfType != null ? !isNested && selfIsTypeof ? metaModelManager.getClassType() : selfType : type);	// FIXME this is a fudge for allInstances()/oclType()
 		}
 		else if (type instanceof CollectionType) {
 			CollectionType collectionType = (CollectionType)type;
 			Type elementType = DomainUtil.nonNullModel(collectionType.getElementType());
-			Type specializedElementType = specializeType(elementType);
+			Type specializedElementType = specializeType(elementType, isTypeof, true);
 			CollectionType unspecializedCollectionType = PivotUtil.getUnspecializedTemplateableElement(collectionType);
 			return metaModelManager.getCollectionType(unspecializedCollectionType, specializedElementType, null, null);
 		}
-		else if (type instanceof Metaclass<?>) {
-			Metaclass<?> metaclass = (Metaclass<?>)type;
-			Type instanceType = DomainUtil.nonNullModel(metaclass.getInstanceType());
-			Type specializedInstanceType = specializeType(instanceType);
-			return metaModelManager.getMetaclass(specializedInstanceType);
-		}
 		else if (type instanceof TupleType) {
-			return getSpecializedTupleType((TupleType) type);
+			return getSpecializedTupleType((TupleType) type, isTypeof);
 		}
 		else if (type instanceof LambdaType) {
 			LambdaType lambdaType = (LambdaType)type;
 			String typeName = DomainUtil.nonNullModel(lambdaType.getName());
-			Type specializedContextType = specializeType(DomainUtil.nonNullModel(lambdaType.getContextType()));
+			Type specializedContextType = specializeType(DomainUtil.nonNullModel(lambdaType.getContextType()), isTypeof, true);
 			List<Type> specializedParameterTypes = new ArrayList<Type>();
 			for (Type parameterType : lambdaType.getParameterType()) {
 				if (parameterType != null) {
-					specializedParameterTypes.add(specializeType(parameterType));
+					specializedParameterTypes.add(specializeType(parameterType, isTypeof, true));
 				}
 			}
-			Type specializedResultType = specializeType(DomainUtil.nonNullModel(lambdaType.getResultType()));
+			Type specializedResultType = specializeType(DomainUtil.nonNullModel(lambdaType.getResultType()), isTypeof, true);
 			return metaModelManager.getLambdaManager().getLambdaType(typeName, specializedContextType, specializedParameterTypes, specializedResultType);
 		}
 		else {
@@ -306,7 +302,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 					for (TemplateParameterSubstitution ownedTemplateParameterSubstitution : ownedTemplateBinding.getOwnedTemplateParameterSubstitutions()) {
 						Type actualType = ownedTemplateParameterSubstitution.getActual();
 						if (actualType != null) {
-							actualType = specializeType(actualType);
+							actualType = specializeType(actualType, isTypeof, true);
 							templateArguments.add(actualType);
 						}
 					}
@@ -317,7 +313,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 			if (ownedTemplateSignature != null) {
 				List<Type> templateArguments = new ArrayList<Type>();
 				for (@SuppressWarnings("null")@NonNull TemplateParameter ownedTemplateParameter : ownedTemplateSignature.getOwnedTemplateParameters()) {
-					Type actualType = specializeType(ownedTemplateParameter);
+					Type actualType = specializeType(ownedTemplateParameter, isTypeof, true);
 					templateArguments.add(actualType);
 				}
 				return metaModelManager.getLibraryType(unspecializedType, templateArguments);
@@ -404,16 +400,6 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	}
 
 	@Override
-	public @Nullable Object visitMetaclass(@NonNull Metaclass<?> object) {
-		if (actual instanceof Metaclass<?>) {
-			Type formalElementType = object.getInstanceType();
-			Type actualElementType = ((Metaclass<?>)actual).getInstanceType();
-			analyzeType(formalElementType, actualElementType);
-		}
-		return null;
-	}
-
-	@Override
 	public @Nullable Object visitOperationCallExp(@NonNull OperationCallExp object) {
 		Operation referredOperation = object.getReferredOperation();
 //		visit(referredOperation, object);
@@ -459,9 +445,6 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 			OCLExpression source = object.getSource();
 			if (source != null) {
 				Type sourceType = source.getType();
-				if (referredProperty.isStatic() && (sourceType instanceof Metaclass<?>)) {
-					sourceType = ((Metaclass<?>)sourceType).getInstanceType();
-				}
 				analyzeType(referredProperty.getOwningClass(), sourceType);
 			}
 			analyzeTypedElement(referredProperty, object);
@@ -471,7 +454,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 
 	@Override
 	public @Nullable Object visitSelfType(@NonNull SelfType object) {
-		analyzeType(selfType, actual);
+		analyzeType(/*selfIsTypeof ? metaModelManager.getClassType() :*/ selfType, actual);
 		return null;
 	}
 

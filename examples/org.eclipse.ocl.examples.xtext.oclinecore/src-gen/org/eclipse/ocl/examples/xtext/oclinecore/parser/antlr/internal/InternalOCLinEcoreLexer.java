@@ -99,8 +99,8 @@ public class InternalOCLinEcoreLexer extends Lexer {
     public static final int T__107=107;
     public static final int T__108=108;
     public static final int T__109=109;
-    public static final int T__103=103;
     public static final int T__59=59;
+    public static final int T__103=103;
     public static final int T__104=104;
     public static final int RULE_UNQUOTED_STRING=7;
     public static final int T__105=105;

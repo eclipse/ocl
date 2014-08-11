@@ -17,7 +17,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainEnumeration;
 import org.eclipse.ocl.examples.domain.elements.DomainEnumerationLiteral;
-import org.eclipse.ocl.examples.domain.elements.DomainMetaclass;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.ids.CollectionTypeId;
@@ -36,10 +35,11 @@ public class EnumerationAllInstancesOperation extends AbstractUnaryOperation
 	public @NonNull SetValue evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceVal) {
 		DomainType sourceType = asType(sourceVal);
 		Set<Object> results = new HashSet<Object>();
-		DomainEnumeration domainEnumeration = sourceType instanceof DomainEnumeration ? (DomainEnumeration)sourceType : (DomainEnumeration)((DomainMetaclass)sourceType).getInstanceType();
-		for (DomainEnumerationLiteral instance : domainEnumeration.getEnumerationLiterals()) {
-			if (instance != null) {
-				results.add(instance.getEnumerationLiteralId());
+		if (sourceType instanceof DomainEnumeration) {
+			for (DomainEnumerationLiteral instance : ((DomainEnumeration)sourceType).getEnumerationLiterals()) {
+				if (instance != null) {
+					results.add(instance.getEnumerationLiteralId());
+				}
 			}
 		}
 		return createSetValue((CollectionTypeId)returnTypeId, results);

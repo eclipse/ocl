@@ -21,7 +21,6 @@ import org.eclipse.ocl.examples.domain.ids.EnumerationId;
 import org.eclipse.ocl.examples.domain.ids.EnumerationLiteralId;
 import org.eclipse.ocl.examples.domain.ids.IdVisitor;
 import org.eclipse.ocl.examples.domain.ids.LambdaTypeId;
-import org.eclipse.ocl.examples.domain.ids.MetaclassId;
 import org.eclipse.ocl.examples.domain.ids.NestedPackageId;
 import org.eclipse.ocl.examples.domain.ids.NsURIPackageId;
 import org.eclipse.ocl.examples.domain.ids.OclInvalidTypeId;
@@ -80,11 +79,6 @@ public class Id2EClassVisitor implements IdVisitor<EClass>
 
 	@Override
 	public @Nullable EClass visitLambdaTypeId(@NonNull LambdaTypeId id) {
-		return null;
-	}
-
-	@Override
-	public @Nullable EClass visitMetaclassId(@NonNull MetaclassId id) {
 		return null;
 	}
 

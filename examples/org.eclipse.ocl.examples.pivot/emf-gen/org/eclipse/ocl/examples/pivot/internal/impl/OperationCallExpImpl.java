@@ -58,6 +58,7 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PivotTables;
 import org.eclipse.ocl.examples.pivot.ReferringElement;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.util.PivotValidator;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
@@ -225,6 +226,8 @@ public class OperationCallExpImpl
 				return isMany();
 			case PivotPackage.OPERATION_CALL_EXP__IS_REQUIRED:
 				return isRequired();
+			case PivotPackage.OPERATION_CALL_EXP__IS_TYPEOF:
+				return isTypeof();
 			case PivotPackage.OPERATION_CALL_EXP__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -274,6 +277,9 @@ public class OperationCallExpImpl
 				return;
 			case PivotPackage.OPERATION_CALL_EXP__IS_REQUIRED:
 				setIsRequired((Boolean)newValue);
+				return;
+			case PivotPackage.OPERATION_CALL_EXP__IS_TYPEOF:
+				setIsTypeof((Boolean)newValue);
 				return;
 			case PivotPackage.OPERATION_CALL_EXP__TYPE:
 				setType((Type)newValue);
@@ -325,6 +331,9 @@ public class OperationCallExpImpl
 			case PivotPackage.OPERATION_CALL_EXP__IS_REQUIRED:
 				setIsRequired(IS_REQUIRED_EDEFAULT);
 				return;
+			case PivotPackage.OPERATION_CALL_EXP__IS_TYPEOF:
+				setIsTypeof(IS_TYPEOF_EDEFAULT);
+				return;
 			case PivotPackage.OPERATION_CALL_EXP__TYPE:
 				setType((Type)null);
 				return;
@@ -370,6 +379,8 @@ public class OperationCallExpImpl
 				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.OPERATION_CALL_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
+			case PivotPackage.OPERATION_CALL_EXP__IS_TYPEOF:
+				return ((eFlags & IS_TYPEOF_EFLAG) != 0) != IS_TYPEOF_EDEFAULT;
 			case PivotPackage.OPERATION_CALL_EXP__TYPE:
 				return type != null;
 			case PivotPackage.OPERATION_CALL_EXP__IMPLICIT:
@@ -474,8 +485,14 @@ public class OperationCallExpImpl
 		 *             in
 		 *               let parameterType : Type = parameter.type
 		 *               in
-		 *                 argument.type.conformsTo(
-		 *                   parameterType.specializeIn(self, selfType)))
+		 *                 let
+		 *                   requiredType : Type = parameterType.specializeIn(self, selfType)
+		 *                 in
+		 *                   if argument.isTypeof and not parameter.isTypeof
+		 *                   then Class
+		 *                   else argument.type
+		 *                   endif
+		 *                   .conformsTo(requiredType))
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_forAll;
 		try {
@@ -514,26 +531,191 @@ public class OperationCallExpImpl
 		         *   in
 		         *     let parameterType : Type = parameter.type
 		         *     in
-		         *       argument.type.conformsTo(parameterType.specializeIn(self, selfType))
+		         *       let requiredType : Type = parameterType.specializeIn(self, selfType)
+		         *       in
+		         *         if argument.isTypeof and not parameter.isTypeof
+		         *         then Class
+		         *         else argument.type
+		         *         endif
+		         *         .conformsTo(requiredType)
 		         */
 		        @NonNull /*@Caught*/ Object CAUGHT_conformsTo;
 		        try {
-		            final @Nullable /*@Thrown*/ DomainExpression argument_1 = (DomainExpression)OrderedCollectionAtOperation.INSTANCE.evaluate(BOXED_argument, i);
-		            final @NonNull /*@Thrown*/ OrderedSetValue BOXED_parameters = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Parameter, parameters);
-		            final @Nullable /*@Thrown*/ DomainTypedElement parameter = (DomainTypedElement)OrderedCollectionAtOperation.INSTANCE.evaluate(BOXED_parameters, i);
-		            if (parameter == null) {
+		            @Nullable /*@Caught*/ Object CAUGHT_argument_1;
+		            try {
+		                final @Nullable /*@Thrown*/ DomainExpression argument_1 = (DomainExpression)OrderedCollectionAtOperation.INSTANCE.evaluate(BOXED_argument, i);
+		                CAUGHT_argument_1 = argument_1;
+		            }
+		            catch (Exception e) {
+		                CAUGHT_argument_1 = ValuesUtil.createInvalidValue(e);
+		            }
+		            @Nullable /*@Caught*/ Object CAUGHT_parameter;
+		            try {
+		                final @NonNull /*@Thrown*/ OrderedSetValue BOXED_parameters = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Parameter, parameters);
+		                final @Nullable /*@Thrown*/ DomainTypedElement parameter = (DomainTypedElement)OrderedCollectionAtOperation.INSTANCE.evaluate(BOXED_parameters, i);
+		                CAUGHT_parameter = parameter;
+		            }
+		            catch (Exception e) {
+		                CAUGHT_parameter = ValuesUtil.createInvalidValue(e);
+		            }
+		            if (CAUGHT_parameter == null) {
 		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		            }
-		            final @Nullable /*@Thrown*/ DomainType parameterType = parameter.getType();
-		            if (argument_1 == null) {
-		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
+		            if (CAUGHT_parameter instanceof InvalidValueException) {
+		                throw (InvalidValueException)CAUGHT_parameter;
 		            }
-		            final @Nullable /*@Thrown*/ DomainType type = argument_1.getType();
+		            final @Nullable /*@Thrown*/ DomainType parameterType = ((DomainTypedElement)CAUGHT_parameter).getType();
 		            if (parameterType == null) {
 		                throw new InvalidValueException("Null source for \'pivot::Type::specializeIn(pivot::OCLExpression,pivot::Type) : pivot::Type\'");
 		            }
-		            final @NonNull /*@Thrown*/ DomainType specializeIn = parameterType.specializeIn(this, (Type)selfType_1);
-		            final /*@Thrown*/ boolean conformsTo = OclTypeConformsToOperation.INSTANCE.evaluate(evaluator, type, specializeIn).booleanValue();
+		            final @NonNull /*@Thrown*/ DomainType requiredType = parameterType.specializeIn(this, (Type)selfType_1);
+		            @Nullable /*@Caught*/ Object CAUGHT_self_70;
+		            try {
+		                if (CAUGHT_argument_1 == null) {
+		                    throw new InvalidValueException("Null source for \'pivot::TypedElement::isTypeof\'");
+		                }
+		                if (CAUGHT_argument_1 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_argument_1;
+		                }
+		                final @Nullable /*@Thrown*/ Boolean self_70 = ((TypedElement)CAUGHT_argument_1).isTypeof();
+		                CAUGHT_self_70 = self_70;
+		            }
+		            catch (Exception e) {
+		                CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
+		            }
+		            @Nullable /*@Caught*/ Object CAUGHT_symbol_2;
+		            try {
+		                @Nullable /*@Caught*/ Object CAUGHT_self_71;
+		                try {
+		                    final @Nullable /*@Thrown*/ Boolean self_71 = ((TypedElement)CAUGHT_parameter).isTypeof();
+		                    CAUGHT_self_71 = self_71;
+		                }
+		                catch (Exception e) {
+		                    CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
+		                }
+		                if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_71;
+		                }
+		                final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
+		                @Nullable /*@Thrown*/ Boolean symbol_2;
+		                if (symbol_0) {
+		                    symbol_2 = (Boolean)CAUGHT_self_71;
+		                }
+		                else {
+		                    final /*@Thrown*/ boolean eq = CAUGHT_self_71 == null;
+		                    @Nullable /*@Thrown*/ Boolean symbol_1;
+		                    if (eq) {
+		                        symbol_1 = null;
+		                    }
+		                    else {
+		                        final /*@Thrown*/ boolean eq_0 = CAUGHT_self_71 == Boolean.FALSE;
+		                        symbol_1 = (Boolean)eq_0;
+		                    }
+		                    symbol_2 = symbol_1;
+		                }
+		                CAUGHT_symbol_2 = symbol_2;
+		            }
+		            catch (Exception e) {
+		                CAUGHT_symbol_2 = ValuesUtil.createInvalidValue(e);
+		            }
+		            final /*@NonInvalid*/ boolean symbol_3 = CAUGHT_self_70 instanceof InvalidValueException;
+		            @Nullable /*@Thrown*/ Boolean symbol_13;
+		            if (symbol_3) {
+		                final /*@NonInvalid*/ boolean symbol_4 = CAUGHT_symbol_2 instanceof InvalidValueException;
+		                @Nullable /*@Thrown*/ Boolean symbol_6;
+		                if (symbol_4) {
+		                    if (CAUGHT_self_70 instanceof InvalidValueException) {
+		                        throw (InvalidValueException)CAUGHT_self_70;
+		                    }
+		                    symbol_6 = (Boolean)CAUGHT_self_70;
+		                }
+		                else {
+		                    if (CAUGHT_symbol_2 instanceof InvalidValueException) {
+		                        throw (InvalidValueException)CAUGHT_symbol_2;
+		                    }
+		                    final /*@Thrown*/ boolean eq_1 = CAUGHT_symbol_2 == Boolean.FALSE;
+		                    @Nullable /*@Thrown*/ Boolean symbol_5;
+		                    if (eq_1) {
+		                        symbol_5 = (Boolean)ValuesUtil.FALSE_VALUE;
+		                    }
+		                    else {
+		                        if (CAUGHT_self_70 instanceof InvalidValueException) {
+		                            throw (InvalidValueException)CAUGHT_self_70;
+		                        }
+		                        symbol_5 = (Boolean)CAUGHT_self_70;
+		                    }
+		                    symbol_6 = symbol_5;
+		                }
+		                symbol_13 = symbol_6;
+		            }
+		            else {
+		                if (CAUGHT_self_70 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_70;
+		                }
+		                final /*@Thrown*/ boolean eq_2 = CAUGHT_self_70 == Boolean.FALSE;
+		                @Nullable /*@Thrown*/ Boolean symbol_12;
+		                if (eq_2) {
+		                    symbol_12 = (Boolean)ValuesUtil.FALSE_VALUE;
+		                }
+		                else {
+		                    if (CAUGHT_symbol_2 instanceof InvalidValueException) {
+		                        throw (InvalidValueException)CAUGHT_symbol_2;
+		                    }
+		                    final /*@NonInvalid*/ boolean symbol_7 = CAUGHT_symbol_2 instanceof InvalidValueException;
+		                    @Nullable /*@Thrown*/ Boolean symbol_11;
+		                    if (symbol_7) {
+		                        symbol_11 = (Boolean)CAUGHT_symbol_2;
+		                    }
+		                    else {
+		                        final /*@Thrown*/ boolean eq_3 = CAUGHT_symbol_2 == Boolean.FALSE;
+		                        @Nullable /*@NonInvalid*/ Boolean symbol_10;
+		                        if (eq_3) {
+		                            symbol_10 = (Boolean)ValuesUtil.FALSE_VALUE;
+		                        }
+		                        else {
+		                            final /*@Thrown*/ boolean eq_4 = CAUGHT_self_70 == null;
+		                            @Nullable /*@NonInvalid*/ Boolean symbol_9;
+		                            if (eq_4) {
+		                                symbol_9 = null;
+		                            }
+		                            else {
+		                                final /*@Thrown*/ boolean eq_5 = CAUGHT_symbol_2 == null;
+		                                @Nullable /*@NonInvalid*/ Boolean symbol_8;
+		                                if (eq_5) {
+		                                    symbol_8 = null;
+		                                }
+		                                else {
+		                                    symbol_8 = (Boolean)ValuesUtil.TRUE_VALUE;
+		                                }
+		                                symbol_9 = symbol_8;
+		                            }
+		                            symbol_10 = symbol_9;
+		                        }
+		                        symbol_11 = symbol_10;
+		                    }
+		                    symbol_12 = symbol_11;
+		                }
+		                symbol_13 = symbol_12;
+		            }
+		            if (symbol_13 == null) {
+		                throw new InvalidValueException("Null if condition");
+		            }
+		            @Nullable /*@Thrown*/ DomainType symbol_14;
+		            if (symbol_13) {
+		                final @NonNull /*@NonInvalid*/ DomainClass TYP_Class_0 = idResolver.getClass(PivotTables.CLSSid_Class, null);
+		                symbol_14 = TYP_Class_0;
+		            }
+		            else {
+		                if (CAUGHT_argument_1 == null) {
+		                    throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
+		                }
+		                if (CAUGHT_argument_1 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_argument_1;
+		                }
+		                final @Nullable /*@Thrown*/ DomainType type = ((DomainTypedElement)CAUGHT_argument_1).getType();
+		                symbol_14 = type;
+		            }
+		            final /*@Thrown*/ boolean conformsTo = OclTypeConformsToOperation.INSTANCE.evaluate(evaluator, symbol_14, requiredType).booleanValue();
 		            CAUGHT_conformsTo = conformsTo;
 		        }
 		        catch (Exception e) {

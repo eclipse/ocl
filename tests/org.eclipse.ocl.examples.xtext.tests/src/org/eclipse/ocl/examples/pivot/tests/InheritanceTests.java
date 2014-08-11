@@ -34,7 +34,7 @@ public class InheritanceTests extends PivotSimpleTestSuite
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        helper.setContext(metaModelManager.getMetaclassType());
+        helper.setContext(metaModelManager.getClassType());
     }
 
 	public void test_Inheritance_Boolean() {

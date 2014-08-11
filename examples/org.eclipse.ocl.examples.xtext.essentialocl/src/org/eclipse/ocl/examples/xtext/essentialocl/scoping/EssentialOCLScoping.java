@@ -49,6 +49,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationRole;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
@@ -94,6 +95,7 @@ public class EssentialOCLScoping
 			String messageTemplate;
 			String argumentText = null;
 			ExpCS navigationArgument = null;
+			Type sourceType = null;
 			if ((index + 1) < path.size()) {
 				messageTemplate = OCLMessages.UnresolvedNamespace_ERROR_;
 			}
@@ -103,10 +105,19 @@ public class EssentialOCLScoping
 				RoundBracketedClauseCS csRoundBracketedClause = csNameExp.getRoundBracketedClause();
 				if (csRoundBracketedClause != null) {
 					argumentText = getOperationArguments(csRoundBracketedClause);
-					messageTemplate = OCLMessages.UnresolvedOperationCall_ERROR_;
+					List<NavigatingArgCS> arguments = csRoundBracketedClause.getArguments();
+					if ((arguments.size() > 0) && (arguments.get(0).getRole() == NavigationRole.ITERATOR)) {
+						messageTemplate = OCLMessages.UnresolvedIterationCall_ERROR_;
+					}
+					else {
+						messageTemplate = csNameExp.isSourceTypeof() ? OCLMessages.UnresolvedStaticOperationCall_ERROR_ : OCLMessages.UnresolvedOperationCall_ERROR_;
+					}
 				}
 				else {
-					messageTemplate = OCLMessages.UnresolvedProperty_ERROR_;
+					messageTemplate = csNameExp.isSourceTypeof() ? OCLMessages.UnresolvedStaticProperty_ERROR_ : OCLMessages.UnresolvedProperty_ERROR_;
+				}
+				if (csNameExp.isSourceTypeof()) {
+					sourceType = csNameExp.getSourceType();
 				}
 			}
 			else if (csContext instanceof TypeNameExpCS) {
@@ -167,7 +178,9 @@ public class EssentialOCLScoping
 			String typeText = "";
 			if (source != null) {
 				typeText = PivotConstants.UNKNOWN_TYPE_TEXT;
-				Type sourceType = source.getType();
+				if (sourceType == null) {
+					sourceType = source.getType();
+				}
 				if (sourceType != null) {
 					OperatorCS csParent = navigationArgument != null ? navigationArgument.getParent() : null;
 					if (!(sourceType instanceof CollectionType) && (csParent instanceof NavigationOperatorCS) && PivotConstants.COLLECTION_NAVIGATION_OPERATOR.equals(((NavigationOperatorCS)csParent).getName())) {
@@ -190,7 +203,7 @@ public class EssentialOCLScoping
 		}
 		
 		public String getOperationArguments(@NonNull RoundBracketedClauseCS csRoundBracketedClause) {
-			List<NavigatingArgCS> arguments =csRoundBracketedClause.getArguments();
+			List<NavigatingArgCS> arguments = csRoundBracketedClause.getArguments();
 			StringBuilder s = new StringBuilder();
 			for (NavigatingArgCS csArgument : arguments) {
 				TypedElement pivot = PivotUtil.getPivot(TypedElement.class, csArgument);

@@ -329,10 +329,17 @@ ruleRestrictedKeywords returns [AntlrDatatypeRuleToken current=new AntlrDatatype
     }
 
     |
+	kw='typeof' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRestrictedKeywordsAccess().getTypeofKeyword_20()); 
+    }
+
+    |
 	kw='validating' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getRestrictedKeywordsAccess().getValidatingKeyword_20()); 
+        newLeafNode(kw, grammarAccess.getRestrictedKeywordsAccess().getValidatingKeyword_21()); 
     }
 )
     ;
@@ -3821,19 +3828,61 @@ ruleTypedTypeRefCS returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-((
+(((
+(
+		lv_typeof_0_0=	'typeof' 
+    {
+        newLeafNode(lv_typeof_0_0, grammarAccess.getTypedTypeRefCSAccess().getTypeofTypeofKeyword_0_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getTypedTypeRefCSRule());
+	        }
+       		setWithLastConsumed($current, "typeof", true, "typeof");
+	    }
+
+)
+)	otherlv_1='(' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getTypedTypeRefCSAccess().getLeftParenthesisKeyword_0_1());
+    }
+(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getTypedTypeRefCSAccess().getPathNameLibPathNameCSParserRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getTypedTypeRefCSAccess().getPathNameLibPathNameCSParserRuleCall_0_2_0()); 
 	    }
-		lv_pathName_0_0=ruleLibPathNameCS		{
+		lv_pathName_2_0=ruleLibPathNameCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getTypedTypeRefCSRule());
 	        }
        		set(
        			$current, 
        			"pathName",
-        		lv_pathName_0_0, 
+        		lv_pathName_2_0, 
+        		"LibPathNameCS");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_3=')' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getTypedTypeRefCSAccess().getRightParenthesisKeyword_0_3());
+    }
+)
+    |((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getTypedTypeRefCSAccess().getPathNameLibPathNameCSParserRuleCall_1_0_0()); 
+	    }
+		lv_pathName_4_0=ruleLibPathNameCS		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getTypedTypeRefCSRule());
+	        }
+       		set(
+       			$current, 
+       			"pathName",
+        		lv_pathName_4_0, 
         		"LibPathNameCS");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -3842,22 +3891,22 @@ ruleTypedTypeRefCS returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getTypedTypeRefCSAccess().getOwnedTemplateBindingTemplateBindingCSParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getTypedTypeRefCSAccess().getOwnedTemplateBindingTemplateBindingCSParserRuleCall_1_1_0()); 
 	    }
-		lv_ownedTemplateBinding_1_0=ruleTemplateBindingCS		{
+		lv_ownedTemplateBinding_5_0=ruleTemplateBindingCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getTypedTypeRefCSRule());
 	        }
        		set(
        			$current, 
        			"ownedTemplateBinding",
-        		lv_ownedTemplateBinding_1_0, 
+        		lv_ownedTemplateBinding_5_0, 
         		"TemplateBindingCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)?)
+)?))
 ;
 
 

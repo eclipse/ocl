@@ -28,19 +28,15 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreTablesUtils;
 import org.eclipse.ocl.examples.domain.elements.Nameable;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.BagType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Enumeration;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.Library;
-import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -55,7 +51,6 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.utilities.AS2Moniker;
-import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.xtext.util.Strings;
 
 @SuppressWarnings("all")
@@ -121,18 +116,6 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 			EObject eObject = tit.next();
 			if (eObject instanceof LambdaType) {
 				allElements.add((LambdaType)eObject);
-			}
-		}
-		return allElements;
-	}
-
-	protected @NonNull Set<Metaclass<?>> getAllMetaclasses(@NonNull Root root) {
-		Set<Metaclass<?>> allElements = new HashSet<Metaclass<?>>();
-		TreeIterator<EObject> tit = root.eAllContents();
-		while (tit.hasNext()) {
-			EObject eObject = tit.next();
-			if (eObject instanceof Metaclass<?>) {
-				allElements.add((Metaclass<?>)eObject);
 			}
 		}
 		return allElements;
@@ -253,7 +236,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 			EObject eObject = tit.next();
 			if ((eObject instanceof org.eclipse.ocl.examples.pivot.Class) && !(eObject instanceof Enumeration) && !(eObject instanceof LambdaType) &&
 				!(eObject instanceof CollectionType) && !(eObject instanceof PrimitiveType) &&
-				!(eObject instanceof Metaclass<?>) && !(eObject instanceof TupleType) &&
+				!(eObject instanceof TupleType) &&
 				(((org.eclipse.ocl.examples.pivot.Class)eObject).isTemplateParameter() == null)) {
 				allElements.add((org.eclipse.ocl.examples.pivot.Class)eObject);
 			}
@@ -434,20 +417,6 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 			}
 		}
 		List<Library> sortedElements = new ArrayList<Library>(allElements);
-		Collections.sort(sortedElements, monikerComparator);
-		return sortedElements;
-	}
-
-	protected @NonNull List<Metaclass<?>> getSortedMetaclasses(@NonNull Root root) {
-		Set<Metaclass<?>> allElements = new HashSet<Metaclass<?>>();
-		TreeIterator<EObject> tit = root.eAllContents();
-		while (tit.hasNext()) {
-			EObject eObject = tit.next();
-			if (eObject instanceof Metaclass<?>) {
-				allElements.add((Metaclass<?>)eObject);
-			}
-		}
-		List<Metaclass<?>> sortedElements = new ArrayList<Metaclass<?>>(allElements);
 		Collections.sort(sortedElements, monikerComparator);
 		return sortedElements;
 	}

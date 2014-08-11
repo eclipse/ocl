@@ -1987,13 +1987,22 @@ public interface EssentialOCLCSPackage
 	int NAME_EXP_CS__SOURCE_TYPE = EXP_CS_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Source Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAME_EXP_CS__SOURCE_TYPEOF = EXP_CS_FEATURE_COUNT + 6;
+
+	/**
 	 * The number of structural features of the '<em>Name Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 6;
+	int NAME_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3776,6 +3785,17 @@ public interface EssentialOCLCSPackage
 	EReference getNameExpCS_SourceType();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#isSourceTypeof <em>Source Typeof</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Source Typeof</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#isSourceTypeof()
+	 * @see #getNameExpCS()
+	 * @generated
+	 */
+	EAttribute getNameExpCS_SourceTypeof();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS <em>Navigating Arg CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4705,6 +4725,14 @@ public interface EssentialOCLCSPackage
 		 * @generated
 		 */
 		EReference NAME_EXP_CS__SOURCE_TYPE = eINSTANCE.getNameExpCS_SourceType();
+
+		/**
+		 * The meta object literal for the '<em><b>Source Typeof</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NAME_EXP_CS__SOURCE_TYPEOF = eINSTANCE.getNameExpCS_SourceTypeof();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NavigatingArgCSImpl <em>Navigating Arg CS</em>}' class.

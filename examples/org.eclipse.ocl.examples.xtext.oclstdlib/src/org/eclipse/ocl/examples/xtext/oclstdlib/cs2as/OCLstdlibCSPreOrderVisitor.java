@@ -13,7 +13,6 @@ package org.eclipse.ocl.examples.xtext.oclstdlib.cs2as;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Library;
@@ -40,26 +39,6 @@ import org.eclipse.xtext.common.types.JvmType;
 
 public class OCLstdlibCSPreOrderVisitor extends AbstractOCLstdlibCSPreOrderVisitor
 {
-	protected static class ClassifierInstanceTypeContinuation extends SingleContinuation<LibClassCS>
-	{
-		public ClassifierInstanceTypeContinuation(@NonNull CS2PivotConversion context, @NonNull LibClassCS csElement) {
-			super(context, null, null, csElement);
-		}
-
-		@Override
-		public BasicContinuation<?> execute() {
-			Metaclass<?> type = PivotUtil.getPivot(Metaclass.class, csElement);
-			if (type != null) {
-				TemplateSignature ownedTemplateSignature = type.getOwnedTemplateSignature();
-				if (ownedTemplateSignature != null) {
-					List<TemplateParameter> parameters = ownedTemplateSignature.getOwnedTemplateParameters();
-					type.setInstanceType(parameters.size() > 0 ? parameters.get(0) : null);
-				}
-			}
-			return null;
-		}
-	}
-	
 	protected static class CollectionElementTypeContinuation extends SingleContinuation<LibClassCS>
 	{
 		public CollectionElementTypeContinuation(@NonNull CS2PivotConversion context, @NonNull LibClassCS csElement) {
@@ -173,10 +152,6 @@ public class OCLstdlibCSPreOrderVisitor extends AbstractOCLstdlibCSPreOrderVisit
 		if (type instanceof CollectionType) {
 			continuation = Continuations.combine(continuation,
 				new CollectionElementTypeContinuation(context, csLibClass));
-		}
-		else if (type instanceof Metaclass<?>) {
-			continuation = Continuations.combine(continuation,
-				new ClassifierInstanceTypeContinuation(context, csLibClass));
 		}
 //		else if (type instanceof LambdaType) {
 //			LambdaType lamdbaType = (LambdaType) type;

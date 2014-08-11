@@ -22,7 +22,6 @@ import org.eclipse.ocl.examples.pivot.attributes.IterateExpAttribution;
 import org.eclipse.ocl.examples.pivot.attributes.IteratorExpAttribution;
 import org.eclipse.ocl.examples.pivot.attributes.LetExpAttribution;
 import org.eclipse.ocl.examples.pivot.attributes.LibraryAttribution;
-import org.eclipse.ocl.examples.pivot.attributes.MetaclassAttribution;
 import org.eclipse.ocl.examples.pivot.attributes.OperationAttribution;
 import org.eclipse.ocl.examples.pivot.attributes.OperationCallExpAttribution;
 import org.eclipse.ocl.examples.pivot.attributes.PackageAttribution;
@@ -47,7 +46,6 @@ public class PivotScoping
 		registry.put(PivotPackage.Literals.LAMBDA_TYPE, EmptyAttribution.INSTANCE);
 		registry.put(PivotPackage.Literals.LET_EXP, LetExpAttribution.INSTANCE);
 		registry.put(PivotPackage.Literals.LIBRARY, LibraryAttribution.INSTANCE);
-		registry.put(PivotPackage.Literals.METACLASS, MetaclassAttribution.INSTANCE);
 		registry.put(PivotPackage.Literals.OPERATION, OperationAttribution.INSTANCE);
 		registry.put(PivotPackage.Literals.OPERATION_CALL_EXP, OperationCallExpAttribution.INSTANCE);
 		registry.put(PivotPackage.Literals.PACKAGE, PackageAttribution.INSTANCE);

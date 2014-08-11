@@ -71,7 +71,6 @@ import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -1296,12 +1295,6 @@ public abstract class PivotTestSuite extends PivotTestCase
 
 	protected @NonNull OCLHelper getHelper() {
 		return DomainUtil.nonNullState(helper);
-	}
-
-	public @NonNull Metaclass<?> getMetaclass(@NonNull Type type) {
-		Metaclass<?> metaclass = metaModelManager.getMetaclass(type);
-		metaModelManager.addLockedElement(metaclass);
-		return metaclass;
 	}
    
 	protected @NonNull org.eclipse.ocl.examples.pivot.Class getMetaclass(@NonNull String name) {

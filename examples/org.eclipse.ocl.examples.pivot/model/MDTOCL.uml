@@ -456,6 +456,9 @@
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_Xp6OGn7VEeOu79LxSz8Ylw" value="true"/>
         </ownedAttribute>
         <ownedAttribute xmi:id="_iMnUQBuwEeSIos3S87O_rg" name="isMany" type="_iauzUOLYEeGCOa0Md3lQkQ" isReadOnly="true" isDerived="true"/>
+        <ownedAttribute xmi:id="_Y3c0QCFZEeSNlrewQPlAjA" name="isTypeof" type="_iauzUOLYEeGCOa0Md3lQkQ">
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_Y3c0QSFZEeSNlrewQPlAjA" value="false"/>
+        </ownedAttribute>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_tG-HYMeqEd-sJIf4tYBt-g" name="MDT_OCL_Visiting">

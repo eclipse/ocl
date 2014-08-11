@@ -174,7 +174,7 @@ public class OperationImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IS_INVALIDATING_EFLAG = 1 << 10;
+	protected static final int IS_INVALIDATING_EFLAG = 1 << 11;
 
 	/**
 	 * The default value of the '{@link #isValidating() <em>Is Validating</em>}' attribute.
@@ -194,7 +194,7 @@ public class OperationImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IS_VALIDATING_EFLAG = 1 << 11;
+	protected static final int IS_VALIDATING_EFLAG = 1 << 12;
 
 	/**
 	 * The cached value of the '{@link #getOwnedParameter() <em>Owned Parameter</em>}' containment reference list.
@@ -623,16 +623,6 @@ public class OperationImpl
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.OPERATION__OWNING_CLASS, newOwningClass, newOwningClass));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public org.eclipse.ocl.examples.pivot.Class basicGetClass_()
-	{
-		return null;		// FIXME Eliminate this field altogether
 	}
 
 	/**
@@ -1070,6 +1060,8 @@ public class OperationImpl
 				return isMany();
 			case PivotPackage.OPERATION__IS_REQUIRED:
 				return isRequired();
+			case PivotPackage.OPERATION__IS_TYPEOF:
+				return isTypeof();
 			case PivotPackage.OPERATION__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -1143,6 +1135,9 @@ public class OperationImpl
 				return;
 			case PivotPackage.OPERATION__IS_REQUIRED:
 				setIsRequired((Boolean)newValue);
+				return;
+			case PivotPackage.OPERATION__IS_TYPEOF:
+				setIsTypeof((Boolean)newValue);
 				return;
 			case PivotPackage.OPERATION__TYPE:
 				setType((Type)newValue);
@@ -1236,6 +1231,9 @@ public class OperationImpl
 			case PivotPackage.OPERATION__IS_REQUIRED:
 				setIsRequired(IS_REQUIRED_EDEFAULT);
 				return;
+			case PivotPackage.OPERATION__IS_TYPEOF:
+				setIsTypeof(IS_TYPEOF_EDEFAULT);
+				return;
 			case PivotPackage.OPERATION__TYPE:
 				setType((Type)null);
 				return;
@@ -1317,6 +1315,8 @@ public class OperationImpl
 				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.OPERATION__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
+			case PivotPackage.OPERATION__IS_TYPEOF:
+				return ((eFlags & IS_TYPEOF_EFLAG) != 0) != IS_TYPEOF_EDEFAULT;
 			case PivotPackage.OPERATION__TYPE:
 				return type != null;
 			case PivotPackage.OPERATION__IMPLEMENTATION:

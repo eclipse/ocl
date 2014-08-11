@@ -1130,6 +1130,9 @@ public class ClassImpl
 	}
 	
 	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
+		if (this == type) {
+			return true;
+		}
 		DomainInheritance thisInheritance = this.getInheritance(standardLibrary);
 		DomainInheritance thatInheritance = type.getInheritance(standardLibrary);
 		return thisInheritance.isSubInheritanceOf(thatInheritance);
@@ -1209,12 +1212,12 @@ public class ClassImpl
 			TemplateSignature templateSignature = getOwnedTemplateSignature();
 			if (templateSignature != null) {
 				MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(DomainUtil.nonNullState(((EObject) expr).eResource()));
-				return metaModelManager.specializeType(this, (CallExp)expr, (Type)selfType);
+				return metaModelManager.specializeType(this, false, (CallExp)expr, (Type)selfType, false);
 			}
 			List<TemplateBinding> templateBindings = getOwnedTemplateBindings();
 			if ((templateBindings != null) && !templateBindings.isEmpty()) {
 				MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(DomainUtil.nonNullState(((EObject) expr).eResource()));
-				return metaModelManager.specializeType(this, (CallExp)expr, (Type)selfType);
+				return metaModelManager.specializeType(this, false, (CallExp)expr, (Type)selfType, false);
 			}
 		}
 		return this;
