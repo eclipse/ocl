@@ -36,9 +36,6 @@ import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.InstanceSpecification;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.ProfileApplication;
-import org.eclipse.ocl.examples.pivot.TemplateBinding;
-import org.eclipse.ocl.examples.pivot.TemplateSignature;
-import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -48,9 +45,6 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getOwnedTemplateBindings <em>Owned Template Bindings</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getOwnedTemplateSignature <em>Owned Template Signature</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getUnspecializedElement <em>Unspecialized Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getURI <em>URI</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getImportedPackage <em>Imported Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getNsPrefix <em>Ns Prefix</em>}</li>
@@ -69,36 +63,6 @@ public class PackageImpl
 		extends NamespaceImpl
 		implements org.eclipse.ocl.examples.pivot.Package {
 		
-	/**
-	 * The cached value of the '{@link #getOwnedTemplateBindings() <em>Owned Template Bindings</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedTemplateBindings()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<TemplateBinding> ownedTemplateBindings;
-
-	/**
-	 * The cached value of the '{@link #getOwnedTemplateSignature() <em>Owned Template Signature</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedTemplateSignature()
-	 * @generated
-	 * @ordered
-	 */
-	protected TemplateSignature ownedTemplateSignature;
-
-	/**
-	 * The cached value of the '{@link #getUnspecializedElement() <em>Unspecialized Element</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUnspecializedElement()
-	 * @generated
-	 * @ordered
-	 */
-	protected TemplateableElement unspecializedElement;
-
 	/**
 	 * The default value of the '{@link #getURI() <em>URI</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -206,91 +170,6 @@ public class PackageImpl
 	@Override
 	protected EClass eStaticClass() {
 		return PivotPackage.Literals.PACKAGE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TemplateSignature getOwnedTemplateSignature()
-	{
-		return ownedTemplateSignature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwnedTemplateSignature(TemplateSignature newOwnedTemplateSignature, NotificationChain msgs)
-	{
-		TemplateSignature oldOwnedTemplateSignature = ownedTemplateSignature;
-		ownedTemplateSignature = newOwnedTemplateSignature;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE, oldOwnedTemplateSignature, newOwnedTemplateSignature);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwnedTemplateSignature(TemplateSignature newOwnedTemplateSignature)
-	{
-		if (newOwnedTemplateSignature != ownedTemplateSignature)
-		{
-			NotificationChain msgs = null;
-			if (ownedTemplateSignature != null)
-				msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, PivotPackage.TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT, TemplateSignature.class, msgs);
-			if (newOwnedTemplateSignature != null)
-				msgs = ((InternalEObject)newOwnedTemplateSignature).eInverseAdd(this, PivotPackage.TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT, TemplateSignature.class, msgs);
-			msgs = basicSetOwnedTemplateSignature(newOwnedTemplateSignature, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE, newOwnedTemplateSignature, newOwnedTemplateSignature));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public List<TemplateBinding> getOwnedTemplateBindings()
-	{
-		if (ownedTemplateBindings == null)
-		{
-			ownedTemplateBindings = new EObjectContainmentWithInverseEList<TemplateBinding>(TemplateBinding.class, this, PivotPackage.PACKAGE__OWNED_TEMPLATE_BINDINGS, PivotPackage.TEMPLATE_BINDING__OWNING_TEMPLATEABLE_ELEMENT);
-		}
-		return ownedTemplateBindings;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TemplateableElement getUnspecializedElement()
-	{
-		return unspecializedElement;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setUnspecializedElement(TemplateableElement newUnspecializedElement)
-	{
-		TemplateableElement oldUnspecializedElement = unspecializedElement;
-		unspecializedElement = newUnspecializedElement;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT, oldUnspecializedElement, unspecializedElement));
 	}
 
 	/**
@@ -456,12 +335,6 @@ public class PackageImpl
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_COMMENT:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.PACKAGE__OWNED_TEMPLATE_BINDINGS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedTemplateBindings()).basicAdd(otherEnd, msgs);
-			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:
-				if (ownedTemplateSignature != null)
-					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE, null, msgs);
-				return basicSetOwnedTemplateSignature((TemplateSignature)otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_CLASSES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedClasses()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_INSTANCES:
@@ -498,10 +371,6 @@ public class PackageImpl
 				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_RULE:
 				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
-			case PivotPackage.PACKAGE__OWNED_TEMPLATE_BINDINGS:
-				return ((InternalEList<?>)getOwnedTemplateBindings()).basicRemove(otherEnd, msgs);
-			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:
-				return basicSetOwnedTemplateSignature(null, msgs);
 			case PivotPackage.PACKAGE__OWNED_CLASSES:
 				return ((InternalEList<?>)getOwnedClasses()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_INSTANCES:
@@ -553,12 +422,6 @@ public class PackageImpl
 				return getName();
 			case PivotPackage.PACKAGE__OWNED_RULE:
 				return getOwnedRule();
-			case PivotPackage.PACKAGE__OWNED_TEMPLATE_BINDINGS:
-				return getOwnedTemplateBindings();
-			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:
-				return getOwnedTemplateSignature();
-			case PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT:
-				return getUnspecializedElement();
 			case PivotPackage.PACKAGE__URI:
 				return getURI();
 			case PivotPackage.PACKAGE__IMPORTED_PACKAGE:
@@ -611,16 +474,6 @@ public class PackageImpl
 			case PivotPackage.PACKAGE__OWNED_RULE:
 				getOwnedRule().clear();
 				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
-				return;
-			case PivotPackage.PACKAGE__OWNED_TEMPLATE_BINDINGS:
-				getOwnedTemplateBindings().clear();
-				getOwnedTemplateBindings().addAll((Collection<? extends TemplateBinding>)newValue);
-				return;
-			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:
-				setOwnedTemplateSignature((TemplateSignature)newValue);
-				return;
-			case PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT:
-				setUnspecializedElement((TemplateableElement)newValue);
 				return;
 			case PivotPackage.PACKAGE__URI:
 				setURI((String)newValue);
@@ -682,15 +535,6 @@ public class PackageImpl
 			case PivotPackage.PACKAGE__OWNED_RULE:
 				getOwnedRule().clear();
 				return;
-			case PivotPackage.PACKAGE__OWNED_TEMPLATE_BINDINGS:
-				getOwnedTemplateBindings().clear();
-				return;
-			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:
-				setOwnedTemplateSignature((TemplateSignature)null);
-				return;
-			case PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT:
-				setUnspecializedElement((TemplateableElement)null);
-				return;
 			case PivotPackage.PACKAGE__URI:
 				setURI(URI_EDEFAULT);
 				return;
@@ -740,12 +584,6 @@ public class PackageImpl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.PACKAGE__OWNED_RULE:
 				return ownedRule != null && !ownedRule.isEmpty();
-			case PivotPackage.PACKAGE__OWNED_TEMPLATE_BINDINGS:
-				return ownedTemplateBindings != null && !ownedTemplateBindings.isEmpty();
-			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:
-				return ownedTemplateSignature != null;
-			case PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT:
-				return unspecializedElement != null;
 			case PivotPackage.PACKAGE__URI:
 				return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
 			case PivotPackage.PACKAGE__IMPORTED_PACKAGE:
@@ -764,46 +602,6 @@ public class PackageImpl
 				return profileApplication != null && !profileApplication.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == TemplateableElement.class)
-		{
-			switch (derivedFeatureID)
-			{
-				case PivotPackage.PACKAGE__OWNED_TEMPLATE_BINDINGS: return PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_BINDINGS;
-				case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE: return PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE;
-				case PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT: return PivotPackage.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == TemplateableElement.class)
-		{
-			switch (baseFeatureID)
-			{
-				case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_BINDINGS: return PivotPackage.PACKAGE__OWNED_TEMPLATE_BINDINGS;
-				case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE: return PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE;
-				case PivotPackage.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT: return PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**

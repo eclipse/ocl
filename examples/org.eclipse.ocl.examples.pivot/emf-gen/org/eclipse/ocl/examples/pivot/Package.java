@@ -22,7 +22,6 @@ import org.eclipse.jdt.annotation.NonNull;
  *
  * <!-- begin-model-doc -->
  * A package is a container for types and other packages.
- * Package specializes TemplateableElement and PackageableElement specializes ParameterableElement to specify that a package can be used as a template and a PackageableElement as a template parameter.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -43,7 +42,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * @generated
  */
 public interface Package
-		extends Namespace, TemplateableElement, org.eclipse.ocl.examples.domain.elements.DomainPackage {
+		extends Namespace, org.eclipse.ocl.examples.domain.elements.DomainPackage {
 
 	/**
 	 * Returns the value of the '<em><b>Owned Packages</b></em>' containment reference list.

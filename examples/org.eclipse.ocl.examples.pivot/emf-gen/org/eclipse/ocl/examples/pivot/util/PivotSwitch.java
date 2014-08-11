@@ -840,7 +840,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				T1 result = caseLibrary(library);
 				if (result == null) result = casePackage(library);
 				if (result == null) result = caseNamespace(library);
-				if (result == null) result = caseTemplateableElement(library);
 				if (result == null) result = caseNamedElement(library);
 				if (result == null) result = caseElement(library);
 				if (result == null) result = caseNameable(library);
@@ -1079,7 +1078,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				org.eclipse.ocl.examples.pivot.Package package_ = (org.eclipse.ocl.examples.pivot.Package)theEObject;
 				T1 result = casePackage(package_);
 				if (result == null) result = caseNamespace(package_);
-				if (result == null) result = caseTemplateableElement(package_);
 				if (result == null) result = caseNamedElement(package_);
 				if (result == null) result = caseElement(package_);
 				if (result == null) result = caseNameable(package_);
@@ -1154,7 +1152,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				T1 result = caseProfile(profile);
 				if (result == null) result = casePackage(profile);
 				if (result == null) result = caseNamespace(profile);
-				if (result == null) result = caseTemplateableElement(profile);
 				if (result == null) result = caseNamedElement(profile);
 				if (result == null) result = caseElement(profile);
 				if (result == null) result = caseNameable(profile);

@@ -865,8 +865,8 @@
           type="#T.pivot.Property"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.OrderedSetType" name="OrderedSetType" superClasses="#T.pivot.CollectionType"/>
-    <ownedClasses xmi:id="T.pivot.Package" name="Package" superClasses="#T.pivot.Namespace #T.pivot.TemplateableElement">
-      <ownedComment body="A package is a container for types and other packages.&#xA;Package specializes TemplateableElement and PackageableElement specializes ParameterableElement to specify that a package can be used as a template and a PackageableElement as a template parameter."/>
+    <ownedClasses xmi:id="T.pivot.Package" name="Package" superClasses="#T.pivot.Namespace">
+      <ownedComment body="A package is a container for types and other packages."/>
       <ownedProperties xmi:id="p.pivot.Package.URI" isRequired="false" name="URI"
           type="#String"/>
       <ownedProperties xmi:id="p.pivot.Package.importedPackage" name="importedPackage"

@@ -6120,7 +6120,6 @@ public class PivotPackageImpl
 		oppositePropertyCallExpEClass.getESuperTypes().add(this.getNavigationCallExp());
 		orderedSetTypeEClass.getESuperTypes().add(this.getCollectionType());
 		packageEClass.getESuperTypes().add(this.getNamespace());
-		packageEClass.getESuperTypes().add(this.getTemplateableElement());
 		parameterEClass.getESuperTypes().add(this.getVariableDeclaration());
 		precedenceEClass.getESuperTypes().add(this.getNamedElement());
 		primitiveLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());

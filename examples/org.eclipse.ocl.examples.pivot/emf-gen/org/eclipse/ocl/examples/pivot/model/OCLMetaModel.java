@@ -696,7 +696,6 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedTypes.add(type = _Package);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Namespace);
-			superClasses.add(_TemplateableElement);
 			ownedTypes.add(type = _Parameter);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_VariableDeclaration);
@@ -4157,7 +4156,7 @@ public class OCLMetaModel extends ASResourceImpl
 			installComment(pr_Operation_ownedParameter, "The parameters to the operation.");
 			installComment(pr_Operation_owningClass, "The class that owns the operation.");
 			installComment(pr_Operation_raisedException, "The exceptions that are declared as possible during an invocation of the operation.");
-			installComment(_Package, "A package is a container for types and other packages.\nPackage specializes TemplateableElement and PackageableElement specializes ParameterableElement to specify that a package can be used as a template and a PackageableElement as a template parameter.");
+			installComment(_Package, "A package is a container for types and other packages.");
 			installComment(pr_Package_ownedClasses, "The set of contained types.");
 			installComment(pr_Package_ownedInstances, "The instance specification that owns this slot.");
 			installComment(pr_Package_ownedPackages, "The set of contained packages.");

@@ -12685,40 +12685,13 @@ public interface PivotPackage
 	int PACKAGE__OWNED_RULE = NAMESPACE__OWNED_RULE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__OWNED_TEMPLATE_BINDINGS = NAMESPACE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__OWNED_TEMPLATE_SIGNATURE = NAMESPACE_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__UNSPECIALIZED_ELEMENT = NAMESPACE_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>URI</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__URI = NAMESPACE_FEATURE_COUNT + 3;
+	int PACKAGE__URI = NAMESPACE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Imported Package</b></em>' reference list.
@@ -12727,7 +12700,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__IMPORTED_PACKAGE = NAMESPACE_FEATURE_COUNT + 4;
+	int PACKAGE__IMPORTED_PACKAGE = NAMESPACE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Ns Prefix</b></em>' attribute.
@@ -12736,7 +12709,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__NS_PREFIX = NAMESPACE_FEATURE_COUNT + 5;
+	int PACKAGE__NS_PREFIX = NAMESPACE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Owned Classes</b></em>' containment reference list.
@@ -12745,7 +12718,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__OWNED_CLASSES = NAMESPACE_FEATURE_COUNT + 6;
+	int PACKAGE__OWNED_CLASSES = NAMESPACE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Owned Instances</b></em>' containment reference list.
@@ -12754,7 +12727,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__OWNED_INSTANCES = NAMESPACE_FEATURE_COUNT + 7;
+	int PACKAGE__OWNED_INSTANCES = NAMESPACE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Owned Packages</b></em>' containment reference list.
@@ -12763,7 +12736,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__OWNED_PACKAGES = NAMESPACE_FEATURE_COUNT + 8;
+	int PACKAGE__OWNED_PACKAGES = NAMESPACE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
@@ -12772,7 +12745,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__OWNING_PACKAGE = NAMESPACE_FEATURE_COUNT + 9;
+	int PACKAGE__OWNING_PACKAGE = NAMESPACE_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Profile Application</b></em>' containment reference list.
@@ -12781,7 +12754,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__PROFILE_APPLICATION = NAMESPACE_FEATURE_COUNT + 10;
+	int PACKAGE__PROFILE_APPLICATION = NAMESPACE_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of structural features of the '<em>Package</em>' class.
@@ -12790,7 +12763,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_FEATURE_COUNT = NAMESPACE_FEATURE_COUNT + 11;
+	int PACKAGE_FEATURE_COUNT = NAMESPACE_FEATURE_COUNT + 8;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -12872,33 +12845,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LIBRARY__OWNED_RULE = PACKAGE__OWNED_RULE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY__OWNED_TEMPLATE_BINDINGS = PACKAGE__OWNED_TEMPLATE_BINDINGS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY__OWNED_TEMPLATE_SIGNATURE = PACKAGE__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY__UNSPECIALIZED_ELEMENT = PACKAGE__UNSPECIALIZED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>URI</b></em>' attribute.
@@ -15302,33 +15248,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PROFILE__OWNED_RULE = PACKAGE__OWNED_RULE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROFILE__OWNED_TEMPLATE_BINDINGS = PACKAGE__OWNED_TEMPLATE_BINDINGS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROFILE__OWNED_TEMPLATE_SIGNATURE = PACKAGE__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROFILE__UNSPECIALIZED_ELEMENT = PACKAGE__UNSPECIALIZED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>URI</b></em>' attribute.

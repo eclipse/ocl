@@ -1118,7 +1118,6 @@ public class PivotTables
 		private static final @NonNull ExecutorFragment _Library__OclAny = new ExecutorFragment(Types._Library, OCLstdlibTables.Types._OclAny);
 		private static final @NonNull ExecutorFragment _Library__OclElement = new ExecutorFragment(Types._Library, OCLstdlibTables.Types._OclElement);
 		private static final @NonNull ExecutorFragment _Library__Package = new ExecutorFragment(Types._Library, PivotTables.Types._Package);
-		private static final @NonNull ExecutorFragment _Library__TemplateableElement = new ExecutorFragment(Types._Library, PivotTables.Types._TemplateableElement);
 		private static final @NonNull ExecutorFragment _Library__Visitable = new ExecutorFragment(Types._Library, PivotTables.Types._Visitable);
 
 		private static final @NonNull ExecutorFragment _LibraryFeature__LibraryFeature = new ExecutorFragment(Types._LibraryFeature, PivotTables.Types._LibraryFeature);
@@ -1312,7 +1311,6 @@ public class PivotTables
 		private static final @NonNull ExecutorFragment _Package__OclAny = new ExecutorFragment(Types._Package, OCLstdlibTables.Types._OclAny);
 		private static final @NonNull ExecutorFragment _Package__OclElement = new ExecutorFragment(Types._Package, OCLstdlibTables.Types._OclElement);
 		private static final @NonNull ExecutorFragment _Package__Package = new ExecutorFragment(Types._Package, PivotTables.Types._Package);
-		private static final @NonNull ExecutorFragment _Package__TemplateableElement = new ExecutorFragment(Types._Package, PivotTables.Types._TemplateableElement);
 		private static final @NonNull ExecutorFragment _Package__Visitable = new ExecutorFragment(Types._Package, PivotTables.Types._Visitable);
 
 		private static final @NonNull ExecutorFragment _Parameter__Element = new ExecutorFragment(Types._Parameter, PivotTables.Types._Element);
@@ -1370,7 +1368,6 @@ public class PivotTables
 		private static final @NonNull ExecutorFragment _Profile__OclElement = new ExecutorFragment(Types._Profile, OCLstdlibTables.Types._OclElement);
 		private static final @NonNull ExecutorFragment _Profile__Package = new ExecutorFragment(Types._Profile, PivotTables.Types._Package);
 		private static final @NonNull ExecutorFragment _Profile__Profile = new ExecutorFragment(Types._Profile, PivotTables.Types._Profile);
-		private static final @NonNull ExecutorFragment _Profile__TemplateableElement = new ExecutorFragment(Types._Profile, PivotTables.Types._TemplateableElement);
 		private static final @NonNull ExecutorFragment _Profile__Visitable = new ExecutorFragment(Types._Profile, PivotTables.Types._Visitable);
 
 		private static final @NonNull ExecutorFragment _ProfileApplication__Element = new ExecutorFragment(Types._ProfileApplication, PivotTables.Types._Element);
@@ -3107,12 +3104,11 @@ public class PivotTables
 			Fragments._Library__Visitable /* 2 */,
 			Fragments._Library__Element /* 3 */,
 			Fragments._Library__NamedElement /* 4 */,
-			Fragments._Library__TemplateableElement /* 4 */,
 			Fragments._Library__Namespace /* 5 */,
 			Fragments._Library__Package /* 6 */,
 			Fragments._Library__Library /* 7 */
 		};
-		private static final @NonNull int[] __Library = { 1,1,2,1,2,1,1,1 };
+		private static final @NonNull int[] __Library = { 1,1,2,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _LibraryFeature =
 		{
@@ -3382,11 +3378,10 @@ public class PivotTables
 			Fragments._Package__Visitable /* 2 */,
 			Fragments._Package__Element /* 3 */,
 			Fragments._Package__NamedElement /* 4 */,
-			Fragments._Package__TemplateableElement /* 4 */,
 			Fragments._Package__Namespace /* 5 */,
 			Fragments._Package__Package /* 6 */
 		};
-		private static final @NonNull int[] __Package = { 1,1,2,1,2,1,1 };
+		private static final @NonNull int[] __Package = { 1,1,2,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Parameter =
 		{
@@ -3463,12 +3458,11 @@ public class PivotTables
 			Fragments._Profile__Visitable /* 2 */,
 			Fragments._Profile__Element /* 3 */,
 			Fragments._Profile__NamedElement /* 4 */,
-			Fragments._Profile__TemplateableElement /* 4 */,
 			Fragments._Profile__Namespace /* 5 */,
 			Fragments._Profile__Package /* 6 */,
 			Fragments._Profile__Profile /* 7 */
 		};
-		private static final @NonNull int[] __Profile = { 1,1,2,1,2,1,1,1 };
+		private static final @NonNull int[] __Profile = { 1,1,2,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _ProfileApplication =
 		{
@@ -6112,7 +6106,6 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _Library__Package = {};
-		private static final @NonNull ExecutorOperation[] _Library__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _Library__Visitable = {};
 
 		private static final @NonNull ExecutorOperation[] _LibraryFeature__LibraryFeature = {};
@@ -6776,7 +6769,6 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Package__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _Package__Visitable = {};
 
 		private static final @NonNull ExecutorOperation[] _Parameter__Parameter = {};
@@ -6975,7 +6967,6 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _Profile__Package = {};
-		private static final @NonNull ExecutorOperation[] _Profile__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _Profile__Visitable = {};
 
 		private static final @NonNull ExecutorOperation[] _ProfileApplication__ProfileApplication = {};
@@ -9144,7 +9135,6 @@ public class PivotTables
 			Fragments._Library__OclAny.initOperations(_Library__OclAny);
 			Fragments._Library__OclElement.initOperations(_Library__OclElement);
 			Fragments._Library__Package.initOperations(_Library__Package);
-			Fragments._Library__TemplateableElement.initOperations(_Library__TemplateableElement);
 			Fragments._Library__Visitable.initOperations(_Library__Visitable);
 
 			Fragments._LibraryFeature__LibraryFeature.initOperations(_LibraryFeature__LibraryFeature);
@@ -9338,7 +9328,6 @@ public class PivotTables
 			Fragments._Package__OclAny.initOperations(_Package__OclAny);
 			Fragments._Package__OclElement.initOperations(_Package__OclElement);
 			Fragments._Package__Package.initOperations(_Package__Package);
-			Fragments._Package__TemplateableElement.initOperations(_Package__TemplateableElement);
 			Fragments._Package__Visitable.initOperations(_Package__Visitable);
 
 			Fragments._Parameter__Element.initOperations(_Parameter__Element);
@@ -9396,7 +9385,6 @@ public class PivotTables
 			Fragments._Profile__OclElement.initOperations(_Profile__OclElement);
 			Fragments._Profile__Package.initOperations(_Profile__Package);
 			Fragments._Profile__Profile.initOperations(_Profile__Profile);
-			Fragments._Profile__TemplateableElement.initOperations(_Profile__TemplateableElement);
 			Fragments._Profile__Visitable.initOperations(_Profile__Visitable);
 
 			Fragments._ProfileApplication__Element.initOperations(_ProfileApplication__Element);
@@ -11503,11 +11491,8 @@ public class PivotTables
 			PivotTables.Properties._Package__ownedPackages,
 			PivotTables.Properties._Library__ownedPrecedence,
 			PivotTables.Properties._Namespace__ownedRule,
-			PivotTables.Properties._TemplateableElement__ownedTemplateBindings,
-			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._Package__owningPackage,
 			PivotTables.Properties._Package__profileApplication,
-			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
@@ -12069,11 +12054,8 @@ public class PivotTables
 			PivotTables.Properties._Package__ownedInstances,
 			PivotTables.Properties._Package__ownedPackages,
 			PivotTables.Properties._Namespace__ownedRule,
-			PivotTables.Properties._TemplateableElement__ownedTemplateBindings,
-			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._Package__owningPackage,
 			PivotTables.Properties._Package__profileApplication,
-			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
@@ -12218,11 +12200,8 @@ public class PivotTables
 			PivotTables.Properties._Package__ownedInstances,
 			PivotTables.Properties._Package__ownedPackages,
 			PivotTables.Properties._Namespace__ownedRule,
-			PivotTables.Properties._TemplateableElement__ownedTemplateBindings,
-			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._Package__owningPackage,
 			PivotTables.Properties._Package__profileApplication,
-			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
 			PivotTables.Properties._Element__Constraint__constrainedElement,

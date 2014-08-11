@@ -28,9 +28,6 @@ import org.eclipse.ocl.examples.pivot.InstanceSpecification;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Profile;
 import org.eclipse.ocl.examples.pivot.ProfileApplication;
-import org.eclipse.ocl.examples.pivot.TemplateBinding;
-import org.eclipse.ocl.examples.pivot.TemplateSignature;
-import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -111,12 +108,6 @@ public class ProfileImpl extends PackageImpl implements Profile
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PROFILE__OWNED_COMMENT:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.PROFILE__OWNED_TEMPLATE_BINDINGS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedTemplateBindings()).basicAdd(otherEnd, msgs);
-			case PivotPackage.PROFILE__OWNED_TEMPLATE_SIGNATURE:
-				if (ownedTemplateSignature != null)
-					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.PROFILE__OWNED_TEMPLATE_SIGNATURE, null, msgs);
-				return basicSetOwnedTemplateSignature((TemplateSignature)otherEnd, msgs);
 			case PivotPackage.PROFILE__OWNED_CLASSES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedClasses()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PROFILE__OWNED_INSTANCES:
@@ -155,10 +146,6 @@ public class ProfileImpl extends PackageImpl implements Profile
 				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PROFILE__OWNED_RULE:
 				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
-			case PivotPackage.PROFILE__OWNED_TEMPLATE_BINDINGS:
-				return ((InternalEList<?>)getOwnedTemplateBindings()).basicRemove(otherEnd, msgs);
-			case PivotPackage.PROFILE__OWNED_TEMPLATE_SIGNATURE:
-				return basicSetOwnedTemplateSignature(null, msgs);
 			case PivotPackage.PROFILE__OWNED_CLASSES:
 				return ((InternalEList<?>)getOwnedClasses()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PROFILE__OWNED_INSTANCES:
@@ -197,12 +184,6 @@ public class ProfileImpl extends PackageImpl implements Profile
 				return getName();
 			case PivotPackage.PROFILE__OWNED_RULE:
 				return getOwnedRule();
-			case PivotPackage.PROFILE__OWNED_TEMPLATE_BINDINGS:
-				return getOwnedTemplateBindings();
-			case PivotPackage.PROFILE__OWNED_TEMPLATE_SIGNATURE:
-				return getOwnedTemplateSignature();
-			case PivotPackage.PROFILE__UNSPECIALIZED_ELEMENT:
-				return getUnspecializedElement();
 			case PivotPackage.PROFILE__URI:
 				return getURI();
 			case PivotPackage.PROFILE__IMPORTED_PACKAGE:
@@ -258,16 +239,6 @@ public class ProfileImpl extends PackageImpl implements Profile
 			case PivotPackage.PROFILE__OWNED_RULE:
 				getOwnedRule().clear();
 				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
-				return;
-			case PivotPackage.PROFILE__OWNED_TEMPLATE_BINDINGS:
-				getOwnedTemplateBindings().clear();
-				getOwnedTemplateBindings().addAll((Collection<? extends TemplateBinding>)newValue);
-				return;
-			case PivotPackage.PROFILE__OWNED_TEMPLATE_SIGNATURE:
-				setOwnedTemplateSignature((TemplateSignature)newValue);
-				return;
-			case PivotPackage.PROFILE__UNSPECIALIZED_ELEMENT:
-				setUnspecializedElement((TemplateableElement)newValue);
 				return;
 			case PivotPackage.PROFILE__URI:
 				setURI((String)newValue);
@@ -334,15 +305,6 @@ public class ProfileImpl extends PackageImpl implements Profile
 			case PivotPackage.PROFILE__OWNED_RULE:
 				getOwnedRule().clear();
 				return;
-			case PivotPackage.PROFILE__OWNED_TEMPLATE_BINDINGS:
-				getOwnedTemplateBindings().clear();
-				return;
-			case PivotPackage.PROFILE__OWNED_TEMPLATE_SIGNATURE:
-				setOwnedTemplateSignature((TemplateSignature)null);
-				return;
-			case PivotPackage.PROFILE__UNSPECIALIZED_ELEMENT:
-				setUnspecializedElement((TemplateableElement)null);
-				return;
 			case PivotPackage.PROFILE__URI:
 				setURI(URI_EDEFAULT);
 				return;
@@ -396,12 +358,6 @@ public class ProfileImpl extends PackageImpl implements Profile
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.PROFILE__OWNED_RULE:
 				return ownedRule != null && !ownedRule.isEmpty();
-			case PivotPackage.PROFILE__OWNED_TEMPLATE_BINDINGS:
-				return ownedTemplateBindings != null && !ownedTemplateBindings.isEmpty();
-			case PivotPackage.PROFILE__OWNED_TEMPLATE_SIGNATURE:
-				return ownedTemplateSignature != null;
-			case PivotPackage.PROFILE__UNSPECIALIZED_ELEMENT:
-				return unspecializedElement != null;
 			case PivotPackage.PROFILE__URI:
 				return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
 			case PivotPackage.PROFILE__IMPORTED_PACKAGE:

@@ -14,12 +14,6 @@
           </ownedComment>
           <generalization xmi:id="_XnqLOX7VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-TemplateableElement"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-Package" name="Package">
-          <ownedComment xmi:id="AuxiliaryConstructs-Templates-Package-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-Package">
-            <body>Package specializes TemplateableElement and PackageableElement specializes ParameterableElement to specify that a package can be used as a template and a PackageableElement as a template parameter.</body>
-          </ownedComment>
-          <generalization xmi:id="_XnqLP37VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-TemplateableElement"/>
-        </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-TemplateBinding" name="TemplateBinding">
           <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateBinding">
             <body>A template binding represents a relationship between a templateable element and a template. A template binding specifies the substitutions of actual parameters for the formal parameters of the template.</body>

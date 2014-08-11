@@ -823,12 +823,8 @@
       <ownedComment xmi:id="Ppivot.TPackage.oC0" annotatedElement="Ppivot.TPackage">
         <body>A package is a container for types and other packages.</body>
       </ownedComment>
-      <ownedComment xmi:id="Ppivot.TPackage.oC1" annotatedElement="Ppivot.TPackage">
-        <body>Package specializes TemplateableElement and PackageableElement specializes ParameterableElement to specify that a package can be used as a template and a PackageableElement as a template parameter.</body>
-      </ownedComment>
       <generalization xmi:id="Ppivot.TPackage.g0" general="Ppivot.TNamedElement"/>
       <generalization xmi:id="Ppivot.TPackage.g1" general="Ppivot.TNamespace"/>
-      <generalization xmi:id="Ppivot.TPackage.g2" general="Ppivot.TTemplateableElement"/>
       <ownedAttribute xmi:id="Ppivot.TPackage.PownedPackages" name="ownedPackages" type="Ppivot.TPackage" aggregation="composite" association="Ppivot.A_nestedPackage_nestingPackage">
         <ownedComment xmi:id="Ppivot.TPackage.PownedPackages.oC0" annotatedElement="Ppivot.TPackage.PownedPackages">
           <body>The set of contained packages.</body>
