@@ -1,0 +1,6 @@
+import pivot : 'http://www.eclipse.org/ocl/3.1.0/Pivot#/'
+
+package pivot
+context Element
+inv : true
+endpackage
