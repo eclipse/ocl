@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-Version: 3.4.0.qualifier
+Bundle-Version: 3.4.2.qualifier
 Bundle-SymbolicName: org.eclipse.ocl.examples.xtext.oclinecore; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.5.0,4.0.0)",
