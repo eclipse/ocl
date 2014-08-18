@@ -65,15 +65,13 @@ public class CollectionTypeServer extends ExtensibleTypeServer
 		CollectionType specializedType = (CollectionType) eFactoryInstance.create(eClass);		
 		specializedType.setName(typeName);
 		TemplateBinding templateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
-		Map<TemplateParameter, Type> allBindings = new HashMap<TemplateParameter, Type>();
 		TemplateParameter formalParameter = templateParameters.get(0);
 		assert formalParameter != null;
 		Type elementType = typeParameters.getElementType();
-		allBindings.put(formalParameter, elementType);
 		TemplateParameterSubstitution templateParameterSubstitution = createTemplateParameterSubstitution(formalParameter, elementType);
 		templateBinding.getOwnedTemplateParameterSubstitutions().add(templateParameterSubstitution);
 		specializedType.getOwnedTemplateBindings().add(templateBinding);
-		packageManager.resolveSuperClasses(specializedType, unspecializedType, allBindings);
+		packageManager.resolveSuperClasses(specializedType, unspecializedType);
 		CollectionType specializedCollectionType = specializedType;
 		specializedCollectionType.setElementType(typeParameters.getElementType());
 		try {

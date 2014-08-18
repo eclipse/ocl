@@ -625,36 +625,55 @@ public class PackageManager implements PackageServerParent
 		}
 	}
 
-	void resolveSuperClasses(@NonNull org.eclipse.ocl.examples.pivot.Class specializedClass, @NonNull org.eclipse.ocl.examples.pivot.Class unspecializedClass, Map<TemplateParameter, Type> allBindings) {
+	void resolveSuperClasses(@NonNull org.eclipse.ocl.examples.pivot.Class specializedClass, @NonNull org.eclipse.ocl.examples.pivot.Class unspecializedClass) {
+		List<TemplateBinding> specializedTemplateBindings = specializedClass.getOwnedTemplateBindings();
 		for (org.eclipse.ocl.examples.pivot.Class superClass : unspecializedClass.getSuperClasses()) {
 			List<TemplateBinding> superTemplateBindings = superClass.getOwnedTemplateBindings();
 			if (superTemplateBindings.size() > 0) {
-				List<Type> superTemplateArgumentList = new ArrayList<Type>();
+				List<TemplateParameterSubstitution> superSpecializedTemplateParameterSubstitutions = new ArrayList<TemplateParameterSubstitution>();
 				for (TemplateBinding superTemplateBinding : superTemplateBindings) {
 					for (TemplateParameterSubstitution superParameterSubstitution : superTemplateBinding.getOwnedTemplateParameterSubstitutions()) {
+						TemplateParameterSubstitution superSpecializedTemplateParameterSubstitution = null;
 						Type superActual = superParameterSubstitution.getActual();
-						TemplateParameter superTemplateParameter = superActual.isTemplateParameter();
-						Type actualActual = allBindings.get(superTemplateParameter);
-						superTemplateArgumentList.add(actualActual);
+						for (TemplateBinding specializedTemplateBinding : specializedTemplateBindings) {
+							for (TemplateParameterSubstitution specializedParameterSubstitution : specializedTemplateBinding.getOwnedTemplateParameterSubstitutions()) {
+								if (specializedParameterSubstitution.getFormal() == superActual) {
+									Type specializedActual = DomainUtil.nonNullModel(specializedParameterSubstitution.getActual());
+									TemplateParameter superFormal = DomainUtil.nonNullModel(superParameterSubstitution.getFormal());
+									superSpecializedTemplateParameterSubstitution = PivotUtil.createTemplateParameterSubstitution(superFormal, specializedActual);
+									break;
+								}
+							}
+							if (superSpecializedTemplateParameterSubstitution != null) {
+								break;
+							}
+						}
+						if (superSpecializedTemplateParameterSubstitution != null) {
+							superSpecializedTemplateParameterSubstitutions.add(superSpecializedTemplateParameterSubstitution);
+						}
 					}
 				}
 				@NonNull org.eclipse.ocl.examples.pivot.Class unspecializedSuperClass = PivotUtil.getUnspecializedTemplateableElement(superClass);
 				TypeServer superTypeServer = metaModelManager.getTypeServer(unspecializedSuperClass);
-				if ((superTypeServer instanceof CollectionTypeServer) && (superTemplateArgumentList.size() == 1)) {
-					Type templateArgument = superTemplateArgumentList.get(0);
+				if ((superTypeServer instanceof CollectionTypeServer) && (superSpecializedTemplateParameterSubstitutions.size() == 1)) {
+					Type templateArgument = superSpecializedTemplateParameterSubstitutions.get(0).getActual();
 					if (templateArgument != null) {
 						org.eclipse.ocl.examples.pivot.Class specializedSuperClass = ((CollectionTypeServer)superTypeServer).getSpecializedType(templateArgument, null, null);
 						specializedClass.getSuperClasses().add(specializedSuperClass);
 					}
 				}
-				else if ((superTypeServer instanceof MetaclassServer) && (superTemplateArgumentList.size() == 1)) {
-					Type templateArgument = superTemplateArgumentList.get(0);
+				else if ((superTypeServer instanceof MetaclassServer) && (superSpecializedTemplateParameterSubstitutions.size() == 1)) {
+					Type templateArgument = superSpecializedTemplateParameterSubstitutions.get(0).getActual();
 					if (templateArgument != null) {
 						org.eclipse.ocl.examples.pivot.Class superMetaclass = ((MetaclassServer)superTypeServer).getMetaclass(templateArgument);
 						specializedClass.getSuperClasses().add(superMetaclass);
 					}
 				}
 				else if (superTypeServer instanceof TemplateableTypeServer) {
+					List<Type> superTemplateArgumentList = new ArrayList<Type>(superSpecializedTemplateParameterSubstitutions.size());
+					for (TemplateParameterSubstitution superSpecializedTemplateParameterSubstitution : superSpecializedTemplateParameterSubstitutions) {
+						superTemplateArgumentList.add(superSpecializedTemplateParameterSubstitution.getActual());
+					}
 					org.eclipse.ocl.examples.pivot.Class specializedSuperType = ((TemplateableTypeServer)superTypeServer).getSpecializedType(superTemplateArgumentList);
 					specializedClass.getSuperClasses().add(specializedSuperType);
 				}

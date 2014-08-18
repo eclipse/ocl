@@ -62,14 +62,12 @@ public class MetaclassServer extends ExtensibleTypeServer
 		//
 		TemplateSignature templateSignature = metaclassType.getOwnedTemplateSignature();
 		TemplateBinding templateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
-		Map<TemplateParameter, Type> allBindings = new HashMap<TemplateParameter, Type>();
 		@SuppressWarnings("null")@NonNull TemplateParameter formalParameter = templateSignature.getOwnedTemplateParameters().get(0);
-		allBindings.put(formalParameter, type);
 		TemplateParameterSubstitution templateParameterSubstitution = createTemplateParameterSubstitution(formalParameter, type);
 		templateBinding.getOwnedTemplateParameterSubstitutions().add(templateParameterSubstitution);
 		metaclass.getOwnedTemplateBindings().add(templateBinding);
 		//
-		packageManager.resolveSuperClasses(metaclass, metaclassType, allBindings);
+		packageManager.resolveSuperClasses(metaclass, metaclassType);
 		//
 		Orphanage orphanage = Orphanage.getOrphanage(metaModelManager.getASResourceSet());
 		metaclass.setOwningPackage(orphanage);

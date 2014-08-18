@@ -60,24 +60,19 @@ public class TemplateableTypeServer extends ExtensibleTypeServer
 		org.eclipse.ocl.examples.pivot.Class specializedType = (org.eclipse.ocl.examples.pivot.Class) eFactoryInstance.create(eClass);		
 		specializedType.setName(typeName);
 		TemplateBinding templateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
-		Map<TemplateParameter, Type> allBindings = new HashMap<TemplateParameter, Type>();
 		for (int i = 0; i < templateParameters.size(); i++) {
 			TemplateParameter formalParameter = templateParameters.get(i);
 			if (formalParameter != null) {
 				DomainElement templateArgument = templateArguments.get(i);
 				if (templateArgument instanceof Type) {
 					Type actualType = (Type) templateArgument;
-					allBindings.put(formalParameter, actualType);
-					TemplateParameterSubstitution templateParameterSubstitution = AbstractTypeServer
-						.createTemplateParameterSubstitution(formalParameter,
-							actualType);
-					templateBinding.getOwnedTemplateParameterSubstitutions().add(
-						templateParameterSubstitution);
+					TemplateParameterSubstitution templateParameterSubstitution = AbstractTypeServer.createTemplateParameterSubstitution(formalParameter, actualType);
+					templateBinding.getOwnedTemplateParameterSubstitutions().add(templateParameterSubstitution);
 				}
 			}
 		}
 		specializedType.getOwnedTemplateBindings().add(templateBinding);
-		packageManager.resolveSuperClasses(specializedType, unspecializedType, allBindings);
+		packageManager.resolveSuperClasses(specializedType, unspecializedType);
 //		if (specializedType instanceof Metaclass) {
 //			Type instanceType = (Type) templateArguments.get(0);
 //			Metaclass specializedMetaclass = (Metaclass)specializedType;
