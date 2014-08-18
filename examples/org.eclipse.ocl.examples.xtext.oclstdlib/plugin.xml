@@ -15,5 +15,8 @@
             class="org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage"
             genModel="model/OCLstdlibCS.genmodel"/>
    </extension>
+   <extension point="org.eclipse.team.core.fileTypes">
+      <fileTypes extension="oclstdlib" type="text" />
+   </extension>
 
 </plugin>

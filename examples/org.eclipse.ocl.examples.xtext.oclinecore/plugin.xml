@@ -32,5 +32,8 @@
          </describer>
       </content-type>
    </extension>
+   <extension point="org.eclipse.team.core.fileTypes">
+      <fileTypes extension="oclinecore" type="text" />
+   </extension>
 
 </plugin>
