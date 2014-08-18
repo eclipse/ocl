@@ -13,13 +13,11 @@ package org.eclipse.ocl.examples.pivot.internal.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Behavior;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -33,6 +31,7 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.WildcardType;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -466,6 +465,11 @@ public class WildcardTypeImpl extends ClassImpl implements WildcardType
 				return upperBound != null;
 		}
 		return eDynamicIsSet(featureID);
+	}
+
+	@Override
+	public <R> R accept(@NonNull Visitor<R> visitor) {
+		return visitor.visitWildcardType(this);
 	}
 
 } //WildcardTypeImpl

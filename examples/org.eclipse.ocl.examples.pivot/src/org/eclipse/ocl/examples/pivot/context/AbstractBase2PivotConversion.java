@@ -18,18 +18,14 @@ import java.util.Map;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
@@ -71,50 +67,6 @@ public abstract class AbstractBase2PivotConversion extends AbstractConversion im
 		if ((newNsURI != oldNsURI) && ((newNsURI == null) || !newNsURI.equals(oldNsURI))) {
 			pivotPackage.setURI(newNsURI);
 		}
-	}
-	
-	protected void resolveUnderspecifiedTypes() {
-		if (underspecifiedTypedElements != null) {
-			for (TypedElement underspecifiedTypedElement : underspecifiedTypedElements) {
-				Type underspecifiedType = DomainUtil.nonNullModel(underspecifiedTypedElement.getType());
-				Type resolvedType = resolveUnderspecifiedType(underspecifiedType);
-				underspecifiedTypedElement.setType(resolvedType);
-			}
-		}
-	}
-	
-	protected @NonNull Type resolveUnderspecifiedType(@NonNull Type type) {
-		if (type instanceof UnspecifiedType) {
-			return DomainUtil.nonNullModel(((UnspecifiedType)type).getLowerBound());
-		}
-		if (type instanceof CollectionType) {
-			CollectionType collectionType = (CollectionType)type;
-			Type resolvedElementType = resolveUnderspecifiedType(DomainUtil.nonNullModel(collectionType.getElementType()));
-			return metaModelManager.getCollectionType(PivotUtil.getUnspecializedTemplateableElement(collectionType), resolvedElementType, null, null);
-//			return metaModelManager.getCollectionType(DomainUtil.nonNullModel(collectionType.getName()), resolvedElementType);
-		}
-		if (type instanceof TupleType) {
-			TupleType tupleType = (TupleType)type;
-			List<Property> resolvedProperties = new ArrayList<Property>();
-			for (Property part : ((TupleType)type).getOwnedProperties()) {
-				if (metaModelManager.isUnderspecified(part.getType())) {
-					Property prop = PivotFactory.eINSTANCE.createProperty();
-					prop.setName(part.getName());
-					prop.setType(resolveUnderspecifiedType(DomainUtil.nonNullModel(part.getType())));
-					resolvedProperties.add(prop);
-				}
-				else {
-					resolvedProperties.add(part);
-				}
-			}
-			return metaModelManager.getTupleType(DomainUtil.getSafeName(tupleType), resolvedProperties, null);
-		}
-		if (type instanceof Metaclass<?>) {
-			Metaclass<?> metaclass = (Metaclass<?>)type;
-			Type resolvedElementType = resolveUnderspecifiedType(DomainUtil.nonNullModel(metaclass.getInstanceType()));
-			return metaModelManager.getMetaclass(resolvedElementType);
-		}
-		return type;
 	}
 
 	public void setBehavioralType(@NonNull TypedElement targetElement, @NonNull TypedElement sourceElement) {
@@ -250,9 +202,6 @@ public abstract class AbstractBase2PivotConversion extends AbstractConversion im
 		Type primaryType = type != null ? metaModelManager.getPrimaryType(type) : null;
 		if (primaryType != pivotElement.getType()) {
 			pivotElement.setType(primaryType);
-			if (metaModelManager.isUnderspecified(primaryType)) {
-				addUnderspecifiedTypedElement(pivotElement);
-			}
 		}
 		boolean wasRequired = pivotElement.isRequired();
 		if (wasRequired != isRequired) {

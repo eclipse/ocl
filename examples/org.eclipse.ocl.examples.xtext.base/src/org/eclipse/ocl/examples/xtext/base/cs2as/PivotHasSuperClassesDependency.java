@@ -18,7 +18,6 @@ import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS;
@@ -44,9 +43,6 @@ public class PivotHasSuperClassesDependency extends AbstractDependency<TypedType
 			return true;
 		}
 		if (type instanceof InvalidType) {
-			return true;
-		}
-		if (type instanceof UnspecifiedType) {
 			return true;
 		}
 		if (type instanceof VoidType) {

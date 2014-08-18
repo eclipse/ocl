@@ -726,9 +726,6 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 					else {
 						accType = initType;
 					}
-					if (metaModelManager.isUnderspecified(initType)) {
-						initExpression.setType(accType);
-					}
 					context.setType(acc, accType, false);
 				}
 				acc.setRepresentedParameter(iteration.getOwnedAccumulator().get(pivotAccumulators.size()));
@@ -1262,7 +1259,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				commonType = (Type) ownedElementType.getPivot();
 			}
 			if (commonType == null) {
-				commonType = metaModelManager.createUnspecifiedType(null, null);
+				commonType = metaModelManager.getOclVoidType();
 			}
 			Type type = metaModelManager.getCollectionType(collectionTypeName, commonType, null, null);
 			context.setType(expression, type, true);
@@ -1443,9 +1440,6 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 					Type variableType = csVariableType != null ? PivotUtil.getPivot(Type.class, csVariableType) : null;
 					if (variableType == null) {
 						variableType = initType;
-					}
-					else if ((initExpression != null) && metaModelManager.isUnderspecified(initType)) {
-						initExpression.setType(variableType);
 					}
 					context.setType(variable, variableType, isRequired);
 					if (lastLetExp != null) {
@@ -1877,9 +1871,6 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				else {
 					type = initType;
 					// FIXME deduction is more complex than this
-				}
-				if (metaModelManager.isUnderspecified(initType)) {
-					initExpression.setType(type);
 				}
 				context.setType(variable, type, initExpression.isRequired());
 			}

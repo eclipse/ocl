@@ -1118,6 +1118,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 				if (templateBinding == null) {
 	//				templateBinding = refreshElement(TemplateBinding.class, PivotPackage.Literals.TEMPLATE_BINDING, csTemplateBinding);
 					templateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
+					assert templateBinding != null;
 					if (i < oldMax) {
 						templateBindings.add(i, templateBinding);
 					}
@@ -1368,9 +1369,6 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 			}
 		}
 		//
-		//	Resolve UnspecifiedTypes
-		//
-		resolveUnderspecifiedTypes();
 		boolean hasNoMoreErrors = checkForNoErrors(csResources);
 		if (!hasNoMoreErrors) {
 			return false;

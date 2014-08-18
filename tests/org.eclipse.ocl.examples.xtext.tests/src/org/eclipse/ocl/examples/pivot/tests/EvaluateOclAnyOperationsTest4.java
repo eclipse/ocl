@@ -632,7 +632,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
      */
     @Test public void test_oclType_Collection() {   	
      	assertQueryEquals(null, 1, "Set{1}->oclType().ownedOperations->select(name = 'flatten')->size()");
-    	assertQueryEquals(null, metaModelManager.getSetType(metaModelManager.getOclAnyType(), null, null), "Set{}->oclType()");
+    	assertQueryEquals(null, metaModelManager.getSetType(metaModelManager.getOclVoidType(), null, null), "Set{}->oclType()");
     	assertQueryEquals(null, metaModelManager.getSetType(metaModelManager.getUnlimitedNaturalType(), null, null), "Set{1}->oclType()");
     	assertQueryResults(null, "Bag{'UnlimitedNatural'}", "Set{1}.oclType().name");
     	assertQueryEquals(null, "Set", "Set{1}->oclType().name");

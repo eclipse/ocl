@@ -90,11 +90,11 @@ import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
-import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.VoidType;
+import org.eclipse.ocl.examples.pivot.WildcardType;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
@@ -1158,7 +1158,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	}
 
 	@Override
-	public String visitUnspecifiedType(@NonNull UnspecifiedType object) {
+	public String visitWildcardType(@NonNull WildcardType object) {
 		appendName(object);
 		return null;
 	}

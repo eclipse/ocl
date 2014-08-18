@@ -16,12 +16,11 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.UnspecifiedType;
+import org.eclipse.ocl.examples.pivot.WildcardType;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -45,11 +44,6 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, Pi
 
 	@Override
 	public ElementCS visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class object) {
-		if (object.eContainingFeature() == PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL) {
-			WildcardTypeRefCS csRef = BaseCSFactory.eINSTANCE.createWildcardTypeRefCS();
-			csRef.setPivot(object);
-			return csRef;
-		}
 		org.eclipse.ocl.examples.pivot.Class scopeClass = context.getScope();
 		org.eclipse.ocl.examples.pivot.Package scopePackage = scopeClass != null ? PivotUtil.getPackage(scopeClass) : null;
 		TypedTypeRefCS csRef = BaseCSFactory.eINSTANCE.createTypedTypeRefCS();
@@ -62,7 +56,7 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, Pi
 		}
 		context.refreshPathName(csPathName, type, context.getScope());
 		csRef.setPivot(type);		// FIXME object ??
-		if (!(type instanceof PrimitiveType) && !(type instanceof UnspecifiedType)) {
+		if (!(type instanceof PrimitiveType)) {
 			org.eclipse.ocl.examples.pivot.Package objectPackage = PivotUtil.getPackage(type);
 			if ((objectPackage != null) && (scopePackage != null) && objectPackage.eResource() != scopePackage.eResource()) {
 				context.importNamespace(objectPackage, null);
@@ -114,8 +108,9 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, Pi
 	}
 
 	@Override
-	public @Nullable ElementCS visitUnspecifiedType(@NonNull UnspecifiedType object) {
+	public @Nullable ElementCS visitWildcardType(@NonNull WildcardType object) {
 		WildcardTypeRefCS csRef = BaseCSFactory.eINSTANCE.createWildcardTypeRefCS();
+		csRef.setPivot(object);
 		// setSuper/setExtends
 		return csRef;
 	}

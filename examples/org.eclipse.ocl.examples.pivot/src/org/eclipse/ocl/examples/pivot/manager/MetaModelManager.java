@@ -120,8 +120,8 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
-import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.VoidType;
+import org.eclipse.ocl.examples.pivot.WildcardType;
 import org.eclipse.ocl.examples.pivot.context.ClassContext;
 import org.eclipse.ocl.examples.pivot.context.OperationContext;
 import org.eclipse.ocl.examples.pivot.context.ParserContext;
@@ -640,8 +640,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		}
 		else {
 			assert (pivotElement instanceof LambdaType)
-				|| (pivotElement instanceof TupleType)
-				|| (pivotElement instanceof UnspecifiedType);
+				|| (pivotElement instanceof TupleType);
 		}
 		pivotElement.setOwningPackage(getOrphanage());
 	}
@@ -888,6 +887,11 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 					Type parameterableElement = bindings.get(secondTemplateParameter);
 					if (parameterableElement != null) {
 						secondElementType = parameterableElement;
+						if (secondElementType.conformsTo(this, firstElementType)) {
+							secondElementType = firstElementType;
+							bindings.put(secondTemplateParameter, firstElementType);
+							return true;
+						}
 					}
 					else if ((parameterableElement == null) && bindings.containsKey(secondTemplateParameter)) {
 						bindings.put(secondTemplateParameter, firstElementType);
@@ -898,28 +902,6 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		}
 		if (firstElementType == secondElementType) {
 			return true;
-		}
-		else if (firstElementType instanceof UnspecifiedType) {
-			UnspecifiedType unspecifiedType = (UnspecifiedType)firstElementType;
-			Type lowerBound = DomainUtil.nonNullModel(unspecifiedType.getLowerBound());
-			if (conformsTo(secondElementType, lowerBound, bindings)) {
-				unspecifiedType.setLowerBound(secondElementType);
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		else if (secondElementType instanceof UnspecifiedType) {
-			UnspecifiedType unspecifiedType = (UnspecifiedType)secondElementType;
-			Type upperBound = DomainUtil.nonNullModel(unspecifiedType.getUpperBound());
-			if (conformsTo(upperBound, firstElementType, bindings)) {
-				unspecifiedType.setUpperBound(firstElementType);
-				return true;
-			}
-			else {
-				return false;
-			}
 		}
 		else {
 			return conformsTo(firstElementType, secondElementType, bindings);
@@ -989,26 +971,6 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		}
 		if ((firstElementType == null) || (secondElementType == null)) {
 			return false;
-		}
-		else if (firstElementType instanceof UnspecifiedType) {
-			Type lowerBound = ((UnspecifiedType)firstElementType).getLowerBound();
-			if ((lowerBound != null) && conformsTo(secondElementType, lowerBound, bindings)) {
-				((UnspecifiedType)firstElementType).setLowerBound(secondElementType);
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		else if (secondElementType instanceof UnspecifiedType) {
-			Type upperBound = ((UnspecifiedType)secondElementType).getUpperBound();
-			if ((upperBound != null) && conformsTo(upperBound, firstElementType, bindings)) {
-				((UnspecifiedType)secondElementType).setUpperBound(firstElementType);
-				return true;
-			}
-			else {
-				return false;
-			}
 		}
 		else {
 			return conformsTo(firstElementType, secondElementType, bindings);
@@ -1184,13 +1146,12 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return asUnlimitedNatural;
 	}
 
-	public @NonNull UnspecifiedType createUnspecifiedType(@Nullable Type lowerBound, @Nullable Type upperBound) {
-		UnspecifiedType unspecifiedType = PivotFactory.eINSTANCE.createUnspecifiedType();
-		unspecifiedType.setName("?");			// Name is not significant
-		unspecifiedType.setLowerBound(lowerBound != null ? lowerBound : getOclAnyType());
-		unspecifiedType.setUpperBound(upperBound != null ? upperBound : getOclVoidType());
-		addOrphanClass(unspecifiedType);
-		return unspecifiedType;
+	public @NonNull WildcardType createWildcardType(@Nullable org.eclipse.ocl.examples.pivot.Class lowerBound, @Nullable org.eclipse.ocl.examples.pivot.Class upperBound) {
+		WildcardType wildcardType = PivotFactory.eINSTANCE.createWildcardType();
+		wildcardType.setName("?");			// Name is not significant
+		wildcardType.setLowerBound(lowerBound != null ? lowerBound : getOclAnyType());
+		wildcardType.setUpperBound(upperBound != null ? upperBound : getOclVoidType());
+		return wildcardType;
 	}
 
 	@Override
@@ -1521,14 +1482,6 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 	
 	public @NonNull Type getCommonType(@NonNull Type leftType, @NonNull Type rightType, @Nullable Map<TemplateParameter, Type> templateParameterSubstitutions) {
-		if (leftType instanceof UnspecifiedType) {
-			((UnspecifiedType)leftType).setUpperBound(rightType);
-			return rightType;
-		}
-		if (rightType instanceof UnspecifiedType) {
-			((UnspecifiedType)rightType).setUpperBound(leftType);
-			return leftType;
-		}
 		if ((leftType instanceof TupleType) && (rightType instanceof TupleType)) {
 			TupleTypeManager tupleManager = getTupleManager();
 			Type commonType = tupleManager.getCommonType((TupleType)leftType, (TupleType)rightType, templateParameterSubstitutions);
@@ -2861,53 +2814,6 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			return false;
 		}
 		return true;
-	}
-	
-	/**
-	 * Return true if this type involves an UnspecifiedType.
-	 */
-	public boolean isUnderspecified(@Nullable Type type) {
-		if (type == null) {
-			return false;
-		}
-		org.eclipse.ocl.examples.pivot.Class asClass = type.isClass();
-		if (asClass != null) {
-			for (TemplateBinding templateBinding : asClass.getOwnedTemplateBindings()) {
-				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedTemplateParameterSubstitutions()) {
-					if (isUnderspecified(templateParameterSubstitution.getActual())) {
-						return true;
-					}
-				}
-			}
-		}
-		if (type instanceof UnspecifiedType) {
-			return true;
-		}
-		if (type instanceof CollectionType) {
-			return isUnderspecified(((CollectionType)type).getElementType());
-		}
-		if (type instanceof TupleType) {
-			for (Property part : ((TupleType)type).getOwnedProperties()) {
-				if (isUnderspecified(part.getType())) {
-					return true;
-				}
-			}
-		}
-		if (type instanceof LambdaType) {
-			LambdaType lambdaType = (LambdaType)type;
-			if (isUnderspecified(lambdaType.getContextType())) {
-				return true;
-			}
-			for (Type parameterType : lambdaType.getParameterType()) {
-				if (isUnderspecified(parameterType)) {
-					return true;
-				}
-			}
-			if (isUnderspecified(lambdaType.getResultType())) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	protected boolean isUnspecialized(@NonNull List<TemplateParameter> templateParameters, @NonNull List<? extends Type> templateArguments) {

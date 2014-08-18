@@ -102,7 +102,6 @@ import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
-import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.VoidType;
@@ -1247,10 +1246,8 @@ public class PivotUtil extends DomainUtil
 	 * Return the lower bound for scope resolution lookups in element. This is element
 	 * unless element is an UnspecifiedType in which case the derived type is returned.
 	 */
+	@Deprecated
 	public static @NonNull Type getLowerBound(@NonNull Type type) {
-		if (type instanceof UnspecifiedType) {
-			return DomainUtil.nonNullModel(((UnspecifiedType)type).getLowerBound());
-		}
 		return type;
 	}
 

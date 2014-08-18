@@ -135,7 +135,7 @@ public class TemplateParameterSubstitutionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setActual(Type newActual)
+	public void setActualGen(Type newActual)
 	{
 		Type oldActual = actual;
 		actual = newActual;
@@ -483,5 +483,11 @@ public class TemplateParameterSubstitutionImpl
 	@Override
 	public <R> R accept(@NonNull Visitor<R> visitor) {
 		return visitor.visitTemplateParameterSubstitution(this);
+	}
+
+	public void setActual(Type newActual)
+	{
+		setActualGen(newActual);
+		setOwnedWildcard(newActual instanceof WildcardType ? (WildcardType)newActual : null);
 	}
 } //TemplateParameterSubstitutionImpl

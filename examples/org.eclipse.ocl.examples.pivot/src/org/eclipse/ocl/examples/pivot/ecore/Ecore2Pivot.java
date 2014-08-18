@@ -795,7 +795,7 @@ public class Ecore2Pivot extends AbstractEcore2Pivot
 //			csTypeRef.setExtends(doSwitchAll(eGenericType.getExtends()));
 //			csTypeRef.setSuper(doSwitchAll(eGenericType.getSuper()));
 			return csTypeRef; */
-		return metaModelManager.createUnspecifiedType(null, null);		// FIXME bounds
+		return metaModelManager.createWildcardType(null, null);		// FIXME bounds
 /*		org.eclipse.ocl.examples.pivot.Class pivotElement = PivotFactory.eINSTANCE.createClass();
 		String name = PivotConstants.WILDCARD_NAME;
 		EStructuralFeature eFeature = eGenericType.eContainmentFeature();
