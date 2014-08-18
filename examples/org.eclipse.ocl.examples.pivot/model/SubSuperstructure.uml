@@ -54,13 +54,13 @@
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnNfU37VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnNfVH7VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-default" name="lowerBound" type="_RHSqABpbEeSM9LreJtBwBg">
+          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-default" name="lowerBound" type="AuxiliaryConstructs-Templates-Classifier">
             <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-default-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateParameter-default">
               <body>The element that is the default for this formal template parameter.</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnNfRH7VEeOu79LxSz8Ylw"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_lUe_ICDJEeSNlrewQPlAjA" name="upperBound" type="_RHSqABpbEeSM9LreJtBwBg">
+          <ownedAttribute xmi:id="_lUe_ICDJEeSNlrewQPlAjA" name="upperBound" type="AuxiliaryConstructs-Templates-Classifier">
             <ownedComment xmi:id="_lUe_ISDJEeSNlrewQPlAjA" annotatedElement="_lUe_ICDJEeSNlrewQPlAjA">
               <body>The element that is the default for this formal template parameter.</body>
             </ownedComment>
@@ -154,13 +154,13 @@
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_m-eaECbPEeS7N_aTjEWq7Q" name="WildcardType">
           <generalization xmi:id="_qu1GQCbPEeS7N_aTjEWq7Q" general="_RHSqABpbEeSM9LreJtBwBg"/>
-          <ownedAttribute xmi:id="_ujWgwCbPEeS7N_aTjEWq7Q" name="lowerBound" type="_RHSqABpbEeSM9LreJtBwBg">
+          <ownedAttribute xmi:id="_ujWgwCbPEeS7N_aTjEWq7Q" name="lowerBound" type="AuxiliaryConstructs-Templates-Classifier">
             <ownedComment xmi:id="_ujWgwSbPEeS7N_aTjEWq7Q" annotatedElement="_ujWgwCbPEeS7N_aTjEWq7Q">
               <body>The element that is the default for this formal template parameter.</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ujWgwibPEeS7N_aTjEWq7Q"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_ujWgwybPEeS7N_aTjEWq7Q" name="upperBound" type="_RHSqABpbEeSM9LreJtBwBg">
+          <ownedAttribute xmi:id="_ujWgwybPEeS7N_aTjEWq7Q" name="upperBound" type="AuxiliaryConstructs-Templates-Classifier">
             <ownedComment xmi:id="_ujWgxCbPEeS7N_aTjEWq7Q" annotatedElement="_ujWgwybPEeS7N_aTjEWq7Q">
               <body>The element that is the default for this formal template parameter.</body>
             </ownedComment>
