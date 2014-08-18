@@ -87,6 +87,12 @@
               <body>The element that is the actual parameter for this substitution.</body>
             </ownedComment>
           </ownedAttribute>
+          <ownedAttribute xmi:id="_w9IbkCbPEeS7N_aTjEWq7Q" name="ownedWildcard" type="_m-eaECbPEeS7N_aTjEWq7Q" aggregation="composite">
+            <ownedComment xmi:id="_w9IbkSbPEeS7N_aTjEWq7Q" annotatedElement="_w9IbkCbPEeS7N_aTjEWq7Q">
+              <body>The element that is the actual parameter for this substitution.</body>
+            </ownedComment>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5d6w4CbPEeS7N_aTjEWq7Q"/>
+          </ownedAttribute>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-TemplateSignature" name="TemplateSignature">
           <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateSignature">
@@ -145,6 +151,21 @@
           <ownedComment xmi:id="AuxiliaryConstructs-Templates-ValueSpecification-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ValueSpecification">
             <body>ValueSpecification specializes ParameterableElement to specify that a value specification can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.</body>
           </ownedComment>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_m-eaECbPEeS7N_aTjEWq7Q" name="WildcardType">
+          <generalization xmi:id="_qu1GQCbPEeS7N_aTjEWq7Q" general="_RHSqABpbEeSM9LreJtBwBg"/>
+          <ownedAttribute xmi:id="_ujWgwCbPEeS7N_aTjEWq7Q" name="lowerBound" type="_RHSqABpbEeSM9LreJtBwBg">
+            <ownedComment xmi:id="_ujWgwSbPEeS7N_aTjEWq7Q" annotatedElement="_ujWgwCbPEeS7N_aTjEWq7Q">
+              <body>The element that is the default for this formal template parameter.</body>
+            </ownedComment>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ujWgwibPEeS7N_aTjEWq7Q"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_ujWgwybPEeS7N_aTjEWq7Q" name="upperBound" type="_RHSqABpbEeSM9LreJtBwBg">
+            <ownedComment xmi:id="_ujWgxCbPEeS7N_aTjEWq7Q" annotatedElement="_ujWgwybPEeS7N_aTjEWq7Q">
+              <body>The element that is the default for this formal template parameter.</body>
+            </ownedComment>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ujWgxSbPEeS7N_aTjEWq7Q"/>
+          </ownedAttribute>
         </packagedElement>
         <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_ownedParameter_signature" name="A_ownedTemplateParameters_owningTemplateSignature" memberEnd="AuxiliaryConstructs-Templates-TemplateSignature-ownedParameter AuxiliaryConstructs-Templates-TemplateParameter-signature"/>
         <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_templateBinding_boundElement" name="A_ownedTemplateBinding_owningTemplateableElement" memberEnd="AuxiliaryConstructs-Templates-TemplateableElement-templateBinding AuxiliaryConstructs-Templates-TemplateBinding-boundElement"/>

@@ -174,11 +174,6 @@
       <packagedElement xmi:type="uml:Interface" xmi:id="_h0T4sN9WEd-5RuvZBdnt0A" name="Pivotable" isAbstract="true"/>
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_-0G3sMpAEd-ZL8lMORCEkg" name="String"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_gqL8MDAZEeCQxbz5jr7q5g" name="Type" isAbstract="true"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="_jyLn4DAZEeCQxbz5jr7q5g" name="UnspecifiedType">
-        <generalization xmi:id="_Xp6OIX7VEeOu79LxSz8Ylw" general="_V3s5sMpCEd-ZL8lMORCEkg"/>
-        <ownedAttribute xmi:id="_teCpMDAZEeCQxbz5jr7q5g" name="lowerBound" type="_gqL8MDAZEeCQxbz5jr7q5g"/>
-        <ownedAttribute xmi:id="_2kURMDAZEeCQxbz5jr7q5g" name="upperBound" type="_gqL8MDAZEeCQxbz5jr7q5g"/>
-      </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_9SPjQARCEeSiuvNrq-crrw" name="MDT_OCL_Instances">
       <packagedElement xmi:type="uml:Class" xmi:id="_I7IPEBtGEeSM9LreJtBwBg" name="Class"/>
