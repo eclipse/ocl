@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.WildcardType;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
@@ -57,7 +58,7 @@ public class WildcardTypeImpl extends ClassImpl implements WildcardType
 	 * @generated
 	 * @ordered
 	 */
-	protected org.eclipse.ocl.examples.pivot.Class lowerBound;
+	protected Type lowerBound;
 
 	/**
 	 * The cached value of the '{@link #getUpperBound() <em>Upper Bound</em>}' reference.
@@ -67,7 +68,7 @@ public class WildcardTypeImpl extends ClassImpl implements WildcardType
 	 * @generated
 	 * @ordered
 	 */
-	protected org.eclipse.ocl.examples.pivot.Class upperBound;
+	protected Type upperBound;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -95,12 +96,12 @@ public class WildcardTypeImpl extends ClassImpl implements WildcardType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.ocl.examples.pivot.Class getLowerBound()
+	public Type getLowerBound()
 	{
 		if (lowerBound != null && ((EObject)lowerBound).eIsProxy())
 		{
 			InternalEObject oldLowerBound = (InternalEObject)lowerBound;
-			lowerBound = (org.eclipse.ocl.examples.pivot.Class)eResolveProxy(oldLowerBound);
+			lowerBound = (Type)eResolveProxy(oldLowerBound);
 			if (lowerBound != oldLowerBound)
 			{
 				if (eNotificationRequired())
@@ -115,7 +116,7 @@ public class WildcardTypeImpl extends ClassImpl implements WildcardType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.ocl.examples.pivot.Class basicGetLowerBound()
+	public Type basicGetLowerBound()
 	{
 		return lowerBound;
 	}
@@ -125,9 +126,9 @@ public class WildcardTypeImpl extends ClassImpl implements WildcardType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLowerBound(org.eclipse.ocl.examples.pivot.Class newLowerBound)
+	public void setLowerBound(Type newLowerBound)
 	{
-		org.eclipse.ocl.examples.pivot.Class oldLowerBound = lowerBound;
+		Type oldLowerBound = lowerBound;
 		lowerBound = newLowerBound;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.WILDCARD_TYPE__LOWER_BOUND, oldLowerBound, lowerBound));
@@ -138,12 +139,12 @@ public class WildcardTypeImpl extends ClassImpl implements WildcardType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.ocl.examples.pivot.Class getUpperBound()
+	public Type getUpperBound()
 	{
 		if (upperBound != null && ((EObject)upperBound).eIsProxy())
 		{
 			InternalEObject oldUpperBound = (InternalEObject)upperBound;
-			upperBound = (org.eclipse.ocl.examples.pivot.Class)eResolveProxy(oldUpperBound);
+			upperBound = (Type)eResolveProxy(oldUpperBound);
 			if (upperBound != oldUpperBound)
 			{
 				if (eNotificationRequired())
@@ -158,7 +159,7 @@ public class WildcardTypeImpl extends ClassImpl implements WildcardType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.ocl.examples.pivot.Class basicGetUpperBound()
+	public Type basicGetUpperBound()
 	{
 		return upperBound;
 	}
@@ -168,9 +169,9 @@ public class WildcardTypeImpl extends ClassImpl implements WildcardType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUpperBound(org.eclipse.ocl.examples.pivot.Class newUpperBound)
+	public void setUpperBound(Type newUpperBound)
 	{
-		org.eclipse.ocl.examples.pivot.Class oldUpperBound = upperBound;
+		Type oldUpperBound = upperBound;
 		upperBound = newUpperBound;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.WILDCARD_TYPE__UPPER_BOUND, oldUpperBound, upperBound));
@@ -320,10 +321,10 @@ public class WildcardTypeImpl extends ClassImpl implements WildcardType
 				getSuperClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.WILDCARD_TYPE__LOWER_BOUND:
-				setLowerBound((org.eclipse.ocl.examples.pivot.Class)newValue);
+				setLowerBound((Type)newValue);
 				return;
 			case PivotPackage.WILDCARD_TYPE__UPPER_BOUND:
-				setUpperBound((org.eclipse.ocl.examples.pivot.Class)newValue);
+				setUpperBound((Type)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -400,10 +401,10 @@ public class WildcardTypeImpl extends ClassImpl implements WildcardType
 				getSuperClasses().clear();
 				return;
 			case PivotPackage.WILDCARD_TYPE__LOWER_BOUND:
-				setLowerBound((org.eclipse.ocl.examples.pivot.Class)null);
+				setLowerBound((Type)null);
 				return;
 			case PivotPackage.WILDCARD_TYPE__UPPER_BOUND:
-				setUpperBound((org.eclipse.ocl.examples.pivot.Class)null);
+				setUpperBound((Type)null);
 				return;
 		}
 		eDynamicUnset(featureID);

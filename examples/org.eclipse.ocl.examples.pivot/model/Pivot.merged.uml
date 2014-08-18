@@ -1323,13 +1323,13 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateParameter.PconstrainingClass.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TTemplateParameter.PconstrainingClass.uV" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TTemplateParameter.PlowerBound" name="lowerBound" type="Ppivot.TClass">
+      <ownedAttribute xmi:id="Ppivot.TTemplateParameter.PlowerBound" name="lowerBound" type="Ppivot.TType">
         <ownedComment xmi:id="Ppivot.TTemplateParameter.PlowerBound.oC0" annotatedElement="Ppivot.TTemplateParameter.PlowerBound">
           <body>The element that is the default for this formal template parameter.</body>
         </ownedComment>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateParameter.PlowerBound.lV"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TTemplateParameter.PupperBound" name="upperBound" type="Ppivot.TClass">
+      <ownedAttribute xmi:id="Ppivot.TTemplateParameter.PupperBound" name="upperBound" type="Ppivot.TType">
         <ownedComment xmi:id="Ppivot.TTemplateParameter.PupperBound.oC0" annotatedElement="Ppivot.TTemplateParameter.PupperBound">
           <body>The element that is the default for this formal template parameter.</body>
         </ownedComment>
@@ -1653,13 +1653,13 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TWildcardType" name="WildcardType">
       <generalization xmi:id="Ppivot.TWildcardType.g0" general="Ppivot.TClass"/>
-      <ownedAttribute xmi:id="Ppivot.TWildcardType.PlowerBound" name="lowerBound" type="Ppivot.TClass">
+      <ownedAttribute xmi:id="Ppivot.TWildcardType.PlowerBound" name="lowerBound" type="Ppivot.TType">
         <ownedComment xmi:id="Ppivot.TWildcardType.PlowerBound.oC0" annotatedElement="Ppivot.TWildcardType.PlowerBound">
           <body>The element that is the default for this formal template parameter.</body>
         </ownedComment>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TWildcardType.PlowerBound.lV"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TWildcardType.PupperBound" name="upperBound" type="Ppivot.TClass">
+      <ownedAttribute xmi:id="Ppivot.TWildcardType.PupperBound" name="upperBound" type="Ppivot.TType">
         <ownedComment xmi:id="Ppivot.TWildcardType.PupperBound.oC0" annotatedElement="Ppivot.TWildcardType.PupperBound">
           <body>The element that is the default for this formal template parameter.</body>
         </ownedComment>

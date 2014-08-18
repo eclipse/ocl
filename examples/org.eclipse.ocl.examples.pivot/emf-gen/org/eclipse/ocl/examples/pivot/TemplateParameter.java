@@ -60,11 +60,11 @@ public interface TemplateParameter
 	 * The element that is the default for this formal template parameter.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Lower Bound</em>' reference.
-	 * @see #setLowerBound(org.eclipse.ocl.examples.pivot.Class)
+	 * @see #setLowerBound(Type)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateParameter_LowerBound()
 	 * @generated
 	 */
-	org.eclipse.ocl.examples.pivot.Class getLowerBound();
+	Type getLowerBound();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getLowerBound <em>Lower Bound</em>}' reference.
@@ -74,7 +74,7 @@ public interface TemplateParameter
 	 * @see #getLowerBound()
 	 * @generated
 	 */
-	void setLowerBound(org.eclipse.ocl.examples.pivot.Class value);
+	void setLowerBound(Type value);
 
 	/**
 	 * Returns the value of the '<em><b>Owning Template Signature</b></em>' container reference.
@@ -110,11 +110,11 @@ public interface TemplateParameter
 	 * The element that is the default for this formal template parameter.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Upper Bound</em>' reference.
-	 * @see #setUpperBound(org.eclipse.ocl.examples.pivot.Class)
+	 * @see #setUpperBound(Type)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateParameter_UpperBound()
 	 * @generated
 	 */
-	org.eclipse.ocl.examples.pivot.Class getUpperBound();
+	Type getUpperBound();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getUpperBound <em>Upper Bound</em>}' reference.
@@ -124,6 +124,6 @@ public interface TemplateParameter
 	 * @see #getUpperBound()
 	 * @generated
 	 */
-	void setUpperBound(org.eclipse.ocl.examples.pivot.Class value);
+	void setUpperBound(Type value);
 
 } // TemplateParameter
