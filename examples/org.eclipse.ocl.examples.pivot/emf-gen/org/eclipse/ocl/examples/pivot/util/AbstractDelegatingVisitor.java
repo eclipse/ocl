@@ -467,10 +467,6 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 		return delegate.visitUnlimitedNaturalLiteralExp(object);
 	}
 
-	public @Nullable R visitUnspecifiedType(@NonNull org.eclipse.ocl.examples.pivot.UnspecifiedType object) {
-		return delegate.visitUnspecifiedType(object);
-	}
-
 	public @Nullable R visitUnspecifiedValueExp(@NonNull org.eclipse.ocl.examples.pivot.UnspecifiedValueExp object) {
 		return delegate.visitUnspecifiedValueExp(object);
 	}
@@ -497,5 +493,9 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 
 	public @Nullable R visitVoidType(@NonNull org.eclipse.ocl.examples.pivot.VoidType object) {
 		return delegate.visitVoidType(object);
+	}
+
+	public @Nullable R visitWildcardType(@NonNull org.eclipse.ocl.examples.pivot.WildcardType object) {
+		return delegate.visitWildcardType(object);
 	}
 }

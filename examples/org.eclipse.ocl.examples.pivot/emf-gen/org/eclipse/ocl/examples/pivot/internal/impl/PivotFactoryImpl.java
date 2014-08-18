@@ -110,11 +110,11 @@ import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
-import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.VoidType;
+import org.eclipse.ocl.examples.pivot.WildcardType;
 
 /**
  * <!-- begin-user-doc -->
@@ -253,11 +253,11 @@ public class PivotFactoryImpl
 			case PivotPackage.TYPE_EXP: return (EObject)createTypeExp();
 			case PivotPackage.TYPE_EXTENSION: return (EObject)createTypeExtension();
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP: return (EObject)createUnlimitedNaturalLiteralExp();
-			case PivotPackage.UNSPECIFIED_TYPE: return (EObject)createUnspecifiedType();
 			case PivotPackage.UNSPECIFIED_VALUE_EXP: return (EObject)createUnspecifiedValueExp();
 			case PivotPackage.VARIABLE: return (EObject)createVariable();
 			case PivotPackage.VARIABLE_EXP: return (EObject)createVariableExp();
 			case PivotPackage.VOID_TYPE: return (EObject)createVoidType();
+			case PivotPackage.WILDCARD_TYPE: return (EObject)createWildcardType();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -1236,17 +1236,6 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UnspecifiedType createUnspecifiedType()
-	{
-		UnspecifiedTypeImpl unspecifiedType = new UnspecifiedTypeImpl();
-		return unspecifiedType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public UnspecifiedValueExp createUnspecifiedValueExp() {
 		UnspecifiedValueExpImpl unspecifiedValueExp = new UnspecifiedValueExpImpl();
 		return unspecifiedValueExp;
@@ -1270,6 +1259,17 @@ public class PivotFactoryImpl
 	public VoidType createVoidType() {
 		VoidTypeImpl voidType = new VoidTypeImpl();
 		return voidType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WildcardType createWildcardType()
+	{
+		WildcardTypeImpl wildcardType = new WildcardTypeImpl();
+		return wildcardType;
 	}
 
 	/**

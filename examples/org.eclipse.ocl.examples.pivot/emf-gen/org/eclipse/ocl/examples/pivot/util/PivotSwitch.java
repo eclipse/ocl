@@ -117,7 +117,6 @@ import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
-import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.Variable;
@@ -125,6 +124,7 @@ import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.Vertex;
 import org.eclipse.ocl.examples.pivot.VoidType;
+import org.eclipse.ocl.examples.pivot.WildcardType;
 
 /**
  * <!-- begin-user-doc -->
@@ -1588,21 +1588,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PivotPackage.UNSPECIFIED_TYPE:
-			{
-				UnspecifiedType unspecifiedType = (UnspecifiedType)theEObject;
-				T1 result = caseUnspecifiedType(unspecifiedType);
-				if (result == null) result = caseClass(unspecifiedType);
-				if (result == null) result = caseType(unspecifiedType);
-				if (result == null) result = caseNamespace(unspecifiedType);
-				if (result == null) result = caseTemplateableElement(unspecifiedType);
-				if (result == null) result = caseNamedElement(unspecifiedType);
-				if (result == null) result = caseElement(unspecifiedType);
-				if (result == null) result = caseNameable(unspecifiedType);
-				if (result == null) result = caseVisitable(unspecifiedType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case PivotPackage.UNSPECIFIED_VALUE_EXP:
 			{
 				UnspecifiedValueExp unspecifiedValueExp = (UnspecifiedValueExp)theEObject;
@@ -1697,6 +1682,21 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseElement(voidType);
 				if (result == null) result = caseNameable(voidType);
 				if (result == null) result = caseVisitable(voidType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.WILDCARD_TYPE:
+			{
+				WildcardType wildcardType = (WildcardType)theEObject;
+				T1 result = caseWildcardType(wildcardType);
+				if (result == null) result = caseClass(wildcardType);
+				if (result == null) result = caseType(wildcardType);
+				if (result == null) result = caseNamespace(wildcardType);
+				if (result == null) result = caseTemplateableElement(wildcardType);
+				if (result == null) result = caseNamedElement(wildcardType);
+				if (result == null) result = caseElement(wildcardType);
+				if (result == null) result = caseNameable(wildcardType);
+				if (result == null) result = caseVisitable(wildcardType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -2811,22 +2811,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Unspecified Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Unspecified Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseUnspecifiedType(UnspecifiedType object)
-	{
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Unspecified Value Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -2884,6 +2868,22 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @generated
 	 */
 	public T1 caseVoidType(VoidType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Wildcard Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Wildcard Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseWildcardType(WildcardType object)
+	{
 		return null;
 	}
 

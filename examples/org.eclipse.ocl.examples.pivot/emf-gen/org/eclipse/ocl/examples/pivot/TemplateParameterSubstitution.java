@@ -24,6 +24,7 @@ package org.eclipse.ocl.examples.pivot;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getActual <em>Actual</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getFormal <em>Formal</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getOwnedWildcard <em>Owned Wildcard</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getOwningTemplateBinding <em>Owning Template Binding</em>}</li>
  * </ul>
  * </p>
@@ -57,6 +58,30 @@ public interface TemplateParameterSubstitution
 	 * @generated
 	 */
 	void setFormal(TemplateParameter value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Wildcard</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The element that is the actual parameter for this substitution.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Wildcard</em>' containment reference.
+	 * @see #setOwnedWildcard(WildcardType)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateParameterSubstitution_OwnedWildcard()
+	 * @generated
+	 */
+	WildcardType getOwnedWildcard();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getOwnedWildcard <em>Owned Wildcard</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Wildcard</em>' containment reference.
+	 * @see #getOwnedWildcard()
+	 * @generated
+	 */
+	void setOwnedWildcard(WildcardType value);
 
 	/**
 	 * Returns the value of the '<em><b>Actual</b></em>' reference.

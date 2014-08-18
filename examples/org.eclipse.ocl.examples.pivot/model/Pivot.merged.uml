@@ -1357,6 +1357,12 @@
           <body>The element that is the actual parameter for this substitution.</body>
         </ownedComment>
       </ownedAttribute>
+      <ownedAttribute xmi:id="Ppivot.TTemplateParameterSubstitution.PownedWildcard" name="ownedWildcard" type="Ppivot.TWildcardType" aggregation="composite">
+        <ownedComment xmi:id="Ppivot.TTemplateParameterSubstitution.PownedWildcard.oC0" annotatedElement="Ppivot.TTemplateParameterSubstitution.PownedWildcard">
+          <body>The element that is the actual parameter for this substitution.</body>
+        </ownedComment>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateParameterSubstitution.PownedWildcard.lV"/>
+      </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TTemplateSignature" name="TemplateSignature">
       <ownedComment xmi:id="Ppivot.TTemplateSignature.oC0" annotatedElement="Ppivot.TTemplateSignature">
@@ -1539,11 +1545,6 @@
       <generalization xmi:id="Ppivot.TUnlimitedNaturalLiteralExp.g0" general="Ppivot.TNumericLiteralExp"/>
       <ownedAttribute xmi:id="Ppivot.TUnlimitedNaturalLiteralExp.PunlimitedNaturalSymbol" name="unlimitedNaturalSymbol" type="Ppivot.TUnlimitedNatural"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TUnspecifiedType" name="UnspecifiedType">
-      <generalization xmi:id="Ppivot.TUnspecifiedType.g0" general="Ppivot.TClass"/>
-      <ownedAttribute xmi:id="Ppivot.TUnspecifiedType.PlowerBound" name="lowerBound" type="Ppivot.TType"/>
-      <ownedAttribute xmi:id="Ppivot.TUnspecifiedType.PupperBound" name="upperBound" type="Ppivot.TType"/>
-    </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TUnspecifiedValueExp" name="UnspecifiedValueExp">
       <generalization xmi:id="Ppivot.TUnspecifiedValueExp.g0" general="Ppivot.TOCLExpression"/>
     </packagedElement>
@@ -1649,6 +1650,21 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TVoidType" name="VoidType">
       <generalization xmi:id="Ppivot.TVoidType.g0" general="Ppivot.TClass"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TWildcardType" name="WildcardType">
+      <generalization xmi:id="Ppivot.TWildcardType.g0" general="Ppivot.TClass"/>
+      <ownedAttribute xmi:id="Ppivot.TWildcardType.PlowerBound" name="lowerBound" type="Ppivot.TClass">
+        <ownedComment xmi:id="Ppivot.TWildcardType.PlowerBound.oC0" annotatedElement="Ppivot.TWildcardType.PlowerBound">
+          <body>The element that is the default for this formal template parameter.</body>
+        </ownedComment>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TWildcardType.PlowerBound.lV"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="Ppivot.TWildcardType.PupperBound" name="upperBound" type="Ppivot.TClass">
+        <ownedComment xmi:id="Ppivot.TWildcardType.PupperBound.oC0" annotatedElement="Ppivot.TWildcardType.PupperBound">
+          <body>The element that is the default for this formal template parameter.</body>
+        </ownedComment>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TWildcardType.PupperBound.lV"/>
+      </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_annotatedElement_comment" name="A_annotatedElement_comment" memberEnd="Ppivot.TComment.PannotatedElement Ppivot.TElement.Pcomment"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_appliedProfile_application" name="A_appliedProfile_application" memberEnd="Ppivot.TProfileApplication.PappliedProfile Ppivot.TProfile.Papplication"/>

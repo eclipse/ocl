@@ -118,7 +118,6 @@ import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
-import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.Variable;
@@ -126,6 +125,7 @@ import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.Vertex;
 import org.eclipse.ocl.examples.pivot.VoidType;
+import org.eclipse.ocl.examples.pivot.WildcardType;
 
 /**
  * <!-- begin-user-doc -->
@@ -724,11 +724,6 @@ public class PivotAdapterFactory
 				return createUnlimitedNaturalLiteralExpAdapter();
 			}
 			@Override
-			public Adapter caseUnspecifiedType(UnspecifiedType object)
-			{
-				return createUnspecifiedTypeAdapter();
-			}
-			@Override
 			public Adapter caseUnspecifiedValueExp(UnspecifiedValueExp object)
 			{
 				return createUnspecifiedValueExpAdapter();
@@ -767,6 +762,11 @@ public class PivotAdapterFactory
 			public Adapter caseVoidType(VoidType object)
 			{
 				return createVoidTypeAdapter();
+			}
+			@Override
+			public Adapter caseWildcardType(WildcardType object)
+			{
+				return createWildcardTypeAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -1808,21 +1808,6 @@ public class PivotAdapterFactory
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.UnspecifiedType <em>Unspecified Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.pivot.UnspecifiedType
-	 * @generated
-	 */
-	public Adapter createUnspecifiedTypeAdapter()
-	{
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.UnspecifiedValueExp <em>Unspecified Value Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1876,6 +1861,21 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createVoidTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.WildcardType <em>Wildcard Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.pivot.WildcardType
+	 * @generated
+	 */
+	public Adapter createWildcardTypeAdapter()
+	{
 		return null;
 	}
 

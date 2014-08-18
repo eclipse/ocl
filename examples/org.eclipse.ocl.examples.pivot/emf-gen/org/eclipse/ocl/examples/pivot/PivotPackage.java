@@ -286,7 +286,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVariable()
 	 * @generated
 	 */
-	int VARIABLE = 110;
+	int VARIABLE = 109;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.IfExpImpl <em>If Exp</em>}' class.
@@ -566,7 +566,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getUnspecifiedValueExp()
 	 * @generated
 	 */
-	int UNSPECIFIED_VALUE_EXP = 108;
+	int UNSPECIFIED_VALUE_EXP = 107;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.VariableExpImpl <em>Variable Exp</em>}' class.
@@ -576,7 +576,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVariableExp()
 	 * @generated
 	 */
-	int VARIABLE_EXP = 112;
+	int VARIABLE_EXP = 111;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.VoidTypeImpl <em>Void Type</em>}' class.
@@ -586,7 +586,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVoidType()
 	 * @generated
 	 */
-	int VOID_TYPE = 115;
+	int VOID_TYPE = 114;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.util.Pivotable <em>Pivotable</em>}' class.
@@ -606,7 +606,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVisitable()
 	 * @generated
 	 */
-	int VISITABLE = 114;
+	int VISITABLE = 113;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ElementImpl <em>Element</em>}' class.
@@ -796,7 +796,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVariableDeclaration()
 	 * @generated
 	 */
-	int VARIABLE_DECLARATION = 111;
+	int VARIABLE_DECLARATION = 110;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CommentImpl <em>Comment</em>}' class.
@@ -826,7 +826,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getValueSpecification()
 	 * @generated
 	 */
-	int VALUE_SPECIFICATION = 109;
+	int VALUE_SPECIFICATION = 108;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.domain.elements.Nameable <em>Nameable</em>}' class.
@@ -1285,7 +1285,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVertex()
 	 * @generated
 	 */
-	int VERTEX = 113;
+	int VERTEX = 112;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ConnectionPointReferenceImpl <em>Connection Point Reference</em>}' class.
@@ -18841,13 +18841,22 @@ public interface PivotPackage
 	int TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Owned Wildcard</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_WILDCARD = ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Owning Template Binding</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION__OWNING_TEMPLATE_BINDING = ELEMENT_FEATURE_COUNT + 2;
+	int TEMPLATE_PARAMETER_SUBSTITUTION__OWNING_TEMPLATE_BINDING = ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Template Parameter Substitution</em>' class.
@@ -18856,7 +18865,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
+	int TEMPLATE_PARAMETER_SUBSTITUTION_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -20255,286 +20264,6 @@ public interface PivotPackage
 	int UNLIMITED_NATURAL_LITERAL_EXP_OPERATION_COUNT = NUMERIC_LITERAL_EXP_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.UnspecifiedTypeImpl <em>Unspecified Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.UnspecifiedTypeImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getUnspecifiedType()
-	 * @generated
-	 */
-	int UNSPECIFIED_TYPE = 107;
-
-	/**
-	 * The feature id for the '<em><b>Comment</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__COMMENT = CLASS__COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__EXTENSION = CLASS__EXTENSION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__OWNED_ANNOTATION = CLASS__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__OWNED_COMMENT = CLASS__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__NAME = CLASS__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__EXTENDED_BYS = CLASS__EXTENDED_BYS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__OWNED_TEMPLATE_BINDINGS = CLASS__OWNED_TEMPLATE_BINDINGS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__OWNED_TEMPLATE_SIGNATURE = CLASS__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__IS_ABSTRACT = CLASS__IS_ABSTRACT;
-
-	/**
-	 * The feature id for the '<em><b>Is Active</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__IS_ACTIVE = CLASS__IS_ACTIVE;
-
-	/**
-	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__IS_INTERFACE = CLASS__IS_INTERFACE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__OWNED_INVARIANTS = CLASS__OWNED_INVARIANTS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__OWNED_OPERATIONS = CLASS__OWNED_OPERATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
-
-	/**
-	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__OWNING_PACKAGE = CLASS__OWNING_PACKAGE;
-
-	/**
-	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__SUPER_CLASSES = CLASS__SUPER_CLASSES;
-
-	/**
-	 * The feature id for the '<em><b>Lower Bound</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__LOWER_BOUND = CLASS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Upper Bound</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__UPPER_BOUND = CLASS_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Unspecified Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE_FEATURE_COUNT = CLASS_FEATURE_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>All Owned Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE___ALL_OWNED_ELEMENTS = CLASS___ALL_OWNED_ELEMENTS;
-
-	/**
-	 * The operation id for the '<em>Get Value</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
-
-	/**
-	 * The operation id for the '<em>Is Class</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE___IS_CLASS = CLASS___IS_CLASS;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
-
-	/**
-	 * The operation id for the '<em>Specialize In</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
-
-	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The number of operations of the '<em>Unspecified Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21226,6 +20955,286 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VOID_TYPE_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.WildcardTypeImpl <em>Wildcard Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.WildcardTypeImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getWildcardType()
+	 * @generated
+	 */
+	int WILDCARD_TYPE = 115;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE__COMMENT = CLASS__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE__EXTENSION = CLASS__EXTENSION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE__OWNED_ANNOTATION = CLASS__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE__OWNED_COMMENT = CLASS__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE__NAME = CLASS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE__EXTENDED_BYS = CLASS__EXTENDED_BYS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE__OWNED_TEMPLATE_BINDINGS = CLASS__OWNED_TEMPLATE_BINDINGS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE__OWNED_TEMPLATE_SIGNATURE = CLASS__OWNED_TEMPLATE_SIGNATURE;
+
+	/**
+	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE__IS_ABSTRACT = CLASS__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Is Active</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE__IS_ACTIVE = CLASS__IS_ACTIVE;
+
+	/**
+	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE__IS_INTERFACE = CLASS__IS_INTERFACE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE__OWNED_INVARIANTS = CLASS__OWNED_INVARIANTS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE__OWNED_OPERATIONS = CLASS__OWNED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
+
+	/**
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE__OWNING_PACKAGE = CLASS__OWNING_PACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE__SUPER_CLASSES = CLASS__SUPER_CLASSES;
+
+	/**
+	 * The feature id for the '<em><b>Lower Bound</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE__LOWER_BOUND = CLASS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Upper Bound</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE__UPPER_BOUND = CLASS_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Wildcard Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE_FEATURE_COUNT = CLASS_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE___ALL_OWNED_ELEMENTS = CLASS___ALL_OWNED_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Get Value</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Is Class</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE___IS_CLASS = CLASS___IS_CLASS;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Specialize In</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+
+	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The number of operations of the '<em>Wildcard Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.AssociativityKind <em>Associativity Kind</em>}' enum.
@@ -23988,38 +23997,6 @@ public interface PivotPackage
 	EAttribute getUnlimitedNaturalLiteralExp_UnlimitedNaturalSymbol();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.UnspecifiedType <em>Unspecified Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Unspecified Type</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.UnspecifiedType
-	 * @generated
-	 */
-	EClass getUnspecifiedType();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.UnspecifiedType#getLowerBound <em>Lower Bound</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Lower Bound</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.UnspecifiedType#getLowerBound()
-	 * @see #getUnspecifiedType()
-	 * @generated
-	 */
-	EReference getUnspecifiedType_LowerBound();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.UnspecifiedType#getUpperBound <em>Upper Bound</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Upper Bound</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.UnspecifiedType#getUpperBound()
-	 * @see #getUnspecifiedType()
-	 * @generated
-	 */
-	EReference getUnspecifiedType_UpperBound();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.UnspecifiedValueExp <em>Unspecified Value Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -24113,6 +24090,38 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EClass getVoidType();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.WildcardType <em>Wildcard Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Wildcard Type</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.WildcardType
+	 * @generated
+	 */
+	EClass getWildcardType();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.WildcardType#getLowerBound <em>Lower Bound</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Lower Bound</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.WildcardType#getLowerBound()
+	 * @see #getWildcardType()
+	 * @generated
+	 */
+	EReference getWildcardType_LowerBound();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.WildcardType#getUpperBound <em>Upper Bound</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Upper Bound</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.WildcardType#getUpperBound()
+	 * @see #getWildcardType()
+	 * @generated
+	 */
+	EReference getWildcardType_UpperBound();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.util.Pivotable <em>Pivotable</em>}'.
@@ -24626,6 +24635,17 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getTemplateParameterSubstitution_Formal();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getOwnedWildcard <em>Owned Wildcard</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Owned Wildcard</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getOwnedWildcard()
+	 * @see #getTemplateParameterSubstitution()
+	 * @generated
+	 */
+	EReference getTemplateParameterSubstitution_OwnedWildcard();
 
 	/**
 	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getOwningTemplateBinding <em>Owning Template Binding</em>}'.
@@ -28216,32 +28236,6 @@ public interface PivotPackage
 		EAttribute UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL = eINSTANCE.getUnlimitedNaturalLiteralExp_UnlimitedNaturalSymbol();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.UnspecifiedTypeImpl <em>Unspecified Type</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.UnspecifiedTypeImpl
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getUnspecifiedType()
-		 * @generated
-		 */
-		EClass UNSPECIFIED_TYPE = eINSTANCE.getUnspecifiedType();
-
-		/**
-		 * The meta object literal for the '<em><b>Lower Bound</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference UNSPECIFIED_TYPE__LOWER_BOUND = eINSTANCE.getUnspecifiedType_LowerBound();
-
-		/**
-		 * The meta object literal for the '<em><b>Upper Bound</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference UNSPECIFIED_TYPE__UPPER_BOUND = eINSTANCE.getUnspecifiedType_UpperBound();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.UnspecifiedValueExpImpl <em>Unspecified Value Exp</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -28320,6 +28314,32 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EClass VOID_TYPE = eINSTANCE.getVoidType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.WildcardTypeImpl <em>Wildcard Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.pivot.internal.impl.WildcardTypeImpl
+		 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getWildcardType()
+		 * @generated
+		 */
+		EClass WILDCARD_TYPE = eINSTANCE.getWildcardType();
+
+		/**
+		 * The meta object literal for the '<em><b>Lower Bound</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WILDCARD_TYPE__LOWER_BOUND = eINSTANCE.getWildcardType_LowerBound();
+
+		/**
+		 * The meta object literal for the '<em><b>Upper Bound</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WILDCARD_TYPE__UPPER_BOUND = eINSTANCE.getWildcardType_UpperBound();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.util.Pivotable <em>Pivotable</em>}' class.
@@ -28726,6 +28746,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL = eINSTANCE.getTemplateParameterSubstitution_Formal();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Wildcard</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_WILDCARD = eINSTANCE.getTemplateParameterSubstitution_OwnedWildcard();
 
 		/**
 		 * The meta object literal for the '<em><b>Owning Template Binding</b></em>' container reference feature.

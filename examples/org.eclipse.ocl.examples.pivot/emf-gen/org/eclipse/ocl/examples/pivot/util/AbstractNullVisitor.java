@@ -446,10 +446,6 @@ public abstract class AbstractNullVisitor<R, C>
 		return null;
 	}
 
-	public @Nullable R visitUnspecifiedType(@NonNull org.eclipse.ocl.examples.pivot.UnspecifiedType object) {
-		return null;
-	}
-
 	public @Nullable R visitUnspecifiedValueExp(@NonNull org.eclipse.ocl.examples.pivot.UnspecifiedValueExp object) {
 		return null;
 	}
@@ -475,6 +471,10 @@ public abstract class AbstractNullVisitor<R, C>
 	}
 
 	public @Nullable R visitVoidType(@NonNull org.eclipse.ocl.examples.pivot.VoidType object) {
+		return null;
+	}
+
+	public @Nullable R visitWildcardType(@NonNull org.eclipse.ocl.examples.pivot.WildcardType object) {
 		return null;
 	}
 }

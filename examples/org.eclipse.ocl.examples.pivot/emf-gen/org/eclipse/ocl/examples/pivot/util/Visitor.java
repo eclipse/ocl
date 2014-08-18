@@ -143,7 +143,6 @@ public interface Visitor<R>
 	@Nullable R visitTypeExtension(@NonNull org.eclipse.ocl.examples.pivot.TypeExtension object);
 	@Nullable R visitTypedElement(@NonNull org.eclipse.ocl.examples.pivot.TypedElement object);
 	@Nullable R visitUnlimitedNaturalLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp object);
-	@Nullable R visitUnspecifiedType(@NonNull org.eclipse.ocl.examples.pivot.UnspecifiedType object);
 	@Nullable R visitUnspecifiedValueExp(@NonNull org.eclipse.ocl.examples.pivot.UnspecifiedValueExp object);
 	@Nullable R visitValueSpecification(@NonNull org.eclipse.ocl.examples.pivot.ValueSpecification object);
 	@Nullable R visitVariable(@NonNull org.eclipse.ocl.examples.pivot.Variable object);
@@ -151,4 +150,5 @@ public interface Visitor<R>
 	@Nullable R visitVariableExp(@NonNull org.eclipse.ocl.examples.pivot.VariableExp object);
 	@Nullable R visitVertex(@NonNull org.eclipse.ocl.examples.pivot.Vertex object);
 	@Nullable R visitVoidType(@NonNull org.eclipse.ocl.examples.pivot.VoidType object);
+	@Nullable R visitWildcardType(@NonNull org.eclipse.ocl.examples.pivot.WildcardType object);
 }

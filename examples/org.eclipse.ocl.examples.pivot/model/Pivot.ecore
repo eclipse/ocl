@@ -1694,6 +1694,11 @@
         <details key="documentation" value="The formal template parameter that is associated with this substitution."/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedWildcard" eType="#//WildcardType" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The element that is the actual parameter for this substitution."/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningTemplateBinding" lowerBound="1" eType="#//TemplateBinding" eOpposite="#//TemplateBinding/ownedTemplateParameterSubstitutions">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The optional bindings from this element to templates."/>
@@ -1838,10 +1843,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="UnlimitedNaturalLiteralExp" eSuperTypes="#//NumericLiteralExp">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="unlimitedNaturalSymbol" lowerBound="1" eType="#//UnlimitedNatural"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UnspecifiedType" eSuperTypes="#//Class">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="lowerBound" lowerBound="1" eType="#//Type"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="upperBound" lowerBound="1" eType="#//Type"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UnspecifiedValueExp" eSuperTypes="#//OCLExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="ValueSpecification" abstract="true" eSuperTypes="#//TypedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1925,4 +1926,16 @@
   <eClassifiers xsi:type="ecore:EClass" name="Visitable" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitable" abstract="true"
       interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="VoidType" eSuperTypes="#//Class"/>
+  <eClassifiers xsi:type="ecore:EClass" name="WildcardType" eSuperTypes="#//Class">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lowerBound" eType="#//Class">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The element that is the default for this formal template parameter."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="upperBound" eType="#//Class">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The element that is the default for this formal template parameter."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
 </ecore:EPackage>

@@ -1214,17 +1214,6 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 		}
 	}
 
-	public @Nullable R visitUnspecifiedType(@NonNull org.eclipse.ocl.examples.pivot.UnspecifiedType object) {
-		P prologue = preVisit(object);
-		try {
-			R result = delegate.visitUnspecifiedType(object);
-			return postVisit(object, prologue, result);
-		}
-		catch (Throwable e) {
-			return badVisit(object, prologue, e);
-		}
-	}
-
 	public @Nullable R visitUnspecifiedValueExp(@NonNull org.eclipse.ocl.examples.pivot.UnspecifiedValueExp object) {
 		P prologue = preVisit(object);
 		try {
@@ -1295,6 +1284,17 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 		P prologue = preVisit(object);
 		try {
 			R result = delegate.visitVoidType(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
+	}
+
+	public @Nullable R visitWildcardType(@NonNull org.eclipse.ocl.examples.pivot.WildcardType object) {
+		P prologue = preVisit(object);
+		try {
+			R result = delegate.visitWildcardType(object);
 			return postVisit(object, prologue, result);
 		}
 		catch (Throwable e) {

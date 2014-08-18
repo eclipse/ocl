@@ -126,7 +126,6 @@ import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
-import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.Variable;
@@ -134,6 +133,7 @@ import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.Vertex;
 import org.eclipse.ocl.examples.pivot.VoidType;
+import org.eclipse.ocl.examples.pivot.WildcardType;
 
 /**
  * <!-- begin-user-doc -->
@@ -914,8 +914,6 @@ public class PivotValidator
 				return validateTypedElement((TypedElement)value, diagnostics, context);
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP:
 				return validateUnlimitedNaturalLiteralExp((UnlimitedNaturalLiteralExp)value, diagnostics, context);
-			case PivotPackage.UNSPECIFIED_TYPE:
-				return validateUnspecifiedType((UnspecifiedType)value, diagnostics, context);
 			case PivotPackage.UNSPECIFIED_VALUE_EXP:
 				return validateUnspecifiedValueExp((UnspecifiedValueExp)value, diagnostics, context);
 			case PivotPackage.VALUE_SPECIFICATION:
@@ -932,6 +930,8 @@ public class PivotValidator
 				return validateVisitable((Visitable)value, diagnostics, context);
 			case PivotPackage.VOID_TYPE:
 				return validateVoidType((VoidType)value, diagnostics, context);
+			case PivotPackage.WILDCARD_TYPE:
+				return validateWildcardType((WildcardType)value, diagnostics, context);
 			case PivotPackage.ASSOCIATIVITY_KIND:
 				return validateAssociativityKind((AssociativityKind)value, diagnostics, context);
 			case PivotPackage.COLLECTION_KIND:
@@ -1132,26 +1132,6 @@ public class PivotValidator
 			UnlimitedNaturalLiteralExp unlimitedNaturalLiteralExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)unlimitedNaturalLiteralExp, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateUnspecifiedType(UnspecifiedType unspecifiedType, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		if (!validate_NoCircularContainment((EObject)unspecifiedType, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms((EObject)unspecifiedType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)unspecifiedType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)unspecifiedType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)unspecifiedType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)unspecifiedType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID((EObject)unspecifiedType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)unspecifiedType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)unspecifiedType, diagnostics, context);
-		if (result || diagnostics != null) result &= validateClass_validateUniqueInvariantName(unspecifiedType, diagnostics, context);
-		return result;
 	}
 
 	/**
@@ -3299,6 +3279,26 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)voidType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)voidType, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_validateUniqueInvariantName(voidType, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateWildcardType(WildcardType wildcardType, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		if (!validate_NoCircularContainment((EObject)wildcardType, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms((EObject)wildcardType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)wildcardType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)wildcardType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)wildcardType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)wildcardType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID((EObject)wildcardType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)wildcardType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)wildcardType, diagnostics, context);
+		if (result || diagnostics != null) result &= validateClass_validateUniqueInvariantName(wildcardType, diagnostics, context);
 		return result;
 	}
 

@@ -450,10 +450,6 @@ public abstract class AbstractExtendingVisitor<R, C>
 		return visitNumericLiteralExp(object);
 	}
 
-	public @Nullable R visitUnspecifiedType(@NonNull org.eclipse.ocl.examples.pivot.UnspecifiedType object) {
-		return visitClass(object);
-	}
-
 	public @Nullable R visitUnspecifiedValueExp(@NonNull org.eclipse.ocl.examples.pivot.UnspecifiedValueExp object) {
 		return visitOCLExpression(object);
 	}
@@ -479,6 +475,10 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	public @Nullable R visitVoidType(@NonNull org.eclipse.ocl.examples.pivot.VoidType object) {
+		return visitClass(object);
+	}
+
+	public @Nullable R visitWildcardType(@NonNull org.eclipse.ocl.examples.pivot.WildcardType object) {
 		return visitClass(object);
 	}
 }

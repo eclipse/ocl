@@ -806,15 +806,6 @@ public interface PivotFactory
 	UnlimitedNaturalLiteralExp createUnlimitedNaturalLiteralExp();
 
 	/**
-	 * Returns a new object of class '<em>Unspecified Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Unspecified Type</em>'.
-	 * @generated
-	 */
-	UnspecifiedType createUnspecifiedType();
-
-	/**
 	 * Returns a new object of class '<em>Unspecified Value Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -840,6 +831,15 @@ public interface PivotFactory
 	 * @generated
 	 */
 	VoidType createVoidType();
+
+	/**
+	 * Returns a new object of class '<em>Wildcard Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Wildcard Type</em>'.
+	 * @generated
+	 */
+	WildcardType createWildcardType();
 
 	/**
 	 * Returns the package supported by this factory.

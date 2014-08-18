@@ -130,7 +130,6 @@ import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
-import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.Variable;
@@ -138,6 +137,7 @@ import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.Vertex;
 import org.eclipse.ocl.examples.pivot.VoidType;
+import org.eclipse.ocl.examples.pivot.WildcardType;
 import org.eclipse.ocl.examples.pivot.util.MorePivotable;
 import org.eclipse.ocl.examples.pivot.util.PivotValidator;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
@@ -655,13 +655,6 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass unspecifiedTypeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass unspecifiedValueExpEClass = null;
 
 	/**
@@ -684,6 +677,13 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EClass voidTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass wildcardTypeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -3559,36 +3559,6 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getUnspecifiedType()
-	{
-		return unspecifiedTypeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getUnspecifiedType_LowerBound()
-	{
-		return (EReference)unspecifiedTypeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getUnspecifiedType_UpperBound()
-	{
-		return (EReference)unspecifiedTypeEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getUnspecifiedValueExp() {
 		return unspecifiedValueExpEClass;
 	}
@@ -3668,6 +3638,36 @@ public class PivotPackageImpl
 	 */
 	public EClass getVoidType() {
 		return voidTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getWildcardType()
+	{
+		return wildcardTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getWildcardType_LowerBound()
+	{
+		return (EReference)wildcardTypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getWildcardType_UpperBound()
+	{
+		return (EReference)wildcardTypeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -4143,9 +4143,19 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTemplateParameterSubstitution_OwningTemplateBinding()
+	public EReference getTemplateParameterSubstitution_OwnedWildcard()
 	{
 		return (EReference)templateParameterSubstitutionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTemplateParameterSubstitution_OwningTemplateBinding()
+	{
+		return (EReference)templateParameterSubstitutionEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -5896,6 +5906,7 @@ public class PivotPackageImpl
 		templateParameterSubstitutionEClass = createEClass(TEMPLATE_PARAMETER_SUBSTITUTION);
 		createEReference(templateParameterSubstitutionEClass, TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL);
 		createEReference(templateParameterSubstitutionEClass, TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL);
+		createEReference(templateParameterSubstitutionEClass, TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_WILDCARD);
 		createEReference(templateParameterSubstitutionEClass, TEMPLATE_PARAMETER_SUBSTITUTION__OWNING_TEMPLATE_BINDING);
 
 		templateSignatureEClass = createEClass(TEMPLATE_SIGNATURE);
@@ -5952,10 +5963,6 @@ public class PivotPackageImpl
 		unlimitedNaturalLiteralExpEClass = createEClass(UNLIMITED_NATURAL_LITERAL_EXP);
 		createEAttribute(unlimitedNaturalLiteralExpEClass, UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL);
 
-		unspecifiedTypeEClass = createEClass(UNSPECIFIED_TYPE);
-		createEReference(unspecifiedTypeEClass, UNSPECIFIED_TYPE__LOWER_BOUND);
-		createEReference(unspecifiedTypeEClass, UNSPECIFIED_TYPE__UPPER_BOUND);
-
 		unspecifiedValueExpEClass = createEClass(UNSPECIFIED_VALUE_EXP);
 
 		valueSpecificationEClass = createEClass(VALUE_SPECIFICATION);
@@ -5986,6 +5993,10 @@ public class PivotPackageImpl
 		visitableEClass = createEClass(VISITABLE);
 
 		voidTypeEClass = createEClass(VOID_TYPE);
+
+		wildcardTypeEClass = createEClass(WILDCARD_TYPE);
+		createEReference(wildcardTypeEClass, WILDCARD_TYPE__LOWER_BOUND);
+		createEReference(wildcardTypeEClass, WILDCARD_TYPE__UPPER_BOUND);
 
 		// Create enums
 		associativityKindEEnum = createEEnum(ASSOCIATIVITY_KIND);
@@ -6150,7 +6161,6 @@ public class PivotPackageImpl
 		typeExtensionEClass.getESuperTypes().add(this.getElement());
 		typedElementEClass.getESuperTypes().add(this.getNamedElement());
 		unlimitedNaturalLiteralExpEClass.getESuperTypes().add(this.getNumericLiteralExp());
-		unspecifiedTypeEClass.getESuperTypes().add(this.getClass_());
 		unspecifiedValueExpEClass.getESuperTypes().add(this.getOCLExpression());
 		valueSpecificationEClass.getESuperTypes().add(this.getTypedElement());
 		variableEClass.getESuperTypes().add(this.getVariableDeclaration());
@@ -6159,6 +6169,7 @@ public class PivotPackageImpl
 		variableExpEClass.getESuperTypes().add(this.getReferringElement());
 		vertexEClass.getESuperTypes().add(this.getNamedElement());
 		voidTypeEClass.getESuperTypes().add(this.getClass_());
+		wildcardTypeEClass.getESuperTypes().add(this.getClass_());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(annotationEClass, Annotation.class, "Annotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -7111,6 +7122,7 @@ public class PivotPackageImpl
 		initEClass(templateParameterSubstitutionEClass, TemplateParameterSubstitution.class, "TemplateParameterSubstitution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTemplateParameterSubstitution_Actual(), this.getType(), null, "actual", null, 1, 1, TemplateParameterSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTemplateParameterSubstitution_Formal(), this.getTemplateParameter(), null, "formal", null, 1, 1, TemplateParameterSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTemplateParameterSubstitution_OwnedWildcard(), this.getWildcardType(), null, "ownedWildcard", null, 0, 1, TemplateParameterSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTemplateParameterSubstitution_OwningTemplateBinding(), this.getTemplateBinding(), this.getTemplateBinding_OwnedTemplateParameterSubstitutions(), "owningTemplateBinding", null, 1, 1, TemplateParameterSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(templateSignatureEClass, TemplateSignature.class, "TemplateSignature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -7175,10 +7187,6 @@ public class PivotPackageImpl
 		initEClass(unlimitedNaturalLiteralExpEClass, UnlimitedNaturalLiteralExp.class, "UnlimitedNaturalLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getUnlimitedNaturalLiteralExp_UnlimitedNaturalSymbol(), this.getUnlimitedNatural(), "unlimitedNaturalSymbol", null, 1, 1, UnlimitedNaturalLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(unspecifiedTypeEClass, UnspecifiedType.class, "UnspecifiedType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getUnspecifiedType_LowerBound(), this.getType(), null, "lowerBound", null, 1, 1, UnspecifiedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getUnspecifiedType_UpperBound(), this.getType(), null, "upperBound", null, 1, 1, UnspecifiedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(unspecifiedValueExpEClass, UnspecifiedValueExp.class, "UnspecifiedValueExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(valueSpecificationEClass, ValueSpecification.class, "ValueSpecification", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -7223,6 +7231,10 @@ public class PivotPackageImpl
 		initEClass(visitableEClass, Visitable.class, "Visitable", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(voidTypeEClass, VoidType.class, "VoidType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(wildcardTypeEClass, WildcardType.class, "WildcardType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getWildcardType_LowerBound(), this.getClass_(), null, "lowerBound", null, 0, 1, WildcardType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getWildcardType_UpperBound(), this.getClass_(), null, "upperBound", null, 0, 1, WildcardType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize enums and add enum literals
 		initEEnum(associativityKindEEnum, AssociativityKind.class, "AssociativityKind"); //$NON-NLS-1$

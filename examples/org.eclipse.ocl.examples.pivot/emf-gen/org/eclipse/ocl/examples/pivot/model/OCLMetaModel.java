@@ -247,7 +247,6 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Class _TypeExtension = createClass(PivotPackage.Literals.TYPE_EXTENSION);
 		private final @NonNull Class _TypedElement = createClass(PivotPackage.Literals.TYPED_ELEMENT);
 		private final @NonNull Class _UnlimitedNaturalLiteralExp = createClass(PivotPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP);
-		private final @NonNull Class _UnspecifiedType = createClass(PivotPackage.Literals.UNSPECIFIED_TYPE);
 		private final @NonNull Class _UnspecifiedValueExp = createClass(PivotPackage.Literals.UNSPECIFIED_VALUE_EXP);
 		private final @NonNull Class _ValueSpecification = createClass(PivotPackage.Literals.VALUE_SPECIFICATION);
 		private final @NonNull Class _Variable = createClass(PivotPackage.Literals.VARIABLE);
@@ -256,6 +255,7 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Class _Vertex = createClass(PivotPackage.Literals.VERTEX);
 		private final @NonNull Class _Visitable = createClass(PivotPackage.Literals.VISITABLE);
 		private final @NonNull Class _VoidType = createClass(PivotPackage.Literals.VOID_TYPE);
+		private final @NonNull Class _WildcardType = createClass(PivotPackage.Literals.WILDCARD_TYPE);
 
 		private final @NonNull Enumeration _AssociativityKind = createEnumeration(PivotPackage.Literals.ASSOCIATIVITY_KIND);
 		private final @NonNull EnumerationLiteral el__AssociativityKind_Left = createEnumerationLiteral(PivotPackage.Literals.ASSOCIATIVITY_KIND.getEEnumLiteral(AssociativityKind.LEFT_VALUE));
@@ -317,9 +317,9 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull BagType _Bag_TemplateParameter = createBagType(_Bag, _TemplateParameter);
 		private final @NonNull BagType _Bag_TemplateParameterSubstitution = createBagType(_Bag, _TemplateParameterSubstitution);
 		private final @NonNull BagType _Bag_TypeExp = createBagType(_Bag, _TypeExp);
-		private final @NonNull BagType _Bag_UnspecifiedType = createBagType(_Bag, _UnspecifiedType);
 		private final @NonNull BagType _Bag_Variable = createBagType(_Bag, _Variable);
 		private final @NonNull BagType _Bag_VariableExp = createBagType(_Bag, _VariableExp);
+		private final @NonNull BagType _Bag_WildcardType = createBagType(_Bag, _WildcardType);
 		private final @NonNull CollectionType _Collection_Annotation = createCollectionType(_Collection, _Annotation);
 		private final @NonNull CollectionType _Collection_AssociationClassCallExp = createCollectionType(_Collection, _AssociationClassCallExp);
 		private final @NonNull CollectionType _Collection_Behavior = createCollectionType(_Collection, _Behavior);
@@ -373,11 +373,11 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull CollectionType _Collection_Type = createCollectionType(_Collection, _Type);
 		private final @NonNull CollectionType _Collection_TypeExp = createCollectionType(_Collection, _TypeExp);
 		private final @NonNull CollectionType _Collection_TypeExtension = createCollectionType(_Collection, _TypeExtension);
-		private final @NonNull CollectionType _Collection_UnspecifiedType = createCollectionType(_Collection, _UnspecifiedType);
 		private final @NonNull CollectionType _Collection_ValueSpecification = createCollectionType(_Collection, _ValueSpecification);
 		private final @NonNull CollectionType _Collection_Variable = createCollectionType(_Collection, _Variable);
 		private final @NonNull CollectionType _Collection_VariableExp = createCollectionType(_Collection, _VariableExp);
 		private final @NonNull CollectionType _Collection_Vertex = createCollectionType(_Collection, _Vertex);
+		private final @NonNull CollectionType _Collection_WildcardType = createCollectionType(_Collection, _WildcardType);
 		private final @NonNull CollectionType _OrderedCollection_CollectionLiteralPart = createCollectionType(_OrderedCollection, _CollectionLiteralPart);
 		private final @NonNull CollectionType _OrderedCollection_ConstructorPart = createCollectionType(_OrderedCollection, _ConstructorPart);
 		private final @NonNull CollectionType _OrderedCollection_Detail = createCollectionType(_OrderedCollection, _Detail);
@@ -823,9 +823,6 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedTypes.add(type = _UnlimitedNaturalLiteralExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NumericLiteralExp);
-			ownedTypes.add(type = _UnspecifiedType);
-			superClasses = type.getSuperClasses();
-			superClasses.add(_Class);
 			ownedTypes.add(type = _UnspecifiedValueExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OCLExpression);
@@ -849,6 +846,9 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
 			ownedTypes.add(type = _VoidType);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Class);
+			ownedTypes.add(type = _WildcardType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Class);
 		}
@@ -1005,15 +1005,15 @@ public class OCLMetaModel extends ASResourceImpl
 			orphanTypes.add(type = _Bag_TypeExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_TypeExp);
-			orphanTypes.add(type = _Bag_UnspecifiedType);
-			superClasses = type.getSuperClasses();
-			superClasses.add(_Collection_UnspecifiedType);
 			orphanTypes.add(type = _Bag_Variable);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Variable);
 			orphanTypes.add(type = _Bag_VariableExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_VariableExp);
+			orphanTypes.add(type = _Bag_WildcardType);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Collection_WildcardType);
 			orphanTypes.add(type = _Collection_Annotation);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclAny);
@@ -1173,9 +1173,6 @@ public class OCLMetaModel extends ASResourceImpl
 			orphanTypes.add(type = _Collection_TypeExtension);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclAny);
-			orphanTypes.add(type = _Collection_UnspecifiedType);
-			superClasses = type.getSuperClasses();
-			superClasses.add(_OclAny);
 			orphanTypes.add(type = _Collection_ValueSpecification);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclAny);
@@ -1186,6 +1183,9 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclAny);
 			orphanTypes.add(type = _Collection_Vertex);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclAny);
+			orphanTypes.add(type = _Collection_WildcardType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclAny);
 			orphanTypes.add(type = _OrderedCollection_CollectionLiteralPart);
@@ -1610,6 +1610,8 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_Class_TemplateParameter_constrainingClass = createProperty("TemplateParameter", _Bag_TemplateParameter);
 		private final @NonNull Property pr_Class_TemplateParameter_lowerBound = createProperty("TemplateParameter", _Bag_TemplateParameter);
 		private final @NonNull Property pr_Class_TemplateParameter_upperBound = createProperty("TemplateParameter", _Bag_TemplateParameter);
+		private final @NonNull Property pr_Class_WildcardType_lowerBound = createProperty("WildcardType", _Bag_WildcardType);
+		private final @NonNull Property pr_Class_WildcardType_upperBound = createProperty("WildcardType", _Bag_WildcardType);
 		private final @NonNull Property pr_Class_instanceSpecification_classes = createProperty("instanceSpecification", _InstanceSpecification);
 		private final @NonNull Property pr_Class_subClasses_superClasses = createProperty("subClasses", _Class);
 		private final @NonNull Property pr_CollectionItem_item = createProperty(PivotPackage.Literals.COLLECTION_ITEM__ITEM, _OCLExpression);
@@ -1863,6 +1865,7 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_TemplateParameter_TemplateParameterSubstitution_formal = createProperty("TemplateParameterSubstitution", _Bag_TemplateParameterSubstitution);
 		private final @NonNull Property pr_TemplateParameterSubstitution_actual = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL, _Type);
 		private final @NonNull Property pr_TemplateParameterSubstitution_formal = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL, _TemplateParameter);
+		private final @NonNull Property pr_TemplateParameterSubstitution_ownedWildcard = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_WILDCARD, _WildcardType);
 		private final @NonNull Property pr_TemplateParameterSubstitution_owningTemplateBinding = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__OWNING_TEMPLATE_BINDING, _TemplateBinding);
 		private final @NonNull Property pr_TemplateSignature_ownedTemplateParameters = createProperty(PivotPackage.Literals.TEMPLATE_SIGNATURE__OWNED_TEMPLATE_PARAMETERS, _OrderedSet_TemplateParameter);
 		private final @NonNull Property pr_TemplateSignature_owningTemplateableElement = createProperty(PivotPackage.Literals.TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT, _TemplateableElement);
@@ -1891,8 +1894,6 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_Type_Metaclass_instanceType = createProperty("Metaclass", _Bag_Metaclass);
 		private final @NonNull Property pr_Type_TemplateParameterSubstitution_actual = createProperty("TemplateParameterSubstitution", _Bag_TemplateParameterSubstitution);
 		private final @NonNull Property pr_Type_TypeExp_referredType = createProperty("TypeExp", _Bag_TypeExp);
-		private final @NonNull Property pr_Type_UnspecifiedType_lowerBound = createProperty("UnspecifiedType", _Bag_UnspecifiedType);
-		private final @NonNull Property pr_Type_UnspecifiedType_upperBound = createProperty("UnspecifiedType", _Bag_UnspecifiedType);
 		private final @NonNull Property pr_Type_operation_raisedException = createProperty("operation", _Operation);
 		private final @NonNull Property pr_Type_typedElement_type = createProperty("typedElement", _TypedElement);
 		private final @NonNull Property pr_TypeExp_referredType = createProperty(PivotPackage.Literals.TYPE_EXP__REFERRED_TYPE, _Type);
@@ -1903,8 +1904,6 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_TypedElement_isRequired = createProperty(PivotPackage.Literals.TYPED_ELEMENT__IS_REQUIRED, _Boolean);
 		private final @NonNull Property pr_TypedElement_type = createProperty(PivotPackage.Literals.TYPED_ELEMENT__TYPE, _Type);
 		private final @NonNull Property pr_UnlimitedNaturalLiteralExp_unlimitedNaturalSymbol = createProperty(PivotPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL, _UnlimitedNatural);
-		private final @NonNull Property pr_UnspecifiedType_lowerBound = createProperty(PivotPackage.Literals.UNSPECIFIED_TYPE__LOWER_BOUND, _Type);
-		private final @NonNull Property pr_UnspecifiedType_upperBound = createProperty(PivotPackage.Literals.UNSPECIFIED_TYPE__UPPER_BOUND, _Type);
 		private final @NonNull Property pr_ValueSpecification_owningSlot_values = createProperty("owningSlot", _Slot);
 		private final @NonNull Property pr_Variable_implicit = createProperty(PivotPackage.Literals.VARIABLE__IMPLICIT, _Boolean);
 		private final @NonNull Property pr_Variable_initExpression = createProperty(PivotPackage.Literals.VARIABLE__INIT_EXPRESSION, _OCLExpression);
@@ -1921,6 +1920,9 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_Vertex_container = createProperty(PivotPackage.Literals.VERTEX__CONTAINER, _Region);
 		private final @NonNull Property pr_Vertex_incoming = createProperty(PivotPackage.Literals.VERTEX__INCOMING, _Set_Transition);
 		private final @NonNull Property pr_Vertex_outgoing = createProperty(PivotPackage.Literals.VERTEX__OUTGOING, _Set_Transition);
+		private final @NonNull Property pr_WildcardType_lowerBound = createProperty(PivotPackage.Literals.WILDCARD_TYPE__LOWER_BOUND, _Class);
+		private final @NonNull Property pr_WildcardType_upperBound = createProperty(PivotPackage.Literals.WILDCARD_TYPE__UPPER_BOUND, _Class);
+		private final @NonNull Property pr_WildcardType_TemplateParameterSubstitution_ownedWildcard = createProperty("TemplateParameterSubstitution", _TemplateParameterSubstitution);
 
 		private void installProperties() {
 			List<Property> ownedProperties;
@@ -2046,6 +2048,14 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TemplateParameter_upperBound);
+			ownedProperties.add(property = pr_Class_WildcardType_lowerBound);
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_WildcardType_lowerBound);
+			ownedProperties.add(property = pr_Class_WildcardType_upperBound);
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_WildcardType_upperBound);
 			ownedProperties.add(property = pr_Class_instanceSpecification_classes);
 			property.setImplicit(true);
 			property.setIsRequired(false);
@@ -3091,6 +3101,11 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties.add(property = pr_TemplateParameterSubstitution_formal);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TemplateParameter_TemplateParameterSubstitution_formal);
+			ownedProperties.add(property = pr_TemplateParameterSubstitution_ownedWildcard);
+			property.setIsComposite(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_WildcardType_TemplateParameterSubstitution_ownedWildcard);
 			ownedProperties.add(property = pr_TemplateParameterSubstitution_owningTemplateBinding);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TemplateBinding_ownedTemplateParameterSubstitutions);
@@ -3206,14 +3221,6 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TypeExp_referredType);
-			ownedProperties.add(property = pr_Type_UnspecifiedType_lowerBound);
-			property.setImplicit(true);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_UnspecifiedType_lowerBound);
-			ownedProperties.add(property = pr_Type_UnspecifiedType_upperBound);
-			property.setImplicit(true);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_UnspecifiedType_upperBound);
 			ownedProperties.add(property = pr_Type_operation_raisedException);
 			property.setImplicit(true);
 			property.setIsRequired(false);
@@ -3254,13 +3261,6 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties = _UnlimitedNaturalLiteralExp.getOwnedProperties();
 			ownedProperties.add(property = pr_UnlimitedNaturalLiteralExp_unlimitedNaturalSymbol);
 			property.setIsResolveProxies(true);
-			ownedProperties = _UnspecifiedType.getOwnedProperties();
-			ownedProperties.add(property = pr_UnspecifiedType_lowerBound);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Type_UnspecifiedType_lowerBound);
-			ownedProperties.add(property = pr_UnspecifiedType_upperBound);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Type_UnspecifiedType_upperBound);
 			ownedProperties = _ValueSpecification.getOwnedProperties();
 			ownedProperties.add(property = pr_ValueSpecification_owningSlot_values);
 			property.setImplicit(true);
@@ -3336,6 +3336,20 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsReadOnly(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Transition_source);
+			ownedProperties = _WildcardType.getOwnedProperties();
+			ownedProperties.add(property = pr_WildcardType_lowerBound);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Class_WildcardType_lowerBound);
+			ownedProperties.add(property = pr_WildcardType_upperBound);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Class_WildcardType_upperBound);
+			ownedProperties.add(property = pr_WildcardType_TemplateParameterSubstitution_ownedWildcard);
+			property.setImplicit(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_TemplateParameterSubstitution_ownedWildcard);
 		}
 
 		private void installTemplateBindings() {
@@ -3403,12 +3417,12 @@ public class OCLMetaModel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Bag_T, _TemplateParameter)));
 			_Bag_TypeExp.getOwnedTemplateBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _TypeExp)));
-			_Bag_UnspecifiedType.getOwnedTemplateBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(_Bag_T, _UnspecifiedType)));
 			_Bag_VariableExp.getOwnedTemplateBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _VariableExp)));
 			_Bag_Variable.getOwnedTemplateBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _Variable)));
+			_Bag_WildcardType.getOwnedTemplateBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_Bag_T, _WildcardType)));
 			_Collection_String.getOwnedTemplateBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _String)));
 			_Collection_Annotation.getOwnedTemplateBindings().add(createTemplateBinding(
@@ -3515,8 +3529,6 @@ public class OCLMetaModel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Collection_T, _TypeExtension)));
 			_Collection_Type.getOwnedTemplateBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _Type)));
-			_Collection_UnspecifiedType.getOwnedTemplateBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(_Collection_T, _UnspecifiedType)));
 			_Collection_ValueSpecification.getOwnedTemplateBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _ValueSpecification)));
 			_Collection_VariableExp.getOwnedTemplateBindings().add(createTemplateBinding(
@@ -3525,6 +3537,8 @@ public class OCLMetaModel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Collection_T, _Variable)));
 			_Collection_Vertex.getOwnedTemplateBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _Vertex)));
+			_Collection_WildcardType.getOwnedTemplateBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_Collection_T, _WildcardType)));
 			_OrderedCollection_CollectionLiteralPart.getOwnedTemplateBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedCollection_T, _CollectionLiteralPart)));
 			_OrderedCollection_ConstructorPart.getOwnedTemplateBindings().add(createTemplateBinding(
@@ -3832,6 +3846,7 @@ public class OCLMetaModel extends ASResourceImpl
 			installComment(_TemplateParameterSubstitution, "A template parameter substitution relates the actual parameter to a formal template parameter as part of a template binding.");
 			installComment(pr_TemplateParameterSubstitution_actual, "The element that is the actual parameter for this substitution.");
 			installComment(pr_TemplateParameterSubstitution_formal, "The formal template parameter that is associated with this substitution.");
+			installComment(pr_TemplateParameterSubstitution_ownedWildcard, "The element that is the actual parameter for this substitution.");
 			installComment(pr_TemplateParameterSubstitution_owningTemplateBinding, "The optional bindings from this element to templates.");
 			installComment(_TemplateSignature, "A template signature bundles the set of formal template parameters for a templated element.");
 			installComment(pr_TemplateSignature_ownedTemplateParameters, "The formal template parameters that are owned by this template signature.");
@@ -3864,6 +3879,8 @@ public class OCLMetaModel extends ASResourceImpl
 			installComment(pr_Vertex_container, "The region that contains this vertex.");
 			installComment(pr_Vertex_incoming, "Specifies the transitions entering this vertex.");
 			installComment(pr_Vertex_outgoing, "Specifies the transitions departing from this vertex.");
+			installComment(pr_WildcardType_lowerBound, "The element that is the default for this formal template parameter.");
+			installComment(pr_WildcardType_upperBound, "The element that is the default for this formal template parameter.");
 		}
 	}
 }

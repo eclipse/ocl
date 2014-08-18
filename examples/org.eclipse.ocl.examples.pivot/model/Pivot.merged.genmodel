@@ -309,8 +309,20 @@
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//TemplateParameterSubstitution/actual"/>
       </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//TemplateParameterSubstitution/ownedWildcard"/>
+      </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false">
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//TemplateParameterSubstitution/owningTemplateBinding"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass">
+      <ecoreClass href="Pivot.ecore#//WildcardType"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//WildcardType/lowerBound"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//WildcardType/upperBound"/>
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false">
@@ -1190,15 +1202,6 @@
       <ecoreClass href="Pivot.ecore#//UnlimitedNaturalLiteralExp"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//UnlimitedNaturalLiteralExp/unlimitedNaturalSymbol"/>
-      </genFeatures>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass">
-      <ecoreClass href="Pivot.ecore#//UnspecifiedType"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//UnspecifiedType/lowerBound"/>
-      </genFeatures>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//UnspecifiedType/upperBound"/>
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
