@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.manager.TupleTypeManager.TuplePart;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 
@@ -212,11 +213,13 @@ public class PrettyPrintVisitor extends AbstractExtendingVisitor<Object,PrettyPr
 			for (Property tuplePart : tupleParts) {
 				context.append(prefix);
 				if (context.showNames()) {
-					context.appendElement(tuplePart);
+					context.appendName(tuplePart);
+					context.append(":");
+					context.appendTypedMultiplicity(tuplePart);
 				}
 				else {
 					context.appendName(tuplePart, context.getRestrictedNames());
-					context.append(" : ");
+					context.append(":");
 					context.appendElement(tuplePart.getType());
 				}
 				prefix = ", ";

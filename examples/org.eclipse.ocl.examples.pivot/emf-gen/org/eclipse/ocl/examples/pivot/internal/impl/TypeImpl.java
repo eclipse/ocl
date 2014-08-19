@@ -58,7 +58,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  *
  * @generated
  */
-@SuppressWarnings({"null","cast"})
+@SuppressWarnings("cast")
 public abstract class TypeImpl
 		extends NamedElementImpl
 		implements Type {
@@ -296,6 +296,7 @@ public abstract class TypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("null")
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments)
 			throws InvocationTargetException {
@@ -334,7 +335,7 @@ public abstract class TypeImpl
 		EObject eTarget = getETarget();
 		if (eTarget instanceof EClass) {
 			EClass eClass = (EClass) eTarget;
-			EObject element = eClass.getEPackage().getEFactoryInstance().create(eClass);
+			@SuppressWarnings("null")@NonNull EObject element = eClass.getEPackage().getEFactoryInstance().create(eClass);
 //			TypeId typeId = IdManager.getTypeId(eClass);
 			return /*ValuesUtil.createObjectValue(typeId, */element;//);
 		}
@@ -364,7 +365,7 @@ public abstract class TypeImpl
 	}
 
 	public @NonNull String getMetaTypeName() {
-		return eClass().getName();
+		return DomainUtil.nonNullState(eClass().getName());
 	}
 
 	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
@@ -408,7 +409,7 @@ public abstract class TypeImpl
 		return getTypeId().hashCode();
 	}
 
-	public Type specializeIn(final OCLExpression expr, final Type selfType)
+	public Type specializeIn(final @NonNull OCLExpression expr, final Type selfType)
 	{
 		return (Type) specializeIn(DomainUtil.nonNullState((DomainCallExp)expr), (DomainType)selfType);
 	}

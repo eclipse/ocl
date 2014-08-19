@@ -72,7 +72,7 @@ public class SelfTypeImpl extends ClassImpl implements SelfType
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({"unchecked", "null"})
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
 	{
 		switch (operationID)
@@ -114,7 +114,7 @@ public class SelfTypeImpl extends ClassImpl implements SelfType
 	}
 
 	@Override
-	public Type specializeIn(final OCLExpression expr, final Type selfType)
+	public Type specializeIn(final @NonNull OCLExpression expr, final Type selfType)
 	{
 		return (Type) specializeIn((DomainCallExp)expr, (DomainType)selfType);
 	}
@@ -125,9 +125,14 @@ public class SelfTypeImpl extends ClassImpl implements SelfType
 			TemplateSignature templateSignature = ((TemplateableElement)selfType).getOwnedTemplateSignature();
 			if (templateSignature != null) {
 				MetaModelManager metaModelManager = PivotUtil.findMetaModelManager((EObject) expr);
-				TemplateParameterSubstitutionVisitor visitor = new TemplateParameterSubstitutionVisitor(metaModelManager, (org.eclipse.ocl.examples.pivot.Class)selfType);
-				visitor.visit((CallExp)expr);
-				return visitor.specialize((org.eclipse.ocl.examples.pivot.Class)selfType);
+				if (metaModelManager != null) {
+					TemplateParameterSubstitutionVisitor visitor = new TemplateParameterSubstitutionVisitor(metaModelManager, (org.eclipse.ocl.examples.pivot.Class)selfType);
+					visitor.visit((CallExp)expr);
+					return visitor.specialize((org.eclipse.ocl.examples.pivot.Class)selfType);
+				}
+				else {
+					return null;
+				}
 			}
 		}
 		return selfType;

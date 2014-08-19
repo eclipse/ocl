@@ -15,16 +15,16 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
-import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.ids.TemplateParameterId;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
-import org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager;
 import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
@@ -33,7 +33,6 @@ import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
-import org.eclipse.ocl.examples.pivot.PivotTables;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
@@ -50,23 +49,85 @@ import org.eclipse.ocl.examples.pivot.util.Visitable;
 /**
  * A TemplateParameterSubstitutionVisitor traverses a CallExp to identify the formal/actual TemplateParameterSubstitutions
  * associated with that CallExp. This creates a mapping from each formal template parameter to a list of actual types that
- * correspond. This mapping can then be used to crteate new specializations.
+ * correspond. This mapping can then be used to create new specializations.
  * <p>
  * The visitor should be constructed with a MetaModelManager in case any synthetic types need contructing, and the identity
  * of the self type incase one of the substitutions uses OclSelf.
  */
 public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisitor<Object, Map<TemplateParameter, List<DomainType>>>
 {
-	private final MetaModelManager metaModelManager;
+	private final @NonNull MetaModelManager metaModelManager;
 	private final Type selfType;
 //	private Map<TemplateParameter, List<DomainType>> reverseMapping = null;
 	private Map<Integer, List<TemplateParameter>> indexedTemplateParameters = null;
 	private DomainType actual;
+
+	protected final @NonNull Map<TemplateParameter, org.eclipse.ocl.examples.pivot.Type> templateParameter2type =
+			new HashMap<TemplateParameter, org.eclipse.ocl.examples.pivot.Type>();
+	protected final @NonNull Map<TemplateParameterSubstitution, org.eclipse.ocl.examples.pivot.Type> templateParameterSubstitution2type =
+			new HashMap<TemplateParameterSubstitution, org.eclipse.ocl.examples.pivot.Type>();
 	
-	public TemplateParameterSubstitutionVisitor(MetaModelManager metaModelManager, Type selfType) {
+	public TemplateParameterSubstitutionVisitor(@NonNull MetaModelManager metaModelManager, Type selfType) {
 		super(new HashMap<TemplateParameter, List<DomainType>>());
 		this.metaModelManager = metaModelManager;
 		this.selfType = selfType;
+	}
+	
+	protected void analyzeFeature(@Nullable Feature formalFeature, @Nullable DomainTypedElement actualElement) {
+		if ((formalFeature != null) && (actualElement != null)) {
+			Type formalType = formalFeature.getOwningClass();
+			DomainType actualType = actualElement.getType();
+			analyzeType(formalType, actualType);
+		}
+	}
+
+	protected void analyzeType(@Nullable Type newFormal, @Nullable DomainType newActual) {
+		if ((newFormal != null) && (newActual != null)) {
+			DomainType oldActual = actual;
+			try {
+				actual = newActual;
+				newFormal.accept(this);
+			} finally {
+				actual = oldActual;
+			}
+		}
+	}
+	
+	protected void analyzeTypedElement(@Nullable TypedElement formalElement, @Nullable DomainTypedElement actualElement) {
+		if ((formalElement != null) && (actualElement != null)) {
+			Type formalType = formalElement.getType();
+			DomainType actualType = actualElement.getType();
+			analyzeType(formalType, actualType);
+		}
+	}
+
+	protected void analyzeTypedElements(@NonNull List<? extends TypedElement> formalElements, @Nullable List<? extends DomainTypedElement> actualElements) {
+		if (actualElements != null) {
+			int iMax = Math.min(formalElements.size(), actualElements.size());
+			for (int i = 0; i < iMax; i++) {
+				TypedElement formalElement = formalElements.get(i);
+				DomainTypedElement actualElement = actualElements.get(i);
+				analyzeTypedElement(formalElement, actualElement);
+			}
+		}
+	}
+
+	protected void analyzeTypes(@NonNull List<? extends Type> formalElements, @NonNull List<? extends DomainType> actualElements) {
+		int iMax = Math.min(formalElements.size(), actualElements.size());
+		for (int i = 0; i < iMax; i++) {
+			analyzeType(formalElements.get(i), actualElements.get(i));
+		}
+	}
+
+	public @Nullable Type get(@NonNull TemplateParameterSubstitution templateParameterSubstitution) {
+		Type type = templateParameterSubstitution2type.get(templateParameterSubstitution);
+		if (type instanceof TemplateParameter) {
+			Type type2 = templateParameter2type.get(type);
+			if (type2 != null) {
+				return type2;
+			}
+		}
+		return type;
 	}
 
 	public @Nullable DomainType specialize(@Nullable TemplateParameter templateParameter) {
@@ -86,21 +147,11 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		}
 		DomainType bestType = list.get(0);
 		if (iMax > 1) {
-			IdResolver idResolver = null;
-			if (metaModelManager != null) {
-				idResolver = metaModelManager.getIdResolver();
-			}
-			if (idResolver == null) {
-				DomainEvaluator evaluator = new EcoreExecutorManager(templateParameter, PivotTables.LIBRARY);		// FIXME me get from caller
-				idResolver = evaluator.getIdResolver();
-			}
+			IdResolver idResolver = metaModelManager.getIdResolver();
 			for (int i = 1; i < iMax; i++) {
 				@SuppressWarnings("null")@NonNull DomainType anotherType = list.get(i);
 				DomainType commonType = bestType.getCommonType(idResolver, anotherType);
-				bestType = commonType;
-				if (metaModelManager != null) {
-					bestType = metaModelManager.getType(bestType);
-				}
+				bestType = metaModelManager.getType(commonType);
 			}
 		}
 		return bestType;
@@ -108,14 +159,20 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 
 	public @NonNull Type specialize(@NonNull Type templateableElement) {
 		Map<TemplateParameter, Type> usageBindings = new HashMap<TemplateParameter, Type>();
-		for (TemplateParameter templateParameter : context.keySet()) {
+		Set<TemplateParameter> keySet = context.keySet();
+		Type[] templateBindings = new Type[keySet.size()];
+		for (TemplateParameter templateParameter : keySet) {
 			DomainType specialize = specialize(templateParameter);
 			if (specialize != null) {
 				Type specialized = metaModelManager.getType(specialize);
 				usageBindings.put(templateParameter, specialized);
+//				if (templateParameter != null) {
+//					templateSubstitutions.put(templateParameter, specialized);
+//				}
+				templateBindings[templateParameter.getTemplateParameterId().getIndex()] = specialized;
 			}
 		}
-		return metaModelManager.getSpecializedType(templateableElement, usageBindings);
+		return metaModelManager.getSpecializedType(templateableElement, templateBindings);
 	}
 
 	@Override
@@ -126,7 +183,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 			if (!isFirst) {
 				s.append("\n");
 			}
-			s.append(templateParameter + " => " + context.get(templateParameter));
+			s.append(templateParameter.getTemplateParameterId() + " : " + templateParameter + " => " + context.get(templateParameter));
 			isFirst = false;
 		}
 		if (indexedTemplateParameters != null) {
@@ -136,68 +193,6 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 			}
 		}
 		return s.toString();
-	}
-	
-	protected void visit(@Nullable TypedElement formalElement, @Nullable DomainTypedElement actualElement) {
-		if ((formalElement != null) && (actualElement != null)) {
-			Type formalType = formalElement.getType();
-			DomainType actualType = actualElement.getType();
-			visit(formalType, actualType);
-		}
-	}
-	
-	protected void visit(@Nullable Type formalType, @Nullable DomainTypedElement actualElement) {
-		if (actualElement != null) {
-			DomainType actualType = actualElement.getType();
-			visit(formalType, actualType);
-		}
-	}
-
-	protected void visit(@Nullable Type newFormal, @Nullable DomainType newActual) {
-		if ((newFormal != null) && (newActual != null)) {
-/*			if (newActual instanceof EObject) {
-				EObject newContainer = ((EObject)newActual).eContainer();
-				if (newContainer instanceof TemplateParameter) {
-					TemplateParameter newTemplateParameter = (TemplateParameter)newContainer;
-					if (reverseMapping == null) {
-						reverseMapping = new HashMap<TemplateParameter, List<DomainType>>();
-					}
-					List<DomainType> actualList = reverseMapping.get(newTemplateParameter);
-					if (actualList == null) {
-						actualList = new ArrayList<DomainType>();
-						reverseMapping.put(newTemplateParameter, actualList);
-					}
-					if (!actualList.contains(newFormal)) {
-						actualList.add(newFormal);
-					}
-				}
-			} */
-			DomainType oldActual = actual;
-			try {
-				actual = newActual;
-				newFormal.accept(this);
-			} finally {
-				actual = oldActual;
-			}
-		}
-	}
-
-	protected void visitAllTypes(@NonNull List<? extends Type> formalElements, @NonNull List<? extends DomainType> actualElements) {
-		int iMax = Math.min(formalElements.size(), actualElements.size());
-		for (int i = 0; i < iMax; i++) {
-			visit(formalElements.get(i), actualElements.get(i));
-		}
-	}
-
-	protected void visitAllTypedElements(@NonNull List<? extends TypedElement> formalElements, @Nullable List<? extends DomainTypedElement> actualElements) {
-		if (actualElements != null) {
-			int iMax = Math.min(formalElements.size(), actualElements.size());
-			for (int i = 0; i < iMax; i++) {
-				TypedElement formalElement = formalElements.get(i);
-				DomainTypedElement actualElement = actualElements.get(i);
-				visit(formalElement, actualElement);
-			}
-		}
 	}
 	
 	public String visiting(@NonNull Visitable visitable) {
@@ -219,7 +214,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		if (actual instanceof CollectionType) {
 			Type formalElementType = object.getElementType();
 			Type actualElementType = ((CollectionType)actual).getElementType();
-			visit(formalElementType, actualElementType);
+			analyzeType(formalElementType, actualElementType);
 		}
 		return null;
 	}
@@ -227,21 +222,21 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	@Override
 	public @Nullable Object visitIterateExp(@NonNull IterateExp object) {
 		Iteration referredIteration = object.getReferredIteration();
-		visit(referredIteration, object);
-		visit(referredIteration.getOwningClass(), object.getSource());
-		visitAllTypedElements(referredIteration.getOwnedIterator(), object.getIterator());
-		visitAllTypedElements(referredIteration.getOwnedAccumulator(), Collections.singletonList(object.getResult()));
-		visitAllTypedElements(referredIteration.getOwnedParameter(), Collections.singletonList(object.getBody()));
+		analyzeTypedElement(referredIteration, object);
+		analyzeFeature(referredIteration, object.getSource());
+		analyzeTypedElements(referredIteration.getOwnedIterator(), object.getIterator());
+		analyzeTypedElements(referredIteration.getOwnedAccumulator(), Collections.singletonList(object.getResult()));
+		analyzeTypedElements(referredIteration.getOwnedParameter(), Collections.singletonList(object.getBody()));
 		return null;
 	}
 
 	@Override
 	public @Nullable Object visitIteratorExp(@NonNull IteratorExp object) {
 		Iteration referredIteration = object.getReferredIteration();
-		visit(referredIteration, object);
-		visit(referredIteration.getOwningClass(), object.getSource());
-		visitAllTypedElements(referredIteration.getOwnedIterator(), object.getIterator());
-		visitAllTypedElements(referredIteration.getOwnedParameter(), Collections.singletonList(object.getBody()));
+		analyzeTypedElement(referredIteration, object);
+		analyzeFeature(referredIteration, object.getSource());
+		analyzeTypedElements(referredIteration.getOwnedIterator(), object.getIterator());
+		analyzeTypedElements(referredIteration.getOwnedParameter(), Collections.singletonList(object.getBody()));
 		return null;
 	}
 
@@ -249,9 +244,9 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	public @Nullable Object visitLambdaType(@NonNull LambdaType object) {
 		if (actual instanceof LambdaType) {
 			LambdaType actualLambdaType = (LambdaType)actual;
-			visit(object.getContextType(), actualLambdaType.getContextType());
-			visit(object.getResultType(), actualLambdaType.getResultType());
-			visitAllTypes(object.getParameterType(), actualLambdaType.getParameterType());
+			analyzeType(object.getContextType(), actualLambdaType.getContextType());
+			analyzeType(object.getResultType(), actualLambdaType.getResultType());
+			analyzeTypes(object.getParameterType(), actualLambdaType.getParameterType());
 		}
 		return null;
 	}
@@ -261,7 +256,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		if (actual instanceof Metaclass<?>) {
 			Type formalElementType = object.getInstanceType();
 			Type actualElementType = ((Metaclass<?>)actual).getInstanceType();
-			visit(formalElementType, actualElementType);
+			analyzeType(formalElementType, actualElementType);
 		}
 		return null;
 	}
@@ -269,9 +264,10 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	@Override
 	public @Nullable Object visitOperationCallExp(@NonNull OperationCallExp object) {
 		Operation referredOperation = object.getReferredOperation();
-		visit(referredOperation, object);
-		visit(referredOperation.getOwningClass(), object.getSource());
-		visitAllTypedElements(referredOperation.getOwnedParameter(), object.getArgument());
+//		visit(referredOperation, object);
+		analyzeType(referredOperation.getType(), object.getType());
+		analyzeType(referredOperation.getOwningClass(), object.getSource().getType());
+		analyzeTypedElements(referredOperation.getOwnedParameter(), object.getArgument());
 		return null;
 	}
 
@@ -281,8 +277,8 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		if (referredOppositeProperty != null) {
 			Property referredProperty = referredOppositeProperty.getOpposite();
 			if (referredProperty != null) {
-				visit(referredProperty, object);
-				visit(referredProperty.getOwningClass(), object.getSource());
+				analyzeTypedElement(referredProperty, object);
+				analyzeFeature(referredProperty, object.getSource());
 			}
 		}
 		return null;
@@ -297,15 +293,15 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	public @Nullable Object visitPropertyCallExp(@NonNull PropertyCallExp object) {
 		Property referredProperty = object.getReferredProperty();
 		if (referredProperty != null) {
-			visit(referredProperty, object);
-			visit(referredProperty.getOwningClass(), object.getSource());
+			analyzeTypedElement(referredProperty, object);
+			analyzeFeature(referredProperty, object.getSource());
 		}
 		return null;
 	}
 
 	@Override
 	public @Nullable Object visitSelfType(@NonNull SelfType object) {
-		visit(selfType, actual);
+		analyzeType(selfType, actual);
 		return null;
 	}
 
@@ -338,7 +334,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	@Override
 	public @Nullable Object visitTupleType(@NonNull TupleType object) {
 		if (actual instanceof TupleType) {
-			visitAllTypedElements(object.getOwnedProperties(), ((TupleType)actual).getOwnedProperties());
+			analyzeTypedElements(object.getOwnedProperties(), ((TupleType)actual).getOwnedProperties());
 		}
 		return null;
 	}

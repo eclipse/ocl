@@ -1063,7 +1063,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 		TemplateParameter formal = object.getFormal();
 		appendName(formal != null ? formal : null);
 		append("/");
-		appendName(object.getActual());
+		safeVisit(object.getActual());
 		return null;
 	}
 
