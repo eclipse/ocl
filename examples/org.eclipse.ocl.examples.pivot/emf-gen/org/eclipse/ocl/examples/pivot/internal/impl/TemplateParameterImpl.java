@@ -563,9 +563,9 @@ public class TemplateParameterImpl
 	public DomainType specializeIn(@NonNull DomainCallExp expr, DomainType selfType) {
 		if (expr instanceof EObject) {
 			Resource eResource = ((EObject) expr).eResource();
-			if (eResource != null) {
+			if ((eResource != null) && (selfType instanceof Type)) {
 				MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(eResource);
-				TemplateParameterSubstitutionVisitor visitor = new TemplateParameterSubstitutionVisitor(metaModelManager, selfType instanceof Type ? (Type)selfType : null);
+				TemplateParameterSubstitutionVisitor visitor = new TemplateParameterSubstitutionVisitor(metaModelManager, (Type)selfType);
 				visitor.visit((CallExp)expr);
 				return visitor.specialize(this);
 			}

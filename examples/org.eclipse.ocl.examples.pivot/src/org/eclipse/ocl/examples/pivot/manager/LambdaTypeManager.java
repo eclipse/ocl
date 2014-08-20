@@ -126,15 +126,15 @@ public class LambdaTypeManager
 	}
 
 	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType,
-			@NonNull Type[] templateBindings) {
-		Type specializedContextType = metaModelManager.getSpecializedType(contextType, templateBindings);
+			@NonNull Type selfType, @NonNull Type[] templateBindings) {
+		Type specializedContextType = metaModelManager.getSpecializedType(contextType, selfType, templateBindings);
 		List<Type> specializedParameterTypes = new ArrayList<Type>();
 		for (Type parameterType : parameterTypes) {
 			if (parameterType != null) {
-				specializedParameterTypes.add(metaModelManager.getSpecializedType(parameterType, templateBindings));
+				specializedParameterTypes.add(metaModelManager.getSpecializedType(parameterType, selfType, templateBindings));
 			}
 		}
-		Type specializedResultType = metaModelManager.getSpecializedType(resultType, templateBindings);
+		Type specializedResultType = metaModelManager.getSpecializedType(resultType, selfType, templateBindings);
 		return getLambdaType(typeName, specializedContextType, specializedParameterTypes, specializedResultType);
 	}
 }

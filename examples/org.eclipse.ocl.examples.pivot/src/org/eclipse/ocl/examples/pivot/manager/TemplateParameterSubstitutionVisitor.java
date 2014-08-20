@@ -58,7 +58,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitable;
 public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisitor<Object, Map<TemplateParameter, List<DomainType>>>
 {
 	private final @NonNull MetaModelManager metaModelManager;
-	private final Type selfType;
+	private final @NonNull Type selfType;
 //	private Map<TemplateParameter, List<DomainType>> reverseMapping = null;
 	private Map<Integer, List<TemplateParameter>> indexedTemplateParameters = null;
 	private DomainType actual;
@@ -68,7 +68,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	protected final @NonNull Map<TemplateParameterSubstitution, org.eclipse.ocl.examples.pivot.Type> templateParameterSubstitution2type =
 			new HashMap<TemplateParameterSubstitution, org.eclipse.ocl.examples.pivot.Type>();
 	
-	public TemplateParameterSubstitutionVisitor(@NonNull MetaModelManager metaModelManager, Type selfType) {
+	public TemplateParameterSubstitutionVisitor(@NonNull MetaModelManager metaModelManager, @NonNull Type selfType) {
 		super(new HashMap<TemplateParameter, List<DomainType>>());
 		this.metaModelManager = metaModelManager;
 		this.selfType = selfType;
@@ -175,7 +175,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 				}
 			}
 		}
-		return metaModelManager.getSpecializedType(templateableElement, templateBindings);
+		return metaModelManager.getSpecializedType(templateableElement, selfType, templateBindings);
 	}
 
 	@Override
@@ -250,6 +250,9 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 			analyzeType(object.getContextType(), actualLambdaType.getContextType());
 			analyzeType(object.getResultType(), actualLambdaType.getResultType());
 			analyzeTypes(object.getParameterType(), actualLambdaType.getParameterType());
+		}
+		else {
+			analyzeType(object.getResultType(), actual);
 		}
 		return null;
 	}

@@ -409,7 +409,7 @@ public abstract class TypeImpl
 		return getTypeId().hashCode();
 	}
 
-	public Type specializeIn(final @NonNull OCLExpression expr, final Type selfType)
+	public Type specializeIn(final @NonNull OCLExpression expr, final @NonNull Type selfType)
 	{
 		return (Type) specializeIn(DomainUtil.nonNullState((DomainCallExp)expr), (DomainType)selfType);
 	}

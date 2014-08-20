@@ -28,6 +28,7 @@ import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.examples.pivot.CallExp;
+import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.CollectionItem;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
@@ -1083,7 +1084,18 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			}
 		}
 		Type behavioralType = PivotUtil.getType(operation);
-		Type returnType = behavioralType != null ? metaModelManager.getSpecializedType(behavioralType, templateBindings) : null;
+
+		
+		
+		Type returnType1 = behavioralType != null ? metaModelManager.getSpecializedType(behavioralType, templateBindings) : null;
+
+		Type returnType = null;
+		Type formalType = operation.getType();
+		if ((formalType != null) && (sourceType != null)) {
+			TemplateParameterSubstitutionVisitor visitor = new TemplateParameterSubstitutionVisitor(metaModelManager, sourceType);
+			visitor.visit(callExp);
+			returnType = visitor.specialize(formalType);
+		}
 		//
 		//	The flattening of collect() and consequently implicit-collect is not modelled accurately so we need to code it.
 		//
@@ -1132,9 +1144,17 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		if (formalType == null) {
 			return null;
 		}
-		TemplateParameterSubstitutionVisitor visitor = new TemplateParameterSubstitutionVisitor(metaModelManager, property.getOwningClass());
-		visitor.visit(callExp);
-		Type actualType = visitor.specialize(formalType);
+		OCLExpression source = callExp.getSource();
+		Type actualType;
+		Type sourceType = source != null ? source.getType() : null;
+		if (sourceType != null) {
+			TemplateParameterSubstitutionVisitor visitor = new TemplateParameterSubstitutionVisitor(metaModelManager, sourceType);
+			visitor.visit(callExp);
+			actualType = visitor.specialize(formalType);
+		}
+		else {
+			actualType = formalType;
+		}
 		if (property.isStatic() && (actualType.isTemplateParameter() != null)) {
 			actualType = metaModelManager.getMetaclass(actualType);
 		}

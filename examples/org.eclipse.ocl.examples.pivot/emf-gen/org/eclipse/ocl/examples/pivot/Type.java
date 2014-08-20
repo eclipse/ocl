@@ -61,7 +61,7 @@ public interface Type
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	Type specializeIn(@NonNull OCLExpression expr, Type selfType);
+	Type specializeIn(@NonNull OCLExpression expr, @NonNull Type selfType);
 
 	@Nullable org.eclipse.ocl.examples.pivot.Class isClass();
 

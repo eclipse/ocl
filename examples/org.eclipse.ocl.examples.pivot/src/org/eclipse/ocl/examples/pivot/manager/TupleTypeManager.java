@@ -266,7 +266,7 @@ public class TupleTypeManager
 		}
 	}
 
-	public @NonNull TupleType getTupleType(@NonNull TupleType type, @NonNull Type[] templateBindings) {
+	public @NonNull TupleType getTupleType(@NonNull TupleType type, @NonNull Type selfType, @NonNull Type[] templateBindings) {
 		TupleType specializedTupleType = type;
 		Map<String, Type> resolutions =  null;
 		List<Property> parts = specializedTupleType.getOwnedProperties();
@@ -274,7 +274,7 @@ public class TupleTypeManager
 			if (part != null) {
 				Type propertyType = PivotUtil.getType(part);
 				if (propertyType != null) {
-					Type resolvedPropertyType = metaModelManager.getSpecializedType(propertyType, templateBindings);
+					Type resolvedPropertyType = metaModelManager.getSpecializedType(propertyType, selfType, templateBindings);
 					if (resolvedPropertyType != propertyType) {
 						if (resolutions == null) {
 							resolutions = new HashMap<String, Type>();
@@ -299,18 +299,18 @@ public class TupleTypeManager
 			return specializedTupleType;
 		}
 		else {
-			return getTupleType(DomainUtil.getSafeName(type), type.getOwnedProperties(), templateBindings);
+			return getTupleType(DomainUtil.getSafeName(type), type.getOwnedProperties(), selfType, templateBindings);
 		}
 	}
 
 	private @NonNull TupleType getTupleType(@NonNull String tupleName, @NonNull Collection<? extends DomainTypedElement> parts,
-			@NonNull Type[] templateBindings) {
+			@NonNull Type selfType, @NonNull Type[] templateBindings) {
 		Map<String, Type> partMap = new HashMap<String, Type>();
 		for (DomainTypedElement part : parts) {
 			DomainType type1 = part.getType();
 			if (type1 != null) {
 				Type type2 = metaModelManager.getType(type1);
-				Type type3 = metaModelManager.getSpecializedType(type2, templateBindings);
+				Type type3 = metaModelManager.getSpecializedType(type2, selfType, templateBindings);
 				partMap.put(part.getName(), type3);
 			}
 		}

@@ -2515,9 +2515,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return type;
 	}
 
-	protected @NonNull CollectionType getSpecializedCollectionType(@NonNull CollectionType collectionType, @NonNull Type[] templateBindings) {
+	protected @NonNull CollectionType getSpecializedCollectionType(@NonNull CollectionType collectionType, @NonNull Type selfType, @NonNull Type[] templateBindings) {
 		Type elementType = DomainUtil.nonNullModel(collectionType.getElementType());
-		Type specializedElementType = getSpecializedType(elementType, templateBindings);
+		Type specializedElementType = getSpecializedType(elementType, selfType, templateBindings);
 		CollectionType unspecializedCollectionType = PivotUtil.getUnspecializedTemplateableElement(collectionType);
 		return getCollectionType(unspecializedCollectionType, specializedElementType, null, null);
 	}
@@ -2531,12 +2531,12 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return specializedLambdaType;
 	}
 
-	protected @NonNull org.eclipse.ocl.examples.pivot.Class getSpecializedLambdaType(@NonNull LambdaType type, @NonNull Type[] templateBindings) {
+	protected @NonNull org.eclipse.ocl.examples.pivot.Class getSpecializedLambdaType(@NonNull LambdaType type, @NonNull Type selfType, @NonNull Type[] templateBindings) {
 		String typeName = DomainUtil.nonNullModel(type.getName());
 		Type contextType = DomainUtil.nonNullModel(type.getContextType());
 		@NonNull List<Type> parameterType = type.getParameterType();
 		Type resultType = DomainUtil.nonNullModel(type.getResultType());
-		LambdaType specializedLambdaType = getLambdaManager().getLambdaType(typeName, contextType, parameterType, resultType, templateBindings);
+		LambdaType specializedLambdaType = getLambdaManager().getLambdaType(typeName, contextType, parameterType, resultType, selfType, templateBindings);
 		return specializedLambdaType;
 	}
 
@@ -2562,9 +2562,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return type;
 	}
 
-	protected @NonNull Metaclass<?> getSpecializedMetaclass(@NonNull Metaclass<?> metaclassType, @NonNull Type[] templateBindings) {
+	protected @NonNull Metaclass<?> getSpecializedMetaclass(@NonNull Metaclass<?> metaclassType, @NonNull Type selfType, @NonNull Type[] templateBindings) {
 		Type instanceType = DomainUtil.nonNullModel(metaclassType.getInstanceType());
-		Type specializedInstanceType = getSpecializedType(instanceType, templateBindings);
+		Type specializedInstanceType = getSpecializedType(instanceType, selfType, templateBindings);
 		return getMetaclass(specializedInstanceType);
 	}
 
@@ -2633,7 +2633,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return type;
 	}
 
-	public @NonNull Type getSpecializedType(@NonNull Type type, @NonNull Type[] templateBindings) {
+	public @NonNull Type getSpecializedType(@NonNull Type type, @NonNull Type selfType, @NonNull Type[] templateBindings) {
 		TemplateParameter asTemplateParameter = type.isTemplateParameter();
 		if (asTemplateParameter != null) {
 			int index = asTemplateParameter.getTemplateParameterId().getIndex();
@@ -2645,17 +2645,20 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			}
 			return type;
 		}
-		if (type instanceof CollectionType) {
-			return getSpecializedCollectionType((CollectionType)type, templateBindings);
+		if (type instanceof SelfType) {
+			return selfType;
+		}
+		else if (type instanceof CollectionType) {
+			return getSpecializedCollectionType((CollectionType)type, selfType, templateBindings);
 		}
 		else if (type instanceof Metaclass<?>) {
-			return getSpecializedMetaclass((Metaclass<?>)type, templateBindings);
+			return getSpecializedMetaclass((Metaclass<?>)type, selfType, templateBindings);
 		}
 		else if (type instanceof TupleType) {
-			return getTupleManager().getTupleType((TupleType) type, templateBindings);
+			return getTupleManager().getTupleType((TupleType) type, selfType, templateBindings);
 		}
 		else if (type instanceof LambdaType) {
-			return getSpecializedLambdaType((LambdaType)type, templateBindings);
+			return getSpecializedLambdaType((LambdaType)type, selfType, templateBindings);
 		}
 		else {
 			//
@@ -2670,7 +2673,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 					for (TemplateParameterSubstitution ownedTemplateParameterSubstitution : ownedTemplateBinding.getOwnedTemplateParameterSubstitutions()) {
 						Type actualType = ownedTemplateParameterSubstitution.getActual();
 						if (actualType != null) {
-							actualType = getSpecializedType(actualType, templateBindings);
+							actualType = getSpecializedType(actualType, selfType, templateBindings);
 							templateArguments.add(actualType);
 						}
 					}
@@ -2681,7 +2684,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			if (ownedTemplateSignature != null) {
 				List<Type> templateArguments = new ArrayList<Type>();
 				for (TemplateParameter ownedTemplateParameter : ownedTemplateSignature.getOwnedTemplateParameters()) {
-					Type actualType = getSpecializedType(ownedTemplateParameter, templateBindings);
+					Type actualType = getSpecializedType(ownedTemplateParameter, selfType, templateBindings);
 					templateArguments.add(actualType);
 				}
 				return getLibraryType(unspecializedType, templateArguments);
