@@ -44,7 +44,6 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutionVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
@@ -561,13 +560,11 @@ public class TemplateParameterImpl
 	}
 
 	public DomainType specializeIn(@NonNull DomainCallExp expr, DomainType selfType) {
-		if (expr instanceof EObject) {
+		if (expr instanceof CallExp) {
 			Resource eResource = ((EObject) expr).eResource();
 			if ((eResource != null) && (selfType instanceof Type)) {
 				MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(eResource);
-				TemplateParameterSubstitutionVisitor visitor = new TemplateParameterSubstitutionVisitor(metaModelManager, (Type)selfType);
-				visitor.visit((CallExp)expr);
-				return visitor.specialize(this);
+				return metaModelManager.specializeType(this, (CallExp) expr, (Type)selfType);
 			}
 		}
 		return null;

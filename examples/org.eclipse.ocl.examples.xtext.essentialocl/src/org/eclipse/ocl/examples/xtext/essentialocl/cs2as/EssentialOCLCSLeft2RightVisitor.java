@@ -28,7 +28,6 @@ import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.examples.pivot.CallExp;
-import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.CollectionItem;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
@@ -82,7 +81,6 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutionVisitor;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
@@ -1084,17 +1082,10 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			}
 		}
 		Type behavioralType = PivotUtil.getType(operation);
-
-		
-		
-		Type returnType1 = behavioralType != null ? metaModelManager.getSpecializedType(behavioralType, templateBindings) : null;
-
 		Type returnType = null;
 		Type formalType = operation.getType();
 		if ((formalType != null) && (sourceType != null)) {
-			TemplateParameterSubstitutionVisitor visitor = new TemplateParameterSubstitutionVisitor(metaModelManager, sourceType);
-			visitor.visit(callExp);
-			returnType = visitor.specialize(formalType);
+			returnType = metaModelManager.specializeType(formalType, callExp, sourceType);
 		}
 		//
 		//	The flattening of collect() and consequently implicit-collect is not modelled accurately so we need to code it.
@@ -1148,9 +1139,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		Type actualType;
 		Type sourceType = source != null ? source.getType() : null;
 		if (sourceType != null) {
-			TemplateParameterSubstitutionVisitor visitor = new TemplateParameterSubstitutionVisitor(metaModelManager, sourceType);
-			visitor.visit(callExp);
-			actualType = visitor.specialize(formalType);
+			actualType = metaModelManager.specializeType(formalType, callExp, sourceType);
 		}
 		else {
 			actualType = formalType;

@@ -30,7 +30,6 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutionVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
@@ -126,9 +125,7 @@ public class SelfTypeImpl extends ClassImpl implements SelfType
 			if (templateSignature != null) {
 				MetaModelManager metaModelManager = PivotUtil.findMetaModelManager((EObject) expr);
 				if (metaModelManager != null) {
-					TemplateParameterSubstitutionVisitor visitor = new TemplateParameterSubstitutionVisitor(metaModelManager, (org.eclipse.ocl.examples.pivot.Class)selfType);
-					visitor.visit((CallExp)expr);
-					return visitor.specialize((org.eclipse.ocl.examples.pivot.Class)selfType);
+					return metaModelManager.specializeType((Type)selfType, (CallExp) expr, (Type)selfType); // FIXME is this a no-op
 				}
 				else {
 					return null;

@@ -29,7 +29,9 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ParserException;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutionVisitor;
 import org.eclipse.ocl.examples.pivot.prettyprint.EssentialOCLPrettyPrintVisitor;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintVisitor;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
@@ -111,6 +113,10 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 		return new EssentialOCLPrettyPrintVisitor(prettyPrinter);
 	}
 	
+	public @NonNull TemplateParameterSubstitutionVisitor createTemplateParameterSubstitutionVisitor(@NonNull MetaModelManager metaModelManager, @NonNull Type selfType) {
+		return new TemplateParameterSubstitutionVisitor(metaModelManager, selfType);
+	}
+
 	public @NonNull ToStringVisitor createToStringVisitor(@NonNull StringBuilder s) {
 		return new ToStringVisitor(s);
 	}

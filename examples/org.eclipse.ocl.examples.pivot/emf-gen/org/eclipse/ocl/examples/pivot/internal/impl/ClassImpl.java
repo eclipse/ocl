@@ -48,6 +48,7 @@ import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.values.SetValue;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
@@ -70,7 +71,6 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutionVisitor;
 import org.eclipse.ocl.examples.pivot.util.PivotValidator;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -1205,19 +1205,17 @@ public class ClassImpl
 	}
 
 	public DomainType specializeIn(@NonNull DomainCallExp expr, DomainType selfType) {
-		TemplateSignature templateSignature = getOwnedTemplateSignature();
-		if (templateSignature != null) {
-			MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(((EObject) expr).eResource());
-			TemplateParameterSubstitutionVisitor visitor = new TemplateParameterSubstitutionVisitor(metaModelManager, (Type)selfType);
-			visitor.visit((CallExp)expr);
-			return visitor.specialize(this);
-		}
-		List<TemplateBinding> templateBindings = getOwnedTemplateBindings();
-		if ((templateBindings != null) && !templateBindings.isEmpty()) {
-			MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(((EObject) expr).eResource());
-			TemplateParameterSubstitutionVisitor visitor = new TemplateParameterSubstitutionVisitor(metaModelManager, (Type)selfType);
-			visitor.visit((CallExp)expr);
-			return visitor.specialize(this);
+		if ((expr instanceof CallExp) && (selfType instanceof Type)) {
+			TemplateSignature templateSignature = getOwnedTemplateSignature();
+			if (templateSignature != null) {
+				MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(DomainUtil.nonNullState(((EObject) expr).eResource()));
+				return metaModelManager.specializeType(this, (CallExp)expr, (Type)selfType);
+			}
+			List<TemplateBinding> templateBindings = getOwnedTemplateBindings();
+			if ((templateBindings != null) && !templateBindings.isEmpty()) {
+				MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(DomainUtil.nonNullState(((EObject) expr).eResource()));
+				return metaModelManager.specializeType(this, (CallExp)expr, (Type)selfType);
+			}
 		}
 		return this;
 	}

@@ -71,6 +71,7 @@ import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.DelegatedS
 import org.eclipse.ocl.examples.domain.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
+import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -2515,28 +2516,12 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return type;
 	}
 
-	protected @NonNull CollectionType getSpecializedCollectionType(@NonNull CollectionType collectionType, @NonNull Type selfType, @NonNull Type[] templateBindings) {
-		Type elementType = DomainUtil.nonNullModel(collectionType.getElementType());
-		Type specializedElementType = getSpecializedType(elementType, selfType, templateBindings);
-		CollectionType unspecializedCollectionType = PivotUtil.getUnspecializedTemplateableElement(collectionType);
-		return getCollectionType(unspecializedCollectionType, specializedElementType, null, null);
-	}
-
 	private @NonNull org.eclipse.ocl.examples.pivot.Class getSpecializedLambdaType(@NonNull LambdaType type, @Nullable Map<TemplateParameter, Type> usageBindings) {
 		String typeName = DomainUtil.nonNullModel(type.getName());
 		Type contextType = DomainUtil.nonNullModel(type.getContextType());
 		@NonNull List<Type> parameterType = type.getParameterType();
 		Type resultType = DomainUtil.nonNullModel(type.getResultType());
 		LambdaType specializedLambdaType = getLambdaType(typeName, contextType, parameterType, resultType, usageBindings);
-		return specializedLambdaType;
-	}
-
-	protected @NonNull org.eclipse.ocl.examples.pivot.Class getSpecializedLambdaType(@NonNull LambdaType type, @NonNull Type selfType, @NonNull Type[] templateBindings) {
-		String typeName = DomainUtil.nonNullModel(type.getName());
-		Type contextType = DomainUtil.nonNullModel(type.getContextType());
-		@NonNull List<Type> parameterType = type.getParameterType();
-		Type resultType = DomainUtil.nonNullModel(type.getResultType());
-		LambdaType specializedLambdaType = getLambdaManager().getLambdaType(typeName, contextType, parameterType, resultType, selfType, templateBindings);
 		return specializedLambdaType;
 	}
 
@@ -2560,12 +2545,6 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			return getMetaclass(templateArgument);
 		}
 		return type;
-	}
-
-	protected @NonNull Metaclass<?> getSpecializedMetaclass(@NonNull Metaclass<?> metaclassType, @NonNull Type selfType, @NonNull Type[] templateBindings) {
-		Type instanceType = DomainUtil.nonNullModel(metaclassType.getInstanceType());
-		Type specializedInstanceType = getSpecializedType(instanceType, selfType, templateBindings);
-		return getMetaclass(specializedInstanceType);
 	}
 
 	public @NonNull Type getSpecializedType(@NonNull Type type, @Nullable Map<TemplateParameter, Type> usageBindings) {
@@ -2628,66 +2607,6 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 					}
 					return getLibraryType(unspecializedType, templateArguments);
 				}
-			}
-		}
-		return type;
-	}
-
-	public @NonNull Type getSpecializedType(@NonNull Type type, @NonNull Type selfType, @NonNull Type[] templateBindings) {
-		TemplateParameter asTemplateParameter = type.isTemplateParameter();
-		if (asTemplateParameter != null) {
-			int index = asTemplateParameter.getTemplateParameterId().getIndex();
-			if ((0 <= index) && (index < templateBindings.length)) {
-				Type boundType = templateBindings[index];
-				if (boundType != null) {
-					return boundType;
-				}
-			}
-			return type;
-		}
-		if (type instanceof SelfType) {
-			return selfType;
-		}
-		else if (type instanceof CollectionType) {
-			return getSpecializedCollectionType((CollectionType)type, selfType, templateBindings);
-		}
-		else if (type instanceof Metaclass<?>) {
-			return getSpecializedMetaclass((Metaclass<?>)type, selfType, templateBindings);
-		}
-		else if (type instanceof TupleType) {
-			return getTupleManager().getTupleType((TupleType) type, selfType, templateBindings);
-		}
-		else if (type instanceof LambdaType) {
-			return getSpecializedLambdaType((LambdaType)type, selfType, templateBindings);
-		}
-		else {
-			//
-			//	Get the bindings of the type.
-			//
-			org.eclipse.ocl.examples.pivot.Class partiallySpecializedType = (org.eclipse.ocl.examples.pivot.Class)type;
-			org.eclipse.ocl.examples.pivot.Class unspecializedType = PivotUtil.getUnspecializedTemplateableElement(partiallySpecializedType);
-			List<TemplateBinding> ownedTemplateBindings = partiallySpecializedType.getOwnedTemplateBindings();
-			if (ownedTemplateBindings.size() > 0) {
-				List<Type> templateArguments = new ArrayList<Type>();
-				for (TemplateBinding ownedTemplateBinding : ownedTemplateBindings) {
-					for (TemplateParameterSubstitution ownedTemplateParameterSubstitution : ownedTemplateBinding.getOwnedTemplateParameterSubstitutions()) {
-						Type actualType = ownedTemplateParameterSubstitution.getActual();
-						if (actualType != null) {
-							actualType = getSpecializedType(actualType, selfType, templateBindings);
-							templateArguments.add(actualType);
-						}
-					}
-				}
-				return getLibraryType(unspecializedType, templateArguments);
-			}
-			TemplateSignature ownedTemplateSignature = partiallySpecializedType.getOwnedTemplateSignature();
-			if (ownedTemplateSignature != null) {
-				List<Type> templateArguments = new ArrayList<Type>();
-				for (TemplateParameter ownedTemplateParameter : ownedTemplateSignature.getOwnedTemplateParameters()) {
-					Type actualType = getSpecializedType(ownedTemplateParameter, selfType, templateBindings);
-					templateArguments.add(actualType);
-				}
-				return getLibraryType(unspecializedType, templateArguments);
 			}
 		}
 		return type;
@@ -3356,6 +3275,14 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	public void setTarget(Notifier newTarget) {
 //		assert newTarget == asResourceSet;
+	}
+	
+	/**
+	 * Return the specialized form of type analyzing expr to determine the formal to actual parameter mappings
+	 * using selfType as the value of OclSelf.
+	 */
+	public @NonNull Type specializeType(@NonNull Type type, @NonNull CallExp expr, @NonNull Type selfType) {
+		return TemplateParameterSubstitutionVisitor.specializeType(type, expr, this, selfType);
 	}
 
 	public void unsetTarget(Notifier oldTarget) {

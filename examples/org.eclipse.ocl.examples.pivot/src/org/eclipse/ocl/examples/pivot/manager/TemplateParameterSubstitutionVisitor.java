@@ -17,12 +17,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
+import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.domain.ids.TemplateParameterId;
+import org.eclipse.ocl.examples.domain.ids.TuplePartId;
+import org.eclipse.ocl.examples.domain.ids.TupleTypeId;
+import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.IterateExp;
@@ -41,11 +48,14 @@ import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
+import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
  * A TemplateParameterSubstitutionVisitor traverses a CallExp to identify the formal/actual TemplateParameterSubstitutions
@@ -57,10 +67,30 @@ import org.eclipse.ocl.examples.pivot.util.Visitable;
  */
 public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisitor<Object, Map<TemplateParameter, List<DomainType>>>
 {
+	/**
+	 * Return the specialized form of type analyzing expr to determine the formal to actual parameter mappings under the
+	 * supervision of a metaModelManager and using selfType as the value of OclSelf.
+	 */
+	public static @NonNull Type specializeType(@NonNull Type type, @NonNull CallExp expr, @NonNull MetaModelManager metaModelManager, @NonNull Type selfType) {
+		Resource resource = expr.eResource();
+		TemplateParameterSubstitutionVisitor visitor;
+		if (resource instanceof ASResource) {
+			visitor = ((ASResource)resource).getASResourceFactory().createTemplateParameterSubstitutionVisitor(metaModelManager, selfType);
+		}
+		else {
+			visitor = new TemplateParameterSubstitutionVisitor(metaModelManager, selfType);
+		}
+		visitor.visit(expr);
+		return visitor.specializeType(type);
+	}
+
 	private final @NonNull MetaModelManager metaModelManager;
 	private final @NonNull Type selfType;
-//	private Map<TemplateParameter, List<DomainType>> reverseMapping = null;
 	private Map<Integer, List<TemplateParameter>> indexedTemplateParameters = null;
+	
+	/**
+	 * Internal variable used to pass the actual corresponding to the visited formal.
+	 */
 	private DomainType actual;
 
 	protected final @NonNull Map<TemplateParameter, org.eclipse.ocl.examples.pivot.Type> templateParameter2type =
@@ -93,7 +123,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 			}
 		}
 	}
-	
+
 	protected void analyzeTypedElement(@Nullable TypedElement formalElement, @Nullable DomainTypedElement actualElement) {
 		if ((formalElement != null) && (actualElement != null)) {
 			Type formalType = formalElement.getType();
@@ -120,18 +150,53 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		}
 	}
 
-	public @Nullable Type get(@NonNull TemplateParameterSubstitution templateParameterSubstitution) {
-		Type type = templateParameterSubstitution2type.get(templateParameterSubstitution);
-		if (type instanceof TemplateParameter) {
-			Type type2 = templateParameter2type.get(type);
-			if (type2 != null) {
-				return type2;
+	protected @NonNull TupleType getSpecializedTupleType(@NonNull TupleType type) {
+		TupleType specializedTupleType = type;
+		Map<String, Type> resolutions =  null;
+		List<Property> parts = specializedTupleType.getOwnedProperties();
+		for (Property part : parts) {
+			if (part != null) {
+				Type propertyType = PivotUtil.getType(part);
+				if (propertyType != null) {
+					Type resolvedPropertyType = specializeType(propertyType);
+					if (resolvedPropertyType != propertyType) {
+						if (resolutions == null) {
+							resolutions = new HashMap<String, Type>();
+						}
+						resolutions.put(DomainUtil.getSafeName(part), resolvedPropertyType);
+					}
+				}
 			}
 		}
-		return type;
+		if (resolutions != null) {
+			List<TuplePartId> partIds = new ArrayList<TuplePartId>(parts.size());
+			for (int i = 0; i < parts.size(); i++) {
+				@SuppressWarnings("null") @NonNull Property part = parts.get(i);
+				String partName = DomainUtil.getSafeName(part);
+				Type resolvedPropertyType = resolutions.get(partName);
+				TypeId partTypeId = resolvedPropertyType != null ? resolvedPropertyType.getTypeId() : part.getTypeId();
+				TuplePartId tuplePartId = IdManager.getTuplePartId(i, partName, partTypeId);
+				partIds.add(tuplePartId);
+			}
+			TupleTypeId tupleTypeId = IdManager.getTupleTypeId(DomainUtil.nonNullModel(type.getName()), partIds);
+			specializedTupleType = metaModelManager.getTupleManager().getTupleType(metaModelManager.getIdResolver(), tupleTypeId);
+			return specializedTupleType;
+		}
+		else {
+			Map<String, Type> partMap = new HashMap<String, Type>();
+			for (DomainTypedElement part : type.getOwnedProperties()) {
+				DomainType type1 = part.getType();
+				if (type1 != null) {
+					Type type2 = metaModelManager.getType(type1);
+					Type type3 = specializeType(type2);
+					partMap.put(part.getName(), type3);
+				}
+			}
+			return metaModelManager.getTupleManager().getTupleType(DomainUtil.getSafeName(type), partMap);
+		}
 	}
 
-	public @Nullable DomainType specialize(@Nullable TemplateParameter templateParameter) {
+	public @Nullable DomainType specializeTemplateParameter(@Nullable TemplateParameter templateParameter) {
 		if (templateParameter == null) {
 			return null;
 		}
@@ -158,12 +223,12 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		return bestType;
 	}
 
-	public @NonNull Type specialize(@NonNull Type templateableElement) {
+	public @NonNull Type specializeType(@NonNull Type type) {
 		Map<TemplateParameter, Type> usageBindings = new HashMap<TemplateParameter, Type>();
 		Set<TemplateParameter> keySet = context.keySet();
 		Type[] templateBindings = new Type[keySet.size()];
 		for (TemplateParameter templateParameter : keySet) {
-			DomainType specialize = specialize(templateParameter);
+			DomainType specialize = specializeTemplateParameter(templateParameter);
 			if (specialize != null) {
 				Type specialized = metaModelManager.getType(specialize);
 				if (templateParameter != null) {
@@ -175,7 +240,80 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 				}
 			}
 		}
-		return metaModelManager.getSpecializedType(templateableElement, selfType, templateBindings);
+		TemplateParameter asTemplateParameter = type.isTemplateParameter();
+		if (asTemplateParameter != null) {
+			int index = asTemplateParameter.getTemplateParameterId().getIndex();
+			if ((0 <= index) && (index < templateBindings.length)) {
+				Type boundType = templateBindings[index];
+				if (boundType != null) {
+					return boundType;
+				}
+			}
+			return type;
+		}
+		if (type instanceof SelfType) {
+			return selfType;
+		}
+		else if (type instanceof CollectionType) {
+			CollectionType collectionType = (CollectionType)type;
+			Type elementType = DomainUtil.nonNullModel(collectionType.getElementType());
+			Type specializedElementType = specializeType(elementType);
+			CollectionType unspecializedCollectionType = PivotUtil.getUnspecializedTemplateableElement(collectionType);
+			return metaModelManager.getCollectionType(unspecializedCollectionType, specializedElementType, null, null);
+		}
+		else if (type instanceof Metaclass<?>) {
+			Metaclass<?> metaclass = (Metaclass<?>)type;
+			Type instanceType = DomainUtil.nonNullModel(metaclass.getInstanceType());
+			Type specializedInstanceType = specializeType(instanceType);
+			return metaModelManager.getMetaclass(specializedInstanceType);
+		}
+		else if (type instanceof TupleType) {
+			return getSpecializedTupleType((TupleType) type);
+		}
+		else if (type instanceof LambdaType) {
+			LambdaType lambdaType = (LambdaType)type;
+			String typeName = DomainUtil.nonNullModel(lambdaType.getName());
+			Type specializedContextType = specializeType(DomainUtil.nonNullModel(lambdaType.getContextType()));
+			List<Type> specializedParameterTypes = new ArrayList<Type>();
+			for (Type parameterType : lambdaType.getParameterType()) {
+				if (parameterType != null) {
+					specializedParameterTypes.add(specializeType(parameterType));
+				}
+			}
+			Type specializedResultType = specializeType(DomainUtil.nonNullModel(lambdaType.getResultType()));
+			return metaModelManager.getLambdaManager().getLambdaType(typeName, specializedContextType, specializedParameterTypes, specializedResultType);
+		}
+		else {
+			//
+			//	Get the bindings of the type.
+			//
+			org.eclipse.ocl.examples.pivot.Class partiallySpecializedType = (org.eclipse.ocl.examples.pivot.Class)type;
+			org.eclipse.ocl.examples.pivot.Class unspecializedType = PivotUtil.getUnspecializedTemplateableElement(partiallySpecializedType);
+			List<TemplateBinding> ownedTemplateBindings = partiallySpecializedType.getOwnedTemplateBindings();
+			if (ownedTemplateBindings.size() > 0) {
+				List<Type> templateArguments = new ArrayList<Type>();
+				for (TemplateBinding ownedTemplateBinding : ownedTemplateBindings) {
+					for (TemplateParameterSubstitution ownedTemplateParameterSubstitution : ownedTemplateBinding.getOwnedTemplateParameterSubstitutions()) {
+						Type actualType = ownedTemplateParameterSubstitution.getActual();
+						if (actualType != null) {
+							actualType = specializeType(actualType);
+							templateArguments.add(actualType);
+						}
+					}
+				}
+				return metaModelManager.getLibraryType(unspecializedType, templateArguments);
+			}
+			TemplateSignature ownedTemplateSignature = partiallySpecializedType.getOwnedTemplateSignature();
+			if (ownedTemplateSignature != null) {
+				List<Type> templateArguments = new ArrayList<Type>();
+				for (@SuppressWarnings("null")@NonNull TemplateParameter ownedTemplateParameter : ownedTemplateSignature.getOwnedTemplateParameters()) {
+					Type actualType = specializeType(ownedTemplateParameter);
+					templateArguments.add(actualType);
+				}
+				return metaModelManager.getLibraryType(unspecializedType, templateArguments);
+			}
+		}
+		return type;
 	}
 
 	@Override
