@@ -81,6 +81,7 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutionVisitor;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
@@ -469,7 +470,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	}
 
 	protected Element resolveAssociationClassCallExp(@NonNull NameExpCS csNameExp) {
-		PathNameCS pathName = csNameExp.getPathName();
+//		PathNameCS pathName = csNameExp.getPathName();
 		RoundBracketedClauseCS csRoundBracketedClause = csNameExp.getRoundBracketedClause();
 		List<SquareBracketedClauseCS> csSquareBracketedClauses = csNameExp.getSquareBracketedClauses();
 		if (csSquareBracketedClauses.size() > 2) {
@@ -478,9 +479,9 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		if (csRoundBracketedClause != null) {
 			return context.addBadExpressionError(csNameExp, "AssociationClassCallExp must have no round-brackets-clause");
 		}
-		SquareBracketedClauseCS csSquareBracketedClause = csSquareBracketedClauses.get(0);
-		CS2Pivot.setElementType(pathName, PivotPackage.Literals.ASSOCIATION_CLASS, csNameExp, null);
-			Element element = pathName.getElement();
+//		SquareBracketedClauseCS csSquareBracketedClause = csSquareBracketedClauses.get(0);
+//		CS2Pivot.setElementType(pathName, PivotPackage.Literals.ASSOCIATION_CLASS, csNameExp, null);
+//			Element element = pathName.getElement();
 //			return resolveConstructorExp((Type)element, csNameExp);
 		return null;
 	}
@@ -513,7 +514,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			Type sourceType = sourceExp.getType();
 			ScopeFilter scopeFilter = new OperationFilter(sourceType, csRoundBracketedClause);
 			LoopExp iterationCallExp = resolveIterationCallExp(csNameExp, sourceExp, iteration);
-			Iteration asIteration = context.lookupIteration(csNameExp, csPathName, scopeFilter);	// Now let Xtext resolve the operation
+			@SuppressWarnings("unused") Iteration asIteration = context.lookupIteration(csNameExp, csPathName, scopeFilter);	// Now let Xtext resolve the operation
 //			if (asIteration != null) {
 			resolveIterationContent(csRoundBracketedClause, iterationCallExp);
 			return iterationCallExp;
@@ -593,7 +594,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	 * Resolve an invocation such as source.name  or source->name
 	 */
 	protected @NonNull OCLExpression resolveExplicitSourceNavigation(@NonNull OCLExpression sourceExp, @NonNull NameExpCS csNameExp) {
-		Element namedElement = context.lookupUndecoratedName(csNameExp, csNameExp.getPathName());
+		Element namedElement = context.lookupUndecoratedName(csNameExp, DomainUtil.nonNullState(csNameExp.getPathName()));
 		if ((namedElement instanceof Property) && !namedElement.eIsProxy()) {
 			CallExp callExp = resolvePropertyCallExp(sourceExp, csNameExp, (Property)namedElement);
 			return callExp;
@@ -643,8 +644,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		@SuppressWarnings("null") @NonNull EReference eReference = PivotPackage.Literals.LOOP_EXP__REFERRED_ITERATION;
 		EnvironmentView environmentView = new EnvironmentView(metaModelManager, eReference, "collect");
 		environmentView.addFilter(new ImplicitCollectFilter((CollectionType) actualSourceType, elementType));
-		Type lowerBoundType = PivotUtil.getLowerBound(actualSourceType);
-		environmentView.computeLookups(lowerBoundType, null);
+		environmentView.computeLookups(actualSourceType, null);
 		Iteration resolvedIteration = (Iteration)environmentView.getContent();
 		if (resolvedIteration == null) {
 			return null;
@@ -686,7 +686,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		else {
 			checkForInvalidImplicitSourceType(csNameExp);
 			OperationFilter scopeFilter = createInvocationFilter(sourceExp, csRoundBracketedClause);
-			context.lookupOperation(csNameExp, csNameExp.getPathName(), scopeFilter);													// Now let Xtext register the unresolved operation
+			context.lookupOperation(csNameExp, DomainUtil.nonNullState(csNameExp.getPathName()), scopeFilter);													// Now let Xtext register the unresolved operation
 		}
 		if (sourceExp == null) {
 			sourceExp = createImplicitSourceVariableExp(csNameExp, metaModelManager.getOclAnyType());
@@ -951,8 +951,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		Type sourceType = PivotUtil.getType(expression.getSource());
 		int size = 0;
 		if (sourceType != null) {
-			Type lowerBoundType = PivotUtil.getLowerBound(sourceType);
-			size = environmentView.computeLookups(lowerBoundType, null);
+			size = environmentView.computeLookups(sourceType, null);
 		}
 		if (size == 1) {
 			Operation operation = (Operation)environmentView.getContent();
@@ -1123,37 +1122,23 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 //			EssentialOCLUtils.setHasError(csNameExp);
 //		}
 		resolveAtPre(csNameExp, callExp);
-		Type returnType = resolvePropertyReturnType(sourceExp, csNameExp, property);
+		Type returnType = resolvePropertyReturnType(callExp, csNameExp, property);
 		context.setType(callExp, returnType, property.isRequired());
 		return callExp;
 	}
 
-	protected Type resolvePropertyReturnType(@NonNull OCLExpression sourceExp, @NonNull NameExpCS csNameExp, @NonNull Property property) {
-		Map<TemplateParameter, Type> templateBindings = new HashMap<TemplateParameter, Type>();
-		Type sourceType = sourceExp.getType();
-		if (sourceType != null) {
-			if (property.isStatic() && (sourceType instanceof Metaclass<?>)) {
-				sourceType = ((Metaclass<?>)sourceType).getInstanceType();
-			}
-			templateBindings.put(null, sourceType);		// Use the null key to pass OclSelf without creating an object
-			org.eclipse.ocl.examples.pivot.Class owningType = property.getOwningClass();
-			if (owningType instanceof Metaclass) {
-				owningType = PivotUtil.getUnspecializedTemplateableElement(owningType);
-				templateBindings.put(owningType.getOwnedTemplateSignature().getOwnedTemplateParameters().get(0), sourceType);		// Use the null key to pass OclSelf without creating an object
-			}
+	protected @Nullable Type resolvePropertyReturnType(@NonNull NavigationCallExp callExp, @NonNull NameExpCS csNameExp, @NonNull Property property) {
+		Type formalType = property.getType();
+		if (formalType == null) {
+			return null;
 		}
-		if (sourceType instanceof TemplateableElement) {
-			PivotUtil.getAllTemplateParameterSubstitutions(templateBindings, (TemplateableElement)sourceType);
+		TemplateParameterSubstitutionVisitor visitor = new TemplateParameterSubstitutionVisitor(metaModelManager, property.getOwningClass());
+		visitor.visit(callExp);
+		Type actualType = visitor.specialize(formalType);
+		if (property.isStatic() && (actualType.isTemplateParameter() != null)) {
+			actualType = metaModelManager.getMetaclass(actualType);
 		}
-		Type returnType = null;
-		Type behavioralType = PivotUtil.getType(property);
-		if (behavioralType != null) {
-			returnType = metaModelManager.getSpecializedType(behavioralType, templateBindings);
-			if (property.isStatic() && (behavioralType.isTemplateParameter() != null)) {
-				returnType = metaModelManager.getMetaclass(returnType);
-			}
-		}
-		return returnType;
+		return PivotUtil.getType(actualType);
 	}
 	
 	protected Element resolveRoundBracketedTerm(@NonNull RoundBracketedClauseCS csRoundBracketedClause) {

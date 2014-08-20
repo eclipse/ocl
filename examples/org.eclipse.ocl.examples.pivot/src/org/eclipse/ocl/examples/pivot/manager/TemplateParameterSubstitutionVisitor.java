@@ -30,6 +30,7 @@ import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.Metaclass;
+import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
@@ -165,11 +166,13 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 			DomainType specialize = specialize(templateParameter);
 			if (specialize != null) {
 				Type specialized = metaModelManager.getType(specialize);
-				usageBindings.put(templateParameter, specialized);
-//				if (templateParameter != null) {
-//					templateSubstitutions.put(templateParameter, specialized);
-//				}
-				templateBindings[templateParameter.getTemplateParameterId().getIndex()] = specialized;
+				if (templateParameter != null) {
+					usageBindings.put(templateParameter, specialized);
+					int index = templateParameter.getTemplateParameterId().getIndex();
+					if ((0 <= index) && (index < templateBindings.length)) {
+						templateBindings[index] = specialized;
+					}
+				}
 			}
 		}
 		return metaModelManager.getSpecializedType(templateableElement, templateBindings);
@@ -277,8 +280,8 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		if (referredOppositeProperty != null) {
 			Property referredProperty = referredOppositeProperty.getOpposite();
 			if (referredProperty != null) {
-				analyzeTypedElement(referredProperty, object);
 				analyzeFeature(referredProperty, object.getSource());
+				analyzeTypedElement(referredProperty, object);
 			}
 		}
 		return null;
@@ -293,8 +296,15 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	public @Nullable Object visitPropertyCallExp(@NonNull PropertyCallExp object) {
 		Property referredProperty = object.getReferredProperty();
 		if (referredProperty != null) {
+			OCLExpression source = object.getSource();
+			if (source != null) {
+				Type sourceType = source.getType();
+				if (referredProperty.isStatic() && (sourceType instanceof Metaclass<?>)) {
+					sourceType = ((Metaclass<?>)sourceType).getInstanceType();
+				}
+				analyzeType(referredProperty.getOwningClass(), sourceType);
+			}
 			analyzeTypedElement(referredProperty, object);
-			analyzeFeature(referredProperty, object.getSource());
 		}
 		return null;
 	}

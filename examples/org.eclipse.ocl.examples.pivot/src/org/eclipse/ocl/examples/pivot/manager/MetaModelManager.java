@@ -2496,7 +2496,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return getCollectionType(getSetType(), elementType, lower, upper);
 	}
 
-	protected @NonNull CollectionType getSpecializedCollectionType(@NonNull CollectionType type, @NonNull Map<TemplateParameter, Type> usageBindings) {
+	private @NonNull CollectionType getSpecializedCollectionType(@NonNull CollectionType type, @NonNull Map<TemplateParameter, Type> usageBindings) {
 		CollectionType unspecializedType = PivotUtil.getUnspecializedTemplateableElement(type);
 		Map<TemplateParameter, Type> typeBindings = PivotUtil.getAllTemplateParametersAsBindings(type);
 		PivotUtil.getAllTemplateParameterSubstitutions(typeBindings, type);
@@ -2522,7 +2522,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return getCollectionType(unspecializedCollectionType, specializedElementType, null, null);
 	}
 
-	protected @NonNull org.eclipse.ocl.examples.pivot.Class getSpecializedLambdaType(@NonNull LambdaType type, @Nullable Map<TemplateParameter, Type> usageBindings) {
+	private @NonNull org.eclipse.ocl.examples.pivot.Class getSpecializedLambdaType(@NonNull LambdaType type, @Nullable Map<TemplateParameter, Type> usageBindings) {
 		String typeName = DomainUtil.nonNullModel(type.getName());
 		Type contextType = DomainUtil.nonNullModel(type.getContextType());
 		@NonNull List<Type> parameterType = type.getParameterType();
@@ -2540,7 +2540,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return specializedLambdaType;
 	}
 
-	protected @NonNull Metaclass<?> getSpecializedMetaclass(@NonNull Metaclass<?> type, @NonNull Map<TemplateParameter, Type> usageBindings) {
+	private @NonNull Metaclass<?> getSpecializedMetaclass(@NonNull Metaclass<?> type, @NonNull Map<TemplateParameter, Type> usageBindings) {
 		Map<TemplateParameter, Type> typeBindings = PivotUtil.getAllTemplateParametersAsBindings(type);
 //		Map<TemplateParameter, Type> typeBindings = PivotUtil.getAllTemplateParametersAsBindings(getMetaclassType());		// unspecType gets lost in save
 		PivotUtil.getAllTemplateParameterSubstitutions(typeBindings, type);
@@ -2645,7 +2645,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			}
 			return type;
 		}
-		else if (type instanceof CollectionType) {
+		if (type instanceof CollectionType) {
 			return getSpecializedCollectionType((CollectionType)type, templateBindings);
 		}
 		else if (type instanceof Metaclass<?>) {
@@ -2717,7 +2717,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return tupleManager.getTupleType(typeName, parts, bindings);
 	}
 	
-	public @NonNull TupleType getTupleType(@NonNull TupleType tupleType, @Nullable Map<TemplateParameter, Type> bindings) {
+	private @NonNull TupleType getTupleType(@NonNull TupleType tupleType, @Nullable Map<TemplateParameter, Type> bindings) {
 		TupleTypeManager tupleManager = getTupleManager();
 		return tupleManager.getTupleType(tupleType, bindings);
 	}
