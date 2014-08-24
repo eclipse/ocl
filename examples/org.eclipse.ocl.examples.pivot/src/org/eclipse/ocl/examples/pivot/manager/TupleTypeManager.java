@@ -95,7 +95,8 @@ public class TupleTypeManager
 		tupleid2tuple = null;
 	}
 
-    public @Nullable Type getCommonType(@NonNull TupleType leftType, @NonNull TupleType rightType, @Nullable Map<TemplateParameter, Type> bindings) {
+    public @Nullable Type getCommonType(@NonNull TupleType leftType, @NonNull TemplateParameterSubstitutions leftSubstitutions,
+    		@NonNull TupleType rightType, @NonNull TemplateParameterSubstitutions rightSubstitutions) {
 		List<Property> leftProperties = leftType.getOwnedProperties();
 		List<Property> rightProperties = rightType.getOwnedProperties();
 		int iSize = leftProperties.size();
@@ -124,7 +125,7 @@ public class TupleTypeManager
 			if (rightPropertyType == null) {
 				return null;				// Never happens
 			}
-			Type commonType = metaModelManager.getCommonType(leftPropertyType, rightPropertyType, bindings);
+			Type commonType = metaModelManager.getCommonType(leftPropertyType, leftSubstitutions, rightPropertyType, rightSubstitutions);
 			TuplePartId commonPartId = IdManager.getTuplePartId(i, name, commonType.getTypeId());
 			commonPartIds.add(commonPartId);
 		}
@@ -165,7 +166,7 @@ public class TupleTypeManager
 	}
 
 	public @NonNull TupleType getTupleType(@NonNull String tupleName, @NonNull Collection<? extends DomainTypedElement> parts,
-			@Nullable Map<TemplateParameter, Type> usageBindings) {
+			@Nullable TemplateParameterSubstitutions usageBindings) {
 		Map<String, Type> partMap = new HashMap<String, Type>();
 		for (DomainTypedElement part : parts) {
 			DomainType type1 = part.getType();
@@ -228,7 +229,7 @@ public class TupleTypeManager
 		return tupleType;
 	}
 
-	public @NonNull TupleType getTupleType(@NonNull TupleType type, @Nullable Map<TemplateParameter, Type> usageBindings) {	// FIXME Remove duplication, unify type/multiplicity
+	public @NonNull TupleType getTupleType(@NonNull TupleType type, @Nullable TemplateParameterSubstitutions usageBindings) {	// FIXME Remove duplication, unify type/multiplicity
 //		return getTupleType(type.getName(), type.getOwnedAttribute(), usageBindings);
 		TupleType specializedTupleType = type;
 		Map<String, Type> resolutions =  null;

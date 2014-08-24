@@ -54,6 +54,7 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutions;
 
 /**
  * An AbstractDescriptor provides the most fundamental capabilities of any type description: the correspondence to a pivot ElementId.
@@ -247,7 +248,7 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 			return false;
 		}
 		Type oclTypeType = metaModelManager.getOclTypeType();
-		return metaModelManager.conformsTo(type, oclTypeType, null);
+		return metaModelManager.conformsTo(type, TemplateParameterSubstitutions.EMPTY, oclTypeType, TemplateParameterSubstitutions.EMPTY);
 	}
 
 	@Override

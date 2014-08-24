@@ -47,6 +47,7 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.State;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
+import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
@@ -439,41 +440,23 @@ public class EnvironmentView
 	}
 
 	public void addAllTemplateParameters(@NonNull TemplateableElement pivot) {
-		if (accepts(PivotPackage.Literals.TYPE) || accepts(PivotPackage.Literals.OPERATION)) {
-			List<TemplateParameter> templateParameters = PivotUtil.getTemplateParameters(pivot);
-			String name2 = name;
-			if (name2 != null) {
-				for (TemplateParameter templateParameter : templateParameters) {
-					if ((templateParameter != null) && name2.equals(templateParameter.getName())) {
-						addElement(name2, templateParameter);
-					}
-				}
-			}
-			else {
-				for (TemplateParameter templateParameter : templateParameters) {
-					if (templateParameter != null) {
-						addNamedElement(templateParameter);
-					}
-				}
-			}
-		}
-	}
-
-	public void addAllTemplateParameterables(@NonNull TemplateableElement pivot) {
 		if (accepts(PivotPackage.Literals.TYPE)) {
-			List<TemplateParameter> types = PivotUtil.getTemplateParameters(pivot);
-			String name2 = name;
-			if (name2 != null) {
-				for (TemplateParameter type : types) {
-					if (name2.equals(type.getName())) {
-						addElement(name2, type);
+			TemplateSignature templateSignature = pivot.getOwnedTemplateSignature();
+			if (templateSignature != null) {
+				String name2 = name;
+				List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
+				if (name2 != null) {
+					for (TemplateParameter templateParameter : templateParameters) {
+						if ((templateParameter != null) && name2.equals(templateParameter.getName())) {
+							addElement(name2, templateParameter);
+						}
 					}
 				}
-			}
-			else {
-				for (TemplateParameter type : types) {
-					if (type != null) {
-						addNamedElement(type);
+				else {
+					for (TemplateParameter templateParameter : templateParameters) {
+						if (templateParameter != null) {
+							addNamedElement(templateParameter);
+						}
 					}
 				}
 			}

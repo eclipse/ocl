@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.pivot.utilities;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -69,6 +70,29 @@ import org.eclipse.ocl.examples.pivot.util.Visitable;
 public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Moniker> implements PivotConstants
 {	
 	private static boolean initialized = false;
+
+	@Deprecated			// The TPS policy pursued here is suspect
+	private static @Nullable Map<TemplateParameter, Type> getAllTemplateParameterSubstitutions(@Nullable Map<TemplateParameter, Type> map,
+			@Nullable TemplateableElement templateableElement) {
+		for (EObject eObject = templateableElement; eObject != null; eObject = eObject.eContainer()) {
+			if (eObject instanceof TemplateableElement) {
+				for (TemplateBinding templateBinding : ((TemplateableElement) eObject).getOwnedTemplateBindings()) {
+					for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedTemplateParameterSubstitutions()) {
+						if (map == null) {
+							map = new HashMap<TemplateParameter, Type>();
+						}
+						map.put(templateParameterSubstitution.getFormal(), templateParameterSubstitution.getActual());
+					}
+				}
+			}
+			if (eObject instanceof org.eclipse.ocl.examples.pivot.Class) {
+				for (org.eclipse.ocl.examples.pivot.Class superType : ((org.eclipse.ocl.examples.pivot.Class)eObject).getSuperClasses()) {
+					map = getAllTemplateParameterSubstitutions(map, superType);
+				}		
+			}
+		}
+		return map;
+	}
 	
 	public static void initialize() {
 		if (!initialized) {
@@ -323,7 +347,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 	public Object visitLambdaType(@NonNull LambdaType object) {
 		context.append(object.getName());
 //		context.appendTemplateParameters(object);
-		Map<TemplateParameter, Type> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, object);
+		Map<TemplateParameter, Type> bindings = getAllTemplateParameterSubstitutions(null, object);
 		context.appendLambdaType(object.getContextType(), object.getParameterType(), object.getResultType(), bindings);
 		return true;
 	}
@@ -369,7 +393,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 		if (!object.getOwnedTemplateBindings().isEmpty()) {
 			context.appendParent(object, MONIKER_SCOPE_SEPARATOR);
 			context.appendName(object);
-			Map<TemplateParameter, Type> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, object);
+			Map<TemplateParameter, Type> bindings = getAllTemplateParameterSubstitutions(null, object);
 			if (templateBindings != null) {
 				if (bindings == null) {
 					bindings = templateBindings;

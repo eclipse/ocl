@@ -16,7 +16,6 @@ import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 public class EnumerationAttribution extends AbstractAttribution
 {
@@ -28,7 +27,7 @@ public class EnumerationAttribution extends AbstractAttribution
 		environmentView.addAllEnumerationLiterals(targetEnumeration);
 		environmentView.addAllOperations(targetEnumeration, FeatureFilter.SELECT_NON_STATIC);
 		environmentView.addAllProperties(targetEnumeration, FeatureFilter.SELECT_NON_STATIC);
-		environmentView.addElements(PivotUtil.getTemplateParameters(targetEnumeration));
+		environmentView.addAllTemplateParameters(targetEnumeration);
 		return scopeView.getParent();
 	}
 }

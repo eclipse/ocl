@@ -1729,6 +1729,8 @@ public class EvaluateCollectionOperationsTest4 extends PivotTestSuite
 	}
 
 	@Test public void testCollectionUnionEmptyCollection() {
+		assertQueryResults(null, "Set{3, 4}", "Set{}->union(Set{3, 4})");
+//
 		assertQueryResults(null, "Set{3, 4}", "Set{3, 4}->union(Set{})");
 		assertQueryResults(null, "Bag{3, 4}", "Set{3, 4}->union(Bag{})");
 		assertQueryResults(null, "Bag{3, 4}", "Bag{3, 4}->union(Bag{})");

@@ -12,13 +12,9 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.pivot.utilities;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.notify.Adapter;
@@ -913,28 +909,16 @@ public class PivotUtil extends DomainUtil
 		return castAdapter;
 	}
 
-	public static List<TemplateParameter> getAllTemplateParameters(Collection<TemplateBinding> templateBindings) {
-		List<TemplateParameter> list = null;
-		for (TemplateBinding templateBinding : templateBindings) {	// FIXME Establish ordering
-			TemplateSignature templateSignature = templateBinding.getTemplateSignature();
-			if (templateSignature != null) {
-				List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
-				if (templateParameters.size() > 0) {
-					if (list == null) {
-						list = new ArrayList<TemplateParameter>();
-					}
-					list.addAll(templateParameters);
-				}
-			}
-		}
-		return list != null ? list : Collections.<TemplateParameter>emptyList();
+	/**
+	 * Return the flattened list of all template parameters, outer-TemplateableElement first, or null if there are no template parameters.
+	 *
+	public static @Nullable List<TemplateParameter> getAllTemplateParameters(@NonNull EObject eObject) {
+		return getAllTemplateParameters(null, eObject);
 	}
-
-	public static List<List<TemplateParameter>> getAllTemplateParameterLists(EObject eObject) {
-		List<List<TemplateParameter>> result = null;
+	private static @Nullable List<TemplateParameter> getAllTemplateParameters(@Nullable List<TemplateParameter> allTemplateParameters, @NonNull EObject eObject) {
 		EObject eContainer = eObject.eContainer();
 		if (eContainer != null) {
-			result = getAllTemplateParameterLists(eContainer);
+			allTemplateParameters = getAllTemplateParameters(allTemplateParameters, eContainer);
 		}
 		if (eObject instanceof TemplateableElement) {
 			TemplateableElement unspecializedTemplateableElement = (TemplateableElement)eObject;
@@ -943,104 +927,15 @@ public class PivotUtil extends DomainUtil
 			if (templateSignature != null) {
 				List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
 				if (templateParameters.size() > 0) {
-					if (result == null) {
-						result = new ArrayList<List<TemplateParameter>>();
+					if (allTemplateParameters == null) {
+						allTemplateParameters = new ArrayList<TemplateParameter>();
 					}
-					result.add(templateParameters);
+					allTemplateParameters.addAll(templateParameters);
 				}
 			}
 		}
-		return result;
-	}
-
-	public static List<TemplateParameter> getAllTemplateParameters(EObject eObject) {
-		List<TemplateParameter> result = null;
-		EObject eContainer = eObject.eContainer();
-		if (eContainer != null) {
-			result = getAllTemplateParameters(eContainer);
-		}
-		if (eObject instanceof TemplateableElement) {
-			TemplateableElement unspecializedTemplateableElement = (TemplateableElement)eObject;
-			eObject = getUnspecializedTemplateableElement((TemplateableElement)eObject);
-			TemplateSignature templateSignature = unspecializedTemplateableElement.getOwnedTemplateSignature();
-			if (templateSignature != null) {
-				List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
-				if (templateParameters.size() > 0) {
-					if (result == null) {
-						result = new ArrayList<TemplateParameter>();
-					}
-					result.addAll(templateParameters);
-				}
-			}
-		}
-		return result;
-	}
-
-	public static @Nullable Map<TemplateParameter, Type> getAllTemplateParametersAsBindings(@NonNull EObject eObject) {
-		if (eObject instanceof TemplateableElement) {
-			eObject = getUnspecializedTemplateableElement((TemplateableElement)eObject);
-		}
-		Map<TemplateParameter, Type> result = null;
-		EObject eContainer = eObject.eContainer();
-		if (eContainer != null) {
-			result = getAllTemplateParametersAsBindings(eContainer);
-		}
-		if (eObject instanceof TemplateableElement) {
-//			TemplateableElement unspecializedTemplateableElement = getUnspecializedTemplateableElement((TemplateableElement)eObject);
-			TemplateSignature templateSignature = ((TemplateableElement)eObject).getOwnedTemplateSignature();
-			if (templateSignature != null) {
-				List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
-				if (templateParameters.size() > 0) {
-					if (result == null) {
-						result = new HashMap<TemplateParameter, Type>();
-					}
-					for (TemplateParameter templateParameter : templateSignature.getOwnedTemplateParameters()) {
-						result.put(templateParameter, null);
-					}
-				}
-			}
-		}
-		return result;
-	}
-
-	public static @Nullable Map<TemplateParameter, Type> getAllTemplateParameterSubstitutions(@Nullable Map<TemplateParameter, Type> map,
-			@Nullable TemplateableElement templateableElement) {
-		for (EObject eObject = templateableElement; eObject != null; eObject = eObject.eContainer()) {
-			if (eObject instanceof TemplateableElement) {
-				for (TemplateBinding templateBinding : ((TemplateableElement) eObject).getOwnedTemplateBindings()) {
-					for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedTemplateParameterSubstitutions()) {
-						if (map == null) {
-							map = new HashMap<TemplateParameter, Type>();
-						}
-						map.put(templateParameterSubstitution.getFormal(), templateParameterSubstitution.getActual());
-					}
-				}
-			}
-			if (eObject instanceof org.eclipse.ocl.examples.pivot.Class) {
-				for (org.eclipse.ocl.examples.pivot.Class superType : ((org.eclipse.ocl.examples.pivot.Class)eObject).getSuperClasses()) {
-					map = getAllTemplateParameterSubstitutions(map, superType);
-				}		
-			}
-		}
-		return map;
-	}
-
-	public static Map<TemplateParameter, Type> getAllTemplateParameterSubstitutions(Map<TemplateParameter, Type> bindings,
-		Type argumentType, LambdaType lambdaType) {
-		Type resultType = lambdaType.getResultType();
-		if (resultType != null) {
-			TemplateParameter resultTemplateParameter = resultType.isTemplateParameter();
-			if (resultTemplateParameter != null) {
-				if (bindings == null) {
-					bindings = new HashMap<TemplateParameter, Type>();
-				}
-				bindings.put(resultTemplateParameter, argumentType);
-			}
-		}
-		// FIXME There is much more to do
-		// FIXME Conflict checking
-		return bindings;
-	}
+		return allTemplateParameters;
+	} */
 
 	public static @NonNull Attribution getAttribution(@NonNull EObject eObject) {
 		if (eObject.eIsProxy()) {			// Shouldn't happen, but certainly does during development
@@ -1496,69 +1391,6 @@ public class PivotUtil extends DomainUtil
 		}
 		return "";
 	}
-
-	public static @NonNull List<TemplateParameter> getTemplateParameters(TemplateableElement templateableElement) {
-		if (templateableElement != null) {
-			TemplateSignature ownedTemplateSignature = templateableElement.getOwnedTemplateSignature();
-			if (ownedTemplateSignature != null) {
-				return ownedTemplateSignature.getOwnedTemplateParameters();
-			}
-		}
-		return MetaModelManager.EMPTY_TEMPLATE_PARAMETER_LIST;
-	}
-
-/*	public static List<TemplateParameter> getTemplateParameterables(TemplateableElement templateableElement) {
-		if (templateableElement == null) {
-			return Collections.emptyList();
-		}
-		TemplateSignature ownedTemplateSignature = templateableElement.getOwnedTemplateSignature();
-		if (ownedTemplateSignature == null) {
-			return Collections.emptyList();
-		}
-		List<TemplateParameter> templateParameters = ownedTemplateSignature.getOwnedParameter();
-		if (templateParameters.size() == 0) {
-			return Collections.emptyList();
-		}
-		if (templateParameters.size() == 1) {
-			return Collections.singletonList(templateParameters.get(0));
-		}
-		List<TemplateParameter> results = new ArrayList<TemplateParameter>(templateParameters.size());
-		for (TemplateParameter templateParameter : templateParameters) {
-			results.add(templateParameter);
-		}
-		return results;
-	} */
-
-/*	public static @NonNull List<Type> getTemplateParameterables(@NonNull TemplateableElement templateableElement) {
-//		if (templateableElement == null) {
-//			return MetaModelManager.EMPTY_TYPE_LIST;
-//		}
-		TemplateSignature ownedTemplateSignature = templateableElement.getOwnedTemplateSignature();
-		if (ownedTemplateSignature == null) {
-			return MetaModelManager.EMPTY_TYPE_LIST;
-		}
-		List<TemplateParameter> templateParameters = ownedTemplateSignature.getOwnedParameter();
-		if (templateParameters.size() == 0) {
-			return MetaModelManager.EMPTY_TYPE_LIST;
-		}
-		if (templateParameters.size() == 1) {
-			TemplateParameter templateParameter = templateParameters.get(0);
-			if (templateParameter == null) {
-				return MetaModelManager.EMPTY_TYPE_LIST;
-			}
-			ParameterableElement parameteredElement = templateParameter.getParameteredElement();
-			if (!(parameteredElement instanceof Type)) {
-				return MetaModelManager.EMPTY_TYPE_LIST;
-			}
-			@SuppressWarnings("null") @NonNull List<Type> singletonList = Collections.singletonList((Type)parameteredElement);
-			return singletonList;
-		}
-		List<Type> results = new ArrayList<Type>(templateParameters.size());
-		for (TemplateParameter templateParameter : templateParameters) {
-			results.add((Type) templateParameter.getParameteredElement());
-		}
-		return results;
-	} */
 
 	public static @Nullable Type getType(@Nullable TypedElement typedElement) {
 		if (typedElement == null) {

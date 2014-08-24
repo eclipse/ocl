@@ -11,7 +11,6 @@
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -54,12 +53,12 @@ import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PivotTables;
 import org.eclipse.ocl.examples.pivot.ReferringElement;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
-import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutionVisitor;
+import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutions;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.util.PivotValidator;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
@@ -116,8 +115,8 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		}
 		Type bodyType2 = DomainUtil.nonNullState(bodyType);
 		Type iteratorType = DomainUtil.nonNullState(getIterator().get(0).getType());
-		Map<TemplateParameter, Type> bindings = new HashMap<TemplateParameter, Type>();
-		if (!metaModelManager.conformsTo(bodyType2, iteratorType, bindings)) {
+//		TemplateParameterSubstitutions bindings = null; //new HashMap<TemplateParameter, Type>();
+		if (!metaModelManager.conformsTo(bodyType2, TemplateParameterSubstitutions.EMPTY, iteratorType, TemplateParameterSubstitutions.EMPTY)) {
 			if (diagnostics == null) {
 				return false;
 			}
@@ -143,18 +142,9 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		Diagnostic diagnostic = null;
 		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(DomainUtil.nonNullState(eResource()));
 		try {
-			@NonNull Type type = DomainUtil.nonNullPivot(getBody().getType());
-			TemplateParameter templateParameter = type.isTemplateParameter();
-			if (templateParameter != null) {
-				Map<TemplateParameter, Type> templateParameterSubstitutions = PivotUtil.getAllTemplateParameterSubstitutions(null, (TemplateableElement) getSource().getType());
-				if (templateParameterSubstitutions != null) {
-					Type resolvedTemplateParameter = templateParameterSubstitutions.get(templateParameter);
-					if (resolvedTemplateParameter != null) {
-						type = resolvedTemplateParameter;
-					}
-				}
-			}
-			type = PivotUtil.getType(type);
+			Type sourceType = this.getSource().getType();
+			Type bodyType = this.getBody().getType();
+			Type specializedBodyType = bodyType != null ? TemplateParameterSubstitutionVisitor.specializeType(bodyType, this, metaModelManager, sourceType) : null;
 			DomainInheritance comparableType = metaModelManager.getOclComparableType().getInheritance(metaModelManager);
 			DomainInheritance selfType = metaModelManager.getOclSelfType().getInheritance(metaModelManager);
 			DomainOperation staticOperation = comparableType.lookupLocalOperation(metaModelManager, LibraryConstants.COMPARE_TO, selfType);
@@ -164,13 +154,13 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 				}
 				diagnostic = new ValidationWarning(OCLMessages.UnresolvedOperation_ERROR_, String.valueOf(comparableType), LibraryConstants.COMPARE_TO);
 			}
-			else {
-				LibraryFeature implementation = ((DomainClass)type).lookupImplementation(metaModelManager, staticOperation);	// FIXME cast
+			else if (specializedBodyType instanceof org.eclipse.ocl.examples.pivot.Class) {
+				LibraryFeature implementation = ((org.eclipse.ocl.examples.pivot.Class)specializedBodyType).lookupImplementation(metaModelManager, staticOperation);
 				if (implementation == OclComparableCompareToOperation.INSTANCE) {
 					if (diagnostics == null) {
 						return false;
 					}
-					diagnostic = new ValidationWarning(OCLMessages.UnresolvedOperation_ERROR_, String.valueOf(type), LibraryConstants.COMPARE_TO);
+					diagnostic = new ValidationWarning(OCLMessages.UnresolvedOperation_ERROR_, String.valueOf(specializedBodyType), LibraryConstants.COMPARE_TO);
 				}
 			}
 		} catch (Exception e) {

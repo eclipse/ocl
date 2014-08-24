@@ -33,7 +33,7 @@ public class ClassAttribution extends AbstractAttribution
 			if (scopeTarget instanceof Pivotable) {
 				Element pivot = ((Pivotable)scopeTarget).getPivot();
 				if (pivot == target) {		// Inherited template parameters are invisible.
-					environmentView.addAllTemplateParameterables(targetClass);
+					environmentView.addAllTemplateParameters(targetClass);
 				}
 			}
 		}

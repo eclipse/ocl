@@ -131,6 +131,7 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutions;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.xtext.util.Strings;
 
@@ -582,7 +583,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		}
 		MetaModelManager metaModelManager = getMetaModelManager();
 		Type oclTypeType = metaModelManager.getOclTypeType();
-		return metaModelManager.conformsTo(type, oclTypeType, null);
+		return metaModelManager.conformsTo(type, TemplateParameterSubstitutions.EMPTY, oclTypeType, TemplateParameterSubstitutions.EMPTY);
 	}
 
 	protected boolean isEnumerationLiteral(@NonNull CGValuedElement cgValue) {

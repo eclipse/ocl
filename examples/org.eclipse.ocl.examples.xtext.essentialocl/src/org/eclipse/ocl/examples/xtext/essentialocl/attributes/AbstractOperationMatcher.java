@@ -12,9 +12,7 @@
 package org.eclipse.ocl.examples.xtext.essentialocl.attributes;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
@@ -22,19 +20,17 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainMetaclass;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
-import org.eclipse.ocl.examples.pivot.TemplateSignature;
-import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.PackageManager;
 import org.eclipse.ocl.examples.pivot.manager.PackageServer;
+import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutionVisitor;
+import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutions;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 public abstract class AbstractOperationMatcher
@@ -48,8 +44,8 @@ public abstract class AbstractOperationMatcher
 		this.sourceType = sourceType != null ? PivotUtil.getType(sourceType) : null;		// FIXME redundant
 	}
 
-	protected int compareMatches(@NonNull Object match1, @Nullable Map<TemplateParameter, Type> referenceBindings,
-			@NonNull Object match2, @Nullable Map<TemplateParameter, Type> candidateBindings) {
+	protected int compareMatches(@NonNull Object match1, @NonNull TemplateParameterSubstitutions referenceBindings,
+			@NonNull Object match2, @NonNull TemplateParameterSubstitutions candidateBindings) {
 		@NonNull Operation reference = (Operation) match1;
 		@NonNull Operation candidate = (Operation) match2;
 		org.eclipse.ocl.examples.pivot.Class referenceClass = reference.getOwningClass();
@@ -64,10 +60,10 @@ public abstract class AbstractOperationMatcher
 				return iteratorCountDelta;
 			}
 			if (referenceType != candidateType) {
-				if (metaModelManager.conformsTo(specializedReferenceType, specializedCandidateType, null)) {
+				if (metaModelManager.conformsTo(specializedReferenceType, TemplateParameterSubstitutions.EMPTY, specializedCandidateType, TemplateParameterSubstitutions.EMPTY)) {
 					return 1;
 				}
-				else if (metaModelManager.conformsTo(specializedCandidateType, specializedReferenceType, null)) {
+				else if (metaModelManager.conformsTo(specializedCandidateType, TemplateParameterSubstitutions.EMPTY, specializedReferenceType, TemplateParameterSubstitutions.EMPTY)) {
 					return -1;
 				}
 			}
@@ -140,7 +136,19 @@ public abstract class AbstractOperationMatcher
 		}
 		int i1 = s1.getIndex(p1);
 		int i2 = s2.getIndex(p2);
-		return i2 - i1;
+		int indexDiff = i2 - i1;
+		if (indexDiff != 0) {
+			return indexDiff;
+		}
+		if ((specializedReferenceType != null) && (specializedCandidateType != null)) {
+			if (metaModelManager.conformsTo(specializedReferenceType, referenceBindings, specializedCandidateType, candidateBindings)) {
+				return 1;
+			}
+			else if (metaModelManager.conformsTo(specializedCandidateType, candidateBindings, specializedReferenceType, referenceBindings)) {
+				return -1;
+			}
+		}
+		return 0;
 	}
 
 	public @Nullable List<EObject> getAmbiguities() {
@@ -154,12 +162,12 @@ public abstract class AbstractOperationMatcher
 	public @Nullable Operation getBestOperation(@NonNull List<NamedElement> invocations) {
 		ambiguities = null;
 		Operation bestOperation = null;
-		Map<TemplateParameter, Type> bestBindings = null;
+		TemplateParameterSubstitutions bestBindings = TemplateParameterSubstitutions.EMPTY;
 		List<EObject> ambiguities2 = ambiguities;
 		for (NamedElement namedElement : invocations) {
 			if (namedElement instanceof Operation) {
 				Operation candidateOperation = (Operation)namedElement;
-				Map<TemplateParameter, Type> candidateBindings = matches(candidateOperation);
+				TemplateParameterSubstitutions candidateBindings = matches(candidateOperation);
 				if (candidateBindings != null) {
 					if (bestOperation == null) {
 						bestOperation = candidateOperation;
@@ -183,7 +191,7 @@ public abstract class AbstractOperationMatcher
 				}
 			}
 		}
-		return setBestOperation(bestOperation, ambiguities2);
+		return bestOperation;
 	}
 
 	protected boolean isRedefinitionOf(@NonNull Operation operation1, @NonNull Operation operation2) {
@@ -201,9 +209,9 @@ public abstract class AbstractOperationMatcher
 		return false;
 	}
 
-	protected @Nullable Map<TemplateParameter, Type> getOperationBindings(@NonNull MetaModelManager metaModelManager, @NonNull Operation candidateOperation) {
+/*	protected @Nullable TemplateParameterSubstitutions getOperationBindings(@NonNull MetaModelManager metaModelManager, @NonNull Operation candidateOperation) {
 		Type sourceType = this.sourceType;
-		Map<TemplateParameter, Type> bindings = new HashMap<TemplateParameter, Type>();
+//		TemplateParameterSubstitutions bindings = new ArrayList<Type>();
 		org.eclipse.ocl.examples.pivot.Class containingType = candidateOperation.getOwningClass();
 		if ((containingType instanceof CollectionType) && (sourceType != null)) {
 			if (!(sourceType instanceof CollectionType)) {
@@ -228,16 +236,16 @@ public abstract class AbstractOperationMatcher
 				bindings.put(templateParameter, null);
 			}
 		}
-		return bindings;
-	}
+		return sourceType != null ? TemplateParameterSubstitutionVisitor.createBindings(metaModelManager, sourceType, candidateOperation) : null;
+	} */
 
-	protected @Nullable Map<TemplateParameter, Type> matches(@NonNull Operation candidateOperation) {
+	protected @Nullable TemplateParameterSubstitutions matches(@NonNull Operation candidateOperation) {
 		List<Parameter> candidateParameters = candidateOperation.getOwnedParameter();
 		int iSize = getArgumentCount();
 		if (iSize != candidateParameters.size()) {
 			return null;
 		}
-		Map<TemplateParameter, Type> bindings = getOperationBindings(metaModelManager, candidateOperation);
+		TemplateParameterSubstitutions bindings = TemplateParameterSubstitutionVisitor.createBindings(metaModelManager, sourceType, candidateOperation);
 		for (int i = 0; i < iSize; i++) {
 			Parameter candidateParameter = candidateParameters.get(i);
 			if (candidateParameter != null) {
@@ -247,15 +255,11 @@ public abstract class AbstractOperationMatcher
 				if ((expressionType == null) || (candidateType == null)) {
 					return null;
 				}
-				if (!metaModelManager.conformsTo(expressionType, candidateType, bindings)) {
+				if (!metaModelManager.conformsTo(expressionType, TemplateParameterSubstitutions.EMPTY, candidateType, bindings)) {
 					return null;
 				}
 			}
 		}
 		return bindings;
-	}
-	
-	protected @Nullable Operation setBestOperation(@Nullable Operation bestOperation, @Nullable List<EObject> ambiguities) {
-		return bestOperation;
 	}
 }

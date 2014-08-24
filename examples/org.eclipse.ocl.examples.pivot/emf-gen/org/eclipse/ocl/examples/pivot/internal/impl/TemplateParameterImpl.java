@@ -523,20 +523,21 @@ public class TemplateParameterImpl
 				templateParameterId2 = templateParameterId;
 				if (templateParameterId2 == null) {
 					int index = 0;
-					TemplateSignature templateSignature = getOwningTemplateSignature();
-					if (templateSignature != null) {
-						int parentTemplateParametersCount = 0;
-						TemplateableElement template = templateSignature.getOwningTemplateableElement();
+					TemplateSignature templateSignature1 = getOwningTemplateSignature();
+					if (templateSignature1 != null) {
+						index = templateSignature1.getOwnedTemplateParameters().indexOf(this);
+						TemplateableElement template = templateSignature1.getOwningTemplateableElement();
 						if (template != null) {
-							EObject eContainer = template.eContainer();
-							if (eContainer != null) {
-								List<TemplateParameter> parentTemplateParameters = PivotUtil.getAllTemplateParameters(eContainer);
-								if (parentTemplateParameters != null) {
-									parentTemplateParametersCount = parentTemplateParameters.size();
+							for (EObject eContainer = template.eContainer(); eContainer != null; eContainer = eContainer.eContainer()) {
+								if (eContainer instanceof TemplateableElement) {
+									TemplateableElement eObject = PivotUtil.getUnspecializedTemplateableElement((TemplateableElement)eContainer);
+									TemplateSignature templateSignature2 = eObject.getOwnedTemplateSignature();
+									if (templateSignature2 != null) {
+										index += templateSignature2.getOwnedTemplateParameters().size();
+									}
 								}
 							}
 						}
-						index = parentTemplateParametersCount + templateSignature.getOwnedTemplateParameters().indexOf(this);
 					}
 					templateParameterId = templateParameterId2 = IdManager.getTemplateParameterId(index);
 				}

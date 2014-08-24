@@ -21,6 +21,7 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutions;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -95,7 +96,7 @@ public class OperationFilter implements ScopeFilter
 					if ((expressionType == null) || (candidateType == null)) {
 						return false;
 					}
-					if (!metaModelManager.conformsTo(expressionType, candidateType, null)) {
+					if (!metaModelManager.conformsTo(expressionType, TemplateParameterSubstitutions.EMPTY, candidateType, TemplateParameterSubstitutions.EMPTY)) {
 						return false;
 					}
 				}

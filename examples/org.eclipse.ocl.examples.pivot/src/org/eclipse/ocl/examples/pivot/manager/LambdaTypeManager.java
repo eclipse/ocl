@@ -19,7 +19,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
 
 /**
@@ -108,7 +107,7 @@ public class LambdaTypeManager
 	} */
 	   
 	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType,
-			@Nullable Map<TemplateParameter, Type> bindings) {
+			@Nullable TemplateParameterSubstitutions bindings) {
 		if (bindings == null) {
 			return getLambdaType(typeName, contextType, parameterTypes, resultType);
 		}

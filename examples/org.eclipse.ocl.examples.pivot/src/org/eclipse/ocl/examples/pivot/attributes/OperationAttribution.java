@@ -18,7 +18,6 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 public class OperationAttribution extends AbstractAttribution
 {
@@ -35,7 +34,7 @@ public class OperationAttribution extends AbstractAttribution
 		else {
 			environmentView.addAllParameters(targetOperation);
 		}
-		environmentView.addElements(PivotUtil.getTemplateParameters(targetOperation));
+		environmentView.addAllTemplateParameters(targetOperation);
 		return scopeView.getParent();
 	}
 }

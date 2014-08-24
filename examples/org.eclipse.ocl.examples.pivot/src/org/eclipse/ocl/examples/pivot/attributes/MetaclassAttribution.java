@@ -18,7 +18,6 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 public class MetaclassAttribution extends AbstractAttribution
 {
@@ -27,7 +26,7 @@ public class MetaclassAttribution extends AbstractAttribution
 	@Override
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		Metaclass<?> targetClass = (Metaclass<?>) target;
-		environmentView.addElements(PivotUtil.getTemplateParameters(targetClass));
+		environmentView.addAllTemplateParameters(targetClass);
 		Type instanceType = targetClass.getInstanceType();
 		if (instanceType instanceof org.eclipse.ocl.examples.pivot.Class) {
 			environmentView.addAllOperations((org.eclipse.ocl.examples.pivot.Class)instanceType, null);

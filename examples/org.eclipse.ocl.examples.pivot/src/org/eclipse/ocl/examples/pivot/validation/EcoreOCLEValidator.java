@@ -54,6 +54,7 @@ import org.eclipse.ocl.examples.pivot.delegate.InvocationBehavior;
 import org.eclipse.ocl.examples.pivot.delegate.SettingBehavior;
 import org.eclipse.ocl.examples.pivot.delegate.ValidationBehavior;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutions;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 import org.eclipse.ocl.examples.pivot.utilities.ConstraintEvaluator;
@@ -568,8 +569,8 @@ public class EcoreOCLEValidator implements EValidator
 				}
 				assert asType != null;
 				assert asExpressionType != null;
-				if (!metaModelManager.conformsTo(asExpressionType, asType, null)) {
-					metaModelManager.conformsTo(asExpressionType, asType, null);			// Debugging
+				if (!metaModelManager.conformsTo(asExpressionType, TemplateParameterSubstitutions.EMPTY, asType, TemplateParameterSubstitutions.EMPTY)) {
+//					metaModelManager.conformsTo(asExpressionType, TemplateParameterSubstitutions.EMPTY, asType, TemplateParameterSubstitutions.EMPTY);			// Debugging
 					if (diagnostics != null) {
 						String objectLabel = EObjectValidator.getObjectLabel(eNamedElement, context);
 						String message = role == null ? DomainUtil.bind(INCOMPATIBLE_TYPE_1, asExpressionType, objectLabel)
