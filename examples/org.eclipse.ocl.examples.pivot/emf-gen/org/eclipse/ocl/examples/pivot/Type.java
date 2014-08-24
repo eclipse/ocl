@@ -12,7 +12,6 @@ package org.eclipse.ocl.examples.pivot;
 
 import java.util.List;
 
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
 /**
@@ -61,7 +60,7 @@ public interface Type
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	Type specializeIn(@NonNull OCLExpression expr, @NonNull Type selfType);
+	Type specializeIn(OCLExpression expr, Type selfType);
 
 	@Nullable org.eclipse.ocl.examples.pivot.Class isClass();
 

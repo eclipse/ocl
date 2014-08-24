@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.pivot;
 
-import org.eclipse.jdt.annotation.NonNull;
-
 
 
 
@@ -32,5 +30,5 @@ public interface SelfType extends org.eclipse.ocl.examples.pivot.Class
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	Type specializeIn(@NonNull OCLExpression expr, Type selfType);
+	Type specializeIn(OCLExpression expr, Type selfType);
 } // SelfType

@@ -296,7 +296,6 @@ public abstract class TypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("null")
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments)
 			throws InvocationTargetException {
@@ -409,8 +408,10 @@ public abstract class TypeImpl
 		return getTypeId().hashCode();
 	}
 
-	public Type specializeIn(final @NonNull OCLExpression expr, final @NonNull Type selfType)
+	public Type specializeIn(final /*@NonNull*/ OCLExpression expr, final /*@NonNull*/ Type selfType)
 	{
+		assert expr != null;
+		assert selfType != null;
 		return (Type) specializeIn(DomainUtil.nonNullState((DomainCallExp)expr), (DomainType)selfType);
 	}
 
