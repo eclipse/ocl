@@ -18,7 +18,6 @@ public class NewPivotNameResolver  extends AutoPivotNameResolver {
 
 	public NewPivotNameResolver(@NonNull MetaModelManager mmManager) {
 		super(mmManager);
-		mmManager.getASMetamodel();				// FIXME Is this confusing tooling and user metamodels?
 	}
 
 	@Override

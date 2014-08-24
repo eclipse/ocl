@@ -893,6 +893,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			}
 		}
 		else {
+			metaModelManager.getASMetamodel();				// Ensure metamodel has been loaded
 			ISingleResultEnvironment env = lResolver.computeReferredOperationLookup(expression, filter);
 			if (env.getSize() == 1) {
 				operation = (Operation) env.getSingleResult();
