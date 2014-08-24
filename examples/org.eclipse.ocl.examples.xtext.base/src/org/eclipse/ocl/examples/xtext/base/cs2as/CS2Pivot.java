@@ -37,7 +37,6 @@ import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagedAdapter;
@@ -67,7 +66,10 @@ import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
 import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.ILeafNode;
+import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
+import org.eclipse.xtext.util.Triple;
+import org.eclipse.xtext.util.Tuples;
 
 /**
  * CS2Pivot manages the equivalence between a Concrete Syntax Resources
@@ -246,11 +248,6 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 	private static final class TypeValueFilter implements ScopeFilter
 	{
 		public static TypeValueFilter INSTANCE = new TypeValueFilter();
-		
-		public int compareMatches(@NonNull MetaModelManager metaModelManager, @NonNull Object match1, @Nullable Map<TemplateParameter, Type> bindings1,
-				@NonNull Object match2, @Nullable Map<TemplateParameter, Type> bindings2) {
-			return 0;
-		}
 
 		public boolean matches(@NonNull EnvironmentView environmentView, @NonNull Object object) {
 			if (object instanceof Type) {
@@ -266,11 +263,6 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 	private static final class UndecoratedNameFilter implements ScopeFilter
 	{
 		public static UndecoratedNameFilter INSTANCE = new UndecoratedNameFilter();
-		
-		public int compareMatches(@NonNull MetaModelManager metaModelManager, @NonNull Object match1, @Nullable Map<TemplateParameter, Type> bindings1,
-				@NonNull Object match2, @Nullable Map<TemplateParameter, Type> bindings2) {
-			return 0;
-		}
 
 		public boolean matches(@NonNull EnvironmentView environmentView, @NonNull Object object) {
 			return !(object instanceof Operation) && !(object instanceof org.eclipse.ocl.examples.pivot.Package);
@@ -358,6 +350,31 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 		MessageBinder savedMessageBinder = CS2Pivot.messageBinder;
 		CS2Pivot.messageBinder = messageBinder;
 		return savedMessageBinder;
+	}
+
+	/**
+	 * Define the resolution of a PathNameCS explicitly avoiding the need for the normal Xtext proxy resolution.
+	 * This is used after a non-trivial selection occurs such as the selection of the best operation overload.
+	 * If element is null the Xtext error message corresponding to an unresolved proxy is generated.
+	 * @param ambiguities 
+	 */
+	public static void setPathElement(@NonNull PathNameCS csPathName, @Nullable Element element, @Nullable List<EObject> ambiguities) {
+		List<PathElementCS> csPath = csPathName.getPath();
+		@SuppressWarnings("null")@NonNull PathElementCS csLastElement = csPath.get(csPath.size()-1);
+		AmbiguitiesAdapter.setAmbiguities(csLastElement, ambiguities);
+		if ((element == null) || (ambiguities != null)) {
+			EObject eObject = csLastElement;
+			INode iNode = NodeModelUtils.getNode(csLastElement);
+			Triple<EObject, EReference, INode> triple = Tuples.create(eObject, BaseCSPackage.Literals.PATH_ELEMENT_CS__ELEMENT, iNode);
+			Resource eResource = csLastElement.eResource();
+			if (eResource instanceof BaseCSResource) {
+				((BaseCSResource)eResource).createAndAddDiagnostic(triple);
+			}
+			csLastElement.setElement(null);
+		}
+		else {
+			csLastElement.setElement(element);
+		}
 	}
 	
 	/**

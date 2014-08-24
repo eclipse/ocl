@@ -14,6 +14,7 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.NamedElement;
@@ -22,6 +23,8 @@ import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
 import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
+import org.eclipse.xtext.nodemodel.INode;
+import org.eclipse.xtext.util.Triple;
 
 /**
  * BaseResource defines the Xtext-dependent extended interface for a Concrete Syntax resource.
@@ -29,6 +32,11 @@ import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
 public interface BaseCSResource extends BaseResource
 {
 	/**
+	 * Add the unresolved reference message for EReference in EObject at INode.
+	 */
+	void createAndAddDiagnostic(Triple<EObject, EReference, INode> triple);
+
+		/**
 	 * Create the CS2AS converter for the cs2asResourceMap conversions using metaModelManager.
 	 */
 	// FIXME Pivot2AS Narrow to BaseCSResource

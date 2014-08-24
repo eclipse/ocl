@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
+import org.eclipse.ocl.examples.xtext.base.cs2as.AmbiguitiesAdapter;
 import org.eclipse.ocl.examples.xtext.base.cs2as.ExceptionAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.BaseScopeProvider;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
@@ -41,29 +42,6 @@ import com.google.inject.Inject;
 public class EssentialOCLLinkingService extends DefaultLinkingService
 {
 	public static boolean DEBUG_RETRY = false;			// Set true to retry for debug tracing
-	
-	public static class Ambiguities extends ExceptionAdapter
-	{
-		private List<EObject> eObjects;
-		
-		public Ambiguities(List<EObject> eObjects) {
-			super(null);
-			this.eObjects = eObjects;
-		}
-
-		@Override
-		public String getErrorMessage() {
-			StringBuilder s = new StringBuilder();
-			s.append("Ambiguous resolution:");
-			for (EObject eObject : eObjects) {
-				s.append("\n\t");
-				s.append(eObject.eClass().getName());
-				s.append(" : ");
-				s.append(eObject);				
-			}
-			return s.toString();
-		}
-	}
 	
 	private static int depth = -1;
 	
@@ -120,7 +98,7 @@ public class EssentialOCLLinkingService extends DefaultLinkingService
 				if (DEBUG_RETRY) {
 					scope.getElements(qualifiedName);
 				}
-				eAdapters.add(new Ambiguities(linkedObjects));
+				AmbiguitiesAdapter.setAmbiguities(context, linkedObjects);
 				return Collections.emptyList();
 			}
 			if (linkedObjects.size() <= 0) {

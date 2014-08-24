@@ -33,10 +33,10 @@ import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Root;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
+import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ImportCS;
@@ -45,7 +45,6 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.SpecificationCS;
-import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
@@ -59,19 +58,23 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContext
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PackageDeclarationCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PropertyContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.util.AbstractCompleteOCLCSContainmentVisitor;
-import org.eclipse.ocl.examples.xtext.essentialocl.attributes.AbstractOperationFilter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpSpecificationCS;
 
 public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContainmentVisitor
 {
-	public class OperationDeclScopeFilter extends AbstractOperationFilter
+	public class OperationDeclScopeFilter implements ScopeFilter
 	{
+		protected final @Nullable Type sourceType;
 		private final @NonNull List<ParameterCS> csParameters;
 		
 		public OperationDeclScopeFilter(@Nullable Type sourceType, @NonNull List<ParameterCS> csParameters) {
-			super(sourceType);
+			this.sourceType = sourceType != null ? PivotUtil.getType(sourceType) : null;		// FIXME redundant
 			this.csParameters = csParameters;
 		}
+
+//		public int compareMatches(@NonNull MetaModelManager metaModelManager, @NonNull Object match1, @NonNull Object match2) {
+//			return metaModelManager.compareOperationMatches((Operation)match1, null, (Operation)match2, null);
+//		}
 
 		public boolean matches(@NonNull EnvironmentView environmentView, @NonNull Object object) {
 			if (object instanceof Iteration) {
@@ -84,7 +87,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 				if (iMax != candidateParameters.size()) {
 					return false;
 				}
-				Map<TemplateParameter, Type> bindings = getOperationBindings(metaModelManager, candidateOperation);
+/*				Map<TemplateParameter, Type> bindings = getOperationBindings(metaModelManager, candidateOperation);
 				for (int i = 0; i < iMax; i++) {
 					Parameter candidateParameter = candidateParameters.get(i);
 					if (candidateParameter != null) {
@@ -106,7 +109,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 				}
 				if (bindings != null) {
 					installBindings(environmentView, object, bindings);
-				}
+				} */
 				return true;
 			}
 			else {

@@ -91,16 +91,17 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
+import org.eclipse.ocl.examples.xtext.base.cs2as.AmbiguitiesAdapter;
 import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.scoping.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
-import org.eclipse.ocl.examples.xtext.essentialocl.attributes.BinaryOperationFilter;
-import org.eclipse.ocl.examples.xtext.essentialocl.attributes.ImplicitCollectFilter;
-import org.eclipse.ocl.examples.xtext.essentialocl.attributes.ImplicitCollectionFilter;
+import org.eclipse.ocl.examples.xtext.essentialocl.attributes.AbstractOperationMatcher;
+import org.eclipse.ocl.examples.xtext.essentialocl.attributes.BinaryOperationMatcher;
 import org.eclipse.ocl.examples.xtext.essentialocl.attributes.NavigationUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.attributes.OperationFilter;
-import org.eclipse.ocl.examples.xtext.essentialocl.attributes.UnaryOperationFilter;
+import org.eclipse.ocl.examples.xtext.essentialocl.attributes.OperationMatcher;
+import org.eclipse.ocl.examples.xtext.essentialocl.attributes.UnaryOperationMatcher;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralExpCS;
@@ -141,11 +142,6 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	private static final class TypeArgumentFilter implements ScopeFilter
 	{
 		public static TypeArgumentFilter INSTANCE = new TypeArgumentFilter();
-		
-		public int compareMatches(@NonNull MetaModelManager metaModelManager, @NonNull Object match1, @Nullable Map<TemplateParameter, Type> bindings1,
-				@NonNull Object match2, @Nullable Map<TemplateParameter, Type> bindings2) {
-			return 0;
-		}
 
 		public boolean matches(@NonNull EnvironmentView environmentView, @NonNull Object object) {
 			if (object instanceof Type) {
@@ -245,6 +241,15 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		return null;
 	} */
 	
+	/**
+	 * let iterations = invocations->selectByKind(Iteration)->select(owningClass <> null) in
+	 * let bestIteratorSize = iterations->collect(ownedIterators->size())->min() in
+	 * let bestSizeIterations = iterations->select(ownedIterators->size() = bestIteratorSize) in
+	 * let owningClasses = bestSizeIterations.owningClass.unspecializedClass->asSet() in
+	 * let leafClasses = owningClasses->select(c | owningClasses->intersection(c->closure(superClasses)) = c) in
+	 * let leafIterations = bestSizeIterations->select(leafClasses->includes(owningClass.unspecializedClass)) in
+	 * leafIterations->any(true)
+	 */
 	protected @Nullable Iteration getBestIteration(@NonNull List<NamedElement> invocations) {
 		Iteration bestIteration = null;
 		org.eclipse.ocl.examples.pivot.Class bestType = null;
@@ -285,16 +290,18 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		return (Operation) content;
 	}
 
-/*	private TemplateParameter getFormal(List<TemplateBinding> templateBindings, TemplateParameter templateParameter) {
-		for (TemplateBinding templateBinding : templateBindings) {
-			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
-				if (templateParameter == templateParameterSubstitution.getFormal()) {
-					return templateParameterSubstitution.getActual().getOwningTemplateParameter();
-				}
+	protected @Nullable VariableDeclaration getImplicitSource(@NonNull ModelElementCS csExp, @NonNull Type requiredType) {
+		@Nullable VariableDeclaration lastVariable = null;
+		for (ImplicitSourceVariableIterator it = new ImplicitSourceVariableIterator(csExp); it.hasNext(); )  {
+			@NonNull Variable variable = it.next();
+			lastVariable = variable;
+			Type type = variable.getType();
+			if ((type != null) && type.conformsTo(metaModelManager, requiredType)) {
+				return variable;
 			}
 		}
-		return null;
-	} */
+		return lastVariable;		// If no good variable found, the outermost variable is the least bad.
+	}			// FIXME report all possible variables as bad to user
 	
 	protected @Nullable List<NamedElement> getInvocations(@Nullable OCLExpression sourceExp, @NonNull RoundBracketedClauseCS csRoundBracketedClause) {
 		NameExpCS csNameExp = csRoundBracketedClause.getNameExp();
@@ -378,25 +385,17 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		}
 	}
 
-	protected @Nullable VariableDeclaration getImplicitSource(@NonNull ModelElementCS csExp, @NonNull Type requiredType) {
-		@Nullable VariableDeclaration lastVariable = null;
-		for (ImplicitSourceVariableIterator it = new ImplicitSourceVariableIterator(csExp); it.hasNext(); )  {
-			@NonNull Variable variable = it.next();
-			lastVariable = variable;
-			Type type = variable.getType();
-			if ((type != null) && type.conformsTo(metaModelManager, requiredType)) {
-				return variable;
-			}
-		}
-		return lastVariable;		// If no good variable found, the outermost variable is the least bad.
-	}			// FIXME report all possible variables as bad to user
-
 	/**
 	 * Return all operations/iterations in asType and its superclasses whose name is name. For iterations the number of iteration iterators must
 	 * match iteratorCount unless iteratorCount is zero. For operations the number of parameters must be expressionCount. Returns null if
 	 * nothing is found.
 	 */
 	protected @Nullable List<NamedElement> getInvocations(@NonNull Type asType, @NonNull String name, int iteratorCount, int expressionCount) {
+		TemplateParameter asTemplateParameter = asType.isTemplateParameter();
+		if (asTemplateParameter != null) {
+			Type asLowerBound = asTemplateParameter.getLowerBound();
+			asType = asLowerBound != null ? asLowerBound : metaModelManager.getOclAnyType();
+		}
 		Iterable<? extends DomainOperation> instanceOperations = metaModelManager.getAllOperations(asType, FeatureFilter.SELECT_NON_STATIC, name);
 		List<NamedElement> invocations = getInvocationsInternal(null, instanceOperations, iteratorCount, expressionCount);
 		if (asType instanceof ElementExtension) {
@@ -510,50 +509,43 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			if (sourceExp == null) {
 				sourceExp = createImplicitSourceVariableExp(csNameExp, iteration.getOwningClass());
 			}
-			Type sourceType = sourceExp.getType();
-			ScopeFilter scopeFilter = new OperationFilter(sourceType, csRoundBracketedClause);
 			LoopExp iterationCallExp = resolveIterationCallExp(csNameExp, sourceExp, iteration);
-			@SuppressWarnings("unused") Iteration asIteration = context.lookupIteration(csNameExp, csPathName, scopeFilter);	// Now let Xtext resolve the operation
-//			if (asIteration != null) {
+			CS2Pivot.setPathElement(csPathName, iteration, null);
 			resolveIterationContent(csRoundBracketedClause, iterationCallExp);
 			return iterationCallExp;
 		}
-		else {
-			Operation exampleOperation = getExampleOperation(invocations);
-			if (exampleOperation != null) {
-				if (sourceExp == null) {
-					sourceExp = createImplicitSourceVariableExp(csNameExp, exampleOperation.getOwningClass());
-				}
-				OperationCallExp operationCallExp = refreshOperationCallExp(csNameExp, sourceExp);
-				if (invocations.size() == 1) {
-					context.setReferredOperation(operationCallExp, exampleOperation);
-				}
-				//
-				//	Need to resolve types for operation arguments in order to disambiguate operation names.
-				//
-				resolveOperationArgumentTypes(csRoundBracketedClause);
-				//
-				//	Resolve the static operation/iteration by name and known operation argument types.
-				//
-				ScopeFilter filter = null;
-				NavigationOperatorCS csNavigationOperator = NavigationUtil.getNavigationOperator(csNameExp);
-				if (csNavigationOperator != null) {											// For a->X(); X must be resolved in the navigation source type
-					Type explicitSourceType = csNameExp.getSourceType();
-					if (explicitSourceType != null) {
-						filter = new OperationFilter(explicitSourceType, csRoundBracketedClause);
-					}
-				}
-				else {																		// For X(); X is resolved in the ancestors
-					filter = new OperationFilter(null, csRoundBracketedClause);
-				}
-				
-				Operation asOperation = context.lookupOperation(csNameExp, csPathName, filter);	// Now let Xtext resolve the operation
-				if (asOperation != null) {
-					return resolveOperationCallExp(csRoundBracketedClause, operationCallExp, asOperation);
+		Operation exampleOperation = getExampleOperation(invocations);
+		if (exampleOperation != null) {
+			if (sourceExp == null) {
+				sourceExp = createImplicitSourceVariableExp(csNameExp, exampleOperation.getOwningClass());
+			}
+			OperationCallExp operationCallExp = refreshOperationCallExp(csNameExp, sourceExp);
+			if (invocations.size() == 1) {
+				context.setReferredOperation(operationCallExp, exampleOperation);
+			}
+			//
+			//	Need to resolve types for operation arguments in order to disambiguate operation names.
+			//
+			resolveOperationArgumentTypes(csRoundBracketedClause);
+			//
+			//	Resolve the static operation/iteration by name and known operation argument types.
+			//
+			Type explicitSourceType = null;
+			NavigationOperatorCS csNavigationOperator = NavigationUtil.getNavigationOperator(csNameExp);
+			if (csNavigationOperator != null) {										// For a->X(); X must be resolved in the navigation source type
+				explicitSourceType = csNameExp.getSourceType();
+				if (explicitSourceType == null) {
+					return null;
 				}
 			}
+			OperationMatcher matcher = new OperationMatcher(metaModelManager, explicitSourceType, csRoundBracketedClause);
+			Operation asOperation = matcher.getBestOperation(invocations);
+			CS2Pivot.setPathElement(csPathName, asOperation, matcher.getAmbiguities());
+			if (asOperation != null) {
+				return resolveOperationCallExp(csRoundBracketedClause, operationCallExp, asOperation);
+			}
 		}
-		return null;
+		return null;			
 	}
 
 	protected @Nullable OCLExpression resolveConstructorExp(@NonNull NameExpCS csNameExp) {
@@ -609,26 +601,15 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		PivotUtil.resetContainer(sourceExp);
 		expression.setSource(sourceExp);
 		expression.setName("oclAsSet");
-		resolveOperationCall(expression, csOperator, new ImplicitCollectionFilter(sourceType));
+		resolveOperationCall(expression, csOperator);
 		return expression;
 	}
 
 	/**
 	 * Return a non-null implicit collect() call if a sourceExp for a csElement requires an implicit collect.
-	 * The return call has noo bosdy or return type since they cannot be synmthesized until the body is synthesized.
+	 * The return call has no body or return type since they cannot be synthesised until the body is synthesised.
 	 */
-	protected @Nullable IteratorExp resolveImplicitCollectExp(@NonNull OCLExpression sourceExp, @NonNull NameExpCS csElement) {
-		OperatorCS parent = csElement.getParent();
-		if (!(parent instanceof NavigationOperatorCS)) {
-			return null;
-		}
-		if (parent.getSource() == csElement) {
-			return null;
-		}
-		NavigationOperatorCS navigationOperatorCS = (NavigationOperatorCS)parent;
-		if (!PivotConstants.OBJECT_NAVIGATION_OPERATOR.equals(navigationOperatorCS.getName())) {
-			return null;
-		}
+	protected @Nullable IteratorExp resolveImplicitCollect(@NonNull OCLExpression sourceExp, @NonNull NavigationOperatorCS csOperator, @NonNull NameExpCS csElement) {
 		Type actualSourceType = sourceExp.getType();
 		if (!(actualSourceType instanceof CollectionType)) {
 			return null;
@@ -637,20 +618,22 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		if (elementType == null) {
 			return null;
 		}
-		IteratorExp implicitCollectExp = context.refreshModelElement(IteratorExp.class, PivotPackage.Literals.ITERATOR_EXP, null);
-		implicitCollectExp.setSource(sourceExp);
-		implicitCollectExp.setImplicit(true);
-		@SuppressWarnings("null") @NonNull EReference eReference = PivotPackage.Literals.LOOP_EXP__REFERRED_ITERATION;
-		EnvironmentView environmentView = new EnvironmentView(metaModelManager, eReference, "collect");
-		environmentView.addFilter(new ImplicitCollectFilter((CollectionType) actualSourceType, elementType));
-		environmentView.computeLookups(actualSourceType, null);
-		Iteration resolvedIteration = (Iteration)environmentView.getContent();
-		if (resolvedIteration == null) {
+		List<NamedElement> invocations = getInvocations(actualSourceType, "collect", 1, 0);
+		if (invocations == null) {
 			return null;
 		}
-		context.setReferredIteration(implicitCollectExp, resolvedIteration);
+		Iteration asIteration = getBestIteration(invocations);
+		if (asIteration == null) {
+			return null;
+		}
+		IteratorExp implicitCollectExp = context.refreshModelElement(IteratorExp.class, PivotPackage.Literals.ITERATOR_EXP, null);
+		implicitCollectExp.setImplicit(true);
+		PivotUtil.resetContainer(sourceExp);
+		implicitCollectExp.setSource(sourceExp);
+		implicitCollectExp.setName("oclAsSet");
+		context.setReferredIteration(implicitCollectExp, asIteration);
 		Variable iterator = context.refreshModelElement(Variable.class, PivotPackage.Literals.VARIABLE, null); // FIXME reuse
-		Parameter resolvedIterator = resolvedIteration.getOwnedIterator().get(0);
+		Parameter resolvedIterator = asIteration.getOwnedIterator().get(0);
 		iterator.setRepresentedParameter(resolvedIterator);
 		context.refreshName(iterator, "1_");
 		context.setType(iterator, elementType, false);
@@ -943,18 +926,28 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		context.refreshList(expression.getArgument(), pivotArguments);
 	}
 
-	protected void resolveOperationCall(@NonNull OperationCallExp expression, @NonNull OperatorCS csOperator, @NonNull ScopeFilter filter) {
-		@SuppressWarnings("null") @NonNull EReference eReference = PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION;
-		EnvironmentView environmentView = new EnvironmentView(metaModelManager, eReference, expression.getName());
-		environmentView.addFilter(filter);
+	protected void resolveOperationCall(@NonNull OperationCallExp expression, @NonNull OperatorCS csOperator) {
+		String name = expression.getName();
 		Type sourceType = PivotUtil.getType(expression.getSource());
-		int size = 0;
-		if (sourceType != null) {
-			size = environmentView.computeLookups(sourceType, null);
+		List<NamedElement> invocations = null;
+		if ((sourceType != null) && (name != null)) {
+			invocations = getInvocations(sourceType, name, 0, expression.getArgument().size());
+			if ((invocations == null) && name.startsWith("_")) {
+				@SuppressWarnings("null")@NonNull String unescapedName = name.substring(1);				// FIXME Compatibility
+				invocations = getInvocations(sourceType, unescapedName, 0, expression.getArgument().size());
+			}
 		}
-		if (size == 1) {
-			Operation operation = (Operation)environmentView.getContent();
-			context.setReferredOperation(expression, operation);
+		AbstractOperationMatcher matcher = null;
+		if ((csOperator instanceof BinaryOperatorCS) && !(csOperator instanceof NavigationOperatorCS)) {	// explicit: X op Y
+			matcher = new BinaryOperationMatcher(metaModelManager, sourceType, ((BinaryOperatorCS) csOperator).getArgument());
+		}
+		else {																	// explicit: op X, or implicit: X.oclAsSet()->
+			matcher = new UnaryOperationMatcher(metaModelManager, sourceType);
+		}
+		if (invocations != null) {
+			Operation asOperation = matcher.getBestOperation(invocations);
+			AmbiguitiesAdapter.setAmbiguities(csOperator, matcher.getAmbiguities());
+			context.setReferredOperation(expression, asOperation);
 			resolveOperationReturnType(expression);
 		}
 		else {
@@ -975,7 +968,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			else {
 				boundMessage = DomainUtil.bind(OCLMessages.UnresolvedOperation_ERROR_, sourceType, csOperator);
 			}
-//			context.addBadExpressionError(csOperator, boundMessage);
+//			context.addBadExpressionError(csOperator, boundMessage); 
 			context.addDiagnostic(csOperator, boundMessage);
 			context.setReferredOperation(expression, metaModelManager.getOclInvalidOperation());
 			context.setType(expression, metaModelManager.getOclInvalidType(), false);
@@ -1199,7 +1192,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				Type sourceType = PivotUtil.getType(source);
 				Type argumentType = PivotUtil.getType(argument);
 				if ((sourceType != null) && (argumentType != null)) {
-					resolveOperationCall(expression, csOperator, new BinaryOperationFilter(sourceType, argumentType));
+					resolveOperationCall(expression, csOperator);
 				}
 			}
 		}
@@ -1632,7 +1625,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 						String navigationOperatorName = csOperator.getName();
 						if (actualSourceType instanceof CollectionType) {
 							if (PivotConstants.OBJECT_NAVIGATION_OPERATOR.equals(navigationOperatorName)) {
-								implicitCollectExp = resolveImplicitCollectExp(sourceExp, csNameExp);
+								implicitCollectExp = resolveImplicitCollect(sourceExp, csOperator, csNameExp);
 								if (implicitCollectExp != null) {
 									@SuppressWarnings("null")@NonNull Variable iterator = implicitCollectExp.getIterator().get(0);
 									collectedSourceExp = createImplicitVariableExp(iterator);
@@ -1834,7 +1827,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				expression.setSource(source);
 				Type sourceType = PivotUtil.getType(source);
 				if (sourceType != null) {
-					resolveOperationCall(expression, csOperator, new UnaryOperationFilter(sourceType));
+					resolveOperationCall(expression, csOperator);
 				}
 			}
 		}

@@ -10,27 +10,13 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.pivot.scoping;
 
-import java.util.Map;
-
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 /**
- * A ScopeFilter is initially used to reject unwanted name contributions from a scope and
- * once all candidate names have been identified, is used again to select a best match from
- * ambiguous contributions.
+ * A ScopeFilter is initially used to reject unwanted name contributions from a scope.
  */
 public interface ScopeFilter
 {
-	/**
-	 * Return -ve if match1 is inferior to match2, +ve if match2 is inferior to match1, or
-	 * zero if both matches are of equal validity.
-	 */
-	int compareMatches(@NonNull MetaModelManager metaModelManager, @NonNull Object match1, @Nullable Map<TemplateParameter, Type> bindings1, @NonNull Object match2, @Nullable Map<TemplateParameter, Type> bindings2);
-
 	/**
 	 * Return true if the filter accepts eObject as a candidate for
 	 * inclusion in the EnvironmentView.

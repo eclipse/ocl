@@ -181,7 +181,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	}
 
 	@Override
-	protected void createAndAddDiagnostic(Triple<EObject, EReference, INode> triple) {
+	public void createAndAddDiagnostic(Triple<EObject, EReference, INode> triple) {
 		if (isValidationDisabled())
 			return;
 		EObject context = triple.getFirst();

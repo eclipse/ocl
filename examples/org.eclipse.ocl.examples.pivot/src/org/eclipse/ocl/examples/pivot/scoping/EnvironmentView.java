@@ -13,7 +13,6 @@ package org.eclipse.ocl.examples.pivot.scoping;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -224,12 +223,10 @@ public class EnvironmentView
 	protected final @Nullable String name;
 
 	private final @NonNull Map<String, Object> contentsByName = new HashMap<String, Object>(); // Single Object or MyList
-	private Map<Object, Map<TemplateParameter, Type>> templateBindings = null;
 
 	private int contentsSize = 0; // Deep size of contentsByName;
 
 	private List<ScopeFilter> matchers = null;	// Prevailing filters for matching
-	private Set<ScopeFilter> resolvers = null;	// Successful filters for resolving
 
 	public EnvironmentView(@NonNull MetaModelManager metaModelManager, @NonNull EStructuralFeature reference, @Nullable String name) {
 		this.metaModelManager = metaModelManager;
@@ -248,9 +245,8 @@ public class EnvironmentView
 	}
 
 	public void addAllElements(@NonNull org.eclipse.ocl.examples.pivot.Class asClass, @NonNull ScopeView scopeView) {
-		Type asType = PivotUtil.getLowerBound(asClass);
-		Attribution attribution = PivotUtil.getAttribution(asType);
-		attribution.computeLookup(asType, this, scopeView);
+		Attribution attribution = PivotUtil.getAttribution(asClass);
+		attribution.computeLookup(asClass, this, scopeView);
 		org.eclipse.ocl.examples.pivot.Class asUnspecializedClass = PivotUtil.getUnspecializedTemplateableElement(asClass);
 		org.eclipse.ocl.examples.pivot.Package asPackage = asUnspecializedClass.getOwningPackage();
 		if (asPackage != null) {
@@ -260,9 +256,8 @@ public class EnvironmentView
 		if (asClass instanceof Metaclass<?>) {
 			Type instanceType = ((Metaclass<?>)asClass).getInstanceType();
 			if (instanceType != null) {
-				asType = PivotUtil.getLowerBound(instanceType);
-				attribution = PivotUtil.getAttribution(asType);
-				attribution.computeLookup(asType, this, scopeView);
+				attribution = PivotUtil.getAttribution(instanceType);
+				attribution.computeLookup(instanceType, this, scopeView);
 			}
 		}
 		else {	// FIXME redundant
@@ -559,12 +554,6 @@ public class EnvironmentView
 				return;
 			}
 		}
-		if (matchers != null) {
-			if (resolvers == null) {
-				resolvers = new HashSet<ScopeFilter>();
-			}
-			resolvers.addAll(matchers);
-		}
 		Object value = contentsByName.get(elementName);
 		if (value == element) {
 			;	// Already present
@@ -627,9 +616,6 @@ public class EnvironmentView
 
 	public void addElementsOfScope(@Nullable Element asElement, @NonNull ScopeView scopeView) {
 		if (asElement != null) {
-			if (asElement instanceof Type) {
-				asElement = PivotUtil.getLowerBound((Type)asElement);
-			}
 			Attribution attribution = PivotUtil.getAttribution(asElement);
 			attribution.computeLookup(asElement, this, scopeView);
 		}
@@ -831,7 +817,6 @@ public class EnvironmentView
 					for (int i = 0; i < values.size()-1;) {
 						boolean iRemoved = false;
 						@SuppressWarnings("null") @NonNull Object iValue = values.get(i);
-						Map<TemplateParameter, Type> iBindings = templateBindings != null ? templateBindings.get(iValue) : null;
 						for (int j = i + 1; j < values.size();) {
 							Class<?> iClass = iValue.getClass();
 							@SuppressWarnings("null") @NonNull Object jValue = values.get(j);
@@ -850,15 +835,6 @@ public class EnvironmentView
 											break;
 										}
 									}
-									if (verdict != 0) {
-										break;
-									}
-								}
-							}
-							if ((verdict == 0) && (resolvers != null)) {
-								Map<TemplateParameter, Type> jBindings = templateBindings != null ? templateBindings.get(jValue) : null;
-								for (ScopeFilter filter : resolvers) {
-									verdict = filter.compareMatches(metaModelManager, iValue, iBindings, jValue, jBindings);
 									if (verdict != 0) {
 										break;
 									}
@@ -886,13 +862,6 @@ public class EnvironmentView
 			contentsSize = newSize;
 		}
 		return getSize();
-	}
-
-	public void setBindings(@NonNull Object object, @Nullable Map<TemplateParameter, Type> bindings) {
-		if (templateBindings == null) {
-			templateBindings = new HashMap<Object, Map<TemplateParameter, Type>>();
-		}
-		templateBindings.put(object, bindings);
 	}
 
 	public void setIsQualifier(boolean isQualifier) {

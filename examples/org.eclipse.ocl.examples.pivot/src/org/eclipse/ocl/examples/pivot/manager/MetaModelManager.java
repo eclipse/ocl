@@ -3281,8 +3281,8 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	 * Return the specialized form of type analyzing expr to determine the formal to actual parameter mappings
 	 * using selfType as the value of OclSelf.
 	 */
-	public @NonNull Type specializeType(@NonNull Type type, @NonNull CallExp expr, @NonNull Type selfType) {
-		return TemplateParameterSubstitutionVisitor.specializeType(type, expr, this, selfType);
+	public @NonNull Type specializeType(@NonNull Type type, @NonNull CallExp callExp, @NonNull Type selfType) {
+		return TemplateParameterSubstitutionVisitor.specializeType(type, callExp, this, selfType);
 	}
 
 	public void unsetTarget(Notifier oldTarget) {
