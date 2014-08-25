@@ -43,6 +43,27 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
  */
 public class TupleTypeManager
 {
+	protected static class TupleIdResolver extends PivotIdResolver
+	{
+		private final TemplateParameterReferencesVisitor referencesVisitor;
+
+		private TupleIdResolver(@NonNull MetaModelManager metaModelManager,
+				TemplateParameterReferencesVisitor referencesVisitor) {
+			super(metaModelManager);
+			this.referencesVisitor = referencesVisitor;
+		}
+
+		@Override
+		public @NonNull DomainElement visitTemplateParameterId(@NonNull TemplateParameterId id) {
+			int index = id.getIndex();
+			TemplateParameter templateParameter = referencesVisitor.templateParameters.get(index);
+			if (templateParameter != null) {
+				return templateParameter;
+			}
+			return super.visitTemplateParameterId(id);
+		}
+	}
+
 	/**
 	 * TuplePart provides a convenient descriptor for a tuple part complying with the full EMF model protocols.
 	 */
@@ -65,19 +86,26 @@ public class TupleTypeManager
 			return String.valueOf(name) + " : " + String.valueOf(type);
 		}
 	}
-
-	protected static @NonNull TemplateParameterReferenceVisitor createTemplateParameterReferenceVisitor(@NonNull List<TemplateParameter> allTemplateParameters) {
-		return new TemplateParameterReferenceVisitor(allTemplateParameters);
-	}
-
-	public static @NonNull TemplateParameter[] getAllTemplateParameterReferences(@NonNull Iterable<? extends Type> partTypes) {
-		List<TemplateParameter> allTemplateParameters = new ArrayList<TemplateParameter>();
-		TemplateParameterReferenceVisitor referenceVisitor = createTemplateParameterReferenceVisitor(allTemplateParameters);	// FIXME this isn't realistically extensible
-		for (@SuppressWarnings("null")@NonNull Type partType : partTypes) {
-			partType.accept(referenceVisitor);
+	
+	/**
+	 * The TemplateParameterReferencesVisitor remembers the formal TemplateParameter for re-uyse during Tuple instantiation.
+	 */
+	protected static class TemplateParameterReferencesVisitor extends TemplateParameterSubstitutionVisitor
+	{
+		protected final @NonNull Map<Integer, TemplateParameter> templateParameters = new HashMap<Integer, TemplateParameter>();
+		
+		public TemplateParameterReferencesVisitor(@NonNull MetaModelManager metaModelManager, Collection<? extends Type> partValues) {
+			super(metaModelManager, null);
+			for (Type partValue : partValues) {
+				analyzeType(partValue, partValue);
+			}
 		}
-		@SuppressWarnings("null")@NonNull TemplateParameter[] array = allTemplateParameters.toArray(new TemplateParameter[allTemplateParameters.size()]);
-		return array;
+
+		@Override
+		public @NonNull Type put(@NonNull TemplateParameter formalTemplateParameter, @NonNull Type actualType) {
+			templateParameters.put(formalTemplateParameter.getTemplateParameterId().getIndex(), formalTemplateParameter);
+			return super.put(formalTemplateParameter, actualType);
+		}
 	}
 
 	protected final @NonNull MetaModelManager metaModelManager;
@@ -187,7 +215,7 @@ public class TupleTypeManager
 		//	Find the outgoing template parameter references
 		// FIXME this should be more readily and reliably computed in the caller
 		@SuppressWarnings("null")@NonNull Collection<? extends Type> partValues = parts.values();
-		final TemplateParameter[] allTemplateParameters = getAllTemplateParameterReferences(partValues);
+		final TemplateParameterReferencesVisitor referencesVisitor = new TemplateParameterReferencesVisitor(metaModelManager, partValues);	// FIXME this isn't realistically extensible
 		//
 		//	Create the tuple part ids
 		//
@@ -208,20 +236,7 @@ public class TupleTypeManager
 		//	Create the tuple type id (and then specialize it)
 		//
 		TupleTypeId tupleTypeId = IdManager.getOrderedTupleTypeId(tupleName, newPartIds);
-		PivotIdResolver pivotIdResolver = new PivotIdResolver(metaModelManager)
-		{
-			@Override
-			public @NonNull DomainElement visitTemplateParameterId(@NonNull TemplateParameterId id) {
-				int index = id.getIndex();
-				if (index < allTemplateParameters.length) {
-					TemplateParameter templateParameter = allTemplateParameters[index];
-					if (templateParameter != null) {
-						return templateParameter;
-					}
-				}
-				return super.visitTemplateParameterId(id);
-			}
-		};
+		PivotIdResolver pivotIdResolver = new TupleIdResolver(metaModelManager, referencesVisitor);
 		//
 		//	Finally create the (specialize) tuple type
 		//
