@@ -39,6 +39,9 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
+import org.eclipse.ocl.examples.pivot.CompleteModel;
+import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.ConnectionPointReference;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ConstructorExp;
@@ -830,6 +833,27 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EClass commentEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass completeClassEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass completeModelEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass completePackageEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -4819,6 +4843,116 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getCompleteClass()
+	{
+		return completeClassEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompleteClass_OwningCompletePackage()
+	{
+		return (EReference)completeClassEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompleteClass_PartialClasses()
+	{
+		return (EReference)completeClassEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCompleteModel()
+	{
+		return completeModelEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompleteModel_OwnedCompletePackages()
+	{
+		return (EReference)completeModelEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCompletePackage()
+	{
+		return completePackageEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompletePackage_OwnedCompleteClasses()
+	{
+		return (EReference)completePackageEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompletePackage_OwnedCompletePackages()
+	{
+		return (EReference)completePackageEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompletePackage_OwningCompleteModel()
+	{
+		return (EReference)completePackageEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompletePackage_OwningCompletePackage()
+	{
+		return (EReference)completePackageEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompletePackage_PartialPackages()
+	{
+		return (EReference)completePackageEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getComment_AnnotatedElement() {
 		return (EReference)commentEClass.getEStructuralFeatures().get(0);
 	}
@@ -5531,6 +5665,20 @@ public class PivotPackageImpl
 		createEAttribute(commentEClass, COMMENT__BODY);
 		createEReference(commentEClass, COMMENT__OWNING_ELEMENT);
 
+		completeClassEClass = createEClass(COMPLETE_CLASS);
+		createEReference(completeClassEClass, COMPLETE_CLASS__OWNING_COMPLETE_PACKAGE);
+		createEReference(completeClassEClass, COMPLETE_CLASS__PARTIAL_CLASSES);
+
+		completeModelEClass = createEClass(COMPLETE_MODEL);
+		createEReference(completeModelEClass, COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES);
+
+		completePackageEClass = createEClass(COMPLETE_PACKAGE);
+		createEReference(completePackageEClass, COMPLETE_PACKAGE__OWNED_COMPLETE_CLASSES);
+		createEReference(completePackageEClass, COMPLETE_PACKAGE__OWNED_COMPLETE_PACKAGES);
+		createEReference(completePackageEClass, COMPLETE_PACKAGE__OWNING_COMPLETE_MODEL);
+		createEReference(completePackageEClass, COMPLETE_PACKAGE__OWNING_COMPLETE_PACKAGE);
+		createEReference(completePackageEClass, COMPLETE_PACKAGE__PARTIAL_PACKAGES);
+
 		connectionPointReferenceEClass = createEClass(CONNECTION_POINT_REFERENCE);
 		createEReference(connectionPointReferenceEClass, CONNECTION_POINT_REFERENCE__ENTRY);
 		createEReference(connectionPointReferenceEClass, CONNECTION_POINT_REFERENCE__EXIT);
@@ -6075,6 +6223,9 @@ public class PivotPackageImpl
 		collectionRangeEClass.getESuperTypes().add(this.getCollectionLiteralPart());
 		collectionTypeEClass.getESuperTypes().add(this.getDataType());
 		commentEClass.getESuperTypes().add(this.getElement());
+		completeClassEClass.getESuperTypes().add(this.getNamedElement());
+		completeModelEClass.getESuperTypes().add(this.getNamedElement());
+		completePackageEClass.getESuperTypes().add(this.getNamedElement());
 		connectionPointReferenceEClass.getESuperTypes().add(this.getVertex());
 		constraintEClass.getESuperTypes().add(this.getNamedElement());
 		constructorExpEClass.getESuperTypes().add(this.getOCLExpression());
@@ -6317,6 +6468,20 @@ public class PivotPackageImpl
 		initEReference(getComment_AnnotatedElement(), this.getElement(), this.getElement_Comment(), "annotatedElement", null, 0, -1, Comment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getComment_Body(), this.getString(), "body", null, 0, 1, Comment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getComment_OwningElement(), this.getElement(), this.getElement_OwnedComment(), "owningElement", null, 0, 1, Comment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(completeClassEClass, CompleteClass.class, "CompleteClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getCompleteClass_OwningCompletePackage(), this.getCompletePackage(), this.getCompletePackage_OwnedCompleteClasses(), "owningCompletePackage", null, 0, 1, CompleteClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getCompleteClass_PartialClasses(), this.getClass_(), null, "partialClasses", null, 0, -1, CompleteClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(completeModelEClass, CompleteModel.class, "CompleteModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getCompleteModel_OwnedCompletePackages(), this.getCompletePackage(), this.getCompletePackage_OwningCompleteModel(), "ownedCompletePackages", null, 0, -1, CompleteModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(completePackageEClass, CompletePackage.class, "CompletePackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getCompletePackage_OwnedCompleteClasses(), this.getCompleteClass(), this.getCompleteClass_OwningCompletePackage(), "ownedCompleteClasses", null, 0, -1, CompletePackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getCompletePackage_OwnedCompletePackages(), this.getCompletePackage(), this.getCompletePackage_OwningCompletePackage(), "ownedCompletePackages", null, 0, -1, CompletePackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getCompletePackage_OwningCompleteModel(), this.getCompleteModel(), this.getCompleteModel_OwnedCompletePackages(), "owningCompleteModel", null, 0, 1, CompletePackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getCompletePackage_OwningCompletePackage(), this.getCompletePackage(), this.getCompletePackage_OwnedCompletePackages(), "owningCompletePackage", null, 0, 1, CompletePackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getCompletePackage_PartialPackages(), this.getPackage(), null, "partialPackages", null, 0, -1, CompletePackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(connectionPointReferenceEClass, ConnectionPointReference.class, "ConnectionPointReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getConnectionPointReference_Entry(), this.getPseudostate(), null, "entry", null, 0, -1, ConnectionPointReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$

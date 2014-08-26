@@ -30,6 +30,9 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
+import org.eclipse.ocl.examples.pivot.CompleteModel;
+import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.ConnectionPointReference;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ConstructorExp;
@@ -266,6 +269,21 @@ public class PivotAdapterFactory
 			public Adapter caseComment(Comment object)
 			{
 				return createCommentAdapter();
+			}
+			@Override
+			public Adapter caseCompleteClass(CompleteClass object)
+			{
+				return createCompleteClassAdapter();
+			}
+			@Override
+			public Adapter caseCompleteModel(CompleteModel object)
+			{
+				return createCompleteModelAdapter();
+			}
+			@Override
+			public Adapter caseCompletePackage(CompletePackage object)
+			{
+				return createCompletePackageAdapter();
 			}
 			@Override
 			public Adapter caseConnectionPointReference(ConnectionPointReference object)
@@ -2166,6 +2184,51 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createCommentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.CompleteClass <em>Complete Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.pivot.CompleteClass
+	 * @generated
+	 */
+	public Adapter createCompleteClassAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.CompleteModel <em>Complete Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.pivot.CompleteModel
+	 * @generated
+	 */
+	public Adapter createCompleteModelAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.CompletePackage <em>Complete Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.pivot.CompletePackage
+	 * @generated
+	 */
+	public Adapter createCompletePackageAdapter()
+	{
 		return null;
 	}
 

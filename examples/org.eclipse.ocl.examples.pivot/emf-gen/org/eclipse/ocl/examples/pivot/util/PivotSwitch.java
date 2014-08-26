@@ -29,6 +29,9 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
+import org.eclipse.ocl.examples.pivot.CompleteModel;
+import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.ConnectionPointReference;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ConstructorExp;
@@ -402,6 +405,39 @@ public class PivotSwitch<T> extends Switch<T> {
 				T result = caseComment(comment);
 				if (result == null) result = caseElement(comment);
 				if (result == null) result = caseVisitable(comment);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.COMPLETE_CLASS:
+			{
+				CompleteClass completeClass = (CompleteClass)theEObject;
+				T result = caseCompleteClass(completeClass);
+				if (result == null) result = caseNamedElement(completeClass);
+				if (result == null) result = caseElement(completeClass);
+				if (result == null) result = caseNameable(completeClass);
+				if (result == null) result = caseVisitable(completeClass);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.COMPLETE_MODEL:
+			{
+				CompleteModel completeModel = (CompleteModel)theEObject;
+				T result = caseCompleteModel(completeModel);
+				if (result == null) result = caseNamedElement(completeModel);
+				if (result == null) result = caseElement(completeModel);
+				if (result == null) result = caseNameable(completeModel);
+				if (result == null) result = caseVisitable(completeModel);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.COMPLETE_PACKAGE:
+			{
+				CompletePackage completePackage = (CompletePackage)theEObject;
+				T result = caseCompletePackage(completePackage);
+				if (result == null) result = caseNamedElement(completePackage);
+				if (result == null) result = caseElement(completePackage);
+				if (result == null) result = caseNameable(completePackage);
+				if (result == null) result = caseVisitable(completePackage);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -3186,6 +3222,54 @@ public class PivotSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseComment(Comment object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Complete Class</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Complete Class</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCompleteClass(CompleteClass object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Complete Model</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Complete Model</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCompleteModel(CompleteModel object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Complete Package</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Complete Package</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCompletePackage(CompletePackage object)
+	{
 		return null;
 	}
 

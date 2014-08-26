@@ -36,6 +36,9 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
+import org.eclipse.ocl.examples.pivot.CompleteModel;
+import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.ConnectionPointReference;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ConstructorExp;
@@ -731,6 +734,12 @@ public class PivotValidator
 				return validateCollectionType((CollectionType)value, diagnostics, context);
 			case PivotPackage.COMMENT:
 				return validateComment((Comment)value, diagnostics, context);
+			case PivotPackage.COMPLETE_CLASS:
+				return validateCompleteClass((CompleteClass)value, diagnostics, context);
+			case PivotPackage.COMPLETE_MODEL:
+				return validateCompleteModel((CompleteModel)value, diagnostics, context);
+			case PivotPackage.COMPLETE_PACKAGE:
+				return validateCompletePackage((CompletePackage)value, diagnostics, context);
 			case PivotPackage.CONNECTION_POINT_REFERENCE:
 				return validateConnectionPointReference((ConnectionPointReference)value, diagnostics, context);
 			case PivotPackage.CONSTRAINT:
@@ -1340,6 +1349,36 @@ public class PivotValidator
 	public boolean validateComment(Comment comment,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)comment, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCompleteClass(CompleteClass completeClass, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint((EObject)completeClass, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCompleteModel(CompleteModel completeModel, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint((EObject)completeModel, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCompletePackage(CompletePackage completePackage, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint((EObject)completePackage, diagnostics, context);
 	}
 
 	/**

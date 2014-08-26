@@ -176,6 +176,33 @@ public interface PivotFactory
 	Comment createComment();
 
 	/**
+	 * Returns a new object of class '<em>Complete Class</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Complete Class</em>'.
+	 * @generated
+	 */
+	CompleteClass createCompleteClass();
+
+	/**
+	 * Returns a new object of class '<em>Complete Model</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Complete Model</em>'.
+	 * @generated
+	 */
+	CompleteModel createCompleteModel();
+
+	/**
+	 * Returns a new object of class '<em>Complete Package</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Complete Package</em>'.
+	 * @generated
+	 */
+	CompletePackage createCompletePackage();
+
+	/**
 	 * Returns a new object of class '<em>Connection Point Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

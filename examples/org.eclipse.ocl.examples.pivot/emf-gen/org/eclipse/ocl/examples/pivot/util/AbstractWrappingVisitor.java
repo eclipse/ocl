@@ -257,6 +257,39 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 		}
 	}
 
+	public @Nullable R visitCompleteClass(@NonNull org.eclipse.ocl.examples.pivot.CompleteClass object) {
+		P prologue = preVisit(object);
+		try {
+			R result = delegate.visitCompleteClass(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
+	}
+
+	public @Nullable R visitCompleteModel(@NonNull org.eclipse.ocl.examples.pivot.CompleteModel object) {
+		P prologue = preVisit(object);
+		try {
+			R result = delegate.visitCompleteModel(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
+	}
+
+	public @Nullable R visitCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.CompletePackage object) {
+		P prologue = preVisit(object);
+		try {
+			R result = delegate.visitCompletePackage(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
+	}
+
 	public @Nullable R visitConnectionPointReference(@NonNull org.eclipse.ocl.examples.pivot.ConnectionPointReference object) {
 		P prologue = preVisit(object);
 		try {

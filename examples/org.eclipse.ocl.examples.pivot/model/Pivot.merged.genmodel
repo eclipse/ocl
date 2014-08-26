@@ -887,6 +887,39 @@
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
+      <ecoreClass href="Pivot.ecore#//CompleteClass"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//CompleteClass/owningCompletePackage"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//CompleteClass/partialClasses"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass">
+      <ecoreClass href="Pivot.ecore#//CompletePackage"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//CompletePackage/owningCompleteModel"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//CompletePackage/owningCompletePackage"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//CompletePackage/ownedCompletePackages"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//CompletePackage/partialPackages"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//CompletePackage/ownedCompleteClasses"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass">
+      <ecoreClass href="Pivot.ecore#//CompleteModel"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//CompleteModel/ownedCompletePackages"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="Pivot.ecore#//ConstructorExp"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//ConstructorExp/part"/>

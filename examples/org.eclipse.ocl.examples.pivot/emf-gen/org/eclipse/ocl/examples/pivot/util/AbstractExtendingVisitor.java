@@ -102,6 +102,18 @@ public abstract class AbstractExtendingVisitor<R, C>
 		return visitElement(object);
 	}
 
+	public @Nullable R visitCompleteClass(@NonNull org.eclipse.ocl.examples.pivot.CompleteClass object) {
+		return visitNamedElement(object);
+	}
+
+	public @Nullable R visitCompleteModel(@NonNull org.eclipse.ocl.examples.pivot.CompleteModel object) {
+		return visitNamedElement(object);
+	}
+
+	public @Nullable R visitCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.CompletePackage object) {
+		return visitNamedElement(object);
+	}
+
 	public @Nullable R visitConnectionPointReference(@NonNull org.eclipse.ocl.examples.pivot.ConnectionPointReference object) {
 		return visitVertex(object);
 	}

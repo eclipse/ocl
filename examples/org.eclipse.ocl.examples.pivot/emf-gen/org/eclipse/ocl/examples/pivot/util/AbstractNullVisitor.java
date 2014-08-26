@@ -98,6 +98,18 @@ public abstract class AbstractNullVisitor<R, C>
 		return null;
 	}
 
+	public @Nullable R visitCompleteClass(@NonNull org.eclipse.ocl.examples.pivot.CompleteClass object) {
+		return null;
+	}
+
+	public @Nullable R visitCompleteModel(@NonNull org.eclipse.ocl.examples.pivot.CompleteModel object) {
+		return null;
+	}
+
+	public @Nullable R visitCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.CompletePackage object) {
+		return null;
+	}
+
 	public @Nullable R visitConnectionPointReference(@NonNull org.eclipse.ocl.examples.pivot.ConnectionPointReference object) {
 		return null;
 	}

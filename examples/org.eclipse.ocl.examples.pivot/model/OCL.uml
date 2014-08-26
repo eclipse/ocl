@@ -28,6 +28,65 @@
         <generalization xmi:id="_XpnTEX7VEeOu79LxSz8Ylw" general="_v7rW4JL1Ed-tR9a-2UcrVA"/>
       </packagedElement>
     </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_zth9MCyOEeS77awx34sDEA" name="OCL_Complete">
+      <packagedElement xmi:type="uml:Class" xmi:id="_bVuPYCyPEeS77awx34sDEA" name="Class"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_BE8DMCyPEeS77awx34sDEA" name="CompleteClass">
+        <generalization xmi:id="_FatJkCyPEeS77awx34sDEA" general="_67hN4CyOEeS77awx34sDEA"/>
+        <ownedAttribute xmi:id="_MP2nACyQEeS77awx34sDEA" name="owningCompletePackage" type="_-mAioCyOEeS77awx34sDEA" association="_IbtxkCyREeS77awx34sDEA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MP2nASyQEeS77awx34sDEA"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MP2nAiyQEeS77awx34sDEA" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_sQmcICyPEeS77awx34sDEA" name="partialClasses" type="_bVuPYCyPEeS77awx34sDEA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sQmcISyPEeS77awx34sDEA"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sQmcIiyPEeS77awx34sDEA" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_4AqmUCyOEeS77awx34sDEA" name="CompleteModel">
+        <generalization xmi:id="_JCnrcCyPEeS77awx34sDEA" general="_67hN4CyOEeS77awx34sDEA"/>
+        <ownedAttribute xmi:id="_iRwNYCyPEeS77awx34sDEA" name="ownedCompletePackages" type="_-mAioCyOEeS77awx34sDEA" aggregation="composite" association="_AJ5sYCyREeS77awx34sDEA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_iRwNYSyPEeS77awx34sDEA"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_iRwNYiyPEeS77awx34sDEA" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_-mAioCyOEeS77awx34sDEA" name="CompletePackage" isAbstract="true">
+        <generalization xmi:id="_JSt88CyPEeS77awx34sDEA" general="_67hN4CyOEeS77awx34sDEA"/>
+        <ownedAttribute xmi:id="_afnRUCyQEeS77awx34sDEA" name="owningCompleteModel" type="_4AqmUCyOEeS77awx34sDEA" association="_AJ5sYCyREeS77awx34sDEA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_afnRUSyQEeS77awx34sDEA"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_afnRUiyQEeS77awx34sDEA" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_718HYCyREeS77awx34sDEA" name="owningCompletePackage" type="_-mAioCyOEeS77awx34sDEA" association="_PfoDwCySEeS77awx34sDEA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_718HYSyREeS77awx34sDEA"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_718HYiyREeS77awx34sDEA" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_5RktMCyREeS77awx34sDEA" name="ownedCompletePackages" type="_-mAioCyOEeS77awx34sDEA" aggregation="composite" association="_PfoDwCySEeS77awx34sDEA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5RktMSyREeS77awx34sDEA"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5RktMiyREeS77awx34sDEA" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xR8PECyPEeS77awx34sDEA" name="ownedCompleteClasses" type="_BE8DMCyPEeS77awx34sDEA" aggregation="composite" association="_IbtxkCyREeS77awx34sDEA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xR8PESyPEeS77awx34sDEA"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xR8PEiyPEeS77awx34sDEA" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_NeVo0CyPEeS77awx34sDEA" name="partialPackages" type="_Te8gYCyPEeS77awx34sDEA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YRBIQCyPEeS77awx34sDEA"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YyjIACyPEeS77awx34sDEA" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_67hN4CyOEeS77awx34sDEA" name="NamedElement" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_p-e_ADQjEeSMlP-TjpzTcA" name="NestedCompletePackage">
+        <generalization xmi:id="_p-e_ATQjEeSMlP-TjpzTcA" general="_-mAioCyOEeS77awx34sDEA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_c7pEUCyPEeS77awx34sDEA" name="Operation"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_TlOeADQjEeSMlP-TjpzTcA" name="OrphanCompletePackage">
+        <generalization xmi:id="_TlOeATQjEeSMlP-TjpzTcA" general="_-mAioCyOEeS77awx34sDEA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Te8gYCyPEeS77awx34sDEA" name="Package"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_OllUMDQjEeSMlP-TjpzTcA" name="RootCompletePackage">
+        <generalization xmi:id="_SGwU4DQjEeSMlP-TjpzTcA" general="_-mAioCyOEeS77awx34sDEA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_AJ5sYCyREeS77awx34sDEA" name="A_owningCompleteModel_ownedCompletePackages" memberEnd="_afnRUCyQEeS77awx34sDEA _iRwNYCyPEeS77awx34sDEA"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_IbtxkCyREeS77awx34sDEA" name="A_owningCompletePackage_ownedCompleteClasses" memberEnd="_MP2nACyQEeS77awx34sDEA _xR8PECyPEeS77awx34sDEA"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_PfoDwCySEeS77awx34sDEA" name="A_owningCompletePackage_ownedCompletePackages" memberEnd="_718HYCyREeS77awx34sDEA _5RktMCyREeS77awx34sDEA"/>
+    </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_ym0uQK5vEd-xTJkHwX_SlQ" name="OCL_Constraints">
       <packagedElement xmi:type="uml:Class" xmi:id="_8Fq9EB8KEeSG6YCqNQ2wgQ" name="Class">
         <ownedAttribute xmi:id="_v47pcLGPEeKHeOerXjTPgw" name="ownedInvariants" type="_1blU4K5vEd-xTJkHwX_SlQ" aggregation="composite">
@@ -451,4 +510,5 @@
   <Ecore:EReference xmi:id="_b3swsH9cEeOrlIuDtf7a6A" isTransient="true" isVolatile="true" isResolveProxies="false"/>
   <Ecore:EReference xmi:id="_j37U8BpPEeSM9LreJtBwBg" isTransient="true" isVolatile="true" isResolveProxies="false"/>
   <Ecore:EReference xmi:id="_mWx9AhpPEeSM9LreJtBwBg" isTransient="true" isVolatile="true" isResolveProxies="false"/>
+  <Ecore:EClass xmi:id="_o2C70DQZEeSSpuK_vlIP6g" instanceClassName="org.eclipse.ocl.examples.library.executor.ReflectivePackage"/>
 </xmi:XMI>

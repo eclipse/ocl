@@ -35,6 +35,9 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
+import org.eclipse.ocl.examples.pivot.CompleteModel;
+import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.ConnectionPointReference;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ConstructorExp;
@@ -180,6 +183,9 @@ public class PivotFactoryImpl
 			case PivotPackage.COLLECTION_RANGE: return (EObject)createCollectionRange();
 			case PivotPackage.COLLECTION_TYPE: return (EObject)createCollectionType();
 			case PivotPackage.COMMENT: return (EObject)createComment();
+			case PivotPackage.COMPLETE_CLASS: return (EObject)createCompleteClass();
+			case PivotPackage.COMPLETE_MODEL: return (EObject)createCompleteModel();
+			case PivotPackage.COMPLETE_PACKAGE: return (EObject)createCompletePackage();
 			case PivotPackage.CONNECTION_POINT_REFERENCE: return (EObject)createConnectionPointReference();
 			case PivotPackage.CONSTRAINT: return (EObject)createConstraint();
 			case PivotPackage.CONSTRUCTOR_EXP: return (EObject)createConstructorExp();
@@ -498,6 +504,39 @@ public class PivotFactoryImpl
 	public Comment createComment() {
 		CommentImpl comment = new CommentImpl();
 		return comment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompleteClass createCompleteClass()
+	{
+		CompleteClassImpl completeClass = new CompleteClassImpl();
+		return completeClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompleteModel createCompleteModel()
+	{
+		CompleteModelImpl completeModel = new CompleteModelImpl();
+		return completeModel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompletePackage createCompletePackage()
+	{
+		CompletePackageImpl completePackage = new CompletePackageImpl();
+		return completePackage;
 	}
 
 	/**

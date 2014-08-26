@@ -119,6 +119,18 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 		return delegate.visitComment(object);
 	}
 
+	public @Nullable R visitCompleteClass(@NonNull org.eclipse.ocl.examples.pivot.CompleteClass object) {
+		return delegate.visitCompleteClass(object);
+	}
+
+	public @Nullable R visitCompleteModel(@NonNull org.eclipse.ocl.examples.pivot.CompleteModel object) {
+		return delegate.visitCompleteModel(object);
+	}
+
+	public @Nullable R visitCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.CompletePackage object) {
+		return delegate.visitCompletePackage(object);
+	}
+
 	public @Nullable R visitConnectionPointReference(@NonNull org.eclipse.ocl.examples.pivot.ConnectionPointReference object) {
 		return delegate.visitConnectionPointReference(object);
 	}

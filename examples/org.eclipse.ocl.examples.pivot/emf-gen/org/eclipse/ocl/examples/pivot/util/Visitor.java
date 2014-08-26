@@ -56,6 +56,9 @@ public interface Visitor<R>
 	@Nullable R visitCollectionRange(@NonNull org.eclipse.ocl.examples.pivot.CollectionRange object);
 	@Nullable R visitCollectionType(@NonNull org.eclipse.ocl.examples.pivot.CollectionType object);
 	@Nullable R visitComment(@NonNull org.eclipse.ocl.examples.pivot.Comment object);
+	@Nullable R visitCompleteClass(@NonNull org.eclipse.ocl.examples.pivot.CompleteClass object);
+	@Nullable R visitCompleteModel(@NonNull org.eclipse.ocl.examples.pivot.CompleteModel object);
+	@Nullable R visitCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.CompletePackage object);
 	@Nullable R visitConnectionPointReference(@NonNull org.eclipse.ocl.examples.pivot.ConnectionPointReference object);
 	@Nullable R visitConstraint(@NonNull org.eclipse.ocl.examples.pivot.Constraint object);
 	@Nullable R visitConstructorExp(@NonNull org.eclipse.ocl.examples.pivot.ConstructorExp object);
