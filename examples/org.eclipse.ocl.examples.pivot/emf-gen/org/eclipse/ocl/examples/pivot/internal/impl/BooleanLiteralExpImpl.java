@@ -78,7 +78,7 @@ public class BooleanLiteralExpImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int BOOLEAN_SYMBOL_EFLAG = 1 << 10;
+	protected static final int BOOLEAN_SYMBOL_EFLAG = 1 << 9;
 
 	/**
 	 * The flag representing whether the Boolean Symbol attribute has been set.
@@ -87,7 +87,7 @@ public class BooleanLiteralExpImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int BOOLEAN_SYMBOL_ESETFLAG = 1 << 11;
+	protected static final int BOOLEAN_SYMBOL_ESETFLAG = 1 << 10;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -211,11 +211,11 @@ public class BooleanLiteralExpImpl
 				return isMany();
 			case PivotPackage.BOOLEAN_LITERAL_EXP__IS_REQUIRED:
 				return isRequired();
-			case PivotPackage.BOOLEAN_LITERAL_EXP__IS_TYPEOF:
-				return isTypeof();
 			case PivotPackage.BOOLEAN_LITERAL_EXP__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
+			case PivotPackage.BOOLEAN_LITERAL_EXP__TYPE_VALUE:
+				return getTypeValue();
 			case PivotPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL:
 				return isBooleanSymbol();
 		}
@@ -254,11 +254,11 @@ public class BooleanLiteralExpImpl
 			case PivotPackage.BOOLEAN_LITERAL_EXP__IS_REQUIRED:
 				setIsRequired((Boolean)newValue);
 				return;
-			case PivotPackage.BOOLEAN_LITERAL_EXP__IS_TYPEOF:
-				setIsTypeof((Boolean)newValue);
-				return;
 			case PivotPackage.BOOLEAN_LITERAL_EXP__TYPE:
 				setType((Type)newValue);
+				return;
+			case PivotPackage.BOOLEAN_LITERAL_EXP__TYPE_VALUE:
+				setTypeValue((Type)newValue);
 				return;
 			case PivotPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL:
 				setBooleanSymbol((Boolean)newValue);
@@ -294,11 +294,11 @@ public class BooleanLiteralExpImpl
 			case PivotPackage.BOOLEAN_LITERAL_EXP__IS_REQUIRED:
 				setIsRequired(IS_REQUIRED_EDEFAULT);
 				return;
-			case PivotPackage.BOOLEAN_LITERAL_EXP__IS_TYPEOF:
-				setIsTypeof(IS_TYPEOF_EDEFAULT);
-				return;
 			case PivotPackage.BOOLEAN_LITERAL_EXP__TYPE:
 				setType((Type)null);
+				return;
+			case PivotPackage.BOOLEAN_LITERAL_EXP__TYPE_VALUE:
+				setTypeValue((Type)null);
 				return;
 			case PivotPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL:
 				unsetBooleanSymbol();
@@ -330,10 +330,10 @@ public class BooleanLiteralExpImpl
 				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.BOOLEAN_LITERAL_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
-			case PivotPackage.BOOLEAN_LITERAL_EXP__IS_TYPEOF:
-				return ((eFlags & IS_TYPEOF_EFLAG) != 0) != IS_TYPEOF_EDEFAULT;
 			case PivotPackage.BOOLEAN_LITERAL_EXP__TYPE:
 				return type != null;
+			case PivotPackage.BOOLEAN_LITERAL_EXP__TYPE_VALUE:
+				return typeValue != null;
 			case PivotPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL:
 				return isSetBooleanSymbol();
 		}

@@ -1704,6 +1704,7 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_Namespace_Import_importedNamespace = createProperty("Import", _Bag_Import);
 		private final @NonNull Property pr_NavigationCallExp_navigationSource = createProperty(PivotPackage.Literals.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE, _Property);
 		private final @NonNull Property pr_NavigationCallExp_qualifier = createProperty(PivotPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER, _OrderedSet_OCLExpression);
+		private final @NonNull Property pr_OCLExpression_typeValue = createProperty(PivotPackage.Literals.OCL_EXPRESSION__TYPE_VALUE, _Type);
 		private final @NonNull Property pr_OCLExpression_CallExp_source = createProperty("CallExp", _CallExp);
 		private final @NonNull Property pr_OCLExpression_CollectionItem_item = createProperty("CollectionItem", _CollectionItem);
 		private final @NonNull Property pr_OCLExpression_CollectionRange_first = createProperty("CollectionRange", _CollectionRange);
@@ -1723,6 +1724,7 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_OCLExpression_Variable_initExpression = createProperty("Variable", _Variable);
 		private final @NonNull Property pr_Operation_bodyExpression = createProperty(PivotPackage.Literals.OPERATION__BODY_EXPRESSION, _LanguageExpression);
 		private final @NonNull Property pr_Operation_isInvalidating = createProperty(PivotPackage.Literals.OPERATION__IS_INVALIDATING, _Boolean);
+		private final @NonNull Property pr_Operation_isTypeof = createProperty(PivotPackage.Literals.OPERATION__IS_TYPEOF, _Boolean);
 		private final @NonNull Property pr_Operation_isValidating = createProperty(PivotPackage.Literals.OPERATION__IS_VALIDATING, _Boolean);
 		private final @NonNull Property pr_Operation_ownedParameter = createProperty(PivotPackage.Literals.OPERATION__OWNED_PARAMETER, _OrderedSet_Parameter);
 		private final @NonNull Property pr_Operation_owningClass = createProperty(PivotPackage.Literals.OPERATION__OWNING_CLASS, _Class);
@@ -1748,6 +1750,7 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_Package_profileApplication = createProperty(PivotPackage.Literals.PACKAGE__PROFILE_APPLICATION, _Set_ProfileApplication);
 		private final @NonNull Property pr_Package_Package_importedPackage = createProperty("Package", _Bag_Package);
 		private final @NonNull Property pr_Package_Root_ownedPackages = createProperty("Root", _Root);
+		private final @NonNull Property pr_Parameter_isTypeof = createProperty(PivotPackage.Literals.PARAMETER__IS_TYPEOF, _Boolean);
 		private final @NonNull Property pr_Parameter_operation = createProperty(PivotPackage.Literals.PARAMETER__OPERATION, _Operation);
 		private final @NonNull Property pr_Parameter_Iteration_ownedAccumulator = createProperty("Iteration", _Iteration);
 		private final @NonNull Property pr_Parameter_Iteration_ownedIterator = createProperty("Iteration", _Iteration);
@@ -1887,7 +1890,6 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_TypeExtension_type = createProperty(PivotPackage.Literals.TYPE_EXTENSION__TYPE, _Type);
 		private final @NonNull Property pr_TypedElement_isMany = createProperty(PivotPackage.Literals.TYPED_ELEMENT__IS_MANY, _Boolean);
 		private final @NonNull Property pr_TypedElement_isRequired = createProperty(PivotPackage.Literals.TYPED_ELEMENT__IS_REQUIRED, _Boolean);
-		private final @NonNull Property pr_TypedElement_isTypeof = createProperty(PivotPackage.Literals.TYPED_ELEMENT__IS_TYPEOF, _Boolean);
 		private final @NonNull Property pr_TypedElement_type = createProperty(PivotPackage.Literals.TYPED_ELEMENT__TYPE, _Type);
 		private final @NonNull Property pr_UnlimitedNaturalLiteralExp_unlimitedNaturalSymbol = createProperty(PivotPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL, _UnlimitedNatural);
 		private final @NonNull Property pr_ValueSpecification_owningSlot_values = createProperty("owningSlot", _Slot);
@@ -1900,6 +1902,7 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_Variable_IterateExp_result = createProperty("IterateExp", _IterateExp);
 		private final @NonNull Property pr_Variable_LetExp_variable = createProperty("LetExp", _LetExp);
 		private final @NonNull Property pr_Variable_LoopExp_iterator = createProperty("LoopExp", _LoopExp);
+		private final @NonNull Property pr_VariableDeclaration_typeValue = createProperty(PivotPackage.Literals.VARIABLE_DECLARATION__TYPE_VALUE, _Type);
 		private final @NonNull Property pr_VariableDeclaration_VariableExp_referredVariable = createProperty("VariableExp", _Bag_VariableExp);
 		private final @NonNull Property pr_VariableExp_implicit = createProperty(PivotPackage.Literals.VARIABLE_EXP__IMPLICIT, _Boolean);
 		private final @NonNull Property pr_VariableExp_referredVariable = createProperty(PivotPackage.Literals.VARIABLE_EXP__REFERRED_VARIABLE, _VariableDeclaration);
@@ -2481,6 +2484,9 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_OCLExpression_NavigationCallExp_qualifier);
 			ownedProperties = _OCLExpression.getOwnedProperties();
+			ownedProperties.add(property = pr_OCLExpression_typeValue);
+			property.setIsRequired(false);
+			property.setIsTransient(true);
 			ownedProperties.add(property = pr_OCLExpression_CallExp_source);
 			property.setImplicit(true);
 			property.setIsRequired(false);
@@ -2572,6 +2578,8 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_LanguageExpression_Operation_bodyExpression);
 			ownedProperties.add(property = pr_Operation_isInvalidating);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_Operation_isTypeof);
 			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_Operation_isValidating);
 			property.setIsResolveProxies(true);
@@ -2672,6 +2680,8 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Root_ownedPackages);
 			ownedProperties = _Parameter.getOwnedProperties();
+			ownedProperties.add(property = pr_Parameter_isTypeof);
+			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_Parameter_operation);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
@@ -3232,8 +3242,6 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsVolatile(true);
 			ownedProperties.add(property = pr_TypedElement_isRequired);
 			property.setIsResolveProxies(true);
-			ownedProperties.add(property = pr_TypedElement_isTypeof);
-			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_TypedElement_type);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
@@ -3291,6 +3299,9 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_LoopExp_iterator);
 			ownedProperties = _VariableDeclaration.getOwnedProperties();
+			ownedProperties.add(property = pr_VariableDeclaration_typeValue);
+			property.setIsRequired(false);
+			property.setIsTransient(true);
 			ownedProperties.add(property = pr_VariableDeclaration_VariableExp_referredVariable);
 			property.setImplicit(true);
 			property.setIsResolveProxies(true);

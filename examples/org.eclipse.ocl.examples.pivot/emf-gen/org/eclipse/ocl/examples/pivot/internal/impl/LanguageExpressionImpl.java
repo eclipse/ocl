@@ -15,7 +15,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -157,6 +156,7 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("cast")
 	public void setOwningConstraint(Constraint newOwningConstraint)
 	{
 		if (newOwningConstraint != eInternalContainer() || (eContainerFeatureID() != PivotPackage.LANGUAGE_EXPRESSION__OWNING_CONSTRAINT && newOwningConstraint != null))
@@ -264,8 +264,6 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 				return isMany();
 			case PivotPackage.LANGUAGE_EXPRESSION__IS_REQUIRED:
 				return isRequired();
-			case PivotPackage.LANGUAGE_EXPRESSION__IS_TYPEOF:
-				return isTypeof();
 			case PivotPackage.LANGUAGE_EXPRESSION__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -312,9 +310,6 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 			case PivotPackage.LANGUAGE_EXPRESSION__IS_REQUIRED:
 				setIsRequired((Boolean)newValue);
 				return;
-			case PivotPackage.LANGUAGE_EXPRESSION__IS_TYPEOF:
-				setIsTypeof((Boolean)newValue);
-				return;
 			case PivotPackage.LANGUAGE_EXPRESSION__TYPE:
 				setType((Type)newValue);
 				return;
@@ -356,9 +351,6 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 			case PivotPackage.LANGUAGE_EXPRESSION__IS_REQUIRED:
 				setIsRequired(IS_REQUIRED_EDEFAULT);
 				return;
-			case PivotPackage.LANGUAGE_EXPRESSION__IS_TYPEOF:
-				setIsTypeof(IS_TYPEOF_EDEFAULT);
-				return;
 			case PivotPackage.LANGUAGE_EXPRESSION__TYPE:
 				setType((Type)null);
 				return;
@@ -396,8 +388,6 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.LANGUAGE_EXPRESSION__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
-			case PivotPackage.LANGUAGE_EXPRESSION__IS_TYPEOF:
-				return ((eFlags & IS_TYPEOF_EFLAG) != 0) != IS_TYPEOF_EDEFAULT;
 			case PivotPackage.LANGUAGE_EXPRESSION__TYPE:
 				return type != null;
 			case PivotPackage.LANGUAGE_EXPRESSION__BODY:

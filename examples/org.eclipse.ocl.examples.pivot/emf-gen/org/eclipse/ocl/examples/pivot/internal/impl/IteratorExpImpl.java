@@ -146,8 +146,9 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 			OCLExpression source2 = this.getSource();
 			OCLExpression body2 = this.getBody();
 			Type sourceType = source2.getType();
+			Type sourceTypeValue = source2.getTypeValue();
 			Type bodyType = body2.getType();
-			Type specializedBodyType = bodyType != null ? TemplateParameterSubstitutionVisitor.specializeType(bodyType, body2.isTypeof(), this, metaModelManager, sourceType, source2.isTypeof()) : null;
+			Type specializedBodyType = bodyType != null ? TemplateParameterSubstitutionVisitor.specializeType(bodyType, this, metaModelManager, sourceType, sourceTypeValue) : null;
 			DomainInheritance comparableType = metaModelManager.getOclComparableType().getInheritance(metaModelManager);
 			DomainInheritance selfType = metaModelManager.getOclSelfType().getInheritance(metaModelManager);
 			DomainOperation staticOperation = comparableType.lookupLocalOperation(metaModelManager, LibraryConstants.COMPARE_TO, selfType);

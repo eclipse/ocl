@@ -48,7 +48,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getRoundBracketedClause <em>Round Bracketed Clause</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getSquareBracketedClauses <em>Square Bracketed Clauses</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getSourceType <em>Source Type</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#isSourceTypeof <em>Source Typeof</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getSourceTypeValue <em>Source Type Value</em>}</li>
  * </ul>
  * </p>
  *
@@ -129,24 +129,14 @@ public class NameExpCSImpl
 	protected Type sourceType;
 
 	/**
-	 * The default value of the '{@link #isSourceTypeof() <em>Source Typeof</em>}' attribute.
+	 * The cached value of the '{@link #getSourceTypeValue() <em>Source Type Value</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isSourceTypeof()
+	 * @see #getSourceTypeValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean SOURCE_TYPEOF_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isSourceTypeof() <em>Source Typeof</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSourceTypeof()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean sourceTypeof = SOURCE_TYPEOF_EDEFAULT;
+	protected Type sourceTypeValue;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -243,9 +233,9 @@ public class NameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSourceTypeof()
+	public Type getSourceTypeValue()
 	{
-		return sourceTypeof;
+		return sourceTypeValue;
 	}
 
 	/**
@@ -253,12 +243,12 @@ public class NameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSourceTypeof(boolean newSourceTypeof)
+	public void setSourceTypeValue(Type newSourceTypeValue)
 	{
-		boolean oldSourceTypeof = sourceTypeof;
-		sourceTypeof = newSourceTypeof;
+		Type oldSourceTypeValue = sourceTypeValue;
+		sourceTypeValue = newSourceTypeValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPEOF, oldSourceTypeof, sourceTypeof));
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPE_VALUE, oldSourceTypeValue, sourceTypeValue));
 	}
 
 	/**
@@ -492,8 +482,8 @@ public class NameExpCSImpl
 				return getSquareBracketedClauses();
 			case EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPE:
 				return getSourceType();
-			case EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPEOF:
-				return isSourceTypeof();
+			case EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPE_VALUE:
+				return getSourceTypeValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -527,8 +517,8 @@ public class NameExpCSImpl
 			case EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPE:
 				setSourceType((Type)newValue);
 				return;
-			case EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPEOF:
-				setSourceTypeof((Boolean)newValue);
+			case EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPE_VALUE:
+				setSourceTypeValue((Type)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -561,8 +551,8 @@ public class NameExpCSImpl
 			case EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPE:
 				setSourceType((Type)null);
 				return;
-			case EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPEOF:
-				setSourceTypeof(SOURCE_TYPEOF_EDEFAULT);
+			case EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPE_VALUE:
+				setSourceTypeValue((Type)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -589,8 +579,8 @@ public class NameExpCSImpl
 				return squareBracketedClauses != null && !squareBracketedClauses.isEmpty();
 			case EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPE:
 				return sourceType != null;
-			case EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPEOF:
-				return sourceTypeof != SOURCE_TYPEOF_EDEFAULT;
+			case EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPE_VALUE:
+				return sourceTypeValue != null;
 		}
 		return super.eIsSet(featureID);
 	}

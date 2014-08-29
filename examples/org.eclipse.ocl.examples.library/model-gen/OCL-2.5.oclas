@@ -62,7 +62,7 @@
               <elseExpression xsi:type="pivot:IfExp" isRequired="false" type="#Boolean">
                 <condition xsi:type="pivot:OperationCallExp" referredOperation="#o.ocl.OclAny.oclIsInvalid"
                     type="#Boolean">
-                  <source xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.3/@bodyExpression/@parameterVariable.0"
+                  <source xsi:type="pivot:VariableExp" isRequired="false" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.3/@bodyExpression/@parameterVariable.0"
                       type="#Boolean"/>
                 </condition>
                 <elseExpression xsi:type="pivot:IfExp" isRequired="false" type="#Boolean">
@@ -70,7 +70,7 @@
                       type="#Boolean">
                     <argument xsi:type="pivot:BooleanLiteralExp" booleanSymbol="false"
                         type="#Boolean"/>
-                    <source xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.3/@bodyExpression/@parameterVariable.0"
+                    <source xsi:type="pivot:VariableExp" isRequired="false" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.3/@bodyExpression/@parameterVariable.0"
                         type="#Boolean"/>
                   </condition>
                   <elseExpression xsi:type="pivot:IfExp" isRequired="false" type="#Boolean">
@@ -86,7 +86,7 @@
                           type="#Boolean">
                         <argument xsi:type="pivot:NullLiteralExp" isRequired="false"
                             type="#T.ocl.OclVoid"/>
-                        <source xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.3/@bodyExpression/@parameterVariable.0"
+                        <source xsi:type="pivot:VariableExp" isRequired="false" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.3/@bodyExpression/@parameterVariable.0"
                             type="#Boolean"/>
                       </condition>
                       <elseExpression xsi:type="pivot:BooleanLiteralExp" booleanSymbol="true"
@@ -100,7 +100,7 @@
                   <thenExpression xsi:type="pivot:BooleanLiteralExp" booleanSymbol="false"
                       type="#Boolean"/>
                 </elseExpression>
-                <thenExpression xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.3/@bodyExpression/@parameterVariable.0"
+                <thenExpression xsi:type="pivot:VariableExp" isRequired="false" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.3/@bodyExpression/@parameterVariable.0"
                     type="#Boolean"/>
               </elseExpression>
               <thenExpression xsi:type="pivot:BooleanLiteralExp" booleanSymbol="false"
@@ -109,7 +109,7 @@
             <thenExpression xsi:type="pivot:IfExp" type="#Boolean">
               <condition xsi:type="pivot:OperationCallExp" referredOperation="#o.ocl.OclAny.oclIsInvalid"
                   type="#Boolean">
-                <source xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.3/@bodyExpression/@parameterVariable.0"
+                <source xsi:type="pivot:VariableExp" isRequired="false" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.3/@bodyExpression/@parameterVariable.0"
                     type="#Boolean"/>
               </condition>
               <elseExpression xsi:type="pivot:IfExp" type="#Boolean">
@@ -117,7 +117,7 @@
                     type="#Boolean">
                   <argument xsi:type="pivot:BooleanLiteralExp" booleanSymbol="false"
                       type="#Boolean"/>
-                  <source xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.3/@bodyExpression/@parameterVariable.0"
+                  <source xsi:type="pivot:VariableExp" isRequired="false" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.3/@bodyExpression/@parameterVariable.0"
                       type="#Boolean"/>
                 </condition>
                 <elseExpression xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.3/@bodyExpression/@contextVariable"
@@ -130,7 +130,7 @@
             </thenExpression>
           </bodyExpression>
           <contextVariable name="self" type="#Boolean"/>
-          <parameterVariable name="b" representedParameter="#p0o.ocl.Boolean.and..ocl.Boolean"
+          <parameterVariable isRequired="false" name="b" representedParameter="#p0o.ocl.Boolean.and..ocl.Boolean"
               type="#Boolean"/>
         </bodyExpression>
         <ownedComment body="oclText[false] if either oclText[self] or oclText[b] is oclText[false].&#xA;Otherwise oclText[invalid] if either oclText[self] or oclText[b] is oclText[invalid] .&#xA;Otherwise oclText[null] if either oclText[self] or oclText[b] is oclText[null].&#xA;Otherwise oclText[true].&#xA;"/>
@@ -159,7 +159,7 @@
               <elseExpression xsi:type="pivot:IfExp" isRequired="false" type="#Boolean">
                 <condition xsi:type="pivot:OperationCallExp" referredOperation="#o.ocl.OclAny.oclIsInvalid"
                     type="#Boolean">
-                  <source xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.4/@bodyExpression/@parameterVariable.0"
+                  <source xsi:type="pivot:VariableExp" isRequired="false" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.4/@bodyExpression/@parameterVariable.0"
                       type="#Boolean"/>
                 </condition>
                 <elseExpression xsi:type="pivot:IfExp" isRequired="false" type="#Boolean">
@@ -167,7 +167,7 @@
                       type="#Boolean">
                     <argument xsi:type="pivot:BooleanLiteralExp" booleanSymbol="true"
                         type="#Boolean"/>
-                    <source xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.4/@bodyExpression/@parameterVariable.0"
+                    <source xsi:type="pivot:VariableExp" isRequired="false" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.4/@bodyExpression/@parameterVariable.0"
                         type="#Boolean"/>
                   </condition>
                   <elseExpression xsi:type="pivot:IfExp" isRequired="false" type="#Boolean">
@@ -178,17 +178,18 @@
                       <source xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.4/@bodyExpression/@contextVariable"
                           type="#Boolean"/>
                     </condition>
-                    <elseExpression xsi:type="pivot:IfExp" type="#Boolean">
+                    <elseExpression xsi:type="pivot:IfExp" isRequired="false" type="#Boolean">
                       <condition xsi:type="pivot:OperationCallExp" name="=" referredOperation="#o.ocl.Boolean.%61%..ocl.OclSelf"
                           type="#Boolean">
                         <argument xsi:type="pivot:NullLiteralExp" isRequired="false"
                             type="#T.ocl.OclVoid"/>
-                        <source xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.4/@bodyExpression/@parameterVariable.0"
+                        <source xsi:type="pivot:VariableExp" isRequired="false" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.4/@bodyExpression/@parameterVariable.0"
                             type="#Boolean"/>
                       </condition>
                       <elseExpression xsi:type="pivot:BooleanLiteralExp" booleanSymbol="false"
                           type="#Boolean"/>
-                      <thenExpression xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.4/@bodyExpression/@parameterVariable.0"
+                      <thenExpression xsi:type="pivot:VariableExp" isRequired="false"
+                          referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.4/@bodyExpression/@parameterVariable.0"
                           type="#Boolean"/>
                     </elseExpression>
                     <thenExpression xsi:type="pivot:NullLiteralExp" isRequired="false"
@@ -197,7 +198,7 @@
                   <thenExpression xsi:type="pivot:BooleanLiteralExp" booleanSymbol="true"
                       type="#Boolean"/>
                 </elseExpression>
-                <thenExpression xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.4/@bodyExpression/@parameterVariable.0"
+                <thenExpression xsi:type="pivot:VariableExp" isRequired="false" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.4/@bodyExpression/@parameterVariable.0"
                     type="#Boolean"/>
               </elseExpression>
               <thenExpression xsi:type="pivot:BooleanLiteralExp" booleanSymbol="true"
@@ -206,7 +207,7 @@
             <thenExpression xsi:type="pivot:IfExp" type="#Boolean">
               <condition xsi:type="pivot:OperationCallExp" referredOperation="#o.ocl.OclAny.oclIsInvalid"
                   type="#Boolean">
-                <source xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.4/@bodyExpression/@parameterVariable.0"
+                <source xsi:type="pivot:VariableExp" isRequired="false" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.4/@bodyExpression/@parameterVariable.0"
                     type="#Boolean"/>
               </condition>
               <elseExpression xsi:type="pivot:IfExp" type="#Boolean">
@@ -214,7 +215,7 @@
                     type="#Boolean">
                   <argument xsi:type="pivot:BooleanLiteralExp" booleanSymbol="true"
                       type="#Boolean"/>
-                  <source xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.4/@bodyExpression/@parameterVariable.0"
+                  <source xsi:type="pivot:VariableExp" isRequired="false" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.4/@bodyExpression/@parameterVariable.0"
                       type="#Boolean"/>
                 </condition>
                 <elseExpression xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.4/@bodyExpression/@contextVariable"
@@ -227,7 +228,7 @@
             </thenExpression>
           </bodyExpression>
           <contextVariable name="self" type="#Boolean"/>
-          <parameterVariable name="b" representedParameter="#p0o.ocl.Boolean.implies..ocl.Boolean"
+          <parameterVariable isRequired="false" name="b" representedParameter="#p0o.ocl.Boolean.implies..ocl.Boolean"
               type="#Boolean"/>
         </bodyExpression>
         <ownedComment body="oclText[true] if oclText[self] is oclText[false], or if oclText[b] is oclText[true].&#xA;Otherwise oclText[invalid] if either oclText[self] or oclText[b] is oclText[invalid].&#xA;Otherwise oclText[null] if either oclText[self] or oclText[b] is oclText[null].&#xA;Otherwise oclText[false].&#xA;"/>
@@ -289,7 +290,7 @@
               <elseExpression xsi:type="pivot:IfExp" isRequired="false" type="#Boolean">
                 <condition xsi:type="pivot:OperationCallExp" referredOperation="#o.ocl.OclAny.oclIsInvalid"
                     type="#Boolean">
-                  <source xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.6/@bodyExpression/@parameterVariable.0"
+                  <source xsi:type="pivot:VariableExp" isRequired="false" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.6/@bodyExpression/@parameterVariable.0"
                       type="#Boolean"/>
                 </condition>
                 <elseExpression xsi:type="pivot:IfExp" isRequired="false" type="#Boolean">
@@ -297,7 +298,7 @@
                       type="#Boolean">
                     <argument xsi:type="pivot:BooleanLiteralExp" booleanSymbol="true"
                         type="#Boolean"/>
-                    <source xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.6/@bodyExpression/@parameterVariable.0"
+                    <source xsi:type="pivot:VariableExp" isRequired="false" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.6/@bodyExpression/@parameterVariable.0"
                         type="#Boolean"/>
                   </condition>
                   <elseExpression xsi:type="pivot:IfExp" isRequired="false" type="#Boolean">
@@ -313,7 +314,7 @@
                           type="#Boolean">
                         <argument xsi:type="pivot:NullLiteralExp" isRequired="false"
                             type="#T.ocl.OclVoid"/>
-                        <source xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.6/@bodyExpression/@parameterVariable.0"
+                        <source xsi:type="pivot:VariableExp" isRequired="false" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.6/@bodyExpression/@parameterVariable.0"
                             type="#Boolean"/>
                       </condition>
                       <elseExpression xsi:type="pivot:BooleanLiteralExp" booleanSymbol="false"
@@ -327,7 +328,7 @@
                   <thenExpression xsi:type="pivot:BooleanLiteralExp" booleanSymbol="true"
                       type="#Boolean"/>
                 </elseExpression>
-                <thenExpression xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.6/@bodyExpression/@parameterVariable.0"
+                <thenExpression xsi:type="pivot:VariableExp" isRequired="false" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.6/@bodyExpression/@parameterVariable.0"
                     type="#Boolean"/>
               </elseExpression>
               <thenExpression xsi:type="pivot:BooleanLiteralExp" booleanSymbol="true"
@@ -336,7 +337,7 @@
             <thenExpression xsi:type="pivot:IfExp" type="#Boolean">
               <condition xsi:type="pivot:OperationCallExp" referredOperation="#o.ocl.OclAny.oclIsInvalid"
                   type="#Boolean">
-                <source xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.6/@bodyExpression/@parameterVariable.0"
+                <source xsi:type="pivot:VariableExp" isRequired="false" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.6/@bodyExpression/@parameterVariable.0"
                     type="#Boolean"/>
               </condition>
               <elseExpression xsi:type="pivot:IfExp" type="#Boolean">
@@ -344,7 +345,7 @@
                     type="#Boolean">
                   <argument xsi:type="pivot:BooleanLiteralExp" booleanSymbol="true"
                       type="#Boolean"/>
-                  <source xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.6/@bodyExpression/@parameterVariable.0"
+                  <source xsi:type="pivot:VariableExp" isRequired="false" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.6/@bodyExpression/@parameterVariable.0"
                       type="#Boolean"/>
                 </condition>
                 <elseExpression xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.6/@bodyExpression/@contextVariable"
@@ -357,7 +358,7 @@
             </thenExpression>
           </bodyExpression>
           <contextVariable name="self" type="#Boolean"/>
-          <parameterVariable name="b" representedParameter="#p0o.ocl.Boolean.or..ocl.Boolean"
+          <parameterVariable isRequired="false" name="b" representedParameter="#p0o.ocl.Boolean.or..ocl.Boolean"
               type="#Boolean"/>
         </bodyExpression>
         <ownedComment body="oclText[true] if either oclText[self] or oclText[b] is oclText[true].&#xA;Otherwise oclText[invalid] if either oclText[self] or oclText[b] is oclText[invalid].&#xA;Otherwise oclText[null] if either oclText[self] or oclText[b] is oclText[null].&#xA;Otherwise oclText[false].&#xA;"/>
@@ -381,7 +382,7 @@
             <elseExpression xsi:type="pivot:IfExp" isRequired="false" type="#Boolean">
               <condition xsi:type="pivot:OperationCallExp" referredOperation="#o.ocl.OclAny.oclIsInvalid"
                   type="#Boolean">
-                <source xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.8/@bodyExpression/@parameterVariable.0"
+                <source xsi:type="pivot:VariableExp" isRequired="false" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.8/@bodyExpression/@parameterVariable.0"
                     type="#Boolean"/>
               </condition>
               <elseExpression xsi:type="pivot:IfExp" isRequired="false" type="#Boolean">
@@ -395,12 +396,12 @@
                   <condition xsi:type="pivot:OperationCallExp" name="=" referredOperation="#o.ocl.Boolean.%61%..ocl.OclSelf"
                       type="#Boolean">
                     <argument xsi:type="pivot:NullLiteralExp" isRequired="false" type="#T.ocl.OclVoid"/>
-                    <source xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.8/@bodyExpression/@parameterVariable.0"
+                    <source xsi:type="pivot:VariableExp" isRequired="false" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.8/@bodyExpression/@parameterVariable.0"
                         type="#Boolean"/>
                   </condition>
                   <elseExpression xsi:type="pivot:OperationCallExp" name="&lt;>" referredOperation="#o.ocl.Boolean.%60%%62%..ocl.OclSelf"
                       type="#Boolean">
-                    <argument xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.8/@bodyExpression/@parameterVariable.0"
+                    <argument xsi:type="pivot:VariableExp" isRequired="false" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.8/@bodyExpression/@parameterVariable.0"
                         type="#Boolean"/>
                     <source xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.8/@bodyExpression/@contextVariable"
                         type="#Boolean"/>
@@ -411,14 +412,14 @@
                 <thenExpression xsi:type="pivot:NullLiteralExp" isRequired="false"
                     type="#T.ocl.OclVoid"/>
               </elseExpression>
-              <thenExpression xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.8/@bodyExpression/@parameterVariable.0"
+              <thenExpression xsi:type="pivot:VariableExp" isRequired="false" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.8/@bodyExpression/@parameterVariable.0"
                   type="#Boolean"/>
             </elseExpression>
             <thenExpression xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.0/@ownedOperations.8/@bodyExpression/@contextVariable"
                 type="#Boolean"/>
           </bodyExpression>
           <contextVariable name="self" type="#Boolean"/>
-          <parameterVariable name="b" representedParameter="#p0o.ocl.Boolean.xor..ocl.Boolean"
+          <parameterVariable isRequired="false" name="b" representedParameter="#p0o.ocl.Boolean.xor..ocl.Boolean"
               type="#Boolean"/>
         </bodyExpression>
         <ownedComment body="oclText[true] if oclText[self] is oclText[true] and oclText[b] is oclText[false], or if oclText[self] is oclText[false] and oclText[b] is oclText[true].&#xA;oclText[false] if oclText[self] is oclText[true] and oclText[b] is oclText[true], or if oclText[self] is oclText[false] and oclText[b] is oclText[false].&#xA;Otherwise oclText[invalid] if either oclText[self] or oclText[b] is oclText[invalid].&#xA;Otherwise oclText[null].&#xA;"/>
@@ -1336,13 +1337,13 @@
                 type="#Boolean">
               <argument xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.10/@ownedOperations.3/@postcondition.0/@specification/@contextVariable"
                   type="#T.ocl.OclAny"/>
-              <source xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.10/@ownedOperations.3/@postcondition.0/@specification/@resultVariable"
+              <source xsi:type="pivot:VariableExp" isRequired="false" referredVariable="#//@ownedPackages.0/@ownedClasses.10/@ownedOperations.3/@postcondition.0/@specification/@resultVariable"
                   type="#t.ocl.OclAny..oclAsTypeTT"/>
             </bodyExpression>
             <contextVariable name="self" type="#T.ocl.OclAny"/>
             <parameterVariable name="type" representedParameter="#p0o.ocl.OclAny.oclAsType..TT"
                 type="#t.ocl.OclAny..oclAsTypeTT"/>
-            <resultVariable name="result" type="#t.ocl.OclAny..oclAsTypeTT"/>
+            <resultVariable isRequired="false" name="result" type="#t.ocl.OclAny..oclAsTypeTT"/>
           </specification>
         </postcondition>
       </ownedOperations>
@@ -1847,7 +1848,7 @@
               </source>
             </bodyExpression>
             <contextVariable name="self" type="#OrderedSet"/>
-            <parameterVariable name="object" representedParameter="#p0o.ocl.OrderedSet.prepend..T"
+            <parameterVariable isRequired="false" name="object" representedParameter="#p0o.ocl.OrderedSet.prepend..T"
                 type="#t.ocl..OrderedSetT"/>
             <resultVariable name="result" type="#OrderedSet"/>
           </specification>
@@ -1857,7 +1858,7 @@
               type="#Boolean">
             <bodyExpression xsi:type="pivot:OperationCallExp" name="=" referredOperation="#o.ocl.OclAny.%61%..ocl.OclSelf"
                 type="#Boolean">
-              <argument xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.23/@ownedOperations.16/@postcondition.1/@specification/@parameterVariable.0"
+              <argument xsi:type="pivot:VariableExp" isRequired="false" referredVariable="#//@ownedPackages.0/@ownedClasses.23/@ownedOperations.16/@postcondition.1/@specification/@parameterVariable.0"
                   type="#t.ocl..OrderedSetT"/>
               <source xsi:type="pivot:OperationCallExp" isRequired="false" referredOperation="#o.ocl.OrderedCollection.at..ocl.Integer"
                   type="#t.ocl..OrderedSetT">
@@ -1868,7 +1869,7 @@
               </source>
             </bodyExpression>
             <contextVariable name="self" type="#OrderedSet"/>
-            <parameterVariable name="object" representedParameter="#p0o.ocl.OrderedSet.prepend..T"
+            <parameterVariable isRequired="false" name="object" representedParameter="#p0o.ocl.OrderedSet.prepend..T"
                 type="#t.ocl..OrderedSetT"/>
             <resultVariable name="result" type="#OrderedSet"/>
           </specification>
@@ -1915,7 +1916,7 @@
               </source>
             </bodyExpression>
             <contextVariable name="self" type="#OrderedSet"/>
-            <parameterVariable name="object" representedParameter="#p0o.ocl.OrderedSet.prepend..T"
+            <parameterVariable isRequired="false" name="object" representedParameter="#p0o.ocl.OrderedSet.prepend..T"
                 type="#t.ocl..OrderedSetT"/>
             <resultVariable name="result" type="#OrderedSet"/>
           </specification>

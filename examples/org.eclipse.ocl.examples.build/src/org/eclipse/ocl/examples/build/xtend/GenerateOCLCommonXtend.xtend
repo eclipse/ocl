@@ -422,7 +422,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 						«IF property.isTransient»
 							property.setIsTransient(true);
 						«ENDIF»
-						«IF property.isTypeof»
+						«IF false /*property.isTypeof*/»
 							property.setIsTypeof(true);
 						«ENDIF»
 						«IF property.isUnsettable»

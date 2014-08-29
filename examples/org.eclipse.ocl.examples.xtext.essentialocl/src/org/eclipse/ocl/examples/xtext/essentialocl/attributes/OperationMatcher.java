@@ -28,8 +28,8 @@ public class OperationMatcher extends AbstractOperationMatcher
 {
 	protected final @NonNull List<OCLExpression> asArguments = new ArrayList<OCLExpression>();
 
-	public OperationMatcher(@NonNull MetaModelManager metaModelManager, @Nullable Type sourceType, boolean sourceIsTypeof, @NonNull RoundBracketedClauseCS csRoundBracketedClause) {
-		super(metaModelManager, sourceType, sourceIsTypeof);
+	public OperationMatcher(@NonNull MetaModelManager metaModelManager, @Nullable Type sourceType, @Nullable Type sourceTypeValue, @NonNull RoundBracketedClauseCS csRoundBracketedClause) {
+		super(metaModelManager, sourceType, sourceTypeValue);
 		for (NavigatingArgCS csNavigatingArg : csRoundBracketedClause.getArguments()) {
 			if (csNavigatingArg.getRole() == NavigationRole.EXPRESSION) {
 				asArguments.add(PivotUtil.getPivot(OCLExpression.class, csNavigatingArg));

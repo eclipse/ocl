@@ -30,7 +30,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getRoundBracketedClause <em>Round Bracketed Clause</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getSquareBracketedClauses <em>Square Bracketed Clauses</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getSourceType <em>Source Type</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#isSourceTypeof <em>Source Typeof</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getSourceTypeValue <em>Source Type Value</em>}</li>
  * </ul>
  * </p>
  *
@@ -173,6 +173,7 @@ public interface NameExpCS
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
+	 * The sourceType propagates the known type of a source expression for use by subsequent analysis of for instance operation arguments.
 	 * For explicit source invocations, sourceType provides the true source type after resolution of implicit set or implicit collect.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source Type</em>' reference.
@@ -194,29 +195,27 @@ public interface NameExpCS
 	void setSourceType(Type value);
 
 	/**
-	 * Returns the value of the '<em><b>Source Typeof</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
+	 * Returns the value of the '<em><b>Source Type Value</b></em>' reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Typeof</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source Typeof</em>' attribute.
-	 * @see #setSourceTypeof(boolean)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getNameExpCS_SourceTypeof()
-	 * @model default="false" required="true" transient="true"
+	 * <!-- begin-model-doc -->
+	 * The sourceTypeValue propates the known value of a source expression when the type is itself a type. This is used during analysis of for instance allInstances() and oclType().
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Source Type Value</em>' reference.
+	 * @see #setSourceTypeValue(Type)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getNameExpCS_SourceTypeValue()
+	 * @model resolveProxies="false" transient="true" derived="true"
 	 * @generated
 	 */
-	boolean isSourceTypeof();
+	Type getSourceTypeValue();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#isSourceTypeof <em>Source Typeof</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getSourceTypeValue <em>Source Type Value</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Source Typeof</em>' attribute.
-	 * @see #isSourceTypeof()
+	 * @param value the new value of the '<em>Source Type Value</em>' reference.
+	 * @see #getSourceTypeValue()
 	 * @generated
 	 */
-	void setSourceTypeof(boolean value);
+	void setSourceTypeValue(Type value);
 } // NamedElementRefCS

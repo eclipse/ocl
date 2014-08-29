@@ -110,14 +110,14 @@ public class EssentialOCLScoping
 						messageTemplate = OCLMessages.UnresolvedIterationCall_ERROR_;
 					}
 					else {
-						messageTemplate = csNameExp.isSourceTypeof() ? OCLMessages.UnresolvedStaticOperationCall_ERROR_ : OCLMessages.UnresolvedOperationCall_ERROR_;
+						messageTemplate = csNameExp.getSourceTypeValue() != null ? OCLMessages.UnresolvedStaticOperationCall_ERROR_ : OCLMessages.UnresolvedOperationCall_ERROR_;
 					}
 				}
 				else {
-					messageTemplate = csNameExp.isSourceTypeof() ? OCLMessages.UnresolvedStaticProperty_ERROR_ : OCLMessages.UnresolvedProperty_ERROR_;
+					messageTemplate = csNameExp.getSourceTypeValue() != null ? OCLMessages.UnresolvedStaticProperty_ERROR_ : OCLMessages.UnresolvedProperty_ERROR_;
 				}
-				if (csNameExp.isSourceTypeof()) {
-					sourceType = csNameExp.getSourceType();
+				if (csNameExp.getSourceTypeValue() != null) {
+					sourceType = csNameExp.getSourceTypeValue();
 				}
 			}
 			else if (csContext instanceof TypeNameExpCS) {

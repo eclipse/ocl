@@ -23,6 +23,7 @@ import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
  * TemplateParameterSubstitutionHelper instances support irregular YemplateParameterSubstitution deduction for difficult to
@@ -57,7 +58,8 @@ public abstract class TemplateParameterSubstitutionHelper
 		public @Nullable Type resolveReturnType(@NonNull MetaModelManager metaModelManager, @NonNull CallExp callExp, @Nullable Type returnType) {
 			LoopExp loopExp = (LoopExp)callExp;
 			OCLExpression body = loopExp.getBody();
-			Type bodyType = body != null ? metaModelManager.getUnencodedType(body) : null;
+			Type asType = body != null ? body.getType() : null;
+			Type bodyType = asType != null ? PivotUtil.getType(asType) : null;
 			if (bodyType != null) {
 				@NonNull Type elementType = bodyType;
 //				if (bodyType instanceof CollectionType) {

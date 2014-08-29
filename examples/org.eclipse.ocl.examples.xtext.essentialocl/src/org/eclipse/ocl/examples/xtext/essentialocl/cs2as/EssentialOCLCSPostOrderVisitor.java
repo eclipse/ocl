@@ -82,8 +82,7 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 						OCLExpression asExpression = context.visitLeft2Right(OCLExpression.class, csStatusExpression);
 						asSpecification.setBodyExpression(asExpression);
 						boolean isRequired = (asExpression != null) && asExpression.isRequired();
-						boolean isTypeof = (asExpression != null) && asExpression.isTypeof();
-						context.setType(asSpecification, asExpression != null ? asExpression.getType() : null, isRequired, isTypeof);
+						context.setType(asSpecification, asExpression != null ? asExpression.getType() : null, isRequired);
 						PivotUtil.setBody(asSpecification, asExpression, statusText);
 					}
 					else {
@@ -95,7 +94,7 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 						OCLExpression asMessageExpression = csMessageExpression != null ? context.visitLeft2Right(OCLExpression.class, csMessageExpression) : null;
 						asMessageTuplePart.setInitExpression(asMessageExpression);
 						@SuppressWarnings("null")@NonNull OCLExpression asTuplePartExp = asSpecification.getBodyExpression();
-						context.setType(asSpecification, asTuplePartExp.getType(), true, false);
+						context.setType(asSpecification, asTuplePartExp.getType(), true);
 						String messageText = csMessageExpression != null ? ElementUtil.getExpressionText(csMessageExpression) : "null";
 						String tupleText = PivotUtil.createTupleValuedConstraint(statusText, null, messageText);
 						PivotUtil.setBody(asSpecification, asTuplePartExp, tupleText);					
@@ -139,8 +138,7 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 				String statusText = csExpression != null ? ElementUtil.getExpressionText(csExpression) : "null";
 				PivotUtil.setBody(asSpecification, asExpression, statusText);
 				boolean isRequired = (asExpression != null) && asExpression.isRequired();
-				boolean isTypeof = (asExpression != null) && asExpression.isTypeof();
-				context.setType(asSpecification, asExpression != null ? asExpression.getType() : null, isRequired, isTypeof);
+				context.setType(asSpecification, asExpression != null ? asExpression.getType() : null, isRequired);
 			}
 			return null;
 		}

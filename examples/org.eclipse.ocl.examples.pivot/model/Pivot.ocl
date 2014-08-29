@@ -56,7 +56,7 @@ context Class
 inv UniqueInvariantName: ownedInvariants->isUnique(name)
 
 context Variable
-inv CompatibleInitialiserType: initExpression <> null implies if initExpression.isTypeof then Class else initExpression.type endif.conformsTo(type)
+inv CompatibleInitialiserType: initExpression <> null implies initExpression.type.conformsTo(type)
 
 context IteratorExp
 inv ClosureBodyTypeIsConformanttoIteratorType:
@@ -352,8 +352,8 @@ inv ArgumentTypeIsConformant:
 		let argument : OCLExpression = argument->at(i) in
 		let parameter : Parameter = parameters->at(i) in
 		let parameterType : Type = parameter.type in
-		let requiredType : Type = parameterType.specializeIn(self, selfType) in
-		if argument.isTypeof and not parameter.isTypeof then Class else argument.type endif.conformsTo(requiredType))
+		let requiredType : Type = if parameter.isTypeof then Class else parameterType.specializeIn(self, selfType) endif in
+		argument.type.conformsTo(requiredType))
 
 /*------------- spelling: arguments */
 context OperationCallExp
@@ -377,7 +377,7 @@ def: getSpecializedReferredPropertyOwningType() : Class = referredProperty.ownin
 def: getSpecializedReferredPropertyType() : Class = referredProperty.type.oclAsType(Class) -- extended in Java code
 /** The type of the source conforms to the owning type of the property. */
 inv NonStaticSourceTypeIsConformant: not referredProperty.isStatic implies 
-	if source.isTypeof then Class else source.type endif.conformsTo(getSpecializedReferredPropertyOwningType())
+	source.type.conformsTo(getSpecializedReferredPropertyOwningType())
 /** The type of the call expression is the type of the referred property. */
 inv CompatibleResultType: type = getSpecializedReferredPropertyType()
 

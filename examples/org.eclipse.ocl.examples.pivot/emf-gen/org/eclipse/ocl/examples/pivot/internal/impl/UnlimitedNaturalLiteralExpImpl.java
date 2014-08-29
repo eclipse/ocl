@@ -125,11 +125,11 @@ public class UnlimitedNaturalLiteralExpImpl
 				return isMany();
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__IS_REQUIRED:
 				return isRequired();
-			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__IS_TYPEOF:
-				return isTypeof();
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
+			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__TYPE_VALUE:
+				return getTypeValue();
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL:
 				return getUnlimitedNaturalSymbol();
 		}
@@ -168,11 +168,11 @@ public class UnlimitedNaturalLiteralExpImpl
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__IS_REQUIRED:
 				setIsRequired((Boolean)newValue);
 				return;
-			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__IS_TYPEOF:
-				setIsTypeof((Boolean)newValue);
-				return;
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__TYPE:
 				setType((Type)newValue);
+				return;
+			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__TYPE_VALUE:
+				setTypeValue((Type)newValue);
 				return;
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL:
 				setUnlimitedNaturalSymbol((Number)newValue);
@@ -208,11 +208,11 @@ public class UnlimitedNaturalLiteralExpImpl
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__IS_REQUIRED:
 				setIsRequired(IS_REQUIRED_EDEFAULT);
 				return;
-			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__IS_TYPEOF:
-				setIsTypeof(IS_TYPEOF_EDEFAULT);
-				return;
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__TYPE:
 				setType((Type)null);
+				return;
+			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__TYPE_VALUE:
+				setTypeValue((Type)null);
 				return;
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL:
 				setUnlimitedNaturalSymbol(UNLIMITED_NATURAL_SYMBOL_EDEFAULT);
@@ -244,10 +244,10 @@ public class UnlimitedNaturalLiteralExpImpl
 				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
-			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__IS_TYPEOF:
-				return ((eFlags & IS_TYPEOF_EFLAG) != 0) != IS_TYPEOF_EDEFAULT;
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__TYPE:
 				return type != null;
+			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__TYPE_VALUE:
+				return typeValue != null;
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL:
 				return UNLIMITED_NATURAL_SYMBOL_EDEFAULT == null ? unlimitedNaturalSymbol != null : !UNLIMITED_NATURAL_SYMBOL_EDEFAULT.equals(unlimitedNaturalSymbol);
 		}

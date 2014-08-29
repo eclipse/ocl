@@ -88,6 +88,7 @@ import org.eclipse.osgi.util.NLS;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getUnspecializedElement <em>Unspecialized Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getBodyExpression <em>Body Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#isInvalidating <em>Is Invalidating</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#isTypeof <em>Is Typeof</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#isValidating <em>Is Validating</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getOwnedParameter <em>Owned Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getOwningClass <em>Owning Class</em>}</li>
@@ -174,7 +175,27 @@ public class OperationImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IS_INVALIDATING_EFLAG = 1 << 11;
+	protected static final int IS_INVALIDATING_EFLAG = 1 << 10;
+
+	/**
+	 * The default value of the '{@link #isTypeof() <em>Is Typeof</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isTypeof()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_TYPEOF_EDEFAULT = false;
+
+	/**
+	 * The flag representing the value of the '{@link #isTypeof() <em>Is Typeof</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isTypeof()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int IS_TYPEOF_EFLAG = 1 << 11;
 
 	/**
 	 * The default value of the '{@link #isValidating() <em>Is Validating</em>}' attribute.
@@ -556,6 +577,29 @@ public class OperationImpl
 		if (newIsInvalidating) eFlags |= IS_INVALIDATING_EFLAG; else eFlags &= ~IS_INVALIDATING_EFLAG;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.OPERATION__IS_INVALIDATING, oldIsInvalidating, newIsInvalidating));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isTypeof()
+	{
+		return (eFlags & IS_TYPEOF_EFLAG) != 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsTypeof(boolean newIsTypeof)
+	{
+		boolean oldIsTypeof = (eFlags & IS_TYPEOF_EFLAG) != 0;
+		if (newIsTypeof) eFlags |= IS_TYPEOF_EFLAG; else eFlags &= ~IS_TYPEOF_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.OPERATION__IS_TYPEOF, oldIsTypeof, newIsTypeof));
 	}
 
 	/**
@@ -1060,8 +1104,6 @@ public class OperationImpl
 				return isMany();
 			case PivotPackage.OPERATION__IS_REQUIRED:
 				return isRequired();
-			case PivotPackage.OPERATION__IS_TYPEOF:
-				return isTypeof();
 			case PivotPackage.OPERATION__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -1083,6 +1125,8 @@ public class OperationImpl
 				return getBodyExpression();
 			case PivotPackage.OPERATION__IS_INVALIDATING:
 				return isInvalidating();
+			case PivotPackage.OPERATION__IS_TYPEOF:
+				return isTypeof();
 			case PivotPackage.OPERATION__IS_VALIDATING:
 				return isValidating();
 			case PivotPackage.OPERATION__OWNED_PARAMETER:
@@ -1136,9 +1180,6 @@ public class OperationImpl
 			case PivotPackage.OPERATION__IS_REQUIRED:
 				setIsRequired((Boolean)newValue);
 				return;
-			case PivotPackage.OPERATION__IS_TYPEOF:
-				setIsTypeof((Boolean)newValue);
-				return;
 			case PivotPackage.OPERATION__TYPE:
 				setType((Type)newValue);
 				return;
@@ -1170,6 +1211,9 @@ public class OperationImpl
 				return;
 			case PivotPackage.OPERATION__IS_INVALIDATING:
 				setIsInvalidating((Boolean)newValue);
+				return;
+			case PivotPackage.OPERATION__IS_TYPEOF:
+				setIsTypeof((Boolean)newValue);
 				return;
 			case PivotPackage.OPERATION__IS_VALIDATING:
 				setIsValidating((Boolean)newValue);
@@ -1231,9 +1275,6 @@ public class OperationImpl
 			case PivotPackage.OPERATION__IS_REQUIRED:
 				setIsRequired(IS_REQUIRED_EDEFAULT);
 				return;
-			case PivotPackage.OPERATION__IS_TYPEOF:
-				setIsTypeof(IS_TYPEOF_EDEFAULT);
-				return;
 			case PivotPackage.OPERATION__TYPE:
 				setType((Type)null);
 				return;
@@ -1263,6 +1304,9 @@ public class OperationImpl
 				return;
 			case PivotPackage.OPERATION__IS_INVALIDATING:
 				setIsInvalidating(IS_INVALIDATING_EDEFAULT);
+				return;
+			case PivotPackage.OPERATION__IS_TYPEOF:
+				setIsTypeof(IS_TYPEOF_EDEFAULT);
 				return;
 			case PivotPackage.OPERATION__IS_VALIDATING:
 				setIsValidating(IS_VALIDATING_EDEFAULT);
@@ -1315,8 +1359,6 @@ public class OperationImpl
 				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.OPERATION__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
-			case PivotPackage.OPERATION__IS_TYPEOF:
-				return ((eFlags & IS_TYPEOF_EFLAG) != 0) != IS_TYPEOF_EDEFAULT;
 			case PivotPackage.OPERATION__TYPE:
 				return type != null;
 			case PivotPackage.OPERATION__IMPLEMENTATION:
@@ -1337,6 +1379,8 @@ public class OperationImpl
 				return bodyExpression != null;
 			case PivotPackage.OPERATION__IS_INVALIDATING:
 				return ((eFlags & IS_INVALIDATING_EFLAG) != 0) != IS_INVALIDATING_EDEFAULT;
+			case PivotPackage.OPERATION__IS_TYPEOF:
+				return ((eFlags & IS_TYPEOF_EFLAG) != 0) != IS_TYPEOF_EDEFAULT;
 			case PivotPackage.OPERATION__IS_VALIDATING:
 				return ((eFlags & IS_VALIDATING_EFLAG) != 0) != IS_VALIDATING_EDEFAULT;
 			case PivotPackage.OPERATION__OWNED_PARAMETER:

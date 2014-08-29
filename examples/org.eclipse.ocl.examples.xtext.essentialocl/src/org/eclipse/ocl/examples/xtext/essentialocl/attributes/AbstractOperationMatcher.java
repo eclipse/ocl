@@ -37,13 +37,13 @@ public abstract class AbstractOperationMatcher
 {
 	protected final @NonNull MetaModelManager metaModelManager;
 	protected final @Nullable Type sourceType;
-	protected final boolean sourceIsTypeof;
+	protected final @Nullable Type sourceTypeValue;
 	private @Nullable List<EObject> ambiguities = null;
 
-	protected AbstractOperationMatcher(@NonNull MetaModelManager metaModelManager, @Nullable Type sourceType, boolean sourceIsTypeof) {
+	protected AbstractOperationMatcher(@NonNull MetaModelManager metaModelManager, @Nullable Type sourceType, @Nullable Type sourceTypeValue) {
 		this.metaModelManager = metaModelManager;
 		this.sourceType = sourceType != null ? PivotUtil.getType(sourceType) : null;		// FIXME redundant
-		this.sourceIsTypeof = sourceIsTypeof;
+		this.sourceTypeValue = sourceTypeValue;
 	}
 
 	protected int compareMatches(@NonNull Object match1, @NonNull TemplateParameterSubstitutions referenceBindings,
@@ -217,7 +217,7 @@ public abstract class AbstractOperationMatcher
 		if (iSize != candidateParameters.size()) {
 			return null;
 		}
-		TemplateParameterSubstitutions bindings = TemplateParameterSubstitutionVisitor.createBindings(metaModelManager, sourceType, sourceIsTypeof, candidateOperation);
+		TemplateParameterSubstitutions bindings = TemplateParameterSubstitutionVisitor.createBindings(metaModelManager, sourceType, sourceTypeValue, candidateOperation);
 		for (int i = 0; i < iSize; i++) {
 			Parameter candidateParameter = candidateParameters.get(i);
 			if (candidateParameter != null) {
@@ -229,27 +229,12 @@ public abstract class AbstractOperationMatcher
 				if (candidateType == null) {
 					return null;
 				}
-				if (!candidateParameter.isTypeof()) {
-					Type expressionType = metaModelManager.getUnencodedType(expression);
-//					Type expressionType = expression.isTypeof() ? metaModelManager.getClassType() : PivotUtil.getType(expression);		// FIXME deep getType
-					if (expressionType == null) {
-						return null;
-					}
-					if (!metaModelManager.conformsTo(expressionType, TemplateParameterSubstitutions.EMPTY, candidateType, bindings)) {
-						return null;
-					}
+				Type expressionType = PivotUtil.getType(expression);
+				if (expressionType == null) {
+					return null;
 				}
-				else {
-					if (!expression.isTypeof()) {
-						return null;
-					}
-					Type expressionType = PivotUtil.getType(expression); //ApparentTypeVisitor.getApparentType(metaModelManager, expression);
-					if (expressionType == null) {
-						return null;
-					}
-					if (!metaModelManager.conformsTo(expressionType, TemplateParameterSubstitutions.EMPTY, candidateType, bindings)) {
-						return null;
-					}
+				if (!metaModelManager.conformsTo(expressionType, TemplateParameterSubstitutions.EMPTY, candidateType, bindings)) {
+					return null;
 				}
 			}
 		}

@@ -10,9 +10,16 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
+import java.util.Collection;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.pivot.Comment;
+import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
@@ -21,6 +28,10 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * An implementation of the model object '<em><b>Variable Declaration</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * The following features are implemented:
+ * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.VariableDeclarationImpl#getTypeValue <em>Type Value</em>}</li>
+ * </ul>
  * </p>
  *
  * @generated
@@ -28,6 +39,16 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
 public abstract class VariableDeclarationImpl
 		extends TypedElementImpl
 		implements VariableDeclaration {
+
+	/**
+	 * The cached value of the '{@link #getTypeValue() <em>Type Value</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTypeValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected Type typeValue;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -46,6 +67,175 @@ public abstract class VariableDeclarationImpl
 	@Override
 	protected EClass eStaticClass() {
 		return PivotPackage.Literals.VARIABLE_DECLARATION;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Type getTypeValue()
+	{
+		return typeValue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTypeValue(Type newTypeValue)
+	{
+		Type oldTypeValue = typeValue;
+		typeValue = newTypeValue;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.VARIABLE_DECLARATION__TYPE_VALUE, oldTypeValue, typeValue));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
+		switch (featureID)
+		{
+			case PivotPackage.VARIABLE_DECLARATION__COMMENT:
+				return getComment();
+			case PivotPackage.VARIABLE_DECLARATION__EXTENSION:
+				return getExtension();
+			case PivotPackage.VARIABLE_DECLARATION__OWNED_ANNOTATION:
+				return getOwnedAnnotation();
+			case PivotPackage.VARIABLE_DECLARATION__OWNED_COMMENT:
+				return getOwnedComment();
+			case PivotPackage.VARIABLE_DECLARATION__NAME:
+				return getName();
+			case PivotPackage.VARIABLE_DECLARATION__IS_MANY:
+				return isMany();
+			case PivotPackage.VARIABLE_DECLARATION__IS_REQUIRED:
+				return isRequired();
+			case PivotPackage.VARIABLE_DECLARATION__TYPE:
+				if (resolve) return getType();
+				return basicGetType();
+			case PivotPackage.VARIABLE_DECLARATION__TYPE_VALUE:
+				return getTypeValue();
+		}
+		return eDynamicGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue)
+	{
+		switch (featureID)
+		{
+			case PivotPackage.VARIABLE_DECLARATION__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
+			case PivotPackage.VARIABLE_DECLARATION__EXTENSION:
+				getExtension().clear();
+				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+				return;
+			case PivotPackage.VARIABLE_DECLARATION__OWNED_ANNOTATION:
+				getOwnedAnnotation().clear();
+				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+				return;
+			case PivotPackage.VARIABLE_DECLARATION__OWNED_COMMENT:
+				getOwnedComment().clear();
+				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+				return;
+			case PivotPackage.VARIABLE_DECLARATION__NAME:
+				setName((String)newValue);
+				return;
+			case PivotPackage.VARIABLE_DECLARATION__IS_REQUIRED:
+				setIsRequired((Boolean)newValue);
+				return;
+			case PivotPackage.VARIABLE_DECLARATION__TYPE:
+				setType((Type)newValue);
+				return;
+			case PivotPackage.VARIABLE_DECLARATION__TYPE_VALUE:
+				setTypeValue((Type)newValue);
+				return;
+		}
+		eDynamicSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID)
+	{
+		switch (featureID)
+		{
+			case PivotPackage.VARIABLE_DECLARATION__COMMENT:
+				getComment().clear();
+				return;
+			case PivotPackage.VARIABLE_DECLARATION__EXTENSION:
+				getExtension().clear();
+				return;
+			case PivotPackage.VARIABLE_DECLARATION__OWNED_ANNOTATION:
+				getOwnedAnnotation().clear();
+				return;
+			case PivotPackage.VARIABLE_DECLARATION__OWNED_COMMENT:
+				getOwnedComment().clear();
+				return;
+			case PivotPackage.VARIABLE_DECLARATION__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case PivotPackage.VARIABLE_DECLARATION__IS_REQUIRED:
+				setIsRequired(IS_REQUIRED_EDEFAULT);
+				return;
+			case PivotPackage.VARIABLE_DECLARATION__TYPE:
+				setType((Type)null);
+				return;
+			case PivotPackage.VARIABLE_DECLARATION__TYPE_VALUE:
+				setTypeValue((Type)null);
+				return;
+		}
+		eDynamicUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID)
+	{
+		switch (featureID)
+		{
+			case PivotPackage.VARIABLE_DECLARATION__COMMENT:
+				return comment != null && !comment.isEmpty();
+			case PivotPackage.VARIABLE_DECLARATION__EXTENSION:
+				return extension != null && !extension.isEmpty();
+			case PivotPackage.VARIABLE_DECLARATION__OWNED_ANNOTATION:
+				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
+			case PivotPackage.VARIABLE_DECLARATION__OWNED_COMMENT:
+				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.VARIABLE_DECLARATION__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.VARIABLE_DECLARATION__IS_MANY:
+				return isMany() != IS_MANY_EDEFAULT;
+			case PivotPackage.VARIABLE_DECLARATION__IS_REQUIRED:
+				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
+			case PivotPackage.VARIABLE_DECLARATION__TYPE:
+				return type != null;
+			case PivotPackage.VARIABLE_DECLARATION__TYPE_VALUE:
+				return typeValue != null;
+		}
+		return eDynamicIsSet(featureID);
 	}
 
 	@Override

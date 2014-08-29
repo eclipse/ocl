@@ -51,5 +51,5 @@ public interface DomainOperation extends DomainFeature
 	@NonNull DomainTypeParameters getTypeParameters();
 
 	@NonNull OperationId getOperationId();
-	@NonNull List<? extends DomainTypedElement> getOwnedParameter();
+	@NonNull List<? extends DomainParameter> getOwnedParameter();
 }

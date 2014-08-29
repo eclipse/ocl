@@ -19,11 +19,11 @@ import org.eclipse.ocl.examples.domain.elements.DomainConstraint;
 import org.eclipse.ocl.examples.domain.elements.DomainExpression;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.elements.DomainParameter;
 import org.eclipse.ocl.examples.domain.elements.DomainParameterTypes;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
-import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.examples.domain.ids.OperationId;
 import org.eclipse.ocl.examples.domain.ids.ParametersId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
@@ -72,7 +72,7 @@ public class ExecutorOperation implements DomainOperation
 		throw new UnsupportedOperationException();			// FIXME
 	}
 	
-	public @NonNull List<? extends DomainTypedElement> getOwnedParameter() {
+	public @NonNull List<? extends DomainParameter> getOwnedParameter() {
 		return getParameterTypes().getParameters();
 	}
 

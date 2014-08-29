@@ -2363,22 +2363,13 @@ public interface PivotPackage
 	int TYPED_ELEMENT__IS_REQUIRED = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_ELEMENT__IS_TYPEOF = NAMED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT__TYPE = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int TYPED_ELEMENT__TYPE = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Typed Element</em>' class.
@@ -2387,7 +2378,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int TYPED_ELEMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -2498,15 +2489,6 @@ public interface PivotPackage
 	int OCL_EXPRESSION__IS_REQUIRED = TYPED_ELEMENT__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_EXPRESSION__IS_TYPEOF = TYPED_ELEMENT__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2516,13 +2498,22 @@ public interface PivotPackage
 	int OCL_EXPRESSION__TYPE = TYPED_ELEMENT__TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_EXPRESSION__TYPE_VALUE = TYPED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>OCL Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_EXPRESSION_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 0;
+	int OCL_EXPRESSION_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -2633,15 +2624,6 @@ public interface PivotPackage
 	int CALL_EXP__IS_REQUIRED = OCL_EXPRESSION__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CALL_EXP__IS_TYPEOF = OCL_EXPRESSION__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2649,6 +2631,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int CALL_EXP__TYPE = OCL_EXPRESSION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_EXP__TYPE_VALUE = OCL_EXPRESSION__TYPE_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
@@ -2786,15 +2777,6 @@ public interface PivotPackage
 	int FEATURE_CALL_EXP__IS_REQUIRED = CALL_EXP__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_CALL_EXP__IS_TYPEOF = CALL_EXP__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2802,6 +2784,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int FEATURE_CALL_EXP__TYPE = CALL_EXP__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CALL_EXP__TYPE_VALUE = CALL_EXP__TYPE_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
@@ -2948,15 +2939,6 @@ public interface PivotPackage
 	int NAVIGATION_CALL_EXP__IS_REQUIRED = FEATURE_CALL_EXP__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATION_CALL_EXP__IS_TYPEOF = FEATURE_CALL_EXP__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2964,6 +2946,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int NAVIGATION_CALL_EXP__TYPE = FEATURE_CALL_EXP__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATION_CALL_EXP__TYPE_VALUE = FEATURE_CALL_EXP__TYPE_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
@@ -3128,15 +3119,6 @@ public interface PivotPackage
 	int ASSOCIATION_CLASS_CALL_EXP__IS_REQUIRED = NAVIGATION_CALL_EXP__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS_CALL_EXP__IS_TYPEOF = NAVIGATION_CALL_EXP__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3144,6 +3126,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ASSOCIATION_CLASS_CALL_EXP__TYPE = NAVIGATION_CALL_EXP__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS_CALL_EXP__TYPE_VALUE = NAVIGATION_CALL_EXP__TYPE_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
@@ -4442,15 +4433,6 @@ public interface PivotPackage
 	int LITERAL_EXP__IS_REQUIRED = OCL_EXPRESSION__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXP__IS_TYPEOF = OCL_EXPRESSION__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4458,6 +4440,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LITERAL_EXP__TYPE = OCL_EXPRESSION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXP__TYPE_VALUE = OCL_EXPRESSION__TYPE_VALUE;
 
 	/**
 	 * The number of structural features of the '<em>Literal Exp</em>' class.
@@ -4577,15 +4568,6 @@ public interface PivotPackage
 	int PRIMITIVE_LITERAL_EXP__IS_REQUIRED = LITERAL_EXP__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_LITERAL_EXP__IS_TYPEOF = LITERAL_EXP__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4593,6 +4575,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PRIMITIVE_LITERAL_EXP__TYPE = LITERAL_EXP__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_LITERAL_EXP__TYPE_VALUE = LITERAL_EXP__TYPE_VALUE;
 
 	/**
 	 * The number of structural features of the '<em>Primitive Literal Exp</em>' class.
@@ -4712,15 +4703,6 @@ public interface PivotPackage
 	int BOOLEAN_LITERAL_EXP__IS_REQUIRED = PRIMITIVE_LITERAL_EXP__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOLEAN_LITERAL_EXP__IS_TYPEOF = PRIMITIVE_LITERAL_EXP__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4728,6 +4710,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int BOOLEAN_LITERAL_EXP__TYPE = PRIMITIVE_LITERAL_EXP__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL_EXP__TYPE_VALUE = PRIMITIVE_LITERAL_EXP__TYPE_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Boolean Symbol</b></em>' attribute.
@@ -4955,15 +4946,6 @@ public interface PivotPackage
 	int COLLECTION_LITERAL_PART__IS_REQUIRED = TYPED_ELEMENT__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_LITERAL_PART__IS_TYPEOF = TYPED_ELEMENT__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5088,15 +5070,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_ITEM__IS_REQUIRED = COLLECTION_LITERAL_PART__IS_REQUIRED;
-
-	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_ITEM__IS_TYPEOF = COLLECTION_LITERAL_PART__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -5243,15 +5216,6 @@ public interface PivotPackage
 	int COLLECTION_LITERAL_EXP__IS_REQUIRED = LITERAL_EXP__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_LITERAL_EXP__IS_TYPEOF = LITERAL_EXP__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5259,6 +5223,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_LITERAL_EXP__TYPE = LITERAL_EXP__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_EXP__TYPE_VALUE = LITERAL_EXP__TYPE_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
@@ -5439,15 +5412,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_RANGE__IS_REQUIRED = COLLECTION_LITERAL_PART__IS_REQUIRED;
-
-	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_RANGE__IS_TYPEOF = COLLECTION_LITERAL_PART__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -6107,15 +6071,6 @@ public interface PivotPackage
 	int CONSTRUCTOR_EXP__IS_REQUIRED = OCL_EXPRESSION__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP__IS_TYPEOF = OCL_EXPRESSION__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6123,6 +6078,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int CONSTRUCTOR_EXP__TYPE = OCL_EXPRESSION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRUCTOR_EXP__TYPE_VALUE = OCL_EXPRESSION__TYPE_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Part</b></em>' containment reference list.
@@ -6258,15 +6222,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int CONSTRUCTOR_PART__IS_REQUIRED = TYPED_ELEMENT__IS_REQUIRED;
-
-	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_PART__IS_TYPEOF = TYPED_ELEMENT__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -7223,15 +7178,6 @@ public interface PivotPackage
 	int VALUE_SPECIFICATION__IS_REQUIRED = TYPED_ELEMENT__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_SPECIFICATION__IS_TYPEOF = TYPED_ELEMENT__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7410,15 +7356,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DYNAMIC_VALUE_SPECIFICATION__IS_REQUIRED = VALUE_SPECIFICATION__IS_REQUIRED;
-
-	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_VALUE_SPECIFICATION__IS_TYPEOF = VALUE_SPECIFICATION__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -7889,15 +7826,6 @@ public interface PivotPackage
 	int ENUM_LITERAL_EXP__IS_REQUIRED = LITERAL_EXP__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUM_LITERAL_EXP__IS_TYPEOF = LITERAL_EXP__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7905,6 +7833,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ENUM_LITERAL_EXP__TYPE = LITERAL_EXP__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUM_LITERAL_EXP__TYPE_VALUE = LITERAL_EXP__TYPE_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Referred Enum Literal</b></em>' reference.
@@ -8583,15 +8520,6 @@ public interface PivotPackage
 	int LANGUAGE_EXPRESSION__IS_REQUIRED = VALUE_SPECIFICATION__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LANGUAGE_EXPRESSION__IS_TYPEOF = VALUE_SPECIFICATION__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8797,15 +8725,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int EXPRESSION_IN_OCL__IS_REQUIRED = LANGUAGE_EXPRESSION__IS_REQUIRED;
-
-	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPRESSION_IN_OCL__IS_TYPEOF = LANGUAGE_EXPRESSION__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -9049,15 +8968,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int FEATURE__IS_REQUIRED = TYPED_ELEMENT__IS_REQUIRED;
-
-	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__IS_TYPEOF = TYPED_ELEMENT__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -9849,15 +9759,6 @@ public interface PivotPackage
 	int IF_EXP__IS_REQUIRED = OCL_EXPRESSION__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IF_EXP__IS_TYPEOF = OCL_EXPRESSION__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9865,6 +9766,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int IF_EXP__TYPE = OCL_EXPRESSION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_EXP__TYPE_VALUE = OCL_EXPRESSION__TYPE_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -10110,15 +10020,6 @@ public interface PivotPackage
 	int NUMERIC_LITERAL_EXP__IS_REQUIRED = PRIMITIVE_LITERAL_EXP__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUMERIC_LITERAL_EXP__IS_TYPEOF = PRIMITIVE_LITERAL_EXP__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10126,6 +10027,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int NUMERIC_LITERAL_EXP__TYPE = PRIMITIVE_LITERAL_EXP__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERIC_LITERAL_EXP__TYPE_VALUE = PRIMITIVE_LITERAL_EXP__TYPE_VALUE;
 
 	/**
 	 * The number of structural features of the '<em>Numeric Literal Exp</em>' class.
@@ -10245,15 +10155,6 @@ public interface PivotPackage
 	int INTEGER_LITERAL_EXP__IS_REQUIRED = NUMERIC_LITERAL_EXP__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTEGER_LITERAL_EXP__IS_TYPEOF = NUMERIC_LITERAL_EXP__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10261,6 +10162,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int INTEGER_LITERAL_EXP__TYPE = NUMERIC_LITERAL_EXP__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTEGER_LITERAL_EXP__TYPE_VALUE = NUMERIC_LITERAL_EXP__TYPE_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Integer Symbol</b></em>' attribute.
@@ -10398,15 +10308,6 @@ public interface PivotPackage
 	int INVALID_LITERAL_EXP__IS_REQUIRED = LITERAL_EXP__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_LITERAL_EXP__IS_TYPEOF = LITERAL_EXP__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10414,6 +10315,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int INVALID_LITERAL_EXP__TYPE = LITERAL_EXP__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_LITERAL_EXP__TYPE_VALUE = LITERAL_EXP__TYPE_VALUE;
 
 	/**
 	 * The number of structural features of the '<em>Invalid Literal Exp</em>' class.
@@ -10785,15 +10695,6 @@ public interface PivotPackage
 	int LOOP_EXP__IS_REQUIRED = CALL_EXP__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOOP_EXP__IS_TYPEOF = CALL_EXP__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10801,6 +10702,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LOOP_EXP__TYPE = CALL_EXP__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP_EXP__TYPE_VALUE = CALL_EXP__TYPE_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
@@ -10983,15 +10893,6 @@ public interface PivotPackage
 	int ITERATE_EXP__IS_REQUIRED = LOOP_EXP__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATE_EXP__IS_TYPEOF = LOOP_EXP__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10999,6 +10900,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATE_EXP__TYPE = LOOP_EXP__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_EXP__TYPE_VALUE = LOOP_EXP__TYPE_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
@@ -11226,15 +11136,6 @@ public interface PivotPackage
 	int OPERATION__IS_REQUIRED = FEATURE__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__IS_TYPEOF = FEATURE__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11325,13 +11226,22 @@ public interface PivotPackage
 	int OPERATION__IS_INVALIDATING = FEATURE_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__IS_TYPEOF = FEATURE_FEATURE_COUNT + 6;
+
+	/**
 	 * The feature id for the '<em><b>Is Validating</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__IS_VALIDATING = FEATURE_FEATURE_COUNT + 6;
+	int OPERATION__IS_VALIDATING = FEATURE_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Owned Parameter</b></em>' containment reference list.
@@ -11340,7 +11250,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__OWNED_PARAMETER = FEATURE_FEATURE_COUNT + 7;
+	int OPERATION__OWNED_PARAMETER = FEATURE_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
@@ -11349,7 +11259,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__OWNING_CLASS = FEATURE_FEATURE_COUNT + 8;
+	int OPERATION__OWNING_CLASS = FEATURE_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Postcondition</b></em>' containment reference list.
@@ -11358,7 +11268,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__POSTCONDITION = FEATURE_FEATURE_COUNT + 9;
+	int OPERATION__POSTCONDITION = FEATURE_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -11367,7 +11277,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__PRECEDENCE = FEATURE_FEATURE_COUNT + 10;
+	int OPERATION__PRECEDENCE = FEATURE_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Precondition</b></em>' containment reference list.
@@ -11376,7 +11286,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__PRECONDITION = FEATURE_FEATURE_COUNT + 11;
+	int OPERATION__PRECONDITION = FEATURE_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Raised Exception</b></em>' reference list.
@@ -11385,7 +11295,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__RAISED_EXCEPTION = FEATURE_FEATURE_COUNT + 12;
+	int OPERATION__RAISED_EXCEPTION = FEATURE_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Redefined Operation</b></em>' reference list.
@@ -11394,7 +11304,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__REDEFINED_OPERATION = FEATURE_FEATURE_COUNT + 13;
+	int OPERATION__REDEFINED_OPERATION = FEATURE_FEATURE_COUNT + 14;
 
 	/**
 	 * The number of structural features of the '<em>Operation</em>' class.
@@ -11403,7 +11313,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_FEATURE_COUNT = FEATURE_FEATURE_COUNT + 14;
+	int OPERATION_FEATURE_COUNT = FEATURE_FEATURE_COUNT + 15;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -11550,15 +11460,6 @@ public interface PivotPackage
 	int ITERATION__IS_REQUIRED = OPERATION__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION__IS_TYPEOF = OPERATION__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11647,6 +11548,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATION__IS_INVALIDATING = OPERATION__IS_INVALIDATING;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION__IS_TYPEOF = OPERATION__IS_TYPEOF;
 
 	/**
 	 * The feature id for the '<em><b>Is Validating</b></em>' attribute.
@@ -11892,15 +11802,6 @@ public interface PivotPackage
 	int ITERATOR_EXP__IS_REQUIRED = LOOP_EXP__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATOR_EXP__IS_TYPEOF = LOOP_EXP__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11908,6 +11809,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATOR_EXP__TYPE = LOOP_EXP__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATOR_EXP__TYPE_VALUE = LOOP_EXP__TYPE_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
@@ -12675,15 +12585,6 @@ public interface PivotPackage
 	int LET_EXP__IS_REQUIRED = OCL_EXPRESSION__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LET_EXP__IS_TYPEOF = OCL_EXPRESSION__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12691,6 +12592,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LET_EXP__TYPE = OCL_EXPRESSION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LET_EXP__TYPE_VALUE = OCL_EXPRESSION__TYPE_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>In</b></em>' containment reference.
@@ -13170,15 +13080,6 @@ public interface PivotPackage
 	int MESSAGE_EXP__IS_REQUIRED = OCL_EXPRESSION__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_EXP__IS_TYPEOF = OCL_EXPRESSION__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13186,6 +13087,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int MESSAGE_EXP__TYPE = OCL_EXPRESSION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_EXP__TYPE_VALUE = OCL_EXPRESSION__TYPE_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Argument</b></em>' containment reference list.
@@ -13665,15 +13575,6 @@ public interface PivotPackage
 	int NULL_LITERAL_EXP__IS_REQUIRED = PRIMITIVE_LITERAL_EXP__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_LITERAL_EXP__IS_TYPEOF = PRIMITIVE_LITERAL_EXP__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13681,6 +13582,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int NULL_LITERAL_EXP__TYPE = PRIMITIVE_LITERAL_EXP__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_LITERAL_EXP__TYPE_VALUE = PRIMITIVE_LITERAL_EXP__TYPE_VALUE;
 
 	/**
 	 * The number of structural features of the '<em>Null Literal Exp</em>' class.
@@ -13800,15 +13710,6 @@ public interface PivotPackage
 	int OPERATION_CALL_EXP__IS_REQUIRED = FEATURE_CALL_EXP__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_CALL_EXP__IS_TYPEOF = FEATURE_CALL_EXP__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13816,6 +13717,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int OPERATION_CALL_EXP__TYPE = FEATURE_CALL_EXP__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CALL_EXP__TYPE_VALUE = FEATURE_CALL_EXP__TYPE_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
@@ -14007,15 +13917,6 @@ public interface PivotPackage
 	int OPPOSITE_PROPERTY_CALL_EXP__IS_REQUIRED = NAVIGATION_CALL_EXP__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPPOSITE_PROPERTY_CALL_EXP__IS_TYPEOF = NAVIGATION_CALL_EXP__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14023,6 +13924,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int OPPOSITE_PROPERTY_CALL_EXP__TYPE = NAVIGATION_CALL_EXP__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__TYPE_VALUE = NAVIGATION_CALL_EXP__TYPE_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
@@ -14493,15 +14403,6 @@ public interface PivotPackage
 	int VARIABLE_DECLARATION__IS_REQUIRED = TYPED_ELEMENT__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DECLARATION__IS_TYPEOF = TYPED_ELEMENT__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14511,13 +14412,22 @@ public interface PivotPackage
 	int VARIABLE_DECLARATION__TYPE = TYPED_ELEMENT__TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_DECLARATION__TYPE_VALUE = TYPED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Variable Declaration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_DECLARATION_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 0;
+	int VARIABLE_DECLARATION_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -14628,15 +14538,6 @@ public interface PivotPackage
 	int PARAMETER__IS_REQUIRED = VARIABLE_DECLARATION__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER__IS_TYPEOF = VARIABLE_DECLARATION__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14646,13 +14547,31 @@ public interface PivotPackage
 	int PARAMETER__TYPE = VARIABLE_DECLARATION__TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__TYPE_VALUE = VARIABLE_DECLARATION__TYPE_VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__IS_TYPEOF = VARIABLE_DECLARATION_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Operation</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER__OPERATION = VARIABLE_DECLARATION_FEATURE_COUNT + 0;
+	int PARAMETER__OPERATION = VARIABLE_DECLARATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Parameter</em>' class.
@@ -14661,7 +14580,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 1;
+	int PARAMETER_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -15429,15 +15348,6 @@ public interface PivotPackage
 	int PROPERTY__IS_REQUIRED = FEATURE__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__IS_TYPEOF = FEATURE__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15771,15 +15681,6 @@ public interface PivotPackage
 	int PROPERTY_CALL_EXP__IS_REQUIRED = NAVIGATION_CALL_EXP__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_CALL_EXP__IS_TYPEOF = NAVIGATION_CALL_EXP__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15787,6 +15688,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PROPERTY_CALL_EXP__TYPE = NAVIGATION_CALL_EXP__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP__TYPE_VALUE = NAVIGATION_CALL_EXP__TYPE_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
@@ -16140,15 +16050,6 @@ public interface PivotPackage
 	int REAL_LITERAL_EXP__IS_REQUIRED = NUMERIC_LITERAL_EXP__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REAL_LITERAL_EXP__IS_TYPEOF = NUMERIC_LITERAL_EXP__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16156,6 +16057,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int REAL_LITERAL_EXP__TYPE = NUMERIC_LITERAL_EXP__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REAL_LITERAL_EXP__TYPE_VALUE = NUMERIC_LITERAL_EXP__TYPE_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Real Symbol</b></em>' attribute.
@@ -17859,15 +17769,6 @@ public interface PivotPackage
 	int STATE_EXP__IS_REQUIRED = OCL_EXPRESSION__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_EXP__IS_TYPEOF = OCL_EXPRESSION__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17875,6 +17776,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STATE_EXP__TYPE = OCL_EXPRESSION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_EXP__TYPE_VALUE = OCL_EXPRESSION__TYPE_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Referred State</b></em>' reference.
@@ -18561,15 +18471,6 @@ public interface PivotPackage
 	int STRING_LITERAL_EXP__IS_REQUIRED = PRIMITIVE_LITERAL_EXP__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_LITERAL_EXP__IS_TYPEOF = PRIMITIVE_LITERAL_EXP__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18577,6 +18478,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STRING_LITERAL_EXP__TYPE = PRIMITIVE_LITERAL_EXP__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL_EXP__TYPE_VALUE = PRIMITIVE_LITERAL_EXP__TYPE_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>String Symbol</b></em>' attribute.
@@ -19506,15 +19416,6 @@ public interface PivotPackage
 	int TUPLE_LITERAL_EXP__IS_REQUIRED = LITERAL_EXP__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_LITERAL_EXP__IS_TYPEOF = LITERAL_EXP__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19522,6 +19423,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TUPLE_LITERAL_EXP__TYPE = LITERAL_EXP__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_EXP__TYPE_VALUE = LITERAL_EXP__TYPE_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Part</b></em>' containment reference list.
@@ -19650,15 +19560,6 @@ public interface PivotPackage
 	int TUPLE_LITERAL_PART__IS_REQUIRED = VARIABLE_DECLARATION__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_LITERAL_PART__IS_TYPEOF = VARIABLE_DECLARATION__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19666,6 +19567,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TUPLE_LITERAL_PART__TYPE = VARIABLE_DECLARATION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_PART__TYPE_VALUE = VARIABLE_DECLARATION__TYPE_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Init Expression</b></em>' containment reference.
@@ -20064,15 +19974,6 @@ public interface PivotPackage
 	int TYPE_EXP__IS_REQUIRED = OCL_EXPRESSION__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_EXP__IS_TYPEOF = OCL_EXPRESSION__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20080,6 +19981,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TYPE_EXP__TYPE = OCL_EXPRESSION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_EXP__TYPE_VALUE = OCL_EXPRESSION__TYPE_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Referred Type</b></em>' reference.
@@ -20326,15 +20236,6 @@ public interface PivotPackage
 	int UNLIMITED_NATURAL_LITERAL_EXP__IS_REQUIRED = NUMERIC_LITERAL_EXP__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP__IS_TYPEOF = NUMERIC_LITERAL_EXP__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20342,6 +20243,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int UNLIMITED_NATURAL_LITERAL_EXP__TYPE = NUMERIC_LITERAL_EXP__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNLIMITED_NATURAL_LITERAL_EXP__TYPE_VALUE = NUMERIC_LITERAL_EXP__TYPE_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Unlimited Natural Symbol</b></em>' attribute.
@@ -20470,15 +20380,6 @@ public interface PivotPackage
 	int UNSPECIFIED_VALUE_EXP__IS_REQUIRED = OCL_EXPRESSION__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_VALUE_EXP__IS_TYPEOF = OCL_EXPRESSION__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20486,6 +20387,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int UNSPECIFIED_VALUE_EXP__TYPE = OCL_EXPRESSION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSPECIFIED_VALUE_EXP__TYPE_VALUE = OCL_EXPRESSION__TYPE_VALUE;
 
 	/**
 	 * The number of structural features of the '<em>Unspecified Value Exp</em>' class.
@@ -20605,15 +20515,6 @@ public interface PivotPackage
 	int VARIABLE__IS_REQUIRED = VARIABLE_DECLARATION__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE__IS_TYPEOF = VARIABLE_DECLARATION__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20621,6 +20522,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VARIABLE__TYPE = VARIABLE_DECLARATION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE__TYPE_VALUE = VARIABLE_DECLARATION__TYPE_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
@@ -20776,15 +20686,6 @@ public interface PivotPackage
 	int VARIABLE_EXP__IS_REQUIRED = OCL_EXPRESSION__IS_REQUIRED;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_EXP__IS_TYPEOF = OCL_EXPRESSION__IS_TYPEOF;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20792,6 +20693,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VARIABLE_EXP__TYPE = OCL_EXPRESSION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_EXP__TYPE_VALUE = OCL_EXPRESSION__TYPE_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
@@ -22462,6 +22372,17 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EClass getOCLExpression();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.OCLExpression#getTypeValue <em>Type Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Type Value</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.OCLExpression#getTypeValue()
+	 * @see #getOCLExpression()
+	 * @generated
+	 */
+	EReference getOCLExpression_TypeValue();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.InvalidLiteralExp <em>Invalid Literal Exp</em>}'.
@@ -25261,17 +25182,6 @@ public interface PivotPackage
 	EAttribute getTypedElement_IsRequired();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.TypedElement#isTypeof <em>Is Typeof</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Typeof</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TypedElement#isTypeof()
-	 * @see #getTypedElement()
-	 * @generated
-	 */
-	EAttribute getTypedElement_IsTypeof();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.AssociationClass <em>Association Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -25380,6 +25290,17 @@ public interface PivotPackage
 	EAttribute getOperation_IsInvalidating();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.Operation#isTypeof <em>Is Typeof</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Typeof</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.Operation#isTypeof()
+	 * @see #getOperation()
+	 * @generated
+	 */
+	EAttribute getOperation_IsTypeof();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.Operation#isValidating <em>Is Validating</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -25463,6 +25384,17 @@ public interface PivotPackage
 	EClass getParameter();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.Parameter#isTypeof <em>Is Typeof</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Typeof</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.Parameter#isTypeof()
+	 * @see #getParameter()
+	 * @generated
+	 */
+	EAttribute getParameter_IsTypeof();
+
+	/**
 	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.Parameter#getOperation <em>Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -25482,6 +25414,17 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EClass getVariableDeclaration();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.VariableDeclaration#getTypeValue <em>Type Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Type Value</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.VariableDeclaration#getTypeValue()
+	 * @see #getVariableDeclaration()
+	 * @generated
+	 */
+	EReference getVariableDeclaration_TypeValue();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.OppositePropertyCallExp <em>Opposite Property Call Exp</em>}'.
@@ -26398,6 +26341,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EClass OCL_EXPRESSION = eINSTANCE.getOCLExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Type Value</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OCL_EXPRESSION__TYPE_VALUE = eINSTANCE.getOCLExpression_TypeValue();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.BagTypeImpl <em>Bag Type</em>}' class.
@@ -29252,14 +29203,6 @@ public interface PivotPackage
 		EAttribute TYPED_ELEMENT__IS_REQUIRED = eINSTANCE.getTypedElement_IsRequired();
 
 		/**
-		 * The meta object literal for the '<em><b>Is Typeof</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TYPED_ELEMENT__IS_TYPEOF = eINSTANCE.getTypedElement_IsTypeof();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.AssociationClassImpl <em>Association Class</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -29344,6 +29287,14 @@ public interface PivotPackage
 		EAttribute OPERATION__IS_INVALIDATING = eINSTANCE.getOperation_IsInvalidating();
 
 		/**
+		 * The meta object literal for the '<em><b>Is Typeof</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPERATION__IS_TYPEOF = eINSTANCE.getOperation_IsTypeof();
+
+		/**
 		 * The meta object literal for the '<em><b>Is Validating</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -29410,6 +29361,14 @@ public interface PivotPackage
 		EClass PARAMETER = eINSTANCE.getParameter();
 
 		/**
+		 * The meta object literal for the '<em><b>Is Typeof</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PARAMETER__IS_TYPEOF = eINSTANCE.getParameter_IsTypeof();
+
+		/**
 		 * The meta object literal for the '<em><b>Operation</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -29426,6 +29385,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EClass VARIABLE_DECLARATION = eINSTANCE.getVariableDeclaration();
+
+		/**
+		 * The meta object literal for the '<em><b>Type Value</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VARIABLE_DECLARATION__TYPE_VALUE = eINSTANCE.getVariableDeclaration_TypeValue();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OppositePropertyCallExpImpl <em>Opposite Property Call Exp</em>}' class.

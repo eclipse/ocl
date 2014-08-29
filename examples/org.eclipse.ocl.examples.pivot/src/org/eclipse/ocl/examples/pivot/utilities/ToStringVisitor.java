@@ -225,14 +225,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 			append(NULL_PLACEHOLDER);
 		}
 		else {
-			boolean isTypeof = typedElement.isTypeof();
-			if (isTypeof) {
-				append("typeof(");
-			}
 			safeVisit(typedElement.getType());
-			if (isTypeof) {
-				append(")");
-			}
 			if (!typedElement.isRequired()) {
 				append("[?]");
 			}
@@ -281,7 +274,14 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 		append(") :"); //$NON-NLS-1$
 		if (operation.getType() != null) {
 			append(" ");
+			boolean isTypeof = operation.isTypeof();
+			if (isTypeof) {
+				append("typeof(");
+			}
 			appendElementType(operation);
+			if (isTypeof) {
+				append(")");
+			}
 		}
 	}
 

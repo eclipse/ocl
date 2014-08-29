@@ -90,7 +90,7 @@ public class CollectionLiteralExpImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int KIND_EFLAG_OFFSET = 10;
+	protected static final int KIND_EFLAG_OFFSET = 9;
 
 	/**
 	 * The flags representing the default value of the '{@link #getKind() <em>Kind</em>}' attribute.
@@ -700,11 +700,11 @@ public class CollectionLiteralExpImpl
 				return isMany();
 			case PivotPackage.COLLECTION_LITERAL_EXP__IS_REQUIRED:
 				return isRequired();
-			case PivotPackage.COLLECTION_LITERAL_EXP__IS_TYPEOF:
-				return isTypeof();
 			case PivotPackage.COLLECTION_LITERAL_EXP__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
+			case PivotPackage.COLLECTION_LITERAL_EXP__TYPE_VALUE:
+				return getTypeValue();
 			case PivotPackage.COLLECTION_LITERAL_EXP__KIND:
 				return getKind();
 			case PivotPackage.COLLECTION_LITERAL_EXP__PART:
@@ -745,11 +745,11 @@ public class CollectionLiteralExpImpl
 			case PivotPackage.COLLECTION_LITERAL_EXP__IS_REQUIRED:
 				setIsRequired((Boolean)newValue);
 				return;
-			case PivotPackage.COLLECTION_LITERAL_EXP__IS_TYPEOF:
-				setIsTypeof((Boolean)newValue);
-				return;
 			case PivotPackage.COLLECTION_LITERAL_EXP__TYPE:
 				setType((Type)newValue);
+				return;
+			case PivotPackage.COLLECTION_LITERAL_EXP__TYPE_VALUE:
+				setTypeValue((Type)newValue);
 				return;
 			case PivotPackage.COLLECTION_LITERAL_EXP__KIND:
 				setKind((CollectionKind)newValue);
@@ -789,11 +789,11 @@ public class CollectionLiteralExpImpl
 			case PivotPackage.COLLECTION_LITERAL_EXP__IS_REQUIRED:
 				setIsRequired(IS_REQUIRED_EDEFAULT);
 				return;
-			case PivotPackage.COLLECTION_LITERAL_EXP__IS_TYPEOF:
-				setIsTypeof(IS_TYPEOF_EDEFAULT);
-				return;
 			case PivotPackage.COLLECTION_LITERAL_EXP__TYPE:
 				setType((Type)null);
+				return;
+			case PivotPackage.COLLECTION_LITERAL_EXP__TYPE_VALUE:
+				setTypeValue((Type)null);
 				return;
 			case PivotPackage.COLLECTION_LITERAL_EXP__KIND:
 				setKind(KIND_EDEFAULT);
@@ -828,10 +828,10 @@ public class CollectionLiteralExpImpl
 				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.COLLECTION_LITERAL_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
-			case PivotPackage.COLLECTION_LITERAL_EXP__IS_TYPEOF:
-				return ((eFlags & IS_TYPEOF_EFLAG) != 0) != IS_TYPEOF_EDEFAULT;
 			case PivotPackage.COLLECTION_LITERAL_EXP__TYPE:
 				return type != null;
+			case PivotPackage.COLLECTION_LITERAL_EXP__TYPE_VALUE:
+				return typeValue != null;
 			case PivotPackage.COLLECTION_LITERAL_EXP__KIND:
 				return (eFlags & KIND_EFLAG) != KIND_EFLAG_DEFAULT;
 			case PivotPackage.COLLECTION_LITERAL_EXP__PART:

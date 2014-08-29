@@ -190,8 +190,6 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return isMany();
 			case PivotPackage.ITERATION__IS_REQUIRED:
 				return isRequired();
-			case PivotPackage.ITERATION__IS_TYPEOF:
-				return isTypeof();
 			case PivotPackage.ITERATION__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -213,6 +211,8 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return getBodyExpression();
 			case PivotPackage.ITERATION__IS_INVALIDATING:
 				return isInvalidating();
+			case PivotPackage.ITERATION__IS_TYPEOF:
+				return isTypeof();
 			case PivotPackage.ITERATION__IS_VALIDATING:
 				return isValidating();
 			case PivotPackage.ITERATION__OWNED_PARAMETER:
@@ -271,9 +271,6 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__IS_REQUIRED:
 				setIsRequired((Boolean)newValue);
 				return;
-			case PivotPackage.ITERATION__IS_TYPEOF:
-				setIsTypeof((Boolean)newValue);
-				return;
 			case PivotPackage.ITERATION__TYPE:
 				setType((Type)newValue);
 				return;
@@ -305,6 +302,9 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return;
 			case PivotPackage.ITERATION__IS_INVALIDATING:
 				setIsInvalidating((Boolean)newValue);
+				return;
+			case PivotPackage.ITERATION__IS_TYPEOF:
+				setIsTypeof((Boolean)newValue);
 				return;
 			case PivotPackage.ITERATION__IS_VALIDATING:
 				setIsValidating((Boolean)newValue);
@@ -375,9 +375,6 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__IS_REQUIRED:
 				setIsRequired(IS_REQUIRED_EDEFAULT);
 				return;
-			case PivotPackage.ITERATION__IS_TYPEOF:
-				setIsTypeof(IS_TYPEOF_EDEFAULT);
-				return;
 			case PivotPackage.ITERATION__TYPE:
 				setType((Type)null);
 				return;
@@ -407,6 +404,9 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return;
 			case PivotPackage.ITERATION__IS_INVALIDATING:
 				setIsInvalidating(IS_INVALIDATING_EDEFAULT);
+				return;
+			case PivotPackage.ITERATION__IS_TYPEOF:
+				setIsTypeof(IS_TYPEOF_EDEFAULT);
 				return;
 			case PivotPackage.ITERATION__IS_VALIDATING:
 				setIsValidating(IS_VALIDATING_EDEFAULT);
@@ -466,8 +466,6 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.ITERATION__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
-			case PivotPackage.ITERATION__IS_TYPEOF:
-				return ((eFlags & IS_TYPEOF_EFLAG) != 0) != IS_TYPEOF_EDEFAULT;
 			case PivotPackage.ITERATION__TYPE:
 				return type != null;
 			case PivotPackage.ITERATION__IMPLEMENTATION:
@@ -488,6 +486,8 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return bodyExpression != null;
 			case PivotPackage.ITERATION__IS_INVALIDATING:
 				return ((eFlags & IS_INVALIDATING_EFLAG) != 0) != IS_INVALIDATING_EDEFAULT;
+			case PivotPackage.ITERATION__IS_TYPEOF:
+				return ((eFlags & IS_TYPEOF_EFLAG) != 0) != IS_TYPEOF_EDEFAULT;
 			case PivotPackage.ITERATION__IS_VALIDATING:
 				return ((eFlags & IS_VALIDATING_EFLAG) != 0) != IS_VALIDATING_EDEFAULT;
 			case PivotPackage.ITERATION__OWNED_PARAMETER:

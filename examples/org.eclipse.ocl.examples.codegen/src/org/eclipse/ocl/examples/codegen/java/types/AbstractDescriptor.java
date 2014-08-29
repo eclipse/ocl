@@ -33,9 +33,9 @@ import org.eclipse.ocl.examples.domain.elements.DomainNamedElement;
 import org.eclipse.ocl.examples.domain.elements.DomainNamespace;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
+import org.eclipse.ocl.examples.domain.elements.DomainParameter;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
-import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.examples.domain.ids.ElementId;
 import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
@@ -55,6 +55,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutions;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
  * An AbstractDescriptor provides the most fundamental capabilities of any type description: the correspondence to a pivot ElementId.
@@ -96,7 +97,7 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 			javaClass = DomainPackage.class;
 		}
 		else if (javaClass == Parameter.class) {
-			javaClass = DomainTypedElement.class;
+			javaClass = DomainParameter.class;
 		}
 		else if (javaClass == Property.class) {
 			javaClass = DomainProperty.class;
@@ -240,10 +241,11 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 		if (!(ast instanceof TypedElement)) {
 			return false;
 		}
-		Type type = metaModelManager.getUnencodedType((TypedElement)ast);
-		if (type == null) {
+		Type asType = ((TypedElement)ast).getType();
+		if (asType == null) {
 			return false;
 		}
+		Type type = PivotUtil.getType(asType);
 		if (type instanceof DomainEnumeration) {
 			return false;
 		}

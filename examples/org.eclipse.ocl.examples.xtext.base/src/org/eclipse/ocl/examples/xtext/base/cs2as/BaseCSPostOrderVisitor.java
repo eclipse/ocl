@@ -60,6 +60,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TuplePartCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedElementCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.WildcardTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.AbstractExtendingBaseCSVisitor;
@@ -239,6 +240,12 @@ public class BaseCSPostOrderVisitor extends AbstractExtendingBaseCSVisitor<Conti
 		Operation pivotOperation = PivotUtil.getPivot(Operation.class, csElement);
 		if (pivotOperation != null) {
 			context.refreshList(Type.class, pivotOperation.getRaisedException(), csElement.getOwnedException());
+			TypedRefCS ownedType = csElement.getOwnedType();
+			boolean isTypeof = false;
+			if (ownedType  instanceof TypedTypeRefCS) {
+				isTypeof = ((TypedTypeRefCS)ownedType).isTypeof();
+			}
+			pivotOperation.setIsTypeof(isTypeof);
 		}
 		return super.visitOperationCS(csElement);
 	}

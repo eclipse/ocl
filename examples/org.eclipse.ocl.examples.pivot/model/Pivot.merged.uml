@@ -726,6 +726,9 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TOCLExpression" name="OCLExpression" isAbstract="true">
       <generalization xmi:id="Ppivot.TOCLExpression.g0" general="Ppivot.TTypedElement"/>
+      <ownedAttribute xmi:id="Ppivot.TOCLExpression.PtypeValue" name="typeValue" type="Ppivot.TType">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TOCLExpression.PtypeValue.lV"/>
+      </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TOperation" name="Operation">
       <ownedComment xmi:id="Ppivot.TOperation.oC0" annotatedElement="Ppivot.TOperation">
@@ -783,6 +786,9 @@
       <ownedAttribute xmi:id="Ppivot.TOperation.PredefinedOperation" name="redefinedOperation" type="Ppivot.TOperation" association="Ppivot.A_operation_redefinedOperation">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TOperation.PredefinedOperation.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TOperation.PredefinedOperation.uV" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="Ppivot.TOperation.PisTypeof" name="isTypeof" type="Ppivot.TBoolean">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TOperation.PisTypeof.dlV" value="false"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TOperationCallExp" name="OperationCallExp">
@@ -867,6 +873,9 @@
           <body>The operation that owns the parameter.</body>
         </ownedComment>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TParameter.Poperation.lV"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="Ppivot.TParameter.PisTypeof" name="isTypeof" type="Ppivot.TBoolean">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TParameter.PisTypeof.dlV" value="false"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TPrecedence" name="Precedence">
@@ -1531,9 +1540,6 @@
         <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TTypedElement.PisRequired.dlV" value="true"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TTypedElement.PisMany" name="isMany" type="Ppivot.TBoolean" isReadOnly="true" isDerived="true"/>
-      <ownedAttribute xmi:id="Ppivot.TTypedElement.PisTypeof" name="isTypeof" type="Ppivot.TBoolean">
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TTypedElement.PisTypeof.dlV" value="false"/>
-      </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TUnlimitedNaturalLiteralExp" name="UnlimitedNaturalLiteralExp">
       <generalization xmi:id="Ppivot.TUnlimitedNaturalLiteralExp.g0" general="Ppivot.TNumericLiteralExp"/>
@@ -1603,6 +1609,9 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TVariableDeclaration" name="VariableDeclaration" isAbstract="true">
       <generalization xmi:id="Ppivot.TVariableDeclaration.g0" general="Ppivot.TTypedElement"/>
+      <ownedAttribute xmi:id="Ppivot.TVariableDeclaration.PtypeValue" name="typeValue" type="Ppivot.TType">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TVariableDeclaration.PtypeValue.lV"/>
+      </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TVariableExp" name="VariableExp">
       <generalization xmi:id="Ppivot.TVariableExp.g0" general="Ppivot.TOCLExpression"/>
@@ -1838,7 +1847,10 @@
   <Ecore:EDataType xmi:id="PA.Ppivot.TUnlimitedNatural" instanceClassName="java.lang.Number" base_PrimitiveType="Ppivot.TUnlimitedNatural"/>
   <Ecore:EAttribute xmi:id="PA.Ppivot.TBooleanLiteralExp.PbooleanSymbol" isUnsettable="true" base_Property="Ppivot.TBooleanLiteralExp.PbooleanSymbol"/>
   <Ecore:EClass xmi:id="PA.Ppivot.TReferringElement" base_Interface="Ppivot.TReferringElement"/>
+  <Ecore:EReference xmi:id="PA.Ppivot.TOCLExpression.PtypeValue" isTransient="true" base_Property="Ppivot.TOCLExpression.PtypeValue" isResolveProxies="false"/>
   <Ecore:EAttribute xmi:id="PA.Ppivot.TTypedElement.PisMany" isTransient="true" isVolatile="true" base_Property="Ppivot.TTypedElement.PisMany"/>
+  <Ecore:EReference xmi:id="PA.Ppivot.TVariableDeclaration.PtypeValue" isTransient="true" base_Property="Ppivot.TVariableDeclaration.PtypeValue"
+      isResolveProxies="false"/>
   <Ecore:EClass xmi:id="PA.Ppivot.TVisitable" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitable" base_Interface="Ppivot.TVisitable"
       className="Visitable"/>
 </xmi:XMI>

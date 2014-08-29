@@ -2579,24 +2579,6 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 
 	/**
-	 * Return the true type of asTypedElement which is Class when there is a typeof encoding.
-	 */
-	public @Nullable Type getUnencodedType(@NonNull TypedElement asTypedElement) {
-		if (asTypedElement.isTypeof()) {
-			return getClassType();
-		}
-		else {
-			Type asType = asTypedElement.getType();
-			if (asType != null) {
-				return PivotUtil.getType(asType);
-			}
-			else {
-				return null;
-			}
-		}
-	}
-
-	/**
 	 * Create implicit an opposite property if there is no explicit opposite.
 	 */
 	public void installPropertyDeclaration(@NonNull Property thisProperty) {
@@ -3169,8 +3151,8 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	 * Return the specialized form of type analyzing expr to determine the formal to actual parameter mappings
 	 * using selfType as the value of OclSelf.
 	 */
-	public @NonNull Type specializeType(@NonNull Type type, boolean isTypeof, @NonNull CallExp callExp, @NonNull Type selfType, boolean selfIsTypeof) {
-		return TemplateParameterSubstitutionVisitor.specializeType(type, isTypeof, callExp, this, selfType, selfIsTypeof);
+	public @NonNull Type specializeType(@NonNull Type type, @NonNull CallExp callExp, @NonNull Type selfType, @Nullable Type selfTypeValue) {
+		return TemplateParameterSubstitutionVisitor.specializeType(type, callExp, this, selfType, selfTypeValue);
 	}
 
 	public void unsetTarget(Notifier oldTarget) {

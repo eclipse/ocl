@@ -32,6 +32,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Operation#getBodyExpression <em>Body Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Operation#isInvalidating <em>Is Invalidating</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Operation#isTypeof <em>Is Typeof</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Operation#isValidating <em>Is Validating</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Operation#getOwnedParameter <em>Owned Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Operation#getOwningClass <em>Owning Class</em>}</li>
@@ -203,6 +204,32 @@ public interface Operation
 	 * @generated
 	 */
 	void setIsInvalidating(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Typeof</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Typeof</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Typeof</em>' attribute.
+	 * @see #setIsTypeof(boolean)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getOperation_IsTypeof()
+	 * @generated
+	 */
+	boolean isTypeof();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Operation#isTypeof <em>Is Typeof</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Typeof</em>' attribute.
+	 * @see #isTypeof()
+	 * @generated
+	 */
+	void setIsTypeof(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Is Validating</b></em>' attribute.

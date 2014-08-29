@@ -20,6 +20,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
@@ -27,6 +28,7 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -73,11 +75,11 @@ public abstract class AbstractBase2PivotConversion extends AbstractConversion im
 		if (!sourceElement.eIsProxy()) {
 			Type type = PivotUtil.getType(sourceElement);
 			if ((type == null) || !type.eIsProxy()) {
-				setType(targetElement, type);
+				setType(targetElement, type, sourceElement.isRequired());
 				return;
 			}
 		}
-		setType(targetElement, null);
+		setType(targetElement, null, sourceElement.isRequired());
 	}
 
 	public void setContextVariable(@NonNull ExpressionInOCL pivotSpecification, @NonNull String selfVariableName, @Nullable Type contextType, @Nullable Type contextInstance) {
@@ -89,22 +91,17 @@ public abstract class AbstractBase2PivotConversion extends AbstractConversion im
 			pivotSpecification.setContextVariable(contextVariable);
 		}
 		refreshName(contextVariable, selfVariableName);
-		if (contextInstance != null) {
-			setType(contextVariable, contextInstance, contextVariable.isRequired(), true);
-		}
-		else {
-			setType(contextVariable, contextType, contextVariable.isRequired(), false);
-		}
+		setType(contextVariable, contextType, contextVariable.isRequired(), contextInstance);
 	}
 
 	public void setClassifierContext(@NonNull ExpressionInOCL pivotSpecification, @NonNull Type contextType) {
 		Variable contextVariable = pivotSpecification.getContextVariable();
 		if (contextVariable != null) {
 			if (contextType.eIsProxy()) {
-				setType(contextVariable, null);
+				setType(contextVariable, null, false);
 			}
 			else {
-				setType(contextVariable, contextType);
+				setType(contextVariable, contextType, true);
 			}
 		}
 	}
@@ -113,7 +110,7 @@ public abstract class AbstractBase2PivotConversion extends AbstractConversion im
 		Variable contextVariable = pivotSpecification.getContextVariable();
 //		pivotSpecification.getParameterVariable().clear();
 		if ((contextVariable != null) && !contextOperation.eIsProxy()) {
-			setType(contextVariable, contextOperation.getOwningClass());
+			setType(contextVariable, contextOperation.getOwningClass(), true);
 			setParameterVariables(pivotSpecification, DomainUtil.nonNullEMF(contextOperation.getOwnedParameter()));
 		}
 		if (resultName != null) {
@@ -154,7 +151,7 @@ public abstract class AbstractBase2PivotConversion extends AbstractConversion im
 		    	param = PivotFactory.eINSTANCE.createVariable();
 		        param.setName(name);
 		    }
-			setType(param, type);
+			setType(param, type, param.isRequired());
 //		    param.setRepresentedParameter(parameter);
 		    newVariables.add(param);
 		}
@@ -164,7 +161,7 @@ public abstract class AbstractBase2PivotConversion extends AbstractConversion im
 	public void setPropertyContext(@NonNull ExpressionInOCL pivotSpecification, @NonNull Property contextProperty) {
 		Variable contextVariable = pivotSpecification.getContextVariable();
 		if ((contextVariable != null) && !contextProperty.eIsProxy()) {
-			setType(contextVariable, contextProperty.getOwningClass());
+			setType(contextVariable, contextProperty.getOwningClass(), true);
 		}
 	}
 
@@ -190,24 +187,23 @@ public abstract class AbstractBase2PivotConversion extends AbstractConversion im
 	 */
 	@Deprecated
 	public void setType(@NonNull TypedElement pivotElement, Type type) {
-		setType(pivotElement, type, pivotElement.isRequired(), false);
+		setType(pivotElement, type, pivotElement.isRequired());
 	}
-	@Deprecated
+	public void setType(@NonNull OCLExpression pivotElement, Type type, boolean isRequired, @Nullable Type typeValue) {
+		setType(pivotElement, type, isRequired);
+		Type primaryTypeValue = typeValue != null ? metaModelManager.getPrimaryType(typeValue) : null;
+		if (primaryTypeValue != pivotElement.getTypeValue()) {
+			pivotElement.setTypeValue(primaryTypeValue);
+		}
+	}
+	public void setType(@NonNull VariableDeclaration pivotElement, Type type, boolean isRequired, @Nullable Type typeValue) {
+		setType(pivotElement, type, isRequired);
+		Type primaryTypeValue = typeValue != null ? metaModelManager.getPrimaryType(typeValue) : null;
+		if (primaryTypeValue != pivotElement.getTypeValue()) {
+			pivotElement.setTypeValue(primaryTypeValue);
+		}
+	}
 	public void setType(@NonNull TypedElement pivotElement, Type type, boolean isRequired) {
-		setType(pivotElement, type, isRequired, false);
-	}
-	public void setType(@NonNull TypedElement pivotElement, Type type, boolean isRequired, boolean isTypeof) {
-	//	PivotUtil.debugObjectUsage("setType ", pivotElement);
-	//	PivotUtil.debugObjectUsage(" to ", type);
-//		if (type != null) {
-//			if (type.eResource() == null) {			// WIP
-	//			PivotUtil.debugObjectUsage("setType orphan ", type);
-//				assert false;
-//			}
-//		}
-//		if (type == null) {
-//			type = metaModelManager.getOclInvalidType();	// FIXME unresolved type with explanation
-//		}
 		Type primaryType = type != null ? metaModelManager.getPrimaryType(type) : null;
 		if (primaryType != pivotElement.getType()) {
 			pivotElement.setType(primaryType);
@@ -215,10 +211,6 @@ public abstract class AbstractBase2PivotConversion extends AbstractConversion im
 		boolean wasRequired = pivotElement.isRequired();
 		if (wasRequired != isRequired) {
 			pivotElement.setIsRequired(isRequired);
-		}
-		boolean wasTypeof = pivotElement.isTypeof();
-		if (wasTypeof != isTypeof) {
-			pivotElement.setIsTypeof(isTypeof);
 		}
 		if (primaryType != null) {
 			PivotUtil.debugWellContainedness(primaryType);

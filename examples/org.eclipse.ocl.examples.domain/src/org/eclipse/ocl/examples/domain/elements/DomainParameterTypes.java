@@ -24,14 +24,16 @@ import org.eclipse.ocl.examples.domain.ids.TypeId;
  */
 public class DomainParameterTypes
 {
-	public static final class DomainParameter implements DomainTypedElement
+	public static final class DomainParameterImpl implements DomainParameter
 	{
 		protected final @NonNull String name;
 		protected final @NonNull DomainType type;
+		protected final boolean typeof;
 		
-		public DomainParameter(@NonNull String name, @NonNull DomainType type) {
+		public DomainParameterImpl(@NonNull String name, @NonNull DomainType type, boolean typeof) {
 			this.name = name;
 			this.type = type;
+			this.typeof = typeof;
 		}
 		public @NonNull String getName() {
 			return name;
@@ -43,6 +45,10 @@ public class DomainParameterTypes
 		
 		public @NonNull TypeId getTypeId() {
 			return type.getTypeId();
+		}
+		
+		public boolean isTypeof() {
+			return typeof;
 		}
 	}
 
@@ -94,13 +100,13 @@ public class DomainParameterTypes
 		return parametersId;
 	}
 	
-	public @NonNull List<? extends DomainTypedElement> getParameters() {
+	public @NonNull List<? extends DomainParameter> getParameters() {
 		List<DomainParameter> parameters2 = parameters;
 		if (parameters2 == null) {
 			parameters = parameters2 = new ArrayList<DomainParameter>();
 			for (int i = 0; i < parameterTypes.length; i++) {
 				@SuppressWarnings("null")@NonNull DomainType type = parameterTypes[i];
-				parameters2.add(new DomainParameter("_" + i, type));
+				parameters2.add(new DomainParameterImpl("_" + i, type, false));
 			}
 		}
 		return parameters2;

@@ -524,6 +524,7 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("cast")
 	public void setOwningPackage(org.eclipse.ocl.examples.pivot.Package newOwningPackage)
 	{
 		if (newOwningPackage != eInternalContainer() || (eContainerFeatureID() != PivotPackage.CLASS__OWNING_PACKAGE && newOwningPackage != null))
@@ -1138,6 +1139,7 @@ public class ClassImpl
 		return thisInheritance.isSubInheritanceOf(thatInheritance);
 	}
 
+	@Override
 	public @NonNull DomainType getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
 		if (type == this) {
 			return this;
@@ -1210,14 +1212,16 @@ public class ClassImpl
 	public DomainType specializeIn(@NonNull DomainCallExp expr, DomainType selfType) {
 		if ((expr instanceof CallExp) && (selfType instanceof Type)) {
 			TemplateSignature templateSignature = getOwnedTemplateSignature();
+			CallExp callExpr = (CallExp)expr;
+			Type selfType2 = (Type)selfType;
 			if (templateSignature != null) {
 				MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(DomainUtil.nonNullState(((EObject) expr).eResource()));
-				return metaModelManager.specializeType(this, false, (CallExp)expr, (Type)selfType, false);
+				return metaModelManager.specializeType(this, callExpr, selfType2, null);
 			}
 			List<TemplateBinding> templateBindings = getOwnedTemplateBindings();
 			if ((templateBindings != null) && !templateBindings.isEmpty()) {
 				MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(DomainUtil.nonNullState(((EObject) expr).eResource()));
-				return metaModelManager.specializeType(this, false, (CallExp)expr, (Type)selfType, false);
+				return metaModelManager.specializeType(this, callExpr, selfType2, null);
 			}
 		}
 		return this;

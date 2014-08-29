@@ -161,6 +161,12 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 			Parameter parameter = PivotUtil.getPivot(Parameter.class, csElement);
 			if (parameter != null) {
 				context.refreshRequiredType(parameter, csElement);
+				TypedRefCS ownedType = csElement.getOwnedType();
+				boolean isTypeof = false;
+				if (ownedType  instanceof TypedTypeRefCS) {
+					isTypeof = ((TypedTypeRefCS)ownedType).isTypeof();
+				}
+				parameter.setIsTypeof(isTypeof);
 			}
 			return null;
 		}

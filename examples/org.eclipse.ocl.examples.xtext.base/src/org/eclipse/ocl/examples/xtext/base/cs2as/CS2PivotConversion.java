@@ -1024,7 +1024,6 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 		TypedRefCS ownedType = csTypedElement.getOwnedType();
 		Type pivotType = null;
 		boolean isRequired = false;
-		boolean isTypeof = false;
 		if (ownedType != null) {
 			pivotType = PivotUtil.getPivot(Type.class, ownedType);
 			int lower = ElementUtil.getLower(csTypedElement);
@@ -1035,15 +1034,12 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 			else {
 				isRequired = true;
 			}
-			if (ownedType instanceof TypedTypeRefCS) {
-				isTypeof = ((TypedTypeRefCS)ownedType).isTypeof();
-			}
 		}
 		if (pivotType == null) {
 			pivotType = metaModelManager.getOclVoidType();
 			isRequired = false;
 		}
-		setType(pivotElement, pivotType, isRequired, isTypeof);
+		setType(pivotElement, pivotType, isRequired);
 		return pivotType;
 	}
 

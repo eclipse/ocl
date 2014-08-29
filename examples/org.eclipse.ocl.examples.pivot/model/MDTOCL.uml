@@ -451,13 +451,31 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_zNR5QMilEd-sJIf4tYBt-g" name="MDT_OCL_TypedMultiplicity">
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_iauzUOLYEeGCOa0Md3lQkQ" name="Boolean"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_SmDkYC9fEeSc2LncrXmagQ" name="OCLExpression" isAbstract="true">
+        <ownedAttribute xmi:id="_x-pUsC9bEeSc2LncrXmagQ" name="typeValue" type="_4hPfAC9bEeSc2LncrXmagQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0q6GoC9bEeSc2LncrXmagQ"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ZT_t8C9dEeSc2LncrXmagQ" name="Operation">
+        <ownedAttribute xmi:id="_SmDkYS9fEeSc2LncrXmagQ" name="isTypeof" type="_iauzUOLYEeGCOa0Md3lQkQ">
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_SmDkYi9fEeSc2LncrXmagQ" value="false"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_UUTg0C9dEeSc2LncrXmagQ" name="Parameter">
+        <ownedAttribute xmi:id="_0hXaMC-JEeSc2LncrXmagQ" name="isTypeof" type="_iauzUOLYEeGCOa0Md3lQkQ">
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_0hXaMS-JEeSc2LncrXmagQ" value="false"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_4hPfAC9bEeSc2LncrXmagQ" name="Type" isAbstract="true"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_4oqj4MilEd-sJIf4tYBt-g" name="TypedElement" isAbstract="true">
         <ownedAttribute xmi:id="_n1w4oOLYEeGCOa0Md3lQkQ" name="isRequired" type="_iauzUOLYEeGCOa0Md3lQkQ">
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_Xp6OGn7VEeOu79LxSz8Ylw" value="true"/>
         </ownedAttribute>
         <ownedAttribute xmi:id="_iMnUQBuwEeSIos3S87O_rg" name="isMany" type="_iauzUOLYEeGCOa0Md3lQkQ" isReadOnly="true" isDerived="true"/>
-        <ownedAttribute xmi:id="_Y3c0QCFZEeSNlrewQPlAjA" name="isTypeof" type="_iauzUOLYEeGCOa0Md3lQkQ">
-          <defaultValue xmi:type="uml:LiteralString" xmi:id="_Y3c0QSFZEeSNlrewQPlAjA" value="false"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_qhn48C-cEeSc2LncrXmagQ" name="VariableDeclaration" isAbstract="true">
+        <ownedAttribute xmi:id="_qhogAC-cEeSc2LncrXmagQ" name="typeValue" type="_4hPfAC9bEeSc2LncrXmagQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qhogAS-cEeSc2LncrXmagQ"/>
         </ownedAttribute>
       </packagedElement>
     </packagedElement>
@@ -515,4 +533,6 @@
   <Ecore:EReference xmi:id="_mVct8H7YEeOu79LxSz8Ylw" isTransient="true" isResolveProxies="false"/>
   <Ecore:EReference xmi:id="_cDP_kH8_EeOrlIuDtf7a6A" isTransient="true" isVolatile="true" isUnsettable="true" isResolveProxies="false"/>
   <Ecore:EAttribute xmi:id="_eEjuMBu6EeSIos3S87O_rg" isTransient="true" isVolatile="true" base_Property="_iMnUQBuwEeSIos3S87O_rg"/>
+  <Ecore:EReference xmi:id="_WyqPEC9cEeSc2LncrXmagQ" isTransient="true" base_Property="_x-pUsC9bEeSc2LncrXmagQ" isResolveProxies="false"/>
+  <Ecore:EReference xmi:id="_qh0tQC-cEeSc2LncrXmagQ" isTransient="true" base_Property="_qhogAC-cEeSc2LncrXmagQ" isResolveProxies="false"/>
 </xmi:XMI>

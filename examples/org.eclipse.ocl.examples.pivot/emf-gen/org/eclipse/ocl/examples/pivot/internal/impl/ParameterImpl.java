@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ParameterImpl#isTypeof <em>Is Typeof</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ParameterImpl#getOperation <em>Operation</em>}</li>
  * </ul>
  * </p>
@@ -47,6 +48,25 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
 public class ParameterImpl
 		extends VariableDeclarationImpl
 		implements Parameter {
+
+	/**
+	 * The default value of the '{@link #isTypeof() <em>Is Typeof</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isTypeof()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_TYPEOF_EDEFAULT = false;
+	/**
+	 * The flag representing the value of the '{@link #isTypeof() <em>Is Typeof</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isTypeof()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int IS_TYPEOF_EFLAG = 1 << 9;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -65,6 +85,29 @@ public class ParameterImpl
 	@Override
 	protected EClass eStaticClass() {
 		return PivotPackage.Literals.PARAMETER;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isTypeof()
+	{
+		return (eFlags & IS_TYPEOF_EFLAG) != 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsTypeof(boolean newIsTypeof)
+	{
+		boolean oldIsTypeof = (eFlags & IS_TYPEOF_EFLAG) != 0;
+		if (newIsTypeof) eFlags |= IS_TYPEOF_EFLAG; else eFlags &= ~IS_TYPEOF_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PARAMETER__IS_TYPEOF, oldIsTypeof, newIsTypeof));
 	}
 
 	/**
@@ -198,11 +241,13 @@ public class ParameterImpl
 				return isMany();
 			case PivotPackage.PARAMETER__IS_REQUIRED:
 				return isRequired();
-			case PivotPackage.PARAMETER__IS_TYPEOF:
-				return isTypeof();
 			case PivotPackage.PARAMETER__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
+			case PivotPackage.PARAMETER__TYPE_VALUE:
+				return getTypeValue();
+			case PivotPackage.PARAMETER__IS_TYPEOF:
+				return isTypeof();
 			case PivotPackage.PARAMETER__OPERATION:
 				return getOperation();
 		}
@@ -241,11 +286,14 @@ public class ParameterImpl
 			case PivotPackage.PARAMETER__IS_REQUIRED:
 				setIsRequired((Boolean)newValue);
 				return;
-			case PivotPackage.PARAMETER__IS_TYPEOF:
-				setIsTypeof((Boolean)newValue);
-				return;
 			case PivotPackage.PARAMETER__TYPE:
 				setType((Type)newValue);
+				return;
+			case PivotPackage.PARAMETER__TYPE_VALUE:
+				setTypeValue((Type)newValue);
+				return;
+			case PivotPackage.PARAMETER__IS_TYPEOF:
+				setIsTypeof((Boolean)newValue);
 				return;
 			case PivotPackage.PARAMETER__OPERATION:
 				setOperation((Operation)newValue);
@@ -281,11 +329,14 @@ public class ParameterImpl
 			case PivotPackage.PARAMETER__IS_REQUIRED:
 				setIsRequired(IS_REQUIRED_EDEFAULT);
 				return;
-			case PivotPackage.PARAMETER__IS_TYPEOF:
-				setIsTypeof(IS_TYPEOF_EDEFAULT);
-				return;
 			case PivotPackage.PARAMETER__TYPE:
 				setType((Type)null);
+				return;
+			case PivotPackage.PARAMETER__TYPE_VALUE:
+				setTypeValue((Type)null);
+				return;
+			case PivotPackage.PARAMETER__IS_TYPEOF:
+				setIsTypeof(IS_TYPEOF_EDEFAULT);
 				return;
 			case PivotPackage.PARAMETER__OPERATION:
 				setOperation((Operation)null);
@@ -317,10 +368,12 @@ public class ParameterImpl
 				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.PARAMETER__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
-			case PivotPackage.PARAMETER__IS_TYPEOF:
-				return ((eFlags & IS_TYPEOF_EFLAG) != 0) != IS_TYPEOF_EDEFAULT;
 			case PivotPackage.PARAMETER__TYPE:
 				return type != null;
+			case PivotPackage.PARAMETER__TYPE_VALUE:
+				return typeValue != null;
+			case PivotPackage.PARAMETER__IS_TYPEOF:
+				return ((eFlags & IS_TYPEOF_EFLAG) != 0) != IS_TYPEOF_EDEFAULT;
 			case PivotPackage.PARAMETER__OPERATION:
 				return getOperation() != null;
 		}

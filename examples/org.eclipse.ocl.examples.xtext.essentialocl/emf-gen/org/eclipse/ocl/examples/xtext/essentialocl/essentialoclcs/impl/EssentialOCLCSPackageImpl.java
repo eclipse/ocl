@@ -793,9 +793,9 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNameExpCS_SourceTypeof()
+	public EReference getNameExpCS_SourceTypeValue()
 	{
-		return (EAttribute)nameExpCSEClass.getEStructuralFeatures().get(6);
+		return (EReference)nameExpCSEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -1357,7 +1357,7 @@ public class EssentialOCLCSPackageImpl
 		createEReference(nameExpCSEClass, NAME_EXP_CS__ROUND_BRACKETED_CLAUSE);
 		createEReference(nameExpCSEClass, NAME_EXP_CS__SQUARE_BRACKETED_CLAUSES);
 		createEReference(nameExpCSEClass, NAME_EXP_CS__SOURCE_TYPE);
-		createEAttribute(nameExpCSEClass, NAME_EXP_CS__SOURCE_TYPEOF);
+		createEReference(nameExpCSEClass, NAME_EXP_CS__SOURCE_TYPE_VALUE);
 
 		navigatingArgCSEClass = createEClass(NAVIGATING_ARG_CS);
 		createEReference(navigatingArgCSEClass, NAVIGATING_ARG_CS__ROUND_BRACKETED_CLAUSE);
@@ -1567,7 +1567,7 @@ public class EssentialOCLCSPackageImpl
 		initEReference(getNameExpCS_RoundBracketedClause(), this.getRoundBracketedClauseCS(), this.getRoundBracketedClauseCS_NameExp(), "roundBracketedClause", null, 0, 1, NameExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getNameExpCS_SquareBracketedClauses(), this.getSquareBracketedClauseCS(), this.getSquareBracketedClauseCS_NameExp(), "squareBracketedClauses", null, 0, 2, NameExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getNameExpCS_SourceType(), thePivotPackage.getType(), null, "sourceType", null, 0, 1, NameExpCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getNameExpCS_SourceTypeof(), ecorePackage.getEBoolean(), "sourceTypeof", "false", 1, 1, NameExpCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEReference(getNameExpCS_SourceTypeValue(), thePivotPackage.getType(), null, "sourceTypeValue", null, 0, 1, NameExpCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(navigatingArgCSEClass, NavigatingArgCS.class, "NavigatingArgCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getNavigatingArgCS_RoundBracketedClause(), this.getRoundBracketedClauseCS(), this.getRoundBracketedClauseCS_Arguments(), "roundBracketedClause", null, 0, 1, NavigatingArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

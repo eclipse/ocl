@@ -188,11 +188,11 @@ public class EnumLiteralExpImpl
 				return isMany();
 			case PivotPackage.ENUM_LITERAL_EXP__IS_REQUIRED:
 				return isRequired();
-			case PivotPackage.ENUM_LITERAL_EXP__IS_TYPEOF:
-				return isTypeof();
 			case PivotPackage.ENUM_LITERAL_EXP__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
+			case PivotPackage.ENUM_LITERAL_EXP__TYPE_VALUE:
+				return getTypeValue();
 			case PivotPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL:
 				if (resolve) return getReferredEnumLiteral();
 				return basicGetReferredEnumLiteral();
@@ -232,11 +232,11 @@ public class EnumLiteralExpImpl
 			case PivotPackage.ENUM_LITERAL_EXP__IS_REQUIRED:
 				setIsRequired((Boolean)newValue);
 				return;
-			case PivotPackage.ENUM_LITERAL_EXP__IS_TYPEOF:
-				setIsTypeof((Boolean)newValue);
-				return;
 			case PivotPackage.ENUM_LITERAL_EXP__TYPE:
 				setType((Type)newValue);
+				return;
+			case PivotPackage.ENUM_LITERAL_EXP__TYPE_VALUE:
+				setTypeValue((Type)newValue);
 				return;
 			case PivotPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL:
 				setReferredEnumLiteral((EnumerationLiteral)newValue);
@@ -272,11 +272,11 @@ public class EnumLiteralExpImpl
 			case PivotPackage.ENUM_LITERAL_EXP__IS_REQUIRED:
 				setIsRequired(IS_REQUIRED_EDEFAULT);
 				return;
-			case PivotPackage.ENUM_LITERAL_EXP__IS_TYPEOF:
-				setIsTypeof(IS_TYPEOF_EDEFAULT);
-				return;
 			case PivotPackage.ENUM_LITERAL_EXP__TYPE:
 				setType((Type)null);
+				return;
+			case PivotPackage.ENUM_LITERAL_EXP__TYPE_VALUE:
+				setTypeValue((Type)null);
 				return;
 			case PivotPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL:
 				setReferredEnumLiteral((EnumerationLiteral)null);
@@ -308,10 +308,10 @@ public class EnumLiteralExpImpl
 				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.ENUM_LITERAL_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
-			case PivotPackage.ENUM_LITERAL_EXP__IS_TYPEOF:
-				return ((eFlags & IS_TYPEOF_EFLAG) != 0) != IS_TYPEOF_EDEFAULT;
 			case PivotPackage.ENUM_LITERAL_EXP__TYPE:
 				return type != null;
+			case PivotPackage.ENUM_LITERAL_EXP__TYPE_VALUE:
+				return typeValue != null;
 			case PivotPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL:
 				return referredEnumLiteral != null;
 		}

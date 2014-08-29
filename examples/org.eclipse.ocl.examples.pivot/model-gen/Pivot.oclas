@@ -185,9 +185,9 @@
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.CollectionRange" name="CollectionRange" superClasses="#T.pivot.CollectionLiteralPart">
       <ownedProperties xmi:id="p.pivot.CollectionRange.first" isComposite="true" name="first"
-          opposite="#//@ownedPackages.0/@ownedClasses.68/@ownedProperties.2" type="#T.pivot.OCLExpression"/>
-      <ownedProperties xmi:id="p.pivot.CollectionRange.last" isComposite="true" name="last"
           opposite="#//@ownedPackages.0/@ownedClasses.68/@ownedProperties.3" type="#T.pivot.OCLExpression"/>
+      <ownedProperties xmi:id="p.pivot.CollectionRange.last" isComposite="true" name="last"
+          opposite="#//@ownedPackages.0/@ownedClasses.68/@ownedProperties.4" type="#T.pivot.OCLExpression"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.CollectionType" name="CollectionType" superClasses="#T.pivot.DataType">
       <ownedProperties xmi:id="p.pivot.CollectionType.elementType" name="elementType"
@@ -418,11 +418,11 @@
         <specification xsi:type="pivot:ExpressionInOCL" body="self.condition.type = Boolean&#xA;&#xA;"/>
       </ownedInvariants>
       <ownedProperties xmi:id="p.pivot.IfExp.condition" isComposite="true" name="condition"
-          opposite="#//@ownedPackages.0/@ownedClasses.68/@ownedProperties.6" type="#T.pivot.OCLExpression"/>
-      <ownedProperties xmi:id="p.pivot.IfExp.elseExpression" isComposite="true" name="elseExpression"
           opposite="#//@ownedPackages.0/@ownedClasses.68/@ownedProperties.7" type="#T.pivot.OCLExpression"/>
-      <ownedProperties xmi:id="p.pivot.IfExp.thenExpression" isComposite="true" name="thenExpression"
+      <ownedProperties xmi:id="p.pivot.IfExp.elseExpression" isComposite="true" name="elseExpression"
           opposite="#//@ownedPackages.0/@ownedClasses.68/@ownedProperties.8" type="#T.pivot.OCLExpression"/>
+      <ownedProperties xmi:id="p.pivot.IfExp.thenExpression" isComposite="true" name="thenExpression"
+          opposite="#//@ownedPackages.0/@ownedClasses.68/@ownedProperties.9" type="#T.pivot.OCLExpression"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.Import" name="Import" superClasses="#T.pivot.NamedElement">
       <ownedProperties xmi:id="p.pivot.Import.importedNamespace" name="importedNamespace"
@@ -477,10 +477,10 @@
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.Iteration" name="Iteration" superClasses="#T.pivot.Operation">
       <ownedProperties xmi:id="p.pivot.Iteration.ownedAccumulator" isComposite="true"
-          name="ownedAccumulator" opposite="#//@ownedPackages.0/@ownedClasses.75/@ownedProperties.1"
+          name="ownedAccumulator" opposite="#//@ownedPackages.0/@ownedClasses.75/@ownedProperties.2"
           type="#//@ownedPackages.1/@ownedClasses.115"/>
       <ownedProperties xmi:id="p.pivot.Iteration.ownedIterator" isComposite="true"
-          name="ownedIterator" opposite="#//@ownedPackages.0/@ownedClasses.75/@ownedProperties.2"
+          name="ownedIterator" opposite="#//@ownedPackages.0/@ownedClasses.75/@ownedProperties.3"
           type="#//@ownedPackages.1/@ownedClasses.115"/>
       <ownedProperties xmi:id="p.pivot.Iteration.LoopExp" implicit="true" name="LoopExp"
           opposite="#p.pivot.LoopExp.referredIteration" type="#//@ownedPackages.1/@ownedClasses.13"/>
@@ -684,14 +684,14 @@
         <specification xsi:type="pivot:ExpressionInOCL" body="not target.type.oclIsKindOf (CollectionType)&#xA;&#xA;"/>
       </ownedInvariants>
       <ownedProperties xmi:id="p.pivot.MessageExp.argument" isComposite="true" name="argument"
-          opposite="#//@ownedPackages.0/@ownedClasses.68/@ownedProperties.11" type="#//@ownedPackages.1/@ownedClasses.113"/>
+          opposite="#//@ownedPackages.0/@ownedClasses.68/@ownedProperties.12" type="#//@ownedPackages.1/@ownedClasses.113"/>
       <ownedProperties xmi:id="p.pivot.MessageExp.calledOperation" isComposite="true"
           isRequired="false" name="calledOperation" opposite="#p.pivot.CallOperationAction.MessageExp"
           type="#T.pivot.CallOperationAction"/>
       <ownedProperties xmi:id="p.pivot.MessageExp.sentSignal" isComposite="true" isRequired="false"
           name="sentSignal" opposite="#p.pivot.SendSignalAction.MessageExp" type="#T.pivot.SendSignalAction"/>
       <ownedProperties xmi:id="p.pivot.MessageExp.target" isComposite="true" name="target"
-          opposite="#//@ownedPackages.0/@ownedClasses.68/@ownedProperties.12" type="#T.pivot.OCLExpression"/>
+          opposite="#//@ownedPackages.0/@ownedClasses.68/@ownedProperties.13" type="#T.pivot.OCLExpression"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.MessageType" name="MessageType" superClasses="#T.pivot.Class">
       <ownedProperties xmi:id="p.pivot.MessageType.referredOperation" isRequired="false"
@@ -731,6 +731,8 @@
         superClasses="#T.pivot.PrimitiveLiteralExp"/>
     <ownedClasses xmi:id="T.pivot.OCLExpression" isAbstract="true" name="OCLExpression"
         superClasses="#T.pivot.TypedElement">
+      <ownedProperties xmi:id="p.pivot.OCLExpression.typeValue" isRequired="false"
+          isResolveProxies="false" isTransient="true" name="typeValue" type="#T.pivot.Type"/>
       <ownedProperties xmi:id="p.pivot.OCLExpression.CallExp" implicit="true" isRequired="false"
           name="CallExp" opposite="#p.pivot.CallExp.source" type="#T.pivot.CallExp"/>
       <ownedProperties xmi:id="p.pivot.OCLExpression.CollectionItem" implicit="true"
@@ -797,6 +799,8 @@
           type="#T.pivot.LanguageExpression"/>
       <ownedProperties xmi:id="p.pivot.Operation.isInvalidating" default="false" name="isInvalidating"
           type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.Operation.isTypeof" default="false" name="isTypeof"
+          type="#Boolean"/>
       <ownedProperties xmi:id="p.pivot.Operation.isValidating" default="false" name="isValidating"
           type="#Boolean"/>
       <ownedProperties xmi:id="p.pivot.Operation.ownedParameter" isComposite="true"
@@ -837,7 +841,7 @@
       </ownedInvariants>
       <ownedInvariants xmi:id="cipivot.OperationCallExp.ArgumentTypeIsConformant"
           isCallable="true" name="ArgumentTypeIsConformant">
-        <specification xsi:type="pivot:ExpressionInOCL" body="&#xA;&#x9;let operation : Operation = self.referredOperation in&#xA;&#x9;let parameters : OrderedSet(Parameter) = operation.ownedParameter in&#xA;&#x9;let selfType : Type = operation.owningClass in&#xA;&#x9;Sequence{1..argument->size()}->forAll (i | &#xA;&#x9;&#x9;let argument : OCLExpression = argument->at(i) in&#xA;&#x9;&#x9;let parameter : Parameter = parameters->at(i) in&#xA;&#x9;&#x9;let parameterType : Type = parameter.type in&#xA;&#x9;&#x9;let requiredType : Type = parameterType.specializeIn(self, selfType) in&#xA;&#x9;&#x9;if argument.isTypeof and not parameter.isTypeof then Class else argument.type endif.conformsTo(requiredType))&#xA;&#xA;"/>
+        <specification xsi:type="pivot:ExpressionInOCL" body="&#xA;&#x9;let operation : Operation = self.referredOperation in&#xA;&#x9;let parameters : OrderedSet(Parameter) = operation.ownedParameter in&#xA;&#x9;let selfType : Type = operation.owningClass in&#xA;&#x9;Sequence{1..argument->size()}->forAll (i | &#xA;&#x9;&#x9;let argument : OCLExpression = argument->at(i) in&#xA;&#x9;&#x9;let parameter : Parameter = parameters->at(i) in&#xA;&#x9;&#x9;let parameterType : Type = parameter.type in&#xA;&#x9;&#x9;let requiredType : Type = if parameter.isTypeof then Class else parameterType.specializeIn(self, selfType) endif in&#xA;&#x9;&#x9;argument.type.conformsTo(requiredType))&#xA;&#xA;"/>
       </ownedInvariants>
       <ownedProperties xmi:id="p.pivot.OperationCallExp.argument" isComposite="true"
           name="argument" opposite="#p.pivot.OCLExpression.OperationCallExp" type="#//@ownedPackages.1/@ownedClasses.113"/>
@@ -887,6 +891,8 @@
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.Parameter" name="Parameter" superClasses="#T.pivot.VariableDeclaration">
       <ownedComment body="A parameter is a typed element that represents a parameter of an operation."/>
+      <ownedProperties xmi:id="p.pivot.Parameter.isTypeof" default="false" name="isTypeof"
+          type="#Boolean"/>
       <ownedProperties xmi:id="p.pivot.Parameter.operation" isRequired="false" name="operation"
           opposite="#p.pivot.Operation.ownedParameter" type="#T.pivot.Operation">
         <ownedComment body="The operation that owns the parameter."/>
@@ -1022,7 +1028,7 @@
       </ownedInvariants>
       <ownedInvariants xmi:id="cipivot.PropertyCallExp.NonStaticSourceTypeIsConformant"
           isCallable="true" name="NonStaticSourceTypeIsConformant">
-        <specification xsi:type="pivot:ExpressionInOCL" body="not referredProperty.isStatic implies &#xA;&#x9;if source.isTypeof then Class else source.type endif.conformsTo(getSpecializedReferredPropertyOwningType())&#xA;"/>
+        <specification xsi:type="pivot:ExpressionInOCL" body="not referredProperty.isStatic implies &#xA;&#x9;source.type.conformsTo(getSpecializedReferredPropertyOwningType())&#xA;"/>
       </ownedInvariants>
       <ownedOperations xmi:id="o.pivot.PropertyCallExp.getSpecializedReferredPropertyOwningType"
           name="getSpecializedReferredPropertyOwningType" type="#T.pivot.Class">
@@ -1510,8 +1516,6 @@
           isTransient="true" isVolatile="true" name="isMany" type="#Boolean"/>
       <ownedProperties xmi:id="p.pivot.TypedElement.isRequired" default="true" name="isRequired"
           type="#Boolean"/>
-      <ownedProperties xmi:id="p.pivot.TypedElement.isTypeof" default="false" name="isTypeof"
-          type="#Boolean"/>
       <ownedProperties xmi:id="p.pivot.TypedElement.type" isRequired="false" name="type"
           opposite="#p.pivot.Type.typedElement" type="#T.pivot.Type">
         <ownedComment body="The type of the TypedElement."/>
@@ -1556,7 +1560,7 @@
     <ownedClasses xmi:id="T.pivot.Variable" name="Variable" superClasses="#T.pivot.VariableDeclaration">
       <ownedInvariants xmi:id="cipivot.Variable.CompatibleInitialiserType" isCallable="true"
           name="CompatibleInitialiserType">
-        <specification xsi:type="pivot:ExpressionInOCL" body="initExpression &lt;> null implies if initExpression.isTypeof then Class else initExpression.type endif.conformsTo(type)&#xA;&#xA;"/>
+        <specification xsi:type="pivot:ExpressionInOCL" body="initExpression &lt;> null implies initExpression.type.conformsTo(type)&#xA;&#xA;"/>
       </ownedInvariants>
       <ownedProperties xmi:id="p.pivot.Variable.implicit" default="false" isRequired="false"
           name="implicit" type="#Boolean"/>
@@ -1580,6 +1584,8 @@
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.VariableDeclaration" isAbstract="true" name="VariableDeclaration"
         superClasses="#T.pivot.TypedElement">
+      <ownedProperties xmi:id="p.pivot.VariableDeclaration.typeValue" isRequired="false"
+          isResolveProxies="false" isTransient="true" name="typeValue" type="#T.pivot.Type"/>
       <ownedProperties xmi:id="p.pivot.VariableDeclaration.VariableExp" implicit="true"
           name="VariableExp" opposite="#p.pivot.VariableExp.referredVariable" type="#//@ownedPackages.1/@ownedClasses.31"/>
     </ownedClasses>
