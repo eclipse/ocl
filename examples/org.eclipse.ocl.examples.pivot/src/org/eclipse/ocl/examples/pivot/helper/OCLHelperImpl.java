@@ -82,7 +82,7 @@ public class OCLHelperImpl implements OCLHelper
 		if (contextClassifier == null) {
 			throw new IllegalStateException("Undefined contextClassifier");
 		}
-		ParserContext parserContext = new ClassContext(metaModelManager, null, contextClassifier);
+		ParserContext parserContext = new ClassContext(metaModelManager, null, contextClassifier, null);
 		return parserContext.parse(contextClassifier, expression);
 	}
 
@@ -108,7 +108,7 @@ public class OCLHelperImpl implements OCLHelper
 		org.eclipse.ocl.examples.pivot.Class contextClassifier = getEnvironment().getContextClassifier();
 		ParserContext parserContext;
 		if (contextClassifier != null) {
-			parserContext = new ClassContext(metaModelManager, null, contextClassifier);
+			parserContext = new ClassContext(metaModelManager, null, contextClassifier, null);
 		}
 		else {
 			parserContext = new ModelContext(metaModelManager, null);
@@ -121,7 +121,7 @@ public class OCLHelperImpl implements OCLHelper
 		if (contextClassifier == null) {
 			throw new IllegalStateException("Undefined contextClassifier");
 		}
-		ParserContext parserContext = new ClassContext(metaModelManager, null, contextClassifier);
+		ParserContext parserContext = new ClassContext(metaModelManager, null, contextClassifier, null);
 		return parserContext.parse(contextClassifier, expression);
 	}
 	

@@ -33,17 +33,20 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagedAdapter;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
+import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
@@ -55,6 +58,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.RootCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
+import org.eclipse.ocl.examples.xtext.base.scoping.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CSI2PivotMapping;
 import org.eclipse.osgi.util.NLS;
@@ -538,6 +542,15 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 		else {
 			return null;
 		}
+	}
+
+	public @Nullable VariableDeclaration lookupSelf(@NonNull ElementCS csElement) {
+		@SuppressWarnings("null") @NonNull EReference eReference = PivotPackage.Literals.EXPRESSION_IN_OCL__CONTEXT_VARIABLE;
+		EnvironmentView environmentView = new EnvironmentView(metaModelManager, eReference, Environment.SELF_VARIABLE_NAME);
+		ScopeView baseScopeView = BaseScopeView.getScopeView(metaModelManager, csElement, eReference);
+		environmentView.computeLookups(baseScopeView);
+		VariableDeclaration variableDeclaration = (VariableDeclaration) environmentView.getContent();
+		return variableDeclaration;
 	}
 
 	public @Nullable Type lookupType(@NonNull ElementCS csElement, @NonNull PathNameCS csPathName) {

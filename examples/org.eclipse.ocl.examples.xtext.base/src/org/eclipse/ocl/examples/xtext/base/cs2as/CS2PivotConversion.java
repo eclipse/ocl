@@ -922,26 +922,26 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 				if (contextType != null) {
 					setClassifierContext(pivotSpecification, contextType);
 				}
-				setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, contextType);
+				setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, contextType, null);
 			}
 			else if (eContainingFeature == PivotPackage.Literals.OPERATION__PRECONDITION) {
 				Operation contextOperation = (Operation)eContainer;
 				if (contextOperation != null) {
-					setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, contextOperation.getOwningClass());
+					setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, contextOperation.getOwningClass(), null);
 					setOperationContext(pivotSpecification, contextOperation, null);
 				}
 				else {
-					setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, null);
+					setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, null, null);
 				}
 			}
 			else if (eContainingFeature == PivotPackage.Literals.OPERATION__POSTCONDITION) {
 				Operation contextOperation = (Operation)eContainer;
 				if (contextOperation != null) {
-					setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, contextOperation.getOwningClass());
+					setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, contextOperation.getOwningClass(), null);
 					setOperationContext(pivotSpecification, contextOperation, Environment.RESULT_VARIABLE_NAME);
 				}
 				else {
-					setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, null);
+					setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, null, null);
 				}
 			}
 			else if (eContainingFeature == null) {
@@ -955,20 +955,20 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 			Property contextProperty = (Property)eContainer;
 			if (contextProperty != null) {
 				setPropertyContext(pivotSpecification, contextProperty);
-				setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, contextProperty.getOwningClass());
+				setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, contextProperty.getOwningClass(), null);
 			}
 			else {
-				setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, null);
+				setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, null, null);
 			}
 		}
 		else if (eContainingFeature == PivotPackage.Literals.OPERATION__BODY_EXPRESSION) {
 			Operation contextOperation = (Operation)eContainer;
 			if (contextOperation != null) {
-				setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, contextOperation.getOwningClass());
+				setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, contextOperation.getOwningClass(), null);
 				setOperationContext(pivotSpecification, contextOperation, null);
 			}
 			else {
-				setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, null);
+				setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, null, null);
 			}
 		}
 		else {

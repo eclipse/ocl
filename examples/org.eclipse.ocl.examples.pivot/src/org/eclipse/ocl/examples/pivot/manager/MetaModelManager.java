@@ -802,7 +802,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			if (secondType instanceof CollectionType) {
 				return conformsToCollectionType((CollectionType)firstType, firstSubstitutions, (CollectionType)secondType, secondSubstitutions);
 			}
-			return false;
+//			return false;
 		}
 		else if (firstType instanceof LambdaType) {
 			if (secondType instanceof LambdaType) {
@@ -1982,7 +1982,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 				}
 				if (pivotContainerContainer instanceof org.eclipse.ocl.examples.pivot.Class) {				
 					org.eclipse.ocl.examples.pivot.Class pivotType = (org.eclipse.ocl.examples.pivot.Class) pivotContainerContainer;
-					return new ClassContext(this, null, pivotType);
+					return new ClassContext(this, null, pivotType, null);
 				}
 			}
 			if (pivotContainer instanceof Slot) {
@@ -1990,7 +1990,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 				if (asDefiningFeature != null) {
 					org.eclipse.ocl.examples.pivot.Class pivotType = asDefiningFeature.getOwningClass();
 					if (pivotType != null) {				
-						return new ClassContext(this, null, pivotType);
+						return new ClassContext(this, null, pivotType, null);
 					}
 				}
 				EObject pivotContainerContainer = pivotContainer.eContainer();
@@ -2101,7 +2101,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		else {		// Class, Stereotype, State
 			for (EObject eObject = element; eObject != null; eObject = eObject.eContainer()) {
 				if ((eObject instanceof org.eclipse.ocl.examples.pivot.Class) && (((org.eclipse.ocl.examples.pivot.Class)eObject).getOwningPackage() != null)) {	// StateMachines etc do not have Packages
-					return new ClassContext(this, null, (org.eclipse.ocl.examples.pivot.Class)eObject);
+					return new ClassContext(this, null, (org.eclipse.ocl.examples.pivot.Class)eObject, null);
 				}
 			}
 		}

@@ -66,6 +66,7 @@ import org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.Environment;
@@ -219,7 +220,7 @@ public abstract class PivotTestSuite extends PivotTestCase
     		PivotEnvironment environment = (PivotEnvironment) helper.getEnvironment();
     		MetaModelManager metaModelManager = environment.getMetaModelManager();
     		org.eclipse.ocl.examples.pivot.Class contextClassifier = environment.getContextClassifier();
-    		ParserContext semanticContext = new ClassContext(metaModelManager, null, contextClassifier);
+    		ParserContext semanticContext = new ClassContext(metaModelManager, null, contextClassifier, null);
 			resource = semanticContext.createBaseResource(expression);
 			PivotUtil.checkResourceErrors(DomainUtil.bind(OCLMessages.ErrorsInResource, expression), resource);
             fail("Should not have parsed \"" + expression + "\"");
@@ -256,7 +257,7 @@ public abstract class PivotTestSuite extends PivotTestCase
    		PivotEnvironment environment = (PivotEnvironment) helper.getEnvironment();
    		MetaModelManager metaModelManager = environment.getMetaModelManager();
    		org.eclipse.ocl.examples.pivot.Class contextClassifier = environment.getContextClassifier();
-   		ParserContext classContext = new ClassContext(metaModelManager, null, contextClassifier);
+   		ParserContext classContext = new ClassContext(metaModelManager, null, contextClassifier, null);
    		csResource = (BaseCSResource) classContext.createBaseResource(expression);
 			PivotUtil.checkResourceErrors(DomainUtil.bind(OCLMessages.ErrorsInResource, expression), csResource);
 			CS2PivotResourceAdapter cs2pivot = csResource.getCS2ASAdapter(metaModelManager);
@@ -289,7 +290,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 			PivotEnvironment environment = (PivotEnvironment) helper.getEnvironment();
 			MetaModelManager metaModelManager = environment.getMetaModelManager();
 			org.eclipse.ocl.examples.pivot.Class contextClassifier = environment.getContextClassifier();
-			ParserContext classContext = new ClassContext(metaModelManager, null, contextClassifier);
+			ParserContext classContext = new ClassContext(metaModelManager, null, contextClassifier, null);
 			csResource = (BaseCSResource) classContext.createBaseResource(expression);
 			PivotUtil.checkResourceErrors(DomainUtil.bind(OCLMessages.ErrorsInResource, expression), csResource);
 			CS2PivotResourceAdapter cs2pivot = csResource.getCS2ASAdapter(metaModelManager);
@@ -771,7 +772,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	   		PivotEnvironment environment = (PivotEnvironment) getHelper().getEnvironment();
 	   		MetaModelManager metaModelManager = environment.getMetaModelManager();
 	   		org.eclipse.ocl.examples.pivot.Class contextClassifier = environment.getContextClassifier();
-	   		ParserContext classContext = new ClassContext(metaModelManager, null, contextClassifier);
+	   		ParserContext classContext = new ClassContext(metaModelManager, null, contextClassifier, null);
 	   		csResource = (BaseCSResource) classContext.createBaseResource(expression);
 			PivotUtil.checkResourceErrors(DomainUtil.bind(OCLMessages.ErrorsInResource, expression), csResource);
 			CS2PivotResourceAdapter cs2pivot = csResource.getCS2ASAdapter(metaModelManager);
@@ -795,7 +796,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	   		PivotEnvironment environment = (PivotEnvironment) helper.getEnvironment();
 	   		MetaModelManager metaModelManager = environment.getMetaModelManager();
 	   		org.eclipse.ocl.examples.pivot.Class contextClassifier = environment.getContextClassifier();
-	   		ParserContext classContext = new ClassContext(metaModelManager, null, contextClassifier);
+	   		ParserContext classContext = new ClassContext(metaModelManager, null, contextClassifier, null);
 	   		csResource = (BaseCSResource) classContext.createBaseResource(expression);
 			PivotUtil.checkResourceErrors(DomainUtil.bind(OCLMessages.ErrorsInResource, expression), csResource);
 			CS2PivotResourceAdapter cs2pivot = csResource.getCS2ASAdapter(metaModelManager);
@@ -1165,9 +1166,11 @@ public abstract class PivotTestSuite extends PivotTestCase
 	}
 
 	protected @Nullable Object evaluate(@NonNull OCLHelper aHelper, @Nullable Object context, @NonNull String expression) throws Exception {
-		org.eclipse.ocl.examples.pivot.Class contextType = metaModelManager.getType(idResolver.getStaticTypeOf(context));
-		aHelper.setContext(contextType);
-		ExpressionInOCL query = aHelper.createQuery(expression);
+		org.eclipse.ocl.examples.pivot.Class classContext = /*context instanceof ElementExtension ? ((ElementExtension)context).getStereotype() :*/ metaModelManager.getType(idResolver.getStaticTypeOf(context));
+		aHelper.setContext(classContext);
+//		ExpressionInOCL query = aHelper.createQuery(expression);
+		ParserContext parserContext = new ClassContext(metaModelManager, null, classContext, (context instanceof Type) && !(context instanceof ElementExtension) ? (Type)context : null);
+		ExpressionInOCL query = parserContext.parse(classContext, expression);
 		assertNoValidationErrors(expression, query);
         try {
         	return evaluate(query, context);

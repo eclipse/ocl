@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -21,7 +22,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 
 public interface Base2PivotConversion
 {
-	void setContextVariable(@NonNull ExpressionInOCL pivotSpecification, @NonNull String selfVariableName, @NonNull Type contextType);
+	void setContextVariable(@NonNull ExpressionInOCL pivotSpecification, @NonNull String selfVariableName, @NonNull Type contextType, @Nullable Type contextInstance);
 	void setClassifierContext(@NonNull ExpressionInOCL pivotSpecification, @NonNull Type contextType);
 	void setParameterVariables(@NonNull ExpressionInOCL pivotSpecification, @NonNull List<Parameter> parameters);
 	void setParameterVariables(@NonNull ExpressionInOCL pivotSpecification, @NonNull Map<String, Type> parameters);

@@ -58,6 +58,7 @@ import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.ParserException;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.context.ClassContext;
 import org.eclipse.ocl.examples.pivot.context.ParserContext;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
@@ -884,7 +885,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 				DomainClass staticType = idResolver.getStaticTypeOf(contextObject);
 				org.eclipse.ocl.examples.pivot.Class contextType = metaModelManager.getType(staticType);
 //				if (contextType != null) {
-					parserContext = new ClassContext(metaModelManager, null, contextType);
+					parserContext = new ClassContext(metaModelManager, null, contextType, contextObject instanceof Type ? (Type)contextObject : null);
 //				}
 //				else {
 //					parserContext = new ModelContext(metaModelManager, null);

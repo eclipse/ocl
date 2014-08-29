@@ -118,13 +118,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
         assertQueryTrue(metaModelManager.getOclAnyType().getOwningPackage(), "let name : String = 'String' in ownedClasses->select(name = 'Integer') = Set{Integer}");
         assertQueryTrue(-1, "let type : Class = oclType() in type.owningPackage.ownedClasses->select(name = type.name) = Set{Integer}");
         assertQueryTrue(metaModelManager.getOclAnyType().getOwningPackage(), "ownedPackages->select(oclIsKindOf(Integer))->isEmpty()");
-        assertQueryTrue(metaModelManager.getOclAnyType().getOwningPackage(), "ownedPackages->select(oclIsKindOf(ocl::Package))->isEmpty()");
-        assertSemanticErrorQuery2(metaModelManager.getPivotType("Package"), "ownedPackages->select(oclIsKindOf(Package))->isEmpty()", OCLMessages.UnresolvedOperationCall_ERROR_, "Set(Package)", "oclIsKindOf", "Bag(Package)");
-//
-//		The following test used to pass because the expectation of a type argument was pushed down to effect a Type rather than Property lookup.
-//		The consequent irregularity does not seem justified or necessary.
-//
-//        assertQueryTrue(metaModelManager.getOclAnyType().getOwningPackage(), "ownedPackages->select(oclIsKindOf(Package))->isEmpty()");
+        assertQueryTrue(metaModelManager.getOclAnyType().getOwningPackage(), "ownedPackages->select(oclIsKindOf(Package))->isEmpty()");	// Fails unless implicit Package disambiguated away by argument type expectation
     }
 
 	@Test public void test_iterator_scope() {

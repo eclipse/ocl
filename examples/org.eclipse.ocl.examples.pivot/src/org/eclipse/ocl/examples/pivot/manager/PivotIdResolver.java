@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.library.executor.AbstractIdResolver;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
@@ -140,6 +141,10 @@ public class PivotIdResolver extends AbstractIdResolver
 				e.printStackTrace();
 			}
 //			return ((UMLElementExtension)value).getStaticType();
+		}
+		else if (value instanceof ElementExtension) {
+			Stereotype asStereotype = ((ElementExtension)value).getStereotype();
+			return asStereotype != null ? asStereotype : metaModelManager.getOclInvalidType();
 		}
 		return super.getStaticTypeOf(value);
 	}

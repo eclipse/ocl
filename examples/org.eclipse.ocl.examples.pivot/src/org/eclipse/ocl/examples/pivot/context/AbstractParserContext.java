@@ -81,6 +81,10 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 		return null;
 	}
 
+	public @Nullable Type getInstanceContext() {
+		return null;
+	}
+
 	public @NonNull ExpressionInOCL getExpression(@NonNull BaseResource resource) throws ParserException {
 		List<EObject> contents = resource.getContents();
 		int size = contents.size();

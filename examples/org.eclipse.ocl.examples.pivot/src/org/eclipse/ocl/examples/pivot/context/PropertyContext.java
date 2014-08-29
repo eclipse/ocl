@@ -25,7 +25,7 @@ public class PropertyContext extends ClassContext
 //	private final Property propertyContext;
 	
 	public PropertyContext(@NonNull MetaModelManager metaModelManager, @Nullable URI uri, @NonNull Property propertyContext) {
-		super(metaModelManager, uri, DomainUtil.nonNullModel(propertyContext.getOwningClass()));
+		super(metaModelManager, uri, DomainUtil.nonNullModel(propertyContext.getOwningClass()), null);
 //		this.propertyContext = propertyContext;
 	}
 }

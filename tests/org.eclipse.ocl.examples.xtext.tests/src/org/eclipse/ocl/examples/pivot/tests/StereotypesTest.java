@@ -218,7 +218,6 @@ public class StereotypesTest extends PivotTestSuite
      * Tests M2 navigations using base_XXX and extension_YYY.
      */
     public void test_stereotypeM2Navigation() throws Exception {
-//
     	assertQueryEquals(mm.umlEnglishClass, "EnglishClass", "self.NamedElement::name");
     	assertQueryEquals(mm.umlEnglishClass, "EnglishClass", "self.name");
 //    	assertQueryEquals(mm.asEnglishClass, "EnglishClass", "self.NamedElement::name");	// FIXME fails because wrong NamedElement::name chosen
@@ -235,7 +234,7 @@ public class StereotypesTest extends PivotTestSuite
 //    	assertQueryEquals(mm.englishClass, "EnglishClass$InEnglish", "self.extension_Internationalized.oclType().name");
     	assertSemanticErrorQuery2(mm.asEnglishClass, "self.extension_InGerman", OCLMessages.UnresolvedProperty_ERROR_, "Model::EnglishClass", "extension_InGerman");
     	assertSemanticErrorQuery2((org.eclipse.ocl.examples.pivot.Class)metaModelManager.getIdResolver().getStaticTypeOf(mm.umlEnglishClass), "self.extension_Internationalized.extension_InEnglish", OCLMessages.UnresolvedProperty_ERROR_, "InternationalizedProfile::Internationalized", "extension_InEnglish");
-    	assertSemanticErrorQuery2(metaModelManager.getMetaclass(mm.asEnglishClass), "self.extension_Internationalized.extension_InEnglish", OCLMessages.UnresolvedProperty_ERROR_, "InternationalizedProfile::Internationalized", "extension_InEnglish");
+    	assertSemanticErrorQuery2(/*metaModelManager.getMetaclass(*/mm.asEnglishClass/*)*/, "self.extension_Internationalized.extension_InEnglish", OCLMessages.UnresolvedProperty_ERROR_, "InternationalizedProfile::Internationalized", "extension_InEnglish");
     	assertQueryEquals(mm.umlEnglishClass, mm.umlEnglishClassInEnglish, "self.extension_Internationalized");
     	assertQueryEquals(mm.asEnglishClass, mm.asEnglishClassInEnglish, "self.extension_Internationalized");
     	assertQueryEquals(mm.umlEnglishClass, mm.umlEnglishClass, "self.extension_Internationalized.base_Class");

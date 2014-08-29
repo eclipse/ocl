@@ -31,6 +31,7 @@ import org.eclipse.ocl.examples.pivot.manager.PackageServer;
 import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutionVisitor;
 import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutions;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCSLeft2RightVisitor.Invocations;
 
 public abstract class AbstractOperationMatcher
 {
@@ -160,7 +161,7 @@ public abstract class AbstractOperationMatcher
 
 	protected abstract int getArgumentCount();
 
-	public @Nullable Operation getBestOperation(@NonNull List<NamedElement> invocations) {
+	public @Nullable Operation getBestOperation(@NonNull Invocations invocations) {
 		ambiguities = null;
 		Operation bestOperation = null;
 		TemplateParameterSubstitutions bestBindings = TemplateParameterSubstitutions.EMPTY;

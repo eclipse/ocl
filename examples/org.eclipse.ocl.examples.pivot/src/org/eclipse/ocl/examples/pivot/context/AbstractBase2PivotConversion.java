@@ -80,7 +80,7 @@ public abstract class AbstractBase2PivotConversion extends AbstractConversion im
 		setType(targetElement, null);
 	}
 
-	public void setContextVariable(@NonNull ExpressionInOCL pivotSpecification, @NonNull String selfVariableName, @Nullable Type contextType) {
+	public void setContextVariable(@NonNull ExpressionInOCL pivotSpecification, @NonNull String selfVariableName, @Nullable Type contextType, @Nullable Type contextInstance) {
 		Variable contextVariable = pivotSpecification.getContextVariable();
 		if (contextVariable == null) {
 			@SuppressWarnings("null")
@@ -89,7 +89,12 @@ public abstract class AbstractBase2PivotConversion extends AbstractConversion im
 			pivotSpecification.setContextVariable(contextVariable);
 		}
 		refreshName(contextVariable, selfVariableName);
-		setType(contextVariable, contextType);
+		if (contextInstance != null) {
+			setType(contextVariable, contextInstance, contextVariable.isRequired(), true);
+		}
+		else {
+			setType(contextVariable, contextType, contextVariable.isRequired(), false);
+		}
 	}
 
 	public void setClassifierContext(@NonNull ExpressionInOCL pivotSpecification, @NonNull Type contextType) {

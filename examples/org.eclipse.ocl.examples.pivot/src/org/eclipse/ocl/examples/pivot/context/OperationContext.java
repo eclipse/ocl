@@ -27,7 +27,7 @@ public class OperationContext extends ClassContext
 	private final @Nullable String resultVariableName;		// Null for none
 	
 	public OperationContext(@NonNull MetaModelManager metaModelManager, @Nullable URI uri, @NonNull Operation operationContext, @Nullable String resultVariableName) {
-		super(metaModelManager, uri, DomainUtil.nonNullModel(operationContext.getOwningClass()));
+		super(metaModelManager, uri, DomainUtil.nonNullModel(operationContext.getOwningClass()), null);
 		this.operationContext = operationContext;
 		this.resultVariableName = resultVariableName;
 	}
