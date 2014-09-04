@@ -86,6 +86,10 @@ Workflow {
     component = EcoreNormalizer { resourceSet = resourceSet skipOnErrors = true
     	modelSlot = "${ecoreSlot}"
     }
+    component = SetNsURI { resourceSet = resourceSet skipOnErrors = true
+    	modelSlot = "${ecoreSlot}"
+    	nsURI = "http://www.eclipse.org/ocl/0.9.0/Pivot"
+    }
     component = ResourceWriter { resourceSet = resourceSet skipOnErrors = true
     	modelSlot = "${ecoreSlot}"
     	uri = "/${projectName}/model-gen/OldPivot.ecore"
