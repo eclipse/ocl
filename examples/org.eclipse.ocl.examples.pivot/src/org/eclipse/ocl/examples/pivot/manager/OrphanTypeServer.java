@@ -15,6 +15,7 @@ import java.util.Iterator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.utilities.SingletonIterator;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
 
 /**
  * An OrphanTypeServer provides a 'merge' type behaviour for a synthesized type that forms part of the
@@ -25,15 +26,11 @@ public class OrphanTypeServer extends AbstractTypeServer implements Iterable<Dom
 {
  	protected final @NonNull org.eclipse.ocl.examples.pivot.Class target;
 	
-	protected OrphanTypeServer(@NonNull OrphanPackageServer packageServer, @NonNull org.eclipse.ocl.examples.pivot.Class type) {
-		super(packageServer, type);
+	public OrphanTypeServer(@NonNull CompleteClass completeClass, @NonNull org.eclipse.ocl.examples.pivot.Class type) {
+		super(completeClass, type);
 		this.target = type;
 	}
 
-	public @NonNull Iterable<DomainClass> getPartialTypes() {
-		return this;			// 'this' is pragmatically an Iterable
-	}
-	
 	public @NonNull org.eclipse.ocl.examples.pivot.Class getPivotType() {
 		return target;
 	}

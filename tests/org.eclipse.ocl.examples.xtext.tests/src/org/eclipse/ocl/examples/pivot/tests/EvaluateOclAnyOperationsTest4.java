@@ -697,9 +697,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
      * Tests the oclType() operator for OclInvalid.
      */
     @Test public void test_oclType_OclInvalid() {
-    	InvalidType invalidType = metaModelManager.getOclInvalidType();
-    	assertQueryEquals(null, metaModelManager.getClassType(), "OclInvalid.oclType()");
-//
+       	InvalidType invalidType = metaModelManager.getOclInvalidType();
     	assertQueryInvalid(null, "invalid.oclType()");
     	assertQueryInvalid(null, "invalid.oclType().name");
 		assertQueryEquals(null, invalidType, "OclInvalid");

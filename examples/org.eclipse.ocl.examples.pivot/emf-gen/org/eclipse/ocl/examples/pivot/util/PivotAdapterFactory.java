@@ -73,6 +73,7 @@ import org.eclipse.ocl.examples.pivot.MessageType;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.NavigationCallExp;
+import org.eclipse.ocl.examples.pivot.NestedCompletePackage;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.NumericLiteralExp;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
@@ -80,7 +81,9 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
+import org.eclipse.ocl.examples.pivot.OrphanCompletePackage;
 import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.ParentCompletePackage;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.PrimitiveLiteralExp;
@@ -94,6 +97,7 @@ import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.ReferringElement;
 import org.eclipse.ocl.examples.pivot.Region;
 import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.RootCompletePackage;
 import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.SendSignalAction;
 import org.eclipse.ocl.examples.pivot.SequenceType;
@@ -496,6 +500,11 @@ public class PivotAdapterFactory
 				return createNavigationCallExpAdapter();
 			}
 			@Override
+			public Adapter caseNestedCompletePackage(NestedCompletePackage object)
+			{
+				return createNestedCompletePackageAdapter();
+			}
+			@Override
 			public Adapter caseNullLiteralExp(NullLiteralExp object)
 			{
 				return createNullLiteralExpAdapter();
@@ -531,6 +540,11 @@ public class PivotAdapterFactory
 				return createOrderedSetTypeAdapter();
 			}
 			@Override
+			public Adapter caseOrphanCompletePackage(OrphanCompletePackage object)
+			{
+				return createOrphanCompletePackageAdapter();
+			}
+			@Override
 			public Adapter casePackage(org.eclipse.ocl.examples.pivot.Package object)
 			{
 				return createPackageAdapter();
@@ -539,6 +553,11 @@ public class PivotAdapterFactory
 			public Adapter caseParameter(Parameter object)
 			{
 				return createParameterAdapter();
+			}
+			@Override
+			public Adapter caseParentCompletePackage(ParentCompletePackage object)
+			{
+				return createParentCompletePackageAdapter();
 			}
 			@Override
 			public Adapter casePivotable(Pivotable object)
@@ -604,6 +623,11 @@ public class PivotAdapterFactory
 			public Adapter caseRoot(Root object)
 			{
 				return createRootAdapter();
+			}
+			@Override
+			public Adapter caseRootCompletePackage(RootCompletePackage object)
+			{
+				return createRootCompletePackageAdapter();
 			}
 			@Override
 			public Adapter caseSelfType(SelfType object)
@@ -1473,6 +1497,21 @@ public class PivotAdapterFactory
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.OrphanCompletePackage <em>Orphan Complete Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.pivot.OrphanCompletePackage
+	 * @generated
+	 */
+	public Adapter createOrphanCompletePackageAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.PrimitiveType <em>Primitive Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1600,6 +1639,21 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createRootAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.RootCompletePackage <em>Root Complete Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.pivot.RootCompletePackage
+	 * @generated
+	 */
+	public Adapter createRootCompletePackageAdapter()
 	{
 		return null;
 	}
@@ -2145,6 +2199,21 @@ public class PivotAdapterFactory
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.ParentCompletePackage <em>Parent Complete Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.pivot.ParentCompletePackage
+	 * @generated
+	 */
+	public Adapter createParentCompletePackageAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.VariableDeclaration <em>Variable Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -2447,6 +2516,21 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createNavigationCallExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.NestedCompletePackage <em>Nested Complete Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.pivot.NestedCompletePackage
+	 * @generated
+	 */
+	public Adapter createNestedCompletePackageAdapter()
+	{
 		return null;
 	}
 

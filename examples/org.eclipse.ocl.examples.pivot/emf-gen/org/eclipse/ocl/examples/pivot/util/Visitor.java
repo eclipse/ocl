@@ -99,6 +99,7 @@ public interface Visitor<R>
 	@Nullable R visitNamedElement(@NonNull org.eclipse.ocl.examples.pivot.NamedElement object);
 	@Nullable R visitNamespace(@NonNull org.eclipse.ocl.examples.pivot.Namespace object);
 	@Nullable R visitNavigationCallExp(@NonNull org.eclipse.ocl.examples.pivot.NavigationCallExp object);
+	@Nullable R visitNestedCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.NestedCompletePackage object);
 	@Nullable R visitNullLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.NullLiteralExp object);
 	@Nullable R visitNumericLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.NumericLiteralExp object);
 	@Nullable R visitOCLExpression(@NonNull org.eclipse.ocl.examples.pivot.OCLExpression object);
@@ -106,8 +107,10 @@ public interface Visitor<R>
 	@Nullable R visitOperationCallExp(@NonNull org.eclipse.ocl.examples.pivot.OperationCallExp object);
 	@Nullable R visitOppositePropertyCallExp(@NonNull org.eclipse.ocl.examples.pivot.OppositePropertyCallExp object);
 	@Nullable R visitOrderedSetType(@NonNull org.eclipse.ocl.examples.pivot.OrderedSetType object);
+	@Nullable R visitOrphanCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.OrphanCompletePackage object);
 	@Nullable R visitPackage(@NonNull org.eclipse.ocl.examples.pivot.Package object);
 	@Nullable R visitParameter(@NonNull org.eclipse.ocl.examples.pivot.Parameter object);
+	@Nullable R visitParentCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.ParentCompletePackage object);
 	@Nullable R visitPrecedence(@NonNull org.eclipse.ocl.examples.pivot.Precedence object);
 	@Nullable R visitPrimitiveLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.PrimitiveLiteralExp object);
 	@Nullable R visitPrimitiveType(@NonNull org.eclipse.ocl.examples.pivot.PrimitiveType object);
@@ -119,6 +122,7 @@ public interface Visitor<R>
 	@Nullable R visitRealLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.RealLiteralExp object);
 	@Nullable R visitRegion(@NonNull org.eclipse.ocl.examples.pivot.Region object);
 	@Nullable R visitRoot(@NonNull org.eclipse.ocl.examples.pivot.Root object);
+	@Nullable R visitRootCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.RootCompletePackage object);
 	@Nullable R visitSelfType(@NonNull org.eclipse.ocl.examples.pivot.SelfType object);
 	@Nullable R visitSendSignalAction(@NonNull org.eclipse.ocl.examples.pivot.SendSignalAction object);
 	@Nullable R visitSequenceType(@NonNull org.eclipse.ocl.examples.pivot.SequenceType object);

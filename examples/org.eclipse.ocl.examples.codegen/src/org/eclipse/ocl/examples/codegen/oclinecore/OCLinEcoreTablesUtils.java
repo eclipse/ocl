@@ -665,7 +665,7 @@ public class OCLinEcoreTablesUtils
 				boolean pruned = false;
 				Type myType = null;
 				TypeServer typeServer = metaModelManager.getTypeServer(type);
-				for (DomainClass partialType : typeServer.getPartialTypes()) {
+				for (DomainClass partialType : typeServer.getCompleteClass().getPartialClasses()) {
 					DomainPackage partialPackage = partialType.getOwningPackage();
 					if (partialPackage == oclstdlibPackage) {
 						if ((elementType != null) && !typeServer.conformsTo(metaModelManager, elementType)) {
@@ -772,7 +772,7 @@ public class OCLinEcoreTablesUtils
 			}
 			else if (pivotMetaModel == pPackage) {
 				TypeServer typeServer = metaModelManager.getTypeServer(type);
-				for (DomainClass partialType : typeServer.getPartialTypes()) {
+				for (DomainClass partialType : typeServer.getCompleteClass().getPartialClasses()) {
 					DomainPackage partialPackage = partialType.getOwningPackage();
 					if (partialPackage == oclstdlibPackage) {
 						if (!typeServer.conformsTo(metaModelManager, elementType)) {

@@ -23,6 +23,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
@@ -46,8 +47,8 @@ public class TemplateableTypeServer extends ExtensibleTypeServer
 	//
 	private @Nullable /*WeakHash*/Map<DomainTypeParameters, WeakReference<org.eclipse.ocl.examples.pivot.Class>> specializations = null;
 
-	protected TemplateableTypeServer(@NonNull PackageServer packageServer, @NonNull DomainClass domainType) {
-		super(packageServer, domainType);
+	public TemplateableTypeServer(@NonNull CompleteClass completeClass, @NonNull DomainClass domainType) {
+		super(completeClass, domainType);
 	}
 	
 	protected @NonNull org.eclipse.ocl.examples.pivot.Class createSpecialization(@NonNull DomainTypeParameters templateArguments) {
@@ -72,14 +73,14 @@ public class TemplateableTypeServer extends ExtensibleTypeServer
 			}
 		}
 		specializedType.getOwnedTemplateBindings().add(templateBinding);
-		packageManager.resolveSuperClasses(specializedType, unspecializedType);
+		completeModel.resolveSuperClasses(specializedType, unspecializedType);
 //		if (specializedType instanceof Metaclass) {
 //			Type instanceType = (Type) templateArguments.get(0);
 //			Metaclass specializedMetaclass = (Metaclass)specializedType;
 //			specializedMetaclass.setInstanceType(instanceType);
 //		}
 		specializedType.setUnspecializedElement(unspecializedType);
-		MetaModelManager metaModelManager = packageManager.getMetaModelManager();
+		MetaModelManager metaModelManager = completeModel.getMetaModelManager();
 		Orphanage orphanage = Orphanage.getOrphanage(metaModelManager.getASResourceSet());
 		specializedType.setOwningPackage(orphanage);
 		return specializedType;

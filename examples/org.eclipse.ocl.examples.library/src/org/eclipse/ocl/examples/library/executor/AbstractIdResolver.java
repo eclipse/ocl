@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
+import org.eclipse.ocl.examples.domain.elements.DomainCompletePackage;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
 import org.eclipse.ocl.examples.domain.elements.DomainEnumeration;
 import org.eclipse.ocl.examples.domain.elements.DomainEnumerationLiteral;
@@ -345,8 +346,8 @@ public abstract class AbstractIdResolver implements IdResolver
 				enumerator2enumerationLiteralId2 = enumerator2enumerationLiteralId;
 				if (enumerator2enumerationLiteralId2 == null) {
 					enumerator2enumerationLiteralId = enumerator2enumerationLiteralId2 = new HashMap<Enumerator, EnumerationLiteralId>();
-					for (DomainPackage dPackage : standardLibrary.getAllPackages()) {
-						for (DomainClass dType : dPackage.getOwnedClasses()) {
+					for (DomainCompletePackage dPackage : standardLibrary.getAllCompletePackages()) {
+						for (DomainClass dType : dPackage.getAllClasses()) {
 							if (dType instanceof DomainEnumeration) {
 								for (DomainEnumerationLiteral dEnumerationLiteral : ((DomainEnumeration) dType).getEnumerationLiterals()) {
 									Enumerator enumerator = dEnumerationLiteral.getEnumerator();

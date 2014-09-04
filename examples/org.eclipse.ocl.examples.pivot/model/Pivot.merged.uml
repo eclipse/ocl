@@ -301,24 +301,15 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TCompleteModel" name="CompleteModel">
       <generalization xmi:id="Ppivot.TCompleteModel.g0" general="Ppivot.TNamedElement"/>
-      <ownedAttribute xmi:id="Ppivot.TCompleteModel.PownedCompletePackages" name="ownedCompletePackages" type="Ppivot.TCompletePackage"
+      <ownedAttribute xmi:id="Ppivot.TCompleteModel.PownedCompletePackages" name="ownedCompletePackages" type="Ppivot.TRootCompletePackage"
           aggregation="composite" association="Ppivot.A_owningCompleteModel_ownedCompletePackages">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TCompleteModel.PownedCompletePackages.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TCompleteModel.PownedCompletePackages.uV" value="*"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TCompletePackage" name="CompletePackage">
+    <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TCompletePackage" name="CompletePackage" isAbstract="true">
       <generalization xmi:id="Ppivot.TCompletePackage.g0" general="Ppivot.TNamedElement"/>
-      <ownedAttribute xmi:id="Ppivot.TCompletePackage.PowningCompleteModel" name="owningCompleteModel" type="Ppivot.TCompleteModel" association="Ppivot.A_owningCompleteModel_ownedCompletePackages">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TCompletePackage.PowningCompleteModel.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TCompletePackage.PowningCompleteModel.uV" value="1"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TCompletePackage.PowningCompletePackage" name="owningCompletePackage" type="Ppivot.TCompletePackage"
-          association="Ppivot.A_owningCompletePackage_ownedCompletePackages">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TCompletePackage.PowningCompletePackage.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TCompletePackage.PowningCompletePackage.uV" value="1"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TCompletePackage.PownedCompletePackages" name="ownedCompletePackages" type="Ppivot.TCompletePackage"
+      <ownedAttribute xmi:id="Ppivot.TCompletePackage.PownedCompletePackages" name="ownedCompletePackages" type="Ppivot.TNestedCompletePackage"
           aggregation="composite" association="Ppivot.A_owningCompletePackage_ownedCompletePackages">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TCompletePackage.PownedCompletePackages.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TCompletePackage.PownedCompletePackages.uV" value="*"/>
@@ -764,6 +755,14 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TNavigationCallExp.PnavigationSource.lV"/>
       </ownedAttribute>
     </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TNestedCompletePackage" name="NestedCompletePackage">
+      <generalization xmi:id="Ppivot.TNestedCompletePackage.g0" general="Ppivot.TCompletePackage"/>
+      <ownedAttribute xmi:id="Ppivot.TNestedCompletePackage.PowningCompletePackage" name="owningCompletePackage" type="Ppivot.TCompletePackage"
+          association="Ppivot.A_owningCompletePackage_ownedCompletePackages">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TNestedCompletePackage.PowningCompletePackage.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TNestedCompletePackage.PowningCompletePackage.uV" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TNullLiteralExp" name="NullLiteralExp">
       <generalization xmi:id="Ppivot.TNullLiteralExp.g0" general="Ppivot.TPrimitiveLiteralExp"/>
     </packagedElement>
@@ -858,6 +857,9 @@
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TOrderedSetType" name="OrderedSetType">
       <generalization xmi:id="Ppivot.TOrderedSetType.g0" general="Ppivot.TCollectionType"/>
     </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TOrphanCompletePackage" name="OrphanCompletePackage">
+      <generalization xmi:id="Ppivot.TOrphanCompletePackage.g0" general="Ppivot.TRootCompletePackage"/>
+    </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TPackage" name="Package">
       <ownedComment xmi:id="Ppivot.TPackage.oC0" annotatedElement="Ppivot.TPackage">
         <body>A package is a container for types and other packages.</body>
@@ -923,6 +925,9 @@
       <ownedAttribute xmi:id="Ppivot.TParameter.PisTypeof" name="isTypeof" type="Ppivot.TBoolean">
         <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TParameter.PisTypeof.dlV" value="false"/>
       </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TParentCompletePackage" name="ParentCompletePackage">
+      <generalization xmi:id="Ppivot.TParentCompletePackage.g0" general="Ppivot.TRootCompletePackage"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TPrecedence" name="Precedence">
       <generalization xmi:id="Ppivot.TPrecedence.g0" general="Ppivot.TNamedElement"/>
@@ -1133,6 +1138,14 @@
       <ownedAttribute xmi:id="Ppivot.TRoot.Pimports" name="imports" type="Ppivot.TImport" isOrdered="true" aggregation="composite">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TRoot.Pimports.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TRoot.Pimports.uV" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TRootCompletePackage" name="RootCompletePackage" isAbstract="true">
+      <generalization xmi:id="Ppivot.TRootCompletePackage.g0" general="Ppivot.TCompletePackage"/>
+      <ownedAttribute xmi:id="Ppivot.TRootCompletePackage.PowningCompleteModel" name="owningCompleteModel" type="Ppivot.TCompleteModel"
+          association="Ppivot.A_owningCompleteModel_ownedCompletePackages">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TRootCompletePackage.PowningCompleteModel.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TRootCompletePackage.PowningCompleteModel.uV" value="1"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TSelfType" name="SelfType">
@@ -1788,11 +1801,11 @@
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedTemplateSignature_owningTemplateableElement" name="A_ownedTemplateSignature_owningTemplateableElement"
         memberEnd="Ppivot.TTemplateableElement.PownedTemplateSignature Ppivot.TTemplateSignature.PowningTemplateableElement"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_owningCompleteModel_ownedCompletePackages" name="A_owningCompleteModel_ownedCompletePackages"
-        memberEnd="Ppivot.TCompletePackage.PowningCompleteModel Ppivot.TCompleteModel.PownedCompletePackages"/>
+        memberEnd="Ppivot.TRootCompletePackage.PowningCompleteModel Ppivot.TCompleteModel.PownedCompletePackages"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_owningCompletePackage_ownedCompleteClasses" name="A_owningCompletePackage_ownedCompleteClasses"
         memberEnd="Ppivot.TCompleteClass.PowningCompletePackage Ppivot.TCompletePackage.PownedCompleteClasses"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_owningCompletePackage_ownedCompletePackages" name="A_owningCompletePackage_ownedCompletePackages"
-        memberEnd="Ppivot.TCompletePackage.PowningCompletePackage Ppivot.TCompletePackage.PownedCompletePackages"/>
+        memberEnd="Ppivot.TNestedCompletePackage.PowningCompletePackage Ppivot.TCompletePackage.PownedCompletePackages"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_owningPackage_ownedInstance" name="A_owningPackage_ownedInstance" memberEnd="Ppivot.TInstanceSpecification.PowningPackage Ppivot.TPackage.PownedInstances"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_owningState_stateInvariant" name="A_owningState_stateInvariant" memberEnd="Ppivot.TState.PstateInvariant Ppivot.TConstraint.PowningState"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_postcondition_postContext" name="A_postcondition_postContext" memberEnd="Ppivot.TOperation.Ppostcondition Ppivot.TConstraint.PpostContext"/>

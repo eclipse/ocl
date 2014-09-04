@@ -21,6 +21,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainFragment;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
+import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.types.AbstractFragment;
@@ -62,7 +63,7 @@ public abstract class ReflectiveType extends AbstractInheritance
 	 */
 	private Set<ReflectiveType> knownSubInheritances = null;
 
-	public ReflectiveType(@NonNull String name, @NonNull ExecutorPackage evaluationPackage, int flags, ExecutorTypeParameter... typeParameters) {
+	public ReflectiveType(@NonNull String name, @NonNull DomainPackage evaluationPackage, int flags, ExecutorTypeParameter... typeParameters) {
 		super(name, evaluationPackage, flags);
 	}
 
@@ -112,6 +113,14 @@ public abstract class ReflectiveType extends AbstractInheritance
 		return gotOne;
 	}
 	
+	public final @NonNull FragmentIterable getAllProperSuperFragments() {
+		if (fragments == null) {
+			initialize();
+		}
+		DomainFragment[] fragments2 = DomainUtil.nonNullState(fragments);
+		return new FragmentIterable(fragments2, 0, fragments2.length-1);
+	}
+
 	public final @NonNull FragmentIterable getAllSuperFragments() {
 		if (fragments == null) {
 			initialize();

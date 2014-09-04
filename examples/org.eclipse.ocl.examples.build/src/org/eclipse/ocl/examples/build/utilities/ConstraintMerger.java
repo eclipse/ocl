@@ -133,7 +133,7 @@ public class ConstraintMerger extends AbstractProjectComponent
 						else if (eObject instanceof org.eclipse.ocl.examples.pivot.Class) {
 							org.eclipse.ocl.examples.pivot.Class mergeType = (org.eclipse.ocl.examples.pivot.Class)eObject;
 							TypeServer typeServer = metaModelManager.getTypeServer(mergeType);
-							for (DomainClass dType : typeServer.getPartialTypes()) {
+							for (DomainClass dType : typeServer.getCompleteClass().getPartialClasses()) {
 								if (dType instanceof org.eclipse.ocl.examples.pivot.Class) {
 									org.eclipse.ocl.examples.pivot.Class primaryType = (org.eclipse.ocl.examples.pivot.Class)dType;
 									if (primaryType.eResource() == asResource) {

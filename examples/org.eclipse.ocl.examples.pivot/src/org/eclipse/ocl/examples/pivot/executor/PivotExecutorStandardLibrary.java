@@ -25,13 +25,13 @@ import org.eclipse.ocl.examples.library.LibraryConstants;
 import org.eclipse.ocl.examples.library.ecore.EcoreExecutorPackage;
 import org.eclipse.ocl.examples.library.executor.ExecutableStandardLibrary;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
+import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotTables;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManageable;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.PackageServer;
 
 public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary implements MetaModelManageable
 {
@@ -131,8 +131,8 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 				pivotPackage = createPackage(domainPackage);
 			}
 		}
-		@NonNull PackageServer packageServer = metaModelManager.getPackageServer(pivotPackage);
-		return packageServer.getMemberType(typeType.getName());
+		@NonNull CompletePackage completePackage = metaModelManager.getCompletePackage(pivotPackage);
+		return completePackage.getMemberType(typeType.getName());
 	}
 
 	public @NonNull DomainType getType(@NonNull EClassifier eClassifier) {

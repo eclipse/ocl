@@ -37,6 +37,8 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
+import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ConstructorExp;
 import org.eclipse.ocl.examples.pivot.ConstructorPart;
@@ -540,7 +542,24 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 
 	@Override
 	public String visitComment(@NonNull Comment comment) {
-		return "/* " + comment.getBody() + " */";
+		append("/* ");
+		append(comment.getBody());
+		append(" */");
+		return null;
+	}
+
+	@Override
+	public @Nullable String visitCompleteClass(@NonNull CompleteClass object) {
+		safeVisit(object.getPivotClass());
+		return null;
+	}
+
+	@Override
+	public @Nullable String visitCompletePackage(@NonNull CompletePackage object) {
+		appendName(object);
+		append(" : ");
+		append(object.getURI());
+		return null;
 	}
 
 	/**

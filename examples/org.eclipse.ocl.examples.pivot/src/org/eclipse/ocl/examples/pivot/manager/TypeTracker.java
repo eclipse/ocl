@@ -18,6 +18,8 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -28,7 +30,7 @@ import com.google.common.base.Function;
  * A TypeTracker adapts a Type to coordinate the coherent behaviour of one or more
  * merged Types as required for Complete OCL type extension.
  */
-class TypeTracker implements Adapter.Internal
+public class TypeTracker implements Adapter.Internal
 {
 	public static Function<TypeTracker, DomainClass> tracker2type = new Function<TypeTracker, DomainClass>()
 	{
@@ -73,7 +75,7 @@ class TypeTracker implements Adapter.Internal
 	}
 	
 	public final boolean isAdapterForType(Object type) {
-		return type == typeServer.getPackageManager();
+		return type == DomainUtil.nonNullState(typeServer.getCompletePackage().getCompleteModel()).getMetaModelManager().getPackageManager();
 	}
 
 	/**
@@ -178,9 +180,9 @@ class TypeTracker implements Adapter.Internal
 			switch (eventType) {
 				case Notification.SET:
 				case Notification.UNSET:
-					PackageServer packageServer = typeServer.getPackageServer();
+					CompletePackage completePackage = typeServer.getCompletePackage();
 					dispose();
-					packageServer.addedMemberType(type);
+//					completePackage.addedMemberType(type);
 					break;
 			}
 		}

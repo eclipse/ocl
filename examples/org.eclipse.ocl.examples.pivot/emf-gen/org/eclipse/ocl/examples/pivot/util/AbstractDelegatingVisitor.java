@@ -291,6 +291,10 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 		return delegate.visitNavigationCallExp(object);
 	}
 
+	public @Nullable R visitNestedCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.NestedCompletePackage object) {
+		return delegate.visitNestedCompletePackage(object);
+	}
+
 	public @Nullable R visitNullLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.NullLiteralExp object) {
 		return delegate.visitNullLiteralExp(object);
 	}
@@ -319,12 +323,20 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 		return delegate.visitOrderedSetType(object);
 	}
 
+	public @Nullable R visitOrphanCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.OrphanCompletePackage object) {
+		return delegate.visitOrphanCompletePackage(object);
+	}
+
 	public @Nullable R visitPackage(@NonNull org.eclipse.ocl.examples.pivot.Package object) {
 		return delegate.visitPackage(object);
 	}
 
 	public @Nullable R visitParameter(@NonNull org.eclipse.ocl.examples.pivot.Parameter object) {
 		return delegate.visitParameter(object);
+	}
+
+	public @Nullable R visitParentCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.ParentCompletePackage object) {
+		return delegate.visitParentCompletePackage(object);
 	}
 
 	public @Nullable R visitPrecedence(@NonNull org.eclipse.ocl.examples.pivot.Precedence object) {
@@ -369,6 +381,10 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 
 	public @Nullable R visitRoot(@NonNull org.eclipse.ocl.examples.pivot.Root object) {
 		return delegate.visitRoot(object);
+	}
+
+	public @Nullable R visitRootCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.RootCompletePackage object) {
+		return delegate.visitRootCompletePackage(object);
 	}
 
 	public @Nullable R visitSelfType(@NonNull org.eclipse.ocl.examples.pivot.SelfType object) {

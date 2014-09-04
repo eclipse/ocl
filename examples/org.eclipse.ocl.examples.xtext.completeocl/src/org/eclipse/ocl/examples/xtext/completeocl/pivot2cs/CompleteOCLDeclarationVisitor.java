@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
+import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
@@ -158,8 +159,8 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 				Resource resource = object.eResource();
 				AliasAnalysis adapter = resource != null ? AliasAnalysis.getAdapter(resource) : null;
 				if (adapter != null) {
-					for (@SuppressWarnings("null")@NonNull DomainPackage aliased : adapter.getAliases()) {
-						DomainPackage primary = metaModelManager.getPrimaryPackage(aliased);
+					for (@SuppressWarnings("null")@NonNull CompletePackage aliased : adapter.getAliases()) {
+						DomainPackage primary = aliased.getPivotPackage();
 						if (primary instanceof Namespace) {
 							String alias = adapter.getAlias((Namespace) primary, null);
 							if (alias != null) {

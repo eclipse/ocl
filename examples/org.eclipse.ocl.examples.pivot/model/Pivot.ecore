@@ -319,16 +319,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="partialClasses" ordered="false" upperBound="-1" eType="#//Class"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompleteModel" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedCompletePackages" ordered="false" upperBound="-1" eType="#//CompletePackage"
-        containment="true" eOpposite="#//CompletePackage/owningCompleteModel"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedCompletePackages" ordered="false" upperBound="-1" eType="#//RootCompletePackage"
+        containment="true" eOpposite="#//RootCompletePackage/owningCompleteModel"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CompletePackage" eSuperTypes="#//NamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="CompletePackage" abstract="true" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedCompleteClasses" ordered="false" upperBound="-1" eType="#//CompleteClass"
         containment="true" eOpposite="#//CompleteClass/owningCompletePackage"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedCompletePackages" ordered="false" upperBound="-1" eType="#//CompletePackage"
-        containment="true" eOpposite="#//CompletePackage/owningCompletePackage"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="owningCompleteModel" eType="#//CompleteModel" eOpposite="#//CompleteModel/ownedCompletePackages"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="owningCompletePackage" eType="#//CompletePackage" eOpposite="#//CompletePackage/ownedCompletePackages"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedCompletePackages" ordered="false" upperBound="-1" eType="#//NestedCompletePackage"
+        containment="true" eOpposite="#//NestedCompletePackage/owningCompletePackage"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="partialPackages" ordered="false" upperBound="-1" eType="#//Package"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConnectionPointReference" eSuperTypes="#//Vertex">
@@ -1126,6 +1124,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="navigationSource" eType="#//Property"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="qualifier" upperBound="-1" eType="#//OCLExpression"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NestedCompletePackage" eSuperTypes="#//CompletePackage">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningCompletePackage" eType="#//CompletePackage" eOpposite="#//CompletePackage/ownedCompletePackages"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NullLiteralExp" eSuperTypes="#//PrimitiveLiteralExp"/>
   <eClassifiers xsi:type="ecore:EClass" name="NumericLiteralExp" abstract="true" eSuperTypes="#//PrimitiveLiteralExp"/>
   <eClassifiers xsi:type="ecore:EClass" name="OCLExpression" abstract="true" eSuperTypes="#//TypedElement">
@@ -1248,6 +1249,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredProperty" eType="#//Property"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OrderedSetType" eSuperTypes="#//CollectionType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OrphanCompletePackage" eSuperTypes="#//RootCompletePackage"/>
   <eClassifiers xsi:type="ecore:EClass" name="Package" eSuperTypes="#//Namespace">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A package is a container for types and other packages."/>
@@ -1292,6 +1294,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ParentCompletePackage" eSuperTypes="#//RootCompletePackage"/>
   <eClassifiers xsi:type="ecore:EClass" name="Pivotable" instanceClassName="org.eclipse.ocl.examples.pivot.util.Pivotable" abstract="true"
       interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Precedence" eSuperTypes="#//NamedElement">
@@ -1488,6 +1491,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="externalURI" eType="#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="imports" upperBound="-1" eType="#//Import" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPackages" ordered="false" upperBound="-1" eType="#//Package" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RootCompletePackage" abstract="true" eSuperTypes="#//CompletePackage">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningCompleteModel" eType="#//CompleteModel" eOpposite="#//CompleteModel/ownedCompletePackages"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SelfType" eSuperTypes="#//Class">
     <eOperations name="specializeIn" lowerBound="1" eType="#//Type">

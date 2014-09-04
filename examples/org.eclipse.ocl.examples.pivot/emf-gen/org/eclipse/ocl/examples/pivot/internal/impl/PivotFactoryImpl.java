@@ -37,7 +37,6 @@ import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.CompleteModel;
-import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.ConnectionPointReference;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ConstructorExp;
@@ -69,12 +68,15 @@ import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.MessageType;
+import org.eclipse.ocl.examples.pivot.NestedCompletePackage;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
+import org.eclipse.ocl.examples.pivot.OrphanCompletePackage;
 import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.ParentCompletePackage;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
@@ -88,6 +90,7 @@ import org.eclipse.ocl.examples.pivot.PseudostateKind;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.Region;
 import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.RootCompletePackage;
 import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.SendSignalAction;
 import org.eclipse.ocl.examples.pivot.SequenceType;
@@ -185,7 +188,6 @@ public class PivotFactoryImpl
 			case PivotPackage.COMMENT: return (EObject)createComment();
 			case PivotPackage.COMPLETE_CLASS: return (EObject)createCompleteClass();
 			case PivotPackage.COMPLETE_MODEL: return (EObject)createCompleteModel();
-			case PivotPackage.COMPLETE_PACKAGE: return (EObject)createCompletePackage();
 			case PivotPackage.CONNECTION_POINT_REFERENCE: return (EObject)createConnectionPointReference();
 			case PivotPackage.CONSTRAINT: return (EObject)createConstraint();
 			case PivotPackage.CONSTRUCTOR_EXP: return (EObject)createConstructorExp();
@@ -217,13 +219,16 @@ public class PivotFactoryImpl
 			case PivotPackage.LIBRARY: return (EObject)createLibrary();
 			case PivotPackage.MESSAGE_EXP: return (EObject)createMessageExp();
 			case PivotPackage.MESSAGE_TYPE: return (EObject)createMessageType();
+			case PivotPackage.NESTED_COMPLETE_PACKAGE: return (EObject)createNestedCompletePackage();
 			case PivotPackage.NULL_LITERAL_EXP: return (EObject)createNullLiteralExp();
 			case PivotPackage.OPERATION: return (EObject)createOperation();
 			case PivotPackage.OPERATION_CALL_EXP: return (EObject)createOperationCallExp();
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP: return (EObject)createOppositePropertyCallExp();
 			case PivotPackage.ORDERED_SET_TYPE: return (EObject)createOrderedSetType();
+			case PivotPackage.ORPHAN_COMPLETE_PACKAGE: return (EObject)createOrphanCompletePackage();
 			case PivotPackage.PACKAGE: return (EObject)createPackage();
 			case PivotPackage.PARAMETER: return (EObject)createParameter();
+			case PivotPackage.PARENT_COMPLETE_PACKAGE: return (EObject)createParentCompletePackage();
 			case PivotPackage.PRECEDENCE: return (EObject)createPrecedence();
 			case PivotPackage.PRIMITIVE_TYPE: return (EObject)createPrimitiveType();
 			case PivotPackage.PROFILE: return (EObject)createProfile();
@@ -490,6 +495,17 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ParentCompletePackage createParentCompletePackage()
+	{
+		ParentCompletePackageImpl parentCompletePackage = new ParentCompletePackageImpl();
+		return parentCompletePackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public OppositePropertyCallExp createOppositePropertyCallExp()
 	{
 		OppositePropertyCallExpImpl oppositePropertyCallExp = new OppositePropertyCallExpImpl();
@@ -526,17 +542,6 @@ public class PivotFactoryImpl
 	{
 		CompleteModelImpl completeModel = new CompleteModelImpl();
 		return completeModel;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompletePackage createCompletePackage()
-	{
-		CompletePackageImpl completePackage = new CompletePackageImpl();
-		return completePackage;
 	}
 
 	/**
@@ -1003,6 +1008,17 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public NestedCompletePackage createNestedCompletePackage()
+	{
+		NestedCompletePackageImpl nestedCompletePackage = new NestedCompletePackageImpl();
+		return nestedCompletePackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NullLiteralExp createNullLiteralExp() {
 		NullLiteralExpImpl nullLiteralExp = new NullLiteralExpImpl();
 		return nullLiteralExp;
@@ -1026,6 +1042,17 @@ public class PivotFactoryImpl
 	public OrderedSetType createOrderedSetType() {
 		OrderedSetTypeImpl orderedSetType = new OrderedSetTypeImpl();
 		return orderedSetType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OrphanCompletePackage createOrphanCompletePackage()
+	{
+		OrphanCompletePackageImpl orphanCompletePackage = new OrphanCompletePackageImpl();
+		return orphanCompletePackage;
 	}
 
 	/**

@@ -343,7 +343,7 @@ public class DelegatesTest extends PivotTestSuite
 			fail(message);
 		DelegateInstaller pivotInstaller = new DelegateInstaller(metaModelManager, null);
 		for (org.eclipse.ocl.examples.pivot.Package nestedPackage : pivotRoot.getOwnedPackages()) {
-			pivotInstaller.installDelegates(metaModelManager.getPackageServer(nestedPackage));
+			pivotInstaller.installDelegates(metaModelManager.getCompletePackage(nestedPackage));
 		}
 	}
 

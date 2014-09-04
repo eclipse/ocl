@@ -730,6 +730,17 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 		}
 	}
 
+	public @Nullable R visitNestedCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.NestedCompletePackage object) {
+		P prologue = preVisit(object);
+		try {
+			R result = delegate.visitNestedCompletePackage(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
+	}
+
 	public @Nullable R visitNullLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.NullLiteralExp object) {
 		P prologue = preVisit(object);
 		try {
@@ -807,6 +818,17 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 		}
 	}
 
+	public @Nullable R visitOrphanCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.OrphanCompletePackage object) {
+		P prologue = preVisit(object);
+		try {
+			R result = delegate.visitOrphanCompletePackage(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
+	}
+
 	public @Nullable R visitPackage(@NonNull org.eclipse.ocl.examples.pivot.Package object) {
 		P prologue = preVisit(object);
 		try {
@@ -822,6 +844,17 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 		P prologue = preVisit(object);
 		try {
 			R result = delegate.visitParameter(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
+	}
+
+	public @Nullable R visitParentCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.ParentCompletePackage object) {
+		P prologue = preVisit(object);
+		try {
+			R result = delegate.visitParentCompletePackage(object);
 			return postVisit(object, prologue, result);
 		}
 		catch (Throwable e) {
@@ -943,6 +976,17 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 		P prologue = preVisit(object);
 		try {
 			R result = delegate.visitRoot(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
+	}
+
+	public @Nullable R visitRootCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.RootCompletePackage object) {
+		P prologue = preVisit(object);
+		try {
+			R result = delegate.visitRootCompletePackage(object);
 			return postVisit(object, prologue, result);
 		}
 		catch (Throwable e) {

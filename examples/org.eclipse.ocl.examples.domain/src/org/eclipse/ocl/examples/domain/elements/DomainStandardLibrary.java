@@ -29,7 +29,7 @@ public interface DomainStandardLibrary
 
 	boolean conformsToTupleType(@NonNull DomainTupleType firstTupleType, @NonNull DomainTupleType secondTupleType);
 
-	@NonNull Iterable<? extends DomainPackage> getAllPackages();
+	@NonNull Iterable<? extends DomainCompletePackage> getAllCompletePackages();
 
     /**
      * Obtains the generic instance of the BagType metatype, named
@@ -113,7 +113,7 @@ public interface DomainStandardLibrary
 	
     DomainType getNestedType(@NonNull DomainPackage parentPackage, @NonNull String name);
 
-	DomainPackage getNsURIPackage(@NonNull String nsURI);
+    DomainPackage getNsURIPackage(@NonNull String nsURI);
 
 	/**
      * Obtains the single instance of the AnyType metatype, named

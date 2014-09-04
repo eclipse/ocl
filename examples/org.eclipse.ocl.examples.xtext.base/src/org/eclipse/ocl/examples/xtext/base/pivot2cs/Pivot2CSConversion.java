@@ -31,6 +31,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.values.Unlimited;
 import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
@@ -45,7 +46,6 @@ import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.PackageServer;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -123,7 +123,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		for (Namespace importedNamespace : importedNamespaces.keySet()) {
 			if (importedNamespace != null) {
 				if (importedNamespace instanceof org.eclipse.ocl.examples.pivot.Package){
-					Package pivotPackage = metaModelManager.getPackageServer((org.eclipse.ocl.examples.pivot.Package)importedNamespace).getPivotPackage();
+					Package pivotPackage = metaModelManager.getCompletePackage((org.eclipse.ocl.examples.pivot.Package)importedNamespace).getPivotPackage();
 		//			ModelElementCS csElement = createMap.get(importedPackage);
 		//			if ((csElement != null) && (csElement.eResource() == xtextResource)) {
 		//				continue;		// Don't import defined packages
@@ -364,7 +364,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 					safeScope = (Namespace) eObject;
 				}
 				if (eObject instanceof DomainPackage) {
-					PackageServer packageServer = metaModelManager.getPackageServer((DomainPackage)eObject);
+					CompletePackage packageServer = metaModelManager.getCompletePackage((DomainPackage)eObject);
 					org.eclipse.ocl.examples.pivot.Class memberType = packageServer.getMemberType(name);
 					if (memberType == primaryElement) {
 						if ((eObject != scope) && (eObject != PivotUtil.getContainingPackage(scope))) {

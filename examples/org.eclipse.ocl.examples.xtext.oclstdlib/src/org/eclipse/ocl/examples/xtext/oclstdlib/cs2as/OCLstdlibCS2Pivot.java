@@ -101,7 +101,7 @@ public class OCLstdlibCS2Pivot extends EssentialOCLCS2Pivot
 
 	@Override
 	public synchronized void update(@NonNull IDiagnosticConsumer diagnosticsConsumer) {
-		metaModelManager.setLibraryLoadInProgress(true);
+		metaModelManager.setLibraryLoadInProgress(metaModelManager.getLibraryResource() == null);
 		try {
 			super.update(diagnosticsConsumer);
 		} finally {

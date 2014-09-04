@@ -13,11 +13,12 @@ package org.eclipse.ocl.examples.pivot.manager;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.pivot.AnyType;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
 
 public class AnyTypeServer extends ExtensibleTypeServer
 {
-	public AnyTypeServer(@NonNull PackageServer packageServer, @NonNull AnyType type) {
-		super(packageServer, type);
+	public AnyTypeServer(@NonNull CompleteClass completeClass, @NonNull AnyType type) {
+		super(completeClass, type);
 	}
 
 	@Override

@@ -32,6 +32,11 @@ public interface DomainInheritance extends DomainClass
 	@NonNull Iterable<? extends DomainProperty> getAllProperties(@Nullable FeatureFilter featureFilter);
 	
 	/**
+	 * Return a depth ordered, OclAny-first, OclSelf-last, Iterable of all the super-adapters excluding this one.
+	 */
+	@NonNull Iterable<DomainFragment> getAllProperSuperFragments();
+	
+	/**
 	 * Return a depth ordered, OclAny-first, OclSelf-last, Iterable of all the super-adapters including this one.
 	 */
 	@NonNull Iterable<DomainFragment> getAllSuperFragments();

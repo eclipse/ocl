@@ -346,7 +346,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 				}
 			}
 		}
-		for (DomainClass partialType : metaModelManager.getPartialTypes(type)) {
+		for (DomainClass partialType : metaModelManager.getPartialClasses(type)) {
 			if (partialType instanceof org.eclipse.ocl.examples.pivot.Class) {
 				genPackage = getGenPackage((org.eclipse.ocl.examples.pivot.Class)partialType);
 				if (genPackage != null) {

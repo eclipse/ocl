@@ -158,6 +158,15 @@ public interface PivotFactory
 	Parameter createParameter();
 
 	/**
+	 * Returns a new object of class '<em>Parent Complete Package</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Parent Complete Package</em>'.
+	 * @generated
+	 */
+	ParentCompletePackage createParentCompletePackage();
+
+	/**
 	 * Returns a new object of class '<em>Opposite Property Call Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -192,15 +201,6 @@ public interface PivotFactory
 	 * @generated
 	 */
 	CompleteModel createCompleteModel();
-
-	/**
-	 * Returns a new object of class '<em>Complete Package</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Complete Package</em>'.
-	 * @generated
-	 */
-	CompletePackage createCompletePackage();
 
 	/**
 	 * Returns a new object of class '<em>Connection Point Reference</em>'.
@@ -599,6 +599,15 @@ public interface PivotFactory
 	MessageType createMessageType();
 
 	/**
+	 * Returns a new object of class '<em>Nested Complete Package</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Nested Complete Package</em>'.
+	 * @generated
+	 */
+	NestedCompletePackage createNestedCompletePackage();
+
+	/**
 	 * Returns a new object of class '<em>Null Literal Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -624,6 +633,15 @@ public interface PivotFactory
 	 * @generated
 	 */
 	OrderedSetType createOrderedSetType();
+
+	/**
+	 * Returns a new object of class '<em>Orphan Complete Package</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Orphan Complete Package</em>'.
+	 * @generated
+	 */
+	OrphanCompletePackage createOrphanCompletePackage();
 
 	/**
 	 * Returns a new object of class '<em>Primitive Type</em>'.

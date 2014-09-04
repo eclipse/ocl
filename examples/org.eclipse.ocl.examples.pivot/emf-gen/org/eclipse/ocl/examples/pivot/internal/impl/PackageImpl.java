@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -29,11 +31,13 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
+import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.InstanceSpecification;
+import org.eclipse.ocl.examples.pivot.NestedCompletePackage;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.ProfileApplication;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
@@ -242,21 +246,6 @@ public class PackageImpl
 			importedPackage = new EObjectResolvingEList<org.eclipse.ocl.examples.pivot.Package>(org.eclipse.ocl.examples.pivot.Package.class, this, PivotPackage.PACKAGE__IMPORTED_PACKAGE);
 		}
 		return importedPackage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("null")
-	public @NonNull List<org.eclipse.ocl.examples.pivot.Class> getOwnedClasses()
-	{
-		if (ownedClasses == null)
-		{
-			ownedClasses = new EObjectContainmentWithInverseEList<org.eclipse.ocl.examples.pivot.Class>(org.eclipse.ocl.examples.pivot.Class.class, this, PivotPackage.PACKAGE__OWNED_CLASSES, PivotPackage.CLASS__OWNING_PACKAGE);
-		}
-		return ownedClasses;
 	}
 
 	/**
@@ -630,6 +619,112 @@ public class PackageImpl
 		if ((packageId == null) && (newURI != null)) {
 			setPackageId(IdManager.getPackageId(this));
 		}
+	}
+
+	private @Nullable PackageListeners completeListeners = null;
+	
+	public static class PackageListeners
+	{
+		public static interface IPackageListener
+		{
+			void didAddClass(@NonNull org.eclipse.ocl.examples.pivot.Class asClass);
+			void didRemoveClass(@NonNull org.eclipse.ocl.examples.pivot.Class asClass);
+			void didRenameClass(@NonNull org.eclipse.ocl.examples.pivot.Class asClass, String oldName);
+		}
+		
+		private @NonNull List<WeakReference<IPackageListener>> listeners = new ArrayList<WeakReference<IPackageListener>>();
+
+		public synchronized void didAddClass(@NonNull org.eclipse.ocl.examples.pivot.Class asClass) {
+			boolean doFlush = false;
+			for (WeakReference<IPackageListener> ref : listeners) {
+				IPackageListener listener = ref.get();
+				if (listener != null) {
+					listener.didAddClass(asClass);
+				}
+				else {
+					doFlush = true;
+				}
+			}
+			if (doFlush) {
+				doFlush();
+			}
+		}
+
+		public synchronized void didRemoveClass(@NonNull org.eclipse.ocl.examples.pivot.Class asClass) {
+			boolean doFlush = false;
+			for (WeakReference<IPackageListener> ref : listeners) {
+				IPackageListener listener = ref.get();
+				if (listener != null) {
+					listener.didRemoveClass(asClass);
+				}
+				else {
+					doFlush = true;
+				}
+			}
+			if (doFlush) {
+				doFlush();
+			}
+		}
+
+		public synchronized void didRenameClass(@NonNull org.eclipse.ocl.examples.pivot.Class asClass, String oldName) {
+			boolean doFlush = false;
+			for (WeakReference<IPackageListener> ref : listeners) {
+				IPackageListener listener = ref.get();
+				if (listener != null) {
+					listener.didRenameClass(asClass, oldName);
+				}
+				else {
+					doFlush = true;
+				}
+			}
+			if (doFlush) {
+				doFlush();
+			}
+		}
+
+		private void doFlush() {
+			for (int i = listeners.size(); --i >= 0; ) {
+				IPackageListener completeListener = listeners.get(i).get();
+				if (completeListener == null) {
+					listeners.remove(i);
+				}
+			}
+		}
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@SuppressWarnings("null")
+	public @NonNull List<org.eclipse.ocl.examples.pivot.Class> getOwnedClasses()
+	{
+		if (ownedClasses == null)
+		{
+			ownedClasses = new EObjectContainmentWithInverseEList<org.eclipse.ocl.examples.pivot.Class>(org.eclipse.ocl.examples.pivot.Class.class, this, PivotPackage.PACKAGE__OWNED_CLASSES, PivotPackage.CLASS__OWNING_PACKAGE) {
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				protected void didAdd(int index, org.eclipse.ocl.examples.pivot.Class asClass) {
+					assert asClass != null;
+					super.didAdd(index, asClass);
+					if (completeListeners != null) {
+						completeListeners.didAddClass(asClass);
+					}
+				}
+
+				@Override
+				protected void didRemove(int index, org.eclipse.ocl.examples.pivot.Class asClass) {
+					assert asClass != null;
+					super.didRemove(index, asClass);
+					if (completeListeners != null) {
+						completeListeners.didRemoveClass(asClass);
+					}
+				}
+			};
+		}
+		return ownedClasses;
 	}
 
 	/**

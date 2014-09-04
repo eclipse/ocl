@@ -19,15 +19,15 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.PackageManager;
-import org.eclipse.ocl.examples.pivot.manager.PackageServer;
 import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutionVisitor;
 import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutions;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -130,9 +130,9 @@ public abstract class AbstractOperationMatcher
 		if (p2 == null) {
 			return 0;
 		}
-		PackageManager packageManager = metaModelManager.getPackageManager();
-		PackageServer s1 = packageManager.getPackageServer(p1);
-		PackageServer s2 = packageManager.getPackageServer(p2);
+		CompleteModelImpl packageManager = metaModelManager.getCompleteModel();
+		CompletePackage s1 = packageManager.getCompletePackage(p1);
+		CompletePackage s2 = packageManager.getCompletePackage(p2);
 		if (s1 != s2) {
 			return 0;
 		}

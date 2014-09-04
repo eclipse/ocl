@@ -15,6 +15,7 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
+import org.eclipse.ocl.examples.domain.elements.DomainFragment;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
@@ -64,6 +65,11 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 			allProperties = allProperties2 = new DomainProperties(this);
 		}
 		return allProperties2.getAllProperties(featureFilter);
+	}
+	
+	public final @NonNull FragmentIterable getAllProperSuperFragments() {
+		DomainFragment[] fragments2 = DomainUtil.nonNullState(fragments);
+		return new FragmentIterable(fragments2, 0, fragments2.length-1);
 	}
 	
 	public @NonNull FragmentIterable getAllSuperFragments() {

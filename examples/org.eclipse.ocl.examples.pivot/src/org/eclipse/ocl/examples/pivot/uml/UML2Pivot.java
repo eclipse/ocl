@@ -60,8 +60,8 @@ import org.eclipse.ocl.examples.pivot.Stereotype;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.ecore.AbstractEcore2Pivot;
+import org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.PackageManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.resource.ASResourceFactory;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
@@ -825,7 +825,7 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 		umlResource.eAdapters().add(this);
 		metaModelManager.addExternalResource(this);
 		metaModelManager.addListener(this);
-		PackageManager packageManager = metaModelManager.getPackageManager();
+		CompleteModelImpl packageManager = metaModelManager.getCompleteModel();
 		packageManager.addPackageNsURISynonym(DomainUtil.nonNullEMF(UMLPackage.eNS_URI), DomainConstants.UML_METAMODEL_NAME);
 		packageManager.addPackageNsURISynonym(DomainUtil.nonNullEMF(TypesPackage.eNS_URI), DomainConstants.TYPES_METAMODEL_NAME);		// FIXME All known synonyms
 		// FIXME All known synonyms

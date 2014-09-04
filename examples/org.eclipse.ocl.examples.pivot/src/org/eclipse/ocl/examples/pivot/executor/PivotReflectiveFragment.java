@@ -29,7 +29,7 @@ public class PivotReflectiveFragment extends ReflectiveFragment
 		TypeServer typeServer = (TypeServer) derivedInheritance;
 		String baseOperationName = baseOperation.getName();
 		ParametersId baseParametersId = baseOperation.getParametersId();
-		for (DomainClass partialType : typeServer.getPartialTypes()) {
+		for (DomainClass partialType : typeServer.getCompleteClass().getPartialClasses()) {
 			for (DomainOperation localOperation : partialType.getOwnedOperations()) {
 				if (localOperation.getName().equals(baseOperationName) && (localOperation.getParametersId() == baseParametersId)) {
 					return localOperation;

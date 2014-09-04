@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainCompletePackage;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
 import org.eclipse.ocl.examples.domain.elements.DomainNamedElement;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
@@ -34,6 +35,9 @@ import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.domain.elements.Nameable;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
+import org.eclipse.ocl.examples.pivot.CompleteModel;
+import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.Feature;
@@ -44,16 +48,15 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.RootCompletePackage;
 import org.eclipse.ocl.examples.pivot.State;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.PackageManager;
-import org.eclipse.ocl.examples.pivot.manager.PackageServer;
-import org.eclipse.ocl.examples.pivot.manager.RootPackageServer;
 import org.eclipse.ocl.examples.pivot.manager.TypeServer;
 import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -111,9 +114,9 @@ public class EnvironmentView
 			if (p2 == null) {
 				return 0;
 			}
-			PackageManager packageManager = metaModelManager.getPackageManager();
-			PackageServer s1 = packageManager.getPackageServer(p1);
-			PackageServer s2 = packageManager.getPackageServer(p2);
+			CompleteModelImpl packageManager = metaModelManager.getCompleteModel();
+			CompletePackage s1 = packageManager.getCompletePackage(p1);
+			CompletePackage s2 = packageManager.getCompletePackage(p2);
 			if (s1 != s2) {
 				return 0;
 			}
@@ -308,18 +311,18 @@ public class EnvironmentView
 
 	public void addAllPackages(@NonNull org.eclipse.ocl.examples.pivot.Package pkge) {
 		if (accepts(PivotPackage.Literals.PACKAGE)) {
-			PackageServer parentPackageServer = metaModelManager.getPackageServer(pkge);
+			CompletePackage parentCompletePackage = metaModelManager.getCompletePackage(pkge);
 			String name2 = name;
 			if (name2 != null) {
-				PackageServer packageServer = parentPackageServer.getMemberPackage(name2);
-				if (packageServer != null) {
-					addElement(name2, packageServer);
+				CompletePackage completePackage = parentCompletePackage.getMemberPackage(name2);
+				if (completePackage != null) {
+					addElement(name2, completePackage);
 				}
 			}
 			else {
-				for (PackageServer packageServer : parentPackageServer.getMemberPackages()) {
-					if (packageServer != null) {
-						addNamedElement(packageServer);
+				for (CompletePackage completePackage : parentCompletePackage.getOwnedCompletePackages()) {
+					if (completePackage != null) {
+						addNamedElement(completePackage);
 					}
 				}
 			}
@@ -457,16 +460,17 @@ public class EnvironmentView
 
 	public void addAllTypes(@NonNull org.eclipse.ocl.examples.pivot.Package pkge) {
 		if (accepts(PivotPackage.Literals.CLASS)) {
-			PackageServer packageServer = metaModelManager.getPackageServer(pkge);
+			CompletePackage completePackage = metaModelManager.getCompletePackage(pkge);
 			String name2 = name;
 			if (name2 != null) {
-				org.eclipse.ocl.examples.pivot.Class type = packageServer.getMemberType(name2);
+				org.eclipse.ocl.examples.pivot.Class type = completePackage.getMemberType(name2);
 				if (type != null) {
 					addNamedElement(type);
 				}
 			}
 			else {
-				for (TypeServer type : packageServer.getMemberTypes()) {
+				for (CompleteClass completeClass : completePackage.getOwnedCompleteClasses()) {
+					TypeServer type = completeClass.getTypeServer();
 					if (type != null) {
 						addNamedElement(type);
 					}
@@ -489,18 +493,33 @@ public class EnvironmentView
 		}
 		if ((element instanceof EObject) && !(element instanceof Variable) && (((EObject)element).eResource() == null)) {
 			// Orphans are bad but LetExp/LoopExp/ExpressionInOCL Variables are created left-to-right
-			logger.error("Orphan '" + element + "'");
-			return;
+			EObject eObject = (EObject)element;
+			while (true) {
+				EObject eContainer = eObject.eContainer();
+				if (eContainer == null) {
+					if (eObject instanceof CompleteModel) {
+						break;
+					}
+					if (eObject.eResource() != null) {
+						break;
+					}
+					logger.error("Orphan '" + element + "'");
+					return;
+				}
+				else {
+					eObject = eContainer;
+				}
+			}
 		}
 		if ((name != null) && !name.equals(elementName)) {
 			assert !(element instanceof DomainProperty) &&  !(element instanceof DomainOperation);
 			return;
 		}
-		if (element instanceof PackageServer) {
-			element = ((PackageServer)element).getPivotPackage();
+		if (element instanceof CompletePackage) {
+			element = ((CompletePackage)element).getPivotPackage();
 		}
 		else if (element instanceof DomainPackage) {
-			element = metaModelManager.getPackageServer((DomainPackage) element).getPivotPackage();
+			element = metaModelManager.getCompletePackage((DomainPackage) element).getPivotPackage();
 		}
 //		else if (element instanceof org.eclipse.ocl.examples.pivot.Package) {
 //			element = ((PackageServer) element).getPrimaryPackage();		// FIXME lose casts
@@ -654,28 +673,28 @@ public class EnvironmentView
 	}
 
 	public void addRootPackages() {
-		PackageManager packageManager = metaModelManager.getPackageManager();
+		CompleteModelImpl packageManager = metaModelManager.getCompleteModel();
 		String name2 = name;
 		if (name2 != null) {
-			RootPackageServer rootPackageServer = packageManager.getMemberPackage(name2);
-			if (rootPackageServer != null) {
-				addNamedElement(rootPackageServer);
+			RootCompletePackage rootCompletePackage = packageManager.getMemberPackage(name2);
+			if (rootCompletePackage != null) {
+				addNamedElement(rootCompletePackage);
 			}
-			PackageServer packageServer = packageManager.getPackageByURI(name2);
-			if (packageServer != null) {
-				addElement(name2, packageServer);
+			DomainCompletePackage completePackage = packageManager.getCompletePackageByURI(name2);
+			if (completePackage != null) {
+				addElement(name2, completePackage);
 			}
 		}
 		else {
-			for (RootPackageServer rootPackageServer : packageManager.getMemberPackages()) {
-				if (rootPackageServer != null) {
-					addNamedElement(rootPackageServer);
+			for (RootCompletePackage rootCompletePackage : packageManager.getMemberPackages()) {
+				if (rootCompletePackage != null) {
+					addNamedElement(rootCompletePackage);
 				}
 			}
-			for (PackageServer packageServer : packageManager.getAllPackagesWithUris()) {
-				String nsURI = packageServer.getURI();
+			for (CompletePackage completePackage : packageManager.getAllCompletePackagesWithUris()) {
+				String nsURI = completePackage.getURI();
 				if (nsURI != null) {
-					addElement(nsURI, packageServer);
+					addElement(nsURI, completePackage);
 				}
 			}
 		}

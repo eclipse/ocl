@@ -18,9 +18,8 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
-
-import com.google.common.collect.Iterables;
 
 /**
  * An ExtensibleTypeServer supports one or more merged types as the source for operations, properties or superclasses.
@@ -34,10 +33,10 @@ public abstract class ExtensibleTypeServer extends AbstractTypeServer
 	 */
 	private @Nullable org.eclipse.ocl.examples.pivot.Class representativeType = null;
 	
-	protected ExtensibleTypeServer(@NonNull PackageServer packageServer, @NonNull DomainClass domainType) {
-		super(packageServer, domainType);
+	protected ExtensibleTypeServer(@NonNull CompleteClass completeClass, @NonNull DomainClass domainType) {
+		super(completeClass, domainType);
 		if (!(domainType instanceof PrimitiveType)) {		// FIXME why are primitives in mismatched packages? use testLoad_Internationalized_profile_uml 
-			packageServer.assertSamePackage(domainType.getOwningPackage());
+			completePackage.assertSamePackage(domainType.getOwningPackage());
 		}
 	}
 
@@ -51,7 +50,7 @@ public abstract class ExtensibleTypeServer extends AbstractTypeServer
 			}
 		}
 		super.dispose();
-		packageServer.disposedTypeServer(this);
+//		packageServer.disposedTypeServer(this);
 	}
 	
 	void disposedTypeTracker(@NonNull TypeTracker typeTracker) {
@@ -61,7 +60,7 @@ public abstract class ExtensibleTypeServer extends AbstractTypeServer
 		if (trackers.size() <= 0) {
 			dispose();
 		}
-		packageManager.disposedTypeTracker(typeTracker);
+		completeModel.disposedTypeTracker(typeTracker);
 	}
 
 	/**
@@ -77,12 +76,6 @@ public abstract class ExtensibleTypeServer extends AbstractTypeServer
 		return null;
 	}
 
-	public @NonNull Iterable<DomainClass> getPartialTypes() {
-		@SuppressWarnings("null")
-		@NonNull Iterable<DomainClass> transform = Iterables.transform(trackers, TypeTracker.tracker2type);
-		return transform;
-	}
-	
 	public @NonNull org.eclipse.ocl.examples.pivot.Class getPivotType() {
 		org.eclipse.ocl.examples.pivot.Class representativeType2 = representativeType;
 		if (representativeType2 == null) {
@@ -103,7 +96,7 @@ public abstract class ExtensibleTypeServer extends AbstractTypeServer
 		TypeTracker typeTracker = new TypeTracker(this, pivotType);
 		initMemberFeaturesFrom((org.eclipse.ocl.examples.pivot.Class)pivotType);	
 		trackers.add(typeTracker);
-		packageManager.addTypeTracker(pivotType, typeTracker);
+		completeModel.addTypeTracker(pivotType, typeTracker);
 		return typeTracker;
 	}
 

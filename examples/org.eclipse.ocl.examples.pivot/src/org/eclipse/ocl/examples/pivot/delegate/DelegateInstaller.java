@@ -36,6 +36,8 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.OCLCommon;
 import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
+import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.LanguageExpression;
@@ -47,7 +49,6 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.PackageServer;
 import org.eclipse.ocl.examples.pivot.manager.TypeServer;
 import org.eclipse.ocl.examples.pivot.options.OCLinEcoreOptions;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
@@ -282,20 +283,21 @@ public class DelegateInstaller
 	/**
 	 * Install all Constraints from pivotPackage and its nestedPackages as OCL Delegates.
 	 */
-	public void installDelegates(@NonNull PackageServer packageServer) {
+	public void installDelegates(@NonNull CompletePackage completePackage) {
 		boolean hasDelegates = false;
 //		for (Type aType : metaModelManager.getLocalClasses(pivotPackage)) {
-		for (TypeServer typeServer : packageServer.getMemberTypes()) {
+		for (CompleteClass completeClass : completePackage.getOwnedCompleteClasses()) {
+			TypeServer typeServer = completeClass.getTypeServer();
 			if (installDelegates(typeServer.getPivotType())) {
 				hasDelegates = true;
 			}
 		}
 //		PackageServer packageServer = metaModelManager.getPackageServer(pivotPackage);
-		EPackage ePackage = packageServer.getEPackage();
+		EPackage ePackage = completePackage.getEPackage();
 		if ((ePackage != null) && hasDelegates) {
 			installDelegates(ePackage);
 		}
-		for (PackageServer nestedPackage : packageServer.getMemberPackages()) {
+		for (CompletePackage nestedPackage : completePackage.getOwnedCompletePackages()) {
 			if (nestedPackage != null) {
 				installDelegates(nestedPackage);
 			}

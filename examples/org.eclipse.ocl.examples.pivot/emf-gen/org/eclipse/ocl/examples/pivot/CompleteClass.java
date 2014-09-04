@@ -12,6 +12,9 @@ package org.eclipse.ocl.examples.pivot;
 
 import java.util.List;
 
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.pivot.manager.TypeServer;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Complete Class</b></em>'.
@@ -70,6 +73,12 @@ public interface CompleteClass extends NamedElement
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteClass_PartialClasses()
 	 * @generated
 	 */
-	List<org.eclipse.ocl.examples.pivot.Class> getPartialClasses();
+	@NonNull List<org.eclipse.ocl.examples.pivot.Class> getPartialClasses();
+	
+	org.eclipse.ocl.examples.pivot.Class getPivotClass();
+
+	TypeServer getTypeServer();
+
+	@NonNull Iterable<CompleteClass> getSuperCompleteClasses();
 
 } // CompleteClass

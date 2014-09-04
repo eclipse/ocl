@@ -12,9 +12,19 @@ package org.eclipse.ocl.examples.pivot;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainPackage;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.ids.PackageId;
+import org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl;
+import org.eclipse.ocl.examples.pivot.manager.TypeServer;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Complete Package</b></em>'.
+ * @extends org.eclipse.ocl.examples.domain.elements.DomainCompletePackage
  * <!-- end-user-doc -->
  *
  * <p>
@@ -22,8 +32,6 @@ import java.util.List;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompletePackage#getOwnedCompleteClasses <em>Owned Complete Classes</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompletePackage#getOwnedCompletePackages <em>Owned Complete Packages</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.CompletePackage#getOwningCompleteModel <em>Owning Complete Model</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.CompletePackage#getOwningCompletePackage <em>Owning Complete Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompletePackage#getPartialPackages <em>Partial Packages</em>}</li>
  * </ul>
  * </p>
@@ -31,7 +39,7 @@ import java.util.List;
  * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompletePackage()
  * @generated
  */
-public interface CompletePackage extends NamedElement
+public interface CompletePackage extends NamedElement, org.eclipse.ocl.examples.domain.elements.DomainCompletePackage
 {
 	/**
 	 * Returns the value of the '<em><b>Owned Complete Classes</b></em>' containment reference list.
@@ -48,12 +56,12 @@ public interface CompletePackage extends NamedElement
 	 * @see org.eclipse.ocl.examples.pivot.CompleteClass#getOwningCompletePackage
 	 * @generated
 	 */
-	List<CompleteClass> getOwnedCompleteClasses();
+	@NonNull List<CompleteClass> getOwnedCompleteClasses();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Complete Packages</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.CompletePackage}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.CompletePackage#getOwningCompletePackage <em>Owning Complete Package</em>}'.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.NestedCompletePackage}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.NestedCompletePackage#getOwningCompletePackage <em>Owning Complete Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Complete Packages</em>' containment reference list isn't clear,
@@ -62,64 +70,10 @@ public interface CompletePackage extends NamedElement
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Complete Packages</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompletePackage_OwnedCompletePackages()
-	 * @see org.eclipse.ocl.examples.pivot.CompletePackage#getOwningCompletePackage
+	 * @see org.eclipse.ocl.examples.pivot.NestedCompletePackage#getOwningCompletePackage
 	 * @generated
 	 */
-	List<CompletePackage> getOwnedCompletePackages();
-
-	/**
-	 * Returns the value of the '<em><b>Owning Complete Model</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.CompleteModel#getOwnedCompletePackages <em>Owned Complete Packages</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owning Complete Model</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Complete Model</em>' container reference.
-	 * @see #setOwningCompleteModel(CompleteModel)
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompletePackage_OwningCompleteModel()
-	 * @see org.eclipse.ocl.examples.pivot.CompleteModel#getOwnedCompletePackages
-	 * @generated
-	 */
-	CompleteModel getOwningCompleteModel();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.CompletePackage#getOwningCompleteModel <em>Owning Complete Model</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Complete Model</em>' container reference.
-	 * @see #getOwningCompleteModel()
-	 * @generated
-	 */
-	void setOwningCompleteModel(CompleteModel value);
-
-	/**
-	 * Returns the value of the '<em><b>Owning Complete Package</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.CompletePackage#getOwnedCompletePackages <em>Owned Complete Packages</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owning Complete Package</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Complete Package</em>' container reference.
-	 * @see #setOwningCompletePackage(CompletePackage)
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompletePackage_OwningCompletePackage()
-	 * @see org.eclipse.ocl.examples.pivot.CompletePackage#getOwnedCompletePackages
-	 * @generated
-	 */
-	CompletePackage getOwningCompletePackage();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.CompletePackage#getOwningCompletePackage <em>Owning Complete Package</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Complete Package</em>' container reference.
-	 * @see #getOwningCompletePackage()
-	 * @generated
-	 */
-	void setOwningCompletePackage(CompletePackage value);
+	@NonNull List<NestedCompletePackage> getOwnedCompletePackages();
 
 	/**
 	 * Returns the value of the '<em><b>Partial Packages</b></em>' reference list.
@@ -134,6 +88,36 @@ public interface CompletePackage extends NamedElement
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompletePackage_PartialPackages()
 	 * @generated
 	 */
-	List<org.eclipse.ocl.examples.pivot.Package> getPartialPackages();
+	@NonNull List<org.eclipse.ocl.examples.pivot.Package> getPartialPackages();
+
+	void init(@NonNull String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId);
+
+	org.eclipse.ocl.examples.pivot.Package getPivotPackage();
+
+	CompletePackage getMemberPackage(String subPackageName);
+
+	org.eclipse.ocl.examples.pivot.Class getMemberType(String name);
+
+	RootCompletePackage getRootCompletePackage();
+
+//	@NonNull PackageManager getPackageManager();
+
+//	String getURI();
+
+//	String getNsPrefix();
+
+	int getIndex(org.eclipse.ocl.examples.pivot.Package p1);
+
+	void assertSamePackage(DomainPackage pivotPackage);
+
+	EPackage getEPackage();
+
+	TypeServer getTypeServer(DomainType pivotType);
+
+	DomainType getType(String metatypeName);
+
+	@Nullable CompletePackage getOwnedCompletePackage(@NonNull String name);
+
+	@Nullable CompleteModelImpl getCompleteModel();
 
 } // CompletePackage

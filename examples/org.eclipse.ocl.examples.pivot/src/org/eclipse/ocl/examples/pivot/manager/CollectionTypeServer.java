@@ -26,6 +26,7 @@ import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.library.executor.CollectionTypeParameters;
 import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
@@ -51,8 +52,8 @@ public class CollectionTypeServer extends ExtensibleTypeServer
 	//
 	private @Nullable /*WeakHash*/Map<CollectionTypeParameters<Type>, WeakReference<org.eclipse.ocl.examples.pivot.Class>> specializations = null;
 
-	protected CollectionTypeServer(@NonNull PackageServer packageServer, @NonNull DomainCollectionType domainType) {
-		super(packageServer, domainType);
+	public CollectionTypeServer(@NonNull CompleteClass completeClass, @NonNull DomainCollectionType domainType) {
+		super(completeClass, domainType);
 	}
 	
 	protected @NonNull org.eclipse.ocl.examples.pivot.Class createSpecialization(@NonNull CollectionTypeParameters<Type> typeParameters) {
@@ -71,7 +72,7 @@ public class CollectionTypeServer extends ExtensibleTypeServer
 		TemplateParameterSubstitution templateParameterSubstitution = createTemplateParameterSubstitution(formalParameter, elementType);
 		templateBinding.getOwnedTemplateParameterSubstitutions().add(templateParameterSubstitution);
 		specializedType.getOwnedTemplateBindings().add(templateBinding);
-		packageManager.resolveSuperClasses(specializedType, unspecializedType);
+		completeModel.resolveSuperClasses(specializedType, unspecializedType);
 		CollectionType specializedCollectionType = specializedType;
 		specializedCollectionType.setElementType(typeParameters.getElementType());
 		try {
@@ -85,7 +86,7 @@ public class CollectionTypeServer extends ExtensibleTypeServer
 			logger.error("Out of range upper bound", e);
 		}
 		specializedType.setUnspecializedElement(unspecializedType);
-		MetaModelManager metaModelManager = packageManager.getMetaModelManager();
+		MetaModelManager metaModelManager = completeModel.getMetaModelManager();
 		Orphanage orphanage = Orphanage.getOrphanage(metaModelManager.getASResourceSet());
 		specializedType.setOwningPackage(orphanage);
 		return specializedType;

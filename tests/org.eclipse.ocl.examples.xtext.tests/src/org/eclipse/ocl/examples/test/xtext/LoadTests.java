@@ -41,6 +41,7 @@ import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.IPackageDe
 import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.IProjectDescriptor;
 import org.eclipse.ocl.examples.domain.values.Unlimited;
 import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.LanguageExpression;
@@ -60,7 +61,6 @@ import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
-import org.eclipse.ocl.examples.pivot.manager.PackageServer;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
@@ -1057,7 +1057,7 @@ public class LoadTests extends XtextTestCase
 //		
 		List<DomainPackage> allPackages = new ArrayList<DomainPackage>();
 //		for (org.eclipse.ocl.examples.pivot.Package aPackage : metaModelManager2.getAllPackages()) {
-		for (PackageServer packageServer : metaModelManager2.getAllPackages()) {
+		for (CompletePackage packageServer : metaModelManager2.getAllCompletePackages()) {
 			org.eclipse.ocl.examples.pivot.Package aPackage = packageServer.getPivotPackage();
 			if (aPackage instanceof Root) {}
 			else if (aPackage instanceof Library) {}
@@ -1144,7 +1144,7 @@ public class LoadTests extends XtextTestCase
 //		
 		List<DomainPackage> allPackages = new ArrayList<DomainPackage>();
 //		for (org.eclipse.ocl.examples.pivot.Package aPackage : metaModelManager2.getAllPackages()) {
-		for (PackageServer packageServer : metaModelManager2.getAllPackages()) {
+		for (CompletePackage packageServer : metaModelManager2.getAllCompletePackages()) {
 			org.eclipse.ocl.examples.pivot.Package aPackage = packageServer.getPivotPackage();
 			if (aPackage instanceof Root) {}
 			else if (aPackage instanceof Library) {}

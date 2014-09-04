@@ -24,6 +24,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainEnumerationLiteral;
 import org.eclipse.ocl.examples.domain.ids.EnumerationId;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.library.ecore.EcoreExecutorEnumerationLiteral;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 
@@ -31,8 +32,8 @@ public class EnumerationTypeServer extends ExtensibleTypeServer implements Domai
 {
 	private Map<String, DomainEnumerationLiteral> literals = new HashMap<String, DomainEnumerationLiteral>();
 	
-	public EnumerationTypeServer(@NonNull PackageServer packageServer, @NonNull Enumeration type) {
-		super(packageServer, type);
+	public EnumerationTypeServer(@NonNull CompleteClass completeClass, @NonNull Enumeration type) {
+		super(completeClass, type);
 		int index = 0;
 		EObject eTarget = type.getETarget();
 		if (eTarget instanceof EEnum) {

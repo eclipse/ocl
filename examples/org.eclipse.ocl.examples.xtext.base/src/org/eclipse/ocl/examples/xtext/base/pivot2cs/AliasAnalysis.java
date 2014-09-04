@@ -28,11 +28,12 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainNamedElement;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
+import org.eclipse.ocl.examples.pivot.RootCompletePackage;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.PackageServer;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.PathElement;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -96,7 +97,7 @@ public class AliasAnalysis extends AdapterImpl
 	/**
 	 * The known or assigned package aliases/
 	 */
-	private @NonNull Map<DomainPackage, String> allAliases = new HashMap<DomainPackage, String>();
+	private @NonNull Map<CompletePackage, String> allAliases = new HashMap<CompletePackage, String>();
 
 	public AliasAnalysis(@NonNull Resource resource, @NonNull MetaModelManager metaModelManager) {
 		resource.eAdapters().add(this);
@@ -110,18 +111,18 @@ public class AliasAnalysis extends AdapterImpl
 			@NonNull Set<org.eclipse.ocl.examples.pivot.Package> otherPackages) {		
 		for (org.eclipse.ocl.examples.pivot.Package localPackage : localPackages) {
 			if (localPackage != null) {
-				DomainPackage primaryPackage = metaModelManager.getPackageServer(localPackage);
-				if ((primaryPackage.getNsPrefix() != null) || (primaryPackage.getOwningPackage() == null)) {
+				CompletePackage primaryPackage = metaModelManager.getCompletePackage(localPackage);
+				if ((primaryPackage.getNsPrefix() != null) || (primaryPackage instanceof RootCompletePackage)) {
 					if (!allAliases.containsKey(primaryPackage)) {
 						String alias = computeAlias(primaryPackage);
-						allAliases.put(localPackage, alias);
+						allAliases.put(primaryPackage, alias);
 					}
 				}
 			}
 		}
 		for (org.eclipse.ocl.examples.pivot.Package otherPackage : otherPackages) {
 			if (otherPackage != null) {
-				DomainPackage primaryPackage = metaModelManager.getPackageServer(otherPackage);
+				CompletePackage primaryPackage = metaModelManager.getCompletePackage(otherPackage);
 				if (!allAliases.containsKey(primaryPackage)) {
 					String alias = computeAlias(primaryPackage);
 					allAliases.put(primaryPackage, alias);
@@ -146,7 +147,7 @@ public class AliasAnalysis extends AdapterImpl
 	/**
 	 * Determine a unique alias for primaryPackage/
 	 */
-	private String computeAlias(@NonNull DomainPackage primaryPackage) {
+	private String computeAlias(@NonNull CompletePackage primaryPackage) {
 		String nsPrefix = primaryPackage.getNsPrefix();
 		String aliasBase = nsPrefix != null ? nsPrefix : getDefaultAlias(primaryPackage.getName());
 		int index = 0;
@@ -174,7 +175,9 @@ public class AliasAnalysis extends AdapterImpl
 				String name = ((ImportCS)eObject).getName();
 				Namespace namespace = ((ImportCS)eObject).getNamespace();
 				if (namespace instanceof org.eclipse.ocl.examples.pivot.Package) {
-					allAliases.put((org.eclipse.ocl.examples.pivot.Package) namespace, name);
+					org.eclipse.ocl.examples.pivot.Package namespace2 = (org.eclipse.ocl.examples.pivot.Package) namespace;
+					CompletePackage completePackage = metaModelManager.getCompletePackage(namespace2);
+					allAliases.put(completePackage, name);
 				}
 			}
 			EObject csObject = eObject;
@@ -183,12 +186,12 @@ public class AliasAnalysis extends AdapterImpl
 			}
 			if (eObject instanceof DomainNamedElement) {
 				DomainNamedElement domainNamedElement = (DomainNamedElement) eObject;
-				if (!(eObject instanceof PackageServer)) {
-					if (eObject instanceof PackageServer) {
+				if (!(eObject instanceof CompletePackage)) {
+					if (eObject instanceof CompletePackage) {
 						;
 					}
 					else if (eObject instanceof DomainPackage) {
-						domainNamedElement = metaModelManager.getPackageServer((DomainPackage)eObject);
+						domainNamedElement = metaModelManager.getCompletePackage((DomainPackage)eObject);
 					}
 					else {
 //						domainNamedElement = metaModelManager.getPrimaryElement((NamedElement)eObject);
@@ -246,7 +249,7 @@ public class AliasAnalysis extends AdapterImpl
 			eObject2 = ((Pivotable)eObject2).getPivot();
 		}
 		if (eObject2 instanceof DomainPackage) {
-			PackageServer packageServer = metaModelManager.getPackageServer((DomainPackage)eObject2);
+			CompletePackage packageServer = metaModelManager.getCompletePackage((DomainPackage)eObject2);
 			String alias = allAliases.get(packageServer);
 			if (alias != null) {
 				return alias;
@@ -276,7 +279,7 @@ public class AliasAnalysis extends AdapterImpl
 	 * Return the alias for eObject.
 	 */
 	@SuppressWarnings("null")
-	public @NonNull Iterable<DomainPackage> getAliases() {
+	public @NonNull Iterable<CompletePackage> getAliases() {
 		return allAliases.keySet();
 	}
 	

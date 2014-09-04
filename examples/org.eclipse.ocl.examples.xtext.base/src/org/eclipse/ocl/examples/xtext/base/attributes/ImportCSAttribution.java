@@ -23,9 +23,9 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.compatibility.EMF_2_9;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.PackageServer;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
@@ -33,8 +33,8 @@ import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
 import org.eclipse.ocl.examples.xtext.base.basecs.ImportCS;
-import org.eclipse.ocl.examples.xtext.base.cs2as.ValidationDiagnostic;
 import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot.UnresolvedProxyMessageProvider;
+import org.eclipse.ocl.examples.xtext.base.cs2as.ValidationDiagnostic;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.xtext.nodemodel.INode;
@@ -85,7 +85,7 @@ public class ImportCSAttribution extends AbstractAttribution implements Unresolv
 				return;
 			}
 			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-			PackageServer packageServer = metaModelManager.getPackageManager().getPackageByURI(name);
+			CompletePackage packageServer = metaModelManager.getCompleteModel().getCompletePackageByURI(name);
 			if (packageServer != null) {
 				importedElement = packageServer.getPivotPackage();
 				throwable = null;

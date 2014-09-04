@@ -26,6 +26,8 @@ import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.ids.ParametersId;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.types.AbstractInheritance;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
+import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Operation;
 
 public class FinalAnalysis
@@ -36,17 +38,20 @@ public class FinalAnalysis
 
 	public FinalAnalysis(@NonNull PackageManager packageManager) {
 		this.metaModelManager = packageManager.getMetaModelManager();
-		for (PackageServer packageServer :  packageManager.getAllPackages()) {
-			for (TypeServer typeServer :  packageServer.getMemberTypes()) {
-				org.eclipse.ocl.examples.pivot.Class subType = typeServer.getPivotType();
-				DomainInheritance subInheritance = subType.getInheritance(metaModelManager);
-				for (DomainInheritance superType : typeServer.getAllSuperClasses()) {
-					Set<DomainInheritance> subInheritances = type2subTypes.get(superType);
-					if (subInheritances == null) {
-						subInheritances = new HashSet<DomainInheritance>();
-						type2subTypes.put(superType, subInheritances);
+		for (CompletePackage completePackage :  packageManager.getCompleteModel().getAllCompletePackages()) {
+			for (CompleteClass completeClass :  completePackage.getOwnedCompleteClasses()) {
+				TypeServer typeServer = completeClass.getTypeServer();
+				if (typeServer != null) {
+					org.eclipse.ocl.examples.pivot.Class subType = typeServer.getPivotType();
+					DomainInheritance subInheritance = subType.getInheritance(metaModelManager);
+					for (DomainInheritance superType : typeServer.getAllSuperClasses()) {
+						Set<DomainInheritance> subInheritances = type2subTypes.get(superType);
+						if (subInheritances == null) {
+							subInheritances = new HashSet<DomainInheritance>();
+							type2subTypes.put(superType, subInheritances);
+						}
+						subInheritances.add(subInheritance);
 					}
-					subInheritances.add(subInheritance);
 				}
 			}
 		}

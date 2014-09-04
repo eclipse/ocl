@@ -11,7 +11,9 @@
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -24,13 +26,22 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.elements.DomainFragment;
+import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.TypeServer;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+
+import com.google.common.base.Function;
+import com.google.common.collect.Iterables;
 
 /**
  * <!-- begin-user-doc -->
@@ -106,6 +117,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("cast")
 	public void setOwningCompletePackage(CompletePackage newOwningCompletePackage)
 	{
 		if (newOwningCompletePackage != eInternalContainer() || (eContainerFeatureID() != PivotPackage.COMPLETE_CLASS__OWNING_COMPLETE_PACKAGE && newOwningCompletePackage != null))
@@ -122,20 +134,6 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.COMPLETE_CLASS__OWNING_COMPLETE_PACKAGE, newOwningCompletePackage, newOwningCompletePackage));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public List<org.eclipse.ocl.examples.pivot.Class> getPartialClasses()
-	{
-		if (partialClasses == null)
-		{
-			partialClasses = new EObjectResolvingEList<org.eclipse.ocl.examples.pivot.Class>(org.eclipse.ocl.examples.pivot.Class.class, this, PivotPackage.COMPLETE_CLASS__PARTIAL_CLASSES);
-		}
-		return partialClasses;
 	}
 
 	/**
@@ -335,8 +333,140 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 		return eDynamicIsSet(featureID);
 	}
 
+	protected /*@NonNull*/ TypeServer typeServer;
+	
+	private Set<CompleteClass> superCompleteClasses = null;
+	
 	@Override
 	public <R> R accept(@NonNull Visitor<R> visitor) {
 		return visitor.visitCompleteClass(this);
 	}
+
+	public @NonNull Set<CompleteClass> computeSuperCompleteClasses() {
+		Set<CompleteClass> superCompleteClasses2 = superCompleteClasses;
+		if (superCompleteClasses2 == null) {
+			MetaModelManager metaModelManager = DomainUtil.nonNullState(getOwningCompletePackage().getCompleteModel()).getMetaModelManager();
+			superCompleteClasses2 = superCompleteClasses = new HashSet<CompleteClass>();
+			for (org.eclipse.ocl.examples.pivot.Class partialClass : getPartialClasses()) {
+				for (org.eclipse.ocl.examples.pivot.Class partialSuperClass : partialClass.getSuperClasses()) {
+					if (partialSuperClass != null) {
+						CompleteClass superCompleteClass = metaModelManager.getCompleteClass(PivotUtil.getUnspecializedTemplateableElement(partialSuperClass));
+						superCompleteClasses2.add(superCompleteClass);
+						superCompleteClasses2.addAll(((CompleteClassImpl) superCompleteClass).computeSuperCompleteClasses());
+					}
+				}
+			}
+		}
+		return superCompleteClasses2;
+	}
+
+	protected void didAddPartialClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
+//		if (name2completeClass != null) {
+//			doRefreshPartialClasses(partialPackage);
+//		}
+	}
+
+	protected void didRemovePartialClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
+//		if (name2completeClass != null) {
+//			doRefreshPartialClasses(partialPackage);
+//		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@SuppressWarnings("null")
+	public @NonNull List<org.eclipse.ocl.examples.pivot.Class> getPartialClasses()
+	{
+		if (partialClasses == null)
+		{
+			partialClasses = new EObjectResolvingEList<org.eclipse.ocl.examples.pivot.Class>(org.eclipse.ocl.examples.pivot.Class.class, this, PivotPackage.COMPLETE_CLASS__PARTIAL_CLASSES)
+			{
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				protected void didAdd(int index, org.eclipse.ocl.examples.pivot.Class partialClass) {
+					assert partialClass != null;
+					super.didAdd(index, partialClass);
+					didAddPartialClass(partialClass);
+				}
+
+				@Override
+				protected void didRemove(int index, org.eclipse.ocl.examples.pivot.Class partialClass) {
+					assert partialClass != null;
+					didRemovePartialClass(partialClass);
+					super.didRemove(index, partialClass);
+				}
+			};
+		}
+		return partialClasses;
+	}
+
+	public org.eclipse.ocl.examples.pivot.Class getPivotClass() {
+		for (org.eclipse.ocl.examples.pivot.Class partialClass : getPartialClasses()) {
+//			if (partialPackage instanceof org.eclipse.ocl.examples.pivot.Package) {
+				return partialClass;
+//			}
+		}
+		throw new UnsupportedOperationException();
+	}
+	
+	@SuppressWarnings("null")
+	public @NonNull Iterable<CompleteClass> getSuperCompleteClasses() {
+////		if (type.getTemplateBinding().size() > 0) {		// FIXME need lazy specialization
+////		pivotType = PivotUtil.getUnspecializedTemplateableElement(pivotType);
+////		}
+//		if (!libraryLoadInProgress && (asMetamodel == null) && (pivotType == getClassType()))  {
+//			getASMetamodel();
+//		}
+//		return new CompleteClassSuperCompleteClassesIterable(getPartialClasses());
+		DomainInheritance inheritance = getTypeServer();
+//		final MetaModelManager metaModelManager = DomainUtil.nonNullState(getOwningCompletePackage().getCompleteModel()).getMetaModelManager();
+		return Iterables.transform(inheritance.getAllProperSuperFragments(), new Function<DomainFragment, CompleteClass>()
+		{
+			public CompleteClass apply(DomainFragment input) {
+				return ((TypeServer)input.getBaseInheritance()).getCompleteClass();
+			}
+		});
+	}
+
+	public @NonNull TypeServer getTypeServer() {
+		return typeServer;
+	}
+	
+/*	public boolean isSuperClassOf(@NonNull CompleteClass unspecializedFirstType, @NonNull CompleteClass secondType) {
+		CompleteClass unspecializedSecondType = getCompleteClass(PivotUtil.getUnspecializedTemplateableElement(secondType.getPivotClass()));	// FIXME cast
+		if (unspecializedFirstType == unspecializedSecondType) {
+			return true;
+		}
+		for (CompleteClass superClass : getSuperCompleteClasses(unspecializedSecondType)) {
+			if ((superClass != null) && isSuperClassOf(unspecializedFirstType, superClass)) {
+				return true;
+			}
+		}
+		return false;
+	} */
+
+	public void setTypeServer(@NonNull TypeServer typeServer) {
+		this.typeServer = typeServer;
+	}
+
+	public void uninstall() {
+		superCompleteClasses = null;
+	}
+	
+/*	public class CompleteClassSuperCompleteClassesIterable
+			extends CompleteElementIterable<CompleteClass, CompleteClass> {
+
+		public CompleteClassSuperCompleteClassesIterable(@NonNull Iterable<CompleteClass> types) {
+			super(types);
+		}
+
+		@Override
+		protected @NonNull Iterable<CompleteClass> getInnerIterable(@NonNull CompleteClass model) {
+			return DomainUtil.nonNullEMF(model.getSuperCompleteClasses());
+		}
+	} */
 } //CompleteClassImpl

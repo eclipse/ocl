@@ -28,6 +28,7 @@ import org.eclipse.ocl.examples.domain.ids.TupleTypeId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.library.executor.AbstractIdResolver;
+import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
@@ -165,8 +166,8 @@ public class PivotIdResolver extends AbstractIdResolver
 			if (typeName != null) {
 				DomainPackage asMetamodel = metaModelManager.getASMetamodel();
 				if (asMetamodel != null) {
-					PackageServer packageServer = metaModelManager.getPackageServer(asMetamodel);
-					org.eclipse.ocl.examples.pivot.Class pivotType = packageServer.getMemberType(typeName);
+					CompletePackage completePackage = metaModelManager.getCompletePackage(asMetamodel);
+					org.eclipse.ocl.examples.pivot.Class pivotType = completePackage.getMemberType(typeName);
 					if (pivotType != null) {
 						return pivotType;
 					}
@@ -200,8 +201,8 @@ public class PivotIdResolver extends AbstractIdResolver
 			if (typeName != null) {
 				DomainPackage asMetamodel = metaModelManager.getASMetamodel();
 				if (asMetamodel != null) {
-					PackageServer packageServer = metaModelManager.getPackageServer(asMetamodel);
-					org.eclipse.ocl.examples.pivot.Class pivotType = packageServer.getMemberType(typeName);
+					CompletePackage completePackage = metaModelManager.getCompletePackage(asMetamodel);
+					org.eclipse.ocl.examples.pivot.Class pivotType = completePackage.getMemberType(typeName);
 					if (pivotType != null) {
 						return pivotType;
 					}

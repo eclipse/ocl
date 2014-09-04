@@ -18,6 +18,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
+import org.eclipse.ocl.examples.domain.elements.DomainCompletePackage;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
 import org.eclipse.ocl.examples.domain.elements.DomainEnumeration;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
@@ -88,7 +89,11 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 
 	public void dispose() {}
 
-	public @NonNull Iterable<? extends DomainPackage> getAllPackages() {
+	public @NonNull Iterable<? extends DomainClass> getAllClasses() {
+		throw new UnsupportedOperationException();
+	}
+
+	public @NonNull Iterable<? extends DomainCompletePackage> getAllCompletePackages() {
 		throw new UnsupportedOperationException();
 	}
 

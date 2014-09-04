@@ -270,6 +270,10 @@ public abstract class AbstractNullVisitor<R, C>
 		return null;
 	}
 
+	public @Nullable R visitNestedCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.NestedCompletePackage object) {
+		return null;
+	}
+
 	public @Nullable R visitNullLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.NullLiteralExp object) {
 		return null;
 	}
@@ -298,11 +302,19 @@ public abstract class AbstractNullVisitor<R, C>
 		return null;
 	}
 
+	public @Nullable R visitOrphanCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.OrphanCompletePackage object) {
+		return null;
+	}
+
 	public @Nullable R visitPackage(@NonNull org.eclipse.ocl.examples.pivot.Package object) {
 		return null;
 	}
 
 	public @Nullable R visitParameter(@NonNull org.eclipse.ocl.examples.pivot.Parameter object) {
+		return null;
+	}
+
+	public @Nullable R visitParentCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.ParentCompletePackage object) {
 		return null;
 	}
 
@@ -347,6 +359,10 @@ public abstract class AbstractNullVisitor<R, C>
 	}
 
 	public @Nullable R visitRoot(@NonNull org.eclipse.ocl.examples.pivot.Root object) {
+		return null;
+	}
+
+	public @Nullable R visitRootCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.RootCompletePackage object) {
 		return null;
 	}
 

@@ -43,10 +43,13 @@ import org.eclipse.ocl.examples.domain.types.AbstractFragment;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.library.executor.ReflectiveType;
 import org.eclipse.ocl.examples.pivot.Behavior;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
+import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Region;
+import org.eclipse.ocl.examples.pivot.RootCompletePackage;
 import org.eclipse.ocl.examples.pivot.State;
 import org.eclipse.ocl.examples.pivot.StateMachine;
 import org.eclipse.ocl.examples.pivot.Stereotype;
@@ -56,6 +59,8 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.Vertex;
 import org.eclipse.ocl.examples.pivot.executor.PivotReflectiveFragment;
+import org.eclipse.ocl.examples.pivot.internal.impl.CompleteClassImpl;
+import org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView.Disambiguator;
 import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
@@ -327,8 +332,10 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		return templateParameterSubstitution;
 	}
 
-	protected final @NonNull PackageServer packageServer;
-	protected final @NonNull PackageManager packageManager;
+	protected final @NonNull CompleteClass completeClass;
+	protected final @NonNull CompletePackage completePackage;
+	protected final @NonNull CompleteModelImpl completeModel;
+//	protected final @NonNull PackageManager packageManager;
 
 	/**
 	 * Lazily created map from class name to the superclass. This is a map from unqualified name to
@@ -363,10 +370,12 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 	protected @Nullable TypeId typeId = null;
 	
 
-	protected AbstractTypeServer(@NonNull PackageServer packageServer, @NonNull DomainType domainType) {
-		super(DomainUtil.nonNullModel(domainType.getName()), packageServer, computeFlags(domainType));
-		this.packageServer = packageServer;
-		this.packageManager = packageServer.getPackageManager();
+	protected AbstractTypeServer(@NonNull CompleteClass completeClass, @NonNull DomainType domainType) {
+		super(DomainUtil.nonNullModel(domainType.getName()), DomainUtil.nonNullModel(completeClass.getOwningCompletePackage().getPivotPackage()), computeFlags(domainType));
+		this.completeClass = completeClass;
+		this.completePackage = completeClass.getOwningCompletePackage();
+		this.completeModel = DomainUtil.nonNullState(completePackage.getCompleteModel());
+//		this.packageManager = completePackage.getPackageManager();
 		this.domainType = domainType;
 	}
 
@@ -665,10 +674,10 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 				superTypeServer = (TypeServer)superInheritance;
 			}
 			else if (superInheritance != null) {
-				superTypeServer = packageManager.getTypeServer(superInheritance);
+				superTypeServer = completeModel.getTypeServer(superInheritance);
 			}
 			if (superTypeServer != null) {
-				for (DomainClass superType : superTypeServer.getPartialTypes()) {
+				for (DomainClass superType : superTypeServer.getCompleteClass().getPartialClasses()) {
 					assert superType != null;
 					if (superType instanceof org.eclipse.ocl.examples.pivot.Class) {
 						org.eclipse.ocl.examples.pivot.Class superClass = (org.eclipse.ocl.examples.pivot.Class)superType;
@@ -697,10 +706,15 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		}
 	}
 
+	public @NonNull CompleteClass getCompleteClass() {
+		return completeClass;
+	}
+
 	@Override
 	public @NonNull Iterable<? extends DomainInheritance> getInitialSuperInheritances() {
-		final @NonNull MetaModelManager metaModelManager = packageManager.getMetaModelManager();
-		final Iterator<org.eclipse.ocl.examples.pivot.Class> iterator = metaModelManager.getSuperClasses(getPivotType()).iterator();			// FIXME Use local cache
+		final @NonNull MetaModelManager metaModelManager = completeModel.getMetaModelManager();
+		CompleteClassImpl completeClass2 = (CompleteClassImpl)metaModelManager.getCompleteClass(getPivotType());
+		final Iterator<CompleteClass> iterator = completeClass2.computeSuperCompleteClasses().iterator();			// FIXME Use local cache
 		return new Iterable<DomainInheritance>()
 		{
 			public Iterator<DomainInheritance> iterator() {
@@ -711,7 +725,7 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 					}
 
 					public DomainInheritance next() {
-						return iterator.next().getInheritance(metaModelManager);
+						return iterator.next().getTypeServer().getInheritance(metaModelManager);
 					}
 
 					public void remove() {
@@ -854,16 +868,16 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		return DomainUtil.nonNullEMF(getPivotType().getOwnedOperations());			// FIXME Use local cache
 	}
 
-	public final @NonNull PackageManager getPackageManager() {
-		return packageManager;
-	}
+//	public final @NonNull PackageManager getPackageManager() {
+//		return packageManager;
+//	}
 
-	public PackageServer getPackageServer() {
-		return packageServer;
+	public CompletePackage getCompletePackage() {
+		return completePackage;
 	}
 
 	public final @NonNull MetaModelManager getStandardLibrary() {
-		return packageManager.getMetaModelManager();
+		return completeModel.getMetaModelManager();
 	}
 	
 	@Override
@@ -898,21 +912,26 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		Map<String, Map<ParametersId, List<DomainOperation>>> name2operations2 = name2operations;
 		if (name2operations2 == null) {
 			name2operations2 = name2operations = new HashMap<String, Map<ParametersId, List<DomainOperation>>>();
+//			Set<CompleteClass> allSuperCompleteClasses = new HashSet<CompleteClass>();
+//			allSuperCompleteClasses.add(completeClass);
+//			for (CompleteClass superCompleteClass : completeClass.getSuperCompleteClasses()) {
+//				allSuperCompleteClasses.add(superCompleteClass);
+//			}
 			for (DomainInheritance superClass : getAllSuperClasses()) {
 				TypeServer superTypeServer = null;
 				if (superClass instanceof TypeServer) {
 					superTypeServer = (TypeServer)superClass;
 				}
 				else if (superClass != null) {
-					superTypeServer = packageManager.getTypeServer(superClass);
+					superTypeServer = completeModel.getTypeServer(superClass);
 				}
 				if (superTypeServer != null) {
-					for (DomainClass superType : superTypeServer.getPartialTypes()) {
+					for (DomainClass superType : superTypeServer.getCompleteClass().getPartialClasses()) {
 						assert superType != null;
 						if (superType instanceof org.eclipse.ocl.examples.pivot.Class) {
 							org.eclipse.ocl.examples.pivot.Class unspecializedType = PivotUtil.getUnspecializedTemplateableElement((org.eclipse.ocl.examples.pivot.Class) superType);
-							TypeServer unspecializedTypeServer = packageManager.getTypeServer(unspecializedType);
-							for (DomainClass unspecializedPartialType : unspecializedTypeServer.getPartialTypes()) {
+							TypeServer unspecializedTypeServer = completeModel.getTypeServer(unspecializedType);
+							for (DomainClass unspecializedPartialType : unspecializedTypeServer.getCompleteClass().getPartialClasses()) {
 								assert unspecializedPartialType != null;
 								initMemberOperationsFrom(unspecializedPartialType);
 							}
@@ -962,10 +981,10 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 					superTypeServer = (TypeServer)superClass;
 				}
 				else if (superClass != null) {
-					superTypeServer = packageManager.getTypeServer(superClass);
+					superTypeServer = completeModel.getTypeServer(superClass);
 				}
 				if (superTypeServer != null) {
-					for (DomainClass superType : superTypeServer.getPartialTypes()) {
+					for (DomainClass superType : superTypeServer.getCompleteClass().getPartialClasses()) {
 						assert superType != null;
 						if (superType instanceof org.eclipse.ocl.examples.pivot.Class) {
 							org.eclipse.ocl.examples.pivot.Class unspecializedType = PivotUtil.getUnspecializedTemplateableElement((org.eclipse.ocl.examples.pivot.Class) superType);
@@ -995,8 +1014,8 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 									}
 								}
 							}
-							TypeServer unspecializedTypeServer = packageManager.getTypeServer(unspecializedType);
-							for (DomainClass unspecializedPartialType : unspecializedTypeServer.getPartialTypes()) {
+							TypeServer unspecializedTypeServer = completeModel.getTypeServer(unspecializedType);
+							for (DomainClass unspecializedPartialType : unspecializedTypeServer.getCompleteClass().getPartialClasses()) {
 								assert unspecializedPartialType != null;
 								initMemberPropertiesFrom(unspecializedPartialType);
 								if (unspecializedPartialType instanceof org.eclipse.ocl.examples.pivot.Class) {
@@ -1037,12 +1056,12 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 				}
 			}
 			@SuppressWarnings("null")@NonNull String metatypeName = getPivotType().eClass().getName();
-			RootPackageServer rootPackageServer = getPackageServer().getRootPackageServer();
-			PackageId metapackageId = rootPackageServer.getMetapackageId();
-			MetaModelManager metaModelManager = packageManager.getMetaModelManager();
+			RootCompletePackage rootCompletePackage = getCompletePackage().getRootCompletePackage();
+			PackageId metapackageId = rootCompletePackage.getMetapackageId();
+			MetaModelManager metaModelManager = completeModel.getMetaModelManager();
 			DomainPackage metapackage = metaModelManager.getIdResolver().getPackage(metapackageId);
-			PackageServer metapackageServer = metaModelManager.getPackageServer(metapackage);
-			DomainType metatype = metapackageServer.getType(metatypeName);
+			CompletePackage metaCompletePackage = metaModelManager.getCompletePackage(metapackage);
+			DomainType metatype = metaCompletePackage.getType(metatypeName);
 			if (metatype != null) {
 				TypeServer typeServer = metaModelManager.getTypeServer(metatype);
 				for (DomainProperty property : typeServer.getAllProperties(FeatureFilter.SELECT_STATIC)) {
@@ -1062,7 +1081,7 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 
 	private void gatherAllStereotypes(@NonNull Set<Stereotype> allStereotypes, @NonNull Iterable<Stereotype> moreStereotypes) {
 		Set<Stereotype> newStereotypes = null;
-		MetaModelManager metaModelManager = getPackageManager().getMetaModelManager();
+		MetaModelManager metaModelManager = completeModel.getMetaModelManager();
 		for (@SuppressWarnings("null")@NonNull Stereotype stereotype : moreStereotypes) {
 			stereotype = metaModelManager.getPrimaryElement(stereotype);
 			if (allStereotypes.add(stereotype)) {
@@ -1071,12 +1090,12 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 					superTypeServer = (TypeServer)stereotype;
 				}
 				else {
-					superTypeServer = packageManager.getTypeServer(stereotype);
+					superTypeServer = completeModel.getTypeServer(stereotype);
 				}
 				if (newStereotypes == null) {
 					newStereotypes = new HashSet<Stereotype>();
 				}
-				for (DomainClass partialType : superTypeServer.getPartialTypes()) {
+				for (DomainClass partialType : superTypeServer.getCompleteClass().getPartialClasses()) {
 					if (partialType instanceof Stereotype) {
 						Stereotype partialStereotype = (Stereotype) partialType;
 						newStereotypes.add(partialStereotype);
@@ -1263,7 +1282,7 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		boolean isRequired = false;
 		for (TypeExtension typeExtension : stereotype.getExtensionOfs()) {
 			Type metatype = typeExtension.getType();
-			if ((metatype != null) && baseType.conformsTo(packageManager.getMetaModelManager(), metatype)) {
+			if ((metatype != null) && baseType.conformsTo(completeModel.getMetaModelManager(), metatype)) {
 				isRequired = true;
 				break;
 			}
@@ -1274,7 +1293,7 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 	}
 
 	protected void initExtensionPropertiesFrom(@NonNull org.eclipse.ocl.examples.pivot.Class baseType, @NonNull Stereotype stereotype) {
-		MetaModelManager metaModelManager = packageManager.getMetaModelManager();
+		MetaModelManager metaModelManager = completeModel.getMetaModelManager();
 		ElementExtension elementExtension = metaModelManager.getElementExtension(baseType, stereotype);
 //		for (ElementExtension elementExtension : baseType.getExtensions())
 		Map<String, PartialProperties> name2properties2 = name2properties;
@@ -1463,6 +1482,7 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		name2superclasses = null;
 		name2properties = null;
 		name2operations = null;
+		((CompleteClassImpl)completeClass).uninstall();
 		super.uninstall();
 	}
 }

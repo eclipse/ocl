@@ -103,7 +103,7 @@ public class Pivot2EcoreTypeRefVisitor
 				return eClassifier;
 			}
 			if (metaModelManager.isTypeServeable(pivotType)) {
-				for (DomainClass type : metaModelManager.getPartialTypes(pivotType)) {
+				for (DomainClass type : metaModelManager.getPartialClasses(pivotType)) {
 					if (type instanceof PivotObjectImpl) {
 						EObject eTarget = ((PivotObjectImpl)type).getETarget();
 						if (eTarget != null) {
@@ -161,7 +161,7 @@ public class Pivot2EcoreTypeRefVisitor
 			return eClassifier;
 		}
 		TypeServer typeServer = metaModelManager.getTypeServer(pivotType);
-		for (DomainClass aType : typeServer.getPartialTypes()) {
+		for (DomainClass aType : typeServer.getCompleteClass().getPartialClasses()) {
 			if (!(aType instanceof PrimitiveType)) {
 				eClassifier = context.getCreated(EDataType.class, pivotType);
 				if (eClassifier != null) {

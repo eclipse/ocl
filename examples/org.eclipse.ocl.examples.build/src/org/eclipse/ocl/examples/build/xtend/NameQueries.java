@@ -121,7 +121,7 @@ public class NameQueries
 		}
 		else if (elem instanceof Type) {
 			if (metaModelManager != null) {
-				TypeServer typeServer = metaModelManager.getPackageManager().findTypeServer((Type)elem);
+				TypeServer typeServer = metaModelManager.getCompleteModel().findTypeServer((Type)elem);
 				if (typeServer != null) {
 					elem = typeServer;
 				}

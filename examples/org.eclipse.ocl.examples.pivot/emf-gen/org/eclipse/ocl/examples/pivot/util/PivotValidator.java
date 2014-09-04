@@ -79,6 +79,7 @@ import org.eclipse.ocl.examples.pivot.MessageType;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.NavigationCallExp;
+import org.eclipse.ocl.examples.pivot.NestedCompletePackage;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.NumericLiteralExp;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
@@ -86,7 +87,9 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
+import org.eclipse.ocl.examples.pivot.OrphanCompletePackage;
 import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.ParentCompletePackage;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.PrimitiveLiteralExp;
@@ -101,6 +104,7 @@ import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.ReferringElement;
 import org.eclipse.ocl.examples.pivot.Region;
 import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.RootCompletePackage;
 import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.SendSignalAction;
 import org.eclipse.ocl.examples.pivot.SequenceType;
@@ -824,6 +828,8 @@ public class PivotValidator
 				return validateNamespace((Namespace)value, diagnostics, context);
 			case PivotPackage.NAVIGATION_CALL_EXP:
 				return validateNavigationCallExp((NavigationCallExp)value, diagnostics, context);
+			case PivotPackage.NESTED_COMPLETE_PACKAGE:
+				return validateNestedCompletePackage((NestedCompletePackage)value, diagnostics, context);
 			case PivotPackage.NULL_LITERAL_EXP:
 				return validateNullLiteralExp((NullLiteralExp)value, diagnostics, context);
 			case PivotPackage.NUMERIC_LITERAL_EXP:
@@ -838,10 +844,14 @@ public class PivotValidator
 				return validateOppositePropertyCallExp((OppositePropertyCallExp)value, diagnostics, context);
 			case PivotPackage.ORDERED_SET_TYPE:
 				return validateOrderedSetType((OrderedSetType)value, diagnostics, context);
+			case PivotPackage.ORPHAN_COMPLETE_PACKAGE:
+				return validateOrphanCompletePackage((OrphanCompletePackage)value, diagnostics, context);
 			case PivotPackage.PACKAGE:
 				return validatePackage((org.eclipse.ocl.examples.pivot.Package)value, diagnostics, context);
 			case PivotPackage.PARAMETER:
 				return validateParameter((Parameter)value, diagnostics, context);
+			case PivotPackage.PARENT_COMPLETE_PACKAGE:
+				return validateParentCompletePackage((ParentCompletePackage)value, diagnostics, context);
 			case PivotPackage.PIVOTABLE:
 				return validatePivotable((Pivotable)value, diagnostics, context);
 			case PivotPackage.PRECEDENCE:
@@ -868,6 +878,8 @@ public class PivotValidator
 				return validateRegion((Region)value, diagnostics, context);
 			case PivotPackage.ROOT:
 				return validateRoot((Root)value, diagnostics, context);
+			case PivotPackage.ROOT_COMPLETE_PACKAGE:
+				return validateRootCompletePackage((RootCompletePackage)value, diagnostics, context);
 			case PivotPackage.SELF_TYPE:
 				return validateSelfType((SelfType)value, diagnostics, context);
 			case PivotPackage.SEND_SIGNAL_ACTION:
@@ -1336,6 +1348,16 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateParentCompletePackage(ParentCompletePackage parentCompletePackage, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint((EObject)parentCompletePackage, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateOppositePropertyCallExp(OppositePropertyCallExp oppositePropertyCallExp, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint((EObject)oppositePropertyCallExp, diagnostics, context);
@@ -1473,6 +1495,16 @@ public class PivotValidator
 			NavigationCallExp navigationCallExp, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)navigationCallExp, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateNestedCompletePackage(NestedCompletePackage nestedCompletePackage, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint((EObject)nestedCompletePackage, diagnostics, context);
 	}
 
 	/**
@@ -2898,6 +2930,16 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateOrphanCompletePackage(OrphanCompletePackage orphanCompletePackage, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint((EObject)orphanCompletePackage, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validatePrimitiveType(PrimitiveType primitiveType,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment((EObject)primitiveType, diagnostics, context)) return false;
@@ -3024,6 +3066,16 @@ public class PivotValidator
 	public boolean validateRoot(Root root, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint((EObject)root, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateRootCompletePackage(RootCompletePackage rootCompletePackage, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint((EObject)rootCompletePackage, diagnostics, context);
 	}
 
 	/**

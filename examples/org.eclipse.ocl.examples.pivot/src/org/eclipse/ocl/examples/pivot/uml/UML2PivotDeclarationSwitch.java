@@ -277,7 +277,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 			if (umlMetapackage != null) {
 				String nsURI = umlMetapackage.getURI();
 				if (nsURI != null) {
-					metaModelManager.getPackageManager().addPackageNsURISynonym(nsURI, DomainConstants.UML_METAMODEL_NAME);
+					metaModelManager.getCompleteModel().addPackageNsURISynonym(nsURI, DomainConstants.UML_METAMODEL_NAME);
 				}
 				converter.addImportedPackage(umlMetapackage);
 			}
@@ -727,7 +727,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 				if ("UML".equals(packageName)) {		// OMG's 
 					for (org.eclipse.uml2.uml.Type umlType : umlPackage.getOwnedTypes()) {
 						if ((umlType instanceof org.eclipse.uml2.uml.Class) && "Class".equals(umlType.getName())) {
-							metaModelManager.getPackageManager().addPackageNsURISynonym(nsURI2, DomainConstants.UML_METAMODEL_NAME);;
+							metaModelManager.getCompleteModel().addPackageNsURISynonym(nsURI2, DomainConstants.UML_METAMODEL_NAME);;
 							((PackageImpl)pivotElement).setIgnoreInvariants(true);
 							break;
 						}
@@ -736,13 +736,13 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 				else if ("PrimitiveTypes".equals(packageName)) {
 					for (org.eclipse.uml2.uml.Type umlType : umlPackage.getOwnedTypes()) {
 						if ((umlType instanceof org.eclipse.uml2.uml.PrimitiveType) && "Boolean".equals(umlType.getName())) {
-							metaModelManager.getPackageManager().addPackageNsURISynonym(nsURI2, DomainConstants.TYPES_METAMODEL_NAME);;
+							metaModelManager.getCompleteModel().addPackageNsURISynonym(nsURI2, DomainConstants.TYPES_METAMODEL_NAME);;
 							break;
 						}
 					}
 				}
 			}
-			String sharedURI = metaModelManager.getPackageManager().getSharedURI(nsURI2);
+			String sharedURI = metaModelManager.getCompleteModel().getSharedURI(nsURI2);
 			if ((sharedURI != null) && !sharedURI.equals(nsURI)) {
 				((PackageImpl)pivotElement).setPackageId(IdManager.getRootPackageId(sharedURI));
 			}

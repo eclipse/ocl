@@ -11,6 +11,7 @@
 package org.eclipse.ocl.examples.pivot.manager;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 
 /**
@@ -18,7 +19,7 @@ import org.eclipse.ocl.examples.pivot.PrimitiveType;
  */
 public class PrimitiveTypeServer extends ExtensibleTypeServer
 {
-	protected PrimitiveTypeServer(@NonNull PackageServer packageServer, @NonNull PrimitiveType primitiveType) {
-		super(packageServer, primitiveType);
+	public PrimitiveTypeServer(@NonNull CompleteClass completeClass, @NonNull PrimitiveType primitiveType) {
+		super(completeClass, primitiveType);
 	}
 }

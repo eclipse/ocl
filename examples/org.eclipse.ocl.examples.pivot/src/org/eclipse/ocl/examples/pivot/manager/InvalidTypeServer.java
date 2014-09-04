@@ -12,12 +12,13 @@ package org.eclipse.ocl.examples.pivot.manager;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.InvalidType;
 
 public class InvalidTypeServer extends ExtensibleTypeServer
 {
-	public InvalidTypeServer(@NonNull PackageServer packageServer, @NonNull InvalidType type) {
-		super(packageServer, type);
+	public InvalidTypeServer(@NonNull CompleteClass completeClass, @NonNull InvalidType type) {
+		super(completeClass, type);
 	}
 
 	@Override
