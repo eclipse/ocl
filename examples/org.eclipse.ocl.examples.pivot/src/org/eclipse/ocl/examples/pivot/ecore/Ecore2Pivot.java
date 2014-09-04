@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EKeyedList;
 import org.eclipse.emf.ecore.xmi.XMIException;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.jdt.annotation.NonNull;
@@ -447,11 +448,11 @@ public class Ecore2Pivot extends AbstractEcore2Pivot
 			newCreateMap = new HashMap<EObject, Element>();
 			org.eclipse.ocl.examples.pivot.Package asLibrary = metaModelManager.getOclAnyType().getOwningPackage();
 			newCreateMap.put(libraryEPackage, asLibrary);
-			List<org.eclipse.ocl.examples.pivot.Class> ownedType = asLibrary.getOwnedClasses();
+			EKeyedList<org.eclipse.ocl.examples.pivot.Class> ownedType = asLibrary.getOwnedClasses();
 //			int prefix = LibraryConstants.ECORE_STDLIB_PREFIX.length();
 			for (EClassifier eClassifier : libraryEPackage.getEClassifiers()) {
 				String name = getOriginalName(eClassifier); //.substring(prefix);
-				Type asType = DomainUtil.getNamedElement(ownedType, name);
+				Type asType = ownedType.getUnique(name);
 				newCreateMap.put(eClassifier, asType);
 			}
 			Root containingRoot = PivotUtil.getContainingRoot(asLibrary);

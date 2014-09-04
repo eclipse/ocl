@@ -12,6 +12,7 @@ package org.eclipse.ocl.examples.pivot;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.util.EKeyedList;
 import org.eclipse.jdt.annotation.NonNull;
 
 /**
@@ -155,7 +156,7 @@ public interface Package
 	 * @see org.eclipse.ocl.examples.pivot.Class#getOwningPackage
 	 * @generated
 	 */
-	@NonNull List<org.eclipse.ocl.examples.pivot.Class> getOwnedClasses();
+	@NonNull EKeyedList<org.eclipse.ocl.examples.pivot.Class> getOwnedClasses();
 
 	/**
 	 * Returns the value of the '<em><b>Profile Application</b></em>' containment reference list.

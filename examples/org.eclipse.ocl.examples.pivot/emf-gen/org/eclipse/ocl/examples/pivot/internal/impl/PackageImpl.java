@@ -21,6 +21,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EKeyedList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEKeyedList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -121,7 +123,7 @@ public class PackageImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<org.eclipse.ocl.examples.pivot.Class> ownedClasses;
+	protected EKeyedList<org.eclipse.ocl.examples.pivot.Class> ownedClasses;
 
 	/**
 	 * The cached value of the '{@link #getOwnedInstances() <em>Owned Instances</em>}' containment reference list.
@@ -249,12 +251,17 @@ public class PackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("null")
-	public @NonNull List<org.eclipse.ocl.examples.pivot.Class> getOwnedClasses()
+	@SuppressWarnings({"null", "serial"})
+	public @NonNull EKeyedList<org.eclipse.ocl.examples.pivot.Class> getOwnedClasses()
 	{
 		if (ownedClasses == null)
 		{
-			ownedClasses = new EObjectContainmentWithInverseEList<org.eclipse.ocl.examples.pivot.Class>(org.eclipse.ocl.examples.pivot.Class.class, this, PivotPackage.PACKAGE__OWNED_CLASSES, PivotPackage.CLASS__OWNING_PACKAGE);
+			ownedClasses = new EObjectContainmentWithInverseEKeyedList<org.eclipse.ocl.examples.pivot.Class>(org.eclipse.ocl.examples.pivot.Class.class, this, PivotPackage.PACKAGE__OWNED_CLASSES, PivotPackage.CLASS__OWNING_PACKAGE)
+			{
+				public @Nullable String getKey(int keyIndex, @Nullable org.eclipse.ocl.examples.pivot.Class value) {
+					return value != null ? value.getName() : null;
+				}
+			};
 		}
 		return ownedClasses;
 	}

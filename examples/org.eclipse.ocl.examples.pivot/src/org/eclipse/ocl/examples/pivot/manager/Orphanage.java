@@ -17,23 +17,25 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.NoSuchElementException;
 import java.util.WeakHashMap;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.AbstractEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EKeyedList;
+import org.eclipse.emf.ecore.util.EKeyedListIndexes;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl;
 import org.eclipse.ocl.examples.pivot.resource.ASResourceImpl;
 import org.eclipse.ocl.examples.pivot.resource.OCLASResourceFactory;
@@ -74,7 +76,7 @@ public class Orphanage extends PackageImpl
 	 * A cached sorted list copy of the map is created on demand and may be shared by multiple iterators. However it must not be modified
 	 * since its staleness is detectesd by a simple size comparison with the map.
 	 */
-	private static class WeakEList<T> extends AbstractEList<T> implements InternalEList<T>
+	private static abstract class WeakEList<T extends EObject> extends AbstractEList<T> implements InternalEList<T>, EKeyedList<T>
 	{
 		/**
 		 * A simple immutable iterator that caches the list image on construction to avoid changes.
@@ -152,7 +154,7 @@ public class Orphanage extends PackageImpl
 		/**
 		 * The most recent ordered view of the weakMap.
 		 */
-		private @Nullable List<Entry<T, Integer>> weakList = null;
+		private @Nullable List<Map.Entry<T, Integer>> weakList = null;
 
 		@Override
 		public boolean addAllUnique(Object[] objects, int start, int end) {
@@ -256,19 +258,19 @@ public class Orphanage extends PackageImpl
 
 		@Override
 		public T get(int index) {
-			List<Entry<T, Integer>> weakList2 = getList();
+			List<Map.Entry<T, Integer>> weakList2 = getList();
 			return weakList2.get(index).getKey();
 		}
 
-		private @NonNull List<Entry<T, Integer>> getList() {
-			List<Entry<T, Integer>> weakList2;
+		private @NonNull List<Map.Entry<T, Integer>> getList() {
+			List<Map.Entry<T, Integer>> weakList2;
 			synchronized (weakMap) {
 				weakList2 = weakList;
 				if (weakList2 == null) {
-					weakList2 = weakList = new ArrayList<Entry<T, Integer>>(weakMap.entrySet());
-					Collections.sort(weakList2, new Comparator<Entry<T, Integer>>()
+					weakList2 = weakList = new ArrayList<Map.Entry<T, Integer>>(weakMap.entrySet());
+					Collections.sort(weakList2, new Comparator<Map.Entry<T, Integer>>()
 					{
-						public int compare(Entry<T, Integer> o1, Entry<T, Integer> o2) {
+						public int compare(Map.Entry<T, Integer> o1, Map.Entry<T, Integer> o2) {
 							return o1.getValue().intValue() - o2.getValue().intValue();
 						}
 					});
@@ -335,6 +337,68 @@ public class Orphanage extends PackageImpl
 		@Override
 		public String toString() {
 			return weakMap.toString();
+		}
+		
+		/**
+		 * Lazily created indexing of this list.
+		 */
+		private @Nullable EKeyedListIndexes<T> eKeyedList = null;
+
+		@Override
+		protected void didAdd(int index, T newObject) {
+			if (eKeyedList != null) {
+				eKeyedList.didAdd(newObject);
+			}
+			super.didAdd(index, newObject);
+		}
+
+		@Override
+		protected void didClear(int size, Object[] oldObjects) {
+			if (eKeyedList != null) {
+				eKeyedList.clear();
+				eKeyedList = null;
+			}
+			super.didClear(size, oldObjects);
+		}
+
+		@Override
+		protected void didRemove(int index, T oldObject) {
+			if (eKeyedList != null) {
+				eKeyedList.didRemove(oldObject);
+			}
+			super.didRemove(index, oldObject);
+		}
+
+		public @NonNull Iterable<T> getAll(int keyIndex, Object key) {
+			EKeyedListIndexes<T> eKeyedList2 = eKeyedList;
+			if (eKeyedList2 == null) {
+				eKeyedList = eKeyedList2 = EKeyedListIndexes.createEKeyedList(this);
+			}
+			return eKeyedList2.getAll(keyIndex, key);
+		}
+
+		public @NonNull Iterable<T> getAll(Object... keys) {
+			EKeyedListIndexes<T> eKeyedList2 = eKeyedList;
+			if (eKeyedList2 == null) {
+				eKeyedList = eKeyedList2 = EKeyedListIndexes.createEKeyedList(this);
+			}
+			return eKeyedList2.getAll(keys);
+		}
+
+		public @Nullable T getUnique(int keyIndex, Object key) {
+			EKeyedListIndexes<T> eKeyedList2 = eKeyedList;
+			if (eKeyedList2 == null) {
+				eKeyedList = eKeyedList2 = EKeyedListIndexes.createEKeyedList(this);
+			}
+			return eKeyedList2.getUnique(keyIndex, key);
+		}
+
+		public @Nullable T getUnique(Object... keys) {
+			EKeyedListIndexes<T> eKeyedList2 = eKeyedList;
+			if (eKeyedList2 == null) {
+				eKeyedList = eKeyedList2 = EKeyedListIndexes.createEKeyedList(this);
+			}
+			return eKeyedList2.getUnique(keys);
 		}
 	}
 
@@ -416,11 +480,20 @@ public class Orphanage extends PackageImpl
 	}
 	
 	@Override
-	public @NonNull EList<org.eclipse.ocl.examples.pivot.Class> getOwnedClasses() {
-		EList<org.eclipse.ocl.examples.pivot.Class> ownedType2 = ownedClasses;
+	public @NonNull EKeyedList<org.eclipse.ocl.examples.pivot.Class> getOwnedClasses() {
+		EKeyedList<org.eclipse.ocl.examples.pivot.Class> ownedType2 = ownedClasses;
 		if (ownedType2 == null)
 		{
-			ownedType2 = ownedClasses = new WeakEList<org.eclipse.ocl.examples.pivot.Class>(/*WeakReference.class, this, PivotPackage.PACKAGE__OWNED_TYPE, PivotPackage.TYPE__PACKAGE*/);
+			ownedType2 = ownedClasses = new WeakEList<org.eclipse.ocl.examples.pivot.Class>(/*WeakReference.class, this, PivotPackage.PACKAGE__OWNED_TYPE, PivotPackage.TYPE__PACKAGE*/)
+			{
+				public EStructuralFeature getEStructuralFeature() {
+					return PivotPackage.Literals.PACKAGE__OWNED_CLASSES;
+				}
+
+				public @Nullable String getKey(int keyIndex, @Nullable org.eclipse.ocl.examples.pivot.Class value) {
+					return value != null ? value.getName() : null;
+				}
+			};
 		}
 		return ownedType2;
 	}
