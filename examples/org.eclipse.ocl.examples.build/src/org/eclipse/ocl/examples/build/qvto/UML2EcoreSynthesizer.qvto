@@ -7,10 +7,12 @@ transformation PruneUML(in analysis : UML2Ecore, out Ecore);
 
 property debugProperties : Boolean = true;
 property debugCreateProperty : Boolean = true;
-property debugType : Boolean = false;
+property debugDerived : Boolean = false;
+property debugResolveProxies : Boolean = false;
+property debugType : Boolean = true;
 property debug_EClass_abstract : Boolean = false;
-property debug_EReference_eOpposite : Boolean = true;
-property showPropertyOverrides : Boolean = true;
+property debug_EReference_eOpposite : Boolean = false;
+property showPropertyOverrides : Boolean = false;
 
 property mappings : Set(UML2Ecore::Mapping) = analysis.objectsOfType(UML2Ecore::Mappings).mappings->asSet();
 property createPackages : Set(UML2Ecore::CreatePackage) = mappings->selectByKind(UML2Ecore::CreatePackage)->asSet();
@@ -75,7 +77,31 @@ helper Set(String)::display() : String {
 	return self->sortedBy(n | n)->iterate(c; acc : String = '' | if acc = '' then '' else acc + ' ' endif + c);
 }
 
+helper Set(Ecore::EStructuralFeature)::display() : String {
+	return self->sortedBy(name)->iterate(c; acc : String = '' | acc + ' ' + c.getPropertyName());
+}
+
+helper Ecore::EClassifier::display() : String {
+	return self.ePackage.getName() + '::' + self.getName();
+}
+
+helper Ecore::EStructuralFeature::display() : String {
+	return self.eContainingClass.display() + '::' + self.getName();
+}
+
+helper UML::Property::display() : String {
+	return self.getOwningType().display() + '::' + self.getName();
+}
+
+helper UML::Type::display() : String {
+	return self.package.getName() + '::' + self.getName();
+}
+
 helper UML::NamedElement::getName() : String {
+	return if self.name <> null then self.name else 'null' endif;
+}
+
+helper Ecore::ENamedElement::getName() : String {
 	return if self.name <> null then self.name else 'null' endif;
 }
 
@@ -83,30 +109,14 @@ helper UML::Property::getOwningType() : Type {
 	return if self._'class' <> null then self._'class' else self.getOtherEnd().type endif;
 }
 
-helper UML::Type::display() : String {
-	return self.package.getName() + '::' + self.getName();
-}
-
 helper UML::Property::getPropertyName() : String {
 	var type : Type := self.getOwningType();
 	return type.display() + '::' + self.getName();
 }
 
-helper Ecore::ENamedElement::getName() : String {
-	return if self.name <> null then self.name else 'null' endif;
-}
-
-helper Ecore::EClassifier::display() : String {
-	return self.ePackage.getName() + '::' + self.getName();
-}
-
 helper Ecore::EStructuralFeature::getPropertyName() : String {
 	var type : Ecore::EClassifier := self.eContainingClass;
 	return type.display() + '::' + self.getName();
-}
-
-helper Set(Ecore::EStructuralFeature)::display() : String {
-	return self->sortedBy(name)->iterate(c; acc : String = '' | acc + ' ' + c.getPropertyName());
 }
 
 main() {
@@ -267,11 +277,11 @@ when { newType.oclIsKindOf(Ecore::EDataType) }
 --	log('  createAttribute', self.newName);
 	self.createStructuralFeature(result, oldProperties, newType);
 	result.map installUnsettable(oldProperties, 'Ecore::EAttribute');
-	var isDerived : Boolean := oldProperties->forAll(isDerived);
+	var isDerived : Boolean := oldProperties->exists(isDerived);
 	result._'derived' := isDerived;
-//	result.transient := isDerived;
+	result.transient := isDerived;
 	result.map installTransient(oldProperties, 'Ecore::EAttribute', isDerived);
-	result.volatile := isDerived;
+	result.map installVolatile(oldProperties, 'Ecore::EAttribute', isDerived);
 }
 mapping UML2EcoreMapping::CreateProperty::createReference(type : Ecore::EClassifier, oldProperties : Set(UML::Property), newType : Ecore::EClassifier) : Ecore::EReference
 when { not newType.oclIsKindOf(Ecore::EDataType) }
@@ -283,6 +293,14 @@ when { not newType.oclIsKindOf(Ecore::EDataType) }
 	self.createStructuralFeature(result, oldProperties, newType);
 	result.map installUnsettable(oldProperties, 'Ecore::EReference');
 	result.containment := oldProperty.aggregation = UML::AggregationKind::composite;
+	var isDerived : Boolean := if self.newIsDerived <> null then self.newIsDerived else oldProperties->exists(isDerived) endif;-- and oldProperties->forAll(let opposite = getOtherEnd() in opposite = null or opposite.isDerived);
+	if (debugDerived) log('  derived', self.newIsDerived.toString() + "=>" + isDerived.toString());
+	result._'derived' := isDerived;
+	result.transient := isDerived and oldProperties->forAll(let opposite = getOtherEnd() in opposite = null or opposite.isDerived);
+	result.resolveProxies := not result.transient;
+//	result.volatile := oldProperties->exists(getValue(getAppliedStereotype('Ecore::EReference'), 'isVolatile') = true);
+	result.volatile := isDerived;
+	if (debug_EReference_eOpposite) log('eReference2createProperty:put ', oldProperties->display() + " => " + result.display());
 }
 
 helper UML2EcoreMapping::CreateProperty::createStructuralFeature(inout output : Ecore::EStructuralFeature, oldProperties : Set(UML::Property), newType : Ecore::EClassifier)
@@ -296,7 +314,9 @@ helper UML2EcoreMapping::CreateProperty::createStructuralFeature(inout output : 
 	output.unique := oldProperty->exists(isUnique);
 	output._'ordered' := if (0 <= output.upperBound) and (output.upperBound <= 1) then true else oldProperty->exists(isOrdered) endif;
 	output.changeable := oldProperties->forAll(not isReadOnly);
-	output._derived := oldProperties->forAll(isDerived);
+--	var isDerived : Boolean := oldProperties->exists(isDerived);
+--	output._'derived' := isDerived;
+--	output.volatile := isDerived;
 --	output.unsettable := false; --oldProperty.lower < 1;
 --	output.unsettable := false; --(oldProperty.lower = 1) and (oldProperty.upper = 1) and defaultValues->isEmpty() and output.oclIsKindOf(EAttribute); -- BooleanLiteralExp.booleanSymbol
 --	log('    createStructuralFeature', Sequence{oldType, newType});
@@ -355,6 +375,20 @@ mapping inout Ecore::EClassifier::installInstanceClassName(in types : Set(UML::T
 --	result.defaultValue := instanceClassName;
 }
 
+mapping inout Ecore::EReference::installResolveProxies(in properties : Set(UML::Property), stereotypeName : String, defaultValue : Boolean)
+{
+	var stereotypedProperties : Set(UML::Property) := properties->select(getAppliedStereotype(stereotypeName) <> null)->asSet();
+	var stereotypedProperty : UML::Property := if stereotypedProperties->notEmpty() then stereotypedProperties->any(true) else null endif;
+	if (debugResolveProxies) log('installResolveProxies', properties->display());
+--	var stereotypes : Set(UML::Stereotype) := createType.oldTypes.oclAsType(UML::DataType).getAppliedStereotype('Ecore::EDataType')->asSet();
+--	log('stereotypedType', stereotypedType);
+	var resolveProxies : Boolean := if stereotypedProperty <> null then stereotypedProperty.getValue(stereotypedProperty.getAppliedStereotype(stereotypeName), 'isResolveProxies').oclAsType(Boolean) else defaultValue endif;
+	if (debugResolveProxies) log('installResolveProxies', resolveProxies);
+--	log('instanceClassName', instanceClassName);
+	self.resolveProxies := resolveProxies;
+--	result.defaultValue := instanceClassName;
+}
+
 mapping inout Ecore::EStructuralFeature::installTransient(in properties : Set(UML::Property), stereotypeName : String, defaultValue : Boolean)
 {
 	var stereotypedProperties : Set(UML::Property) := properties->select(getAppliedStereotype(stereotypeName) <> null)->asSet();
@@ -376,6 +410,18 @@ mapping inout Ecore::EStructuralFeature::installUnsettable(in properties : Set(U
 	var unsettable : Boolean := stereotypedProperty <> null and stereotypedProperty.getValue(stereotypedProperty.getAppliedStereotype(stereotypeName), 'isUnsettable').oclAsType(Boolean);
 --	log('instanceClassName', instanceClassName);
 	self.unsettable := unsettable ;
+--	result.defaultValue := instanceClassName;
+}
+
+mapping inout Ecore::EStructuralFeature::installVolatile(in properties : Set(UML::Property), stereotypeName : String, defaultValue : Boolean)
+{
+	var stereotypedProperties : Set(UML::Property) := properties->select(getAppliedStereotype(stereotypeName) <> null)->asSet();
+	var stereotypedProperty : UML::Property := if stereotypedProperties->notEmpty() then stereotypedProperties->any(true) else null endif;
+--	var stereotypes : Set(UML::Stereotype) := createType.oldTypes.oclAsType(UML::DataType).getAppliedStereotype('Ecore::EDataType')->asSet();
+--	log('stereotypedType', stereotypedType);
+	var volatile : Boolean := if stereotypedProperty <> null then stereotypedProperty.getValue(stereotypedProperty.getAppliedStereotype(stereotypeName), 'isVolatile').oclAsType(Boolean) else defaultValue endif;
+--	log('instanceClassName', instanceClassName);
+	self.volatile := volatile ;
 --	result.defaultValue := instanceClassName;
 }
 
@@ -406,8 +452,13 @@ mapping inout Ecore::EClass::resolveEClass()
 	var oldProperSuperClassClosure : Set(UML::Type) :=
 		getProperSuperTypes(allOldTypes);
 	if (debugType) log('  oldProperSuperClassClosure', oldProperSuperClassClosure->display());
+	var excludeTypes : Set(UML::Type) :=
+		createType.excludeTypes;
+	var excludeTypeNames : Set(String) :=
+		createType.excludeTypes.name->asSet();
+	if (debugType) log('  excludeTypeNames', excludeTypeNames->display());
 	var newSuperClassClosure : Set(UML::Type) :=
-		oldProperSuperClassClosure->reject(deleteTypeNames->includes(name))-createType.oldTypes;
+		oldProperSuperClassClosure->reject(deleteTypeNames->includes(name))->reject(excludeTypeNames->includes(name))-createType.oldTypes;
 	var newProperSuperClassClosure : Set(UML::Type) :=
 		getAllTypes(newSuperClassClosure);
 	if (debugType) log('  newProperSuperClassClosure', newProperSuperClassClosure->display());
@@ -425,7 +476,7 @@ mapping inout Ecore::EClass::resolveEClass()
 	var localClasses : Set(UML::Type) := oldInheritedClasses - newInheritedClasses;
 	if (debugType) log('  localClasses', localClasses->display());
 	var localCreateTypes : Set(UML2EcoreMapping::CreateType) :=
-		localClasses->collect(t | umlType2createType->get(t))->excluding(null)->asSet();
+		localClasses->collect(t | umlType2createType->get(t))->excluding(null)->asSet()->reject(excludeTypeNames->includes(name));
 	if (debugType) log('  localCreateTypes', localCreateTypes.oldTypes->asSet()->display());
 	var localDeleteTypes : Set(UML2EcoreMapping::DeleteType) :=
 		localClasses->collect(t | umlType2deleteType->get(t))->excluding(null)->asSet();
@@ -456,6 +507,12 @@ mapping inout Ecore::EClass::resolveEClass()
 	var propertyCreateNames  : Set(String) := 
 		propertyCreates.newName->asSet();
 	if (debugProperties) log('  propertyCreateNames', propertyCreateNames->display());
+	var excludedProperties  : Set(UML::Property) := 
+		createType.excludeProperties;
+	if (debugProperties) log('  excludedProperties', excludedProperties->display());
+--	var excludedPropertyNames  : Set(String) := 
+--		excludeTypes->selectByKind(UML::Class).ownedAttribute.name->asSet();
+--	if (debugProperties) log('  excludedPropertyNames', excludedPropertyNames->display());
 	var inheritedPropertyCreateNames  : Set(String) := 
 		inheritedPropertyCreates.newName->asSet();
 	if (debugProperties) log('  inheritedPropertyCreateNames', inheritedPropertyCreateNames->display());
@@ -484,7 +541,7 @@ mapping inout Ecore::EClass::resolveEClass()
 --		var theType : UML::Class := theTypes->sortedBy(t | depth(t))->last();
 --		if (debugCreateProperty) log('  theTypes', theType.display() + ", " + theTypes->display());
 --		var pc  : UML2EcoreMapping::CreateProperty := thePropertyCreates->any(true);
-		var oldProperties : Set(UML::Property) := thePropertyCreates.oldProperties->asSet();
+		var oldProperties : Set(UML::Property) := thePropertyCreates.oldProperties->asSet() - excludedProperties;
 		var oldType : UML::Type := selectType(oldProperties.type->asSet());
 		var newType : Ecore::EClassifier := umlType2eClassifier->get(oldType);
 		if (newType <> null) then {
@@ -524,17 +581,18 @@ mapping inout Ecore::EReference::resolveEReference()
 	var oldProperties : Set(UML::Property) := createProperty.oldProperties;
 	var oppositeProperty : UML::Property := createProperty.opposite;
 	if (debug_EReference_eOpposite) log('  oldProperties', oldProperties->display() + ' # ' + oppositeProperty->display());
-	var oppositeProperties : Set(UML::Property) := oldProperties.getOtherEnd()->excluding(null)->asSet();
-	if (debug_EReference_eOpposite) log('  oppositeProperties', oppositeProperties->display());
+--	var oppositeProperties : Set(UML::Property) := oldProperties.getOtherEnd()->excluding(null)->asSet();
+--	if (debug_EReference_eOpposite) log('  oppositeProperties', oppositeProperties->display());
 --	var oppositeReferences : Set(Ecore::EReference) := oppositeProperties->collect(c | umlProperty2eReference->get(c))->excluding(null)->asSet();
 	var oppositeReference : Ecore::EReference := if oppositeProperty <> null then umlProperty2eReference->get(oppositeProperty) else null endif;
 	if (debug_EReference_eOpposite) log('  oppositeReferences', oppositeReference->display());
 --	self.eOpposite := if oppositeReferences->notEmpty() and not self._'derived' and oppositeReferences->forAll(not _'derived') then oppositeReferences->any(true) else null endif;
 	self.eOpposite := oppositeReference; --if oppositeReferences->notEmpty() then oppositeReferences->any(true) else null endif;
-	var isDerived : Boolean := oldProperties->forAll(isDerived) and (oppositeReference = null);
-	self._'derived' := isDerived;
-	self.map installTransient(oldProperties, 'Ecore::EReference', isDerived);
-	self.volatile := isDerived;
+--	var isDerived : Boolean := oldProperties->forAll(isDerived) and (oppositeReference = null);
+--	self._'derived' := isDerived;
+	self.map installTransient(oldProperties, 'Ecore::EReference', self._'derived');
+	self.map installResolveProxies(oldProperties, 'Ecore::EReference', not self._'derived');
+	self.map installVolatile(oldProperties, 'Ecore::EReference', self._'derived');
 }
 
 helper getAllClasses(classes : Set(UML::Class)) : Set(UML::Class) {

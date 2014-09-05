@@ -79,6 +79,9 @@
     <packagedElement xmi:type="uml:Package" xmi:id="MDTOCL-MDT_OCL_Ecore" name="MDT_OCL_Ecore">
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="MDTOCL-MDT_OCL_Ecore-Boolean" name="Boolean"/>
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Ecore-Class" name="Class">
+        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Ecore-Type-instanceClassName" name="instanceClassName" type="MDTOCL-MDT_OCL_Ecore-String">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6N_n7VEeOu79LxSz8Ylw"/>
+        </ownedAttribute>
         <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Ecore-Class-isInterface" name="isInterface" type="MDTOCL-MDT_OCL_Ecore-Boolean">
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_Xp6N8n7VEeOu79LxSz8Ylw" value="false"/>
         </ownedAttribute>
@@ -87,7 +90,7 @@
         <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Ecore-DataType-isSerializable" name="isSerializable" type="MDTOCL-MDT_OCL_Ecore-Boolean">
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_Xp6N837VEeOu79LxSz8Ylw" value="true"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Ecore-DataType-behavioralType" name="behavioralType" type="MDTOCL-MDT_OCL_Ecore-Type">
+        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Ecore-DataType-behavioralType" name="behavioralClass" type="MDTOCL-MDT_OCL_Ecore-Class">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6N9H7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
       </packagedElement>
@@ -120,11 +123,7 @@
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="MDTOCL-MDT_OCL_Ecore-String" name="String"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Ecore-Type" name="Type">
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Ecore-Type-instanceClassName" name="instanceClassName" type="MDTOCL-MDT_OCL_Ecore-String">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6N_n7VEeOu79LxSz8Ylw"/>
-        </ownedAttribute>
-      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Ecore-Type" name="Type"/>
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Ecore-Constraint" name="Constraint">
         <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Ecore-Constraint-isCallable" name="isCallable" type="MDTOCL-MDT_OCL_Ecore-Boolean">
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_Xp6N_37VEeOu79LxSz8Ylw" value="false"/>
@@ -176,19 +175,13 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6OBX7VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xp6OBn7VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_tUCW4Br7EeSM9LreJtBwBg" name="ownedType" type="MDTOCL-MDT_OCL_Framework-Class" aggregation="composite">
+        <ownedAttribute xmi:id="_tUCW4Br7EeSM9LreJtBwBg" name="ownedClasses" type="MDTOCL-MDT_OCL_Framework-Class" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tUCW4Rr7EeSM9LreJtBwBg"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_tUCW4hr7EeSM9LreJtBwBg" value="*"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Interface" xmi:id="MDTOCL-MDT_OCL_Framework-Pivotable" name="Pivotable" isAbstract="true"/>
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="MDTOCL-MDT_OCL_Framework-String" name="String"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Framework-Type" name="Type" isAbstract="true"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Framework-UnspecifiedType" name="UnspecifiedType">
-        <generalization xmi:id="_Xp6OIX7VEeOu79LxSz8Ylw" general="MDTOCL-MDT_OCL_Framework-Class"/>
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Framework-UnspecifiedType-lowerBound" name="lowerBound" type="MDTOCL-MDT_OCL_Framework-Type"/>
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Framework-UnspecifiedType-upperBound" name="upperBound" type="MDTOCL-MDT_OCL_Framework-Type"/>
-      </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="MDTOCL-MDT_OCL_Instances" name="MDT_OCL_Instances">
       <packagedElement xmi:type="uml:Class" xmi:id="_vuQeUBtCEeSM9LreJtBwBg" name="Class"/>
@@ -305,10 +298,7 @@
         <generalization xmi:id="_PG7HtvcPEeOIuskgmmQAHw" general="_0pHa4OC2EeK2XIQZsal-uQ"/>
         <ownedAttribute xmi:id="_-mmXsOC2EeK2XIQZsal-uQ" name="importedNamespace" type="_lVjxQOC2EeK2XIQZsal-uQ"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_0pHa4OC2EeK2XIQZsal-uQ" name="NamedElement" isAbstract="true"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="_lVjxQOC2EeK2XIQZsal-uQ" name="Namespace" isAbstract="true"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="_lkT-8OC2EeK2XIQZsal-uQ" name="Package"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="_noL7MOC2EeK2XIQZsal-uQ" name="Root">
+      <packagedElement xmi:type="uml:Class" xmi:id="_noL7MOC2EeK2XIQZsal-uQ" name="Model">
         <generalization xmi:id="_PG7Ht_cPEeOIuskgmmQAHw" general="_lVjxQOC2EeK2XIQZsal-uQ"/>
         <ownedAttribute xmi:id="_KGF50OC3EeK2XIQZsal-uQ" name="nestedPackage" type="_lkT-8OC2EeK2XIQZsal-uQ" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PG7HsfcPEeOIuskgmmQAHw"/>
@@ -322,6 +312,9 @@
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PG7HtfcPEeOIuskgmmQAHw" value="*"/>
         </ownedAttribute>
       </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_0pHa4OC2EeK2XIQZsal-uQ" name="NamedElement" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_lVjxQOC2EeK2XIQZsal-uQ" name="Namespace" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_lkT-8OC2EeK2XIQZsal-uQ" name="Package"/>
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_ZX1lkOC3EeK2XIQZsal-uQ" name="String"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="MDTOCL-MDT_OCL_Stereotypes" name="MDT_OCL_Stereotypes">
@@ -381,6 +374,40 @@
       <packagedElement xmi:type="uml:Association" xmi:id="MDTOCL-MDT_OCL_Stereotypes-A_extendedBys_type" name="A_extendedBys_type" memberEnd="MDTOCL-MDT_OCL_Stereotypes-Type-extendedBys MDTOCL-MDT_OCL_Stereotypes-TypeExtension-type"/>
       <packagedElement xmi:type="uml:Association" xmi:id="MDTOCL-MDT_OCL_Stereotypes-A_extensionOfs_stereotype" name="A_extensionOfs_stereotype" memberEnd="MDTOCL-MDT_OCL_Stereotypes-Stereotype-extensionOfs MDTOCL-MDT_OCL_Stereotypes-TypeExtension-stereotype"/>
     </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_MkqM8DThEeS3ndOfdXtkXQ" name="MDT_OCL_Templates">
+      <packagedElement xmi:type="uml:Class" xmi:id="_XlWTMDThEeS3ndOfdXtkXQ" name="TemplateBinding"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ZgvB0DThEeS3ndOfdXtkXQ" name="TemplateSignature"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_zNR5QMilEd-sJIf4tYBt-g" name="MDT_OCL_TypedMultiplicity">
+      <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_iauzUOLYEeGCOa0Md3lQkQ" name="Boolean"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_SmDkYC9fEeSc2LncrXmagQ" name="OCLExpression" isAbstract="true">
+        <ownedAttribute xmi:id="_x-pUsC9bEeSc2LncrXmagQ" name="typeValue" type="_4hPfAC9bEeSc2LncrXmagQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0q6GoC9bEeSc2LncrXmagQ"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ZT_t8C9dEeSc2LncrXmagQ" name="Operation">
+        <ownedAttribute xmi:id="_SmDkYS9fEeSc2LncrXmagQ" name="isTypeof" type="_iauzUOLYEeGCOa0Md3lQkQ">
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_SmDkYi9fEeSc2LncrXmagQ" value="false"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_UUTg0C9dEeSc2LncrXmagQ" name="Parameter">
+        <ownedAttribute xmi:id="_0hXaMC-JEeSc2LncrXmagQ" name="isTypeof" type="_iauzUOLYEeGCOa0Md3lQkQ">
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_0hXaMS-JEeSc2LncrXmagQ" value="false"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_4hPfAC9bEeSc2LncrXmagQ" name="Type" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_4oqj4MilEd-sJIf4tYBt-g" name="TypedElement" isAbstract="true">
+        <ownedAttribute xmi:id="_n1w4oOLYEeGCOa0Md3lQkQ" name="isRequired" type="_iauzUOLYEeGCOa0Md3lQkQ">
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_Xp6OGn7VEeOu79LxSz8Ylw" value="true"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_iMnUQBuwEeSIos3S87O_rg" name="isMany" type="_iauzUOLYEeGCOa0Md3lQkQ" isReadOnly="true" isDerived="true"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_qhn48C-cEeSc2LncrXmagQ" name="VariableDeclaration" isAbstract="true">
+        <ownedAttribute xmi:id="_qhogAC-cEeSc2LncrXmagQ" name="typeValue" type="_4hPfAC9bEeSc2LncrXmagQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qhogAS-cEeSc2LncrXmagQ"/>
+        </ownedAttribute>
+      </packagedElement>
+    </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="MDTOCL-MDT_OCL_Visiting" name="MDT_OCL_Visiting">
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Visiting-Element" name="Element" isAbstract="true">
         <interfaceRealization xmi:id="_lMyWQM-FEd-OX-Zde0V6vA" client="MDTOCL-MDT_OCL_Visiting-Element" supplier="MDTOCL-MDT_OCL_Visiting-Visitable" contract="MDTOCL-MDT_OCL_Visiting-Visitable"/>
@@ -395,43 +422,24 @@
     </profileApplication>
   </uml:Package>
   <Ecore:EGenericType xmi:id="_2l8NIMezEd-sJIf4tYBt-g"/>
-  <Ecore:EAttribute xmi:id="_FjatoMinEd-sJIf4tYBt-g" isTransient="true"/>
   <Ecore:EAttribute xmi:id="_eid-MMlBEd-bx742yyafXQ" base_Property="MDTOCL-MDT_OCL_Precedences-Precedence-order"/>
   <Ecore:EDataType xmi:id="_YgSpYMo-Ed-ZL8lMORCEkg" instanceClassName="java.lang.Number" base_PrimitiveType="MDTOCL-MDT_OCL_PrimitiveTypes-UnlimitedNatural"/>
   <Ecore:EDataType xmi:id="_aPk1sMo-Ed-ZL8lMORCEkg" instanceClassName="java.lang.String" base_PrimitiveType="MDTOCL-MDT_OCL_PrimitiveTypes-String"/>
   <Ecore:EDataType xmi:id="_bU5fAMo-Ed-ZL8lMORCEkg" instanceClassName="java.lang.Number" base_PrimitiveType="MDTOCL-MDT_OCL_PrimitiveTypes-Real"/>
   <Ecore:EDataType xmi:id="_csPFYMo-Ed-ZL8lMORCEkg" instanceClassName="java.lang.Number" base_PrimitiveType="MDTOCL-MDT_OCL_PrimitiveTypes-Integer"/>
   <Ecore:EDataType xmi:id="_d3XbwMo-Ed-ZL8lMORCEkg" instanceClassName="boolean" base_PrimitiveType="MDTOCL-MDT_OCL_PrimitiveTypes-Boolean"/>
-  <Ecore:EDataType xmi:id="_rOgcAMo-Ed-ZL8lMORCEkg" instanceClassName="java.lang.Number"/>
   <Ecore:EClass xmi:id="_eCpH8M9-Ed-OX-Zde0V6vA" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitable" base_Interface="MDTOCL-MDT_OCL_Visiting-Visitable" className="Visitable"/>
-  <Ecore:EReference xmi:id="_Oh3O8M-wEd-OX-Zde0V6vA" isTransient="true" isResolveProxies="false"/>
-  <Ecore:EDataType xmi:id="_CuPkAM-9Ed-OX-Zde0V6vA" instanceClassName="boolean"/>
-  <Ecore:EDataType xmi:id="_lESsENK7Ed-VSdZNqJFoJA" instanceClassName="java.lang.Object"/>
-  <Ecore:EDataType xmi:id="_9eufINPCEd-Vct1SlsNNwg" instanceClassName="java.lang.Throwable"/>
   <Ecore:EClass xmi:id="_n6SYcN9WEd-5RuvZBdnt0A" instanceClassName="org.eclipse.ocl.examples.domain.elements.Nameable" base_Interface="MDTOCL-MDT_OCL_Framework-Nameable" className="Nameable"/>
   <Ecore:EClass xmi:id="_pecS0N9WEd-5RuvZBdnt0A" instanceClassName="org.eclipse.ocl.examples.pivot.util.Pivotable" base_Interface="MDTOCL-MDT_OCL_Framework-Pivotable" className="Pivotable"/>
-  <Ecore:EClass xmi:id="_KhzAgOfSEd-IXbTaV_5Nsg" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitor"/>
-  <Ecore:EReference xmi:id="_zmnm0O53Ed-sIMHRp27srQ" isTransient="true" isResolveProxies="false"/>
-  <Ecore:EDataType xmi:id="_W_mzkPPcEd-7P5P8zTFtow" instanceClassName="" dataTypeName="boolean"/>
   <Ecore:EAttribute xmi:id="_1hNtAPPiEd-7P5P8zTFtow" isUnsettable="true" base_Property="MDTOCL-MDT_OCL_PrimitiveTypes-BooleanLiteralExp-booleanSymbol"/>
   <Ecore:EDataType xmi:id="_51mtUAFqEeCxa8jNFLJGww" instanceClassName="org.eclipse.ocl.examples.domain.library.LibraryFeature" base_PrimitiveType="MDTOCL-MDT_OCL_Evaluation-LibraryFeature"/>
   <Ecore:EAttribute xmi:id="_VZMlMAFrEeCxa8jNFLJGww" isTransient="true" base_Property="MDTOCL-MDT_OCL_Evaluation-Feature-implementation"/>
   <Ecore:EDataType xmi:id="_jgIDoAFrEeCxa8jNFLJGww" instanceClassName="java.lang.Throwable" base_PrimitiveType="MDTOCL-MDT_OCL_Evaluation-Throwable"/>
   <Ecore:EDataType xmi:id="_o1e-wAFrEeCxa8jNFLJGww" instanceClassName="java.lang.Object" base_PrimitiveType="MDTOCL-MDT_OCL_Evaluation-Object"/>
-  <Ecore:EDataType xmi:id="_ycK_AA4KEeC_ef2AeAygNw"/>
-  <Ecore:EDataType xmi:id="_4szvABEdEeCsy5gumoi3HA" instanceClassName="org.eclipse.ocl.examples.pivot.values.Value"/>
-  <Ecore:EReference xmi:id="_PafA0BEeEeCsy5gumoi3HA" isTransient="true"/>
-  <Ecore:EReference xmi:id="_aRlrEB1EEeCzDcYDg75xng" isTransient="true" isResolveProxies="false"/>
-  <Ecore:EReference xmi:id="_Z87C0B_aEeCxNNh5B6u04A" isTransient="true" isVolatile="true" isResolveProxies="false"/>
-  <Ecore:EReference xmi:id="_14bf8DxsEeCYibdAWnk0AQ" isTransient="true"/>
-  <Ecore:EReference xmi:id="_WQdVgD2REeC9A8BnhOyXOw" isTransient="true"/>
-  <Ecore:EReference xmi:id="_jAdnMD3nEeCrdsp1tq7uPw" isTransient="true"/>
   <Ecore:EReference xmi:id="_CoMyoHSeEeC3-tVPqYIPdQ" isTransient="true" base_Property="MDTOCL-MDT_OCL_Cache-TemplateableElement-unspecializedElement" isResolveProxies="false"/>
-  <Ecore:EAttribute xmi:id="_F9V88NZbEeCmbIcdzXDskg" isTransient="true" isVolatile="true"/>
   <Ecore:EClass xmi:id="_eO7hgEOIEeGtTYkEXjnZtw" instanceClassName="org.eclipse.ocl.examples.pivot.util.MorePivotable" base_Interface="MDTOCL-MDT_OCL_Framework-MorePivotable" className="MorePivotable"/>
-  <Ecore:EDataType xmi:id="_lgTD4Ob7EeGuHKPT-USe0w" instanceClassName="int"/>
-  <Ecore:EClass xmi:id="_MJHVIPtzEeGgYeRoQSJFAw"/>
   <Ecore:EClass xmi:id="_VF5C4PtzEeGgYeRoQSJFAw" base_Interface="MDTOCL-MDT_OCL_Referring-ReferringElement"/>
-  <Ecore:EReference xmi:id="_mVct8H7YEeOu79LxSz8Ylw" isTransient="true" isResolveProxies="false"/>
-  <Ecore:EReference xmi:id="_cDP_kH8_EeOrlIuDtf7a6A" isTransient="true" isVolatile="true" isUnsettable="true" isResolveProxies="false"/>
+  <Ecore:EReference xmi:id="_rK9W8DTYEeS3ndOfdXtkXQ" isTransient="true" base_Property="_qhogAC-cEeSc2LncrXmagQ" isResolveProxies="false"/>
+  <Ecore:EAttribute xmi:id="_zxJwsDTYEeS3ndOfdXtkXQ" isTransient="true" isVolatile="true" base_Property="_iMnUQBuwEeSIos3S87O_rg"/>
+  <Ecore:EReference xmi:id="_7JX7cDTYEeS3ndOfdXtkXQ" isTransient="true" base_Property="_x-pUsC9bEeSc2LncrXmagQ" isResolveProxies="false"/>
 </xmi:XMI>

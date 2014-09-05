@@ -141,6 +141,7 @@ mapping UML::Package::createDeletePackage() : UML2EcoreMapping::DeletePackage
  */
 property explicitDeleteTypesMappings : Set(UML2EcoreControl::DeleteTypes) = uml2ecore.objectsOfType(UML2EcoreControl::DeleteTypes);
 property explicitCreateTypesMappings : Set(UML2EcoreControl::CreateType) = uml2ecore.objectsOfType(UML2EcoreControl::CreateType);
+property explicitDeleteInheritances : Set(UML2EcoreControl::DeleteInheritances) = uml2ecore.objectsOfType(UML2EcoreControl::DeleteInheritances);
 
 property explicitCreateTypes : Set(UML::Type) = explicitCreateTypesMappings.oldTypes->asSet();
 property explicitDeleteTypes : Set(UML::Type) = (explicitDeletePackages.ownedType->asSet() - explicitCreateTypes)->union(explicitDeleteTypesMappings.oldTypes->asSet());
@@ -205,6 +206,9 @@ mapping String::createCreateType() : UML2EcoreMapping::CreateType
 	var myTypes : Set(UML::Type) := allTypes->select(name = self) - explicitDeleteTypes;
 	result.newName := self;
 	result.oldTypes := myTypes;
+	result.excludeTypes := selectDeleteTypes(myTypes);	 
+	result.excludeProperties := selectDeleteProperties(myTypes);	 
+	result.includeProperties := selectIncludeProperties(myTypes);	 
 	result.operationMappings := selectOperations(myTypes);	 
 	result.propertyMappings := selectProperties(myTypes);	 
 }
@@ -215,6 +219,9 @@ mapping UML::Type::createCreateType() : UML2EcoreMapping::CreateType
 	var myTypes : Set(UML::Type) := getAllTypes(self->asSet()) - explicitDeleteTypes;
 	result.newName := self.name;
 	result.oldTypes := myTypes;
+	result.excludeTypes := selectDeleteTypes(myTypes);	 
+	result.excludeProperties := selectDeleteProperties(myTypes);	 
+	result.includeProperties := selectIncludeProperties(myTypes);	 
 	result.operationMappings := selectOperations(myTypes);	 
 	result.propertyMappings := selectProperties(myTypes);	 
 }
@@ -303,6 +310,7 @@ mapping String::createCreateProperty(wantedProperties : Set(UML::Property)) : UM
 --	log('    explicitCreateProperties', explicitCreateProperties->display());
 	assert fatal (explicitCreateProperties->size() <= 1) with log("Duplicate CreateProperty ", explicitCreateProperties->display());
 	result.newName := if explicitCreateProperties->notEmpty() then explicitCreateProperties->any(true).newName else self endif;
+	result.newIsDerived := let newIsDerived : Bag(Boolean) = explicitCreateProperties->collect(newIsDerived)->excluding(null) in if newIsDerived->notEmpty() then newIsDerived->exists(n | n) else null endif;
 	result.oldProperties := sameNamedProperties;
 	var oppositeProperties1 : Set(UML::Property) := sameNamedProperties.getOtherEnd()->excluding(null)->asSet();
 	if (debugProperty) log('    oppositeProperties1', oppositeProperties1->display());
@@ -326,6 +334,8 @@ mapping UML2EcoreControl::CreateProperty::createRenameProperty() : UML2EcoreMapp
 	var oldProperties : Set(UML::Property) := self.oldProperties;
 	if (debugProperty) log('    oldProperties', oldProperties->display());
 	result.oldProperties := oldProperties;
+	if (debugProperty) log('    newIsDerived', self.newIsDerived);
+	result.newIsDerived := self.newIsDerived;
 	var oppositeProperties1 : Set(UML::Property) := oldProperties.getOtherEnd()->excluding(null)->asSet();
 	if (debugProperty) log('    oppositeProperties1', oppositeProperties1->display());
 	var oppositeProperties2 : Set(UML::Property) := oppositeProperties1 - explicitDeleteProperties;
@@ -360,5 +370,30 @@ query selectProperties(types : Set(UML::Type)) : OrderedSet(UML2EcoreMapping::Pr
 	var deletes : Sequence(UML2EcoreMapping::PropertyMapping) = unwantedProperties->map createDeleteProperty()->asSequence()->sortedBy(oldName);
 	var createsAndRenames : Sequence(UML2EcoreMapping::PropertyMapping) = creates->iterate(c : UML2EcoreMapping::PropertyMapping; acc : Sequence(UML2EcoreMapping::PropertyMapping) = renames | acc->including(c));
 	return createsAndRenames->iterate(c : UML2EcoreMapping::PropertyMapping; acc  : Sequence(UML2EcoreMapping::PropertyMapping) = deletes | acc->including(c))->asOrderedSet();
+}
+
+/**
+ * Select the properties for the merge of types and return as a set of CreateProperty for keeps and DeleteProperty for removes.
+ */
+query selectDeleteTypes(types : Set(UML::Type)) : Set(UML::Type) {
+	var selectedDeleteInheritances : Set(UML2EcoreControl::DeleteInheritances) = explicitDeleteInheritances->select(oldTypes->intersection(types)->notEmpty())->asSet();
+	var unwantedTypes : Set(UML::Type) = selectedDeleteInheritances.excludeTypes->asSet();
+	var unwantedTypesAndProperties : Set(UML::Type) = selectedDeleteInheritances.excludeTypesAndProperties->asSet();
+	var unwantedAllTypesAndProperties : Set(UML::Type) = getAllTypes(selectedDeleteInheritances.excludeAllTypesAndProperties->asSet());
+	return unwantedTypes->union(unwantedTypesAndProperties)->union(unwantedAllTypesAndProperties);
+}
+query selectDeleteProperties(types : Set(UML::Type)) : Set(UML::Property) {
+	var selectedDeleteInheritances : Set(UML2EcoreControl::DeleteInheritances) = explicitDeleteInheritances->select(oldTypes->intersection(types)->notEmpty())->asSet();
+	var unwantedTypesAndProperties : Set(UML::Type) = selectedDeleteInheritances.excludeTypesAndProperties->asSet();
+	var unwantedAllTypesAndProperties : Set(UML::Type) = getAllTypes(selectedDeleteInheritances.excludeAllTypesAndProperties->asSet());
+	var unwantedTypeProperties : Set(UML::Property) = unwantedTypesAndProperties->union(unwantedAllTypesAndProperties)->selectByKind(UML::Class).ownedAttribute->asSet();
+	var unwantedProperties : Set(UML::Property) = selectedDeleteInheritances.excludeProperties->asSet();
+	var wantedProperties : Set(UML::Property) = selectedDeleteInheritances.includeProperties->asSet();
+	return unwantedProperties->union(unwantedTypeProperties) - wantedProperties;
+}
+query selectIncludeProperties(types : Set(UML::Type)) : Set(UML::Property) {
+	var selectedDeleteInheritances : Set(UML2EcoreControl::DeleteInheritances) = explicitDeleteInheritances->select(oldTypes->intersection(types)->notEmpty())->asSet();
+	var wantedProperties : Set(UML::Property) = selectedDeleteInheritances.includeProperties->asSet();
+	return wantedProperties;
 }
 
