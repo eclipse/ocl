@@ -11,7 +11,6 @@
 package org.eclipse.ocl.examples.pivot;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
 
 
@@ -61,6 +60,4 @@ public interface RootCompletePackage extends CompletePackage
 	void setOwningCompleteModel(CompleteModel value);
 
 	@NonNull PackageId getMetapackageId();
-
-	void init(@NonNull String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId, @NonNull PackageId metapackageId);
 } // RootCompletePackage

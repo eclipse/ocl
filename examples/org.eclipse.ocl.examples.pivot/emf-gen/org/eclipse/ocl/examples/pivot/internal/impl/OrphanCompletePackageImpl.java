@@ -11,7 +11,6 @@
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.lang.ref.WeakReference;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.WeakHashMap;
 
@@ -19,14 +18,14 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.pivot.CompleteClass;
+import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.OrphanCompletePackage;
-import org.eclipse.ocl.examples.pivot.PivotFactory;
+import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.manager.OrphanTypeServer;
-import org.eclipse.ocl.examples.pivot.manager.PrimitiveTypeServer;
 import org.eclipse.ocl.examples.pivot.manager.TypeServer;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
@@ -46,94 +45,55 @@ public class OrphanCompletePackageImpl extends RootCompletePackageImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected OrphanCompletePackageImpl()
-	{
-		super();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	protected EClass eStaticClass()
 	{
 		return PivotPackage.Literals.ORPHAN_COMPLETE_PACKAGE;
 	}
-
-	/**
-	 * Map from each primitive type name to the TypeServer that supervises its merge. 
-	 */
-	private final @NonNull Map<String, PrimitiveTypeServer> primitiveType2server = new HashMap<String, PrimitiveTypeServer>();
+	
+	private @NonNull Map<DomainType, WeakReference<OrphanTypeServer>> servers = new WeakHashMap<DomainType, WeakReference<OrphanTypeServer>>();	
+	
+	protected OrphanCompletePackageImpl()
+	{
+		super();
+		init("$orphans$", "orph", PivotConstants.ORPHANAGE_URI, IdManager.METAMODEL);		// FIXME names
+	}
 
 	@Override
 	public <R> R accept(@NonNull Visitor<R> visitor) {
 		return visitor.visitOrphanCompletePackage(this);
 	}
+
+	@Override
+	protected void didAddCompleteClass(@NonNull CompleteClass completeClass) {
+		/* No orphan CompleteClasses */
+	}
+
+	@Override
+	protected void didAddPartialPackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
+		/* No orphan CompleteClasses */
+	}
+
+	@Override
+	protected void didRemoveCompleteClass(@NonNull CompleteClass completeClass) {
+		/* No orphan CompleteClasses */
+	}
+
+	@Override
+	protected void didRemovePartialPackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
+		/* No orphan CompleteClasses */
+	}
 	
-	private @NonNull Map<DomainType, WeakReference<OrphanTypeServer>> servers = new WeakHashMap<DomainType, WeakReference<OrphanTypeServer>>();	
-	
-/*	public OrphanPackageServer(@NonNull PackageManager packageManager, @NonNull String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId) {
-		super(packageManager, name, nsPrefix, nsURI, packageId, IdManager.METAMODEL);
-	} */
-
-	@Override
-	protected void didAddCompleteClass(@NonNull CompleteClass completeClass) {			// FIXME lose unwanted inheritance
-	}
-
-	@Override
-	protected void didAddPartialPackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {			// FIXME lose unwanted inheritance
-	}
-
-	@Override
-	protected void didRemoveCompleteClass(@NonNull CompleteClass completeClass) {			// FIXME lose unwanted inheritance
-	}
-
-	@Override
-	protected void didRemovePartialPackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {			// FIXME lose unwanted inheritance
-	}
-
-	@Override
-	public @Nullable CompleteClass getCompleteClass(String name) {
-		throw new UnsupportedOperationException();			// FIXME lose unwanted inheritance
-	}
-
-	public @NonNull OrphanTypeServer getOrphanTypeServer(@NonNull org.eclipse.ocl.examples.pivot.Class orphanType) {
-		CompleteClass completeClass = PivotFactory.eINSTANCE.createCompleteClass();
-		completeClass.setName(orphanType.getName());
-		completeClass.getPartialClasses().add(orphanType);
-		getOwnedCompleteClasses().add(completeClass);
-		OrphanTypeServer orphanTypeServer = new OrphanTypeServer(completeClass, orphanType);
-		((CompleteClassImpl)completeClass).setTypeServer(orphanTypeServer);
-		return orphanTypeServer;
+	public @NonNull PackageId getMetapackageId() {
+		return IdManager.METAMODEL;
 	}
 
 	@Override
 	public @Nullable CompleteClass getOwnedCompleteClass(String name) {
-		PrimitiveTypeServer primitiveTypeServer = primitiveType2server.get(name);
-		if (primitiveTypeServer != null) {
-			return primitiveTypeServer.getCompleteClass();
-		}
-		return super.getOwnedCompleteClass(name);
+		return null;			// No orphan CompleteClasses
 	}
 
-	public @NonNull PrimitiveTypeServer getPrimitiveTypeServer(@NonNull PrimitiveType primitiveType) {
-		String name = primitiveType.getName();
-		PrimitiveTypeServer primitiveTypeServer = primitiveType2server.get(name);
-		if (primitiveTypeServer == null) {
-			CompleteClass completeClass = PivotFactory.eINSTANCE.createCompleteClass();
-			completeClass.setName(name);
-			completeClass.getPartialClasses().add(primitiveType);
-			getOwnedCompleteClasses().add(completeClass);
-			primitiveTypeServer = new PrimitiveTypeServer(completeClass, primitiveType);
-			((CompleteClassImpl)completeClass).setTypeServer(primitiveTypeServer);
-			primitiveType2server.put(name, primitiveTypeServer);
-		}
-		return primitiveTypeServer;
-	}
-
-//	@Override
+	@Override
 	public @NonNull TypeServer getTypeServer(/*@NonNull*/ DomainType type) {
 		WeakReference<OrphanTypeServer> ref = servers.get(type);
 		if (ref != null) {
@@ -142,24 +102,20 @@ public class OrphanCompletePackageImpl extends RootCompletePackageImpl implement
 				return orphanTypeServer;
 			}
 		}
-		OrphanTypeServer orphanTypeServer = getOrphanTypeServer((org.eclipse.ocl.examples.pivot.Class)type);	// FIXME cast
-//		OrphanTypeServer orphanTypeServer = new OrphanTypeServer(this, (org.eclipse.ocl.examples.pivot.Class)type);	// FIXME cast
+		@NonNull org.eclipse.ocl.examples.pivot.Class orphanClass = (org.eclipse.ocl.examples.pivot.Class)type;	// FIXME cast
+		CompleteClass completeClass = new CompleteClassImpl()
+		{
+			@Override
+			public CompletePackage getOwningCompletePackage() {
+				return OrphanCompletePackageImpl.this;
+			}
+		};
+		completeClass.setName(orphanClass.getName());
+		completeClass.getPartialClasses().add(orphanClass);
+//		getOwnedCompleteClasses().add(completeClass);
+		OrphanTypeServer orphanTypeServer = new OrphanTypeServer(completeClass, orphanClass);
+		((CompleteClassImpl)completeClass).setTypeServer(orphanTypeServer);
 		servers.put(type, new WeakReference<OrphanTypeServer>(orphanTypeServer));
 		return orphanTypeServer;
-	}
-
-	@Override
-	public void init(@NonNull String name, @Nullable String nsPrefix,
-			@Nullable String nsURI, @NonNull PackageId packageId,
-			@NonNull PackageId metapackageId) {
-		// TODO Auto-generated method stub
-		super.init(name, nsPrefix, nsURI, packageId, metapackageId);
-	}
-
-	@Override
-	public void init(@NonNull String name, @Nullable String nsPrefix,
-			@Nullable String nsURI, @NonNull PackageId packageId) {
-		// TODO Auto-generated method stub
-		super.init(name, nsPrefix, nsURI, packageId);
 	}
 } //OrphanCompletePackageImpl

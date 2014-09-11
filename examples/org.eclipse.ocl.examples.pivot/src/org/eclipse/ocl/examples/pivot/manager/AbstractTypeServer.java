@@ -61,6 +61,7 @@ import org.eclipse.ocl.examples.pivot.Vertex;
 import org.eclipse.ocl.examples.pivot.executor.PivotReflectiveFragment;
 import org.eclipse.ocl.examples.pivot.internal.impl.CompleteClassImpl;
 import org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl;
+import org.eclipse.ocl.examples.pivot.internal.impl.CompletePackageImpl;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView.Disambiguator;
 import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
@@ -368,7 +369,6 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 	
 	protected final @NonNull DomainType domainType;
 	protected @Nullable TypeId typeId = null;
-	
 
 	protected AbstractTypeServer(@NonNull CompleteClass completeClass, @NonNull DomainType domainType) {
 		super(DomainUtil.nonNullModel(domainType.getName()), DomainUtil.nonNullModel(completeClass.getOwningCompletePackage().getPivotPackage()), computeFlags(domainType));
@@ -1484,5 +1484,6 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		name2operations = null;
 		((CompleteClassImpl)completeClass).uninstall();
 		super.uninstall();
+		((CompletePackageImpl)completePackage).disposedTypeServer(this);
 	}
 }

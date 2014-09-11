@@ -10,6 +10,10 @@
  */
 package org.eclipse.ocl.examples.pivot;
 
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.ids.PackageId;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -22,4 +26,5 @@ package org.eclipse.ocl.examples.pivot;
  */
 public interface ParentCompletePackage extends RootCompletePackage
 {
+	void init(@NonNull String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId, @NonNull PackageId metapackageId);
 } // ParentCompletePackage

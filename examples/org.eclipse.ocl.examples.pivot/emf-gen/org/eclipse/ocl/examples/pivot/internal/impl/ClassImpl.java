@@ -1209,6 +1209,19 @@ public class ClassImpl
 		return inheritance.lookupImplementation(standardLibrary, apparentOperation);
 	}
 
+	@Override
+	public void setName(String newName) {
+		String oldName = name;
+		org.eclipse.ocl.examples.pivot.Package owningPackage = getOwningPackage();
+		if ((owningPackage instanceof PackageImpl) && (oldName != null) && !oldName.equals(newName)) {
+			((PackageImpl)owningPackage).didRemoveClass(this);
+		}
+		super.setName(newName);
+		if ((owningPackage instanceof PackageImpl) && (newName != null) && !newName.equals(oldName)) {
+			((PackageImpl)owningPackage).didAddClass(this);
+		}
+	}
+
 	public DomainType specializeIn(@NonNull DomainCallExp expr, DomainType selfType) {
 		if ((expr instanceof CallExp) && (selfType instanceof Type)) {
 			TemplateSignature templateSignature = getOwnedTemplateSignature();

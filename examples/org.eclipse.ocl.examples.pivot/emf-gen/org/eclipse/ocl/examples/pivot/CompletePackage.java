@@ -50,6 +50,10 @@ public interface CompletePackage extends NamedElement, org.eclipse.ocl.examples.
 	 * If the meaning of the '<em>Owned Complete Classes</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
+	 * This is a logically derived collection. One CompleteClass for each distinctly named partial Class
+	 * inv: ownedCompleteClasses->isUnique(name)
+	 * inv: ownedCompleteClasses->forAll(name <> null)
+	 * inv: ownedCompleteClasses->forAll(cc | cc.partialClasses = self.partialPackages.ownedClasses->select(name = cc.name))
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Complete Classes</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompletePackage_OwnedCompleteClasses()
@@ -101,8 +105,6 @@ public interface CompletePackage extends NamedElement, org.eclipse.ocl.examples.
 
 	org.eclipse.ocl.examples.pivot.Package getPivotPackage();
 
-	CompletePackage getMemberPackage(String subPackageName);
-
 	org.eclipse.ocl.examples.pivot.Class getMemberType(String name);
 
 	RootCompletePackage getRootCompletePackage();
@@ -119,7 +121,7 @@ public interface CompletePackage extends NamedElement, org.eclipse.ocl.examples.
 
 	EPackage getEPackage();
 
-	TypeServer getTypeServer(DomainType pivotType);
+	@NonNull TypeServer getTypeServer(DomainType pivotType);
 
 	DomainType getType(String metatypeName);
 

@@ -398,7 +398,8 @@ public class Orphanage extends PackageImpl
 			return false;
 		}
 		else {
-			return PivotConstants.ORPHANAGE_URI.equals(asPackage.getURI());
+			String uri = asPackage.getURI();
+			return PivotConstants.ORPHANAGE_URI.equals(uri) || PivotConstants.OLD_ORPHANAGE_URI.equals(uri);
 		}
 	}
 	

@@ -114,9 +114,9 @@ public class EnvironmentView
 			if (p2 == null) {
 				return 0;
 			}
-			CompleteModelImpl packageManager = metaModelManager.getCompleteModel();
-			CompletePackage s1 = packageManager.getCompletePackage(p1);
-			CompletePackage s2 = packageManager.getCompletePackage(p2);
+			CompleteModelImpl completeModel = metaModelManager.getCompleteModel();
+			CompletePackage s1 = completeModel.getCompletePackage(p1);
+			CompletePackage s2 = completeModel.getCompletePackage(p2);
 			if (s1 != s2) {
 				return 0;
 			}
@@ -314,7 +314,7 @@ public class EnvironmentView
 			CompletePackage parentCompletePackage = metaModelManager.getCompletePackage(pkge);
 			String name2 = name;
 			if (name2 != null) {
-				CompletePackage completePackage = parentCompletePackage.getMemberPackage(name2);
+				CompletePackage completePackage = parentCompletePackage.getOwnedCompletePackage(name2);
 				if (completePackage != null) {
 					addElement(name2, completePackage);
 				}
@@ -673,25 +673,25 @@ public class EnvironmentView
 	}
 
 	public void addRootPackages() {
-		CompleteModelImpl packageManager = metaModelManager.getCompleteModel();
+		CompleteModelImpl completeModel = metaModelManager.getCompleteModel();
 		String name2 = name;
 		if (name2 != null) {
-			RootCompletePackage rootCompletePackage = packageManager.getMemberPackage(name2);
+			RootCompletePackage rootCompletePackage = completeModel.getMemberPackage(name2);
 			if (rootCompletePackage != null) {
 				addNamedElement(rootCompletePackage);
 			}
-			DomainCompletePackage completePackage = packageManager.getCompletePackageByURI(name2);
+			DomainCompletePackage completePackage = completeModel.getCompletePackageByURI(name2);
 			if (completePackage != null) {
 				addElement(name2, completePackage);
 			}
 		}
 		else {
-			for (RootCompletePackage rootCompletePackage : packageManager.getMemberPackages()) {
+			for (RootCompletePackage rootCompletePackage : completeModel.getMemberPackages()) {
 				if (rootCompletePackage != null) {
 					addNamedElement(rootCompletePackage);
 				}
 			}
-			for (CompletePackage completePackage : packageManager.getAllCompletePackagesWithUris()) {
+			for (CompletePackage completePackage : completeModel.getAllCompletePackagesWithUris()) {
 				String nsURI = completePackage.getURI();
 				if (nsURI != null) {
 					addElement(nsURI, completePackage);

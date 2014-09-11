@@ -1918,7 +1918,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	@Override
 	public DomainPackage getNestedPackage(@NonNull DomainPackage domainPackage, @NonNull String name) {
 		CompletePackage completePackage = getCompletePackage(domainPackage);
-		CompletePackage memberPackage = completePackage.getMemberPackage(name);
+		CompletePackage memberPackage = completePackage.getOwnedCompletePackage(name);
 		return memberPackage != null ? memberPackage.getPivotPackage() : null;
 	}
 
@@ -2250,13 +2250,13 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 				if (subPackageName == null) {
 					return null;
 				}
-				completePackage = completePackage.getMemberPackage(subPackageName);
+				completePackage = completePackage.getOwnedCompletePackage(subPackageName);
 				if (completePackage == null) {
 					return null;
 				}
 			}
 		}
-		return completePackage != null ? completePackage.getPivotPackage() : null;
+		return completePackage.getPivotPackage();
 	}
 
 	/**
@@ -2351,7 +2351,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			return completePackage.getMemberType(path);
 		}
 		else {
-			completePackage = completePackage.getMemberPackage(path);
+			completePackage = completePackage.getOwnedCompletePackage(path);
 			if (completePackage == null) {
 				return null;
 			}
@@ -2361,7 +2361,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 				if (subPackageName == null) {
 					return null;
 				}
-				completePackage = completePackage.getMemberPackage(subPackageName);
+				completePackage = completePackage.getOwnedCompletePackage(subPackageName);
 				if (completePackage == null) {
 					return null;
 				}

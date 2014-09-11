@@ -43,6 +43,7 @@ import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.OrphanCompletePackage;
+import org.eclipse.ocl.examples.pivot.ParentCompletePackage;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PrimitiveCompletePackage;
@@ -133,16 +134,6 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	protected EClass eStaticClass()
 	{
 		return PivotPackage.Literals.COMPLETE_MODEL;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OrphanCompletePackage getOrphanCompletePackage()
-	{
-		return orphanCompletePackage;
 	}
 
 	/**
@@ -517,20 +508,20 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 		PackageId packageId = pivotPackage.getPackageId();
 		RootCompletePackage rootCompletePackage;
 		if (Orphanage.isTypeOrphanage(pivotPackage)) {
-			rootCompletePackage = PivotFactory.eINSTANCE.createOrphanCompletePackage();
-			rootCompletePackage.init(nonNullName, nsPrefix, nsURI, packageId, IdManager.METAMODEL);	// FIXME $orphan$ ??
+			rootCompletePackage = getOrphanCompletePackage();
 		}
 		else {
 			PackageId metapackageId = metaModelManager.getMetapackageId(pivotPackage);
-			rootCompletePackage = PivotFactory.eINSTANCE.createParentCompletePackage();
-			rootCompletePackage.init(nonNullName, nsPrefix, nsURI, packageId, metapackageId);
+			ParentCompletePackage parentCompletePackage = PivotFactory.eINSTANCE.createParentCompletePackage();
+			parentCompletePackage.init(nonNullName, nsPrefix, nsURI, packageId, metapackageId);
+			rootCompletePackage = parentCompletePackage;
 		}
 		getOwnedCompletePackages().add(rootCompletePackage);
 		return rootCompletePackage;
 	}
 
 	void didAddCompletePackage(@NonNull CompletePackage completePackage) {
-		if (completePackage != primitiveCompletePackage) {
+		if ((completePackage != orphanCompletePackage) && (completePackage != primitiveCompletePackage)) {
 			String nsURI = completePackage.getURI();
 			if (nsURI != null) {
 				CompletePackage oldCompletePackage = uri2completePackage.put(nsURI, completePackage);
@@ -559,7 +550,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	}
 
 	void didRemoveCompletePackage(@NonNull CompletePackage completePackage) {
-		if (completePackage != primitiveCompletePackage) {
+		if ((completePackage != orphanCompletePackage) && (completePackage != primitiveCompletePackage)) {
 			String nsURI = completePackage.getURI();
 			if (nsURI != null) {
 				uri2completePackage.remove(nsURI);
@@ -701,6 +692,17 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 		return metaModelManager;
 	}
 
+	@SuppressWarnings("null")
+	public @NonNull OrphanCompletePackage getOrphanCompletePackage()
+	{
+		OrphanCompletePackage orphanCompletePackage2 = orphanCompletePackage;
+		if (orphanCompletePackage2 == null) {
+			orphanCompletePackage2 = orphanCompletePackage = PivotFactory.eINSTANCE.createOrphanCompletePackage();
+			getOwnedCompletePackages().add(orphanCompletePackage2);
+		}
+		return orphanCompletePackage2;
+	}
+
 	public @NonNull RootCompletePackage getOwnedCompletePackage(@NonNull DomainPackage pivotPackage) {
 		//
 		//	Try to find package by nsURI
@@ -781,14 +783,15 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 		return ownedCompletePackages;
 	}
 
-	public PrimitiveCompletePackage getPrimitiveCompletePackage()
+	@SuppressWarnings("null")
+	public @NonNull PrimitiveCompletePackage getPrimitiveCompletePackage()
 	{
-		if (primitiveCompletePackage == null) {
-			primitiveCompletePackage = PivotFactory.eINSTANCE.createPrimitiveCompletePackage();
-			primitiveCompletePackage.init("$primitive$", "prim", DomainConstants.METAMODEL_NAME, IdManager.METAMODEL, IdManager.METAMODEL);		// FIXME names
-			getOwnedCompletePackages().add(primitiveCompletePackage);
+		PrimitiveCompletePackage primitiveCompletePackage2 = primitiveCompletePackage;
+		if (primitiveCompletePackage2 == null) {
+			primitiveCompletePackage2 = primitiveCompletePackage = PivotFactory.eINSTANCE.createPrimitiveCompletePackage();
+			getOwnedCompletePackages().add(primitiveCompletePackage2);
 		}
-		return primitiveCompletePackage;
+		return primitiveCompletePackage2;
 	}
 
 	/**
@@ -798,7 +801,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	 */
 	public CompletePackage getOwnedCompletePackage(final String name)
 	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!CompleteModel!getOwnedCompletePackage(String)
+		return name2rootCompletePackage.get(name);
 	}
 
 	public @Nullable org.eclipse.ocl.examples.pivot.Package getRootPackage(@NonNull String name) {

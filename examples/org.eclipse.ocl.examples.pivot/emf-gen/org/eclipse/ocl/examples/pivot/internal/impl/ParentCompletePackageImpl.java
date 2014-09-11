@@ -12,6 +12,8 @@ package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.pivot.ParentCompletePackage;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
@@ -47,9 +49,20 @@ public class ParentCompletePackageImpl extends RootCompletePackageImpl implement
 	{
 		return PivotPackage.Literals.PARENT_COMPLETE_PACKAGE;
 	}
+	
+	private /*final*/ /*@NonNull*/ PackageId metapackageId;
 
 	@Override
 	public <R> R accept(@NonNull Visitor<R> visitor) {
 		return visitor.visitParentCompletePackage(this);
+	}
+	
+	public @NonNull PackageId getMetapackageId() {
+		return metapackageId;
+	}
+
+	public void init(@NonNull String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId, @NonNull PackageId metapackageId) {
+		super.init(name, nsPrefix, nsURI, packageId);
+		this.metapackageId = metapackageId;
 	}
 } //ParentCompletePackageImpl

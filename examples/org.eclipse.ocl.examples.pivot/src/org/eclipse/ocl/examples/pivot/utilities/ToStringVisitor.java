@@ -550,13 +550,17 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 
 	@Override
 	public @Nullable String visitCompleteClass(@NonNull CompleteClass object) {
-		safeVisit(object.getPivotClass());
+		appendName(object);
+		append("*");
+		append(object.getPartialClasses().size());
 		return null;
 	}
 
 	@Override
 	public @Nullable String visitCompletePackage(@NonNull CompletePackage object) {
 		appendName(object);
+		append("*");
+		append(object.getPartialPackages().size());
 		append(" : ");
 		append(object.getURI());
 		return null;

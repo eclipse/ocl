@@ -11,8 +11,6 @@
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -25,12 +23,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.DomainConstants;
 import org.eclipse.ocl.examples.domain.elements.DomainCompletePackage;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
-import org.eclipse.ocl.examples.domain.ids.PackageId;
-import org.eclipse.ocl.examples.pivot.AnyType;
-import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.CompleteModel;
@@ -110,6 +105,7 @@ public abstract class RootCompletePackageImpl extends CompletePackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("cast")
 	public void setOwningCompleteModel(CompleteModel newOwningCompleteModel)
 	{
 		if (newOwningCompleteModel != eInternalContainer() || (eContainerFeatureID() != PivotPackage.ROOT_COMPLETE_PACKAGE__OWNING_COMPLETE_MODEL && newOwningCompleteModel != null))
@@ -354,10 +350,6 @@ public abstract class RootCompletePackageImpl extends CompletePackageImpl implem
 		}
 		return eDynamicIsSet(featureID);
 	}
-	
-	private /*final*/ /*@NonNull*/ PackageId metapackageId;
-
-	private /*final*/ /*@LazyNonNull*/ Map<String, CompleteClass> name2completeClass = null;
 
 	@Override
 	public <R> R accept(@NonNull Visitor<R> visitor) {
@@ -365,118 +357,40 @@ public abstract class RootCompletePackageImpl extends CompletePackageImpl implem
 	}
 
 	@Override
-	protected void didAddCompleteClass(@NonNull CompleteClass completeClass) {
-		assert name2completeClass != null;
-		String name = completeClass.getName();
-		if (name != null) {
-			CompleteClass oldCompleteClass = name2completeClass.put(name, completeClass);
-			assert oldCompleteClass == null;
-		}
-	}
-
-	@Override
-	protected void didAddPartialPackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
-		if (name2completeClass != null) {
-			doRefreshPartialClasses(partialPackage);
-		}
-	}
-
-	@Override
-	protected void didRemoveCompleteClass(@NonNull CompleteClass completeClass) {
-		assert name2completeClass != null;
-		String name = completeClass.getName();
-		if (name != null) {
-			CompleteClass oldCompleteClass = name2completeClass.remove(name);
-			assert oldCompleteClass == completeClass;
-		}
-	}
-
-	@Override
-	protected void didRemovePartialPackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
-		if (name2completeClass != null) {
-			for (org.eclipse.ocl.examples.pivot.Class partialClass : partialPackage.getOwnedClasses()) {
-				String name = partialClass.getName();
-				if (name != null) {
-					CompleteClass completeClass = name2completeClass.get(name);
-					if (completeClass != null) {
-						List<Class> partialClasses = completeClass.getPartialClasses();
-						partialClasses.remove(partialClass);
-						if (partialClasses.size() <= 0) {
-							name2completeClass.remove(name);
-						}
-					}
-				}
-			}
-		}
-	}
-
-	protected void doRefreshPartialClasses() {
-		if (name2completeClass == null) {
-			name2completeClass = new HashMap<String, CompleteClass>();
-		}
-		for (org.eclipse.ocl.examples.pivot.Package partialPackage : getPartialPackages()) {
-			if (partialPackage != null) {
-				doRefreshPartialClasses(partialPackage);
-			}
-		}
-	}
-
-	private void doRefreshPartialClasses(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
-		assert name2completeClass != null;
+	protected void doRefreshPartialClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {	// FIXME Inefficient
+		Map<String, CompleteClass> name2completeClass2 = name2completeClass;
+		assert name2completeClass2 != null;
 		CompleteModelImpl completeModel = getCompleteModel();
 		MetaModelManager metaModelManager = completeModel.getMetaModelManager();
 		CompletePackage oclAnyCompletePackage = null;
 		if (!metaModelManager.isLibraryLoadInProgress()) {
-			AnyType oclAnyType = metaModelManager.getOclAnyType();
-			oclAnyCompletePackage = completeModel.getCompletePackage(oclAnyType.getOwningPackage());
+			oclAnyCompletePackage = completeModel.getOwnedCompletePackage(DomainConstants.METAMODEL_NAME);
 		}
-		for (org.eclipse.ocl.examples.pivot.Class partialClass : partialPackage.getOwnedClasses()) {
-			String name = partialClass.getName();
-			if (name != null) {
-				CompleteClass completeClass = null;
-				if (oclAnyCompletePackage == this) {
-					PrimitiveCompletePackage primitiveCompletePackage = completeModel.getPrimitiveCompletePackage();
-					if (primitiveCompletePackage != null) {
-						completeClass = primitiveCompletePackage.getOwnedCompleteClass(name);
-					}
-				}
-				if (completeClass == null) {
-					completeClass = name2completeClass.get(name);
-				}
-				if (completeClass == null) {
-					completeClass = PivotFactory.eINSTANCE.createCompleteClass();
-					completeClass.setName(name);
-					getOwnedCompleteClasses().add(completeClass);
-					if (metaModelManager.isTypeServeable(partialClass)) {
-						TypeServer typeServer = completeModel.getTypeServer(partialClass);
-						((CompleteClassImpl)completeClass).setTypeServer(typeServer);
-					}
-				}
-				completeClass.getPartialClasses().add(partialClass);
-				TypeServer typeServer = completeClass.getTypeServer();
-				if (typeServer instanceof ExtensibleTypeServer) {
-					((ExtensibleTypeServer)typeServer).getTypeTracker(partialClass);
+		String name = partialClass.getName();
+		if (name != null) {
+			CompleteClass completeClass = null;
+			if (oclAnyCompletePackage == this) {
+				PrimitiveCompletePackage primitiveCompletePackage = completeModel.getPrimitiveCompletePackage();
+				completeClass = primitiveCompletePackage.getOwnedCompleteClass(name);
+			}
+			if (completeClass == null) {
+				completeClass = name2completeClass2.get(name);
+			}
+			if (completeClass == null) {
+				completeClass = PivotFactory.eINSTANCE.createCompleteClass();
+				completeClass.setName(name);
+				getOwnedCompleteClasses().add(completeClass);
+				if (metaModelManager.isTypeServeable(partialClass)) {
+					TypeServer typeServer = completeModel.getTypeServer(partialClass);
+					((CompleteClassImpl)completeClass).setTypeServer(typeServer);
 				}
 			}
+			completeClass.getPartialClasses().add(partialClass);
+			TypeServer typeServer = completeClass.getTypeServer();
+			if (typeServer instanceof ExtensibleTypeServer) {
+				((ExtensibleTypeServer)typeServer).getTypeTracker(partialClass);
+			}
 		}
-	}
-
-	public @Nullable CompleteClass getCompleteClass(String name) {
-		if (name2completeClass == null) {
-			doRefreshPartialClasses();
-		}
-		return name2completeClass.get(name);
-	}
-	
-	public @NonNull PackageId getMetapackageId() {
-		return metapackageId;
-	}
-
-	public @Nullable CompleteClass getOwnedCompleteClass(String name) {
-		if (name2completeClass == null) {
-			doRefreshPartialClasses();
-		}
-		return name2completeClass.get(name);
 	}
 
 	public DomainCompletePackage getOwningCompletePackage() {
@@ -496,28 +410,6 @@ public abstract class RootCompletePackageImpl extends CompletePackageImpl implem
 		}
 		return primitiveTypeServer;
 	} */
-
-	public TypeServer getTypeServer(DomainType pivotType) {
-		CompleteClass completeClass = getCompleteClass(pivotType.getName());
-		if (completeClass == null) {
-			return null;
-		}
-//		assert completeClass != null;
-		if (name2completeClass == null) {
-			doRefreshPartialClasses();
-		}
-		TypeServer typeServer = completeClass.getTypeServer();
-		if (typeServer == null) {
-			typeServer = getTypeServer2(completeClass, pivotType);
-			((CompleteClassImpl)completeClass).setTypeServer(typeServer);
-		}
-		return typeServer;
-	}
-
-	public void init(@NonNull String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId, @NonNull PackageId metapackageId) {
-		super.init(name, nsPrefix, nsURI, packageId);
-		this.metapackageId = metapackageId;
-	}
 
 	@Override
 	public void assertSamePackage(@Nullable DomainPackage domainPackage) {

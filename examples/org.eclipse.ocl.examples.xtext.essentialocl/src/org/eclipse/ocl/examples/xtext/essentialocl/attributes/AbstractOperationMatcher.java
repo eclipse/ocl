@@ -130,9 +130,9 @@ public abstract class AbstractOperationMatcher
 		if (p2 == null) {
 			return 0;
 		}
-		CompleteModelImpl packageManager = metaModelManager.getCompleteModel();
-		CompletePackage s1 = packageManager.getCompletePackage(p1);
-		CompletePackage s2 = packageManager.getCompletePackage(p2);
+		CompleteModelImpl completeModel = metaModelManager.getCompleteModel();
+		CompletePackage s1 = completeModel.getCompletePackage(p1);
+		CompletePackage s2 = completeModel.getCompletePackage(p2);
 		if (s1 != s2) {
 			return 0;
 		}

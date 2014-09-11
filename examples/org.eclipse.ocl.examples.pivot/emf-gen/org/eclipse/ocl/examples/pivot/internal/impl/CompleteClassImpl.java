@@ -410,7 +410,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 				return partialClass;
 //			}
 		}
-		throw new UnsupportedOperationException();
+		return null;
 	}
 	
 	@SuppressWarnings("null")
@@ -449,7 +449,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 		return false;
 	} */
 
-	public void setTypeServer(@NonNull TypeServer typeServer) {
+	public void setTypeServer(TypeServer typeServer) {
 		this.typeServer = typeServer;
 	}
 

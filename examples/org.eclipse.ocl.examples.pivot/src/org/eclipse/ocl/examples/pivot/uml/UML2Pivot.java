@@ -825,9 +825,9 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 		umlResource.eAdapters().add(this);
 		metaModelManager.addExternalResource(this);
 		metaModelManager.addListener(this);
-		CompleteModelImpl packageManager = metaModelManager.getCompleteModel();
-		packageManager.addPackageNsURISynonym(DomainUtil.nonNullEMF(UMLPackage.eNS_URI), DomainConstants.UML_METAMODEL_NAME);
-		packageManager.addPackageNsURISynonym(DomainUtil.nonNullEMF(TypesPackage.eNS_URI), DomainConstants.TYPES_METAMODEL_NAME);		// FIXME All known synonyms
+		CompleteModelImpl completeModel = metaModelManager.getCompleteModel();
+		completeModel.addPackageNsURISynonym(DomainUtil.nonNullEMF(UMLPackage.eNS_URI), DomainConstants.UML_METAMODEL_NAME);
+		completeModel.addPackageNsURISynonym(DomainUtil.nonNullEMF(TypesPackage.eNS_URI), DomainConstants.TYPES_METAMODEL_NAME);		// FIXME All known synonyms
 		// FIXME All known synonyms
 	}
 	

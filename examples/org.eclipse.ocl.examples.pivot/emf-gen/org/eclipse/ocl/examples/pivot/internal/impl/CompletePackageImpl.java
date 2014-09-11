@@ -10,6 +10,7 @@
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -30,7 +31,9 @@ import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.AnyType;
+import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.CompleteClass;
@@ -56,11 +59,11 @@ import org.eclipse.ocl.examples.pivot.manager.InvalidTypeServer;
 import org.eclipse.ocl.examples.pivot.manager.TemplateableTypeServer;
 import org.eclipse.ocl.examples.pivot.manager.TypeServer;
 import org.eclipse.ocl.examples.pivot.manager.VoidTypeServer;
+import org.eclipse.ocl.examples.pivot.util.PackageListeners;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * <!-- begin-user-doc -->
@@ -77,7 +80,7 @@ import java.lang.reflect.InvocationTargetException;
  *
  * @generated
  */
-public abstract class CompletePackageImpl extends NamedElementImpl implements CompletePackage
+public abstract class CompletePackageImpl extends NamedElementImpl implements CompletePackage, PackageListeners.IPackageListener
 {
 	/**
 	 * The cached value of the '{@link #getOwnedCompleteClasses() <em>Owned Complete Classes</em>}' containment reference list.
@@ -356,6 +359,8 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 	 * in entries->collect(entry | Tuple{key : String = entry.name, value : RootCompletePackage = entry})
 	 */
 	private Map<String, NestedCompletePackage> name2nestedCompletePackage = null;
+
+	protected @Nullable Map<String, CompleteClass> name2completeClass = null;
 	
 	/**
 	 * Lazily created map of nested class-name to multi-class server.
@@ -373,8 +378,52 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 		String serverBasedNsURI = getURI();
 		assert (typeBasedNsURI == serverBasedNsURI) || typeBasedNsURI.equals(serverBasedNsURI);
 	}
+
+	public void didAddClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
+		if (name2completeClass != null) {
+			CompleteClass completeClass = name2completeClass.get(partialClass.getName());
+			if (completeClass == null) {
+				doRefreshPartialClass(partialClass);
+			}
+			else {
+				completeClass.getPartialClasses().add(partialClass);
+			}
+		}
+	}
+
+	public void didRemoveClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
+		if (name2completeClass != null) {
+			CompleteClass completeClass = name2completeClass.get(partialClass.getName());
+			if (completeClass != null) {
+				List<Class> partialClasses = completeClass.getPartialClasses();
+				partialClasses.remove(partialClass);
+				if (partialClasses.size() <= 0) {
+					getOwnedCompleteClasses().remove(completeClass);
+					TypeServer typeServer = ((CompleteClassImpl)completeClass).getTypeServer();
+					((CompleteClassImpl)completeClass).setTypeServer(null);
+					if (typeServer != null) {
+						typeServer.dispose();
+					}
+				}
+			}
+		}
+	}
+
+/*	public void didRenameClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass, String oldName) {
+		// TODO Auto-generated method stub
+		
+	} */
 	
-	protected abstract void didAddCompleteClass(@NonNull CompleteClass completeClass);
+	protected void didAddCompleteClass(@NonNull CompleteClass completeClass) {
+		Map<String, CompleteClass> name2completeClass2 = name2completeClass;
+		if (name2completeClass2 != null) {
+			String name = completeClass.getName();
+			if (name != null) {
+				CompleteClass oldCompleteClass = name2completeClass2.put(name, completeClass);
+				assert oldCompleteClass == null;
+			}
+		}
+	}
 
 	void didAddNestedCompletePackage(@NonNull NestedCompletePackage nestedCompletePackage) {
 		assert name2nestedCompletePackage != null;
@@ -384,10 +433,24 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 			assert oldCompletePackage == null;
 		}
 	}
-	
-	protected abstract void didAddPartialPackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage);
-	
-	protected abstract void didRemoveCompleteClass(@NonNull CompleteClass completeClass);
+
+	protected void didAddPartialPackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
+		((PackageImpl)partialPackage).getCompleteListeners().addListener(this);
+		if (name2completeClass != null) {
+			doRefreshPartialClasses(partialPackage);
+		}
+	}
+
+	protected void didRemoveCompleteClass(@NonNull CompleteClass completeClass) {
+		Map<String, CompleteClass> name2completeClass2 = name2completeClass;
+		if (name2completeClass2 != null) {
+			String name = completeClass.getName();
+			if (name != null) {
+				CompleteClass oldCompleteClass = name2completeClass2.remove(name);
+				assert oldCompleteClass == completeClass;
+			}
+		}
+	}
 	
 	void didRemoveNestedCompletePackage(@NonNull NestedCompletePackage nestedCompletePackage) {
 		assert name2nestedCompletePackage != null;
@@ -396,8 +459,48 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 			name2nestedCompletePackage.remove(name);
 		}
 	}
-	
-	protected abstract void didRemovePartialPackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage);
+
+	protected void didRemovePartialPackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
+		Map<String, CompleteClass> name2completeClass2 = name2completeClass;
+		if (name2completeClass2 != null) {
+			for (org.eclipse.ocl.examples.pivot.Class partialClass : partialPackage.getOwnedClasses()) {
+				String name = partialClass.getName();
+				if (name != null) {
+					CompleteClass completeClass = name2completeClass2.get(name);
+					if (completeClass != null) {
+						List<Class> partialClasses = completeClass.getPartialClasses();
+						partialClasses.remove(partialClass);
+						if (partialClasses.size() <= 0) {
+							name2completeClass2.remove(name);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	protected abstract void doRefreshPartialClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass);
+
+	protected @NonNull Map<String, CompleteClass> doRefreshPartialClasses() {
+		Map<String, CompleteClass> name2completeClass2 = name2completeClass;
+		if (name2completeClass2 == null) {
+			name2completeClass2 = name2completeClass = new HashMap<String, CompleteClass>();
+		}
+		for (org.eclipse.ocl.examples.pivot.Package partialPackage : getPartialPackages()) {
+			if (partialPackage != null) {
+				doRefreshPartialClasses(partialPackage);
+			}
+		}
+		return name2completeClass2;
+	}
+
+	protected void doRefreshPartialClasses(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
+		for (org.eclipse.ocl.examples.pivot.Class partialClass : partialPackage.getOwnedClasses()) {
+			if (partialClass != null) {
+				doRefreshPartialClass(partialClass);
+			}
+		}
+	}
 
 	protected void doRefreshNestedPackages() {
 		if (name2nestedCompletePackage == null) {
@@ -421,6 +524,7 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 		}
 	}
 
+	@SuppressWarnings("null")
 	public @NonNull Iterable<? extends DomainClass> getAllClasses() {
 		return Iterables.transform(getOwnedCompleteClasses(), new Function<CompleteClass, DomainClass>()
 			{
@@ -453,21 +557,21 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 		return getPartialPackages().indexOf(p1);
 	}
 
-	public CompletePackage getMemberPackage(String subPackageName) {
-		return getOwnedCompletePackage(subPackageName);
-	}
-
 	public org.eclipse.ocl.examples.pivot.Class getMemberType(String name) {
 		CompleteClass completeClass = name != null ? getOwnedCompleteClass(name) : null;
 		return completeClass != null ? ((CompleteClassImpl)completeClass).getPivotClass() : null;
 	}
 
-	public void getMemberTypes() {
-		throw new UnsupportedOperationException();
-	}
-
 	public String getNsPrefix() {
 		return nsPrefix;
+	}
+
+	public @Nullable CompleteClass getOwnedCompleteClass(String name) {
+		Map<String, CompleteClass> name2completeClass2 = name2completeClass;
+		if (name2completeClass2 == null) {
+			name2completeClass2 = doRefreshPartialClasses();
+		}
+		return name2completeClass2.get(name);
 	}
 
 	/**
@@ -543,11 +647,6 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 		return ownedCompletePackages;
 	}
 
-//	@SuppressWarnings("null")
-//	public @NonNull PackageManager getPackageManager() {
-//		return packageManager;
-//	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -603,12 +702,18 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 		CompleteClass completeClass = getOwnedCompleteClass(metatypeName);
 		return completeClass != null ? completeClass.getPivotClass() : null;
 	}
-	
-	@NonNull TypeServer getTypeServer2(@NonNull CompleteClass completeClass, @NonNull DomainType pivotType) {
-		assert completeClass.eContainer() == this;
-		if (pivotType instanceof TypeServer) {
-			return (TypeServer)pivotType;
+
+	public @NonNull TypeServer getTypeServer(DomainType pivotType) {
+		CompleteClass completeClass = DomainUtil.nonNullState(getOwnedCompleteClass(pivotType.getName()));
+		TypeServer typeServer1 = completeClass.getTypeServer();
+		if (typeServer1 != null) {
+			return typeServer1;
 		}
+		assert completeClass.eContainer() == this;
+//		if (pivotType instanceof TypeServer) {
+//			((CompleteClassImpl)completeClass).setTypeServer(typeServer1);
+//			return (TypeServer)pivotType;
+//		}
 		assert !(pivotType instanceof TemplateableElement) || (((TemplateableElement)pivotType).getUnspecializedElement() == null);
 		Map<String, TypeServer> typeServers2 = typeServers;
 		if (typeServers2 == null) {
@@ -655,6 +760,7 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 		if (typeServer instanceof ExtensibleTypeServer) {
 			((ExtensibleTypeServer)typeServer).getTypeTracker((DomainClass) pivotType);		// FIXME cast
 		}
+		((CompleteClassImpl)completeClass).setTypeServer(typeServer);
 		return typeServer;
 	}
 
@@ -674,8 +780,8 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 		if (typeServers2 == null) {
 			typeServers2 = typeServers = new HashMap<String, TypeServer>();
 			if (!PivotConstants.ORPHANAGE_URI.equals(nsURI)) {
-				for (org.eclipse.ocl.examples.pivot.Package partialPcakge : getPartialPackages()) {
-					initMemberTypes(partialPcakge);
+				for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage : getPartialPackages()) {
+					initMemberTypes(partialPackage);
 				}
 			}
 		}
@@ -688,5 +794,12 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 //				addedMemberType(pivotType);
 			}
 		}
-	}		
+	}
+
+	public void disposedTypeServer(@NonNull TypeServer typeServer) {
+		Map<String, TypeServer> typeServers2 = typeServers;
+		if (typeServers2 != null) {
+			typeServers2.remove(typeServer.getName());
+		}
+	}
 } //CompletePackageImpl

@@ -61,7 +61,15 @@ import org.eclipse.xtext.resource.impl.ListBasedDiagnosticConsumer;
  */
 @SuppressWarnings("null")
 public class EditTests extends XtextTestCase
-{	
+{		
+	public class DebugRef
+	{
+		public final Object object;
+
+		DebugRef(Object object) {
+			this.object = object;
+		}
+	}
 
 	protected OCL ocl = null;
 //	protected MetaModelManager metaModelManager = null;
@@ -669,7 +677,8 @@ public class EditTests extends XtextTestCase
 		doRename(xtextResource, asResource, "Sequence(MyType)", "Set(MyType)");
 		System.gc();
 		sequenceMyType = new WeakReference<Type>(sequenceTypeServer.findSpecializedType(typeParameters));
-		assertNull(sequenceMyType.get()); 
+		DebugRef debugRef = new DebugRef(sequenceMyType.get());
+		assertNull(debugRef.object); 
 	}
 
 	public void testEdit_Paste_CompleteOCL() throws Exception {

@@ -11,7 +11,6 @@
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -23,8 +22,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
@@ -33,7 +30,6 @@ import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.NestedCompletePackage;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.manager.TypeServer;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -99,6 +95,7 @@ public class NestedCompletePackageImpl extends CompletePackageImpl implements Ne
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("cast")
 	public void setOwningCompletePackage(CompletePackage newOwningCompletePackage)
 	{
 		if (newOwningCompletePackage != eInternalContainer() || (eContainerFeatureID() != PivotPackage.NESTED_COMPLETE_PACKAGE__OWNING_COMPLETE_PACKAGE && newOwningCompletePackage != null))
@@ -344,106 +341,27 @@ public class NestedCompletePackageImpl extends CompletePackageImpl implements Ne
 		return eDynamicIsSet(featureID);
 	}
 
-	private /*final*/ /*@LazyNonNull*/ Map<String, CompleteClass> name2completeClass = null;
-
 	@Override
 	public <R> R accept(@NonNull Visitor<R> visitor) {
 		return visitor.visitNestedCompletePackage(this);
 	}
 
 	@Override
-	protected void didAddCompleteClass(@NonNull CompleteClass completeClass) {
-		assert name2completeClass != null;
-		String name = completeClass.getName();
+	protected void doRefreshPartialClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
+		Map<String, CompleteClass> name2completeClass2 = name2completeClass;
+		assert name2completeClass2 != null;
+		String name = partialClass.getName();
 		if (name != null) {
-			CompleteClass oldCompleteClass = name2completeClass.put(name, completeClass);
-			assert oldCompleteClass == null;
-		}
-	}
-
-	@Override
-	protected void didAddPartialPackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
-		if (name2completeClass != null) {
-			doRefreshPartialClasses(partialPackage);
-		}
-	}
-
-	@Override
-	protected void didRemoveCompleteClass(@NonNull CompleteClass completeClass) {
-		assert name2completeClass != null;
-		String name = completeClass.getName();
-		if (name != null) {
-			CompleteClass oldCompleteClass = name2completeClass.remove(name);
-			assert oldCompleteClass == completeClass;
-		}
-	}
-
-	@Override
-	protected void didRemovePartialPackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
-		for (org.eclipse.ocl.examples.pivot.Class partialClass : partialPackage.getOwnedClasses()) {
-			String name = partialClass.getName();
-			if (name != null) {
-				CompleteClass completeClass = name2completeClass.remove(name);
-				completeClass.getPartialClasses().remove(partialClass);
-			}
-		}
-	}
-
-	protected void doRefreshPartialClasses() {
-		if (name2completeClass == null) {
-			name2completeClass = new HashMap<String, CompleteClass>();
-		}
-		for (org.eclipse.ocl.examples.pivot.Package partialPackage : getPartialPackages()) {
-			if (partialPackage != null) {
-				doRefreshPartialClasses(partialPackage);
-			}
-		}
-	}
-
-	private void doRefreshPartialClasses(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
-		assert name2completeClass != null;
-		for (org.eclipse.ocl.examples.pivot.Class partialClass : partialPackage.getOwnedClasses()) {
-			String name = partialClass.getName();
-			if (name != null) {
-				CompleteClass completeClass = name2completeClass.get(name);
-				if (completeClass == null) {
-					completeClass = PivotFactory.eINSTANCE.createCompleteClass();
-					completeClass.setName(name);
-					getOwnedCompleteClasses().add(completeClass);
+			CompleteClass completeClass = name2completeClass2.get(name);
+			if (completeClass == null) {
+				completeClass = PivotFactory.eINSTANCE.createCompleteClass();
+				completeClass.setName(name);
+				getOwnedCompleteClasses().add(completeClass);
 //					TypeServer typeServer = getCompleteModel().getTypeServer(partialClass);
 //					((CompleteClassImpl)completeClass).setTypeServer(typeServer);
-				}
-				completeClass.getPartialClasses().add(partialClass);
 			}
+			completeClass.getPartialClasses().add(partialClass);
 		}
-	}
-
-	public @Nullable CompleteClass getCompleteClass(String name) {
-		if (name2completeClass == null) {
-			doRefreshPartialClasses();
-		}
-		return name2completeClass.get(name);
-	}
-
-	public @Nullable CompleteClass getOwnedCompleteClass(String name) {
-		if (name2completeClass == null) {
-			doRefreshPartialClasses();
-		}
-		return name2completeClass.get(name);
-	}
-
-	public TypeServer getTypeServer(DomainType pivotType) {
-		CompleteClass completeClass = getCompleteClass(pivotType.getName());
-		assert completeClass != null;
-		if (name2completeClass == null) {
-			doRefreshPartialClasses();
-		}
-		TypeServer typeServer = completeClass.getTypeServer();
-		if (typeServer == null) {
-			typeServer = getTypeServer2(completeClass, pivotType);
-			((CompleteClassImpl)completeClass).setTypeServer(typeServer);
-		}
-		return typeServer;
 	}
 	
 /*	@SuppressWarnings("null")

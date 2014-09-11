@@ -16,7 +16,10 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.ids.IdManager;
+import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.pivot.CompleteClass;
+import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PrimitiveCompletePackage;
@@ -40,16 +43,6 @@ public class PrimitiveCompletePackageImpl extends RootCompletePackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PrimitiveCompletePackageImpl()
-	{
-		super();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	protected EClass eStaticClass()
 	{
@@ -60,6 +53,12 @@ public class PrimitiveCompletePackageImpl extends RootCompletePackageImpl implem
 	 * Map from each primitive type name to the TypeServer that supervises its merge. 
 	 */
 	private final @NonNull Map<String, PrimitiveTypeServer> primitiveType2server = new HashMap<String, PrimitiveTypeServer>();
+
+	protected PrimitiveCompletePackageImpl()
+	{
+		super();
+		init("$primitives$", "prim", PivotConstants.PRIMITIVES_URI, IdManager.METAMODEL);		// FIXME names
+	}
 
 	@Override
 	public <R> R accept(@NonNull Visitor<R> visitor) {
@@ -81,10 +80,9 @@ public class PrimitiveCompletePackageImpl extends RootCompletePackageImpl implem
 	@Override
 	protected void didRemovePartialPackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {			// FIXME lose unwanted inheritance
 	}
-
-	@Override
-	public @Nullable CompleteClass getCompleteClass(String name) {
-		throw new UnsupportedOperationException();			// FIXME lose unwanted inheritance
+	
+	public @NonNull PackageId getMetapackageId() {
+		return IdManager.METAMODEL;
 	}
 
 	@Override

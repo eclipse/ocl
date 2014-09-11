@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -38,6 +36,7 @@ import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.InstanceSpecification;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.ProfileApplication;
+import org.eclipse.ocl.examples.pivot.util.PackageListeners;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -621,75 +620,15 @@ public class PackageImpl
 
 	private @Nullable PackageListeners completeListeners = null;
 	
-	public static class PackageListeners
-	{
-		public static interface IPackageListener
-		{
-			void didAddClass(@NonNull org.eclipse.ocl.examples.pivot.Class asClass);
-			void didRemoveClass(@NonNull org.eclipse.ocl.examples.pivot.Class asClass);
-			void didRenameClass(@NonNull org.eclipse.ocl.examples.pivot.Class asClass, String oldName);
-		}
-		
-		private @NonNull List<WeakReference<IPackageListener>> listeners = new ArrayList<WeakReference<IPackageListener>>();
-
-		public synchronized void didAddClass(@NonNull org.eclipse.ocl.examples.pivot.Class asClass) {
-			boolean doFlush = false;
-			for (WeakReference<IPackageListener> ref : listeners) {
-				IPackageListener listener = ref.get();
-				if (listener != null) {
-					listener.didAddClass(asClass);
-				}
-				else {
-					doFlush = true;
-				}
-			}
-			if (doFlush) {
-				doFlush();
-			}
-		}
-
-		public synchronized void didRemoveClass(@NonNull org.eclipse.ocl.examples.pivot.Class asClass) {
-			boolean doFlush = false;
-			for (WeakReference<IPackageListener> ref : listeners) {
-				IPackageListener listener = ref.get();
-				if (listener != null) {
-					listener.didRemoveClass(asClass);
-				}
-				else {
-					doFlush = true;
-				}
-			}
-			if (doFlush) {
-				doFlush();
-			}
-		}
-
-		public synchronized void didRenameClass(@NonNull org.eclipse.ocl.examples.pivot.Class asClass, String oldName) {
-			boolean doFlush = false;
-			for (WeakReference<IPackageListener> ref : listeners) {
-				IPackageListener listener = ref.get();
-				if (listener != null) {
-					listener.didRenameClass(asClass, oldName);
-				}
-				else {
-					doFlush = true;
-				}
-			}
-			if (doFlush) {
-				doFlush();
-			}
-		}
-
-		private void doFlush() {
-			for (int i = listeners.size(); --i >= 0; ) {
-				IPackageListener completeListener = listeners.get(i).get();
-				if (completeListener == null) {
-					listeners.remove(i);
-				}
-			}
-		}
-	}
 	
+	public @NonNull PackageListeners getCompleteListeners() {
+		PackageListeners completeListeners2 = completeListeners;
+		if (completeListeners2 == null) {
+			completeListeners2 = completeListeners = new PackageListeners();
+		}
+		return completeListeners2;
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -704,26 +643,40 @@ public class PackageImpl
 				private static final long serialVersionUID = 1L;
 
 				@Override
-				protected void didAdd(int index, org.eclipse.ocl.examples.pivot.Class asClass) {
-					assert asClass != null;
-					super.didAdd(index, asClass);
-					if (completeListeners != null) {
-						completeListeners.didAddClass(asClass);
-					}
+				public void addUnique(org.eclipse.ocl.examples.pivot.Class partialClass) {
+					assert partialClass != null;
+					super.addUnique(partialClass);
+					didAddClass(partialClass);
 				}
 
 				@Override
-				protected void didRemove(int index, org.eclipse.ocl.examples.pivot.Class asClass) {
-					assert asClass != null;
-					super.didRemove(index, asClass);
-					if (completeListeners != null) {
-						completeListeners.didRemoveClass(asClass);
-					}
+				protected void didRemove(int index, org.eclipse.ocl.examples.pivot.Class partialClass) {
+					assert partialClass != null;
+					super.didRemove(index, partialClass);
+					didRemoveClass(partialClass);
 				}
 			};
 		}
 		return ownedClasses;
 	}
+
+	protected void didAddClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
+		if (completeListeners != null) {
+			completeListeners.didAddClass(partialClass);
+		}
+	}
+
+	protected void didRemoveClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
+		if (completeListeners != null) {
+			completeListeners.didRemoveClass(partialClass);
+		}
+	}
+
+/*	public void didRenameClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass, String oldName) {
+		if (completeListeners != null) {
+			completeListeners.didRenameClass(partialClass, oldName);
+		}
+	} */
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -772,5 +725,10 @@ public class PackageImpl
 	
 	public boolean isIgnoreInvariants() {
 		return ignoreInvariants;
+	}
+
+	public void getCompletePackageListenener() {
+		// TODO Auto-generated method stub
+		
 	}
 } //PackageImpl
