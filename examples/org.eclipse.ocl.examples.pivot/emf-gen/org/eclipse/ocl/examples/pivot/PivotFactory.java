@@ -122,6 +122,15 @@ public interface PivotFactory
 	Precedence createPrecedence();
 
 	/**
+	 * Returns a new object of class '<em>Primitive Complete Package</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Primitive Complete Package</em>'.
+	 * @generated
+	 */
+	PrimitiveCompletePackage createPrimitiveCompletePackage();
+
+	/**
 	 * Returns a new object of class '<em>Property</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

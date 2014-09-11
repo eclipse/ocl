@@ -38,9 +38,9 @@ import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.NestedCompletePackage;
-import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.PrimitiveCompletePackage;
 import org.eclipse.ocl.examples.pivot.RootCompletePackage;
 import org.eclipse.ocl.examples.pivot.manager.ExtensibleTypeServer;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -435,9 +435,9 @@ public abstract class RootCompletePackageImpl extends CompletePackageImpl implem
 			if (name != null) {
 				CompleteClass completeClass = null;
 				if (oclAnyCompletePackage == this) {
-					RootCompletePackage orphanPackage = completeModel.getMemberPackage(PivotConstants.ORPHANAGE_NAME);
-					if (orphanPackage instanceof OrphanCompletePackageImpl) {
-						completeClass = ((OrphanCompletePackageImpl)orphanPackage).getOwnedCompleteClass(name);
+					PrimitiveCompletePackage primitiveCompletePackage = completeModel.getPrimitiveCompletePackage();
+					if (primitiveCompletePackage != null) {
+						completeClass = primitiveCompletePackage.getOwnedCompleteClass(name);
 					}
 				}
 				if (completeClass == null) {
@@ -472,8 +472,7 @@ public abstract class RootCompletePackageImpl extends CompletePackageImpl implem
 		return metapackageId;
 	}
 
-	@Override
-	public @Nullable CompleteClass getOwnedCompleteClass(@NonNull String name) {
+	public @Nullable CompleteClass getOwnedCompleteClass(String name) {
 		if (name2completeClass == null) {
 			doRefreshPartialClasses();
 		}

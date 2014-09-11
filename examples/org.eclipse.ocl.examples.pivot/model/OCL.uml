@@ -47,6 +47,22 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_iRwNYSyPEeS77awx34sDEA"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_iRwNYiyPEeS77awx34sDEA" value="*"/>
         </ownedAttribute>
+        <ownedAttribute xmi:id="_O7klUDmUEeSB95ugQCao7g" name="orphanCompletePackage" type="_TlOeADQjEeSMlP-TjpzTcA" isReadOnly="true" isDerived="true">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_O7klUTmUEeSB95ugQCao7g"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_O7klUjmUEeSB95ugQCao7g" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_UlEkcDmUEeSB95ugQCao7g" name="primitiveCompletePackage" type="_Je4TIDmUEeSB95ugQCao7g" isReadOnly="true" isDerived="true">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UlEkcTmUEeSB95ugQCao7g"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UlEkcjmUEeSB95ugQCao7g" value="1"/>
+        </ownedAttribute>
+        <ownedOperation xmi:id="_ciZ4UDmdEeSB95ugQCao7g" name="getOwnedCompletePackage">
+          <ownedParameter xmi:id="_ciZ4UTmdEeSB95ugQCao7g" name="result" type="_-mAioCyOEeS77awx34sDEA" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ciZ4UjmdEeSB95ugQCao7g"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_ciZ4UzmdEeSB95ugQCao7g" name="name" type="_VYWFYDmdEeSB95ugQCao7g">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ciZ4VDmdEeSB95ugQCao7g"/>
+          </ownedParameter>
+        </ownedOperation>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_-mAioCyOEeS77awx34sDEA" name="CompletePackage" isAbstract="true">
         <generalization xmi:id="_JSt88CyPEeS77awx34sDEA" general="_67hN4CyOEeS77awx34sDEA"/>
@@ -62,6 +78,14 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YRBIQCyPEeS77awx34sDEA"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YyjIACyPEeS77awx34sDEA" value="*"/>
         </ownedAttribute>
+        <ownedOperation xmi:id="_F1Pj4DmdEeSB95ugQCao7g" name="getOwnedCompleteClass">
+          <ownedParameter xmi:id="_JyHpIDmdEeSB95ugQCao7g" name="result" type="_BE8DMCyPEeS77awx34sDEA" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Qdet4DmdEeSB95ugQCao7g"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_RVzdADmdEeSB95ugQCao7g" name="name" type="_VYWFYDmdEeSB95ugQCao7g">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RVzdATmdEeSB95ugQCao7g"/>
+          </ownedParameter>
+        </ownedOperation>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_67hN4CyOEeS77awx34sDEA" name="NamedElement" isAbstract="true"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_p-e_ADQjEeSMlP-TjpzTcA" name="NestedCompletePackage">
@@ -79,6 +103,9 @@
       <packagedElement xmi:type="uml:Class" xmi:id="_LsLGkDmTEeSB95ugQCao7g" name="ParentCompletePackage">
         <generalization xmi:id="_LsLGkTmTEeSB95ugQCao7g" general="_OllUMDQjEeSMlP-TjpzTcA"/>
       </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Je4TIDmUEeSB95ugQCao7g" name="PrimitiveCompletePackage">
+        <generalization xmi:id="_Je4TITmUEeSB95ugQCao7g" general="_OllUMDQjEeSMlP-TjpzTcA"/>
+      </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_OllUMDQjEeSMlP-TjpzTcA" name="RootCompletePackage" isAbstract="true">
         <generalization xmi:id="_SGwU4DQjEeSMlP-TjpzTcA" general="_-mAioCyOEeS77awx34sDEA"/>
         <ownedAttribute xmi:id="_afnRUCyQEeS77awx34sDEA" name="owningCompleteModel" type="_4AqmUCyOEeS77awx34sDEA" association="_AJ5sYCyREeS77awx34sDEA">
@@ -86,6 +113,7 @@
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_afnRUiyQEeS77awx34sDEA" value="1"/>
         </ownedAttribute>
       </packagedElement>
+      <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_VYWFYDmdEeSB95ugQCao7g" name="String"/>
       <packagedElement xmi:type="uml:Association" xmi:id="_AJ5sYCyREeS77awx34sDEA" name="A_owningCompleteModel_ownedCompletePackages" memberEnd="_afnRUCyQEeS77awx34sDEA _iRwNYCyPEeS77awx34sDEA"/>
       <packagedElement xmi:type="uml:Association" xmi:id="_IbtxkCyREeS77awx34sDEA" name="A_owningCompletePackage_ownedCompleteClasses" memberEnd="_MP2nACyQEeS77awx34sDEA _xR8PECyPEeS77awx34sDEA"/>
       <packagedElement xmi:type="uml:Association" xmi:id="_PfoDwCySEeS77awx34sDEA" name="A_owningCompletePackage_ownedCompletePackages" memberEnd="_718HYCyREeS77awx34sDEA _5RktMCyREeS77awx34sDEA"/>
@@ -514,4 +542,6 @@
   <Ecore:EReference xmi:id="_j37U8BpPEeSM9LreJtBwBg" isTransient="true" isVolatile="true" isResolveProxies="false"/>
   <Ecore:EReference xmi:id="_mWx9AhpPEeSM9LreJtBwBg" isTransient="true" isVolatile="true" isResolveProxies="false"/>
   <Ecore:EClass xmi:id="_o2C70DQZEeSSpuK_vlIP6g" instanceClassName="org.eclipse.ocl.examples.library.executor.ReflectivePackage"/>
+  <Ecore:EReference xmi:id="_1I1xoDmUEeSB95ugQCao7g" isTransient="true" base_Property="_O7klUDmUEeSB95ugQCao7g" isResolveProxies="false"/>
+  <Ecore:EReference xmi:id="_6uAqYDmUEeSB95ugQCao7g" isTransient="true" base_Property="_UlEkcDmUEeSB95ugQCao7g" isResolveProxies="false"/>
 </xmi:XMI>

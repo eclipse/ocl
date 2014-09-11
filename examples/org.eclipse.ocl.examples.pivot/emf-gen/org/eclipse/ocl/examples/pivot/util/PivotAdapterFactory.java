@@ -86,6 +86,7 @@ import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParentCompletePackage;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.examples.pivot.PrimitiveCompletePackage;
 import org.eclipse.ocl.examples.pivot.PrimitiveLiteralExp;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Profile;
@@ -568,6 +569,11 @@ public class PivotAdapterFactory
 			public Adapter casePrecedence(Precedence object)
 			{
 				return createPrecedenceAdapter();
+			}
+			@Override
+			public Adapter casePrimitiveCompletePackage(PrimitiveCompletePackage object)
+			{
+				return createPrimitiveCompletePackageAdapter();
 			}
 			@Override
 			public Adapter casePrimitiveLiteralExp(PrimitiveLiteralExp object)
@@ -2125,6 +2131,21 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createPrecedenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.PrimitiveCompletePackage <em>Primitive Complete Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.pivot.PrimitiveCompletePackage
+	 * @generated
+	 */
+	public Adapter createPrimitiveCompletePackageAdapter()
+	{
 		return null;
 	}
 

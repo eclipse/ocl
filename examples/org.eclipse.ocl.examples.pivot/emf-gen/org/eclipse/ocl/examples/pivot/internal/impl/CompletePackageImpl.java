@@ -46,6 +46,7 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.RootCompletePackage;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.manager.AnyTypeServer;
 import org.eclipse.ocl.examples.pivot.manager.CollectionTypeServer;
@@ -59,6 +60,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * <!-- begin-user-doc -->
@@ -323,6 +325,26 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 		return eDynamicIsSet(featureID);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
+	{
+		switch (operationID)
+		{
+			case PivotPackage.COMPLETE_PACKAGE___ALL_OWNED_ELEMENTS:
+				return allOwnedElements();
+			case PivotPackage.COMPLETE_PACKAGE___GET_VALUE__TYPE_STRING:
+				return getValue((Type)arguments.get(0), (String)arguments.get(1));
+			case PivotPackage.COMPLETE_PACKAGE___GET_OWNED_COMPLETE_CLASS__STRING:
+				return getOwnedCompleteClass((String)arguments.get(0));
+		}
+		return eDynamicInvoke(operationID, arguments);
+	}
+
 	private /*final*/ /*@NonNull*/ String nsPrefix;
 	private /*final*/ /*@NonNull*/ String nsURI;
 //	private /*final*/ /*@NonNull*/ PackageId packageId;
@@ -479,8 +501,6 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 		}
 		return ownedCompleteClasses;
 	}
-	
-	public abstract @Nullable CompleteClass getOwnedCompleteClass(@NonNull String name);
 
 	public CompletePackage getOwnedCompletePackage(@NonNull String name) {
 		if (name2nestedCompletePackage == null) {

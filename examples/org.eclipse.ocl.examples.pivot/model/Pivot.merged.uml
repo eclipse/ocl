@@ -306,6 +306,24 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TCompleteModel.PownedCompletePackages.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TCompleteModel.PownedCompletePackages.uV" value="*"/>
       </ownedAttribute>
+      <ownedAttribute xmi:id="Ppivot.TCompleteModel.PorphanCompletePackage" name="orphanCompletePackage" type="Ppivot.TOrphanCompletePackage"
+          isReadOnly="true" isDerived="true">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TCompleteModel.PorphanCompletePackage.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TCompleteModel.PorphanCompletePackage.uV" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="Ppivot.TCompleteModel.PprimitiveCompletePackage" name="primitiveCompletePackage" type="Ppivot.TPrimitiveCompletePackage"
+          isReadOnly="true" isDerived="true">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TCompleteModel.PprimitiveCompletePackage.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TCompleteModel.PprimitiveCompletePackage.uV" value="1"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="Ppivot.TCompleteModel.OgetOwnedCompletePackage" name="getOwnedCompletePackage">
+        <ownedParameter xmi:id="Ppivot.TCompleteModel.OgetOwnedCompletePackage.Presult" name="result" type="Ppivot.TCompletePackage" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TCompleteModel.OgetOwnedCompletePackage.Presult.lV"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="Ppivot.TCompleteModel.OgetOwnedCompletePackage.Pname" name="name" type="Ppivot.TString">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TCompleteModel.OgetOwnedCompletePackage.Pname.lV"/>
+        </ownedParameter>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TCompletePackage" name="CompletePackage" isAbstract="true">
       <generalization xmi:id="Ppivot.TCompletePackage.g0" general="Ppivot.TNamedElement"/>
@@ -323,6 +341,14 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TCompletePackage.PpartialPackages.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TCompletePackage.PpartialPackages.uV" value="*"/>
       </ownedAttribute>
+      <ownedOperation xmi:id="Ppivot.TCompletePackage.OgetOwnedCompleteClass" name="getOwnedCompleteClass">
+        <ownedParameter xmi:id="Ppivot.TCompletePackage.OgetOwnedCompleteClass.Presult" name="result" type="Ppivot.TCompleteClass" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TCompletePackage.OgetOwnedCompleteClass.Presult.lV"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="Ppivot.TCompletePackage.OgetOwnedCompleteClass.Pname" name="name" type="Ppivot.TString">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TCompletePackage.OgetOwnedCompleteClass.Pname.lV"/>
+        </ownedParameter>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TConnectionPointReference" name="ConnectionPointReference">
       <ownedComment xmi:id="Ppivot.TConnectionPointReference.oC0" annotatedElement="Ppivot.TConnectionPointReference">
@@ -938,6 +964,9 @@
       <ownedAttribute xmi:id="Ppivot.TPrecedence.Porder" name="order" type="Ppivot.TInteger">
         <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TPrecedence.Porder.dlV" value="0"/>
       </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TPrimitiveCompletePackage" name="PrimitiveCompletePackage">
+      <generalization xmi:id="Ppivot.TPrimitiveCompletePackage.g0" general="Ppivot.TRootCompletePackage"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TPrimitiveLiteralExp" name="PrimitiveLiteralExp" isAbstract="true">
       <generalization xmi:id="Ppivot.TPrimitiveLiteralExp.g0" general="Ppivot.TLiteralExp"/>
@@ -1891,6 +1920,10 @@
   <Ecore:EAttribute xmi:id="PA.Ppivot.TState.PisSimple" isTransient="true" isVolatile="true" base_Property="Ppivot.TState.PisSimple"/>
   <Ecore:EAttribute xmi:id="PA.Ppivot.TState.PisSubmachineState" isTransient="true" isVolatile="true" base_Property="Ppivot.TState.PisSubmachineState"/>
   <Ecore:EReference xmi:id="PA.Ppivot.TTemplateBinding.PtemplateSignature" isTransient="true" isVolatile="true" base_Property="Ppivot.TTemplateBinding.PtemplateSignature"
+      isResolveProxies="false"/>
+  <Ecore:EReference xmi:id="PA.Ppivot.TCompleteModel.PorphanCompletePackage" isTransient="true" base_Property="Ppivot.TCompleteModel.PorphanCompletePackage"
+      isResolveProxies="false"/>
+  <Ecore:EReference xmi:id="PA.Ppivot.TCompleteModel.PprimitiveCompletePackage" isTransient="true" base_Property="Ppivot.TCompleteModel.PprimitiveCompletePackage"
       isResolveProxies="false"/>
   <Ecore:EReference xmi:id="PA.Ppivot.TTemplateableElement.PunspecializedElement" isTransient="true" base_Property="Ppivot.TTemplateableElement.PunspecializedElement"
       isResolveProxies="false"/>

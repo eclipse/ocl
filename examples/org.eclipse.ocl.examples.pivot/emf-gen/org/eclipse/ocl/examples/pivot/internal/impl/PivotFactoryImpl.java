@@ -80,6 +80,7 @@ import org.eclipse.ocl.examples.pivot.ParentCompletePackage;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.examples.pivot.PrimitiveCompletePackage;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Profile;
 import org.eclipse.ocl.examples.pivot.ProfileApplication;
@@ -90,7 +91,6 @@ import org.eclipse.ocl.examples.pivot.PseudostateKind;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.Region;
 import org.eclipse.ocl.examples.pivot.Root;
-import org.eclipse.ocl.examples.pivot.RootCompletePackage;
 import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.SendSignalAction;
 import org.eclipse.ocl.examples.pivot.SequenceType;
@@ -230,6 +230,7 @@ public class PivotFactoryImpl
 			case PivotPackage.PARAMETER: return (EObject)createParameter();
 			case PivotPackage.PARENT_COMPLETE_PACKAGE: return (EObject)createParentCompletePackage();
 			case PivotPackage.PRECEDENCE: return (EObject)createPrecedence();
+			case PivotPackage.PRIMITIVE_COMPLETE_PACKAGE: return (EObject)createPrimitiveCompletePackage();
 			case PivotPackage.PRIMITIVE_TYPE: return (EObject)createPrimitiveType();
 			case PivotPackage.PROFILE: return (EObject)createProfile();
 			case PivotPackage.PROFILE_APPLICATION: return (EObject)createProfileApplication();
@@ -448,6 +449,17 @@ public class PivotFactoryImpl
 	public Precedence createPrecedence() {
 		PrecedenceImpl precedence = new PrecedenceImpl();
 		return precedence;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PrimitiveCompletePackage createPrimitiveCompletePackage()
+	{
+		PrimitiveCompletePackageImpl primitiveCompletePackage = new PrimitiveCompletePackageImpl();
+		return primitiveCompletePackage;
 	}
 
 	/**

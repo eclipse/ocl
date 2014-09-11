@@ -322,6 +322,10 @@ public abstract class AbstractNullVisitor<R, C>
 		return null;
 	}
 
+	public @Nullable R visitPrimitiveCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.PrimitiveCompletePackage object) {
+		return null;
+	}
+
 	public @Nullable R visitPrimitiveLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.PrimitiveLiteralExp object) {
 		return null;
 	}

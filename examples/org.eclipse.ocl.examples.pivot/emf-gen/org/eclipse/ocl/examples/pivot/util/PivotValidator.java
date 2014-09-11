@@ -92,6 +92,7 @@ import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParentCompletePackage;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.examples.pivot.PrimitiveCompletePackage;
 import org.eclipse.ocl.examples.pivot.PrimitiveLiteralExp;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Profile;
@@ -856,6 +857,8 @@ public class PivotValidator
 				return validatePivotable((Pivotable)value, diagnostics, context);
 			case PivotPackage.PRECEDENCE:
 				return validatePrecedence((Precedence)value, diagnostics, context);
+			case PivotPackage.PRIMITIVE_COMPLETE_PACKAGE:
+				return validatePrimitiveCompletePackage((PrimitiveCompletePackage)value, diagnostics, context);
 			case PivotPackage.PRIMITIVE_LITERAL_EXP:
 				return validatePrimitiveLiteralExp((PrimitiveLiteralExp)value, diagnostics, context);
 			case PivotPackage.PRIMITIVE_TYPE:
@@ -1170,6 +1173,16 @@ public class PivotValidator
 	public boolean validatePrecedence(Precedence precedence,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)precedence, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePrimitiveCompletePackage(PrimitiveCompletePackage primitiveCompletePackage, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint((EObject)primitiveCompletePackage, diagnostics, context);
 	}
 
 	/**

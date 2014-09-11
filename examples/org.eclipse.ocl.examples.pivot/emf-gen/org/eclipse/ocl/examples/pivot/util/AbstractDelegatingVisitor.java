@@ -343,6 +343,10 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 		return delegate.visitPrecedence(object);
 	}
 
+	public @Nullable R visitPrimitiveCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.PrimitiveCompletePackage object) {
+		return delegate.visitPrimitiveCompletePackage(object);
+	}
+
 	public @Nullable R visitPrimitiveLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.PrimitiveLiteralExp object) {
 		return delegate.visitPrimitiveLiteralExp(object);
 	}

@@ -425,8 +425,7 @@ public class NestedCompletePackageImpl extends CompletePackageImpl implements Ne
 		return name2completeClass.get(name);
 	}
 
-	@Override
-	public @Nullable CompleteClass getOwnedCompleteClass(@NonNull String name) {
+	public @Nullable CompleteClass getOwnedCompleteClass(String name) {
 		if (name2completeClass == null) {
 			doRefreshPartialClasses();
 		}

@@ -10,43 +10,37 @@
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
-import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.WeakHashMap;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
-import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.pivot.CompleteClass;
-import org.eclipse.ocl.examples.pivot.OrphanCompletePackage;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.PrimitiveCompletePackage;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
-import org.eclipse.ocl.examples.pivot.manager.OrphanTypeServer;
 import org.eclipse.ocl.examples.pivot.manager.PrimitiveTypeServer;
-import org.eclipse.ocl.examples.pivot.manager.TypeServer;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Orphan Complete Package</b></em>'.
+ * An implementation of the model object '<em><b>Primitive Complete Package</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class OrphanCompletePackageImpl extends RootCompletePackageImpl implements OrphanCompletePackage
+public class PrimitiveCompletePackageImpl extends RootCompletePackageImpl implements PrimitiveCompletePackage
 {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected OrphanCompletePackageImpl()
+	protected PrimitiveCompletePackageImpl()
 	{
 		super();
 	}
@@ -59,7 +53,7 @@ public class OrphanCompletePackageImpl extends RootCompletePackageImpl implement
 	@Override
 	protected EClass eStaticClass()
 	{
-		return PivotPackage.Literals.ORPHAN_COMPLETE_PACKAGE;
+		return PivotPackage.Literals.PRIMITIVE_COMPLETE_PACKAGE;
 	}
 
 	/**
@@ -69,14 +63,8 @@ public class OrphanCompletePackageImpl extends RootCompletePackageImpl implement
 
 	@Override
 	public <R> R accept(@NonNull Visitor<R> visitor) {
-		return visitor.visitOrphanCompletePackage(this);
+		return visitor.visitPrimitiveCompletePackage(this);
 	}
-	
-	private @NonNull Map<DomainType, WeakReference<OrphanTypeServer>> servers = new WeakHashMap<DomainType, WeakReference<OrphanTypeServer>>();	
-	
-/*	public OrphanPackageServer(@NonNull PackageManager packageManager, @NonNull String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId) {
-		super(packageManager, name, nsPrefix, nsURI, packageId, IdManager.METAMODEL);
-	} */
 
 	@Override
 	protected void didAddCompleteClass(@NonNull CompleteClass completeClass) {			// FIXME lose unwanted inheritance
@@ -99,26 +87,16 @@ public class OrphanCompletePackageImpl extends RootCompletePackageImpl implement
 		throw new UnsupportedOperationException();			// FIXME lose unwanted inheritance
 	}
 
-	public @NonNull OrphanTypeServer getOrphanTypeServer(@NonNull org.eclipse.ocl.examples.pivot.Class orphanType) {
-		CompleteClass completeClass = PivotFactory.eINSTANCE.createCompleteClass();
-		completeClass.setName(orphanType.getName());
-		completeClass.getPartialClasses().add(orphanType);
-		getOwnedCompleteClasses().add(completeClass);
-		OrphanTypeServer orphanTypeServer = new OrphanTypeServer(completeClass, orphanType);
-		((CompleteClassImpl)completeClass).setTypeServer(orphanTypeServer);
-		return orphanTypeServer;
-	}
-
 	@Override
 	public @Nullable CompleteClass getOwnedCompleteClass(String name) {
 		PrimitiveTypeServer primitiveTypeServer = primitiveType2server.get(name);
 		if (primitiveTypeServer != null) {
 			return primitiveTypeServer.getCompleteClass();
 		}
-		return super.getOwnedCompleteClass(name);
+		return null;
 	}
 
-	public @NonNull PrimitiveTypeServer getPrimitiveTypeServer(@NonNull PrimitiveType primitiveType) {
+	public @NonNull PrimitiveTypeServer getTypeServer(@NonNull PrimitiveType primitiveType) {
 		String name = primitiveType.getName();
 		PrimitiveTypeServer primitiveTypeServer = primitiveType2server.get(name);
 		if (primitiveTypeServer == null) {
@@ -126,40 +104,15 @@ public class OrphanCompletePackageImpl extends RootCompletePackageImpl implement
 			completeClass.setName(name);
 			completeClass.getPartialClasses().add(primitiveType);
 			getOwnedCompleteClasses().add(completeClass);
+			org.eclipse.ocl.examples.pivot.Package primitivePackage = primitiveType.getOwningPackage();
+			if (primitivePackage != null) {
+				getPartialPackages().add(primitivePackage);
+			}
 			primitiveTypeServer = new PrimitiveTypeServer(completeClass, primitiveType);
 			((CompleteClassImpl)completeClass).setTypeServer(primitiveTypeServer);
 			primitiveType2server.put(name, primitiveTypeServer);
+			primitiveTypeServer.getTypeTracker(primitiveType);
 		}
 		return primitiveTypeServer;
 	}
-
-//	@Override
-	public @NonNull TypeServer getTypeServer(/*@NonNull*/ DomainType type) {
-		WeakReference<OrphanTypeServer> ref = servers.get(type);
-		if (ref != null) {
-			OrphanTypeServer orphanTypeServer = ref.get();
-			if (orphanTypeServer != null) {
-				return orphanTypeServer;
-			}
-		}
-		OrphanTypeServer orphanTypeServer = getOrphanTypeServer((org.eclipse.ocl.examples.pivot.Class)type);	// FIXME cast
-//		OrphanTypeServer orphanTypeServer = new OrphanTypeServer(this, (org.eclipse.ocl.examples.pivot.Class)type);	// FIXME cast
-		servers.put(type, new WeakReference<OrphanTypeServer>(orphanTypeServer));
-		return orphanTypeServer;
-	}
-
-	@Override
-	public void init(@NonNull String name, @Nullable String nsPrefix,
-			@Nullable String nsURI, @NonNull PackageId packageId,
-			@NonNull PackageId metapackageId) {
-		// TODO Auto-generated method stub
-		super.init(name, nsPrefix, nsURI, packageId, metapackageId);
-	}
-
-	@Override
-	public void init(@NonNull String name, @Nullable String nsPrefix,
-			@Nullable String nsURI, @NonNull PackageId packageId) {
-		// TODO Auto-generated method stub
-		super.init(name, nsPrefix, nsURI, packageId);
-	}
-} //OrphanCompletePackageImpl
+} //PrimitiveCompletePackageImpl

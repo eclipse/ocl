@@ -10,6 +10,7 @@
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -36,18 +37,15 @@ import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.Comment;
-import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.CompleteModel;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
-import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.OrphanCompletePackage;
-import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.PrimitiveCompletePackage;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.RootCompletePackage;
@@ -61,7 +59,6 @@ import org.eclipse.ocl.examples.pivot.manager.ExtensibleTypeServer;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.Orphanage;
 import org.eclipse.ocl.examples.pivot.manager.PackageManager;
-import org.eclipse.ocl.examples.pivot.manager.PrimitiveTypeServer;
 import org.eclipse.ocl.examples.pivot.manager.RootTracker;
 import org.eclipse.ocl.examples.pivot.manager.TemplateableTypeServer;
 import org.eclipse.ocl.examples.pivot.manager.TypeServer;
@@ -77,7 +74,9 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl#getOrphanCompletePackage <em>Orphan Complete Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl#getOwnedCompletePackages <em>Owned Complete Packages</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl#getPrimitiveCompletePackage <em>Primitive Complete Package</em>}</li>
  * </ul>
  * </p>
  *
@@ -85,6 +84,16 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
  */
 public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 {
+	/**
+	 * The cached value of the '{@link #getOrphanCompletePackage() <em>Orphan Complete Package</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOrphanCompletePackage()
+	 * @generated
+	 * @ordered
+	 */
+	protected OrphanCompletePackage orphanCompletePackage;
+
 	/**
 	 * The cached value of the '{@link #getOwnedCompletePackages() <em>Owned Complete Packages</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -94,6 +103,16 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	 * @ordered
 	 */
 	protected EList<RootCompletePackage> ownedCompletePackages;
+
+	/**
+	 * The cached value of the '{@link #getPrimitiveCompletePackage() <em>Primitive Complete Package</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPrimitiveCompletePackage()
+	 * @generated
+	 * @ordered
+	 */
+	protected PrimitiveCompletePackage primitiveCompletePackage;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -114,6 +133,16 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	protected EClass eStaticClass()
 	{
 		return PivotPackage.Literals.COMPLETE_MODEL;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OrphanCompletePackage getOrphanCompletePackage()
+	{
+		return orphanCompletePackage;
 	}
 
 	/**
@@ -183,8 +212,12 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 				return getOwnedComment();
 			case PivotPackage.COMPLETE_MODEL__NAME:
 				return getName();
+			case PivotPackage.COMPLETE_MODEL__ORPHAN_COMPLETE_PACKAGE:
+				return getOrphanCompletePackage();
 			case PivotPackage.COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES:
 				return getOwnedCompletePackages();
+			case PivotPackage.COMPLETE_MODEL__PRIMITIVE_COMPLETE_PACKAGE:
+				return getPrimitiveCompletePackage();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -279,12 +312,36 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.COMPLETE_MODEL__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.COMPLETE_MODEL__ORPHAN_COMPLETE_PACKAGE:
+				return orphanCompletePackage != null;
 			case PivotPackage.COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES:
 				return ownedCompletePackages != null && !ownedCompletePackages.isEmpty();
+			case PivotPackage.COMPLETE_MODEL__PRIMITIVE_COMPLETE_PACKAGE:
+				return primitiveCompletePackage != null;
 		}
 		return eDynamicIsSet(featureID);
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
+	{
+		switch (operationID)
+		{
+			case PivotPackage.COMPLETE_MODEL___ALL_OWNED_ELEMENTS:
+				return allOwnedElements();
+			case PivotPackage.COMPLETE_MODEL___GET_VALUE__TYPE_STRING:
+				return getValue((Type)arguments.get(0), (String)arguments.get(1));
+			case PivotPackage.COMPLETE_MODEL___GET_OWNED_COMPLETE_PACKAGE__STRING:
+				return getOwnedCompletePackage((String)arguments.get(0));
+		}
+		return eDynamicInvoke(operationID, arguments);
+	}
+
 	private static final Logger logger = Logger.getLogger(CompleteModelImpl.class);
 	
 	protected /*final*/ /*@NonNull*/ PackageManager packageManager;
@@ -473,10 +530,12 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	}
 
 	void didAddCompletePackage(@NonNull CompletePackage completePackage) {
-		String nsURI = completePackage.getURI();
-		if (nsURI != null) {
-			CompletePackage oldCompletePackage = uri2completePackage.put(nsURI, completePackage);
-			assert oldCompletePackage == null;
+		if (completePackage != primitiveCompletePackage) {
+			String nsURI = completePackage.getURI();
+			if (nsURI != null) {
+				CompletePackage oldCompletePackage = uri2completePackage.put(nsURI, completePackage);
+				assert oldCompletePackage == null;
+			}
 		}
 	}
 
@@ -500,19 +559,24 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	}
 
 	void didRemoveCompletePackage(@NonNull CompletePackage completePackage) {
-		String nsURI = completePackage.getURI();
-		if (nsURI != null) {
-			uri2completePackage.remove(nsURI);
-			Set<String> synonymURIs = sharedURI2synonymURIs.remove(nsURI);
-			if (synonymURIs != null) {
-				for (String synonymURI : synonymURIs) {
-					synonymURI2sharedURI.remove(synonymURI);
+		if (completePackage != primitiveCompletePackage) {
+			String nsURI = completePackage.getURI();
+			if (nsURI != null) {
+				uri2completePackage.remove(nsURI);
+				Set<String> synonymURIs = sharedURI2synonymURIs.remove(nsURI);
+				if (synonymURIs != null) {
+					for (String synonymURI : synonymURIs) {
+						synonymURI2sharedURI.remove(synonymURI);
+					}
 				}
 			}
 		}
 	}
 
 	public void didRemoveRootCompletePackage(@NonNull RootCompletePackage rootCompletePackage) {
+		if (rootCompletePackage == primitiveCompletePackage) {
+			primitiveCompletePackage = null;
+		}
 		name2rootCompletePackage.remove(rootCompletePackage.getName());
 		didRemoveCompletePackage(rootCompletePackage);
 	}
@@ -717,6 +781,26 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 		return ownedCompletePackages;
 	}
 
+	public PrimitiveCompletePackage getPrimitiveCompletePackage()
+	{
+		if (primitiveCompletePackage == null) {
+			primitiveCompletePackage = PivotFactory.eINSTANCE.createPrimitiveCompletePackage();
+			primitiveCompletePackage.init("$primitive$", "prim", DomainConstants.METAMODEL_NAME, IdManager.METAMODEL, IdManager.METAMODEL);		// FIXME names
+			getOwnedCompletePackages().add(primitiveCompletePackage);
+		}
+		return primitiveCompletePackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompletePackage getOwnedCompletePackage(final String name)
+	{
+		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!CompleteModel!getOwnedCompletePackage(String)
+	}
+
 	public @Nullable org.eclipse.ocl.examples.pivot.Package getRootPackage(@NonNull String name) {
 		CompletePackage completePackage = name2rootCompletePackage.get(name);
 //		if (completePackage == null) {
@@ -751,10 +835,8 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 			return typeTracker.getTypeServer();
 		}
 		else if (pivotType instanceof PrimitiveType) {
-			OrphanCompletePackageImpl orphanCompletePackage = (OrphanCompletePackageImpl) getCompletePackage(metaModelManager.getOrphanage());
-			PrimitiveTypeServer primitiveTypeServer = orphanCompletePackage.getPrimitiveTypeServer((PrimitiveType) pivotType);
-			primitiveTypeServer.getTypeTracker((PrimitiveType)pivotType);
-			return primitiveTypeServer;
+			PrimitiveCompletePackageImpl primitiveCompletePackage = (PrimitiveCompletePackageImpl) getPrimitiveCompletePackage();
+			return primitiveCompletePackage.getTypeServer((PrimitiveType) pivotType);
 		}
 		else if (pivotType instanceof DomainClass) {
 			DomainPackage pivotPackage = ((DomainClass)pivotType).getOwningPackage();

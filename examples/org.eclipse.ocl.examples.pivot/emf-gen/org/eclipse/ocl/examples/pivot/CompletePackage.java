@@ -90,6 +90,13 @@ public interface CompletePackage extends NamedElement, org.eclipse.ocl.examples.
 	 */
 	@NonNull List<org.eclipse.ocl.examples.pivot.Package> getPartialPackages();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	CompleteClass getOwnedCompleteClass(String name);
+
 	void init(@NonNull String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId);
 
 	org.eclipse.ocl.examples.pivot.Package getPivotPackage();

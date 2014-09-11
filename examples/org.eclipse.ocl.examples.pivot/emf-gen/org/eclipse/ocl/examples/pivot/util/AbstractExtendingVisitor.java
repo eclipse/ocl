@@ -326,6 +326,10 @@ public abstract class AbstractExtendingVisitor<R, C>
 		return visitNamedElement(object);
 	}
 
+	public @Nullable R visitPrimitiveCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.PrimitiveCompletePackage object) {
+		return visitRootCompletePackage(object);
+	}
+
 	public @Nullable R visitPrimitiveLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.PrimitiveLiteralExp object) {
 		return visitLiteralExp(object);
 	}

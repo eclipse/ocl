@@ -20,7 +20,9 @@ import java.util.List;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteModel#getOrphanCompletePackage <em>Orphan Complete Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteModel#getOwnedCompletePackages <em>Owned Complete Packages</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteModel#getPrimitiveCompletePackage <em>Primitive Complete Package</em>}</li>
  * </ul>
  * </p>
  *
@@ -29,6 +31,20 @@ import java.util.List;
  */
 public interface CompleteModel extends NamedElement
 {
+	/**
+	 * Returns the value of the '<em><b>Orphan Complete Package</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Orphan Complete Package</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Orphan Complete Package</em>' reference.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteModel_OrphanCompletePackage()
+	 * @generated
+	 */
+	OrphanCompletePackage getOrphanCompletePackage();
+
 	/**
 	 * Returns the value of the '<em><b>Owned Complete Packages</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.RootCompletePackage}.
@@ -45,5 +61,26 @@ public interface CompleteModel extends NamedElement
 	 * @generated
 	 */
 	List<RootCompletePackage> getOwnedCompletePackages();
+
+	/**
+	 * Returns the value of the '<em><b>Primitive Complete Package</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Primitive Complete Package</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Primitive Complete Package</em>' reference.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteModel_PrimitiveCompletePackage()
+	 * @generated
+	 */
+	PrimitiveCompletePackage getPrimitiveCompletePackage();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	CompletePackage getOwnedCompletePackage(String name);
 
 } // CompleteModel
