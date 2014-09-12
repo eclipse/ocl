@@ -75,7 +75,7 @@ public class TypeTracker implements Adapter.Internal
 	}
 	
 	public final boolean isAdapterForType(Object type) {
-		return type == DomainUtil.nonNullState(typeServer.getCompletePackage().getCompleteModel()).getMetaModelManager().getPackageManager();
+		return type == DomainUtil.nonNullState(typeServer.getCompletePackage().getCompleteModel()).getMetaModelManager()/*.getPackageManager()*/;
 	}
 
 	/**

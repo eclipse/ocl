@@ -468,7 +468,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		if (prototype == null) {
 			return null;
 		}
-		FinalAnalysis finalAnalysis = metaModelManager.getPackageManager().getFinalAnalysis();
+		FinalAnalysis finalAnalysis = metaModelManager.getFinalAnalysis();
 		Set<Operation> referencedFinalOperations = new HashSet<Operation>();
 		getTransitivelyReferencedFinalOperations(referencedFinalOperations, finalAnalysis, specification);
 		if (referencedFinalOperations.contains(callExp.getReferredOperation())) {

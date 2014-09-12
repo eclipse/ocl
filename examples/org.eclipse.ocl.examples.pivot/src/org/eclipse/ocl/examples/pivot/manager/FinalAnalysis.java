@@ -29,16 +29,19 @@ import org.eclipse.ocl.examples.domain.types.AbstractInheritance;
 import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl;
 
 public class FinalAnalysis
 {
+	protected final @NonNull CompleteModelImpl completeModel;
 	protected final @NonNull MetaModelManager metaModelManager;
 	private final @NonNull Map<DomainInheritance, Set<DomainInheritance>> type2subTypes = new HashMap<DomainInheritance, Set<DomainInheritance>>();
 	private final @NonNull Map<DomainOperation, Set<DomainOperation>> operation2overrides = new HashMap<DomainOperation, Set<DomainOperation>>();
 
-	public FinalAnalysis(@NonNull PackageManager packageManager) {
-		this.metaModelManager = packageManager.getMetaModelManager();
-		for (CompletePackage completePackage :  packageManager.getCompleteModel().getAllCompletePackages()) {
+	public FinalAnalysis(@NonNull CompleteModelImpl completeModel) {
+		this.completeModel = completeModel;
+		this.metaModelManager = completeModel.getMetaModelManager();
+		for (CompletePackage completePackage :  completeModel.getAllCompletePackages()) {
 			for (CompleteClass completeClass :  completePackage.getOwnedCompleteClasses()) {
 				TypeServer typeServer = completeClass.getTypeServer();
 				if (typeServer != null) {

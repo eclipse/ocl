@@ -445,12 +445,12 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	/**
 	 * The known packages.
 	 */
-	private final @NonNull PackageManager packageManager = createPackageManager();
+//	private final @NonNull PackageManager packageManager = createPackageManager();
 	
 	/**
 	 * The known packages.
 	 */
-	private final @NonNull CompleteModelImpl completeModel = packageManager.getCompleteModel();
+	private final @NonNull CompleteModelImpl completeModel = (CompleteModelImpl) PivotFactory.eINSTANCE.createCompleteModel();
 	
 	/**
 	 * The known precedences.
@@ -520,6 +520,11 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	
 	private @Nullable Map<String, GenPackage> genPackageMap = null;
 	
+	/**
+	 * Lazily computed, eagerly invalidated analysis of final classes and operations.
+	 */
+	private @Nullable FinalAnalysis finalAnalysis = null;
+	
 	public MetaModelManager() {
 		this(new ResourceSetImpl());
 //		initializePivotResourceSet(asResourceSet);
@@ -538,6 +543,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	 * of meta-models, and {@link ProjectMap#getAdapter(ResourceSet)} to assist in locating resources.
 	 */
 	public MetaModelManager(@NonNull ResourceSet asResourceSet) {
+		completeModel.initMetaModelManager(this);
 		if (asResourceSet.getResourceFactoryRegistry().getContentTypeToFactoryMap().get(ASResource.CONTENT_TYPE) == null) {
 			initializeASResourceSet(asResourceSet);
 		}
@@ -1035,9 +1041,10 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return asPackage;
 	}
 
-	protected @NonNull PackageManager createPackageManager() {
-		return new PackageManager(this);
-	}
+//	protected @NonNull PackageManager createPackageManager() {
+//		completeModel.initMetaModelManager(this);
+//		return new PackageManager(this);
+//	}
 
 	protected @NonNull PrecedenceManager createPrecedenceManager() {
 		PrecedenceManager precedenceManager = new PrecedenceManager();
@@ -1556,6 +1563,14 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		}
 		return externalResourceSet2;
 	}
+	
+	public @NonNull FinalAnalysis getFinalAnalysis() {
+		FinalAnalysis finalAnalysis2 = finalAnalysis;
+		if (finalAnalysis2 == null) {
+			finalAnalysis = finalAnalysis2 = new FinalAnalysis(completeModel);
+		}
+		return finalAnalysis2;
+	}
 
 	public @Nullable GenPackage getGenPackage(@NonNull String nsURI) {
 		if (genPackageMap != null) {
@@ -1963,9 +1978,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return orphanage2;
 	}
 
-	public PackageManager getPackageManager() {
-		return packageManager;
-	}
+//	public PackageManager getPackageManager() {
+//		return packageManager;
+//	}
 	
 	public @NonNull CompletePackage getCompletePackage(@NonNull DomainPackage asPackage) {
 		if (!libraryLoadInProgress && asMetamodel == null) {

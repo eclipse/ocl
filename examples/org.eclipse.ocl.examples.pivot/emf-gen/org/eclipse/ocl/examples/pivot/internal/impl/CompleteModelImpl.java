@@ -59,7 +59,6 @@ import org.eclipse.ocl.examples.pivot.manager.CollectionTypeServer;
 import org.eclipse.ocl.examples.pivot.manager.ExtensibleTypeServer;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.Orphanage;
-import org.eclipse.ocl.examples.pivot.manager.PackageManager;
 import org.eclipse.ocl.examples.pivot.manager.RootTracker;
 import org.eclipse.ocl.examples.pivot.manager.TemplateableTypeServer;
 import org.eclipse.ocl.examples.pivot.manager.TypeServer;
@@ -335,7 +334,6 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 
 	private static final Logger logger = Logger.getLogger(CompleteModelImpl.class);
 	
-	protected /*final*/ /*@NonNull*/ PackageManager packageManager;
 	protected /*final*/ /*@NonNull*/ MetaModelManager metaModelManager;
 
 	/**
@@ -854,9 +852,8 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 		}
 	}
 
-	public void initPackageManager(@NonNull PackageManager packageManager) {
-		this.packageManager = packageManager;
-		this.metaModelManager = packageManager.getMetaModelManager();
+	public void initMetaModelManager(@NonNull MetaModelManager metaModelManager) {
+		this.metaModelManager = metaModelManager;
 	}
 	
 	public synchronized void removeRoot(@NonNull Root pivotRoot) {
