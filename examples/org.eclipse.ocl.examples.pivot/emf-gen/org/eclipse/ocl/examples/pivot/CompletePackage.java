@@ -125,7 +125,7 @@ public interface CompletePackage extends NamedElement, org.eclipse.ocl.examples.
 
 	DomainType getType(String metatypeName);
 
-	@Nullable CompletePackage getOwnedCompletePackage(@NonNull String name);
+	@Nullable CompletePackage getOwnedCompletePackage(@Nullable String name);
 
 	@Nullable CompleteModelImpl getCompleteModel();
 

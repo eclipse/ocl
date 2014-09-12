@@ -12,6 +12,9 @@ package org.eclipse.ocl.examples.pivot;
 
 import java.util.List;
 
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Complete Model</b></em>'.
@@ -44,7 +47,7 @@ public interface CompleteModel extends NamedElement
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteModel_OrphanCompletePackage()
 	 * @generated
 	 */
-	OrphanCompletePackage getOrphanCompletePackage();
+	@NonNull OrphanCompletePackage getOrphanCompletePackage();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Complete Packages</b></em>' containment reference list.
@@ -61,7 +64,7 @@ public interface CompleteModel extends NamedElement
 	 * @see org.eclipse.ocl.examples.pivot.RootCompletePackage#getOwningCompleteModel
 	 * @generated
 	 */
-	List<RootCompletePackage> getOwnedCompletePackages();
+	@NonNull List<RootCompletePackage> getOwnedCompletePackages();
 
 	/**
 	 * Returns the value of the '<em><b>Partial Roots</b></em>' reference list.
@@ -76,7 +79,7 @@ public interface CompleteModel extends NamedElement
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteModel_PartialRoots()
 	 * @generated
 	 */
-	List<Root> getPartialRoots();
+	@NonNull List<Root> getPartialRoots();
 
 	/**
 	 * Returns the value of the '<em><b>Primitive Complete Package</b></em>' reference.
@@ -90,13 +93,13 @@ public interface CompleteModel extends NamedElement
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteModel_PrimitiveCompletePackage()
 	 * @generated
 	 */
-	PrimitiveCompletePackage getPrimitiveCompletePackage();
+	@NonNull PrimitiveCompletePackage getPrimitiveCompletePackage();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	CompletePackage getOwnedCompletePackage(String name);
+	@Nullable CompletePackage getOwnedCompletePackage(@Nullable String name);
 
 } // CompleteModel

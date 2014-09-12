@@ -607,7 +607,7 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 		return ownedCompleteClasses;
 	}
 
-	public CompletePackage getOwnedCompletePackage(@NonNull String name) {
+	public CompletePackage getOwnedCompletePackage(@Nullable String name) {
 		if (name2nestedCompletePackage == null) {
 			doRefreshNestedPackages();
 		}
