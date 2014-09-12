@@ -301,6 +301,10 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TCompleteModel" name="CompleteModel">
       <generalization xmi:id="Ppivot.TCompleteModel.g0" general="Ppivot.TNamedElement"/>
+      <ownedAttribute xmi:id="Ppivot.TCompleteModel.PpartialRoots" name="partialRoots" type="Ppivot.TRoot">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TCompleteModel.PpartialRoots.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TCompleteModel.PpartialRoots.uV" value="*"/>
+      </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TCompleteModel.PownedCompletePackages" name="ownedCompletePackages" type="Ppivot.TRootCompletePackage"
           aggregation="composite" association="Ppivot.A_owningCompleteModel_ownedCompletePackages">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TCompleteModel.PownedCompletePackages.lV"/>

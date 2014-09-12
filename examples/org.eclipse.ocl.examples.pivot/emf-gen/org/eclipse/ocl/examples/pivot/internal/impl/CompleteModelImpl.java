@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -76,6 +77,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl#getOrphanCompletePackage <em>Orphan Complete Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl#getOwnedCompletePackages <em>Owned Complete Packages</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl#getPartialRoots <em>Partial Roots</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl#getPrimitiveCompletePackage <em>Primitive Complete Package</em>}</li>
  * </ul>
  * </p>
@@ -103,6 +105,16 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	 * @ordered
 	 */
 	protected EList<RootCompletePackage> ownedCompletePackages;
+
+	/**
+	 * The cached value of the '{@link #getPartialRoots() <em>Partial Roots</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPartialRoots()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Root> partialRoots;
 
 	/**
 	 * The cached value of the '{@link #getPrimitiveCompletePackage() <em>Primitive Complete Package</em>}' reference.
@@ -206,6 +218,8 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 				return getOrphanCompletePackage();
 			case PivotPackage.COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES:
 				return getOwnedCompletePackages();
+			case PivotPackage.COMPLETE_MODEL__PARTIAL_ROOTS:
+				return getPartialRoots();
 			case PivotPackage.COMPLETE_MODEL__PRIMITIVE_COMPLETE_PACKAGE:
 				return getPrimitiveCompletePackage();
 		}
@@ -246,6 +260,10 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 				getOwnedCompletePackages().clear();
 				getOwnedCompletePackages().addAll((Collection<? extends RootCompletePackage>)newValue);
 				return;
+			case PivotPackage.COMPLETE_MODEL__PARTIAL_ROOTS:
+				getPartialRoots().clear();
+				getPartialRoots().addAll((Collection<? extends Root>)newValue);
+				return;
 		}
 		eDynamicSet(featureID, newValue);
 	}
@@ -278,6 +296,9 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 			case PivotPackage.COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES:
 				getOwnedCompletePackages().clear();
 				return;
+			case PivotPackage.COMPLETE_MODEL__PARTIAL_ROOTS:
+				getPartialRoots().clear();
+				return;
 		}
 		eDynamicUnset(featureID);
 	}
@@ -306,6 +327,8 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 				return orphanCompletePackage != null;
 			case PivotPackage.COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES:
 				return ownedCompletePackages != null && !ownedCompletePackages.isEmpty();
+			case PivotPackage.COMPLETE_MODEL__PARTIAL_ROOTS:
+				return partialRoots != null && !partialRoots.isEmpty();
 			case PivotPackage.COMPLETE_MODEL__PRIMITIVE_COMPLETE_PACKAGE:
 				return primitiveCompletePackage != null;
 		}
@@ -447,27 +470,6 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 		}
 		synonymURIs.add(newURI);
 	}
-	
-	public synchronized void addRoot(@NonNull Root pivotRoot) {
-		for (org.eclipse.ocl.examples.pivot.Package asPackage : pivotRoot.getOwnedPackages()) {
-			String nsURI = asPackage.getURI();
-			String sharedURI = getSharedURI(nsURI);
-			if (sharedURI == nsURI) {
-				PackageId packageId = asPackage.getPackageId();
-				if (packageId == IdManager.METAMODEL) {
-					if (nsURI != null) {
-						addPackageNsURISynonym(nsURI, DomainConstants.METAMODEL_NAME);
-					}
-				}
-			}
-		}
-		rootTrackers.add(new RootTracker(this, pivotRoot));
-		for (org.eclipse.ocl.examples.pivot.Package pivotPackage : pivotRoot.getOwnedPackages()) {
-			if (pivotPackage != null) {
-				addPackage(this, pivotPackage);
-			}
-		}
-	}
 
 	public void addTypeTracker(@NonNull DomainClass pivotType, @NonNull TypeTracker typeTracker) {
 		TypeTracker oldTracker = type2tracker.put(pivotType, typeTracker);
@@ -527,6 +529,27 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 			}
 		}
 	}
+	
+	private void didAddRoot(@NonNull Root partialRoot) {
+		for (org.eclipse.ocl.examples.pivot.Package asPackage : partialRoot.getOwnedPackages()) {
+			String nsURI = asPackage.getURI();
+			String sharedURI = getSharedURI(nsURI);
+			if (sharedURI == nsURI) {
+				PackageId packageId = asPackage.getPackageId();
+				if (packageId == IdManager.METAMODEL) {
+					if (nsURI != null) {
+						addPackageNsURISynonym(nsURI, DomainConstants.METAMODEL_NAME);
+					}
+				}
+			}
+		}
+		rootTrackers.add(new RootTracker(this, partialRoot));
+		for (org.eclipse.ocl.examples.pivot.Package pivotPackage : partialRoot.getOwnedPackages()) {
+			if (pivotPackage != null) {
+				addPackage(this, pivotPackage);
+			}
+		}
+	}
 
 	void didAddRootCompletePackage(@NonNull RootCompletePackage rootCompletePackage) {
 		didAddCompletePackage(rootCompletePackage);
@@ -558,6 +581,16 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 						synonymURI2sharedURI.remove(synonymURI);
 					}
 				}
+			}
+		}
+	}
+	
+	private void didRemoveRoot(@NonNull Root partialRoot) {
+		for (RootTracker rootTracker : rootTrackers) {
+			if (rootTracker.getTarget() == partialRoot) {
+				rootTracker.dispose();
+				partialRoot.getOwnedPackages().clear();
+				break;
 			}
 		}
 	}
@@ -781,6 +814,37 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 		return ownedCompletePackages;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public @NonNull List<Root> getPartialRoots()
+	{
+		if (partialRoots == null)
+		{
+			partialRoots = new EObjectResolvingEList<Root>(Root.class, this, PivotPackage.COMPLETE_MODEL__PARTIAL_ROOTS)
+			{
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				protected void didAdd(int index, Root partialRoot) {
+					assert partialRoot != null;
+					super.didAdd(index, partialRoot);
+					didAddRoot(partialRoot);
+				}
+
+				@Override
+				protected void didRemove(int index, Root partialRoot) {
+					assert partialRoot != null;
+					super.didRemove(index, partialRoot);
+					didRemoveRoot(partialRoot);
+				}
+			};
+		}
+		return partialRoots;
+	}
+
 	@SuppressWarnings("null")
 	public @NonNull PrimitiveCompletePackage getPrimitiveCompletePackage()
 	{
@@ -795,7 +859,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public CompletePackage getOwnedCompletePackage(final String name)
 	{
@@ -854,16 +918,6 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 
 	public void initMetaModelManager(@NonNull MetaModelManager metaModelManager) {
 		this.metaModelManager = metaModelManager;
-	}
-	
-	public synchronized void removeRoot(@NonNull Root pivotRoot) {
-		for (RootTracker rootTracker : rootTrackers) {
-			if (rootTracker.getTarget() == pivotRoot) {
-				rootTracker.dispose();
-				pivotRoot.getOwnedPackages().clear();
-				break;
-			}
-		}
 	}
 
 	public void removedType(@NonNull DomainClass pivotType) {

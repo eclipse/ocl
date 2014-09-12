@@ -271,6 +271,7 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Property = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Property);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Pseudostate = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Pseudostate);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Region = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Region);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Root = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Root);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_RootCompletePackage = TypeId.SET.getSpecializedId(PivotTables.CLSSid_RootCompletePackage);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_SendSignalAction = TypeId.SET.getSpecializedId(PivotTables.CLSSid_SendSignalAction);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Slot = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Slot);
@@ -2048,7 +2049,8 @@ public class PivotTables
 
 		public static final @NonNull ExecutorProperty _CompleteModel__orphanCompletePackage = new EcoreExecutorProperty(PivotPackage.Literals.COMPLETE_MODEL__ORPHAN_COMPLETE_PACKAGE, Types._CompleteModel, 0);
 		public static final @NonNull ExecutorProperty _CompleteModel__ownedCompletePackages = new EcoreExecutorProperty(PivotPackage.Literals.COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES, Types._CompleteModel, 1);
-		public static final @NonNull ExecutorProperty _CompleteModel__primitiveCompletePackage = new EcoreExecutorProperty(PivotPackage.Literals.COMPLETE_MODEL__PRIMITIVE_COMPLETE_PACKAGE, Types._CompleteModel, 2);
+		public static final @NonNull ExecutorProperty _CompleteModel__partialRoots = new EcoreExecutorProperty(PivotPackage.Literals.COMPLETE_MODEL__PARTIAL_ROOTS, Types._CompleteModel, 2);
+		public static final @NonNull ExecutorProperty _CompleteModel__primitiveCompletePackage = new EcoreExecutorProperty(PivotPackage.Literals.COMPLETE_MODEL__PRIMITIVE_COMPLETE_PACKAGE, Types._CompleteModel, 3);
 
 		public static final @NonNull ExecutorProperty _CompletePackage__ownedCompleteClasses = new EcoreExecutorProperty(PivotPackage.Literals.COMPLETE_PACKAGE__OWNED_COMPLETE_CLASSES, Types._CompletePackage, 0);
 		public static final @NonNull ExecutorProperty _CompletePackage__ownedCompletePackages = new EcoreExecutorProperty(PivotPackage.Literals.COMPLETE_PACKAGE__OWNED_COMPLETE_PACKAGES, Types._CompletePackage, 1);
@@ -2307,6 +2309,7 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _Root__externalURI = new EcoreExecutorProperty(PivotPackage.Literals.ROOT__EXTERNAL_URI, Types._Root, 0);
 		public static final @NonNull ExecutorProperty _Root__imports = new EcoreExecutorProperty(PivotPackage.Literals.ROOT__IMPORTS, Types._Root, 1);
 		public static final @NonNull ExecutorProperty _Root__ownedPackages = new EcoreExecutorProperty(PivotPackage.Literals.ROOT__OWNED_PACKAGES, Types._Root, 2);
+		public static final @NonNull ExecutorProperty _Root__CompleteModel__partialRoots = new ExecutorPropertyWithImplementation("CompleteModel", Types._Root, 3, new EcoreLibraryOppositeProperty(PivotPackage.Literals.COMPLETE_MODEL__PARTIAL_ROOTS));
 
 		public static final @NonNull ExecutorProperty _RootCompletePackage__owningCompleteModel = new EcoreExecutorProperty(PivotPackage.Literals.ROOT_COMPLETE_PACKAGE__OWNING_COMPLETE_MODEL, Types._RootCompletePackage, 0);
 
@@ -11018,6 +11021,7 @@ public class PivotTables
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Element__ownedComment,
 			PivotTables.Properties._CompleteModel__ownedCompletePackages,
+			PivotTables.Properties._CompleteModel__partialRoots,
 			PivotTables.Properties._CompleteModel__primitiveCompletePackage,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
@@ -13034,6 +13038,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
+			PivotTables.Properties._Root__CompleteModel__partialRoots,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Namespace__Constraint__context,
 			PivotTables.Properties._Element__Element__ownedAnnotation,

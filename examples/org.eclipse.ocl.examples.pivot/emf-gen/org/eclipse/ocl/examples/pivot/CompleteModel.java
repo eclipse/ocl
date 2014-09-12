@@ -22,6 +22,7 @@ import java.util.List;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteModel#getOrphanCompletePackage <em>Orphan Complete Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteModel#getOwnedCompletePackages <em>Owned Complete Packages</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteModel#getPartialRoots <em>Partial Roots</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteModel#getPrimitiveCompletePackage <em>Primitive Complete Package</em>}</li>
  * </ul>
  * </p>
@@ -61,6 +62,21 @@ public interface CompleteModel extends NamedElement
 	 * @generated
 	 */
 	List<RootCompletePackage> getOwnedCompletePackages();
+
+	/**
+	 * Returns the value of the '<em><b>Partial Roots</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Root}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Partial Roots</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Partial Roots</em>' reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteModel_PartialRoots()
+	 * @generated
+	 */
+	List<Root> getPartialRoots();
 
 	/**
 	 * Returns the value of the '<em><b>Primitive Complete Package</b></em>' reference.

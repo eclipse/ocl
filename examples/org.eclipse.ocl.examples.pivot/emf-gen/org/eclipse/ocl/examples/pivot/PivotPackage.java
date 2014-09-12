@@ -5776,13 +5776,22 @@ public interface PivotPackage
 	int COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Partial Roots</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_MODEL__PARTIAL_ROOTS = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Primitive Complete Package</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_MODEL__PRIMITIVE_COMPLETE_PACKAGE = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int COMPLETE_MODEL__PRIMITIVE_COMPLETE_PACKAGE = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Complete Model</em>' class.
@@ -5791,7 +5800,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_MODEL_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int COMPLETE_MODEL_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -26638,6 +26647,17 @@ public interface PivotPackage
 	EReference getCompleteModel_OwnedCompletePackages();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompleteModel#getPartialRoots <em>Partial Roots</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Partial Roots</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.CompleteModel#getPartialRoots()
+	 * @see #getCompleteModel()
+	 * @generated
+	 */
+	EReference getCompleteModel_PartialRoots();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.CompleteModel#getPrimitiveCompletePackage <em>Primitive Complete Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -30790,6 +30810,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES = eINSTANCE.getCompleteModel_OwnedCompletePackages();
+
+		/**
+		 * The meta object literal for the '<em><b>Partial Roots</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPLETE_MODEL__PARTIAL_ROOTS = eINSTANCE.getCompleteModel_PartialRoots();
 
 		/**
 		 * The meta object literal for the '<em><b>Primitive Complete Package</b></em>' reference feature.

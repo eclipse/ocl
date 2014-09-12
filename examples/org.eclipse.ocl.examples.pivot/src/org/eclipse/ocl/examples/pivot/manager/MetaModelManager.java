@@ -2696,7 +2696,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 
 	public void installRoot(@NonNull Root pivotRoot) {
-		completeModel.addRoot(pivotRoot);
+		completeModel.getPartialRoots().add(pivotRoot);
 		for (DomainPackage asPackage : pivotRoot.getOwnedPackages()) {
 			if ((asPackage instanceof Library) && !asLibraries.contains(asPackage)) {
 				Library asLibrary = (Library)asPackage;
@@ -2959,7 +2959,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 													Element pivot = ((Pivotable)firstContent).getPivot();
 													if (pivot instanceof Root) {
 														Root root = (Root)pivot;
-														completeModel.removeRoot(root);
+														completeModel.getPartialRoots().remove(root);
 														Resource asResource = root.eResource();
 														if (asResource != null) {
 															asResourceSet.getResources().remove(asResource);

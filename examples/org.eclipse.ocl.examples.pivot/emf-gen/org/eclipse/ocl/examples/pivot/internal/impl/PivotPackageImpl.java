@@ -4993,9 +4993,19 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCompleteModel_PrimitiveCompletePackage()
+	public EReference getCompleteModel_PartialRoots()
 	{
 		return (EReference)completeModelEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompleteModel_PrimitiveCompletePackage()
+	{
+		return (EReference)completeModelEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -5802,6 +5812,7 @@ public class PivotPackageImpl
 		completeModelEClass = createEClass(COMPLETE_MODEL);
 		createEReference(completeModelEClass, COMPLETE_MODEL__ORPHAN_COMPLETE_PACKAGE);
 		createEReference(completeModelEClass, COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES);
+		createEReference(completeModelEClass, COMPLETE_MODEL__PARTIAL_ROOTS);
 		createEReference(completeModelEClass, COMPLETE_MODEL__PRIMITIVE_COMPLETE_PACKAGE);
 		createEOperation(completeModelEClass, COMPLETE_MODEL___GET_OWNED_COMPLETE_PACKAGE__STRING);
 
@@ -6625,6 +6636,7 @@ public class PivotPackageImpl
 		initEClass(completeModelEClass, CompleteModel.class, "CompleteModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getCompleteModel_OrphanCompletePackage(), this.getOrphanCompletePackage(), null, "orphanCompletePackage", null, 0, 1, CompleteModel.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getCompleteModel_OwnedCompletePackages(), this.getRootCompletePackage(), this.getRootCompletePackage_OwningCompleteModel(), "ownedCompletePackages", null, 0, -1, CompleteModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getCompleteModel_PartialRoots(), this.getRoot(), null, "partialRoots", null, 0, -1, CompleteModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getCompleteModel_PrimitiveCompletePackage(), this.getPrimitiveCompletePackage(), null, "primitiveCompletePackage", null, 0, 1, CompleteModel.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		op = initEOperation(getCompleteModel__GetOwnedCompletePackage__String(), this.getCompletePackage(), "getOwnedCompletePackage", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
