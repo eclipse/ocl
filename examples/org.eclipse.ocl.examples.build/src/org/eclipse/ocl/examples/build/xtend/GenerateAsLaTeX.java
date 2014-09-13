@@ -1,0 +1,170 @@
+/*******************************************************************************
+ * Copyright (c) 2014 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *******************************************************************************/
+package org.eclipse.ocl.examples.build.xtend;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.mwe.core.WorkflowContext;
+import org.eclipse.emf.mwe.core.issues.Issues;
+import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
+import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
+import org.eclipse.emf.mwe.utils.StandaloneSetup;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.pivot.Library;
+import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.resource.ASResource;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlibStandaloneSetup;
+
+public abstract class GenerateAsLaTeX extends AbstractWorkflowComponent
+{
+	protected Logger log = Logger.getLogger(getClass());	
+	protected ResourceSet resourceSet = null;	
+	protected String latexFolder;
+	protected String latexFileName;
+	protected String projectName;
+	protected String modelFile;
+
+	protected String sourceFile;
+
+	protected GenerateAsLaTeX() {
+		OCLstdlibStandaloneSetup.doSetup();
+	}	
+
+	@Override
+	public void checkConfiguration(Issues issues) {
+		if (latexFolder == null) {
+			issues.addError(this, "latexFolder not specified.");
+		}
+		if (latexFileName == null) {
+			issues.addError(this, "latexFileName not specified.");
+		}
+		if (projectName == null) {
+			issues.addError(this, "projectName not specified.");
+		}
+		if (modelFile == null) {
+			issues.addError(this, "modelFile not specified.");
+		}
+	}
+
+	protected abstract @NonNull String generateLaTeX(@NonNull Root pivotModel);
+
+	protected @Nullable Library getLibrary(@NonNull Root root) {
+		TreeIterator<EObject> tit = root.eAllContents();
+		while (tit.hasNext()) {
+			EObject eObject = tit.next();
+			if (eObject instanceof Library) {
+				return (Library) eObject;
+			}
+		}
+		return null;
+	}
+	
+	protected Iterable<Precedence> getPrecedences(@NonNull Root asRoot) {
+		List<Precedence> precedences = new ArrayList<Precedence>();
+		for (org.eclipse.ocl.examples.pivot.Package asPackage : asRoot.getOwnedPackages()) {
+			if (asPackage instanceof Library) {
+				precedences.addAll(((Library)asPackage).getOwnedPrecedence());
+			}
+		}
+		return precedences;
+	}
+
+	protected ResourceSet getResourceSet() {
+		if (resourceSet == null) {
+			resourceSet = new ResourceSetImpl();
+		}
+		return resourceSet;
+	}
+	
+	@Override
+	protected void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor, Issues issues) {
+		String rootPath = StandaloneSetup.getPlatformRootPath();
+		File folder = new File(rootPath + latexFolder);
+		try {
+			sourceFile = "/" + projectName + "/" + modelFile;
+			URI fileURI = URI.createPlatformResourceURI(sourceFile, true);
+			log.info("Loading OCL library '" + fileURI);
+			ResourceSet resourceSet = getResourceSet();
+			BaseCSResource xtextResource = (BaseCSResource)resourceSet.getResource(fileURI, true);
+			String message = PivotUtil.formatResourceDiagnostics(DomainUtil.nonNullEMF(xtextResource.getErrors()), "OCLstdlib parse failure", "\n");
+			if (message != null) {
+				issues.addError(this, message, null, null, null);
+				return;
+			}
+			ASResource asResource = xtextResource.getASResource(null);
+//			if (asResource == null) {
+//				return;
+//			}
+			EObject pivotModel = DomainUtil.nonNullState(asResource.getContents().get(0));
+//			ASSaver saver = new ASSaver(asResource);
+//			saver.localizeSpecializations();
+			String fileName = folder + "/" + latexFileName + ".tex";
+			log.info("Generating '" + fileName + "'");
+			String latexContent = generateLaTeX((Root)pivotModel);
+			FileWriter fw = new FileWriter(fileName);
+			fw.append(latexContent);
+			fw.close();
+		} catch (RuntimeException e) {
+			throw e;
+		} catch (Exception e) {
+			throw new RuntimeException("Problems running " + getClass().getSimpleName(), e);
+		}
+	}
+
+	/**
+	 * The projectName relative path to the metamodel definition. (e.g. "model/Pivot.ecore")
+	 */
+	public void setModelFile(String modelFile) {
+		this.modelFile = modelFile;
+	}
+
+	/**
+	 * The project name hosting the Metamodel. (e.g. "org.eclipse.ocl.examples.pivot")
+	 */
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+	
+	/**
+	 * An optional ResourceSet that MWE components may share to reduce model loading. 
+	 */
+	public void setResourceSet(ResourceSet resourceSet) {
+		this.resourceSet = resourceSet;
+	}
+
+	/**
+	 * The platform relative path to the generated doc folder (e.g. "../doc/org.eclipse.ocl.doc")
+	 */
+	public void setLatexFileName(String latexFileName) {
+		this.latexFileName = latexFileName;
+	}
+
+	/**
+	 * The platform relative path to the generated doc folder (e.g. "../doc/org.eclipse.ocl.doc")
+	 */
+	public void setLatexFolder(String latexFolder) {
+		this.latexFolder = latexFolder;
+	}
+}
