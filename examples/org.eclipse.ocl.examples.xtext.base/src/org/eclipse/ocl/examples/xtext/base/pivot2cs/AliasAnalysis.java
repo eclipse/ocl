@@ -249,8 +249,8 @@ public class AliasAnalysis extends AdapterImpl
 			eObject2 = ((Pivotable)eObject2).getPivot();
 		}
 		if (eObject2 instanceof DomainPackage) {
-			CompletePackage packageServer = metaModelManager.getCompletePackage((DomainPackage)eObject2);
-			String alias = allAliases.get(packageServer);
+			CompletePackage completePackage = metaModelManager.getCompletePackage((DomainPackage)eObject2);
+			String alias = allAliases.get(completePackage);
 			if (alias != null) {
 				return alias;
 			}
@@ -267,8 +267,8 @@ public class AliasAnalysis extends AdapterImpl
 					}
 					hint = hint + "_" + counter;
 				}
-				allNames.put(hint, packageServer);
-				allAliases.put(packageServer, hint);				
+				allNames.put(hint, completePackage);
+				allAliases.put(completePackage, hint);				
 				return hint;
 			}
 		}

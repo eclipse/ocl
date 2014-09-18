@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibPackage;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
@@ -39,7 +40,6 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.TypeServer;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
@@ -160,8 +160,8 @@ public class Pivot2EcoreTypeRefVisitor
 			context.putCreated(pivotType, eClassifier);
 			return eClassifier;
 		}
-		TypeServer typeServer = metaModelManager.getTypeServer(pivotType);
-		for (DomainClass aType : typeServer.getCompleteClass().getPartialClasses()) {
+		CompleteClass completeClass = metaModelManager.getCompleteClass(pivotType);
+		for (DomainClass aType : completeClass.getPartialClasses()) {
 			if (!(aType instanceof PrimitiveType)) {
 				eClassifier = context.getCreated(EDataType.class, pivotType);
 				if (eClassifier != null) {

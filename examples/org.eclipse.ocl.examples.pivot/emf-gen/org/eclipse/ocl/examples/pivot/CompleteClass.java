@@ -11,8 +11,12 @@
 package org.eclipse.ocl.examples.pivot;
 
 import java.util.List;
-
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
+import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.elements.DomainProperty;
+import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.pivot.manager.TypeServer;
 
 /**
@@ -77,8 +81,16 @@ public interface CompleteClass extends NamedElement
 	
 	org.eclipse.ocl.examples.pivot.Class getPivotClass();
 
-	TypeServer getTypeServer();
+	@NonNull TypeServer getTypeServer();
 
-	@NonNull Iterable<CompleteClass> getSuperCompleteClasses();
+	@NonNull Iterable<? extends DomainOperation> getAllOperations(final @Nullable FeatureFilter featureFilter);
+	@NonNull Iterable<? extends DomainOperation> getAllOperations(final @Nullable FeatureFilter featureFilter, @NonNull String name);
+	@NonNull Iterable<? extends DomainProperty> getAllProperties(final @Nullable FeatureFilter featureFilter);
+	@NonNull Iterable<? extends DomainProperty> getAllProperties(final @Nullable FeatureFilter featureFilter, @NonNull String name);
+	@NonNull Iterable<? extends State>  getAllStates();
+	@NonNull Iterable<? extends State>  getAllStates(@NonNull String name);
+	@NonNull Iterable<? extends DomainInheritance> getAllSuperClasses();
+	@NonNull Iterable<CompleteClass> getAllSuperCompleteClasses();
+	@NonNull Iterable<CompleteClass> getProperSuperCompleteClasses();
 
 } // CompleteClass

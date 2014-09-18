@@ -361,7 +361,7 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 	 * If element is null the Xtext error message corresponding to an unresolved proxy is generated.
 	 * @param ambiguities 
 	 */
-	public static void setPathElement(@NonNull PathNameCS csPathName, @Nullable Element element, @Nullable List<EObject> ambiguities) {
+	public static void setPathElement(@NonNull PathNameCS csPathName, @Nullable Element element, @Nullable List<? extends EObject> ambiguities) {
 		List<PathElementCS> csPath = csPathName.getPath();
 		@SuppressWarnings("null")@NonNull PathElementCS csLastElement = csPath.get(csPath.size()-1);
 		AmbiguitiesAdapter.setAmbiguities(csLastElement, ambiguities);

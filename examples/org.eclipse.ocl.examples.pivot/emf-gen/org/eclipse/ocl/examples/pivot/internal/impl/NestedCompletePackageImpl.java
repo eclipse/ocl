@@ -11,7 +11,6 @@
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.util.Collection;
-import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -28,8 +27,8 @@ import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.NestedCompletePackage;
-import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.internal.complete.NestedPackageCompleteClasses;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -314,6 +313,7 @@ public class NestedCompletePackageImpl extends CompletePackageImpl implements Ne
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("null")
 	@Override
 	public boolean eIsSet(int featureID)
 	{
@@ -346,55 +346,19 @@ public class NestedCompletePackageImpl extends CompletePackageImpl implements Ne
 		return visitor.visitNestedCompletePackage(this);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
-	protected void doRefreshPartialClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
-		Map<String, CompleteClass> name2completeClass2 = name2completeClass;
-		assert name2completeClass2 != null;
-		String name = partialClass.getName();
-		if (name != null) {
-			CompleteClass completeClass = name2completeClass2.get(name);
-			if (completeClass == null) {
-				completeClass = PivotFactory.eINSTANCE.createCompleteClass();
-				completeClass.setName(name);
-				getOwnedCompleteClasses().add(completeClass);
-//					TypeServer typeServer = getCompleteModel().getTypeServer(partialClass);
-//					((CompleteClassImpl)completeClass).setTypeServer(typeServer);
-			}
-			completeClass.getPartialClasses().add(partialClass);
+	public @NonNull NestedPackageCompleteClasses getOwnedCompleteClasses()
+	{
+		NestedPackageCompleteClasses ownedCompleteClasses2 = (NestedPackageCompleteClasses) ownedCompleteClasses;
+		if (ownedCompleteClasses2 == null)
+		{
+			ownedCompleteClasses = ownedCompleteClasses2 = new NestedPackageCompleteClasses(this);
 		}
+		return ownedCompleteClasses2;
 	}
-	
-/*	@SuppressWarnings("null")
-	public static final @NonNull List<NestedPackageServer> EMPTY_LIST = Collections.<NestedPackageServer>emptyList();
-	
-	private final @NonNull PackageServer parentPackageServer;
-	
-	public NestedPackageServer(@NonNull PackageServer parentPackageServer, @NonNull String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId) {
-		super(parentPackageServer.getPackageManager(), name, nsPrefix, nsURI, packageId);
-		this.parentPackageServer = parentPackageServer;
-	}
-
-	@Override
-	protected void assertSamePackage(@Nullable DomainPackage domainPackage) {
-		assert domainPackage != null;
-		DomainPackage parentPackage = domainPackage.getOwningPackage();
-		assert parentPackage != null;
-		parentPackageServer.assertSamePackage(parentPackage);
-		super.assertSamePackage(domainPackage);
-	}
-
-	@Override
-	public void dispose() {
-		super.dispose();
-		parentPackageServer.disposedNestedPackageServer(this);
-	}
-
-	public @NonNull DomainPackage getOwningPackage() {
-		return parentPackageServer;
-	}
-
-	@Override
-	public @NonNull PackageServer getParentPackageServer() {
-		return parentPackageServer;
-	} */
 } //NestedCompletePackageImpl

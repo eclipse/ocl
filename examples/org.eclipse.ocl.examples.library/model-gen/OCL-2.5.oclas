@@ -2327,7 +2327,7 @@
     <ownedPrecedence xmi:id="Z.XOR" name="XOR" order="8"/>
     <ownedPrecedence xmi:id="Z.IMPLIES" name="IMPLIES" order="9"/>
   </ownedPackages>
-  <ownedPackages xmi:id="P.$$" URI="http://www.eclipse.org/ocl/3.1.0/orphanage" name="$$"
+  <ownedPackages xmi:id="P.$$" URI="http://www.eclipse.org/ocl/0.9.0/orphanage" name="$$"
       nsPrefix="orphanage">
     <ownedClasses xsi:type="pivot:LambdaType" contextType="#t.ocl..BagT" name="Lambda"
         resultType="#Boolean" superClasses="#T.ocl.OclLambda"/>

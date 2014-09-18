@@ -42,7 +42,6 @@ import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.PivotTables;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.ReferringElement;
@@ -424,7 +423,8 @@ public class PropertyCallExpImpl
 		if (!TemplateSpecialisation.needsSpecialisation(referencedType)) {
 			return referencedType;
 		}
-		TemplateSpecialisation templateSpecialization = new TemplateSpecialisation(PivotTables.LIBRARY);
+	    DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
+		TemplateSpecialisation templateSpecialization = new TemplateSpecialisation(evaluator.getStandardLibrary());
 		DomainType resultType = getType();
 //		if (resultType instanceof DomainMetaclass) {
 //			resultType = ((DomainMetaclass)resultType).getInstanceType();
@@ -444,7 +444,8 @@ public class PropertyCallExpImpl
 		Type referencedType = referredProperty.getType();
 		DomainType specializedType = referencedType;
 		if ((referencedType != null) && TemplateSpecialisation.needsSpecialisation(referencedType)) {
-			TemplateSpecialisation templateSpecialization = new TemplateSpecialisation(PivotTables.LIBRARY);
+		    DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
+			TemplateSpecialisation templateSpecialization = new TemplateSpecialisation(evaluator.getStandardLibrary());
 			DomainType resultType = getType();
 //			boolean isMetaclass = resultType instanceof DomainMetaclass;
 //			if (isMetaclass) {

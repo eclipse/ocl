@@ -3,6 +3,21 @@
 # Turn on general tracing of moniker creation 
 #org.eclipse.ocl.examples.pivot/traceMonikers=false
 
+# Trace maintenance of CompleteClasses 
+org.eclipse.ocl.examples.pivot/completeClasses=false
+
+# Trace maintenance of CompletePackages 
+org.eclipse.ocl.examples.pivot/completePackages=false
+
+# Trace maintenance of PartialClasses 
+org.eclipse.ocl.examples.pivot/partialClasses=false
+
+# Trace maintenance of PartialPackages 
+org.eclipse.ocl.examples.pivot/partialPackages=false
+
+# Trace maintenance of PartialRoots 
+org.eclipse.ocl.examples.pivot/partialRoots=false
+
 # Trace validation of InstanceSpecifications 
 org.eclipse.ocl.examples.pivot/validate/instance=false
 

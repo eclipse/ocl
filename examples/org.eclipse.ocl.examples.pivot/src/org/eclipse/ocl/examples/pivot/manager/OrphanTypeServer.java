@@ -10,33 +10,21 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.pivot.manager;
 
-import java.util.Iterator;
-
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.domain.elements.DomainClass;
-import org.eclipse.ocl.examples.domain.utilities.SingletonIterator;
-import org.eclipse.ocl.examples.pivot.CompleteClass;
+import org.eclipse.ocl.examples.pivot.internal.impl.CompleteClassImpl;
 
 /**
  * An OrphanTypeServer provides a 'merge' type behaviour for a synthesized type that forms part of the
  * OrphanPackage rather than a true package. OrphanTypeServer provides lightweight support that
  * eliminates the redundant notification tracking.
  */
-public class OrphanTypeServer extends AbstractTypeServer implements Iterable<DomainClass>
+public class OrphanTypeServer extends AbstractTypeServer
 {
  	protected final @NonNull org.eclipse.ocl.examples.pivot.Class target;
 	
-	public OrphanTypeServer(@NonNull CompleteClass completeClass, @NonNull org.eclipse.ocl.examples.pivot.Class type) {
+	public OrphanTypeServer(@NonNull CompleteClassImpl completeClass, @NonNull org.eclipse.ocl.examples.pivot.Class type) {
 		super(completeClass, type);
 		this.target = type;
-	}
-
-	public @NonNull org.eclipse.ocl.examples.pivot.Class getPivotType() {
-		return target;
-	}
-
-	public @NonNull Iterator<DomainClass> iterator() {
-		return new SingletonIterator<DomainClass>(target);
 	}
 
 	@Override

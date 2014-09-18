@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -29,6 +30,7 @@ import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.Import;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.internal.complete.RootListeners;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -107,18 +109,38 @@ public class RootImpl extends NamespaceImpl implements Root
 		return PivotPackage.Literals.ROOT;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public List<org.eclipse.ocl.examples.pivot.Package> getOwnedPackages()
+	public @NonNull List<org.eclipse.ocl.examples.pivot.Package> getOwnedPackages()
 	{
-		if (ownedPackages == null)
+		EList<org.eclipse.ocl.examples.pivot.Package> ownedPackages2 = ownedPackages;
+		if (ownedPackages2 == null)
 		{
-			ownedPackages = new EObjectContainmentEList<org.eclipse.ocl.examples.pivot.Package>(org.eclipse.ocl.examples.pivot.Package.class, this, PivotPackage.ROOT__OWNED_PACKAGES);
+			ownedPackages = ownedPackages2 = new EObjectContainmentEList<org.eclipse.ocl.examples.pivot.Package>(org.eclipse.ocl.examples.pivot.Package.class, this, PivotPackage.ROOT__OWNED_PACKAGES)
+			{
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				public void addUnique(org.eclipse.ocl.examples.pivot.Package partialPackage) {
+					assert partialPackage != null;
+					super.addUnique(partialPackage);
+					didAddPackage(partialPackage);
+				}
+	
+				@Override
+				public void addUnique(int index, org.eclipse.ocl.examples.pivot.Package partialPackage) {
+					assert partialPackage != null;
+					super.addUnique(index, partialPackage);
+					didAddPackage(partialPackage);
+				}
+	
+				@Override
+				protected void didRemove(int index, org.eclipse.ocl.examples.pivot.Package partialPackage) {
+					assert partialPackage != null;
+					super.didRemove(index, partialPackage);
+					didRemovePackage(partialPackage);
+				}
+			};
 		}
-		return ownedPackages;
+		return ownedPackages2;
 	}
 
 	/**
@@ -340,21 +362,39 @@ public class RootImpl extends NamespaceImpl implements Root
 		}
 		return eDynamicIsSet(featureID);
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public String toString()
-	{
-		return super.toString();
-	}
+	
+	private @Nullable RootListeners<RootListeners.IRootListener> rootListeners = null;
 
 	@Override
 	public <R> R accept(@NonNull Visitor<R> visitor) {
 		return visitor.visitRoot(this);
+	}
+
+	public synchronized void addRootListener(@NonNull RootListeners.IRootListener rootListener) {
+		RootListeners<RootListeners.IRootListener> rootListeners2 = rootListeners;
+		if (rootListeners2 == null) {
+			rootListeners2 = rootListeners = new RootListeners<RootListeners.IRootListener>();
+		}
+		rootListeners2.addListener(rootListener);
+	}
+
+	protected void didAddPackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
+		if (rootListeners != null) {
+			rootListeners.didAddPackage(partialPackage);
+		}
+	}
+
+	protected void didRemovePackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
+		if (rootListeners != null) {
+			rootListeners.didRemovePackage(partialPackage);
+		}
+	}
+
+	public synchronized void removeRootListener(@NonNull RootListeners.IRootListener rootListener) {
+		RootListeners<RootListeners.IRootListener> rootListeners2 = rootListeners;
+		if ((rootListeners2 != null) && rootListeners2.removeListener(rootListener)) {
+			rootListeners = null;
+		}
 	}
 	
 	public void setExternalURI(String newExternalURI)
@@ -379,5 +419,10 @@ public class RootImpl extends NamespaceImpl implements Root
 	@Override
 	public void setName(String newName) {		// FIXME BUG 421716 remove Namedspace/NamedElement inheritance
 		// name is a cached optimization of externalURI
+	}
+
+	@Override
+	public String toString() {
+		return super.toString();
 	}
 } //RootImpl

@@ -12,9 +12,6 @@ package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -22,8 +19,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -32,34 +27,19 @@ import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.AnyType;
-import org.eclipse.ocl.examples.pivot.Class;
-import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.CompleteClass;
+import org.eclipse.ocl.examples.pivot.CompleteModel;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
-import org.eclipse.ocl.examples.pivot.Enumeration;
-import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.NestedCompletePackage;
-import org.eclipse.ocl.examples.pivot.PivotConstants;
-import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.RootCompletePackage;
-import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.VoidType;
-import org.eclipse.ocl.examples.pivot.manager.AnyTypeServer;
-import org.eclipse.ocl.examples.pivot.manager.CollectionTypeServer;
-import org.eclipse.ocl.examples.pivot.manager.EnumerationTypeServer;
-import org.eclipse.ocl.examples.pivot.manager.ExtensibleTypeServer;
-import org.eclipse.ocl.examples.pivot.manager.InvalidTypeServer;
-import org.eclipse.ocl.examples.pivot.manager.TemplateableTypeServer;
-import org.eclipse.ocl.examples.pivot.manager.TypeServer;
-import org.eclipse.ocl.examples.pivot.manager.VoidTypeServer;
-import org.eclipse.ocl.examples.pivot.util.PackageListeners;
+import org.eclipse.ocl.examples.pivot.internal.complete.AbstractCompleteClasses;
+import org.eclipse.ocl.examples.pivot.internal.complete.NestedCompletePackages;
+import org.eclipse.ocl.examples.pivot.internal.complete.PartialPackages;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 import com.google.common.base.Function;
@@ -68,7 +48,6 @@ import com.google.common.collect.Iterables;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Complete Package</b></em>'.
- * @extends org.eclipse.ocl.examples.pivot.util.PackageListeners.IPackageListener
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -81,47 +60,8 @@ import com.google.common.collect.Iterables;
  *
  * @generated
  */
-public abstract class CompletePackageImpl extends NamedElementImpl implements CompletePackage, PackageListeners.IPackageListener
+public abstract class CompletePackageImpl extends NamedElementImpl implements CompletePackage
 {
-	/**
-	 * The cached value of the '{@link #getOwnedCompleteClasses() <em>Owned Complete Classes</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedCompleteClasses()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<CompleteClass> ownedCompleteClasses;
-
-	/**
-	 * The cached value of the '{@link #getOwnedCompletePackages() <em>Owned Complete Packages</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedCompletePackages()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<NestedCompletePackage> ownedCompletePackages;
-
-	/**
-	 * The cached value of the '{@link #getPartialPackages() <em>Partial Packages</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPartialPackages()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<org.eclipse.ocl.examples.pivot.Package> partialPackages;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected CompletePackageImpl()
-	{
-		super();
-	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -304,6 +244,7 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("null")
 	@Override
 	public boolean eIsSet(int featureID)
 	{
@@ -351,22 +292,45 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 
 	private /*final*/ /*@NonNull*/ String nsPrefix;
 	private /*final*/ /*@NonNull*/ String nsURI;
-//	private /*final*/ /*@NonNull*/ PackageId packageId;
+/**
+	 * The cached value of the '{@link #getOwnedCompleteClasses() <em>Owned Complete Classes</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedCompleteClasses()
+	 * @generated NOT
+	 * @ordered
+	 */
+	protected @Nullable AbstractCompleteClasses ownedCompleteClasses;
+	/**
+	 * The cached value of the '{@link #getOwnedCompletePackages() <em>Owned Complete Packages</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedCompletePackages()
+	 * @generated NOT
+	 * @ordered
+	 */
+	protected @Nullable NestedCompletePackages ownedCompletePackages;
+	//	private /*final*/ /*@NonNull*/ PackageId packageId;
 
 	/**
-	 * Map of (nested) package-name to package server.
-	 * <p>
-	 * let entries = ownedNestedCompletePackages->select(name <> null)
-	 * in entries->collect(entry | Tuple{key : String = entry.name, value : RootCompletePackage = entry})
+	 * The cached value of the '{@link #getPartialPackages() <em>Partial Packages</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPartialPackages()
+	 * @generated NOT
+	 * @ordered
 	 */
-	private Map<String, NestedCompletePackage> name2nestedCompletePackage = null;
+	protected final @NonNull PartialPackages partialPackages;
 
-	protected @Nullable Map<String, CompleteClass> name2completeClass = null;
-	
 	/**
-	 * Lazily created map of nested class-name to multi-class server.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
 	 */
-	private @Nullable Map<String, TypeServer> typeServers = null;
+	protected CompletePackageImpl()
+	{
+		partialPackages = new PartialPackages(this);
+	}
 
 	@Override
 	public <R> R accept(@NonNull Visitor<R> visitor) {
@@ -380,149 +344,59 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 		assert (typeBasedNsURI == serverBasedNsURI) || typeBasedNsURI.equals(serverBasedNsURI);
 	}
 
+	protected void didAddNestedPackage(@NonNull CompleteModel completeModel, @NonNull org.eclipse.ocl.examples.pivot.Package pivotPackage) {
+/*		CompletePackage completePackage = null;
+		String name = pivotPackage.getName();
+//		String packageURI = pivotPackage.getURI();
+//		if (packageURI != null) {										// Explicit packageURI for explicit package (merge)
+//			completePackage = completeURI2completePackage.get(packageURI);
+//		}
+		if (name != null) {										// Null packageURI can merge into same named package
+			completePackage = getOwnedCompletePackage(name);
+		}
+		if (completePackage == null) {
+			completePackage = getPartialPackages().createCompletePackage(pivotPackage);
+			completePackage.assertSamePackage(pivotPackage);
+		} */
+		getPartialPackages().add(pivotPackage);
+		if (ownedCompleteClasses != null) {
+			ownedCompleteClasses.didAddPackage(pivotPackage);
+		}
+//		completePackage.addTrackedPackage(pivotPackage);
+//		for (org.eclipse.ocl.examples.pivot.Package nestedPackage : pivotPackage.getOwnedPackages()) {
+//			if (nestedPackage != null) {
+//				addPackage(completePackage, nestedPackage);
+//			}
+//		}
+	}
+
 	public void didAddClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
-		if (name2completeClass != null) {
-			CompleteClass completeClass = name2completeClass.get(partialClass.getName());
-			if (completeClass == null) {
-				doRefreshPartialClass(partialClass);
-			}
-			else {
-				completeClass.getPartialClasses().add(partialClass);
-			}
+		if (ownedCompleteClasses != null) {
+			ownedCompleteClasses.didAddClass(partialClass);
+		}
+	}
+
+	public void didAddPartialPackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
+		if (ownedCompleteClasses != null) {
+			ownedCompleteClasses.didAddPackage(partialPackage);
 		}
 	}
 
 	public void didRemoveClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
-		if (name2completeClass != null) {
-			CompleteClass completeClass = name2completeClass.get(partialClass.getName());
-			if (completeClass != null) {
-				List<Class> partialClasses = completeClass.getPartialClasses();
-				partialClasses.remove(partialClass);
-				if (partialClasses.size() <= 0) {
-					getOwnedCompleteClasses().remove(completeClass);
-					TypeServer typeServer = ((CompleteClassImpl)completeClass).getTypeServer();
-					((CompleteClassImpl)completeClass).setTypeServer(null);
-					if (typeServer != null) {
-						typeServer.dispose();
-					}
-				}
-			}
+		if (ownedCompleteClasses != null) {
+			ownedCompleteClasses.didRemoveClass(partialClass);
 		}
 	}
 
-/*	public void didRenameClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass, String oldName) {
+	public void didRemovePartialPackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
+		if (ownedCompleteClasses != null) {
+			ownedCompleteClasses.didRemovePackage(partialPackage);
+		}
+	}
+
+	public void dispose() {
 		// TODO Auto-generated method stub
 		
-	} */
-	
-	protected void didAddCompleteClass(@NonNull CompleteClass completeClass) {
-		Map<String, CompleteClass> name2completeClass2 = name2completeClass;
-		if (name2completeClass2 != null) {
-			String name = completeClass.getName();
-			if (name != null) {
-				CompleteClass oldCompleteClass = name2completeClass2.put(name, completeClass);
-				assert oldCompleteClass == null;
-			}
-		}
-	}
-
-	void didAddNestedCompletePackage(@NonNull NestedCompletePackage nestedCompletePackage) {
-		assert name2nestedCompletePackage != null;
-		String name = nestedCompletePackage.getName();
-		if (name != null) {
-			CompletePackage oldCompletePackage = name2nestedCompletePackage.put(name, nestedCompletePackage);
-			assert oldCompletePackage == null;
-		}
-	}
-
-	protected void didAddPartialPackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
-		((PackageImpl)partialPackage).getCompleteListeners().addListener(this);
-		if (name2completeClass != null) {
-			doRefreshPartialClasses(partialPackage);
-		}
-	}
-
-	protected void didRemoveCompleteClass(@NonNull CompleteClass completeClass) {
-		Map<String, CompleteClass> name2completeClass2 = name2completeClass;
-		if (name2completeClass2 != null) {
-			String name = completeClass.getName();
-			if (name != null) {
-				CompleteClass oldCompleteClass = name2completeClass2.remove(name);
-				assert oldCompleteClass == completeClass;
-			}
-		}
-	}
-	
-	void didRemoveNestedCompletePackage(@NonNull NestedCompletePackage nestedCompletePackage) {
-		assert name2nestedCompletePackage != null;
-		String name = nestedCompletePackage.getName();
-		if (name != null) {
-			name2nestedCompletePackage.remove(name);
-		}
-	}
-
-	protected void didRemovePartialPackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
-		Map<String, CompleteClass> name2completeClass2 = name2completeClass;
-		if (name2completeClass2 != null) {
-			for (org.eclipse.ocl.examples.pivot.Class partialClass : partialPackage.getOwnedClasses()) {
-				String name = partialClass.getName();
-				if (name != null) {
-					CompleteClass completeClass = name2completeClass2.get(name);
-					if (completeClass != null) {
-						List<Class> partialClasses = completeClass.getPartialClasses();
-						partialClasses.remove(partialClass);
-						if (partialClasses.size() <= 0) {
-							name2completeClass2.remove(name);
-						}
-					}
-				}
-			}
-		}
-	}
-
-	protected abstract void doRefreshPartialClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass);
-
-	protected @NonNull Map<String, CompleteClass> doRefreshPartialClasses() {
-		Map<String, CompleteClass> name2completeClass2 = name2completeClass;
-		if (name2completeClass2 == null) {
-			name2completeClass2 = name2completeClass = new HashMap<String, CompleteClass>();
-		}
-		for (org.eclipse.ocl.examples.pivot.Package partialPackage : getPartialPackages()) {
-			if (partialPackage != null) {
-				doRefreshPartialClasses(partialPackage);
-			}
-		}
-		return name2completeClass2;
-	}
-
-	protected void doRefreshPartialClasses(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
-		for (org.eclipse.ocl.examples.pivot.Class partialClass : partialPackage.getOwnedClasses()) {
-			if (partialClass != null) {
-				doRefreshPartialClass(partialClass);
-			}
-		}
-	}
-
-	protected void doRefreshNestedPackages() {
-		if (name2nestedCompletePackage == null) {
-			name2nestedCompletePackage = new HashMap<String, NestedCompletePackage>();
-		}
-		for (org.eclipse.ocl.examples.pivot.Package partialParentPackage : getPartialPackages()) {
-			for (org.eclipse.ocl.examples.pivot.Package partialChildPackage : partialParentPackage.getOwnedPackages()) {
-				if (partialChildPackage != null) {
-					String name = partialChildPackage.getName();
-					if (name != null) {
-						NestedCompletePackage completePackage = name2nestedCompletePackage.get(name);
-						if (completePackage == null) {
-							completePackage = PivotFactory.eINSTANCE.createNestedCompletePackage();
-							completePackage.init(name, partialChildPackage.getNsPrefix(), partialChildPackage.getURI(), partialChildPackage.getPackageId());
-							completePackage.getPartialPackages().add(partialChildPackage);
-							getOwnedCompletePackages().add(completePackage);
-						}
-					}
-				}
-			}
-		}
 	}
 
 	@SuppressWarnings("null")
@@ -535,13 +409,17 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 			});
 	}
 
-	public CompleteModelImpl getCompleteModel() {
+	public @NonNull CompleteClass getCompleteClass(@NonNull DomainClass pivotType) {
+		return DomainUtil.nonNullState(getOwnedCompleteClass(pivotType.getName()));
+	}
+
+	public @NonNull CompleteModelImpl getCompleteModel() {
 		for (EObject eContainer = eContainer(); eContainer != null; eContainer = eContainer.eContainer()) {
 			if (eContainer instanceof CompleteModelImpl) {
 				return (CompleteModelImpl) eContainer;
 			}
 		}
-		return null;
+		throw new IllegalStateException();
 	}
 
 	public EPackage getEPackage() {
@@ -567,117 +445,32 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 		return nsPrefix;
 	}
 
-	public @Nullable CompleteClass getOwnedCompleteClass(String name) {
-		Map<String, CompleteClass> name2completeClass2 = name2completeClass;
-		if (name2completeClass2 == null) {
-			name2completeClass2 = doRefreshPartialClasses();
-		}
-		return name2completeClass2.get(name);
+	public CompleteClass getOwnedCompleteClass(String name) {
+		return getOwnedCompleteClasses().getOwnedCompleteClass(name);
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@SuppressWarnings("null")
-	public @NonNull List<CompleteClass> getOwnedCompleteClasses()
-	{
-		if (ownedCompleteClasses == null)
-		{
-			ownedCompleteClasses = new EObjectContainmentWithInverseEList<CompleteClass>(CompleteClass.class, this, PivotPackage.COMPLETE_PACKAGE__OWNED_COMPLETE_CLASSES, PivotPackage.COMPLETE_CLASS__OWNING_COMPLETE_PACKAGE)
-			{
-				private static final long serialVersionUID = 1L;
-
-				@Override
-				protected void didAdd(int index, CompleteClass completeClass) {
-					assert completeClass != null;
-					super.didAdd(index, completeClass);
-					didAddCompleteClass(completeClass);
-				}
-
-				@Override
-				protected void didRemove(int index, CompleteClass completeClass) {
-					assert completeClass != null;
-					didRemoveCompleteClass(completeClass);
-					super.didRemove(index, completeClass);
-				}
-			};
-		}
-		return ownedCompleteClasses;
-	}
-
+	
 	public CompletePackage getOwnedCompletePackage(@Nullable String name) {
-		if (name2nestedCompletePackage == null) {
-			doRefreshNestedPackages();
-		}
-		return name2nestedCompletePackage.get(name);
+		return getOwnedCompletePackages().getOwnedCompletePackage(name);
 	}
+
+	public abstract @NonNull AbstractCompleteClasses getOwnedCompleteClasses();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	@SuppressWarnings("null")
-	public @NonNull List<NestedCompletePackage> getOwnedCompletePackages()
+	public @NonNull NestedCompletePackages getOwnedCompletePackages()
 	{
-		if (ownedCompletePackages == null)
+		NestedCompletePackages ownedCompletePackages2 = ownedCompletePackages;
+		if (ownedCompletePackages2 == null)
 		{
-			ownedCompletePackages = new EObjectContainmentWithInverseEList<NestedCompletePackage>(NestedCompletePackage.class, this, PivotPackage.COMPLETE_PACKAGE__OWNED_COMPLETE_PACKAGES, PivotPackage.NESTED_COMPLETE_PACKAGE__OWNING_COMPLETE_PACKAGE)
-			{
-				private static final long serialVersionUID = 1L;
-
-				@Override
-				protected void didAdd(int index, NestedCompletePackage nestedCompletePackage) {
-					assert nestedCompletePackage != null;
-					super.didAdd(index, nestedCompletePackage);
-					getCompleteModel().didAddCompletePackage(nestedCompletePackage);
-					didAddNestedCompletePackage(nestedCompletePackage);
-				}
-
-				@Override
-				protected void didRemove(int index, NestedCompletePackage nestedCompletePackage) {
-					assert nestedCompletePackage != null;
-					super.didRemove(index, nestedCompletePackage);
-					getCompleteModel().didRemoveCompletePackage(nestedCompletePackage);
-					didRemoveNestedCompletePackage(nestedCompletePackage);
-				}
-			};
+			ownedCompletePackages = ownedCompletePackages2 = new NestedCompletePackages(this);
 		}
-		return ownedCompletePackages;
+		return ownedCompletePackages2;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@SuppressWarnings("null")
-	public @NonNull List<org.eclipse.ocl.examples.pivot.Package> getPartialPackages()
-	{
-		if (partialPackages == null)
-		{
-			partialPackages = new EObjectResolvingEList<org.eclipse.ocl.examples.pivot.Package>(org.eclipse.ocl.examples.pivot.Package.class, this, PivotPackage.COMPLETE_PACKAGE__PARTIAL_PACKAGES)
-			{
-				private static final long serialVersionUID = 1L;
-
-				@Override
-				protected void didAdd(int index, org.eclipse.ocl.examples.pivot.Package partialPackage) {
-					assert partialPackage != null;
-					super.didAdd(index, partialPackage);
-					didAddPartialPackage(partialPackage);
-				}
-
-				@Override
-				protected void didRemove(int index, org.eclipse.ocl.examples.pivot.Package partialPackage) {
-					assert partialPackage != null;
-					super.didRemove(index, partialPackage);
-					didRemovePartialPackage(partialPackage);
-				}
-		
-			};
-		}
+	public @NonNull PartialPackages getPartialPackages() {
 		return partialPackages;
 	}
 
@@ -704,67 +497,6 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 		return completeClass != null ? completeClass.getPivotClass() : null;
 	}
 
-	public @NonNull TypeServer getTypeServer(DomainType pivotType) {
-		CompleteClass completeClass = DomainUtil.nonNullState(getOwnedCompleteClass(pivotType.getName()));
-		TypeServer typeServer1 = completeClass.getTypeServer();
-		if (typeServer1 != null) {
-			return typeServer1;
-		}
-		assert completeClass.eContainer() == this;
-//		if (pivotType instanceof TypeServer) {
-//			((CompleteClassImpl)completeClass).setTypeServer(typeServer1);
-//			return (TypeServer)pivotType;
-//		}
-		assert !(pivotType instanceof TemplateableElement) || (((TemplateableElement)pivotType).getUnspecializedElement() == null);
-		Map<String, TypeServer> typeServers2 = typeServers;
-		if (typeServers2 == null) {
-			typeServers2 = initMemberTypes();
-		}
-		String name = pivotType.getName();
-		if (name == null) {
-			throw new IllegalStateException("Unnamed type");
-		}
-		TypeServer typeServer = typeServers2.get(name);
-		if (typeServer == null) {
-			if (pivotType instanceof InvalidType) {
-				typeServer = new InvalidTypeServer(completeClass, (InvalidType)pivotType);
-			}
-			else if (pivotType instanceof VoidType) {
-				typeServer = new VoidTypeServer(completeClass, (VoidType)pivotType);
-			}
-			else if (pivotType instanceof AnyType) {
-				typeServer = new AnyTypeServer(completeClass, (AnyType)pivotType);
-			}
-			else if (pivotType instanceof Enumeration) {
-				typeServer = new EnumerationTypeServer(completeClass, (Enumeration)pivotType);
-			}
-			else if (pivotType instanceof CollectionType) {
-				typeServer = new CollectionTypeServer(completeClass, (CollectionType)pivotType);
-			}
-			else if (pivotType instanceof PrimitiveType) {
-				throw new UnsupportedOperationException("PrimitiveType");
-//				typeServer = getCompleteModel().getPrimitiveTypeServer((PrimitiveType)pivotType);
-			}
-//			else if (pivotType instanceof ElementExtension) {
-//				typeServer = new ExtensionTypeServer(this, (ElementExtension)pivotType);
-//			}
-			else if (pivotType instanceof org.eclipse.ocl.examples.pivot.Class) {
-				typeServer = new TemplateableTypeServer(completeClass, (org.eclipse.ocl.examples.pivot.Class)pivotType);
-			}
-			else {
-				throw new UnsupportedOperationException("TemplateType");
-			}
-			if ((pivotType instanceof TemplateableElement) && (((TemplateableElement)pivotType).getUnspecializedElement() == null)) {
-				typeServers2.put(name, typeServer);
-			}
-		}
-		if (typeServer instanceof ExtensibleTypeServer) {
-			((ExtensibleTypeServer)typeServer).getTypeTracker((DomainClass) pivotType);		// FIXME cast
-		}
-		((CompleteClassImpl)completeClass).setTypeServer(typeServer);
-		return typeServer;
-	}
-
 	public String getURI() {
 		return nsURI;
 	}
@@ -774,33 +506,5 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 		this.nsPrefix = nsPrefix;
 		this.nsURI = nsURI;
 //		this.packageId = packageId;
-	}
-	
-	private @NonNull Map<String, TypeServer> initMemberTypes() {
-		Map<String, TypeServer> typeServers2 = typeServers;
-		if (typeServers2 == null) {
-			typeServers2 = typeServers = new HashMap<String, TypeServer>();
-			if (!PivotConstants.ORPHANAGE_URI.equals(nsURI)) {
-				for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage : getPartialPackages()) {
-					initMemberTypes(partialPackage);
-				}
-			}
-		}
-		return typeServers2;
-	}
-
-	private void initMemberTypes(@NonNull org.eclipse.ocl.examples.pivot.Package pivotPackage) {
-		for (DomainClass pivotType : pivotPackage.getOwnedClasses()) {
-			if (pivotType != null) {
-//				addedMemberType(pivotType);
-			}
-		}
-	}
-
-	public void disposedTypeServer(@NonNull TypeServer typeServer) {
-		Map<String, TypeServer> typeServers2 = typeServers;
-		if (typeServers2 != null) {
-			typeServers2.remove(typeServer.getName());
-		}
 	}
 } //CompletePackageImpl

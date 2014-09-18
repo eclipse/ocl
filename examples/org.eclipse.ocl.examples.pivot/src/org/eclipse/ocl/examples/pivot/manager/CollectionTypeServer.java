@@ -26,13 +26,13 @@ import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.library.executor.CollectionTypeParameters;
 import org.eclipse.ocl.examples.pivot.CollectionType;
-import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.internal.impl.CompleteClassImpl;
 
 /**
  * An CollectionTypeServer supports one or more merged collection types as the source for operations, properties or superclasses
@@ -52,12 +52,12 @@ public class CollectionTypeServer extends ExtensibleTypeServer
 	//
 	private @Nullable /*WeakHash*/Map<CollectionTypeParameters<Type>, WeakReference<org.eclipse.ocl.examples.pivot.Class>> specializations = null;
 
-	public CollectionTypeServer(@NonNull CompleteClass completeClass, @NonNull DomainCollectionType domainType) {
+	public CollectionTypeServer(@NonNull CompleteClassImpl completeClass, @NonNull DomainCollectionType domainType) {
 		super(completeClass, domainType);
 	}
 	
 	protected @NonNull org.eclipse.ocl.examples.pivot.Class createSpecialization(@NonNull CollectionTypeParameters<Type> typeParameters) {
-		org.eclipse.ocl.examples.pivot.Class unspecializedType = getPivotType();
+		org.eclipse.ocl.examples.pivot.Class unspecializedType = getCompleteClass().getPivotClass();
 		String typeName = unspecializedType.getName();
 		TemplateSignature templateSignature = unspecializedType.getOwnedTemplateSignature();
 		List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
@@ -93,7 +93,7 @@ public class CollectionTypeServer extends ExtensibleTypeServer
 	}
 
 	public synchronized @Nullable Type findSpecializedType(@NonNull CollectionTypeParameters<Type> typeParameters) {
-		TemplateSignature templateSignature = getPivotType().getOwnedTemplateSignature();
+		TemplateSignature templateSignature = getCompleteClass().getPivotClass().getOwnedTemplateSignature();
 		List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
 		if (templateParameters.size() != 1) {
 			return null;
@@ -119,7 +119,7 @@ public class CollectionTypeServer extends ExtensibleTypeServer
 	}
 
 	public synchronized @NonNull org.eclipse.ocl.examples.pivot.Class getSpecializedType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
-		assert getPivotType() instanceof CollectionType;
+		assert getCompleteClass().getPivotClass() instanceof CollectionType;
 		IntegerValue lower2 = lower;
 		IntegerValue upper2 = upper;
 		if (lower2 == null) {

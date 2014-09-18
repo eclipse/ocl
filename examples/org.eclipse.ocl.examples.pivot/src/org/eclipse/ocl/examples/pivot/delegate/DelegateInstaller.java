@@ -49,7 +49,6 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.TypeServer;
 import org.eclipse.ocl.examples.pivot.options.OCLinEcoreOptions;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
@@ -287,8 +286,7 @@ public class DelegateInstaller
 		boolean hasDelegates = false;
 //		for (Type aType : metaModelManager.getLocalClasses(pivotPackage)) {
 		for (CompleteClass completeClass : completePackage.getOwnedCompleteClasses()) {
-			TypeServer typeServer = completeClass.getTypeServer();
-			if (installDelegates(typeServer.getPivotType())) {
+			if (installDelegates(completeClass.getPivotClass())) {
 				hasDelegates = true;
 			}
 		}

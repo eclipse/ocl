@@ -130,6 +130,7 @@ import org.eclipse.ocl.examples.pivot.context.ParserContext;
 import org.eclipse.ocl.examples.pivot.context.PropertyContext;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
+import org.eclipse.ocl.examples.pivot.internal.impl.CompleteClassImpl;
 import org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl;
 import org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl;
 import org.eclipse.ocl.examples.pivot.library.ConstrainedOperation;
@@ -1228,29 +1229,13 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 	
 	public @NonNull Iterable<? extends DomainOperation> getAllOperations(@NonNull DomainType type, @Nullable FeatureFilter featureFilter) {
-		TypeServer typeServer = completeModel.getTypeServer(type);
-		return typeServer.getAllOperations(featureFilter);
+		CompleteClass completeClass = completeModel.getCompleteClass(type);
+		return completeClass.getAllOperations(featureFilter);
 	}
 	
 	public @NonNull Iterable<? extends DomainOperation> getAllOperations(@NonNull DomainType type, @Nullable FeatureFilter featureFilter, @NonNull String name) {
-		TypeServer typeServer = completeModel.getTypeServer(type);
-		return typeServer.getAllOperations(featureFilter, name);
-	}
-
-	public @NonNull Iterable<? extends DomainOperation> getAllOperations(@NonNull DomainOperation pivotOperation) {
-		DomainInheritance pivotClass = pivotOperation.getInheritance(this);
-		if (pivotClass == null) {
-			throw new IllegalStateException("Missing owning type");
-		}
-		TypeServer typeServer = completeModel.findTypeServer(pivotClass);
-		if (typeServer != null) {
-			Iterable<? extends DomainOperation> memberOperations = typeServer.getMemberOperations(pivotOperation);
-			if (memberOperations != null) {
-				return memberOperations;
-			}
-		}
-		@SuppressWarnings("null") @NonNull List<DomainOperation> singletonList = Collections.singletonList(pivotOperation);
-		return singletonList;
+		CompleteClass completeClass = completeModel.getCompleteClass(type);
+		return completeClass.getAllOperations(featureFilter, name);
 	}
 
 	public @NonNull Iterable<CompletePackage> getAllCompletePackages() {
@@ -1269,13 +1254,13 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	} */
 	
 	public @NonNull Iterable<? extends DomainProperty> getAllProperties(@NonNull DomainType type, @Nullable FeatureFilter featureFilter) {
-		TypeServer typeServer = completeModel.getTypeServer(type);
-		return typeServer.getAllProperties(featureFilter);
+		CompleteClass completeClass = completeModel.getCompleteClass(type);
+		return completeClass.getAllProperties(featureFilter);
 	}
 	
 	public @NonNull Iterable<? extends DomainProperty> getAllProperties(@NonNull DomainType type, @Nullable FeatureFilter featureFilter, @NonNull String name) {
-		TypeServer typeServer = completeModel.getTypeServer(type);
-		return typeServer.getAllProperties(featureFilter, name);
+		CompleteClass completeClass = completeModel.getCompleteClass(type);
+		return completeClass.getAllProperties(featureFilter, name);
 	}
 
 	public @NonNull Iterable<? extends DomainProperty> getAllProperties(@NonNull DomainProperty pivotProperty) {
@@ -1283,20 +1268,18 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		if (pivotClass == null) {
 			throw new IllegalStateException("Missing owning type");
 		}
-		TypeServer typeServer = completeModel.findTypeServer(pivotClass);
-		if (typeServer != null) {
-			Iterable<? extends DomainProperty> memberProperties = typeServer.getMemberProperties(pivotProperty);
-			if (memberProperties != null) {
-				return memberProperties;
-			}
+		CompleteClass completeClass = completeModel.getCompleteClass(pivotClass);
+		Iterable<? extends DomainProperty> memberProperties = ((CompleteClassImpl)completeClass).getMemberProperties(pivotProperty);
+		if (memberProperties != null) {
+			return memberProperties;
 		}
 		@SuppressWarnings("null") @NonNull List<DomainProperty> singletonList = Collections.singletonList(pivotProperty);
 		return singletonList;
 	}
 	
 	public @NonNull Iterable<? extends DomainClass> getAllSuperClasses(@NonNull DomainType type) {
-		TypeServer typeServer = completeModel.getTypeServer(type);
-		return typeServer.getAllSuperClasses();
+		CompleteClass completeClass = completeModel.getCompleteClass(type);
+		return completeClass.getAllSuperClasses();
 	}
 
 	@Deprecated
@@ -1305,15 +1288,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 //			return EMPTY_TYPE_LIST;
 //		}
 //		return getTypeTracker(pivotType).getTypeServer().getTypes();
-		TypeServer typeServer = completeModel.findTypeServer(pivotType);
-		if (typeServer != null) {
-			@SuppressWarnings("null") @NonNull Iterable<org.eclipse.ocl.examples.pivot.Class> filter = Iterables.filter(typeServer.getCompleteClass().getPartialClasses(), org.eclipse.ocl.examples.pivot.Class.class);
-			return filter;
-		}
-		else  {
-			@SuppressWarnings("null") @NonNull List<org.eclipse.ocl.examples.pivot.Class> singletonList = Collections.singletonList(pivotType);
-			return singletonList;
-		}
+		CompleteClass completeClass = completeModel.getCompleteClass(pivotType);
+		@SuppressWarnings("null") @NonNull Iterable<org.eclipse.ocl.examples.pivot.Class> filter = Iterables.filter(completeClass.getPartialClasses(), org.eclipse.ocl.examples.pivot.Class.class);
+		return filter;
 	}
 
 	@Deprecated
@@ -1322,15 +1299,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 //			return EMPTY_TYPE_LIST;
 //		}
 //		return getTypeTracker(pivotType).getTypeServer().getTypes();
-		TypeServer typeServer = completeModel.findTypeServer(pivotType);
-		if (typeServer != null) {
-			@SuppressWarnings("null") @NonNull Iterable<Type> filter = Iterables.filter(typeServer.getCompleteClass().getPartialClasses(), Type.class);
-			return filter;
-		}
-		else  {
-			@SuppressWarnings("null") @NonNull List<Type> singletonList = Collections.singletonList(pivotType);
-			return singletonList;
-		}
+		CompleteClass completeClass = completeModel.getCompleteClass(pivotType);
+		@SuppressWarnings("null") @NonNull Iterable<Type> filter = Iterables.filter(completeClass.getPartialClasses(), Type.class);
+		return filter;
 	}
 	
 	public @Nullable DomainPackage getASMetamodel() {
@@ -1361,7 +1332,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	public @Nullable ExpressionInOCL getBodyExpression(@NonNull Operation operation) {
 		ExpressionInOCL bodyExpression = null;
-		for (DomainOperation domainOperation : getAllOperations(operation)) {
+		for (DomainOperation domainOperation : getOperationOverloads(operation)) {
 			if (domainOperation instanceof Operation) {
 				LanguageExpression anExpression = ((Operation)domainOperation).getBodyExpression();
 				if (anExpression != null) {
@@ -1426,7 +1397,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		if (isUnspecialized) {
 			return containerType;	
 		}
-		TypeServer typeServer2 = getTypeServer(containerType);
+		TypeServer typeServer2 = getCompleteClass(containerType).getTypeServer();
 		CollectionTypeServer typeServer = (CollectionTypeServer) typeServer2;
 		@SuppressWarnings("unchecked")
 		T specializedType = (T) typeServer.getSpecializedType(elementType, lower, upper);
@@ -1478,8 +1449,11 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return getType(commonInheritance); 
 	}
 
-	public @NonNull CompleteClass getCompleteClass(@NonNull DomainClass type) {
-		return getTypeServer(type).getCompleteClass();
+	public @NonNull CompleteClass getCompleteClass(@NonNull DomainType pivotType) {
+		if (!libraryLoadInProgress && (asMetamodel == null) && !(pivotType instanceof CollectionType) && !(pivotType instanceof VoidType) && !(pivotType instanceof InvalidType)) {
+			getASMetamodel();
+		}
+		return completeModel.getCompleteClass(pivotType);
 	}
 
 	public @NonNull CompleteModelImpl getCompleteModel() {
@@ -1699,9 +1673,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	public @NonNull DomainInheritance getInheritance(@NonNull DomainClass type) {
 		org.eclipse.ocl.examples.pivot.Class type1 = getType(type);
-		Type unspecializedType = (Type) type1.getUnspecializedElement();
-		Type theType = unspecializedType != null ? unspecializedType : type1;
-		TypeServer typeServer = getTypeServer(theType);
+		org.eclipse.ocl.examples.pivot.Class unspecializedType = (org.eclipse.ocl.examples.pivot.Class) type1.getUnspecializedElement();
+		org.eclipse.ocl.examples.pivot.Class theType = unspecializedType != null ? unspecializedType : type1;
+		TypeServer typeServer = getCompleteClass(theType).getTypeServer();
 		return typeServer;
 	}
 
@@ -1766,7 +1740,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 
 	public Iterable<Comment> getLocalComments(@NonNull Operation operation) {
-		return new CompleteElementCommentsIterable(getAllOperations(operation));
+		return new CompleteElementCommentsIterable(getOperationOverloads(operation));
 	}
 
 	public @NonNull Iterable<Comment> getLocalComments(@NonNull Property property) {
@@ -1989,6 +1963,20 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return completeModel.getCompletePackage(asPackage);
 	}
 
+	public @NonNull Iterable<? extends DomainOperation> getOperationOverloads(@NonNull DomainOperation pivotOperation) {
+		DomainInheritance pivotClass = pivotOperation.getInheritance(this);
+		if (pivotClass == null) {
+			throw new IllegalStateException("Missing owning type");
+		}
+		CompleteClass completeClass = completeModel.getCompleteClass(pivotClass);
+		Iterable<? extends DomainOperation> operationOverloads = ((CompleteClassImpl)completeClass).getOperationOverloads(pivotOperation);
+		if (operationOverloads != null) {
+			return operationOverloads;
+		}
+		@SuppressWarnings("null") @NonNull List<DomainOperation> singletonList = Collections.singletonList(pivotOperation);
+		return singletonList;
+	}
+
 	/**
 	 * Return a parserContext suitable for parsing OCL expressions in the context of a pivot element.
 	 * 
@@ -2156,8 +2144,8 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 
 	public @NonNull Iterable<? extends DomainClass> getPartialClasses(@NonNull DomainType pivotType) {
-		TypeServer typeServer = completeModel.getTypeServer(pivotType);
-		return typeServer.getCompleteClass().getPartialClasses();
+		CompleteClass completeClass = completeModel.getCompleteClass(pivotType);
+		return completeClass.getPartialClasses();
 	}
 
 	public @Nullable <T extends Element> T getPivotOf(@NonNull Class<T> pivotClass, @Nullable EObject eObject) throws ParserException {
@@ -2241,12 +2229,10 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	public @NonNull DomainOperation getPrimaryOperation(@NonNull DomainOperation pivotOperation) {
 		DomainInheritance pivotClass = pivotOperation.getInheritance(this);
 		if (pivotClass != null) {					// Null for an EAnnotation element
-			TypeServer typeServer = completeModel.findTypeServer(pivotClass);
-			if (typeServer != null) {
-				DomainOperation operation = typeServer.getMemberOperation(pivotOperation);
-				if (operation != null) {
-					return operation;
-				}
+			CompleteClass completeClass = completeModel.getCompleteClass(pivotClass);
+			DomainOperation operation = ((CompleteClassImpl)completeClass).getMemberOperation(pivotOperation);
+			if (operation != null) {
+				return operation;
 			}
 		}
 		return pivotOperation;
@@ -2307,8 +2293,8 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			@NonNull String name = DomainUtil.nonNullModel(pivotProperty.getName());
 			DomainProperty opposite = pivotProperty.getOpposite();
 			String oppositeName = opposite != null ? opposite.getName() : null;
-			TypeServer typeServer = completeModel.getTypeServer(owningInheritance);
-			Iterable<? extends DomainProperty> memberProperties = typeServer.getAllProperties(pivotProperty.isStatic() ? FeatureFilter.SELECT_STATIC : FeatureFilter.SELECT_NON_STATIC, name);
+			CompleteClass completeClass = completeModel.getCompleteClass(owningInheritance);
+			Iterable<? extends DomainProperty> memberProperties = completeClass.getAllProperties(pivotProperty.isStatic() ? FeatureFilter.SELECT_STATIC : FeatureFilter.SELECT_NON_STATIC, name);
 			DomainProperty bestProperty = null;
 			for (DomainProperty memberProperty : memberProperties) {
 				if (memberProperty != null) {
@@ -2333,7 +2319,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		if (/*(type instanceof Type) &&*/ !isTypeServeable(type)) {
 			return (org.eclipse.ocl.examples.pivot.Class) type;			// FIXME bad cast
 		}
-		return getTypeServer(type).getPivotType();
+		return getCompleteClass(type).getPivotClass();
 //		TypeTracker typeTracker = packageManager.findTypeTracker(pivotType);
 //		if (typeTracker != null) {
 //			return typeTracker.getPrimaryType();
@@ -2347,7 +2333,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		if (/*(type instanceof Type) &&*/ !isTypeServeable(type)) {
 			return (Type) type;			// FIXME bad cast
 		}
-		return getTypeServer(type).getPivotType();
+		return getCompleteClass(type).getPivotClass();
 //		TypeTracker typeTracker = packageManager.findTypeTracker(pivotType);
 //		if (typeTracker != null) {
 //			return typeTracker.getPrimaryType();
@@ -2457,12 +2443,12 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 
 	@Override
-	public @Nullable org.eclipse.ocl.examples.pivot.Package getRootPackage(@NonNull String name) {
-		Package rootPackage = completeModel.getRootPackage(name);
+	public @Nullable org.eclipse.ocl.examples.pivot.Package getRootPackage(@NonNull String completeURIorName) {
+		Package rootPackage = completeModel.getRootPackage(completeURIorName);
 		if (rootPackage == null) {
-			if (DomainConstants.METAMODEL_NAME.equals(name)) {
+			if (DomainConstants.METAMODEL_NAME.equals(completeURIorName)) {
 				getASMetamodel();
-				rootPackage = completeModel.getRootPackage(name);
+				rootPackage = completeModel.getRootPackage(completeURIorName);
 			}
 		}
 		return rootPackage;
@@ -2566,7 +2552,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 //		if (!libraryLoadInProgress && (asMetamodel == null) && (pivotType == getClassType()))  {
 //			getASMetamodel();
 //		}
-		return completeClass.getSuperCompleteClasses();
+		return completeClass.getProperSuperCompleteClasses();
 //		return new CompleteClassSuperClassesIterable(getAllTypes(pivotType));
 	}
 
@@ -2596,7 +2582,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		if (dType instanceof Type) {
 			return getPrimaryType(dType);
 		}
-		DomainPackage dPackage = dType.getOwningPackage();	// FIXME cast
+		CompleteClass completeClass = completeModel.getCompleteClass(dType);
+		return DomainUtil.nonNullState(completeClass.getPivotClass());
+/*		DomainPackage dPackage = dType.getOwningPackage();	// FIXME cast
 		if (dPackage != null) {
 			CompletePackage completePackage = getCompletePackage(dPackage);
 			org.eclipse.ocl.examples.pivot.Class primaryType = completePackage.getMemberType(dType.getName());
@@ -2604,12 +2592,15 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 				return primaryType;
 			}
 		}
-		throw new UnsupportedOperationException();		// FIXME
+		throw new UnsupportedOperationException();		// FIXME */
 	}
 
 	public @NonNull Type getType(@NonNull DomainType dType) {				// FIXME simplify eliminate
 		if (dType instanceof Type) {
 			return getPrimaryType(dType);
+		}
+		if (dType instanceof PrimitiveTypeServer) {
+			return ((PrimitiveTypeServer)dType).getCompleteClass().getPivotClass();
 		}
 		DomainPackage dPackage = ((DomainClass)dType).getOwningPackage();	// FIXME cast
 		if (dPackage != null) {
@@ -2626,7 +2617,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		if (!libraryLoadInProgress && (asMetamodel == null) && !(pivotType instanceof CollectionType) && !(pivotType instanceof VoidType) && !(pivotType instanceof InvalidType)) {
 			getASMetamodel();
 		}
-		return completeModel.getTypeServer(pivotType);
+		return completeModel.getCompleteClass(pivotType).getTypeServer();
 	}
 
 	/**
@@ -3174,7 +3165,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		asMetamodel = asPackage;
 		String uri = asMetamodel.getURI();
 		if (uri != null) {
-			completeModel.addPackageNsURISynonym(uri, DomainConstants.METAMODEL_NAME);
+			completeModel.addPackageURI2completeURI(uri, DomainConstants.METAMODEL_NAME);
 		}
 	}
 
@@ -3200,7 +3191,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			getASMetamodel();
 		}
 		else if (!metaNsURI.equals(asMetamodel.getURI())) {
-			completeModel.addPackageNsURISynonym(metaNsURI, DomainConstants.METAMODEL_NAME);
+			completeModel.addPackageURI2completeURI(metaNsURI, DomainConstants.METAMODEL_NAME);
 //			throw new IllegalMetamodelException(asMetamodel.getNsURI(), metaNsURI);
 		}
 	}

@@ -99,11 +99,11 @@ public class PivotIdResolver extends AbstractIdResolver
 
 	@Override
 	public @NonNull DomainPackage visitRootPackageId(@NonNull RootPackageId id) {
-		String packageName = id.getName();
-		DomainPackage rootPackage = metaModelManager.getRootPackage(packageName);
+		String completeURIorName = id.getName();
+		DomainPackage rootPackage = metaModelManager.getRootPackage(completeURIorName);
 		if (rootPackage == null) {
 			Orphanage orphanage = metaModelManager.getOrphanage();
-			rootPackage = DomainUtil.getNamedElement(orphanage.getOwnedPackages(), packageName);
+			rootPackage = DomainUtil.getNamedElement(orphanage.getOwnedPackages(), completeURIorName);
 			if (rootPackage == null) {
 				throw new UnsupportedOperationException();
 			}

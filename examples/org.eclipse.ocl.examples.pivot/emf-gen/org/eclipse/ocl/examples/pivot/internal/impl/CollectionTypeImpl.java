@@ -596,7 +596,7 @@ public class CollectionTypeImpl
 			DomainType thatElementType = DomainUtil.nonNullEMF(((DomainCollectionType)type).getElementType());
 			DomainType commonElementType = thisElementType.getCommonType(idResolver, thatElementType);
 			if (commonInheritance instanceof TypeServer) {
-				DomainCollectionType commonCollectionType = (DomainCollectionType)((TypeServer)commonInheritance).getPivotType();
+				DomainCollectionType commonCollectionType = (DomainCollectionType)((TypeServer)commonInheritance).getCompleteClass().getPivotClass();
 				return standardLibrary.getCollectionType(commonCollectionType, commonElementType, null, null);
 			}
 			else {

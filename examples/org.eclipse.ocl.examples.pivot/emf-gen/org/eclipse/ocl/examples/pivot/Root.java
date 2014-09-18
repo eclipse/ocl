@@ -48,7 +48,7 @@ public interface Root extends Namespace, org.eclipse.ocl.examples.domain.element
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getRoot_OwnedPackages()
 	 * @generated
 	 */
-	List<org.eclipse.ocl.examples.pivot.Package> getOwnedPackages();
+	@NonNull List<org.eclipse.ocl.examples.pivot.Package> getOwnedPackages();
 
 	/**
 	 * Returns the value of the '<em><b>External URI</b></em>' attribute.

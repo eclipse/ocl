@@ -677,8 +677,14 @@ public class EditTests extends XtextTestCase
 		doRename(xtextResource, asResource, "Sequence(MyType)", "Set(MyType)");
 		System.gc();
 		sequenceMyType = new WeakReference<Type>(sequenceTypeServer.findSpecializedType(typeParameters));
+		boolean isNull = debugStateRef(sequenceMyType);
+		sequenceMyType = null;
+		assertTrue(isNull); 
+	}
+
+	public boolean debugStateRef(WeakReference<Type> sequenceMyType) {
 		DebugRef debugRef = new DebugRef(sequenceMyType.get());
-		assertNull(debugRef.object); 
+		return debugRef.object == null;
 	}
 
 	public void testEdit_Paste_CompleteOCL() throws Exception {

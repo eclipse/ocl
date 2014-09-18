@@ -364,8 +364,8 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 					safeScope = (Namespace) eObject;
 				}
 				if (eObject instanceof DomainPackage) {
-					CompletePackage packageServer = metaModelManager.getCompletePackage((DomainPackage)eObject);
-					org.eclipse.ocl.examples.pivot.Class memberType = packageServer.getMemberType(name);
+					CompletePackage completePackage = metaModelManager.getCompletePackage((DomainPackage)eObject);
+					org.eclipse.ocl.examples.pivot.Class memberType = completePackage.getMemberType(name);
 					if (memberType == primaryElement) {
 						if ((eObject != scope) && (eObject != PivotUtil.getContainingPackage(scope))) {
 							eObject = eObject.eContainer(); // If eObject is needed in path, optional scope is its container

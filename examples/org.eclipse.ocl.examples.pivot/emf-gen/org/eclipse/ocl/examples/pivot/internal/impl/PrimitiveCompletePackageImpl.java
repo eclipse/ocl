@@ -10,20 +10,18 @@
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.pivot.CompleteClass;
+import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
-import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PrimitiveCompletePackage;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
+import org.eclipse.ocl.examples.pivot.internal.complete.PrimitivePackageCompleteClasses;
 import org.eclipse.ocl.examples.pivot.manager.PrimitiveTypeServer;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
@@ -48,16 +46,31 @@ public class PrimitiveCompletePackageImpl extends RootCompletePackageImpl implem
 	{
 		return PivotPackage.Literals.PRIMITIVE_COMPLETE_PACKAGE;
 	}
+	
+	private static class PrimitiveCompleteClassImpl extends CompleteClassImpl
+	{
+		private final @NonNull PrimitiveType primitiveType;
+		private PrimitiveTypeServer typeServer;
 
-	/**
-	 * Map from each primitive type name to the TypeServer that supervises its merge. 
-	 */
-	private final @NonNull Map<String, PrimitiveTypeServer> primitiveType2server = new HashMap<String, PrimitiveTypeServer>();
+		private PrimitiveCompleteClassImpl(@NonNull PrimitiveType primitiveType) {
+			this.primitiveType = primitiveType;
+		}
+
+		@Override
+		public @NonNull PrimitiveTypeServer getTypeServer() {
+			PrimitiveTypeServer typeServer2 = typeServer;
+			if (typeServer2 == null) {
+				typeServer = typeServer2 = new PrimitiveTypeServer(this, primitiveType);
+			}
+			return typeServer2;
+		}
+	}
 
 	protected PrimitiveCompletePackageImpl()
 	{
 		super();
 		init("$primitives$", "prim", PivotConstants.PRIMITIVES_URI, IdManager.METAMODEL);		// FIXME names
+//		name2completeClass = new HashMap<String, CompleteClass>();
 	}
 
 	@Override
@@ -65,20 +78,38 @@ public class PrimitiveCompletePackageImpl extends RootCompletePackageImpl implem
 		return visitor.visitPrimitiveCompletePackage(this);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
-	protected void didAddCompleteClass(@NonNull CompleteClass completeClass) {			// FIXME lose unwanted inheritance
+	public @NonNull PrimitivePackageCompleteClasses getOwnedCompleteClasses()
+	{
+		PrimitivePackageCompleteClasses ownedCompleteClasses2 = (PrimitivePackageCompleteClasses) ownedCompleteClasses;
+		if (ownedCompleteClasses2 == null)
+		{
+			ownedCompleteClasses = ownedCompleteClasses2 = new PrimitivePackageCompleteClasses(this);
+		}
+		return ownedCompleteClasses2;
 	}
 
 	@Override
-	protected void didAddPartialPackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {			// FIXME lose unwanted inheritance
+	public @NonNull CompleteClass getCompleteClass(final @NonNull DomainClass primitiveType) {
+		throw new UnsupportedOperationException();			// Should be PrimitiveType
 	}
 
-	@Override
-	protected void didRemoveCompleteClass(@NonNull CompleteClass completeClass) {			// FIXME lose unwanted inheritance
-	}
-
-	@Override
-	protected void didRemovePartialPackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {			// FIXME lose unwanted inheritance
+	public @NonNull CompleteClass getCompleteClass(final @NonNull PrimitiveType primitiveType) {
+		String name = primitiveType.getName();
+		CompleteClass completeClass = getOwnedCompleteClass(name);
+		if (completeClass == null) {
+			completeClass = new PrimitiveCompleteClassImpl(primitiveType);
+			completeClass.setName(name);
+			getOwnedCompleteClasses().add(completeClass);
+			completeClass.getPartialClasses().add(primitiveType);
+//			didAddClass(completeClass, primitiveType);
+		}
+		return completeClass;
 	}
 	
 	public @NonNull PackageId getMetapackageId() {
@@ -86,31 +117,15 @@ public class PrimitiveCompletePackageImpl extends RootCompletePackageImpl implem
 	}
 
 	@Override
-	public @Nullable CompleteClass getOwnedCompleteClass(String name) {
-		PrimitiveTypeServer primitiveTypeServer = primitiveType2server.get(name);
-		if (primitiveTypeServer != null) {
-			return primitiveTypeServer.getCompleteClass();
+	public Package getPivotPackage() {			// Only used to construct a PrimitiveTypeServer
+		for (CompleteClass completeClass : getOwnedCompleteClasses()) {
+			for (org.eclipse.ocl.examples.pivot.Class partialClass : completeClass.getPartialClasses()) {
+				org.eclipse.ocl.examples.pivot.Package partialPackage = partialClass.getOwningPackage();
+				if (partialPackage != null) {
+					return partialPackage;
+				}
+			}
 		}
 		return null;
-	}
-
-	public @NonNull PrimitiveTypeServer getTypeServer(@NonNull PrimitiveType primitiveType) {
-		String name = primitiveType.getName();
-		PrimitiveTypeServer primitiveTypeServer = primitiveType2server.get(name);
-		if (primitiveTypeServer == null) {
-			CompleteClass completeClass = PivotFactory.eINSTANCE.createCompleteClass();
-			completeClass.setName(name);
-			completeClass.getPartialClasses().add(primitiveType);
-			getOwnedCompleteClasses().add(completeClass);
-			org.eclipse.ocl.examples.pivot.Package primitivePackage = primitiveType.getOwningPackage();
-			if (primitivePackage != null) {
-				getPartialPackages().add(primitivePackage);
-			}
-			primitiveTypeServer = new PrimitiveTypeServer(completeClass, primitiveType);
-			((CompleteClassImpl)completeClass).setTypeServer(primitiveTypeServer);
-			primitiveType2server.put(name, primitiveTypeServer);
-			primitiveTypeServer.getTypeTracker(primitiveType);
-		}
-		return primitiveTypeServer;
 	}
 } //PrimitiveCompletePackageImpl

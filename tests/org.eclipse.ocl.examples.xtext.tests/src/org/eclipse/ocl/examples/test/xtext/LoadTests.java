@@ -1057,8 +1057,8 @@ public class LoadTests extends XtextTestCase
 //		
 		List<DomainPackage> allPackages = new ArrayList<DomainPackage>();
 //		for (org.eclipse.ocl.examples.pivot.Package aPackage : metaModelManager2.getAllPackages()) {
-		for (CompletePackage packageServer : metaModelManager2.getAllCompletePackages()) {
-			org.eclipse.ocl.examples.pivot.Package aPackage = packageServer.getPivotPackage();
+		for (CompletePackage completePackage : metaModelManager2.getAllCompletePackages()) {
+			org.eclipse.ocl.examples.pivot.Package aPackage = completePackage.getPivotPackage();
 			if (aPackage instanceof Root) {}
 			else if (aPackage instanceof Library) {}
 			else if (PivotConstants.ORPHANAGE_NAME.equals(aPackage.getName())) {}
@@ -1144,8 +1144,8 @@ public class LoadTests extends XtextTestCase
 //		
 		List<DomainPackage> allPackages = new ArrayList<DomainPackage>();
 //		for (org.eclipse.ocl.examples.pivot.Package aPackage : metaModelManager2.getAllPackages()) {
-		for (CompletePackage packageServer : metaModelManager2.getAllCompletePackages()) {
-			org.eclipse.ocl.examples.pivot.Package aPackage = packageServer.getPivotPackage();
+		for (CompletePackage completePackage : metaModelManager2.getAllCompletePackages()) {
+			org.eclipse.ocl.examples.pivot.Package aPackage = completePackage.getPivotPackage();
 			if (aPackage instanceof Root) {}
 			else if (aPackage instanceof Library) {}
 			else if (PivotConstants.ORPHANAGE_NAME.equals(aPackage.getName())) {}

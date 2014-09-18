@@ -11,7 +11,6 @@
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.util.Collection;
-import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -23,23 +22,17 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.DomainConstants;
 import org.eclipse.ocl.examples.domain.elements.DomainCompletePackage;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.CompleteModel;
-import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.NestedCompletePackage;
-import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.PrimitiveCompletePackage;
 import org.eclipse.ocl.examples.pivot.RootCompletePackage;
-import org.eclipse.ocl.examples.pivot.manager.ExtensibleTypeServer;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.TypeServer;
+import org.eclipse.ocl.examples.pivot.internal.complete.AbstractCompleteClasses;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -324,6 +317,7 @@ public abstract class RootCompletePackageImpl extends CompletePackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("null")
 	@Override
 	public boolean eIsSet(int featureID)
 	{
@@ -357,61 +351,6 @@ public abstract class RootCompletePackageImpl extends CompletePackageImpl implem
 	}
 
 	@Override
-	protected void doRefreshPartialClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {	// FIXME Inefficient
-		Map<String, CompleteClass> name2completeClass2 = name2completeClass;
-		assert name2completeClass2 != null;
-		CompleteModelImpl completeModel = getCompleteModel();
-		MetaModelManager metaModelManager = completeModel.getMetaModelManager();
-		CompletePackage oclAnyCompletePackage = null;
-		if (!metaModelManager.isLibraryLoadInProgress()) {
-			oclAnyCompletePackage = completeModel.getOwnedCompletePackage(DomainConstants.METAMODEL_NAME);
-		}
-		String name = partialClass.getName();
-		if (name != null) {
-			CompleteClass completeClass = null;
-			if (oclAnyCompletePackage == this) {
-				PrimitiveCompletePackage primitiveCompletePackage = completeModel.getPrimitiveCompletePackage();
-				completeClass = primitiveCompletePackage.getOwnedCompleteClass(name);
-			}
-			if (completeClass == null) {
-				completeClass = name2completeClass2.get(name);
-			}
-			if (completeClass == null) {
-				completeClass = PivotFactory.eINSTANCE.createCompleteClass();
-				completeClass.setName(name);
-				getOwnedCompleteClasses().add(completeClass);
-				if (metaModelManager.isTypeServeable(partialClass)) {
-					TypeServer typeServer = completeModel.getTypeServer(partialClass);
-					((CompleteClassImpl)completeClass).setTypeServer(typeServer);
-				}
-			}
-			completeClass.getPartialClasses().add(partialClass);
-			TypeServer typeServer = completeClass.getTypeServer();
-			if (typeServer instanceof ExtensibleTypeServer) {
-				((ExtensibleTypeServer)typeServer).getTypeTracker(partialClass);
-			}
-		}
-	}
-
-	public DomainCompletePackage getOwningCompletePackage() {
-		return null;
-	}
-
-/*	public @NonNull PrimitiveTypeServer getPrimitiveTypeServer(@NonNull PrimitiveType primitiveType) {
-			if ("PrimitiveType1".equals(primitiveType.getName())) {
-				assert primitiveType != null;
-			}
-		CompleteClass completeClass = getCompleteClass(primitiveType.getName());
-		assert completeClass != null;
-		PrimitiveTypeServer primitiveTypeServer = (PrimitiveTypeServer) completeClass.getTypeServer();	// FIXME cast
-		if (primitiveTypeServer == null) {
-			primitiveTypeServer = new PrimitiveTypeServer(completeClass, primitiveType);
-			((CompleteClassImpl)completeClass).setTypeServer(primitiveTypeServer);
-		}
-		return primitiveTypeServer;
-	} */
-
-	@Override
 	public void assertSamePackage(@Nullable DomainPackage domainPackage) {
 		assert domainPackage != null;
 		DomainPackage parentPackage = domainPackage.getOwningPackage();
@@ -427,18 +366,26 @@ public abstract class RootCompletePackageImpl extends CompletePackageImpl implem
 		}
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public abstract @NonNull AbstractCompleteClasses getOwnedCompleteClasses();
+
+	public DomainCompletePackage getOwningCompletePackage() {
+		return null;
+	}
+
+	public void dispose() {
+		// TODO Auto-generated method stub
+		
+	}
+
 /*	@Override
 	public void dispose() {
 		super.dispose();
 		packageManager.disposedRootPackageServer(this);
-	}
-
-	public @Nullable DomainPackage getOwningPackage() {
-		return null;
-	}
-
-	@Override
-	public @Nullable PackageServer getParentPackageServer() {
-		return null;
 	} */
 } //RootCompletePackageImpl

@@ -1072,7 +1072,8 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	public @NonNull DomainPackage visitRootPackageId(@NonNull RootPackageId id) {
-		DomainPackage rootPackage = standardLibrary.getRootPackage(id.getName());
+		String completeURIorName = id.getName();
+		DomainPackage rootPackage = standardLibrary.getRootPackage(completeURIorName);
 		if (rootPackage == null) {
 			throw new UnsupportedOperationException();
 		}

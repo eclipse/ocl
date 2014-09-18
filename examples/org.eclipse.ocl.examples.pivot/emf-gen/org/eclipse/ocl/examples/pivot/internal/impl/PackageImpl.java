@@ -29,6 +29,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
+import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -36,7 +37,7 @@ import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.InstanceSpecification;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.ProfileApplication;
-import org.eclipse.ocl.examples.pivot.util.PackageListeners;
+import org.eclipse.ocl.examples.pivot.internal.complete.PackageListeners;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -178,21 +179,6 @@ public class PackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("null")
-	public @NonNull List<org.eclipse.ocl.examples.pivot.Package> getOwnedPackages()
-	{
-		if (ownedPackages == null)
-		{
-			ownedPackages = new EObjectContainmentWithInverseEList<org.eclipse.ocl.examples.pivot.Package>(org.eclipse.ocl.examples.pivot.Package.class, this, PivotPackage.PACKAGE__OWNED_PACKAGES, PivotPackage.PACKAGE__OWNING_PACKAGE);
-		}
-		return ownedPackages;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getNsPrefix() {
 		return nsPrefix;
 	}
@@ -243,6 +229,20 @@ public class PackageImpl
 			importedPackage = new EObjectResolvingEList<org.eclipse.ocl.examples.pivot.Package>(org.eclipse.ocl.examples.pivot.Package.class, this, PivotPackage.PACKAGE__IMPORTED_PACKAGE);
 		}
 		return importedPackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public List<InstanceSpecification> getOwnedInstances()
+	{
+		if (ownedInstances == null)
+		{
+			ownedInstances = new EObjectContainmentWithInverseEList<InstanceSpecification>(InstanceSpecification.class, this, PivotPackage.PACKAGE__OWNED_INSTANCES, PivotPackage.INSTANCE_SPECIFICATION__OWNING_PACKAGE);
+		}
+		return ownedInstances;
 	}
 
 	/**
@@ -590,62 +590,76 @@ public class PackageImpl
 		return eDynamicIsSet(featureID);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public String toString() {
-		return super.toString();
-	}
+	private PackageId packageId = null;
+	private @Nullable PackageListeners<PackageListeners.IPackageListener> packageListeners = null;
+	private boolean ignoreInvariants = false;		// FIXME Model this (used to suppress bad OMG UML 2.5 invariants)
 
 	@Override
 	public <R> R accept(@NonNull Visitor<R> visitor) {
 		return visitor.visitPackage(this);
 	}
 
-	private PackageId packageId = null;
+	public synchronized void addPackageListener(@NonNull PackageListeners.IPackageListener packageListener) {
+		PackageListeners<PackageListeners.IPackageListener> packageListeners2 = packageListeners;
+		if (packageListeners2 == null) {
+			packageListeners2 = packageListeners = new PackageListeners<PackageListeners.IPackageListener>();
+		}
+		packageListeners2.addListener(packageListener);
+	}
 
 	public @Nullable PackageId basicGetPackageId() {
 		return packageId;
 	}
 
-	public void setURI(String newURI) {
-		setURIGen(newURI);
-		if ((packageId == null) && (newURI != null)) {
-			setPackageId(IdManager.getPackageId(this));
+	protected void didAddClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
+		if (packageListeners != null) {
+			packageListeners.didAddClass(partialClass);
 		}
 	}
 
-	private @Nullable PackageListeners completeListeners = null;
-	
-	
-	public @NonNull PackageListeners getCompleteListeners() {
-		PackageListeners completeListeners2 = completeListeners;
-		if (completeListeners2 == null) {
-			completeListeners2 = completeListeners = new PackageListeners();
+	protected void didAddPackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
+		if (packageListeners != null) {
+			packageListeners.didAddPackage(partialPackage);
 		}
-		return completeListeners2;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@SuppressWarnings("null")
+	protected void didRemoveClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
+		if (packageListeners != null) {
+			packageListeners.didRemoveClass(partialClass);
+		}
+	}
+
+	protected void didRemovePackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
+		if (packageListeners != null) {
+			packageListeners.didRemovePackage(partialPackage);
+		}
+	}
+
+	public @Nullable EPackage getEPackage() {
+		EObject eTarget = getETarget();
+		return eTarget instanceof EPackage ? (EPackage) eTarget : null;
+	}
+
 	public @NonNull List<org.eclipse.ocl.examples.pivot.Class> getOwnedClasses()
 	{
-		if (ownedClasses == null)
+		EList<Class> ownedClasses2 = ownedClasses;
+		if (ownedClasses2 == null)
 		{
-			ownedClasses = new EObjectContainmentWithInverseEList<org.eclipse.ocl.examples.pivot.Class>(org.eclipse.ocl.examples.pivot.Class.class, this, PivotPackage.PACKAGE__OWNED_CLASSES, PivotPackage.CLASS__OWNING_PACKAGE) {
+			ownedClasses2 = ownedClasses = new EObjectContainmentWithInverseEList<org.eclipse.ocl.examples.pivot.Class>(org.eclipse.ocl.examples.pivot.Class.class, this, PivotPackage.PACKAGE__OWNED_CLASSES, PivotPackage.CLASS__OWNING_PACKAGE)
+			{
 				private static final long serialVersionUID = 1L;
 
 				@Override
 				public void addUnique(org.eclipse.ocl.examples.pivot.Class partialClass) {
 					assert partialClass != null;
 					super.addUnique(partialClass);
+					didAddClass(partialClass);
+				}
+
+				@Override
+				public void addUnique(int index, org.eclipse.ocl.examples.pivot.Class partialClass) {
+					assert partialClass != null;
+					super.addUnique(index, partialClass);
 					didAddClass(partialClass);
 				}
 
@@ -657,44 +671,41 @@ public class PackageImpl
 				}
 			};
 		}
-		return ownedClasses;
+		return ownedClasses2;
 	}
 
-	protected void didAddClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
-		if (completeListeners != null) {
-			completeListeners.didAddClass(partialClass);
-		}
-	}
-
-	protected void didRemoveClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
-		if (completeListeners != null) {
-			completeListeners.didRemoveClass(partialClass);
-		}
-	}
-
-/*	public void didRenameClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass, String oldName) {
-		if (completeListeners != null) {
-			completeListeners.didRenameClass(partialClass, oldName);
-		}
-	} */
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public List<InstanceSpecification> getOwnedInstances()
+	public @NonNull List<org.eclipse.ocl.examples.pivot.Package> getOwnedPackages()
 	{
-		if (ownedInstances == null)
+		EList<org.eclipse.ocl.examples.pivot.Package> ownedPackages2 = ownedPackages;
+		if (ownedPackages2 == null)
 		{
-			ownedInstances = new EObjectContainmentWithInverseEList<InstanceSpecification>(InstanceSpecification.class, this, PivotPackage.PACKAGE__OWNED_INSTANCES, PivotPackage.INSTANCE_SPECIFICATION__OWNING_PACKAGE);
-		}
-		return ownedInstances;
-	}
+			ownedPackages = ownedPackages2 = new EObjectContainmentWithInverseEList<org.eclipse.ocl.examples.pivot.Package>(org.eclipse.ocl.examples.pivot.Package.class, this, PivotPackage.PACKAGE__OWNED_PACKAGES, PivotPackage.PACKAGE__OWNING_PACKAGE)
+			{
+				private static final long serialVersionUID = 1L;
 
-	public @Nullable EPackage getEPackage() {
-		EObject eTarget = getETarget();
-		return eTarget instanceof EPackage ? (EPackage) eTarget : null;
+				@Override
+				public void addUnique(org.eclipse.ocl.examples.pivot.Package partialPackage) {
+					assert partialPackage != null;
+					super.addUnique(partialPackage);
+					didAddPackage(partialPackage);
+				}
+	
+				@Override
+				public void addUnique(int index, org.eclipse.ocl.examples.pivot.Package partialPackage) {
+					assert partialPackage != null;
+					super.addUnique(index, partialPackage);
+					didAddPackage(partialPackage);
+				}
+	
+				@Override
+				protected void didRemove(int index, org.eclipse.ocl.examples.pivot.Package partialPackage) {
+					assert partialPackage != null;
+					super.didRemove(index, partialPackage);
+					didRemovePackage(partialPackage);
+				}
+			};
+		}
+		return ownedPackages2;
 	}
 	
 	public @NonNull PackageId getPackageId() {
@@ -712,23 +723,58 @@ public class PackageImpl
 		return packageId2;
 	}
 	
+	public boolean isIgnoreInvariants() {
+		return ignoreInvariants;
+	}
+
+	public synchronized void removePackageListener(@NonNull PackageListeners.IPackageListener packageListener) {
+		PackageListeners<PackageListeners.IPackageListener> packageListeners2 = packageListeners;
+		if ((packageListeners2 != null) && packageListeners2.removeListener(packageListener)) {
+			packageListeners = null;
+		}
+	}
+	
+	public void setIgnoreInvariants(boolean ignoreInvariants) {
+		this.ignoreInvariants = ignoreInvariants;
+	}
+
+	@Override
+	public void setName(String newName) {
+		String oldName = name;
+		EObject eContainer = eContainer();
+		if ((oldName != null) && !oldName.equals(newName)) {
+			if (eContainer instanceof RootImpl) {
+				((RootImpl)eContainer).didRemovePackage(this);
+			}
+			else if (eContainer instanceof PackageImpl) {
+				((PackageImpl)eContainer).didRemovePackage(this);
+			}
+		}
+		super.setName(newName);
+		if ((newName != null) && !newName.equals(oldName)) {
+			if (eContainer instanceof RootImpl) {
+				((RootImpl)eContainer).didAddPackage(this);
+			}
+			else if (eContainer instanceof PackageImpl) {
+				((PackageImpl)eContainer).didAddPackage(this);
+			}
+		}
+	}
+	
 	public void setPackageId(@NonNull PackageId packageId) {
 		assert this.packageId == null;
 		this.packageId = packageId;
 	}
 
-	private boolean ignoreInvariants = false;		// FIXME Model this (used to suppress bad OMG UML 2.5 invariants)
-	
-	public void setIgnoreInvariants(boolean ignoreInvariants) {
-		this.ignoreInvariants = ignoreInvariants;
-	}
-	
-	public boolean isIgnoreInvariants() {
-		return ignoreInvariants;
+	public void setURI(String newURI) {
+		setURIGen(newURI);
+		if ((packageId == null) && (newURI != null)) {
+			setPackageId(IdManager.getPackageId(this));
+		}
 	}
 
-	public void getCompletePackageListenener() {
-		// TODO Auto-generated method stub
-		
+	@Override
+	public String toString() {
+		return super.toString();
 	}
 } //PackageImpl

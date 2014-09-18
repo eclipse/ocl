@@ -43,18 +43,15 @@ public class FinalAnalysis
 		this.metaModelManager = completeModel.getMetaModelManager();
 		for (CompletePackage completePackage :  completeModel.getAllCompletePackages()) {
 			for (CompleteClass completeClass :  completePackage.getOwnedCompleteClasses()) {
-				TypeServer typeServer = completeClass.getTypeServer();
-				if (typeServer != null) {
-					org.eclipse.ocl.examples.pivot.Class subType = typeServer.getPivotType();
-					DomainInheritance subInheritance = subType.getInheritance(metaModelManager);
-					for (DomainInheritance superType : typeServer.getAllSuperClasses()) {
-						Set<DomainInheritance> subInheritances = type2subTypes.get(superType);
-						if (subInheritances == null) {
-							subInheritances = new HashSet<DomainInheritance>();
-							type2subTypes.put(superType, subInheritances);
-						}
-						subInheritances.add(subInheritance);
+				org.eclipse.ocl.examples.pivot.Class subType = completeClass.getPivotClass();
+				DomainInheritance subInheritance = subType.getInheritance(metaModelManager);
+				for (DomainInheritance superType : completeClass.getAllSuperClasses()) {
+					Set<DomainInheritance> subInheritances = type2subTypes.get(superType);
+					if (subInheritances == null) {
+						subInheritances = new HashSet<DomainInheritance>();
+						type2subTypes.put(superType, subInheritances);
 					}
+					subInheritances.add(subInheritance);
 				}
 			}
 		}

@@ -85,9 +85,9 @@ public class ImportCSAttribution extends AbstractAttribution implements Unresolv
 				return;
 			}
 			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-			CompletePackage packageServer = metaModelManager.getCompleteModel().getCompletePackageByURI(name);
-			if (packageServer != null) {
-				importedElement = packageServer.getPivotPackage();
+			CompletePackage completePackage = metaModelManager.getCompleteModel().getCompletePackageByURI(name);
+			if (completePackage != null) {
+				importedElement = completePackage.getPivotPackage();
 				throwable = null;
 				return;
 			}

@@ -23,13 +23,13 @@ import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
-import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.internal.impl.CompleteClassImpl;
 
 /**
  * An TemplateableTypeServer supports one or more merged types as the source for operations, properties or superclasses
@@ -47,12 +47,12 @@ public class TemplateableTypeServer extends ExtensibleTypeServer
 	//
 	private @Nullable /*WeakHash*/Map<DomainTypeParameters, WeakReference<org.eclipse.ocl.examples.pivot.Class>> specializations = null;
 
-	public TemplateableTypeServer(@NonNull CompleteClass completeClass, @NonNull DomainClass domainType) {
+	public TemplateableTypeServer(@NonNull CompleteClassImpl completeClass, @NonNull DomainClass domainType) {
 		super(completeClass, domainType);
 	}
 	
 	protected @NonNull org.eclipse.ocl.examples.pivot.Class createSpecialization(@NonNull DomainTypeParameters templateArguments) {
-		org.eclipse.ocl.examples.pivot.Class unspecializedType = getPivotType();
+		org.eclipse.ocl.examples.pivot.Class unspecializedType = getCompleteClass().getPivotClass();
 		String typeName = unspecializedType.getName();
 		TemplateSignature templateSignature = unspecializedType.getOwnedTemplateSignature();
 		List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
@@ -87,7 +87,7 @@ public class TemplateableTypeServer extends ExtensibleTypeServer
 	}
 
 	public synchronized @Nullable Type findSpecializedType(@NonNull DomainTypeParameters templateArguments) {
-		TemplateSignature templateSignature = getPivotType().getOwnedTemplateSignature();
+		TemplateSignature templateSignature = getCompleteClass().getPivotClass().getOwnedTemplateSignature();
 		List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
 		int iMax = templateParameters.size();
 		if (templateArguments.parametersSize() != iMax) {
@@ -118,7 +118,7 @@ public class TemplateableTypeServer extends ExtensibleTypeServer
 	}
 
 	public synchronized @NonNull org.eclipse.ocl.examples.pivot.Class getSpecializedType(@NonNull DomainTypeParameters templateArguments) {
-		TemplateSignature templateSignature = getPivotType().getOwnedTemplateSignature();
+		TemplateSignature templateSignature = getCompleteClass().getPivotClass().getOwnedTemplateSignature();
 		List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
 		int iMax = templateParameters.size();
 		if (templateArguments.parametersSize() != iMax) {

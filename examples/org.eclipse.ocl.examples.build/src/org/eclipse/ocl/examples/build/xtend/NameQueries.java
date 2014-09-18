@@ -21,12 +21,12 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.generator.AbstractGenModelHelper;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.TypeServer;
 
 public class NameQueries
 {
@@ -119,12 +119,10 @@ public class NameQueries
 //		}
 		if ((elem instanceof CollectionType) && (((CollectionType)elem).getUnspecializedElement() != null)) {
 		}
-		else if (elem instanceof Type) {
+		else if (elem instanceof org.eclipse.ocl.examples.pivot.Class) {
 			if (metaModelManager != null) {
-				TypeServer typeServer = metaModelManager.getCompleteModel().findTypeServer((Type)elem);
-				if (typeServer != null) {
-					elem = typeServer;
-				}
+				CompleteClass completeClass = metaModelManager.getCompleteModel().getCompleteClass((Type)elem);
+				elem = completeClass.getTypeServer();
 			}
 		}
 		String symbol = definedSymbols.get(elem);

@@ -354,7 +354,7 @@ public class ProfileAnalysis
 					metatype2superMetatypeClosure.put(subMetatype, superMetatypeClosure);
 					for (DomainClass asSuperMetatype : metaModelManager.getAllSuperClasses(subMetatype)) {
 						if (asSuperMetatype instanceof TypeServer) {
-							asSuperMetatype = ((TypeServer)asSuperMetatype).getPivotType();
+							asSuperMetatype = ((TypeServer)asSuperMetatype).getCompleteClass().getPivotClass();
 						}
 						if (asSuperMetatype instanceof Type) {
 							superMetatypeClosure.add((Type)asSuperMetatype);
@@ -378,7 +378,7 @@ public class ProfileAnalysis
 				stereotype2superStereotypeClosure.put(subStereotype, superStereotypeClosure);
 				for (DomainClass asSuperStereotype : metaModelManager.getAllSuperClasses(subStereotype)) {
 					if (asSuperStereotype instanceof TypeServer) {
-						asSuperStereotype = ((TypeServer)asSuperStereotype).getPivotType();
+						asSuperStereotype = ((TypeServer)asSuperStereotype).getCompleteClass().getPivotClass();
 					}
 					if (asSuperStereotype instanceof Stereotype) {
 						superStereotypeClosure.add((Stereotype)asSuperStereotype);

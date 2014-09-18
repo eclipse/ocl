@@ -415,17 +415,17 @@ public class EnvironmentView
 	public void addAllStates(@NonNull Type type) {
 		if (accepts(PivotPackage.Literals.STATE)) {
 			assert metaModelManager.isTypeServeable(type);
-			TypeServer typeServer = metaModelManager.getTypeServer(type);
+			CompleteClass completeClass = metaModelManager.getCompleteModel().getCompleteClass(type);
 			String name2 = name;
 			if (name2 != null) {
-				for (State state : typeServer.getAllStates(name2)) {
+				for (State state : completeClass.getAllStates(name2)) {
 					if (state != null) {
 						addNamedElement(state);
 					}
 				}
 			}
 			else {
-				for (State state : typeServer.getAllStates()) {
+				for (State state : completeClass.getAllStates()) {
 					if (state != null) {
 						addNamedElement(state);
 					}
@@ -467,8 +467,22 @@ public class EnvironmentView
 				if (type != null) {
 					addNamedElement(type);
 				}
+				else {
+					completePackage = metaModelManager.getCompleteModel().getPrimitiveCompletePackage();
+					type = completePackage.getMemberType(name2);
+					if (type != null) {
+						addNamedElement(type);
+					}
+				}
 			}
 			else {
+				for (CompleteClass completeClass : completePackage.getOwnedCompleteClasses()) {
+					TypeServer type = completeClass.getTypeServer();
+					if (type != null) {
+						addNamedElement(type);
+					}
+				}
+				completePackage = metaModelManager.getCompleteModel().getPrimitiveCompletePackage();
 				for (CompleteClass completeClass : completePackage.getOwnedCompleteClasses()) {
 					TypeServer type = completeClass.getTypeServer();
 					if (type != null) {
@@ -541,7 +555,7 @@ public class EnvironmentView
 			element = ((PackageServer) element).getPrimaryPackage();		// FIXME lose casts
 		}
 		else*/ if (element instanceof TypeServer) {
-			element = ((TypeServer) element).getPivotType();		// FIXME lose casts
+			element = ((TypeServer) element).getCompleteClass().getPivotClass();		// FIXME lose casts
 		}
 		if ((requiredType != null) && (name != null)) {
 			if (!requiredType.isInstance(element)) {

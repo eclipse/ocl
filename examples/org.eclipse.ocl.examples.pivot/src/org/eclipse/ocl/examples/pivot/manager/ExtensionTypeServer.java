@@ -10,67 +10,16 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.pivot.manager;
 
-import java.util.Map;
-
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.elements.DomainOperation;
-import org.eclipse.ocl.examples.domain.elements.DomainProperty;
-import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
-import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.pivot.internal.impl.CompleteClassImpl;
 
 /**
  * An ExtensionTypeServer supports the type for the extension of a class by a stereotype application.
  */
 public class ExtensionTypeServer extends ExtensibleTypeServer
 {
-	public ExtensionTypeServer(@NonNull CompleteClass completeClass, @NonNull ElementExtension pivotType) {
+	public ExtensionTypeServer(@NonNull CompleteClassImpl completeClass, @NonNull ElementExtension pivotType) {
 		super(completeClass, pivotType);
-	}
-
-	@Override
-	public @NonNull Iterable<? extends DomainOperation> getAllOperations(
-			@Nullable FeatureFilter featureFilter) {
-		// TODO Auto-generated method stub
-		return super.getAllOperations(featureFilter);
-	}
-
-	@Override
-	public @NonNull Iterable<? extends DomainOperation> getAllOperations(
-			@Nullable FeatureFilter featureFilter, @NonNull String name) {
-		// TODO Auto-generated method stub
-		return super.getAllOperations(featureFilter, name);
-	}
-
-	@Override
-	public @NonNull Iterable<? extends DomainProperty> getAllProperties(
-			@Nullable FeatureFilter featureFilter) {
-		// TODO Auto-generated method stub
-		return super.getAllProperties(featureFilter);
-	}
-
-	@Override
-	public @NonNull Iterable<? extends DomainProperty> getAllProperties(
-			@Nullable FeatureFilter featureFilter, @NonNull String name) {
-		// TODO Auto-generated method stub
-		return super.getAllProperties(featureFilter, name);
-	}
-
-	@Override
-	protected @NonNull Map<String, PartialProperties> initMemberProperties() {
-		org.eclipse.ocl.examples.pivot.Class pivotType = getPivotType();
-		if (pivotType instanceof ElementExtension) {
-			Type containingType = PivotUtil.getContainingType(((ElementExtension)pivotType).getBase());
-			if (containingType != null) {
-				TypeServer typeServer = completePackage.getTypeServer(containingType);
-				if (typeServer instanceof AbstractTypeServer) {
-					((AbstractTypeServer)typeServer).initMemberProperties();
-				}
-			}
-		}
-		return super.initMemberProperties();
 	}
 }

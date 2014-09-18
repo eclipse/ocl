@@ -11,34 +11,49 @@
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.Iterator;
+import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainFragment;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.elements.DomainProperty;
+import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
+import org.eclipse.ocl.examples.domain.ids.OperationId;
+import org.eclipse.ocl.examples.pivot.AnyType;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
+import org.eclipse.ocl.examples.pivot.Enumeration;
+import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.PrimitiveType;
+import org.eclipse.ocl.examples.pivot.State;
+import org.eclipse.ocl.examples.pivot.VoidType;
+import org.eclipse.ocl.examples.pivot.internal.complete.PartialClasses;
+import org.eclipse.ocl.examples.pivot.manager.AnyTypeServer;
+import org.eclipse.ocl.examples.pivot.manager.CollectionTypeServer;
+import org.eclipse.ocl.examples.pivot.manager.EnumerationTypeServer;
+import org.eclipse.ocl.examples.pivot.manager.InvalidTypeServer;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.TemplateableTypeServer;
 import org.eclipse.ocl.examples.pivot.manager.TypeServer;
+import org.eclipse.ocl.examples.pivot.manager.VoidTypeServer;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
@@ -59,25 +74,6 @@ import com.google.common.collect.Iterables;
  */
 public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 {
-	/**
-	 * The cached value of the '{@link #getPartialClasses() <em>Partial Classes</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPartialClasses()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<org.eclipse.ocl.examples.pivot.Class> partialClasses;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected CompleteClassImpl()
-	{
-		super();
-	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -310,6 +306,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("null")
 	@Override
 	public boolean eIsSet(int featureID)
 	{
@@ -333,43 +330,131 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 		return eDynamicIsSet(featureID);
 	}
 
+	/**
+	 * The cached value of the '{@link #getPartialClasses() <em>Partial Classes</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPartialClasses()
+	 * @generated NOT
+	 * @ordered
+	 */
+	protected final @NonNull PartialClasses partialClasses;
+
 	protected /*@NonNull*/ TypeServer typeServer;
-	
-	private Set<CompleteClass> superCompleteClasses = null;
+
+	protected CompleteClassImpl()
+	{
+		super();
+		partialClasses = new PartialClasses(this);
+	}
 	
 	@Override
 	public <R> R accept(@NonNull Visitor<R> visitor) {
 		return visitor.visitCompleteClass(this);
 	}
 
-	public @NonNull Set<CompleteClass> computeSuperCompleteClasses() {
-		Set<CompleteClass> superCompleteClasses2 = superCompleteClasses;
-		if (superCompleteClasses2 == null) {
-			MetaModelManager metaModelManager = DomainUtil.nonNullState(getOwningCompletePackage().getCompleteModel()).getMetaModelManager();
-			superCompleteClasses2 = superCompleteClasses = new HashSet<CompleteClass>();
-			for (org.eclipse.ocl.examples.pivot.Class partialClass : getPartialClasses()) {
-				for (org.eclipse.ocl.examples.pivot.Class partialSuperClass : partialClass.getSuperClasses()) {
-					if (partialSuperClass != null) {
-						CompleteClass superCompleteClass = metaModelManager.getCompleteClass(PivotUtil.getUnspecializedTemplateableElement(partialSuperClass));
-						superCompleteClasses2.add(superCompleteClass);
-						superCompleteClasses2.addAll(((CompleteClassImpl) superCompleteClass).computeSuperCompleteClasses());
-					}
-				}
-			}
+	/**
+	 * Eliminate a partialClass from a CompleteClass returning true if the CompleteClass is empty.
+	 */
+	public void didAddClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
+		partialClasses.add(partialClass);
+	}
+
+	/**
+	 * Eliminate a partialClass from a CompleteClass returning true if the CompleteClass is empty.
+	 */
+	public boolean didRemoveClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
+		partialClasses.remove(partialClass);
+		return partialClasses.size() <= 0;
+	}
+
+	public void dispose() {
+		TypeServer savedTypeServer = typeServer;
+		typeServer = null;
+		if (savedTypeServer != null) {
+			savedTypeServer.dispose();
 		}
-		return superCompleteClasses2;
+		partialClasses.dispose();
 	}
 
-	protected void didAddPartialClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
-//		if (name2completeClass != null) {
-//			doRefreshPartialClasses(partialPackage);
-//		}
+	public @NonNull Iterable<? extends DomainOperation> getAllOperations(final @Nullable FeatureFilter featureFilter) {
+		return partialClasses.getAllOperations(featureFilter);
 	}
 
-	protected void didRemovePartialClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
-//		if (name2completeClass != null) {
-//			doRefreshPartialClasses(partialPackage);
-//		}
+	public @NonNull Iterable<? extends DomainOperation> getAllOperations(final @Nullable FeatureFilter featureFilter, @NonNull String name) {
+		return partialClasses.getAllOperations(featureFilter, name);
+	}
+
+	public @NonNull Iterable<? extends DomainProperty> getAllProperties(final @Nullable FeatureFilter featureFilter) {
+		return partialClasses.getAllProperties(featureFilter);
+	}
+
+	public @NonNull Iterable<? extends DomainProperty> getAllProperties(final @Nullable FeatureFilter featureFilter, @NonNull String name) {
+		return partialClasses.getAllProperties(featureFilter, name);
+	}
+
+	public @NonNull Iterable<? extends State> getAllStates() {
+		return partialClasses.getAllStates();
+	}
+
+	public @NonNull Iterable<? extends State> getAllStates(@NonNull String name) {
+		return partialClasses.getAllStates(name);
+	}
+
+	public @NonNull Iterable<? extends DomainInheritance> getAllSuperClasses() {
+		return partialClasses.getAllSuperClasses();
+	}
+
+	public @NonNull Iterable<? extends DomainInheritance> getAllSuperClasses(@NonNull String className) {
+		return partialClasses.getAllSuperClasses(className);
+	}
+	
+	public @NonNull Iterable<CompleteClass> getAllSuperCompleteClasses() {
+		return partialClasses.getAllSuperCompleteClasses();
+	}
+
+	public @NonNull CompleteModelImpl getCompleteModel() {
+		return getOwningCompletePackage().getCompleteModel();
+	}
+
+	public @NonNull Iterable<? extends DomainInheritance> getInitialSuperInheritances() {
+		return partialClasses.getInitialSuperInheritances();
+	}
+
+	public @Nullable DomainOperation getMemberOperation(@NonNull OperationId operationId) {
+		return partialClasses.getMemberOperation(operationId);
+	}
+
+	public @Nullable DomainOperation getMemberOperation(@NonNull DomainOperation operationId) {
+		return partialClasses.getMemberOperation(operationId);
+	}
+	
+	public @NonNull Iterable<String> getMemberOperationNames() {
+		return partialClasses.getMemberOperationNames();
+	}
+	
+	public @NonNull Iterable<DomainOperation> getMemberOperations() {
+		return partialClasses.getMemberOperations();
+	}
+
+	public @Nullable Iterable<DomainProperty> getMemberProperties(@NonNull DomainProperty pivotProperty) {
+		return partialClasses.getMemberProperties(pivotProperty);
+	}
+
+	public @Nullable Iterator<DomainProperty> getMemberProperties(@NonNull String propertyName) {
+		return partialClasses.getMemberProperties(propertyName);
+	}
+
+	public @Nullable DomainProperty getMemberProperty(@NonNull String propertyName) {
+		return partialClasses.getMemberProperty(propertyName);
+	}
+
+	public @NonNull MetaModelManager getMetaModelManager() {
+		return getCompleteModel().getMetaModelManager();
+	}
+
+	public @Nullable Iterable<DomainOperation> getOperationOverloads(@NonNull DomainOperation pivotOperation) {
+		return partialClasses.getOperationOverloads(pivotOperation);
 	}
 
 	/**
@@ -377,53 +462,33 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	@SuppressWarnings("null")
-	public @NonNull List<org.eclipse.ocl.examples.pivot.Class> getPartialClasses()
-	{
-		if (partialClasses == null)
-		{
-			partialClasses = new EObjectResolvingEList<org.eclipse.ocl.examples.pivot.Class>(org.eclipse.ocl.examples.pivot.Class.class, this, PivotPackage.COMPLETE_CLASS__PARTIAL_CLASSES)
-			{
-				private static final long serialVersionUID = 1L;
-
-				@Override
-				protected void didAdd(int index, org.eclipse.ocl.examples.pivot.Class partialClass) {
-					assert partialClass != null;
-					super.didAdd(index, partialClass);
-					didAddPartialClass(partialClass);
-				}
-
-				@Override
-				protected void didRemove(int index, org.eclipse.ocl.examples.pivot.Class partialClass) {
-					assert partialClass != null;
-					didRemovePartialClass(partialClass);
-					super.didRemove(index, partialClass);
-				}
-			};
-		}
+	public @NonNull PartialClasses getPartialClasses() {
 		return partialClasses;
 	}
 
-	public org.eclipse.ocl.examples.pivot.Class getPivotClass() {
-		for (org.eclipse.ocl.examples.pivot.Class partialClass : getPartialClasses()) {
-//			if (partialPackage instanceof org.eclipse.ocl.examples.pivot.Package) {
+	public @NonNull org.eclipse.ocl.examples.pivot.Class getPivotClass() {
+		for (org.eclipse.ocl.examples.pivot.Class partialClass : partialClasses) {
+			if (partialClass != null) {
 				return partialClass;
-//			}
+			}
 		}
-		return null;
+		throw new IllegalStateException();
+	}
+
+	@SuppressWarnings("null")
+	public @NonNull Iterable<? extends DomainClass> getProperSuperClasses() {
+		DomainInheritance inheritance = getTypeServer();
+		return Iterables.transform(inheritance.getAllProperSuperFragments(), new Function<DomainFragment, DomainClass>()
+		{
+			public DomainClass apply(DomainFragment input) {
+				return input.getBaseInheritance();
+			}
+		});
 	}
 	
 	@SuppressWarnings("null")
-	public @NonNull Iterable<CompleteClass> getSuperCompleteClasses() {
-////		if (type.getTemplateBinding().size() > 0) {		// FIXME need lazy specialization
-////		pivotType = PivotUtil.getUnspecializedTemplateableElement(pivotType);
-////		}
-//		if (!libraryLoadInProgress && (asMetamodel == null) && (pivotType == getClassType()))  {
-//			getASMetamodel();
-//		}
-//		return new CompleteClassSuperCompleteClassesIterable(getPartialClasses());
+	public @NonNull Iterable<CompleteClass> getProperSuperCompleteClasses() {
 		DomainInheritance inheritance = getTypeServer();
-//		final MetaModelManager metaModelManager = DomainUtil.nonNullState(getOwningCompletePackage().getCompleteModel()).getMetaModelManager();
 		return Iterables.transform(inheritance.getAllProperSuperFragments(), new Function<DomainFragment, CompleteClass>()
 		{
 			public CompleteClass apply(DomainFragment input) {
@@ -431,8 +496,59 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 			}
 		});
 	}
+	
 
 	public @NonNull TypeServer getTypeServer() {
+		if (typeServer == null) {
+			CompletePackageImpl completePackage = (CompletePackageImpl) getOwningCompletePackage();
+			org.eclipse.ocl.examples.pivot.Class pivotType = getPivotClass();
+//				assert completeClass.eContainer() == this;
+//				if (pivotType instanceof TypeServer) {
+//					((CompleteClassImpl)completeClass).setTypeServer(typeServer1);
+//					return (TypeServer)pivotType;
+//				}
+			assert pivotType.getUnspecializedElement() == null;
+//			Map<String, TypeServer> typeServers2 = completePackage.typeServers;
+//			if (typeServers2 == null) {
+			Map<String, TypeServer> typeServers2 = completePackage.getPartialPackages().initMemberTypes();
+//			}
+			String name = pivotType.getName();
+			if (name == null) {
+				throw new IllegalStateException("Unnamed type");
+			}
+			typeServer = typeServers2.get(name);
+			if (typeServer == null) {
+				if (pivotType instanceof InvalidType) {
+					typeServer = new InvalidTypeServer(this, (InvalidType)pivotType);
+				}
+				else if (pivotType instanceof VoidType) {
+					typeServer = new VoidTypeServer(this, (VoidType)pivotType);
+				}
+				else if (pivotType instanceof AnyType) {
+					typeServer = new AnyTypeServer(this, (AnyType)pivotType);
+				}
+				else if (pivotType instanceof Enumeration) {
+					typeServer = new EnumerationTypeServer(this, (Enumeration)pivotType);
+				}
+				else if (pivotType instanceof CollectionType) {
+					typeServer = new CollectionTypeServer(this, (CollectionType)pivotType);
+				}
+				else if (pivotType instanceof PrimitiveType) {
+					throw new UnsupportedOperationException("PrimitiveType");
+//					typeServer = getCompleteModel().getPrimitiveTypeServer((PrimitiveType)pivotType);
+				}
+//				else if (pivotType instanceof ElementExtension) {
+//					typeServer = new ExtensionTypeServer(this, (ElementExtension)pivotType);
+//				}
+				else {
+					typeServer = new TemplateableTypeServer(this, pivotType);
+				}
+				if (pivotType.getUnspecializedElement() == null) {
+					typeServers2.put(name, typeServer);
+				}
+			}
+//			completePackage.didAddClass(getCompleteClass(), pivotType);
+		}
 		return typeServer;
 	}
 	
@@ -449,24 +565,17 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 		return false;
 	} */
 
-	public void setTypeServer(TypeServer typeServer) {
+	public void setTypeServer(@NonNull TypeServer typeServer) {
+		assert typeServer.getCompleteClass() == this;
 		this.typeServer = typeServer;
 	}
 
 	public void uninstall() {
-		superCompleteClasses = null;
+		TypeServer savedTypeServer = typeServer;
+		typeServer = null;
+		if (savedTypeServer != null) {
+			savedTypeServer.dispose();
+		}
+		partialClasses.dispose();
 	}
-	
-/*	public class CompleteClassSuperCompleteClassesIterable
-			extends CompleteElementIterable<CompleteClass, CompleteClass> {
-
-		public CompleteClassSuperCompleteClassesIterable(@NonNull Iterable<CompleteClass> types) {
-			super(types);
-		}
-
-		@Override
-		protected @NonNull Iterable<CompleteClass> getInnerIterable(@NonNull CompleteClass model) {
-			return DomainUtil.nonNullEMF(model.getSuperCompleteClasses());
-		}
-	} */
 } //CompleteClassImpl

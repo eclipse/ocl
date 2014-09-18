@@ -12,6 +12,8 @@
 package org.eclipse.ocl.examples.xtext.essentialocl.attributes;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -35,10 +37,55 @@ import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCSLeft2Righ
 
 public abstract class AbstractOperationMatcher
 {
+	private static Comparator<Operation> operationComparator = new Comparator<Operation>()
+	{
+		public int compare(Operation o1, Operation o2) {
+			String n1 = o1.getName();
+			String n2 = o2.getName();
+			if (n1 == null) n1 = "";
+			if (n2 == null) n2 = "";
+			int diff = n1.compareTo(n2);
+			if (diff != 0) {
+				return diff;
+			}
+			List<Parameter> ownedParameters1 = o1.getOwnedParameter();
+			List<Parameter> ownedParameters2 = o2.getOwnedParameter();
+			int s1 = ownedParameters1.size();
+			int s2 = ownedParameters2.size();
+			diff = s1 - s2;
+			if (diff != 0) {
+				return diff;
+			}
+			for (int i = 0; i < s1; i++) {
+				Parameter p1 = ownedParameters1.get(i);
+				Parameter p2 = ownedParameters2.get(i);
+				n1 = p1.getName();
+				n2 = p2.getName();
+				if (n1 == null) n1 = "";
+				if (n2 == null) n2 = "";
+				diff = n1.compareTo(n2);
+				if (diff != 0) {
+					return diff;
+				}
+			}
+			for (EObject e1 = o1.eContainer(), e2 = o2.eContainer(); (e1 instanceof NamedElement) && (e2 instanceof NamedElement); e1 = e1.eContainer(), e2 = e2.eContainer()) {
+				n1 = ((NamedElement)e1).getName();
+				n2 = ((NamedElement)e2).getName();
+				if (n1 == null) n1 = "";
+				if (n2 == null) n2 = "";
+				diff = n1.compareTo(n2);
+				if (diff != 0) {
+					return diff;
+				}
+			}
+			return 0;
+		}
+	};
+
 	protected final @NonNull MetaModelManager metaModelManager;
 	protected final @Nullable Type sourceType;
 	protected final @Nullable Type sourceTypeValue;
-	private @Nullable List<EObject> ambiguities = null;
+	private @Nullable List<Operation> ambiguities = null;
 
 	protected AbstractOperationMatcher(@NonNull MetaModelManager metaModelManager, @Nullable Type sourceType, @Nullable Type sourceTypeValue) {
 		this.metaModelManager = metaModelManager;
@@ -153,7 +200,7 @@ public abstract class AbstractOperationMatcher
 		return 0;
 	}
 
-	public @Nullable List<EObject> getAmbiguities() {
+	public @Nullable List<Operation> getAmbiguities() {
 		return ambiguities;
 	}
 
@@ -165,7 +212,7 @@ public abstract class AbstractOperationMatcher
 		ambiguities = null;
 		Operation bestOperation = null;
 		TemplateParameterSubstitutions bestBindings = TemplateParameterSubstitutions.EMPTY;
-		List<EObject> ambiguities2 = ambiguities;
+		List<Operation> ambiguities2 = ambiguities;
 		for (NamedElement namedElement : invocations) {
 			if (namedElement instanceof Operation) {
 				Operation candidateOperation = (Operation)namedElement;
@@ -184,7 +231,7 @@ public abstract class AbstractOperationMatcher
 						}
 						else if (comparison == 0) {
 							if (ambiguities2 == null) {
-								ambiguities = ambiguities2 = new ArrayList<EObject>();
+								ambiguities = ambiguities2 = new ArrayList<Operation>();
 								ambiguities2.add(bestOperation);
 							}
 							ambiguities2.add(candidateOperation);
@@ -192,6 +239,9 @@ public abstract class AbstractOperationMatcher
 					}
 				}
 			}
+		}
+		if (ambiguities2 != null) {
+			Collections.sort(ambiguities2, operationComparator);
 		}
 		return bestOperation;
 	}

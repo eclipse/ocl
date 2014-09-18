@@ -11,15 +11,15 @@
 package org.eclipse.ocl.examples.pivot.manager;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
+import org.eclipse.ocl.examples.pivot.internal.impl.CompleteClassImpl;
 
 /**
  * A PrimitiveTypeServer supports one or more merged primitive types.
  */
 public class PrimitiveTypeServer extends ExtensibleTypeServer
 {
-	public PrimitiveTypeServer(@NonNull CompleteClass completeClass, @NonNull PrimitiveType primitiveType) {
+	public PrimitiveTypeServer(@NonNull CompleteClassImpl completeClass, @NonNull PrimitiveType primitiveType) {
 		super(completeClass, primitiveType);
 	}
 }

@@ -70,6 +70,7 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
+import org.eclipse.ocl.examples.pivot.internal.complete.ClassListeners;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.PivotValidator;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
@@ -487,21 +488,6 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("null")
-	public @NonNull List<Operation> getOwnedOperations()
-	{
-		if (ownedOperations == null)
-		{
-			ownedOperations = new EObjectContainmentWithInverseEList<Operation>(Operation.class, this, PivotPackage.CLASS__OWNED_OPERATIONS, PivotPackage.OPERATION__OWNING_CLASS);
-		}
-		return ownedOperations;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public org.eclipse.ocl.examples.pivot.Package getOwningPackage()
 	{
 		if (eContainerFeatureID() != PivotPackage.CLASS__OWNING_PACKAGE) return null;
@@ -641,21 +627,6 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("null")
-	public @NonNull List<org.eclipse.ocl.examples.pivot.Class> getSuperClasses()
-	{
-		if (superClasses == null)
-		{
-			superClasses = new EObjectResolvingEList<org.eclipse.ocl.examples.pivot.Class>(org.eclipse.ocl.examples.pivot.Class.class, this, PivotPackage.CLASS__SUPER_CLASSES);
-		}
-		return superClasses;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateUniqueInvariantName(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -729,21 +700,6 @@ public class ClassImpl
 		if (newIsInterface) eFlags |= IS_INTERFACE_EFLAG; else eFlags &= ~IS_INTERFACE_EFLAG;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CLASS__IS_INTERFACE, oldIsInterface, newIsInterface));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("null")
-	public @NonNull List<Property> getOwnedProperties()
-	{
-		if (ownedProperties == null)
-		{
-			ownedProperties = new EObjectContainmentWithInverseEList<Property>(Property.class, this, PivotPackage.CLASS__OWNED_PROPERTIES, PivotPackage.PROPERTY__OWNING_CLASS);
-		}
-		return ownedProperties;
 	}
 
 	/**
@@ -1096,34 +1052,20 @@ public class ClassImpl
 		return eDynamicInvoke(operationID, arguments);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public String toString() {
-		return super.toString();
-	}
+	private TypeId typeId = null;
+	private @Nullable ClassListeners<ClassListeners.IClassListener> classListeners = null;
 
 	@Override
 	public <R> R accept(@NonNull Visitor<R> visitor) {
 		return visitor.visitClass(this);
 	}
 
-	private TypeId typeId = null;
-	
-	public @NonNull TypeId getTypeId() {
-		TypeId typeId2 = typeId;
-		if (typeId2 == null) {
-			synchronized (this) {
-				typeId2 = typeId;
-				if (typeId2 == null) {
-					typeId = typeId2 = computeId();
-				}
-			}
+	public synchronized void addClassListener(@NonNull ClassListeners.IClassListener classListener) {
+		ClassListeners<ClassListeners.IClassListener> classListeners2 = classListeners;
+		if (classListeners2 == null) {
+			classListeners2 = classListeners = new ClassListeners<ClassListeners.IClassListener>();
 		}
-		return typeId2;
+		classListeners2.addListener(classListener);
 	}
 	
 	public @NonNull TypeId computeId() {
@@ -1163,16 +1105,141 @@ public class ClassImpl
 		}
 	}
 
+	public @NonNull List<Operation> getOwnedOperations()
+	{
+		EList<Operation> ownedOperations2 = ownedOperations;
+		if (ownedOperations2 == null)
+		{
+			ownedOperations2 = ownedOperations = new EObjectContainmentWithInverseEList<Operation>(Operation.class, this, PivotPackage.CLASS__OWNED_OPERATIONS, PivotPackage.OPERATION__OWNING_CLASS)
+			{
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				public void addUnique(Operation partialOperation) {
+					assert partialOperation != null;
+					super.addUnique(partialOperation);
+					if (classListeners != null) {
+						classListeners.didAddOperation(partialOperation);
+					}
+				}
+
+				@Override
+				public void addUnique(int index, Operation partialOperation) {
+					assert partialOperation != null;
+					super.addUnique(index, partialOperation);
+					if (classListeners != null) {
+						classListeners.didAddOperation(partialOperation);
+					}
+				}
+
+				@Override
+				protected void didRemove(int index, Operation partialOperation) {
+					assert partialOperation != null;
+					if (classListeners != null) {
+						classListeners.didRemoveOperation(partialOperation);
+					}
+				}
+			};
+		}
+		return ownedOperations2;
+	}
+
+	public @NonNull List<Property> getOwnedProperties()
+	{
+		EList<Property> ownedProperties2 = ownedProperties;
+		if (ownedProperties2 == null)
+		{
+			ownedProperties2 = ownedProperties = new EObjectContainmentWithInverseEList<Property>(Property.class, this, PivotPackage.CLASS__OWNED_PROPERTIES, PivotPackage.PROPERTY__OWNING_CLASS)
+			{
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				public void addUnique(Property partialProperty) {
+					assert partialProperty != null;
+					super.addUnique(partialProperty);
+					if (classListeners != null) {
+						classListeners.didAddProperty(partialProperty);
+					}
+				}
+
+				@Override
+				public void addUnique(int index, Property partialProperty) {
+					assert partialProperty != null;
+					super.addUnique(index, partialProperty);
+					if (classListeners != null) {
+						classListeners.didAddProperty(partialProperty);
+					}
+				}
+
+				@Override
+				protected void didRemove(int index, Property partialProperty) {
+					assert partialProperty != null;
+					if (classListeners != null) {
+						classListeners.didRemoveProperty(partialProperty);
+					}
+				}
+			};
+		}
+		return ownedProperties2;
+	}
+
+	public @NonNull List<org.eclipse.ocl.examples.pivot.Class> getSuperClasses()
+	{
+		EList<org.eclipse.ocl.examples.pivot.Class> superClasses2 = superClasses;
+		if (superClasses2 == null)
+		{
+			superClasses2 = superClasses = new EObjectResolvingEList<org.eclipse.ocl.examples.pivot.Class>(org.eclipse.ocl.examples.pivot.Class.class, this, PivotPackage.CLASS__SUPER_CLASSES)
+			{
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				public void addUnique(org.eclipse.ocl.examples.pivot.Class partialClass) {
+					assert partialClass != null;
+					super.addUnique(partialClass);
+					if (classListeners != null) {
+						classListeners.didAddSuperClass(partialClass);
+					}
+				}
+
+				@Override
+				public void addUnique(int index, org.eclipse.ocl.examples.pivot.Class partialClass) {
+					assert partialClass != null;
+					super.addUnique(index, partialClass);
+					if (classListeners != null) {
+						classListeners.didAddSuperClass(partialClass);
+					}
+				}
+
+				@Override
+				protected void didRemove(int index, org.eclipse.ocl.examples.pivot.Class partialClass) {
+					assert partialClass != null;
+					if (classListeners != null) {
+						classListeners.didRemoveSuperClass(partialClass);
+					}
+				}
+			};
+		}
+		return superClasses2;
+	}
+
+	public @NonNull TypeId getTypeId() {
+		TypeId typeId2 = typeId;
+		if (typeId2 == null) {
+			synchronized (this) {
+				typeId2 = typeId;
+				if (typeId2 == null) {
+					typeId = typeId2 = computeId();
+				}
+			}
+		}
+		return typeId2;
+	}
+
 	@Override
 	public @NonNull DomainTypeParameters getTypeParameters() {
 		return TemplateSignatureImpl.getTypeParameters(getOwnedTemplateSignature());
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
 	public TemplateableElement getUnspecializedElement()
 	{
 		if (unspecializedElement == null) {
@@ -1209,6 +1276,13 @@ public class ClassImpl
 		return inheritance.lookupImplementation(standardLibrary, apparentOperation);
 	}
 
+	public synchronized void removeClassListener(@NonNull ClassListeners.IClassListener classListener) {
+		ClassListeners<ClassListeners.IClassListener> classListeners2 = classListeners;
+		if ((classListeners2 != null) && classListeners2.removeListener(classListener)) {
+			classListeners = null;
+		}
+	}
+
 	@Override
 	public void setName(String newName) {
 		String oldName = name;
@@ -1238,5 +1312,10 @@ public class ClassImpl
 			}
 		}
 		return this;
+	}
+
+	@Override
+	public String toString() {
+		return super.toString();
 	}
 } //ClassImpl

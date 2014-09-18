@@ -15,11 +15,11 @@ import java.util.List;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl;
-import org.eclipse.ocl.examples.pivot.manager.TypeServer;
 
 /**
  * <!-- begin-user-doc -->
@@ -101,6 +101,8 @@ public interface CompletePackage extends NamedElement, org.eclipse.ocl.examples.
 	 */
 	CompleteClass getOwnedCompleteClass(String name);
 
+	@NonNull CompleteClass getCompleteClass(@NonNull DomainClass pivotType);
+
 	void init(@NonNull String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId);
 
 	org.eclipse.ocl.examples.pivot.Package getPivotPackage();
@@ -121,12 +123,10 @@ public interface CompletePackage extends NamedElement, org.eclipse.ocl.examples.
 
 	EPackage getEPackage();
 
-	@NonNull TypeServer getTypeServer(DomainType pivotType);
-
 	DomainType getType(String metatypeName);
 
 	@Nullable CompletePackage getOwnedCompletePackage(@Nullable String name);
 
-	@Nullable CompleteModelImpl getCompleteModel();
+	@NonNull CompleteModelImpl getCompleteModel();
 
 } // CompletePackage

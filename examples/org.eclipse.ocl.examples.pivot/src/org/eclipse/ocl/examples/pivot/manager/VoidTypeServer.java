@@ -12,12 +12,12 @@ package org.eclipse.ocl.examples.pivot.manager;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
-import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.VoidType;
+import org.eclipse.ocl.examples.pivot.internal.impl.CompleteClassImpl;
 
 public class VoidTypeServer extends ExtensibleTypeServer
 {
-	public VoidTypeServer(@NonNull CompleteClass completeClass, @NonNull VoidType type) {
+	public VoidTypeServer(@NonNull CompleteClassImpl completeClass, @NonNull VoidType type) {
 		super(completeClass, type);
 	}
 

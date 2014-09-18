@@ -386,4 +386,71 @@ inv CompatibleResultType: type = getSpecializedReferredPropertyType()
 context Element
 def: getValue(stereotype : Type, propertyName : String) : Element[?] = null
 
+/*
+context CompleteModel
+def: allRootPackageURIs = partialRoots.ownedPackages.completeURI->asSet()
+inv: packageURI2completeURI.keys = allRootPackageURIs
+inv: completeURI2packageURIs.keys->forAll(c | completeURI2packageURIs[c]->forAll(p | packageURI2completeURI[p] = c))
+inv: packageURI2completeURI.keys->forAll(p | completeURI2packageURIs[packageURI2completeURI[p]]->includes(p))
+
+
+
+
+
+
+context CompleteModel
+def: allRootPackages : Set(Package) = partialRoots.ownedPackages->asSet()		// no duplicates anyway
+def: allRootPackageCompleteURIs = allRootPackages.completeURI->asSet()
+inv: name2rootCompletePackage.keys = allRootPackageURIs
+inv: name2rootCompletePackage.values = allRootPackages
+inv: allRootPackageCompleteURIs->forAll(n | name2rootCompletePackage[n].partialPackages = allRootPackages->select(completeURI = n))
+
+
+
+
+
+
+context CompletePackage
+def: allNestedPackages : Set(Package) = partialPackages.ownedPackages->asSet()		// no duplicates anyway
+def: allNestedPackageNames = allNestedPackages.name->asSet()
+inv: name2nestedCompletePackage.keys = allNestedPackageNames
+inv: name2nestedCompletePackage.values = allNestedPackages
+inv: allNestedPackageNames->forAll(n | name2nestedCompletePackage[n].partialPackages = allNestedPackages->select(name = n))
+
+
+
+
+
+
+context NestedCompletePackage
+def: allPackages : Set(Package) = owningCompletePackage.partialPackages.ownedPackages->asSet()		// no duplicates anyway
+def: allPackageNames = allPackages.name->asSet()
+inv: name2completePackage.keys = allPackageNames
+inv: name2completePackage.values = allPackages
+inv: allPackageNames->forAll(n | name2completePackage[n].partialPackages = allPackages->select(name = n))
+
+
+
+
+
+
+context CompleteClass
+def: allClasses : Set(Class) = owningCompletePackage.partialPackages.ownedClasses->asSet()		// no duplicates anyway
+def: allClassNames = allClasses.name->asSet()
+inv: name2completeClass.keys = allClassNames
+inv: name2completeClass.values = allClasses
+inv: allClassNames->forAll(n | name2completeClass[n].partialClasses = allClasses->select(name = n))
+
+
+
+
+
+
+context CompleteModel
+def: allClasses : Set(Class) = partialRoots->closure(ownedPackages).ownedClasses
+inv: allClasses->forAll(c | class2completeClass[c].partialClasses->includes(c))
+inv: allClasses->size() = class2completeClass.values.partialClasses->size()
+inv: allClasses->size() = class2completeClass.values.partialClasses->asSet()->size()
+*/
+
 endpackage

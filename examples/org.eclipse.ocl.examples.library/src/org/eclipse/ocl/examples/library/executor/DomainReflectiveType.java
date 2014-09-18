@@ -80,7 +80,7 @@ public class DomainReflectiveType extends ReflectiveType
 		};
 	}
 
-	public @NonNull List<? extends DomainClass> getSuperClasses() {
+	public @NonNull Iterable<? extends DomainClass> getSuperClasses() {
 		return domainType.getSuperClasses();
 	}
 

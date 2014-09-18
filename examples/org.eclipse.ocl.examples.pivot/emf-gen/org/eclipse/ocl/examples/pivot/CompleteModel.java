@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 
 /**
  * <!-- begin-user-doc -->
@@ -100,6 +101,8 @@ public interface CompleteModel extends NamedElement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Nullable CompletePackage getOwnedCompletePackage(@Nullable String name);
+	@Nullable CompletePackage getOwnedCompletePackage(String name);
+	
+	@NonNull CompleteClass getCompleteClass(@NonNull DomainType partialClass);
 
 } // CompleteModel

@@ -273,7 +273,7 @@ public class OCLstdlib extends ASResourceImpl
 			return theRoot;
 		}
 	
-		private final @NonNull Package orphans = createPackage("$$", "orphanage", "http://www.eclipse.org/ocl/3.1.0/orphanage", null);
+		private final @NonNull Package orphans = createPackage("$$", "orphanage", "http://www.eclipse.org/ocl/0.9.0/orphanage", null);
 		
 		private void installPackages() {
 			root.getOwnedPackages().add(orphans);
