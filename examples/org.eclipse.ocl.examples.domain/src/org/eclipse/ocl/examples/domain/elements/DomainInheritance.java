@@ -13,6 +13,7 @@ package org.eclipse.ocl.examples.domain.elements;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.ids.OperationId;
+import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.utilities.IndexableIterable;
 
 /**
@@ -24,7 +25,7 @@ import org.eclipse.ocl.examples.domain.utilities.IndexableIterable;
  * KnownSubInheritances are also notified of invalidation avoiding the need for an adapting Inheritance
  * to adapt more than its own target class.
  */
-public interface DomainInheritance extends DomainClass
+public interface DomainInheritance extends Nameable
 {
 	public static DomainInheritance[] EMPTY_ARRAY = new DomainInheritance[0];
 	
@@ -66,5 +67,12 @@ public interface DomainInheritance extends DomainClass
 	boolean isSubInheritanceOf(@NonNull DomainInheritance inheritance);
 	boolean isSuperInheritanceOf(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainInheritance inheritance);
 	boolean isUndefined();
+
+	@NonNull DomainOperation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation);
+	/**
+	 * Return the dynamic (overloaded) implementation of the staticOperation applicable to the types managed
+	 * by the given Standard Library.
+	 */
+	@NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation);
 	@Nullable DomainOperation lookupLocalOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull String operationName, DomainInheritance... argumentTypes);
 }

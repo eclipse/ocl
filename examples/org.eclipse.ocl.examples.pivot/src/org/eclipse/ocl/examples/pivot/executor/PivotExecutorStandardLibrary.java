@@ -99,7 +99,7 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 	}
 
 	public DomainType getOclType(@NonNull String typeName) {
-		return PivotTables.PACKAGE.getType(typeName);
+		return PivotTables.PACKAGE.getType(typeName).getType();
 	}
 	
 	@SuppressWarnings("null")

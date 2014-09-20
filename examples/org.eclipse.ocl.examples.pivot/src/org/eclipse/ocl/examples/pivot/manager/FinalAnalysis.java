@@ -101,7 +101,7 @@ public class FinalAnalysis
 		DomainOperation candidate = null;
 		for (DomainOperation override : overrides) {
 			DomainInheritance overrideInheritance = override.getInheritance(metaModelManager);
-			if ((overrideInheritance != null) && overrideInheritance.conformsTo(metaModelManager, domainInheritance)) {
+			if ((overrideInheritance != null) && overrideInheritance.getType().conformsTo(metaModelManager, domainInheritance.getType())) {
 				if (candidate != null) {
 					return null;
 				}

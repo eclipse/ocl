@@ -18,7 +18,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
-import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
@@ -26,7 +25,6 @@ import org.eclipse.ocl.examples.domain.types.AbstractFragment;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.library.executor.ReflectiveInheritance;
 import org.eclipse.ocl.examples.pivot.CompleteClass;
-import org.eclipse.ocl.examples.pivot.CompleteModel;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
@@ -60,18 +58,10 @@ public class CompleteInheritance extends ReflectiveInheritance
 	}
 
 	protected final @NonNull CompleteClass.Internal completeClass;
-	protected final @NonNull CompleteModel.Internal completeModel;
 
-	public CompleteInheritance(@NonNull CompleteClass.Internal completeClass, @NonNull DomainClass domainClass) {
-		this(completeClass, DomainUtil.nonNullModel(completeClass.getOwningCompletePackage().getPivotPackage()), domainClass);
-	}
-	
-	// FIXME allow null package for orphans
-	protected CompleteInheritance(@NonNull CompleteClass.Internal completeClass, @NonNull DomainPackage domainPackage, @NonNull DomainClass domainClass) {
-		super(DomainUtil.nonNullModel(domainClass.getName()), domainPackage, computeFlags(domainClass));
+	public CompleteInheritance(@NonNull CompleteClass.Internal completeClass) {
+		super(DomainUtil.nonNullModel(completeClass.getName()), computeFlags(completeClass.getPivotClass()));
 		this.completeClass = completeClass;
-		this.completeModel = completeClass.getCompleteModel();
-		completeClass.setCompleteInheritance(this);
 	}
 
 	@Override
@@ -116,7 +106,6 @@ public class CompleteInheritance extends ReflectiveInheritance
 		return completeClass.getProperSuperClasses();
 	}
 	
-	@Override
 	public @NonNull DomainClass getType() {
 		return getCompleteClass().getPivotClass();
 	}
@@ -128,6 +117,11 @@ public class CompleteInheritance extends ReflectiveInheritance
 
 	public @NonNull DomainTypeParameters getTypeParameters() {
 		return DomainTypeParameters.EMPTY_LIST;
+	}
+
+	@Override
+	public String toString() {
+		return completeClass.getPivotClass().toString();	
 	}
 
 	@Override

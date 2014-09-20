@@ -112,6 +112,7 @@ public interface CompleteClass extends NamedElement
 	public interface Internal extends CompleteClass
 	{
 		void didAddClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass);
+		@NonNull CompleteInheritance createCompleteInheritance();
 		boolean didRemoveClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass);
 		void dispose();
 		void uninstall();
@@ -121,6 +122,5 @@ public interface CompleteClass extends NamedElement
 		CompletePackage.Internal getOwningCompletePackage();
 		@NonNull PartialClasses getPartialClasses();
 		@NonNull Iterable<? extends DomainClass> getProperSuperClasses();
-		void setCompleteInheritance(@NonNull CompleteInheritance completeInheritance);
 	}
 } // CompleteClass

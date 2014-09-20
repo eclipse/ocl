@@ -548,6 +548,7 @@ public class EnvironmentView
 			element = ((PackageServer) element).getPrimaryPackage();		// FIXME lose casts
 		}
 		else*/ if (element instanceof CompleteInheritance) {
+			assert false;
 			element = ((CompleteInheritance) element).getCompleteClass().getPivotClass();		// FIXME lose casts
 		}
 		if ((requiredType != null) && (name != null)) {

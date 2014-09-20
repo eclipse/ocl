@@ -16,7 +16,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.pivot.ParentCompletePackage;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.internal.complete.ParentPackageCompleteClasses;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -62,21 +61,10 @@ public class ParentCompletePackageImpl extends RootCompletePackageImpl implement
 	public @NonNull PackageId getMetapackageId() {
 		return metapackageId;
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
+	
 	@Override
-	public @NonNull ParentPackageCompleteClasses getOwnedCompleteClasses()
-	{
-		ParentPackageCompleteClasses ownedCompleteClasses2 = (ParentPackageCompleteClasses) ownedCompleteClasses;
-		if (ownedCompleteClasses2 == null)
-		{
-			ownedCompleteClasses = ownedCompleteClasses2 = new ParentPackageCompleteClasses(this);
-		}
-		return ownedCompleteClasses2;
+	public boolean hasNestedClasses() {
+		return true;
 	}
 
 	public void init(@NonNull String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId, @NonNull PackageId metapackageId) {

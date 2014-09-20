@@ -10,8 +10,6 @@
  */
 package org.eclipse.ocl.examples.pivot;
 
-import org.eclipse.jdt.annotation.NonNull;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -24,8 +22,5 @@ import org.eclipse.jdt.annotation.NonNull;
  */
 public interface PrimitiveCompletePackage extends RootCompletePackage
 {
-	public interface Internal extends PrimitiveCompletePackage, RootCompletePackage.Internal
-	{
-		@NonNull CompleteClass.Internal getCompleteClass(@NonNull PrimitiveType pivotType);
-	}
+	public interface Internal extends PrimitiveCompletePackage, RootCompletePackage.Internal {}
 } // PrimitiveCompletePackage

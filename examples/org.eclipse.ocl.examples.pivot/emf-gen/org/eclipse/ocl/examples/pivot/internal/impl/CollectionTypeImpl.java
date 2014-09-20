@@ -591,17 +591,18 @@ public class CollectionTypeImpl
 		DomainInheritance thisInheritance = this.getInheritance(standardLibrary);
 		DomainInheritance thatInheritance = type.getInheritance(standardLibrary);
 		DomainInheritance commonInheritance = thisInheritance.getCommonInheritance(thatInheritance);
+		DomainClass commonType = commonInheritance.getType();
 		if (type instanceof DomainCollectionType) {
 			DomainType thisElementType = this.getElementType();
 			DomainType thatElementType = DomainUtil.nonNullEMF(((DomainCollectionType)type).getElementType());
 			DomainType commonElementType = thisElementType.getCommonType(idResolver, thatElementType);
 			if (commonInheritance instanceof CompleteInheritance) {
-				DomainCollectionType commonCollectionType = (DomainCollectionType)commonInheritance.getType();
+				DomainCollectionType commonCollectionType = (DomainCollectionType)commonType;
 				return standardLibrary.getCollectionType(commonCollectionType, commonElementType, null, null);
 			}
 			else {
-				if (commonInheritance.isOrdered()) {
-					if (commonInheritance.isUnique()) {
+				if (commonType.isOrdered()) {
+					if (commonType.isUnique()) {
 						return standardLibrary.getOrderedSetType(commonElementType, null, null);
 					}
 					else {
@@ -609,7 +610,7 @@ public class CollectionTypeImpl
 					}
 				}
 				else {
-					if (commonInheritance.isUnique()) {
+					if (commonType.isUnique()) {
 						return standardLibrary.getSetType(commonElementType, null, null);
 					}
 					else {
@@ -619,7 +620,7 @@ public class CollectionTypeImpl
 			}
 		}
 		else {
-			return commonInheritance;
+			return commonType;
 		}
 	}
 

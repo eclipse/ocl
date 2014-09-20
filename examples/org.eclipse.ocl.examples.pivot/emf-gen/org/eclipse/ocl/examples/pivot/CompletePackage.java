@@ -20,6 +20,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.pivot.internal.complete.PartialPackages;
+import org.eclipse.ocl.examples.pivot.manager.CompleteInheritance;
 
 /**
  * <!-- begin-user-doc -->
@@ -130,12 +131,14 @@ public interface CompletePackage extends NamedElement, org.eclipse.ocl.examples.
 	
 	public interface Internal extends CompletePackage
 	{
+		@NonNull CompleteInheritance createCompleteInheritance(@NonNull CompleteClass.Internal completeClass);
 		@NonNull CompleteClass.Internal getCompleteClass(@NonNull DomainClass pivotType);
 		@NonNull CompleteModel.Internal getCompleteModel();
 		void dispose();
 		CompleteClass.Internal getOwnedCompleteClass(String name);
 		@Nullable CompletePackage.Internal getOwnedCompletePackage(@Nullable String name);
 		@NonNull PartialPackages getPartialPackages();
-		void init(@NonNull String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId);
+		boolean hasNestedClasses();
+		void init(String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId);
 	}
 } // CompletePackage

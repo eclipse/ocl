@@ -34,12 +34,14 @@ import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.NestedCompletePackage;
+import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.RootCompletePackage;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.internal.complete.AbstractCompleteClasses;
+import org.eclipse.ocl.examples.pivot.internal.complete.CompleteClasses;
 import org.eclipse.ocl.examples.pivot.internal.complete.NestedCompletePackages;
 import org.eclipse.ocl.examples.pivot.internal.complete.PartialPackages;
+import org.eclipse.ocl.examples.pivot.manager.CompleteInheritance;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 import com.google.common.base.Function;
@@ -301,7 +303,7 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 	 * @generated NOT
 	 * @ordered
 	 */
-	protected @Nullable AbstractCompleteClasses ownedCompleteClasses;
+	protected @Nullable CompleteClasses ownedCompleteClasses;
 	/**
 	 * The cached value of the '{@link #getOwnedCompletePackages() <em>Owned Complete Packages</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -343,6 +345,11 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 		String typeBasedNsURI = pivotPackage.getURI();
 		String serverBasedNsURI = getURI();
 		assert (typeBasedNsURI == serverBasedNsURI) || typeBasedNsURI.equals(serverBasedNsURI);
+	}
+
+	public @NonNull CompleteInheritance createCompleteInheritance(@NonNull CompleteClass.Internal completeClass) {
+		assert this != getCompleteModel().getOrphanCompletePackage();		// OrphanCompletePackage overrides
+		return getPartialPackages().createCompleteInheritance(completeClass);
 	}
 
 	protected void didAddNestedPackage(@NonNull CompleteModel completeModel, @NonNull org.eclipse.ocl.examples.pivot.Package pivotPackage) {
@@ -454,7 +461,20 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 		return getOwnedCompletePackages().getOwnedCompletePackage(name);
 	}
 
-	public abstract @NonNull AbstractCompleteClasses getOwnedCompleteClasses();
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public @NonNull CompleteClasses getOwnedCompleteClasses()
+	{
+		CompleteClasses ownedCompleteClasses2 = ownedCompleteClasses;
+		if (ownedCompleteClasses2 == null)
+		{
+			ownedCompleteClasses = ownedCompleteClasses2 = new CompleteClasses(this);
+		}
+		return ownedCompleteClasses2;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -475,13 +495,16 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 		return partialPackages;
 	}
 
-	public @NonNull org.eclipse.ocl.examples.pivot.Package getPivotPackage() {
+	public final @NonNull org.eclipse.ocl.examples.pivot.Package getPivotPackage() {
 		for (org.eclipse.ocl.examples.pivot.Package partialPackage : getPartialPackages()) {
-//			if (partialPackage instanceof org.eclipse.ocl.examples.pivot.Package) {
+			if (partialPackage != null) {
 				return partialPackage;
-//			}
+			}
 		}
-		return getCompleteModel().getMetaModelManager().getOclAnyType().getOwningPackage();
+//		assert false;
+		// If there are no pivot packages (e.g. for an orphan) return the metamodel to avoid an NPE constructing a CompleteInheritance
+		Package partialPackage = getCompleteModel().getMetaModelManager().getOclAnyType().getOwningPackage();
+		return DomainUtil.nonNullState(partialPackage);
 	}
 
 	public RootCompletePackage getRootCompletePackage() {
@@ -501,8 +524,12 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 	public String getURI() {
 		return nsURI;
 	}
+	
+	public boolean hasNestedClasses() {
+		return false;
+	}
 
-	public void init(@NonNull String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId) {
+	public void init(String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId) {
 		setName(name);
 		this.nsPrefix = nsPrefix;
 		this.nsURI = nsURI;

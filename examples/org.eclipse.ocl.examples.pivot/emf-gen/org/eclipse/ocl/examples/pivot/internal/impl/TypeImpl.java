@@ -360,7 +360,7 @@ public abstract class TypeImpl
 		DomainStandardLibrary standardLibrary = idResolver.getStandardLibrary();
 		DomainInheritance thisInheritance = this.getInheritance(standardLibrary);
 		DomainInheritance thatInheritance = type.getInheritance(standardLibrary);
-		return thisInheritance.getCommonInheritance(thatInheritance);
+		return thisInheritance.getCommonInheritance(thatInheritance).getType();
 	}
 
 	public @NonNull String getMetaTypeName() {

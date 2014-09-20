@@ -32,8 +32,9 @@ public class EnumerationInheritance extends CompleteInheritance implements Domai
 {
 	private Map<String, DomainEnumerationLiteral> literals = new HashMap<String, DomainEnumerationLiteral>();
 	
-	public EnumerationInheritance(@NonNull CompleteClass.Internal completeClass, @NonNull Enumeration type) {
-		super(completeClass, type);
+	public EnumerationInheritance(@NonNull CompleteClass.Internal completeClass) {
+		super(completeClass);
+		@NonNull Enumeration type = (Enumeration) completeClass.getPivotClass();
 		int index = 0;
 		EObject eTarget = type.getETarget();
 		if (eTarget instanceof EEnum) {

@@ -46,9 +46,9 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.Orphanage;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 
-public abstract class AbstractCompleteClasses extends EObjectContainmentWithInverseEList<CompleteClass>
+public class CompleteClasses extends EObjectContainmentWithInverseEList<CompleteClass>
 {
-	private static final Logger logger = Logger.getLogger(AbstractCompleteClasses.class);
+	private static final Logger logger = Logger.getLogger(CompleteClasses.class);
 
 	public static final @NonNull TracingOption COMPLETE_CLASSES = new TracingOption(PivotPlugin.PLUGIN_ID, "completeClasses");
 //	static { COMPLETE_CLASSES.setState(true); }
@@ -157,7 +157,7 @@ public abstract class AbstractCompleteClasses extends EObjectContainmentWithInve
 	
 	protected @Nullable Map<String, CompleteClass.Internal> name2completeClass = null;
 
-	public AbstractCompleteClasses(@NonNull CompletePackageImpl owner) {
+	public CompleteClasses(@NonNull CompletePackageImpl owner) {
 		super(CompleteClass.class, owner, PivotPackage.COMPLETE_PACKAGE__OWNED_COMPLETE_CLASSES, PivotPackage.COMPLETE_CLASS__OWNING_COMPLETE_PACKAGE);
 		if (COMPLETE_CLASSES.isActive()) {
 			COMPLETE_CLASSES.println("Create " + this);
@@ -243,6 +243,9 @@ public abstract class AbstractCompleteClasses extends EObjectContainmentWithInve
 	}
 	
 	protected void doRefreshPartialClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
+		if (!getCompletePackage().hasNestedClasses()) {
+			return;
+		}
 		Map<String, CompleteClass.Internal> name2completeClass2 = name2completeClass;
 		assert name2completeClass2 != null;
 		CompleteModel.Internal completeModel = getCompleteModel();
@@ -251,11 +254,11 @@ public abstract class AbstractCompleteClasses extends EObjectContainmentWithInve
 			CompleteClass.Internal completeClass = null;
 			if (partialClass instanceof PrimitiveType) {
 				PrimitiveCompletePackage.Internal primitiveCompletePackage = completeModel.getPrimitiveCompletePackage();
-				completeClass = primitiveCompletePackage.getCompleteClass((PrimitiveType)partialClass);
+				completeClass = primitiveCompletePackage.getCompleteClass(partialClass);
 			}
 			else if ((partialClass instanceof CollectionType) && (partialClass.getUnspecializedElement() != null)) {
 				OrphanCompletePackage.Internal orphanCompletePackage = completeModel.getOrphanCompletePackage();
-				completeClass = orphanCompletePackage.getCompleteClass((CollectionType)partialClass);
+				completeClass = orphanCompletePackage.getCompleteClass(partialClass);
 			}
 			else if (DomainConstants.METAMODEL_NAME.equals(getCompletePackage().getURI())) {
 				PrimitiveCompletePackage.Internal primitiveCompletePackage = completeModel.getPrimitiveCompletePackage();

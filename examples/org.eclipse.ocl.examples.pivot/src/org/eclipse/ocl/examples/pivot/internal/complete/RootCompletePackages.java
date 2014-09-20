@@ -198,7 +198,7 @@ public class RootCompletePackages extends AbstractCompletePackages<RootCompleteP
 		//
 		//	Try to find package by name, provided there is no packageURI conflict
 		//
-		RootCompletePackage.Internal rootCompletePackage = (RootCompletePackage.Internal) getOwnedCompletePackage(name);
+		RootCompletePackage.Internal rootCompletePackage = getOwnedCompletePackage(name);
 		if (rootCompletePackage != null) {
 			String completeURI2 = rootCompletePackage.getURI();
 			if ((packageURI == null) || (completeURI2 == null) || packageURI.equals(completeURI2)) {

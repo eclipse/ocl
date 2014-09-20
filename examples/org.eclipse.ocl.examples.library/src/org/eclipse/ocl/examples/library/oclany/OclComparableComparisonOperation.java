@@ -41,7 +41,7 @@ public abstract class OclComparableComparisonOperation extends AbstractUntypedBi
 		LibraryBinaryOperation implementation = null;
 		try {
 			if (staticOperation != null) {
-				implementation = (LibraryBinaryOperation) commonType.lookupImplementation(standardLibrary, staticOperation);
+				implementation = (LibraryBinaryOperation) commonType.getType().lookupImplementation(standardLibrary, staticOperation);
 			}
 		} catch (Exception e) {
 			throw new InvalidValueException(e, "No 'compareTo' implementation"); //$NON-NLS-1$

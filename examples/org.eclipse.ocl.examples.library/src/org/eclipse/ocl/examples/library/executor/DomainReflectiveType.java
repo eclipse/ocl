@@ -18,22 +18,24 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
-import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.types.AbstractFragment;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 
-public class DomainReflectiveType extends ReflectiveInheritance
+public class DomainReflectiveType extends ReflectiveInheritance implements DomainClass
 {
-	protected final @NonNull DomainStandardLibrary standardLibrary;
+	protected final @NonNull DomainReflectivePackage evaluationPackage;
+//	protected final @NonNull DomainStandardLibrary standardLibrary;
 	protected final @NonNull DomainClass domainClass;
 	private /*@LazyNonNull*/ DomainProperties allProperties;
 
 	public DomainReflectiveType(@NonNull DomainReflectivePackage evaluationPackage, @NonNull DomainClass domainClass) {
-		super(DomainUtil.nonNullModel(domainClass.getName()), evaluationPackage, computeFlags(domainClass));
-		this.standardLibrary = evaluationPackage.getStandardLibrary();
+		super(DomainUtil.nonNullModel(domainClass.getName()), computeFlags(domainClass));
+		this.evaluationPackage = evaluationPackage;
+//		this.standardLibrary = evaluationPackage.getStandardLibrary();
 		this.domainClass = domainClass;
 	}
 
@@ -55,7 +57,7 @@ public class DomainReflectiveType extends ReflectiveInheritance
 					}
 
 					public DomainInheritance next() {
-						return iterator.next().getInheritance(standardLibrary);
+						return iterator.next().getInheritance(evaluationPackage.getStandardLibrary());
 					}
 
 					public void remove() {
@@ -89,6 +91,15 @@ public class DomainReflectiveType extends ReflectiveInheritance
 	public @NonNull List<? extends DomainProperty> getOwnedProperties() {
 		return domainClass.getOwnedProperties();
 	}
+	
+	@Override
+	public @NonNull DomainPackage getOwningPackage() {
+		return evaluationPackage;
+	}
+
+	public @NonNull DomainClass getType() {
+		return domainClass;
+	}
 
 	@Override
 	public @NonNull TypeId getTypeId() {
@@ -97,5 +108,10 @@ public class DomainReflectiveType extends ReflectiveInheritance
 
 	public @NonNull DomainTypeParameters getTypeParameters() {
 		return domainClass.getTypeParameters();
+	}
+	
+	@Override
+	public String toString() {
+		return String.valueOf(evaluationPackage) + "::" + String.valueOf(name); //$NON-NLS-1$
 	}
 }

@@ -21,6 +21,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.compatibility.UML_4_2.UMLUtil;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
+import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.ids.NsURIPackageId;
 import org.eclipse.ocl.examples.domain.ids.RootPackageId;
@@ -111,6 +112,10 @@ public class PivotIdResolver extends AbstractIdResolver
 		return rootPackage;
 	}
 
+	public @NonNull DomainInheritance getInheritance(@NonNull EClassifier eClassifier) {
+		return metaModelManager.getInheritance(getType(eClassifier));
+	}
+
 	@Override
 	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value) {
 		if (value instanceof org.eclipse.uml2.uml.Element) {
@@ -156,7 +161,6 @@ public class PivotIdResolver extends AbstractIdResolver
 		return tupleManager.getTupleType(this, typeId);
 	}
 
-	@Override
 	public @NonNull org.eclipse.ocl.examples.pivot.Class getType(@NonNull EClassifier eClassifier) {
 		EObject eType = eClassifier;
 		EPackage ePackage = eClassifier.getEPackage();

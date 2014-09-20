@@ -656,7 +656,7 @@ public abstract class AbstractIdResolver implements IdResolver
 			assert eClass != null;
 			DomainClass type = key2type.get(eClass);
 			if (type == null) {
-				type = getType(eClass);
+				type = getInheritance(eClass).getType();
 				assert type != null;
 				key2type.put(eClass, type);
 			}
@@ -781,8 +781,6 @@ public abstract class AbstractIdResolver implements IdResolver
 
 	public abstract @NonNull DomainTupleType getTupleType(@NonNull TupleTypeId typeId);
 
-	public abstract @NonNull DomainClass getType(@NonNull EClassifier eClassifier);
-
 	public @NonNull DomainType getType(@NonNull TypeId typeId, @Nullable Object context) {
 		DomainElement type = typeId.accept(this);
 		assert type != null;
@@ -804,7 +802,7 @@ public abstract class AbstractIdResolver implements IdResolver
 			assert typeKey != null;
 			DomainClass type = key2type.get(typeKey);
 			if (type == null) {
-				type = getType(typeKey);
+				type = getInheritance(typeKey).getType();
 				assert type != null;
 				key2type.put(typeKey, type);
 			}

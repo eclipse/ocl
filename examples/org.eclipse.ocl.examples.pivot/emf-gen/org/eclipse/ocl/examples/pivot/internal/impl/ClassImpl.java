@@ -459,7 +459,8 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<Behavior> getOwnedBehavior()
+	@SuppressWarnings("null")
+	public @NonNull List<Behavior> getOwnedBehavior()
 	{
 		if (ownedBehavior == null)
 		{
@@ -1089,7 +1090,7 @@ public class ClassImpl
 		DomainStandardLibrary standardLibrary = idResolver.getStandardLibrary();
 		DomainInheritance thisInheritance = this.getInheritance(standardLibrary);
 		DomainInheritance thatInheritance = type.getInheritance(standardLibrary);
-		return thisInheritance.getCommonInheritance(thatInheritance);
+		return thisInheritance.getCommonInheritance(thatInheritance).getType();
 	}
 
 	public @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
@@ -1098,7 +1099,7 @@ public class ClassImpl
 
 	public @NonNull DomainClass getNormalizedType(@NonNull DomainStandardLibrary standardLibrary) {
 		try {
-			return getInheritance(standardLibrary);
+			return getInheritance(standardLibrary).getType();
 		}
 		catch (Throwable e) {
 			return this;			// WIP FIXME should never happen

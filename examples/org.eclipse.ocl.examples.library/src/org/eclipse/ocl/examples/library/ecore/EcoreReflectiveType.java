@@ -23,6 +23,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
@@ -32,16 +33,18 @@ import org.eclipse.ocl.examples.library.executor.DomainProperties;
 import org.eclipse.ocl.examples.library.executor.ReflectiveInheritance;
 //import org.eclipse.ocl.examples.domain.types.IdResolver;
 
-public class EcoreReflectiveType extends ReflectiveInheritance
+public class EcoreReflectiveType extends ReflectiveInheritance implements DomainClass
 {
 	@SuppressWarnings("null")
 	public static final @NonNull List<DomainInheritance> EMPTY_INHERITANCES = Collections.emptyList();
+	protected final @NonNull EcoreReflectivePackage evaluationPackage;
 	protected final @NonNull EClassifier eClassifier;
 	protected final @NonNull DomainTypeParameters typeParameters;
 	private /*@LazyNonNull*/ DomainProperties allProperties;
 	
 	public EcoreReflectiveType(@NonNull EcoreReflectivePackage evaluationPackage, int flags, @NonNull EClassifier eClassifier, @NonNull DomainTemplateParameter... typeParameters) {
-		super(DomainUtil.nonNullEMF(eClassifier.getName()), evaluationPackage, flags);
+		super(DomainUtil.nonNullEMF(eClassifier.getName()), flags);
+		this.evaluationPackage = evaluationPackage;
 		this.eClassifier = eClassifier;
 		this.typeParameters = new DomainTypeParameters(typeParameters);
 	}
@@ -96,7 +99,7 @@ public class EcoreReflectiveType extends ReflectiveInheritance
 						public DomainInheritance next() {
 							EClass next = iterator.next();
 							assert next != null;
-							return ((EcoreReflectivePackage)evaluationPackage).getIdResolver().getType(next);
+							return evaluationPackage.getIdResolver().getInheritance(next);
 						}
 
 						public void remove() {
@@ -109,6 +112,11 @@ public class EcoreReflectiveType extends ReflectiveInheritance
 		else {
 			return EMPTY_INHERITANCES;
 		}
+	}
+	
+	@Override
+	public @NonNull DomainPackage getOwningPackage() {
+		return evaluationPackage;
 	}
 
 	public @NonNull List<? extends DomainClass> getSuperClasses() {
@@ -135,7 +143,16 @@ public class EcoreReflectiveType extends ReflectiveInheritance
 		throw new UnsupportedOperationException();		// FIXME
 	}
 
+	public @NonNull DomainClass getType() {
+		return this;
+	}
+
 	public @NonNull DomainTypeParameters getTypeParameters() {
 		return typeParameters;
+	}
+	
+	@Override
+	public String toString() {
+		return String.valueOf(evaluationPackage) + "::" + String.valueOf(name); //$NON-NLS-1$
 	}
 }

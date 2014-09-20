@@ -32,7 +32,6 @@ import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.NestedCompletePackage;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.RootCompletePackage;
-import org.eclipse.ocl.examples.pivot.internal.complete.AbstractCompleteClasses;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -367,21 +366,8 @@ public abstract class RootCompletePackageImpl extends CompletePackageImpl implem
 		}
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public abstract @NonNull AbstractCompleteClasses getOwnedCompleteClasses();
-
 	public DomainCompletePackage getOwningCompletePackage() {
 		return null;
-	}
-
-	public void dispose() {
-		// TODO Auto-generated method stub
-		
 	}
 
 /*	@Override

@@ -32,9 +32,7 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.internal.complete.OrphanPackageCompleteClasses;
 import org.eclipse.ocl.examples.pivot.manager.CompleteInheritance;
-import org.eclipse.ocl.examples.pivot.manager.OrphanInheritance;
 import org.eclipse.ocl.examples.pivot.manager.Orphanage;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -65,25 +63,16 @@ public class OrphanCompletePackageImpl extends RootCompletePackageImpl implement
 	private static class OrphanCompleteClassImpl extends CompleteClassImpl
 	{
 		private final @NonNull OrphanCompletePackage.Internal orphanCompletePackage;
-		private final @NonNull org.eclipse.ocl.examples.pivot.Class orphanClass;
+//		private final @NonNull org.eclipse.ocl.examples.pivot.Class orphanClass;
 		
 		private OrphanCompleteClassImpl(@NonNull OrphanCompletePackage.Internal orphanCompletePackage, @NonNull org.eclipse.ocl.examples.pivot.Class orphanClass) {
 			this.orphanCompletePackage = orphanCompletePackage;
-			this.orphanClass = orphanClass;
+//			this.orphanClass = orphanClass;
 		}
 		
 		@Override
 		public OrphanCompletePackage.Internal getOwningCompletePackage() {
 			return orphanCompletePackage;
-		}
-		
-		@Override
-		public @NonNull CompleteInheritance getCompleteInheritance() {
-			CompleteInheritance typeServer2 = completeInheritance;
-			if (typeServer2 == null) {
-				completeInheritance = typeServer2 = new OrphanInheritance(this, orphanClass);
-			}
-			return typeServer2;
 		}
 	}
 	
@@ -107,6 +96,11 @@ public class OrphanCompletePackageImpl extends RootCompletePackageImpl implement
 		DomainPackage parentPackage = domainPackage.getOwningPackage();
 		assert parentPackage == null;
 		assert Orphanage.isTypeOrphanage(domainPackage);
+	}
+
+	@Override
+	public @NonNull CompleteInheritance createCompleteInheritance(@NonNull CompleteClass.Internal completeClass) {
+		return new CompleteInheritance(completeClass);
 	}
 
 	public @NonNull <T extends CollectionType> T getCollectionType(@NonNull T containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
@@ -148,22 +142,6 @@ public class OrphanCompletePackageImpl extends RootCompletePackageImpl implement
 	
 	public @NonNull PackageId getMetapackageId() {
 		return IdManager.METAMODEL;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public @NonNull OrphanPackageCompleteClasses getOwnedCompleteClasses()
-	{
-		OrphanPackageCompleteClasses ownedCompleteClasses2 = (OrphanPackageCompleteClasses) ownedCompleteClasses;
-		if (ownedCompleteClasses2 == null)
-		{
-			ownedCompleteClasses = ownedCompleteClasses2 = new OrphanPackageCompleteClasses(this);
-		}
-		return ownedCompleteClasses2;
 	}
 
 	@Override

@@ -204,13 +204,13 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 		return nsURI != null ? weakGet(ePackageMap, nsURI) : null;
 	}
 
-	public synchronized DomainInheritance getOclType(@NonNull String typeName) {
+	public synchronized ExecutorType getOclType(@NonNull String typeName) {
 		for (WeakReference<EcoreExecutorPackage> dPackage : ePackageMap.values()) {
 // FIXME			if (OCLstdlibTables.PACKAGE.getNsURI().equals(dPackage.getNsURI())) {
 			if (dPackage != null) {
 				EcoreExecutorPackage packageRef = dPackage.get();
 				if (packageRef != null) {
-					DomainInheritance type = packageRef.getType(typeName);
+					ExecutorType type = packageRef.getType(typeName);
 					if (type != null) {
 						return type;
 					}

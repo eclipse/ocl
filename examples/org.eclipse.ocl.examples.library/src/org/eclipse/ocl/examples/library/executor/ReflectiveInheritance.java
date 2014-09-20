@@ -22,7 +22,6 @@ import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainFragment;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
-import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.types.AbstractFragment;
 import org.eclipse.ocl.examples.domain.types.AbstractInheritance;
@@ -78,8 +77,8 @@ public abstract class ReflectiveInheritance extends AbstractInheritance
 	 */
 	private Set<ReflectiveInheritance> knownSubInheritances = null;
 
-	public ReflectiveInheritance(@NonNull String name, @NonNull DomainPackage evaluationPackage, int flags, ExecutorTypeParameter... typeParameters) {
-		super(name, evaluationPackage, flags);
+	public ReflectiveInheritance(@NonNull String name, int flags, ExecutorTypeParameter... typeParameters) {
+		super(name, flags);
 	}
 
 	public void addSubInheritance(@NonNull ReflectiveInheritance subInheritance) {
@@ -194,12 +193,8 @@ public abstract class ReflectiveInheritance extends AbstractInheritance
 		return new FragmentIterable(DomainUtil.nonNullState(fragments), indexes[depth], indexes[depth+1]);
 	}
 
-	public @NonNull DomainClass getType() {
-		return this;
-	}
-
 	public @NonNull TypeId getTypeId() {
-		return getOwningPackage().getPackageId().getClassId(name, getTypeParameters().parametersSize());			// FIXME DataTypeId alternative
+		return getOwningPackage().getPackageId().getClassId(name, getType().getTypeParameters().parametersSize());			// FIXME DataTypeId alternative
 	}
 
 	protected synchronized void initialize() {

@@ -137,7 +137,7 @@ public interface Class
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getClass_OwnedBehavior()
 	 * @generated
 	 */
-	List<Behavior> getOwnedBehavior();
+	@NonNull List<Behavior> getOwnedBehavior();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Invariants</b></em>' containment reference list.

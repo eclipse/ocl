@@ -17,7 +17,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
@@ -80,9 +79,9 @@ public class EcoreExecutorPackage extends ExecutorPackage
 
 	@SuppressWarnings("null")
 	@Override
-	public @NonNull List<DomainInheritance> getOwnedClasses() {
+	public @NonNull List<ExecutorType> getOwnedClasses() {
 		if (types != null) {
-			return Lists.<DomainInheritance>newArrayList(types);
+			return Lists.<ExecutorType>newArrayList(types);
 		}
 		else {
 			return Collections.emptyList();
@@ -90,8 +89,8 @@ public class EcoreExecutorPackage extends ExecutorPackage
 	}
 
 	@Override
-	public DomainInheritance getType(String typeName) {
-		for (DomainInheritance type: getOwnedClasses()) {
+	public ExecutorType getType(String typeName) {
+		for (ExecutorType type: getOwnedClasses()) {
 			if (type.getName().equals(typeName)) {
 				return type;
 			}

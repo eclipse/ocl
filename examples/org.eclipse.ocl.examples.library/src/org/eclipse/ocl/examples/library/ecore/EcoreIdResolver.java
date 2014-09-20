@@ -117,28 +117,7 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 		super.dispose();
 	}
 
-	public Notifier getTarget() {
-		return null;
-	}
-
-	@Override
-	public synchronized @NonNull DomainTupleType getTupleType(@NonNull TupleTypeId typeId) {
-		return ((ExecutableStandardLibrary)standardLibrary).getTupleType(typeId);
-	}
-	
-	public @NonNull DomainTupleType getTupleType(DomainTypedElement ... parts) {
-		int iSize = parts.length;
-		List<TuplePartId> partsList = new ArrayList<TuplePartId>(iSize);
-		for (int i = 0; i < iSize; i++) {
-			DomainTypedElement part = parts[i];
-			String partName = DomainUtil.getSafeName(part);
-			partsList.add(IdManager.getTuplePartId(i, partName, part.getTypeId()));
-		}
-		return getTupleType(IdManager.getTupleTypeId(TypeId.TUPLE_NAME, partsList));
-	}
-
-	@Override
-	public synchronized @NonNull DomainInheritance getType(@NonNull EClassifier eClassifier) {
+	public synchronized @NonNull DomainInheritance getInheritance(@NonNull EClassifier eClassifier) {
 		DomainInheritance type = weakGet(typeMap, eClassifier);
 		if (type == null) {
 			EPackage ePackage = eClassifier.getEPackage();
@@ -160,6 +139,30 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 			}
 		}
 		return DomainUtil.nonNullState(type);
+	}
+
+	public Notifier getTarget() {
+		return null;
+	}
+
+	@Override
+	public synchronized @NonNull DomainTupleType getTupleType(@NonNull TupleTypeId typeId) {
+		return ((ExecutableStandardLibrary)standardLibrary).getTupleType(typeId);
+	}
+	
+	public @NonNull DomainTupleType getTupleType(DomainTypedElement ... parts) {
+		int iSize = parts.length;
+		List<TuplePartId> partsList = new ArrayList<TuplePartId>(iSize);
+		for (int i = 0; i < iSize; i++) {
+			DomainTypedElement part = parts[i];
+			String partName = DomainUtil.getSafeName(part);
+			partsList.add(IdManager.getTuplePartId(i, partName, part.getTypeId()));
+		}
+		return getTupleType(IdManager.getTupleTypeId(TypeId.TUPLE_NAME, partsList));
+	}
+
+	public @NonNull DomainClass getType(@NonNull EClassifier eClassifier) {
+		return getInheritance(eClassifier).getType();
 	}
 
 	public boolean isAdapterForType(Object type) {

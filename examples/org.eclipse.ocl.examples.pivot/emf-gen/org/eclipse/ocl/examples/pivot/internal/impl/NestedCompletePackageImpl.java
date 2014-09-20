@@ -28,7 +28,6 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.NestedCompletePackage;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.internal.complete.NestedPackageCompleteClasses;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -346,20 +345,9 @@ public class NestedCompletePackageImpl extends CompletePackageImpl implements Ne
 	public <R> R accept(@NonNull Visitor<R> visitor) {
 		return visitor.visitNestedCompletePackage(this);
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
+	
 	@Override
-	public @NonNull NestedPackageCompleteClasses getOwnedCompleteClasses()
-	{
-		NestedPackageCompleteClasses ownedCompleteClasses2 = (NestedPackageCompleteClasses) ownedCompleteClasses;
-		if (ownedCompleteClasses2 == null)
-		{
-			ownedCompleteClasses = ownedCompleteClasses2 = new NestedPackageCompleteClasses(this);
-		}
-		return ownedCompleteClasses2;
+	public boolean hasNestedClasses() {
+		return true;
 	}
 } //NestedCompletePackageImpl

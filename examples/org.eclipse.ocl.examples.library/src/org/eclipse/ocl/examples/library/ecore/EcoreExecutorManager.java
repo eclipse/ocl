@@ -149,7 +149,7 @@ public class EcoreExecutorManager extends ExecutorManager
 							@Override
 							protected boolean isInstance(@NonNull DomainType type, @NonNull EObject element) {
 								EClass eClass = DomainUtil.nonNullEMF(element.eClass());
-								DomainType elementType = idResolver.getType(eClass);
+								DomainType elementType = idResolver.getInheritance(eClass).getType();
 								return elementType.conformsTo(standardLibrary, type);
 							}
 							

@@ -17,9 +17,9 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainFragment;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.examples.domain.types.AbstractInheritance;
 import org.eclipse.ocl.examples.domain.utilities.ArrayIterable;
@@ -30,7 +30,7 @@ import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
  * An ExecutorType defines a Type using a compact representation suitable for efficient
  * execution and static construction.
  */
-public abstract class ExecutorType extends AbstractInheritance implements DomainType, ExecutorTypeArgument
+public abstract class ExecutorType extends AbstractInheritance implements DomainClass, ExecutorTypeArgument
 {
 	/**
 	 * Depth ordered inheritance fragments. OclAny at depth 0, OclSelf at depth size-1.
@@ -45,11 +45,13 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 	 */
 	private int[] indexes = null;
 	
+	protected final @NonNull DomainPackage evaluationPackage;
 	private final @NonNull DomainTypeParameters typeParameters;
 	private /*@LazyNonNull*/ DomainProperties allProperties;
 	
 	public ExecutorType(@NonNull String name, @NonNull ExecutorPackage evaluationPackage, int flags, @NonNull ExecutorTypeParameter... typeParameters) {
-		super(name, evaluationPackage, flags);
+		super(name, flags);
+		this.evaluationPackage = evaluationPackage;
 		this.typeParameters = new DomainTypeParameters(typeParameters);
 	}
 	
@@ -101,6 +103,11 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 	public @NonNull List<? extends DomainOperation> getOwnedOperations() {
 		return getSelfFragment().getLocalOperations();
 	}
+	
+	@Override
+	public @NonNull DomainPackage getOwningPackage() {
+		return evaluationPackage;
+	}
 
 	public @NonNull ExecutorFragment getSelfFragment() {
 		return DomainUtil.nonNullState(getFragment(fragments.length-1));
@@ -138,5 +145,10 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 		}
 		this.fragments = fragments;
 		this.indexes = indexes;
+	}
+	
+	@Override
+	public String toString() {
+		return String.valueOf(evaluationPackage) + "::" + String.valueOf(name); //$NON-NLS-1$
 	}
 }

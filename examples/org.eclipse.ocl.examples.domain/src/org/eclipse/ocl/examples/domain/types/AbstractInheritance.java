@@ -117,14 +117,12 @@ public abstract class AbstractInheritance implements DomainInheritance
 	public static void initStatics() {}
 	
 	protected final @NonNull String name;
-	protected final @NonNull DomainPackage evaluationPackage;
 	protected final int flags;
 	protected Map<String, DomainOperation> operationMap = null;
 	protected Map<String, DomainProperty> propertyMap = null;
 	
-	public AbstractInheritance(@NonNull String name, @NonNull DomainPackage evaluationPackage, int flags) {
+	public AbstractInheritance(@NonNull String name, int flags) {
 		this.name = name;
-		this.evaluationPackage = evaluationPackage;
 		this.flags = flags;
 	}
 
@@ -194,12 +192,12 @@ public abstract class AbstractInheritance implements DomainInheritance
 	
 	public @NonNull DomainType getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
 		if (this == type) {
-			return this;
+			return this.getType();
 		}
 		DomainInheritance firstInheritance = this;
 		DomainInheritance secondInheritance = type.getInheritance(idResolver.getStandardLibrary());
 		DomainInheritance commonInheritance = firstInheritance.getCommonInheritance(secondInheritance);
-		return commonInheritance;
+		return commonInheritance.getType();
 	}
 
 	public @Nullable DomainFragment getFragment(@NonNull DomainInheritance thatInheritance) {
@@ -229,7 +227,7 @@ public abstract class AbstractInheritance implements DomainInheritance
 	}
 
 	public @NonNull DomainClass getNormalizedType(@NonNull DomainStandardLibrary standardLibrary) {
-		return this;
+		return getType();
 	}
 
 	public @NonNull List<? extends DomainConstraint> getOwnedInvariants() {
@@ -240,20 +238,20 @@ public abstract class AbstractInheritance implements DomainInheritance
 		throw new UnsupportedOperationException();			// FIXME
 	}
 	
-	public final @NonNull DomainPackage getOwningPackage() {
-		return evaluationPackage;
+	public @NonNull DomainPackage getOwningPackage() {
+		throw new UnsupportedOperationException();
 	}
 
 	public @NonNull DomainClass isClass() {
-		return this;
+		return this.getType();
 	}
 
 	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
-		return this == type;
+		return getType() == type;
 	}
 
 	public boolean isEqualToUnspecializedType(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
-		return this == type;
+		return getType() == type;
 	}
 
 	public final boolean isInvalid() {
@@ -325,7 +323,7 @@ public abstract class AbstractInheritance implements DomainInheritance
 	}
 
 	public @Nullable DomainOperation lookupLocalOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull String operationName, DomainInheritance... argumentTypes) {
-		for (DomainOperation localOperation : getOwnedOperations()) {
+		for (DomainOperation localOperation : getType().getOwnedOperations()) {
 			if (localOperation.getName().equals(operationName)) {
 				ParametersId firstParametersId = localOperation.getParametersId();
 				int iMax = firstParametersId.size();
@@ -333,8 +331,8 @@ public abstract class AbstractInheritance implements DomainInheritance
 					int i = 0;
 					for (; i < iMax; i++) {
 						TypeId firstParameterId = firstParametersId.get(i);
-						DomainType secondParameterType = argumentTypes[i];
-						if ((secondParameterType == null) || (firstParameterId != secondParameterType.getTypeId())) {
+						@NonNull DomainType secondParameterType = argumentTypes[i].getType();
+						if (firstParameterId != secondParameterType.getTypeId()) {
 							break;
 						}
 					}
@@ -351,21 +349,16 @@ public abstract class AbstractInheritance implements DomainInheritance
 		if (!(thatValue instanceof DomainType)) {
 			return false;
 		}
-		TypeId thisTypeId = getTypeId();
+		TypeId thisTypeId = getType().getTypeId();
 		TypeId thatTypeId = ((DomainType)thatValue).getTypeId();
 		return thisTypeId.equals(thatTypeId);
 	}
 
 	public int oclHashCode() {
-		return getTypeId().hashCode();
+		return getType().getTypeId().hashCode();
 	}
 
 	public DomainType specializeIn(@NonNull DomainCallExp expr, DomainType selfType) {
 		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
-	}
-
-	@Override
-	public String toString() {
-		return String.valueOf(evaluationPackage) + "::" + String.valueOf(name); //$NON-NLS-1$
 	}
 }

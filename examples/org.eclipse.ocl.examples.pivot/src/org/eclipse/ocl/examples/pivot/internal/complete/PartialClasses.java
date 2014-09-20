@@ -132,6 +132,8 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 	 */
 	private @Nullable Map<String, State> name2states = null;
 
+	protected /*@NonNull*/ CompleteInheritance completeInheritance;
+
 	/**
 	 * Map from actual types to specialization.
 	 * <br>
@@ -158,10 +160,6 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 		assert partialClass != null;
 		didAdd(partialClass);
 		super.addUnique(index, partialClass);
-	}
-
-	private @Nullable DomainInheritance basicGetTypeServer() {
-		return getCompleteClass().basicGetTypeServer();
 	}
 
 	public @NonNull Set<CompleteClass> computeSuperCompleteClasses() {
@@ -316,9 +314,8 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 	}
 
 	public void didAddSuperClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
-		DomainInheritance typeServer = basicGetTypeServer();
-		if (typeServer instanceof CompleteInheritance) {
-			((CompleteInheritance)typeServer).uninstall();
+		if (completeInheritance != null) {
+			completeInheritance.uninstall();
 		}
 	}
 
@@ -349,10 +346,13 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 	}
 
 	public void didRemoveSuperClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
-		getCompleteClass().getCompleteInheritance().uninstall();
+		if (completeInheritance != null) {
+			completeInheritance.uninstall();
+		}
 	}
 
 	public void dispose() {
+		completeInheritance = null;
 		Map<String, PartialOperations> name2partialOperations2 = name2partialOperations;
 		if (name2partialOperations2 != null) {
 			name2partialOperations2.clear();
@@ -431,8 +431,18 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 	}
 
 	@SuppressWarnings("null")
-	public @NonNull CompleteClassImpl getCompleteClass() {
+	public @NonNull CompleteClass.Internal getCompleteClass() {
 		return (CompleteClassImpl) owner;
+	}
+
+	public final @NonNull CompleteInheritance getCompleteInheritance() {
+		CompleteInheritance completeInheritance2 = completeInheritance;
+		if (completeInheritance2 == null) {
+			CompleteClass.Internal completeClass = getCompleteClass();
+			completeInheritance2 = completeClass.createCompleteInheritance();
+			completeInheritance = completeInheritance2;
+		}
+		return completeInheritance2;
 	}
 
 	public @NonNull CompleteModel.Internal getCompleteModel() {
@@ -958,7 +968,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 		return name2superclasses2;
 	} */
 
-	protected Map<String, List<String>> initSuperClassesWithAmbiguousNames(Map<String, DomainInheritance> name2superclasses2, Map<String, List<String>> name2qualifiedNames2) {
+/*	protected Map<String, List<String>> initSuperClassesWithAmbiguousNames(Map<String, DomainInheritance> name2superclasses2, Map<String, List<String>> name2qualifiedNames2) {
 		int counter = 0;
 		for (DomainFragment fragment : getCompleteClass().getCompleteInheritance().getFragments()) {
 			DomainInheritance baseInheritance = fragment.getBaseInheritance();
@@ -973,5 +983,5 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 			names.add(name);
 		}
 		return name2qualifiedNames2;
-	}
+	} */
 }

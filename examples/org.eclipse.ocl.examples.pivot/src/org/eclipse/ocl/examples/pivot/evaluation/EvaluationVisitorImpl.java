@@ -185,7 +185,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 
 	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainClass dynamicType, @NonNull DomainOperation staticOperation) {
 		DomainInheritance inheritance = metaModelManager.getInheritance(dynamicType);
-		return inheritance.lookupImplementation(metaModelManager, staticOperation);
+		return inheritance.getType().lookupImplementation(metaModelManager, staticOperation);
 	}
 
 	@Override

@@ -507,7 +507,7 @@ public class TemplateParameterImpl
 
 	public @NonNull DomainClass getNormalizedType(@NonNull DomainStandardLibrary standardLibrary) {
 		try {
-			return getInheritance(standardLibrary);
+			return getInheritance(standardLibrary).getType();
 		}
 		catch (Throwable e) {
 			return standardLibrary.getOclAnyType();			// WIP FIXME should never happen

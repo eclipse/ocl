@@ -56,7 +56,7 @@ public abstract class AbstractExecutorProperty implements DomainProperty
 	}
 
 	public @NonNull DomainType getType() {
-		return executorType;
+		return executorType.getType();
 	}
 
 	public @NonNull TypeId getTypeId() {

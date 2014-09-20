@@ -15,18 +15,18 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
-import org.eclipse.ocl.examples.domain.elements.DomainClass;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.CompleteModel;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
+import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.NestedCompletePackage;
 import org.eclipse.ocl.examples.pivot.Package;
-import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.internal.impl.CompletePackageImpl;
 import org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl;
 import org.eclipse.ocl.examples.pivot.manager.CompleteInheritance;
+import org.eclipse.ocl.examples.pivot.manager.EnumerationInheritance;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 
 import com.google.common.base.Function;
@@ -52,9 +52,9 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 	private Map<String, NestedCompletePackage> name2nestedCompletePackage = null;
 	
 	/**
-	 * Lazily created map of nested class-name to multi-class server.
+	 * Lazily created map of nested class-name to its inheritance.
 	 */
-	private @Nullable Map<String, CompleteInheritance> typeServers = null;
+	protected final @NonNull Map<String, CompleteInheritance> name2inheritance = new HashMap<String, CompleteInheritance>();
 
 	public PartialPackages(@NonNull CompletePackageImpl owner) {
 		super(org.eclipse.ocl.examples.pivot.Package.class, owner, PivotPackage.COMPLETE_PACKAGE__PARTIAL_PACKAGES);
@@ -72,6 +72,23 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 		assert partialPackage != null;
 		didAdd(partialPackage);
 		super.addUnique(index, partialPackage);
+	}
+
+	public @NonNull CompleteInheritance createCompleteInheritance(@NonNull CompleteClass.Internal completeClass) {
+		String name = completeClass.getName();
+		CompleteInheritance completeInheritance = name2inheritance.get(name);
+		if (completeInheritance == null) {
+			org.eclipse.ocl.examples.pivot.Class pivotClass = completeClass.getPivotClass();
+			assert pivotClass.getUnspecializedElement() == null;
+			if (pivotClass instanceof Enumeration) {
+				completeInheritance = new EnumerationInheritance(completeClass);
+			}
+			else {
+				completeInheritance = new CompleteInheritance(completeClass);
+			}
+			name2inheritance.put(name, completeInheritance);
+		}
+		return completeInheritance;
 	}
 
 	protected void didAdd(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
@@ -161,34 +178,6 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 	@SuppressWarnings("null")
 	public @NonNull CompletePackageImpl getCompletePackage() {
 		return (CompletePackageImpl) owner;
-	}
-	
-	public @NonNull Map<String, CompleteInheritance> initMemberTypes() {
-		Map<String, CompleteInheritance> typeServers2 = typeServers;
-		if (typeServers2 == null) {
-			typeServers2 = typeServers = new HashMap<String, CompleteInheritance>();
-			if (!PivotConstants.ORPHANAGE_URI.equals(getCompletePackage().getURI())) {
-				for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage : this) {
-					initMemberTypes(partialPackage);
-				}
-			}
-		}
-		return typeServers2;
-	}
-
-	private void initMemberTypes(@NonNull org.eclipse.ocl.examples.pivot.Package pivotPackage) {
-		for (DomainClass pivotType : pivotPackage.getOwnedClasses()) {
-			if (pivotType != null) {
-//				addedMemberType(pivotType);
-			}
-		}
-	}
-
-	public void disposedTypeServer(@NonNull CompleteInheritance typeServer) {
-		Map<String, CompleteInheritance> typeServers2 = typeServers;
-		if (typeServers2 != null) {
-			typeServers2.remove(typeServer.getName());
-		}
 	}
 
 	protected @NonNull Iterable<org.eclipse.ocl.examples.pivot.Package> getNestedPartialPackages() {

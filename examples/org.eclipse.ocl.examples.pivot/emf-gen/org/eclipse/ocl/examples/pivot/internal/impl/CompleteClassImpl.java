@@ -11,8 +11,6 @@
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.util.Collection;
-import java.util.Map;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -39,13 +37,11 @@ import org.eclipse.ocl.examples.pivot.CompleteModel;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
-import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.State;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.internal.complete.PartialClasses;
 import org.eclipse.ocl.examples.pivot.manager.CompleteInheritance;
-import org.eclipse.ocl.examples.pivot.manager.EnumerationInheritance;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
@@ -339,8 +335,6 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	 */
 	protected final @NonNull PartialClasses partialClasses;
 
-	protected /*@NonNull*/ CompleteInheritance completeInheritance;
-
 	protected CompleteClassImpl()
 	{
 		super();
@@ -352,12 +346,13 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 		return visitor.visitCompleteClass(this);
 	}
 
-	public @Nullable DomainInheritance basicGetTypeServer() {
-		return completeInheritance;
-	}
-
 	public boolean conformsTo(@NonNull DomainType elementType) {
 		return getCompleteInheritance().conformsTo(getMetaModelManager(), elementType);
+	}
+
+	public @NonNull CompleteInheritance createCompleteInheritance() {
+		CompletePackage.Internal completePackage = getOwningCompletePackage();
+		return completePackage.createCompleteInheritance(this);
 	}
 
 	/**
@@ -376,7 +371,6 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	}
 
 	public void dispose() {
-		completeInheritance = null;
 		partialClasses.dispose();
 	}
 
@@ -388,32 +382,8 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 		throw new UnsupportedOperationException("Not a collection");
 	}
 
-	public @NonNull CompleteInheritance getCompleteInheritance() {
-		CompleteInheritance completeInheritance2 = completeInheritance;
-		if (completeInheritance2 == null) {
-			CompletePackageImpl completePackage = (CompletePackageImpl) getOwningCompletePackage();
-			org.eclipse.ocl.examples.pivot.Class pivotType = getPivotClass();
-			assert pivotType.getUnspecializedElement() == null;
-			Map<String, CompleteInheritance> typeServers2 = completePackage.getPartialPackages().initMemberTypes();
-			String name = pivotType.getName();
-			if (name == null) {
-				throw new IllegalStateException("Unnamed type");
-			}
-			completeInheritance2 = typeServers2.get(name);
-			if (completeInheritance2 == null) {
-				if (pivotType instanceof Enumeration) {
-					completeInheritance2 = new EnumerationInheritance(this, (Enumeration)pivotType);
-				}
-				else {
-					completeInheritance2 = new CompleteInheritance(this, pivotType);
-				}
-				if (pivotType.getUnspecializedElement() == null) {
-					typeServers2.put(name, completeInheritance2);
-				}
-			}
-			completeInheritance = completeInheritance2;
-		}
-		return completeInheritance2;
+	public final @NonNull CompleteInheritance getCompleteInheritance() {
+		return partialClasses.getCompleteInheritance();
 	}
 
 	public @NonNull CompleteModel.Internal getCompleteModel() {
@@ -476,7 +446,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 		return Iterables.transform(inheritance.getAllProperSuperFragments(), new Function<DomainFragment, DomainClass>()
 		{
 			public DomainClass apply(DomainFragment input) {
-				return input.getBaseInheritance();
+				return input.getBaseInheritance().getType();
 			}
 		});
 	}
@@ -537,13 +507,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 		return false;
 	} */
 
-	public void setCompleteInheritance(@NonNull CompleteInheritance completeInheritance) {
-		assert completeInheritance.getCompleteClass() == this;
-		this.completeInheritance = completeInheritance;
-	}
-
 	public void uninstall() {
-		completeInheritance = null;
 		partialClasses.dispose();
 	}
 } //CompleteClassImpl

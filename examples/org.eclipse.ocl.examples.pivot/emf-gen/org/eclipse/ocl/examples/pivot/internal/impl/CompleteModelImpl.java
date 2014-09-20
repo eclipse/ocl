@@ -51,7 +51,6 @@ import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.internal.complete.AllCompleteClasses;
 import org.eclipse.ocl.examples.pivot.internal.complete.CompleteURIs;
-import org.eclipse.ocl.examples.pivot.internal.complete.PartialClasses;
 import org.eclipse.ocl.examples.pivot.internal.complete.PartialRoots;
 import org.eclipse.ocl.examples.pivot.internal.complete.RootCompletePackages;
 import org.eclipse.ocl.examples.pivot.manager.CompleteInheritance;
@@ -668,7 +667,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 						superTemplateArgumentList.add(superSpecializedTemplateParameterSubstitution.getActual());
 					}
 					CompleteInheritance superCompleteInheritance = superCompleteClass.getCompleteInheritance();
-					org.eclipse.ocl.examples.pivot.Class specializedSuperType = ((PartialClasses)superCompleteInheritance.getCompleteClass().getPartialClasses()).getSpecializedType(superTemplateArgumentList);
+					org.eclipse.ocl.examples.pivot.Class specializedSuperType = superCompleteInheritance.getCompleteClass().getPartialClasses().getSpecializedType(superTemplateArgumentList);
 					specializedClass.getSuperClasses().add(specializedSuperType);
 				}
 			}

@@ -432,6 +432,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	/**
 	 * The known packages.
 	 */
+	@SuppressWarnings("null")
 	private final @NonNull CompleteModel.Internal completeModel = (CompleteModel.Internal) PivotFactory.eINSTANCE.createCompleteModel();
 	
 	/**
@@ -1162,6 +1163,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return completeClass.getOperations(featureFilter, name);
 	}
 
+	@Override
 	public @NonNull Iterable<? extends CompletePackage> getAllCompletePackages() {
 		if (!libraryLoadInProgress && (asMetamodel == null))  {
 			getASMetamodel();
@@ -1192,7 +1194,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		if (pivotClass == null) {
 			throw new IllegalStateException("Missing owning type");
 		}
-		CompleteClass completeClass = completeModel.getCompleteClass(pivotClass);
+		CompleteClass completeClass = completeModel.getCompleteClass(pivotClass.getType());
 		Iterable<? extends DomainProperty> memberProperties = completeClass.getProperties(pivotProperty);
 		if (memberProperties != null) {
 			return memberProperties;
@@ -1338,7 +1340,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			DomainInheritance leftInheritance = leftType.getInheritance(this);
 			DomainInheritance rightInheritance = rightType.getInheritance(this);
 			DomainInheritance commonInheritance = leftInheritance.getCommonInheritance(rightInheritance);
-			org.eclipse.ocl.examples.pivot.Class commonCollectionType = getType(commonInheritance); 
+			org.eclipse.ocl.examples.pivot.Class commonCollectionType = getType(commonInheritance.getType()); 
 			Type leftElementType = DomainUtil.nonNullModel(((CollectionType)leftType).getElementType());
 			Type rightElementType = DomainUtil.nonNullModel(((CollectionType)rightType).getElementType());
 			Type commonElementType = getCommonType(leftElementType, leftSubstitutions, rightElementType, rightSubstitutions); 
@@ -1353,7 +1355,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		DomainInheritance leftInheritance = leftType.getInheritance(this);
 		DomainInheritance rightInheritance = rightType.getInheritance(this);
 		DomainInheritance commonInheritance = leftInheritance.getCommonInheritance(rightInheritance);
-		return getType(commonInheritance); 
+		return getType(commonInheritance.getType()); 
 	}
 
 	public @NonNull CompleteClass getCompleteClass(@NonNull DomainType pivotType) {
@@ -1815,7 +1817,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	public @Nullable DomainType getOclType(@NonNull String typeName) {
 		org.eclipse.ocl.examples.pivot.Class pivotType = getPivotType(typeName);
-		return pivotType != null ? getInheritance(pivotType) : null;
+		return pivotType != null ? getInheritance(pivotType).getType() : null;
 	}
 
 	@Override
@@ -1854,7 +1856,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		if (pivotClass == null) {
 			throw new IllegalStateException("Missing owning type");
 		}
-		CompleteClass completeClass = completeModel.getCompleteClass(pivotClass);
+		CompleteClass completeClass = completeModel.getCompleteClass(pivotClass.getType());
 		Iterable<? extends DomainOperation> operationOverloads = completeClass.getOperationOverloads(pivotOperation);
 		if (operationOverloads != null) {
 			return operationOverloads;
@@ -2115,7 +2117,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	public @NonNull DomainOperation getPrimaryOperation(@NonNull DomainOperation pivotOperation) {
 		DomainInheritance pivotClass = pivotOperation.getInheritance(this);
 		if (pivotClass != null) {					// Null for an EAnnotation element
-			CompleteClass completeClass = completeModel.getCompleteClass(pivotClass);
+			CompleteClass completeClass = completeModel.getCompleteClass(pivotClass.getType());
 			DomainOperation operation = completeClass.getOperation(pivotOperation);
 			if (operation != null) {
 				return operation;
@@ -2179,7 +2181,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			@NonNull String name = DomainUtil.nonNullModel(pivotProperty.getName());
 			DomainProperty opposite = pivotProperty.getOpposite();
 			String oppositeName = opposite != null ? opposite.getName() : null;
-			CompleteClass completeClass = completeModel.getCompleteClass(owningInheritance);
+			CompleteClass completeClass = completeModel.getCompleteClass(owningInheritance.getType());
 			Iterable<? extends DomainProperty> memberProperties = completeClass.getProperties(pivotProperty.isStatic() ? FeatureFilter.SELECT_STATIC : FeatureFilter.SELECT_NON_STATIC, name);
 			DomainProperty bestProperty = null;
 			for (DomainProperty memberProperty : memberProperties) {
