@@ -112,7 +112,7 @@ public interface CompleteClass extends NamedElement
 	public interface Internal extends CompleteClass
 	{
 		void didAddClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass);
-		@NonNull CompleteInheritance createCompleteInheritance();
+//		@NonNull CompleteInheritance createCompleteInheritance();
 		boolean didRemoveClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass);
 		void dispose();
 		void uninstall();

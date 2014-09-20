@@ -27,7 +27,7 @@ import org.eclipse.ocl.examples.domain.utilities.IndexableIterable;
  */
 public interface DomainInheritance extends Nameable
 {
-	public static DomainInheritance[] EMPTY_ARRAY = new DomainInheritance[0];
+	public static @NonNull DomainInheritance[] EMPTY_ARRAY = new DomainInheritance[0];
 	
 	/**
 	 * Return a depth ordered, OclAny-first, OclSelf-last, Iterable of all the super-adapters excluding this one.
@@ -65,7 +65,7 @@ public interface DomainInheritance extends Nameable
 
 	boolean isOclAny();
 	boolean isSubInheritanceOf(@NonNull DomainInheritance inheritance);
-	boolean isSuperInheritanceOf(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainInheritance inheritance);
+	boolean isSuperInheritanceOf(@NonNull DomainInheritance inheritance);
 	boolean isUndefined();
 
 	@NonNull DomainOperation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation);

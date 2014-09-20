@@ -21,19 +21,23 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
+import org.eclipse.ocl.examples.domain.elements.DomainConstraint;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainTemplateParameter;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
+import org.eclipse.ocl.examples.domain.ids.OperationId;
+import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.types.AbstractFragment;
+import org.eclipse.ocl.examples.domain.types.IdResolver;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.library.executor.AbstractReflectiveInheritanceType;
 import org.eclipse.ocl.examples.library.executor.DomainProperties;
-import org.eclipse.ocl.examples.library.executor.ReflectiveInheritance;
-//import org.eclipse.ocl.examples.domain.types.IdResolver;
 
-public class EcoreReflectiveType extends ReflectiveInheritance implements DomainClass
+public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 {
 	@SuppressWarnings("null")
 	public static final @NonNull List<DomainInheritance> EMPTY_INHERITANCES = Collections.emptyList();
@@ -74,14 +78,20 @@ public class EcoreReflectiveType extends ReflectiveInheritance implements Domain
 		}
 		throw new UnsupportedOperationException();
 	}
+	
+	public @NonNull DomainType getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
+		if (this == type) {
+			return this.getType();
+		}
+		DomainInheritance firstInheritance = this;
+		DomainInheritance secondInheritance = type.getInheritance(idResolver.getStandardLibrary());
+		DomainInheritance commonInheritance = firstInheritance.getCommonInheritance(secondInheritance);
+		return commonInheritance.getType();
+	}
 
 	public final @NonNull EClassifier getEClassifier() {
 		return eClassifier;
 	}
-
-//	public @NonNull IdResolver getIdResolver() {
-//		return ((EcoreReflectivePackage)getPackage()).getIdResolver();
-//	}
 
 	@Override
 	public @NonNull Iterable<? extends DomainInheritance> getInitialSuperInheritances() {
@@ -114,13 +124,16 @@ public class EcoreReflectiveType extends ReflectiveInheritance implements Domain
 		}
 	}
 	
-	@Override
 	public @NonNull DomainPackage getOwningPackage() {
 		return evaluationPackage;
 	}
 
 	public @NonNull List<? extends DomainClass> getSuperClasses() {
 		throw new UnsupportedOperationException();		// FIXME
+	}
+
+	public @Nullable DomainOperation getMemberOperation(@NonNull OperationId operationId) {
+		throw new UnsupportedOperationException();					// FIXME
 	}
 
 	public @Nullable DomainProperty getMemberProperty(@NonNull String name) {
@@ -135,6 +148,10 @@ public class EcoreReflectiveType extends ReflectiveInheritance implements Domain
 		return DomainUtil.nonNullPivot(eClassifier.getName());
 	}
 
+	public @NonNull List<? extends DomainConstraint> getOwnedInvariants() {
+		throw new UnsupportedOperationException();			// FIXME
+	}
+
 	public @NonNull List<? extends DomainProperty> getOwnedProperties() {
 		throw new UnsupportedOperationException();		// FIXME
 	}
@@ -143,16 +160,27 @@ public class EcoreReflectiveType extends ReflectiveInheritance implements Domain
 		throw new UnsupportedOperationException();		// FIXME
 	}
 
+	public @NonNull List<? extends DomainConstraint> getOwnedRule() {
+		throw new UnsupportedOperationException();			// FIXME
+	}
+
 	public @NonNull DomainClass getType() {
 		return this;
+	}
+
+	public @NonNull TypeId getTypeId() {
+		return getOwningPackage().getPackageId().getClassId(name, getType().getTypeParameters().parametersSize());			// FIXME DataTypeId alternative
 	}
 
 	public @NonNull DomainTypeParameters getTypeParameters() {
 		return typeParameters;
 	}
-	
-	@Override
-	public String toString() {
-		return String.valueOf(evaluationPackage) + "::" + String.valueOf(name); //$NON-NLS-1$
+
+	public boolean isOrdered() {
+		return (flags & ORDERED) != 0;
+	}
+
+	public boolean isUnique() {
+		return (flags & UNIQUE) != 0;
 	}
 }

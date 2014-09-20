@@ -439,8 +439,8 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 		CompleteInheritance completeInheritance2 = completeInheritance;
 		if (completeInheritance2 == null) {
 			CompleteClass.Internal completeClass = getCompleteClass();
-			completeInheritance2 = completeClass.createCompleteInheritance();
-			completeInheritance = completeInheritance2;
+			CompletePackage.Internal completePackage = completeClass.getOwningCompletePackage();
+			completeInheritance = completeInheritance2 = completePackage.getCompleteInheritance(completeClass);
 		}
 		return completeInheritance2;
 	}
@@ -450,7 +450,6 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 	}
 
 	public @NonNull Iterable<? extends DomainInheritance> getInitialSuperInheritances() {
-		final @NonNull MetaModelManager metaModelManager = getMetaModelManager();
 		final Iterator<CompleteClass> iterator = computeSuperCompleteClasses().iterator();			// FIXME Use local cache
 		return new Iterable<DomainInheritance>()
 		{
@@ -463,8 +462,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 
 					public DomainInheritance next() {
 						CompleteClass next = iterator.next();
-						CompleteInheritance completeInheritance = next.getCompleteInheritance();
-						return completeInheritance.getInheritance(metaModelManager);
+						return next.getCompleteInheritance();
 					}
 
 					public void remove() {

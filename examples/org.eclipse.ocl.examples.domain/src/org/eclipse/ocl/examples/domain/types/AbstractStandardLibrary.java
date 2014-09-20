@@ -47,7 +47,7 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 			}
 			DomainInheritance firstInheritance = firstContainerType.getInheritance(this);
 			DomainInheritance secondInheritance = secondContainerType.getInheritance(this);
-			if (!secondInheritance.isSuperInheritanceOf(this, firstInheritance)) {
+			if (!secondInheritance.isSuperInheritanceOf(firstInheritance)) {
 				return false;
 			}
 		}
@@ -84,7 +84,7 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 		}
 		DomainInheritance firstInheritance = firstTupleType.getInheritance(this);
 		DomainInheritance secondInheritance = secondTupleType.getInheritance(this);
-		return firstInheritance.isSuperInheritanceOf(this, secondInheritance);
+		return firstInheritance.isSuperInheritanceOf(secondInheritance);
 	}
 
 	public void dispose() {}

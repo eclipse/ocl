@@ -14,16 +14,25 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
+import org.eclipse.ocl.examples.domain.elements.DomainConstraint;
 import org.eclipse.ocl.examples.domain.elements.DomainFragment;
+import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.elements.DomainTemplateParameter;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
+import org.eclipse.ocl.examples.domain.ids.OperationId;
+import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.types.AbstractInheritance;
+import org.eclipse.ocl.examples.domain.types.IdResolver;
 import org.eclipse.ocl.examples.domain.utilities.ArrayIterable;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.domain.values.OCLValue;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
 
 /**
@@ -54,6 +63,14 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 		this.evaluationPackage = evaluationPackage;
 		this.typeParameters = new DomainTypeParameters(typeParameters);
 	}
+
+	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
+		DomainInheritance thatInheritance = type.getInheritance(standardLibrary);
+		if (this == thatInheritance) {
+			return true;
+		}
+		return thatInheritance.isSuperInheritanceOf(this);
+	}
 	
 	public final @NonNull FragmentIterable getAllProperSuperFragments() {
 		DomainFragment[] fragments2 = DomainUtil.nonNullState(fragments);
@@ -62,6 +79,16 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 	
 	public @NonNull FragmentIterable getAllSuperFragments() {
 		return new FragmentIterable(DomainUtil.nonNullState(fragments));
+	}
+	
+	public @NonNull DomainType getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
+		if (this == type) {
+			return this.getType();
+		}
+		DomainInheritance firstInheritance = this;
+		DomainInheritance secondInheritance = type.getInheritance(idResolver.getStandardLibrary());
+		DomainInheritance commonInheritance = firstInheritance.getCommonInheritance(secondInheritance);
+		return commonInheritance.getType();
 	}
 
 	public int getDepth() {
@@ -84,6 +111,14 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 		return indexes.length;
 	}
 
+	public @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
+		return this;
+	}
+
+	public @Nullable DomainOperation getMemberOperation(@NonNull OperationId operationId) {
+		throw new UnsupportedOperationException();					// FIXME
+	}
+
 	public @Nullable DomainProperty getMemberProperty(@NonNull String name) {
 		DomainProperties allProperties2 = allProperties;
 		if (allProperties2 == null) {
@@ -96,6 +131,14 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 		throw new UnsupportedOperationException();
 	}
 
+	public @NonNull DomainClass getNormalizedType(@NonNull DomainStandardLibrary standardLibrary) {
+		return this;
+	}
+
+	public @NonNull List<? extends DomainConstraint> getOwnedInvariants() {
+		throw new UnsupportedOperationException();			// FIXME
+	}
+
 	public @NonNull List<? extends DomainProperty> getOwnedProperties() {
 		return getSelfFragment().getLocalProperties();
 	}
@@ -104,9 +147,12 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 		return getSelfFragment().getLocalOperations();
 	}
 	
-	@Override
 	public @NonNull DomainPackage getOwningPackage() {
 		return evaluationPackage;
+	}
+
+	public @NonNull List<? extends DomainConstraint> getOwnedRule() {
+		throw new UnsupportedOperationException();			// FIXME
 	}
 
 	public @NonNull ExecutorFragment getSelfFragment() {
@@ -145,6 +191,47 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 		}
 		this.fragments = fragments;
 		this.indexes = indexes;
+	}
+
+	public @NonNull DomainClass isClass() {
+		return this;
+	}
+
+	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
+		return this == type;
+	}
+
+	public boolean isEqualToUnspecializedType(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
+		return this == type;
+	}
+
+	public boolean isOrdered() {
+		return (flags & ORDERED) != 0;
+	}
+
+	public @Nullable DomainTemplateParameter isTemplateParameter() {
+		return null;
+	}
+
+	public boolean isUnique() {
+		return (flags & UNIQUE) != 0;
+	}
+
+	public boolean oclEquals(@NonNull OCLValue thatValue) {
+		if (!(thatValue instanceof DomainType)) {
+			return false;
+		}
+		TypeId thisTypeId = getTypeId();
+		TypeId thatTypeId = ((DomainType)thatValue).getTypeId();
+		return thisTypeId.equals(thatTypeId);
+	}
+
+	public int oclHashCode() {
+		return getTypeId().hashCode();
+	}
+
+	public DomainType specializeIn(@NonNull DomainCallExp expr, DomainType selfType) {
+		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
 	}
 	
 	@Override

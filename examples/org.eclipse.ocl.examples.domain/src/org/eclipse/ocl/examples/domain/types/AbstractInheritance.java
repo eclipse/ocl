@@ -10,30 +10,19 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.domain.types;
 
-import java.util.List;
-import java.util.Map;
-
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
-import org.eclipse.ocl.examples.domain.elements.DomainClass;
-import org.eclipse.ocl.examples.domain.elements.DomainConstraint;
 import org.eclipse.ocl.examples.domain.elements.DomainFragment;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
-import org.eclipse.ocl.examples.domain.elements.DomainPackage;
-import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.examples.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
-import org.eclipse.ocl.examples.domain.ids.OperationId;
 import org.eclipse.ocl.examples.domain.ids.ParametersId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.library.UnsupportedOperation;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.utilities.IndexableIterable;
-import org.eclipse.ocl.examples.domain.values.OCLValue;
 
 public abstract class AbstractInheritance implements DomainInheritance
 {
@@ -118,29 +107,13 @@ public abstract class AbstractInheritance implements DomainInheritance
 	
 	protected final @NonNull String name;
 	protected final int flags;
-	protected Map<String, DomainOperation> operationMap = null;
-	protected Map<String, DomainProperty> propertyMap = null;
+//	protected @Nullable Map<String, DomainOperation> operationMap = null;
+//	protected @Nullable Map<String, DomainProperty> propertyMap = null;
 	
 	public AbstractInheritance(@NonNull String name, int flags) {
 		this.name = name;
 		this.flags = flags;
 	}
-
-	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
-		DomainInheritance thatInheritance = type.getInheritance(standardLibrary);
-		if (this == thatInheritance) {
-			return true;
-		}
-		return thatInheritance.isSuperInheritanceOf(standardLibrary, this);
-	}
-
-//	public @NonNull Object createInstance() {
-//		throw new UnsupportedOperationException();
-//	}
-
-//	public @Nullable Object createInstance( @NonNull String value) {
-//		throw new UnsupportedOperationException();
-//	}
 
 	public @NonNull DomainInheritance getCommonInheritance(@NonNull DomainInheritance thatInheritance) {
 		if (this == thatInheritance) {
@@ -189,16 +162,6 @@ public abstract class AbstractInheritance implements DomainInheritance
 		}
 		return getFragment(0).getBaseInheritance();	// Always OclAny at index 0
 	}
-	
-	public @NonNull DomainType getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
-		if (this == type) {
-			return this.getType();
-		}
-		DomainInheritance firstInheritance = this;
-		DomainInheritance secondInheritance = type.getInheritance(idResolver.getStandardLibrary());
-		DomainInheritance commonInheritance = firstInheritance.getCommonInheritance(secondInheritance);
-		return commonInheritance.getType();
-	}
 
 	public @Nullable DomainFragment getFragment(@NonNull DomainInheritance thatInheritance) {
 		int staticDepth = thatInheritance.getDepth();
@@ -214,44 +177,8 @@ public abstract class AbstractInheritance implements DomainInheritance
 		return null;
 	}
 
-	public @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
-		return this;
-	}
-
-	public @Nullable DomainOperation getMemberOperation(@NonNull OperationId operationId) {
-		throw new UnsupportedOperationException();					// FIXME
-	}
-
 	public final String getName() {
 		return name;
-	}
-
-	public @NonNull DomainClass getNormalizedType(@NonNull DomainStandardLibrary standardLibrary) {
-		return getType();
-	}
-
-	public @NonNull List<? extends DomainConstraint> getOwnedInvariants() {
-		throw new UnsupportedOperationException();			// FIXME
-	}
-
-	public @NonNull List<? extends DomainConstraint> getOwnedRule() {
-		throw new UnsupportedOperationException();			// FIXME
-	}
-	
-	public @NonNull DomainPackage getOwningPackage() {
-		throw new UnsupportedOperationException();
-	}
-
-	public @NonNull DomainClass isClass() {
-		return this.getType();
-	}
-
-	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
-		return getType() == type;
-	}
-
-	public boolean isEqualToUnspecializedType(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
-		return getType() == type;
 	}
 
 	public final boolean isInvalid() {
@@ -262,29 +189,18 @@ public abstract class AbstractInheritance implements DomainInheritance
 		return (flags & OCL_ANY) != 0;
 	}
 
-	public boolean isOrdered() {
-		return (flags & ORDERED) != 0;
-	}
-
 	public boolean isSubInheritanceOf(@NonNull DomainInheritance thatInheritance) {
 		return getFragment(thatInheritance) != null;
 	}
 
-	public boolean isSuperInheritanceOf(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainInheritance thatInheritance) {
+	public boolean isSuperInheritanceOf(@NonNull DomainInheritance thatInheritance) {
 		return thatInheritance.getFragment(this) != null;
-	}
-
-	public @Nullable DomainTemplateParameter isTemplateParameter() {
-		return null;
 	}
 
 	public final boolean isUndefined() {
 		return (flags & (OCL_VOID|OCL_INVALID)) != 0;
 	}
 
-	public boolean isUnique() {
-		return (flags & UNIQUE) != 0;
-	}
 	public @NonNull DomainOperation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
 		getDepth();
 		DomainInheritance apparentInheritance = apparentOperation.getInheritance(standardLibrary);
@@ -343,22 +259,5 @@ public abstract class AbstractInheritance implements DomainInheritance
 			}
 		}
 		return null;
-	}
-
-	public boolean oclEquals(@NonNull OCLValue thatValue) {
-		if (!(thatValue instanceof DomainType)) {
-			return false;
-		}
-		TypeId thisTypeId = getType().getTypeId();
-		TypeId thatTypeId = ((DomainType)thatValue).getTypeId();
-		return thisTypeId.equals(thatTypeId);
-	}
-
-	public int oclHashCode() {
-		return getType().getTypeId().hashCode();
-	}
-
-	public DomainType specializeIn(@NonNull DomainCallExp expr, DomainType selfType) {
-		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
 	}
 }

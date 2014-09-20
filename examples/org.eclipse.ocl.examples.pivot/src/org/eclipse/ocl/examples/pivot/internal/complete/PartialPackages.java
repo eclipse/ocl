@@ -19,14 +19,12 @@ import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.CompleteModel;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
-import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.NestedCompletePackage;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.internal.impl.CompletePackageImpl;
 import org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl;
 import org.eclipse.ocl.examples.pivot.manager.CompleteInheritance;
-import org.eclipse.ocl.examples.pivot.manager.EnumerationInheritance;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 
 import com.google.common.base.Function;
@@ -72,23 +70,6 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 		assert partialPackage != null;
 		didAdd(partialPackage);
 		super.addUnique(index, partialPackage);
-	}
-
-	public @NonNull CompleteInheritance createCompleteInheritance(@NonNull CompleteClass.Internal completeClass) {
-		String name = completeClass.getName();
-		CompleteInheritance completeInheritance = name2inheritance.get(name);
-		if (completeInheritance == null) {
-			org.eclipse.ocl.examples.pivot.Class pivotClass = completeClass.getPivotClass();
-			assert pivotClass.getUnspecializedElement() == null;
-			if (pivotClass instanceof Enumeration) {
-				completeInheritance = new EnumerationInheritance(completeClass);
-			}
-			else {
-				completeInheritance = new CompleteInheritance(completeClass);
-			}
-			name2inheritance.put(name, completeInheritance);
-		}
-		return completeInheritance;
 	}
 
 	protected void didAdd(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
@@ -169,6 +150,16 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 
 	public void didRemoveClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
 //FIXME		getCompletePackage().didRemoveClass(partialClass);
+	}
+
+	public @NonNull CompleteInheritance getCompleteInheritance(@NonNull CompleteClass.Internal completeClass) {
+		String name = completeClass.getName();
+		CompleteInheritance completeInheritance = name2inheritance.get(name);
+		if (completeInheritance == null) {
+			completeInheritance = new CompleteInheritance(completeClass);
+			name2inheritance.put(name, completeInheritance);
+		}
+		return completeInheritance;
 	}
 
 	public @NonNull CompleteModel.Internal getCompleteModel() {

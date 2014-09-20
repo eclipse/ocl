@@ -131,8 +131,8 @@ public interface CompletePackage extends NamedElement, org.eclipse.ocl.examples.
 	
 	public interface Internal extends CompletePackage
 	{
-		@NonNull CompleteInheritance createCompleteInheritance(@NonNull CompleteClass.Internal completeClass);
 		@NonNull CompleteClass.Internal getCompleteClass(@NonNull DomainClass pivotType);
+		@NonNull CompleteInheritance getCompleteInheritance(@NonNull CompleteClass.Internal completeClass);
 		@NonNull CompleteModel.Internal getCompleteModel();
 		void dispose();
 		CompleteClass.Internal getOwnedCompleteClass(String name);

@@ -126,14 +126,14 @@ public class InheritanceTests extends PivotSimpleTestSuite
 			Iterator<DomainFragment> depthNInheritances = ifInheritance.getSuperFragments(ifInheritance.getDepth()).iterator();
 			assert depthNInheritances.next().getBaseInheritance() == ifInheritance;
 			assert !depthNInheritances.hasNext();
-			assert oclAnyInheritance.isSuperInheritanceOf(metaModelManager, ifInheritance);
-			assert !ifInheritance.isSuperInheritanceOf(metaModelManager, oclAnyInheritance);
+			assert oclAnyInheritance.isSuperInheritanceOf(ifInheritance);
+			assert !ifInheritance.isSuperInheritanceOf(oclAnyInheritance);
 			DomainInheritance oclExpressionInheritance = metaModelManager.getInheritance(DomainUtil.nonNullState(metaModelManager.getPivotType("OCLExpression")));
-			assert oclExpressionInheritance.isSuperInheritanceOf(metaModelManager, ifInheritance);
-			assert !ifInheritance.isSuperInheritanceOf(metaModelManager, oclExpressionInheritance);
+			assert oclExpressionInheritance.isSuperInheritanceOf(ifInheritance);
+			assert !ifInheritance.isSuperInheritanceOf(oclExpressionInheritance);
 			DomainInheritance loopExpInheritance = metaModelManager.getInheritance(DomainUtil.nonNullState(metaModelManager.getPivotType("LoopExp")));
-			assert !ifInheritance.isSuperInheritanceOf(metaModelManager, loopExpInheritance);
-			assert !loopExpInheritance.isSuperInheritanceOf(metaModelManager, ifInheritance);
+			assert !ifInheritance.isSuperInheritanceOf(loopExpInheritance);
+			assert !loopExpInheritance.isSuperInheritanceOf(ifInheritance);
 		} finally {
 			metaModelManager.dispose();
 		}

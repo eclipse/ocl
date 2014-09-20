@@ -347,11 +347,6 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 		assert (typeBasedNsURI == serverBasedNsURI) || typeBasedNsURI.equals(serverBasedNsURI);
 	}
 
-	public @NonNull CompleteInheritance createCompleteInheritance(@NonNull CompleteClass.Internal completeClass) {
-		assert this != getCompleteModel().getOrphanCompletePackage();		// OrphanCompletePackage overrides
-		return getPartialPackages().createCompleteInheritance(completeClass);
-	}
-
 	protected void didAddNestedPackage(@NonNull CompleteModel completeModel, @NonNull org.eclipse.ocl.examples.pivot.Package pivotPackage) {
 /*		CompletePackage completePackage = null;
 		String name = pivotPackage.getName();
@@ -419,6 +414,11 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 
 	public @NonNull CompleteClass.Internal getCompleteClass(@NonNull DomainClass pivotType) {
 		return DomainUtil.nonNullState(getOwnedCompleteClass(pivotType.getName()));
+	}
+
+	public @NonNull CompleteInheritance getCompleteInheritance(@NonNull CompleteClass.Internal completeClass) {
+		assert this != getCompleteModel().getOrphanCompletePackage();		// OrphanCompletePackage overrides
+		return getPartialPackages().getCompleteInheritance(completeClass);
 	}
 
 	public @NonNull CompleteModel.Internal getCompleteModel() {

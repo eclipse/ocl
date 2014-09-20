@@ -16,32 +16,44 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
+import org.eclipse.ocl.examples.domain.elements.DomainConstraint;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
+import org.eclipse.ocl.examples.domain.ids.OperationId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.types.AbstractFragment;
+import org.eclipse.ocl.examples.domain.types.IdResolver;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 
-public class DomainReflectiveType extends ReflectiveInheritance implements DomainClass
+public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 {
 	protected final @NonNull DomainReflectivePackage evaluationPackage;
-//	protected final @NonNull DomainStandardLibrary standardLibrary;
 	protected final @NonNull DomainClass domainClass;
 	private /*@LazyNonNull*/ DomainProperties allProperties;
 
 	public DomainReflectiveType(@NonNull DomainReflectivePackage evaluationPackage, @NonNull DomainClass domainClass) {
 		super(DomainUtil.nonNullModel(domainClass.getName()), computeFlags(domainClass));
 		this.evaluationPackage = evaluationPackage;
-//		this.standardLibrary = evaluationPackage.getStandardLibrary();
 		this.domainClass = domainClass;
 	}
 
 	@Override
 	protected @NonNull AbstractFragment createFragment(@NonNull DomainInheritance baseInheritance) {
 		return new DomainReflectiveFragment(this, baseInheritance);
+	}
+	
+	public @NonNull DomainType getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
+		if (this == type) {
+			return this.getType();
+		}
+		DomainInheritance firstInheritance = this;
+		DomainInheritance secondInheritance = type.getInheritance(idResolver.getStandardLibrary());
+		DomainInheritance commonInheritance = firstInheritance.getCommonInheritance(secondInheritance);
+		return commonInheritance.getType();
 	}
 
 	@Override
@@ -72,6 +84,10 @@ public class DomainReflectiveType extends ReflectiveInheritance implements Domai
 		return domainClass.getSuperClasses();
 	}
 
+	public @Nullable DomainOperation getMemberOperation(@NonNull OperationId operationId) {
+		throw new UnsupportedOperationException();					// FIXME
+	}
+
 	public @Nullable DomainProperty getMemberProperty(@NonNull String name) {
 		DomainProperties allProperties2 = allProperties;
 		if (allProperties2 == null) {
@@ -84,6 +100,10 @@ public class DomainReflectiveType extends ReflectiveInheritance implements Domai
 		return domainClass.getMetaTypeName();
 	}
 
+	public @NonNull List<? extends DomainConstraint> getOwnedInvariants() {
+		return domainClass.getOwnedInvariants();
+	}
+
 	public @NonNull List<? extends DomainOperation> getOwnedOperations() {
 		return domainClass.getOwnedOperations();
 	}
@@ -91,8 +111,11 @@ public class DomainReflectiveType extends ReflectiveInheritance implements Domai
 	public @NonNull List<? extends DomainProperty> getOwnedProperties() {
 		return domainClass.getOwnedProperties();
 	}
+
+	public @NonNull List<? extends DomainConstraint> getOwnedRule() {
+		throw new UnsupportedOperationException();			// FIXME
+	}
 	
-	@Override
 	public @NonNull DomainPackage getOwningPackage() {
 		return evaluationPackage;
 	}
@@ -101,13 +124,20 @@ public class DomainReflectiveType extends ReflectiveInheritance implements Domai
 		return domainClass;
 	}
 
-	@Override
 	public @NonNull TypeId getTypeId() {
 		return domainClass.getTypeId();
 	}
 
 	public @NonNull DomainTypeParameters getTypeParameters() {
 		return domainClass.getTypeParameters();
+	}
+
+	public boolean isOrdered() {
+		return domainClass.isOrdered();
+	}
+
+	public boolean isUnique() {
+		return domainClass.isUnique();
 	}
 	
 	@Override

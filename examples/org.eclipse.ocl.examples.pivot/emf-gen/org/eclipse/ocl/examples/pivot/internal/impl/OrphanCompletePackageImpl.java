@@ -98,11 +98,6 @@ public class OrphanCompletePackageImpl extends RootCompletePackageImpl implement
 		assert Orphanage.isTypeOrphanage(domainPackage);
 	}
 
-	@Override
-	public @NonNull CompleteInheritance createCompleteInheritance(@NonNull CompleteClass.Internal completeClass) {
-		return new CompleteInheritance(completeClass);
-	}
-
 	public @NonNull <T extends CollectionType> T getCollectionType(@NonNull T containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
 		assert containerType == PivotUtil.getUnspecializedTemplateableElement(containerType);
 		TemplateSignature templateSignature = containerType.getOwnedTemplateSignature();
@@ -138,6 +133,11 @@ public class OrphanCompletePackageImpl extends RootCompletePackageImpl implement
 		completeClass.getPartialClasses().add(orphanClass);
 		class2orphanCompleteClass.put(orphanClass, new WeakReference<OrphanCompleteClassImpl>(completeClass));
 		return completeClass;
+	}
+
+	@Override
+	public @NonNull CompleteInheritance getCompleteInheritance(@NonNull CompleteClass.Internal completeClass) {
+		return new CompleteInheritance(completeClass);
 	}
 	
 	public @NonNull PackageId getMetapackageId() {

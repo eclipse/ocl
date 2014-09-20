@@ -20,6 +20,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
+import org.eclipse.ocl.examples.domain.ids.OperationId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.types.AbstractFragment;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
@@ -86,6 +87,10 @@ public class CompleteInheritance extends ReflectiveInheritance
 		return DomainUtil.nonNullEMF(completeClass.getPivotClass().getOwnedProperties());			// FIXME Use local cache
 	}
 
+	public @Nullable DomainOperation getMemberOperation(@NonNull OperationId operationId) {
+		return completeClass.getOperation(operationId);
+	}
+
 	public @Nullable DomainProperty getMemberProperty(@NonNull String propertyName) {
 		return completeClass.getProperty(propertyName);
 	}
@@ -110,7 +115,6 @@ public class CompleteInheritance extends ReflectiveInheritance
 		return getCompleteClass().getPivotClass();
 	}
 
-	@Override
 	public final @NonNull TypeId getTypeId() {
 		return completeClass.getPivotClass().getTypeId();
 	}

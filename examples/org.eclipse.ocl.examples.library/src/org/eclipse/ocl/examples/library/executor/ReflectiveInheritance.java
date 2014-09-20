@@ -25,7 +25,6 @@ import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.types.AbstractFragment;
 import org.eclipse.ocl.examples.domain.types.AbstractInheritance;
-import org.eclipse.ocl.examples.domain.utilities.ArrayIterable;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 
 /**
@@ -158,11 +157,10 @@ public abstract class ReflectiveInheritance extends AbstractInheritance
 		DomainFragment[] fragments2 = fragments;
 		if (fragments2 == null) {
 			initialize();
-			@SuppressWarnings("null")
-			@NonNull DomainFragment[] fragments3 = fragments;
-			fragments2 = fragments3;
+			fragments2 = fragments;
+			assert fragments2 != null;
 		}
-		return new ArrayIterable<DomainFragment>(fragments2);
+		return new FragmentIterable(fragments2);
 	}
 
 	public int getIndex(int fragmentNumber) {
@@ -191,10 +189,6 @@ public abstract class ReflectiveInheritance extends AbstractInheritance
 	
 	public final @NonNull FragmentIterable getSuperFragments(int depth) {
 		return new FragmentIterable(DomainUtil.nonNullState(fragments), indexes[depth], indexes[depth+1]);
-	}
-
-	public @NonNull TypeId getTypeId() {
-		return getOwningPackage().getPackageId().getClassId(name, getType().getTypeParameters().parametersSize());			// FIXME DataTypeId alternative
 	}
 
 	protected synchronized void initialize() {

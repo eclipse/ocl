@@ -11,6 +11,7 @@
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -347,12 +348,13 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	}
 
 	public boolean conformsTo(@NonNull DomainType elementType) {
-		return getCompleteInheritance().conformsTo(getMetaModelManager(), elementType);
-	}
-
-	public @NonNull CompleteInheritance createCompleteInheritance() {
-		CompletePackage.Internal completePackage = getOwningCompletePackage();
-		return completePackage.createCompleteInheritance(this);
+		MetaModelManager metaModelManager = getMetaModelManager();
+		DomainInheritance thisInheritance = getCompleteInheritance();
+		DomainInheritance thatInheritance = elementType.getInheritance(metaModelManager);
+		if (thisInheritance == thatInheritance) {
+			return true;
+		}
+		return thatInheritance.isSuperInheritanceOf(thisInheritance);
 	}
 
 	/**
