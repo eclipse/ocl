@@ -20,7 +20,7 @@ import org.eclipse.ocl.examples.library.executor.ExecutorEnumerationLiteral;
  */
 public class EnumeratorEnumerationLiteral extends ExecutorEnumerationLiteral implements Enumerator
 {
-	public EnumeratorEnumerationLiteral(@NonNull String enumerationLiteralName, @NonNull EnumerationTypeServer enumerationTypeServer, int ordinal) {
+	public EnumeratorEnumerationLiteral(@NonNull String enumerationLiteralName, @NonNull EnumerationInheritance enumerationTypeServer, int ordinal) {
 		super(enumerationLiteralName, enumerationTypeServer, ordinal);
 	}
 

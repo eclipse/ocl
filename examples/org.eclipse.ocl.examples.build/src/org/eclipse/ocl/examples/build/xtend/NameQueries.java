@@ -122,7 +122,7 @@ public class NameQueries
 		else if (elem instanceof org.eclipse.ocl.examples.pivot.Class) {
 			if (metaModelManager != null) {
 				CompleteClass completeClass = metaModelManager.getCompleteModel().getCompleteClass((Type)elem);
-				elem = completeClass.getTypeServer();
+				elem = completeClass.getCompleteInheritance();
 			}
 		}
 		String symbol = definedSymbols.get(elem);

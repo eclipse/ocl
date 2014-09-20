@@ -18,15 +18,15 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
+import org.eclipse.ocl.examples.pivot.CompleteModel;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.NestedCompletePackage;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl;
 import org.eclipse.ocl.examples.pivot.internal.impl.CompletePackageImpl;
 import org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl;
-import org.eclipse.ocl.examples.pivot.manager.TypeServer;
+import org.eclipse.ocl.examples.pivot.manager.CompleteInheritance;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 
 import com.google.common.base.Function;
@@ -54,7 +54,7 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 	/**
 	 * Lazily created map of nested class-name to multi-class server.
 	 */
-	private @Nullable Map<String, TypeServer> typeServers = null;
+	private @Nullable Map<String, CompleteInheritance> typeServers = null;
 
 	public PartialPackages(@NonNull CompletePackageImpl owner) {
 		super(org.eclipse.ocl.examples.pivot.Package.class, owner, PivotPackage.COMPLETE_PACKAGE__PARTIAL_PACKAGES);
@@ -154,7 +154,7 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 //FIXME		getCompletePackage().didRemoveClass(partialClass);
 	}
 
-	public @NonNull CompleteModelImpl getCompleteModel() {
+	public @NonNull CompleteModel.Internal getCompleteModel() {
 		return getCompletePackage().getCompleteModel();
 	}
 
@@ -163,10 +163,10 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 		return (CompletePackageImpl) owner;
 	}
 	
-	public @NonNull Map<String, TypeServer> initMemberTypes() {
-		Map<String, TypeServer> typeServers2 = typeServers;
+	public @NonNull Map<String, CompleteInheritance> initMemberTypes() {
+		Map<String, CompleteInheritance> typeServers2 = typeServers;
 		if (typeServers2 == null) {
-			typeServers2 = typeServers = new HashMap<String, TypeServer>();
+			typeServers2 = typeServers = new HashMap<String, CompleteInheritance>();
 			if (!PivotConstants.ORPHANAGE_URI.equals(getCompletePackage().getURI())) {
 				for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage : this) {
 					initMemberTypes(partialPackage);
@@ -184,8 +184,8 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 		}
 	}
 
-	public void disposedTypeServer(@NonNull TypeServer typeServer) {
-		Map<String, TypeServer> typeServers2 = typeServers;
+	public void disposedTypeServer(@NonNull CompleteInheritance typeServer) {
+		Map<String, CompleteInheritance> typeServers2 = typeServers;
 		if (typeServers2 != null) {
 			typeServers2.remove(typeServer.getName());
 		}

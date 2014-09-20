@@ -18,30 +18,45 @@ import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainFragment;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.types.AbstractFragment;
 import org.eclipse.ocl.examples.domain.types.AbstractInheritance;
+import org.eclipse.ocl.examples.domain.utilities.ArrayIterable;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 
 /**
  * A ReflectiveType defines a Type using a compact representation suitable for efficient
  * execution. The representation is derived reflectively from a less efficient representation.
  */
-public abstract class ReflectiveType extends AbstractInheritance
+public abstract class ReflectiveInheritance extends AbstractInheritance
 {	
-	protected static int computeFlags(@NonNull DomainType type) {
-		if (type instanceof DomainCollectionType) {
-			DomainCollectionType collectionType = (DomainCollectionType)type;
-			return (collectionType.isOrdered() ? ORDERED : 0) | (collectionType.isUnique() ? UNIQUE : 0);
+	protected static int computeFlags(@NonNull DomainClass domainClass) {
+		int flags = 0;
+		if (domainClass instanceof DomainCollectionType) {
+			DomainCollectionType collectionType = (DomainCollectionType)domainClass;
+			if (collectionType.isOrdered()) {
+				flags |= ORDERED;
+			}
+			if (collectionType.isUnique()) {
+				flags |= UNIQUE;
+			}
 		}
-		else {
-			return 0;
+		TypeId typeId = domainClass.getTypeId();
+		if (typeId == TypeId.OCL_ANY){
+			flags |= OCL_ANY;
 		}
+		else if (typeId == TypeId.OCL_VOID){
+			flags |= OCL_VOID;
+		}
+		else if (typeId == TypeId.OCL_INVALID){
+			flags |= OCL_INVALID;
+		}
+		return flags;
 	}
 	
 	/**
@@ -61,15 +76,15 @@ public abstract class ReflectiveType extends AbstractInheritance
 	 * The Inheritances of sub-types that have been installed, and which must be
 	 * uninstalled in the event of an inheritance change for this Inheritance.
 	 */
-	private Set<ReflectiveType> knownSubInheritances = null;
+	private Set<ReflectiveInheritance> knownSubInheritances = null;
 
-	public ReflectiveType(@NonNull String name, @NonNull DomainPackage evaluationPackage, int flags, ExecutorTypeParameter... typeParameters) {
+	public ReflectiveInheritance(@NonNull String name, @NonNull DomainPackage evaluationPackage, int flags, ExecutorTypeParameter... typeParameters) {
 		super(name, evaluationPackage, flags);
 	}
 
-	public void addSubInheritance(@NonNull ReflectiveType subInheritance) {
+	public void addSubInheritance(@NonNull ReflectiveInheritance subInheritance) {
 		if (knownSubInheritances == null) {
-			knownSubInheritances = new HashSet<ReflectiveType>();
+			knownSubInheritances = new HashSet<ReflectiveInheritance>();
 		}
 		knownSubInheritances.add(subInheritance);
 	}
@@ -83,21 +98,19 @@ public abstract class ReflectiveType extends AbstractInheritance
 	public @Nullable Object createInstance( @NonNull String value) {
 		throw new UnsupportedOperationException();
 	}
-
-	public void dispose() {}
 	
 	/**
 	 * Add this Inheritance and all un-installed super-Inheritances to inheritances, returning true if this
 	 * inheritance was already installed.
 	 */
-	public boolean gatherUninstalledInheritances(@NonNull List<ReflectiveType> inheritances) {
+	public boolean gatherUninstalledInheritances(@NonNull List<ReflectiveInheritance> inheritances) {
 		boolean gotOne = false;
 		if (!inheritances.contains(this)) {
 			inheritances.add(this);
 			if (fragments == null) {
 				for (DomainInheritance superInheritance : getInitialSuperInheritances()) {
-					if (superInheritance instanceof ReflectiveType) {
-						if (((ReflectiveType)superInheritance).gatherUninstalledInheritances(inheritances)) {
+					if (superInheritance instanceof ReflectiveInheritance) {
+						if (((ReflectiveInheritance)superInheritance).gatherUninstalledInheritances(inheritances)) {
 							gotOne = true;		// Transitively installed
 						}
 					}
@@ -136,21 +149,21 @@ public abstract class ReflectiveType extends AbstractInheritance
 	}
 
 	public DomainFragment getFragment(int fragmentNumber) {
-		if ((fragments == null) && (this == getOclAnyInheritance())) {
+		if ((fragments == null) && isOclAny()) {
 			installOclAny();
 		}
 		return fragments[fragmentNumber];
 	}
 	
-	protected @NonNull DomainFragment[] getFragments() {
+	public @NonNull Iterable<DomainFragment> getFragments() {
 		DomainFragment[] fragments2 = fragments;
-		if (fragments2 != null) {
-			return fragments2;
+		if (fragments2 == null) {
+			initialize();
+			@SuppressWarnings("null")
+			@NonNull DomainFragment[] fragments3 = fragments;
+			fragments2 = fragments3;
 		}
-		initialize();
-		@SuppressWarnings("null")
-		@NonNull DomainFragment[] fragments3 = fragments;
-		return fragments3;
+		return new ArrayIterable<DomainFragment>(fragments2);
 	}
 
 	public int getIndex(int fragmentNumber) {
@@ -181,7 +194,7 @@ public abstract class ReflectiveType extends AbstractInheritance
 		return new FragmentIterable(DomainUtil.nonNullState(fragments), indexes[depth], indexes[depth+1]);
 	}
 
-	public @NonNull DomainType getType() {
+	public @NonNull DomainClass getType() {
 		return this;
 	}
 
@@ -190,24 +203,30 @@ public abstract class ReflectiveType extends AbstractInheritance
 	}
 
 	protected synchronized void initialize() {
-		List<ReflectiveType> uninstalledInheritances = new ArrayList<ReflectiveType>();
+		List<ReflectiveInheritance> uninstalledInheritances = new ArrayList<ReflectiveInheritance>();
 		// Detect missing OclAny inheritance
 		// - any installed superclass must inherit from OclAny so ok.
 		// - an all-uninstalled superclass list must include OclAny to be ok.
 		if (!gatherUninstalledInheritances(uninstalledInheritances)) {
-			DomainInheritance oclAnyInheritance = getOclAnyInheritance();
-			if (!uninstalledInheritances.contains(oclAnyInheritance))  {	// FIXME may be an rather than the OclAny - need a way to find the partial types.
+//			boolean containsOclAny = false;
+//			for (DomainInheritance anInheritance : uninstalledInheritances) {
+//				if (anInheritance.isOclAny()) {
+//					containsOclAny = true;
+//					break;
+//				}
+//			}
+//			if (!containsOclAny)  {	// FIXME may be an rather than the OclAny - need a way to find the partial types.
 /*				List<ReflectiveType> uninstalledInheritances2 = new ArrayList<ReflectiveType>();
 				gatherUninstalledInheritances(uninstalledInheritances2);
 				assert uninstalledInheritances.contains(oclAnyInheritance); */
-			} 
+//			} 
 		}
 //		int oldPendingCount = uninstalledInheritances.size();
-		@SuppressWarnings("unused") List<ReflectiveType> debugOldUninstalledInheritances = new ArrayList<ReflectiveType>(uninstalledInheritances);
+		@SuppressWarnings("unused") List<ReflectiveInheritance> debugOldUninstalledInheritances = new ArrayList<ReflectiveInheritance>(uninstalledInheritances);
 		while (true) {
 			Boolean gotOne = false;
-			for (ListIterator<ReflectiveType> it = uninstalledInheritances.listIterator(); it.hasNext(); ) {
-				ReflectiveType uninstalledInheritance = it.next();
+			for (ListIterator<ReflectiveInheritance> it = uninstalledInheritances.listIterator(); it.hasNext(); ) {
+				ReflectiveInheritance uninstalledInheritance = it.next();
 				if (uninstalledInheritance.isInstallable()) {
 					uninstalledInheritance.install();
 					it.remove();
@@ -219,12 +238,12 @@ public abstract class ReflectiveType extends AbstractInheritance
 			}
 //			int newPendingCount = uninstalledInheritances.size();
 			if (!gotOne) {
-				List<ReflectiveType> debugNewUninstalledInheritances = new ArrayList<ReflectiveType>();
+				List<ReflectiveInheritance> debugNewUninstalledInheritances = new ArrayList<ReflectiveInheritance>();
 				gatherUninstalledInheritances(debugNewUninstalledInheritances);
 				StringBuilder s = new StringBuilder();
 				s.append("Inheritance loop for "); //$NON-NLS-1$
-				for (ListIterator<ReflectiveType> it = uninstalledInheritances.listIterator(); it.hasNext(); ) {
-					ReflectiveType uninstalledInheritance = it.next();
+				for (ListIterator<ReflectiveInheritance> it = uninstalledInheritances.listIterator(); it.hasNext(); ) {
+					ReflectiveInheritance uninstalledInheritance = it.next();
 					if (!uninstalledInheritance.isInstallable()) {
 						s.append("\n  "); //$NON-NLS-1$
 						s.append(uninstalledInheritance);
@@ -247,8 +266,7 @@ public abstract class ReflectiveType extends AbstractInheritance
 			return true;
 		}
 //		System.out.println("Install " + this);
-		DomainInheritance oclAnyInheritance = getOclAnyInheritance();
-		if (this == oclAnyInheritance) {
+		if (isOclAny()) {
 			installOclAny();
 		}
 		else {
@@ -268,8 +286,8 @@ public abstract class ReflectiveType extends AbstractInheritance
 						DomainInheritance baseInheritance = fragment.getBaseInheritance();
 						if (!some.contains(baseInheritance)) {
 							some.add(baseInheritance);
-							if (baseInheritance instanceof ReflectiveType) {
-								((ReflectiveType)baseInheritance).addSubInheritance(this);
+							if (baseInheritance instanceof ReflectiveInheritance) {
+								((ReflectiveInheritance)baseInheritance).addSubInheritance(this);
 							}
 						}
 					}
@@ -280,27 +298,22 @@ public abstract class ReflectiveType extends AbstractInheritance
 			for (List<DomainInheritance> some : all) {
 				superInheritances += some.size();
 			}
-			if (superDepths > 0) {
-				fragments = new DomainFragment[superInheritances+1];	// +1 for OclSelf
-				indexes = new int[superDepths+2];		// +1 for OclSelf, +1 for tail pointer
-				int j = 0;
-				indexes[0] = 0;
-				for (int i = 0; i < superDepths; i++) {
-					for (DomainInheritance some : all.get(i)) {
-						if (some != null) {
-							fragments[j++] = createFragment(some);
-						}
+			assert superDepths > 0;
+			fragments = new DomainFragment[superInheritances+1];	// +1 for OclSelf
+			indexes = new int[superDepths+2];		// +1 for OclSelf, +1 for tail pointer
+			int j = 0;
+			indexes[0] = 0;
+			for (int i = 0; i < superDepths; i++) {
+				for (DomainInheritance some : all.get(i)) {
+					if (some != null) {
+						fragments[j++] = createFragment(some);
 					}
-					indexes[i+1] = j;
 				}
-				indexes[superDepths++] = j;
-				fragments[j++] = createFragment(this);
-				indexes[superDepths++] = j;
+				indexes[i+1] = j;
 			}
-			else {
-				fragments = new DomainFragment[] { oclAnyInheritance.getFragment(0), createFragment(this) };
-				indexes = new int[] { 0, 1, 2 };
-			}
+			indexes[superDepths++] = j;
+			fragments[j++] = createFragment(this);
+			indexes[superDepths++] = j;
 		}
 		return true;
 	}
@@ -319,17 +332,18 @@ public abstract class ReflectiveType extends AbstractInheritance
 	 * must be installed first.
 	 */
 	public boolean isInstallable() {
+		if (isOclAny()) {
+			return true;
+		}
 		if (fragments != null) {
 //			System.out.println("isInstallable true (already) " + this);
 			return true;
 		}
-		DomainInheritance oclAnyInheritance = getOclAnyInheritance();
-		if (this != oclAnyInheritance) {
-			for (DomainInheritance superInheritance : getInitialSuperInheritances()) {
-				if ((superInheritance instanceof ReflectiveType) && !((ReflectiveType)superInheritance).isInstalled()) {
-//					System.out.println("isInstallable false " + this);
-					return false;
-				}
+//		DomainInheritance oclAnyInheritance = getOclAnyInheritance();
+		for (DomainInheritance superInheritance : getInitialSuperInheritances()) {
+			if ((superInheritance instanceof ReflectiveInheritance) && !((ReflectiveInheritance)superInheritance).isInstalled()) {
+//				System.out.println("isInstallable false " + this);
+				return false;
 			}
 		}
 //		System.out.println("isInstallable true " + this);
@@ -343,7 +357,7 @@ public abstract class ReflectiveType extends AbstractInheritance
 		return fragments != null;
 	}
 
-	public void removeSubInheritance(@NonNull ReflectiveType subInheritance) {
+	public void removeSubInheritance(@NonNull ReflectiveInheritance subInheritance) {
 		if (knownSubInheritances != null) {
 			knownSubInheritances.remove(subInheritance);
 		}
@@ -354,16 +368,16 @@ public abstract class ReflectiveType extends AbstractInheritance
 //			System.out.println("Uninstall " + this);
 			for (DomainFragment fragment : fragments) {
 				DomainInheritance baseInheritance = fragment.getBaseInheritance();
-				if (baseInheritance instanceof ReflectiveType) {
-					((ReflectiveType)baseInheritance).removeSubInheritance(this);
+				if (baseInheritance instanceof ReflectiveInheritance) {
+					((ReflectiveInheritance)baseInheritance).removeSubInheritance(this);
 				}
 			}
 			fragments = null;
 			indexes = null;
 			if (knownSubInheritances != null) {
-				Set<ReflectiveType> previouslyKnownSubInheritances = knownSubInheritances;
+				Set<ReflectiveInheritance> previouslyKnownSubInheritances = knownSubInheritances;
 				knownSubInheritances = null;
-				for (ReflectiveType subInheritance : previouslyKnownSubInheritances) {
+				for (ReflectiveInheritance subInheritance : previouslyKnownSubInheritances) {
 					subInheritance.uninstall();
 				}
 			}

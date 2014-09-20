@@ -17,13 +17,12 @@ import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.elements.DomainClass;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.Profile;
 import org.eclipse.ocl.examples.pivot.Stereotype;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.TypeServer;
 import org.eclipse.ocl.examples.pivot.uml.UML2Pivot.Outer;
 
 /**
@@ -352,19 +351,15 @@ public class ProfileAnalysis
 				if (subMetatype != null) {
 					Set<Type> superMetatypeClosure = new HashSet<Type>();
 					metatype2superMetatypeClosure.put(subMetatype, superMetatypeClosure);
-					for (DomainClass asSuperMetatype : metaModelManager.getAllSuperClasses(subMetatype)) {
-						if (asSuperMetatype instanceof TypeServer) {
-							asSuperMetatype = ((TypeServer)asSuperMetatype).getCompleteClass().getPivotClass();
+					for (CompleteClass superCompleteClass : metaModelManager.getAllSuperCompleteClasses(subMetatype)) {
+						org.eclipse.ocl.examples.pivot.Class asSuperMetatype = superCompleteClass.getPivotClass();
+						superMetatypeClosure.add(asSuperMetatype);
+						Set<Type> subMetatypeClosure = metatype2subMetatypeClosure.get(asSuperMetatype);
+						if (subMetatypeClosure == null) {
+							subMetatypeClosure = new HashSet<Type>();
+							metatype2subMetatypeClosure.put((Type)asSuperMetatype, subMetatypeClosure);
 						}
-						if (asSuperMetatype instanceof Type) {
-							superMetatypeClosure.add((Type)asSuperMetatype);
-							Set<Type> subMetatypeClosure = metatype2subMetatypeClosure.get(asSuperMetatype);
-							if (subMetatypeClosure == null) {
-								subMetatypeClosure = new HashSet<Type>();
-								metatype2subMetatypeClosure.put((Type)asSuperMetatype, subMetatypeClosure);
-							}
-							subMetatypeClosure.add(subMetatype);
-						}
+						subMetatypeClosure.add(subMetatype);
 					}
 				}
 			}
@@ -376,10 +371,9 @@ public class ProfileAnalysis
 			if (subStereotype != null) {
 				Set<Stereotype> superStereotypeClosure = new HashSet<Stereotype>();
 				stereotype2superStereotypeClosure.put(subStereotype, superStereotypeClosure);
-				for (DomainClass asSuperStereotype : metaModelManager.getAllSuperClasses(subStereotype)) {
-					if (asSuperStereotype instanceof TypeServer) {
-						asSuperStereotype = ((TypeServer)asSuperStereotype).getCompleteClass().getPivotClass();
-					}
+//				for (DomainClass asSuperStereotype : metaModelManager.getAllSuperClasses(subStereotype)) {
+				for (CompleteClass superCompleteClass : metaModelManager.getAllSuperCompleteClasses(subStereotype)) {
+					org.eclipse.ocl.examples.pivot.Class asSuperStereotype = superCompleteClass.getPivotClass();
 					if (asSuperStereotype instanceof Stereotype) {
 						superStereotypeClosure.add((Stereotype)asSuperStereotype);
 						Set<Stereotype> subStereotypeClosure = stereotype2subStereotypeClosure.get(asSuperStereotype);

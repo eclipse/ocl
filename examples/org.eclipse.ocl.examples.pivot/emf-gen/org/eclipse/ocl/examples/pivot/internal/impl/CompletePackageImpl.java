@@ -48,6 +48,7 @@ import com.google.common.collect.Iterables;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Complete Package</b></em>'.
+ * @extends org.eclipse.ocl.examples.pivot.CompletePackage.Internal
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -60,7 +61,7 @@ import com.google.common.collect.Iterables;
  *
  * @generated
  */
-public abstract class CompletePackageImpl extends NamedElementImpl implements CompletePackage
+public abstract class CompletePackageImpl extends NamedElementImpl implements CompletePackage, org.eclipse.ocl.examples.pivot.CompletePackage.Internal
 {
 
 	/**
@@ -409,14 +410,14 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 			});
 	}
 
-	public @NonNull CompleteClass getCompleteClass(@NonNull DomainClass pivotType) {
+	public @NonNull CompleteClass.Internal getCompleteClass(@NonNull DomainClass pivotType) {
 		return DomainUtil.nonNullState(getOwnedCompleteClass(pivotType.getName()));
 	}
 
-	public @NonNull CompleteModelImpl getCompleteModel() {
+	public @NonNull CompleteModel.Internal getCompleteModel() {
 		for (EObject eContainer = eContainer(); eContainer != null; eContainer = eContainer.eContainer()) {
-			if (eContainer instanceof CompleteModelImpl) {
-				return (CompleteModelImpl) eContainer;
+			if (eContainer instanceof CompleteModel.Internal) {
+				return (CompleteModel.Internal) eContainer;
 			}
 		}
 		throw new IllegalStateException();
@@ -438,18 +439,18 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 
 	public org.eclipse.ocl.examples.pivot.Class getMemberType(String name) {
 		CompleteClass completeClass = name != null ? getOwnedCompleteClass(name) : null;
-		return completeClass != null ? ((CompleteClassImpl)completeClass).getPivotClass() : null;
+		return completeClass != null ? completeClass.getPivotClass() : null;
 	}
 
 	public String getNsPrefix() {
 		return nsPrefix;
 	}
 
-	public CompleteClass getOwnedCompleteClass(String name) {
+	public CompleteClass.Internal getOwnedCompleteClass(String name) {
 		return getOwnedCompleteClasses().getOwnedCompleteClass(name);
 	}
 	
-	public CompletePackage getOwnedCompletePackage(@Nullable String name) {
+	public CompletePackage.Internal getOwnedCompletePackage(@Nullable String name) {
 		return getOwnedCompletePackages().getOwnedCompletePackage(name);
 	}
 
@@ -474,13 +475,13 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 		return partialPackages;
 	}
 
-	public org.eclipse.ocl.examples.pivot.Package getPivotPackage() {
+	public @NonNull org.eclipse.ocl.examples.pivot.Package getPivotPackage() {
 		for (org.eclipse.ocl.examples.pivot.Package partialPackage : getPartialPackages()) {
 //			if (partialPackage instanceof org.eclipse.ocl.examples.pivot.Package) {
 				return partialPackage;
 //			}
 		}
-		throw new UnsupportedOperationException();
+		return getCompleteModel().getMetaModelManager().getOclAnyType().getOwningPackage();
 	}
 
 	public RootCompletePackage getRootCompletePackage() {

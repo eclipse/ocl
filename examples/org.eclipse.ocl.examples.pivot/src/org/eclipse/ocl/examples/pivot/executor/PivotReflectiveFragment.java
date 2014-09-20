@@ -17,20 +17,20 @@ import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.ids.ParametersId;
 import org.eclipse.ocl.examples.library.executor.ReflectiveFragment;
-import org.eclipse.ocl.examples.pivot.manager.TypeServer;
+import org.eclipse.ocl.examples.pivot.manager.CompleteInheritance;
 
 public class PivotReflectiveFragment extends ReflectiveFragment
 {
-	public PivotReflectiveFragment(@NonNull TypeServer derivedInheritance, @NonNull DomainInheritance baseInheritance) {
+	public PivotReflectiveFragment(@NonNull CompleteInheritance derivedInheritance, @NonNull DomainInheritance baseInheritance) {
 		super(derivedInheritance, baseInheritance);
 	}
 
 	public @Nullable DomainOperation getLocalOperation(@NonNull DomainOperation baseOperation) {
-		TypeServer typeServer = (TypeServer) derivedInheritance;
+		CompleteInheritance completeInheritance = (CompleteInheritance) derivedInheritance;
 		String baseOperationName = baseOperation.getName();
 		ParametersId baseParametersId = baseOperation.getParametersId();
-		for (DomainClass partialType : typeServer.getCompleteClass().getPartialClasses()) {
-			for (DomainOperation localOperation : partialType.getOwnedOperations()) {
+		for (DomainClass partialClass : completeInheritance.getCompleteClass().getPartialClasses()) {
+			for (DomainOperation localOperation : partialClass.getOwnedOperations()) {
 				if (localOperation.getName().equals(baseOperationName) && (localOperation.getParametersId() == baseParametersId)) {
 					return localOperation;
 				}

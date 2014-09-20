@@ -217,7 +217,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 				partIds.add(tuplePartId);
 			}
 			TupleTypeId tupleTypeId = IdManager.getTupleTypeId(DomainUtil.nonNullModel(type.getName()), partIds);
-			specializedTupleType = metaModelManager.getTupleManager().getTupleType(metaModelManager.getIdResolver(), tupleTypeId);
+			specializedTupleType = metaModelManager.getCompleteModel().getTupleManager().getTupleType(metaModelManager.getIdResolver(), tupleTypeId);
 			return specializedTupleType;
 		}
 		else {
@@ -230,7 +230,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 					partMap.put(part.getName(), type3);
 				}
 			}
-			return metaModelManager.getTupleManager().getTupleType(DomainUtil.getSafeName(type), partMap);
+			return metaModelManager.getCompleteModel().getTupleManager().getTupleType(DomainUtil.getSafeName(type), partMap);
 		}
 	}
 
@@ -292,7 +292,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 				}
 			}
 			Type specializedResultType = specializeType(DomainUtil.nonNullModel(lambdaType.getResultType()));
-			return metaModelManager.getLambdaManager().getLambdaType(typeName, specializedContextType, specializedParameterTypes, specializedResultType);
+			return metaModelManager.getCompleteModel().getLambdaType(typeName, specializedContextType, specializedParameterTypes, specializedResultType);
 		}
 		else {
 			//

@@ -20,13 +20,15 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.internal.complete.AllCompleteClasses;
 
 /**
  * LambdaTypeManager encapsulates the knowledge about known lambda types.
  */
 public class LambdaTypeManager
 {
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull AllCompleteClasses allCompleteClasses;
+	protected final @NonNull org.eclipse.ocl.examples.pivot.Class oclLambdaType;
 	
 	/**
 	 * Map from from context type via first parameter type, which may be null, to list of lambda types sharing context and first parameter types. 
@@ -35,15 +37,34 @@ public class LambdaTypeManager
 // FIXME Why does a List map give a moniker test failure
 //	private final @NonNull Map<Type, Map<List<? extends Type>, LambdaType>> lambdaTypes = new HashMap<Type, Map<List<? extends Type>, LambdaType>>();
 	
-	protected LambdaTypeManager(@NonNull MetaModelManager metaModelManager) {
-		this.metaModelManager = metaModelManager;
+	public LambdaTypeManager(@NonNull AllCompleteClasses allCompleteClasses) {
+		this.allCompleteClasses = allCompleteClasses;
+		this.oclLambdaType = allCompleteClasses.getMetaModelManager().getOclLambdaType();
 	}
 
 	public void dispose() {
 		lambdaTypes.clear();
 	}
+
+	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType,
+			@Nullable TemplateParameterSubstitutions bindings) {
+		if (bindings == null) {
+			return getLambdaType(typeName, contextType, parameterTypes, resultType);
+		}
+		else {
+			Type specializedContextType = allCompleteClasses.getSpecializedType(contextType, bindings);
+			List<Type> specializedParameterTypes = new ArrayList<Type>();
+			for (Type parameterType : parameterTypes) {
+				if (parameterType != null) {
+					specializedParameterTypes.add(allCompleteClasses.getSpecializedType(parameterType, bindings));
+				}
+			}
+			Type specializedResultType = allCompleteClasses.getSpecializedType(resultType, bindings);
+			return getLambdaType(typeName, specializedContextType, specializedParameterTypes, specializedResultType);
+		}
+	}
 	
-	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType) {
+	private @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType) {
 		Map<Type, List<LambdaType>> contextMap = lambdaTypes.get(contextType);
 		if (contextMap == null) {
 			contextMap = new HashMap<Type, List<LambdaType>>();
@@ -80,47 +101,9 @@ public class LambdaTypeManager
 		lambdaType.setContextType(contextType);
 		lambdaType.getParameterType().addAll(parameterTypes);
 		lambdaType.setResultType(resultType);
-		lambdaType.getSuperClasses().add(metaModelManager.getOclLambdaType());
-		metaModelManager.addOrphanClass(lambdaType);
+		lambdaType.getSuperClasses().add(oclLambdaType);
+		allCompleteClasses.addOrphanClass(lambdaType);
 		lambdasList.add(lambdaType);
 		return lambdaType;
-	}
-	   
-/*	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType) {
-		Map<List<? extends Type>, LambdaType> contextMap = lambdaTypes.get(contextType);
-		if (contextMap == null) {
-			contextMap = new HashMap<List<? extends Type>, LambdaType>();
-			lambdaTypes.put(contextType, contextMap);
-		}
-		LambdaType lambdaType = contextMap.get(parameterTypes);
-		if (lambdaType == null) {
-			lambdaType = PivotFactory.eINSTANCE.createLambdaType();
-			lambdaType.setName(typeName);
-			lambdaType.setContextType(contextType);
-			lambdaType.getParameterType().addAll(parameterTypes);
-			lambdaType.setResultType(resultType);
-			lambdaType.getSuperClass().add(metaModelManager.getOclLambdaType());
-			metaModelManager.addOrphanClass(lambdaType);
-			contextMap.put(parameterTypes, lambdaType);
-		}
-		return lambdaType;
-	} */
-	   
-	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType,
-			@Nullable TemplateParameterSubstitutions bindings) {
-		if (bindings == null) {
-			return getLambdaType(typeName, contextType, parameterTypes, resultType);
-		}
-		else {
-			Type specializedContextType = metaModelManager.getSpecializedType(contextType, bindings);
-			List<Type> specializedParameterTypes = new ArrayList<Type>();
-			for (Type parameterType : parameterTypes) {
-				if (parameterType != null) {
-					specializedParameterTypes.add(metaModelManager.getSpecializedType(parameterType, bindings));
-				}
-			}
-			Type specializedResultType = metaModelManager.getSpecializedType(resultType, bindings);
-			return getLambdaType(typeName, specializedContextType, specializedParameterTypes, specializedResultType);
-		}
 	}
 }

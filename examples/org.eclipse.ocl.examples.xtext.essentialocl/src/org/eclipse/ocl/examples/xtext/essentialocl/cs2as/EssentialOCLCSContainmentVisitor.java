@@ -182,7 +182,7 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 			Map<String, Type> tupleParts = new HashMap<String, Type>();
 			tupleParts.put(PivotConstants.MESSAGE_PART_NAME, metaModelManager.getStringType());
 			tupleParts.put(PivotConstants.STATUS_PART_NAME, metaModelManager.getBooleanType());
-			TupleType tupleType = metaModelManager.getTupleManager().getTupleType("Tuple", tupleParts);
+			TupleType tupleType = metaModelManager.getCompleteModel().getTupleManager().getTupleType("Tuple", tupleParts);
 			Property statusProperty = DomainUtil.getNamedElement(tupleType.getOwnedProperties(), PivotConstants.STATUS_PART_NAME);
 			LanguageExpression asSpecification = asConstraint.getSpecification();
 			//

@@ -24,5 +24,8 @@ import org.eclipse.jdt.annotation.NonNull;
  */
 public interface PrimitiveCompletePackage extends RootCompletePackage
 {
-	@NonNull CompleteClass getCompleteClass(@NonNull PrimitiveType pivotType);
+	public interface Internal extends PrimitiveCompletePackage, RootCompletePackage.Internal
+	{
+		@NonNull CompleteClass.Internal getCompleteClass(@NonNull PrimitiveType pivotType);
+	}
 } // PrimitiveCompletePackage

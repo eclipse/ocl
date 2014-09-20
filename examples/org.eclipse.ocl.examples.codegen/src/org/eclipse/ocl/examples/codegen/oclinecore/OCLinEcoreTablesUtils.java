@@ -52,6 +52,7 @@ import org.eclipse.ocl.examples.library.executor.ExecutorLambdaType;
 import org.eclipse.ocl.examples.library.executor.ExecutorSpecializedType;
 import org.eclipse.ocl.examples.library.executor.ExecutorTupleType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
@@ -72,7 +73,6 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
-import org.eclipse.ocl.examples.pivot.manager.TypeServer;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
@@ -648,8 +648,8 @@ public class OCLinEcoreTablesUtils
 			Set<org.eclipse.ocl.examples.pivot.Class> types = new HashSet<org.eclipse.ocl.examples.pivot.Class>();
 			for (org.eclipse.ocl.examples.pivot.Class type : oclstdlibPackage.getOwnedClasses()) {
 				assert type != null;
-				TypeServer typeServer = metaModelManager.getTypeServer(type);
-				if ((elementType != null) && typeServer.conformsTo(metaModelManager, elementType)) {
+				CompleteClass completeClass = metaModelManager.getCompleteClass(type);
+				if ((elementType != null) && completeClass.conformsTo(elementType)) {
 //					System.out.println("Prune " + type.getName());
 				}
 				else if (!"_Dummy".equals(type.getName())) {
@@ -664,19 +664,17 @@ public class OCLinEcoreTablesUtils
 				assert type != null;
 				boolean pruned = false;
 				Type myType = null;
-				TypeServer typeServer = metaModelManager.getTypeServer(type);
-				for (DomainClass partialType : typeServer.getCompleteClass().getPartialClasses()) {
-					DomainPackage partialPackage = partialType.getOwningPackage();
+				CompleteClass completeClass = metaModelManager.getCompleteClass(type);
+				for (org.eclipse.ocl.examples.pivot.Class partialClass : completeClass.getPartialClasses()) {
+					DomainPackage partialPackage = partialClass.getOwningPackage();
 					if (partialPackage == oclstdlibPackage) {
-						if ((elementType != null) && !typeServer.conformsTo(metaModelManager, elementType)) {
+						if ((elementType != null) && !completeClass.conformsTo(elementType)) {
 //							System.out.println("Prune " + type.getName());
 							pruned = true;
 						}
 					}
 					else if (partialPackage == pPackage) {
-						if (partialType instanceof Type) {
-							myType = (Type) type;
-						}
+						myType = (Type) type;
 					}
 				}
 				if (!pruned && (myType instanceof org.eclipse.ocl.examples.pivot.Class)) {
@@ -721,8 +719,8 @@ public class OCLinEcoreTablesUtils
 			return depth;
 		}
 		int myDepth = 0;
-		for (@NonNull DomainClass superType : metaModelManager.getAllSuperClasses(theClass)) {
-			org.eclipse.ocl.examples.pivot.Class superClass = metaModelManager.getType(superType);
+		for (@NonNull CompleteClass superCompleteClass : metaModelManager.getAllSuperCompleteClasses(theClass)) {
+			org.eclipse.ocl.examples.pivot.Class superClass = superCompleteClass.getPivotClass();
 			if (superClass != theClass) {
 				superClass = PivotUtil.getUnspecializedTemplateableElement(superClass);
 				int superDepth = getAllSuperClasses(results, superClass);
@@ -762,8 +760,8 @@ public class OCLinEcoreTablesUtils
 			DomainPackage pivotMetaModel = elementType.getOwningPackage();
 			assert pivotMetaModel != null;
 			if (oclstdlibPackage == pPackage) {
-				TypeServer typeServer = metaModelManager.getTypeServer(type);
-				if (typeServer.conformsTo(metaModelManager, elementType)) {
+				CompleteClass completeClass = metaModelManager.getCompleteClass(type);
+				if (completeClass.conformsTo(elementType)) {
 					return getGenPackage(pivotMetaModel);
 				}
 				else {
@@ -771,11 +769,11 @@ public class OCLinEcoreTablesUtils
 				}
 			}
 			else if (pivotMetaModel == pPackage) {
-				TypeServer typeServer = metaModelManager.getTypeServer(type);
-				for (DomainClass partialType : typeServer.getCompleteClass().getPartialClasses()) {
-					DomainPackage partialPackage = partialType.getOwningPackage();
+				CompleteClass completeClass = metaModelManager.getCompleteClass(type);
+				for (org.eclipse.ocl.examples.pivot.Class partialClass : completeClass.getPartialClasses()) {
+					DomainPackage partialPackage = partialClass.getOwningPackage();
 					if (partialPackage == oclstdlibPackage) {
-						if (!typeServer.conformsTo(metaModelManager, elementType)) {
+						if (!completeClass.conformsTo(elementType)) {
 							return getGenPackage(oclstdlibPackage);
 						}
 					}

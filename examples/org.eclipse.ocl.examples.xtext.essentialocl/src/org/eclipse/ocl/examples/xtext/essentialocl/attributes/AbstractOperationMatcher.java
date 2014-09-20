@@ -21,6 +21,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.pivot.CompleteModel;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.NamedElement;
@@ -28,7 +29,6 @@ import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutionVisitor;
 import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutions;
@@ -95,14 +95,15 @@ public abstract class AbstractOperationMatcher
 
 	protected int compareMatches(@NonNull Object match1, @NonNull TemplateParameterSubstitutions referenceBindings,
 			@NonNull Object match2, @NonNull TemplateParameterSubstitutions candidateBindings) {
+		CompleteModel.Internal completeModel = metaModelManager.getCompleteModel();
 		@NonNull Operation reference = (Operation) match1;
 		@NonNull Operation candidate = (Operation) match2;
 		org.eclipse.ocl.examples.pivot.Class referenceClass = reference.getOwningClass();
 		org.eclipse.ocl.examples.pivot.Class candidateClass = candidate.getOwningClass();
 		Type referenceType = referenceClass != null ? PivotUtil.getType(referenceClass) : null;
 		Type candidateType = candidateClass != null ? PivotUtil.getType(candidateClass) : null;
-		Type specializedReferenceType = referenceType != null ? metaModelManager.getSpecializedType(referenceType, referenceBindings) : null;
-		Type specializedCandidateType = candidateType != null ? metaModelManager.getSpecializedType(candidateType, candidateBindings) : null;
+		Type specializedReferenceType = referenceType != null ? completeModel.getSpecializedType(referenceType, referenceBindings) : null;
+		Type specializedCandidateType = candidateType != null ? completeModel.getSpecializedType(candidateType, candidateBindings) : null;
 		if ((reference instanceof Iteration) && (candidate instanceof Iteration) && (specializedReferenceType != null) && (specializedCandidateType != null)) {
 			int iteratorCountDelta = ((Iteration)candidate).getOwnedIterator().size() - ((Iteration)reference).getOwnedIterator().size();
 			if (iteratorCountDelta != 0) {
@@ -146,8 +147,8 @@ public abstract class AbstractOperationMatcher
 			else {
 				referenceType = PivotUtil.getType(DomainUtil.nonNullModel(referenceParameter.getType()));
 				candidateType = PivotUtil.getType(DomainUtil.nonNullModel(candidateParameter.getType()));
-				specializedReferenceType = metaModelManager.getSpecializedType(referenceType, referenceBindings);
-				specializedCandidateType = metaModelManager.getSpecializedType(candidateType, candidateBindings);
+				specializedReferenceType = completeModel.getSpecializedType(referenceType, referenceBindings);
+				specializedCandidateType = completeModel.getSpecializedType(candidateType, candidateBindings);
 				if (argumentType != specializedReferenceType) {
 					referenceConversions++;
 				}
@@ -177,7 +178,6 @@ public abstract class AbstractOperationMatcher
 		if (p2 == null) {
 			return 0;
 		}
-		CompleteModelImpl completeModel = metaModelManager.getCompleteModel();
 		CompletePackage s1 = completeModel.getCompletePackage(p1);
 		CompletePackage s2 = completeModel.getCompletePackage(p2);
 		if (s1 != s2) {

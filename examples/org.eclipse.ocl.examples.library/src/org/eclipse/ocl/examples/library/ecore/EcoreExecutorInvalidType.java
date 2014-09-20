@@ -20,16 +20,11 @@ import org.eclipse.ocl.examples.library.executor.ExecutorTypeParameter;
 public class EcoreExecutorInvalidType extends EcoreExecutorType
 {
 	public EcoreExecutorInvalidType(@NonNull BuiltInTypeId typeId, @NonNull ExecutorPackage evaluationPackage, int flags, @NonNull ExecutorTypeParameter... typeParameters) {
-		super(typeId, evaluationPackage, flags, typeParameters);
+		super(typeId, evaluationPackage, flags | OCL_INVALID, typeParameters);
 	}
 
 	@Override
 	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
-		return true;
-	}
-
-	@Override
-	public boolean isUndefined() {
 		return true;
 	}
 }

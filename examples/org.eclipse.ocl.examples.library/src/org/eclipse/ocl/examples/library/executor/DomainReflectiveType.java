@@ -21,21 +21,20 @@ import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
-import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.types.AbstractFragment;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 
-public class DomainReflectiveType extends ReflectiveType
+public class DomainReflectiveType extends ReflectiveInheritance
 {
 	protected final @NonNull DomainStandardLibrary standardLibrary;
-	protected final @NonNull DomainClass domainType;
+	protected final @NonNull DomainClass domainClass;
 	private /*@LazyNonNull*/ DomainProperties allProperties;
 
-	public DomainReflectiveType(@NonNull DomainReflectivePackage evaluationPackage, @NonNull DomainClass domainType) {
-		super(DomainUtil.nonNullModel(domainType.getName()), evaluationPackage, computeFlags(domainType));
+	public DomainReflectiveType(@NonNull DomainReflectivePackage evaluationPackage, @NonNull DomainClass domainClass) {
+		super(DomainUtil.nonNullModel(domainClass.getName()), evaluationPackage, computeFlags(domainClass));
 		this.standardLibrary = evaluationPackage.getStandardLibrary();
-		this.domainType = domainType;
+		this.domainClass = domainClass;
 	}
 
 	@Override
@@ -43,22 +42,9 @@ public class DomainReflectiveType extends ReflectiveType
 		return new DomainReflectiveFragment(this, baseInheritance);
 	}
 
-	@NonNull
-	public Iterable<? extends DomainOperation> getAllOperations(@Nullable FeatureFilter featureFilter) {
-		throw new UnsupportedOperationException();
-	}
-
-	public @NonNull Iterable<? extends DomainProperty> getAllProperties(@Nullable FeatureFilter featureFilter) {
-		DomainProperties allProperties2 = allProperties;
-		if (allProperties2 == null) {
-			allProperties = allProperties2 = new DomainProperties(this);
-		}
-		return allProperties2.getAllProperties(featureFilter);
-	}
-
 	@Override
 	public @NonNull Iterable<? extends DomainInheritance> getInitialSuperInheritances() {
-		final Iterator<? extends DomainClass> iterator = domainType.getSuperClasses().iterator();
+		final Iterator<? extends DomainClass> iterator = domainClass.getSuperClasses().iterator();
 		return new Iterable<DomainInheritance>()
 		{
 			public Iterator<DomainInheritance> iterator() {
@@ -81,7 +67,7 @@ public class DomainReflectiveType extends ReflectiveType
 	}
 
 	public @NonNull Iterable<? extends DomainClass> getSuperClasses() {
-		return domainType.getSuperClasses();
+		return domainClass.getSuperClasses();
 	}
 
 	public @Nullable DomainProperty getMemberProperty(@NonNull String name) {
@@ -93,27 +79,23 @@ public class DomainReflectiveType extends ReflectiveType
 	}
 
 	public @NonNull String getMetaTypeName() {
-		return domainType.getMetaTypeName();
+		return domainClass.getMetaTypeName();
 	}
 
 	public @NonNull List<? extends DomainOperation> getOwnedOperations() {
-		return domainType.getOwnedOperations();
+		return domainClass.getOwnedOperations();
 	}
 
 	public @NonNull List<? extends DomainProperty> getOwnedProperties() {
-		return domainType.getOwnedProperties();
-	}
-
-	public @NonNull DomainStandardLibrary getStandardLibrary() {
-		return standardLibrary;
+		return domainClass.getOwnedProperties();
 	}
 
 	@Override
 	public @NonNull TypeId getTypeId() {
-		return domainType.getTypeId();
+		return domainClass.getTypeId();
 	}
 
 	public @NonNull DomainTypeParameters getTypeParameters() {
-		return domainType.getTypeParameters();
+		return domainClass.getTypeParameters();
 	}
 }

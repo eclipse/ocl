@@ -60,10 +60,10 @@ import org.eclipse.ocl.examples.domain.ids.ElementId;
 import org.eclipse.ocl.examples.domain.ids.OperationId;
 import org.eclipse.ocl.examples.domain.library.LibraryIteration;
 import org.eclipse.ocl.examples.library.iterator.IterateIteration;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.TypeServer;
 
 /**
  * A BoxingAnalyzer performs a bottom up tree-traversal inserting:
@@ -95,8 +95,8 @@ public class BoxingAnalyzer extends AbstractExtendingCGModelVisitor<Object, Code
 
 	protected boolean hasOclVoidOperation(@NonNull OperationId operationId) {
 		MetaModelManager metaModelManager = codeGenerator.getMetaModelManager();
-		TypeServer typeServer = metaModelManager.getTypeServer(metaModelManager.getOclVoidType());
-		DomainOperation memberOperation = typeServer.getMemberOperation(operationId);
+		CompleteClass completeClass = metaModelManager.getCompleteClass(metaModelManager.getOclVoidType());
+		DomainOperation memberOperation = completeClass.getOperation(operationId);
 		if (memberOperation == null) {
 			return false;
 		}
@@ -104,8 +104,8 @@ public class BoxingAnalyzer extends AbstractExtendingCGModelVisitor<Object, Code
 		if (owningType == null) {
 			return false;
 		}
-		TypeServer owningTypeServer = metaModelManager.getTypeServer(owningType);
-		return typeServer == owningTypeServer;
+		CompleteClass owningCompleteClass = metaModelManager.getCompleteClass(owningType);
+		return completeClass == owningCompleteClass;
 	}
 
 	/**

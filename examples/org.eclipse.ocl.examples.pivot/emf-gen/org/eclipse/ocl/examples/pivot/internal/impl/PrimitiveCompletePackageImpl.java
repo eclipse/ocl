@@ -22,19 +22,20 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PrimitiveCompletePackage;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.internal.complete.PrimitivePackageCompleteClasses;
-import org.eclipse.ocl.examples.pivot.manager.PrimitiveTypeServer;
+import org.eclipse.ocl.examples.pivot.manager.CompleteInheritance;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Primitive Complete Package</b></em>'.
+ * @extends org.eclipse.ocl.examples.pivot.PrimitiveCompletePackage.Internal
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class PrimitiveCompletePackageImpl extends RootCompletePackageImpl implements PrimitiveCompletePackage
+public class PrimitiveCompletePackageImpl extends RootCompletePackageImpl implements PrimitiveCompletePackage, org.eclipse.ocl.examples.pivot.PrimitiveCompletePackage.Internal
 {
 	/**
 	 * <!-- begin-user-doc -->
@@ -50,17 +51,16 @@ public class PrimitiveCompletePackageImpl extends RootCompletePackageImpl implem
 	private static class PrimitiveCompleteClassImpl extends CompleteClassImpl
 	{
 		private final @NonNull PrimitiveType primitiveType;
-		private PrimitiveTypeServer typeServer;
 
 		private PrimitiveCompleteClassImpl(@NonNull PrimitiveType primitiveType) {
 			this.primitiveType = primitiveType;
 		}
 
 		@Override
-		public @NonNull PrimitiveTypeServer getTypeServer() {
-			PrimitiveTypeServer typeServer2 = typeServer;
+		public @NonNull CompleteInheritance getCompleteInheritance() {
+			CompleteInheritance typeServer2 = completeInheritance;
 			if (typeServer2 == null) {
-				typeServer = typeServer2 = new PrimitiveTypeServer(this, primitiveType);
+				completeInheritance = typeServer2 = new CompleteInheritance(this, primitiveType);
 			}
 			return typeServer2;
 		}
@@ -95,13 +95,13 @@ public class PrimitiveCompletePackageImpl extends RootCompletePackageImpl implem
 	}
 
 	@Override
-	public @NonNull CompleteClass getCompleteClass(final @NonNull DomainClass primitiveType) {
+	public @NonNull CompleteClass.Internal getCompleteClass(final @NonNull DomainClass primitiveType) {
 		throw new UnsupportedOperationException();			// Should be PrimitiveType
 	}
 
-	public @NonNull CompleteClass getCompleteClass(final @NonNull PrimitiveType primitiveType) {
+	public @NonNull CompleteClass.Internal getCompleteClass(final @NonNull PrimitiveType primitiveType) {
 		String name = primitiveType.getName();
-		CompleteClass completeClass = getOwnedCompleteClass(name);
+		CompleteClass.Internal completeClass = getOwnedCompleteClass(name);
 		if (completeClass == null) {
 			completeClass = new PrimitiveCompleteClassImpl(primitiveType);
 			completeClass.setName(name);
@@ -117,7 +117,7 @@ public class PrimitiveCompletePackageImpl extends RootCompletePackageImpl implem
 	}
 
 	@Override
-	public Package getPivotPackage() {			// Only used to construct a PrimitiveTypeServer
+	public @NonNull Package getPivotPackage() {			// Only used to construct a PrimitiveTypeServer
 		for (CompleteClass completeClass : getOwnedCompleteClasses()) {
 			for (org.eclipse.ocl.examples.pivot.Class partialClass : completeClass.getPartialClasses()) {
 				org.eclipse.ocl.examples.pivot.Package partialPackage = partialClass.getOwningPackage();
@@ -126,6 +126,7 @@ public class PrimitiveCompletePackageImpl extends RootCompletePackageImpl implem
 				}
 			}
 		}
-		return null;
+		return getCompleteModel().getMetaModelManager().getOclAnyType().getOwningPackage();
+//		return null;
 	}
 } //PrimitiveCompletePackageImpl

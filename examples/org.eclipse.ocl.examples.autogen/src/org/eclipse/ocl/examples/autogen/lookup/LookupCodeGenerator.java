@@ -51,6 +51,7 @@ import org.eclipse.ocl.examples.domain.ids.RootPackageId;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.CallExp;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.IfExp;
@@ -73,7 +74,6 @@ import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.lookup.Environment;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.Orphanage;
-import org.eclipse.ocl.examples.pivot.manager.TypeServer;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -187,17 +187,17 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		//
 		ParametersId emptyParametersId = IdManager.getParametersId();
 		org.eclipse.ocl.examples.pivot.Class asElementType = DomainUtil.nonNullState(DomainUtil.getNamedElement(asPackage.getOwnedClasses(), PivotPackage.Literals.ELEMENT.getName()));
-		TypeServer asElementTypeServer = metaModelManager.getTypeServer(asElementType);
+		CompleteClass asElementCompleteClass = metaModelManager.getCompleteClass(asElementType);
 		OperationId envOperationId = asElementType.getTypeId().getOperationId(0, LookupClassContext.ENV_NAME, IdManager.getParametersId(asElementType.getTypeId()));
-		this.asElementEnvOperation = DomainUtil.nonNullState((Operation)asElementTypeServer.getMemberOperation(envOperationId));
+		this.asElementEnvOperation = DomainUtil.nonNullState((Operation)asElementCompleteClass.getOperation(envOperationId));
 		OperationId parentEnvOperationId = asElementType.getTypeId().getOperationId(0, LookupClassContext.PARENT_ENV_NAME, emptyParametersId);
-		this.asElementParentEnvOperation = DomainUtil.nonNullState((Operation)asElementTypeServer.getMemberOperation(parentEnvOperationId));
+		this.asElementParentEnvOperation = DomainUtil.nonNullState((Operation)asElementCompleteClass.getOperation(parentEnvOperationId));
 		this.asEnvironmentType = DomainUtil.nonNullState(asElementParentEnvOperation.getType());
-		TypeServer asEnvironmentTypeServer = metaModelManager.getTypeServer(asEnvironmentType);
+		CompleteClass asEnvironmentCompleteClass = metaModelManager.getCompleteClass(asEnvironmentType);
 		OperationId nestedEnvOperationId = asElementType.getTypeId().getOperationId(0, LookupClassContext.NESTED_ENV_NAME, emptyParametersId);
-		this.asEnvironmentNestedEnvOperation = DomainUtil.nonNullState((Operation)asEnvironmentTypeServer.getMemberOperation(nestedEnvOperationId));
+		this.asEnvironmentNestedEnvOperation = DomainUtil.nonNullState((Operation)asEnvironmentCompleteClass.getOperation(nestedEnvOperationId));
 		OperationId hasFinalResultOperationId = asElementType.getTypeId().getOperationId(0, LookupClassContext.HAS_FINAL_RESULT_NAME, emptyParametersId);
-		this.asEnvironmentHasFinalResultOperation = DomainUtil.nonNullState((Operation)asEnvironmentTypeServer.getMemberOperation(hasFinalResultOperationId));
+		this.asEnvironmentHasFinalResultOperation = DomainUtil.nonNullState((Operation)asEnvironmentCompleteClass.getOperation(hasFinalResultOperationId));
 		//
 		//	Create new AS elements
 		//

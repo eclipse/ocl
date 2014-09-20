@@ -14,8 +14,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
-import java.util.WeakHashMap;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -25,40 +23,48 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
+import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.domain.values.IntegerValue;
+import org.eclipse.ocl.examples.library.executor.CollectionTypeParameters;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.CompleteModel;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
+import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.OrphanCompletePackage;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PrimitiveCompletePackage;
-import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.RootCompletePackage;
-import org.eclipse.ocl.examples.pivot.Stereotype;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
+import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.internal.complete.AllCompleteClasses;
 import org.eclipse.ocl.examples.pivot.internal.complete.CompleteURIs;
+import org.eclipse.ocl.examples.pivot.internal.complete.PartialClasses;
 import org.eclipse.ocl.examples.pivot.internal.complete.PartialRoots;
 import org.eclipse.ocl.examples.pivot.internal.complete.RootCompletePackages;
-import org.eclipse.ocl.examples.pivot.manager.CollectionTypeServer;
+import org.eclipse.ocl.examples.pivot.manager.CompleteInheritance;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.TemplateableTypeServer;
-import org.eclipse.ocl.examples.pivot.manager.TypeServer;
+import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutions;
+import org.eclipse.ocl.examples.pivot.manager.TupleTypeManager;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Complete Model</b></em>'.
+ * @extends org.eclipse.ocl.examples.pivot.CompleteModel.Internal
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -72,7 +78,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
  *
  * @generated
  */
-public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
+public class CompleteModelImpl extends NamedElementImpl implements CompleteModel, org.eclipse.ocl.examples.pivot.CompleteModel.Internal
 {
 	/**
 	 * The cached value of the '{@link #getOrphanCompletePackage() <em>Orphan Complete Package</em>}' reference.
@@ -327,7 +333,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	/**
 	 * Map from each partial Class to the CompleteClass that supervises its merge. CompleteClass are created lazily. 
 	 */
-	private final @NonNull Map<DomainClass, CompleteClass> class2completeClass = new WeakHashMap<DomainClass, CompleteClass>();
+	private final @NonNull AllCompleteClasses allCompleteClasses;
 
 	/**
 	 * Map from complete to/from package URI. 
@@ -340,6 +346,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	{
 		partialRoots = new PartialRoots(this);
 		ownedCompletePackages = new RootCompletePackages(this);
+		allCompleteClasses = new AllCompleteClasses(this);
 	}
 
 	@Override
@@ -382,13 +389,11 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 		completeURIs.addPackageURI2completeURI(packageURI, newCompleteURI);
 	}
 
-	public void didAddClass(@NonNull DomainClass partialClass, @NonNull CompleteClass completeClass) {
-//		assert partialClass.getUnspecializedElement() == null;
-		CompleteClass oldCompleteClass = class2completeClass.put(partialClass, completeClass);
-		assert (oldCompleteClass == null) ||(oldCompleteClass == completeClass);
+	public void didAddClass(@NonNull DomainClass partialClass, @NonNull CompleteClass.Internal completeClass) {
+		allCompleteClasses.didAddClass(partialClass, completeClass);
 	}
 
-	public void didAddCompletePackage(@NonNull CompletePackage completePackage) {
+	public void didAddCompletePackage(@NonNull CompletePackage.Internal completePackage) {
 		completeURIs.didAddCompletePackage(completePackage);
 	}
 	
@@ -439,10 +444,10 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	} */
 	
 	public void didRemoveClass(@NonNull DomainClass pivotType) {
-		class2completeClass.remove(pivotType);
+		allCompleteClasses.didRemoveClass(pivotType);
 	}
 
-	public void didRemoveCompletePackage(@NonNull CompletePackage completePackage) {
+	public void didRemoveCompletePackage(@NonNull CompletePackage.Internal completePackage) {
 		if (completePackage == primitiveCompletePackage) {
 			primitiveCompletePackage = null;
 		}
@@ -458,66 +463,36 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	}
 
 	public synchronized void dispose() {
-//		if (!class2completeClass.isEmpty()) {
-//			Collection<CompleteClass> savedCompleteClasses = new ArrayList<CompleteClass>(class2completeClass.values());
-			class2completeClass.clear();
-//			for (CompleteClass completeClass : savedCompleteClasses) {
-//				completeClass.dispose();
-//			}
-//		}
+		allCompleteClasses.dispose();
 		ownedCompletePackages.dispose();
 		completeURIs.dispose();
 	}
 
-//	public void disposedType(@NonNull DomainType domainType) {
-//		class2completeClass.remove(domainType);
-//	}
+	public @Nullable CollectionType findCollectionType(@NonNull CompleteClass.Internal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters) {
+		return allCompleteClasses.findCollectionType(completeClass, typeParameters);
+	}
 
-	public @NonNull Iterable<CompletePackage> getAllCompletePackages() {
+	public @NonNull Iterable<? extends CompletePackage> getAllCompletePackages() {
 		return completeURIs.getAllCompletePackages();
 	}
 
-	public @NonNull Iterable<CompletePackage> getAllCompletePackagesWithUris() {
+	public @NonNull Iterable<? extends CompletePackage> getAllCompletePackagesWithUris() {
 		return completeURIs.getAllCompletePackagesWithUris();
 	}
-	
-	public @NonNull CompleteClass getCompleteClass(@NonNull DomainType pivotType) {
-		if (pivotType instanceof ElementExtension) {
-			Stereotype stereotype = ((ElementExtension)pivotType).getStereotype();
-			if (stereotype != null) {
-				pivotType = stereotype;
-			}
-		}
-		if (pivotType instanceof TypeServer) {
-			return ((TypeServer)pivotType).getCompleteClass();
-		}
-		assert metaModelManager.isTypeServeable(pivotType);
-//		TypeTracker typeTracker = type2tracker.get(pivotType);
-//		if (typeTracker != null) {
-//			return typeTracker.getTypeServer();
-//		}
-		CompleteClass completeClass = class2completeClass.get(pivotType);
-		if (completeClass != null) {
-			return completeClass;
-		}
-		else if (pivotType instanceof PrimitiveType) {
-			PrimitiveCompletePackage primitiveCompletePackage = getPrimitiveCompletePackage();
-			return primitiveCompletePackage.getCompleteClass((PrimitiveType)pivotType);
-		}
-		else if (pivotType instanceof DomainClass) {
-			DomainPackage pivotPackage = ((DomainClass)pivotType).getOwningPackage();
-			if (pivotPackage == null) {
-				throw new IllegalStateException("type has no package");
-			}
-			CompletePackage completePackage = ownedCompletePackages.getCompletePackage(pivotPackage);
-			return completePackage.getCompleteClass((DomainClass) pivotType);
-		}
-		else {
-			throw new UnsupportedOperationException("TemplateType");
-		}
+
+	public @NonNull <T extends CollectionType> T getCollectionType(@NonNull T containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
+		return allCompleteClasses.getCollectionType(containerType, elementType, lower, upper);
+	}
+
+	public @NonNull CollectionType getCollectionType(@NonNull CompleteClass.Internal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters) {
+		return allCompleteClasses.getCollectionType(completeClass, typeParameters);
 	}
 	
-	public @NonNull CompletePackage getCompletePackage(@NonNull DomainPackage asPackage) {
+	public @NonNull CompleteClass.Internal getCompleteClass(@NonNull DomainType pivotType) {
+		return allCompleteClasses.getCompleteClass(pivotType);
+	}
+	
+	public @NonNull CompletePackage.Internal getCompletePackage(@NonNull DomainPackage asPackage) {
 		return ownedCompletePackages.getCompletePackage(asPackage);
 	}
 
@@ -532,12 +507,21 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	public @NonNull CompleteURIs getCompleteURIs() {
 		return completeURIs;
 	}
+	
+	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType) {
+		return allCompleteClasses.getLambdaType(typeName, contextType, parameterTypes, resultType, null);
+	}
+
+	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType,
+			@Nullable TemplateParameterSubstitutions bindings) {
+		return allCompleteClasses.getLambdaType(typeName, contextType, parameterTypes, resultType, bindings);
+	}
 
 	public @Nullable RootCompletePackage getMemberPackage(@NonNull String memberPackageName) {
 		return ownedCompletePackages.getOwnedCompletePackage(memberPackageName);
 	}
 
-	public @NonNull Iterable<RootCompletePackage> getMemberPackages() {
+	public @NonNull Iterable<? extends RootCompletePackage> getMemberPackages() {
 		return ownedCompletePackages;
 	}
 
@@ -546,14 +530,14 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	}
 
 	@SuppressWarnings("null")
-	public @NonNull OrphanCompletePackage getOrphanCompletePackage()
+	public @NonNull OrphanCompletePackage.Internal getOrphanCompletePackage()
 	{
 		OrphanCompletePackage orphanCompletePackage2 = orphanCompletePackage;
 		if (orphanCompletePackage2 == null) {
 			orphanCompletePackage2 = orphanCompletePackage = PivotFactory.eINSTANCE.createOrphanCompletePackage();
 			ownedCompletePackages.add(orphanCompletePackage2);
 		}
-		return orphanCompletePackage2;
+		return (OrphanCompletePackage.Internal)orphanCompletePackage2;
 	}
 
 	/**
@@ -575,14 +559,14 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	}
 	
 	@SuppressWarnings("null")
-	public @NonNull PrimitiveCompletePackage getPrimitiveCompletePackage()
+	public @NonNull PrimitiveCompletePackage.Internal getPrimitiveCompletePackage()
 	{
 		PrimitiveCompletePackage primitiveCompletePackage2 = primitiveCompletePackage;
 		if (primitiveCompletePackage2 == null) {
 			primitiveCompletePackage2 = primitiveCompletePackage = PivotFactory.eINSTANCE.createPrimitiveCompletePackage();
 			ownedCompletePackages.add(primitiveCompletePackage2);
 		}
-		return primitiveCompletePackage2;
+		return (PrimitiveCompletePackage.Internal)primitiveCompletePackage2;
 	}
 
 	/**
@@ -609,42 +593,23 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 //		}
 		return completePackage != null ? completePackage.getPivotPackage() : null;
 	}
+
+	public @NonNull CollectionType getCollectionType(@NonNull CompleteClass.Internal completeClass, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
+		return allCompleteClasses.getCollectionType(completeClass, new CollectionTypeParameters<Type>(elementType, lower, upper));
+	}
 	
-/*	public @NonNull TypeServer getTypeServer(@NonNull DomainType pivotType) {
-		if (pivotType instanceof ElementExtension) {
-			Stereotype stereotype = ((ElementExtension)pivotType).getStereotype();
-			if (stereotype != null) {
-				pivotType = stereotype;
-			}
-		}
-		if (pivotType instanceof TypeServer) {
-			return (TypeServer)pivotType;
-		}
-		assert metaModelManager.isTypeServeable(pivotType);
-//		TypeTracker typeTracker = type2tracker.get(pivotType);
-//		if (typeTracker != null) {
-//			return typeTracker.getTypeServer();
-//		}
-		CompleteClass completeClass = class2completeClass.get(pivotType);
-		if (completeClass != null) {
-			return completeClass.getTypeServer();
-		}
-		else if (pivotType instanceof PrimitiveType) {
-			PrimitiveCompletePackage primitiveCompletePackage = getPrimitiveCompletePackage();
-			return primitiveCompletePackage.getCompleteClass((PrimitiveType) pivotType).getTypeServer();
-		}
-		else if (pivotType instanceof DomainClass) {
-			DomainPackage pivotPackage = ((DomainClass)pivotType).getOwningPackage();
-			if (pivotPackage == null) {
-				throw new IllegalStateException("type has no package");
-			}
-			CompletePackage completePackage = getCompletePackage(pivotPackage);
-			return completePackage.getTypeServer(pivotType);
-		}
-		else {
-			throw new UnsupportedOperationException("TemplateType");
-		}
-	} */
+	public @NonNull Type getSpecializedType(@NonNull Type type, @Nullable TemplateParameterSubstitutions substitutions) {
+		return allCompleteClasses.getSpecializedType(type, substitutions);
+	}
+	
+	public @NonNull TupleTypeManager getTupleManager() {
+		return allCompleteClasses.getTupleManager();
+	}
+
+	public @NonNull TupleType getTupleType(@NonNull String typeName, @NonNull Collection<? extends DomainTypedElement> parts,
+			@Nullable TemplateParameterSubstitutions bindings) {
+		return allCompleteClasses.getTupleType(typeName, parts, bindings);
+	}
 
 	public void initMetaModelManager(@NonNull MetaModelManager metaModelManager) {
 		this.metaModelManager = metaModelManager;
@@ -686,20 +651,24 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 					}
 				}
 				@NonNull org.eclipse.ocl.examples.pivot.Class unspecializedSuperClass = PivotUtil.getUnspecializedTemplateableElement(superClass);
-				TypeServer superTypeServer = metaModelManager.getCompleteClass(unspecializedSuperClass).getTypeServer();
-				if ((superTypeServer instanceof CollectionTypeServer) && (superSpecializedTemplateParameterSubstitutions.size() == 1)) {
-					Type templateArgument = superSpecializedTemplateParameterSubstitutions.get(0).getActual();
-					if (templateArgument != null) {
-						org.eclipse.ocl.examples.pivot.Class specializedSuperClass = ((CollectionTypeServer)superTypeServer).getSpecializedType(templateArgument, null, null);
-						specializedClass.getSuperClasses().add(specializedSuperClass);
+				CompleteClass.Internal superCompleteClass = (CompleteClass.Internal)metaModelManager.getCompleteClass(unspecializedSuperClass);
+				org.eclipse.ocl.examples.pivot.Class superPivotClass = superCompleteClass.getPivotClass();
+				if (superPivotClass instanceof DomainCollectionType) {
+					if (superSpecializedTemplateParameterSubstitutions.size() == 1) {
+						Type templateArgument = superSpecializedTemplateParameterSubstitutions.get(0).getActual();
+						if (templateArgument != null) {
+							org.eclipse.ocl.examples.pivot.Class specializedSuperClass = allCompleteClasses.getCollectionType(superCompleteClass, new CollectionTypeParameters<Type>(templateArgument, null, null));
+							specializedClass.getSuperClasses().add(specializedSuperClass);
+						}
 					}
 				}
-				else if (superTypeServer instanceof TemplateableTypeServer) {
+				else {
 					List<Type> superTemplateArgumentList = new ArrayList<Type>(superSpecializedTemplateParameterSubstitutions.size());
 					for (TemplateParameterSubstitution superSpecializedTemplateParameterSubstitution : superSpecializedTemplateParameterSubstitutions) {
 						superTemplateArgumentList.add(superSpecializedTemplateParameterSubstitution.getActual());
 					}
-					org.eclipse.ocl.examples.pivot.Class specializedSuperType = ((TemplateableTypeServer)superTypeServer).getSpecializedType(superTemplateArgumentList);
+					CompleteInheritance superCompleteInheritance = superCompleteClass.getCompleteInheritance();
+					org.eclipse.ocl.examples.pivot.Class specializedSuperType = ((PartialClasses)superCompleteInheritance.getCompleteClass().getPartialClasses()).getSpecializedType(superTemplateArgumentList);
 					specializedClass.getSuperClasses().add(specializedSuperType);
 				}
 			}

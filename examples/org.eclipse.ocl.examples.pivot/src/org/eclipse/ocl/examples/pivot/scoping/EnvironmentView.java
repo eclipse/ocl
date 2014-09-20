@@ -55,9 +55,8 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl;
+import org.eclipse.ocl.examples.pivot.manager.CompleteInheritance;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.TypeServer;
 import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
@@ -114,7 +113,7 @@ public class EnvironmentView
 			if (p2 == null) {
 				return 0;
 			}
-			CompleteModelImpl completeModel = metaModelManager.getCompleteModel();
+			CompleteModel completeModel = metaModelManager.getCompleteModel();
 			CompletePackage s1 = completeModel.getCompletePackage(p1);
 			CompletePackage s2 = completeModel.getCompletePackage(p2);
 			if (s1 != s2) {
@@ -290,17 +289,17 @@ public class EnvironmentView
 				&& (requiredType != PivotPackage.Literals.NAMESPACE)) {			// Don't really want operations when looking for NAMESPACE
 			assert metaModelManager.isTypeServeable(type);
 			type = PivotUtil.getUnspecializedTemplateableElement(type);
-			TypeServer typeServer = metaModelManager.getTypeServer(type);
+			CompleteClass completeClass = metaModelManager.getCompleteClass(type);
 			String name2 = name;
 			if (name2 != null) {
-				for (DomainOperation operation : typeServer.getAllOperations(featureFilter, name2)) {
+				for (DomainOperation operation : completeClass.getOperations(featureFilter, name2)) {
 					if ((operation != null) /*&& (operation.isStatic() == selectStatic)*/) {
 						addElement(name2, operation);
 					}
 				}
 			}
 			else {
-				for (DomainOperation operation : typeServer.getAllOperations(featureFilter)) {
+				for (DomainOperation operation : completeClass.getOperations(featureFilter)) {
 					if ((operation != null) /*&& (operation.isStatic() == selectStatic)*/) {
 						addNamedElement(operation);
 					}
@@ -393,17 +392,17 @@ public class EnvironmentView
 		if (accepts(PivotPackage.Literals.PROPERTY)
 			&& (requiredType != PivotPackage.Literals.NAMESPACE)) {			// Don't really want properties when looking for NAMESPACE
 			assert metaModelManager.isTypeServeable(type);
-			TypeServer typeServer = metaModelManager.getTypeServer(type);
+			CompleteClass completeClass = metaModelManager.getCompleteClass(type);
 			String name2 = name;
 			if (name2 != null) {
-				for (DomainProperty property : typeServer.getAllProperties(featureFilter, name2)) {
+				for (DomainProperty property : completeClass.getProperties(featureFilter, name2)) {
 					if (property != null) {
 						addNamedElement(property);
 					}
 				}
 			}
 			else {
-				for (DomainProperty property : typeServer.getAllProperties(featureFilter)) {
+				for (DomainProperty property : completeClass.getProperties(featureFilter)) {
 					if (property != null) {
 						addNamedElement(property);
 					}
@@ -418,14 +417,14 @@ public class EnvironmentView
 			CompleteClass completeClass = metaModelManager.getCompleteModel().getCompleteClass(type);
 			String name2 = name;
 			if (name2 != null) {
-				for (State state : completeClass.getAllStates(name2)) {
+				for (State state : completeClass.getStates(name2)) {
 					if (state != null) {
 						addNamedElement(state);
 					}
 				}
 			}
 			else {
-				for (State state : completeClass.getAllStates()) {
+				for (State state : completeClass.getStates()) {
 					if (state != null) {
 						addNamedElement(state);
 					}
@@ -477,17 +476,11 @@ public class EnvironmentView
 			}
 			else {
 				for (CompleteClass completeClass : completePackage.getOwnedCompleteClasses()) {
-					TypeServer type = completeClass.getTypeServer();
-					if (type != null) {
-						addNamedElement(type);
-					}
+					addNamedElement(completeClass.getPivotClass());
 				}
 				completePackage = metaModelManager.getCompleteModel().getPrimitiveCompletePackage();
 				for (CompleteClass completeClass : completePackage.getOwnedCompleteClasses()) {
-					TypeServer type = completeClass.getTypeServer();
-					if (type != null) {
-						addNamedElement(type);
-					}
+					addNamedElement(completeClass.getPivotClass());
 				}
 			}
 		}
@@ -554,8 +547,8 @@ public class EnvironmentView
 		/*if (element instanceof PackageServer) {
 			element = ((PackageServer) element).getPrimaryPackage();		// FIXME lose casts
 		}
-		else*/ if (element instanceof TypeServer) {
-			element = ((TypeServer) element).getCompleteClass().getPivotClass();		// FIXME lose casts
+		else*/ if (element instanceof CompleteInheritance) {
+			element = ((CompleteInheritance) element).getCompleteClass().getPivotClass();		// FIXME lose casts
 		}
 		if ((requiredType != null) && (name != null)) {
 			if (!requiredType.isInstance(element)) {
@@ -687,10 +680,10 @@ public class EnvironmentView
 	}
 
 	public void addRootPackages() {
-		CompleteModelImpl completeModel = metaModelManager.getCompleteModel();
+		CompleteModel.Internal completeModel = metaModelManager.getCompleteModel();
 		String name2 = name;
 		if (name2 != null) {
-			RootCompletePackage rootCompletePackage = completeModel.getMemberPackage(name2);
+			CompletePackage rootCompletePackage = completeModel.getOwnedCompletePackage(name2);
 			if (rootCompletePackage != null) {
 				addNamedElement(rootCompletePackage);
 			}
@@ -700,7 +693,7 @@ public class EnvironmentView
 			}
 		}
 		else {
-			for (RootCompletePackage rootCompletePackage : completeModel.getMemberPackages()) {
+			for (RootCompletePackage rootCompletePackage : completeModel.getOwnedCompletePackages()) {
 				if (rootCompletePackage != null) {
 					addNamedElement(rootCompletePackage);
 				}

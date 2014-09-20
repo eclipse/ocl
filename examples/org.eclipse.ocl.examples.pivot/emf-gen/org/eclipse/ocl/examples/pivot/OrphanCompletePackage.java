@@ -23,4 +23,7 @@ package org.eclipse.ocl.examples.pivot;
  */
 public interface OrphanCompletePackage extends RootCompletePackage
 {
+	public interface Internal extends OrphanCompletePackage, RootCompletePackage.Internal
+	{
+	}
 } // OrphanCompletePackage

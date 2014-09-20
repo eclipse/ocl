@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.library.executor;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +19,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 
@@ -29,43 +27,44 @@ import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
  */
 public abstract class ReflectivePackage extends ExecutorPackage
 {
-	protected @Nullable Map<DomainType, DomainInheritance> types = null;
+	protected @Nullable Map<DomainClass, DomainInheritance> class2inheritance = null;
 
 	public ReflectivePackage(@NonNull String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId) {
 		super(name, nsPrefix, nsURI, packageId);
 	}
 	
-	protected synchronized @NonNull Map<DomainType, DomainInheritance> computeClasses() {
-		Map<DomainType, DomainInheritance> types2 = types = new HashMap<DomainType, DomainInheritance>();
-		for (DomainType domainType : getDomainTypes()) {
-			if (domainType instanceof DomainClass) {		// FIXME no cast
-				DomainInheritance executorType = createExecutorType((DomainClass)domainType);
-				types2.put(domainType, executorType);
+	protected synchronized @NonNull Map<DomainClass, DomainInheritance> computeClasses() {
+		Map<DomainClass, DomainInheritance> class2inheritance2 = class2inheritance = new HashMap<DomainClass, DomainInheritance>();
+		for (DomainClass domainClass : getDomainClasses()) {
+			if (domainClass != null) {
+				DomainInheritance executorType = createInheritance(domainClass);
+				class2inheritance2.put(domainClass, executorType);
 			}
 		}
-		return types2;
+		return class2inheritance2;
 	}
 
-	protected abstract @NonNull DomainInheritance createExecutorType(@NonNull DomainClass domainType);
+	protected abstract @NonNull DomainInheritance createInheritance(@NonNull DomainClass domainClass);
 
-	protected abstract @NonNull Iterable<? extends DomainType> getDomainTypes();
+	protected abstract @NonNull List<? extends DomainClass> getDomainClasses();
 
-	public @NonNull DomainInheritance getInheritance(@NonNull DomainType type) {
-		Map<DomainType, DomainInheritance> types2 = types;
-		if (types2 == null) {
-			types2 = computeClasses();
+	public @NonNull DomainInheritance getInheritance(@NonNull DomainClass domainClass) {
+		Map<DomainClass, DomainInheritance> class2inheritance2 = class2inheritance;
+		if (class2inheritance2 == null) {
+			class2inheritance2 = computeClasses();
 		}
-		return DomainUtil.nonNullState(types2.get(type));
+		return DomainUtil.nonNullState(class2inheritance2.get(domainClass));
 	}
 
 	@Override
 	public @NonNull List<? extends DomainClass> getOwnedClasses() {
-		Map<DomainType, DomainInheritance> types2 = types;
+/*		Map<DomainClass, DomainInheritance> types2 = class2inheritance;
 		if (types2 == null) {
 			types2 = computeClasses();
 		}
 		List<DomainInheritance> values2 = new ArrayList<DomainInheritance>(types2.values());
-		return values2;
+		return values2; */
+		return getDomainClasses();
 	}
 
 	protected abstract @NonNull DomainStandardLibrary getStandardLibrary();

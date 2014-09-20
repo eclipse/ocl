@@ -11,7 +11,6 @@
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -29,30 +28,25 @@ import org.eclipse.ocl.examples.domain.elements.DomainFragment;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.domain.ids.OperationId;
-import org.eclipse.ocl.examples.pivot.AnyType;
+import org.eclipse.ocl.examples.library.executor.CollectionTypeParameters;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.CompleteClass;
+import org.eclipse.ocl.examples.pivot.CompleteModel;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.Enumeration;
-import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.State;
-import org.eclipse.ocl.examples.pivot.VoidType;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.internal.complete.PartialClasses;
-import org.eclipse.ocl.examples.pivot.manager.AnyTypeServer;
-import org.eclipse.ocl.examples.pivot.manager.CollectionTypeServer;
-import org.eclipse.ocl.examples.pivot.manager.EnumerationTypeServer;
-import org.eclipse.ocl.examples.pivot.manager.InvalidTypeServer;
+import org.eclipse.ocl.examples.pivot.manager.CompleteInheritance;
+import org.eclipse.ocl.examples.pivot.manager.EnumerationInheritance;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.TemplateableTypeServer;
-import org.eclipse.ocl.examples.pivot.manager.TypeServer;
-import org.eclipse.ocl.examples.pivot.manager.VoidTypeServer;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 import com.google.common.base.Function;
@@ -61,6 +55,7 @@ import com.google.common.collect.Iterables;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Complete Class</b></em>'.
+ * @extends org.eclipse.ocl.examples.pivot.CompleteClass.Internal
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -72,7 +67,7 @@ import com.google.common.collect.Iterables;
  *
  * @generated
  */
-public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
+public class CompleteClassImpl extends NamedElementImpl implements CompleteClass, org.eclipse.ocl.examples.pivot.CompleteClass.Internal
 {
 
 	/**
@@ -91,10 +86,14 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompletePackage getOwningCompletePackage()
+	public CompletePackage getOwningCompletePackageGen()
 	{
 		if (eContainerFeatureID() != PivotPackage.COMPLETE_CLASS__OWNING_COMPLETE_PACKAGE) return null;
 		return (CompletePackage)eInternalContainer();
+	}
+	public CompletePackage.Internal getOwningCompletePackage()
+	{
+		return (CompletePackage.Internal)getOwningCompletePackageGen();
 	}
 
 	/**
@@ -340,7 +339,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	 */
 	protected final @NonNull PartialClasses partialClasses;
 
-	protected /*@NonNull*/ TypeServer typeServer;
+	protected /*@NonNull*/ CompleteInheritance completeInheritance;
 
 	protected CompleteClassImpl()
 	{
@@ -351,6 +350,14 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	@Override
 	public <R> R accept(@NonNull Visitor<R> visitor) {
 		return visitor.visitCompleteClass(this);
+	}
+
+	public @Nullable DomainInheritance basicGetTypeServer() {
+		return completeInheritance;
+	}
+
+	public boolean conformsTo(@NonNull DomainType elementType) {
+		return getCompleteInheritance().conformsTo(getMetaModelManager(), elementType);
 	}
 
 	/**
@@ -369,92 +376,80 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	}
 
 	public void dispose() {
-		TypeServer savedTypeServer = typeServer;
-		typeServer = null;
-		if (savedTypeServer != null) {
-			savedTypeServer.dispose();
-		}
+		completeInheritance = null;
 		partialClasses.dispose();
 	}
 
-	public @NonNull Iterable<? extends DomainOperation> getAllOperations(final @Nullable FeatureFilter featureFilter) {
-		return partialClasses.getAllOperations(featureFilter);
+	public @Nullable CollectionType findCollectionType(@NonNull CollectionTypeParameters<Type> typeParameters) {
+		return null;
 	}
 
-	public @NonNull Iterable<? extends DomainOperation> getAllOperations(final @Nullable FeatureFilter featureFilter, @NonNull String name) {
-		return partialClasses.getAllOperations(featureFilter, name);
+	public @NonNull CollectionType getCollectionType(@NonNull CollectionTypeParameters<Type> typeParameters) {
+		throw new UnsupportedOperationException("Not a collection");
 	}
 
-	public @NonNull Iterable<? extends DomainProperty> getAllProperties(final @Nullable FeatureFilter featureFilter) {
-		return partialClasses.getAllProperties(featureFilter);
+	public @NonNull CompleteInheritance getCompleteInheritance() {
+		CompleteInheritance completeInheritance2 = completeInheritance;
+		if (completeInheritance2 == null) {
+			CompletePackageImpl completePackage = (CompletePackageImpl) getOwningCompletePackage();
+			org.eclipse.ocl.examples.pivot.Class pivotType = getPivotClass();
+			assert pivotType.getUnspecializedElement() == null;
+			Map<String, CompleteInheritance> typeServers2 = completePackage.getPartialPackages().initMemberTypes();
+			String name = pivotType.getName();
+			if (name == null) {
+				throw new IllegalStateException("Unnamed type");
+			}
+			completeInheritance2 = typeServers2.get(name);
+			if (completeInheritance2 == null) {
+				if (pivotType instanceof Enumeration) {
+					completeInheritance2 = new EnumerationInheritance(this, (Enumeration)pivotType);
+				}
+				else {
+					completeInheritance2 = new CompleteInheritance(this, pivotType);
+				}
+				if (pivotType.getUnspecializedElement() == null) {
+					typeServers2.put(name, completeInheritance2);
+				}
+			}
+			completeInheritance = completeInheritance2;
+		}
+		return completeInheritance2;
 	}
 
-	public @NonNull Iterable<? extends DomainProperty> getAllProperties(final @Nullable FeatureFilter featureFilter, @NonNull String name) {
-		return partialClasses.getAllProperties(featureFilter, name);
-	}
-
-	public @NonNull Iterable<? extends State> getAllStates() {
-		return partialClasses.getAllStates();
-	}
-
-	public @NonNull Iterable<? extends State> getAllStates(@NonNull String name) {
-		return partialClasses.getAllStates(name);
-	}
-
-	public @NonNull Iterable<? extends DomainInheritance> getAllSuperClasses() {
-		return partialClasses.getAllSuperClasses();
-	}
-
-	public @NonNull Iterable<? extends DomainInheritance> getAllSuperClasses(@NonNull String className) {
-		return partialClasses.getAllSuperClasses(className);
-	}
-	
-	public @NonNull Iterable<CompleteClass> getAllSuperCompleteClasses() {
-		return partialClasses.getAllSuperCompleteClasses();
-	}
-
-	public @NonNull CompleteModelImpl getCompleteModel() {
+	public @NonNull CompleteModel.Internal getCompleteModel() {
 		return getOwningCompletePackage().getCompleteModel();
 	}
 
 	public @NonNull Iterable<? extends DomainInheritance> getInitialSuperInheritances() {
 		return partialClasses.getInitialSuperInheritances();
 	}
-
-	public @Nullable DomainOperation getMemberOperation(@NonNull OperationId operationId) {
-		return partialClasses.getMemberOperation(operationId);
-	}
-
-	public @Nullable DomainOperation getMemberOperation(@NonNull DomainOperation operationId) {
-		return partialClasses.getMemberOperation(operationId);
-	}
-	
-	public @NonNull Iterable<String> getMemberOperationNames() {
-		return partialClasses.getMemberOperationNames();
-	}
 	
 	public @NonNull Iterable<DomainOperation> getMemberOperations() {
-		return partialClasses.getMemberOperations();
-	}
-
-	public @Nullable Iterable<DomainProperty> getMemberProperties(@NonNull DomainProperty pivotProperty) {
-		return partialClasses.getMemberProperties(pivotProperty);
-	}
-
-	public @Nullable Iterator<DomainProperty> getMemberProperties(@NonNull String propertyName) {
-		return partialClasses.getMemberProperties(propertyName);
-	}
-
-	public @Nullable DomainProperty getMemberProperty(@NonNull String propertyName) {
-		return partialClasses.getMemberProperty(propertyName);
+		return partialClasses.getOperations();
 	}
 
 	public @NonNull MetaModelManager getMetaModelManager() {
 		return getCompleteModel().getMetaModelManager();
 	}
 
+	public @Nullable DomainOperation getOperation(@NonNull OperationId operationId) {
+		return partialClasses.getOperation(operationId);
+	}
+
+	public @Nullable DomainOperation getOperation(@NonNull DomainOperation operationId) {
+		return partialClasses.getOperation(operationId);
+	}
+
 	public @Nullable Iterable<DomainOperation> getOperationOverloads(@NonNull DomainOperation pivotOperation) {
 		return partialClasses.getOperationOverloads(pivotOperation);
+	}
+
+	public @NonNull Iterable<? extends DomainOperation> getOperations(final @Nullable FeatureFilter featureFilter) {
+		return partialClasses.getOperations(featureFilter);
+	}
+
+	public @NonNull Iterable<? extends DomainOperation> getOperations(final @Nullable FeatureFilter featureFilter, @Nullable String name) {
+		return partialClasses.getOperationOverloads(featureFilter, name);
 	}
 
 	/**
@@ -477,7 +472,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 
 	@SuppressWarnings("null")
 	public @NonNull Iterable<? extends DomainClass> getProperSuperClasses() {
-		DomainInheritance inheritance = getTypeServer();
+		DomainInheritance inheritance = getCompleteInheritance();
 		return Iterables.transform(inheritance.getAllProperSuperFragments(), new Function<DomainFragment, DomainClass>()
 		{
 			public DomainClass apply(DomainFragment input) {
@@ -488,68 +483,45 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	
 	@SuppressWarnings("null")
 	public @NonNull Iterable<CompleteClass> getProperSuperCompleteClasses() {
-		DomainInheritance inheritance = getTypeServer();
+		DomainInheritance inheritance = getCompleteInheritance();
 		return Iterables.transform(inheritance.getAllProperSuperFragments(), new Function<DomainFragment, CompleteClass>()
 		{
 			public CompleteClass apply(DomainFragment input) {
-				return ((TypeServer)input.getBaseInheritance()).getCompleteClass();
+				return ((CompleteInheritance)input.getBaseInheritance()).getCompleteClass();		// FIXME cast
 			}
 		});
 	}
-	
 
-	public @NonNull TypeServer getTypeServer() {
-		if (typeServer == null) {
-			CompletePackageImpl completePackage = (CompletePackageImpl) getOwningCompletePackage();
-			org.eclipse.ocl.examples.pivot.Class pivotType = getPivotClass();
-//				assert completeClass.eContainer() == this;
-//				if (pivotType instanceof TypeServer) {
-//					((CompleteClassImpl)completeClass).setTypeServer(typeServer1);
-//					return (TypeServer)pivotType;
-//				}
-			assert pivotType.getUnspecializedElement() == null;
-//			Map<String, TypeServer> typeServers2 = completePackage.typeServers;
-//			if (typeServers2 == null) {
-			Map<String, TypeServer> typeServers2 = completePackage.getPartialPackages().initMemberTypes();
-//			}
-			String name = pivotType.getName();
-			if (name == null) {
-				throw new IllegalStateException("Unnamed type");
-			}
-			typeServer = typeServers2.get(name);
-			if (typeServer == null) {
-				if (pivotType instanceof InvalidType) {
-					typeServer = new InvalidTypeServer(this, (InvalidType)pivotType);
-				}
-				else if (pivotType instanceof VoidType) {
-					typeServer = new VoidTypeServer(this, (VoidType)pivotType);
-				}
-				else if (pivotType instanceof AnyType) {
-					typeServer = new AnyTypeServer(this, (AnyType)pivotType);
-				}
-				else if (pivotType instanceof Enumeration) {
-					typeServer = new EnumerationTypeServer(this, (Enumeration)pivotType);
-				}
-				else if (pivotType instanceof CollectionType) {
-					typeServer = new CollectionTypeServer(this, (CollectionType)pivotType);
-				}
-				else if (pivotType instanceof PrimitiveType) {
-					throw new UnsupportedOperationException("PrimitiveType");
-//					typeServer = getCompleteModel().getPrimitiveTypeServer((PrimitiveType)pivotType);
-				}
-//				else if (pivotType instanceof ElementExtension) {
-//					typeServer = new ExtensionTypeServer(this, (ElementExtension)pivotType);
-//				}
-				else {
-					typeServer = new TemplateableTypeServer(this, pivotType);
-				}
-				if (pivotType.getUnspecializedElement() == null) {
-					typeServers2.put(name, typeServer);
-				}
-			}
-//			completePackage.didAddClass(getCompleteClass(), pivotType);
-		}
-		return typeServer;
+	public @Nullable Iterable<DomainProperty> getProperties(@NonNull DomainProperty pivotProperty) {
+		return partialClasses.getProperties(pivotProperty);
+	}
+
+	public @NonNull Iterable<? extends DomainProperty> getProperties(final @Nullable FeatureFilter featureFilter) {
+		return partialClasses.getProperties(featureFilter);
+	}
+
+	public @NonNull Iterable<? extends DomainProperty> getProperties(final @Nullable FeatureFilter featureFilter, @Nullable String name) {
+		return partialClasses.getProperties(featureFilter, name);
+	}
+
+	public @Nullable Iterable<DomainProperty> getProperties(@Nullable String propertyName) {
+		return partialClasses.getProperties(propertyName);
+	}
+
+	public @Nullable DomainProperty getProperty(@Nullable String propertyName) {
+		return partialClasses.getProperty(propertyName);
+	}
+
+	public @NonNull Iterable<? extends State> getStates() {
+		return partialClasses.getStates();
+	}
+
+	public @NonNull Iterable<? extends State> getStates(@Nullable String name) {
+		return partialClasses.getStates(name);
+	}
+	
+	public @NonNull Iterable<CompleteClass> getSuperCompleteClasses() {
+		return partialClasses.getSuperCompleteClasses();
 	}
 	
 /*	public boolean isSuperClassOf(@NonNull CompleteClass unspecializedFirstType, @NonNull CompleteClass secondType) {
@@ -565,17 +537,13 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 		return false;
 	} */
 
-	public void setTypeServer(@NonNull TypeServer typeServer) {
-		assert typeServer.getCompleteClass() == this;
-		this.typeServer = typeServer;
+	public void setCompleteInheritance(@NonNull CompleteInheritance completeInheritance) {
+		assert completeInheritance.getCompleteClass() == this;
+		this.completeInheritance = completeInheritance;
 	}
 
 	public void uninstall() {
-		TypeServer savedTypeServer = typeServer;
-		typeServer = null;
-		if (savedTypeServer != null) {
-			savedTypeServer.dispose();
-		}
+		completeInheritance = null;
 		partialClasses.dispose();
 	}
 } //CompleteClassImpl

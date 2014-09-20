@@ -13,8 +13,10 @@ package org.eclipse.ocl.examples.library.executor;
 import java.util.NoSuchElementException;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.values.IntegerValue;
+import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
 
 public class CollectionTypeParameters<T extends DomainType> implements Iterable<Object>
 {
@@ -45,13 +47,13 @@ public class CollectionTypeParameters<T extends DomainType> implements Iterable<
 	private final @NonNull IntegerValue lower;
 	private final @NonNull IntegerValue upper;
 
-	public CollectionTypeParameters(@NonNull T elementType, @NonNull IntegerValue lower, @NonNull IntegerValue upper) {
+	public CollectionTypeParameters(@NonNull T elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
 		this.elementType = elementType;
-		this.lower = lower;
-		this.upper = upper;
+		this.lower = lower != null ? lower : ValuesUtil.ZERO_VALUE;
+		this.upper = upper != null ? upper : ValuesUtil.UNLIMITED_VALUE;
 		int hash = elementType.hashCode();
-		hash = 111 * hash + lower.hashCode();
-		hash = 111 * hash + upper.hashCode();
+		hash = 111 * hash + this.lower.hashCode();
+		hash = 111 * hash + this.upper.hashCode();
 		hashCode = hash;
 	}
 	

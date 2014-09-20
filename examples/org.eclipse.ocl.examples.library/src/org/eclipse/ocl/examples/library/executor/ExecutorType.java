@@ -21,9 +21,8 @@ import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
-import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
-import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.types.AbstractInheritance;
+import org.eclipse.ocl.examples.domain.utilities.ArrayIterable;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
 
@@ -53,19 +52,6 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 		super(name, evaluationPackage, flags);
 		this.typeParameters = new DomainTypeParameters(typeParameters);
 	}
-
-	@NonNull
-	public Iterable<? extends DomainOperation> getAllOperations(@Nullable FeatureFilter featureFilter) {
-		throw new UnsupportedOperationException();
-	}
-
-	public @NonNull Iterable<? extends DomainProperty> getAllProperties(@Nullable FeatureFilter featureFilter) {
-		DomainProperties allProperties2 = allProperties;
-		if (allProperties2 == null) {
-			allProperties = allProperties2 = new DomainProperties(this);
-		}
-		return allProperties2.getAllProperties(featureFilter);
-	}
 	
 	public final @NonNull FragmentIterable getAllProperSuperFragments() {
 		DomainFragment[] fragments2 = DomainUtil.nonNullState(fragments);
@@ -78,6 +64,10 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 
 	public int getDepth() {
 		return indexes.length-2;
+	}
+	
+	public @NonNull Iterable<DomainFragment> getFragments() {
+		return new ArrayIterable<DomainFragment>(fragments);
 	}
 
 	public ExecutorFragment getFragment(int fragmentNumber) {
@@ -128,13 +118,13 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 		return new FragmentIterable(DomainUtil.nonNullState(fragments), indexes[depth], indexes[depth+1]);
 	}
 
-	public @NonNull DomainType getType() {
+	public @NonNull DomainClass getType() {
 		return this;
 	}
 
-	public @NonNull TypeId getTypeId() {
-		throw new UnsupportedOperationException();					// FIXME
-	}
+//	public @NonNull TypeId getTypeId() {
+//		throw new UnsupportedOperationException();					// FIXME
+//	}
 
 	public @NonNull DomainTypeParameters getTypeParameters() {
 		return typeParameters;

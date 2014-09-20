@@ -24,15 +24,15 @@ import org.eclipse.ocl.examples.domain.elements.DomainEnumerationLiteral;
 import org.eclipse.ocl.examples.domain.ids.EnumerationId;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.library.ecore.EcoreExecutorEnumerationLiteral;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
-import org.eclipse.ocl.examples.pivot.internal.impl.CompleteClassImpl;
 
-public class EnumerationTypeServer extends ExtensibleTypeServer implements DomainEnumeration
+public class EnumerationInheritance extends CompleteInheritance implements DomainEnumeration
 {
 	private Map<String, DomainEnumerationLiteral> literals = new HashMap<String, DomainEnumerationLiteral>();
 	
-	public EnumerationTypeServer(@NonNull CompleteClassImpl completeClass, @NonNull Enumeration type) {
+	public EnumerationInheritance(@NonNull CompleteClass.Internal completeClass, @NonNull Enumeration type) {
 		super(completeClass, type);
 		int index = 0;
 		EObject eTarget = type.getETarget();

@@ -26,5 +26,8 @@ import org.eclipse.ocl.examples.domain.ids.PackageId;
  */
 public interface ParentCompletePackage extends RootCompletePackage
 {
-	void init(@NonNull String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId, @NonNull PackageId metapackageId);
+	public interface Internal extends ParentCompletePackage, RootCompletePackage.Internal
+	{
+		void init(@NonNull String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId, @NonNull PackageId metapackageId);
+	}
 } // ParentCompletePackage

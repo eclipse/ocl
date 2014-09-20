@@ -24,17 +24,15 @@ import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
-import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
-import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.domain.types.AbstractFragment;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.library.executor.DomainProperties;
-import org.eclipse.ocl.examples.library.executor.ReflectiveType;
+import org.eclipse.ocl.examples.library.executor.ReflectiveInheritance;
 //import org.eclipse.ocl.examples.domain.types.IdResolver;
 
-public class EcoreReflectiveType extends ReflectiveType
+public class EcoreReflectiveType extends ReflectiveInheritance
 {
 	@SuppressWarnings("null")
 	public static final @NonNull List<DomainInheritance> EMPTY_INHERITANCES = Collections.emptyList();
@@ -72,19 +70,6 @@ public class EcoreReflectiveType extends ReflectiveType
 			return DomainUtil.nonNullEMF(element);
 		}
 		throw new UnsupportedOperationException();
-	}
-
-	@NonNull
-	public Iterable<? extends DomainOperation> getAllOperations(@Nullable FeatureFilter featureFilter) {
-		throw new UnsupportedOperationException();
-	}
-
-	public @NonNull Iterable<? extends DomainProperty> getAllProperties(@Nullable FeatureFilter featureFilter) {
-		DomainProperties allProperties2 = allProperties;
-		if (allProperties2 == null) {
-			allProperties = allProperties2 = new DomainProperties(this);
-		}
-		return allProperties2.getAllProperties(featureFilter);
 	}
 
 	public final @NonNull EClassifier getEClassifier() {
@@ -148,10 +133,6 @@ public class EcoreReflectiveType extends ReflectiveType
 
 	public @NonNull List<? extends DomainOperation> getOwnedOperations() {
 		throw new UnsupportedOperationException();		// FIXME
-	}
-
-	public @NonNull DomainStandardLibrary getStandardLibrary() {
-		return ((EcoreReflectivePackage)getOwningPackage()).getStandardLibrary(); //OCLstdlibTables.LIBRARY;
 	}
 
 	public @NonNull DomainTypeParameters getTypeParameters() {

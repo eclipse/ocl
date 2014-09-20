@@ -11,19 +11,19 @@
 package org.eclipse.ocl.examples.pivot.manager;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.pivot.internal.impl.CompleteClassImpl;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
 
 /**
- * An OrphanTypeServer provides a 'merge' type behaviour for a synthesized type that forms part of the
+ * An OrphanInheritance provides a 'merge' type behaviour for a synthesized type that forms part of the
  * OrphanPackage rather than a true package. OrphanTypeServer provides lightweight support that
  * eliminates the redundant notification tracking.
  */
-public class OrphanTypeServer extends AbstractTypeServer
+public class OrphanInheritance extends CompleteInheritance
 {
  	protected final @NonNull org.eclipse.ocl.examples.pivot.Class target;
 	
-	public OrphanTypeServer(@NonNull CompleteClassImpl completeClass, @NonNull org.eclipse.ocl.examples.pivot.Class type) {
-		super(completeClass, type);
+	public OrphanInheritance(@NonNull CompleteClass.Internal completeClass, @NonNull org.eclipse.ocl.examples.pivot.Class type) {
+		super(completeClass, type.getOwningPackage(), type);
 		this.target = type;
 	}
 

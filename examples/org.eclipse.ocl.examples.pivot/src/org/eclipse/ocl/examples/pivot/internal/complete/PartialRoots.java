@@ -13,6 +13,7 @@ package org.eclipse.ocl.examples.pivot.internal.complete;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
+import org.eclipse.ocl.examples.pivot.CompleteModel;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Root;
@@ -60,7 +61,7 @@ public class PartialRoots extends EObjectResolvingEList<Root> implements RootLis
 		if (PARTIAL_ROOTS.isActive()) {
 			PARTIAL_ROOTS.println("Do-didAdd Root" + this + " " + partialRoot);
 		}
-		CompleteModelImpl completeModel = getCompleteModel();
+		CompleteModel.Internal completeModel = getCompleteModel();
 		completeModel.didAddPartialRoot(partialRoot);
 		for (org.eclipse.ocl.examples.pivot.Package pivotPackage : partialRoot.getOwnedPackages()) {
 			if (pivotPackage != null) {
@@ -85,7 +86,7 @@ public class PartialRoots extends EObjectResolvingEList<Root> implements RootLis
 
 	protected void didRemove(@NonNull Root partialRoot) {
 		((RootImpl)partialRoot).removeRootListener(this);
-		CompleteModelImpl completeModel = getCompleteModel();
+		CompleteModel.Internal completeModel = getCompleteModel();
 		for (org.eclipse.ocl.examples.pivot.Package pivotPackage : partialRoot.getOwnedPackages()) {
 			if (pivotPackage != null) {
 				completeModel.didRemoveNestedPackage(pivotPackage);
@@ -99,8 +100,8 @@ public class PartialRoots extends EObjectResolvingEList<Root> implements RootLis
 	}
 	
 	@SuppressWarnings("null")
-	protected @NonNull CompleteModelImpl getCompleteModel() {
-		return (CompleteModelImpl)owner;
+	protected @NonNull CompleteModel.Internal getCompleteModel() {
+		return (CompleteModel.Internal)owner;
 	}
 
 	protected @NonNull Iterable<org.eclipse.ocl.examples.pivot.Package> getNestedPartialPackages() {

@@ -42,7 +42,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 			new Function<PartialOperations, Iterable<Iterable<DomainOperation>>>() {
 
 		public Iterable<Iterable<DomainOperation>> apply(PartialOperations partialOperations) {
-			return partialOperations.getAllOperations(null);
+			return partialOperations.getOperationsInternal(null);
 		}
 	};
 	
@@ -198,11 +198,11 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 		}
 	}
 
-	protected final @NonNull CompleteClass completeClass;
+	protected final @NonNull CompleteClass.Internal completeClass;
 	protected final @NonNull String name;
 	private final @NonNull Map<ParametersId, Object> map = new HashMap<ParametersId, Object>();
 	
-	public PartialOperations(@NonNull CompleteClass completeClass, @NonNull String name) {
+	public PartialOperations(@NonNull CompleteClass.Internal completeClass, @NonNull String name) {
 		this.completeClass = completeClass;
 		this.name = name;
 	}
@@ -249,32 +249,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 		return map.isEmpty();
 	}
 
-	@SuppressWarnings("null")
-	private @NonNull Iterable<Iterable<DomainOperation>> getAllOperations(final @Nullable FeatureFilter featureFilter) {
-		return Iterables.transform(map.keySet(), new Function<ParametersId, Iterable<DomainOperation>>()
-		{
-			public Iterable<DomainOperation> apply(ParametersId parametersId) {
-				assert parametersId != null;
-				return getOperationOverloads(parametersId);
-			}
-		});
-	}
-
-	public @Nullable DomainOperation getBestOperation(@NonNull ParametersId parametersId) {
-		Object partials = map.get(parametersId);
-		if (partials instanceof Overloads) {
-			Overloads overloads = (Overloads)partials;
-			return overloads.getBest();
-		}
-		else if (partials != null) {			// Must be an Operation
-			return (DomainOperation) partials;
-		}
-		else {
-			return null;
-		}
-	}
-
-	public @Nullable DomainOperation getBestOperation(@NonNull ParametersId parametersId, @Nullable FeatureFilter featureFilter) {
+	public @Nullable DomainOperation getOperation(@NonNull ParametersId parametersId, @Nullable FeatureFilter featureFilter) {
 		Object partials = map.get(parametersId);
 		if (partials instanceof Overloads) {
 			Overloads overloads = (Overloads)partials;
@@ -299,16 +274,28 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 	}
 
 	@SuppressWarnings("null")
-	public @NonNull Iterable<? extends DomainOperation> getBestOperations(final @Nullable FeatureFilter featureFilter) {
-//		if (featureFilter == FeatureFilter.SELECT_NON_STATIC) {
-//			return 
-//		}
-		return Iterables.transform(map.keySet(), new Function<ParametersId, DomainOperation>()
-		{
-			public DomainOperation apply(ParametersId parametersId) {
-				return getBestOperation(parametersId, featureFilter);
+	public @NonNull Iterable<DomainOperation> getOperationOverloads(@NonNull ParametersId parametersId, final @Nullable FeatureFilter featureFilter) {
+		Object partials = map.get(parametersId);
+		if (partials instanceof Overloads) {
+			Overloads overloads = (Overloads)partials;
+			overloads.getBest();
+			if (featureFilter == null) {
+				return overloads;
 			}
-		});
+			return Iterables.filter(overloads, new Predicate<DomainOperation>()
+				{
+					public boolean apply(DomainOperation input) {
+						return featureFilter.accept(input);
+					}
+				});
+		}
+		else if (partials != null) {			// Must be an Operation
+			DomainOperation operation = (DomainOperation) partials;
+			if ((featureFilter == null) || featureFilter.accept(operation)) {
+				return Collections.singletonList((DomainOperation)partials);
+			}
+		}
+		return Collections.emptyList();
 	}
 
 	@SuppressWarnings("null")
@@ -317,7 +304,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 		{
 			public Iterable<DomainOperation> apply(ParametersId parametersId) {
 				assert parametersId != null;
-				return getOperationOverloads(parametersId);
+				return getOperationOverloads(parametersId, featureFilter);
 			}
 		}));
 		if (featureFilter == null) {
@@ -331,19 +318,28 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 		});
 	}
 
-	public @Nullable Iterable<DomainOperation> getOperationOverloads(@NonNull ParametersId parametersId) {
-		Object partials = map.get(parametersId);
-		if (partials instanceof Overloads) {
-			Overloads overloads = (Overloads)partials;
-			overloads.getBest();
-			return overloads;
-		}
-		else if (partials != null) {			// Must be an Operation
-			return Collections.singletonList((DomainOperation)partials);
-		}
-		else {
-			return null;
-		}
+	@SuppressWarnings("null")
+	public @NonNull Iterable<? extends DomainOperation> getOperations(final @Nullable FeatureFilter featureFilter) {
+//		if (featureFilter == FeatureFilter.SELECT_NON_STATIC) {
+//			return 
+//		}
+		return Iterables.transform(map.keySet(), new Function<ParametersId, DomainOperation>()
+		{
+			public DomainOperation apply(ParametersId parametersId) {
+				return getOperation(parametersId, featureFilter);
+			}
+		});
+	}
+
+	@SuppressWarnings("null")
+	private @NonNull Iterable<Iterable<DomainOperation>> getOperationsInternal(final @Nullable FeatureFilter featureFilter) {
+		return Iterables.transform(map.keySet(), new Function<ParametersId, Iterable<DomainOperation>>()
+		{
+			public Iterable<DomainOperation> apply(ParametersId parametersId) {
+				assert parametersId != null;
+				return getOperationOverloads(parametersId, featureFilter);
+			}
+		});
 	}
 
 	public void initMemberOperationsPostProcess() {

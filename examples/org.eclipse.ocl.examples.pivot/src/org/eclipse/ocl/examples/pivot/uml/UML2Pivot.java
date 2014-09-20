@@ -46,6 +46,7 @@ import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.examples.domain.DomainConstants;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
+import org.eclipse.ocl.examples.pivot.CompleteModel;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.NamedElement;
@@ -60,7 +61,6 @@ import org.eclipse.ocl.examples.pivot.Stereotype;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.ecore.AbstractEcore2Pivot;
-import org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.resource.ASResourceFactory;
@@ -825,7 +825,7 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 		umlResource.eAdapters().add(this);
 		metaModelManager.addExternalResource(this);
 		metaModelManager.addListener(this);
-		CompleteModelImpl completeModel = metaModelManager.getCompleteModel();
+		CompleteModel completeModel = metaModelManager.getCompleteModel();
 		completeModel.addPackageURI2completeURI(DomainUtil.nonNullEMF(UMLPackage.eNS_URI), DomainConstants.UML_METAMODEL_NAME);
 		completeModel.addPackageURI2completeURI(DomainUtil.nonNullEMF(TypesPackage.eNS_URI), DomainConstants.TYPES_METAMODEL_NAME);		// FIXME All known synonyms
 		// FIXME All known synonyms

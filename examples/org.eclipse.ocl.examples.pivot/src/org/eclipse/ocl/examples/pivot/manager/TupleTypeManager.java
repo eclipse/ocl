@@ -33,6 +33,7 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.internal.complete.AllCompleteClasses;
 import org.eclipse.ocl.examples.pivot.internal.impl.TuplePartImpl;
 import org.eclipse.ocl.examples.pivot.internal.impl.TupleTypeImpl;
 import org.eclipse.ocl.examples.pivot.internal.impl.TypedElementImpl;
@@ -108,15 +109,19 @@ public class TupleTypeManager
 		}
 	}
 
+	protected final @NonNull AllCompleteClasses allCompleteClasses;
 	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull org.eclipse.ocl.examples.pivot.Class oclTupleType;
 	
 	/**
 	 * Map from the tuple typeId to the tuple type. 
 	 */
 	private @Nullable Map<TupleTypeId, TupleType> tupleid2tuple = null;
 	
-	protected TupleTypeManager(@NonNull MetaModelManager metaModelManager) {
-		this.metaModelManager = metaModelManager;
+	public TupleTypeManager(@NonNull AllCompleteClasses allCompleteClasses) {
+		this.allCompleteClasses = allCompleteClasses;
+		this.metaModelManager = allCompleteClasses.getMetaModelManager();
+		this.oclTupleType = metaModelManager.getOclTupleType();
 	}
 
 	public void dispose() {
@@ -184,9 +189,9 @@ public class TupleTypeManager
 						Type partType2 = metaModelManager.getType(partType);
 						ownedAttributes.add(new TuplePartImpl(partId, partType2));
 					}
-					tupleType.getSuperClasses().add(metaModelManager.getOclTupleType());
+					tupleType.getSuperClasses().add(oclTupleType);
 					tupleid2tuple2.put(tupleTypeId, tupleType);
-					metaModelManager.addOrphanClass(tupleType);
+					allCompleteClasses.addOrphanClass(tupleType);
 				}
 			}
 		}
@@ -200,7 +205,7 @@ public class TupleTypeManager
 			DomainType type1 = part.getType();
 			if (type1 != null) {
 				Type type2 = metaModelManager.getType(type1);
-				Type type3 = metaModelManager.getSpecializedType(type2, usageBindings);
+				Type type3 = allCompleteClasses.getSpecializedType(type2, usageBindings);
 				partMap.put(part.getName(), type3);
 			}
 		}
@@ -253,7 +258,7 @@ public class TupleTypeManager
 			if (part != null) {
 				Type propertyType = PivotUtil.getType(part);
 				if (propertyType != null) {
-					Type resolvedPropertyType = metaModelManager.getSpecializedType(propertyType, usageBindings);
+					Type resolvedPropertyType = allCompleteClasses.getSpecializedType(propertyType, usageBindings);
 					if (resolvedPropertyType != propertyType) {
 						if (resolutions == null) {
 							resolutions = new HashMap<String, Type>();

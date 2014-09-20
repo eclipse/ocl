@@ -107,6 +107,9 @@ public abstract class AbstractInheritance implements DomainInheritance
 
 	public static final int ORDERED = 1 << 0;
 	public static final int UNIQUE = 1 << 1;
+	public static final int OCL_ANY = 1 << 2;
+	public static final int OCL_VOID = 1 << 3;
+	public static final int OCL_INVALID = 1 << 4;
 	
 	/**
 	 * A simple public static method that may be used to force class initialization.
@@ -144,6 +147,17 @@ public abstract class AbstractInheritance implements DomainInheritance
 	public @NonNull DomainInheritance getCommonInheritance(@NonNull DomainInheritance thatInheritance) {
 		if (this == thatInheritance) {
 			return this;
+		}
+		if ((flags & (OCL_ANY|OCL_VOID|OCL_INVALID)) != 0) {
+			if ((flags & OCL_ANY) != 0) {
+				return this;
+			}
+			else if ((flags & OCL_INVALID) != 0) {
+				return thatInheritance;
+			}
+			else {
+				return thatInheritance.isUndefined() ? this : thatInheritance;
+			}
 		}
 		int thatDepth = thatInheritance.getDepth();
 		if ((thatDepth ==  1) && thatInheritance.isUndefined()) {
@@ -213,29 +227,9 @@ public abstract class AbstractInheritance implements DomainInheritance
 	public final String getName() {
 		return name;
 	}
-	
-	/**
-	 * @since 3.5
-	 */
-	public @NonNull Iterable<String> getMemberOperationNames() {
-		throw new UnsupportedOperationException();					// FIXME
-	}
-	
-	/**
-	 * @since 3.5
-	 */
-	public @NonNull Iterable<DomainOperation> getMemberOperations() {
-		throw new UnsupportedOperationException();					// FIXME
-	}
 
 	public @NonNull DomainClass getNormalizedType(@NonNull DomainStandardLibrary standardLibrary) {
 		return this;
-	}
-
-	protected @NonNull DomainInheritance getOclAnyInheritance() {
-		DomainStandardLibrary standardLibrary = getStandardLibrary();
-		DomainType oclAnyType = standardLibrary.getOclAnyType();
-		return oclAnyType.getInheritance(standardLibrary);
 	}
 
 	public @NonNull List<? extends DomainConstraint> getOwnedInvariants() {
@@ -262,8 +256,12 @@ public abstract class AbstractInheritance implements DomainInheritance
 		return this == type;
 	}
 
-	public boolean isInvalid() {
-		return false;
+	public final boolean isInvalid() {
+		return (flags & OCL_INVALID) != 0;
+	}
+
+	public final boolean isOclAny() {
+		return (flags & OCL_ANY) != 0;
 	}
 
 	public boolean isOrdered() {
@@ -282,8 +280,8 @@ public abstract class AbstractInheritance implements DomainInheritance
 		return null;
 	}
 
-	public boolean isUndefined() {
-		return false;
+	public final boolean isUndefined() {
+		return (flags & (OCL_VOID|OCL_INVALID)) != 0;
 	}
 
 	public boolean isUnique() {

@@ -25,46 +25,43 @@ import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.ids.ParametersId;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
-import org.eclipse.ocl.examples.domain.types.AbstractInheritance;
 import org.eclipse.ocl.examples.pivot.CompleteClass;
+import org.eclipse.ocl.examples.pivot.CompleteModel;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl;
 
 public class FinalAnalysis
 {
-	protected final @NonNull CompleteModelImpl completeModel;
+	protected final @NonNull CompleteModel.Internal completeModel;
 	protected final @NonNull MetaModelManager metaModelManager;
-	private final @NonNull Map<DomainInheritance, Set<DomainInheritance>> type2subTypes = new HashMap<DomainInheritance, Set<DomainInheritance>>();
+	private final @NonNull Map<CompleteClass, Set<CompleteClass>> superCompleteClass2subCompleteClasses = new HashMap<CompleteClass, Set<CompleteClass>>();
 	private final @NonNull Map<DomainOperation, Set<DomainOperation>> operation2overrides = new HashMap<DomainOperation, Set<DomainOperation>>();
 
-	public FinalAnalysis(@NonNull CompleteModelImpl completeModel) {
+	public FinalAnalysis(@NonNull CompleteModel.Internal completeModel) {
 		this.completeModel = completeModel;
 		this.metaModelManager = completeModel.getMetaModelManager();
 		for (CompletePackage completePackage :  completeModel.getAllCompletePackages()) {
-			for (CompleteClass completeClass :  completePackage.getOwnedCompleteClasses()) {
-				org.eclipse.ocl.examples.pivot.Class subType = completeClass.getPivotClass();
-				DomainInheritance subInheritance = subType.getInheritance(metaModelManager);
-				for (DomainInheritance superType : completeClass.getAllSuperClasses()) {
-					Set<DomainInheritance> subInheritances = type2subTypes.get(superType);
-					if (subInheritances == null) {
-						subInheritances = new HashSet<DomainInheritance>();
-						type2subTypes.put(superType, subInheritances);
+			for (CompleteClass subCompleteClass :  completePackage.getOwnedCompleteClasses()) {
+				for (CompleteClass superCompleteClass : subCompleteClass.getSuperCompleteClasses()) {
+					Set<CompleteClass> subCompleteClasses = superCompleteClass2subCompleteClasses.get(superCompleteClass);
+					if (subCompleteClasses == null) {
+						subCompleteClasses = new HashSet<CompleteClass>();
+						superCompleteClass2subCompleteClasses.put(superCompleteClass, subCompleteClasses);
 					}
-					subInheritances.add(subInheritance);
+					subCompleteClasses.add(subCompleteClass);
 				}
 			}
 		}
-		for (DomainInheritance domainInheritance : type2subTypes.keySet()) {
-			Set<DomainInheritance> subInheritances = type2subTypes.get(domainInheritance);
-			for (DomainOperation domainOperation : ((AbstractInheritance)domainInheritance).getMemberOperations()) {	// FIXME cast
+		for (CompleteClass superCompleteClass : superCompleteClass2subCompleteClasses.keySet()) {
+			Set<CompleteClass> subCompleteClasses = superCompleteClass2subCompleteClasses.get(superCompleteClass);
+			for (DomainOperation domainOperation : superCompleteClass.getOperations(null)) {
 				String opName = domainOperation.getName();
 				ParametersId parametersId = domainOperation.getParametersId();
 				LibraryFeature domainImplementation = metaModelManager.getImplementation((Operation)domainOperation);
 				Set<DomainOperation> overrides = null;
-				for (DomainInheritance subInheritance : subInheritances) {
-					if (subInheritance != domainInheritance) {
-						for (DomainOperation subOperation : ((AbstractInheritance)subInheritance).getMemberOperations()) {	// FIXME cast
+				for (CompleteClass subCompleteClass : subCompleteClasses) {
+					if (subCompleteClass != superCompleteClass) {
+						for (DomainOperation subOperation : subCompleteClass.getOperations(null)) {
 							if (opName.equals(subOperation.getName()) && parametersId.equals(subOperation.getParametersId())) {
 								LibraryFeature subImplementation = metaModelManager.getImplementation((Operation)subOperation);
 								if (domainImplementation != subImplementation) {
@@ -86,9 +83,9 @@ public class FinalAnalysis
 //		System.out.println(s);
 	}
 	
-	public boolean isFinal(@NonNull DomainInheritance domainInheritance) {
-		Set<DomainInheritance> subInheritances = type2subTypes.get(domainInheritance);
-		return subInheritances.size() <= 1;
+	public boolean isFinal(@NonNull CompleteClass completeClass) {
+		Set<CompleteClass> subCompleteClasses = superCompleteClass2subCompleteClasses.get(completeClass);
+		return subCompleteClasses.size() <= 1;
 	}
 	
 	public boolean isFinal(@NonNull DomainOperation operation) {
@@ -115,27 +112,27 @@ public class FinalAnalysis
 	}
 	
 	public void print(@NonNull StringBuilder s) {
-		List<DomainInheritance> allInheritances = new ArrayList<DomainInheritance>(type2subTypes.keySet());
-		Collections.sort(allInheritances, new Comparator<DomainInheritance>()
+		List<CompleteClass> completeClasses = new ArrayList<CompleteClass>(superCompleteClass2subCompleteClasses.keySet());
+		Collections.sort(completeClasses, new Comparator<CompleteClass>()
 		{
-			public int compare(DomainInheritance o1, DomainInheritance o2) {
+			public int compare(CompleteClass o1, CompleteClass o2) {
 				return o1.getName().compareTo(o2.getName());
 			}
 		});
 		s.append("Final types");
-		for (DomainInheritance anInheritance : allInheritances) {
-			assert anInheritance != null;
-			if (isFinal(anInheritance)) {
+		for (CompleteClass completeClass : completeClasses) {
+			assert completeClass != null;
+			if (isFinal(completeClass)) {
 				s.append("\n\t");
-				s.append(anInheritance.getName());
+				s.append(completeClass.getName());
 			}
 		}
 		s.append("\nNon-final types");
-		for (DomainInheritance anInheritance : allInheritances) {
-			assert anInheritance != null;
-			if (!isFinal(anInheritance)) {
+		for (CompleteClass completeClass : completeClasses) {
+			assert completeClass != null;
+			if (!isFinal(completeClass)) {
 				s.append("\n\t");
-				s.append(anInheritance.getName());
+				s.append(completeClass.getName());
 			}
 		}	
 	}

@@ -12,13 +12,14 @@ package org.eclipse.ocl.examples.pivot.internal.complete;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.pivot.CompleteModel;
+import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.NestedCompletePackage;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl;
 import org.eclipse.ocl.examples.pivot.internal.impl.CompletePackageImpl;
 
-public class NestedCompletePackages extends AbstractCompletePackages<NestedCompletePackage>
+public class NestedCompletePackages extends AbstractCompletePackages<NestedCompletePackage.Internal, NestedCompletePackage>
 {
 	private static final long serialVersionUID = 1L;
 
@@ -29,8 +30,8 @@ public class NestedCompletePackages extends AbstractCompletePackages<NestedCompl
 	}
 
 	@Override
-	public @NonNull NestedCompletePackage createCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
-		NestedCompletePackage completePackage = PivotFactory.eINSTANCE.createNestedCompletePackage();
+	public @NonNull NestedCompletePackage.Internal createCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
+		NestedCompletePackage.Internal completePackage = (NestedCompletePackage.Internal) PivotFactory.eINSTANCE.createNestedCompletePackage();
 		completePackage.init(partialPackage.getName(), partialPackage.getNsPrefix(), partialPackage.getURI(), partialPackage.getPackageId());
 		return completePackage;
 	}
@@ -46,13 +47,13 @@ public class NestedCompletePackages extends AbstractCompletePackages<NestedCompl
 	}
 
 	@Override
-	public @NonNull CompleteModelImpl getCompleteModel() {
+	public @NonNull CompleteModel.Internal getCompleteModel() {
 		return getCompletePackage().getCompleteModel();
 	}
 
 	@SuppressWarnings("null")
-	public @NonNull CompletePackageImpl getCompletePackage() {
-		return (CompletePackageImpl)owner;
+	public @NonNull CompletePackage.Internal getCompletePackage() {
+		return (CompletePackage.Internal)owner;
 	}
 
 	public @Nullable NestedCompletePackage getOwnedCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {

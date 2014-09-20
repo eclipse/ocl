@@ -28,10 +28,10 @@ import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.IProjectDescriptor;
+import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.Library;
@@ -44,7 +44,6 @@ import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.manager.Orphanage;
-import org.eclipse.ocl.examples.pivot.manager.TypeServer;
 import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
@@ -132,12 +131,11 @@ public class ConstraintMerger extends AbstractProjectComponent
 						}
 						else if (eObject instanceof org.eclipse.ocl.examples.pivot.Class) {
 							org.eclipse.ocl.examples.pivot.Class mergeType = (org.eclipse.ocl.examples.pivot.Class)eObject;
-							TypeServer typeServer = metaModelManager.getTypeServer(mergeType);
-							for (DomainClass dType : typeServer.getCompleteClass().getPartialClasses()) {
-								if (dType instanceof org.eclipse.ocl.examples.pivot.Class) {
-									org.eclipse.ocl.examples.pivot.Class primaryType = (org.eclipse.ocl.examples.pivot.Class)dType;
-									if (primaryType.eResource() == asResource) {
-										mergeType(metaModelManager, primaryType, mergeType);
+							CompleteClass completeClass = metaModelManager.getCompleteClass(mergeType);
+							for (org.eclipse.ocl.examples.pivot.Class partialClass : completeClass.getPartialClasses()) {
+								if (partialClass != null) {
+									if (partialClass.eResource() == asResource) {
+										mergeType(metaModelManager, partialClass, mergeType);
 										break;
 									}
 								}

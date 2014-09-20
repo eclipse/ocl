@@ -19,7 +19,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
-import org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl;
+import org.eclipse.ocl.examples.pivot.internal.complete.PartialPackages;
 
 /**
  * <!-- begin-user-doc -->
@@ -103,7 +103,6 @@ public interface CompletePackage extends NamedElement, org.eclipse.ocl.examples.
 
 	@NonNull CompleteClass getCompleteClass(@NonNull DomainClass pivotType);
 
-	void init(@NonNull String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId);
 
 	org.eclipse.ocl.examples.pivot.Package getPivotPackage();
 
@@ -127,6 +126,16 @@ public interface CompletePackage extends NamedElement, org.eclipse.ocl.examples.
 
 	@Nullable CompletePackage getOwnedCompletePackage(@Nullable String name);
 
-	@NonNull CompleteModelImpl getCompleteModel();
-
+	@NonNull CompleteModel getCompleteModel();
+	
+	public interface Internal extends CompletePackage
+	{
+		@NonNull CompleteClass.Internal getCompleteClass(@NonNull DomainClass pivotType);
+		@NonNull CompleteModel.Internal getCompleteModel();
+		void dispose();
+		CompleteClass.Internal getOwnedCompleteClass(String name);
+		@Nullable CompletePackage.Internal getOwnedCompletePackage(@Nullable String name);
+		@NonNull PartialPackages getPartialPackages();
+		void init(@NonNull String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId);
+	}
 } // CompletePackage

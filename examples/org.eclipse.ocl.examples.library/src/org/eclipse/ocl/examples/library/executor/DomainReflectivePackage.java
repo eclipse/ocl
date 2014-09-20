@@ -37,12 +37,12 @@ public class DomainReflectivePackage extends ReflectivePackage
 	}
 
 	@Override
-	protected @NonNull ReflectiveType createExecutorType(@NonNull DomainClass domainType) {
-		return new DomainReflectiveType(this, domainType);
+	protected @NonNull ReflectiveInheritance createInheritance(@NonNull DomainClass domainClass) {
+		return new DomainReflectiveType(this, domainClass);
 	}
 
 	@Override
-	protected @NonNull Iterable<? extends DomainClass> getDomainTypes() {
+	protected @NonNull List<? extends DomainClass> getDomainClasses() {
 		return DomainUtil.nonNullPivot(domainPackage.getOwnedClasses());
 	}
 

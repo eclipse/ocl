@@ -111,9 +111,9 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 		throw new IllegalStateException("No extension package defines Enumeration type"); //$NON-NLS-1$
 	}
 
-	public @NonNull DomainInheritance getInheritance(@NonNull DomainClass type) {
-		if (type instanceof DomainInheritance) {
-			return (DomainInheritance) type;
+	public @NonNull DomainInheritance getInheritance(@NonNull DomainClass domainClass) {
+		if (domainClass instanceof DomainInheritance) {
+			return (DomainInheritance) domainClass;
 		}
 /*		if (type instanceof DomainMetaclass) {
 			DomainType instanceType = DomainUtil.nonNullPivot(((DomainMetaclass)type).getInstanceType());
@@ -121,19 +121,19 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 			DomainType containerType = metaclass;//.getContainerType();
 			return containerType.getInheritance(this);
 		} */
-		if (type instanceof DomainCollectionType) {
-			DomainType containerType = ((DomainCollectionType)type).getContainerType();
-			if ((containerType != null) && (containerType != type)) {
+		if (domainClass instanceof DomainCollectionType) {
+			DomainType containerType = ((DomainCollectionType)domainClass).getContainerType();
+			if ((containerType != null) && (containerType != domainClass)) {
 				return containerType.getInheritance(this);
 			}
 		}
-		DomainPackage domainPackage = type.getOwningPackage();
+		DomainPackage domainPackage = domainClass.getOwningPackage();
 		Map<DomainPackage, WeakReference<DomainReflectivePackage>> domainPackageMap2;
 		synchronized (this) {
 			String nsURI = domainPackage.getURI();
 			EcoreExecutorPackage ecoreExecutorPackage = nsURI != null ? weakGet(ePackageMap, nsURI) : null;
 			if (ecoreExecutorPackage != null) {
-				DomainInheritance executorType = ecoreExecutorPackage.getType(type.getName());
+				DomainInheritance executorType = ecoreExecutorPackage.getType(domainClass.getName());
 				if (executorType != null) {
 					return executorType;
 				}
@@ -142,8 +142,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 					List<EcoreExecutorPackage> packages = extensions2.get(ecoreExecutorPackage);
 					if (packages != null) {
 						for (EcoreExecutorPackage extensionPackage : packages) {
-							executorType = extensionPackage.getType(type
-								.getName());
+							executorType = extensionPackage.getType(domainClass.getName());
 							if (executorType != null) {
 								return executorType;
 							}
@@ -162,7 +161,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 				domainExecutorPackage = new DomainReflectivePackage(this, domainPackage);
 				domainPackageMap2.put(domainPackage, new WeakReference<DomainReflectivePackage>(domainExecutorPackage));
 			}
-			return domainExecutorPackage.getInheritance(type);
+			return domainExecutorPackage.getInheritance(domainClass);
 		}
 	}
 

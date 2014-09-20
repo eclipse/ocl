@@ -11,13 +11,20 @@
 package org.eclipse.ocl.examples.pivot;
 
 import java.util.List;
+
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
-import org.eclipse.ocl.examples.pivot.manager.TypeServer;
+import org.eclipse.ocl.examples.domain.ids.OperationId;
+import org.eclipse.ocl.examples.library.executor.CollectionTypeParameters;
+import org.eclipse.ocl.examples.pivot.internal.complete.PartialClasses;
+import org.eclipse.ocl.examples.pivot.manager.CompleteInheritance;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 /**
  * <!-- begin-user-doc -->
@@ -78,19 +85,42 @@ public interface CompleteClass extends NamedElement
 	 * @generated
 	 */
 	@NonNull List<org.eclipse.ocl.examples.pivot.Class> getPartialClasses();
+
+	boolean conformsTo(@NonNull DomainType elementType);
 	
-	org.eclipse.ocl.examples.pivot.Class getPivotClass();
+	@NonNull org.eclipse.ocl.examples.pivot.Class getPivotClass();
 
-	@NonNull TypeServer getTypeServer();
+	@Nullable CollectionType findCollectionType(@NonNull CollectionTypeParameters<Type> typeParameters);
+	@NonNull CollectionType getCollectionType(@NonNull CollectionTypeParameters<Type> typeParameters);
+	@NonNull CompleteInheritance getCompleteInheritance();
 
-	@NonNull Iterable<? extends DomainOperation> getAllOperations(final @Nullable FeatureFilter featureFilter);
-	@NonNull Iterable<? extends DomainOperation> getAllOperations(final @Nullable FeatureFilter featureFilter, @NonNull String name);
-	@NonNull Iterable<? extends DomainProperty> getAllProperties(final @Nullable FeatureFilter featureFilter);
-	@NonNull Iterable<? extends DomainProperty> getAllProperties(final @Nullable FeatureFilter featureFilter, @NonNull String name);
-	@NonNull Iterable<? extends State>  getAllStates();
-	@NonNull Iterable<? extends State>  getAllStates(@NonNull String name);
-	@NonNull Iterable<? extends DomainInheritance> getAllSuperClasses();
-	@NonNull Iterable<CompleteClass> getAllSuperCompleteClasses();
+	@Nullable DomainOperation getOperation(@NonNull OperationId operationId);
+	@Nullable DomainOperation getOperation(@NonNull DomainOperation operationId);
+	@Nullable Iterable<DomainOperation> getOperationOverloads(@NonNull DomainOperation pivotOperation);
+	@NonNull Iterable<? extends DomainOperation> getOperations(final @Nullable FeatureFilter featureFilter);
+	@NonNull Iterable<? extends DomainOperation> getOperations(final @Nullable FeatureFilter featureFilter, @Nullable String name);
 	@NonNull Iterable<CompleteClass> getProperSuperCompleteClasses();
-
+	@Nullable Iterable<DomainProperty> getProperties(@NonNull DomainProperty pivotProperty);
+	@Nullable Iterable<DomainProperty> getProperties(@Nullable String propertyName);
+	@NonNull Iterable<? extends DomainProperty> getProperties(final @Nullable FeatureFilter featureFilter);
+	@NonNull Iterable<? extends DomainProperty> getProperties(final @Nullable FeatureFilter featureFilter, @Nullable String name);
+	@Nullable DomainProperty getProperty(@Nullable String propertyName);
+	@NonNull Iterable<? extends State>  getStates();
+	@NonNull Iterable<? extends State>  getStates(@Nullable String name);
+	@NonNull Iterable<CompleteClass> getSuperCompleteClasses();
+	
+	public interface Internal extends CompleteClass
+	{
+		void didAddClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass);
+		boolean didRemoveClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass);
+		void dispose();
+		void uninstall();
+		@NonNull CompleteModel.Internal getCompleteModel();
+		@NonNull Iterable<? extends DomainInheritance> getInitialSuperInheritances();
+		@NonNull MetaModelManager getMetaModelManager();
+		CompletePackage.Internal getOwningCompletePackage();
+		@NonNull PartialClasses getPartialClasses();
+		@NonNull Iterable<? extends DomainClass> getProperSuperClasses();
+		void setCompleteInheritance(@NonNull CompleteInheritance completeInheritance);
+	}
 } // CompleteClass

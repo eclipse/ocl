@@ -22,13 +22,14 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Parent Complete Package</b></em>'.
+ * @extends org.eclipse.ocl.examples.pivot.ParentCompletePackage.Internal
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class ParentCompletePackageImpl extends RootCompletePackageImpl implements ParentCompletePackage
+public class ParentCompletePackageImpl extends RootCompletePackageImpl implements ParentCompletePackage, org.eclipse.ocl.examples.pivot.ParentCompletePackage.Internal
 {
 	/**
 	 * <!-- begin-user-doc -->

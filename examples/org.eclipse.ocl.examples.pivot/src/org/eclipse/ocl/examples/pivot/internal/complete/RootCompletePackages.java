@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
+import org.eclipse.ocl.examples.pivot.CompleteModel;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.ParentCompletePackage;
@@ -27,7 +28,7 @@ import org.eclipse.ocl.examples.pivot.RootCompletePackage;
 import org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl;
 import org.eclipse.ocl.examples.pivot.manager.Orphanage;
 
-public class RootCompletePackages extends AbstractCompletePackages<RootCompletePackage>
+public class RootCompletePackages extends AbstractCompletePackages<RootCompletePackage.Internal, RootCompletePackage>
 {
 	private static final Logger logger = Logger.getLogger(RootCompletePackages.class);
 
@@ -38,13 +39,13 @@ public class RootCompletePackages extends AbstractCompletePackages<RootCompleteP
 	}
 
 	@Override
-	public @NonNull RootCompletePackage createCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
-		RootCompletePackage completePackage = PivotFactory.eINSTANCE.createParentCompletePackage();
+	public @NonNull RootCompletePackage.Internal createCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
+		RootCompletePackage.Internal completePackage = (RootCompletePackage.Internal) PivotFactory.eINSTANCE.createParentCompletePackage();
 		completePackage.init(partialPackage.getName(), partialPackage.getNsPrefix(), partialPackage.getURI(), partialPackage.getPackageId());
 		return completePackage;
 	}
 	
-	protected @NonNull RootCompletePackage createRootCompletePackage(@NonNull DomainPackage pivotPackage) {
+	protected @NonNull RootCompletePackage.Internal createRootCompletePackage(@NonNull DomainPackage pivotPackage) {
 		String name = pivotPackage.getName();
 //		if (name == null) {
 //			throw new IllegalStateException("Unnamed package");
@@ -56,13 +57,13 @@ public class RootCompletePackages extends AbstractCompletePackages<RootCompleteP
 		String nsPrefix = pivotPackage.getNsPrefix();
 		String completeURI = getCompleteModel().getCompleteURIs().getCompleteURI(pivotPackage.getURI());
 		PackageId packageId = pivotPackage.getPackageId();
-		RootCompletePackage rootCompletePackage;
+		RootCompletePackage.Internal rootCompletePackage;
 		if (Orphanage.isTypeOrphanage(pivotPackage)) {
 			rootCompletePackage = getCompleteModel().getOrphanCompletePackage();
 		}
 		else {
 			PackageId metapackageId = getCompleteModel().getMetaModelManager().getMetapackageId(pivotPackage);
-			ParentCompletePackage parentCompletePackage = PivotFactory.eINSTANCE.createParentCompletePackage();
+			ParentCompletePackage.Internal parentCompletePackage = (ParentCompletePackage.Internal) PivotFactory.eINSTANCE.createParentCompletePackage();
 			parentCompletePackage.init(nonNullName, nsPrefix, completeURI, packageId, metapackageId);
 			rootCompletePackage = parentCompletePackage;
 			add(rootCompletePackage);
@@ -71,7 +72,7 @@ public class RootCompletePackages extends AbstractCompletePackages<RootCompleteP
 	}
 
 	@Override
-	protected void didAdd(@NonNull RootCompletePackage rootCompletePackage) {
+	protected void didAdd(@NonNull RootCompletePackage.Internal rootCompletePackage) {
 		super.didAdd(rootCompletePackage);
 //		String nsURI = rootCompletePackage.getURI();			// FIXME complete/package/URI/name
 //		String sharedNsURI = getCompleteURI(nsURI);
@@ -123,15 +124,15 @@ public class RootCompletePackages extends AbstractCompletePackages<RootCompleteP
 
 	@Override
 	@SuppressWarnings("null")
-	public @NonNull CompleteModelImpl getCompleteModel() {
-		return (CompleteModelImpl)owner;
+	public @NonNull CompleteModel.Internal getCompleteModel() {
+		return (CompleteModel.Internal)owner;
 	}
 
-	public @NonNull CompletePackage getCompletePackage(@NonNull DomainPackage pivotPackage) {
-		CompletePackage completePackage = null;
-		if (pivotPackage instanceof CompletePackage) {
+	public @NonNull CompletePackage.Internal getCompletePackage(@NonNull DomainPackage pivotPackage) {
+		CompletePackage.Internal completePackage = null;
+		if (pivotPackage instanceof CompletePackage.Internal) {
 			((CompletePackage)pivotPackage).assertSamePackage(pivotPackage);
-			completePackage = (CompletePackage)pivotPackage;
+			completePackage = (CompletePackage.Internal)pivotPackage;
 		}
 		else {
 			completePackage = getCompleteModel().getCompleteURIs().getCompletePackage(pivotPackage);
@@ -144,8 +145,8 @@ public class RootCompletePackages extends AbstractCompletePackages<RootCompleteP
 					completePackage.assertSamePackage(pivotPackage);
 				}
 				else {
-					CompletePackage completeParentPackage = getCompletePackage(pivotPackageParent);
-					CompletePackage completeChildPackage = completeParentPackage.getOwnedCompletePackage(pivotPackage.getName());
+					CompletePackage.Internal completeParentPackage = getCompletePackage(pivotPackageParent);
+					CompletePackage.Internal completeChildPackage = completeParentPackage.getOwnedCompletePackage(pivotPackage.getName());
 					assert completeChildPackage != null;
 					return completeChildPackage;
 //					CompletePackageParent completePackageParent;
@@ -162,13 +163,13 @@ public class RootCompletePackages extends AbstractCompletePackages<RootCompleteP
 		return completePackage;
 	}
 
-	public @NonNull RootCompletePackage getOwnedCompletePackage(@NonNull DomainPackage pivotPackage) {
+	public @NonNull RootCompletePackage.Internal getOwnedCompletePackage(@NonNull DomainPackage pivotPackage) {
 		//
 		//	Try to find package by packageURI
 		//
-		CompletePackage completePackage = getCompleteModel().getCompleteURIs().getCompletePackage(pivotPackage);
+		CompletePackage.Internal completePackage = getCompleteModel().getCompleteURIs().getCompletePackage(pivotPackage);
 		if (completePackage != null) {
-			return (RootCompletePackage) completePackage;
+			return (RootCompletePackage.Internal) completePackage;
 		}
 		//
 		//	Else generate an error for a name-less Package, fatally if also packageURI-less.
@@ -197,7 +198,7 @@ public class RootCompletePackages extends AbstractCompletePackages<RootCompleteP
 		//
 		//	Try to find package by name, provided there is no packageURI conflict
 		//
-		RootCompletePackage rootCompletePackage = getOwnedCompletePackage(name);
+		RootCompletePackage.Internal rootCompletePackage = (RootCompletePackage.Internal) getOwnedCompletePackage(name);
 		if (rootCompletePackage != null) {
 			String completeURI2 = rootCompletePackage.getURI();
 			if ((packageURI == null) || (completeURI2 == null) || packageURI.equals(completeURI2)) {

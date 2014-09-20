@@ -12,6 +12,18 @@ org.eclipse.ocl.examples.pivot/completePackages=false
 # Trace maintenance of PartialClasses 
 org.eclipse.ocl.examples.pivot/partialClasses=false
 
+# Trace creation of base_xxx properties 
+org.eclipse.ocl.examples.pivot/partialClasses/addBaseProperty=false
+
+# Trace creation of extension_xxx properties 
+org.eclipse.ocl.examples.pivot/partialClasses/addExtensionProperty=false
+
+# Trace lazy resolution of member operations 
+org.eclipse.ocl.examples.pivot/partialClasses/initMemberOperations=false
+
+# Trace lazy resolution of member properties 
+org.eclipse.ocl.examples.pivot/partialClasses/initMemberProperties=false
+
 # Trace maintenance of PartialPackages 
 org.eclipse.ocl.examples.pivot/partialPackages=false
 
@@ -23,18 +35,6 @@ org.eclipse.ocl.examples.pivot/validate/instance=false
 
 # Trace validation of OpaqueElement bodies 
 org.eclipse.ocl.examples.pivot/validate/opaqueElement=false
-
-# Trace creation of base_xxx properties 
-org.eclipse.ocl.examples.pivot/typeServer/addBaseProperty=false
-
-# Trace creation of extension_xxx properties 
-org.eclipse.ocl.examples.pivot/typeServer/addExtensionProperty=false
-
-# Trace lazy resolution of member operations 
-org.eclipse.ocl.examples.pivot/typeServer/initMemberOperations=false
-
-# Trace lazy resolution of member properties 
-org.eclipse.ocl.examples.pivot/typeServer/initMemberProperties=false
 
 # Trace validation of ElementExtension creations 
 org.eclipse.ocl.examples.pivot/uml2pivot/addElementExtension=false

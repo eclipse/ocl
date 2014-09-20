@@ -34,6 +34,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Nested Complete Package</b></em>'.
+ * @extends org.eclipse.ocl.examples.pivot.NestedCompletePackage.Internal
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -44,7 +45,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  *
  * @generated
  */
-public class NestedCompletePackageImpl extends CompletePackageImpl implements NestedCompletePackage
+public class NestedCompletePackageImpl extends CompletePackageImpl implements NestedCompletePackage, org.eclipse.ocl.examples.pivot.NestedCompletePackage.Internal
 {
 	/**
 	 * <!-- begin-user-doc -->

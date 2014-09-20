@@ -38,6 +38,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Root Complete Package</b></em>'.
+ * @extends org.eclipse.ocl.examples.pivot.RootCompletePackage.Internal
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -48,7 +49,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  *
  * @generated
  */
-public abstract class RootCompletePackageImpl extends CompletePackageImpl implements RootCompletePackage
+public abstract class RootCompletePackageImpl extends CompletePackageImpl implements RootCompletePackage, org.eclipse.ocl.examples.pivot.RootCompletePackage.Internal
 {
 	/**
 	 * <!-- begin-user-doc -->
@@ -361,7 +362,7 @@ public abstract class RootCompletePackageImpl extends CompletePackageImpl implem
 //			assert serverBasedNsURI == null;
 		}
 		else {
-			CompleteModelImpl completeModel = getCompleteModel();
+			CompleteModel.Internal completeModel = getCompleteModel();
 			assert (serverBasedNsURI == null) || (completeModel.getCompletePackageByURI(typeBasedNsURI) == completeModel.getCompletePackageByURI(serverBasedNsURI));
 		}
 	}
