@@ -110,7 +110,7 @@ public class OCLQueryDelegate implements QueryDelegate
 			Object targetValue = idResolver.boxedValueOf(target);
 			DomainClass targetType = idResolver.getStaticTypeOf(targetValue);
 			DomainType requiredType = nonNullSpecification.getContextVariable().getType();
-			if ((requiredType == null) || !targetType.conformsTo(metaModelManager, requiredType)) {
+			if ((requiredType == null) || !targetType.conformsTo(metaModelManager.getStandardLibrary(), requiredType)) {
 				String message = DomainUtil.bind(OCLMessages.WrongContextClassifier_ERROR_, targetType, requiredType);
 				throw new OCLDelegateException(new SemanticException(message));
 			}
@@ -133,7 +133,7 @@ public class OCLQueryDelegate implements QueryDelegate
 				Object value = idResolver.boxedValueOf(object);
 				targetType = idResolver.getStaticTypeOf(value);
 				requiredType = DomainUtil.nonNullModel(parameterVariable.getType());
-				if (!targetType.conformsTo(metaModelManager, requiredType)) {
+				if (!targetType.conformsTo(metaModelManager.getStandardLibrary(), requiredType)) {
 					String message = DomainUtil.bind(OCLMessages.MismatchedArgumentType_ERROR_, name, targetType, requiredType);
 					throw new OCLDelegateException(new SemanticException(message));
 				}

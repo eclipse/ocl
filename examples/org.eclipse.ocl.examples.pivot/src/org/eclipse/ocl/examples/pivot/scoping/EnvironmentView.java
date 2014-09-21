@@ -57,6 +57,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.manager.CompleteInheritance;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
@@ -764,6 +765,10 @@ public class EnvironmentView
 		return result;
 	}
 
+	public @NonNull MetaModelManager getMetaModelManager() {
+		return metaModelManager;
+	}
+
 	public @Nullable String getName() {
 		return name;
 	}
@@ -780,8 +785,8 @@ public class EnvironmentView
 		return contentsSize;
 	}
 
-	public @NonNull MetaModelManager getMetaModelManager() {
-		return metaModelManager;
+	public @NonNull PivotStandardLibrary getStandardLibrary() {
+		return metaModelManager.getStandardLibrary();
 	}
 
 	/**

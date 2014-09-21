@@ -95,7 +95,7 @@ public class BoxingAnalyzer extends AbstractExtendingCGModelVisitor<Object, Code
 
 	protected boolean hasOclVoidOperation(@NonNull OperationId operationId) {
 		MetaModelManager metaModelManager = codeGenerator.getMetaModelManager();
-		CompleteClass completeClass = metaModelManager.getCompleteClass(metaModelManager.getOclVoidType());
+		CompleteClass completeClass = metaModelManager.getCompleteClass(metaModelManager.getStandardLibrary().getOclVoidType());
 		DomainOperation memberOperation = completeClass.getOperation(operationId);
 		if (memberOperation == null) {
 			return false;

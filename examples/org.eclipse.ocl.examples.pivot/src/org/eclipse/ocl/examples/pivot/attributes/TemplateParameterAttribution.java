@@ -13,7 +13,7 @@ package org.eclipse.ocl.examples.pivot.attributes;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
@@ -25,8 +25,8 @@ public class TemplateParameterAttribution extends AbstractAttribution
 	@Override
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		TemplateParameter targetClass = (TemplateParameter) target;
-		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-		org.eclipse.ocl.examples.pivot.Class type = metaModelManager.getOclAnyType(); // WIP use lowerbound
+		PivotStandardLibrary standardLibrary = environmentView.getStandardLibrary();
+		org.eclipse.ocl.examples.pivot.Class type = standardLibrary.getOclAnyType(); // WIP use lowerbound
 		environmentView.addAllOperations(type, null);
 		environmentView.addAllProperties(type, null);
 		environmentView.addAllStates(type);

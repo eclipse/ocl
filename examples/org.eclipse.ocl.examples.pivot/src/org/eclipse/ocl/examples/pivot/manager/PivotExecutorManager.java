@@ -31,22 +31,24 @@ import org.eclipse.ocl.examples.library.executor.LazyModelManager;
  */
 public class PivotExecutorManager extends ExecutorManager
 {
+	protected final @NonNull MetaModelManager metaModelManager;
 	protected final @NonNull PivotIdResolver idResolver;
 	protected final @NonNull EObject contextObject;
 	private @Nullable DomainModelManager modelManager = null;
 
 	public PivotExecutorManager(@NonNull MetaModelManager metaModelManager, @NonNull EObject contextObject) {
-		super(metaModelManager);
+		super(metaModelManager.getCompleteEnvironment());
+		this.metaModelManager = metaModelManager;
 		this.idResolver = metaModelManager.getIdResolver();
 		this.contextObject = contextObject;
 	}
 
 	protected @NonNull IdResolver createIdResolver() {
-		return ((MetaModelManager)standardLibrary).getIdResolver();
+		return metaModelManager.getIdResolver();
 	}
 
 	public @NonNull DomainEvaluator createNestedEvaluator() {
-		return new PivotExecutorManager((MetaModelManager) standardLibrary, contextObject);
+		return new PivotExecutorManager(metaModelManager, contextObject);
 	}
 
 	@Override

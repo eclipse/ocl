@@ -12,9 +12,7 @@ package org.eclipse.ocl.examples.domain.elements;
 
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.ids.PrimitiveTypeId;
-import org.eclipse.ocl.examples.domain.values.IntegerValue;
 
 /**
  * A representation of the OCL Standard Library, which is the set of singleton
@@ -38,11 +36,6 @@ public interface DomainStandardLibrary
      * @return the <tt>Bag(T)</tt> type (an instance of BagType)
      */
 	@NonNull DomainClass getBagType();
-
-	/**
-	 * Return the instance of the Bag metatype whose elements are of elementType.
-	 */
-	@NonNull DomainCollectionType getBagType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper);
 	
     /**
      * Obtains the instance of the PrimitiveType metatype, named
@@ -67,11 +60,6 @@ public interface DomainStandardLibrary
      * @return the <tt>Collection(T)</tt> type (an instance of CollectionType)
      */
 	@NonNull DomainClass getCollectionType();
-	
-	/**
-	 * Return the specialized collection type for the containerType for elementType.
-	 */
-	@NonNull DomainCollectionType getCollectionType(@NonNull DomainClass containerType, @NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper);
 
 	/**
 	 * Return the enumeration for a given enumerator.
@@ -108,10 +96,6 @@ public interface DomainStandardLibrary
      * Returns the meta-type of a given type.
      */
 	DomainType getMetaType(@NonNull DomainType type);
-
-	DomainPackage getNestedPackage(@NonNull DomainPackage parentPackage, @NonNull String name);
-	
-    DomainType getNestedType(@NonNull DomainPackage parentPackage, @NonNull String name);
 
     DomainPackage getNsURIPackage(@NonNull String nsURI);
 
@@ -208,11 +192,6 @@ public interface DomainStandardLibrary
      * @return the <tt>OrderedSet(T)</tt> type (an instance of OrderedSetType)
      */
 	@NonNull DomainClass getOrderedSetType();
-
-	/**
-	 * Return the instance of the OrderedSet metatype whose elements are of elementType.
-	 */
-	@NonNull DomainCollectionType getOrderedSetType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper);
 	
     DomainType getPrimitiveType(@NonNull PrimitiveTypeId id);
 
@@ -233,11 +212,6 @@ public interface DomainStandardLibrary
      * @return the <tt>Sequence(T)</tt> type (an instance of SequenceType)
      */
 	@NonNull DomainClass getSequenceType();
-
-	/**
-	 * Return the instance of the Sequence metatype whose elements are of elementType.
-	 */
-	@NonNull DomainCollectionType getSequenceType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper);
 	
     /**
      * Obtains the generic instance of the SetType metatype, named
@@ -246,11 +220,6 @@ public interface DomainStandardLibrary
      * @return the <tt>Set(T)</tt> type (an instance of SetType)
      */
 	@NonNull DomainClass getSetType();
-
-	/**
-	 * Return the instance of the Set metatype whose elements are of elementType.
-	 */
-	@NonNull DomainCollectionType getSetType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper);
 
     /**
      * Obtains the instance of the PrimitiveType metatype, named

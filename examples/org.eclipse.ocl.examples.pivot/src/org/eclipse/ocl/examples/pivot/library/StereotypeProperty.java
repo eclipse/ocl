@@ -28,6 +28,7 @@ import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitorImpl;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.uml.UMLElementExtension;
 
@@ -118,7 +119,7 @@ public class StereotypeProperty extends ConstrainedProperty
 				String body = defaultExpression.getBody();
 				if (body != null) {
 					try {
-						MetaModelManager metaModelManager = (MetaModelManager) evaluator.getStandardLibrary();
+						MetaModelManager metaModelManager = ((EvaluationVisitorImpl)evaluator).getMetaModelManager();
 						ExpressionInOCL expr = metaModelManager.getQueryOrThrow(defaultExpression);
 						OCLExpression bodyExpression = expr.getBodyExpression();
 						if (bodyExpression != null) {

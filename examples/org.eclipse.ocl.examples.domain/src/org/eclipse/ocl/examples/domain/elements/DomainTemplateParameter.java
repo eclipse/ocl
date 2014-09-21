@@ -11,9 +11,11 @@
 package org.eclipse.ocl.examples.domain.elements;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.ids.TemplateParameterId;
 
 public interface DomainTemplateParameter extends DomainType
 {
+	@Nullable DomainType getLowerBound();
 	@NonNull TemplateParameterId getTemplateParameterId();
 }

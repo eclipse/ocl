@@ -665,9 +665,9 @@ public class EditTests extends XtextTestCase
 		assertNoResourceErrors("Loading input", asResource);
 		//
 		Type myType = metaModelManager.getPrimaryType(LibraryConstants.STDLIB_URI, "MyType");
-		SequenceType sequenceType = metaModelManager.getSequenceType();
+		SequenceType sequenceType = metaModelManager.getStandardLibrary().getSequenceType();
 		CollectionTypeParameters<Type> typeParameters = new CollectionTypeParameters<Type>(myType, null, null);
-		CompleteClass.Internal sequenceCompleteClass = (CompleteClass.Internal) metaModelManager.getCompleteClass(sequenceType);
+		CompleteClass.Internal sequenceCompleteClass = metaModelManager.getCompleteClass(sequenceType);
 		WeakReference<Type> sequenceMyType = new WeakReference<Type>(completeModel.findCollectionType(sequenceCompleteClass, typeParameters));
 		assertNull(sequenceMyType.get()); 
 		//

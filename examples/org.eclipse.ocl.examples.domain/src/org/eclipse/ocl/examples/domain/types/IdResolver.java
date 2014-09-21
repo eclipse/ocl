@@ -20,6 +20,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
+import org.eclipse.ocl.examples.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
@@ -85,6 +86,8 @@ public interface IdResolver extends IdVisitor<DomainElement>
 	@Nullable DomainType getDynamicTypeOf(@NonNull Object... values);
 
 	@Nullable DomainType getDynamicTypeOf(@NonNull Iterable<?> values);
+
+	@NonNull DomainEnvironment getEnvironment();
 
 	@NonNull DomainInheritance getInheritance(@NonNull EClassifier eClassifier);
 	

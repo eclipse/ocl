@@ -16,6 +16,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainConstraint;
+import org.eclipse.ocl.examples.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
@@ -28,8 +29,8 @@ import org.eclipse.ocl.examples.domain.values.Value;
 
 public abstract class AbstractClass extends AbstractType implements DomainClass	// FIXME rename as perhaps DerivativeType
 {
-	public AbstractClass(@NonNull DomainStandardLibrary standardLibrary, @NonNull String name) {
-		super(standardLibrary, name);
+	public AbstractClass(@NonNull DomainEnvironment environment, @NonNull String name) {
+		super(environment, name);
 	}
 
 	public @NonNull ObjectValue createInstance() {

@@ -357,7 +357,7 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 			MetaModelManager metaModelManager = PivotUtil.findMetaModelManager(this);
 			if (metaModelManager != null) {
 				if (isType()) {
-					element = metaModelManager.getOclInvalidType();
+					element = metaModelManager.getStandardLibrary().getOclInvalidType();
 				}
 			}
 //			InternalEObject oldElement = (InternalEObject)element;

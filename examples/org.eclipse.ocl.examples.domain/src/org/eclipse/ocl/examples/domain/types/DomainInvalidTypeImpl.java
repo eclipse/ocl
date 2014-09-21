@@ -12,6 +12,7 @@ package org.eclipse.ocl.examples.domain.types;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
+import org.eclipse.ocl.examples.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.examples.domain.elements.DomainInvalidType;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
@@ -24,8 +25,8 @@ public class DomainInvalidTypeImpl extends AbstractClass implements DomainInvali
 {
 	protected final @NonNull String message;
 
-	public DomainInvalidTypeImpl(@NonNull DomainStandardLibrary standardLibrary, @NonNull String message) {
-		super(standardLibrary, "Invalid");
+	public DomainInvalidTypeImpl(@NonNull DomainEnvironment environment, @NonNull String message) {
+		super(environment, "Invalid");
 		this.message = message;
 	}
 

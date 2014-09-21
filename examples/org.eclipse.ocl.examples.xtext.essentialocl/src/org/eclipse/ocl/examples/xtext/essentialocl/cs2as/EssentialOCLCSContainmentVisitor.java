@@ -180,8 +180,8 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 		}
 		else {
 			Map<String, Type> tupleParts = new HashMap<String, Type>();
-			tupleParts.put(PivotConstants.MESSAGE_PART_NAME, metaModelManager.getStringType());
-			tupleParts.put(PivotConstants.STATUS_PART_NAME, metaModelManager.getBooleanType());
+			tupleParts.put(PivotConstants.MESSAGE_PART_NAME, standardLibrary.getStringType());
+			tupleParts.put(PivotConstants.STATUS_PART_NAME, standardLibrary.getBooleanType());
 			TupleType tupleType = metaModelManager.getCompleteModel().getTupleManager().getTupleType("Tuple", tupleParts);
 			Property statusProperty = DomainUtil.getNamedElement(tupleType.getOwnedProperties(), PivotConstants.STATUS_PART_NAME);
 			LanguageExpression asSpecification = asConstraint.getSpecification();
@@ -273,11 +273,11 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 				EStructuralFeature eContainingFeature = csElement.eContainingFeature();
 				if (eContainingFeature == BaseCSPackage.Literals.CONSTRAINT_CS__SPECIFICATION) {
 					csTupleLiteralPart.setName(PivotConstants.STATUS_PART_NAME);
-					csTupleLiteralPart.setType(metaModelManager.getBooleanType());
+					csTupleLiteralPart.setType(standardLibrary.getBooleanType());
 				}
 				else if (eContainingFeature == BaseCSPackage.Literals.CONSTRAINT_CS__MESSAGE_SPECIFICATION) {
 					csTupleLiteralPart.setName(PivotConstants.MESSAGE_PART_NAME);
-					csTupleLiteralPart.setType(metaModelManager.getStringType());
+					csTupleLiteralPart.setType(standardLibrary.getStringType());
 				}
 				else {
 					logger.error("unknown ExpSpecificationCS.eContainingFeature" + eContainingFeature);

@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.junit.After;
@@ -331,10 +332,11 @@ public class EvaluateCollectionOperationsTest4 extends PivotTestSuite
 	}
 
 	@Test public void testCollectionElementType() {
-		assertQueryEquals(null, metaModelManager.getStringType(), "Sequence{'1', '2', '3'}->oclType().elementType");
-		assertQueryEquals(null, metaModelManager.getOclAnyType(), "Sequence{1, 2.0, '3'}->oclType().elementType");
-		assertQueryEquals(null, metaModelManager.getUnlimitedNaturalType(), "Sequence{1, 2, 3}->oclType().elementType");
-		assertQueryEquals(null, metaModelManager.getUnlimitedNaturalType(), "Sequence{1, 2, 3}->oclAsType(Collection(Real))->oclType().elementType");
+		DomainStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+		assertQueryEquals(null, standardLibrary.getStringType(), "Sequence{'1', '2', '3'}->oclType().elementType");
+		assertQueryEquals(null, standardLibrary.getOclAnyType(), "Sequence{1, 2.0, '3'}->oclType().elementType");
+		assertQueryEquals(null, standardLibrary.getUnlimitedNaturalType(), "Sequence{1, 2, 3}->oclType().elementType");
+		assertQueryEquals(null, standardLibrary.getUnlimitedNaturalType(), "Sequence{1, 2, 3}->oclAsType(Collection(Real))->oclType().elementType");
 // FIXME fails because common type is Set(T) and then because T is not type-servable and has no OclAny inheritance
 //		assertQueryEquals(null, metaModelManager.getSetType(), "Sequence{Set{1}, Set{2.0}, Set{'3'}}->elementType");
 // FIXME fails because common type is inadequate for implicit collect
@@ -1666,6 +1668,7 @@ public class EvaluateCollectionOperationsTest4 extends PivotTestSuite
 	}
 
 	@Test public void testCollectionSum() {
+		DomainStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
 		assertQueryEquals(null, 0, "let s : Sequence(Integer) = Sequence{} in s->sum()");
 		assertQueryEquals(null, 0.0, "let b : Bag(Real) = Bag{} in b->sum()");
 		assertQueryEquals(null, 0.0, "let s : Set(Real) = Set{} in s->sum()");
@@ -1675,9 +1678,9 @@ public class EvaluateCollectionOperationsTest4 extends PivotTestSuite
 		assertQueryEquals(null, 13, "Bag{4, 4, 5}->sum()");
 		assertQueryEquals(null, 9.0, "Set{4, 4.0, 5.0}->sum()");
 		assertQueryEquals(null, 9.0, "OrderedSet{4.0, 4.0, 5.0}->sum()");
-		assertQueryEquals(null, metaModelManager.getRealType(), "Bag{4.0, 4, 5}->sum().oclType()");
-		assertQueryEquals(null, metaModelManager.getIntegerType(), "Bag{4, -4, -5}->sum().oclType()");
-		assertQueryEquals(null, metaModelManager.getUnlimitedNaturalType(), "Bag{4, 4, 5}->sum().oclType()");
+		assertQueryEquals(null, standardLibrary.getRealType(), "Bag{4.0, 4, 5}->sum().oclType()");
+		assertQueryEquals(null, standardLibrary.getIntegerType(), "Bag{4, -4, -5}->sum().oclType()");
+		assertQueryEquals(null, standardLibrary.getUnlimitedNaturalType(), "Bag{4, 4, 5}->sum().oclType()");
 
 		assertQueryEquals(null, 4, "4->sum()");
 		// invalid collection

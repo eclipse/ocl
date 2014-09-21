@@ -49,7 +49,7 @@ public class ConstrainedProperty extends AbstractProperty
 				throw new InvalidValueException("No defaultExpression for '{0}'", property);
 			}
 			try {
-				MetaModelManager metaModelManager = (MetaModelManager) evaluator.getStandardLibrary();
+				MetaModelManager metaModelManager = ((EvaluationVisitorImpl)evaluator).getMetaModelManager();
 				expression = expression2 = metaModelManager.getQueryOrThrow(defaultSpecification);
 			} catch (ParserException e) {
 				throw new InvalidValueException(e, "Bad defaultExpression for '{0}'", property);

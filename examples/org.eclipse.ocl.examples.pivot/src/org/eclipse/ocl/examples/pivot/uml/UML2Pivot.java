@@ -1145,19 +1145,19 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 		createMap.put(eGenericType, pivotType); */
 		if (umlType instanceof org.eclipse.uml2.uml.PrimitiveType) {
 			if (UMLUtil.isBoolean(umlType)) {
-				return metaModelManager.getBooleanType();
+				return standardLibrary.getBooleanType();
 			}
 			else if (UMLUtil.isInteger(umlType)) {
-				return metaModelManager.getIntegerType();
+				return standardLibrary.getIntegerType();
 			}
 			else if (UMLUtil.isReal(umlType)) {
-				return metaModelManager.getRealType();
+				return standardLibrary.getRealType();
 			}
 			else if (UMLUtil.isString(umlType)) {
-				return metaModelManager.getStringType();
+				return standardLibrary.getStringType();
 			}
 			else if (UMLUtil.isUnlimitedNatural(umlType)) {
-				return metaModelManager.getUnlimitedNaturalType();
+				return standardLibrary.getUnlimitedNaturalType();
 			}
 //			org.eclipse.uml2.uml.Package umlPackage = umlType.getPackage();
 //			Resource umlResource = umlType.eResource();

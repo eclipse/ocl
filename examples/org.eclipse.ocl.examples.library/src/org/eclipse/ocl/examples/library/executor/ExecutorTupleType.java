@@ -13,6 +13,7 @@ package org.eclipse.ocl.examples.library.executor;
 import java.util.Collection;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
@@ -27,8 +28,8 @@ public class ExecutorTupleType extends AbstractClass implements ExecutorTypeArgu
 {
 	protected final @NonNull TypeId typeId;
 
-	public ExecutorTupleType(@NonNull DomainStandardLibrary standardLibrary, @NonNull String name, @NonNull Collection<? extends TuplePartId> parts) {
-		super(standardLibrary, name);
+	public ExecutorTupleType(@NonNull DomainEnvironment environment, @NonNull String name, @NonNull Collection<? extends TuplePartId> parts) {
+		super(environment, name);
 		typeId = IdManager.getTupleTypeId(name, parts);
 	}
 

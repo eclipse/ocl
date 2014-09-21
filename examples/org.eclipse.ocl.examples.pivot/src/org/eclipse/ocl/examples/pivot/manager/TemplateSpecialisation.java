@@ -18,9 +18,9 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
+import org.eclipse.ocl.examples.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.examples.domain.elements.DomainLambdaType;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
-import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.examples.domain.elements.DomainTupleType;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
@@ -92,11 +92,13 @@ public class TemplateSpecialisation
 		return false;
 	}
 
-	protected final @NonNull DomainStandardLibrary standardLibrary;
+	protected final @NonNull DomainEnvironment environment;
+//	protected final @NonNull DomainStandardLibrary standardLibrary;
 	protected /*@LazyNonNull*/ Map<DomainTemplateParameter, DomainType> bindings = null;
 
-	public TemplateSpecialisation(@NonNull DomainStandardLibrary standardLibrary) {
-		this.standardLibrary = standardLibrary;
+	public TemplateSpecialisation(@NonNull DomainEnvironment environment) {
+		this.environment = environment;
+//		this.standardLibrary = environment.getStandardLibrary();
 	}
 	
 	/**
@@ -114,10 +116,10 @@ public class TemplateSpecialisation
 			DomainCollectionType collectionType = (DomainCollectionType)referencedType;
 			DomainType elementType = getResolution(collectionType.getElementType());
 			if (elementType == null) {
-				elementType = standardLibrary.getOclAnyType();
+				elementType = environment.getStandardLibrary().getOclAnyType();
 			}
 			DomainClass containerType = DomainUtil.nonNullState(collectionType.getContainerType());
-			return standardLibrary.getCollectionType(containerType, elementType, collectionType.getLowerValue(), collectionType.getUpperValue());
+			return environment.getCollectionType(containerType, elementType, collectionType.getLowerValue(), collectionType.getUpperValue());
 		}
 		if (referencedType instanceof DomainTupleType) {
 //			DomainTupleType tupleType = (DomainTupleType)referencedType;

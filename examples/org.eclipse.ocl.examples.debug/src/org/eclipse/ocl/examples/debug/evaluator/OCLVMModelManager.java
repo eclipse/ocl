@@ -86,6 +86,6 @@ public class OCLVMModelManager extends VMModelManager
 //				}
 			}
 		}
-	    return (objectType != null) && objectType.conformsTo(metaModelManager, requiredType);
+	    return (objectType != null) && objectType.conformsTo(metaModelManager.getStandardLibrary(), requiredType);
 	}
 }

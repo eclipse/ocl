@@ -95,7 +95,7 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 				}
 			}
 			if (type == null) {
-				type = metaModelManager.getLibraryType(name);
+				type = metaModelManager.getStandardLibrary().getLibraryType(name);
 			}
 			csElement.setPivot(type);
 			return null;
@@ -114,7 +114,7 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 			if ((element == null) || element.eIsProxy()) {
 				String boundMessage = context.bind(csElement, OCLMessages.UnresolvedType_ERROR_, "", csElement.toString());
 				context.addDiagnostic(csElement, boundMessage);
-				element = context.getMetaModelManager().getOclInvalidType();	// FIXME with reason
+				element = context.getStandardLibrary().getOclInvalidType();	// FIXME with reason
 			}
 			context.installPivotTypeWithMultiplicity(element, csElement);
 			return null;

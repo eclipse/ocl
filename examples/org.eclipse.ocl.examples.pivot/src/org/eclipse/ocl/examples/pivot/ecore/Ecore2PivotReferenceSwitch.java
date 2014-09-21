@@ -49,11 +49,12 @@ import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.library.JavaCompareToOperation;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
 
 public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 {				
@@ -68,12 +69,14 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
     public static final Object PROPERTY_OPPOSITE_ROLE_LOWER_KEY = "Property.oppositeLower"; //$NON-NLS-1$
     public static final Object PROPERTY_OPPOSITE_ROLE_UPPER_KEY = "Property.oppositeUpper"; //$NON-NLS-1$
 
-    protected final Ecore2Pivot converter;
-	protected final MetaModelManager metaModelManager;
+    protected final @NonNull Ecore2Pivot converter;
+	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull PivotStandardLibrary standardLibrary;
 	
-	public Ecore2PivotReferenceSwitch(Ecore2Pivot converter) {
+	public Ecore2PivotReferenceSwitch(@NonNull Ecore2Pivot converter) {
 		this.converter = converter;
 		this.metaModelManager = converter.getMetaModelManager();
+		this.standardLibrary = metaModelManager.getStandardLibrary();
 	}
 	
 	@Override
@@ -93,7 +96,7 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 		if (pivotElement != null) {
 			doSwitchAll(org.eclipse.ocl.examples.pivot.Class.class, pivotElement.getSuperClasses(), eObject2.getEGenericSuperTypes());
 			if (pivotElement.getSuperClasses().isEmpty()) {
-				org.eclipse.ocl.examples.pivot.Class oclElementType = metaModelManager.getOclElementType();
+				org.eclipse.ocl.examples.pivot.Class oclElementType = standardLibrary.getOclElementType();
 				pivotElement.getSuperClasses().add(oclElementType);
 			}
 		}
@@ -115,11 +118,11 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 						operation.setImplementation(new JavaCompareToOperation(declaredMethod));
 						Parameter parameter = PivotFactory.eINSTANCE.createParameter();
 						parameter.setName("that");
-						parameter.setType(metaModelManager.getOclSelfType());
+						parameter.setType(standardLibrary.getOclSelfType());
 						operation.getOwnedParameter().add(parameter);
-						operation.setType(metaModelManager.getIntegerType());
+						operation.setType(standardLibrary.getIntegerType());
 						pivotElement.getOwnedOperations().add(operation);
-						pivotElement.getSuperClasses().add(metaModelManager.getOclComparableType());
+						pivotElement.getSuperClasses().add(standardLibrary.getOclComparableType());
 					}
 				} catch (Exception e) {
 				}
@@ -389,7 +392,7 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 							}
 							else {
 								isRequired = false;
-								pivotType = metaModelManager.getOclVoidType();
+								pivotType = standardLibrary.getOclVoidType();
 							}
 							pivotElement.setType(pivotType);
 							pivotElement.setIsRequired(isRequired);
@@ -429,7 +432,7 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 			}
 			else {
 				isRequired = false;
-				pivotType = metaModelManager.getOclVoidType();
+				pivotType = standardLibrary.getOclVoidType();
 			}
 			pivotElement.setType(pivotType);
 			pivotElement.setIsRequired(isRequired);

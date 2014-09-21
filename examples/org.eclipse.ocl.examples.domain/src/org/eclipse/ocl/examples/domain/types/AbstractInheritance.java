@@ -98,7 +98,7 @@ public abstract class AbstractInheritance implements DomainInheritance
 	public static final int UNIQUE = 1 << 1;
 	public static final int OCL_ANY = 1 << 2;
 	public static final int OCL_VOID = 1 << 3;
-	public static final int OCL_INVALID = 1 << 4;
+	public static final int OCL_INVALID = 1 << 4;			// NB. OCL_INVALID assumed greater than OCL_VOID by isSuper/SubInheritanceOf
 	
 	/**
 	 * A simple public static method that may be used to force class initialization.
@@ -190,11 +190,25 @@ public abstract class AbstractInheritance implements DomainInheritance
 	}
 
 	public boolean isSubInheritanceOf(@NonNull DomainInheritance thatInheritance) {
-		return getFragment(thatInheritance) != null;
+		int theseFlags = flags & (OCL_VOID|OCL_INVALID);
+		int thoseFlags = ((AbstractInheritance)thatInheritance).flags & (OCL_VOID|OCL_INVALID);
+		if ((theseFlags == 0) && (thoseFlags == 0)) {
+			return getFragment(thatInheritance) != null;
+		}
+		else {
+			return theseFlags >= thoseFlags;
+		}
 	}
 
 	public boolean isSuperInheritanceOf(@NonNull DomainInheritance thatInheritance) {
-		return thatInheritance.getFragment(this) != null;
+		int theseFlags = flags & (OCL_VOID|OCL_INVALID);
+		int thoseFlags = ((AbstractInheritance)thatInheritance).flags & (OCL_VOID|OCL_INVALID);
+		if ((theseFlags == 0) && (thoseFlags == 0)) {
+			return thatInheritance.getFragment(this) != null;
+		}
+		else {
+			return theseFlags <= thoseFlags;
+		}
 	}
 
 	public final boolean isUndefined() {

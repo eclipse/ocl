@@ -445,7 +445,7 @@ public class Ecore2Pivot extends AbstractEcore2Pivot
 		EPackage libraryEPackage = isLibrary(ecoreContents);
 		if (libraryEPackage != null) {
 			newCreateMap = new HashMap<EObject, Element>();
-			org.eclipse.ocl.examples.pivot.Package asLibrary = metaModelManager.getOclAnyType().getOwningPackage();
+			org.eclipse.ocl.examples.pivot.Package asLibrary = standardLibrary.getOclAnyType().getOwningPackage();
 			newCreateMap.put(libraryEPackage, asLibrary);
 			List<org.eclipse.ocl.examples.pivot.Class> ownedType = asLibrary.getOwnedClasses();
 //			int prefix = LibraryConstants.ECORE_STDLIB_PREFIX.length();
@@ -496,10 +496,10 @@ public class Ecore2Pivot extends AbstractEcore2Pivot
 	}
 
 	public void initializeEcore2PivotMap() {
-		ecore2PivotMap.put(EcorePackage.Literals.EBOOLEAN, metaModelManager.getBooleanType());
-		ecore2PivotMap.put(EcorePackage.Literals.EBIG_INTEGER, metaModelManager.getIntegerType());
-		ecore2PivotMap.put(EcorePackage.Literals.EBIG_DECIMAL, metaModelManager.getRealType());
-		ecore2PivotMap.put(EcorePackage.Literals.ESTRING, metaModelManager.getStringType());
+		ecore2PivotMap.put(EcorePackage.Literals.EBOOLEAN, standardLibrary.getBooleanType());
+		ecore2PivotMap.put(EcorePackage.Literals.EBIG_INTEGER, standardLibrary.getIntegerType());
+		ecore2PivotMap.put(EcorePackage.Literals.EBIG_DECIMAL, standardLibrary.getRealType());
+		ecore2PivotMap.put(EcorePackage.Literals.ESTRING, standardLibrary.getStringType());
 	}
 
 	protected void installImports() {

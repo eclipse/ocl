@@ -276,7 +276,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 			Type elementType = DomainUtil.nonNullModel(collectionType.getElementType());
 			Type specializedElementType = specializeType(elementType);
 			CollectionType unspecializedCollectionType = PivotUtil.getUnspecializedTemplateableElement(collectionType);
-			return metaModelManager.getCollectionType(unspecializedCollectionType, specializedElementType, null, null);
+			return metaModelManager.getCompleteEnvironment().getCollectionType(unspecializedCollectionType, specializedElementType, null, null);
 		}
 		else if (type instanceof TupleType) {
 			return getSpecializedTupleType((TupleType) type);

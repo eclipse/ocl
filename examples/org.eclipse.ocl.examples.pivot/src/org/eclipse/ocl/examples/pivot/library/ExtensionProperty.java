@@ -28,7 +28,7 @@ import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Stereotype;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitorImpl;
 import org.eclipse.ocl.examples.pivot.uml.UMLElementExtension;
 
 /**
@@ -45,6 +45,9 @@ public class ExtensionProperty extends AbstractProperty
 	
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		DomainType staticType = property.getType();
+		if (staticType == null) {
+			return null;
+		}
 		if (sourceValue instanceof org.eclipse.uml2.uml.Element) {
 			if (staticType instanceof Stereotype) {
 				return UMLElementExtension.getUMLElementExtension((Stereotype)staticType, (org.eclipse.uml2.uml.Element)sourceValue);
@@ -56,7 +59,7 @@ public class ExtensionProperty extends AbstractProperty
 		}
 		else {
 			try {
-				element = ((MetaModelManager)evaluator.getStandardLibrary()).getPivotOf(Element.class, (EObject)sourceValue);
+				element = ((EvaluationVisitorImpl)evaluator).getMetaModelManager().getPivotOf(Element.class, (EObject)sourceValue);
 			} catch (ParserException e) {
 				return new InvalidValueException(e, "Failed to parse " + property);
 			}

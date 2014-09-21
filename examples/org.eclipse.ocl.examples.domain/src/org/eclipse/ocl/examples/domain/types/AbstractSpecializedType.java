@@ -12,6 +12,7 @@ package org.eclipse.ocl.examples.domain.types;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
+import org.eclipse.ocl.examples.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
@@ -20,8 +21,8 @@ public abstract class AbstractSpecializedType extends AbstractClass
 {
 	protected final @NonNull DomainClass containerType;
 	
-	public AbstractSpecializedType(@NonNull DomainStandardLibrary standardLibrary, @NonNull String name, @NonNull DomainClass containerType) {
-		super(standardLibrary, name);
+	public AbstractSpecializedType(@NonNull DomainEnvironment environment, @NonNull String name, @NonNull DomainClass containerType) {
+		super(environment, name);
 		this.containerType = containerType;
 	}
 

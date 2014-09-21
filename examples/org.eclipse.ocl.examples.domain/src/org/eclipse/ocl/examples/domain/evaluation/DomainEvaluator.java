@@ -15,6 +15,7 @@ import java.util.regex.Pattern;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
+import org.eclipse.ocl.examples.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.examples.domain.elements.DomainExpression;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
@@ -24,6 +25,7 @@ public interface DomainEvaluator
 	@NonNull DomainEvaluator createNestedEvaluator();
 	void dispose();
 	@Nullable Object evaluate(@NonNull DomainExpression body);
+	@NonNull DomainEnvironment getCompleteEnvironment();
 	@NonNull DomainEvaluationEnvironment getEvaluationEnvironment();
 	@NonNull IdResolver getIdResolver();
 

@@ -47,6 +47,7 @@ import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.CompleteModel;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
+import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
@@ -69,6 +70,7 @@ import org.eclipse.ocl.examples.pivot.internal.impl.CompleteClassImpl;
 import org.eclipse.ocl.examples.pivot.manager.CompleteInheritance;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.Orphanage;
+import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -111,7 +113,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 	 */
 	private @Nullable Map<String, PartialProperties> name2partialProperties = null;
 	
-	private Set<CompleteClass> superCompleteClasses = null;
+	private Set<CompleteClass.Internal> superCompleteClasses = null;
 
 	/**
 	 * Lazily created map from class name to the superclass. This is a map from unqualified name to
@@ -162,11 +164,11 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 		super.addUnique(index, partialClass);
 	}
 
-	public @NonNull Set<CompleteClass> computeSuperCompleteClasses() {
-		Set<CompleteClass> superCompleteClasses2 = superCompleteClasses;
+	public @NonNull Set<CompleteClass.Internal> computeSuperCompleteClasses() {
+		Set<CompleteClass.Internal> superCompleteClasses2 = superCompleteClasses;
 		if (superCompleteClasses2 == null) {
 			CompleteModel.Internal completeModel = getCompleteModel();
-			superCompleteClasses2 = superCompleteClasses = new HashSet<CompleteClass>();
+			superCompleteClasses2 = superCompleteClasses = new HashSet<CompleteClass.Internal>();
 			for (org.eclipse.ocl.examples.pivot.Class partialClass : this) {
 				for (org.eclipse.ocl.examples.pivot.Class partialSuperClass : partialClass.getSuperClasses()) {
 					if (partialSuperClass != null) {
@@ -177,7 +179,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 				}
 			}
 			if (superCompleteClasses2.isEmpty()) {
-				CompleteClass oclAnyCompleteClass = completeModel.getCompleteClass(completeModel.getMetaModelManager().getOclAnyType());
+				CompleteClass.Internal oclAnyCompleteClass = completeModel.getCompleteClass(completeModel.getStandardLibrary().getOclAnyType());
 				if (getCompleteClass() != oclAnyCompleteClass) {
 					superCompleteClasses2.add(oclAnyCompleteClass);
 				}
@@ -212,7 +214,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 		boolean isRequired = false;
 		for (TypeExtension typeExtension : stereotype.getExtensionOfs()) {
 			Type metatype = typeExtension.getType();
-			if ((metatype != null) && baseType.conformsTo(getMetaModelManager(), metatype)) {
+			if ((metatype != null) && baseType.conformsTo(getStandardLibrary(), metatype)) {
 				isRequired = true;
 				break;
 			}
@@ -221,7 +223,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 		extensionProperty.setIsStatic(true);
 		return extensionProperty;
 	}
-	
+
 	protected @NonNull org.eclipse.ocl.examples.pivot.Class createSpecialization(@NonNull DomainTypeParameters templateArguments) {
 		org.eclipse.ocl.examples.pivot.Class unspecializedType = getCompleteClass().getPivotClass();
 		String typeName = unspecializedType.getName();
@@ -439,8 +441,19 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 		CompleteInheritance completeInheritance2 = completeInheritance;
 		if (completeInheritance2 == null) {
 			CompleteClass.Internal completeClass = getCompleteClass();
-			CompletePackage.Internal completePackage = completeClass.getOwningCompletePackage();
-			completeInheritance = completeInheritance2 = completePackage.getCompleteInheritance(completeClass);
+			org.eclipse.ocl.examples.pivot.Class pivotClass = completeClass.getPivotClass();
+			if (pivotClass instanceof DataType) {
+				org.eclipse.ocl.examples.pivot.Class behavioralClass = ((DataType)pivotClass).getBehavioralClass();
+				if (behavioralClass != null) {
+					completeClass = getCompleteModel().getCompleteClass(behavioralClass);
+					completeInheritance2 = completeClass.getCompleteInheritance();
+				}
+			}
+			if (completeInheritance2 == null) {
+				CompletePackage.Internal completePackage = completeClass.getOwningCompletePackage();
+				completeInheritance2 = completePackage.getCompleteInheritance(completeClass);
+			}
+			completeInheritance = completeInheritance2;
 		}
 		return completeInheritance2;
 	}
@@ -450,7 +463,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 	}
 
 	public @NonNull Iterable<? extends DomainInheritance> getInitialSuperInheritances() {
-		final Iterator<CompleteClass> iterator = computeSuperCompleteClasses().iterator();			// FIXME Use local cache
+		final Iterator<CompleteClass.Internal> iterator = computeSuperCompleteClasses().iterator();			// FIXME Use local cache
 		return new Iterable<DomainInheritance>()
 		{
 			public Iterator<DomainInheritance> iterator() {
@@ -461,7 +474,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 					}
 
 					public DomainInheritance next() {
-						CompleteClass next = iterator.next();
+						CompleteClass.Internal next = iterator.next();
 						return next.getCompleteInheritance();
 					}
 
@@ -681,6 +694,10 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 			}
 			return specializedType;
 		}
+	}
+	
+	public @NonNull PivotStandardLibrary getStandardLibrary() {
+		return getCompleteModel().getStandardLibrary();
 	}
 
 	public @NonNull Iterable<? extends State> getStates() {

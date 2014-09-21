@@ -39,6 +39,7 @@ import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelperImpl;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
@@ -231,7 +232,7 @@ public class OCL {
 	 *             if the constraint expression is not boolean-valued
 	 */
 	public boolean check(Object context, @NonNull ExpressionInOCL specification) {
-		DomainStandardLibrary stdlib = getEnvironment().getOCLStandardLibrary();
+		DomainStandardLibrary stdlib = getEnvironment().getStandardLibrary();
 		if (specification.getBodyExpression().getType() != stdlib.getBooleanType()) {
 			throw new IllegalArgumentException("constraint is not boolean"); //$NON-NLS-1$
 		}
@@ -528,6 +529,10 @@ public class OCL {
 			}
 		}
 		return getMetaModelManager().getQueryOrThrow(specification);
+	}
+
+	public @NonNull PivotStandardLibrary getStandardLibrary() {
+		return rootEnvironment.getStandardLibrary();
 	}
 
 	/**

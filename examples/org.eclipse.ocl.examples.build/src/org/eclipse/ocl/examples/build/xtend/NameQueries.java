@@ -21,7 +21,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.generator.AbstractGenModelHelper;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.CollectionType;
-import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -121,8 +120,7 @@ public class NameQueries
 		}
 		else if (elem instanceof org.eclipse.ocl.examples.pivot.Class) {
 			if (metaModelManager != null) {
-				CompleteClass completeClass = metaModelManager.getCompleteModel().getCompleteClass((Type)elem);
-				elem = completeClass.getCompleteInheritance();
+				elem = metaModelManager.getCompleteModel().getCompleteClass((Type)elem);
 			}
 		}
 		String symbol = definedSymbols.get(elem);

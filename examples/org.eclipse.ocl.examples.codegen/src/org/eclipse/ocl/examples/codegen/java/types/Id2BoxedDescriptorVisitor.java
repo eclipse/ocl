@@ -159,7 +159,7 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 			}
 		}
 		if (unboxedDescriptor == null) {
-			unboxedDescriptor = new UnboxedElementsDescriptor(id, metaModelManager, type);
+			unboxedDescriptor = new UnboxedElementsDescriptor(id, metaModelManager.getStandardLibrary(), type);
 		}
 		Class<?> boxedClass;
 		if (generalizedId == TypeId.BAG) {

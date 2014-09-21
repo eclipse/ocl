@@ -466,7 +466,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		T csElement = refreshNamedElement(csClass, csEClass, object);
 		final Type type = object.getType();
 		final Type elementType;
-		if ((type instanceof CollectionType) && (((CollectionType)type).getUnspecializedElement() != metaModelManager.getCollectionType())) {
+		if ((type instanceof CollectionType) && (((CollectionType)type).getUnspecializedElement() != standardLibrary.getCollectionType())) {
 			PivotUtil.debugWellContainedness(type);
 			elementType = ((CollectionType)type).getElementType();
 		}
@@ -488,7 +488,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		if (csTypeRef != null) {
 			int lower;
 			int upper;
-			if ((type instanceof CollectionType) && (((CollectionType)type).getUnspecializedElement() != metaModelManager.getCollectionType())) {
+			if ((type instanceof CollectionType) && (((CollectionType)type).getUnspecializedElement() != standardLibrary.getCollectionType())) {
 				CollectionType collectionType = (CollectionType)type;
 				lower = collectionType.getLower().intValue();
 				Number upper2 = collectionType.getUpper();

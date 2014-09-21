@@ -357,7 +357,7 @@ public class ProfileAnalysis
 						Set<Type> subMetatypeClosure = metatype2subMetatypeClosure.get(asSuperMetatype);
 						if (subMetatypeClosure == null) {
 							subMetatypeClosure = new HashSet<Type>();
-							metatype2subMetatypeClosure.put((Type)asSuperMetatype, subMetatypeClosure);
+							metatype2subMetatypeClosure.put(asSuperMetatype, subMetatypeClosure);
 						}
 						subMetatypeClosure.add(subMetatype);
 					}
@@ -391,8 +391,8 @@ public class ProfileAnalysis
 	public @NonNull Map<Type, Set<TypeExtension>> computeMetatypes2typeExtensions() {
 		Set<Stereotype> applicableStereotypes = allStereotypes; //getOwnedStereotypes(appliedProfileClosure);
 		Map<Type, Set<TypeExtension>> extensibleMetatype2typeExtensions = getExtensibleMetatype2typeExtensions(applicableStereotypes);
-		Map<Type, Set<TypeExtension>> metatype2typeExtensions = new HashMap<Type, Set<TypeExtension>>();
-/*		for (Type metatype : extensibleMetatype2extendingStereotypes.keySet()) {
+/*		Map<Type, Set<TypeExtension>> metatype2typeExtensions = new HashMap<Type, Set<TypeExtension>>();
+		for (Type metatype : extensibleMetatype2extendingStereotypes.keySet()) {
 //			@SuppressWarnings("null")@NonNull Set<Stereotype> extendingStereotypes = extensibleMetatype2extendingStereotypes.get(metatype);
 //			Set<Stereotype> extendingStereotypeClosure = getStereotypeSubSuperClosure(extendingStereotypes);
 //			extensibleMetatypesClosure.put(metatype, extendingStereotypeClosure);

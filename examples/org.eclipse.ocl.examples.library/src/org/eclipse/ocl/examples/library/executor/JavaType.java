@@ -13,6 +13,7 @@ package org.eclipse.ocl.examples.library.executor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
+import org.eclipse.ocl.examples.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
@@ -30,8 +31,8 @@ public class JavaType extends AbstractClass
 {
 	protected final @NonNull Class<?> javaClass;
 	
-	public JavaType(@NonNull DomainStandardLibrary standardLibrary, @NonNull Class<?> javaClass) {
-		super(standardLibrary, DomainUtil.nonNullState(javaClass.getName()));
+	public JavaType(@NonNull DomainEnvironment environment, @NonNull Class<?> javaClass) {
+		super(environment, DomainUtil.nonNullState(javaClass.getName()));
 		this.javaClass = javaClass;
 	}
 

@@ -16,6 +16,7 @@ import java.util.regex.Pattern;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
+import org.eclipse.ocl.examples.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.examples.domain.elements.DomainExpression;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
@@ -34,6 +35,7 @@ public abstract class ExecutorManager implements DomainEvaluator
 	// this is the same as HashMap's default load factor
 	private static final float DEFAULT_REGEX_CACHE_LOAD_FACTOR = 0.75f;
 
+	protected final @NonNull DomainEnvironment environment;
 	protected final @NonNull DomainStandardLibrary standardLibrary;
 
     /**
@@ -47,8 +49,9 @@ public abstract class ExecutorManager implements DomainEvaluator
 	 */
 	private /*@LazyNonNull*/ Map<String, Pattern> regexPatterns = null;
 	
-	public ExecutorManager(@NonNull DomainStandardLibrary standardLibrary) {
-		this.standardLibrary = standardLibrary;
+	public ExecutorManager(@NonNull DomainEnvironment environment) {
+		this.environment = environment;
+		this.standardLibrary = environment.getStandardLibrary();
 	}
 	
 	/**
@@ -92,6 +95,10 @@ public abstract class ExecutorManager implements DomainEvaluator
 			DomainExpression body, DomainTypedElement[] iterators) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException();
+	}
+
+	public @NonNull DomainEnvironment getCompleteEnvironment() {
+		return environment;
 	}
 
 	public @NonNull DomainType getDynamicTypeOf(@Nullable Object value) {

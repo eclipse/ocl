@@ -27,6 +27,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainFragment;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.domain.ids.OperationId;
@@ -36,6 +37,7 @@ import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.CompleteModel;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
+import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
@@ -44,6 +46,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.internal.complete.PartialClasses;
 import org.eclipse.ocl.examples.pivot.manager.CompleteInheritance;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 import com.google.common.base.Function;
@@ -348,9 +351,18 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	}
 
 	public boolean conformsTo(@NonNull DomainType elementType) {
-		MetaModelManager metaModelManager = getMetaModelManager();
+		DomainStandardLibrary standardLibrary = getStandardLibrary();
 		DomainInheritance thisInheritance = getCompleteInheritance();
-		DomainInheritance thatInheritance = elementType.getInheritance(metaModelManager);
+		DomainInheritance thatInheritance = elementType.getInheritance(standardLibrary);
+		if (thisInheritance == thatInheritance) {
+			return true;
+		}
+		return thatInheritance.isSuperInheritanceOf(thisInheritance);
+	}
+
+	public boolean conformsTo(@NonNull CompleteClass thatCompleteClass) {
+		DomainInheritance thisInheritance = getCompleteInheritance();
+		DomainInheritance thatInheritance = thatCompleteClass.getCompleteInheritance();
 		if (thisInheritance == thatInheritance) {
 			return true;
 		}
@@ -380,6 +392,21 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 		return null;
 	}
 
+	public @NonNull org.eclipse.ocl.examples.pivot.Class getBehavioralClass() {
+		for (org.eclipse.ocl.examples.pivot.Class partialClass : partialClasses) {
+			if (partialClass != null) {
+				if (partialClass instanceof DataType) {
+					org.eclipse.ocl.examples.pivot.Class behavioralClass = ((DataType)partialClass).getBehavioralClass();
+					if (behavioralClass != null) {
+						return behavioralClass;
+					}
+				}
+				return partialClass;
+			}
+		}
+		throw new IllegalStateException();
+	}
+
 	public @NonNull CollectionType getCollectionType(@NonNull CollectionTypeParameters<Type> typeParameters) {
 		throw new UnsupportedOperationException("Not a collection");
 	}
@@ -390,10 +417,6 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 
 	public @NonNull CompleteModel.Internal getCompleteModel() {
 		return getOwningCompletePackage().getCompleteModel();
-	}
-
-	public @NonNull Iterable<? extends DomainInheritance> getInitialSuperInheritances() {
-		return partialClasses.getInitialSuperInheritances();
 	}
 	
 	public @NonNull Iterable<DomainOperation> getMemberOperations() {
@@ -482,6 +505,10 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 
 	public @Nullable DomainProperty getProperty(@Nullable String propertyName) {
 		return partialClasses.getProperty(propertyName);
+	}
+
+	public @NonNull PivotStandardLibrary getStandardLibrary() {
+		return getCompleteModel().getStandardLibrary();
 	}
 
 	public @NonNull Iterable<? extends State> getStates() {

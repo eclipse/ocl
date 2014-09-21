@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
+import org.eclipse.ocl.examples.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.examples.domain.elements.DomainExpression;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.evaluation.DomainLogger;
@@ -85,6 +86,10 @@ public class TracingEvaluationVisitor extends EvaluationVisitorDecorator {
 
 	public @Nullable Object evaluate(@NonNull ExpressionInOCL expressionInOCL) {
 		return delegate.evaluate(expressionInOCL);
+	}
+
+	public @NonNull DomainEnvironment getCompleteEnvironment() {
+		return delegate.getCompleteEnvironment();
 	}
 	
 	public @NonNull EvaluationVisitor getEvaluator() {

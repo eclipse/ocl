@@ -20,14 +20,14 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.internal.complete.AllCompleteClasses;
+import org.eclipse.ocl.examples.pivot.internal.complete.CompleteEnvironmentImpl;
 
 /**
  * LambdaTypeManager encapsulates the knowledge about known lambda types.
  */
 public class LambdaTypeManager
 {
-	protected final @NonNull AllCompleteClasses allCompleteClasses;
+	protected final @NonNull CompleteEnvironmentImpl allCompleteClasses;
 	protected final @NonNull org.eclipse.ocl.examples.pivot.Class oclLambdaType;
 	
 	/**
@@ -37,9 +37,9 @@ public class LambdaTypeManager
 // FIXME Why does a List map give a moniker test failure
 //	private final @NonNull Map<Type, Map<List<? extends Type>, LambdaType>> lambdaTypes = new HashMap<Type, Map<List<? extends Type>, LambdaType>>();
 	
-	public LambdaTypeManager(@NonNull AllCompleteClasses allCompleteClasses) {
+	public LambdaTypeManager(@NonNull CompleteEnvironmentImpl allCompleteClasses) {
 		this.allCompleteClasses = allCompleteClasses;
-		this.oclLambdaType = allCompleteClasses.getMetaModelManager().getOclLambdaType();
+		this.oclLambdaType = allCompleteClasses.getStandardLibrary().getOclLambdaType();
 	}
 
 	public void dispose() {

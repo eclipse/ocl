@@ -44,6 +44,7 @@ import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.examples.pivot.model.OCLMetaModel;
 import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.resource.ASResourceFactoryRegistry;
@@ -241,7 +242,7 @@ public class OCLstdlibTests extends XtextTestCase
 			"}\n";		
 		Resource asResource = doLoadASResourceFromString(metaModelManager, "string.oclstdlib", testFile);
 		MetaModelManager metaModelManager = MetaModelManager.getAdapter(asResource.getResourceSet());
-		AnyType oclAnyType = metaModelManager.getOclAnyType();
+		AnyType oclAnyType = metaModelManager.getStandardLibrary().getOclAnyType();
 		Iterable<? extends DomainOperation> ownedOperations = metaModelManager.getAllOperations(oclAnyType, FeatureFilter.SELECT_NON_STATIC);
 		assertEquals(2, Iterables.size(ownedOperations));		// one from OclAny::=
 		metaModelManager.dispose();
@@ -385,8 +386,9 @@ public class OCLstdlibTests extends XtextTestCase
 		//
 		//	Load OCLmetamodel as pre-code-generated Java.
 		//
-		Library asLibrary = (Library) metaModelManager.getOclAnyType().getOwningPackage();
-		org.eclipse.ocl.examples.pivot.Package oclMetamodel = OCLMetaModel.create(metaModelManager, asLibrary.getName(), asLibrary.getNsPrefix(), OCLMetaModel.PIVOT_URI);
+		PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+		Library asLibrary = (Library) standardLibrary.getOclAnyType().getOwningPackage();
+		org.eclipse.ocl.examples.pivot.Package oclMetamodel = OCLMetaModel.create(standardLibrary, asLibrary.getName(), asLibrary.getNsPrefix(), OCLMetaModel.PIVOT_URI);
 		Resource javaResource = oclMetamodel.eResource();
 		Resource asResource = doLoadAS(resourceSet, pivotURI, javaResource, false);		// FIXME Contents are far from identical
 		PivotUtil.getMetaModelManager(asResource).dispose();

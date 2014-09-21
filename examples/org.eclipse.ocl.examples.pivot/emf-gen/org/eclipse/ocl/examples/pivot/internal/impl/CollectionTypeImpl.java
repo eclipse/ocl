@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
+import org.eclipse.ocl.examples.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
@@ -587,7 +588,8 @@ public class CollectionTypeImpl
 
 	@Override
 	public @NonNull DomainClass getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
-		DomainStandardLibrary standardLibrary = idResolver.getStandardLibrary();
+		DomainEnvironment environment = idResolver.getEnvironment();
+		DomainStandardLibrary standardLibrary = environment.getStandardLibrary();
 		DomainInheritance thisInheritance = this.getInheritance(standardLibrary);
 		DomainInheritance thatInheritance = type.getInheritance(standardLibrary);
 		DomainInheritance commonInheritance = thisInheritance.getCommonInheritance(thatInheritance);
@@ -598,23 +600,23 @@ public class CollectionTypeImpl
 			DomainType commonElementType = thisElementType.getCommonType(idResolver, thatElementType);
 			if (commonInheritance instanceof CompleteInheritance) {
 				DomainCollectionType commonCollectionType = (DomainCollectionType)commonType;
-				return standardLibrary.getCollectionType(commonCollectionType, commonElementType, null, null);
+				return environment.getCollectionType(commonCollectionType, commonElementType, null, null);
 			}
 			else {
 				if (commonType.isOrdered()) {
 					if (commonType.isUnique()) {
-						return standardLibrary.getOrderedSetType(commonElementType, null, null);
+						return environment.getOrderedSetType(commonElementType, null, null);
 					}
 					else {
-						return standardLibrary.getSequenceType(commonElementType, null, null);
+						return environment.getSequenceType(commonElementType, null, null);
 					}
 				}
 				else {
 					if (commonType.isUnique()) {
-						return standardLibrary.getSetType(commonElementType, null, null);
+						return environment.getSetType(commonElementType, null, null);
 					}
 					else {
-						return standardLibrary.getBagType(commonElementType, null, null);
+						return environment.getBagType(commonElementType, null, null);
 					}
 				}
 			}

@@ -12,6 +12,7 @@ package org.eclipse.ocl.examples.domain.types;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
+import org.eclipse.ocl.examples.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainTupleType;
@@ -24,8 +25,8 @@ public class AbstractTupleType extends AbstractClass implements DomainTupleType
 {
 	protected final @NonNull TupleTypeId typeId;
 
-	public AbstractTupleType(@NonNull DomainStandardLibrary standardLibrary, @NonNull TupleTypeId typeId) {
-		super(standardLibrary, TypeId.TUPLE_NAME);
+	public AbstractTupleType(@NonNull DomainEnvironment environment, @NonNull TupleTypeId typeId) {
+		super(environment, TypeId.TUPLE_NAME);
 		this.typeId = typeId;
 	}
 

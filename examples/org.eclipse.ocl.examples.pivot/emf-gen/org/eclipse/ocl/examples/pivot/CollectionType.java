@@ -114,4 +114,6 @@ public interface CollectionType
 
 	void setLowerValue(@NonNull IntegerValue lower);
 	void setUpperValue(@NonNull IntegerValue upper);
+	
+	@NonNull CollectionType getContainerType();
 } // CollectionType

@@ -52,6 +52,7 @@ import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.Vertex;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 //import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.util.UMLSwitch;
@@ -62,11 +63,13 @@ public class UML2PivotUseSwitch extends UMLSwitch<Object>
 
 	protected final @NonNull UML2Pivot converter;
 	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull PivotStandardLibrary standardLibrary;
 	private Set<EClass> doneWarnings = null;
 	
 	public UML2PivotUseSwitch(@NonNull UML2Pivot converter) {
 		this.converter = converter;
 		this.metaModelManager = converter.getMetaModelManager();
+		this.standardLibrary = converter.getStandardLibrary();
 	}
 	
 //	@Override
@@ -177,7 +180,7 @@ public class UML2PivotUseSwitch extends UMLSwitch<Object>
 				}
 			}
 			if (newSuperTypes.isEmpty()) {
-				org.eclipse.ocl.examples.pivot.Class oclElementType = metaModelManager.getOclElementType();
+				org.eclipse.ocl.examples.pivot.Class oclElementType = standardLibrary.getOclElementType();
 				newSuperTypes.add(oclElementType);
 			}
 			PivotUtil.refreshList(pivotElement.getSuperClasses(), newSuperTypes);
@@ -193,7 +196,7 @@ public class UML2PivotUseSwitch extends UMLSwitch<Object>
 		if (!(body instanceof BooleanLiteralExp)) {
 			body = PivotFactory.eINSTANCE.createBooleanLiteralExp();
 			pivotElement.setBodyExpression(body);
-			Type type = metaModelManager.getBooleanType();
+			Type type = standardLibrary.getBooleanType();
 			body.setType(type);
 			pivotElement.setType(type);
 		}
@@ -210,7 +213,7 @@ public class UML2PivotUseSwitch extends UMLSwitch<Object>
 		if (!(body instanceof IntegerLiteralExp)) {
 			body = PivotFactory.eINSTANCE.createIntegerLiteralExp();
 			pivotElement.setBodyExpression(body);
-			Type type = metaModelManager.getIntegerType();
+			Type type = standardLibrary.getIntegerType();
 			body.setType(type);
 			pivotElement.setType(type);
 		}
@@ -227,7 +230,7 @@ public class UML2PivotUseSwitch extends UMLSwitch<Object>
 		if (!(body instanceof NullLiteralExp)) {
 			body = PivotFactory.eINSTANCE.createNullLiteralExp();
 			pivotElement.setBodyExpression(body);
-			Type type = metaModelManager.getOclVoidType();
+			Type type = standardLibrary.getOclVoidType();
 			body.setType(type);
 			pivotElement.setType(type);
 		}
@@ -243,7 +246,7 @@ public class UML2PivotUseSwitch extends UMLSwitch<Object>
 		if (!(body instanceof RealLiteralExp)) {
 			body = PivotFactory.eINSTANCE.createRealLiteralExp();
 			pivotElement.setBodyExpression(body);
-			Type type = metaModelManager.getRealType();
+			Type type = standardLibrary.getRealType();
 			body.setType(type);
 			pivotElement.setType(type);
 		}
@@ -260,7 +263,7 @@ public class UML2PivotUseSwitch extends UMLSwitch<Object>
 		if (!(body instanceof StringLiteralExp)) {
 			body = PivotFactory.eINSTANCE.createStringLiteralExp();
 			pivotElement.setBodyExpression(body);
-			Type type = metaModelManager.getStringType();
+			Type type = standardLibrary.getStringType();
 			body.setType(type);
 			pivotElement.setType(type);
 		}
@@ -278,7 +281,7 @@ public class UML2PivotUseSwitch extends UMLSwitch<Object>
 		if (!(body instanceof UnlimitedNaturalLiteralExp)) {
 			body = PivotFactory.eINSTANCE.createUnlimitedNaturalLiteralExp();
 			pivotElement.setBodyExpression(body);
-			Type type = metaModelManager.getUnlimitedNaturalType();
+			Type type = standardLibrary.getUnlimitedNaturalType();
 			body.setType(type);
 			pivotElement.setType(type);
 		}
@@ -401,7 +404,7 @@ public class UML2PivotUseSwitch extends UMLSwitch<Object>
 					asExpression = (ExpressionInOCL) doSwitch(umlValue);
 					Type requiredType = pivotElement.getType();
 					Type defaultValueType = asExpression != null ? asExpression.getType() : null;
-					if ((requiredType != null) && (defaultValueType != null) && !defaultValueType.conformsTo(metaModelManager, requiredType)) {
+					if ((requiredType != null) && (defaultValueType != null) && !defaultValueType.conformsTo(standardLibrary, requiredType)) {
 						converter.error("Incompatible '" + defaultValueType + "' initializer for " + pivotElement + " when '" + requiredType + "' required");
 					}
 				}
@@ -560,7 +563,7 @@ public class UML2PivotUseSwitch extends UMLSwitch<Object>
 			pivotElement.setType(pivotType);
 		}
 		else {
-			pivotElement.setType(metaModelManager.getOclVoidType());
+			pivotElement.setType(standardLibrary.getOclVoidType());
 		}
 		pivotElement.setIsRequired(isRequired);
 	}

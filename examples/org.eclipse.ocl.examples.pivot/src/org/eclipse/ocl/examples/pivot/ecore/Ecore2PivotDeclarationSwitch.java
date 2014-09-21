@@ -76,6 +76,7 @@ import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.delegate.SettingBehavior;
 import org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.AS2Moniker;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
@@ -269,63 +270,64 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		if (!isPrimitive && (instanceClass != null)) {
 			try {
 				MetaModelManager metaModelManager = converter.getMetaModelManager();
+		    	PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
 				if (instanceClass == boolean.class) {
-					pivotElement.setBehavioralClass(metaModelManager.getBooleanType());
+					pivotElement.setBehavioralClass(standardLibrary.getBooleanType());
 				}
 				else if (instanceClass == byte.class) {
-					pivotElement.setBehavioralClass(metaModelManager.getIntegerType());
+					pivotElement.setBehavioralClass(standardLibrary.getIntegerType());
 				}
 				else if (instanceClass == char.class) {
-					pivotElement.setBehavioralClass(metaModelManager.getIntegerType());
+					pivotElement.setBehavioralClass(standardLibrary.getIntegerType());
 				}
 				else if (instanceClass == double.class) {
-					pivotElement.setBehavioralClass(metaModelManager.getRealType());
+					pivotElement.setBehavioralClass(standardLibrary.getRealType());
 				}
 				else if (instanceClass == float.class) {
-					pivotElement.setBehavioralClass(metaModelManager.getRealType());
+					pivotElement.setBehavioralClass(standardLibrary.getRealType());
 				}
 				else if (instanceClass == int.class) {
-					pivotElement.setBehavioralClass(metaModelManager.getIntegerType());
+					pivotElement.setBehavioralClass(standardLibrary.getIntegerType());
 				}
 				else if (instanceClass == long.class) {
-					pivotElement.setBehavioralClass(metaModelManager.getIntegerType());
+					pivotElement.setBehavioralClass(standardLibrary.getIntegerType());
 				}
 				else if (instanceClass == short.class) {
-					pivotElement.setBehavioralClass(metaModelManager.getIntegerType());
+					pivotElement.setBehavioralClass(standardLibrary.getIntegerType());
 				}
 				else {
 					if (instanceClass == BigDecimal.class) {
-						pivotElement.setBehavioralClass(metaModelManager.getRealType());
+						pivotElement.setBehavioralClass(standardLibrary.getRealType());
 					}
 					else if (instanceClass == BigInteger.class) {
-						pivotElement.setBehavioralClass(metaModelManager.getIntegerType());
+						pivotElement.setBehavioralClass(standardLibrary.getIntegerType());
 					}
 					else if (instanceClass == Boolean.class) {
-						pivotElement.setBehavioralClass(metaModelManager.getBooleanType());
+						pivotElement.setBehavioralClass(standardLibrary.getBooleanType());
 					}
 					else if (instanceClass == Byte.class) {
-						pivotElement.setBehavioralClass(metaModelManager.getIntegerType());
+						pivotElement.setBehavioralClass(standardLibrary.getIntegerType());
 					}
 					else if (instanceClass == Character.class) {
-						pivotElement.setBehavioralClass(metaModelManager.getIntegerType());
+						pivotElement.setBehavioralClass(standardLibrary.getIntegerType());
 					}
 					else if (instanceClass == Double.class) {
-						pivotElement.setBehavioralClass(metaModelManager.getRealType());
+						pivotElement.setBehavioralClass(standardLibrary.getRealType());
 					}
 					else if (instanceClass == Float.class) {
-						pivotElement.setBehavioralClass(metaModelManager.getRealType());
+						pivotElement.setBehavioralClass(standardLibrary.getRealType());
 					}
 					else if (instanceClass == Integer.class) {
-						pivotElement.setBehavioralClass(metaModelManager.getIntegerType());
+						pivotElement.setBehavioralClass(standardLibrary.getIntegerType());
 					}
 					else if (instanceClass == Long.class) {
-						pivotElement.setBehavioralClass(metaModelManager.getIntegerType());
+						pivotElement.setBehavioralClass(standardLibrary.getIntegerType());
 					}
 					else if (instanceClass == Short.class) {
-						pivotElement.setBehavioralClass(metaModelManager.getIntegerType());
+						pivotElement.setBehavioralClass(standardLibrary.getIntegerType());
 					}
 					else if (instanceClass == String.class) {
-						pivotElement.setBehavioralClass(metaModelManager.getStringType());
+						pivotElement.setBehavioralClass(standardLibrary.getStringType());
 					}
 					else {
 						instanceClass.getDeclaredMethod("compareTo", instanceClass);
@@ -335,7 +337,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 			} catch (Exception e) {
 			}
 		}
-		pivotElement.getSuperClasses().add(metaModelManager.getOclAnyType());
+		pivotElement.getSuperClasses().add(metaModelManager.getStandardLibrary().getOclAnyType());
 		return pivotElement;
 	}
 
@@ -356,7 +358,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		copyDataTypeOrEnum(pivotElement, eObject2);
 		doSwitchAll(pivotElement.getOwnedLiteral(), eObject2.getELiterals());
 //		pivotElement.getSuperClass().add(metaModelManager.getOclAnyType());
-		pivotElement.getSuperClasses().add(metaModelManager.getEnumerationType());
+		pivotElement.getSuperClasses().add(metaModelManager.getStandardLibrary().getEnumerationType());
 		return pivotElement;
 	}
 

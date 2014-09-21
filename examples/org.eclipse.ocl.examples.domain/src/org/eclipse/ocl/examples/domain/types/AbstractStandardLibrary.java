@@ -30,7 +30,6 @@ import org.eclipse.ocl.examples.domain.elements.DomainTupleType;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.PrimitiveTypeId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.values.IntegerValue;
 
 public abstract class AbstractStandardLibrary implements DomainStandardLibrary
@@ -97,35 +96,6 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 		throw new UnsupportedOperationException();
 	}
 
-	public @NonNull DomainCollectionType getBagType(@NonNull DomainType elementType) {
-		return getBagType(elementType, null, null);
-	}
-
-	public @NonNull DomainCollectionType getCollectionType(@NonNull DomainType elementType) {
-		return getCollectionType(getCollectionType(), elementType, null, null);
-	}
-	
-	public @NonNull DomainCollectionType getCollectionType(@NonNull DomainClass containerType, @NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
-		boolean isOrdered = containerType.isOrdered();
-		boolean isUnique = containerType.isUnique();
-		if (isOrdered) {
-			if (isUnique) {
-				return getOrderedSetType(elementType, lower, upper);
-			}
-			else {
-				return getSequenceType(elementType, lower, upper);
-			}
-		}
-		else {
-			if (isUnique) {
-				return getSetType(elementType, lower, upper);
-			}
-			else {
-				return getBagType(elementType, lower, upper);
-			}
-		}
-	}
-
 	public DomainEnumeration getEnumeration(@NonNull Enumerator enumerator) {
 		throw new UnsupportedOperationException();
 	}
@@ -134,24 +104,12 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 		throw new UnsupportedOperationException();
 	}
 
-	public @Nullable DomainPackage getNestedPackage(@NonNull DomainPackage parentPackage, @NonNull String name) {
-		return DomainUtil.getNamedElement(parentPackage.getOwnedPackages(), name);
-	}
-
-	public @Nullable DomainClass getNestedType(@NonNull DomainPackage parentPackage, @NonNull String name) {
-		return DomainUtil.getNamedElement(parentPackage.getOwnedClasses(), name);
-	}
-
 	public @Nullable DomainPackage getNsURIPackage(@NonNull String nsURI) {
 		throw new UnsupportedOperationException();
 	}
 
 	public @Nullable DomainElement getOperationTemplateParameter(@NonNull DomainOperation anOperation, int index) {
 		return anOperation.getTypeParameters().get(index);
-	}
-
-	public @NonNull DomainCollectionType getOrderedSetType(@NonNull DomainType elementType) {
-		return getOrderedSetType(elementType, null, null);
 	}
 
 	public @Nullable DomainType getPrimitiveType(@NonNull PrimitiveTypeId typeId) {
@@ -187,14 +145,6 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 
 	public DomainPackage getRootPackage(@NonNull String name) {
 		throw new UnsupportedOperationException();
-	}
-
-	public @NonNull DomainCollectionType getSequenceType(@NonNull DomainType elementType) {
-		return getSequenceType(elementType, null, null);
-	}
-
-	public @NonNull DomainCollectionType getSetType(@NonNull DomainType elementType) {
-		return getSetType(elementType, null, null);
 	}
 	
 	public boolean isEqualToCollectionType(@NonNull DomainCollectionType firstCollectionType, @NonNull DomainCollectionType secondCollectionType) {

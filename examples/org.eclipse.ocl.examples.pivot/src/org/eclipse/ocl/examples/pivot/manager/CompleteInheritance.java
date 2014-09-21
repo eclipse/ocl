@@ -26,6 +26,7 @@ import org.eclipse.ocl.examples.domain.types.AbstractFragment;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.library.executor.ReflectiveInheritance;
 import org.eclipse.ocl.examples.pivot.CompleteClass;
+import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
@@ -63,6 +64,8 @@ public class CompleteInheritance extends ReflectiveInheritance
 	public CompleteInheritance(@NonNull CompleteClass.Internal completeClass) {
 		super(DomainUtil.nonNullModel(completeClass.getName()), computeFlags(completeClass.getPivotClass()));
 		this.completeClass = completeClass;
+		org.eclipse.ocl.examples.pivot.Class pivotClass = completeClass.getPivotClass();
+		assert !(pivotClass instanceof DataType) || (((DataType)pivotClass).getBehavioralClass() == null);	// DataTypes must use the inheritance of their behavioral class
 	}
 
 	@Override
@@ -76,7 +79,7 @@ public class CompleteInheritance extends ReflectiveInheritance
 
 	@Override
 	public @NonNull Iterable<? extends DomainInheritance> getInitialSuperInheritances() {
-		return isOclAny() ? EMPTY_LIST : completeClass.getInitialSuperInheritances();
+		return isOclAny() ? EMPTY_LIST : completeClass.getPartialClasses().getInitialSuperInheritances();
 	}
 	
 	public @NonNull List<? extends DomainOperation> getLocalOperations() {

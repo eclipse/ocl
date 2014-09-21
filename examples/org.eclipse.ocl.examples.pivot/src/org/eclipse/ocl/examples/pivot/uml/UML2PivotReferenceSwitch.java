@@ -35,6 +35,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
 import org.eclipse.uml2.uml.util.UMLSwitch;
 
 //
@@ -47,11 +48,13 @@ public class UML2PivotReferenceSwitch extends UMLSwitch<Object>
 
 	protected final @NonNull UML2Pivot converter;
 	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull PivotStandardLibrary standardLibrary;
 	private Set<EClass> doneWarnings = null;
 	
 	public UML2PivotReferenceSwitch(@NonNull UML2Pivot converter) {
 		this.converter = converter;
 		this.metaModelManager = converter.getMetaModelManager();
+		this.standardLibrary = converter.getStandardLibrary();
 	}
 
 	@Override
@@ -80,7 +83,7 @@ public class UML2PivotReferenceSwitch extends UMLSwitch<Object>
 		if (pivotElement != null) {
 			doSwitchAll(org.eclipse.ocl.examples.pivot.Class.class, pivotElement.getSuperClasses(), umlClass.getSuperClasses());
 			if (pivotElement.getSuperClasses().isEmpty()) {
-				org.eclipse.ocl.examples.pivot.Class oclElementType = metaModelManager.getOclElementType();
+				org.eclipse.ocl.examples.pivot.Class oclElementType = standardLibrary.getOclElementType();
 				pivotElement.getSuperClasses().add(oclElementType);
 			}
 		}
@@ -311,7 +314,7 @@ public class UML2PivotReferenceSwitch extends UMLSwitch<Object>
 			pivotElement.setType(pivotType);
 		}
 		else {
-			pivotElement.setType(metaModelManager.getOclVoidType());
+			pivotElement.setType(standardLibrary.getOclVoidType());
 		}
 		pivotElement.setIsRequired(isRequired);
 	}

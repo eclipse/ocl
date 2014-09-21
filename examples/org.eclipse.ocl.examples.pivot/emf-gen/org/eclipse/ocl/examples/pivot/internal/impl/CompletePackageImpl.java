@@ -503,7 +503,7 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 		}
 //		assert false;
 		// If there are no pivot packages (e.g. for an orphan) return the metamodel to avoid an NPE constructing a CompleteInheritance
-		Package partialPackage = getCompleteModel().getMetaModelManager().getOclAnyType().getOwningPackage();
+		Package partialPackage = getCompleteModel().getStandardLibrary().getOclAnyType().getOwningPackage();
 		return DomainUtil.nonNullState(partialPackage);
 	}
 

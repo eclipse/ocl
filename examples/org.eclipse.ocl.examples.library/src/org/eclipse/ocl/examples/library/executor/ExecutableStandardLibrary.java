@@ -19,6 +19,8 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
+import org.eclipse.ocl.examples.domain.elements.DomainEnvironment;
+import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainTupleType;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.TemplateParameterId;
@@ -31,7 +33,7 @@ import org.eclipse.ocl.examples.domain.values.IntegerValue;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
 
-public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary
+public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary implements DomainEnvironment
 {
 	/**
 	 * Shared cache of the lazily created lazily deleted specializations of each type. 
@@ -67,7 +69,7 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary
 		return OCLstdlibTables.Types._Collection;
 	}
 
-	@Override
+//	@Override
 	public synchronized @NonNull DomainCollectionType getCollectionType(@NonNull DomainClass genericType, @NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
 		IntegerValue lower2 = lower;
 		IntegerValue upper2 = upper;
@@ -101,6 +103,14 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary
 	// FIXME cf MetaModelManager
 	public @NonNull DomainClass getMetaclass(@NonNull DomainType classType) {
 		return OCLstdlibTables.Types._OclType;
+	}
+
+	public @Nullable DomainPackage getNestedPackage(@NonNull DomainPackage parentPackage, @NonNull String name) {
+		return DomainUtil.getNamedElement(parentPackage.getOwnedPackages(), name);
+	}
+
+	public @Nullable DomainClass getNestedType(@NonNull DomainPackage parentPackage, @NonNull String name) {
+		return DomainUtil.getNamedElement(parentPackage.getOwnedClasses(), name);
 	}
 
 	public @NonNull DomainClass getOclAnyType() {
@@ -169,6 +179,11 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary
 
 	public @NonNull DomainCollectionType getSetType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
 		return getCollectionType(getSetType(), elementType, lower, upper);
+	}
+
+	
+	public @NonNull ExecutableStandardLibrary getStandardLibrary() {
+		return this;
 	}
 
 	public @NonNull DomainClass getStringType() {

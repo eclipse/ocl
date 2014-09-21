@@ -49,12 +49,14 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.internal.complete.AllCompleteClasses;
 import org.eclipse.ocl.examples.pivot.internal.complete.CompleteURIs;
 import org.eclipse.ocl.examples.pivot.internal.complete.PartialRoots;
 import org.eclipse.ocl.examples.pivot.internal.complete.RootCompletePackages;
+import org.eclipse.ocl.examples.pivot.manager.CompleteEnvironment;
 import org.eclipse.ocl.examples.pivot.manager.CompleteInheritance;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.Orphanage;
+import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary2;
 import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutions;
 import org.eclipse.ocl.examples.pivot.manager.TupleTypeManager;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
@@ -332,20 +334,27 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	/**
 	 * Map from each partial Class to the CompleteClass that supervises its merge. CompleteClass are created lazily. 
 	 */
-	private final @NonNull AllCompleteClasses allCompleteClasses;
+	private final @NonNull CompleteEnvironment.Internal completeEnvironment;
 
 	/**
 	 * Map from complete to/from package URI. 
 	 */
 	private final @NonNull CompleteURIs completeURIs = new CompleteURIs(this);
 	
-	protected /*final*/ /*@NonNull*/ MetaModelManager metaModelManager;
+	protected final @NonNull MetaModelManager metaModelManager;
+	
+	private Orphanage orphanage = null;
 
-	protected CompleteModelImpl()
+	public CompleteModelImpl() {
+		throw new UnsupportedOperationException("Must be constructed by CompleteEnvironment");
+	}
+
+	public CompleteModelImpl(@NonNull CompleteEnvironment.Internal completeEnvironment)
 	{
+		this.completeEnvironment = completeEnvironment;
+		this.metaModelManager = completeEnvironment.getMetaModelManager();
 		partialRoots = new PartialRoots(this);
 		ownedCompletePackages = new RootCompletePackages(this);
-		allCompleteClasses = new AllCompleteClasses(this);
 	}
 
 	@Override
@@ -388,8 +397,13 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 		completeURIs.addPackageURI2completeURI(packageURI, newCompleteURI);
 	}
 
+	public boolean conformsTo(@NonNull Type firstType, @NonNull TemplateParameterSubstitutions firstSubstitutions,
+			@NonNull Type secondType, @NonNull TemplateParameterSubstitutions secondSubstitutions) {
+		return completeEnvironment.conformsTo(firstType, firstSubstitutions, secondType, secondSubstitutions);
+	}
+
 	public void didAddClass(@NonNull DomainClass partialClass, @NonNull CompleteClass.Internal completeClass) {
-		allCompleteClasses.didAddClass(partialClass, completeClass);
+		completeEnvironment.didAddClass(partialClass, completeClass);
 	}
 
 	public void didAddCompletePackage(@NonNull CompletePackage.Internal completePackage) {
@@ -443,7 +457,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	} */
 	
 	public void didRemoveClass(@NonNull DomainClass pivotType) {
-		allCompleteClasses.didRemoveClass(pivotType);
+		completeEnvironment.didRemoveClass(pivotType);
 	}
 
 	public void didRemoveCompletePackage(@NonNull CompletePackage.Internal completePackage) {
@@ -462,13 +476,14 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	}
 
 	public synchronized void dispose() {
-		allCompleteClasses.dispose();
+		completeEnvironment.dispose();
 		ownedCompletePackages.dispose();
 		completeURIs.dispose();
+		orphanage = null;
 	}
 
 	public @Nullable CollectionType findCollectionType(@NonNull CompleteClass.Internal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters) {
-		return allCompleteClasses.findCollectionType(completeClass, typeParameters);
+		return completeEnvironment.findCollectionType(completeClass, typeParameters);
 	}
 
 	public @NonNull Iterable<? extends CompletePackage> getAllCompletePackages() {
@@ -479,18 +494,22 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 		return completeURIs.getAllCompletePackagesWithUris();
 	}
 
-	public @NonNull <T extends CollectionType> T getCollectionType(@NonNull T containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
-		return allCompleteClasses.getCollectionType(containerType, elementType, lower, upper);
+	public @NonNull CollectionType getCollectionType(@NonNull CompleteClass.Internal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters) {
+		return completeEnvironment.getCollectionType(completeClass, typeParameters);
 	}
 
-	public @NonNull CollectionType getCollectionType(@NonNull CompleteClass.Internal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters) {
-		return allCompleteClasses.getCollectionType(completeClass, typeParameters);
+	public @NonNull CollectionType getCollectionType(@NonNull CompleteClass.Internal completeClass, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
+		return completeEnvironment.getCollectionType(completeClass, new CollectionTypeParameters<Type>(elementType, lower, upper));
 	}
 	
 	public @NonNull CompleteClass.Internal getCompleteClass(@NonNull DomainType pivotType) {
-		return allCompleteClasses.getCompleteClass(pivotType);
+		return completeEnvironment.getCompleteClass(pivotType);
 	}
-	
+
+	public @NonNull CompleteEnvironment.Internal getCompleteEnvironment() {
+		return completeEnvironment;
+	}
+
 	public @NonNull CompletePackage.Internal getCompletePackage(@NonNull DomainPackage asPackage) {
 		return ownedCompletePackages.getCompletePackage(asPackage);
 	}
@@ -508,12 +527,12 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	}
 	
 	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType) {
-		return allCompleteClasses.getLambdaType(typeName, contextType, parameterTypes, resultType, null);
+		return completeEnvironment.getLambdaType(typeName, contextType, parameterTypes, resultType, null);
 	}
 
 	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType,
 			@Nullable TemplateParameterSubstitutions bindings) {
-		return allCompleteClasses.getLambdaType(typeName, contextType, parameterTypes, resultType, bindings);
+		return completeEnvironment.getLambdaType(typeName, contextType, parameterTypes, resultType, bindings);
 	}
 
 	public @Nullable RootCompletePackage getMemberPackage(@NonNull String memberPackageName) {
@@ -537,6 +556,14 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 			ownedCompletePackages.add(orphanCompletePackage2);
 		}
 		return (OrphanCompletePackage.Internal)orphanCompletePackage2;
+	}
+
+	public @NonNull Orphanage getOrphanage() {
+		Orphanage orphanage2 = orphanage;
+		if (orphanage2 == null) {
+			orphanage2 = orphanage = metaModelManager.createOrphanage();
+		}
+		return orphanage2;
 	}
 
 	/**
@@ -592,26 +619,22 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 //		}
 		return completePackage != null ? completePackage.getPivotPackage() : null;
 	}
-
-	public @NonNull CollectionType getCollectionType(@NonNull CompleteClass.Internal completeClass, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
-		return allCompleteClasses.getCollectionType(completeClass, new CollectionTypeParameters<Type>(elementType, lower, upper));
-	}
 	
 	public @NonNull Type getSpecializedType(@NonNull Type type, @Nullable TemplateParameterSubstitutions substitutions) {
-		return allCompleteClasses.getSpecializedType(type, substitutions);
+		return completeEnvironment.getSpecializedType(type, substitutions);
+	}
+
+	public @NonNull PivotStandardLibrary2 getStandardLibrary() {
+		return completeEnvironment.getStandardLibrary();
 	}
 	
 	public @NonNull TupleTypeManager getTupleManager() {
-		return allCompleteClasses.getTupleManager();
+		return completeEnvironment.getTupleManager();
 	}
 
 	public @NonNull TupleType getTupleType(@NonNull String typeName, @NonNull Collection<? extends DomainTypedElement> parts,
 			@Nullable TemplateParameterSubstitutions bindings) {
-		return allCompleteClasses.getTupleType(typeName, parts, bindings);
-	}
-
-	public void initMetaModelManager(@NonNull MetaModelManager metaModelManager) {
-		this.metaModelManager = metaModelManager;
+		return completeEnvironment.getTupleType(typeName, parts, bindings);
 	}
 
 /*	public void removedType(@NonNull DomainClass pivotType) {
@@ -650,13 +673,13 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 					}
 				}
 				@NonNull org.eclipse.ocl.examples.pivot.Class unspecializedSuperClass = PivotUtil.getUnspecializedTemplateableElement(superClass);
-				CompleteClass.Internal superCompleteClass = (CompleteClass.Internal)metaModelManager.getCompleteClass(unspecializedSuperClass);
+				CompleteClass.Internal superCompleteClass = metaModelManager.getCompleteClass(unspecializedSuperClass);
 				org.eclipse.ocl.examples.pivot.Class superPivotClass = superCompleteClass.getPivotClass();
 				if (superPivotClass instanceof DomainCollectionType) {
 					if (superSpecializedTemplateParameterSubstitutions.size() == 1) {
 						Type templateArgument = superSpecializedTemplateParameterSubstitutions.get(0).getActual();
 						if (templateArgument != null) {
-							org.eclipse.ocl.examples.pivot.Class specializedSuperClass = allCompleteClasses.getCollectionType(superCompleteClass, new CollectionTypeParameters<Type>(templateArgument, null, null));
+							org.eclipse.ocl.examples.pivot.Class specializedSuperClass = completeEnvironment.getCollectionType(superCompleteClass, new CollectionTypeParameters<Type>(templateArgument, null, null));
 							specializedClass.getSuperClasses().add(specializedSuperClass);
 						}
 					}

@@ -77,7 +77,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 				int metric = 0;
 				if (operation != null) {
 					DomainClass owningClass = operation.getOwningClass();
-					DomainInheritance inheritance = owningClass.getInheritance(metaModelManager);
+					DomainInheritance inheritance = owningClass.getInheritance(metaModelManager.getStandardLibrary());
 					int depth = inheritance.getDepth();
 //					int isRedefinition = (operation instanceof Operation) && (((Operation)operation).getRedefinedOperation().size() > 0) ? 1 : 0;
 					metric = depth;

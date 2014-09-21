@@ -48,7 +48,7 @@ public class ExpressionInOCLAttribution extends AbstractAttribution
 				environmentView.addNamedElement(contextVariable);
 			}
 			else {
-				type = metaModelManager.getOclVoidType();
+				type = metaModelManager.getStandardLibrary().getOclVoidType();
 			}
 			if (!environmentView.hasFinalResult()) {
 				Type userType = /*type instanceof Metaclass<?> ? ((Metaclass<?>)type).getInstanceType() :*/ type;// FIXME is this really right - needed by test_stereotypeM2Navigation for implicit self of an base_xxx

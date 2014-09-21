@@ -72,6 +72,7 @@ import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2PivotDeclarationSwitch;
 import org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
@@ -85,11 +86,13 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 	protected final Ecore2PivotDeclarationSwitch ecoreSwitch;
 	protected final UML2Pivot converter;
 	protected final MetaModelManager metaModelManager;
+	protected final PivotStandardLibrary standardLibrary;
 	
 	public UML2PivotDeclarationSwitch(UML2Pivot converter) {
 		this.converter = converter;
 		this.ecoreSwitch = new Ecore2PivotDeclarationSwitch(converter);
 		this.metaModelManager = converter.getMetaModelManager();
+		this.standardLibrary = converter.getStandardLibrary();
 	}
 	
 	@Override
@@ -203,7 +206,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 		@SuppressWarnings("null") @NonNull List<org.eclipse.uml2.uml.Property> umlAttributes = umlDataType.getAttributes();
 		doSwitchAll(umlAttributes);
 //		converter.addProperties(umlAttributes, null);
-		pivotElement.getSuperClasses().add(metaModelManager.getOclAnyType());
+		pivotElement.getSuperClasses().add(standardLibrary.getOclAnyType());
 		return pivotElement;
 	}
 
@@ -214,7 +217,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 		copyDataTypeOrEnum(pivotElement, umlEnumeration);
 		doSwitchAll(pivotElement.getOwnedLiteral(), umlEnumeration.getOwnedLiterals(), null);
 //		pivotElement.getSuperClass().add(metaModelManager.getOclAnyType());
-		pivotElement.getSuperClasses().add(metaModelManager.getEnumerationType());
+		pivotElement.getSuperClasses().add(standardLibrary.getEnumerationType());
 		return pivotElement;
 	}
 
@@ -380,33 +383,33 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 		PrimitiveType primaryElement = null;
 		String name = umlPrimitiveType.getName();
 		if (UMLUtil.isBoolean(umlPrimitiveType) || TypeId.BOOLEAN_NAME.equals(name)) {
-			primaryElement = metaModelManager.getBooleanType();
+			primaryElement = standardLibrary.getBooleanType();
 		}
 		else if (UMLUtil.isInteger(umlPrimitiveType) || TypeId.INTEGER_NAME.equals(name)) {
-			primaryElement = metaModelManager.getIntegerType();
+			primaryElement = standardLibrary.getIntegerType();
 		}
 		else if (UMLUtil.isReal(umlPrimitiveType) || TypeId.REAL_NAME.equals(name)) {
-			primaryElement = metaModelManager.getRealType();
+			primaryElement = standardLibrary.getRealType();
 		}
 		else if (UMLUtil.isString(umlPrimitiveType) || TypeId.STRING_NAME.equals(name)) {
-			primaryElement = metaModelManager.getStringType();
+			primaryElement = standardLibrary.getStringType();
 		}
 		else if (UMLUtil.isUnlimitedNatural(umlPrimitiveType) || TypeId.UNLIMITED_NATURAL_NAME.equals(name)) {
-			primaryElement = metaModelManager.getUnlimitedNaturalType();
+			primaryElement = standardLibrary.getUnlimitedNaturalType();
 		}
 		else {
 			org.eclipse.uml2.uml.Package umlPackage = umlPrimitiveType.getPackage();
 			if ((umlPackage != null) && "EcorePrimitiveTypes". equals(umlPackage.getName())) {		// FIXME Bug 412918 for extra cases
 				if ("EBigDecimal".equals(name)
 					  || "EFloat".equals(name) || "EFloatObject".equals(name)) {
-						primaryElement = metaModelManager.getRealType();
+						primaryElement = standardLibrary.getRealType();
 				}
 				else if ("EBigInteger".equals(name)
 					  || "EByte".equals(name) || "EByteObject".equals(name)
 					  || "EChar".equals(name) || "ECharacterObject".equals(name)
 					  || "ELong".equals(name) || "ELongObject".equals(name)
 					  || "EShortObject".equals(name) || "EShortObject".equals(name)) {
-						primaryElement = metaModelManager.getIntegerType();
+						primaryElement = standardLibrary.getIntegerType();
 				}
 			}
 		}
@@ -415,19 +418,19 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 //		}
 		org.eclipse.uml2.uml.Stereotype ecoreStereotype = umlPrimitiveType.getAppliedStereotype("Ecore::EDataType");
 		DataType pivotElement;
-		if (primaryElement == metaModelManager.getBooleanType()) {
+		if (primaryElement == standardLibrary.getBooleanType()) {
 			pivotElement = converter.refreshNamedElement(PrimitiveType.class, PivotPackage.Literals.PRIMITIVE_TYPE, umlPrimitiveType);
 		}
-		else if (primaryElement == metaModelManager.getIntegerType()) {
+		else if (primaryElement == standardLibrary.getIntegerType()) {
 			pivotElement = converter.refreshNamedElement(PrimitiveType.class, PivotPackage.Literals.PRIMITIVE_TYPE, umlPrimitiveType);
 		}
-		else if (primaryElement == metaModelManager.getRealType()) {
+		else if (primaryElement == standardLibrary.getRealType()) {
 			pivotElement = converter.refreshNamedElement(PrimitiveType.class, PivotPackage.Literals.PRIMITIVE_TYPE, umlPrimitiveType);
 		}
-		else if (primaryElement == metaModelManager.getStringType()) {
+		else if (primaryElement == standardLibrary.getStringType()) {
 			pivotElement = converter.refreshNamedElement(PrimitiveType.class, PivotPackage.Literals.PRIMITIVE_TYPE, umlPrimitiveType);
 		}
-		else if (primaryElement == metaModelManager.getUnlimitedNaturalType()) {
+		else if (primaryElement == standardLibrary.getUnlimitedNaturalType()) {
 			pivotElement = converter.refreshNamedElement(PrimitiveType.class, PivotPackage.Literals.PRIMITIVE_TYPE, umlPrimitiveType);
 		}
 		else if (ecoreStereotype != null) {

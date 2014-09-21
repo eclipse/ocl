@@ -33,7 +33,7 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.internal.complete.AllCompleteClasses;
+import org.eclipse.ocl.examples.pivot.internal.complete.CompleteEnvironmentImpl;
 import org.eclipse.ocl.examples.pivot.internal.impl.TuplePartImpl;
 import org.eclipse.ocl.examples.pivot.internal.impl.TupleTypeImpl;
 import org.eclipse.ocl.examples.pivot.internal.impl.TypedElementImpl;
@@ -109,7 +109,7 @@ public class TupleTypeManager
 		}
 	}
 
-	protected final @NonNull AllCompleteClasses allCompleteClasses;
+	protected final @NonNull CompleteEnvironmentImpl allCompleteClasses;
 	protected final @NonNull MetaModelManager metaModelManager;
 	protected final @NonNull org.eclipse.ocl.examples.pivot.Class oclTupleType;
 	
@@ -118,10 +118,10 @@ public class TupleTypeManager
 	 */
 	private @Nullable Map<TupleTypeId, TupleType> tupleid2tuple = null;
 	
-	public TupleTypeManager(@NonNull AllCompleteClasses allCompleteClasses) {
+	public TupleTypeManager(@NonNull CompleteEnvironmentImpl allCompleteClasses) {
 		this.allCompleteClasses = allCompleteClasses;
 		this.metaModelManager = allCompleteClasses.getMetaModelManager();
-		this.oclTupleType = metaModelManager.getOclTupleType();
+		this.oclTupleType = metaModelManager.getStandardLibrary().getOclTupleType();
 	}
 
 	public void dispose() {

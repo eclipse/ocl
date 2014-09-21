@@ -185,7 +185,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 
 	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainClass dynamicType, @NonNull DomainOperation staticOperation) {
 		DomainInheritance inheritance = metaModelManager.getInheritance(dynamicType);
-		return inheritance.getType().lookupImplementation(metaModelManager, staticOperation);
+		return inheritance.getType().lookupImplementation(standardLibrary, staticOperation);
 	}
 
 	@Override
@@ -478,7 +478,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		Object acceptedValue = source.accept(undecoratedVisitor);
 		CollectionValue sourceValue = ValuesUtil.asCollectionValue(acceptedValue);
 		DomainClass dynamicSourceType = metaModelManager.getIdResolver().getClass(sourceValue.getTypeId(), null);
-		LibraryIteration implementation = (LibraryIteration) dynamicSourceType.lookupImplementation(metaModelManager, staticIteration);
+		LibraryIteration implementation = (LibraryIteration) dynamicSourceType.lookupImplementation(standardLibrary, staticIteration);
 /*		Operation dynamicIteration = metaModelManager.getDynamicOperation((org.eclipse.ocl.examples.pivot.Type) dynamicSourceType, staticIteration);
  		if (dynamicIteration == null) {
  			dynamicIteration = staticIteration;
@@ -553,7 +553,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 //			return evaluationEnvironment.throwInvalidEvaluation(e);
 //		}
 		DomainClass dynamicSourceType = metaModelManager.getIdResolver().getClass(sourceValue.getTypeId(), null);
-		LibraryIteration implementation = (LibraryIteration) dynamicSourceType.lookupImplementation(metaModelManager, staticIteration);
+		LibraryIteration implementation = (LibraryIteration) dynamicSourceType.lookupImplementation(standardLibrary, staticIteration);
 /*		Operation dynamicIteration = metaModelManager.getDynamicOperation((org.eclipse.ocl.examples.pivot.Type) dynamicSourceType, staticIteration);
  		if (dynamicIteration == null) {
  			dynamicIteration = staticIteration;
@@ -706,7 +706,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 					DomainClass actualArgType = idResolver.getStaticTypeOf(onlyArgument);
 					actualSourceType = (DomainClass)actualSourceType.getCommonType(idResolver, actualArgType);
 				}
-				actualOperation = actualSourceType.lookupActualOperation(metaModelManager, apparentOperation);
+				actualOperation = actualSourceType.lookupActualOperation(standardLibrary, apparentOperation);
 			}
 			LibraryBinaryOperation implementation = (LibraryBinaryOperation) metaModelManager.getImplementation((Operation)actualOperation);	// FIXME cast
 			try {
@@ -732,7 +732,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			else {
 		 		PivotIdResolver idResolver = metaModelManager.getIdResolver();
 				DomainClass actualSourceType = idResolver.getStaticTypeOf(sourceValue);
-				actualOperation = actualSourceType.lookupActualOperation(metaModelManager, apparentOperation);
+				actualOperation = actualSourceType.lookupActualOperation(standardLibrary, apparentOperation);
 			}
 			LibraryOperation implementation = (LibraryOperation) metaModelManager.getImplementation((Operation)actualOperation);
 			try {

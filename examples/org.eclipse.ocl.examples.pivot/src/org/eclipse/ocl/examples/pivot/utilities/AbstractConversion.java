@@ -18,7 +18,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.pivot.manager.CompleteEnvironment;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary2;
 
 public abstract class AbstractConversion
 {
@@ -58,13 +60,21 @@ public abstract class AbstractConversion
 	}
 	
 	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull CompleteEnvironment.Internal completeEnvironment;
+	protected final @NonNull PivotStandardLibrary2 standardLibrary;
 
 	protected AbstractConversion(@NonNull MetaModelManager metaModelManager) {
 		this.metaModelManager = metaModelManager;
+		this.completeEnvironment = metaModelManager.getCompleteEnvironment();
+		this.standardLibrary = completeEnvironment.getStandardLibrary();
 	}
 	
 	public @NonNull MetaModelManager getMetaModelManager() {
 		return metaModelManager;
+	}
+
+	public @NonNull PivotStandardLibrary2 getStandardLibrary() {
+		return standardLibrary;
 	}
 
 	public <T extends EObject> void refreshList(@Nullable List<? super T> oldElements, @Nullable List<? extends T> newElements) {

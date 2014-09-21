@@ -70,9 +70,11 @@ import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
@@ -615,6 +617,7 @@ public class OCLinEcoreTablesUtils
 	protected final @NonNull CodeGenString s = new CodeGenString();
 	protected final @NonNull GenPackage genPackage;
 	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull PivotStandardLibrary standardLibrary;
 	protected final @NonNull org.eclipse.ocl.examples.pivot.Package pPackage;
 	protected final @NonNull DeclareParameterTypeVisitor declareParameterTypeVisitor = new DeclareParameterTypeVisitor(s);
 	protected final @NonNull EmitLiteralVisitor emitLiteralVisitor = new EmitLiteralVisitor(s);
@@ -630,6 +633,7 @@ public class OCLinEcoreTablesUtils
 		assert genModelResourceSet != null;
 		MetaModelManagerResourceSetAdapter resourceSetAdapter = MetaModelManagerResourceSetAdapter.getAdapter(genModelResourceSet, null);
 		this.metaModelManager = resourceSetAdapter.getMetaModelManager();
+		this.standardLibrary = metaModelManager.getStandardLibrary();
 		this.pPackage = DomainUtil.nonNullModel(getPivotPackage(genPackage));
 		activeClassesSortedByName = getActiveClassesSortedByName(pPackage);
 	}
@@ -641,18 +645,16 @@ public class OCLinEcoreTablesUtils
 	}
 	
 	protected @NonNull Set<? extends org.eclipse.ocl.examples.pivot.Class> getActiveTypes(@NonNull org.eclipse.ocl.examples.pivot.Package pPackage) {
-		Package oclstdlibPackage = metaModelManager.getBooleanType().getOwningPackage();
+		Package oclstdlibPackage = standardLibrary.getBooleanType().getOwningPackage();
 		DomainPackage pivotMetaModel = metaModelManager.getASMetamodel();
 		Type elementType = metaModelManager.getPivotType("Element");
 		if (oclstdlibPackage == pPackage) {
+			VoidType oclVoidType = metaModelManager.getStandardLibrary().getOclVoidType();
 			Set<org.eclipse.ocl.examples.pivot.Class> types = new HashSet<org.eclipse.ocl.examples.pivot.Class>();
 			for (org.eclipse.ocl.examples.pivot.Class type : oclstdlibPackage.getOwnedClasses()) {
 				assert type != null;
 				CompleteClass completeClass = metaModelManager.getCompleteClass(type);
-				if ((elementType != null) && completeClass.conformsTo(elementType)) {
-//					System.out.println("Prune " + type.getName());
-				}
-				else if (!"_Dummy".equals(type.getName())) {
+				if ((elementType == null) || !isElementType(completeClass, elementType, oclVoidType)) {
 					types.add(type);
 				}
 			}
@@ -734,7 +736,7 @@ public class OCLinEcoreTablesUtils
 	}
 	
 	protected @Nullable org.eclipse.ocl.examples.pivot.Package getExtendedPackage(@NonNull org.eclipse.ocl.examples.pivot.Package pPackage) {
-		Package oclstdlibPackage = metaModelManager.getBooleanType().getOwningPackage();
+		Package oclstdlibPackage = standardLibrary.getBooleanType().getOwningPackage();
 		DomainPackage pivotMetaModel = metaModelManager.getASMetamodel();
 		if (oclstdlibPackage == pPackage) {
 			return null;
@@ -754,14 +756,15 @@ public class OCLinEcoreTablesUtils
 	protected @Nullable GenPackage getGenPackage(@NonNull DomainClass type) {
 		DomainPackage pPackage = type.getOwningPackage();
 		assert pPackage != null;
-		Package oclstdlibPackage = metaModelManager.getBooleanType().getOwningPackage();
+		Package oclstdlibPackage = standardLibrary.getBooleanType().getOwningPackage();
 		org.eclipse.ocl.examples.pivot.Class elementType = metaModelManager.getPivotType("Element");
 		if ((elementType != null) && (oclstdlibPackage != null)) {
+			VoidType oclVoidType = metaModelManager.getStandardLibrary().getOclVoidType();
 			DomainPackage pivotMetaModel = elementType.getOwningPackage();
 			assert pivotMetaModel != null;
 			if (oclstdlibPackage == pPackage) {
 				CompleteClass completeClass = metaModelManager.getCompleteClass(type);
-				if (completeClass.conformsTo(elementType)) {
+				if (isElementType(completeClass, elementType, oclVoidType)) {
 					return getGenPackage(pivotMetaModel);
 				}
 				else {
@@ -773,7 +776,7 @@ public class OCLinEcoreTablesUtils
 				for (org.eclipse.ocl.examples.pivot.Class partialClass : completeClass.getPartialClasses()) {
 					DomainPackage partialPackage = partialClass.getOwningPackage();
 					if (partialPackage == oclstdlibPackage) {
-						if (!completeClass.conformsTo(elementType)) {
+						if (!isElementType(completeClass, elementType, oclVoidType)) {
 							return getGenPackage(oclstdlibPackage);
 						}
 					}
@@ -956,7 +959,7 @@ public class OCLinEcoreTablesUtils
 	protected @NonNull String getSharedLibrary() {
 		org.eclipse.ocl.examples.pivot.Package thisPackage = getPivotPackage(genPackage);
 		if (thisPackage != null) {
-			PrimitiveType booleanType = metaModelManager.getBooleanType();
+			PrimitiveType booleanType = standardLibrary.getBooleanType();
 			DomainPackage libraryPackage = booleanType.getOwningPackage();
 			if (libraryPackage != null) {
 				GenPackage gPackage = getGenPackage(libraryPackage);
@@ -1092,9 +1095,16 @@ public class OCLinEcoreTablesUtils
 
 	protected @NonNull Boolean hasSharedLibrary() {
 		org.eclipse.ocl.examples.pivot.Package thisPackage = getPivotPackage(genPackage);
-		PrimitiveType booleanType = metaModelManager.getBooleanType();
+		PrimitiveType booleanType = standardLibrary.getBooleanType();
 		org.eclipse.ocl.examples.pivot.Package libraryPackage = booleanType.getOwningPackage();
 		return thisPackage != libraryPackage;
+	}
+
+	/**
+	 * Return true if completeComplass conforms to elementType but not to oclVoidType.
+	 */
+	protected boolean isElementType(@NonNull CompleteClass completeClass, @NonNull Type elementType, @NonNull VoidType oclVoidType) {
+		return completeClass.conformsTo(elementType) && !completeClass.conformsTo(oclVoidType);
 	}
 
 	protected boolean isLambdaParameterList(@NonNull ParametersId parametersId) {

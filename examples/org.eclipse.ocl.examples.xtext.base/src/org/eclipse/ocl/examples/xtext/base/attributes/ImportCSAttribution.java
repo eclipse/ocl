@@ -68,7 +68,7 @@ public class ImportCSAttribution extends AbstractAttribution implements Unresolv
 			else {							// looking for all possible names
 				Map<String, URI> ePackageNsURIToGenModelLocationMap = EMF_2_9.EcorePlugin.getEPackageNsURIToGenModelLocationMap(false);
 				for (String key : ePackageNsURIToGenModelLocationMap.keySet()) {
-					environmentView.addElement(key, environmentView.getMetaModelManager().getOclVoidType());
+					environmentView.addElement(key, environmentView.getStandardLibrary().getOclVoidType());
 				}
 				// FIXME platform:/resource/... and local file names
 			}

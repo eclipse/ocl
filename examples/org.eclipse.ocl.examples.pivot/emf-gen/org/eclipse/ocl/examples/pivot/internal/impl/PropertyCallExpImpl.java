@@ -424,7 +424,7 @@ public class PropertyCallExpImpl
 			return referencedType;
 		}
 	    DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
-		TemplateSpecialisation templateSpecialization = new TemplateSpecialisation(evaluator.getStandardLibrary());
+		TemplateSpecialisation templateSpecialization = new TemplateSpecialisation(evaluator.getCompleteEnvironment());
 		DomainType resultType = getType();
 //		if (resultType instanceof DomainMetaclass) {
 //			resultType = ((DomainMetaclass)resultType).getInstanceType();
@@ -445,7 +445,7 @@ public class PropertyCallExpImpl
 		DomainType specializedType = referencedType;
 		if ((referencedType != null) && TemplateSpecialisation.needsSpecialisation(referencedType)) {
 		    DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
-			TemplateSpecialisation templateSpecialization = new TemplateSpecialisation(evaluator.getStandardLibrary());
+			TemplateSpecialisation templateSpecialization = new TemplateSpecialisation(evaluator.getCompleteEnvironment());
 			DomainType resultType = getType();
 //			boolean isMetaclass = resultType instanceof DomainMetaclass;
 //			if (isMetaclass) {

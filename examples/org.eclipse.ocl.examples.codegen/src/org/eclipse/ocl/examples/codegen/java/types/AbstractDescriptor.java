@@ -249,7 +249,7 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 		if (type instanceof DomainEnumeration) {
 			return false;
 		}
-		Type oclTypeType = metaModelManager.getOclTypeType();
+		Type oclTypeType = metaModelManager.getStandardLibrary().getOclTypeType();
 		return metaModelManager.conformsTo(type, TemplateParameterSubstitutions.EMPTY, oclTypeType, TemplateParameterSubstitutions.EMPTY);
 	}
 

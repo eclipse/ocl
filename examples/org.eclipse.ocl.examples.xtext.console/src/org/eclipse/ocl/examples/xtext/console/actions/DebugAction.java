@@ -116,7 +116,7 @@ public final class DebugAction extends Action
 				if (containingRoot == null) {
 					externalURI = contextPackage.getURI();
 				}
-				else if (containingRoot != PivotUtil.getContainingRoot(metaModelManager.getOclAnyType())) {
+				else if (containingRoot != PivotUtil.getContainingRoot(metaModelManager.getStandardLibrary().getOclAnyType())) {
 					externalURI = containingRoot.getExternalURI();
 				}
 				if (externalURI != null) {

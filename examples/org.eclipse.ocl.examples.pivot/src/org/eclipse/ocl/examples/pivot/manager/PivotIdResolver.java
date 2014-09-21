@@ -49,7 +49,7 @@ public class PivotIdResolver extends AbstractIdResolver
 	protected final @NonNull MetaModelManager metaModelManager;
 	
 	public PivotIdResolver(@NonNull MetaModelManager metaModelManager) {
-		super(metaModelManager);
+		super(metaModelManager.getCompleteEnvironment());
 		this.metaModelManager = metaModelManager;
 	}
 
@@ -89,7 +89,7 @@ public class PivotIdResolver extends AbstractIdResolver
 			org.eclipse.uml2.uml.Stereotype umlStereotype = ((UMLElementExtension)value).getDynamicStereotype();
 			try {
 				Stereotype asStereotype = metaModelManager.getPivotOf(Stereotype.class, umlStereotype);
-				return asStereotype != null ? asStereotype : metaModelManager.getOclInvalidType();
+				return asStereotype != null ? asStereotype : metaModelManager.getStandardLibrary().getOclInvalidType();
 			} catch (ParserException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -101,9 +101,9 @@ public class PivotIdResolver extends AbstractIdResolver
 	@Override
 	public @NonNull DomainPackage visitRootPackageId(@NonNull RootPackageId id) {
 		String completeURIorName = id.getName();
-		DomainPackage rootPackage = metaModelManager.getRootPackage(completeURIorName);
+		DomainPackage rootPackage = standardLibrary.getRootPackage(completeURIorName);
 		if (rootPackage == null) {
-			Orphanage orphanage = metaModelManager.getOrphanage();
+			Orphanage orphanage = metaModelManager.getCompleteModel().getOrphanage();
 			rootPackage = DomainUtil.getNamedElement(orphanage.getOwnedPackages(), completeURIorName);
 			if (rootPackage == null) {
 				throw new UnsupportedOperationException();
@@ -141,7 +141,7 @@ public class PivotIdResolver extends AbstractIdResolver
 			org.eclipse.uml2.uml.Stereotype umlStereotype = ((UMLElementExtension)value).getStaticStereotype();
 			try {
 				Stereotype asStereotype = metaModelManager.getPivotOf(Stereotype.class, umlStereotype);
-				return asStereotype != null ? asStereotype : metaModelManager.getOclInvalidType();
+				return asStereotype != null ? asStereotype : metaModelManager.getStandardLibrary().getOclInvalidType();
 			} catch (ParserException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -150,7 +150,7 @@ public class PivotIdResolver extends AbstractIdResolver
 		}
 		else if (value instanceof ElementExtension) {
 			Stereotype asStereotype = ((ElementExtension)value).getStereotype();
-			return asStereotype != null ? asStereotype : metaModelManager.getOclInvalidType();
+			return asStereotype != null ? asStereotype : metaModelManager.getStandardLibrary().getOclInvalidType();
 		}
 		return super.getStaticTypeOf(value);
 	}
@@ -223,7 +223,7 @@ public class PivotIdResolver extends AbstractIdResolver
 			logger.error("Failed to convert '" + eType + "'", e);
 		}
 //		return new DomainInvalidTypeImpl(standardLibrary, "No object created by Ecore2Pivot");
-		return metaModelManager.getOclInvalidType();
+		return metaModelManager.getStandardLibrary().getOclInvalidType();
 	}
 
 	@Override
@@ -236,14 +236,14 @@ public class PivotIdResolver extends AbstractIdResolver
 	@Override
 	public @NonNull DomainPackage visitNsURIPackageId(@NonNull NsURIPackageId id) {
 		String nsURI = id.getNsURI();
-		DomainPackage nsURIPackage = metaModelManager.getNsURIPackage(nsURI);
+		DomainPackage nsURIPackage = standardLibrary.getNsURIPackage(nsURI);
 		if (nsURIPackage == null) {
 			metaModelManager.setAutoLoadASMetamodel(true);
 			DomainPackage asMetamodel = metaModelManager.getASMetamodel();
 			if ((asMetamodel != null) && PivotPackage.eNS_URI.equals(nsURI)) {
 				return asMetamodel;
 			}
-			nsURIPackage = metaModelManager.getNsURIPackage(nsURI);
+			nsURIPackage = standardLibrary.getNsURIPackage(nsURI);
 			if (nsURIPackage == null) {
 				throw new UnsupportedOperationException();
 			}

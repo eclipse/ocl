@@ -19,12 +19,14 @@ import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
-import org.eclipse.ocl.examples.domain.values.IntegerValue;
 import org.eclipse.ocl.examples.library.executor.CollectionTypeParameters;
 import org.eclipse.ocl.examples.pivot.internal.complete.CompleteURIs;
 import org.eclipse.ocl.examples.pivot.internal.complete.PartialRoots;
 import org.eclipse.ocl.examples.pivot.internal.complete.RootCompletePackages;
+import org.eclipse.ocl.examples.pivot.manager.CompleteEnvironment;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.Orphanage;
+import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary2;
 import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutions;
 import org.eclipse.ocl.examples.pivot.manager.TupleTypeManager;
 
@@ -116,9 +118,12 @@ public interface CompleteModel extends NamedElement
 	@Nullable CompletePackage getOwnedCompletePackage(String name);
 	
 	void addPackageURI2completeURI(@NonNull String packageURI, @NonNull String newCompleteURI);
+	boolean conformsTo(@NonNull Type firstType, @NonNull TemplateParameterSubstitutions firstSubstitutions,
+			@NonNull Type secondType, @NonNull TemplateParameterSubstitutions secondSubstitutions);
 	@NonNull Iterable<? extends CompletePackage> getAllCompletePackages();
-	@NonNull <T extends CollectionType> T getCollectionType(@NonNull T containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper);
+//	@NonNull <T extends CollectionType> T getCollectionType(@NonNull T containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper);
 	@NonNull CompleteClass getCompleteClass(@NonNull DomainType partialClass);
+	@NonNull CompleteEnvironment getCompleteEnvironment();
 	@NonNull CompletePackage getCompletePackage(@NonNull DomainPackage asPackage);
 	@Nullable CompletePackage getCompletePackageByURI(@NonNull String packageURI);
 	@NonNull Iterable<? extends CompletePackage> getAllCompletePackagesWithUris();
@@ -149,7 +154,6 @@ public interface CompleteModel extends NamedElement
 				@Nullable TemplateParameterSubstitutions bindings);	
 
 		void resolveSuperClasses(@NonNull org.eclipse.ocl.examples.pivot.Class specializedClass, @NonNull org.eclipse.ocl.examples.pivot.Class unspecializedClass);
-		void initMetaModelManager(@NonNull MetaModelManager metaModelManager);
 		void dispose();
 		void didAddPartialRoot(@NonNull Root partialRoot);
 		void didAddNestedPackage(@NonNull org.eclipse.ocl.examples.pivot.Package pivotPackage);
@@ -157,5 +161,8 @@ public interface CompleteModel extends NamedElement
 		void didRemovePartialRoot(@NonNull Root partialRoot);
 		@Nullable String getCompleteURI(@Nullable String nsURI);
 		@NonNull TupleTypeManager getTupleManager();
+		@NonNull Orphanage getOrphanage();
+		@NonNull PivotStandardLibrary2 getStandardLibrary();
+		@NonNull CompleteEnvironment.Internal getCompleteEnvironment();
 	}
 } // CompleteModel

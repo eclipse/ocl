@@ -53,7 +53,9 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.SemanticException;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.manager.CompleteEnvironment;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary2;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcoreStandaloneSetup;
 import org.junit.After;
@@ -502,9 +504,9 @@ public class IteratorsTest4 extends PivotTestSuite
     	org.eclipse.ocl.examples.pivot.Package fakePkg = createPackage(fakeRoot, "fake");
     	fakeResource.getContents().add(fakePkg);
         org.eclipse.ocl.examples.pivot.Class fake = createOwnedClass(fakePkg, "Fake", false);
-        createGeneralization(fake, metaModelManager.getOclAnyType());
+        createGeneralization(fake, metaModelManager.getStandardLibrary().getOclAnyType());
         Operation getFakes = createOwnedOperation(fake, "getFakes", null, null, fake, true);
-        getFakes.setType(metaModelManager.getSetType(fake, null, null));
+        getFakes.setType(metaModelManager.getCompleteEnvironment().getSetType(fake, null, null));
 
         assertQuery(fake, "self->closure(getFakes())");
     }
@@ -525,22 +527,24 @@ public class IteratorsTest4 extends PivotTestSuite
      * body type with the iterator variable (source element) type.
      */
     @Test public void test_closureValidation_typeConformance_154695() {
+        PivotStandardLibrary2 standardLibrary = metaModelManager.getStandardLibrary();
+        CompleteEnvironment completeEnvironment = metaModelManager.getCompleteEnvironment();
     	Resource fakeResource = new XMIResourceFactoryImpl().createResource(URI.createURI("fake"));
     	Root fakeRoot = metaModelManager.createRoot(null);
     	org.eclipse.ocl.examples.pivot.Package fakePkg = createPackage(fakeRoot, "fake");
     	fakeResource.getContents().add(fakePkg);
         org.eclipse.ocl.examples.pivot.Class fake = createOwnedClass(fakePkg, "Fake", false);
-        @SuppressWarnings("unused")
-        Operation getFakes = createOwnedOperation(fake, "getFakes", null, null, metaModelManager.getSetType(fake, null, null), true);
+		@SuppressWarnings("unused")
+        Operation getFakes = createOwnedOperation(fake, "getFakes", null, null, completeEnvironment.getSetType(fake, null, null), true);
 
         // subclass the Fake class
         org.eclipse.ocl.examples.pivot.Class subFake = createOwnedClass(fakePkg, "Subfake", false);
         createGeneralization(subFake, fake);
-        createGeneralization(fake, metaModelManager.getOclAnyType());
+        createGeneralization(fake, standardLibrary.getOclAnyType());
 
         // get sub-fakes from a fake
         @SuppressWarnings("unused")
-		Operation getSubFakes = createOwnedOperation(fake, "getSubFakes", null, null, metaModelManager.getSetType(subFake, null, null), true);
+		Operation getSubFakes = createOwnedOperation(fake, "getSubFakes", null, null, completeEnvironment.getSetType(subFake, null, null), true);
  
         helper.setContext(subFake);
 

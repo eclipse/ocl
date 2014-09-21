@@ -50,7 +50,7 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 	public PivotExecutorStandardLibrary(EcoreExecutorPackage... execPackages) {
 		OCLstdlibTables.PACKAGE.getClass();
 		this.metaModelManager = new MetaModelManager();
-		metaModelManager.setDefaultStandardLibraryURI(LibraryConstants.STDLIB_URI);
+		metaModelManager.getStandardLibrary().setDefaultStandardLibraryURI(LibraryConstants.STDLIB_URI);
 		PivotTables.PACKAGE.getClass();
 	}
 	
@@ -79,11 +79,11 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 	}
 
 	public @NonNull org.eclipse.ocl.examples.pivot.Class getClassType() {
-		return metaModelManager.getClassType();
+		return metaModelManager.getStandardLibrary().getClassType();
 	}
 
 	public @NonNull org.eclipse.ocl.examples.pivot.Class getEnumerationType() {
-		return metaModelManager.getEnumerationType();
+		return metaModelManager.getStandardLibrary().getEnumerationType();
 	}
 
 	public @NonNull DomainInheritance getInheritance(@NonNull DomainClass type) {
@@ -106,7 +106,7 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 	protected org.eclipse.ocl.examples.pivot.Class getType(DomainType typeType) {
 		if (typeType instanceof DomainCollectionType) {
 			DomainCollectionType domainCollectionType = (DomainCollectionType)typeType;
-			return metaModelManager.getCollectionType(domainCollectionType.getContainerType(), domainCollectionType.getElementType(), null, null);
+			return metaModelManager.getCompleteEnvironment().getCollectionType(domainCollectionType.getContainerType(), domainCollectionType.getElementType(), null, null);
 		}
 		if (typeMap == null) {
 			typeMap = new HashMap<DomainType, org.eclipse.ocl.examples.pivot.Class>();

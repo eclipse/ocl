@@ -90,7 +90,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 				List<org.eclipse.ocl.examples.pivot.Class> superClasses = pivotElement.getSuperClasses();
 				context.refreshList(org.eclipse.ocl.examples.pivot.Class.class, superClasses, csElement.getOwnedSuperType());
 				if (superClasses.isEmpty()) {
-					org.eclipse.ocl.examples.pivot.Class oclElementType = context.getMetaModelManager().getOclElementType();
+					org.eclipse.ocl.examples.pivot.Class oclElementType = context.getStandardLibrary().getOclElementType();
 					pivotElement.getSuperClasses().add(oclElementType);
 				}
 			}
@@ -182,7 +182,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 		public BasicContinuation<?> execute() {
 			String name = csElement.getName();
 			if (name != null) {
-				Type pivotType = context.getMetaModelManager().getLibraryType(name);
+				Type pivotType = context.getStandardLibrary().getLibraryType(name);
 				if (pivotType != null) {
 					context.installPivotTypeWithMultiplicity(pivotType, csElement);
 				}
@@ -423,7 +423,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 		if (pivotElement != null) {
 			List<org.eclipse.ocl.examples.pivot.Class> pivotSuperClasses = pivotElement.getSuperClasses();
 			pivotSuperClasses.clear();
-			org.eclipse.ocl.examples.pivot.Class oclElementType = context.getMetaModelManager().getOclElementType();
+			org.eclipse.ocl.examples.pivot.Class oclElementType = context.getStandardLibrary().getOclElementType();
 			pivotSuperClasses.add(oclElementType);
 		}
 		return null;
@@ -440,7 +440,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 		if (pivotElement != null) {
 			List<org.eclipse.ocl.examples.pivot.Class> pivotSuperClasses = pivotElement.getSuperClasses();
 			pivotSuperClasses.clear();
-			org.eclipse.ocl.examples.pivot.Class oclElementType = context.getMetaModelManager().getOclElementType();
+			org.eclipse.ocl.examples.pivot.Class oclElementType = context.getStandardLibrary().getOclElementType();
 			pivotSuperClasses.add(oclElementType);
 		}
 		return null;

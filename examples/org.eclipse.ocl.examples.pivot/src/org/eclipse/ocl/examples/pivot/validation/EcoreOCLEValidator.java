@@ -54,6 +54,7 @@ import org.eclipse.ocl.examples.pivot.delegate.InvocationBehavior;
 import org.eclipse.ocl.examples.pivot.delegate.SettingBehavior;
 import org.eclipse.ocl.examples.pivot.delegate.ValidationBehavior;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutions;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
@@ -313,10 +314,11 @@ public class EcoreOCLEValidator implements EValidator
 		if (eAnnotation != null) {
 			OCL ocl = getOCL(context);
 			MetaModelManager metaModelManager = ocl.getMetaModelManager();
+			PivotStandardLibrary standardLibrary = ocl.getStandardLibrary();
 			EMap<String, String> details = eAnnotation.getDetails();
 			for (String constraintName : details.keySet()) {
 				String value = details.get(constraintName);
-				allOk = validateExpression(metaModelManager, eClassifier, value, metaModelManager.getBooleanType(), constraintName, diagnostics, context);
+				allOk = validateExpression(metaModelManager, eClassifier, value, standardLibrary.getBooleanType(), constraintName, diagnostics, context);
 			}
 			if (constraintsAnnotation == null) {
 				if (diagnostics != null) {
@@ -429,23 +431,24 @@ public class EcoreOCLEValidator implements EValidator
 		if (eAnnotation != null) {
 			OCL ocl = getOCL(context);
 			MetaModelManager metaModelManager = ocl.getMetaModelManager();
+			PivotStandardLibrary standardLibrary = ocl.getStandardLibrary();
 			EMap<String, String> details = eAnnotation.getDetails();
 			Set<String> knownKeys = new HashSet<String>();
 			if (details.containsKey(InvocationBehavior.BODY_CONSTRAINT_KEY)) {
 				knownKeys.add(InvocationBehavior.BODY_CONSTRAINT_KEY);
 				String value = details.get(InvocationBehavior.BODY_CONSTRAINT_KEY);
-				Type requiredType = EcoreUtil.isInvariant(eOperation) ? metaModelManager.getBooleanType() : null;
+				Type requiredType = EcoreUtil.isInvariant(eOperation) ? standardLibrary.getBooleanType() : null;
 				allOk = validateExpression(metaModelManager, eOperation, value, requiredType, InvocationBehavior.BODY_CONSTRAINT_KEY, diagnostics, context);
 			}
 			if (details.containsKey("pre")) {
 				knownKeys.add("pre");
 				String value = details.get("pre");
-				allOk = validateExpression(metaModelManager, eOperation, value, metaModelManager.getBooleanType(), "pre", diagnostics, context);
+				allOk = validateExpression(metaModelManager, eOperation, value, standardLibrary.getBooleanType(), "pre", diagnostics, context);
 			}
 			if (details.containsKey("post")) {
 				knownKeys.add("post");
 				String value = details.get("post");
-				allOk = validateExpression(metaModelManager, eOperation, value, metaModelManager.getBooleanType(), "post", diagnostics, context);
+				allOk = validateExpression(metaModelManager, eOperation, value, standardLibrary.getBooleanType(), "post", diagnostics, context);
 			}
 			Set<String> actualKeys = details.keySet();
 			Set<String> unknownKeys = new HashSet<String>(actualKeys);

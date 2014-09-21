@@ -38,7 +38,7 @@ public class NavigationOperatorCSAttribution extends AbstractAttribution
 			NameExpCS csNameExp = (NameExpCS)child;
 			Type sourceTypeValue = csNameExp.getSourceTypeValue();
 			if (sourceTypeValue != null) {
-				environmentView.addElementsOfScope(environmentView.getMetaModelManager().getClassType(), scopeView);
+				environmentView.addElementsOfScope(environmentView.getStandardLibrary().getClassType(), scopeView);
 			}
 			if (!environmentView.hasFinalResult()) {
 				Type type = sourceTypeValue != null ? sourceTypeValue : csNameExp.getSourceType();

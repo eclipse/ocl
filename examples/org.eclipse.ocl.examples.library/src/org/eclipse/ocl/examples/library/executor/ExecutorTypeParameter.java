@@ -13,6 +13,7 @@ package org.eclipse.ocl.examples.library.executor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
+import org.eclipse.ocl.examples.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
@@ -24,8 +25,8 @@ public class ExecutorTypeParameter extends AbstractType implements ExecutorTypeA
 {
 	private final @NonNull TemplateParameterId typeid;
 
-	public ExecutorTypeParameter(@NonNull TemplateParameterId typeid, @NonNull DomainStandardLibrary standardLibrary, @NonNull String name) {
-		super(standardLibrary, name);
+	public ExecutorTypeParameter(@NonNull TemplateParameterId typeid, @NonNull DomainEnvironment environment, @NonNull String name) {
+		super(environment, name);
 		this.typeid = typeid;
 	}
 
@@ -35,6 +36,10 @@ public class ExecutorTypeParameter extends AbstractType implements ExecutorTypeA
 
 	public @NonNull DomainType getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
 		throw new UnsupportedOperationException();			// WIP fixme
+	}
+
+	public @Nullable DomainType getLowerBound() {
+		return null;
 	}
 	
 	public @NonNull TemplateParameterId getTemplateParameterId() {

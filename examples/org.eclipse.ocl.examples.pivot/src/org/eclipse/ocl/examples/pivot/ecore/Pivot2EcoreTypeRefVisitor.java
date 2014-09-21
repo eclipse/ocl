@@ -40,6 +40,7 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
@@ -49,10 +50,12 @@ public class Pivot2EcoreTypeRefVisitor
 	extends AbstractExtendingVisitor<EObject, Pivot2Ecore>
 {
 	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull PivotStandardLibrary standardLibrary;
 	
 	public Pivot2EcoreTypeRefVisitor(@NonNull Pivot2Ecore context) {
 		super(context);
 		this.metaModelManager = context.getMetaModelManager();
+		this.standardLibrary = context.getStandardLibrary();
 	}
 
 	public EGenericType resolveEGenericType(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
@@ -169,19 +172,19 @@ public class Pivot2EcoreTypeRefVisitor
 				}
 			}
 		}
-		if (pivotType == metaModelManager.getBooleanType()) {
+		if (pivotType == standardLibrary.getBooleanType()) {
 			return EcorePackage.Literals.EBOOLEAN;
 		}
-		else if (pivotType == metaModelManager.getIntegerType()) {
+		else if (pivotType == standardLibrary.getIntegerType()) {
 			return EcorePackage.Literals.EBIG_INTEGER;
 		}
-		else if (pivotType == metaModelManager.getRealType()) {
+		else if (pivotType == standardLibrary.getRealType()) {
 			return EcorePackage.Literals.EBIG_DECIMAL;
 		}
-		else if (pivotType == metaModelManager.getStringType()) {
+		else if (pivotType == standardLibrary.getStringType()) {
 			return EcorePackage.Literals.ESTRING;
 		}
-		else if (pivotType == metaModelManager.getUnlimitedNaturalType()) {
+		else if (pivotType == standardLibrary.getUnlimitedNaturalType()) {
 			return EcorePackage.Literals.EBIG_INTEGER;
 		}
 		else {

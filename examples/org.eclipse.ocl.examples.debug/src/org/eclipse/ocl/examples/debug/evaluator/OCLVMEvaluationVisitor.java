@@ -21,6 +21,7 @@ import org.eclipse.ocl.examples.debug.vm.VMVirtualMachine;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
 import org.eclipse.ocl.examples.debug.vm.utils.VMInterruptedExecutionException;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
+import org.eclipse.ocl.examples.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.examples.domain.elements.DomainExpression;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.evaluation.DomainLogger;
@@ -205,6 +206,11 @@ public abstract class OCLVMEvaluationVisitor extends AbstractWrappingVisitor<Obj
 //	public @Nullable Object evaluate(@NonNull ExpressionInOCL expressionInOCL) {
 //		return delegate.evaluate(expressionInOCL);
 //	}
+
+	@Override
+	public @NonNull DomainEnvironment getCompleteEnvironment() {
+		return delegate.getCompleteEnvironment();
+	}
 
 	@Override
 	public @NonNull EvaluationVisitor getEvaluator() {

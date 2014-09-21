@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
+import org.eclipse.ocl.examples.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.evaluation.DomainLogger;
 import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
@@ -30,7 +31,9 @@ import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
+import org.eclipse.ocl.examples.pivot.manager.CompleteEnvironment;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
@@ -58,6 +61,8 @@ public abstract class AbstractEvaluationVisitor
 	protected final @NonNull EvaluationEnvironment evaluationEnvironment;
 	protected final @NonNull Environment environment;
 	protected final @NonNull MetaModelManager metaModelManager;	
+	protected final @NonNull CompleteEnvironment completeEnvironment;
+	protected final @NonNull PivotStandardLibrary standardLibrary;
 	protected final @NonNull DomainModelManager modelManager;
 
     protected @NonNull EvaluationVisitor undecoratedVisitor;
@@ -93,6 +98,8 @@ public abstract class AbstractEvaluationVisitor
         this.evaluationEnvironment = evalEnv;
         this.environment = env;
         this.metaModelManager = env.getMetaModelManager();
+		this.completeEnvironment = metaModelManager.getCompleteEnvironment();
+		this.standardLibrary = completeEnvironment.getStandardLibrary();
         this.modelManager = modelManager;
         this.undecoratedVisitor = this;  // assume I have no decorator
     }
@@ -119,6 +126,10 @@ public abstract class AbstractEvaluationVisitor
 				return size() > DEFAULT_REGEX_CACHE_LIMIT;
 			}
 		};
+	}
+
+	public @NonNull DomainEnvironment getCompleteEnvironment() {
+		return completeEnvironment;
 	}
 
     // implements the interface method
@@ -179,7 +190,7 @@ public abstract class AbstractEvaluationVisitor
 	}
 
 	public @NonNull DomainStandardLibrary getStandardLibrary() {
-		return metaModelManager;
+		return standardLibrary;
 	}
 
 	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value) {

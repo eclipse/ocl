@@ -73,7 +73,7 @@ public class QueryImpl implements Query, ProblemAware
 	}
 
 	public boolean check(Object obj) {
-		if (resultType() != environment.getOCLStandardLibrary().getBooleanType()) {
+		if (resultType() != environment.getStandardLibrary().getBooleanType()) {
 			IllegalArgumentException error = new IllegalArgumentException(
 					OCLMessages.BooleanQuery_ERROR_);
 			PivotPlugin.throwing(getClass(), "check", error);//$NON-NLS-1$
@@ -99,7 +99,7 @@ public class QueryImpl implements Query, ProblemAware
 			throw error;
 		}
 		
-		if (resultType() != environment.getOCLStandardLibrary().getBooleanType()) {
+		if (resultType() != environment.getStandardLibrary().getBooleanType()) {
 			IllegalArgumentException error = new IllegalArgumentException(
 					OCLMessages.BooleanQuery_ERROR_);
 			PivotPlugin.throwing(getClass(), "check", error);//$NON-NLS-1$

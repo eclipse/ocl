@@ -90,7 +90,7 @@ public class ConstraintMerger extends AbstractProjectComponent
 		MetaModelManager metaModelManager = MetaModelManager.getAdapter(resourceSet);
 //		metaModelManager.setLibraryLoadInProgress(true);
 		metaModelManager.getExternalResourceSet().getResources().add(ecoreResource);		// Don't load another copy
-		metaModelManager.setDefaultStandardLibraryURI(pivotNsURI);
+		metaModelManager.getStandardLibrary().setDefaultStandardLibraryURI(pivotNsURI);
 		StandardLibraryContribution.REGISTRY.put(pivotNsURI, new OCLstdlib.Loader());
 //		metaModelManager.getBooleanType();
 		for (EObject eObject : ecoreResource.getContents()) {

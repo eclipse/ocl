@@ -58,6 +58,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutionVisitor;
 import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutions;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
@@ -142,6 +143,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		}
 		Diagnostic diagnostic = null;
 		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(DomainUtil.nonNullState(eResource()));
+		PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
 		try {
 			OCLExpression source2 = this.getSource();
 			OCLExpression body2 = this.getBody();
@@ -149,9 +151,9 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 			Type sourceTypeValue = source2.getTypeValue();
 			Type bodyType = body2.getType();
 			Type specializedBodyType = bodyType != null ? TemplateParameterSubstitutionVisitor.specializeType(bodyType, this, metaModelManager, sourceType, sourceTypeValue) : null;
-			DomainInheritance comparableType = metaModelManager.getOclComparableType().getInheritance(metaModelManager);
-			DomainInheritance selfType = metaModelManager.getOclSelfType().getInheritance(metaModelManager);
-			DomainOperation staticOperation = comparableType.lookupLocalOperation(metaModelManager, LibraryConstants.COMPARE_TO, selfType);
+			DomainInheritance comparableType = standardLibrary.getOclComparableType().getInheritance(standardLibrary);
+			DomainInheritance selfType = standardLibrary.getOclSelfType().getInheritance(standardLibrary);
+			DomainOperation staticOperation = comparableType.lookupLocalOperation(standardLibrary, LibraryConstants.COMPARE_TO, selfType);
 			if (staticOperation == null) {
 				if (diagnostics == null) {
 					return false;
@@ -159,7 +161,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 				diagnostic = new ValidationWarning(OCLMessages.UnresolvedOperation_ERROR_, String.valueOf(comparableType), LibraryConstants.COMPARE_TO);
 			}
 			else if (specializedBodyType instanceof org.eclipse.ocl.examples.pivot.Class) {
-				LibraryFeature implementation = ((org.eclipse.ocl.examples.pivot.Class)specializedBodyType).lookupImplementation(metaModelManager, staticOperation);
+				LibraryFeature implementation = ((org.eclipse.ocl.examples.pivot.Class)specializedBodyType).lookupImplementation(standardLibrary, staticOperation);
 				if (implementation == OclComparableCompareToOperation.INSTANCE) {
 					if (diagnostics == null) {
 						return false;

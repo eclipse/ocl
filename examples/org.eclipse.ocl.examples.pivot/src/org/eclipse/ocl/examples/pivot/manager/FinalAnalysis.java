@@ -93,15 +93,16 @@ public class FinalAnalysis
 		return overrides == null;
 	}
 	
-	public @Nullable DomainOperation isFinal(@NonNull DomainOperation operation, @NonNull DomainInheritance domainInheritance) {
+	public @Nullable DomainOperation isFinal(@NonNull DomainOperation operation, @NonNull CompleteClass completeClass) {
 		Set<DomainOperation> overrides = operation2overrides.get(operation);
 		if (overrides == null) {
 			return operation;
 		}
 		DomainOperation candidate = null;
+		PivotStandardLibrary standardLibrary = completeModel.getStandardLibrary();
 		for (DomainOperation override : overrides) {
-			DomainInheritance overrideInheritance = override.getInheritance(metaModelManager);
-			if ((overrideInheritance != null) && overrideInheritance.getType().conformsTo(metaModelManager, domainInheritance.getType())) {
+			DomainInheritance overrideInheritance = override.getInheritance(standardLibrary);
+			if ((overrideInheritance != null) && overrideInheritance.getType().conformsTo(standardLibrary, completeClass.getPivotClass())) {
 				if (candidate != null) {
 					return null;
 				}

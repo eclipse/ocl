@@ -38,6 +38,7 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.context.ParserContext;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -394,96 +395,97 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 		}
 		MetaModelManager metaModelManager = PivotUtil.findMetaModelManager(this);
 		if (metaModelManager != null) {
+			PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
 //			if (metaModelManager.getLibraryResource() != org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib.INSTANCE) {
 //				metaModelManager.resetLibrary();		// FIXME is this needed; if so test it
 //			}
 			try {
-				metaModelManager.getOclAnyType();
+				standardLibrary.getOclAnyType();
 			} catch (IllegalLibraryException e) {			
 				addLibraryError(errors, e);
 			}
 			try {
-				metaModelManager.getOclElementType();
+				standardLibrary.getOclElementType();
 			} catch (IllegalLibraryException e) {			
 				addLibraryError(errors, e);
 			}
 			try {
-				metaModelManager.getOclVoidType();
+				standardLibrary.getOclVoidType();
 			} catch (IllegalLibraryException e) {			
 				addLibraryError(errors, e);
 			}
 			try {
-				metaModelManager.getOclInvalidType();
+				standardLibrary.getOclInvalidType();
 			} catch (IllegalLibraryException e) {			
 				addLibraryError(errors, e);
 			}
 			try {
-				metaModelManager.getClassType();
+				standardLibrary.getClassType();
 			} catch (IllegalLibraryException e) {			
 				addLibraryError(errors, e);
 			}
 			try {
-				metaModelManager.getBooleanType();
+				standardLibrary.getBooleanType();
 			} catch (IllegalLibraryException e) {			
 				addLibraryError(errors, e);
 			}
 			try {
-				metaModelManager.getRealType();
+				standardLibrary.getRealType();
 			} catch (IllegalLibraryException e) {			
 				addLibraryError(errors, e);
 			}
 			try {
-				metaModelManager.getIntegerType();
+				standardLibrary.getIntegerType();
 			} catch (IllegalLibraryException e) {			
 				addLibraryError(errors, e);
 			}
 			try {
-				metaModelManager.getUnlimitedNaturalType();
+				standardLibrary.getUnlimitedNaturalType();
 			} catch (IllegalLibraryException e) {			
 				addLibraryError(errors, e);
 			}
 			try {
-				metaModelManager.getStringType();
+				standardLibrary.getStringType();
 			} catch (IllegalLibraryException e) {			
 				addLibraryError(errors, e);
 			}
 			try {
-				metaModelManager.getCollectionType();
+				standardLibrary.getCollectionType();
 			} catch (IllegalLibraryException e) {			
 				addLibraryError(errors, e);
 			}
 			try {
-				metaModelManager.getBagType();
+				standardLibrary.getBagType();
 			} catch (IllegalLibraryException e) {			
 				addLibraryError(errors, e);
 			}
 			try {
-				metaModelManager.getSequenceType();
+				standardLibrary.getSequenceType();
 			} catch (IllegalLibraryException e) {			
 				addLibraryError(errors, e);
 			}
 			try {
-				metaModelManager.getSetType();
+				standardLibrary.getSetType();
 			} catch (IllegalLibraryException e) {			
 				addLibraryError(errors, e);
 			}
 			try {
-				metaModelManager.getOrderedSetType();
+				standardLibrary.getOrderedSetType();
 			} catch (IllegalLibraryException e) {			
 				addLibraryError(errors, e);
 			}
 			try {
-				metaModelManager.getEnumerationType();
+				standardLibrary.getEnumerationType();
 			} catch (IllegalLibraryException e) {			
 				addLibraryError(errors, e);
 			}
 			try {
-				metaModelManager.getOclTupleType();
+				standardLibrary.getOclTupleType();
 			} catch (IllegalLibraryException e) {			
 				addLibraryError(errors, e);
 			}
 			try {
-				metaModelManager.getOclLambdaType();
+				standardLibrary.getOclLambdaType();
 			} catch (IllegalLibraryException e) {			
 				addLibraryError(errors, e);
 			}

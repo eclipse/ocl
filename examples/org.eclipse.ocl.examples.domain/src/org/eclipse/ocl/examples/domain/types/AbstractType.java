@@ -16,6 +16,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainConstraint;
+import org.eclipse.ocl.examples.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
@@ -24,12 +25,14 @@ import org.eclipse.ocl.examples.domain.values.OCLValue;
 
 public abstract class AbstractType implements DomainType	// FIXME rename as perhaps DerivativeType
 {
+	protected final @NonNull DomainEnvironment environment;
 	protected final @NonNull DomainStandardLibrary standardLibrary;
 
 	protected final @NonNull String name;
 
-	public AbstractType(@NonNull DomainStandardLibrary standardLibrary, @NonNull String name) {
-		this.standardLibrary = standardLibrary;
+	public AbstractType(@NonNull DomainEnvironment environment, @NonNull String name) {
+		this.environment = environment;
+		this.standardLibrary = environment.getStandardLibrary();
 		this.name = name;
 	}
 

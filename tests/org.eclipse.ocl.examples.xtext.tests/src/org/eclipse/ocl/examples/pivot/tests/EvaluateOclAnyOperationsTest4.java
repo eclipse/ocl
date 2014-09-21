@@ -18,6 +18,7 @@ import java.util.Collection;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.domain.ids.TuplePartId;
 import org.eclipse.ocl.examples.domain.ids.TupleTypeId;
@@ -29,6 +30,8 @@ import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VoidType;
+import org.eclipse.ocl.examples.pivot.manager.CompleteEnvironment;
+import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.junit.After;
 import org.junit.Before;
@@ -127,6 +130,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
 	}
     
     @Test public void testGreaterThan() {
+    	DomainStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
     	loadEPackage("ecore", EcorePackage.eINSTANCE);
         assertQueryTrue(null, "ecore::EDate{'2000-01-25'} > ecore::EDate{'2000-01-24'}");
         assertQueryFalse(null, "ecore::EDate{'2000-01-24'} > ecore::EDate{'2000-01-24'}");
@@ -135,23 +139,24 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
 	    // invalid
         //
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("invalid > 0", OCLMessages.UnresolvedOperationCall_ERROR_, metaModelManager.getOclInvalidType(), PivotConstants.GREATER_THAN_OPERATOR, metaModelManager.getUnlimitedNaturalType());
+		assertSemanticErrorQuery("invalid > 0", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstants.GREATER_THAN_OPERATOR, standardLibrary.getUnlimitedNaturalType());
 //		assertQueryInvalid(null, "invalid > 0");
 //		assertSemanticErrorQuery("0 > invalid", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.GREATER_THAN_OPERATOR);
 		assertQueryInvalid(null, "0 > invalid");
-		assertSemanticErrorQuery("invalid > invalid", OCLMessages.UnresolvedOperationCall_ERROR_, metaModelManager.getOclInvalidType(), PivotConstants.GREATER_THAN_OPERATOR, metaModelManager.getOclInvalidType());
+		assertSemanticErrorQuery("invalid > invalid", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstants.GREATER_THAN_OPERATOR, standardLibrary.getOclInvalidType());
 		//
 		// null
 		//
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("null > 0", OCLMessages.UnresolvedOperationCall_ERROR_, metaModelManager.getOclVoidType(), PivotConstants.GREATER_THAN_OPERATOR, metaModelManager.getUnlimitedNaturalType());
+		assertSemanticErrorQuery("null > 0", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstants.GREATER_THAN_OPERATOR, standardLibrary.getUnlimitedNaturalType());
 //		assertQueryInvalid(null, "null > 0");
 //		assertSemanticErrorQuery("0 > null", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.GREATER_THAN_OPERATOR);
 		assertQueryInvalid(null, "0 > null");
-		assertSemanticErrorQuery("null > null", OCLMessages.UnresolvedOperationCall_ERROR_, metaModelManager.getOclVoidType(), PivotConstants.GREATER_THAN_OPERATOR, metaModelManager.getOclVoidType());
+		assertSemanticErrorQuery("null > null", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstants.GREATER_THAN_OPERATOR, standardLibrary.getOclVoidType());
 	}
     
     @Test public void testGreaterThanOrEqual() {
+    	DomainStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
     	loadEPackage("ecore", EcorePackage.eINSTANCE);
         assertQueryTrue(null, "ecore::EDate{'2000-01-25'} >= ecore::EDate{'2000-01-24'}");
         assertQueryTrue(null, "ecore::EDate{'2000-01-24'} >= ecore::EDate{'2000-01-24'}");
@@ -160,23 +165,24 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
 	    // invalid
         //
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("invalid >= 0", OCLMessages.UnresolvedOperationCall_ERROR_, metaModelManager.getOclInvalidType(), PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR, metaModelManager.getUnlimitedNaturalType());
+		assertSemanticErrorQuery("invalid >= 0", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR, standardLibrary.getUnlimitedNaturalType());
 //		assertQueryInvalid(null, "invalid >= 0");
 //		assertSemanticErrorQuery("0 >= invalid", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR);
 		assertQueryInvalid(null, "0 >= invalid");
-		assertSemanticErrorQuery("invalid >= invalid", OCLMessages.UnresolvedOperationCall_ERROR_, metaModelManager.getOclInvalidType(), PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR, metaModelManager.getOclInvalidType());
+		assertSemanticErrorQuery("invalid >= invalid", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR, standardLibrary.getOclInvalidType());
 		//
 		// null
 		//
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("null >= 0", OCLMessages.UnresolvedOperationCall_ERROR_, metaModelManager.getOclVoidType(), PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR, metaModelManager.getUnlimitedNaturalType());
+		assertSemanticErrorQuery("null >= 0", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR, standardLibrary.getUnlimitedNaturalType());
 //		assertQueryInvalid(null, "null >= 0");
 //		assertSemanticErrorQuery("0 >= null", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR);
 		assertQueryInvalid(null, "0 >= null");
-		assertSemanticErrorQuery("null >= null", OCLMessages.UnresolvedOperationCall_ERROR_, metaModelManager.getOclVoidType(), PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR, metaModelManager.getOclVoidType());
+		assertSemanticErrorQuery("null >= null", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR, standardLibrary.getOclVoidType());
 	}
     
     @Test public void testLessThan() {
+    	DomainStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
     	loadEPackage("ecore", EcorePackage.eINSTANCE);
     	assertQueryFalse(null, "ecore::EDate{'2000-01-25'} < ecore::EDate{'2000-01-24'}");
     	assertQueryFalse(null, "ecore::EDate{'2000-01-24'} < ecore::EDate{'2000-01-24'}");
@@ -185,23 +191,24 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
 	    // invalid
         //
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("invalid < 0", OCLMessages.UnresolvedOperationCall_ERROR_, metaModelManager.getOclInvalidType(), PivotConstants.LESS_THAN_OPERATOR, metaModelManager.getUnlimitedNaturalType());
+		assertSemanticErrorQuery("invalid < 0", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstants.LESS_THAN_OPERATOR, standardLibrary.getUnlimitedNaturalType());
 //		assertQueryInvalid(null, "invalid < 0");
 //		assertSemanticErrorQuery("0 < invalid", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.LESS_THAN_OPERATOR);
 		assertQueryInvalid(null, "0 < invalid");
-		assertSemanticErrorQuery("invalid < invalid", OCLMessages.UnresolvedOperationCall_ERROR_, metaModelManager.getOclInvalidType(), PivotConstants.LESS_THAN_OPERATOR, metaModelManager.getOclInvalidType());
+		assertSemanticErrorQuery("invalid < invalid", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstants.LESS_THAN_OPERATOR, standardLibrary.getOclInvalidType());
 		//
 		// null
 		//
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("null < 0", OCLMessages.UnresolvedOperationCall_ERROR_, metaModelManager.getOclVoidType(), PivotConstants.LESS_THAN_OPERATOR, metaModelManager.getUnlimitedNaturalType());
+		assertSemanticErrorQuery("null < 0", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstants.LESS_THAN_OPERATOR, standardLibrary.getUnlimitedNaturalType());
 //		assertQueryInvalid(null, "null < 0");
 //		assertSemanticErrorQuery("0 < null", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.LESS_THAN_OPERATOR);
 		assertQueryInvalid(null, "0 < null");
-		assertSemanticErrorQuery("null < null", OCLMessages.UnresolvedOperationCall_ERROR_, metaModelManager.getOclVoidType(), PivotConstants.LESS_THAN_OPERATOR, metaModelManager.getOclVoidType());
+		assertSemanticErrorQuery("null < null", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstants.LESS_THAN_OPERATOR, standardLibrary.getOclVoidType());
 	}
     
     @Test public void testLessThanOrEqual() {
+    	DomainStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
     	loadEPackage("ecore", EcorePackage.eINSTANCE);
     	assertQueryFalse(null, "ecore::EDate{'2000-01-25'} <= ecore::EDate{'2000-01-24'}");
         assertQueryTrue(null, "ecore::EDate{'2000-01-24'} <= ecore::EDate{'2000-01-24'}");
@@ -210,20 +217,20 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
 	    // invalid
         //
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("invalid <= 0", OCLMessages.UnresolvedOperationCall_ERROR_, metaModelManager.getOclInvalidType(), PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR, metaModelManager.getUnlimitedNaturalType());
+		assertSemanticErrorQuery("invalid <= 0", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR, standardLibrary.getUnlimitedNaturalType());
 //		assertQueryInvalid(null, "invalid <= 0");
 //		assertSemanticErrorQuery("0 <= invalid", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR);
 		assertQueryInvalid(null, "0 <= invalid");
-		assertSemanticErrorQuery("invalid <= invalid", OCLMessages.UnresolvedOperationCall_ERROR_, metaModelManager.getOclInvalidType(), PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR, metaModelManager.getOclInvalidType());
+		assertSemanticErrorQuery("invalid <= invalid", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR, standardLibrary.getOclInvalidType());
 		//
 		// null
 		//
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("null <= 0", OCLMessages.UnresolvedOperationCall_ERROR_, metaModelManager.getOclVoidType(), PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR, metaModelManager.getUnlimitedNaturalType());
+		assertSemanticErrorQuery("null <= 0", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR, standardLibrary.getUnlimitedNaturalType());
 //		assertQueryInvalid(null, "null <= 0");
 //		assertSemanticErrorQuery("0 <= null", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR);
 		assertQueryInvalid(null, "0 <= null");
-		assertSemanticErrorQuery("null <= null", OCLMessages.UnresolvedOperationCall_ERROR_, metaModelManager.getOclVoidType(), PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR, metaModelManager.getOclVoidType());
+		assertSemanticErrorQuery("null <= null", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR, standardLibrary.getOclVoidType());
 	}
 
 	@Test public void testNotEqual() {
@@ -291,6 +298,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
      * Tests the implicit oclAsSet() operator.
      */
 	@Test public void test_oclAsSet_implicit() {
+    	PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
 		assertQueryResults(null, "Set{true}", "true->select(true)");
 		assertQueryResults(null, "Set{true}", "Set{true}->select(true)");
 		assertQueryResults(null, "Set{}", "null->select(true)");
@@ -308,7 +316,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
 		assertQueryEquals(null, 4, "'1234'.size()");
 		assertQueryEquals(null, 1, "'1234'->size()");
 		//
-		PrimitiveType booleanType = metaModelManager.getBooleanType();
+		PrimitiveType booleanType = standardLibrary.getBooleanType();
 		assertQueryEquals(null, booleanType, "true.oclType()");
 		Type collectionType = getCollectionType("Set", booleanType);
 		assertQueryEquals(null, collectionType, "true->oclType()");		// Set{true}
@@ -591,8 +599,9 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
      * Tests the oclType() operator for Booleans.
      */
     @Test public void test_oclType_Boolean() {
-    	PrimitiveType booleanType = metaModelManager.getBooleanType();
-    	org.eclipse.ocl.examples.pivot.Class classType = metaModelManager.getClassType();
+    	PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+    	PrimitiveType booleanType = standardLibrary.getBooleanType();
+    	org.eclipse.ocl.examples.pivot.Class classType = standardLibrary.getClassType();
     	assertQueryEquals(null, booleanType, "true.oclType()");
     	assertQueryEquals(null, "Boolean", "true.oclType().name");
 		assertQueryEquals(null, booleanType, "Boolean");
@@ -613,12 +622,13 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
      * Tests the oclType() operator for Classifiers.
      */
     @Test public void test_oclType_Classifier() {
+    	PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
     	@SuppressWarnings("null") @NonNull Type packageType = metaModelManager.getPivotType("Package");
        	assertQueryEquals(pkg1, packageType, "self.oclType()");
     	assertQueryEquals(pkg1, "Package", "self.oclType().name");
 		assertQueryEquals(null, packageType, "Package");
     	assertQueryEquals(null, "Package", "Package.name");
-    	assertQueryEquals(null, metaModelManager.getClassType(), "Package.oclType()");
+    	assertQueryEquals(null, standardLibrary.getClassType(), "Package.oclType()");
     	assertQueryResults(null, "Set{}", "Package.allInstances()");
     	assertQueryEquals(pkg1, 8, "Package.allInstances()->size()");
        	assertQueryResults(pkg1, "self.oclAsType(Package)->closure(ownedPackages)->including(self)", "Package.allInstances()");
@@ -630,9 +640,11 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
      * Tests the oclType() operator for Collections.
      */
     @Test public void test_oclType_Collection() {   	
+    	CompleteEnvironment completeEnvironment = metaModelManager.getCompleteEnvironment();
+    	PivotStandardLibrary standardLibrary = completeEnvironment.getStandardLibrary();
     	assertQueryEquals(null, 1, "Set{1}->oclType().ownedOperations->select(name = 'flatten')->size()");
-    	assertQueryEquals(null, metaModelManager.getSetType(metaModelManager.getOclVoidType(), null, null), "Set{}->oclType()");
-    	assertQueryEquals(null, metaModelManager.getSetType(metaModelManager.getUnlimitedNaturalType(), null, null), "Set{1}->oclType()");
+    	assertQueryEquals(null, completeEnvironment.getSetType(standardLibrary.getOclVoidType(), null, null), "Set{}->oclType()");
+    	assertQueryEquals(null, completeEnvironment.getSetType(standardLibrary.getUnlimitedNaturalType(), null, null), "Set{1}->oclType()");
     	assertQueryResults(null, "Bag{'UnlimitedNatural'}", "Set{1}.oclType().name");
     	assertQueryEquals(null, "Set", "Set{1}->oclType().name");
     	assertSemanticErrorQuery("Set{1}.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "Set(UnlimitedNatural)", "allInstances");
@@ -640,13 +652,14 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
     	assertSemanticErrorQuery("Set{1}.oclType().allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "Bag(Class)", "allInstances");
     	assertSemanticErrorQuery("Set{1}->oclType().allInstances()", OCLMessages.UnresolvedStaticOperationCall_ERROR_, "Set(UnlimitedNatural)", "allInstances", "");
     	assertQueryResults(null, "Set{}", "Set.oclType().allInstances()");
-    	assertQueryEquals(null, metaModelManager.getUnlimitedNaturalType(), "Set{1}->oclType().elementType");
+    	assertQueryEquals(null, standardLibrary.getUnlimitedNaturalType(), "Set{1}->oclType().elementType");
     }
 
     /**
      * Tests the oclType() operator for Enumerations.
      */
     @Test public void test_oclType_Enumeration() {
+    	PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
     	@SuppressWarnings("null") @NonNull Type collectionKindType = metaModelManager.getPivotType("CollectionKind");
 //    	assertQueryEquals(null, metaModelManager.getPivotType("EnumerationLiteral"), "CollectionKind::Set.oclType()");
     	// NB this is not EnumerationLiteral: cf. 4.oclType() is Integer not IntegerLiteral.
@@ -654,7 +667,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
     	assertQueryEquals(null, "CollectionKind", "CollectionKind::Set.oclType().name");
     	assertQueryEquals(null, collectionKindType, "CollectionKind");
     	assertQueryEquals(null, "CollectionKind", "CollectionKind.name");
-    	assertQueryEquals(null, metaModelManager.getClassType(), "CollectionKind.oclType()");
+    	assertQueryEquals(null, standardLibrary.getClassType(), "CollectionKind.oclType()");
     	assertQueryEquals(null, 5, "CollectionKind.allLiterals->size()");
     	assertSemanticErrorQuery("CollectionKind.oclType().ownedLiteral", OCLMessages.UnresolvedStaticProperty_ERROR_, "Class", "ownedLiteral");
     	assertQueryResults(null, "Set{CollectionKind::Bag,CollectionKind::Collection,CollectionKind::_'OrderedSet',CollectionKind::_'Sequence',CollectionKind::_'Set'}", "CollectionKind.allInstances()");
@@ -666,11 +679,12 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
      * Tests the oclType() operator for Numerics.
      */
     @Test public void test_oclType_Numeric() {
-    	PrimitiveType integerType = metaModelManager.getIntegerType();
-    	assertQueryEquals(null, metaModelManager.getUnlimitedNaturalType(), "3.oclType()");
-    	assertQueryEquals(null, metaModelManager.getRealType(), "3.0.oclType()");
-    	assertQueryEquals(null, metaModelManager.getUnlimitedNaturalType(), "*.oclType()");
-		assertQueryEquals(null, metaModelManager.getClassType(), "Integer.oclType()");
+    	PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+    	PrimitiveType integerType = standardLibrary.getIntegerType();
+    	assertQueryEquals(null, standardLibrary.getUnlimitedNaturalType(), "3.oclType()");
+    	assertQueryEquals(null, standardLibrary.getRealType(), "3.0.oclType()");
+    	assertQueryEquals(null, standardLibrary.getUnlimitedNaturalType(), "*.oclType()");
+		assertQueryEquals(null, standardLibrary.getClassType(), "Integer.oclType()");
     	assertQueryEquals(null, integerType, "Integer");
     	assertSemanticErrorQuery("Integer.allInstances()", OCLMessages.UnresolvedStaticOperationCall_ERROR_, "Integer", "allInstances", "");
     	assertSemanticErrorQuery("3.oclType().allInstances()", OCLMessages.UnresolvedStaticOperationCall_ERROR_, "UnlimitedNatural", "allInstances", "");
@@ -682,12 +696,13 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
      * Tests the oclType() operator for OclAny.
      */
     @Test public void test_oclType_OclAny() {
-    	AnyType anyType = metaModelManager.getOclAnyType();
-    	assertQueryEquals(null, metaModelManager.getOclVoidType(), "null.oclAsType(OclAny).oclType()");		// Cast does not change the dynamic type
+    	PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+    	AnyType anyType = standardLibrary.getOclAnyType();
+    	assertQueryEquals(null, standardLibrary.getOclVoidType(), "null.oclAsType(OclAny).oclType()");		// Cast does not change the dynamic type
 //    	assertQueryEquals(null, "OclAny", "null.oclAsType(OclAny).name");
 		assertQueryEquals(null, anyType, "OclAny");
     	assertQueryEquals(null, "OclAny", "OclAny.name");
-    	assertQueryEquals(null, metaModelManager.getClassType(), "OclAny.oclType()");
+    	assertQueryEquals(null, standardLibrary.getClassType(), "OclAny.oclType()");
     	assertSemanticErrorQuery("OclAny.allInstances()", OCLMessages.UnresolvedStaticOperationCall_ERROR_, "OclAny", "allInstances", "");
     	assertSemanticErrorQuery("null.oclAsType(OclAny).oclType().allInstances()", OCLMessages.UnresolvedStaticOperationCall_ERROR_, "OclAny", "allInstances", "");
     	assertQueryResults(null, "Set{}", "OclAny.oclType().allInstances()");
@@ -697,12 +712,13 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
      * Tests the oclType() operator for OclInvalid.
      */
     @Test public void test_oclType_OclInvalid() {
-       	InvalidType invalidType = metaModelManager.getOclInvalidType();
+    	PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+       	InvalidType invalidType = standardLibrary.getOclInvalidType();
     	assertQueryInvalid(null, "invalid.oclType()");
     	assertQueryInvalid(null, "invalid.oclType().name");
 		assertQueryEquals(null, invalidType, "OclInvalid");
     	assertQueryEquals(null, "OclInvalid", "OclInvalid.name");
-    	assertQueryEquals(null, metaModelManager.getClassType(), "OclInvalid.oclType()");
+    	assertQueryEquals(null, standardLibrary.getClassType(), "OclInvalid.oclType()");
     	assertQueryInvalid(null, "OclInvalid.allInstances()");
     	assertQueryInvalid(null, "invalid.oclType().allInstances()");
     	assertQueryResults(null, "Set{}", "OclInvalid.oclType().allInstances()");
@@ -713,12 +729,13 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
      * Tests the oclType() operator for OclVoid.
      */
     @Test public void test_oclType_OclVoid() {
-    	VoidType nullType = metaModelManager.getOclVoidType();
+    	PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+    	VoidType nullType = standardLibrary.getOclVoidType();
     	assertQueryEquals(null, nullType, "null.oclType()");
     	assertQueryEquals(null, "OclVoid", "null.oclType().name");
 		assertQueryEquals(null, nullType, "OclVoid");
     	assertQueryEquals(null, "OclVoid", "OclVoid.name");
-    	assertQueryEquals(null, metaModelManager.getClassType(), "OclVoid.oclType()");
+    	assertQueryEquals(null, standardLibrary.getClassType(), "OclVoid.oclType()");
     	assertQueryResults(null, "Set{null}", "OclVoid.allInstances()");
     	assertQueryResults(null, "Set{null}", "null.oclType().allInstances()");
     	assertQueryResults(null, "Set{}", "OclVoid.oclType().allInstances()");
@@ -729,13 +746,14 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
      * Tests the oclType() operator for Tuples.
      */
     @Test public void test_oclType_Tuple() {
+    	PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
     	TuplePartId partId = IdManager.getTuplePartId(0, "a", TypeId.INTEGER);
     	TupleTypeId tupleId = IdManager.getTupleTypeId("Tuple", partId);
     	TupleType tupleType = metaModelManager.getIdResolver().getTupleType(tupleId);
 //    	Metaclass<?> tupleMetaclass = getMetaclass(tupleType);
 		assertQueryEquals(null, tupleType, "Tuple{a:Integer=3}.oclType()");
     	assertQueryEquals(null, tupleType, "Tuple(a:Integer)");
-		assertQueryEquals(null, metaModelManager.getClassType(), "Tuple(a:Integer).oclType()");
+		assertQueryEquals(null, standardLibrary.getClassType(), "Tuple(a:Integer).oclType()");
     	assertSemanticErrorQuery("Tuple(a:Integer).allInstances()", OCLMessages.UnresolvedStaticOperationCall_ERROR_, "Tuple(a:Integer)", "allInstances", "");
     	assertSemanticErrorQuery("Tuple{a:Integer=3}.oclType().allInstances()", OCLMessages.UnresolvedStaticOperationCall_ERROR_, "Tuple(a:Integer)", "allInstances", "");	// FIXME
     	assertQueryResults(null, "Set{}", "Tuple(a:Integer).oclType().allInstances()");
@@ -746,11 +764,12 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
      * Tests the oclType() operator.
      */
     @Test public void test_oclType() {
-		assertQueryEquals(null, metaModelManager.getStringType(), "'string'.oclType()");
-		assertQueryEquals(null, metaModelManager.getOclVoidType(), "self.oclType()");
-    	assertQueryEquals(null, metaModelManager.getClassType(), "3.oclType().oclType()");
-    	assertQueryEquals(null, metaModelManager.getClassType(), "3.oclType().oclType().oclType()");
-    	assertQueryEquals(null, metaModelManager.getClassType(), "Boolean.oclType()");
+    	PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+		assertQueryEquals(null, standardLibrary.getStringType(), "'string'.oclType()");
+		assertQueryEquals(null, standardLibrary.getOclVoidType(), "self.oclType()");
+    	assertQueryEquals(null, standardLibrary.getClassType(), "3.oclType().oclType()");
+    	assertQueryEquals(null, standardLibrary.getClassType(), "3.oclType().oclType().oclType()");
+    	assertQueryEquals(null, standardLibrary.getClassType(), "Boolean.oclType()");
     	assertQueryEquals(null, "Class", "Boolean.oclType().name");
     	assertSemanticErrorQuery("3.oclType(OclAny)", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "oclType", "OclAny");
     }

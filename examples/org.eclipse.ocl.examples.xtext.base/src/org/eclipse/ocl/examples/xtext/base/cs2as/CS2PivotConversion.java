@@ -325,7 +325,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 		}
 		allPivotResources.addAll(metaModelManager.getLibraries());			// Library elements are not dead
 		allPivotResources.addAll(cs2asResourceMap.keySet());			// Incoming elements are not dead
-		allPivotResources.remove(metaModelManager.getOrphanage().eResource());
+		allPivotResources.remove(metaModelManager.getCompleteModel().getOrphanage().eResource());
 		@SuppressWarnings("serial")
 		Map<EObject, Collection<Setting>> referencesToOrphans = new EcoreUtil.CrossReferencer(allPivotResources)
 		{
@@ -1036,7 +1036,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 			}
 		}
 		if (pivotType == null) {
-			pivotType = metaModelManager.getOclVoidType();
+			pivotType = metaModelManager.getStandardLibrary().getOclVoidType();
 			isRequired = false;
 		}
 		setType(pivotElement, pivotType, isRequired);
@@ -1214,7 +1214,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 			if (unspecializedPivotElement instanceof CollectionType) {
 				TemplateParameterSubstitutionCS csTemplateParameterSubstitution = ownedTemplateBinding.getOwnedParameterSubstitution().get(0);
 				Type templateArgument = PivotUtil.getPivot(Type.class, csTemplateParameterSubstitution.getOwnedActualParameter());
-				specializedPivotElement = templateArgument != null ? metaModelManager.getCollectionType((CollectionType) unspecializedPivotElement, templateArgument, null, null) : unspecializedPivotElement;
+				specializedPivotElement = templateArgument != null ? completeEnvironment.getCollectionType((CollectionType) unspecializedPivotElement, templateArgument, null, null) : unspecializedPivotElement;
 			}
 			else {
 				List<Type> templateArguments = new ArrayList<Type>();
@@ -1250,7 +1250,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 			if (asResource != null) {
 				for (EObject eObject : asResource.getContents()) {
 					if (eObject instanceof Root) {
-						@SuppressWarnings("null") @NonNull List<org.eclipse.ocl.examples.pivot.Package> nestedPackage = ((Root)eObject).getOwnedPackages();
+						List<org.eclipse.ocl.examples.pivot.Package> nestedPackage = ((Root)eObject).getOwnedPackages();
 						gatherOldPackages(nestedPackage);
 					}
 				}
@@ -1327,7 +1327,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 		//	Load the library. 
 		//
 		@SuppressWarnings("unused")
-		AnyType oclAnyType = metaModelManager.getOclAnyType();
+		AnyType oclAnyType = metaModelManager.getStandardLibrary().getOclAnyType();
 		//
 		//	Perform the post-order traversal to create and install the bulk of non-package/class
 		//	elements.

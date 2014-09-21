@@ -40,6 +40,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainCompletePackage;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
 import org.eclipse.ocl.examples.domain.elements.DomainEnumeration;
 import org.eclipse.ocl.examples.domain.elements.DomainEnumerationLiteral;
+import org.eclipse.ocl.examples.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
@@ -196,6 +197,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		}
 	}
 
+	protected final @NonNull DomainEnvironment environment;
 	protected final @NonNull DomainStandardLibrary standardLibrary;
 	private final @NonNull Map<Object, DomainClass> key2type = new HashMap<Object, DomainClass>();	// Concurrent puts are duplicates
 	private /*@LazyNonNull*/ Map<EnumerationLiteralId, Enumerator> enumerationLiteral2enumerator = null;	// Concurrent puts are duplicates
@@ -208,8 +210,9 @@ public abstract class AbstractIdResolver implements IdResolver
 	 */
 	private Map<String, Map<DomainType, WeakReference<DomainTypedElement>>> tupleParts = null;		// Lazily created
 	
-	public AbstractIdResolver(@NonNull DomainStandardLibrary standardLibrary) {
-		this.standardLibrary = standardLibrary;
+	public AbstractIdResolver(@NonNull DomainEnvironment environment) {
+		this.environment = environment;
+		this.standardLibrary = environment.getStandardLibrary();
 	}
 
 	public @Nullable Object boxedValueOf(@Nullable Object unboxedValue) {
@@ -525,19 +528,19 @@ public abstract class AbstractIdResolver implements IdResolver
 			TypeId elementTypeId = typeId.getElementTypeId();
 			DomainType elementType = getType(elementTypeId, null);
 			if (generalizedId == TypeId.BAG) {
-				return standardLibrary.getBagType(elementType, lower, upper);
+				return environment.getBagType(elementType, lower, upper);
 			}
 			else if (generalizedId == TypeId.COLLECTION) {
-				return standardLibrary.getCollectionType(standardLibrary.getCollectionType(), elementType, lower, upper);
+				return environment.getCollectionType(standardLibrary.getCollectionType(), elementType, lower, upper);
 			}
 			else if (generalizedId == TypeId.ORDERED_SET) {
-				return standardLibrary.getOrderedSetType(elementType, lower, upper);
+				return environment.getOrderedSetType(elementType, lower, upper);
 			}
 			else if (generalizedId == TypeId.SEQUENCE) {
-				return standardLibrary.getSequenceType(elementType, lower, upper);
+				return environment.getSequenceType(elementType, lower, upper);
 			}
 			else if (generalizedId == TypeId.SET) {
-				return standardLibrary.getSetType(elementType, lower, upper);
+				return environment.getSetType(elementType, lower, upper);
 			}
 			else {
 				throw new UnsupportedOperationException();
@@ -595,6 +598,10 @@ public abstract class AbstractIdResolver implements IdResolver
 		return elementType;
 	}
 
+	public @NonNull DomainEnvironment getEnvironment() {
+		return environment;
+	}
+
 	public synchronized @NonNull DomainClass getJavaType(@NonNull Class<?> javaClass) {
 		DomainClass type = key2type.get(javaClass);
 		if (type != null) {
@@ -607,7 +614,7 @@ public abstract class AbstractIdResolver implements IdResolver
 			type = standardLibrary.getStringType();
 		}
 		else { */
-			type = new JavaType(standardLibrary, javaClass);
+			type = new JavaType(environment, javaClass);
 //		}
 		key2type.put(javaClass, type);
 		return type;
@@ -944,9 +951,9 @@ public abstract class AbstractIdResolver implements IdResolver
 	public @NonNull DomainType visitClassId(@NonNull ClassId id) {
 		DomainPackage parentPackage = (DomainPackage) id.getParent().accept(this);
 		assert parentPackage != null;
-		DomainType nestedType = standardLibrary.getNestedType(parentPackage, id.getName());
+		DomainType nestedType = environment.getNestedType(parentPackage, id.getName());
 		if (nestedType == null) {
-			nestedType = standardLibrary.getNestedType(parentPackage, id.getName());
+			nestedType = environment.getNestedType(parentPackage, id.getName());
 			throw new UnsupportedOperationException();
 		}
 		return nestedType;
@@ -959,7 +966,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		}
 		CollectionTypeId collectionTypeId = id.getGeneralizedId();
 		DomainClass collectionType = getCollectionType(collectionTypeId);
-		return standardLibrary.getCollectionType(collectionType, elementType, null, null);
+		return environment.getCollectionType(collectionType, elementType, null, null);
 	}
 
 	public @NonNull DomainType visitCollectionTypeId(@NonNull CollectionTypeId id) {
@@ -969,9 +976,9 @@ public abstract class AbstractIdResolver implements IdResolver
 	public @NonNull DomainType visitDataTypeId(@NonNull DataTypeId id) {
 		DomainPackage parentPackage = (DomainPackage) id.getParent().accept(this);
 		assert parentPackage != null;
-		DomainType nestedType = standardLibrary.getNestedType(parentPackage, id.getName());
+		DomainType nestedType = environment.getNestedType(parentPackage, id.getName());
 		if (nestedType == null) {
-			nestedType = standardLibrary.getNestedType(parentPackage, id.getName());
+			nestedType = environment.getNestedType(parentPackage, id.getName());
 			if (nestedType == null) {
 				throw new UnsupportedOperationException();
 			}
@@ -982,9 +989,9 @@ public abstract class AbstractIdResolver implements IdResolver
 	public @NonNull DomainEnumeration visitEnumerationId(@NonNull EnumerationId id) {
 		DomainPackage parentPackage = (DomainPackage) id.getParent().accept(this);
 		assert parentPackage != null;
-		DomainType nestedType = standardLibrary.getNestedType(parentPackage, id.getName());
+		DomainType nestedType = environment.getNestedType(parentPackage, id.getName());
 		if (nestedType == null) {
-			nestedType = standardLibrary.getNestedType(parentPackage, id.getName());
+			nestedType = environment.getNestedType(parentPackage, id.getName());
 			throw new UnsupportedOperationException();
 		}
 		if (!(nestedType instanceof DomainEnumeration)) {
@@ -1016,7 +1023,7 @@ public abstract class AbstractIdResolver implements IdResolver
 	public @NonNull DomainPackage visitNestedPackageId(@NonNull NestedPackageId packageId) {
 		DomainPackage parentPackage = (DomainPackage) packageId.getParent().accept(this);
 		assert parentPackage != null;
-		DomainPackage nestedPackage = standardLibrary.getNestedPackage(parentPackage, packageId.getName());
+		DomainPackage nestedPackage = environment.getNestedPackage(parentPackage, packageId.getName());
 		if (nestedPackage == null) {
 			throw new UnsupportedOperationException();
 		}

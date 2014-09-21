@@ -111,7 +111,7 @@ public class NavigatingArgCSAttribution extends AbstractAttribution
 						}
 						else {
 							elementType = type;
-							collectionType = metaModelManager.getSetType();
+							collectionType = metaModelManager.getStandardLibrary().getSetType();
 						}
 						if (NavigationUtil.isIteration(metaModelManager, csRoundBracketedClause, collectionType)) {
 							if (environmentView.accepts(PivotPackage.Literals.TYPE)) {

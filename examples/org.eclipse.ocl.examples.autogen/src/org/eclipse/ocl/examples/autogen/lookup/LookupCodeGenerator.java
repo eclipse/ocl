@@ -352,7 +352,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		@SuppressWarnings("null")@NonNull String packageName = javaPackage.getName();
 		@SuppressWarnings("null")@NonNull String className = javaClass.getSimpleName();
 		RootPackageId javaPackageId = IdManager.getRootPackageId(packageName);
-		Orphanage orphanage = metaModelManager.getOrphanage();
+		Orphanage orphanage = metaModelManager.getCompleteModel().getOrphanage();
 		org.eclipse.ocl.examples.pivot.Package asPackage = DomainUtil.getNamedElement(orphanage.getOwnedPackages(), packageName);
 		if (asPackage == null) {
 			asPackage = PivotUtil.createPackage(packageName, packageName, packageName, javaPackageId);

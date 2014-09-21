@@ -107,7 +107,7 @@ public class DelegateUIConstraintLocator extends DelegateConstraintLocator imple
 				if (containingRoot == null) {
 					externalURI = contextPackage.getURI();
 				}
-				else if (containingRoot != PivotUtil.getContainingRoot(metaModelManager.getOclAnyType())) {
+				else if (containingRoot != PivotUtil.getContainingRoot(metaModelManager.getStandardLibrary().getOclAnyType())) {
 					externalURI = containingRoot.getExternalURI();
 					if (PivotUtil.isASURI(externalURI)) {
 						@SuppressWarnings("null")

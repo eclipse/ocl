@@ -34,6 +34,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.internal.impl.PivotFactoryImpl;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
 
 /**
  * Implementation of the {@link Environment} for parsing OCL expressions on
@@ -211,7 +212,7 @@ public class PivotEnvironment extends AbstractEnvironment {
 	}
 
 	public @NonNull DomainStandardLibrary getOCLStandardLibrary() {
-		return metaModelManager;
+		return metaModelManager.getStandardLibrary();
 	}
 
 	public @NonNull PivotFactory getOCLFactory() {
@@ -222,5 +223,9 @@ public class PivotEnvironment extends AbstractEnvironment {
 //	protected OCLRoot createOCLLibrary() {
 //		return EcoreOCLLibrary.getDefault();
 //	}
+
+	public @NonNull PivotStandardLibrary getStandardLibrary() {
+		return metaModelManager.getStandardLibrary();
+	}
 }
 

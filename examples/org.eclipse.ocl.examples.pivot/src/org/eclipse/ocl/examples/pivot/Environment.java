@@ -18,6 +18,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.examples.pivot.utilities.EnvironmentRegistryImpl;
 
 /**
@@ -141,6 +142,8 @@ public interface Environment extends BasicEnvironment {
 	@NonNull DomainStandardLibrary getOCLStandardLibrary();
 
 	@NonNull MetaModelManager getMetaModelManager();
+
+	@NonNull PivotStandardLibrary getStandardLibrary();
 	
 	/**
 	 * Retrieves a list of all possible states of the specified <code>owner</code>

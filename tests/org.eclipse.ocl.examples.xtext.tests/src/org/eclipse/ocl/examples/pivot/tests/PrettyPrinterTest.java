@@ -30,7 +30,7 @@ public class PrettyPrinterTest extends PivotSimpleTestSuite
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        helper.setContext(metaModelManager.getClassType());
+        helper.setContext(metaModelManager.getStandardLibrary().getClassType());
     }
     
 	protected @Nullable Object assertPrintResults(@Nullable Object context, @NonNull String expression) {

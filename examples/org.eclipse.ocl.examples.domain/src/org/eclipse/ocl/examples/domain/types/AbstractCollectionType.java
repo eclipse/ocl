@@ -16,6 +16,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
+import org.eclipse.ocl.examples.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
@@ -31,9 +32,9 @@ public class AbstractCollectionType extends AbstractSpecializedType implements D
 	protected final @NonNull IntegerValue upper;
 	protected final @NonNull CollectionTypeId typeId;
 	
-	public AbstractCollectionType(@NonNull DomainStandardLibrary standardLibrary, @NonNull String name,
+	public AbstractCollectionType(@NonNull DomainEnvironment environment, @NonNull String name,
 			@NonNull DomainClass containerType, @NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
-		super(standardLibrary, name, containerType);
+		super(environment, name, containerType);
 		this.elementType = elementType;
 		this.lower = lower != null ? lower : ValuesUtil.ZERO_VALUE;
 		this.upper = upper != null ? upper : ValuesUtil.UNLIMITED_VALUE;
@@ -67,18 +68,18 @@ public class AbstractCollectionType extends AbstractSpecializedType implements D
 		else {
 			if (commonContainerClass.isOrdered()) {
 				if (commonContainerClass.isUnique()) {
-					return standardLibrary.getOrderedSetType(commonElementClass, null, null);
+					return environment.getOrderedSetType(commonElementClass, null, null);
 				}
 				else {
-					return standardLibrary.getSequenceType(commonElementClass, null, null);
+					return environment.getSequenceType(commonElementClass, null, null);
 				}
 			}
 			else {
 				if (commonContainerClass.isUnique()) {
-					return standardLibrary.getSetType(commonElementClass, null, null);
+					return environment.getSetType(commonElementClass, null, null);
 				}
 				else {
-					return standardLibrary.getBagType(commonElementClass, null, null);
+					return environment.getBagType(commonElementClass, null, null);
 				}
 			}
 		}

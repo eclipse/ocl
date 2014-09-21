@@ -578,7 +578,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 			return false;
 		}
 		MetaModelManager metaModelManager = getMetaModelManager();
-		Type oclTypeType = metaModelManager.getOclTypeType();
+		Type oclTypeType = metaModelManager.getStandardLibrary().getOclTypeType();
 		return metaModelManager.conformsTo(type, TemplateParameterSubstitutions.EMPTY, oclTypeType, TemplateParameterSubstitutions.EMPTY);
 	}
 

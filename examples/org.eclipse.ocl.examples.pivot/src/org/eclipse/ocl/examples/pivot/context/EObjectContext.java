@@ -58,7 +58,7 @@ public class EObjectContext extends AbstractParserContext
 				e.printStackTrace();
 			}
 			if (classContext2 == null) {
-				classContext2 = metaModelManager.getOclVoidType();
+				classContext2 = metaModelManager.getStandardLibrary().getOclVoidType();
 			}
 			classContext = classContext2;
 		}

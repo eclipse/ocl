@@ -862,7 +862,7 @@ public abstract class PivotTestSuite extends PivotTestCase
         
     	ExpressionInOCL constraint = aHelper.createInvariant(expression);
 //		DomainStandardLibrary stdlib = ocl.getEnvironment().getOCLStandardLibrary();
-		if (constraint.getBodyExpression().getType() != metaModelManager.getBooleanType()) {
+		if (constraint.getBodyExpression().getType() != metaModelManager.getStandardLibrary().getBooleanType()) {
 			throw new IllegalArgumentException("constraint is not boolean"); //$NON-NLS-1$
 		}
 		try {
@@ -1301,7 +1301,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	}
    
 	protected @NonNull org.eclipse.ocl.examples.pivot.Class getMetaclass(@NonNull String name) {
-		return metaModelManager.getRequiredLibraryType(name);
+		return metaModelManager.getStandardLibrary().getRequiredLibraryType(name);
 	}
 	
 	protected Object getNull() {
@@ -1312,8 +1312,8 @@ public abstract class PivotTestSuite extends PivotTestCase
 		return DomainUtil.nonNullState(ocl);
 	}
 	
-	protected @NonNull DomainStandardLibrary getOCLStandardLibrary() {
-		return ocl.getEnvironment().getOCLStandardLibrary();
+	protected @NonNull DomainStandardLibrary getStandardLibrary() {
+		return ocl.getEnvironment().getStandardLibrary();
 	}
 
 	protected @NonNull String getTestPackageName() {
@@ -1321,11 +1321,11 @@ public abstract class PivotTestSuite extends PivotTestCase
 	}
 	
 	protected @NonNull DomainType getUMLBoolean() {
-		return getOCLStandardLibrary().getBooleanType();
+		return getStandardLibrary().getBooleanType();
 	}
 	
 	protected @NonNull DomainType getUMLInteger() {
-		return getOCLStandardLibrary().getIntegerType();
+		return getStandardLibrary().getIntegerType();
 	}
 
 	protected @NonNull DomainPackage getUMLMetamodel() {
@@ -1333,11 +1333,11 @@ public abstract class PivotTestSuite extends PivotTestCase
 	}
 	
 	protected @NonNull DomainType getUMLString() {
-		return getOCLStandardLibrary().getStringType();
+		return getStandardLibrary().getStringType();
 	}
 	
 	protected @NonNull DomainType getUMLUnlimitedNatural() {
-		return getOCLStandardLibrary().getUnlimitedNaturalType();
+		return getStandardLibrary().getUnlimitedNaturalType();
 	}
 
 	protected void initializeResourceSet() {

@@ -15,7 +15,6 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
-import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
@@ -87,11 +86,13 @@ public interface CompleteClass extends NamedElement
 	@NonNull List<org.eclipse.ocl.examples.pivot.Class> getPartialClasses();
 
 	boolean conformsTo(@NonNull DomainType elementType);
+	boolean conformsTo(@NonNull CompleteClass thatCompleteClass);
 	
 	@NonNull org.eclipse.ocl.examples.pivot.Class getPivotClass();
 
 	@Nullable CollectionType findCollectionType(@NonNull CollectionTypeParameters<Type> typeParameters);
 	@NonNull CollectionType getCollectionType(@NonNull CollectionTypeParameters<Type> typeParameters);
+	@NonNull org.eclipse.ocl.examples.pivot.Class getBehavioralClass();
 	@NonNull CompleteInheritance getCompleteInheritance();
 
 	@Nullable DomainOperation getOperation(@NonNull OperationId operationId);
@@ -117,10 +118,10 @@ public interface CompleteClass extends NamedElement
 		void dispose();
 		void uninstall();
 		@NonNull CompleteModel.Internal getCompleteModel();
-		@NonNull Iterable<? extends DomainInheritance> getInitialSuperInheritances();
 		@NonNull MetaModelManager getMetaModelManager();
 		CompletePackage.Internal getOwningCompletePackage();
 		@NonNull PartialClasses getPartialClasses();
 		@NonNull Iterable<? extends DomainClass> getProperSuperClasses();
 	}
+
 } // CompleteClass

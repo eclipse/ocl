@@ -58,6 +58,7 @@ public class ParentCompletePackageImpl extends RootCompletePackageImpl implement
 		return visitor.visitParentCompletePackage(this);
 	}
 	
+	@SuppressWarnings("null")
 	public @NonNull PackageId getMetapackageId() {
 		return metapackageId;
 	}

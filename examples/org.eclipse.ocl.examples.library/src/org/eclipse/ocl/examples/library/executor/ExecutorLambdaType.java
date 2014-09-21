@@ -11,6 +11,7 @@
 package org.eclipse.ocl.examples.library.executor;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
@@ -24,8 +25,8 @@ public class ExecutorLambdaType extends AbstractClass implements ExecutorTypeArg
 {
 	protected final @NonNull TypeId typeId;
 
-	public ExecutorLambdaType(@NonNull DomainStandardLibrary standardLibrary, @NonNull String name, @NonNull ExecutorTypeArgument... typeArguments) {
-		super(standardLibrary, name);
+	public ExecutorLambdaType(@NonNull DomainEnvironment environment, @NonNull String name, @NonNull ExecutorTypeArgument... typeArguments) {
+		super(environment, name);
 		typeId = IdManager.getLambdaTypeId(name, IdManager.getParametersId(typeArguments));
 	}
 

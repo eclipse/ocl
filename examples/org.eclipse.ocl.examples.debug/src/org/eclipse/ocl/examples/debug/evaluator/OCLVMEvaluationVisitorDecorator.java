@@ -16,6 +16,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.OCLDebugPlugin;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
+import org.eclipse.ocl.examples.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.examples.domain.elements.DomainExpression;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.evaluation.DomainLogger;
@@ -69,6 +70,13 @@ public abstract class OCLVMEvaluationVisitorDecorator extends AbstractEvaluation
 	@Override
 	public @NonNull EvaluationVisitor getClonedEvaluator() {
 		return delegate.getClonedEvaluator();
+	}
+
+	/**
+     * Delegates to my decorated visitor.
+     */
+	public @NonNull DomainEnvironment getCompleteEnvironment() {
+		return delegate.getCompleteEnvironment();
 	}
 
 	/**

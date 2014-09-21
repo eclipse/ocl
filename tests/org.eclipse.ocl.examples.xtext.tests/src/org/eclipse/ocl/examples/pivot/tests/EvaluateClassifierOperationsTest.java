@@ -33,7 +33,7 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
     protected void setUp() throws Exception {
 		EssentialOCLLinkingService.DEBUG_RETRY = true;
         super.setUp();
-        helper.setContext(metaModelManager.getClassType());
+        helper.setContext(metaModelManager.getStandardLibrary().getClassType());
     }
 
 	/**
