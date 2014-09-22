@@ -53,6 +53,7 @@ import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutions;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -236,27 +237,10 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 		}
 	}
 
-	protected boolean zzisBoxedType(@NonNull MetaModelManager metaModelManager, @NonNull CGValuedElement cgValue) {
-		Element ast = cgValue.getAst();
-		if (!(ast instanceof TypedElement)) {
-			return false;
-		}
-		Type asType = ((TypedElement)ast).getType();
-		if (asType == null) {
-			return false;
-		}
-		Type type = PivotUtil.getType(asType);
-		if (type instanceof DomainEnumeration) {
-			return false;
-		}
-		Type oclTypeType = metaModelManager.getStandardLibrary().getOclTypeType();
-		return metaModelManager.conformsTo(type, TemplateParameterSubstitutions.EMPTY, oclTypeType, TemplateParameterSubstitutions.EMPTY);
-	}
-
 	@Override
 	public void appendEqualsValue(@NonNull JavaStream js, @NonNull CGValuedElement thisValue, @NonNull CGValuedElement thatValue, boolean notEquals) {
 		MetaModelManager metaModelManager = js.getCodeGenerator().getMetaModelManager();
-		if (zzisBoxedType(metaModelManager, thisValue) && zzisBoxedType(metaModelManager, thatValue)) {
+		if (isBoxedType(metaModelManager, thisValue) && isBoxedType(metaModelManager, thatValue)) {
 			boolean nullSafe = thisValue.isNonNull() && thatValue.isNonNull();
 			if (!nullSafe) {
 				String prefix = "";
@@ -346,6 +330,26 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 	@Override
 	public boolean isAssignableTo(@NonNull Class<?> javaClass) {
 		return javaClass == Object.class;
+	}
+
+	protected boolean isBoxedType(@NonNull MetaModelManager metaModelManager, @NonNull CGValuedElement cgValue) {
+		Element ast = cgValue.getAst();
+		if (!(ast instanceof TypedElement)) {
+			return false;
+		}
+		Type asType = ((TypedElement)ast).getType();
+		if (asType == null) {
+			return false;
+		}
+		if (asType instanceof VoidType) {
+			return false;
+		}
+		Type type = PivotUtil.getType(asType);
+		if (type instanceof DomainEnumeration) {
+			return false;
+		}
+		Type oclTypeType = metaModelManager.getStandardLibrary().getOclTypeType();
+		return metaModelManager.conformsTo(type, TemplateParameterSubstitutions.EMPTY, oclTypeType, TemplateParameterSubstitutions.EMPTY);
 	}
 
 	@Override

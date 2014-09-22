@@ -102,7 +102,8 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 
 	// FIXME cf MetaModelManager
 	public @NonNull DomainClass getMetaclass(@NonNull DomainType classType) {
-		return OCLstdlibTables.Types._OclType;
+//		return OCLstdlibTables.Types._OclType;
+		return getClassType();
 	}
 
 	public @Nullable DomainPackage getNestedPackage(@NonNull DomainPackage parentPackage, @NonNull String name) {

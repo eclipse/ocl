@@ -21,6 +21,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.examples.domain.ids.OperationId;
@@ -58,18 +59,32 @@ public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 
 	@Override
 	public @NonNull Iterable<? extends DomainInheritance> getInitialSuperInheritances() {
-		final Iterator<? extends DomainClass> iterator = domainClass.getSuperClasses().iterator();
+		Iterable<? extends DomainClass> superClasses = domainClass.getSuperClasses();
+		final Iterator<? extends DomainClass> iterator = superClasses.iterator();
 		return new Iterable<DomainInheritance>()
 		{
 			public Iterator<DomainInheritance> iterator() {
 				return new Iterator<DomainInheritance>()
 				{
+					private @NonNull DomainStandardLibrary standardLibrary = evaluationPackage.getStandardLibrary();
+					private boolean gotOne = false;
+					
 					public boolean hasNext() {
-						return iterator.hasNext();
+						return !gotOne || iterator.hasNext();
 					}
 
 					public DomainInheritance next() {
-						return iterator.next().getInheritance(evaluationPackage.getStandardLibrary());
+						DomainClass next = null;
+						if (!gotOne) {
+							gotOne = true;
+							if (!iterator.hasNext()) {
+								next = standardLibrary.getOclAnyType();
+							}
+						}
+						if (next == null) {
+							next = iterator.next();
+						}
+						return next.getInheritance(standardLibrary);
 					}
 
 					public void remove() {

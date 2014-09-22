@@ -26,6 +26,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
@@ -95,33 +96,40 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 
 	@Override
 	public @NonNull Iterable<? extends DomainInheritance> getInitialSuperInheritances() {
-		if (eClassifier instanceof EClass) {
-			final Iterator<EClass> iterator = ((EClass)eClassifier).getESuperTypes().iterator();
-			return new Iterable<DomainInheritance>()
-			{
-				public Iterator<DomainInheritance> iterator() {
-					return new Iterator<DomainInheritance>()
-					{
-						public boolean hasNext() {
-							return iterator.hasNext();
-						}
+		List<EClass> eSuperTypes = eClassifier instanceof EClass ? ((EClass)eClassifier).getESuperTypes() : Collections.<EClass>emptyList();
+		final Iterator<EClass> iterator = eSuperTypes.iterator();
+		return new Iterable<DomainInheritance>()
+		{
+			public Iterator<DomainInheritance> iterator() {
+				return new Iterator<DomainInheritance>()
+				{
+					private boolean gotOne = false;
+					
+					public boolean hasNext() {
+						return !gotOne || iterator.hasNext();
+					}
 
-						public DomainInheritance next() {
-							EClass next = iterator.next();
-							assert next != null;
-							return evaluationPackage.getIdResolver().getInheritance(next);
+					public DomainInheritance next() {
+						if (!gotOne) {
+							gotOne = true;
+							if (!iterator.hasNext()) {
+								DomainStandardLibrary standardLibrary = evaluationPackage.getStandardLibrary();
+								DomainClass oclAnyType = standardLibrary.getOclAnyType();
+								return standardLibrary.getInheritance(oclAnyType);
+							}
 						}
+						EClass next = iterator.next();
+						assert next != null;
+						EcoreIdResolver idResolver = evaluationPackage.getIdResolver();
+						return idResolver.getInheritance(next);
+					}
 
-						public void remove() {
-							throw new UnsupportedOperationException();
-						}					
-					};
-				}			
-			};
-		}
-		else {
-			return EMPTY_INHERITANCES;
-		}
+					public void remove() {
+						throw new UnsupportedOperationException();
+					}					
+				};
+			}			
+		};
 	}
 	
 	public @NonNull DomainPackage getOwningPackage() {
