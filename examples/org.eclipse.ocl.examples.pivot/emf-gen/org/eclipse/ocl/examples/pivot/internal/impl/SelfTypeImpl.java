@@ -80,6 +80,8 @@ public class SelfTypeImpl extends ClassImpl implements SelfType
 				return allOwnedElements();
 			case PivotPackage.SELF_TYPE___GET_VALUE__TYPE_STRING:
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
+			case PivotPackage.SELF_TYPE___FLATTENED_TYPE:
+				return flattenedType();
 			case PivotPackage.SELF_TYPE___IS_CLASS:
 				return isClass();
 			case PivotPackage.SELF_TYPE___IS_TEMPLATE_PARAMETER:

@@ -34,6 +34,12 @@ oclContents()
 --def: isCompatibleWith(p : ParameterableElement) : Boolean =
 --p.oclIsKindOf(self.oclType())
 
+context Type
+def: flattenedType() : Type = self
+
+--context CollectionType
+--def: flattenedType() : Type = elementType.flattenedType()
+
 context Property
 def: isAttribute(p : Property) : Boolean =
 --Type.allInstances()->exists(c| c.ownedAttribute->includes(p))
@@ -189,10 +195,9 @@ type.oclIsKindOf(BagType)
 endif
 
 context IteratorExp
-/** The element type is the type of the body elements. */
-inv CollectElementTypeIsSourceElementType: name = 'collect' implies
-type.oclAsType(CollectionType).elementType =
-_'body'.type.oclAsType(CollectionType).elementType
+/** The element type is the flattened type of the body elements. */
+inv CollectElementTypeIsFlattenedBodyType: name = 'collect' implies
+type.oclAsType(CollectionType).elementType = _'body'.type.flattenedType()
 
 context IteratorExp
 /** There is exactly one iterator. */

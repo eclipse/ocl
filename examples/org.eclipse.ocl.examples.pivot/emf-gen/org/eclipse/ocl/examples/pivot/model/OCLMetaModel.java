@@ -1592,6 +1592,7 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Operation op_PropertyCallExp_getSpecializedReferredPropertyType = createOperation("getSpecializedReferredPropertyType", _Class, null, null);
 		private final @NonNull Operation op_ReferringElement_getReferredElement = createOperation("getReferredElement", _Element, null, null);
 		private final @NonNull Operation op_SelfType_specializeIn = createOperation("specializeIn", _Type, null, null);
+		private final @NonNull Operation op_Type_flattenedType = createOperation("flattenedType", _Type, null, null);
 		private final @NonNull Operation op_Type_isClass = createOperation("isClass", _Class, null, null);
 		private final @NonNull Operation op_Type_isTemplateParameter = createOperation("isTemplateParameter", _TemplateParameter, null, null);
 		private final @NonNull Operation op_Type_specializeIn = createOperation("specializeIn", _Type, null, null);
@@ -1647,6 +1648,8 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedParameters.add(parameter = createParameter("expr", _OCLExpression, true));
 			ownedParameters.add(parameter = createParameter("selfType", _Type, true));
 			ownedOperations = _Type.getOwnedOperations();
+			ownedOperations.add(operation = op_Type_flattenedType);
+			operation.setBodyExpression(createExpressionInOCL(_Type, "self"));
 			ownedOperations.add(operation = op_Type_isClass);
 			operation.setIsRequired(false);
 			ownedOperations.add(operation = op_Type_isTemplateParameter);

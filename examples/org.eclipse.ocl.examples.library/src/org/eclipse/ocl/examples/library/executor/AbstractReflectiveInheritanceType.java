@@ -34,6 +34,10 @@ public abstract class AbstractReflectiveInheritanceType extends ReflectiveInheri
 		}
 		return thatInheritance.isSuperInheritanceOf(this);
 	}
+	
+	public @NonNull DomainClass flattenedType() {
+		return this;
+	}
 
 	public @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
 		return this;

@@ -60,6 +60,13 @@ public interface Type
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	Type flattenedType();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	Type specializeIn(OCLExpression expr, Type selfType);
 
 	@Nullable org.eclipse.ocl.examples.pivot.Class isClass();

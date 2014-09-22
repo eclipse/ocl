@@ -585,6 +585,11 @@ public class CollectionTypeImpl
 		}
 		return super.conformsTo(standardLibrary, type);
 	}
+	
+	@Override
+	public Type flattenedType() {
+		return getElementType();
+	}
 
 	@Override
 	public @NonNull DomainClass getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {

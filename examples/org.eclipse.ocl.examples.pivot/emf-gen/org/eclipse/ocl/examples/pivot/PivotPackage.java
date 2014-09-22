@@ -1499,13 +1499,22 @@ public interface PivotPackage
 	int TYPE___GET_VALUE__TYPE_STRING = NAMED_ELEMENT___GET_VALUE__TYPE_STRING;
 
 	/**
+	 * The operation id for the '<em>Flattened Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE___FLATTENED_TYPE = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE___IS_CLASS = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int TYPE___IS_CLASS = NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Is Template Parameter</em>' operation.
@@ -1514,7 +1523,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE___IS_TEMPLATE_PARAMETER = NAMED_ELEMENT_OPERATION_COUNT + 1;
+	int TYPE___IS_TEMPLATE_PARAMETER = NAMED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -1523,7 +1532,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = NAMED_ELEMENT_OPERATION_COUNT + 2;
+	int TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = NAMED_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Type</em>' class.
@@ -1532,7 +1541,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 3;
+	int TYPE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -1740,6 +1749,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int CLASS___GET_VALUE__TYPE_STRING = TYPE___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Flattened Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS___FLATTENED_TYPE = TYPE___FLATTENED_TYPE;
 
 	/**
 	 * The operation id for the '<em>Is Class</em>' operation.
@@ -1992,6 +2010,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ANY_TYPE___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Flattened Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANY_TYPE___FLATTENED_TYPE = CLASS___FLATTENED_TYPE;
 
 	/**
 	 * The operation id for the '<em>Is Class</em>' operation.
@@ -2253,6 +2280,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ASSOCIATION_CLASS___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Flattened Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS___FLATTENED_TYPE = CLASS___FLATTENED_TYPE;
 
 	/**
 	 * The operation id for the '<em>Is Class</em>' operation.
@@ -3470,6 +3506,15 @@ public interface PivotPackage
 	int DATA_TYPE___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
 
 	/**
+	 * The operation id for the '<em>Flattened Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE___FLATTENED_TYPE = CLASS___FLATTENED_TYPE;
+
+	/**
 	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3765,6 +3810,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_TYPE___GET_VALUE__TYPE_STRING = DATA_TYPE___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Flattened Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_TYPE___FLATTENED_TYPE = DATA_TYPE___FLATTENED_TYPE;
 
 	/**
 	 * The operation id for the '<em>Is Class</em>' operation.
@@ -4064,6 +4118,15 @@ public interface PivotPackage
 	int BAG_TYPE___GET_VALUE__TYPE_STRING = COLLECTION_TYPE___GET_VALUE__TYPE_STRING;
 
 	/**
+	 * The operation id for the '<em>Flattened Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAG_TYPE___FLATTENED_TYPE = COLLECTION_TYPE___FLATTENED_TYPE;
+
+	/**
 	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4323,6 +4386,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int BEHAVIOR___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Flattened Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR___FLATTENED_TYPE = CLASS___FLATTENED_TYPE;
 
 	/**
 	 * The operation id for the '<em>Is Class</em>' operation.
@@ -6992,6 +7064,15 @@ public interface PivotPackage
 	int DYNAMIC_TYPE___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
 
 	/**
+	 * The operation id for the '<em>Flattened Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_TYPE___FLATTENED_TYPE = CLASS___FLATTENED_TYPE;
+
+	/**
 	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7269,6 +7350,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DYNAMIC_BEHAVIOR___GET_VALUE__TYPE_STRING = DYNAMIC_TYPE___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Flattened Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR___FLATTENED_TYPE = DYNAMIC_TYPE___FLATTENED_TYPE;
 
 	/**
 	 * The operation id for the '<em>Is Class</em>' operation.
@@ -8090,6 +8180,15 @@ public interface PivotPackage
 	int ELEMENT_EXTENSION___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
 
 	/**
+	 * The operation id for the '<em>Flattened Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_EXTENSION___FLATTENED_TYPE = CLASS___FLATTENED_TYPE;
+
+	/**
 	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8520,6 +8619,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ENUMERATION___GET_VALUE__TYPE_STRING = DATA_TYPE___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Flattened Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION___FLATTENED_TYPE = DATA_TYPE___FLATTENED_TYPE;
 
 	/**
 	 * The operation id for the '<em>Is Class</em>' operation.
@@ -10959,6 +11067,15 @@ public interface PivotPackage
 	int INVALID_TYPE___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
 
 	/**
+	 * The operation id for the '<em>Flattened Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_TYPE___FLATTENED_TYPE = CLASS___FLATTENED_TYPE;
+
+	/**
 	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12381,13 +12498,13 @@ public interface PivotPackage
 	int ITERATOR_EXP___VALIDATE_CLOSURE_TYPE_IS_UNIQUE_COLLECTION__DIAGNOSTICCHAIN_MAP = LOOP_EXP_OPERATION_COUNT + 8;
 
 	/**
-	 * The operation id for the '<em>Validate Collect Element Type Is Source Element Type</em>' operation.
+	 * The operation id for the '<em>Validate Collect Element Type Is Flattened Body Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATOR_EXP___VALIDATE_COLLECT_ELEMENT_TYPE_IS_SOURCE_ELEMENT_TYPE__DIAGNOSTICCHAIN_MAP = LOOP_EXP_OPERATION_COUNT + 9;
+	int ITERATOR_EXP___VALIDATE_COLLECT_ELEMENT_TYPE_IS_FLATTENED_BODY_TYPE__DIAGNOSTICCHAIN_MAP = LOOP_EXP_OPERATION_COUNT + 9;
 
 	/**
 	 * The operation id for the '<em>Validate Collect Has One Iterator</em>' operation.
@@ -12847,6 +12964,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LAMBDA_TYPE___GET_VALUE__TYPE_STRING = DATA_TYPE___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Flattened Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_TYPE___FLATTENED_TYPE = DATA_TYPE___FLATTENED_TYPE;
 
 	/**
 	 * The operation id for the '<em>Is Class</em>' operation.
@@ -13801,6 +13927,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int MESSAGE_TYPE___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Flattened Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE___FLATTENED_TYPE = CLASS___FLATTENED_TYPE;
 
 	/**
 	 * The operation id for the '<em>Is Class</em>' operation.
@@ -14801,6 +14936,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ORDERED_SET_TYPE___GET_VALUE__TYPE_STRING = COLLECTION_TYPE___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Flattened Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_SET_TYPE___FLATTENED_TYPE = COLLECTION_TYPE___FLATTENED_TYPE;
 
 	/**
 	 * The operation id for the '<em>Is Class</em>' operation.
@@ -16020,6 +16164,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PRIMITIVE_TYPE___GET_VALUE__TYPE_STRING = DATA_TYPE___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Flattened Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE___FLATTENED_TYPE = DATA_TYPE___FLATTENED_TYPE;
 
 	/**
 	 * The operation id for the '<em>Is Class</em>' operation.
@@ -17669,6 +17822,15 @@ public interface PivotPackage
 	int SELF_TYPE___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
 
 	/**
+	 * The operation id for the '<em>Flattened Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELF_TYPE___FLATTENED_TYPE = CLASS___FLATTENED_TYPE;
+
+	/**
 	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18065,6 +18227,15 @@ public interface PivotPackage
 	int SEQUENCE_TYPE___GET_VALUE__TYPE_STRING = COLLECTION_TYPE___GET_VALUE__TYPE_STRING;
 
 	/**
+	 * The operation id for the '<em>Flattened Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_TYPE___FLATTENED_TYPE = COLLECTION_TYPE___FLATTENED_TYPE;
+
+	/**
 	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18362,6 +18533,15 @@ public interface PivotPackage
 	int SET_TYPE___GET_VALUE__TYPE_STRING = COLLECTION_TYPE___GET_VALUE__TYPE_STRING;
 
 	/**
+	 * The operation id for the '<em>Flattened Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_TYPE___FLATTENED_TYPE = COLLECTION_TYPE___FLATTENED_TYPE;
+
+	/**
 	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18612,6 +18792,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SIGNAL___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Flattened Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL___FLATTENED_TYPE = CLASS___FLATTENED_TYPE;
 
 	/**
 	 * The operation id for the '<em>Is Class</em>' operation.
@@ -19154,6 +19343,15 @@ public interface PivotPackage
 	int STATE_MACHINE___GET_VALUE__TYPE_STRING = BEHAVIOR___GET_VALUE__TYPE_STRING;
 
 	/**
+	 * The operation id for the '<em>Flattened Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_MACHINE___FLATTENED_TYPE = BEHAVIOR___FLATTENED_TYPE;
+
+	/**
 	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19413,6 +19611,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STEREOTYPE___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Flattened Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE___FLATTENED_TYPE = CLASS___FLATTENED_TYPE;
 
 	/**
 	 * The operation id for the '<em>Is Class</em>' operation.
@@ -19818,6 +20025,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TEMPLATE_PARAMETER___GET_VALUE__TYPE_STRING = TYPE___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Flattened Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER___FLATTENED_TYPE = TYPE___FLATTENED_TYPE;
 
 	/**
 	 * The operation id for the '<em>Is Class</em>' operation.
@@ -20916,6 +21132,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TUPLE_TYPE___GET_VALUE__TYPE_STRING = DATA_TYPE___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Flattened Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE___FLATTENED_TYPE = DATA_TYPE___FLATTENED_TYPE;
 
 	/**
 	 * The operation id for the '<em>Is Class</em>' operation.
@@ -22044,6 +22269,15 @@ public interface PivotPackage
 	int VOID_TYPE___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
 
 	/**
+	 * The operation id for the '<em>Flattened Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VOID_TYPE___FLATTENED_TYPE = CLASS___FLATTENED_TYPE;
+
+	/**
 	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -22322,6 +22556,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int WILDCARD_TYPE___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Flattened Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE___FLATTENED_TYPE = CLASS___FLATTENED_TYPE;
 
 	/**
 	 * The operation id for the '<em>Is Class</em>' operation.
@@ -23620,6 +23863,16 @@ public interface PivotPackage
 	EOperation getIteratorExp__ValidateClosureTypeIsUniqueCollection__DiagnosticChain_Map();
 
 	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.IteratorExp#validateCollectElementTypeIsFlattenedBodyType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Collect Element Type Is Flattened Body Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Collect Element Type Is Flattened Body Type</em>' operation.
+	 * @see org.eclipse.ocl.examples.pivot.IteratorExp#validateCollectElementTypeIsFlattenedBodyType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getIteratorExp__ValidateCollectElementTypeIsFlattenedBodyType__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.IteratorExp#validateClosureSourceElementTypeIsBodyElementType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Closure Source Element Type Is Body Element Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -23658,16 +23911,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EOperation getIteratorExp__ValidateCollectTypeIsUnordered__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.IteratorExp#validateCollectElementTypeIsSourceElementType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Collect Element Type Is Source Element Type</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Collect Element Type Is Source Element Type</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.IteratorExp#validateCollectElementTypeIsSourceElementType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getIteratorExp__ValidateCollectElementTypeIsSourceElementType__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.IteratorExp#validateCollectNestedHasOneIterator(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Collect Nested Has One Iterator</em>}' operation.
@@ -25446,6 +25689,16 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getType_ExtendedBys();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.Type#flattenedType() <em>Flattened Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Flattened Type</em>' operation.
+	 * @see org.eclipse.ocl.examples.pivot.Type#flattenedType()
+	 * @generated
+	 */
+	EOperation getType__FlattenedType();
 
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.Type#isClass() <em>Is Class</em>}' operation.
@@ -28384,6 +28637,14 @@ public interface PivotPackage
 		EOperation ITERATOR_EXP___VALIDATE_CLOSURE_TYPE_IS_UNIQUE_COLLECTION__DIAGNOSTICCHAIN_MAP = eINSTANCE.getIteratorExp__ValidateClosureTypeIsUniqueCollection__DiagnosticChain_Map();
 
 		/**
+		 * The meta object literal for the '<em><b>Validate Collect Element Type Is Flattened Body Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ITERATOR_EXP___VALIDATE_COLLECT_ELEMENT_TYPE_IS_FLATTENED_BODY_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getIteratorExp__ValidateCollectElementTypeIsFlattenedBodyType__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '<em><b>Validate Closure Source Element Type Is Body Element Type</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -28414,14 +28675,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EOperation ITERATOR_EXP___VALIDATE_COLLECT_TYPE_IS_UNORDERED__DIAGNOSTICCHAIN_MAP = eINSTANCE.getIteratorExp__ValidateCollectTypeIsUnordered__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Validate Collect Element Type Is Source Element Type</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation ITERATOR_EXP___VALIDATE_COLLECT_ELEMENT_TYPE_IS_SOURCE_ELEMENT_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getIteratorExp__ValidateCollectElementTypeIsSourceElementType__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Validate Collect Nested Has One Iterator</b></em>' operation.
@@ -29870,6 +30123,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference TYPE__EXTENDED_BYS = eINSTANCE.getType_ExtendedBys();
+
+		/**
+		 * The meta object literal for the '<em><b>Flattened Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation TYPE___FLATTENED_TYPE = eINSTANCE.getType__FlattenedType();
 
 		/**
 		 * The meta object literal for the '<em><b>Is Class</b></em>' operation.

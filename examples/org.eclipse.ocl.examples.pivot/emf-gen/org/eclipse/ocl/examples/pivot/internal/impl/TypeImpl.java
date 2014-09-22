@@ -131,6 +131,19 @@ public abstract class TypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Type flattenedType()
+	{
+		/**
+		 * self
+		 */
+		return this;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
@@ -305,6 +318,8 @@ public abstract class TypeImpl
 				return allOwnedElements();
 			case PivotPackage.TYPE___GET_VALUE__TYPE_STRING:
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
+			case PivotPackage.TYPE___FLATTENED_TYPE:
+				return flattenedType();
 			case PivotPackage.TYPE___IS_CLASS:
 				return isClass();
 			case PivotPackage.TYPE___IS_TEMPLATE_PARAMETER:

@@ -72,6 +72,10 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 		return thatInheritance.isSuperInheritanceOf(this);
 	}
 	
+	public @NonNull DomainClass flattenedType() {
+		return this;
+	}
+	
 	public final @NonNull FragmentIterable getAllProperSuperFragments() {
 		DomainFragment[] fragments2 = DomainUtil.nonNullState(fragments);
 		return new FragmentIterable(fragments2, 0, fragments2.length-1);

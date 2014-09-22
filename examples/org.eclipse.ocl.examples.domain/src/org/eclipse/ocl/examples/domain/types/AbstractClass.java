@@ -40,6 +40,11 @@ public abstract class AbstractClass extends AbstractType implements DomainClass	
 	public @NonNull Value createInstance(@NonNull String value) {
 		throw new UnsupportedOperationException();
 	}
+	
+	@Override
+	public @NonNull DomainClass flattenedType() {
+		return this;
+	}
 
 	@Override
 	public @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {

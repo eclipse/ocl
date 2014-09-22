@@ -1041,6 +1041,8 @@ public class ClassImpl
 				return allOwnedElements();
 			case PivotPackage.CLASS___GET_VALUE__TYPE_STRING:
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
+			case PivotPackage.CLASS___FLATTENED_TYPE:
+				return flattenedType();
 			case PivotPackage.CLASS___IS_CLASS:
 				return isClass();
 			case PivotPackage.CLASS___IS_TEMPLATE_PARAMETER:

@@ -35,6 +35,10 @@ public abstract class AbstractType implements DomainType	// FIXME rename as perh
 		this.standardLibrary = environment.getStandardLibrary();
 		this.name = name;
 	}
+	
+	public @NonNull DomainType flattenedType() {
+		return this;
+	}
 
 	public @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
 //		return standardLibrary.getInheritance(this);

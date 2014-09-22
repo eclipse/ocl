@@ -194,14 +194,14 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_70;
+		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		    try {
 		        final @Nullable /*@Thrown*/ String name = this.getName();
-		        final /*@Thrown*/ boolean self_70 = PivotTables.STR_any.equals(name);
-		        CAUGHT_self_70 = self_70;
+		        final /*@Thrown*/ boolean self_71 = PivotTables.STR_any.equals(name);
+		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
 		    }
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -216,16 +216,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_70 instanceof InvalidValueException;
+		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_8;
 		    if (symbol_0) {
 		        final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_3;
 		        if (symbol_1) {
-		            if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_70;
+		            if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                throw (InvalidValueException)CAUGHT_self_71;
 		            }
-		            symbol_3 = (Boolean)CAUGHT_self_70;
+		            symbol_3 = (Boolean)CAUGHT_self_71;
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_2;
@@ -233,20 +233,20 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                symbol_2 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
-		                if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_70;
+		                if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_71;
 		                }
-		                symbol_2 = (Boolean)CAUGHT_self_70;
+		                symbol_2 = (Boolean)CAUGHT_self_71;
 		            }
 		            symbol_3 = symbol_2;
 		        }
 		        symbol_8 = symbol_3;
 		    }
 		    else {
-		        if (CAUGHT_self_70 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_70;
+		        if (CAUGHT_self_71 instanceof InvalidValueException) {
+		            throw (InvalidValueException)CAUGHT_self_71;
 		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_70 == Boolean.FALSE;
+		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_7;
 		        if (eq) {
 		            symbol_7 = ValuesUtil.TRUE_VALUE;
@@ -304,14 +304,14 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_70;
+		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		    try {
 		        final @Nullable /*@Thrown*/ String name = this.getName();
-		        final /*@Thrown*/ boolean self_70 = PivotTables.STR_any.equals(name);
-		        CAUGHT_self_70 = self_70;
+		        final /*@Thrown*/ boolean self_71 = PivotTables.STR_any.equals(name);
+		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
 		    }
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -336,16 +336,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_70 instanceof InvalidValueException;
+		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_8;
 		    if (symbol_0) {
 		        final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_3;
 		        if (symbol_1) {
-		            if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_70;
+		            if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                throw (InvalidValueException)CAUGHT_self_71;
 		            }
-		            symbol_3 = (Boolean)CAUGHT_self_70;
+		            symbol_3 = (Boolean)CAUGHT_self_71;
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_2;
@@ -353,20 +353,20 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                symbol_2 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
-		                if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_70;
+		                if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_71;
 		                }
-		                symbol_2 = (Boolean)CAUGHT_self_70;
+		                symbol_2 = (Boolean)CAUGHT_self_71;
 		            }
 		            symbol_3 = symbol_2;
 		        }
 		        symbol_8 = symbol_3;
 		    }
 		    else {
-		        if (CAUGHT_self_70 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_70;
+		        if (CAUGHT_self_71 instanceof InvalidValueException) {
+		            throw (InvalidValueException)CAUGHT_self_71;
 		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_70 == Boolean.FALSE;
+		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_7;
 		        if (eq) {
 		            symbol_7 = ValuesUtil.TRUE_VALUE;
@@ -422,14 +422,14 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_70;
+		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		    try {
 		        final @Nullable /*@Thrown*/ String name = this.getName();
-		        final /*@Thrown*/ boolean self_70 = PivotTables.STR_any.equals(name);
-		        CAUGHT_self_70 = self_70;
+		        final /*@Thrown*/ boolean self_71 = PivotTables.STR_any.equals(name);
+		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
 		    }
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
@@ -444,16 +444,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_70 instanceof InvalidValueException;
+		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_8;
 		    if (symbol_0) {
 		        final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_3;
 		        if (symbol_1) {
-		            if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_70;
+		            if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                throw (InvalidValueException)CAUGHT_self_71;
 		            }
-		            symbol_3 = (Boolean)CAUGHT_self_70;
+		            symbol_3 = (Boolean)CAUGHT_self_71;
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_2;
@@ -461,20 +461,20 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                symbol_2 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
-		                if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_70;
+		                if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_71;
 		                }
-		                symbol_2 = (Boolean)CAUGHT_self_70;
+		                symbol_2 = (Boolean)CAUGHT_self_71;
 		            }
 		            symbol_3 = symbol_2;
 		        }
 		        symbol_8 = symbol_3;
 		    }
 		    else {
-		        if (CAUGHT_self_70 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_70;
+		        if (CAUGHT_self_71 instanceof InvalidValueException) {
+		            throw (InvalidValueException)CAUGHT_self_71;
 		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_70 == Boolean.FALSE;
+		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_7;
 		        if (eq) {
 		            symbol_7 = ValuesUtil.TRUE_VALUE;
@@ -530,14 +530,14 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_70;
+		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		    try {
 		        final @Nullable /*@Thrown*/ String name = this.getName();
-		        final /*@Thrown*/ boolean self_70 = PivotTables.STR_closure.equals(name);
-		        CAUGHT_self_70 = self_70;
+		        final /*@Thrown*/ boolean self_71 = PivotTables.STR_closure.equals(name);
+		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
 		    }
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -552,16 +552,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_70 instanceof InvalidValueException;
+		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_8;
 		    if (symbol_0) {
 		        final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_3;
 		        if (symbol_1) {
-		            if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_70;
+		            if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                throw (InvalidValueException)CAUGHT_self_71;
 		            }
-		            symbol_3 = (Boolean)CAUGHT_self_70;
+		            symbol_3 = (Boolean)CAUGHT_self_71;
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_2;
@@ -569,20 +569,20 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                symbol_2 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
-		                if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_70;
+		                if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_71;
 		                }
-		                symbol_2 = (Boolean)CAUGHT_self_70;
+		                symbol_2 = (Boolean)CAUGHT_self_71;
 		            }
 		            symbol_3 = symbol_2;
 		        }
 		        symbol_8 = symbol_3;
 		    }
 		    else {
-		        if (CAUGHT_self_70 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_70;
+		        if (CAUGHT_self_71 instanceof InvalidValueException) {
+		            throw (InvalidValueException)CAUGHT_self_71;
 		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_70 == Boolean.FALSE;
+		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_7;
 		        if (eq) {
 		            symbol_7 = ValuesUtil.TRUE_VALUE;
@@ -645,21 +645,21 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_17;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_70;
+		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		    try {
 		        final @Nullable /*@Thrown*/ String name = this.getName();
-		        final /*@Thrown*/ boolean self_70 = PivotTables.STR_closure.equals(name);
-		        CAUGHT_self_70 = self_70;
+		        final /*@Thrown*/ boolean self_71 = PivotTables.STR_closure.equals(name);
+		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
 		    }
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		    @NonNull /*@Caught*/ Object CAUGHT_b_0;
 		    try {
 		        final @Nullable /*@Thrown*/ DomainType type_2 = this.getType();
-		        @NonNull /*@Caught*/ Object CAUGHT_self_71;
+		        @NonNull /*@Caught*/ Object CAUGHT_self_72;
 		        try {
 		            final @NonNull /*@NonInvalid*/ DomainClass TYP_pivot_c_c_SequenceType_0 = idResolver.getClass(PivotTables.CLSSid_SequenceType, null);
 		            final @Nullable /*@Thrown*/ DomainExpression source = this.getSource();
@@ -667,11 +667,11 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		            }
 		            final @Nullable /*@Thrown*/ DomainType type = source.getType();
-		            final /*@Thrown*/ boolean self_71 = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_SequenceType_0).booleanValue();
-		            CAUGHT_self_71 = self_71;
+		            final /*@Thrown*/ boolean self_72 = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_SequenceType_0).booleanValue();
+		            CAUGHT_self_72 = self_72;
 		        }
 		        catch (Exception e) {
-		            CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
+		            CAUGHT_self_72 = ValuesUtil.createInvalidValue(e);
 		        }
 		        @NonNull /*@Caught*/ Object CAUGHT_b;
 		        try {
@@ -687,16 +687,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		        catch (Exception e) {
 		            CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		        }
-		        final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
+		        final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_72 instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_8;
 		        if (symbol_0) {
 		            final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
 		            /*@Thrown*/ boolean symbol_3;
 		            if (symbol_1) {
-		                if (CAUGHT_self_71 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_71;
+		                if (CAUGHT_self_72 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_72;
 		                }
-		                symbol_3 = (Boolean)CAUGHT_self_71;
+		                symbol_3 = (Boolean)CAUGHT_self_72;
 		            }
 		            else {
 		                /*@Thrown*/ boolean symbol_2;
@@ -704,10 +704,10 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                    symbol_2 = ValuesUtil.TRUE_VALUE;
 		                }
 		                else {
-		                    if (CAUGHT_self_71 instanceof InvalidValueException) {
-		                        throw (InvalidValueException)CAUGHT_self_71;
+		                    if (CAUGHT_self_72 instanceof InvalidValueException) {
+		                        throw (InvalidValueException)CAUGHT_self_72;
 		                    }
-		                    symbol_2 = (Boolean)CAUGHT_self_71;
+		                    symbol_2 = (Boolean)CAUGHT_self_72;
 		                }
 		                symbol_3 = symbol_2;
 		            }
@@ -715,7 +715,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_7;
-		            if (CAUGHT_self_71 == Boolean.TRUE) {
+		            if (CAUGHT_self_72 == Boolean.TRUE) {
 		                symbol_7 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
@@ -757,16 +757,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_b_0 = ValuesUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_9 = CAUGHT_self_70 instanceof InvalidValueException;
+		    final /*@NonInvalid*/ boolean symbol_9 = CAUGHT_self_71 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_17;
 		    if (symbol_9) {
 		        final /*@NonInvalid*/ boolean symbol_10 = CAUGHT_b_0 instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_12;
 		        if (symbol_10) {
-		            if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_70;
+		            if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                throw (InvalidValueException)CAUGHT_self_71;
 		            }
-		            symbol_12 = (Boolean)CAUGHT_self_70;
+		            symbol_12 = (Boolean)CAUGHT_self_71;
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_11;
@@ -774,20 +774,20 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                symbol_11 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
-		                if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_70;
+		                if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_71;
 		                }
-		                symbol_11 = (Boolean)CAUGHT_self_70;
+		                symbol_11 = (Boolean)CAUGHT_self_71;
 		            }
 		            symbol_12 = symbol_11;
 		        }
 		        symbol_17 = symbol_12;
 		    }
 		    else {
-		        if (CAUGHT_self_70 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_70;
+		        if (CAUGHT_self_71 instanceof InvalidValueException) {
+		            throw (InvalidValueException)CAUGHT_self_71;
 		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_70 == Boolean.FALSE;
+		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_16;
 		        if (eq) {
 		            symbol_16 = ValuesUtil.TRUE_VALUE;
@@ -836,6 +836,131 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateCollectElementTypeIsFlattenedBodyType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
+	{
+		/**
+		 * 
+		 * inv CollectElementTypeIsFlattenedBodyType: name = 'collect' implies
+		 *   type.oclAsType(CollectionType).elementType =
+		 *   body.type.flattenedType()
+		 */
+		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
+		try {
+		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
+		    try {
+		        final @Nullable /*@Thrown*/ String name = this.getName();
+		        final /*@Thrown*/ boolean self_71 = PivotTables.STR_collect.equals(name);
+		        CAUGHT_self_71 = self_71;
+		    }
+		    catch (Exception e) {
+		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
+		    }
+		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
+		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
+		    @NonNull /*@Caught*/ Object CAUGHT_b;
+		    try {
+		        final @NonNull /*@NonInvalid*/ DomainClass TYP_pivot_c_c_CollectionType_0 = idResolver.getClass(PivotTables.CLSSid_CollectionType, null);
+		        final @Nullable /*@Thrown*/ DomainType type = this.getType();
+		        final @Nullable /*@Thrown*/ CollectionType oclAsType = (CollectionType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_CollectionType_0);
+		        if (oclAsType == null) {
+		            throw new InvalidValueException("Null source for \'pivot::CollectionType::elementType\'");
+		        }
+		        final @Nullable /*@Thrown*/ DomainType elementType = oclAsType.getElementType();
+		        final @Nullable /*@Thrown*/ DomainExpression body = this.getBody();
+		        if (body == null) {
+		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
+		        }
+		        final @Nullable /*@Thrown*/ DomainType type_0 = body.getType();
+		        if (type_0 == null) {
+		            throw new InvalidValueException("Null source for \'pivot::Type::flattenedType() : pivot::Type\'");
+		        }
+		        final @NonNull /*@Thrown*/ DomainType flattenedType = type_0.flattenedType();
+		        final /*@Thrown*/ boolean b = (elementType != null) ? (elementType.getTypeId() == flattenedType.getTypeId()) : ValuesUtil.throwBooleanInvalidValueException("null equal input");
+		        ;
+		        CAUGHT_b = b;
+		    }
+		    catch (Exception e) {
+		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
+		    }
+		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
+		    /*@Thrown*/ boolean symbol_8;
+		    if (symbol_0) {
+		        final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
+		        /*@Thrown*/ boolean symbol_3;
+		        if (symbol_1) {
+		            if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                throw (InvalidValueException)CAUGHT_self_71;
+		            }
+		            symbol_3 = (Boolean)CAUGHT_self_71;
+		        }
+		        else {
+		            /*@Thrown*/ boolean symbol_2;
+		            if (CAUGHT_b == Boolean.TRUE) {
+		                symbol_2 = ValuesUtil.TRUE_VALUE;
+		            }
+		            else {
+		                if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_71;
+		                }
+		                symbol_2 = (Boolean)CAUGHT_self_71;
+		            }
+		            symbol_3 = symbol_2;
+		        }
+		        symbol_8 = symbol_3;
+		    }
+		    else {
+		        if (CAUGHT_self_71 instanceof InvalidValueException) {
+		            throw (InvalidValueException)CAUGHT_self_71;
+		        }
+		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
+		        /*@Thrown*/ boolean symbol_7;
+		        if (eq) {
+		            symbol_7 = ValuesUtil.TRUE_VALUE;
+		        }
+		        else {
+		            final /*@NonInvalid*/ boolean symbol_4 = CAUGHT_b instanceof InvalidValueException;
+		            /*@Thrown*/ boolean symbol_6;
+		            if (symbol_4) {
+		                if (CAUGHT_b instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_b;
+		                }
+		                symbol_6 = (Boolean)CAUGHT_b;
+		            }
+		            else {
+		                /*@NonInvalid*/ boolean symbol_5;
+		                if (CAUGHT_b == Boolean.TRUE) {
+		                    symbol_5 = ValuesUtil.TRUE_VALUE;
+		                }
+		                else {
+		                    symbol_5 = ValuesUtil.FALSE_VALUE;
+		                }
+		                symbol_6 = symbol_5;
+		            }
+		            symbol_7 = symbol_6;
+		        }
+		        symbol_8 = symbol_7;
+		    }
+		    CAUGHT_symbol_8 = symbol_8;
+		}
+		catch (Exception e) {
+		    CAUGHT_symbol_8 = ValuesUtil.createInvalidValue(e);
+		}
+		if (CAUGHT_symbol_8 == ValuesUtil.TRUE_VALUE) {
+		    return true;
+		}
+		if (diagnostics != null) {
+		    int severity = Diagnostic.WARNING;
+		    String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "CollectElementTypeIsFlattenedBodyType", EObjectValidator.getObjectLabel(this, context)});
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__COLLECT_ELEMENT_TYPE_IS_FLATTENED_BODY_TYPE, message, new Object [] { this }));
+		}
+		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateClosureSourceElementTypeIsBodyElementType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -849,14 +974,14 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_9;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_70;
+		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		    try {
 		        final @Nullable /*@Thrown*/ String name = this.getName();
-		        final /*@Thrown*/ boolean self_70 = PivotTables.STR_closure.equals(name);
-		        CAUGHT_self_70 = self_70;
+		        final /*@Thrown*/ boolean self_71 = PivotTables.STR_closure.equals(name);
+		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
 		    }
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -898,16 +1023,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_self_70 instanceof InvalidValueException;
+		    final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_self_71 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_9;
 		    if (symbol_1) {
 		        final /*@NonInvalid*/ boolean symbol_2 = CAUGHT_b instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_4;
 		        if (symbol_2) {
-		            if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_70;
+		            if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                throw (InvalidValueException)CAUGHT_self_71;
 		            }
-		            symbol_4 = (Boolean)CAUGHT_self_70;
+		            symbol_4 = (Boolean)CAUGHT_self_71;
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_3;
@@ -915,20 +1040,20 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                symbol_3 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
-		                if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_70;
+		                if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_71;
 		                }
-		                symbol_3 = (Boolean)CAUGHT_self_70;
+		                symbol_3 = (Boolean)CAUGHT_self_71;
 		            }
 		            symbol_4 = symbol_3;
 		        }
 		        symbol_9 = symbol_4;
 		    }
 		    else {
-		        if (CAUGHT_self_70 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_70;
+		        if (CAUGHT_self_71 instanceof InvalidValueException) {
+		            throw (InvalidValueException)CAUGHT_self_71;
 		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_70 == Boolean.FALSE;
+		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_8;
 		        if (eq) {
 		            symbol_8 = ValuesUtil.TRUE_VALUE;
@@ -987,14 +1112,14 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_70;
+		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		    try {
 		        final @Nullable /*@Thrown*/ String name = this.getName();
-		        final /*@Thrown*/ boolean self_70 = PivotTables.STR_closure.equals(name);
-		        CAUGHT_self_70 = self_70;
+		        final /*@Thrown*/ boolean self_71 = PivotTables.STR_closure.equals(name);
+		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
 		    }
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -1024,16 +1149,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_70 instanceof InvalidValueException;
+		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_8;
 		    if (symbol_0) {
 		        final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_3;
 		        if (symbol_1) {
-		            if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_70;
+		            if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                throw (InvalidValueException)CAUGHT_self_71;
 		            }
-		            symbol_3 = (Boolean)CAUGHT_self_70;
+		            symbol_3 = (Boolean)CAUGHT_self_71;
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_2;
@@ -1041,20 +1166,20 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                symbol_2 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
-		                if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_70;
+		                if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_71;
 		                }
-		                symbol_2 = (Boolean)CAUGHT_self_70;
+		                symbol_2 = (Boolean)CAUGHT_self_71;
 		            }
 		            symbol_3 = symbol_2;
 		        }
 		        symbol_8 = symbol_3;
 		    }
 		    else {
-		        if (CAUGHT_self_70 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_70;
+		        if (CAUGHT_self_71 instanceof InvalidValueException) {
+		            throw (InvalidValueException)CAUGHT_self_71;
 		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_70 == Boolean.FALSE;
+		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_7;
 		        if (eq) {
 		            symbol_7 = ValuesUtil.TRUE_VALUE;
@@ -1110,14 +1235,14 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_70;
+		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		    try {
 		        final @Nullable /*@Thrown*/ String name = this.getName();
-		        final /*@Thrown*/ boolean self_70 = PivotTables.STR_collect.equals(name);
-		        CAUGHT_self_70 = self_70;
+		        final /*@Thrown*/ boolean self_71 = PivotTables.STR_collect.equals(name);
+		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
 		    }
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -1132,16 +1257,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_70 instanceof InvalidValueException;
+		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_8;
 		    if (symbol_0) {
 		        final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_3;
 		        if (symbol_1) {
-		            if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_70;
+		            if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                throw (InvalidValueException)CAUGHT_self_71;
 		            }
-		            symbol_3 = (Boolean)CAUGHT_self_70;
+		            symbol_3 = (Boolean)CAUGHT_self_71;
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_2;
@@ -1149,20 +1274,20 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                symbol_2 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
-		                if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_70;
+		                if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_71;
 		                }
-		                symbol_2 = (Boolean)CAUGHT_self_70;
+		                symbol_2 = (Boolean)CAUGHT_self_71;
 		            }
 		            symbol_3 = symbol_2;
 		        }
 		        symbol_8 = symbol_3;
 		    }
 		    else {
-		        if (CAUGHT_self_70 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_70;
+		        if (CAUGHT_self_71 instanceof InvalidValueException) {
+		            throw (InvalidValueException)CAUGHT_self_71;
 		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_70 == Boolean.FALSE;
+		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_7;
 		        if (eq) {
 		            symbol_7 = ValuesUtil.TRUE_VALUE;
@@ -1225,21 +1350,21 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_17;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_70;
+		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		    try {
 		        final @Nullable /*@Thrown*/ String name = this.getName();
-		        final /*@Thrown*/ boolean self_70 = PivotTables.STR_collect.equals(name);
-		        CAUGHT_self_70 = self_70;
+		        final /*@Thrown*/ boolean self_71 = PivotTables.STR_collect.equals(name);
+		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
 		    }
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		    @NonNull /*@Caught*/ Object CAUGHT_b_0;
 		    try {
 		        final @Nullable /*@Thrown*/ DomainType type_2 = this.getType();
-		        @NonNull /*@Caught*/ Object CAUGHT_self_71;
+		        @NonNull /*@Caught*/ Object CAUGHT_self_72;
 		        try {
 		            final @NonNull /*@NonInvalid*/ DomainClass TYP_pivot_c_c_SequenceType_0 = idResolver.getClass(PivotTables.CLSSid_SequenceType, null);
 		            final @Nullable /*@Thrown*/ DomainExpression source = this.getSource();
@@ -1247,11 +1372,11 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		            }
 		            final @Nullable /*@Thrown*/ DomainType type = source.getType();
-		            final /*@Thrown*/ boolean self_71 = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_SequenceType_0).booleanValue();
-		            CAUGHT_self_71 = self_71;
+		            final /*@Thrown*/ boolean self_72 = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_SequenceType_0).booleanValue();
+		            CAUGHT_self_72 = self_72;
 		        }
 		        catch (Exception e) {
-		            CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
+		            CAUGHT_self_72 = ValuesUtil.createInvalidValue(e);
 		        }
 		        @NonNull /*@Caught*/ Object CAUGHT_b;
 		        try {
@@ -1267,16 +1392,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		        catch (Exception e) {
 		            CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		        }
-		        final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
+		        final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_72 instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_8;
 		        if (symbol_0) {
 		            final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
 		            /*@Thrown*/ boolean symbol_3;
 		            if (symbol_1) {
-		                if (CAUGHT_self_71 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_71;
+		                if (CAUGHT_self_72 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_72;
 		                }
-		                symbol_3 = (Boolean)CAUGHT_self_71;
+		                symbol_3 = (Boolean)CAUGHT_self_72;
 		            }
 		            else {
 		                /*@Thrown*/ boolean symbol_2;
@@ -1284,10 +1409,10 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                    symbol_2 = ValuesUtil.TRUE_VALUE;
 		                }
 		                else {
-		                    if (CAUGHT_self_71 instanceof InvalidValueException) {
-		                        throw (InvalidValueException)CAUGHT_self_71;
+		                    if (CAUGHT_self_72 instanceof InvalidValueException) {
+		                        throw (InvalidValueException)CAUGHT_self_72;
 		                    }
-		                    symbol_2 = (Boolean)CAUGHT_self_71;
+		                    symbol_2 = (Boolean)CAUGHT_self_72;
 		                }
 		                symbol_3 = symbol_2;
 		            }
@@ -1295,7 +1420,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_7;
-		            if (CAUGHT_self_71 == Boolean.TRUE) {
+		            if (CAUGHT_self_72 == Boolean.TRUE) {
 		                symbol_7 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
@@ -1337,16 +1462,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_b_0 = ValuesUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_9 = CAUGHT_self_70 instanceof InvalidValueException;
+		    final /*@NonInvalid*/ boolean symbol_9 = CAUGHT_self_71 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_17;
 		    if (symbol_9) {
 		        final /*@NonInvalid*/ boolean symbol_10 = CAUGHT_b_0 instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_12;
 		        if (symbol_10) {
-		            if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_70;
+		            if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                throw (InvalidValueException)CAUGHT_self_71;
 		            }
-		            symbol_12 = (Boolean)CAUGHT_self_70;
+		            symbol_12 = (Boolean)CAUGHT_self_71;
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_11;
@@ -1354,20 +1479,20 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                symbol_11 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
-		                if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_70;
+		                if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_71;
 		                }
-		                symbol_11 = (Boolean)CAUGHT_self_70;
+		                symbol_11 = (Boolean)CAUGHT_self_71;
 		            }
 		            symbol_12 = symbol_11;
 		        }
 		        symbol_17 = symbol_12;
 		    }
 		    else {
-		        if (CAUGHT_self_70 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_70;
+		        if (CAUGHT_self_71 instanceof InvalidValueException) {
+		            throw (InvalidValueException)CAUGHT_self_71;
 		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_70 == Boolean.FALSE;
+		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_16;
 		        if (eq) {
 		            symbol_16 = ValuesUtil.TRUE_VALUE;
@@ -1416,132 +1541,6 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateCollectElementTypeIsSourceElementType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
-	{
-		/**
-		 * 
-		 * inv CollectElementTypeIsSourceElementType: name = 'collect' implies
-		 *   type.oclAsType(CollectionType).elementType =
-		 *   body.type.oclAsType(CollectionType).elementType
-		 */
-		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
-		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_70;
-		    try {
-		        final @Nullable /*@Thrown*/ String name = this.getName();
-		        final /*@Thrown*/ boolean self_70 = PivotTables.STR_collect.equals(name);
-		        CAUGHT_self_70 = self_70;
-		    }
-		    catch (Exception e) {
-		        CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
-		    }
-		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
-		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		    @NonNull /*@Caught*/ Object CAUGHT_b;
-		    try {
-		        final @NonNull /*@NonInvalid*/ DomainClass TYP_pivot_c_c_CollectionType_1 = idResolver.getClass(PivotTables.CLSSid_CollectionType, null);
-		        final @Nullable /*@Thrown*/ DomainType type = this.getType();
-		        final @Nullable /*@Thrown*/ CollectionType oclAsType = (CollectionType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_CollectionType_1);
-		        if (oclAsType == null) {
-		            throw new InvalidValueException("Null source for \'pivot::CollectionType::elementType\'");
-		        }
-		        final @Nullable /*@Thrown*/ DomainType elementType = oclAsType.getElementType();
-		        final @Nullable /*@Thrown*/ DomainExpression body = this.getBody();
-		        if (body == null) {
-		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
-		        }
-		        final @Nullable /*@Thrown*/ DomainType type_0 = body.getType();
-		        final @Nullable /*@Thrown*/ CollectionType oclAsType_0 = (CollectionType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, type_0, TYP_pivot_c_c_CollectionType_1);
-		        if (oclAsType_0 == null) {
-		            throw new InvalidValueException("Null source for \'pivot::CollectionType::elementType\'");
-		        }
-		        final @Nullable /*@Thrown*/ DomainType elementType_0 = oclAsType_0.getElementType();
-		        final /*@Thrown*/ boolean b = (elementType != null) && (elementType_0 != null) ? (elementType.getTypeId() == elementType_0.getTypeId()) : ValuesUtil.throwBooleanInvalidValueException("null equal input");
-		        ;
-		        CAUGHT_b = b;
-		    }
-		    catch (Exception e) {
-		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
-		    }
-		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_70 instanceof InvalidValueException;
-		    /*@Thrown*/ boolean symbol_8;
-		    if (symbol_0) {
-		        final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
-		        /*@Thrown*/ boolean symbol_3;
-		        if (symbol_1) {
-		            if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_70;
-		            }
-		            symbol_3 = (Boolean)CAUGHT_self_70;
-		        }
-		        else {
-		            /*@Thrown*/ boolean symbol_2;
-		            if (CAUGHT_b == Boolean.TRUE) {
-		                symbol_2 = ValuesUtil.TRUE_VALUE;
-		            }
-		            else {
-		                if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_70;
-		                }
-		                symbol_2 = (Boolean)CAUGHT_self_70;
-		            }
-		            symbol_3 = symbol_2;
-		        }
-		        symbol_8 = symbol_3;
-		    }
-		    else {
-		        if (CAUGHT_self_70 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_70;
-		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_70 == Boolean.FALSE;
-		        /*@Thrown*/ boolean symbol_7;
-		        if (eq) {
-		            symbol_7 = ValuesUtil.TRUE_VALUE;
-		        }
-		        else {
-		            final /*@NonInvalid*/ boolean symbol_4 = CAUGHT_b instanceof InvalidValueException;
-		            /*@Thrown*/ boolean symbol_6;
-		            if (symbol_4) {
-		                if (CAUGHT_b instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_b;
-		                }
-		                symbol_6 = (Boolean)CAUGHT_b;
-		            }
-		            else {
-		                /*@NonInvalid*/ boolean symbol_5;
-		                if (CAUGHT_b == Boolean.TRUE) {
-		                    symbol_5 = ValuesUtil.TRUE_VALUE;
-		                }
-		                else {
-		                    symbol_5 = ValuesUtil.FALSE_VALUE;
-		                }
-		                symbol_6 = symbol_5;
-		            }
-		            symbol_7 = symbol_6;
-		        }
-		        symbol_8 = symbol_7;
-		    }
-		    CAUGHT_symbol_8 = symbol_8;
-		}
-		catch (Exception e) {
-		    CAUGHT_symbol_8 = ValuesUtil.createInvalidValue(e);
-		}
-		if (CAUGHT_symbol_8 == ValuesUtil.TRUE_VALUE) {
-		    return true;
-		}
-		if (diagnostics != null) {
-		    int severity = Diagnostic.WARNING;
-		    String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "CollectElementTypeIsSourceElementType", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__COLLECT_ELEMENT_TYPE_IS_SOURCE_ELEMENT_TYPE, message, new Object [] { this }));
-		}
-		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateCollectNestedHasOneIterator(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -1551,14 +1550,14 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_70;
+		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		    try {
 		        final @Nullable /*@Thrown*/ String name = this.getName();
-		        final /*@Thrown*/ boolean self_70 = PivotTables.STR_collectNested.equals(name);
-		        CAUGHT_self_70 = self_70;
+		        final /*@Thrown*/ boolean self_71 = PivotTables.STR_collectNested.equals(name);
+		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
 		    }
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -1573,16 +1572,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_70 instanceof InvalidValueException;
+		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_8;
 		    if (symbol_0) {
 		        final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_3;
 		        if (symbol_1) {
-		            if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_70;
+		            if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                throw (InvalidValueException)CAUGHT_self_71;
 		            }
-		            symbol_3 = (Boolean)CAUGHT_self_70;
+		            symbol_3 = (Boolean)CAUGHT_self_71;
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_2;
@@ -1590,20 +1589,20 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                symbol_2 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
-		                if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_70;
+		                if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_71;
 		                }
-		                symbol_2 = (Boolean)CAUGHT_self_70;
+		                symbol_2 = (Boolean)CAUGHT_self_71;
 		            }
 		            symbol_3 = symbol_2;
 		        }
 		        symbol_8 = symbol_3;
 		    }
 		    else {
-		        if (CAUGHT_self_70 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_70;
+		        if (CAUGHT_self_71 instanceof InvalidValueException) {
+		            throw (InvalidValueException)CAUGHT_self_71;
 		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_70 == Boolean.FALSE;
+		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_7;
 		        if (eq) {
 		            symbol_7 = ValuesUtil.TRUE_VALUE;
@@ -1660,14 +1659,14 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_70;
+		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		    try {
 		        final @Nullable /*@Thrown*/ String name = this.getName();
-		        final /*@Thrown*/ boolean self_70 = PivotTables.STR_collectNested.equals(name);
-		        CAUGHT_self_70 = self_70;
+		        final /*@Thrown*/ boolean self_71 = PivotTables.STR_collectNested.equals(name);
+		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
 		    }
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -1681,16 +1680,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_70 instanceof InvalidValueException;
+		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_8;
 		    if (symbol_0) {
 		        final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_3;
 		        if (symbol_1) {
-		            if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_70;
+		            if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                throw (InvalidValueException)CAUGHT_self_71;
 		            }
-		            symbol_3 = (Boolean)CAUGHT_self_70;
+		            symbol_3 = (Boolean)CAUGHT_self_71;
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_2;
@@ -1698,20 +1697,20 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                symbol_2 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
-		                if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_70;
+		                if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_71;
 		                }
-		                symbol_2 = (Boolean)CAUGHT_self_70;
+		                symbol_2 = (Boolean)CAUGHT_self_71;
 		            }
 		            symbol_3 = symbol_2;
 		        }
 		        symbol_8 = symbol_3;
 		    }
 		    else {
-		        if (CAUGHT_self_70 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_70;
+		        if (CAUGHT_self_71 instanceof InvalidValueException) {
+		            throw (InvalidValueException)CAUGHT_self_71;
 		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_70 == Boolean.FALSE;
+		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_7;
 		        if (eq) {
 		            symbol_7 = ValuesUtil.TRUE_VALUE;
@@ -1768,14 +1767,14 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_70;
+		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		    try {
 		        final @Nullable /*@Thrown*/ String name = this.getName();
-		        final /*@Thrown*/ boolean self_70 = PivotTables.STR_collectNested.equals(name);
-		        CAUGHT_self_70 = self_70;
+		        final /*@Thrown*/ boolean self_71 = PivotTables.STR_collectNested.equals(name);
+		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
 		    }
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
@@ -1792,16 +1791,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_70 instanceof InvalidValueException;
+		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_8;
 		    if (symbol_0) {
 		        final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_3;
 		        if (symbol_1) {
-		            if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_70;
+		            if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                throw (InvalidValueException)CAUGHT_self_71;
 		            }
-		            symbol_3 = (Boolean)CAUGHT_self_70;
+		            symbol_3 = (Boolean)CAUGHT_self_71;
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_2;
@@ -1809,20 +1808,20 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                symbol_2 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
-		                if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_70;
+		                if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_71;
 		                }
-		                symbol_2 = (Boolean)CAUGHT_self_70;
+		                symbol_2 = (Boolean)CAUGHT_self_71;
 		            }
 		            symbol_3 = symbol_2;
 		        }
 		        symbol_8 = symbol_3;
 		    }
 		    else {
-		        if (CAUGHT_self_70 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_70;
+		        if (CAUGHT_self_71 instanceof InvalidValueException) {
+		            throw (InvalidValueException)CAUGHT_self_71;
 		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_70 == Boolean.FALSE;
+		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_7;
 		        if (eq) {
 		            symbol_7 = ValuesUtil.TRUE_VALUE;
@@ -1878,14 +1877,14 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_70;
+		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		    try {
 		        final @Nullable /*@Thrown*/ String name = this.getName();
-		        final /*@Thrown*/ boolean self_70 = PivotTables.STR_exists.equals(name);
-		        CAUGHT_self_70 = self_70;
+		        final /*@Thrown*/ boolean self_71 = PivotTables.STR_exists.equals(name);
+		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
 		    }
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -1900,16 +1899,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_70 instanceof InvalidValueException;
+		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_8;
 		    if (symbol_0) {
 		        final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_3;
 		        if (symbol_1) {
-		            if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_70;
+		            if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                throw (InvalidValueException)CAUGHT_self_71;
 		            }
-		            symbol_3 = (Boolean)CAUGHT_self_70;
+		            symbol_3 = (Boolean)CAUGHT_self_71;
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_2;
@@ -1917,20 +1916,20 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                symbol_2 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
-		                if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_70;
+		                if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_71;
 		                }
-		                symbol_2 = (Boolean)CAUGHT_self_70;
+		                symbol_2 = (Boolean)CAUGHT_self_71;
 		            }
 		            symbol_3 = symbol_2;
 		        }
 		        symbol_8 = symbol_3;
 		    }
 		    else {
-		        if (CAUGHT_self_70 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_70;
+		        if (CAUGHT_self_71 instanceof InvalidValueException) {
+		            throw (InvalidValueException)CAUGHT_self_71;
 		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_70 == Boolean.FALSE;
+		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_7;
 		        if (eq) {
 		            symbol_7 = ValuesUtil.TRUE_VALUE;
@@ -1986,14 +1985,14 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_70;
+		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		    try {
 		        final @Nullable /*@Thrown*/ String name = this.getName();
-		        final /*@Thrown*/ boolean self_70 = PivotTables.STR_exists.equals(name);
-		        CAUGHT_self_70 = self_70;
+		        final /*@Thrown*/ boolean self_71 = PivotTables.STR_exists.equals(name);
+		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
 		    }
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -2012,16 +2011,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_70 instanceof InvalidValueException;
+		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_8;
 		    if (symbol_0) {
 		        final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_3;
 		        if (symbol_1) {
-		            if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_70;
+		            if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                throw (InvalidValueException)CAUGHT_self_71;
 		            }
-		            symbol_3 = (Boolean)CAUGHT_self_70;
+		            symbol_3 = (Boolean)CAUGHT_self_71;
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_2;
@@ -2029,20 +2028,20 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                symbol_2 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
-		                if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_70;
+		                if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_71;
 		                }
-		                symbol_2 = (Boolean)CAUGHT_self_70;
+		                symbol_2 = (Boolean)CAUGHT_self_71;
 		            }
 		            symbol_3 = symbol_2;
 		        }
 		        symbol_8 = symbol_3;
 		    }
 		    else {
-		        if (CAUGHT_self_70 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_70;
+		        if (CAUGHT_self_71 instanceof InvalidValueException) {
+		            throw (InvalidValueException)CAUGHT_self_71;
 		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_70 == Boolean.FALSE;
+		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_7;
 		        if (eq) {
 		            symbol_7 = ValuesUtil.TRUE_VALUE;
@@ -2098,14 +2097,14 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_70;
+		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		    try {
 		        final @Nullable /*@Thrown*/ String name = this.getName();
-		        final /*@Thrown*/ boolean self_70 = PivotTables.STR_forAll.equals(name);
-		        CAUGHT_self_70 = self_70;
+		        final /*@Thrown*/ boolean self_71 = PivotTables.STR_forAll.equals(name);
+		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
 		    }
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -2120,16 +2119,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_70 instanceof InvalidValueException;
+		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_8;
 		    if (symbol_0) {
 		        final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_3;
 		        if (symbol_1) {
-		            if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_70;
+		            if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                throw (InvalidValueException)CAUGHT_self_71;
 		            }
-		            symbol_3 = (Boolean)CAUGHT_self_70;
+		            symbol_3 = (Boolean)CAUGHT_self_71;
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_2;
@@ -2137,20 +2136,20 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                symbol_2 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
-		                if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_70;
+		                if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_71;
 		                }
-		                symbol_2 = (Boolean)CAUGHT_self_70;
+		                symbol_2 = (Boolean)CAUGHT_self_71;
 		            }
 		            symbol_3 = symbol_2;
 		        }
 		        symbol_8 = symbol_3;
 		    }
 		    else {
-		        if (CAUGHT_self_70 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_70;
+		        if (CAUGHT_self_71 instanceof InvalidValueException) {
+		            throw (InvalidValueException)CAUGHT_self_71;
 		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_70 == Boolean.FALSE;
+		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_7;
 		        if (eq) {
 		            symbol_7 = ValuesUtil.TRUE_VALUE;
@@ -2206,14 +2205,14 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_70;
+		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		    try {
 		        final @Nullable /*@Thrown*/ String name = this.getName();
-		        final /*@Thrown*/ boolean self_70 = PivotTables.STR_forAll.equals(name);
-		        CAUGHT_self_70 = self_70;
+		        final /*@Thrown*/ boolean self_71 = PivotTables.STR_forAll.equals(name);
+		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
 		    }
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -2232,16 +2231,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_70 instanceof InvalidValueException;
+		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_8;
 		    if (symbol_0) {
 		        final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_3;
 		        if (symbol_1) {
-		            if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_70;
+		            if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                throw (InvalidValueException)CAUGHT_self_71;
 		            }
-		            symbol_3 = (Boolean)CAUGHT_self_70;
+		            symbol_3 = (Boolean)CAUGHT_self_71;
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_2;
@@ -2249,20 +2248,20 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                symbol_2 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
-		                if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_70;
+		                if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_71;
 		                }
-		                symbol_2 = (Boolean)CAUGHT_self_70;
+		                symbol_2 = (Boolean)CAUGHT_self_71;
 		            }
 		            symbol_3 = symbol_2;
 		        }
 		        symbol_8 = symbol_3;
 		    }
 		    else {
-		        if (CAUGHT_self_70 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_70;
+		        if (CAUGHT_self_71 instanceof InvalidValueException) {
+		            throw (InvalidValueException)CAUGHT_self_71;
 		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_70 == Boolean.FALSE;
+		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_7;
 		        if (eq) {
 		            symbol_7 = ValuesUtil.TRUE_VALUE;
@@ -2318,14 +2317,14 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_70;
+		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		    try {
 		        final @Nullable /*@Thrown*/ String name = this.getName();
-		        final /*@Thrown*/ boolean self_70 = PivotTables.STR_isUnique.equals(name);
-		        CAUGHT_self_70 = self_70;
+		        final /*@Thrown*/ boolean self_71 = PivotTables.STR_isUnique.equals(name);
+		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
 		    }
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -2340,16 +2339,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_70 instanceof InvalidValueException;
+		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_8;
 		    if (symbol_0) {
 		        final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_3;
 		        if (symbol_1) {
-		            if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_70;
+		            if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                throw (InvalidValueException)CAUGHT_self_71;
 		            }
-		            symbol_3 = (Boolean)CAUGHT_self_70;
+		            symbol_3 = (Boolean)CAUGHT_self_71;
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_2;
@@ -2357,20 +2356,20 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                symbol_2 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
-		                if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_70;
+		                if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_71;
 		                }
-		                symbol_2 = (Boolean)CAUGHT_self_70;
+		                symbol_2 = (Boolean)CAUGHT_self_71;
 		            }
 		            symbol_3 = symbol_2;
 		        }
 		        symbol_8 = symbol_3;
 		    }
 		    else {
-		        if (CAUGHT_self_70 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_70;
+		        if (CAUGHT_self_71 instanceof InvalidValueException) {
+		            throw (InvalidValueException)CAUGHT_self_71;
 		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_70 == Boolean.FALSE;
+		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_7;
 		        if (eq) {
 		            symbol_7 = ValuesUtil.TRUE_VALUE;
@@ -2426,14 +2425,14 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_70;
+		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		    try {
 		        final @Nullable /*@Thrown*/ String name = this.getName();
-		        final /*@Thrown*/ boolean self_70 = PivotTables.STR_isUnique.equals(name);
-		        CAUGHT_self_70 = self_70;
+		        final /*@Thrown*/ boolean self_71 = PivotTables.STR_isUnique.equals(name);
+		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
 		    }
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -2448,16 +2447,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_70 instanceof InvalidValueException;
+		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_8;
 		    if (symbol_0) {
 		        final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_3;
 		        if (symbol_1) {
-		            if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_70;
+		            if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                throw (InvalidValueException)CAUGHT_self_71;
 		            }
-		            symbol_3 = (Boolean)CAUGHT_self_70;
+		            symbol_3 = (Boolean)CAUGHT_self_71;
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_2;
@@ -2465,20 +2464,20 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                symbol_2 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
-		                if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_70;
+		                if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_71;
 		                }
-		                symbol_2 = (Boolean)CAUGHT_self_70;
+		                symbol_2 = (Boolean)CAUGHT_self_71;
 		            }
 		            symbol_3 = symbol_2;
 		        }
 		        symbol_8 = symbol_3;
 		    }
 		    else {
-		        if (CAUGHT_self_70 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_70;
+		        if (CAUGHT_self_71 instanceof InvalidValueException) {
+		            throw (InvalidValueException)CAUGHT_self_71;
 		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_70 == Boolean.FALSE;
+		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_7;
 		        if (eq) {
 		            symbol_7 = ValuesUtil.TRUE_VALUE;
@@ -2534,14 +2533,14 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_70;
+		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		    try {
 		        final @Nullable /*@Thrown*/ String name = this.getName();
-		        final /*@Thrown*/ boolean self_70 = PivotTables.STR_one.equals(name);
-		        CAUGHT_self_70 = self_70;
+		        final /*@Thrown*/ boolean self_71 = PivotTables.STR_one.equals(name);
+		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
 		    }
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -2556,16 +2555,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_70 instanceof InvalidValueException;
+		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_8;
 		    if (symbol_0) {
 		        final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_3;
 		        if (symbol_1) {
-		            if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_70;
+		            if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                throw (InvalidValueException)CAUGHT_self_71;
 		            }
-		            symbol_3 = (Boolean)CAUGHT_self_70;
+		            symbol_3 = (Boolean)CAUGHT_self_71;
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_2;
@@ -2573,20 +2572,20 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                symbol_2 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
-		                if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_70;
+		                if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_71;
 		                }
-		                symbol_2 = (Boolean)CAUGHT_self_70;
+		                symbol_2 = (Boolean)CAUGHT_self_71;
 		            }
 		            symbol_3 = symbol_2;
 		        }
 		        symbol_8 = symbol_3;
 		    }
 		    else {
-		        if (CAUGHT_self_70 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_70;
+		        if (CAUGHT_self_71 instanceof InvalidValueException) {
+		            throw (InvalidValueException)CAUGHT_self_71;
 		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_70 == Boolean.FALSE;
+		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_7;
 		        if (eq) {
 		            symbol_7 = ValuesUtil.TRUE_VALUE;
@@ -2642,14 +2641,14 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_70;
+		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		    try {
 		        final @Nullable /*@Thrown*/ String name = this.getName();
-		        final /*@Thrown*/ boolean self_70 = PivotTables.STR_one.equals(name);
-		        CAUGHT_self_70 = self_70;
+		        final /*@Thrown*/ boolean self_71 = PivotTables.STR_one.equals(name);
+		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
 		    }
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -2664,16 +2663,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_70 instanceof InvalidValueException;
+		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_8;
 		    if (symbol_0) {
 		        final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_3;
 		        if (symbol_1) {
-		            if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_70;
+		            if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                throw (InvalidValueException)CAUGHT_self_71;
 		            }
-		            symbol_3 = (Boolean)CAUGHT_self_70;
+		            symbol_3 = (Boolean)CAUGHT_self_71;
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_2;
@@ -2681,20 +2680,20 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                symbol_2 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
-		                if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_70;
+		                if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_71;
 		                }
-		                symbol_2 = (Boolean)CAUGHT_self_70;
+		                symbol_2 = (Boolean)CAUGHT_self_71;
 		            }
 		            symbol_3 = symbol_2;
 		        }
 		        symbol_8 = symbol_3;
 		    }
 		    else {
-		        if (CAUGHT_self_70 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_70;
+		        if (CAUGHT_self_71 instanceof InvalidValueException) {
+		            throw (InvalidValueException)CAUGHT_self_71;
 		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_70 == Boolean.FALSE;
+		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_7;
 		        if (eq) {
 		            symbol_7 = ValuesUtil.TRUE_VALUE;
@@ -2750,14 +2749,14 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_70;
+		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		    try {
 		        final @Nullable /*@Thrown*/ String name = this.getName();
-		        final /*@Thrown*/ boolean self_70 = PivotTables.STR_one.equals(name);
-		        CAUGHT_self_70 = self_70;
+		        final /*@Thrown*/ boolean self_71 = PivotTables.STR_one.equals(name);
+		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
 		    }
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -2776,16 +2775,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_70 instanceof InvalidValueException;
+		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_8;
 		    if (symbol_0) {
 		        final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_3;
 		        if (symbol_1) {
-		            if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_70;
+		            if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                throw (InvalidValueException)CAUGHT_self_71;
 		            }
-		            symbol_3 = (Boolean)CAUGHT_self_70;
+		            symbol_3 = (Boolean)CAUGHT_self_71;
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_2;
@@ -2793,20 +2792,20 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                symbol_2 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
-		                if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_70;
+		                if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_71;
 		                }
-		                symbol_2 = (Boolean)CAUGHT_self_70;
+		                symbol_2 = (Boolean)CAUGHT_self_71;
 		            }
 		            symbol_3 = symbol_2;
 		        }
 		        symbol_8 = symbol_3;
 		    }
 		    else {
-		        if (CAUGHT_self_70 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_70;
+		        if (CAUGHT_self_71 instanceof InvalidValueException) {
+		            throw (InvalidValueException)CAUGHT_self_71;
 		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_70 == Boolean.FALSE;
+		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_7;
 		        if (eq) {
 		            symbol_7 = ValuesUtil.TRUE_VALUE;
@@ -2866,14 +2865,14 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		try {
 		    @NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		    try {
-		        @NonNull /*@Caught*/ Object CAUGHT_self_70;
+		        @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		        try {
 		            final @Nullable /*@Thrown*/ String name = this.getName();
-		            final /*@Thrown*/ boolean self_70 = PivotTables.STR_reject.equals(name);
-		            CAUGHT_self_70 = self_70;
+		            final /*@Thrown*/ boolean self_71 = PivotTables.STR_reject.equals(name);
+		            CAUGHT_self_71 = self_71;
 		        }
 		        catch (Exception e) {
-		            CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
+		            CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
 		        }
 		        @NonNull /*@Caught*/ Object CAUGHT_b;
 		        try {
@@ -2884,16 +2883,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		        catch (Exception e) {
 		            CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		        }
-		        final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_70 instanceof InvalidValueException;
+		        final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_8;
 		        if (symbol_0) {
 		            final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
 		            /*@Thrown*/ boolean symbol_3;
 		            if (symbol_1) {
-		                if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_70;
+		                if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_71;
 		                }
-		                symbol_3 = (Boolean)CAUGHT_self_70;
+		                symbol_3 = (Boolean)CAUGHT_self_71;
 		            }
 		            else {
 		                /*@Thrown*/ boolean symbol_2;
@@ -2901,10 +2900,10 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                    symbol_2 = ValuesUtil.TRUE_VALUE;
 		                }
 		                else {
-		                    if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                        throw (InvalidValueException)CAUGHT_self_70;
+		                    if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                        throw (InvalidValueException)CAUGHT_self_71;
 		                    }
-		                    symbol_2 = (Boolean)CAUGHT_self_70;
+		                    symbol_2 = (Boolean)CAUGHT_self_71;
 		                }
 		                symbol_3 = symbol_2;
 		            }
@@ -2912,7 +2911,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_7;
-		            if (CAUGHT_self_70 == Boolean.TRUE) {
+		            if (CAUGHT_self_71 == Boolean.TRUE) {
 		                symbol_7 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
@@ -3045,14 +3044,14 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		try {
 		    @NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		    try {
-		        @NonNull /*@Caught*/ Object CAUGHT_self_70;
+		        @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		        try {
 		            final @Nullable /*@Thrown*/ String name = this.getName();
-		            final /*@Thrown*/ boolean self_70 = PivotTables.STR_reject.equals(name);
-		            CAUGHT_self_70 = self_70;
+		            final /*@Thrown*/ boolean self_71 = PivotTables.STR_reject.equals(name);
+		            CAUGHT_self_71 = self_71;
 		        }
 		        catch (Exception e) {
-		            CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
+		            CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
 		        }
 		        @NonNull /*@Caught*/ Object CAUGHT_b;
 		        try {
@@ -3063,16 +3062,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		        catch (Exception e) {
 		            CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		        }
-		        final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_70 instanceof InvalidValueException;
+		        final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_8;
 		        if (symbol_0) {
 		            final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
 		            /*@Thrown*/ boolean symbol_3;
 		            if (symbol_1) {
-		                if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_70;
+		                if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_71;
 		                }
-		                symbol_3 = (Boolean)CAUGHT_self_70;
+		                symbol_3 = (Boolean)CAUGHT_self_71;
 		            }
 		            else {
 		                /*@Thrown*/ boolean symbol_2;
@@ -3080,10 +3079,10 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                    symbol_2 = ValuesUtil.TRUE_VALUE;
 		                }
 		                else {
-		                    if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                        throw (InvalidValueException)CAUGHT_self_70;
+		                    if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                        throw (InvalidValueException)CAUGHT_self_71;
 		                    }
-		                    symbol_2 = (Boolean)CAUGHT_self_70;
+		                    symbol_2 = (Boolean)CAUGHT_self_71;
 		                }
 		                symbol_3 = symbol_2;
 		            }
@@ -3091,7 +3090,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_7;
-		            if (CAUGHT_self_70 == Boolean.TRUE) {
+		            if (CAUGHT_self_71 == Boolean.TRUE) {
 		                symbol_7 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
@@ -3226,14 +3225,14 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		try {
 		    @NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		    try {
-		        @NonNull /*@Caught*/ Object CAUGHT_self_70;
+		        @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		        try {
 		            final @Nullable /*@Thrown*/ String name = this.getName();
-		            final /*@Thrown*/ boolean self_70 = PivotTables.STR_reject.equals(name);
-		            CAUGHT_self_70 = self_70;
+		            final /*@Thrown*/ boolean self_71 = PivotTables.STR_reject.equals(name);
+		            CAUGHT_self_71 = self_71;
 		        }
 		        catch (Exception e) {
-		            CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
+		            CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
 		        }
 		        @NonNull /*@Caught*/ Object CAUGHT_b;
 		        try {
@@ -3244,16 +3243,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		        catch (Exception e) {
 		            CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		        }
-		        final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_70 instanceof InvalidValueException;
+		        final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_8;
 		        if (symbol_0) {
 		            final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
 		            /*@Thrown*/ boolean symbol_3;
 		            if (symbol_1) {
-		                if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_70;
+		                if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_71;
 		                }
-		                symbol_3 = (Boolean)CAUGHT_self_70;
+		                symbol_3 = (Boolean)CAUGHT_self_71;
 		            }
 		            else {
 		                /*@Thrown*/ boolean symbol_2;
@@ -3261,10 +3260,10 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                    symbol_2 = ValuesUtil.TRUE_VALUE;
 		                }
 		                else {
-		                    if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                        throw (InvalidValueException)CAUGHT_self_70;
+		                    if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                        throw (InvalidValueException)CAUGHT_self_71;
 		                    }
-		                    symbol_2 = (Boolean)CAUGHT_self_70;
+		                    symbol_2 = (Boolean)CAUGHT_self_71;
 		                }
 		                symbol_3 = symbol_2;
 		            }
@@ -3272,7 +3271,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_7;
-		            if (CAUGHT_self_70 == Boolean.TRUE) {
+		            if (CAUGHT_self_71 == Boolean.TRUE) {
 		                symbol_7 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
@@ -3402,14 +3401,14 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_70;
+		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		    try {
 		        final @Nullable /*@Thrown*/ String name = this.getName();
-		        final /*@Thrown*/ boolean self_70 = PivotTables.STR_sortedBy.equals(name);
-		        CAUGHT_self_70 = self_70;
+		        final /*@Thrown*/ boolean self_71 = PivotTables.STR_sortedBy.equals(name);
+		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
 		    }
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -3424,16 +3423,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_70 instanceof InvalidValueException;
+		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_8;
 		    if (symbol_0) {
 		        final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_3;
 		        if (symbol_1) {
-		            if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_70;
+		            if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                throw (InvalidValueException)CAUGHT_self_71;
 		            }
-		            symbol_3 = (Boolean)CAUGHT_self_70;
+		            symbol_3 = (Boolean)CAUGHT_self_71;
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_2;
@@ -3441,20 +3440,20 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                symbol_2 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
-		                if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_70;
+		                if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_71;
 		                }
-		                symbol_2 = (Boolean)CAUGHT_self_70;
+		                symbol_2 = (Boolean)CAUGHT_self_71;
 		            }
 		            symbol_3 = symbol_2;
 		        }
 		        symbol_8 = symbol_3;
 		    }
 		    else {
-		        if (CAUGHT_self_70 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_70;
+		        if (CAUGHT_self_71 instanceof InvalidValueException) {
+		            throw (InvalidValueException)CAUGHT_self_71;
 		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_70 == Boolean.FALSE;
+		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_7;
 		        if (eq) {
 		            symbol_7 = ValuesUtil.TRUE_VALUE;
@@ -3517,21 +3516,21 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_17;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_70;
+		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		    try {
 		        final @Nullable /*@Thrown*/ String name = this.getName();
-		        final /*@Thrown*/ boolean self_70 = PivotTables.STR_sortedBy.equals(name);
-		        CAUGHT_self_70 = self_70;
+		        final /*@Thrown*/ boolean self_71 = PivotTables.STR_sortedBy.equals(name);
+		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
 		    }
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		    @NonNull /*@Caught*/ Object CAUGHT_b_0;
 		    try {
 		        final @Nullable /*@Thrown*/ DomainType type_2 = this.getType();
-		        @NonNull /*@Caught*/ Object CAUGHT_self_71;
+		        @NonNull /*@Caught*/ Object CAUGHT_self_72;
 		        try {
 		            final @NonNull /*@NonInvalid*/ DomainClass TYP_pivot_c_c_SequenceType_0 = idResolver.getClass(PivotTables.CLSSid_SequenceType, null);
 		            final @Nullable /*@Thrown*/ DomainExpression source = this.getSource();
@@ -3539,11 +3538,11 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		            }
 		            final @Nullable /*@Thrown*/ DomainType type = source.getType();
-		            final /*@Thrown*/ boolean self_71 = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_SequenceType_0).booleanValue();
-		            CAUGHT_self_71 = self_71;
+		            final /*@Thrown*/ boolean self_72 = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_SequenceType_0).booleanValue();
+		            CAUGHT_self_72 = self_72;
 		        }
 		        catch (Exception e) {
-		            CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
+		            CAUGHT_self_72 = ValuesUtil.createInvalidValue(e);
 		        }
 		        @NonNull /*@Caught*/ Object CAUGHT_b;
 		        try {
@@ -3559,16 +3558,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		        catch (Exception e) {
 		            CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		        }
-		        final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
+		        final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_72 instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_8;
 		        if (symbol_0) {
 		            final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
 		            /*@Thrown*/ boolean symbol_3;
 		            if (symbol_1) {
-		                if (CAUGHT_self_71 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_71;
+		                if (CAUGHT_self_72 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_72;
 		                }
-		                symbol_3 = (Boolean)CAUGHT_self_71;
+		                symbol_3 = (Boolean)CAUGHT_self_72;
 		            }
 		            else {
 		                /*@Thrown*/ boolean symbol_2;
@@ -3576,10 +3575,10 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                    symbol_2 = ValuesUtil.TRUE_VALUE;
 		                }
 		                else {
-		                    if (CAUGHT_self_71 instanceof InvalidValueException) {
-		                        throw (InvalidValueException)CAUGHT_self_71;
+		                    if (CAUGHT_self_72 instanceof InvalidValueException) {
+		                        throw (InvalidValueException)CAUGHT_self_72;
 		                    }
-		                    symbol_2 = (Boolean)CAUGHT_self_71;
+		                    symbol_2 = (Boolean)CAUGHT_self_72;
 		                }
 		                symbol_3 = symbol_2;
 		            }
@@ -3587,7 +3586,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_7;
-		            if (CAUGHT_self_71 == Boolean.TRUE) {
+		            if (CAUGHT_self_72 == Boolean.TRUE) {
 		                symbol_7 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
@@ -3629,16 +3628,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_b_0 = ValuesUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_9 = CAUGHT_self_70 instanceof InvalidValueException;
+		    final /*@NonInvalid*/ boolean symbol_9 = CAUGHT_self_71 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_17;
 		    if (symbol_9) {
 		        final /*@NonInvalid*/ boolean symbol_10 = CAUGHT_b_0 instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_12;
 		        if (symbol_10) {
-		            if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_70;
+		            if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                throw (InvalidValueException)CAUGHT_self_71;
 		            }
-		            symbol_12 = (Boolean)CAUGHT_self_70;
+		            symbol_12 = (Boolean)CAUGHT_self_71;
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_11;
@@ -3646,20 +3645,20 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                symbol_11 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
-		                if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_70;
+		                if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_71;
 		                }
-		                symbol_11 = (Boolean)CAUGHT_self_70;
+		                symbol_11 = (Boolean)CAUGHT_self_71;
 		            }
 		            symbol_12 = symbol_11;
 		        }
 		        symbol_17 = symbol_12;
 		    }
 		    else {
-		        if (CAUGHT_self_70 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_70;
+		        if (CAUGHT_self_71 instanceof InvalidValueException) {
+		            throw (InvalidValueException)CAUGHT_self_71;
 		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_70 == Boolean.FALSE;
+		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_16;
 		        if (eq) {
 		            symbol_16 = ValuesUtil.TRUE_VALUE;
@@ -3718,14 +3717,14 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_70;
+		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		    try {
 		        final @Nullable /*@Thrown*/ String name = this.getName();
-		        final /*@Thrown*/ boolean self_70 = PivotTables.STR_sortedBy.equals(name);
-		        CAUGHT_self_70 = self_70;
+		        final /*@Thrown*/ boolean self_71 = PivotTables.STR_sortedBy.equals(name);
+		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
 		    }
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -3755,16 +3754,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_70 instanceof InvalidValueException;
+		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_8;
 		    if (symbol_0) {
 		        final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_3;
 		        if (symbol_1) {
-		            if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_70;
+		            if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                throw (InvalidValueException)CAUGHT_self_71;
 		            }
-		            symbol_3 = (Boolean)CAUGHT_self_70;
+		            symbol_3 = (Boolean)CAUGHT_self_71;
 		        }
 		        else {
 		            /*@Thrown*/ boolean symbol_2;
@@ -3772,20 +3771,20 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                symbol_2 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
-		                if (CAUGHT_self_70 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_70;
+		                if (CAUGHT_self_71 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_71;
 		                }
-		                symbol_2 = (Boolean)CAUGHT_self_70;
+		                symbol_2 = (Boolean)CAUGHT_self_71;
 		            }
 		            symbol_3 = symbol_2;
 		        }
 		        symbol_8 = symbol_3;
 		    }
 		    else {
-		        if (CAUGHT_self_70 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_70;
+		        if (CAUGHT_self_71 instanceof InvalidValueException) {
+		            throw (InvalidValueException)CAUGHT_self_71;
 		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_70 == Boolean.FALSE;
+		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_7;
 		        if (eq) {
 		            symbol_7 = ValuesUtil.TRUE_VALUE;
@@ -3982,8 +3981,8 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 				return validateClosureSourceElementTypeIsBodyElementType((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.ITERATOR_EXP___VALIDATE_CLOSURE_TYPE_IS_UNIQUE_COLLECTION__DIAGNOSTICCHAIN_MAP:
 				return validateClosureTypeIsUniqueCollection((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case PivotPackage.ITERATOR_EXP___VALIDATE_COLLECT_ELEMENT_TYPE_IS_SOURCE_ELEMENT_TYPE__DIAGNOSTICCHAIN_MAP:
-				return validateCollectElementTypeIsSourceElementType((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.ITERATOR_EXP___VALIDATE_COLLECT_ELEMENT_TYPE_IS_FLATTENED_BODY_TYPE__DIAGNOSTICCHAIN_MAP:
+				return validateCollectElementTypeIsFlattenedBodyType((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.ITERATOR_EXP___VALIDATE_COLLECT_HAS_ONE_ITERATOR__DIAGNOSTICCHAIN_MAP:
 				return validateCollectHasOneIterator((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.ITERATOR_EXP___VALIDATE_COLLECT_NESTED_HAS_ONE_ITERATOR__DIAGNOSTICCHAIN_MAP:

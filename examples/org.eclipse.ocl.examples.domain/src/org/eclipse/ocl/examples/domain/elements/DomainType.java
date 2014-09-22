@@ -22,6 +22,8 @@ public interface DomainType extends DomainNamespace, OCLValue
 	 * Return true if this type conform to thatType within standardLibrary.
 	 */
 	boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType thatType);
+
+	DomainType flattenedType();
 	
 	/**
 	 * Return the most derived type common to this type and thatType within standardLibrary.

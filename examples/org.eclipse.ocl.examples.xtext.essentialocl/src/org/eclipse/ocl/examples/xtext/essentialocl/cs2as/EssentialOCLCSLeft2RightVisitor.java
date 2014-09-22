@@ -618,7 +618,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		implicitCollectExp.setImplicit(true);
 		PivotUtil.resetContainer(sourceExp);
 		implicitCollectExp.setSource(sourceExp);
-		implicitCollectExp.setName("oclAsSet");
+		implicitCollectExp.setName(asIteration.getName());
 		context.setReferredIteration(implicitCollectExp, asIteration);
 		Variable iterator = context.refreshModelElement(Variable.class, PivotPackage.Literals.VARIABLE, null); // FIXME reuse
 		Parameter resolvedIterator = asIteration.getOwnedIterator().get(0);

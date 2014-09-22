@@ -732,9 +732,9 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="CollectElementTypeIsSourceElementType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="CollectElementTypeIsFlattenedBodyType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="name = 'collect' implies&#xA;type.oclAsType(CollectionType).elementType =&#xA;_'body'.type.oclAsType(CollectionType).elementType&#xA;&#xA;"/>
+        <details key="body" value="name = 'collect' implies&#xA;type.oclAsType(CollectionType).elementType = _'body'.type.flattenedType()&#xA;&#xA;"/>
       </eAnnotations>
       <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
       <eParameters name="context">
@@ -1829,6 +1829,11 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A type is a named element that is used as the type for a typed element. A type can be contained in a package.&#xA;Type is defined to be a kind of templateable element so that a type can be parameterized. It is also defined to be a kind of parameterable element so that a type can be a formal template parameter."/>
     </eAnnotations>
+    <eOperations name="flattenedType" lowerBound="1" eType="#//Type">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="self&#xA;&#xA;"/>
+      </eAnnotations>
+    </eOperations>
     <eOperations name="isClass" eType="#//Class"/>
     <eOperations name="isTemplateParameter" eType="#//TemplateParameter"/>
     <eOperations name="specializeIn" lowerBound="1" eType="#//Type">

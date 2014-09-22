@@ -563,9 +563,9 @@
           isCallable="true" name="ClosureTypeIsUniqueCollection">
         <specification xsi:type="pivot:ExpressionInOCL" body="name = 'closure' implies&#xA;if source.type.oclIsKindOf(SequenceType) or source.type.oclIsKindOf(OrderedSetType) then&#xA;type.oclIsKindOf(OrderedSetType)&#xA;else&#xA;type.oclIsKindOf(SetType)&#xA;endif&#xA;&#xA;"/>
       </ownedInvariants>
-      <ownedInvariants xmi:id="cipivot.IteratorExp.CollectElementTypeIsSourceElementType"
-          isCallable="true" name="CollectElementTypeIsSourceElementType">
-        <specification xsi:type="pivot:ExpressionInOCL" body="name = 'collect' implies&#xA;type.oclAsType(CollectionType).elementType =&#xA;_'body'.type.oclAsType(CollectionType).elementType&#xA;&#xA;"/>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.CollectElementTypeIsFlattenedBodyType"
+          isCallable="true" name="CollectElementTypeIsFlattenedBodyType">
+        <specification xsi:type="pivot:ExpressionInOCL" body="name = 'collect' implies&#xA;type.oclAsType(CollectionType).elementType = _'body'.type.flattenedType()&#xA;&#xA;"/>
       </ownedInvariants>
       <ownedInvariants xmi:id="cipivot.IteratorExp.CollectHasOneIterator" isCallable="true"
           name="CollectHasOneIterator">
@@ -1520,6 +1520,9 @@
     <ownedClasses xmi:id="T.pivot.TupleType" name="TupleType" superClasses="#T.pivot.DataType"/>
     <ownedClasses xmi:id="T.pivot.Type" isAbstract="true" name="Type" superClasses="#T.pivot.NamedElement">
       <ownedComment body="A type is a named element that is used as the type for a typed element. A type can be contained in a package.&#xA;Type is defined to be a kind of templateable element so that a type can be parameterized. It is also defined to be a kind of parameterable element so that a type can be a formal template parameter."/>
+      <ownedOperations xmi:id="o.pivot.Type.flattenedType" name="flattenedType" type="#T.pivot.Type">
+        <bodyExpression xsi:type="pivot:ExpressionInOCL" body="self&#xA;&#xA;"/>
+      </ownedOperations>
       <ownedOperations xmi:id="o.pivot.Type.isClass" isRequired="false" name="isClass"
           type="#T.pivot.Class"/>
       <ownedOperations xmi:id="o.pivot.Type.isTemplateParameter" isRequired="false"
