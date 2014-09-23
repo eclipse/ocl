@@ -39,7 +39,7 @@ public interface DomainClass extends DomainType
 	
 	DomainPackage getOwningPackage();
 
-	@NonNull Iterable<? extends DomainClass> getSuperClasses();
+	@NonNull List<? extends DomainClass> getSuperClasses();
 
 	/**
 	 * Return the ordered list of type parameters of this type.

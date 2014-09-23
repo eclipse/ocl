@@ -95,7 +95,7 @@ public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 		};
 	}
 
-	public @NonNull Iterable<? extends DomainClass> getSuperClasses() {
+	public @NonNull List<? extends DomainClass> getSuperClasses() {
 		return domainClass.getSuperClasses();
 	}
 

@@ -137,6 +137,7 @@ public interface CompletePackage extends NamedElement, org.eclipse.ocl.examples.
 		void dispose();
 		CompleteClass.Internal getOwnedCompleteClass(String name);
 		@Nullable CompletePackage.Internal getOwnedCompletePackage(@Nullable String name);
+//		@Nullable CompletePackage.Internal getOwnedCompletePackage(@NonNull DomainPackage partialPackage);
 		@NonNull PartialPackages getPartialPackages();
 		boolean hasNestedClasses();
 		void init(String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId);

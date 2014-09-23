@@ -479,7 +479,11 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 		completeEnvironment.dispose();
 		ownedCompletePackages.dispose();
 		completeURIs.dispose();
-		orphanage = null;
+		Orphanage orphanage2 = orphanage;
+		if (orphanage2 != null) {
+			orphanage2.removePackageListener(getOrphanCompletePackage().getPartialPackages());
+			orphanage = null;
+		}
 	}
 
 	public @Nullable CollectionType findCollectionType(@NonNull CompleteClass.Internal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters) {
@@ -562,6 +566,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 		Orphanage orphanage2 = orphanage;
 		if (orphanage2 == null) {
 			orphanage2 = orphanage = metaModelManager.createOrphanage();
+			orphanage2.addPackageListener(getOrphanCompletePackage().getPartialPackages());
 		}
 		return orphanage2;
 	}

@@ -11,7 +11,7 @@
 package org.eclipse.ocl.examples.pivot.internal.complete;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.pivot.CompleteModel;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.NestedCompletePackage;
@@ -30,7 +30,7 @@ public class NestedCompletePackages extends AbstractCompletePackages<NestedCompl
 	}
 
 	@Override
-	public @NonNull NestedCompletePackage.Internal createCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
+	public @NonNull NestedCompletePackage.Internal createCompletePackage(@NonNull DomainPackage partialPackage) {
 		NestedCompletePackage.Internal completePackage = (NestedCompletePackage.Internal) PivotFactory.eINSTANCE.createNestedCompletePackage();
 		completePackage.init(partialPackage.getName(), partialPackage.getNsPrefix(), partialPackage.getURI(), partialPackage.getPackageId());
 		return completePackage;
@@ -56,15 +56,13 @@ public class NestedCompletePackages extends AbstractCompletePackages<NestedCompl
 		return (CompletePackage.Internal)owner;
 	}
 
-	public @Nullable NestedCompletePackage getOwnedCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
+	@Override
+	public @NonNull NestedCompletePackage.Internal getOwnedCompletePackage(@NonNull DomainPackage partialPackage) {
 		String name = partialPackage.getName();
-		if (name == null) {
-			return null;
-		}
-		NestedCompletePackage completePackage = super.getOwnedCompletePackage(name);
+		NestedCompletePackage.Internal completePackage = super.getOwnedCompletePackage(name);
 		if (completePackage == null) {
 			completePackage = createCompletePackage(partialPackage);			
-			completePackage.getPartialPackages().add(partialPackage);
+			completePackage.getPartialPackages().add((org.eclipse.ocl.examples.pivot.Package)partialPackage);		// FIXME cast
 			add(completePackage);
 		}
 		return completePackage;

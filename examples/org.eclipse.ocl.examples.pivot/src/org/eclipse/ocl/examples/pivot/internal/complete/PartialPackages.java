@@ -76,12 +76,12 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 		if (PARTIAL_PACKAGES.isActive()) {
 			PARTIAL_PACKAGES.println("Do-didAdd " + this + " " + partialPackage);
 		}
-		didAddPackage(partialPackage);
-	}
-
-	public void didAddPackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
 		((PackageImpl)partialPackage).addPackageListener(this);
 		getCompletePackage().didAddPartialPackage(partialPackage);
+	}
+
+	public void didAddPackage(@NonNull org.eclipse.ocl.examples.pivot.Package nestedPackage) {
+		getCompletePackage().didAddNestedPackage(nestedPackage);
 	}
 
 /*	public void didAddClass(@NonNull CompleteClass completeClass, @NonNull DomainClass partialClass) {
@@ -136,12 +136,12 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 			PARTIAL_PACKAGES.println("Do-didRemove " + this + " " + partialPackage);
 		}
 		super.didRemove(index, partialPackage);
-		didRemovePackage(partialPackage);
-	}
-
-	public void didRemovePackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
 		((PackageImpl)partialPackage).removePackageListener(this);
 		getCompletePackage().didRemovePartialPackage(partialPackage);
+	}
+
+	public void didRemovePackage(@NonNull org.eclipse.ocl.examples.pivot.Package nestedPackage) {
+		getCompletePackage().didRemoveNestedPackage(nestedPackage);
 	}
 
 	public void didAddClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {

@@ -379,6 +379,10 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 		}
 	}
 
+	public void didAddNestedPackage(@NonNull org.eclipse.ocl.examples.pivot.Package nestedPackage) {
+		getOwnedCompletePackages().didAddPackage(nestedPackage);
+	}
+
 	public void didAddPartialPackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
 		if (ownedCompleteClasses != null) {
 			ownedCompleteClasses.didAddPackage(partialPackage);
@@ -389,6 +393,10 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 		if (ownedCompleteClasses != null) {
 			ownedCompleteClasses.didRemoveClass(partialClass);
 		}
+	}
+
+	public void didRemoveNestedPackage(@NonNull org.eclipse.ocl.examples.pivot.Package nestedPackage) {
+		getOwnedCompletePackages().didRemovePackage(nestedPackage);
 	}
 
 	public void didRemovePartialPackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {

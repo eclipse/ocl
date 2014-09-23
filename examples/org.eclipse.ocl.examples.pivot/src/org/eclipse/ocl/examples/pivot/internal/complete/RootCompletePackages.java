@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.pivot.internal.complete;
 
-import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
@@ -19,11 +17,10 @@ import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.pivot.CompleteModel;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
-import org.eclipse.ocl.examples.pivot.Package;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.ParentCompletePackage;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.RootCompletePackage;
 import org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl;
 import org.eclipse.ocl.examples.pivot.manager.Orphanage;
@@ -39,7 +36,7 @@ public class RootCompletePackages extends AbstractCompletePackages<RootCompleteP
 	}
 
 	@Override
-	public @NonNull RootCompletePackage.Internal createCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
+	public @NonNull RootCompletePackage.Internal createCompletePackage(@NonNull DomainPackage partialPackage) {
 		RootCompletePackage.Internal completePackage = (RootCompletePackage.Internal) PivotFactory.eINSTANCE.createParentCompletePackage();
 		completePackage.init(partialPackage.getName(), partialPackage.getNsPrefix(), partialPackage.getURI(), partialPackage.getPackageId());
 		return completePackage;
@@ -81,45 +78,11 @@ public class RootCompletePackages extends AbstractCompletePackages<RootCompleteP
 //		}
 	}
 
-	public void didAddPackage(@NonNull org.eclipse.ocl.examples.pivot.Package pivotPackage) {
-		CompletePackage completePackage = null;
-		String name = pivotPackage.getName();
-		String packageURI = pivotPackage.getURI();
-		if (packageURI != null) {										// Explicit packageURI for explicit package (merge)
-			completePackage = getCompleteModel().getCompleteURIs().getCompletePackage(packageURI);
-		}
-		else if (name != null) {										// Null packageURI can merge into same named package
-			completePackage = getOwnedCompletePackage(name);
-		}
-		if (completePackage == null) {
-			completePackage = getOwnedCompletePackage(pivotPackage);
-			completePackage.assertSamePackage(pivotPackage);
-		}
-		completePackage.getPartialPackages().add(pivotPackage);
-//		completePackage.addTrackedPackage(pivotPackage);
-//		for (org.eclipse.ocl.examples.pivot.Package nestedPackage : pivotPackage.getOwnedPackages()) {
-//			if (nestedPackage != null) {
-//				addPackage(completePackage, nestedPackage);
-//			}
-//		}
-	}
-
 	@Override
 	protected void didRemove(int index, RootCompletePackage rootCompletePackage) {
 		assert rootCompletePackage != null;
 		super.didRemove(index, rootCompletePackage);
 //		getCompleteModel().didRemoveCompletePackage(rootCompletePackage);
-	}
-
-	public void didRemovePackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
-		CompletePackage completePackage = getCompletePackage(partialPackage);
-		List<Package> partialPackages = completePackage.getPartialPackages();
-		partialPackages.remove(partialPackage);
-		if (partialPackages.size() <= 0) {
-			getCompleteModel().getCompleteURIs().removeCompletePackage(completePackage.getURI());
-//			name2completePackage.remove(completePackage.getName());
-			remove(completePackage);
-		}
 	}
 
 	@Override
@@ -128,41 +91,7 @@ public class RootCompletePackages extends AbstractCompletePackages<RootCompleteP
 		return (CompleteModel.Internal)owner;
 	}
 
-	public @NonNull CompletePackage.Internal getCompletePackage(@NonNull DomainPackage pivotPackage) {
-		CompletePackage.Internal completePackage = null;
-		if (pivotPackage instanceof CompletePackage.Internal) {
-			((CompletePackage)pivotPackage).assertSamePackage(pivotPackage);
-			completePackage = (CompletePackage.Internal)pivotPackage;
-		}
-		else {
-			completePackage = getCompleteModel().getCompleteURIs().getCompletePackage(pivotPackage);
-			if (completePackage == null) {
-				DomainPackage pivotPackageParent = pivotPackage.getOwningPackage();
-				if (pivotPackageParent == null) {
-					completePackage = getOwnedCompletePackage(pivotPackage);
-					completePackage.getPartialPackages().add((org.eclipse.ocl.examples.pivot.Package)pivotPackage);		// FIXME cast
-//					completePackage.addTrackedPackage(pivotPackage);
-					completePackage.assertSamePackage(pivotPackage);
-				}
-				else {
-					CompletePackage.Internal completeParentPackage = getCompletePackage(pivotPackageParent);
-					CompletePackage.Internal completeChildPackage = completeParentPackage.getOwnedCompletePackage(pivotPackage.getName());
-					assert completeChildPackage != null;
-					return completeChildPackage;
-//					CompletePackageParent completePackageParent;
-/*					PackageTracker parentTracker = getPackageTracker(pivotPackageParent);
-					completePackageParent = parentTracker.getPackageServer();
-					((PackageServer)completePackageParent).assertSamePackage(pivotPackageParent); */
-//					completePackage = completePackageParent.getMemberPackageServer(pivotPackage);
-//					completePackage.addTrackedPackage(pivotPackage);
-//					completePackage.assertSamePackage(pivotPackage);
-				}
-			}
-		}
-		completePackage.assertSamePackage(pivotPackage);
-		return completePackage;
-	}
-
+	@Override
 	public @NonNull RootCompletePackage.Internal getOwnedCompletePackage(@NonNull DomainPackage pivotPackage) {
 		//
 		//	Try to find package by packageURI
