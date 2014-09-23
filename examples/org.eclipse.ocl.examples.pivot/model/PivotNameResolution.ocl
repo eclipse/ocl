@@ -9,11 +9,11 @@ def: parentEnv() : env::Environment =
 		
 context Class
 def : _env(child : Element) : env::Environment =
-	let superClasses : Set(Class) = self->closure(superClass) in 
+	let superClasses : Set(Class) = self->closure(superClasses) in 
 	parentEnv().nestedEnv()
 		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
-		.addElements(superClasses.ownedAttribute->select(not isStatic))
-		.addElements(superClasses.ownedOperation->select(not isStatic))
+		.addElements(superClasses.ownedProperties->select(not isStatic))
+		.addElements(superClasses.ownedOperations->select(not isStatic))
 		.addElements(self.ownedBehavior)
 
 context DataType
@@ -31,8 +31,8 @@ def : _env(child : Element) : env::Environment =
 	parentEnv().nestedEnv()
 		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
 		.addElements(self.ownedLiteral)
-		.addElements(self.ownedAttribute->select(not isStatic))
-		.addElements(self.ownedOperation->select(not isStatic))
+		.addElements(self.ownedProperties->select(not isStatic))
+		.addElements(self.ownedOperations->select(not isStatic))
 		.addElements(self.ownedBehavior)
 		
 
@@ -73,14 +73,9 @@ def : _env(child : Element) : env::Environment =
 context Library
 def : _env(child : Element) : env::Environment =
 	parentEnv().nestedEnv()
-		.addElements(self.nestedPackage)
-		.addElements(self.ownedType)
+		.addElements(self.ownedPackages)
+		.addElements(self.ownedClasses)
 		.addElements(self.ownedPrecedence)
-
-context Metaclass
-def : _env(child : Element) : env::Environment = null
---	parentEnv().nestedEnv()
---		.addElements(env.elements) -- add instance type properties FIXME Dummy valid expression. I can't access to instanceType
 
 context Operation
 def : _env(child : Element) : env::Environment =
@@ -95,13 +90,13 @@ def : _env(child : Element) : env::Environment =
 context Package
 def : _env(child : Element) : env::Environment =
 	parentEnv().nestedEnv()
-		.addElements(self.nestedPackage)
-		.addElements(self.ownedType)
+		.addElements(self.ownedPackages)
+		.addElements(self.ownedClasses)
 
-context Root
+context Model
 def : _env(child : Element) : env::Environment =
 	parentEnv()
 		.addElements(self.imports)
-		.addElements(self.nestedPackage)
+		.addElements(self.ownedPackages)
 
 endpackage
