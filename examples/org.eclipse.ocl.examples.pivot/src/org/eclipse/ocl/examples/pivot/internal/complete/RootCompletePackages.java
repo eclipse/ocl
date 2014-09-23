@@ -23,7 +23,7 @@ import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.ParentCompletePackage;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.RootCompletePackage;
 import org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl;
 import org.eclipse.ocl.examples.pivot.manager.Orphanage;
@@ -180,8 +180,8 @@ public class RootCompletePackages extends AbstractCompletePackages<RootCompleteP
 			String message = null;
 			if (pivotPackage instanceof EObject) {
 				for (EObject eObject = (EObject) pivotPackage; eObject != null; eObject = eObject.eContainer()) {
-					if (eObject instanceof Root) {
-						message = "Unnamed package for '" + packageURI + "' in '" + ((Root)eObject).getExternalURI() + "'";
+					if (eObject instanceof Model) {
+						message = "Unnamed package for '" + packageURI + "' in '" + ((Model)eObject).getExternalURI() + "'";
 						break;
 					}
 				}
@@ -211,6 +211,6 @@ public class RootCompletePackages extends AbstractCompletePackages<RootCompleteP
 
 	@Override
 	protected @NonNull Iterable<org.eclipse.ocl.examples.pivot.Package> getPartialPackages() {
-		return getCompleteModel().getPartialRoots().getNestedPartialPackages();
+		return getCompleteModel().getPartialModels().getNestedPartialPackages();
 	}
 }

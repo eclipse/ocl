@@ -279,6 +279,10 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 		return delegate.visitMessageType(object);
 	}
 
+	public @Nullable R visitModel(@NonNull org.eclipse.ocl.examples.pivot.Model object) {
+		return delegate.visitModel(object);
+	}
+
 	public @Nullable R visitNamedElement(@NonNull org.eclipse.ocl.examples.pivot.NamedElement object) {
 		return delegate.visitNamedElement(object);
 	}
@@ -381,10 +385,6 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 
 	public @Nullable R visitRegion(@NonNull org.eclipse.ocl.examples.pivot.Region object) {
 		return delegate.visitRegion(object);
-	}
-
-	public @Nullable R visitRoot(@NonNull org.eclipse.ocl.examples.pivot.Root object) {
-		return delegate.visitRoot(object);
 	}
 
 	public @Nullable R visitRootCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.RootCompletePackage object) {

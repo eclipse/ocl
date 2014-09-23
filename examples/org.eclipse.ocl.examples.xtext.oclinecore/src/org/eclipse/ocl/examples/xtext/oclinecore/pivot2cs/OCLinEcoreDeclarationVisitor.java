@@ -20,7 +20,7 @@ import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.xtext.base.basecs.DetailCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ImportCS;
@@ -71,7 +71,7 @@ public class OCLinEcoreDeclarationVisitor extends EssentialOCLDeclarationVisitor
 	}
 	
 	@Override
-	public ElementCS visitRoot(@NonNull Root object) {
+	public ElementCS visitModel(@NonNull Model object) {
 		TopLevelCS csElement = context.refreshElement(TopLevelCS.class, OCLinEcoreCSPackage.Literals.TOP_LEVEL_CS, object);
 		context.refreshList(csElement.getOwnedNestedPackage(), context.visitDeclarations(PackageCS.class, object.getOwnedPackages(), null));
 		context.visitDeclarations(ImportCS.class, object.getImports(), null);

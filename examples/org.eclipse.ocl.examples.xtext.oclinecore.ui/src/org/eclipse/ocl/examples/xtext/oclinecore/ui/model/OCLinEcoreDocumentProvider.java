@@ -51,7 +51,7 @@ import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.MapToFirst
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.delegate.DelegateInstaller;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -350,8 +350,8 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 					EObject xmiRoot = contents.get(0);
 					if (xmiRoot instanceof EPackage) {
 						Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(xmiResource, getMetaModelManager());
-						Root pivotRoot = ecore2Pivot.getPivotRoot();
-						asResource = (ASResource) pivotRoot.eResource();
+						Model pivotModel = ecore2Pivot.getPivotModel();
+						asResource = (ASResource) pivotModel.eResource();
 						if (asResource != null) {
 							if (reload) {
 								ecore2Pivot.update(asResource, contents);
@@ -367,8 +367,8 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 					}
 					else if (xmiRoot instanceof org.eclipse.uml2.uml.Package) {
 						UML2Pivot uml2Pivot = UML2Pivot.getAdapter(xmiResource, getMetaModelManager());
-						Root pivotRoot = uml2Pivot.getPivotRoot();
-						asResource = (ASResource) pivotRoot.eResource();
+						Model pivotModel = uml2Pivot.getPivotModel();
+						asResource = (ASResource) pivotModel.eResource();
 						persistAs = PERSIST_AS_OCLINECORE;		// FIXME
 					}
 					// FIXME general extensibility

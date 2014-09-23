@@ -87,9 +87,9 @@ public abstract class CompleteOCLLoader
 		for (Resource mmResource : mmResources) {
 			assert mmResource != null;
 			try {
-				Element pivotRoot = metaModelManager.loadResource(mmResource, null);
-				if (pivotRoot != null) {
-					List<org.eclipse.emf.ecore.resource.Resource.Diagnostic> errors = pivotRoot.eResource().getErrors();
+				Element pivotModel = metaModelManager.loadResource(mmResource, null);
+				if (pivotModel != null) {
+					List<org.eclipse.emf.ecore.resource.Resource.Diagnostic> errors = pivotModel.eResource().getErrors();
 					assert errors != null;
 					String message = PivotUtil.formatResourceDiagnostics(errors, "", "\n");
 					if (message != null) {

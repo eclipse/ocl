@@ -25,11 +25,11 @@ import org.eclipse.ocl.examples.pivot.Package
 import org.eclipse.ocl.examples.pivot.Parameter
 import org.eclipse.ocl.examples.pivot.Precedence
 import org.eclipse.ocl.examples.pivot.Property
-import org.eclipse.ocl.examples.pivot.Root
 import org.eclipse.ocl.examples.pivot.TemplateBinding
 import org.eclipse.ocl.examples.pivot.TemplateParameter
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution
 import org.eclipse.ocl.examples.pivot.TemplateSignature
+import org.eclipse.ocl.examples.pivot.Model
 
 public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 {
@@ -506,7 +506,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String emitRoot(Root pkg) {
+	protected def String emitRoot(Model pkg) {
 		'''
 			«FOR nestedPackage : pkg.getSortedPackages()»
 				«IF nestedPackage.getOwnedPackages().size() > 0»

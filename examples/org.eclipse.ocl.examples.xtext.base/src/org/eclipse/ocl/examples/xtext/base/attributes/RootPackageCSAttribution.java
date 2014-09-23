@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -31,7 +31,7 @@ public class RootPackageCSAttribution extends AbstractRootCSAttribution
 	@Override
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		RootPackageCS targetElement = (RootPackageCS)target;
-		Root pivotPackage = PivotUtil.getPivot(Root.class, targetElement);
+		Model pivotPackage = PivotUtil.getPivot(Model.class, targetElement);
 		if (pivotPackage != null) {
 			environmentView.addAllPackages(pivotPackage);
 		}

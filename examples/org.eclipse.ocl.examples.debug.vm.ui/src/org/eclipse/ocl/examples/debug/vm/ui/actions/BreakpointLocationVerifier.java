@@ -29,7 +29,7 @@ import org.eclipse.ocl.examples.debug.vm.ui.DebugVMUIPlugin;
 import org.eclipse.ocl.examples.debug.vm.utils.CompiledUnit;
 import org.eclipse.ocl.examples.debug.vm.utils.LineNumberProvider;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
@@ -118,10 +118,10 @@ class BreakpointLocationVerifier {
 		if(doc == null) {
 			return canceled();
 		}
-		Root root = ((XtextDocument)doc).readOnly(new IUnitOfWork<Root, XtextResource>()
+		Model root = ((XtextDocument)doc).readOnly(new IUnitOfWork<Model, XtextResource>()
 		{
 			@Override
-			public Root exec(@Nullable XtextResource state) throws Exception {
+			public Model exec(@Nullable XtextResource state) throws Exception {
 				if (state instanceof BaseCSResource) {
 					BaseCSResource csResource = (BaseCSResource)state;
 					CS2PivotResourceAdapter cs2asAdapter = csResource.findCS2ASAdapter();
@@ -129,8 +129,8 @@ class BreakpointLocationVerifier {
 						ASResource asResource = cs2asAdapter.getASResource(csResource);
 						if ((asResource != null) && (asResource.getContents().size() > 0)) {
 							EObject eObject = asResource.getContents().get(0);
-							if (eObject instanceof Root) {
-								return (Root)eObject;
+							if (eObject instanceof Model) {
+								return (Model)eObject;
 							}
 						}
 					}

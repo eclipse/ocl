@@ -35,7 +35,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
-import org.eclipse.ocl.examples.domain.elements.DomainRoot;
+import org.eclipse.ocl.examples.domain.elements.DomainModel;
 import org.eclipse.ocl.examples.domain.elements.DomainTupleType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.examples.domain.ids.IdManager;
@@ -188,8 +188,8 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 			protected boolean crossReference(EObject eObject, EReference eReference, EObject crossReferencedEObject) {
 				EObject root = EcoreUtil.getRootContainer(crossReferencedEObject);
 				if (moreRoots.add(root) && !directRoots.contains(root)) {
-					if (root instanceof DomainRoot) {
-						addPackages(((DomainRoot)root).getOwnedPackages());
+					if (root instanceof DomainModel) {
+						addPackages(((DomainModel)root).getOwnedPackages());
 					}
 					else if (root instanceof DomainPackage) {					// Perhaps this is only needed for a lazy JUnit test
 						addPackage((DomainPackage)root);
@@ -207,8 +207,8 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 		directRootsProcessed = true;
 		Set<EPackage> ePackages = new HashSet<EPackage>();
 		for (EObject eObject : directRoots) {
-			if (eObject instanceof DomainRoot) {
-				addPackages(((DomainRoot)eObject).getOwnedPackages());
+			if (eObject instanceof DomainModel) {
+				addPackages(((DomainModel)eObject).getOwnedPackages());
 			}
 //			else if (eObject instanceof DomainPackage) {							// Perhaps this is only needed for a lazy JUnit test
 //				addPackage((DomainPackage)eObject);

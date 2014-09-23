@@ -37,7 +37,7 @@ import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
@@ -100,10 +100,10 @@ public class ConstraintMerger extends AbstractProjectComponent
 			}
 		}
 		Ecore2Pivot ecore2pivot = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
-		Root pivotRoot = ecore2pivot.getPivotRoot();
-//		metaModelManager.setPivotMetaModel(pivotRoot.getNestedPackage().get(0));
+		Model pivotModel = ecore2pivot.getPivotModel();
+//		metaModelManager.setPivotMetaModel(pivotModel.getNestedPackage().get(0));
 //		metaModelManager.setLibraryLoadInProgress(false);
-		Resource asResource = DomainUtil.nonNullState(pivotRoot.eResource());
+		Resource asResource = DomainUtil.nonNullState(pivotModel.eResource());
 //FIXME		diagnoseErrors(asResource);
 //		URI fileURI = URI.createPlatformResourceURI(uri, true);
 		try {

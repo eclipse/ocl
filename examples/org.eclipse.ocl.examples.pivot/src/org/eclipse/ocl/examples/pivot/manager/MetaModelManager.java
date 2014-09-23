@@ -104,7 +104,7 @@ import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.Slot;
 import org.eclipse.ocl.examples.pivot.State;
 import org.eclipse.ocl.examples.pivot.Stereotype;
@@ -625,6 +625,18 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return invalidLiteralExp;
 	}
 
+	public @NonNull Model createModel(String externalURI) {
+		return createModel(Model.class, PivotPackage.Literals.MODEL, externalURI);
+	}
+
+	public @NonNull <T extends Model> T createModel(@NonNull Class<T> pivotClass, /*@NonNull*/ EClass pivotEClass, String externalURI) {
+		assert pivotEClass != null;
+		@SuppressWarnings("unchecked")
+		T pivotModel = (T) pivotEClass.getEPackage().getEFactoryInstance().create(pivotEClass);
+		pivotModel.setExternalURI(externalURI);
+		return pivotModel;
+	}
+
 	/**
 	 * @since 3.5
 	 */
@@ -669,18 +681,6 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		asReal.setType(standardLibrary.getRealType());
 		asReal.setIsRequired(true);
 		return asReal;
-	}
-
-	public @NonNull Root createRoot(String externalURI) {
-		return createRoot(Root.class, PivotPackage.Literals.ROOT, externalURI);
-	}
-
-	public @NonNull <T extends Root> T createRoot(@NonNull Class<T> pivotClass, /*@NonNull*/ EClass pivotEClass, String externalURI) {
-		assert pivotEClass != null;
-		@SuppressWarnings("unchecked")
-		T pivotRoot = (T) pivotEClass.getEPackage().getEFactoryInstance().create(pivotEClass);
-		pivotRoot.setExternalURI(externalURI);
-		return pivotRoot;
 	}
 
 	/**
@@ -1027,7 +1027,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 			T castTarget = (T) eTarget;
 			return castTarget;
 		}
-		Root root = (Root)EcoreUtil.getRootContainer(element);
+		Model root = (Model)EcoreUtil.getRootContainer(element);
 		Resource metaModel = element.eResource();
 		if (metaModel == null) {
 			return null;
@@ -1946,8 +1946,8 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 
 	public void installResource(@NonNull Resource asResource) {
 		for (EObject eObject : asResource.getContents()) {
-			if (eObject instanceof Root) {
-				installRoot((Root)eObject);
+			if (eObject instanceof Model) {
+				installRoot((Model)eObject);
 			}
 		}
 		if (!libraryLoadInProgress && (asLibraryResource == null) && (asResource instanceof OCLstdlib) && (asLibraries.size() > 0)) {
@@ -1955,9 +1955,9 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		}
 	}
 
-	public void installRoot(@NonNull Root pivotRoot) {
-		completeModel.getPartialRoots().add(pivotRoot);
-		for (DomainPackage asPackage : pivotRoot.getOwnedPackages()) {
+	public void installRoot(@NonNull Model pivotModel) {
+		completeModel.getPartialModels().add(pivotModel);
+		for (DomainPackage asPackage : pivotModel.getOwnedPackages()) {
 			if ((asPackage instanceof Library) && !asLibraries.contains(asPackage)) {
 				Library asLibrary = (Library)asPackage;
 				String uri = asLibrary.getURI();
@@ -2216,9 +2216,9 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 											for (EObject eContent : resource.getContents()) {
 												if (eContent instanceof Pivotable) {
 													Element pivot = ((Pivotable)firstContent).getPivot();
-													if (pivot instanceof Root) {
-														Root root = (Root)pivot;
-														completeModel.getPartialRoots().remove(root);
+													if (pivot instanceof Model) {
+														Model root = (Model)pivot;
+														completeModel.getPartialModels().remove(root);
 														Resource asResource = root.eResource();
 														if (asResource != null) {
 															asResourceSet.getResources().remove(asResource);

@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 
 public class CompiledUnit {
 	
@@ -39,8 +39,8 @@ public class CompiledUnit {
 
 	public URI getURI() {
 		NamedElement namedElement = modules.get(0);
-		if (namedElement instanceof Root) {
-			return URI.createURI(((Root)namedElement).getExternalURI());
+		if (namedElement instanceof Model) {
+			return URI.createURI(((Model)namedElement).getExternalURI());
 		}
 		else {
 			return EcoreUtil.getURI(namedElement);

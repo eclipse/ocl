@@ -922,7 +922,7 @@
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="Pivot.ecore#//CompleteModel"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//CompleteModel/partialRoots"/>
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//CompleteModel/partialModels"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//CompleteModel/ownedCompletePackages"/>
@@ -941,15 +941,15 @@
       </genOperations>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
-      <ecoreClass href="Pivot.ecore#//Root"/>
+      <ecoreClass href="Pivot.ecore#//Model"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Root/ownedPackages"/>
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Model/ownedPackages"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
-        <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//Root/externalURI"/>
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//Model/externalURI"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Root/imports"/>
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Model/imports"/>
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">

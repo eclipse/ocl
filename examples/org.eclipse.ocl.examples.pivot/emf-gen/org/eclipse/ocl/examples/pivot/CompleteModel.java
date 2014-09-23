@@ -21,7 +21,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.examples.library.executor.CollectionTypeParameters;
 import org.eclipse.ocl.examples.pivot.internal.complete.CompleteURIs;
-import org.eclipse.ocl.examples.pivot.internal.complete.PartialRoots;
+import org.eclipse.ocl.examples.pivot.internal.complete.PartialModels;
 import org.eclipse.ocl.examples.pivot.internal.complete.RootCompletePackages;
 import org.eclipse.ocl.examples.pivot.manager.CompleteEnvironment;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -40,7 +40,7 @@ import org.eclipse.ocl.examples.pivot.manager.TupleTypeManager;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteModel#getOrphanCompletePackage <em>Orphan Complete Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteModel#getOwnedCompletePackages <em>Owned Complete Packages</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteModel#getPartialRoots <em>Partial Roots</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteModel#getPartialModels <em>Partial Models</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteModel#getPrimitiveCompletePackage <em>Primitive Complete Package</em>}</li>
  * </ul>
  * </p>
@@ -82,19 +82,19 @@ public interface CompleteModel extends NamedElement
 	@NonNull List<RootCompletePackage> getOwnedCompletePackages();
 
 	/**
-	 * Returns the value of the '<em><b>Partial Roots</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Root}.
+	 * Returns the value of the '<em><b>Partial Models</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Model}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Partial Roots</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Partial Roots</em>' reference list.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteModel_PartialRoots()
+	 * @return the value of the '<em>Partial Models</em>' reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteModel_PartialModels()
 	 * @generated
 	 */
-	@NonNull List<Root> getPartialRoots();
+	@NonNull List<Model> getPartialModels();
 
 	/**
 	 * Returns the value of the '<em><b>Primitive Complete Package</b></em>' reference.
@@ -147,7 +147,7 @@ public interface CompleteModel extends NamedElement
 		@NonNull MetaModelManager getMetaModelManager();
 		@NonNull OrphanCompletePackage.Internal getOrphanCompletePackage();
 		@NonNull RootCompletePackages getOwnedCompletePackages();
-		@NonNull PartialRoots getPartialRoots();
+		@NonNull PartialModels getPartialModels();
 		@NonNull PrimitiveCompletePackage.Internal getPrimitiveCompletePackage();
 		@NonNull Type getSpecializedType(@NonNull Type type, @Nullable TemplateParameterSubstitutions substitutions);
 		@NonNull TupleType getTupleType(@NonNull String typeName, @NonNull Collection<? extends DomainTypedElement> parts,
@@ -155,10 +155,10 @@ public interface CompleteModel extends NamedElement
 
 		void resolveSuperClasses(@NonNull org.eclipse.ocl.examples.pivot.Class specializedClass, @NonNull org.eclipse.ocl.examples.pivot.Class unspecializedClass);
 		void dispose();
-		void didAddPartialRoot(@NonNull Root partialRoot);
+		void didAddPartialModel(@NonNull Model partialModel);
 		void didAddNestedPackage(@NonNull org.eclipse.ocl.examples.pivot.Package pivotPackage);
 		void didRemoveNestedPackage(@NonNull org.eclipse.ocl.examples.pivot.Package pivotPackage);
-		void didRemovePartialRoot(@NonNull Root partialRoot);
+		void didRemovePartialModel(@NonNull Model partialModel);
 		@Nullable String getCompleteURI(@Nullable String nsURI);
 		@NonNull TupleTypeManager getTupleManager();
 		@NonNull Orphanage getOrphanage();

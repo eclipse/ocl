@@ -96,7 +96,7 @@ import org.eclipse.ocl.examples.pivot.Pseudostate;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.ReferringElement;
 import org.eclipse.ocl.examples.pivot.Region;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.RootCompletePackage;
 import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.SendSignalAction;
@@ -942,6 +942,18 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case PivotPackage.MODEL:
+			{
+				Model model = (Model)theEObject;
+				T result = caseModel(model);
+				if (result == null) result = caseNamespace(model);
+				if (result == null) result = caseNamedElement(model);
+				if (result == null) result = caseElement(model);
+				if (result == null) result = caseNameable(model);
+				if (result == null) result = caseVisitable(model);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case PivotPackage.MORE_PIVOTABLE:
 			{
 				MorePivotable morePivotable = (MorePivotable)theEObject;
@@ -1318,18 +1330,6 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseElement(region);
 				if (result == null) result = caseNameable(region);
 				if (result == null) result = caseVisitable(region);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PivotPackage.ROOT:
-			{
-				Root root = (Root)theEObject;
-				T result = caseRoot(root);
-				if (result == null) result = caseNamespace(root);
-				if (result == null) result = caseNamedElement(root);
-				if (result == null) result = caseElement(root);
-				if (result == null) result = caseNameable(root);
-				if (result == null) result = caseVisitable(root);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -2451,6 +2451,22 @@ public class PivotSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModel(Model object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>More Pivotable</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -2664,22 +2680,6 @@ public class PivotSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseRegion(Region object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Root</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Root</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseRoot(Root object)
 	{
 		return null;
 	}

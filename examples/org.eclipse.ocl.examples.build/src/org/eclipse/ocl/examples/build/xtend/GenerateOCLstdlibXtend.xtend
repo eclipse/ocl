@@ -11,9 +11,9 @@
 package org.eclipse.ocl.examples.build.xtend
 
 import org.eclipse.ocl.examples.pivot.DataType
-import org.eclipse.ocl.examples.pivot.Root
 import org.eclipse.jdt.annotation.NonNull
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil
+import org.eclipse.ocl.examples.pivot.Model
 
 public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 {
@@ -28,7 +28,7 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 			private void DataType «type.getPrefixedSymbolName("_"+type.partialName())» = createDataType("«type.name»");«ENDIF»
 	'''}
 
-	@NonNull protected override String generateMetamodel(@NonNull Root root) {
+	@NonNull protected override String generateMetamodel(@NonNull Model root) {
 		var lib = DomainUtil.nonNullState(root.getLibrary());
 		var allEnumerations = root.getSortedEnumerations();
 		'''
@@ -116,7 +116,7 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 					OCLstdlib oclstdlib = INSTANCE;
 					if (oclstdlib == null) {
 						Contents contents = new Contents();
-						Root libraryModel = contents.create("«lib.getURI»", "«lib.name»", "«lib.nsPrefix»", "«lib.getURI»");
+						Model libraryModel = contents.create("«lib.getURI»", "«lib.name»", "«lib.nsPrefix»", "«lib.getURI»");
 						oclstdlib = INSTANCE = new OCLstdlib(STDLIB_URI + PivotConstants.DOT_OCL_AS_FILE_EXTENSION, libraryModel);
 					}
 					return oclstdlib;
@@ -194,7 +194,7 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 			
 					public @NonNull Resource getResource() {
 						Contents contents = new Contents();
-						Root libraryModel = contents.create("http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib", "ocl", "ocl", metamodelNsUri);
+						Model libraryModel = contents.create("http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib", "ocl", "ocl", metamodelNsUri);
 						Resource resource = new OCLstdlib(STDLIB_URI + PivotConstants.DOT_OCL_AS_FILE_EXTENSION, libraryModel);
 						return resource;
 					}
@@ -206,14 +206,14 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 				 */
 				public static @NonNull «javaClassName» create(@NonNull String asURI, @NonNull String name, @NonNull String nsPrefix, @NonNull String nsURI) {
 					Contents contents = new Contents();
-					Root libraryModel = contents.create(asURI, name, nsPrefix, nsURI);
+					Model libraryModel = contents.create(asURI, name, nsPrefix, nsURI);
 					return new «javaClassName»(asURI, libraryModel);
 				}
 				
 				/**
 				 *	Construct an OCL Standard Library with specified resource URI and library content.
 				 */
-				private «javaClassName»(@NonNull String asURI, @NonNull Root libraryModel) {
+				private «javaClassName»(@NonNull String asURI, @NonNull Model libraryModel) {
 					super(DomainUtil.nonNullState(URI.createURI(asURI)), OCLASResourceFactory.INSTANCE);
 					assert PivotUtil.isASURI(asURI);
 					getContents().add(libraryModel);
@@ -283,13 +283,13 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 			
 				private static class Contents extends AbstractContents
 				{
-					private Root «root.getPrefixedSymbolName("root")»;
+					private Model «root.getPrefixedSymbolName("root")»;
 					private Library «lib.getPrefixedSymbolName("library")»;
 					// private Package «root.getOrphanPackage().getPrefixedSymbolName("orphans")»;
 			
-					private @NonNull Root create(@NonNull String asURI, @NonNull String name, @NonNull String nsPrefix, @NonNull String nsURI)
+					private @NonNull Model create(@NonNull String asURI, @NonNull String name, @NonNull String nsPrefix, @NonNull String nsURI)
 					{
-						Root theRoot = «root.getSymbolName()» = createRoot(asURI);
+						Model theRoot = «root.getSymbolName()» = createModel(asURI);
 						«lib.getSymbolName()» = createLibrary(name, nsPrefix, nsURI, IdManager.METAMODEL);
 						installPackages();
 						installOclTypes();

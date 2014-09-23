@@ -61,7 +61,7 @@ import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.Precedence;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
@@ -593,6 +593,27 @@ public class AutoPivotLookupVisitor
     }
     
     /**
+     * visitModel(element : Model) : env::Environment[?]
+     * 
+     * 
+     * this.parentEnv(element)
+     * .addElements(element.imports)
+     * .addElements(element.oclBadProperty)
+     */
+    @Override
+    public @Nullable /*@NonInvalid*/ Environment visitModel(final @NonNull /*@NonInvalid*/ Model element_11) {
+        final @Nullable /*@Thrown*/ Environment parentEnv = this.parentEnv(element_11);
+        if (parentEnv == null) {
+            throw new InvalidValueException("Null source for \'env::Environment::addElements(Collection(pivot::NamedElement)) : env::Environment\'");
+        }
+        final @NonNull /*@Thrown*/ List<Import> imports = element_11.getImports();
+        final @NonNull /*@Thrown*/ Environment addElements = parentEnv.addElements(imports);
+        final @NonNull /*@Thrown*/ InvalidValueException oclBadProperty = DomainUtil.nonNullState((InvalidValueException)OclAnyUnsupportedOperation.INSTANCE.evaluate(evaluator, TypeId.OCL_INVALID, element_11));
+        final @NonNull /*@Thrown*/ Environment addElements_0 = addElements.addElements((List<? extends DomainNamedElement>)oclBadProperty);
+        return addElements_0;
+    }
+    
+    /**
      * visitOperation(element : Operation) : env::Environment[?]
      * 
      * 
@@ -662,26 +683,5 @@ public class AutoPivotLookupVisitor
             symbol_0 = parentEnv;
         }
         return symbol_0;
-    }
-    
-    /**
-     * visitRoot(element : Root) : env::Environment[?]
-     * 
-     * 
-     * this.parentEnv(element)
-     * .addElements(element.imports)
-     * .addElements(element.oclBadProperty)
-     */
-    @Override
-    public @Nullable /*@NonInvalid*/ Environment visitRoot(final @NonNull /*@NonInvalid*/ Root element_11) {
-        final @Nullable /*@Thrown*/ Environment parentEnv = this.parentEnv(element_11);
-        if (parentEnv == null) {
-            throw new InvalidValueException("Null source for \'env::Environment::addElements(Collection(pivot::NamedElement)) : env::Environment\'");
-        }
-        final @NonNull /*@Thrown*/ List<Import> imports = element_11.getImports();
-        final @NonNull /*@Thrown*/ Environment addElements = parentEnv.addElements(imports);
-        final @NonNull /*@Thrown*/ InvalidValueException oclBadProperty = DomainUtil.nonNullState((InvalidValueException)OclAnyUnsupportedOperation.INSTANCE.evaluate(evaluator, TypeId.OCL_INVALID, element_11));
-        final @NonNull /*@Thrown*/ Environment addElements_0 = addElements.addElements((List<? extends DomainNamedElement>)oclBadProperty);
-        return addElements_0;
     }
 }

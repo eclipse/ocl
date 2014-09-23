@@ -326,7 +326,7 @@
         transient="true" derived="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedCompletePackages" ordered="false" upperBound="-1" eType="#//RootCompletePackage"
         containment="true" eOpposite="#//RootCompletePackage/owningCompleteModel"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="partialRoots" ordered="false" upperBound="-1" eType="#//Root"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="partialModels" ordered="false" upperBound="-1" eType="#//Model"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="primitiveCompletePackage" eType="#//PrimitiveCompletePackage" changeable="false"
         transient="true" derived="true" resolveProxies="false"/>
   </eClassifiers>
@@ -1114,6 +1114,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredOperation" eType="#//Operation"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredSignal" eType="#//Signal"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Model" eSuperTypes="#//Namespace">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="externalURI" eType="#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="imports" upperBound="-1" eType="#//Import" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPackages" ordered="false" upperBound="-1" eType="#//Package" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MorePivotable" instanceClassName="org.eclipse.ocl.examples.pivot.util.MorePivotable" abstract="true"
       interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Nameable" instanceClassName="org.eclipse.ocl.examples.domain.elements.Nameable" abstract="true"
@@ -1498,11 +1503,6 @@
         <details key="documentation" value="The set of transitions owned by the region. Note that internal transitions are owned by a region, but applies to the source state."/>
       </eAnnotations>
     </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Root" eSuperTypes="#//Namespace">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="externalURI" eType="#//String"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="imports" upperBound="-1" eType="#//Import" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPackages" ordered="false" upperBound="-1" eType="#//Package" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RootCompletePackage" abstract="true" eSuperTypes="#//CompletePackage">
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningCompleteModel" eType="#//CompleteModel" eOpposite="#//CompleteModel/ownedCompletePackages"/>

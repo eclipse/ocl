@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
@@ -288,10 +288,10 @@ public class PivotTests extends XtextTestCase
 		assertNoUnresolvedProxies("Unresolved proxies", ecoreResource);
 //		EcoreAliasCreator.createPackageAliases(ecoreResource);
 		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
-		Root pivotRoot = ecore2Pivot.getPivotRoot();
+		Model pivotModel = ecore2Pivot.getPivotModel();
 		
 		
-//		checkPivotMonikers(pivotRoot);
+//		checkPivotMonikers(pivotModel);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validate()");
 //		assertNoValidationErrors("Validation errors", xtextResource.getContents().get(0));
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validated()");
@@ -301,10 +301,10 @@ public class PivotTests extends XtextTestCase
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
 //		assertNoResourceErrors("Save failed", xtextResource.getErrors());
 		@SuppressWarnings("unused")
-		ASResource asResource = (ASResource) pivotRoot.eResource();
+		ASResource asResource = (ASResource) pivotModel.eResource();
 //		CS2PivotAliasCreator.createPackageAliases(asResource);
 //		Resource asResource = resourceSet.createResource(outputURI);
-//		asResource.getContents().add(pivotRoot);
+//		asResource.getContents().add(pivotModel);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " save()");
 		for (Resource pResource : asResourceSet.getResources()) {
 			URI uri = pResource.getURI();

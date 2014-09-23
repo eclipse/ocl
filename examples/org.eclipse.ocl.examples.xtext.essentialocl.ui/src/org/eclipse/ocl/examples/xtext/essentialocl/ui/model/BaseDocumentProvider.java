@@ -48,7 +48,7 @@ import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.IProjectDe
 import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.MapToFirstConflictHandlerWithLog;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerListener;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
@@ -334,7 +334,7 @@ public abstract class BaseDocumentProvider extends XtextDocumentProvider impleme
 				EList<EObject> contents = xmiResource.getContents();
 				if (contents.size() > 0) {
 					EObject xmiRoot = contents.get(0);
-					if (xmiRoot instanceof Root) {
+					if (xmiRoot instanceof Model) {
 						asResource = (ASResource) xmiResource;
 						persistAs = PERSIST_AS_PIVOT;
 					}

@@ -96,6 +96,7 @@ public interface Visitor<R>
 	@Nullable R visitLoopExp(@NonNull org.eclipse.ocl.examples.pivot.LoopExp object);
 	@Nullable R visitMessageExp(@NonNull org.eclipse.ocl.examples.pivot.MessageExp object);
 	@Nullable R visitMessageType(@NonNull org.eclipse.ocl.examples.pivot.MessageType object);
+	@Nullable R visitModel(@NonNull org.eclipse.ocl.examples.pivot.Model object);
 	@Nullable R visitNamedElement(@NonNull org.eclipse.ocl.examples.pivot.NamedElement object);
 	@Nullable R visitNamespace(@NonNull org.eclipse.ocl.examples.pivot.Namespace object);
 	@Nullable R visitNavigationCallExp(@NonNull org.eclipse.ocl.examples.pivot.NavigationCallExp object);
@@ -122,7 +123,6 @@ public interface Visitor<R>
 	@Nullable R visitPseudostate(@NonNull org.eclipse.ocl.examples.pivot.Pseudostate object);
 	@Nullable R visitRealLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.RealLiteralExp object);
 	@Nullable R visitRegion(@NonNull org.eclipse.ocl.examples.pivot.Region object);
-	@Nullable R visitRoot(@NonNull org.eclipse.ocl.examples.pivot.Root object);
 	@Nullable R visitRootCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.RootCompletePackage object);
 	@Nullable R visitSelfType(@NonNull org.eclipse.ocl.examples.pivot.SelfType object);
 	@Nullable R visitSendSignalAction(@NonNull org.eclipse.ocl.examples.pivot.SendSignalAction object);

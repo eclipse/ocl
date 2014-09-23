@@ -11,7 +11,7 @@
 package org.eclipse.ocl.examples.domain.elements;
 
 
-public interface DomainRoot extends DomainNamespace
+public interface DomainModel extends DomainNamespace
 {
 	/*@NonNull*/ Iterable<? extends DomainPackage>  getOwnedPackages();
 //	/*@Nullable*/ String getNsPrefix();

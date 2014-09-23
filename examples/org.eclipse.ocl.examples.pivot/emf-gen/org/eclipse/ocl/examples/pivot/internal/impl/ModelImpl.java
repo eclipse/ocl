@@ -29,8 +29,8 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.Import;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Root;
-import org.eclipse.ocl.examples.pivot.internal.complete.RootListeners;
+import org.eclipse.ocl.examples.pivot.Model;
+import org.eclipse.ocl.examples.pivot.internal.complete.ModelListeners;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -40,15 +40,15 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.RootImpl#getExternalURI <em>External URI</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.RootImpl#getImports <em>Imports</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.RootImpl#getOwnedPackages <em>Owned Packages</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ModelImpl#getExternalURI <em>External URI</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ModelImpl#getImports <em>Imports</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ModelImpl#getOwnedPackages <em>Owned Packages</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class RootImpl extends NamespaceImpl implements Root
+public class ModelImpl extends NamespaceImpl implements Model
 {
 
 	/**
@@ -93,7 +93,7 @@ public class RootImpl extends NamespaceImpl implements Root
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RootImpl()
+	protected ModelImpl()
 	{
 		super();
 	}
@@ -106,7 +106,7 @@ public class RootImpl extends NamespaceImpl implements Root
 	@Override
 	protected EClass eStaticClass()
 	{
-		return PivotPackage.Literals.ROOT;
+		return PivotPackage.Literals.MODEL;
 	}
 
 	public @NonNull List<org.eclipse.ocl.examples.pivot.Package> getOwnedPackages()
@@ -114,7 +114,7 @@ public class RootImpl extends NamespaceImpl implements Root
 		EList<org.eclipse.ocl.examples.pivot.Package> ownedPackages2 = ownedPackages;
 		if (ownedPackages2 == null)
 		{
-			ownedPackages = ownedPackages2 = new EObjectContainmentEList<org.eclipse.ocl.examples.pivot.Package>(org.eclipse.ocl.examples.pivot.Package.class, this, PivotPackage.ROOT__OWNED_PACKAGES)
+			ownedPackages = ownedPackages2 = new EObjectContainmentEList<org.eclipse.ocl.examples.pivot.Package>(org.eclipse.ocl.examples.pivot.Package.class, this, PivotPackage.MODEL__OWNED_PACKAGES)
 			{
 				private static final long serialVersionUID = 1L;
 
@@ -163,7 +163,7 @@ public class RootImpl extends NamespaceImpl implements Root
 		String oldExternalURI = externalURI;
 		externalURI = newExternalURI;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.ROOT__EXTERNAL_URI, oldExternalURI, externalURI));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.MODEL__EXTERNAL_URI, oldExternalURI, externalURI));
 	}
 
 	/**
@@ -176,7 +176,7 @@ public class RootImpl extends NamespaceImpl implements Root
 	{
 		if (imports == null)
 		{
-			imports = new EObjectContainmentEList<Import>(Import.class, this, PivotPackage.ROOT__IMPORTS);
+			imports = new EObjectContainmentEList<Import>(Import.class, this, PivotPackage.MODEL__IMPORTS);
 		}
 		return imports;
 	}
@@ -191,19 +191,19 @@ public class RootImpl extends NamespaceImpl implements Root
 	{
 		switch (featureID)
 		{
-			case PivotPackage.ROOT__COMMENT:
+			case PivotPackage.MODEL__COMMENT:
 				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ROOT__EXTENSION:
+			case PivotPackage.MODEL__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ROOT__OWNED_ANNOTATION:
+			case PivotPackage.MODEL__OWNED_ANNOTATION:
 				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ROOT__OWNED_COMMENT:
+			case PivotPackage.MODEL__OWNED_COMMENT:
 				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ROOT__OWNED_RULE:
+			case PivotPackage.MODEL__OWNED_RULE:
 				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ROOT__IMPORTS:
+			case PivotPackage.MODEL__IMPORTS:
 				return ((InternalEList<?>)getImports()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ROOT__OWNED_PACKAGES:
+			case PivotPackage.MODEL__OWNED_PACKAGES:
 				return ((InternalEList<?>)getOwnedPackages()).basicRemove(otherEnd, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
@@ -219,23 +219,23 @@ public class RootImpl extends NamespaceImpl implements Root
 	{
 		switch (featureID)
 		{
-			case PivotPackage.ROOT__COMMENT:
+			case PivotPackage.MODEL__COMMENT:
 				return getComment();
-			case PivotPackage.ROOT__EXTENSION:
+			case PivotPackage.MODEL__EXTENSION:
 				return getExtension();
-			case PivotPackage.ROOT__OWNED_ANNOTATION:
+			case PivotPackage.MODEL__OWNED_ANNOTATION:
 				return getOwnedAnnotation();
-			case PivotPackage.ROOT__OWNED_COMMENT:
+			case PivotPackage.MODEL__OWNED_COMMENT:
 				return getOwnedComment();
-			case PivotPackage.ROOT__NAME:
+			case PivotPackage.MODEL__NAME:
 				return getName();
-			case PivotPackage.ROOT__OWNED_RULE:
+			case PivotPackage.MODEL__OWNED_RULE:
 				return getOwnedRule();
-			case PivotPackage.ROOT__EXTERNAL_URI:
+			case PivotPackage.MODEL__EXTERNAL_URI:
 				return getExternalURI();
-			case PivotPackage.ROOT__IMPORTS:
+			case PivotPackage.MODEL__IMPORTS:
 				return getImports();
-			case PivotPackage.ROOT__OWNED_PACKAGES:
+			case PivotPackage.MODEL__OWNED_PACKAGES:
 				return getOwnedPackages();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
@@ -252,37 +252,37 @@ public class RootImpl extends NamespaceImpl implements Root
 	{
 		switch (featureID)
 		{
-			case PivotPackage.ROOT__COMMENT:
+			case PivotPackage.MODEL__COMMENT:
 				getComment().clear();
 				getComment().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.ROOT__EXTENSION:
+			case PivotPackage.MODEL__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
-			case PivotPackage.ROOT__OWNED_ANNOTATION:
+			case PivotPackage.MODEL__OWNED_ANNOTATION:
 				getOwnedAnnotation().clear();
 				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.ROOT__OWNED_COMMENT:
+			case PivotPackage.MODEL__OWNED_COMMENT:
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.ROOT__NAME:
+			case PivotPackage.MODEL__NAME:
 				setName((String)newValue);
 				return;
-			case PivotPackage.ROOT__OWNED_RULE:
+			case PivotPackage.MODEL__OWNED_RULE:
 				getOwnedRule().clear();
 				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
-			case PivotPackage.ROOT__EXTERNAL_URI:
+			case PivotPackage.MODEL__EXTERNAL_URI:
 				setExternalURI((String)newValue);
 				return;
-			case PivotPackage.ROOT__IMPORTS:
+			case PivotPackage.MODEL__IMPORTS:
 				getImports().clear();
 				getImports().addAll((Collection<? extends Import>)newValue);
 				return;
-			case PivotPackage.ROOT__OWNED_PACKAGES:
+			case PivotPackage.MODEL__OWNED_PACKAGES:
 				getOwnedPackages().clear();
 				getOwnedPackages().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Package>)newValue);
 				return;
@@ -300,31 +300,31 @@ public class RootImpl extends NamespaceImpl implements Root
 	{
 		switch (featureID)
 		{
-			case PivotPackage.ROOT__COMMENT:
+			case PivotPackage.MODEL__COMMENT:
 				getComment().clear();
 				return;
-			case PivotPackage.ROOT__EXTENSION:
+			case PivotPackage.MODEL__EXTENSION:
 				getExtension().clear();
 				return;
-			case PivotPackage.ROOT__OWNED_ANNOTATION:
+			case PivotPackage.MODEL__OWNED_ANNOTATION:
 				getOwnedAnnotation().clear();
 				return;
-			case PivotPackage.ROOT__OWNED_COMMENT:
+			case PivotPackage.MODEL__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
-			case PivotPackage.ROOT__NAME:
+			case PivotPackage.MODEL__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case PivotPackage.ROOT__OWNED_RULE:
+			case PivotPackage.MODEL__OWNED_RULE:
 				getOwnedRule().clear();
 				return;
-			case PivotPackage.ROOT__EXTERNAL_URI:
+			case PivotPackage.MODEL__EXTERNAL_URI:
 				setExternalURI(EXTERNAL_URI_EDEFAULT);
 				return;
-			case PivotPackage.ROOT__IMPORTS:
+			case PivotPackage.MODEL__IMPORTS:
 				getImports().clear();
 				return;
-			case PivotPackage.ROOT__OWNED_PACKAGES:
+			case PivotPackage.MODEL__OWNED_PACKAGES:
 				getOwnedPackages().clear();
 				return;
 		}
@@ -341,39 +341,39 @@ public class RootImpl extends NamespaceImpl implements Root
 	{
 		switch (featureID)
 		{
-			case PivotPackage.ROOT__COMMENT:
+			case PivotPackage.MODEL__COMMENT:
 				return comment != null && !comment.isEmpty();
-			case PivotPackage.ROOT__EXTENSION:
+			case PivotPackage.MODEL__EXTENSION:
 				return extension != null && !extension.isEmpty();
-			case PivotPackage.ROOT__OWNED_ANNOTATION:
+			case PivotPackage.MODEL__OWNED_ANNOTATION:
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.ROOT__OWNED_COMMENT:
+			case PivotPackage.MODEL__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
-			case PivotPackage.ROOT__NAME:
+			case PivotPackage.MODEL__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.ROOT__OWNED_RULE:
+			case PivotPackage.MODEL__OWNED_RULE:
 				return ownedRule != null && !ownedRule.isEmpty();
-			case PivotPackage.ROOT__EXTERNAL_URI:
+			case PivotPackage.MODEL__EXTERNAL_URI:
 				return EXTERNAL_URI_EDEFAULT == null ? externalURI != null : !EXTERNAL_URI_EDEFAULT.equals(externalURI);
-			case PivotPackage.ROOT__IMPORTS:
+			case PivotPackage.MODEL__IMPORTS:
 				return imports != null && !imports.isEmpty();
-			case PivotPackage.ROOT__OWNED_PACKAGES:
+			case PivotPackage.MODEL__OWNED_PACKAGES:
 				return ownedPackages != null && !ownedPackages.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
 	}
 	
-	private @Nullable RootListeners<RootListeners.IRootListener> rootListeners = null;
+	private @Nullable ModelListeners<ModelListeners.IModelListener> rootListeners = null;
 
 	@Override
 	public <R> R accept(@NonNull Visitor<R> visitor) {
-		return visitor.visitRoot(this);
+		return visitor.visitModel(this);
 	}
 
-	public synchronized void addRootListener(@NonNull RootListeners.IRootListener rootListener) {
-		RootListeners<RootListeners.IRootListener> rootListeners2 = rootListeners;
+	public synchronized void addRootListener(@NonNull ModelListeners.IModelListener rootListener) {
+		ModelListeners<ModelListeners.IModelListener> rootListeners2 = rootListeners;
 		if (rootListeners2 == null) {
-			rootListeners2 = rootListeners = new RootListeners<RootListeners.IRootListener>();
+			rootListeners2 = rootListeners = new ModelListeners<ModelListeners.IModelListener>();
 		}
 		rootListeners2.addListener(rootListener);
 	}
@@ -390,8 +390,8 @@ public class RootImpl extends NamespaceImpl implements Root
 		}
 	}
 
-	public synchronized void removeRootListener(@NonNull RootListeners.IRootListener rootListener) {
-		RootListeners<RootListeners.IRootListener> rootListeners2 = rootListeners;
+	public synchronized void removeRootListener(@NonNull ModelListeners.IModelListener rootListener) {
+		ModelListeners<ModelListeners.IModelListener> rootListeners2 = rootListeners;
 		if ((rootListeners2 != null) && rootListeners2.removeListener(rootListener)) {
 			rootListeners = null;
 		}

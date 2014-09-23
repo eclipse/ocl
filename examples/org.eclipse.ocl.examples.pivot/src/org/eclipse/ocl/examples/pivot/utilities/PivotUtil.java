@@ -82,7 +82,7 @@ import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.SemanticException;
 import org.eclipse.ocl.examples.pivot.SequenceType;
@@ -405,6 +405,15 @@ public class PivotUtil extends DomainUtil
 		asLetExp.setVariable(asVariable);
 		return asLetExp;
 	}
+
+	/**
+	 * @since 3.5
+	 */
+	public static @NonNull Model createModel(@NonNull String externalURI) {
+		Model pivotModel = PivotFactory.eINSTANCE.createModel();
+		pivotModel.setExternalURI(externalURI);
+		return pivotModel;
+	}
 	
 	/**
 	 * @since 3.5
@@ -554,15 +563,6 @@ public class PivotUtil extends DomainUtil
 		asChild.setType(asProperty.getType());
 		asChild.setIsRequired(asProperty.isRequired());
 		return asChild;
-	}
-
-	/**
-	 * @since 3.5
-	 */
-	public static @NonNull Root createRoot(@NonNull String externalURI) {
-		Root pivotRoot = PivotFactory.eINSTANCE.createRoot();
-		pivotRoot.setExternalURI(externalURI);
-		return pivotRoot;
 	}
 
 	/**
@@ -1045,10 +1045,10 @@ public class PivotUtil extends DomainUtil
 		return null;
 	}
 	
-	public static @Nullable Root getContainingRoot(@Nullable EObject element) {
+	public static @Nullable Model getContainingRoot(@Nullable EObject element) {
 		for (EObject eObject = element; eObject != null; eObject = eObject.eContainer()) {
-			if (eObject instanceof Root) {
-				return (Root)eObject;
+			if (eObject instanceof Model) {
+				return (Model)eObject;
 			}
 		}
 		return null;
@@ -1150,7 +1150,7 @@ public class PivotUtil extends DomainUtil
 
 	public static @Nullable Namespace getNamespace(@Nullable EObject element) {
 		for (EObject eObject = element; eObject != null; eObject = eObject.eContainer()) {
-			if (eObject instanceof Root) {
+			if (eObject instanceof Model) {
 				return null;
 			}
 			if (eObject instanceof Type) {
@@ -1229,8 +1229,8 @@ public class PivotUtil extends DomainUtil
 				return;
 			}
 		}
-		else if (element instanceof Root) {
-			String nsURI = ((Root)element).getExternalURI();
+		else if (element instanceof Model) {
+			String nsURI = ((Model)element).getExternalURI();
 			if (nsURI != null) {
 				s.append(nsURI);
 				return;
@@ -1244,7 +1244,7 @@ public class PivotUtil extends DomainUtil
 			}
 		}
 		EObject eContainer = element.eContainer();
-		if ((eContainer instanceof org.eclipse.ocl.examples.pivot.Package) || (eContainer instanceof Root)) {
+		if ((eContainer instanceof org.eclipse.ocl.examples.pivot.Package) || (eContainer instanceof Model)) {
 			String nsURI = ((org.eclipse.ocl.examples.pivot.Package)element).getURI();
 			if (nsURI != null) {
 				s.append(nsURI);

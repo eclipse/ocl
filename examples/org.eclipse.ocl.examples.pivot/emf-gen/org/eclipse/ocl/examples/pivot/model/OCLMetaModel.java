@@ -71,7 +71,7 @@ public class OCLMetaModel extends ASResourceImpl
 
 	private static class Contents extends LibraryContents
 	{
-		protected final @NonNull Root root;
+		protected final @NonNull Model root;
 		protected final @NonNull Package metamodel;
 		private final @NonNull BagType _Bag = standardLibrary.getBagType();
 		@SuppressWarnings("null") private final @NonNull TemplateSignature _Bag_ = _Bag.getOwnedTemplateSignature();
@@ -116,7 +116,7 @@ public class OCLMetaModel extends ASResourceImpl
 
 		protected Contents(@NonNull PivotStandardLibrary standardLibrary, @NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
 			super(standardLibrary);
-			root = createRoot("http://www.eclipse.org/ocl/3.1.0/Pivot");
+			root = createModel("http://www.eclipse.org/ocl/3.1.0/Pivot");
 			metamodel = createPackage(name, nsPrefix, nsURI, IdManager.METAMODEL);
 			installPackages();
 			installOclTypes();
@@ -194,6 +194,7 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Class _LoopExp = createClass(PivotPackage.Literals.LOOP_EXP);
 		private final @NonNull Class _MessageExp = createClass(PivotPackage.Literals.MESSAGE_EXP);
 		private final @NonNull Class _MessageType = createClass(PivotPackage.Literals.MESSAGE_TYPE);
+		private final @NonNull Class _Model = createClass(PivotPackage.Literals.MODEL);
 		private final @NonNull Class _MorePivotable = createClass(PivotPackage.Literals.MORE_PIVOTABLE);
 		private final @NonNull Class _Nameable = createClass(PivotPackage.Literals.NAMEABLE);
 		private final @NonNull Class _NamedElement = createClass(PivotPackage.Literals.NAMED_ELEMENT);
@@ -225,7 +226,6 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Class _RealLiteralExp = createClass(PivotPackage.Literals.REAL_LITERAL_EXP);
 		private final @NonNull Class _ReferringElement = createClass(PivotPackage.Literals.REFERRING_ELEMENT);
 		private final @NonNull Class _Region = createClass(PivotPackage.Literals.REGION);
-		private final @NonNull Class _Root = createClass(PivotPackage.Literals.ROOT);
 		private final @NonNull Class _RootCompletePackage = createClass(PivotPackage.Literals.ROOT_COMPLETE_PACKAGE);
 		private final @NonNull Class _SelfType = createClass(PivotPackage.Literals.SELF_TYPE);
 		private final @NonNull Class _SendSignalAction = createClass(PivotPackage.Literals.SEND_SIGNAL_ACTION);
@@ -355,6 +355,7 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull CollectionType _Collection_LambdaType = createCollectionType(_Collection, _LambdaType);
 		private final @NonNull CollectionType _Collection_LoopExp = createCollectionType(_Collection, _LoopExp);
 		private final @NonNull CollectionType _Collection_MessageType = createCollectionType(_Collection, _MessageType);
+		private final @NonNull CollectionType _Collection_Model = createCollectionType(_Collection, _Model);
 		private final @NonNull CollectionType _Collection_NavigationCallExp = createCollectionType(_Collection, _NavigationCallExp);
 		private final @NonNull CollectionType _Collection_NestedCompletePackage = createCollectionType(_Collection, _NestedCompletePackage);
 		private final @NonNull CollectionType _Collection_OCLExpression = createCollectionType(_Collection, _OCLExpression);
@@ -369,7 +370,6 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull CollectionType _Collection_PropertyCallExp = createCollectionType(_Collection, _PropertyCallExp);
 		private final @NonNull CollectionType _Collection_Pseudostate = createCollectionType(_Collection, _Pseudostate);
 		private final @NonNull CollectionType _Collection_Region = createCollectionType(_Collection, _Region);
-		private final @NonNull CollectionType _Collection_Root = createCollectionType(_Collection, _Root);
 		private final @NonNull CollectionType _Collection_RootCompletePackage = createCollectionType(_Collection, _RootCompletePackage);
 		private final @NonNull CollectionType _Collection_SendSignalAction = createCollectionType(_Collection, _SendSignalAction);
 		private final @NonNull CollectionType _Collection_Slot = createCollectionType(_Collection, _Slot);
@@ -433,6 +433,7 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull SetType _Set_Element = createSetType(_Set, _Element);
 		private final @NonNull SetType _Set_ElementExtension = createSetType(_Set, _ElementExtension);
 		private final @NonNull SetType _Set_InstanceSpecification = createSetType(_Set, _InstanceSpecification);
+		private final @NonNull SetType _Set_Model = createSetType(_Set, _Model);
 		private final @NonNull SetType _Set_NestedCompletePackage = createSetType(_Set, _NestedCompletePackage);
 		private final @NonNull SetType _Set_Operation = createSetType(_Set, _Operation);
 		private final @NonNull SetType _Set_Package = createSetType(_Set, _Package);
@@ -441,7 +442,6 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull SetType _Set_Pseudostate = createSetType(_Set, _Pseudostate);
 		private final @NonNull SetType _Set_Region = createSetType(_Set, _Region);
 		private final @NonNull SetType _Set_Region_1 = createSetType(_Set, _Region);
-		private final @NonNull SetType _Set_Root = createSetType(_Set, _Root);
 		private final @NonNull SetType _Set_RootCompletePackage = createSetType(_Set, _RootCompletePackage);
 		private final @NonNull SetType _Set_Slot = createSetType(_Set, _Slot);
 		private final @NonNull SetType _Set_State = createSetType(_Set, _State);
@@ -469,6 +469,7 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull CollectionType _UniqueCollection_EnumerationLiteral = createCollectionType(_UniqueCollection, _EnumerationLiteral);
 		private final @NonNull CollectionType _UniqueCollection_Import = createCollectionType(_UniqueCollection, _Import);
 		private final @NonNull CollectionType _UniqueCollection_InstanceSpecification = createCollectionType(_UniqueCollection, _InstanceSpecification);
+		private final @NonNull CollectionType _UniqueCollection_Model = createCollectionType(_UniqueCollection, _Model);
 		private final @NonNull CollectionType _UniqueCollection_NestedCompletePackage = createCollectionType(_UniqueCollection, _NestedCompletePackage);
 		private final @NonNull CollectionType _UniqueCollection_OCLExpression = createCollectionType(_UniqueCollection, _OCLExpression);
 		private final @NonNull CollectionType _UniqueCollection_Operation = createCollectionType(_UniqueCollection, _Operation);
@@ -479,7 +480,6 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull CollectionType _UniqueCollection_Property = createCollectionType(_UniqueCollection, _Property);
 		private final @NonNull CollectionType _UniqueCollection_Pseudostate = createCollectionType(_UniqueCollection, _Pseudostate);
 		private final @NonNull CollectionType _UniqueCollection_Region = createCollectionType(_UniqueCollection, _Region);
-		private final @NonNull CollectionType _UniqueCollection_Root = createCollectionType(_UniqueCollection, _Root);
 		private final @NonNull CollectionType _UniqueCollection_RootCompletePackage = createCollectionType(_UniqueCollection, _RootCompletePackage);
 		private final @NonNull CollectionType _UniqueCollection_Slot = createCollectionType(_UniqueCollection, _Slot);
 		private final @NonNull CollectionType _UniqueCollection_State = createCollectionType(_UniqueCollection, _State);
@@ -678,6 +678,9 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedTypes.add(type = _MessageType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Class);
+			ownedTypes.add(type = _Model);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Namespace);
 			ownedTypes.add(type = _MorePivotable);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
@@ -774,9 +777,6 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
 			ownedTypes.add(type = _Region);
-			superClasses = type.getSuperClasses();
-			superClasses.add(_Namespace);
-			ownedTypes.add(type = _Root);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Namespace);
 			ownedTypes.add(type = _RootCompletePackage);
@@ -1143,6 +1143,9 @@ public class OCLMetaModel extends ASResourceImpl
 			orphanTypes.add(type = _Collection_MessageType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclAny);
+			orphanTypes.add(type = _Collection_Model);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclAny);
 			orphanTypes.add(type = _Collection_NavigationCallExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclAny);
@@ -1183,9 +1186,6 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclAny);
 			orphanTypes.add(type = _Collection_Region);
-			superClasses = type.getSuperClasses();
-			superClasses.add(_OclAny);
-			orphanTypes.add(type = _Collection_Root);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclAny);
 			orphanTypes.add(type = _Collection_RootCompletePackage);
@@ -1392,6 +1392,9 @@ public class OCLMetaModel extends ASResourceImpl
 			orphanTypes.add(type = _Set_InstanceSpecification);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_InstanceSpecification);
+			orphanTypes.add(type = _Set_Model);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_UniqueCollection_Model);
 			orphanTypes.add(type = _Set_NestedCompletePackage);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_NestedCompletePackage);
@@ -1416,9 +1419,6 @@ public class OCLMetaModel extends ASResourceImpl
 			orphanTypes.add(type = _Set_Region_1);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_Region);
-			orphanTypes.add(type = _Set_Root);
-			superClasses = type.getSuperClasses();
-			superClasses.add(_UniqueCollection_Root);
 			orphanTypes.add(type = _Set_RootCompletePackage);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_RootCompletePackage);
@@ -1500,6 +1500,9 @@ public class OCLMetaModel extends ASResourceImpl
 			orphanTypes.add(type = _UniqueCollection_InstanceSpecification);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_InstanceSpecification);
+			orphanTypes.add(type = _UniqueCollection_Model);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Collection_Model);
 			orphanTypes.add(type = _UniqueCollection_NestedCompletePackage);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_NestedCompletePackage);
@@ -1530,9 +1533,6 @@ public class OCLMetaModel extends ASResourceImpl
 			orphanTypes.add(type = _UniqueCollection_Region);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Region);
-			orphanTypes.add(type = _UniqueCollection_Root);
-			superClasses = type.getSuperClasses();
-			superClasses.add(_Collection_Root);
 			orphanTypes.add(type = _UniqueCollection_RootCompletePackage);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_RootCompletePackage);
@@ -1729,7 +1729,7 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_CompleteClass_partialClasses = createProperty(PivotPackage.Literals.COMPLETE_CLASS__PARTIAL_CLASSES, _Set_Class);
 		private final @NonNull Property pr_CompleteModel_orphanCompletePackage = createProperty(PivotPackage.Literals.COMPLETE_MODEL__ORPHAN_COMPLETE_PACKAGE, _OrphanCompletePackage);
 		private final @NonNull Property pr_CompleteModel_ownedCompletePackages = createProperty(PivotPackage.Literals.COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES, _Set_RootCompletePackage);
-		private final @NonNull Property pr_CompleteModel_partialRoots = createProperty(PivotPackage.Literals.COMPLETE_MODEL__PARTIAL_ROOTS, _Set_Root);
+		private final @NonNull Property pr_CompleteModel_partialModels = createProperty(PivotPackage.Literals.COMPLETE_MODEL__PARTIAL_MODELS, _Set_Model);
 		private final @NonNull Property pr_CompleteModel_primitiveCompletePackage = createProperty(PivotPackage.Literals.COMPLETE_MODEL__PRIMITIVE_COMPLETE_PACKAGE, _PrimitiveCompletePackage);
 		private final @NonNull Property pr_CompletePackage_ownedCompleteClasses = createProperty(PivotPackage.Literals.COMPLETE_PACKAGE__OWNED_COMPLETE_CLASSES, _Set_CompleteClass);
 		private final @NonNull Property pr_CompletePackage_ownedCompletePackages = createProperty(PivotPackage.Literals.COMPLETE_PACKAGE__OWNED_COMPLETE_PACKAGES, _Set_NestedCompletePackage);
@@ -1792,7 +1792,7 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_IfExp_elseExpression = createProperty(PivotPackage.Literals.IF_EXP__ELSE_EXPRESSION, _OCLExpression);
 		private final @NonNull Property pr_IfExp_thenExpression = createProperty(PivotPackage.Literals.IF_EXP__THEN_EXPRESSION, _OCLExpression);
 		private final @NonNull Property pr_Import_importedNamespace = createProperty(PivotPackage.Literals.IMPORT__IMPORTED_NAMESPACE, _Namespace);
-		private final @NonNull Property pr_Import_Root_imports = createProperty("Root", _Root);
+		private final @NonNull Property pr_Import_Model_imports = createProperty("Model", _Model);
 		private final @NonNull Property pr_InstanceSpecification_classes = createProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__CLASSES, _Set_Class);
 		private final @NonNull Property pr_InstanceSpecification_owningPackage = createProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__OWNING_PACKAGE, _Package);
 		private final @NonNull Property pr_InstanceSpecification_slots = createProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__SLOTS, _Set_Slot);
@@ -1823,6 +1823,10 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_MessageExp_target = createProperty(PivotPackage.Literals.MESSAGE_EXP__TARGET, _OCLExpression);
 		private final @NonNull Property pr_MessageType_referredOperation = createProperty(PivotPackage.Literals.MESSAGE_TYPE__REFERRED_OPERATION, _Operation);
 		private final @NonNull Property pr_MessageType_referredSignal = createProperty(PivotPackage.Literals.MESSAGE_TYPE__REFERRED_SIGNAL, _Signal);
+		private final @NonNull Property pr_Model_externalURI = createProperty(PivotPackage.Literals.MODEL__EXTERNAL_URI, _String);
+		private final @NonNull Property pr_Model_imports = createProperty(PivotPackage.Literals.MODEL__IMPORTS, _OrderedSet_Import);
+		private final @NonNull Property pr_Model_ownedPackages = createProperty(PivotPackage.Literals.MODEL__OWNED_PACKAGES, _Set_Package);
+		private final @NonNull Property pr_Model_CompleteModel_partialModels = createProperty("CompleteModel", _Bag_CompleteModel);
 		private final @NonNull Property pr_NamedElement_name = createProperty(PivotPackage.Literals.NAMED_ELEMENT__NAME, _String);
 		private final @NonNull Property pr_Namespace_ownedRule = createProperty(PivotPackage.Literals.NAMESPACE__OWNED_RULE, _Set_Constraint);
 		private final @NonNull Property pr_Namespace_Constraint_context = createProperty("Constraint", _Bag_Constraint);
@@ -1876,8 +1880,8 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_Package_owningPackage = createProperty(PivotPackage.Literals.PACKAGE__OWNING_PACKAGE, _Package);
 		private final @NonNull Property pr_Package_profileApplication = createProperty(PivotPackage.Literals.PACKAGE__PROFILE_APPLICATION, _Set_ProfileApplication);
 		private final @NonNull Property pr_Package_CompletePackage_partialPackages = createProperty("CompletePackage", _Bag_CompletePackage);
+		private final @NonNull Property pr_Package_Model_ownedPackages = createProperty("Model", _Model);
 		private final @NonNull Property pr_Package_Package_importedPackage = createProperty("Package", _Bag_Package);
-		private final @NonNull Property pr_Package_Root_ownedPackages = createProperty("Root", _Root);
 		private final @NonNull Property pr_Parameter_isTypeof = createProperty(PivotPackage.Literals.PARAMETER__IS_TYPEOF, _Boolean);
 		private final @NonNull Property pr_Parameter_operation = createProperty(PivotPackage.Literals.PARAMETER__OPERATION, _Operation);
 		private final @NonNull Property pr_Parameter_Iteration_ownedAccumulator = createProperty("Iteration", _Iteration);
@@ -1934,10 +1938,6 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_Region_subvertex = createProperty(PivotPackage.Literals.REGION__SUBVERTEX, _Set_Vertex);
 		private final @NonNull Property pr_Region_transition = createProperty(PivotPackage.Literals.REGION__TRANSITION, _Set_Transition);
 		private final @NonNull Property pr_Region_Region_extendedRegion = createProperty("Region", _Bag_Region);
-		private final @NonNull Property pr_Root_externalURI = createProperty(PivotPackage.Literals.ROOT__EXTERNAL_URI, _String);
-		private final @NonNull Property pr_Root_imports = createProperty(PivotPackage.Literals.ROOT__IMPORTS, _OrderedSet_Import);
-		private final @NonNull Property pr_Root_ownedPackages = createProperty(PivotPackage.Literals.ROOT__OWNED_PACKAGES, _Set_Package);
-		private final @NonNull Property pr_Root_CompleteModel_partialRoots = createProperty("CompleteModel", _Bag_CompleteModel);
 		private final @NonNull Property pr_RootCompletePackage_owningCompleteModel = createProperty(PivotPackage.Literals.ROOT_COMPLETE_PACKAGE__OWNING_COMPLETE_MODEL, _CompleteModel);
 		private final @NonNull Property pr_SendSignalAction_signal = createProperty(PivotPackage.Literals.SEND_SIGNAL_ACTION__SIGNAL, _Signal);
 		private final @NonNull Property pr_SendSignalAction_MessageExp_sentSignal = createProperty("MessageExp", _MessageExp);
@@ -2239,9 +2239,9 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_RootCompletePackage_owningCompleteModel);
-			ownedProperties.add(property = pr_CompleteModel_partialRoots);
+			ownedProperties.add(property = pr_CompleteModel_partialModels);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Root_CompleteModel_partialRoots);
+			property.setOpposite(pr_Model_CompleteModel_partialModels);
 			ownedProperties.add(property = pr_CompleteModel_primitiveCompletePackage);
 			property.setIsDerived(true);
 			property.setIsReadOnly(true);
@@ -2495,11 +2495,11 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties.add(property = pr_Import_importedNamespace);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Namespace_Import_importedNamespace);
-			ownedProperties.add(property = pr_Import_Root_imports);
+			ownedProperties.add(property = pr_Import_Model_imports);
 			property.setImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Root_imports);
+			property.setOpposite(pr_Model_imports);
 			ownedProperties = _InstanceSpecification.getOwnedProperties();
 			ownedProperties.add(property = pr_InstanceSpecification_classes);
 			property.setIsResolveProxies(true);
@@ -2633,6 +2633,22 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Signal_MessageType_referredSignal);
+			ownedProperties = _Model.getOwnedProperties();
+			ownedProperties.add(property = pr_Model_externalURI);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_Model_imports);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Import_Model_imports);
+			ownedProperties.add(property = pr_Model_ownedPackages);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Package_Model_ownedPackages);
+			ownedProperties.add(property = pr_Model_CompleteModel_partialModels);
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_CompleteModel_partialModels);
 			ownedProperties = _NamedElement.getOwnedProperties();
 			ownedProperties.add(property = pr_NamedElement_name);
 			property.setIsRequired(false);
@@ -2859,15 +2875,15 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_CompletePackage_partialPackages);
+			ownedProperties.add(property = pr_Package_Model_ownedPackages);
+			property.setImplicit(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Model_ownedPackages);
 			ownedProperties.add(property = pr_Package_Package_importedPackage);
 			property.setImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Package_importedPackage);
-			ownedProperties.add(property = pr_Package_Root_ownedPackages);
-			property.setImplicit(true);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Root_ownedPackages);
 			ownedProperties = _Parameter.getOwnedProperties();
 			ownedProperties.add(property = pr_Parameter_isTypeof);
 			property.setIsResolveProxies(true);
@@ -3077,22 +3093,6 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Region_extendedRegion);
-			ownedProperties = _Root.getOwnedProperties();
-			ownedProperties.add(property = pr_Root_externalURI);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			ownedProperties.add(property = pr_Root_imports);
-			property.setIsComposite(true);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Import_Root_imports);
-			ownedProperties.add(property = pr_Root_ownedPackages);
-			property.setIsComposite(true);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Package_Root_ownedPackages);
-			ownedProperties.add(property = pr_Root_CompleteModel_partialRoots);
-			property.setImplicit(true);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_CompleteModel_partialRoots);
 			ownedProperties = _RootCompletePackage.getOwnedProperties();
 			ownedProperties.add(property = pr_RootCompletePackage_owningCompleteModel);
 			property.setIsRequired(false);
@@ -3677,6 +3677,8 @@ public class OCLMetaModel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Collection_T, _LoopExp)));
 			_Collection_MessageType.getOwnedTemplateBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _MessageType)));
+			_Collection_Model.getOwnedTemplateBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_Collection_T, _Model)));
 			_Collection_NavigationCallExp.getOwnedTemplateBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _NavigationCallExp)));
 			_Collection_NestedCompletePackage.getOwnedTemplateBindings().add(createTemplateBinding(
@@ -3707,8 +3709,6 @@ public class OCLMetaModel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Collection_T, _Region)));
 			_Collection_RootCompletePackage.getOwnedTemplateBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _RootCompletePackage)));
-			_Collection_Root.getOwnedTemplateBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(_Collection_T, _Root)));
 			_Collection_SendSignalAction.getOwnedTemplateBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _SendSignalAction)));
 			_Collection_Slot.getOwnedTemplateBindings().add(createTemplateBinding(
@@ -3833,6 +3833,8 @@ public class OCLMetaModel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Set_T, _Element)));
 			_Set_InstanceSpecification.getOwnedTemplateBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _InstanceSpecification)));
+			_Set_Model.getOwnedTemplateBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_Set_T, _Model)));
 			_Set_NestedCompletePackage.getOwnedTemplateBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _NestedCompletePackage)));
 			_Set_Operation.getOwnedTemplateBindings().add(createTemplateBinding(
@@ -3851,8 +3853,6 @@ public class OCLMetaModel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Set_T, _Region)));
 			_Set_RootCompletePackage.getOwnedTemplateBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _RootCompletePackage)));
-			_Set_Root.getOwnedTemplateBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(_Set_T, _Root)));
 			_Set_Slot.getOwnedTemplateBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _Slot)));
 			_Set_StateMachine.getOwnedTemplateBindings().add(createTemplateBinding(
@@ -3905,6 +3905,8 @@ public class OCLMetaModel extends ASResourceImpl
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Import)));
 			_UniqueCollection_InstanceSpecification.getOwnedTemplateBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _InstanceSpecification)));
+			_UniqueCollection_Model.getOwnedTemplateBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_UniqueCollection_T, _Model)));
 			_UniqueCollection_NestedCompletePackage.getOwnedTemplateBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _NestedCompletePackage)));
 			_UniqueCollection_OCLExpression.getOwnedTemplateBindings().add(createTemplateBinding(
@@ -3927,8 +3929,6 @@ public class OCLMetaModel extends ASResourceImpl
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Region)));
 			_UniqueCollection_RootCompletePackage.getOwnedTemplateBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _RootCompletePackage)));
-			_UniqueCollection_Root.getOwnedTemplateBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(_UniqueCollection_T, _Root)));
 			_UniqueCollection_Slot.getOwnedTemplateBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Slot)));
 			_UniqueCollection_StateMachine.getOwnedTemplateBindings().add(createTemplateBinding(

@@ -19,7 +19,7 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.basecs.ParameterCS;
@@ -80,7 +80,7 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 	}
 
 	protected String text(CompleteOCLDocumentCS ele) {
-		Root root = PivotUtil.getPivot(Root.class, ele);
+		Model root = PivotUtil.getPivot(Model.class, ele);
 		return root != null ? String.valueOf(root.getName()) : "null";
 	}
 

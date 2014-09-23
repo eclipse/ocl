@@ -14,9 +14,9 @@ import java.lang.ref.WeakReference;
 
 import org.eclipse.jdt.annotation.NonNull;
 
-public class RootListeners<L extends RootListeners.IRootListener> extends AbstractListeners<L>
+public class ModelListeners<L extends ModelListeners.IModelListener> extends AbstractListeners<L>
 {
-	public static interface IRootListener extends AbstractListeners.IAbstractListener
+	public static interface IModelListener extends AbstractListeners.IAbstractListener
 	{
 		void didAddPackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage);
 		void didRemovePackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage);

@@ -401,8 +401,8 @@ public class OCL {
 	public @NonNull ASResource ecore2pivot(@NonNull Resource ecoreResource) throws ParserException {
 		MetaModelManager metaModelManager = getMetaModelManager();
 		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
-		Root pivotRoot = ecore2Pivot.getPivotRoot();
-		ASResource asResource = (ASResource) pivotRoot.eResource();
+		Model pivotModel = ecore2Pivot.getPivotModel();
+		ASResource asResource = (ASResource) pivotModel.eResource();
 		return DomainUtil.nonNullModel(asResource);
 	}
 
@@ -712,8 +712,8 @@ public class OCL {
 	public @NonNull ASResource uml2pivot(@NonNull Resource umlResource) throws ParserException {
 		MetaModelManager metaModelManager = getMetaModelManager();
 		UML2Pivot uml2Pivot = UML2Pivot.getAdapter(umlResource, metaModelManager);
-		Root pivotRoot = uml2Pivot.getPivotRoot();
-		ASResource asResource = (ASResource) pivotRoot.eResource();
+		Model pivotModel = uml2Pivot.getPivotModel();
+		ASResource asResource = (ASResource) pivotModel.eResource();
 		return DomainUtil.nonNullModel(asResource);
 	}
 

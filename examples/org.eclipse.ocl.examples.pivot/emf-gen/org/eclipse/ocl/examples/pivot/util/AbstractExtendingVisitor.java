@@ -262,6 +262,10 @@ public abstract class AbstractExtendingVisitor<R, C>
 		return visitClass(object);
 	}
 
+	public @Nullable R visitModel(@NonNull org.eclipse.ocl.examples.pivot.Model object) {
+		return visitNamespace(object);
+	}
+
 	public @Nullable R visitNamedElement(@NonNull org.eclipse.ocl.examples.pivot.NamedElement object) {
 		return visitElement(object);
 	}
@@ -363,10 +367,6 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	public @Nullable R visitRegion(@NonNull org.eclipse.ocl.examples.pivot.Region object) {
-		return visitNamespace(object);
-	}
-
-	public @Nullable R visitRoot(@NonNull org.eclipse.ocl.examples.pivot.Root object) {
 		return visitNamespace(object);
 	}
 

@@ -24,7 +24,7 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.xtext.base.basecs.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
@@ -105,7 +105,7 @@ public class OCLstdlibCSContainmentVisitor extends AbstractOCLstdlibCSContainmen
 	public Continuation<?> visitLibRootPackageCS(@NonNull LibRootPackageCS csElement) {
 		Resource eResource = csElement.eResource();
 		if (eResource instanceof BaseCSResource) {
-			@NonNull Root pivotElement = refreshRootPackage(Root.class, PivotPackage.Literals.ROOT, csElement);		
+			@NonNull Model pivotElement = refreshRootPackage(Model.class, PivotPackage.Literals.MODEL, csElement);		
 			context.installRootElement((BaseCSResource) eResource, pivotElement);		// Ensure containment viable for imported library type references
 			importPackages(csElement);			// FIXME This has to be after refreshPackage which is irregular and prevents local realization of ImportCS etc
 		}

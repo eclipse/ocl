@@ -49,7 +49,7 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.delegate.DelegateInstaller;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -283,8 +283,8 @@ public class Pivot2Ecore extends AbstractConversion
 			XMLResource ecoreResource = (XMLResource) resourceSet.createResource(ecoreURI);
 			List<EObject> contents = ecoreResource.getContents();
 			for (EObject eContent : asResource.getContents()) {
-				if (eContent instanceof Root) {
-					Object results = pass1.safeVisit((Root)eContent);
+				if (eContent instanceof Model) {
+					Object results = pass1.safeVisit((Model)eContent);
 					if (results instanceof List<?>) {
 						@SuppressWarnings("unchecked")
 						List<EObject> results2 = (List<EObject>)results;
@@ -405,8 +405,8 @@ public class Pivot2Ecore extends AbstractConversion
 
 	protected void setGenerationInProgress(@NonNull Resource asResource, boolean isLoading) {
 		for (EObject eRoot : asResource.getContents()) {
-			if (eRoot instanceof Root) {
-				for (org.eclipse.ocl.examples.pivot.Package asPackage : ((Root)eRoot).getOwnedPackages()) {
+			if (eRoot instanceof Model) {
+				for (org.eclipse.ocl.examples.pivot.Package asPackage : ((Model)eRoot).getOwnedPackages()) {
 					if (asPackage != null) {
 						setGenerationInProgress(asPackage, isLoading);
 					}

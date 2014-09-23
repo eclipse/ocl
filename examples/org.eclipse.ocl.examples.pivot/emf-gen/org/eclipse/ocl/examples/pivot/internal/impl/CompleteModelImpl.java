@@ -38,11 +38,11 @@ import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.LambdaType;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.OrphanCompletePackage;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PrimitiveCompletePackage;
-import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.RootCompletePackage;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
@@ -50,7 +50,7 @@ import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.internal.complete.CompleteURIs;
-import org.eclipse.ocl.examples.pivot.internal.complete.PartialRoots;
+import org.eclipse.ocl.examples.pivot.internal.complete.PartialModels;
 import org.eclipse.ocl.examples.pivot.internal.complete.RootCompletePackages;
 import org.eclipse.ocl.examples.pivot.manager.CompleteEnvironment;
 import org.eclipse.ocl.examples.pivot.manager.CompleteInheritance;
@@ -72,7 +72,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl#getOrphanCompletePackage <em>Orphan Complete Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl#getOwnedCompletePackages <em>Owned Complete Packages</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl#getPartialRoots <em>Partial Roots</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl#getPartialModels <em>Partial Models</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl#getPrimitiveCompletePackage <em>Primitive Complete Package</em>}</li>
  * </ul>
  * </p>
@@ -173,8 +173,8 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 				return getOrphanCompletePackage();
 			case PivotPackage.COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES:
 				return getOwnedCompletePackages();
-			case PivotPackage.COMPLETE_MODEL__PARTIAL_ROOTS:
-				return getPartialRoots();
+			case PivotPackage.COMPLETE_MODEL__PARTIAL_MODELS:
+				return getPartialModels();
 			case PivotPackage.COMPLETE_MODEL__PRIMITIVE_COMPLETE_PACKAGE:
 				return getPrimitiveCompletePackage();
 		}
@@ -215,9 +215,9 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 				getOwnedCompletePackages().clear();
 				getOwnedCompletePackages().addAll((Collection<? extends RootCompletePackage>)newValue);
 				return;
-			case PivotPackage.COMPLETE_MODEL__PARTIAL_ROOTS:
-				getPartialRoots().clear();
-				getPartialRoots().addAll((Collection<? extends Root>)newValue);
+			case PivotPackage.COMPLETE_MODEL__PARTIAL_MODELS:
+				getPartialModels().clear();
+				getPartialModels().addAll((Collection<? extends Model>)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -251,8 +251,8 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 			case PivotPackage.COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES:
 				getOwnedCompletePackages().clear();
 				return;
-			case PivotPackage.COMPLETE_MODEL__PARTIAL_ROOTS:
-				getPartialRoots().clear();
+			case PivotPackage.COMPLETE_MODEL__PARTIAL_MODELS:
+				getPartialModels().clear();
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -283,8 +283,8 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 				return orphanCompletePackage != null;
 			case PivotPackage.COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES:
 				return ownedCompletePackages != null && !ownedCompletePackages.isEmpty();
-			case PivotPackage.COMPLETE_MODEL__PARTIAL_ROOTS:
-				return partialRoots != null && !partialRoots.isEmpty();
+			case PivotPackage.COMPLETE_MODEL__PARTIAL_MODELS:
+				return partialModels != null && !partialModels.isEmpty();
 			case PivotPackage.COMPLETE_MODEL__PRIMITIVE_COMPLETE_PACKAGE:
 				return primitiveCompletePackage != null;
 		}
@@ -317,9 +317,9 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	protected final @NonNull RootCompletePackages ownedCompletePackages;
 
 	/**
-	 * The cached value of the '{@link #getPartialRoots() <em>Partial Roots</em>}' reference list.
+	 * The cached value of the '{@link #getPartialModels() <em>Partial Roots</em>}' reference list.
 	 */
-	protected final @NonNull PartialRoots partialRoots;
+	protected final @NonNull PartialModels partialModels;
 
 	/**
 	 * The cached value of the '{@link #getPrimitiveCompletePackage() <em>Primitive Complete Package</em>}' reference.
@@ -353,7 +353,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	{
 		this.completeEnvironment = completeEnvironment;
 		this.metaModelManager = completeEnvironment.getMetaModelManager();
-		partialRoots = new PartialRoots(this);
+		partialModels = new PartialModels(this);
 		ownedCompletePackages = new RootCompletePackages(this);
 	}
 
@@ -425,8 +425,8 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 //		}
 	} */
 	
-	public void didAddPartialRoot(@NonNull Root partialRoot) {
-		completeURIs.didAddPartialRoot(partialRoot);
+	public void didAddPartialModel(@NonNull Model partialModel) {
+		completeURIs.didAddPartialModel(partialModel);
 	}
 	
 //	public void didRemoveClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
@@ -471,8 +471,8 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 		ownedCompletePackages.didRemovePackage(pivotPackage);
 	}
 	
-	public void didRemovePartialRoot(@NonNull Root partialRoot) {
-		completeURIs.didRemovePartialRoot(partialRoot);
+	public void didRemovePartialModel(@NonNull Model partialModel) {
+		completeURIs.didRemovePartialModel(partialModel);
 	}
 
 	public synchronized void dispose() {
@@ -580,8 +580,8 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public @NonNull PartialRoots getPartialRoots() {
-		return partialRoots;
+	public @NonNull PartialModels getPartialModels() {
+		return partialModels;
 	}
 	
 	@SuppressWarnings("null")

@@ -67,7 +67,7 @@ import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.Stereotype;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
@@ -423,8 +423,8 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		boolean nsURIChange = (oldNsURI != newNsURI) || ((oldNsURI != null) && !oldNsURI.equals(newNsURI));
 		if (nameChange || nsURIChange) {
 			EObject eContainer = pivotElement.eContainer();
-			if (eContainer instanceof Root) {
-				((Root)eContainer).getOwnedPackages().remove(pivotElement);
+			if (eContainer instanceof Model) {
+				((Model)eContainer).getOwnedPackages().remove(pivotElement);
 			}
 			else if (eContainer instanceof org.eclipse.ocl.examples.pivot.Package) {
 				((org.eclipse.ocl.examples.pivot.Package)eContainer).getOwnedPackages().remove(pivotElement);

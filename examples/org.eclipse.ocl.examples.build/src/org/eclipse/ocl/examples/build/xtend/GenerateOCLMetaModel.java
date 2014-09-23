@@ -46,7 +46,7 @@ import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -134,7 +134,7 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 		return null;
 	}
 
-	protected abstract String generateMetamodel(@NonNull Root pivotModel);
+	protected abstract String generateMetamodel(@NonNull Model pivotModel);
 	
 	protected String getEcoreLiteral(@NonNull org.eclipse.ocl.examples.pivot.Class elem) {
 		return NameQueries.getEcoreLiteral(elem);
@@ -149,13 +149,13 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 	}
 
 	@Override
-	protected @NonNull Set<PrimitiveType> getAllPrimitiveTypes(@NonNull Root root) {
+	protected @NonNull Set<PrimitiveType> getAllPrimitiveTypes(@NonNull Model root) {
 		@SuppressWarnings("null")@NonNull Set<PrimitiveType> emptySet = Collections.emptySet();
 		return emptySet;
 	}
 
 	@Override
-	protected @NonNull Collection<org.eclipse.ocl.examples.pivot.Class> getOclTypes(@NonNull Root root) {
+	protected @NonNull Collection<org.eclipse.ocl.examples.pivot.Class> getOclTypes(@NonNull Model root) {
 		Map<String, org.eclipse.ocl.examples.pivot.Class> allElements = new HashMap<String, org.eclipse.ocl.examples.pivot.Class>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -180,7 +180,7 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 	}
 	
 	@Override
-	protected @NonNull List<CollectionType> getSortedCollectionTypes(@NonNull Root root) {
+	protected @NonNull List<CollectionType> getSortedCollectionTypes(@NonNull Model root) {
 		List<CollectionType> sortedElements = super.getSortedCollectionTypes(root);
 		Collections.sort(sortedElements, collectionTypeComparator);
 		return sortedElements;
@@ -217,15 +217,15 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 				return;
 			}
 			Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
-			Root pivotRoot = ecore2Pivot.getPivotRoot();
-			Resource asResource = pivotRoot.eResource();
+			Model pivotModel = ecore2Pivot.getPivotModel();
+			Resource asResource = pivotModel.eResource();
 			String pivotErrorsString = PivotUtil.formatResourceDiagnostics(DomainUtil.nonNullEMF(asResource.getErrors()), "Converting " + inputURI, "\n");
 				if (pivotErrorsString != null) {
 					issues.addError(this, pivotErrorsString, null, null, null);
 					return;
 				}
 			sourceFile = "/" + projectName + "/" + modelFile;
-			EObject pivotModel = asResource.getContents().get(0);
+			EObject asRoot = asResource.getContents().get(0);
 			ASSaver saver = new ASSaver(asResource);
 			/*Package orphanage =*/ saver.localizeSpecializations();
 //			if ((orphanage != null) && (pivotModel instanceof Root)) {
@@ -233,8 +233,8 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 //			}
 			String fileName = outputFolder + "/" + javaClassName + ".java";
 			log.info("Generating '" + fileName + "'");
-			assert pivotModel instanceof Root;
-			String metaModel = generateMetamodel((Root)pivotModel);
+			assert asRoot instanceof Model;
+			String metaModel = generateMetamodel((Model)asRoot);
 			MergeWriter fw = new MergeWriter(fileName);
 			if (metaModel != null) {
 				fw.append(metaModel);

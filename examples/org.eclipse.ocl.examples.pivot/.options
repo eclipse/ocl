@@ -24,11 +24,11 @@ org.eclipse.ocl.examples.pivot/partialClasses/initMemberOperations=false
 # Trace lazy resolution of member properties 
 org.eclipse.ocl.examples.pivot/partialClasses/initMemberProperties=false
 
+# Trace maintenance of PartialModels 
+org.eclipse.ocl.examples.pivot/partialModels=false
+
 # Trace maintenance of PartialPackages 
 org.eclipse.ocl.examples.pivot/partialPackages=false
-
-# Trace maintenance of PartialRoots 
-org.eclipse.ocl.examples.pivot/partialRoots=false
 
 # Trace validation of InstanceSpecifications 
 org.eclipse.ocl.examples.pivot/validate/instance=false

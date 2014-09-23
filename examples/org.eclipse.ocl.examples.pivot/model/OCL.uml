@@ -43,7 +43,7 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_4AqmUCyOEeS77awx34sDEA" name="CompleteModel">
         <generalization xmi:id="_JCnrcCyPEeS77awx34sDEA" general="_67hN4CyOEeS77awx34sDEA"/>
-        <ownedAttribute xmi:id="_9pc-YDpxEeSo6P09swtBBA" name="partialRoots" type="_3pdx4DpxEeSo6P09swtBBA">
+        <ownedAttribute xmi:id="_9pc-YDpxEeSo6P09swtBBA" name="partialModels" type="_3pdx4DpxEeSo6P09swtBBA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9pc-YTpxEeSo6P09swtBBA"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9pc-YjpxEeSo6P09swtBBA" value="*"/>
         </ownedAttribute>
@@ -110,7 +110,7 @@
       <packagedElement xmi:type="uml:Class" xmi:id="_Je4TIDmUEeSB95ugQCao7g" name="PrimitiveCompletePackage">
         <generalization xmi:id="_Je4TITmUEeSB95ugQCao7g" general="_OllUMDQjEeSMlP-TjpzTcA"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_3pdx4DpxEeSo6P09swtBBA" name="Root"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_3pdx4DpxEeSo6P09swtBBA" name="Model"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_OllUMDQjEeSMlP-TjpzTcA" name="RootCompletePackage" isAbstract="true">
         <generalization xmi:id="_SGwU4DQjEeSMlP-TjpzTcA" general="_-mAioCyOEeS77awx34sDEA"/>
         <ownedAttribute xmi:id="_afnRUCyQEeS77awx34sDEA" name="owningCompleteModel" type="_4AqmUCyOEeS77awx34sDEA" association="_AJ5sYCyREeS77awx34sDEA">

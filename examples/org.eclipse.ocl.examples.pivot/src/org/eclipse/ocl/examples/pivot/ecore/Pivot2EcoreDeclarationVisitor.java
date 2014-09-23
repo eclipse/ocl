@@ -64,7 +64,7 @@ import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
@@ -508,6 +508,76 @@ public class Pivot2EcoreDeclarationVisitor
 	}
 
 	@Override
+	public Object visitModel(@NonNull Model pivotModel) {
+		EModelElement firstElement = null;
+		List<EObject> outputObjects = new ArrayList<EObject>();
+		for (org.eclipse.ocl.examples.pivot.Package pivotObject : pivotModel.getOwnedPackages()) {
+			if (!Orphanage.isTypeOrphanage(pivotObject)) {
+				Object ecoreObject = safeVisit(pivotObject);
+				if (ecoreObject instanceof EObject) {
+					outputObjects.add((EObject) ecoreObject);
+					if ((firstElement == null) && (ecoreObject instanceof EModelElement)) {
+						firstElement = (EModelElement) ecoreObject;
+					}
+				}
+			}
+		}
+		List<Import> imports = pivotModel.getImports();
+		if (imports.size() > 0) {
+			if (imports.size() > 0) {
+				imports = new ArrayList<Import>(imports);
+				Collections.sort(imports, new Comparator<Import>()
+						{
+						public int compare(Import o1, Import o2) {
+							String n1 = o1.getName();
+							String n2 = o2.getName();
+							if (n1 == null) n1 = "";
+							if (n2 == null) n1 = "";
+							return n1.compareTo(n2);
+						}
+					}
+				);
+			}
+			EAnnotation importAnnotation = null;
+			URI ecoreURI = context.getEcoreURI();
+			for (Import anImport : imports) {
+				Namespace importedNamespace = anImport.getImportedNamespace();
+				if (importedNamespace != null) {
+					if (importAnnotation == null) {
+						importAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+						importAnnotation.setSource(PivotConstants.IMPORT_ANNOTATION_SOURCE);
+					}
+					EObject eTarget = importedNamespace.getETarget();
+					if (eTarget != null) {
+						URI uri = null;
+						if ((eTarget instanceof EPackage) && DomainUtil.isRegistered(eTarget.eResource())) {
+	 						String nsURI = ((EPackage)eTarget).getNsURI();
+							if (nsURI != null) {
+								uri = URI.createURI(nsURI);
+							}
+						}
+						if (uri == null) {
+							uri = EcoreUtil.getURI(eTarget);
+						}
+						URI uri2 = uri.deresolve(ecoreURI, true, true, true);
+						importAnnotation.getDetails().put(anImport.getName(), uri2.toString());
+					}
+					else if (importedNamespace instanceof org.eclipse.ocl.examples.pivot.Package) {
+						importAnnotation.getDetails().put(anImport.getName(), ((org.eclipse.ocl.examples.pivot.Package)importedNamespace).getURI());
+					}
+					else {
+						importAnnotation.getDetails().put(anImport.getName(), importedNamespace.toString());
+					}
+				}
+			}
+			if ((firstElement != null) && (importAnnotation != null)) {
+				firstElement.getEAnnotations().add(importAnnotation);
+			}
+		}
+		return outputObjects;
+	}
+
+	@Override
 	public EObject visitOperation(@NonNull Operation pivotOperation) {
 		if (pivotOperation.getOwnedTemplateBindings().size() > 0) {
 			return null;
@@ -619,76 +689,6 @@ public class Pivot2EcoreDeclarationVisitor
 			eStructuralFeature.getEAnnotations().add(eAnnotation);
 		} */
 		return eStructuralFeature;
-	}
-
-	@Override
-	public Object visitRoot(@NonNull Root pivotRoot) {
-		EModelElement firstElement = null;
-		List<EObject> outputObjects = new ArrayList<EObject>();
-		for (org.eclipse.ocl.examples.pivot.Package pivotObject : pivotRoot.getOwnedPackages()) {
-			if (!Orphanage.isTypeOrphanage(pivotObject)) {
-				Object ecoreObject = safeVisit(pivotObject);
-				if (ecoreObject instanceof EObject) {
-					outputObjects.add((EObject) ecoreObject);
-					if ((firstElement == null) && (ecoreObject instanceof EModelElement)) {
-						firstElement = (EModelElement) ecoreObject;
-					}
-				}
-			}
-		}
-		List<Import> imports = pivotRoot.getImports();
-		if (imports.size() > 0) {
-			if (imports.size() > 0) {
-				imports = new ArrayList<Import>(imports);
-				Collections.sort(imports, new Comparator<Import>()
-						{
-						public int compare(Import o1, Import o2) {
-							String n1 = o1.getName();
-							String n2 = o2.getName();
-							if (n1 == null) n1 = "";
-							if (n2 == null) n1 = "";
-							return n1.compareTo(n2);
-						}
-					}
-				);
-			}
-			EAnnotation importAnnotation = null;
-			URI ecoreURI = context.getEcoreURI();
-			for (Import anImport : imports) {
-				Namespace importedNamespace = anImport.getImportedNamespace();
-				if (importedNamespace != null) {
-					if (importAnnotation == null) {
-						importAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-						importAnnotation.setSource(PivotConstants.IMPORT_ANNOTATION_SOURCE);
-					}
-					EObject eTarget = importedNamespace.getETarget();
-					if (eTarget != null) {
-						URI uri = null;
-						if ((eTarget instanceof EPackage) && DomainUtil.isRegistered(eTarget.eResource())) {
-	 						String nsURI = ((EPackage)eTarget).getNsURI();
-							if (nsURI != null) {
-								uri = URI.createURI(nsURI);
-							}
-						}
-						if (uri == null) {
-							uri = EcoreUtil.getURI(eTarget);
-						}
-						URI uri2 = uri.deresolve(ecoreURI, true, true, true);
-						importAnnotation.getDetails().put(anImport.getName(), uri2.toString());
-					}
-					else if (importedNamespace instanceof org.eclipse.ocl.examples.pivot.Package) {
-						importAnnotation.getDetails().put(anImport.getName(), ((org.eclipse.ocl.examples.pivot.Package)importedNamespace).getURI());
-					}
-					else {
-						importAnnotation.getDetails().put(anImport.getName(), importedNamespace.toString());
-					}
-				}
-			}
-			if ((firstElement != null) && (importAnnotation != null)) {
-				firstElement.getEAnnotations().add(importAnnotation);
-			}
-		}
-		return outputObjects;
 	}
 
 	@Override

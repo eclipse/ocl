@@ -90,7 +90,7 @@ import org.eclipse.ocl.examples.pivot.Pseudostate;
 import org.eclipse.ocl.examples.pivot.PseudostateKind;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.Region;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.SendSignalAction;
 import org.eclipse.ocl.examples.pivot.SequenceType;
@@ -219,6 +219,7 @@ public class PivotFactoryImpl
 			case PivotPackage.LIBRARY: return (EObject)createLibrary();
 			case PivotPackage.MESSAGE_EXP: return (EObject)createMessageExp();
 			case PivotPackage.MESSAGE_TYPE: return (EObject)createMessageType();
+			case PivotPackage.MODEL: return (EObject)createModel();
 			case PivotPackage.NESTED_COMPLETE_PACKAGE: return (EObject)createNestedCompletePackage();
 			case PivotPackage.NULL_LITERAL_EXP: return (EObject)createNullLiteralExp();
 			case PivotPackage.OPERATION: return (EObject)createOperation();
@@ -239,7 +240,6 @@ public class PivotFactoryImpl
 			case PivotPackage.PSEUDOSTATE: return (EObject)createPseudostate();
 			case PivotPackage.REAL_LITERAL_EXP: return (EObject)createRealLiteralExp();
 			case PivotPackage.REGION: return (EObject)createRegion();
-			case PivotPackage.ROOT: return (EObject)createRoot();
 			case PivotPackage.SELF_TYPE: return (EObject)createSelfType();
 			case PivotPackage.SEND_SIGNAL_ACTION: return (EObject)createSendSignalAction();
 			case PivotPackage.SEQUENCE_TYPE: return (EObject)createSequenceType();
@@ -1020,6 +1020,17 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Model createModel()
+	{
+		ModelImpl model = new ModelImpl();
+		return model;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NestedCompletePackage createNestedCompletePackage()
 	{
 		NestedCompletePackageImpl nestedCompletePackage = new NestedCompletePackageImpl();
@@ -1139,17 +1150,6 @@ public class PivotFactoryImpl
 	{
 		RegionImpl region = new RegionImpl();
 		return region;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Root createRoot()
-	{
-		RootImpl root = new RootImpl();
-		return root;
 	}
 
 	/**

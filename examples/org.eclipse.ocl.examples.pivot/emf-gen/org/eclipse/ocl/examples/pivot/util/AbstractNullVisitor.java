@@ -258,6 +258,10 @@ public abstract class AbstractNullVisitor<R, C>
 		return null;
 	}
 
+	public @Nullable R visitModel(@NonNull org.eclipse.ocl.examples.pivot.Model object) {
+		return null;
+	}
+
 	public @Nullable R visitNamedElement(@NonNull org.eclipse.ocl.examples.pivot.NamedElement object) {
 		return null;
 	}
@@ -359,10 +363,6 @@ public abstract class AbstractNullVisitor<R, C>
 	}
 
 	public @Nullable R visitRegion(@NonNull org.eclipse.ocl.examples.pivot.Region object) {
-		return null;
-	}
-
-	public @Nullable R visitRoot(@NonNull org.eclipse.ocl.examples.pivot.Root object) {
 		return null;
 	}
 

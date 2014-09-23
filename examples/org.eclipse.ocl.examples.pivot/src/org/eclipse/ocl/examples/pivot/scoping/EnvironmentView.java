@@ -47,7 +47,7 @@ import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.RootCompletePackage;
 import org.eclipse.ocl.examples.pivot.State;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
@@ -329,7 +329,7 @@ public class EnvironmentView
 		}
 	}
 
-	public void addAllPackages(@NonNull Root root) {
+	public void addAllPackages(@NonNull Model root) {
 		if (accepts(PivotPackage.Literals.PACKAGE)) {
 			String name2 = name;
 			if (name2 != null) {

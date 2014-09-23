@@ -104,7 +104,7 @@ import org.eclipse.ocl.examples.pivot.PseudostateKind;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.ReferringElement;
 import org.eclipse.ocl.examples.pivot.Region;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.RootCompletePackage;
 import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.SendSignalAction;
@@ -819,6 +819,8 @@ public class PivotValidator
 				return validateMessageExp((MessageExp)value, diagnostics, context);
 			case PivotPackage.MESSAGE_TYPE:
 				return validateMessageType((MessageType)value, diagnostics, context);
+			case PivotPackage.MODEL:
+				return validateModel((Model)value, diagnostics, context);
 			case PivotPackage.MORE_PIVOTABLE:
 				return validateMorePivotable((MorePivotable)value, diagnostics, context);
 			case PivotPackage.NAMEABLE:
@@ -879,8 +881,6 @@ public class PivotValidator
 				return validateReferringElement((ReferringElement)value, diagnostics, context);
 			case PivotPackage.REGION:
 				return validateRegion((Region)value, diagnostics, context);
-			case PivotPackage.ROOT:
-				return validateRoot((Root)value, diagnostics, context);
 			case PivotPackage.ROOT_COMPLETE_PACKAGE:
 				return validateRootCompletePackage((RootCompletePackage)value, diagnostics, context);
 			case PivotPackage.SELF_TYPE:
@@ -2820,6 +2820,16 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateModel(Model model, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint((EObject)model, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateMorePivotable(MorePivotable morePivotable, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint((EObject)morePivotable, diagnostics, context);
@@ -3069,16 +3079,6 @@ public class PivotValidator
 	public boolean validateRegion(Region region, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint((EObject)region, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateRoot(Root root, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint((EObject)root, diagnostics, context);
 	}
 
 	/**

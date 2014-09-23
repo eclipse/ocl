@@ -57,7 +57,7 @@ import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
@@ -499,7 +499,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 				if (pObject instanceof org.eclipse.ocl.examples.pivot.Package) {
 					gatherNewPackage(newPackages, pObject);
 				}
-				else if (pObject instanceof Root) {
+				else if (pObject instanceof Model) {
 					gatherNewPackage(newPackages, pObject);
 				}
 				else {		// CompleteOCL has package references from non-package contexts
@@ -1249,8 +1249,8 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 			ASResource asResource = converter.cs2PivotMapping.getASResource(csResource);
 			if (asResource != null) {
 				for (EObject eObject : asResource.getContents()) {
-					if (eObject instanceof Root) {
-						List<org.eclipse.ocl.examples.pivot.Package> nestedPackage = ((Root)eObject).getOwnedPackages();
+					if (eObject instanceof Model) {
+						List<org.eclipse.ocl.examples.pivot.Package> nestedPackage = ((Model)eObject).getOwnedPackages();
 						gatherOldPackages(nestedPackage);
 					}
 				}

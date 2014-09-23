@@ -28,7 +28,7 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 //import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.Orphanage;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
@@ -139,8 +139,8 @@ public class ASSaver
 			orphanage2.setNsPrefix(PivotConstants.ORPHANAGE_PREFIX);
 			orphanage2.setURI(PivotConstants.ORPHANAGE_URI);
 			EList<EObject> contents = resource.getContents();
-			if ((contents.size() > 0) && (contents.get(0) instanceof Root)) {
-				((Root)contents.get(0)).getOwnedPackages().add(orphanage2);
+			if ((contents.size() > 0) && (contents.get(0) instanceof Model)) {
+				((Model)contents.get(0)).getOwnedPackages().add(orphanage2);
 			}
 			else {
 				contents.add(orphanage2);
@@ -194,16 +194,16 @@ public class ASSaver
 	}
 
 	protected void loadOrphanage(@NonNull Resource resource) {
-		Root root = null;
+		Model root = null;
 		Package orphanage2 = orphanage;
 		if (orphanage2 == null) {
 			for (EObject eRoot : resource.getContents()) {
-				if (eRoot instanceof Root) {
+				if (eRoot instanceof Model) {
 					if (root == null) {
-						root = (Root) eRoot;
+						root = (Model) eRoot;
 					}
 					if (orphanage2 == null) {
-						for (org.eclipse.ocl.examples.pivot.Package asPackage : ((Root)eRoot).getOwnedPackages()) {
+						for (org.eclipse.ocl.examples.pivot.Package asPackage : ((Model)eRoot).getOwnedPackages()) {
 							if (Orphanage.isTypeOrphanage(asPackage)) {
 								orphanage = orphanage2 = asPackage;
 								for (org.eclipse.ocl.examples.pivot.Class asType : orphanage2.getOwnedClasses()) {

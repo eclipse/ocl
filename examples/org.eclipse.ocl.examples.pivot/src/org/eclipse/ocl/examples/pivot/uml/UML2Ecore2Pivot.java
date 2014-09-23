@@ -26,7 +26,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -77,9 +77,9 @@ public class UML2Ecore2Pivot extends Ecore2Pivot
 			if (conversion == null) {
 				conversion = getAdapter(umlResource, metaModelManager);
 			}
-			Root pivotRoot = conversion.getPivotRoot();
+			Root pivotModel = conversion.getPivotModel();
 			if (uriFragment == null) {
-				return pivotRoot;
+				return pivotModel;
 			}
 			else {
 				EObject umlObject = umlResource.getEObject(uriFragment);
@@ -145,9 +145,9 @@ public class UML2Ecore2Pivot extends Ecore2Pivot
 	 * 
 	 * @return the Pivot root package
 	 */
-	public static Root importFromUML(@NonNull MetaModelManager metaModelManager, String alias, @NonNull Resource umlResource) {
+	public static Model importFromUML(@NonNull MetaModelManager metaModelManager, String alias, @NonNull Resource umlResource) {
 		UML2Ecore2Pivot conversion = getAdapter(umlResource, metaModelManager);
-		return conversion.getPivotRoot();
+		return conversion.getPivotModel();
 	}
 
 	public static boolean isUML(Resource resource) {
@@ -213,8 +213,8 @@ public class UML2Ecore2Pivot extends Ecore2Pivot
 	}
 
 	@Override
-	public @NonNull Root getPivotRoot() {
-		if (pivotRoot == null) {
+	public @NonNull Model getPivotModel() {
+		if (pivotModel == null) {
 			List<EObject> contents = umlResource.getContents();
 			if (options == null) {
 				options = new HashMap<String, String>();
@@ -240,7 +240,7 @@ public class UML2Ecore2Pivot extends Ecore2Pivot
 			Collection<? extends EObject> ecoreContents = uml2EcoreConverter.convert(contents, options, null, null);
 			ecoreResource.getContents().addAll(ecoreContents);
 		}
-		return super.getPivotRoot();
+		return super.getPivotModel();
 	}
 
 	@Override

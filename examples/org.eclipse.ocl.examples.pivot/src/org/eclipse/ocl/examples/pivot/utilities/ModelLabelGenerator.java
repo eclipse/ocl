@@ -12,19 +12,19 @@ package org.eclipse.ocl.examples.pivot.utilities;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.common.label.AbstractLabelGenerator;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 
-public final class RootLabelGenerator extends AbstractLabelGenerator<Root>
+public final class ModelLabelGenerator extends AbstractLabelGenerator<Model>
 {
 	public static void initialize(Registry registry) {
-		registry.install(Root.class, new RootLabelGenerator());		
+		registry.install(Model.class, new ModelLabelGenerator());		
 	}
 	
-	public RootLabelGenerator() {
-		super(Root.class);
+	public ModelLabelGenerator() {
+		super(Model.class);
 	}
 
-	public void buildLabelFor(@NonNull Builder labelBuilder, @NonNull Root object) {
+	public void buildLabelFor(@NonNull Builder labelBuilder, @NonNull Model object) {
 		if (object == labelBuilder.getLabelledObject()) {
 			String name = object.getExternalURI();
 			if (name != null)

@@ -38,7 +38,7 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.delegate.DelegateInstaller;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
@@ -76,8 +76,8 @@ public class RoundTripTests extends XtextTestCase
 	}
 	public ASResource createPivotFromEcore(MetaModelManager metaModelManager, Resource ecoreResource) throws IOException {
 		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
-		Root pivotRoot = ecore2Pivot.getPivotRoot();
-		ASResource asResource = (ASResource) pivotRoot.eResource();
+		Model pivotModel = ecore2Pivot.getPivotModel();
+		ASResource asResource = (ASResource) pivotModel.eResource();
 		assertNoResourceErrors("Ecore2Pivot failed", asResource);
 		assertNoValidationErrors("Ecore2Pivot invalid", asResource);
 		return asResource;
@@ -197,8 +197,8 @@ public class RoundTripTests extends XtextTestCase
 		
 		try {
 			Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(inputResource, metaModelManager);
-			Root pivotRoot = ecore2Pivot.getPivotRoot();
-			Resource asResource = pivotRoot.eResource();
+			Model pivotModel = ecore2Pivot.getPivotModel();
+			Resource asResource = pivotModel.eResource();
 			asResource.setURI(pivotURI);
 			assertNoResourceErrors("Ecore2Pivot failed", asResource);
 			asResource.save(null);
@@ -304,8 +304,8 @@ public class RoundTripTests extends XtextTestCase
 		
 		MetaModelManager pivotManager = new MetaModelManager();
 		UML2Pivot uml2Pivot = UML2Pivot.getAdapter(inputResource, pivotManager);
-		Root pivotRoot = uml2Pivot.getPivotRoot();
-		Resource asResource = pivotRoot.eResource();
+		Model pivotModel = uml2Pivot.getPivotModel();
+		Resource asResource = pivotModel.eResource();
 		asResource.setURI(pivotURI);
 		assertNoResourceErrors("UML2Pivot failed", asResource);
 		asResource.save(null);

@@ -12,7 +12,7 @@
 package org.eclipse.ocl.examples.pivot.tests;
 
 import org.eclipse.ocl.examples.pivot.PivotConstants;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 
 /**
  * Test suite with a simple model.
@@ -20,7 +20,7 @@ import org.eclipse.ocl.examples.pivot.Root;
 @SuppressWarnings("nls")
 public abstract class PivotSimpleTestSuite extends PivotTestSuite
 {
-    Root root;
+    Model root;
 	org.eclipse.ocl.examples.pivot.Package pkg1;
 	org.eclipse.ocl.examples.pivot.Package pkg2;
 	org.eclipse.ocl.examples.pivot.Package pkg3;
@@ -51,7 +51,7 @@ public abstract class PivotSimpleTestSuite extends PivotTestSuite
         //   pkg5
         //    george
 
-        root = createRoot();
+        root = createModel();
         pkg1 = createPackage(root, "pkg1");
         pkg2 = createPackage(pkg1, "pkg2");
         jim = createPackage(pkg2, "jim");

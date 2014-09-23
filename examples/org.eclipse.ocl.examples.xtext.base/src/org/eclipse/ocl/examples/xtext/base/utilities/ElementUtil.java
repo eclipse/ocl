@@ -38,7 +38,7 @@ import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
@@ -237,8 +237,8 @@ public class ElementUtil
 		if (cs2asAdapter != null) {
 			ASResource asResource = cs2asAdapter.getASResource(csResource);
 			for (EObject eRoot: asResource.getContents()) {
-				if (eRoot instanceof Root) {
-					for (org.eclipse.ocl.examples.pivot.Package asPackage: ((Root)eRoot).getOwnedPackages()) {
+				if (eRoot instanceof Model) {
+					for (org.eclipse.ocl.examples.pivot.Package asPackage: ((Model)eRoot).getOwnedPackages()) {
 						for (org.eclipse.ocl.examples.pivot.Class asType: asPackage.getOwnedClasses()) {
 							for (Constraint asConstraint : asType.getOwnedInvariants()) {
 								LanguageExpression specification = asConstraint.getSpecification();
@@ -484,7 +484,7 @@ public class ElementUtil
 			return;
 		}
 		for (EObject eContainer = element.eContainer(); eContainer instanceof Element; eContainer = eContainer.eContainer()) {
-			if (eContainer instanceof Root) {
+			if (eContainer instanceof Model) {
 				return;				// Skip root package
 			}
 			for (EObject aScope = scope; aScope != null; aScope = aScope.eContainer()) {

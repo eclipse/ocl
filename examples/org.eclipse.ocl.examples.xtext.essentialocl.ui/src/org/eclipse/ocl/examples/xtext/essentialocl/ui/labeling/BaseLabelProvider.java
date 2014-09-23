@@ -73,7 +73,7 @@ import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.StateExp;
@@ -723,7 +723,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		return "/org.eclipse.ocl.edit/icons/full/obj16/RealLiteralExp.gif";
 	}
 
-	protected String text(Root ele) {
+	protected String text(Model ele) {
 		StringBuilder s = new StringBuilder();
 		appendString(s, ele.getExternalURI());
 		return s.toString();

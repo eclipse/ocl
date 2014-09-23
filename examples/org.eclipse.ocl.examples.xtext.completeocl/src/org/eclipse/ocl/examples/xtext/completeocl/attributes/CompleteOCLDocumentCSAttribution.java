@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
@@ -37,8 +37,8 @@ public class CompleteOCLDocumentCSAttribution extends AbstractRootCSAttribution
 				if (importName != null) {
 					environmentView.addElement(importName, namespace);
 					environmentView.addNamedElement(namespace);
-					if (namespace instanceof Root) {
-						environmentView.addAllPackages((Root)namespace);
+					if (namespace instanceof Model) {
+						environmentView.addAllPackages((Model)namespace);
 					} else if (namespace instanceof org.eclipse.ocl.examples.pivot.Package) {		// FIXME This legacy behaviour needs cleaning up
 						if (anImport.isAll()) {
 							org.eclipse.ocl.examples.pivot.Package rootPackage = (org.eclipse.ocl.examples.pivot.Package)namespace;
@@ -48,8 +48,8 @@ public class CompleteOCLDocumentCSAttribution extends AbstractRootCSAttribution
 					}
 				} else {
 					environmentView.addNamedElement(namespace);
-					if (namespace instanceof Root) {
-						environmentView.addAllPackages((Root)namespace);
+					if (namespace instanceof Model) {
+						environmentView.addAllPackages((Model)namespace);
 					} else if (namespace instanceof org.eclipse.ocl.examples.pivot.Package) {		// FIXME This legacy behaviour needs cleaning up
 						for (org.eclipse.ocl.examples.pivot.Package rootPackage : ((org.eclipse.ocl.examples.pivot.Package)namespace).getOwnedPackages()) {
 							assert rootPackage != null;

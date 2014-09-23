@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
@@ -101,8 +101,8 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 			logger.error("Failed to load Ecore '" + ecoreResource.getURI() + message);
 			return false;
 		}
-		Root pivotRoot = ecore2Pivot.getPivotRoot();
-		errors = pivotRoot.eResource().getErrors();
+		Model pivotModel = ecore2Pivot.getPivotModel();
+		errors = pivotModel.eResource().getErrors();
 		assert errors != null;
 		message = PivotUtil.formatResourceDiagnostics(errors, "", "\n");
 		if (message != null) {

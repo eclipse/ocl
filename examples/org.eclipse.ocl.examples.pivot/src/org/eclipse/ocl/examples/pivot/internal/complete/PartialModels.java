@@ -16,59 +16,59 @@ import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.examples.pivot.CompleteModel;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.internal.impl.CompleteModelImpl;
-import org.eclipse.ocl.examples.pivot.internal.impl.RootImpl;
+import org.eclipse.ocl.examples.pivot.internal.impl.ModelImpl;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
 
-public class PartialRoots extends EObjectResolvingEList<Root> implements RootListeners.IRootListener
+public class PartialModels extends EObjectResolvingEList<Model> implements ModelListeners.IModelListener
 {
-	public static final @NonNull TracingOption PARTIAL_ROOTS = new TracingOption(PivotPlugin.PLUGIN_ID, "partialRoots");
+	public static final @NonNull TracingOption PARTIAL_MODELS = new TracingOption(PivotPlugin.PLUGIN_ID, "partialModels");
 //	static { PARTIAL_ROOTS.setState(true); }
 	private static final long serialVersionUID = 1L;
 
-	private static class Root2RootOwnedPackages implements Function<Root, Iterable<org.eclipse.ocl.examples.pivot.Package>>
+	private static class Model2RootOwnedPackages implements Function<Model, Iterable<org.eclipse.ocl.examples.pivot.Package>>
 	{
-		public Iterable<Package> apply(Root partialRoot) {
-			return partialRoot.getOwnedPackages();
+		public Iterable<Package> apply(Model partialModel) {
+			return partialModel.getOwnedPackages();
 		}
 	}
-	private static final @NonNull Root2RootOwnedPackages root2RootOwnedPackages = new Root2RootOwnedPackages();
+	private static final @NonNull Model2RootOwnedPackages model2RootOwnedPackages = new Model2RootOwnedPackages();
 
 
-	public PartialRoots(@NonNull CompleteModelImpl owner) {
-		super(Root.class, owner, PivotPackage.COMPLETE_MODEL__PARTIAL_ROOTS);
+	public PartialModels(@NonNull CompleteModelImpl owner) {
+		super(Model.class, owner, PivotPackage.COMPLETE_MODEL__PARTIAL_MODELS);
 	}
 	
 	@Override
-	public void addUnique(Root partialRoot) {
-		assert partialRoot != null;
-		super.addUnique(partialRoot);
-		didAdd(partialRoot);
+	public void addUnique(Model partialModel) {
+		assert partialModel != null;
+		super.addUnique(partialModel);
+		didAdd(partialModel);
 	}
 
 	@Override
-	public void addUnique(int index, Root partialRoot) {
-		assert partialRoot != null;
-		super.addUnique(index, partialRoot);
-		didAdd(partialRoot);
+	public void addUnique(int index, Model partialModel) {
+		assert partialModel != null;
+		super.addUnique(index, partialModel);
+		didAdd(partialModel);
 	}
 
-	protected void didAdd(@NonNull Root partialRoot) {
-		if (PARTIAL_ROOTS.isActive()) {
-			PARTIAL_ROOTS.println("Do-didAdd Root" + this + " " + partialRoot);
+	protected void didAdd(@NonNull Model partialModel) {
+		if (PARTIAL_MODELS.isActive()) {
+			PARTIAL_MODELS.println("Do-didAdd Model" + this + " " + partialModel);
 		}
 		CompleteModel.Internal completeModel = getCompleteModel();
-		completeModel.didAddPartialRoot(partialRoot);
-		for (org.eclipse.ocl.examples.pivot.Package pivotPackage : partialRoot.getOwnedPackages()) {
+		completeModel.didAddPartialModel(partialModel);
+		for (org.eclipse.ocl.examples.pivot.Package pivotPackage : partialModel.getOwnedPackages()) {
 			if (pivotPackage != null) {
 				completeModel.didAddNestedPackage(pivotPackage);
 			}
 		}
-		((RootImpl)partialRoot).addRootListener(this);
+		((ModelImpl)partialModel).addRootListener(this);
 	}
 
 	public void didAddPackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
@@ -76,23 +76,23 @@ public class PartialRoots extends EObjectResolvingEList<Root> implements RootLis
 	}
 	
 	@Override
-	protected void didRemove(int index, Root partialRoot) {
-		assert partialRoot != null;
-		if (PARTIAL_ROOTS.isActive()) {
-			PARTIAL_ROOTS.println("Do-didRemove Root " + this + " " + partialRoot);
+	protected void didRemove(int index, Model partialModel) {
+		assert partialModel != null;
+		if (PARTIAL_MODELS.isActive()) {
+			PARTIAL_MODELS.println("Do-didRemove Model " + this + " " + partialModel);
 		}
-		didRemove(partialRoot);
+		didRemove(partialModel);
 	}
 
-	protected void didRemove(@NonNull Root partialRoot) {
-		((RootImpl)partialRoot).removeRootListener(this);
+	protected void didRemove(@NonNull Model partialModel) {
+		((ModelImpl)partialModel).removeRootListener(this);
 		CompleteModel.Internal completeModel = getCompleteModel();
-		for (org.eclipse.ocl.examples.pivot.Package pivotPackage : partialRoot.getOwnedPackages()) {
+		for (org.eclipse.ocl.examples.pivot.Package pivotPackage : partialModel.getOwnedPackages()) {
 			if (pivotPackage != null) {
 				completeModel.didRemoveNestedPackage(pivotPackage);
 			}
 		}
-		completeModel.didRemovePartialRoot(partialRoot);
+		completeModel.didRemovePartialModel(partialModel);
 	}
 
 	public void didRemovePackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
@@ -105,8 +105,8 @@ public class PartialRoots extends EObjectResolvingEList<Root> implements RootLis
 	}
 
 	protected @NonNull Iterable<org.eclipse.ocl.examples.pivot.Package> getNestedPartialPackages() {
-		PartialRoots partialRoots = getCompleteModel().getPartialRoots();
-		Iterable<Iterable<org.eclipse.ocl.examples.pivot.Package>> roots_packages = Iterables.transform(partialRoots, root2RootOwnedPackages);
+		PartialModels partialModels = getCompleteModel().getPartialModels();
+		Iterable<Iterable<org.eclipse.ocl.examples.pivot.Package>> roots_packages = Iterables.transform(partialModels, model2RootOwnedPackages);
 		@SuppressWarnings("null")@NonNull Iterable<Package> allPackages = Iterables.concat(roots_packages);
 		return allPackages;
 	}

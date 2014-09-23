@@ -82,7 +82,7 @@ import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PivotTables;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.SemanticException;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
@@ -957,6 +957,11 @@ public abstract class PivotTestSuite extends PivotTestCase
 		return assertInvariant(context, expression);
 	}
 
+	protected @NonNull Model createModel() {
+		Model aRoot = metaModelManager.createModel(null);
+		return aRoot;
+	}
+
 	protected Property createOwnedAttribute(org.eclipse.ocl.examples.pivot.Class aClass, String name, Type type) {
 		Property eAttribute = PivotFactory.eINSTANCE.createProperty();
 		eAttribute.setName(name);
@@ -1037,7 +1042,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		return OCL.newInstance(envFactory);
 	}
 
-	protected @NonNull org.eclipse.ocl.examples.pivot.Package createPackage(@NonNull Root parentRoot, @NonNull String name) {
+	protected @NonNull org.eclipse.ocl.examples.pivot.Package createPackage(@NonNull Model parentRoot, @NonNull String name) {
 		@SuppressWarnings("null")
 		org.eclipse.ocl.examples.pivot.Package aPackage = metaModelManager.createPackage(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, name, null, null);
 		parentRoot.getOwnedPackages().add(aPackage);
@@ -1116,11 +1121,6 @@ public abstract class PivotTestSuite extends PivotTestCase
 			"ecore", new EcoreResourceFactoryImpl());
 		resourceSet.getPackageRegistry().put(PivotPackage.eINSTANCE.getNsURI(), PivotPackage.eINSTANCE);
 		return resourceSet;
-	}
-
-	protected @NonNull Root createRoot() {
-		Root aRoot = metaModelManager.createRoot(null);
-		return aRoot;
 	}
 
 	@SuppressWarnings("null")

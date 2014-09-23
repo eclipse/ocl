@@ -32,7 +32,7 @@ import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
@@ -170,7 +170,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		}
 	}
 
-	protected void installPackageContainment(@NonNull Root contextRoot) {
+	protected void installPackageContainment(@NonNull Model contextRoot) {
 		Map<org.eclipse.ocl.examples.pivot.Package, Set<org.eclipse.ocl.examples.pivot.Package>> nestedContextPackageMaps =
 				new HashMap<org.eclipse.ocl.examples.pivot.Package, Set<org.eclipse.ocl.examples.pivot.Package>>();
 		Set<org.eclipse.ocl.examples.pivot.Package> nestedContextRoots = new HashSet<org.eclipse.ocl.examples.pivot.Package>();
@@ -191,7 +191,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 			}
 			else {
 				EObject modelPackageContainer = modelPackage.eContainer();
-				if (modelPackageContainer instanceof Root) {
+				if (modelPackageContainer instanceof Model) {
 					nestedContextRoots.add(contextPackage);
 				}
 			}
@@ -386,12 +386,12 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		for (IncludeCS csInclude : csElement.getOwnedInclude()) {
 			csInclude.getNamespace();					// Resolve the proxy to perform the import.
 		}
-		@NonNull Root contextRoot = refreshRoot(Root.class, PivotPackage.Literals.ROOT, csElement);
-		List<Root> modelRoots = new ArrayList<Root>();
+		@NonNull Model contextRoot = refreshRoot(Model.class, PivotPackage.Literals.MODEL, csElement);
+		List<Model> modelRoots = new ArrayList<Model>();
 		for (org.eclipse.ocl.examples.pivot.Package modelPackage : modelPackage2contextPackage.keySet()) {
 			org.eclipse.ocl.examples.pivot.Package parentModelPackage = modelPackage.getOwningPackage();
 			if (parentModelPackage == null) {
-				modelRoots.add((Root) modelPackage.eContainer());
+				modelRoots.add((Model) modelPackage.eContainer());
 			}
 		}
 		installTypeContainment();

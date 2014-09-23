@@ -291,7 +291,7 @@ public class UMLOCLEValidator implements EValidator
 						OCL ocl = getOCL(context);
 						MetaModelManager metaModelManager = ocl.getMetaModelManager();
 						UML2Pivot uml2pivot = UML2Pivot.getAdapter(umlResource, metaModelManager);
-						uml2pivot.getPivotRoot();
+						uml2pivot.getPivotModel();
 						Map<EObject, List<org.eclipse.uml2.uml.Element>> umlStereotypeApplication2umlStereotypedElements = UML2PivotUtil.computeAppliedStereotypes(umlStereotypeApplications);
 						for (@SuppressWarnings("null")@NonNull EObject umlStereotypeApplication : umlStereotypeApplications) {
 							@SuppressWarnings("null")@NonNull List<Element> umlStereotypedElements = umlStereotypeApplication2umlStereotypedElements.get(umlStereotypeApplication);

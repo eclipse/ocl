@@ -50,7 +50,7 @@ import org.eclipse.ocl.examples.library.LibraryConstants;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotTables;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.SemanticException;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.CompleteEnvironment;
@@ -85,7 +85,7 @@ public class IteratorsTest4 extends PivotTestSuite
 		super(useCodeGen);
 	}
 
-	Root root;
+	Model root;
 	org.eclipse.ocl.examples.pivot.Package pkg1;
 	org.eclipse.ocl.examples.pivot.Package pkg2;
 	org.eclipse.ocl.examples.pivot.Package pkg3;
@@ -122,7 +122,7 @@ public class IteratorsTest4 extends PivotTestSuite
         // pkg1::pkg3::pkg5
         // pkg1::pkg3::pkg5::george
 
-        root = createRoot();
+        root = createModel();
         pkg1 = createPackage(root, "pkg1");
         pkg2 = createPackage(pkg1, "pkg2");
         jim = createPackage(pkg2, "jim");
@@ -500,7 +500,7 @@ public class IteratorsTest4 extends PivotTestSuite
      */
     @Test public void test_closure_operations() {
     	Resource fakeResource = new XMIResourceFactoryImpl().createResource(URI.createURI("fake"));
-    	Root fakeRoot = metaModelManager.createRoot(null);
+    	Model fakeRoot = metaModelManager.createModel(null);
     	org.eclipse.ocl.examples.pivot.Package fakePkg = createPackage(fakeRoot, "fake");
     	fakeResource.getContents().add(fakePkg);
         org.eclipse.ocl.examples.pivot.Class fake = createOwnedClass(fakePkg, "Fake", false);
@@ -530,7 +530,7 @@ public class IteratorsTest4 extends PivotTestSuite
         PivotStandardLibrary2 standardLibrary = metaModelManager.getStandardLibrary();
         CompleteEnvironment completeEnvironment = metaModelManager.getCompleteEnvironment();
     	Resource fakeResource = new XMIResourceFactoryImpl().createResource(URI.createURI("fake"));
-    	Root fakeRoot = metaModelManager.createRoot(null);
+    	Model fakeRoot = metaModelManager.createModel(null);
     	org.eclipse.ocl.examples.pivot.Package fakePkg = createPackage(fakeRoot, "fake");
     	fakeResource.getContents().add(fakePkg);
         org.eclipse.ocl.examples.pivot.Class fake = createOwnedClass(fakePkg, "Fake", false);

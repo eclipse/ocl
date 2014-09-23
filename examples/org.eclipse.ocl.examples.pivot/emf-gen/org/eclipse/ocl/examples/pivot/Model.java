@@ -16,23 +16,23 @@ import org.eclipse.jdt.annotation.NonNull;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Root</b></em>'.
- * @extends org.eclipse.ocl.examples.domain.elements.DomainRoot
+ * A representation of the model object '<em><b>Model</b></em>'.
+ * @extends org.eclipse.ocl.examples.domain.elements.DomainModel
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Root#getExternalURI <em>External URI</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Root#getImports <em>Imports</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Root#getOwnedPackages <em>Owned Packages</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Model#getExternalURI <em>External URI</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Model#getImports <em>Imports</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Model#getOwnedPackages <em>Owned Packages</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.ocl.examples.pivot.PivotPackage#getRoot()
+ * @see org.eclipse.ocl.examples.pivot.PivotPackage#getModel()
  * @generated
  */
-public interface Root extends Namespace, org.eclipse.ocl.examples.domain.elements.DomainRoot
+public interface Model extends Namespace, org.eclipse.ocl.examples.domain.elements.DomainModel
 {
 
 	/**
@@ -45,7 +45,7 @@ public interface Root extends Namespace, org.eclipse.ocl.examples.domain.element
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Packages</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getRoot_OwnedPackages()
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getModel_OwnedPackages()
 	 * @generated
 	 */
 	@NonNull List<org.eclipse.ocl.examples.pivot.Package> getOwnedPackages();
@@ -60,13 +60,13 @@ public interface Root extends Namespace, org.eclipse.ocl.examples.domain.element
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>External URI</em>' attribute.
 	 * @see #setExternalURI(String)
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getRoot_ExternalURI()
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getModel_ExternalURI()
 	 * @generated
 	 */
 	String getExternalURI();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Root#getExternalURI <em>External URI</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Model#getExternalURI <em>External URI</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>External URI</em>' attribute.
@@ -85,7 +85,7 @@ public interface Root extends Namespace, org.eclipse.ocl.examples.domain.element
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Imports</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getRoot_Imports()
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getModel_Imports()
 	 * @generated
 	 */
 	@NonNull List<Import> getImports();

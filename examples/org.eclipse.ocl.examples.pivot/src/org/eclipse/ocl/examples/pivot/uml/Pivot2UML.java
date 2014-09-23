@@ -32,9 +32,9 @@ public class Pivot2UML extends AbstractConversion
 {
 	public static List<EObject> createResource(@NonNull MetaModelManager metaModelManager, @NonNull Resource asResource) {
 		@SuppressWarnings("null")
-		@NonNull List<EObject> pivotRoots = asResource.getContents();
+		@NonNull List<EObject> pivotModels = asResource.getContents();
 		Pivot2UML converter = new Pivot2UML(metaModelManager);
-		return converter.convertAll(pivotRoots);
+		return converter.convertAll(pivotModels);
 	}
 
 	/**

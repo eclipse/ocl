@@ -19,7 +19,7 @@ import org.eclipse.emf.mwe.core.lib.WorkflowComponentWithModelSlot;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
@@ -39,9 +39,9 @@ public class UML2PivotLoader extends WorkflowComponentWithModelSlot
 		ResourceSet resourceSet = DomainUtil.nonNullState(resource.getResourceSet());
 		MetaModelManager metaModelManager = MetaModelManager.getAdapter(resourceSet);
 		UML2Pivot uml2pivot = UML2Pivot.getAdapter(resource, metaModelManager);
-		Root root;
+		Model root;
 		try {
-			root = uml2pivot.getPivotRoot();
+			root = uml2pivot.getPivotModel();
 		} catch (ParserException e) {
 			throw new RuntimeException("Problems pivoting '" + resource.getURI() + "'", e);
 		}

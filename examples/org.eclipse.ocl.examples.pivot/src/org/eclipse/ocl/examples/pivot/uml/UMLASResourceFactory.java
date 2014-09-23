@@ -30,7 +30,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.ecore.AbstractEcore2Pivot;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
@@ -72,7 +72,7 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 			return null;
 		}
 		UML2Pivot uml2pivot = UML2Pivot.getAdapter(metaModel, metaModelManager);
-		uml2pivot.getPivotRoot();
+		uml2pivot.getPivotModel();
 		EClass eClass = eObject.eClass();
 		EPackage ePackage = eClass.getEPackage();
 		if (ePackage == EcorePackage.eINSTANCE) {
@@ -255,10 +255,10 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 	public @Nullable Element importFromResource(@NonNull MetaModelManager metaModelManager, @NonNull Resource umlResource, @Nullable URI uri) throws ParserException {
 		UML2Pivot conversion = UML2Pivot.getAdapter(umlResource, metaModelManager);
 		conversion.setUMLURI(uri);
-		Root pivotRoot = conversion.getPivotRoot();
+		Model pivotModel = conversion.getPivotModel();
 		String uriFragment = uri != null ? uri.fragment() : null;
 		if (uriFragment == null) {
-			return pivotRoot;
+			return pivotModel;
 		}
 		else {
 			EObject eObject = umlResource.getEObject(uriFragment);

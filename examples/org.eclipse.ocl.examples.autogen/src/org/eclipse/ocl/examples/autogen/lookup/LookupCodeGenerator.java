@@ -67,7 +67,7 @@ import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
@@ -116,8 +116,8 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		
 		
 		for (EObject root : resource.getContents()) {
-			if (root instanceof Root) {
-				for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.examples.pivot.Package asPackage : ((Root)root).getOwnedPackages()) {
+			if (root instanceof Model) {
+				for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.examples.pivot.Package asPackage : ((Model)root).getOwnedPackages()) {
 					GenPackage superGenPackage = null;
 					org.eclipse.ocl.examples.pivot.Package asSuperPackage = null;
 					if (superProjectPrefix != null) {
@@ -297,7 +297,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		String nsURI = "java://"+packageName;		// java: has no significance other than diagnostic readability
 		org.eclipse.ocl.examples.pivot.Package asVisitorPackage = PivotUtil.createPackage(packageName, "viz", nsURI, IdManager.getRootPackageId(nsURI));
 		asVisitorPackage.getOwnedClasses().add(asVisitorClass);
-		Root asVisitorRoot = PivotUtil.createRoot(nsURI + ".java");
+		Model asVisitorRoot = PivotUtil.createModel(nsURI + ".java");
 		asVisitorRoot.getOwnedPackages().add(asVisitorPackage);
 		metaModelManager.installRoot(asVisitorRoot);
 		return asVisitorClass;

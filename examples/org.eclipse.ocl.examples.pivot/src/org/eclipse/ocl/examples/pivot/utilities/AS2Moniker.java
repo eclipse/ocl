@@ -29,7 +29,7 @@ import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
@@ -243,7 +243,7 @@ public class AS2Moniker implements PivotConstants
 				append("<<unresolved-proxy>>");	
 			}
 			else {
-				assert element instanceof Root || element instanceof ExpressionInOCL : element.eClass().getName() + " has no parent";	
+				assert element instanceof Model || element instanceof ExpressionInOCL : element.eClass().getName() + " has no parent";	
 			}
 		}
 		append(parentSeparator);

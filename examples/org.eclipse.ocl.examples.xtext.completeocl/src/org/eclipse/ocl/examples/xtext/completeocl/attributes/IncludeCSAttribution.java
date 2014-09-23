@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
@@ -58,8 +58,8 @@ public class IncludeCSAttribution extends AbstractAttribution implements Unresol
 				List<Resource.Diagnostic> errors = importedResource.getErrors();
 				if (errors.size() == 0) {
 //					environmentView.addElement(name, importedElement);
-					if (importedElement2 instanceof Root) {
-						Root root = (Root)importedElement2;
+					if (importedElement2 instanceof Model) {
+						Model root = (Model)importedElement2;
 						String externalURI = root.getExternalURI();
 						if (externalURI != null) {
 							String name = environmentView.getName();

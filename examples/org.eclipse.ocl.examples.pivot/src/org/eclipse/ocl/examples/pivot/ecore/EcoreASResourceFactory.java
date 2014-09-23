@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.resource.AbstractASResourceFactory;
@@ -82,10 +82,10 @@ public final class EcoreASResourceFactory extends AbstractASResourceFactory
 	public @Nullable Element importFromResource(@NonNull MetaModelManager metaModelManager, @NonNull Resource ecoreResource, @Nullable URI uri) {
 		Ecore2Pivot conversion = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
 		conversion.setEcoreURI(uri);
-		Root pivotRoot = conversion.getPivotRoot();
+		Model pivotModel = conversion.getPivotModel();
 		String uriFragment = uri != null ? uri.fragment() : null;
 		if (uriFragment == null) {
-			return pivotRoot;
+			return pivotModel;
 		}
 		else {
 			EObject eObject = ecoreResource.getEObject(uriFragment);

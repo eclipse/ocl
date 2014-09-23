@@ -301,9 +301,9 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TCompleteModel" name="CompleteModel">
       <generalization xmi:id="Ppivot.TCompleteModel.g0" general="Ppivot.TNamedElement"/>
-      <ownedAttribute xmi:id="Ppivot.TCompleteModel.PpartialRoots" name="partialRoots" type="Ppivot.TRoot">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TCompleteModel.PpartialRoots.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TCompleteModel.PpartialRoots.uV" value="*"/>
+      <ownedAttribute xmi:id="Ppivot.TCompleteModel.PpartialModels" name="partialModels" type="Ppivot.TModel">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TCompleteModel.PpartialModels.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TCompleteModel.PpartialModels.uV" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TCompleteModel.PownedCompletePackages" name="ownedCompletePackages" type="Ppivot.TRootCompletePackage"
           aggregation="composite" association="Ppivot.A_owningCompleteModel_ownedCompletePackages">
@@ -754,6 +754,20 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TMessageType.PreferredOperation.lV"/>
       </ownedAttribute>
     </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TModel" name="Model">
+      <generalization xmi:id="Ppivot.TModel.g0" general="Ppivot.TNamespace"/>
+      <ownedAttribute xmi:id="Ppivot.TModel.PownedPackages" name="ownedPackages" type="Ppivot.TPackage" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TModel.PownedPackages.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TModel.PownedPackages.uV" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="Ppivot.TModel.PexternalURI" name="externalURI" type="Ppivot.TString">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TModel.PexternalURI.lV"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="Ppivot.TModel.Pimports" name="imports" type="Ppivot.TImport" isOrdered="true" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TModel.Pimports.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TModel.Pimports.uV" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TNamedElement" name="NamedElement" isAbstract="true">
       <ownedComment xmi:id="Ppivot.TNamedElement.oC0" annotatedElement="Ppivot.TNamedElement">
         <body>A named element represents an element with a name.</body>
@@ -1157,20 +1171,6 @@
           <body>The region of which this region is an extension.</body>
         </ownedComment>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TRegion.PextendedRegion.lV"/>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TRoot" name="Root">
-      <generalization xmi:id="Ppivot.TRoot.g0" general="Ppivot.TNamespace"/>
-      <ownedAttribute xmi:id="Ppivot.TRoot.PownedPackages" name="ownedPackages" type="Ppivot.TPackage" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TRoot.PownedPackages.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TRoot.PownedPackages.uV" value="*"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TRoot.PexternalURI" name="externalURI" type="Ppivot.TString">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TRoot.PexternalURI.lV"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TRoot.Pimports" name="imports" type="Ppivot.TImport" isOrdered="true" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TRoot.Pimports.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TRoot.Pimports.uV" value="*"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TRootCompletePackage" name="RootCompletePackage" isAbstract="true">

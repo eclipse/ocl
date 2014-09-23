@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.resource.AbstractASResourceFactory;
@@ -47,8 +47,8 @@ public final class OCLinEcoreASResourceFactory extends AbstractASResourceFactory
 	public URI getPackageURI(@NonNull EObject eObject) {
 		if (eObject instanceof RootPackageCS) {
 			Element pivot = ((RootPackageCS)eObject).getPivot();
-			if (pivot instanceof Root) {
-				String uri = ((Root)pivot).getExternalURI();
+			if (pivot instanceof Model) {
+				String uri = ((Model)pivot).getExternalURI();
 				if (uri != null) {
 					if (uri.endsWith("oclinecore")) {
 						uri = uri.substring(0, uri.length()-10) + "ecore"; 

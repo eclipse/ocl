@@ -36,7 +36,7 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.util.PivotSwitch;
@@ -142,6 +142,22 @@ public class CompleteOCLSplitter
 		}
 
 		@Override
+		public EObject caseModel(Model object) {
+			String name = object.getName();
+			EObject container = object.eContainer();
+			assert container == null;
+			List<EObject> separateSiblings = separateResource.getContents();
+			Model separateObject = (Model) getElementByName(separateSiblings, name);
+			if (separateObject == null) {
+				separateObject = PivotFactory.eINSTANCE.createModel();
+				separateObject.setExternalURI(separateResource.getURI().toString());
+				separateSiblings.add(separateObject);
+//				metaModelManager.addRoot(separateObject);
+			}
+			return separateObject;
+		}
+
+		@Override
 		public EObject caseOperation(Operation object) {
 			org.eclipse.ocl.examples.pivot.Class parent = object.getOwningClass();
 			org.eclipse.ocl.examples.pivot.Class separateParent = getSeparate(parent);
@@ -174,8 +190,8 @@ public class CompleteOCLSplitter
 				map.put(parent, separateParent);
 			}
 			List<org.eclipse.ocl.examples.pivot.Package> separateSiblings;
-			if (separateParent instanceof Root) {
-				separateSiblings = ((Root)separateParent).getOwnedPackages();
+			if (separateParent instanceof Model) {
+				separateSiblings = ((Model)separateParent).getOwnedPackages();
 			}
 			else {
 				separateSiblings = ((org.eclipse.ocl.examples.pivot.Package)separateParent).getOwnedPackages();
@@ -207,22 +223,6 @@ public class CompleteOCLSplitter
 		    copier.copyReferences();
 			separateSiblings.add(clone);
 			return clone;
-		}
-
-		@Override
-		public EObject caseRoot(Root object) {
-			String name = object.getName();
-			EObject container = object.eContainer();
-			assert container == null;
-			List<EObject> separateSiblings = separateResource.getContents();
-			Root separateObject = (Root) getElementByName(separateSiblings, name);
-			if (separateObject == null) {
-				separateObject = PivotFactory.eINSTANCE.createRoot();
-				separateObject.setExternalURI(separateResource.getURI().toString());
-				separateSiblings.add(separateObject);
-//				metaModelManager.addRoot(separateObject);
-			}
-			return separateObject;
 		}
 
 //		@Override

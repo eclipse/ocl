@@ -32,7 +32,7 @@ import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.Type;
 
 public class OCLVMVirtualMachine extends VMVirtualMachine
@@ -52,7 +52,7 @@ public class OCLVMVirtualMachine extends VMVirtualMachine
 	}
 	
 	private static boolean appendElementSignature(@NonNull StringBuilder s, @Nullable EObject eObject) {
-        if (eObject instanceof Root) {
+        if (eObject instanceof Model) {
         	return false;
         }
         else if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {

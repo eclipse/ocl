@@ -56,7 +56,7 @@ import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
@@ -1032,8 +1032,8 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		for (DomainPackage dPackage : metaModelManager.getPartialPackages(pPackage, false)) {
 			if (dPackage instanceof EObject) {
 				EObject eRoot = ((EObject)dPackage).eContainer();
-				if (eRoot instanceof Root) {
-					s1.append(" *   " + ((Root)eRoot).getExternalURI() + "\n");
+				if (eRoot instanceof Model) {
+					s1.append(" *   " + ((Model)eRoot).getExternalURI() + "\n");
 				}
 			}
 		}

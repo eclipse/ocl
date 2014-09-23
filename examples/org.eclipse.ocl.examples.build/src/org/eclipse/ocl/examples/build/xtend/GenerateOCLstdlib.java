@@ -44,7 +44,7 @@ import org.eclipse.ocl.examples.domain.values.RealValue;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
@@ -55,9 +55,9 @@ import org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage;
 
 public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 {
-	protected abstract @NonNull String generateMetamodel(@NonNull Root pivotModel);
+	protected abstract @NonNull String generateMetamodel(@NonNull Model pivotModel);
 
-	protected @Nullable Library getLibrary(@NonNull Root root) {
+	protected @Nullable Library getLibrary(@NonNull Model root) {
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
 			EObject eObject = tit.next();
@@ -69,7 +69,7 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 	}
 	
 	@Override
-	protected @NonNull List<CollectionType> getSortedCollectionTypes(@NonNull Root root) {
+	protected @NonNull List<CollectionType> getSortedCollectionTypes(@NonNull Model root) {
 		List<CollectionType> sortedElements = super.getSortedCollectionTypes(root);
 		Collections.sort(sortedElements, monikerComparator);
 		return sortedElements;
@@ -99,7 +99,7 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 			saver.localizeSpecializations();
 			String fileName = folder + "/" + javaClassName + ".java";
 			log.info("Generating '" + fileName + "'");
-			String metaModel = generateMetamodel((Root)pivotModel);
+			String metaModel = generateMetamodel((Model)pivotModel);
 			MergeWriter fw = new MergeWriter(fileName);
 			fw.append(metaModel);
 			fw.close();

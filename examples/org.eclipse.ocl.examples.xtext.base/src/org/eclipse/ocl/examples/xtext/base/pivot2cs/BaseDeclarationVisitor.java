@@ -30,7 +30,7 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -195,6 +195,14 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	}
 
 	@Override
+	public ElementCS visitModel(@NonNull Model object) {
+		RootPackageCS csElement = context.refreshElement(RootPackageCS.class, BaseCSPackage.Literals.ROOT_PACKAGE_CS, object);
+		context.refreshList(csElement.getOwnedNestedPackage(), context.visitDeclarations(PackageCS.class, object.getOwnedPackages(), null));
+		context.visitDeclarations(ImportCS.class, object.getImports(), null);
+		return csElement;
+	}
+
+	@Override
 	public ElementCS visitOperation(@NonNull Operation object) {
 		OperationCS csElement = context.refreshTypedElement(OperationCS.class, BaseCSPackage.Literals.OPERATION_CS, object);
 		TemplateSignature ownedTemplateSignature = object.getOwnedTemplateSignature();
@@ -255,14 +263,6 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 		}
 		List<LanguageExpression> defaultExpressions = object.getDefaultExpression() != null ? Collections.singletonList(object.getDefaultExpression()) : Collections.<LanguageExpression>emptyList();
 		context.refreshList(csElement.getOwnedDefaultExpression(), context.visitDeclarations(SpecificationCS.class, defaultExpressions, null));
-		return csElement;
-	}
-
-	@Override
-	public ElementCS visitRoot(@NonNull Root object) {
-		RootPackageCS csElement = context.refreshElement(RootPackageCS.class, BaseCSPackage.Literals.ROOT_PACKAGE_CS, object);
-		context.refreshList(csElement.getOwnedNestedPackage(), context.visitDeclarations(PackageCS.class, object.getOwnedPackages(), null));
-		context.visitDeclarations(ImportCS.class, object.getImports(), null);
 		return csElement;
 	}
 

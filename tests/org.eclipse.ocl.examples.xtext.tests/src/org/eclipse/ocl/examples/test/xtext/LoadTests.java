@@ -50,7 +50,7 @@ import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
@@ -361,15 +361,15 @@ public class LoadTests extends XtextTestCase
 			umlResource.setURI(inputURI);
 			UML2Pivot adapter = UML2Pivot.getAdapter(umlResource, metaModelManager);
 			UML2Pivot.Outer rootAdapter = adapter.getRoot();
-			Root pivotRoot = rootAdapter.getPivotRoot();
+			Model pivotModel = rootAdapter.getPivotModel();
 			List<Resource> allResources = new ArrayList<Resource>();
-			allResources.add(pivotRoot.eResource());
+			allResources.add(pivotModel.eResource());
 			List<Resource> importedResources = rootAdapter.getImportedResources();
 			if (importedResources != null) {
 				for (Resource uResource : importedResources) {
 					UML2Pivot anAdapter = UML2Pivot.getAdapter(uResource, metaModelManager);
-					Root pivotModel = anAdapter.getPivotRoot();
-					Resource asResource = pivotModel.eResource();
+					Model asModel = anAdapter.getPivotModel();
+					Resource asResource = asModel.eResource();
 					allResources.add(asResource);
 				}
 			}
@@ -878,7 +878,7 @@ public class LoadTests extends XtextTestCase
 				"}\n";
 		createOCLinEcoreFile("Bug402767.oclinecore", testFile);
 		Resource resource = doLoad_Concrete("Bug402767", "oclinecore");
-		Root root = (Root) resource.getContents().get(0);
+		Model root = (Model) resource.getContents().get(0);
 		org.eclipse.ocl.examples.pivot.Package pkg = root.getOwnedPackages().get(0);
 		org.eclipse.ocl.examples.pivot.Class cls = pkg.getOwnedClasses().get(0);
 		List<Property> ownedAttributes = cls.getOwnedProperties();
@@ -1027,12 +1027,12 @@ public class LoadTests extends XtextTestCase
 		XMLResource ecoreResource = (XMLResource) metaModelManager2.getExternalResourceSet().createResource(ecoreURI, null);
 		ecoreResource.load(new URIConverter.ReadableInputStream(ecoreFileA), null);
 		Ecore2Pivot conversion = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager2);
-		Resource asResource = conversion.getPivotRoot().eResource();
+		Resource asResource = conversion.getPivotModel().eResource();
 		assertEquals(1, asResource.getContents().size());
-		Root pivotRoot1 = (Root) asResource.getContents().get(0);
-		assertEquals(ecoreFileName, pivotRoot1.getName());
-		assertEquals(1, pivotRoot1.getOwnedPackages().size());
-		org.eclipse.ocl.examples.pivot.Package pivotPackage1 = pivotRoot1.getOwnedPackages().get(0);
+		Model pivotModel1 = (Model) asResource.getContents().get(0);
+		assertEquals(ecoreFileName, pivotModel1.getName());
+		assertEquals(1, pivotModel1.getOwnedPackages().size());
+		org.eclipse.ocl.examples.pivot.Package pivotPackage1 = pivotModel1.getOwnedPackages().get(0);
 		assertEquals("PackageA", pivotPackage1.getName());
 		assertEquals("nsPrefixA", pivotPackage1.getNsPrefix());
 		assertEquals(1, pivotPackage1.getOwnedClasses().size());
@@ -1044,10 +1044,10 @@ public class LoadTests extends XtextTestCase
 		ecoreResource.load(new URIConverter.ReadableInputStream(ecoreFileB), null);
 		conversion.update(asResource, ecoreResource.getContents());
 		assertEquals(1, asResource.getContents().size());
-		Root pivotRoot2 = (Root) asResource.getContents().get(0);
-		assertEquals(ecoreFileName, pivotRoot2.getName());
-		assertEquals(1, pivotRoot2.getOwnedPackages().size());
-		org.eclipse.ocl.examples.pivot.Package pivotPackage2 = pivotRoot2.getOwnedPackages().get(0);
+		Model pivotModel2 = (Model) asResource.getContents().get(0);
+		assertEquals(ecoreFileName, pivotModel2.getName());
+		assertEquals(1, pivotModel2.getOwnedPackages().size());
+		org.eclipse.ocl.examples.pivot.Package pivotPackage2 = pivotModel2.getOwnedPackages().get(0);
 		assertEquals("PackageB", pivotPackage2.getName());
 		assertEquals("nsPrefixB", pivotPackage2.getNsPrefix());
 		assertEquals(1, pivotPackage2.getOwnedClasses().size());
@@ -1059,7 +1059,7 @@ public class LoadTests extends XtextTestCase
 //		for (org.eclipse.ocl.examples.pivot.Package aPackage : metaModelManager2.getAllPackages()) {
 		for (CompletePackage completePackage : metaModelManager2.getStandardLibrary().getAllCompletePackages()) {
 			org.eclipse.ocl.examples.pivot.Package aPackage = completePackage.getPivotPackage();
-			if (aPackage instanceof Root) {}
+			if (aPackage instanceof Model) {}
 			else if (aPackage instanceof Library) {}
 			else if (PivotConstants.ORPHANAGE_NAME.equals(aPackage.getName())) {}
 			else {
@@ -1093,12 +1093,12 @@ public class LoadTests extends XtextTestCase
 		XMLResource ecoreResource = (XMLResource) metaModelManager2.getExternalResourceSet().createResource(ecoreURI, null);
 		ecoreResource.load(new URIConverter.ReadableInputStream(ecoreFileXXX), null);
 		Ecore2Pivot conversion = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager2);
-		Resource asResource = conversion.getPivotRoot().eResource();
+		Resource asResource = conversion.getPivotModel().eResource();
 		assertEquals(1, asResource.getContents().size());
-		Root pivotRootXXX = (Root) asResource.getContents().get(0);
-		assertEquals(ecoreFileName, pivotRootXXX.getName());
-		assertEquals(1, pivotRootXXX.getOwnedPackages().size());
-		org.eclipse.ocl.examples.pivot.Package pivotPackageXXX = pivotRootXXX.getOwnedPackages().get(0);
+		Model pivotModelXXX = (Model) asResource.getContents().get(0);
+		assertEquals(ecoreFileName, pivotModelXXX.getName());
+		assertEquals(1, pivotModelXXX.getOwnedPackages().size());
+		org.eclipse.ocl.examples.pivot.Package pivotPackageXXX = pivotModelXXX.getOwnedPackages().get(0);
 		assertEquals("PackageXXX", pivotPackageXXX.getName());
 		assertEquals("nsPrefixXXX", pivotPackageXXX.getNsPrefix());
 		assertEquals(2, pivotPackageXXX.getOwnedClasses().size());
@@ -1120,10 +1120,10 @@ public class LoadTests extends XtextTestCase
 		ecoreResource.load(new URIConverter.ReadableInputStream(ecoreFileYYY), null);
 		conversion.update(asResource, ecoreResource.getContents());
 		assertEquals(1, asResource.getContents().size());
-		Root pivotRootYYY = (Root) asResource.getContents().get(0);
-		assertEquals(ecoreFileName, pivotRootYYY.getName());
-		assertEquals(1, pivotRootYYY.getOwnedPackages().size());
-		org.eclipse.ocl.examples.pivot.Package pivotPackageYYY = pivotRootYYY.getOwnedPackages().get(0);
+		Model pivotModelYYY = (Model) asResource.getContents().get(0);
+		assertEquals(ecoreFileName, pivotModelYYY.getName());
+		assertEquals(1, pivotModelYYY.getOwnedPackages().size());
+		org.eclipse.ocl.examples.pivot.Package pivotPackageYYY = pivotModelYYY.getOwnedPackages().get(0);
 		assertEquals("PackageYYY", pivotPackageYYY.getName());
 		assertEquals("nsPrefixYYY", pivotPackageYYY.getNsPrefix());
 		assertEquals(2, pivotPackageYYY.getOwnedClasses().size());
@@ -1146,7 +1146,7 @@ public class LoadTests extends XtextTestCase
 //		for (org.eclipse.ocl.examples.pivot.Package aPackage : metaModelManager2.getAllPackages()) {
 		for (CompletePackage completePackage : metaModelManager2.getStandardLibrary().getAllCompletePackages()) {
 			org.eclipse.ocl.examples.pivot.Package aPackage = completePackage.getPivotPackage();
-			if (aPackage instanceof Root) {}
+			if (aPackage instanceof Model) {}
 			else if (aPackage instanceof Library) {}
 			else if (PivotConstants.ORPHANAGE_NAME.equals(aPackage.getName())) {}
 			else {
@@ -1173,7 +1173,7 @@ public class LoadTests extends XtextTestCase
 		XMLResource ecoreResource = (XMLResource) metaModelManager2.getExternalResourceSet().createResource(ecoreURI, null);
 		ecoreResource.load(new URIConverter.ReadableInputStream(ecoreFileXXX), null);
 		Ecore2Pivot conversion = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager2);
-		ASResource asResource = (ASResource) conversion.getPivotRoot().eResource();
+		ASResource asResource = (ASResource) conversion.getPivotModel().eResource();
 		//
 		//	Save the *.oclas and cache that the xmi:ids
 		//

@@ -23,7 +23,7 @@ import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.pivot.CompleteModel;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.utilities.IllegalMetamodelException;
 
 public class CompleteURIs
@@ -58,8 +58,8 @@ public class CompleteURIs
 //		}
 	}
 	
-	public void didAddPartialRoot(@NonNull Root partialRoot) {
-		for (org.eclipse.ocl.examples.pivot.Package asPackage : partialRoot.getOwnedPackages()) {
+	public void didAddPartialModel(@NonNull Model partialModel) {
+		for (org.eclipse.ocl.examples.pivot.Package asPackage : partialModel.getOwnedPackages()) {
 			String packageURI = asPackage.getURI();
 			String completeURI = getCompleteURI(packageURI);
 			if (completeURI == packageURI) {
@@ -88,8 +88,8 @@ public class CompleteURIs
 //		}
 	}
 	
-	public void didRemovePartialRoot(@NonNull Root partialRoot) {
-		for (org.eclipse.ocl.examples.pivot.Package asPackage : partialRoot.getOwnedPackages()) {
+	public void didRemovePartialModel(@NonNull Model partialModel) {
+		for (org.eclipse.ocl.examples.pivot.Package asPackage : partialModel.getOwnedPackages()) {
 			String packageURI = asPackage.getURI();
 			String completeURI = getCompleteURI(packageURI);
 			if (completeURI == packageURI) {

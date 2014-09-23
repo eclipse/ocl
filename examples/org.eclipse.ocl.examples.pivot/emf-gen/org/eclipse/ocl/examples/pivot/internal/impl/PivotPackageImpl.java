@@ -108,7 +108,7 @@ import org.eclipse.ocl.examples.pivot.PseudostateKind;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.ReferringElement;
 import org.eclipse.ocl.examples.pivot.Region;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.RootCompletePackage;
 import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.SendSignalAction;
@@ -466,6 +466,13 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass modelEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass morePivotableEClass = null;
 
 	/**
@@ -551,13 +558,6 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EClass regionEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass rootEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2800,6 +2800,46 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getModel()
+	{
+		return modelEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getModel_ExternalURI()
+	{
+		return (EAttribute)modelEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getModel_Imports()
+	{
+		return (EReference)modelEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getModel_OwnedPackages()
+	{
+		return (EReference)modelEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getMessageType_ReferredOperation() {
 		return (EReference)messageTypeEClass.getEStructuralFeatures().get(0);
 	}
@@ -3152,46 +3192,6 @@ public class PivotPackageImpl
 	public EReference getRegion_ExtendedRegion()
 	{
 		return (EReference)regionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getRoot()
-	{
-		return rootEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getRoot_ExternalURI()
-	{
-		return (EAttribute)rootEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getRoot_Imports()
-	{
-		return (EReference)rootEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getRoot_OwnedPackages()
-	{
-		return (EReference)rootEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -5003,7 +5003,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCompleteModel_PartialRoots()
+	public EReference getCompleteModel_PartialModels()
 	{
 		return (EReference)completeModelEClass.getEStructuralFeatures().get(2);
 	}
@@ -5822,7 +5822,7 @@ public class PivotPackageImpl
 		completeModelEClass = createEClass(COMPLETE_MODEL);
 		createEReference(completeModelEClass, COMPLETE_MODEL__ORPHAN_COMPLETE_PACKAGE);
 		createEReference(completeModelEClass, COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES);
-		createEReference(completeModelEClass, COMPLETE_MODEL__PARTIAL_ROOTS);
+		createEReference(completeModelEClass, COMPLETE_MODEL__PARTIAL_MODELS);
 		createEReference(completeModelEClass, COMPLETE_MODEL__PRIMITIVE_COMPLETE_PACKAGE);
 		createEOperation(completeModelEClass, COMPLETE_MODEL___GET_OWNED_COMPLETE_PACKAGE__STRING);
 
@@ -6024,6 +6024,11 @@ public class PivotPackageImpl
 		createEReference(messageTypeEClass, MESSAGE_TYPE__REFERRED_OPERATION);
 		createEReference(messageTypeEClass, MESSAGE_TYPE__REFERRED_SIGNAL);
 
+		modelEClass = createEClass(MODEL);
+		createEAttribute(modelEClass, MODEL__EXTERNAL_URI);
+		createEReference(modelEClass, MODEL__IMPORTS);
+		createEReference(modelEClass, MODEL__OWNED_PACKAGES);
+
 		morePivotableEClass = createEClass(MORE_PIVOTABLE);
 
 		nameableEClass = createEClass(NAMEABLE);
@@ -6160,11 +6165,6 @@ public class PivotPackageImpl
 		createEReference(regionEClass, REGION__STATE_MACHINE);
 		createEReference(regionEClass, REGION__SUBVERTEX);
 		createEReference(regionEClass, REGION__TRANSITION);
-
-		rootEClass = createEClass(ROOT);
-		createEAttribute(rootEClass, ROOT__EXTERNAL_URI);
-		createEReference(rootEClass, ROOT__IMPORTS);
-		createEReference(rootEClass, ROOT__OWNED_PACKAGES);
 
 		rootCompletePackageEClass = createEClass(ROOT_COMPLETE_PACKAGE);
 		createEReference(rootCompletePackageEClass, ROOT_COMPLETE_PACKAGE__OWNING_COMPLETE_MODEL);
@@ -6433,6 +6433,7 @@ public class PivotPackageImpl
 		loopExpEClass.getESuperTypes().add(this.getCallExp());
 		messageExpEClass.getESuperTypes().add(this.getOCLExpression());
 		messageTypeEClass.getESuperTypes().add(this.getClass_());
+		modelEClass.getESuperTypes().add(this.getNamespace());
 		namedElementEClass.getESuperTypes().add(this.getElement());
 		namedElementEClass.getESuperTypes().add(this.getNameable());
 		namespaceEClass.getESuperTypes().add(this.getNamedElement());
@@ -6464,7 +6465,6 @@ public class PivotPackageImpl
 		pseudostateEClass.getESuperTypes().add(this.getVertex());
 		realLiteralExpEClass.getESuperTypes().add(this.getNumericLiteralExp());
 		regionEClass.getESuperTypes().add(this.getNamespace());
-		rootEClass.getESuperTypes().add(this.getNamespace());
 		rootCompletePackageEClass.getESuperTypes().add(this.getCompletePackage());
 		selfTypeEClass.getESuperTypes().add(this.getClass_());
 		sendSignalActionEClass.getESuperTypes().add(this.getNamedElement());
@@ -6647,7 +6647,7 @@ public class PivotPackageImpl
 		initEClass(completeModelEClass, CompleteModel.class, "CompleteModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getCompleteModel_OrphanCompletePackage(), this.getOrphanCompletePackage(), null, "orphanCompletePackage", null, 0, 1, CompleteModel.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getCompleteModel_OwnedCompletePackages(), this.getRootCompletePackage(), this.getRootCompletePackage_OwningCompleteModel(), "ownedCompletePackages", null, 0, -1, CompleteModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getCompleteModel_PartialRoots(), this.getRoot(), null, "partialRoots", null, 0, -1, CompleteModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getCompleteModel_PartialModels(), this.getModel(), null, "partialModels", null, 0, -1, CompleteModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getCompleteModel_PrimitiveCompletePackage(), this.getPrimitiveCompletePackage(), null, "primitiveCompletePackage", null, 0, 1, CompleteModel.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		op = initEOperation(getCompleteModel__GetOwnedCompletePackage__String(), this.getCompletePackage(), "getOwnedCompletePackage", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -7201,6 +7201,11 @@ public class PivotPackageImpl
 		initEReference(getMessageType_ReferredOperation(), this.getOperation(), null, "referredOperation", null, 0, 1, MessageType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getMessageType_ReferredSignal(), this.getSignal(), null, "referredSignal", null, 0, 1, MessageType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
+		initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getModel_ExternalURI(), this.getString(), "externalURI", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getModel_Imports(), this.getImport(), null, "imports", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getModel_OwnedPackages(), this.getPackage(), null, "ownedPackages", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
 		initEClass(morePivotableEClass, MorePivotable.class, "MorePivotable", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(nameableEClass, Nameable.class, "Nameable", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -7414,11 +7419,6 @@ public class PivotPackageImpl
 		initEReference(getRegion_StateMachine(), this.getStateMachine(), this.getStateMachine_Region(), "stateMachine", null, 0, 1, Region.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getRegion_Subvertex(), this.getVertex(), this.getVertex_Container(), "subvertex", null, 0, -1, Region.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getRegion_Transition(), this.getTransition(), this.getTransition_Container(), "transition", null, 0, -1, Region.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(rootEClass, Root.class, "Root", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getRoot_ExternalURI(), this.getString(), "externalURI", null, 0, 1, Root.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getRoot_Imports(), this.getImport(), null, "imports", null, 0, -1, Root.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getRoot_OwnedPackages(), this.getPackage(), null, "ownedPackages", null, 0, -1, Root.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(rootCompletePackageEClass, RootCompletePackage.class, "RootCompletePackage", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getRootCompletePackage_OwningCompleteModel(), this.getCompleteModel(), this.getCompleteModel_OwnedCompletePackages(), "owningCompleteModel", null, 0, 1, RootCompletePackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

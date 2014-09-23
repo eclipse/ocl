@@ -743,8 +743,8 @@ public class PackageImpl
 		String oldName = name;
 		EObject eContainer = eContainer();
 		if ((oldName != null) && !oldName.equals(newName)) {
-			if (eContainer instanceof RootImpl) {
-				((RootImpl)eContainer).didRemovePackage(this);
+			if (eContainer instanceof ModelImpl) {
+				((ModelImpl)eContainer).didRemovePackage(this);
 			}
 			else if (eContainer instanceof PackageImpl) {
 				((PackageImpl)eContainer).didRemovePackage(this);
@@ -752,8 +752,8 @@ public class PackageImpl
 		}
 		super.setName(newName);
 		if ((newName != null) && !newName.equals(oldName)) {
-			if (eContainer instanceof RootImpl) {
-				((RootImpl)eContainer).didAddPackage(this);
+			if (eContainer instanceof ModelImpl) {
+				((ModelImpl)eContainer).didAddPackage(this);
 			}
 			else if (eContainer instanceof PackageImpl) {
 				((PackageImpl)eContainer).didAddPackage(this);

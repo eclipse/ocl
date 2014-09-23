@@ -38,7 +38,7 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
@@ -123,7 +123,7 @@ public class MainTab extends AbstractMainTab implements OCLLaunchConstants
 			String oclName = oclPath.getText();
 			@SuppressWarnings("null")@NonNull URI oclURI = URI.createURI(oclName, true);
 			try {
-				Root root = null;
+				Model root = null;
 		        BaseCSResource xtextResource = null;
 		        xtextResource = (BaseCSResource) getMetaModelManager().getExternalResourceSet().getResource(oclURI, true);
 		        if (xtextResource != null) {
@@ -132,7 +132,7 @@ public class MainTab extends AbstractMainTab implements OCLLaunchConstants
 //	    			adapter.refreshPivotMappings(new ListBasedDiagnosticConsumer());
 	    			ASResource asResource = adapter.getASResource(xtextResource);
 	    			for (EObject eContent : asResource.getContents()) {
-	    	    		root = (Root)eContent;
+	    	    		root = (Model)eContent;
 	    				break;
 	    			}
 		        } else {

@@ -44,7 +44,7 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
@@ -61,7 +61,7 @@ public class JavaStream
 		Namespace scope = null;
 		if (element instanceof EObject) {
 			for (EObject eObject = (EObject) element; eObject != null; ) {
-				if (eObject instanceof Root) {
+				if (eObject instanceof Model) {
 					break;
 				}
 				if (eObject instanceof Type) {

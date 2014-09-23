@@ -28,7 +28,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainNamedElement;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Library;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
@@ -92,8 +92,8 @@ public class LibraryCSAttribution extends AbstractAttribution implements Unresol
 					MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 					metaModelManager.installResource(resource);
 					for (EObject root : resource.getContents()) {
-						if (root instanceof Root) {
-							for (DomainElement pkg : ((Root)root).getOwnedPackages()) {
+						if (root instanceof Model) {
+							for (DomainElement pkg : ((Model)root).getOwnedPackages()) {
 								if (pkg instanceof Library) {
 									environmentView.addElement(name, pkg);									
 								}

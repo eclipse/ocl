@@ -39,7 +39,7 @@ import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
@@ -388,7 +388,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 			return;
 		}
 		for (EObject eContainer = primaryElement.eContainer(); eContainer instanceof Element; eContainer = eContainer.eContainer()) {
-			if (eContainer instanceof Root) {
+			if (eContainer instanceof Model) {
 				return;				// Skip root package
 			}
 			for (EObject aScope = safeScope; aScope != null; aScope = aScope.eContainer()) {

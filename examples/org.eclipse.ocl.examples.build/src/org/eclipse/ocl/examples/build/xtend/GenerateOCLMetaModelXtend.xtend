@@ -14,7 +14,7 @@ import java.util.Set
 import org.eclipse.ocl.examples.pivot.CollectionType
 import org.eclipse.ocl.examples.pivot.DataType
 import org.eclipse.ocl.examples.pivot.Package
-import org.eclipse.ocl.examples.pivot.Root
+import org.eclipse.ocl.examples.pivot.Model
 
 public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 {
@@ -67,7 +67,7 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 		private final @NonNull PrimitiveType «primitiveType.getPrefixedSymbolName("_"+typeName)» = standardLibrary.get«typeName»Type();
 	'''}
 
-	protected override String generateMetamodel(Root root) {
+	protected override String generateMetamodel(Model root) {
 		var Package pkg = root.ownedPackages.findPackage();
 		if (pkg == null) {
 			return null;
@@ -155,7 +155,7 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 
 				private static class Contents extends LibraryContents
 				{
-					protected final @NonNull Root «root.getPrefixedSymbolName("root")»;
+					protected final @NonNull Model «root.getPrefixedSymbolName("root")»;
 					protected final @NonNull Package «pkg.getPrefixedSymbolName("metamodel")»;
 					«allTypes.defineCollectionTypeName("Bag")»
 					
@@ -186,7 +186,7 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 
 					protected Contents(@NonNull PivotStandardLibrary standardLibrary, @NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
 						super(standardLibrary);
-						«root.getSymbolName()» = createRoot("«pkg.getURI»");
+						«root.getSymbolName()» = createModel("«pkg.getURI»");
 						«pkg.getSymbolName()» = createPackage(name, nsPrefix, nsURI, IdManager.METAMODEL);
 						installPackages();
 						installOclTypes();

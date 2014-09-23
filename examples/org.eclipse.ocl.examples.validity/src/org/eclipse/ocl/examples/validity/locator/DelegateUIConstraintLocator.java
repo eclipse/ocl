@@ -50,7 +50,7 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.PivotIdResolver;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
@@ -103,7 +103,7 @@ public class DelegateUIConstraintLocator extends DelegateConstraintLocator imple
 			Writer s = new OutputStreamWriter(documentStream);
 			String externalURI = null;
 			if (contextPackage != null) {
-				Root containingRoot = PivotUtil.getContainingRoot(contextPackage);
+				Model containingRoot = PivotUtil.getContainingRoot(contextPackage);
 				if (containingRoot == null) {
 					externalURI = contextPackage.getURI();
 				}

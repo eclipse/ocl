@@ -28,7 +28,7 @@ import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.IPackageDe
 import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.IProjectDescriptor;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
@@ -222,8 +222,8 @@ public class SerializeTests extends XtextTestCase
 //		String problem = UML2Pivot.initialize(metaModelManager.getExternalResourceSet());
 //		assertNull(problem);
 		UML2Pivot uml2Pivot = UML2Pivot.getAdapter(umlResource, metaModelManager);
-		Root pivotRoot = uml2Pivot.getPivotRoot();
-		Resource asResource = pivotRoot.eResource();
+		Model pivotModel = uml2Pivot.getPivotModel();
+		Resource asResource = pivotModel.eResource();
 		assertNoResourceErrors("Normalisation failed", asResource);
 		assertNoValidationErrors("Normalisation invalid", asResource);
 		return asResource;

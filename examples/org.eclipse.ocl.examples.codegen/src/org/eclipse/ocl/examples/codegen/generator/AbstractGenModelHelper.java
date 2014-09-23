@@ -44,7 +44,7 @@ import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
@@ -442,8 +442,8 @@ public class AbstractGenModelHelper implements GenModelHelper
 	@Override
 	public @Nullable GenPackage getGenPackage(@NonNull org.eclipse.ocl.examples.pivot.Package asPackage) {
 		EObject eContainer = asPackage.eContainer();
-		if (eContainer instanceof Root) {
-			String nsURI = ((Root)eContainer).getExternalURI();
+		if (eContainer instanceof Model) {
+			String nsURI = ((Model)eContainer).getExternalURI();
 			if (nsURI != null) {
 				GenPackage genPackage = metaModelManager.getGenPackage(nsURI);
 				if (genPackage != null) {

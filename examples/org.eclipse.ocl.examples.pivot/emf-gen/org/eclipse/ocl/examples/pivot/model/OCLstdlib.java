@@ -82,7 +82,7 @@ public class OCLstdlib extends ASResourceImpl
 		OCLstdlib oclstdlib = INSTANCE;
 		if (oclstdlib == null) {
 			Contents contents = new Contents();
-			Root libraryModel = contents.create("http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib", "ocl", "ocl", "http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib");
+			Model libraryModel = contents.create("http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib", "ocl", "ocl", "http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib");
 			oclstdlib = INSTANCE = new OCLstdlib(STDLIB_URI + PivotConstants.DOT_OCL_AS_FILE_EXTENSION, libraryModel);
 		}
 		return oclstdlib;
@@ -160,7 +160,7 @@ public class OCLstdlib extends ASResourceImpl
 
 		public @NonNull Resource getResource() {
 			Contents contents = new Contents();
-			Root libraryModel = contents.create("http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib", "ocl", "ocl", metamodelNsUri);
+			Model libraryModel = contents.create("http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib", "ocl", "ocl", metamodelNsUri);
 			Resource resource = new OCLstdlib(STDLIB_URI + PivotConstants.DOT_OCL_AS_FILE_EXTENSION, libraryModel);
 			return resource;
 		}
@@ -172,14 +172,14 @@ public class OCLstdlib extends ASResourceImpl
 	 */
 	public static @NonNull OCLstdlib create(@NonNull String asURI, @NonNull String name, @NonNull String nsPrefix, @NonNull String nsURI) {
 		Contents contents = new Contents();
-		Root libraryModel = contents.create(asURI, name, nsPrefix, nsURI);
+		Model libraryModel = contents.create(asURI, name, nsPrefix, nsURI);
 		return new OCLstdlib(asURI, libraryModel);
 	}
 	
 	/**
 	 *	Construct an OCL Standard Library with specified resource URI and library content.
 	 */
-	private OCLstdlib(@NonNull String asURI, @NonNull Root libraryModel) {
+	private OCLstdlib(@NonNull String asURI, @NonNull Model libraryModel) {
 		super(DomainUtil.nonNullState(URI.createURI(asURI)), OCLASResourceFactory.INSTANCE);
 		assert PivotUtil.isASURI(asURI);
 		getContents().add(libraryModel);
@@ -249,13 +249,13 @@ public class OCLstdlib extends ASResourceImpl
 
 	private static class Contents extends AbstractContents
 	{
-		private Root root;
+		private Model root;
 		private Library library;
 		// private Package orphans;
 
-		private @NonNull Root create(@NonNull String asURI, @NonNull String name, @NonNull String nsPrefix, @NonNull String nsURI)
+		private @NonNull Model create(@NonNull String asURI, @NonNull String name, @NonNull String nsPrefix, @NonNull String nsURI)
 		{
-			Root theRoot = root = createRoot(asURI);
+			Model theRoot = root = createModel(asURI);
 			library = createLibrary(name, nsPrefix, nsURI, IdManager.METAMODEL);
 			installPackages();
 			installOclTypes();
