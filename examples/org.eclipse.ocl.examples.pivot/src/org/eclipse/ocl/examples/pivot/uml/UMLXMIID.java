@@ -148,7 +148,8 @@ public class UMLXMIID extends UMLSwitch<String>
 	public String caseAssociation(Association object) {
 		assert object != null;
 		StringBuilder s = new StringBuilder();
-		appendNameHierarchy(s, object.getName().startsWith("A_") ? "" : "A", object);
+		String name = object.getName();
+		appendNameHierarchy(s, (name != null) && name.startsWith("A_") ? "" : "A", object);
 		return s.toString();
 	}
 

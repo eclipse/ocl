@@ -5,11 +5,11 @@ modeltype Ecore uses 'http://www.eclipse.org/emf/2002/Ecore';
 
 transformation PruneUML(in analysis : UML2Ecore, out Ecore);
 
-property debugProperties : Boolean = true;
-property debugCreateProperty : Boolean = true;
+property debugProperties : Boolean = false;
+property debugCreateProperty : Boolean = false;
 property debugDerived : Boolean = false;
 property debugResolveProxies : Boolean = false;
-property debugType : Boolean = true;
+property debugType : Boolean = false;
 property debug_EClass_abstract : Boolean = false;
 property debug_EReference_eOpposite : Boolean = false;
 property showPropertyOverrides : Boolean = false;

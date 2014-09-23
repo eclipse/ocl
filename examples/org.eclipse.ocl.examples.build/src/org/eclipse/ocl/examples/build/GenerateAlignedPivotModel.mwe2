@@ -21,6 +21,7 @@ import org.eclipse.uml2.uml.resource.XMI2UMLResource
 
 var projectName = "org.eclipse.ocl.examples.build"
 var ecoreSlot = "ecore"
+var umlSlot = "uml"
 //var platformURI = ".."
 
 /**
@@ -143,6 +144,30 @@ Workflow {
     component = ResourceWriter { resourceSet = resourceSet skipOnErrors = true
     	modelSlot = "${ecoreSlot}"
     	uri = "/${projectName}/model-gen/NewPivot.ecore"
+    }
+	//
+	//
+	//
+    component = Ecore2UMLConverter { skipOnErrors = true
+    	ecoreSlot = "${ecoreSlot}"
+    	umlSlot = "${umlSlot}"
+    }
+    component = PackageAlphabetizer { skipOnErrors = true
+    	modelSlot = "${umlSlot}"
+    }
+    component = ResourceWriter { resourceSet = resourceSet skipOnErrors = true
+    	modelSlot = "${umlSlot}"
+    	uri = "/${projectName}/model-gen/NewPivot.uml"
+    }
+    //
+    //	Make manually copied Pivot.uml stable for diagrams
+    //
+    component = IdAssigner { resourceSet = resourceSet skipOnErrors = true
+    	assignFlatIds = false
+    	mapping = Mapping {
+    		from = "/${projectName}/model-gen/NewPivot.uml"
+    		to = "/${projectName}/model/Pivot.uml"
+    	}
     }
 }
 

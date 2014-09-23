@@ -84,6 +84,8 @@ public class PackageAlphabetizer extends WorkflowComponentWithModelSlot
 				}
 				String n1 = o1.getName();
 				String n2 = o2.getName();
+				if (n1 == null) n1 = "";
+				if (n2 == null) n2 = "";
 				return n1.compareTo(n2);
 			}
 		});
