@@ -11,13 +11,13 @@
 package org.eclipse.ocl.examples.build.xtend
 
 import org.eclipse.jdt.annotation.NonNull
-import org.eclipse.ocl.examples.pivot.Root
 import org.eclipse.ocl.examples.pivot.Namespace
 import org.eclipse.ocl.examples.pivot.Element
+import org.eclipse.ocl.examples.pivot.Model
 
 public class GenerateAsLaTeXXtend extends GenerateAsLaTeXUtils
 {
-	@NonNull protected override String generateLaTeX(@NonNull Root root) {
+	@NonNull protected override String generateLaTeX(@NonNull Model model) {
 		'''
 		\section{The OCL Standard Library}\label{StandardLibrary}
 		
@@ -29,9 +29,9 @@ public class GenerateAsLaTeXXtend extends GenerateAsLaTeXUtils
 		The library support for the Ecore and UML bindings in Luna has been upgraded so that the available operations
 		are similar to those documented here for the Pivot binding.
 		
-		«emitPrecedences(root)»
+		«emitPrecedences(model)»
 		
-		«emitClasses(root)»
+		«emitClasses(model)»
 		'''
 	}
 
@@ -65,7 +65,7 @@ public class GenerateAsLaTeXXtend extends GenerateAsLaTeXUtils
 		}
 	}
 
-	protected def emitClasses(Root asRoot) {
+	protected def emitClasses(Model asRoot) {
 		var asClasses = getSortedClasses(asRoot);
 		'''
 		«FOR asClass : asClasses»
@@ -149,7 +149,7 @@ public class GenerateAsLaTeXXtend extends GenerateAsLaTeXUtils
 		}
 	}
 	
-	protected def emitPrecedences(Root asRoot) {
+	protected def emitPrecedences(Model asRoot) {
 		'''
 		\subsection{Precedences})\label{Precedences}
 

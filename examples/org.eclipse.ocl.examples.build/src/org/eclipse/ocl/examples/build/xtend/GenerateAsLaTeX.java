@@ -30,8 +30,8 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Library;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.Precedence;
-import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
@@ -68,9 +68,9 @@ public abstract class GenerateAsLaTeX extends AbstractWorkflowComponent
 		}
 	}
 
-	protected abstract @NonNull String generateLaTeX(@NonNull Root pivotModel);
+	protected abstract @NonNull String generateLaTeX(@NonNull Model pivotModel);
 
-	protected @Nullable Library getLibrary(@NonNull Root root) {
+	protected @Nullable Library getLibrary(@NonNull Model root) {
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
 			EObject eObject = tit.next();
@@ -81,9 +81,9 @@ public abstract class GenerateAsLaTeX extends AbstractWorkflowComponent
 		return null;
 	}
 	
-	protected Iterable<Precedence> getPrecedences(@NonNull Root asRoot) {
+	protected Iterable<Precedence> getPrecedences(@NonNull Model asModel) {
 		List<Precedence> precedences = new ArrayList<Precedence>();
-		for (org.eclipse.ocl.examples.pivot.Package asPackage : asRoot.getOwnedPackages()) {
+		for (org.eclipse.ocl.examples.pivot.Package asPackage : asModel.getOwnedPackages()) {
 			if (asPackage instanceof Library) {
 				precedences.addAll(((Library)asPackage).getOwnedPrecedence());
 			}
@@ -122,7 +122,7 @@ public abstract class GenerateAsLaTeX extends AbstractWorkflowComponent
 //			saver.localizeSpecializations();
 			String fileName = folder + "/" + latexFileName + ".tex";
 			log.info("Generating '" + fileName + "'");
-			String latexContent = generateLaTeX((Root)pivotModel);
+			String latexContent = generateLaTeX((Model)pivotModel);
 			FileWriter fw = new FileWriter(fileName);
 			fw.append(latexContent);
 			fw.close();

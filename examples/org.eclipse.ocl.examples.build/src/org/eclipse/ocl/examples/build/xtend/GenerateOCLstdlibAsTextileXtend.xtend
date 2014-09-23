@@ -11,13 +11,13 @@
 package org.eclipse.ocl.examples.build.xtend
 
 import org.eclipse.jdt.annotation.NonNull
-import org.eclipse.ocl.examples.pivot.Root
 import org.eclipse.ocl.examples.pivot.Namespace
 import org.eclipse.ocl.examples.pivot.Element
+import org.eclipse.ocl.examples.pivot.Model
 
 public class GenerateOCLstdlibAsTextileXtend extends GenerateOCLstdlibAsTextileUtils
 {
-	@NonNull protected override String generateTextile(@NonNull Root root) {
+	@NonNull protected override String generateTextile(@NonNull Model model) {
 		'''
 		h1(#StandardLibrary). The OCL Standard Library
 		
@@ -29,9 +29,9 @@ public class GenerateOCLstdlibAsTextileXtend extends GenerateOCLstdlibAsTextileU
 		The library support for the Ecore and UML bindings in Luna has been upgraded so that the available operations
 		are similar to those documented here for the Pivot binding.
 		
-		«emitPrecedences(root)»
+		«emitPrecedences(model)»
 		
-		«emitClasses(root)»
+		«emitClasses(model)»
 		'''
 	}
 
@@ -65,8 +65,8 @@ public class GenerateOCLstdlibAsTextileXtend extends GenerateOCLstdlibAsTextileU
 		}
 	}
 
-	protected def emitClasses(Root asRoot) {
-		var asClasses = getSortedClasses(asRoot);
+	protected def emitClasses(Model asModel) {
+		var asClasses = getSortedClasses(asModel);
 		'''
 		«FOR asClass : asClasses»
 			
@@ -152,11 +152,11 @@ public class GenerateOCLstdlibAsTextileXtend extends GenerateOCLstdlibAsTextileU
 		}
 	}
 	
-	protected def emitPrecedences(Root asRoot) {
+	protected def emitPrecedences(Model asModel) {
 		'''
 		h2(#Precedences). *Precedences*
 
-		«FOR asPrecedence : getPrecedences(asRoot) SEPARATOR ' > '»@«asPrecedence.name»@«ENDFOR»
+		«FOR asPrecedence : getPrecedences(asModel) SEPARATOR ' > '»@«asPrecedence.name»@«ENDFOR»
 		'''
 	}
 }

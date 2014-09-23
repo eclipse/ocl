@@ -29,10 +29,10 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Iteration;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.examples.xtext.markup.FontElement;
@@ -236,9 +236,9 @@ public abstract class GenerateOCLstdlibAsTextileUtils extends GenerateOCLstdlibA
 		return sortedElements;
 	}
 
-	protected @NonNull List<org.eclipse.ocl.examples.pivot.Class> getSortedClasses(@NonNull Root root) {
+	protected @NonNull List<org.eclipse.ocl.examples.pivot.Class> getSortedClasses(@NonNull Model model) {
 		Set<org.eclipse.ocl.examples.pivot.Class> allElements = new HashSet<org.eclipse.ocl.examples.pivot.Class>();
-		TreeIterator<EObject> tit = root.eAllContents();
+		TreeIterator<EObject> tit = model.eAllContents();
 		while (tit.hasNext()) {
 			EObject eObject = tit.next();
 			if (eObject instanceof org.eclipse.ocl.examples.pivot.Class) {
