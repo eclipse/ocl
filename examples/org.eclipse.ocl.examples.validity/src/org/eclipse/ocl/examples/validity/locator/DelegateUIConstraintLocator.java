@@ -42,9 +42,11 @@ import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.emf.validation.validity.LeafConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.ResultConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.ValidatableNode;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.locator.ConstraintUILocator;
+import org.eclipse.ocl.examples.emf.validation.validity.ui.view.IDEValidityManager;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityView;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
@@ -281,5 +283,19 @@ public class DelegateUIConstraintLocator extends DelegateConstraintLocator imple
 		DebugStarter runnable = new DebugStarter(shell, metaModelManager, eObject, expression);
 		runnable.run(monitor);
 		return runnable.getLaunch() != null;
+	}
+
+	@Override
+	public boolean openEditor(@NonNull LeafConstrainingNode leafConstrainingNode, @NonNull IDEValidityManager validityManager, @NonNull IProgressMonitor monitor) throws CoreException {
+		Resource eResource = leafConstrainingNode.getConstraintResource();
+		Object eObject = leafConstrainingNode.getConstrainingObject();
+		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(eResource);
+		try {
+			Constraint asConstraint = getConstraint(metaModelManager, eObject);
+		} catch (ParserException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 }

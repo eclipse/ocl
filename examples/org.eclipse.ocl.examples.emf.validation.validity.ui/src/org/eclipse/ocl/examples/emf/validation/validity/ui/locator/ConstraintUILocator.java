@@ -13,8 +13,10 @@ package org.eclipse.ocl.examples.emf.validation.validity.ui.locator;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.emf.validation.validity.LeafConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.ResultConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.locator.ConstraintLocator;
+import org.eclipse.ocl.examples.emf.validation.validity.ui.view.IDEValidityManager;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityView;
 
 /**
@@ -29,4 +31,10 @@ public interface ConstraintUILocator extends ConstraintLocator
 	 * @throws CoreException 
 	 */
 	boolean debug(@NonNull ResultConstrainingNode resultConstrainingNode, @NonNull ValidityView validityView, @NonNull IProgressMonitor monitor) throws CoreException;
+
+	/**
+	 * Open an editor for the resultConstrainingNode, returning false if debugging is not supported.
+	 * @throws CoreException 
+	 */
+	boolean openEditor(@NonNull LeafConstrainingNode leafConstrainingNode, @NonNull IDEValidityManager validityManager, @NonNull IProgressMonitor monitor) throws CoreException;
 }

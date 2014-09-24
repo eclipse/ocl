@@ -17,7 +17,10 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
@@ -35,7 +38,9 @@ import org.eclipse.ocl.examples.emf.validation.validity.LeafConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.ResultConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.ResultValidatableNode;
 import org.eclipse.ocl.examples.emf.validation.validity.ValidatableNode;
+import org.eclipse.ocl.examples.emf.validation.validity.locator.ConstraintLocator;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityModel;
+import org.eclipse.ocl.examples.emf.validation.validity.ui.locator.ConstraintUILocator;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.markers.GoToConstrainingNodeMarker;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.markers.GoToValidatableNodeMarker;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.messages.ValidityUIMessages;
@@ -136,7 +141,20 @@ public final class ShowElementInEditorAction extends Action
 	 *            the selected leafConstrainingNode
 	 * @return the GoToConstrainingNodeMarker of a LeafConstrainingNode.
 	 */
-	public GoToConstrainingNodeMarker getLeafConstrainingNodeMarker(@NonNull LeafConstrainingNode leafConstrainingNode){
+	public GoToConstrainingNodeMarker getLeafConstrainingNodeMarker(@NonNull LeafConstrainingNode leafConstrainingNode) {
+		ConstraintLocator constraintLocator = leafConstrainingNode.getConstraintLocator();
+		if (constraintLocator instanceof ConstraintUILocator) {
+			IProgressMonitor monitor = new NullProgressMonitor();
+			try {
+				boolean status = ((ConstraintUILocator)constraintLocator).openEditor(leafConstrainingNode, validityManager, monitor);
+				if (status) {
+					return null;
+				}
+			} catch (CoreException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		Resource resource = leafConstrainingNode.getConstraintResource();		
 		if (resource != null) {
 			IFile file = findFile(resource);

@@ -31,9 +31,11 @@ import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.emf.validation.validity.LeafConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.ResultConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.ValidatableNode;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.locator.ConstraintUILocator;
+import org.eclipse.ocl.examples.emf.validation.validity.ui.view.IDEValidityManager;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityView;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
@@ -168,5 +170,11 @@ public class PivotUIConstraintLocator extends PivotConstraintLocator implements 
 		DebugStarter runnable = new DebugStarter(shell, metaModelManager, eObject, query);
 		runnable.run(monitor);
 		return runnable.getLaunch() != null;
+	}
+
+	@Override
+	public boolean openEditor(@NonNull LeafConstrainingNode leafConstrainingNode, @NonNull IDEValidityManager validityManager, @NonNull IProgressMonitor monitor) throws CoreException {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

@@ -55,6 +55,10 @@ public class DelegateConstraintLocator extends AbstractPivotConstraintLocator
 
 	protected @Nullable Constraint getConstraint(@NonNull MetaModelManager metaModelManager, @NonNull ResultConstrainingNode resultConstrainingNode) throws ParserException {
 		Object constrainingObject = resultConstrainingNode.getParent().getConstrainingObject();
+		return getConstraint(metaModelManager, constrainingObject);
+	}
+
+	protected Constraint getConstraint(@NonNull MetaModelManager metaModelManager, @Nullable Object constrainingObject) throws ParserException {
 		if (constrainingObject instanceof EAnnotation) {
 			EObject eObject = ((EAnnotation) constrainingObject).eContainer();
 			if (eObject instanceof EOperation) {
