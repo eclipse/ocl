@@ -3,10 +3,11 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-SymbolicName: org.eclipse.ocl.examples.debug.vm.ui
+Bundle-SymbolicName: org.eclipse.ocl.examples.debug.vm.ui;singleton:=true
 Bundle-Version: 0.9.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: org.eclipse.ocl.examples.debug.vm.ui.actions,
+Export-Package: org.eclipse.ocl.examples.debug.vm.ui,
+ org.eclipse.ocl.examples.debug.vm.ui.actions,
  org.eclipse.ocl.examples.debug.vm.ui.launching,
  org.eclipse.ocl.examples.debug.vm.ui.messages,
  org.eclipse.ocl.examples.debug.vm.ui.pages
@@ -23,3 +24,5 @@ Require-Bundle: org.eclipse.core.resources;bundle-version="[3.5.0,4.0.0)",
  org.eclipse.ocl.examples.xtext.base,
  org.eclipse.ui.ide;bundle-version="[3.5.0,4.0.0)"
 Import-Package: org.apache.log4j
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: org.eclipse.ocl.examples.debug.vm.ui.DebugVMUIPlugin

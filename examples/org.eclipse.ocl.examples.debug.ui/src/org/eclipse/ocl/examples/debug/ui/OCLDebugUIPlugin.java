@@ -242,14 +242,14 @@ public class OCLDebugUIPlugin extends AbstractUIPlugin {
 	@Override
 	protected ImageRegistry createImageRegistry() {
 		ImageRegistry imageRegistry = super.createImageRegistry();
-		imageRegistry.put(DebugVMImages.LOCAL_VARIABLE, imageDescriptor("localvar_obj.gif")); //$NON-NLS-1$		
-		imageRegistry.put(DebugVMImages.THIS_VARIABLE, imageDescriptor("thisvar_obj.gif")); //$NON-NLS-1$
-		imageRegistry.put(DebugVMImages.PREDEFINED_VARIABLE, imageDescriptor("predefvar_obj.gif")); //$NON-NLS-1$
-		imageRegistry.put(DebugVMImages.MODEL_PARAMETER, imageDescriptor("modelpar_obj.gif")); //$NON-NLS-1$
-		imageRegistry.put(DebugVMImages.ATTRIBUTE, imageDescriptor("attribute_obj.gif")); //$NON-NLS-1$
-		imageRegistry.put(DebugVMImages.REFERENCE, imageDescriptor("reference_obj.gif")); //$NON-NLS-1$
-		imageRegistry.put(DebugVMImages.COLLECTION_ELEMENT, imageDescriptor("index_element_obj.gif")); //$NON-NLS-1$
-		imageRegistry.put(DebugVMImages.EXPRESSION_IN_OCL, imageDescriptor("ExpressionInOCL.gif")); //$NON-NLS-1$
+//		imageRegistry.put(DebugVMImages.LOCAL_VARIABLE, imageDescriptor("localvar_obj.gif")); //$NON-NLS-1$		
+//		imageRegistry.put(DebugVMImages.THIS_VARIABLE, imageDescriptor("thisvar_obj.gif")); //$NON-NLS-1$
+//		imageRegistry.put(DebugVMImages.PREDEFINED_VARIABLE, imageDescriptor("predefvar_obj.gif")); //$NON-NLS-1$
+//		imageRegistry.put(DebugVMImages.MODEL_PARAMETER, imageDescriptor("modelpar_obj.gif")); //$NON-NLS-1$
+//		imageRegistry.put(DebugVMImages.ATTRIBUTE, imageDescriptor("attribute_obj.gif")); //$NON-NLS-1$
+//		imageRegistry.put(DebugVMImages.REFERENCE, imageDescriptor("reference_obj.gif")); //$NON-NLS-1$
+//		imageRegistry.put(DebugVMImages.COLLECTION_ELEMENT, imageDescriptor("index_element_obj.gif")); //$NON-NLS-1$
+//		imageRegistry.put(DebugVMImages.EXPRESSION_IN_OCL, imageDescriptor("ExpressionInOCL.gif")); //$NON-NLS-1$
 		
 /*		imageRegistry.put(OCLDebugImages.INTERM_PROPERTY,				
 				overlayImage("intermprop_ovr.gif", //$NON-NLS-1$ 
