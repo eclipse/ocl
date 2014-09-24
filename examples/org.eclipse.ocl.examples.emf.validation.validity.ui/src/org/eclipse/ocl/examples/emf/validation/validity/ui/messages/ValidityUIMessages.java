@@ -25,8 +25,6 @@ public class ValidityUIMessages
 	public static String ValidityView_validatableNodesSectionName;
 	public static String ValidityView_constrainingNodesSectionName;
 	
-	public static String ValidityView_Constraints_LabelProvider_UnexistingResource;
-	public static String ValidityView_Constraints_LabelProvider_UnattainableExpression;
 	public static String ValidityView_Messages_NoModelElement;
 	public static String ValidityView_Messages_NoConstraints;
 	public static String ValidityView_Messages_NoSelection;
