@@ -13,11 +13,14 @@ package org.eclipse.ocl.examples.validity.locator;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.Monitor;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
+import org.eclipse.ocl.examples.emf.validation.validity.LeafConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.locator.AbstractConstraintLocator;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Environment;
@@ -88,5 +91,14 @@ public abstract class AbstractPivotConstraintLocator extends AbstractConstraintL
 		LanguageExpression specification = constraint.getSpecification();
 		assert specification != null;
 		return metaModelManager.getQueryOrThrow(specification);
+	}
+
+	@Override
+	public @Nullable Resource getSourceResource(@NonNull LeafConstrainingNode node) {
+		Object constrainingObject = node.getConstrainingObject();
+		if (!(constrainingObject instanceof EObject)) {
+			return null;
+		}
+		return ((EObject)constrainingObject).eResource();
 	}
 }
