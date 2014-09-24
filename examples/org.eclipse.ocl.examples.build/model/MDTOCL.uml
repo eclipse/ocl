@@ -300,7 +300,7 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_noL7MOC2EeK2XIQZsal-uQ" name="Model">
         <generalization xmi:id="_PG7Ht_cPEeOIuskgmmQAHw" general="_lVjxQOC2EeK2XIQZsal-uQ"/>
-        <ownedAttribute xmi:id="_KGF50OC3EeK2XIQZsal-uQ" name="nestedPackage" type="_lkT-8OC2EeK2XIQZsal-uQ" aggregation="composite">
+        <ownedAttribute xmi:id="_KGF50OC3EeK2XIQZsal-uQ" name="ownedPackages" type="_lkT-8OC2EeK2XIQZsal-uQ" aggregation="composite" association="_QmcacENSEeSIMIkow6JA5A">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PG7HsfcPEeOIuskgmmQAHw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PG7HsvcPEeOIuskgmmQAHw" value="*"/>
         </ownedAttribute>
@@ -314,8 +314,13 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_0pHa4OC2EeK2XIQZsal-uQ" name="NamedElement" isAbstract="true"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_lVjxQOC2EeK2XIQZsal-uQ" name="Namespace" isAbstract="true"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="_lkT-8OC2EeK2XIQZsal-uQ" name="Package"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_lkT-8OC2EeK2XIQZsal-uQ" name="Package">
+        <ownedAttribute xmi:id="_CGYDQENSEeSIMIkow6JA5A" name="owningModel" type="_noL7MOC2EeK2XIQZsal-uQ" association="_QmcacENSEeSIMIkow6JA5A">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GKagcENSEeSIMIkow6JA5A"/>
+        </ownedAttribute>
+      </packagedElement>
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_ZX1lkOC3EeK2XIQZsal-uQ" name="String"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_QmcacENSEeSIMIkow6JA5A" name="A_owningModel_ownedPackages" memberEnd="_CGYDQENSEeSIMIkow6JA5A _KGF50OC3EeK2XIQZsal-uQ"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="MDTOCL-MDT_OCL_Stereotypes" name="MDT_OCL_Stereotypes">
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="MDTOCL-MDT_OCL_Stereotypes-Boolean" name="Boolean"/>
