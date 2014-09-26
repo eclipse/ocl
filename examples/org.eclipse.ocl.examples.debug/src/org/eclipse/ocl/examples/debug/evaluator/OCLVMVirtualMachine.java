@@ -14,6 +14,7 @@ package org.eclipse.ocl.examples.debug.evaluator;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -125,7 +126,14 @@ public class OCLVMVirtualMachine extends VMVirtualMachine
 		String operSignature = s.toString(); //MessageFormat.format("<{0}>", moduleName); //$NON-NLS-1$
 		
 		List<VMVariableData> vars = VariableFinder.getVariables(evalEnv);
-		String uriString = DomainUtil.nonNullState(location.getURI().toString());
+		URI locationURI = location.getURI();
+		String uriString;
+		if (locationURI != null) {
+			uriString = DomainUtil.nonNullState(locationURI.toString());
+		}
+		else {
+			uriString = "";
+		}
 		@SuppressWarnings("null")@NonNull VMVariableData[] varsArray = vars.toArray(new VMVariableData[vars.size()]);
 		VMStackFrameData vmStackFrame = new VMStackFrameData(evalEnv.getID(), uriString, moduleName, 
 					operSignature, location.getLineNum(), location.getStartPosition(), location.getEndPosition(), varsArray);

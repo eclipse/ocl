@@ -28,8 +28,8 @@ public class ASTBindingHelper
 		private @Nullable ModelElementCS csElement;
 		private @Nullable ICompositeNode node;
 		
-		private UnitLocation2(@NonNull Element asElement) {
-			this.csElement = ElementUtil.getCsElement(asElement);
+		private UnitLocation2(@NonNull ModelElementCS csElement) {
+			this.csElement = csElement;
 			if (csElement != null) {
 				this.node = NodeModelUtils.getNode(csElement);
 			}
@@ -62,7 +62,8 @@ public class ASTBindingHelper
 					}
 				}
 			}
-			throw new UnsupportedOperationException();
+			return 0;
+//			throw new UnsupportedOperationException();
 		}
 
 		@Override
@@ -106,7 +107,8 @@ public class ASTBindingHelper
 		return node.getOffset();
 	}
 
-	public static IModuleSourceInfo getModuleSourceBinding(@NonNull Element element) {
-		return new UnitLocation2(element);
+	public static IModuleSourceInfo getModuleSourceBinding(@NonNull Element asElement) {
+		ModelElementCS csElement = ElementUtil.getCsElement(asElement);
+		return  csElement != null ? new UnitLocation2(csElement) : null;
 	}
 }

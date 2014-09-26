@@ -10,12 +10,17 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.debug.ui.delegate;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.core.filesystem.EFS;
+import org.eclipse.core.filesystem.IFileStore;
 //import org.eclipse.core.filesystem.EFS;
 //import org.eclipse.core.filesystem.IFileStore;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -29,7 +34,12 @@ import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.debug.core.model.IDebugTarget;
 import org.eclipse.debug.core.model.IProcess;
 import org.eclipse.debug.core.model.IThread;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.dialogs.ErrorDialog;
@@ -38,13 +48,22 @@ import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
 import org.eclipse.ocl.examples.debug.ui.OCLDebugUIPlugin;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OCL;
+import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.delegate.OCLSettingDelegate;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.resource.ASResource;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
+import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
+import org.eclipse.ocl.examples.xtext.base.utilities.CSI2ASMapping;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.OCLinEcoreCSPackage;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.xtext.resource.impl.ListBasedDiagnosticConsumer;
 
 /**
  * An implementation of a setting delegate that computes OCL derived features.
@@ -121,6 +140,93 @@ public class OCLDebugSettingDelegate extends OCLSettingDelegate
 		super(delegateDomain, structuralFeature);
 	}
 
+	/**
+	 * Create a test Complete OCL document that wraps the required OCL text up as the body of a test operation.
+	 * Returns its URI.
+	 */
+	protected @NonNull URI createDocument(@NonNull ASResource asResource, @Nullable IProgressMonitor monitor) throws IOException, CoreException {
+		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(asResource);
+		URI ecoreURI = asResource.getURI().trimFileExtension();	// Lose .ecore.oclas
+		URI csURI = ecoreURI.trimFileExtension().appendFileExtension("oclinecore");
+		BaseCSResource csResource = (BaseCSResource) metaModelManager.getExternalResourceSet().createResource(csURI, OCLinEcoreCSPackage.eCONTENT_TYPE);
+		csResource.setURI(ecoreURI);
+		csResource.updateFrom((ASResource)asResource, metaModelManager);
+		CSI2ASMapping cs2asMapping = CSI2ASMapping.getAdapter(metaModelManager);
+		Map<BaseCSResource, ASResource> map = new HashMap<BaseCSResource, ASResource>();
+		map.put(csResource, asResource);
+		cs2asMapping.add(map);
+		
+		IPath documentPath = OCLDebugUIPlugin.getDefault().getStateLocation().append("debug" + EcoreUtil.generateUUID() + ".oclinecore");
+		IFileStore documentStore = EFS.getLocalFileSystem().getStore(documentPath);
+		OutputStream documentStream = documentStore.openOutputStream(0, monitor);
+		Map<?,?> options = new HashMap<Object, Object>();
+		csResource.save(documentStream, options);
+		documentStream.close();
+		
+		java.net.URI documentURI1 = documentStore.toURI();
+		@SuppressWarnings("null")@NonNull URI documentURI2 = URI.createURI(documentURI1.toString());
+		csResource.setURI(documentURI2);
+//		csResource.unload();
+		CS2ASResourceAdapter adapter = csResource.getCS2ASAdapter(metaModelManager);
+		CS2AS converter = adapter.getConverter();
+		converter.update(new ListBasedDiagnosticConsumer());
+		return documentURI2;
+		
+		
+/*		csResource.updateFrom((ASResource)asResource, metaModelManager);
+		CSI2ASMapping cs2asMapping = CSI2ASMapping.getAdapter(metaModelManager);
+		Map<BaseCSResource, ASResource> map = new HashMap<BaseCSResource, ASResource>();
+		map.put(csResource, asResource);
+		cs2asMapping.add(map);
+		
+		
+		
+		
+		
+		
+		PivotIdResolver idResolver = metaModelManager.getIdResolver();
+		DomainClass staticType = idResolver.getStaticTypeOf(contextObject);
+		org.eclipse.ocl.examples.pivot.Class contextType = metaModelManager.getType(staticType);
+//		if (contextType instanceof Metaclass) {
+//			contextType = (org.eclipse.ocl.examples.pivot.Class)((Metaclass<?>)contextType).getInstanceType();	// FIXME cast
+//		}
+		org.eclipse.ocl.examples.pivot.Package contextPackage = contextType.getOwningPackage();
+		OutputStream documentStream = documentStore.openOutputStream(0, monitor);
+		PrettyPrintOptions.Global printOptions = PrettyPrinter.createOptions(null);
+		printOptions.addReservedNames(PrettyPrinter.restrictedNameList);
+		Writer s = new OutputStreamWriter(documentStream);
+		String externalURI = null;
+		if (contextPackage != null) {
+			Model containingRoot = PivotUtil.getContainingRoot(contextPackage);
+			if (containingRoot == null) {
+				externalURI = contextPackage.getURI();
+			}
+			else if (containingRoot != PivotUtil.getContainingRoot(metaModelManager.getStandardLibrary().getOclAnyType())) {
+				externalURI = containingRoot.getExternalURI();
+				if (PivotUtil.isASURI(externalURI)) {
+					@SuppressWarnings("null")
+					@NonNull URI uri = URI.createURI(externalURI);
+					externalURI = PivotUtil.getNonASURI(uri).toString();
+				}
+			}
+			if (externalURI != null) {
+				s.append("import '" + externalURI + "'\n\n");
+			}
+		}
+		s.append("context ");
+		if (externalURI == null) {
+			s.append("ocl::");			// FIXME use printOptions, FIXME support UML non-OCL classes
+		}
+		s.append(PrettyPrinter.printName(contextType, printOptions) + "\n");
+		s.append("def: oclDebuggerExpression() : OclAny = \n\t");
+		s.append(expression.replace("\n", "\n\t"));
+		s.append("\n");
+		s.close();
+		java.net.URI documentURI1 = documentStore.toURI();
+		@SuppressWarnings("null")@NonNull URI documentURI2 = URI.createURI(documentURI1.toString());
+		return documentURI2; */
+	}
+
 	@Override
 	protected @Nullable Object evaluate(@NonNull OCL ocl, @NonNull ExpressionInOCL query, @Nullable Object contextObject) {
 		MetaModelManager metaModelManager = ocl.getMetaModelManager();
@@ -150,6 +256,41 @@ public class OCLDebugSettingDelegate extends OCLSettingDelegate
 		}
 	}
 	
+	@Override
+	protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
+		Property property2 = getProperty();
+		Resource eResource = property2.eResource();
+		if (eResource instanceof ASResource) {
+			ASResource asResource = (ASResource) eResource;
+			ResourceSet resourceSet = asResource.getResourceSet();
+			if (resourceSet != null) {
+				CS2AS cs2as = CS2AS.findAdapter(resourceSet);
+				if (cs2as == null) {
+					try {
+						createDocument(asResource, null);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (CoreException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+/*					MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(asResource);
+					URI ecoreURI = asResource.getURI().trimFileExtension();	// Lose .ecore.oclas
+					URI csURI = ecoreURI.trimFileExtension().appendFileExtension("oclinecore");
+					BaseCSResource csResource = (BaseCSResource) resourceSet.createResource(csURI, OCLinEcoreCSPackage.eCONTENT_TYPE);
+					csResource.setURI(ecoreURI);
+					csResource.updateFrom((ASResource)asResource, metaModelManager);
+					CSI2ASMapping cs2asMapping = CSI2ASMapping.getAdapter(metaModelManager);
+					Map<BaseCSResource, ASResource> map = new HashMap<BaseCSResource, ASResource>();
+					map.put(csResource, asResource);
+					cs2asMapping.add(map); */
+				}
+			}
+		}
+		return super.get(owner, resolve, coreType);
+	}
+
 	protected void waitForLaunchToTerminate(@NonNull ILaunch launch) throws InterruptedException, DebugException {
 		while (true) {
 			for (int i = 0; i < 10; i++){

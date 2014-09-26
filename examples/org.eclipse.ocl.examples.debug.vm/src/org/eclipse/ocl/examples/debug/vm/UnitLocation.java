@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
 import org.eclipse.ocl.examples.debug.vm.utils.ASTBindingHelper;
 import org.eclipse.ocl.examples.debug.vm.utils.IModuleSourceInfo;
@@ -74,8 +75,9 @@ public class UnitLocation {
 		return fEvalEnv.isDeferredExecution();
 	}
 
-    public URI getURI() {
-    	return getSourceInfo().getSourceURI();
+    public @Nullable URI getURI() {
+    	IModuleSourceInfo sourceInfo = getSourceInfo();
+		return sourceInfo != null ? sourceInfo.getSourceURI() : null;
 	}
     
     public @NonNull NamedElement getModule() {
@@ -160,6 +162,9 @@ public class UnitLocation {
 	private IModuleSourceInfo getSourceInfo() {
     	if(fSrcInfo == null) {
     		fSrcInfo = ASTBindingHelper.getModuleSourceBinding(getModule());
+    	}
+    	if (fSrcInfo == null) {
+    		fSrcInfo = ASTBindingHelper.getModuleSourceBinding(getOperation());
     	}
     	return fSrcInfo;
 	}

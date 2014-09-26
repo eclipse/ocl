@@ -47,7 +47,8 @@ public class ValidBreakpointLocator
 					boolean found = false;
 					Boolean isStartNotEnd = element.accept(visitor);
 					if (isStartNotEnd == IS_START) {
-				        int line = lineNumbers.getLineNumber(ASTBindingHelper.getStartPosition(element));
+				        int startPosition = ASTBindingHelper.getStartPosition(element);
+						int line = lineNumbers.getLineNumber(startPosition);
 						if(line == lineNumber) {
 							elements.add(element);
 							found = true;
@@ -55,7 +56,8 @@ public class ValidBreakpointLocator
 					}
 					
 					if (!found && (isStartNotEnd == IS_END)) {
-				        int line = lineNumbers.getLineNumber(ASTBindingHelper.getEndPosition(element));
+				        int endPosition = ASTBindingHelper.getEndPosition(element);
+						int line = lineNumbers.getLineNumber(endPosition);
 						if (line == lineNumber) {
 							elements.add(element);
 						}

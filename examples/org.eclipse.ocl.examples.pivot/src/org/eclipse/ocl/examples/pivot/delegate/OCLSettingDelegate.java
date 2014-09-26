@@ -66,8 +66,7 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 				query2 = query = SettingBehavior.INSTANCE.getQueryOrThrow(metaModelManager, property2);
 				SettingBehavior.INSTANCE.validate(property2);
 			}
-			Query query = ocl.createQuery(query2);
-			Object result = query.evaluate(owner);
+			Object result = evaluate(ocl, query2, owner);
 //			if (result == null) {
 //				String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, property);
 //				throw new OCLDelegateException(message);
