@@ -148,6 +148,9 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 	}
 
 	public int getHandlerPriority(@NonNull Resource resource) {
+		if ((resource instanceof ASResource) && (((ASResource)resource).getASResourceFactory() == this)) {
+			return CAN_HANDLE;
+		}
 		return CANNOT_HANDLE;
 	}
 
@@ -165,7 +168,20 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 
 	public @Nullable Element importFromResource(@NonNull MetaModelManager metaModelManager,
 			@NonNull Resource resource, @Nullable URI uri) throws ParserException {
-		throw new UnsupportedOperationException(getClass().getName() + ".importFromResource");
+		if (uri == null) {
+			return null;
+		}
+		String fragment = uri.fragment();
+		if (fragment == null) {
+			return null;
+		}
+		EObject eObject = resource.getEObject(fragment);
+		if (eObject instanceof Element) {
+			return (Element) eObject;
+		}
+		else {
+			return null;
+		}
 	}
 
 	public boolean isCompatibleResource(@NonNull Resource newResource, @NonNull Resource oldResource) {

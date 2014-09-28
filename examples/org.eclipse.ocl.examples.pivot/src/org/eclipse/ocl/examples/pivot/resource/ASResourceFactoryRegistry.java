@@ -67,6 +67,9 @@ public class ASResourceFactoryRegistry
 	}
 
 	public synchronized @Nullable ASResourceFactory getResourceFactory(@NonNull Resource resource) {
+		if (resource instanceof ASResource) {
+			return ((ASResource)resource).getASResourceFactory();
+		}
 		int bestPriority = ASResourceFactory.CANNOT_HANDLE;
 		ASResourceFactory bestASResourceFactory = null;
 		for (ASResourceFactory asResourceFactory : asResourceFactories) {
