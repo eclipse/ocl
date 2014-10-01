@@ -68,7 +68,7 @@ public class OCLstdlibRuntimeModule extends org.eclipse.ocl.examples.xtext.oclst
 	}
 	
 	public Class<? extends ClasspathTypeProviderFactory> bindClasspathTypeProviderFactory() {
-		return ResourceSetClasspathTypeProviderFactory.class;
+		return ClasspathTypeProviderFactory.class;
 	}
 	
 	@Override

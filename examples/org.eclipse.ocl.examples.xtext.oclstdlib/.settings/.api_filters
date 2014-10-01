@@ -109,12 +109,6 @@
         </filter>
     </resource>
     <resource path="src/org/eclipse/ocl/examples/xtext/oclstdlib/ResourceSetClasspathTypeProviderFactory.java" type="org.eclipse.ocl.examples.xtext.oclstdlib.ResourceSetClasspathTypeProviderFactory">
-        <filter id="576720909">
-            <message_arguments>
-                <message_argument value="ClasspathTypeProviderFactory"/>
-                <message_argument value="ResourceSetClasspathTypeProviderFactory"/>
-            </message_arguments>
-        </filter>
         <filter id="643842064">
             <message_arguments>
                 <message_argument value="ClasspathTypeProvider"/>
