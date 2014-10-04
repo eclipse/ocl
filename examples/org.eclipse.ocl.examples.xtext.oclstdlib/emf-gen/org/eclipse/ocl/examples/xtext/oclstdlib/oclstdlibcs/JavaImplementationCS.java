@@ -11,7 +11,6 @@
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.common.types.JvmType;
 
 /**
  * <!-- begin-user-doc -->
@@ -41,12 +40,12 @@ public interface JavaImplementationCS
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Implementation</em>' reference.
-	 * @see #setImplementation(JvmType)
+	 * @see #setImplementation(JavaClassCS)
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage#getJavaImplementationCS_Implementation()
 	 * @model
 	 * @generated
 	 */
-	JvmType getImplementation();
+	JavaClassCS getImplementation();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaImplementationCS#getImplementation <em>Implementation</em>}' reference.
@@ -56,6 +55,6 @@ public interface JavaImplementationCS
 	 * @see #getImplementation()
 	 * @generated
 	 */
-	void setImplementation(JvmType value);
+	void setImplementation(JavaClassCS value);
 
 } // JavaImplementationCS

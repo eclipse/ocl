@@ -70,6 +70,79 @@ public interface OCLstdlibCSPackage
 	OCLstdlibCSPackage eINSTANCE = org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.OCLstdlibCSPackageImpl.init();
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.JavaClassCSImpl <em>Java Class CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.JavaClassCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.OCLstdlibCSPackageImpl#getJavaClassCS()
+	 * @generated
+	 */
+	int JAVA_CLASS_CS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_CLASS_CS__LOGICAL_PARENT = BaseCSPackage.NAMED_ELEMENT_CS__LOGICAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Pivot</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_CLASS_CS__PIVOT = BaseCSPackage.NAMED_ELEMENT_CS__PIVOT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_CLASS_CS__OWNED_ANNOTATION = BaseCSPackage.NAMED_ELEMENT_CS__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_CLASS_CS__ORIGINAL_XMI_ID = BaseCSPackage.NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
+
+	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_CLASS_CS__CSI = BaseCSPackage.NAMED_ELEMENT_CS__CSI;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_CLASS_CS__NAME = BaseCSPackage.NAMED_ELEMENT_CS__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Java Class CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_CLASS_CS_FEATURE_COUNT = BaseCSPackage.NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.LibConstraintCSImpl <em>Lib Constraint CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -77,7 +150,7 @@ public interface OCLstdlibCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.OCLstdlibCSPackageImpl#getLibConstraintCS()
 	 * @generated
 	 */
-	int LIB_CONSTRAINT_CS = 2;
+	int LIB_CONSTRAINT_CS = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.LibIterationCSImpl <em>Lib Iteration CS</em>}' class.
@@ -87,7 +160,7 @@ public interface OCLstdlibCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.OCLstdlibCSPackageImpl#getLibIterationCS()
 	 * @generated
 	 */
-	int LIB_ITERATION_CS = 3;
+	int LIB_ITERATION_CS = 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.LibOperationCSImpl <em>Lib Operation CS</em>}' class.
@@ -97,7 +170,7 @@ public interface OCLstdlibCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.OCLstdlibCSPackageImpl#getLibOperationCS()
 	 * @generated
 	 */
-	int LIB_OPERATION_CS = 4;
+	int LIB_OPERATION_CS = 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.LibPropertyCSImpl <em>Lib Property CS</em>}' class.
@@ -107,7 +180,7 @@ public interface OCLstdlibCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.OCLstdlibCSPackageImpl#getLibPropertyCS()
 	 * @generated
 	 */
-	int LIB_PROPERTY_CS = 6;
+	int LIB_PROPERTY_CS = 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaImplementationCS <em>Java Implementation CS</em>}' class.
@@ -117,7 +190,7 @@ public interface OCLstdlibCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.OCLstdlibCSPackageImpl#getJavaImplementationCS()
 	 * @generated
 	 */
-	int JAVA_IMPLEMENTATION_CS = 0;
+	int JAVA_IMPLEMENTATION_CS = 1;
 
 	/**
 	 * The feature id for the '<em><b>Implementation</b></em>' reference.
@@ -145,7 +218,7 @@ public interface OCLstdlibCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.OCLstdlibCSPackageImpl#getLibClassCS()
 	 * @generated
 	 */
-	int LIB_CLASS_CS = 1;
+	int LIB_CLASS_CS = 2;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -794,7 +867,7 @@ public interface OCLstdlibCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.OCLstdlibCSPackageImpl#getLibPackageCS()
 	 * @generated
 	 */
-	int LIB_PACKAGE_CS = 5;
+	int LIB_PACKAGE_CS = 6;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -1047,7 +1120,7 @@ public interface OCLstdlibCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.OCLstdlibCSPackageImpl#getLibRootPackageCS()
 	 * @generated
 	 */
-	int LIB_ROOT_PACKAGE_CS = 7;
+	int LIB_ROOT_PACKAGE_CS = 8;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -1138,7 +1211,7 @@ public interface OCLstdlibCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.OCLstdlibCSPackageImpl#getMetaTypeName()
 	 * @generated
 	 */
-	int META_TYPE_NAME = 8;
+	int META_TYPE_NAME = 9;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -1175,7 +1248,7 @@ public interface OCLstdlibCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.OCLstdlibCSPackageImpl#getPrecedenceCS()
 	 * @generated
 	 */
-	int PRECEDENCE_CS = 9;
+	int PRECEDENCE_CS = 10;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -1248,6 +1321,16 @@ public interface OCLstdlibCSPackage
 	 * @ordered
 	 */
 	int PRECEDENCE_CS_FEATURE_COUNT = BaseCSPackage.NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaClassCS <em>Java Class CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Java Class CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaClassCS
+	 * @generated
+	 */
+	EClass getJavaClassCS();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibClassCS <em>Lib Class CS</em>}'.
@@ -1525,6 +1608,16 @@ public interface OCLstdlibCSPackage
 	 * @generated
 	 */
 	interface Literals {
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.JavaClassCSImpl <em>Java Class CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.JavaClassCSImpl
+		 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.OCLstdlibCSPackageImpl#getJavaClassCS()
+		 * @generated
+		 */
+		EClass JAVA_CLASS_CS = eINSTANCE.getJavaClassCS();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.LibClassCSImpl <em>Lib Class CS</em>}' class.

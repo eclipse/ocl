@@ -16,7 +16,6 @@ import "http://www.eclipse.org/ocl/3.1.0/BaseCST" as base
 import "http://www.eclipse.org/ocl/3.1.0/EssentialOCLCST" as essentialocl
 import "http://www.eclipse.org/ocl/3.1.0/OCLstdlibCST"
 import "http://www.eclipse.org/ocl/3.1.0/Pivot" as pivot
-import "http://www.eclipse.org/xtext/common/JavaVMTypes" as types
 //generate OCLstdlib "http://www.eclipse.org/ocl/examples/xtext/oclstdlib/OCLstdlibCST"
 
 Library returns LibRootPackageCS:
@@ -130,7 +129,7 @@ LibIterationCS returns LibIterationCS:
 	':' ownedType=TypedMultiplicityRefCS
 	(invalidating?='invalidating')?
 	(validating?='validating')?
-	('=>' implementation=[types::JvmType|SINGLE_QUOTED_STRING])?
+	('=>' implementation=[JavaClassCS|SINGLE_QUOTED_STRING])?
 	(('{' (ownedAnnotation+=AnnotationElementCS
 	     | ownedPrecondition+=PostCS
 	     | ownedPostcondition+=PreCS)* '}')
@@ -168,7 +167,7 @@ LibOperationCS returns LibOperationCS:
 	(validating?='validating')?
 	(invalidating?='invalidating')?
 	('precedence' '=' precedence=[pivot::Precedence|Name])?
-	('=>' implementation=[types::JvmType|SINGLE_QUOTED_STRING])?
+	('=>' implementation=[JavaClassCS|SINGLE_QUOTED_STRING])?
 	(('{' (ownedAnnotation+=AnnotationElementCS
 	     | ('body' UnrestrictedName? ':' ownedBodyExpression+=SpecificationCS ';')
 	     | ownedPostcondition+=PostCS
@@ -204,7 +203,7 @@ ParameterCS returns base::ParameterCS:
 LibPropertyCS returns LibPropertyCS:
 	(static?='static')? 'property' name=Name
 	':' ownedType=TypedMultiplicityRefCS
-	('=>' implementation=[types::JvmType|SINGLE_QUOTED_STRING])?
+	('=>' implementation=[JavaClassCS|SINGLE_QUOTED_STRING])?
 	(	('{' (ownedAnnotation+=AnnotationElementCS)* '}')
 	|	';'
 	)

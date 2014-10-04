@@ -99,6 +99,20 @@ public class OCLstdlibCSSwitch<T>
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID)
 		{
+			case OCLstdlibCSPackage.JAVA_CLASS_CS:
+			{
+				JavaClassCS javaClassCS = (JavaClassCS)theEObject;
+				T result = caseJavaClassCS(javaClassCS);
+				if (result == null) result = caseNamedElementCS(javaClassCS);
+				if (result == null) result = caseModelElementCS(javaClassCS);
+				if (result == null) result = caseNameable(javaClassCS);
+				if (result == null) result = casePivotableElementCS(javaClassCS);
+				if (result == null) result = caseElementCS(javaClassCS);
+				if (result == null) result = casePivotable(javaClassCS);
+				if (result == null) result = caseVisitableCS(javaClassCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case OCLstdlibCSPackage.JAVA_IMPLEMENTATION_CS:
 			{
 				JavaImplementationCS javaImplementationCS = (JavaImplementationCS)theEObject;
@@ -255,6 +269,22 @@ public class OCLstdlibCSSwitch<T>
 			}
 			default: return defaultCase(theEObject);
 		}
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Java Class CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Java Class CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseJavaClassCS(JavaClassCS object)
+	{
+		return null;
 	}
 
 	/**

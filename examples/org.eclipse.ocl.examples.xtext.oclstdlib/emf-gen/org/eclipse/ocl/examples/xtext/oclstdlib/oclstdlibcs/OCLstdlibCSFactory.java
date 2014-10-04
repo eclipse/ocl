@@ -33,6 +33,15 @@ public interface OCLstdlibCSFactory
 	OCLstdlibCSFactory eINSTANCE = org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.OCLstdlibCSFactoryImpl.init();
 
 	/**
+	 * Returns a new object of class '<em>Java Class CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Java Class CS</em>'.
+	 * @generated
+	 */
+	JavaClassCS createJavaClassCS();
+
+	/**
 	 * Returns a new object of class '<em>Lib Class CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

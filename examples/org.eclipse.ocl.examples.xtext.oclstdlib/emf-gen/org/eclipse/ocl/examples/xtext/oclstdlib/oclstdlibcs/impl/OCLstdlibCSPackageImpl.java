@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaImplementationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibConstraintCS;
@@ -31,7 +32,6 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaTypeName;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSFactory;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.PrecedenceCS;
-import org.eclipse.xtext.common.types.TypesPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,6 +42,13 @@ import org.eclipse.xtext.common.types.TypesPackage;
 public class OCLstdlibCSPackageImpl
 		extends EPackageImpl
 		implements OCLstdlibCSPackage {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass javaClassCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -161,7 +168,6 @@ public class OCLstdlibCSPackageImpl
 
 		// Initialize simple dependencies
 		EssentialOCLCSPackage.eINSTANCE.eClass();
-		TypesPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theOCLstdlibCSPackage.createPackageContents();
@@ -176,6 +182,16 @@ public class OCLstdlibCSPackageImpl
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(OCLstdlibCSPackage.eNS_URI, theOCLstdlibCSPackage);
 		return theOCLstdlibCSPackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getJavaClassCS()
+	{
+		return javaClassCSEClass;
 	}
 
 	/**
@@ -430,6 +446,8 @@ public class OCLstdlibCSPackageImpl
 		isCreated = true;
 
 		// Create classes and their features
+		javaClassCSEClass = createEClass(JAVA_CLASS_CS);
+
 		javaImplementationCSEClass = createEClass(JAVA_IMPLEMENTATION_CS);
 		createEReference(javaImplementationCSEClass, JAVA_IMPLEMENTATION_CS__IMPLEMENTATION);
 
@@ -489,7 +507,6 @@ public class OCLstdlibCSPackageImpl
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 		BaseCSPackage theBaseCSPackage = (BaseCSPackage)EPackage.Registry.INSTANCE.getEPackage(BaseCSPackage.eNS_URI);
 		PivotPackage thePivotPackage = (PivotPackage)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI);
 
@@ -498,6 +515,7 @@ public class OCLstdlibCSPackageImpl
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		javaClassCSEClass.getESuperTypes().add(theBaseCSPackage.getNamedElementCS());
 		libClassCSEClass.getESuperTypes().add(theBaseCSPackage.getClassCS());
 		libConstraintCSEClass.getESuperTypes().add(theBaseCSPackage.getConstraintCS());
 		libIterationCSEClass.getESuperTypes().add(theBaseCSPackage.getOperationCS());
@@ -513,8 +531,10 @@ public class OCLstdlibCSPackageImpl
 		precedenceCSEClass.getESuperTypes().add(theBaseCSPackage.getNamedElementCS());
 
 		// Initialize classes and features; add operations and parameters
+		initEClass(javaClassCSEClass, JavaClassCS.class, "JavaClassCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(javaImplementationCSEClass, JavaImplementationCS.class, "JavaImplementationCS", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getJavaImplementationCS_Implementation(), theTypesPackage.getJvmType(), null, "implementation", null, 0, 1, JavaImplementationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getJavaImplementationCS_Implementation(), this.getJavaClassCS(), null, "implementation", null, 0, 1, JavaImplementationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(libClassCSEClass, LibClassCS.class, "LibClassCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLibClassCS_MetaTypeName(), this.getMetaTypeName(), null, "metaTypeName", null, 0, 1, LibClassCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

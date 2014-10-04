@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS;
@@ -79,6 +80,7 @@ public class OCLstdlibCSFactoryImpl
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID())
 		{
+			case OCLstdlibCSPackage.JAVA_CLASS_CS: return createJavaClassCS();
 			case OCLstdlibCSPackage.LIB_CLASS_CS: return createLibClassCS();
 			case OCLstdlibCSPackage.LIB_CONSTRAINT_CS: return createLibConstraintCS();
 			case OCLstdlibCSPackage.LIB_ITERATION_CS: return createLibIterationCS();
@@ -91,6 +93,17 @@ public class OCLstdlibCSFactoryImpl
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public JavaClassCS createJavaClassCS()
+	{
+		JavaClassCSImpl javaClassCS = new JavaClassCSImpl();
+		return javaClassCS;
 	}
 
 	/**
