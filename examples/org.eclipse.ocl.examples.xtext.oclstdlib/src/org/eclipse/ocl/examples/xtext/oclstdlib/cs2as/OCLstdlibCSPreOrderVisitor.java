@@ -28,6 +28,7 @@ import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuations;
 import org.eclipse.ocl.examples.xtext.base.cs2as.SingleContinuation;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS;
@@ -35,7 +36,6 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPackageCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPropertyCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.PrecedenceCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.util.AbstractOCLstdlibCSPreOrderVisitor;
-import org.eclipse.xtext.common.types.JvmType;
 
 public class OCLstdlibCSPreOrderVisitor extends AbstractOCLstdlibCSPreOrderVisitor
 {
@@ -71,9 +71,9 @@ public class OCLstdlibCSPreOrderVisitor extends AbstractOCLstdlibCSPreOrderVisit
 			if (pivotIteration != null) {
 //				pivotElement.setPrecedence(csIteration.getPrecedence());
 //				pivotElement.setIsStatic(csIteration.isStatic());
-				JvmType implementation = csElement.getImplementation();
+				JavaClassCS implementation = csElement.getImplementation();
 				if ((implementation != null) && !implementation.eIsProxy()) {
-					pivotIteration.setImplementationClass(implementation.getIdentifier());
+					pivotIteration.setImplementationClass(implementation.getName());
 				}
 			}
 			return null;
@@ -96,9 +96,9 @@ public class OCLstdlibCSPreOrderVisitor extends AbstractOCLstdlibCSPreOrderVisit
 				}
 				pivotElement.setPrecedence(precedence);
 				pivotElement.setIsStatic(csElement.isStatic());
-				JvmType implementation = csElement.getImplementation();
+				JavaClassCS implementation = csElement.getImplementation();
 				if ((implementation != null) && !implementation.eIsProxy()) {
-					pivotElement.setImplementationClass(implementation.getIdentifier());
+					pivotElement.setImplementationClass(implementation.getName());
 				}
 			}
 			return null;
@@ -116,9 +116,9 @@ public class OCLstdlibCSPreOrderVisitor extends AbstractOCLstdlibCSPreOrderVisit
 			Property pivotElement = PivotUtil.getPivot(Property.class, csElement);
 			if (pivotElement != null) {
 				pivotElement.setIsStatic(csElement.isStatic());
-				JvmType implementation = csElement.getImplementation();
+				JavaClassCS implementation = csElement.getImplementation();
 				if ((implementation != null) && !implementation.eIsProxy()) {
-					pivotElement.setImplementationClass(implementation.getIdentifier());
+					pivotElement.setImplementationClass(implementation.getName());
 				}
 			}
 			return null;

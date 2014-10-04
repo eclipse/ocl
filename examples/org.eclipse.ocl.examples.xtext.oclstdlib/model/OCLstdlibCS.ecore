@@ -13,9 +13,10 @@
     <details key="basecs" value="../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#/"/>
     <details key="essentialoclcs" value="../../org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCS.ecore#/"/>
   </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="JavaClassCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#//NamedElementCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="JavaImplementationCS" abstract="true"
       interface="true">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="implementation" eType="ecore:EClass ../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="implementation" eType="#//JavaClassCS"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LibClassCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#//ClassCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="metaTypeName" eType="#//MetaTypeName"

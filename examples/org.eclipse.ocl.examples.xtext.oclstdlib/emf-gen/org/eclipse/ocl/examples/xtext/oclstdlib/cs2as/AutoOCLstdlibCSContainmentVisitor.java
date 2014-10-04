@@ -16,6 +16,7 @@ import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.NewEssentialOCLCSContainmentVisitor;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaImplementationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibConstraintCS;
@@ -45,6 +46,10 @@ public class AutoOCLstdlibCSContainmentVisitor
         super(context);
         this.converter = context.getConverter();
         this.idResolver = converter.getMetaModelManager().getIdResolver();
+    }
+    
+    public @Nullable Continuation<?> visitJavaClassCS(@NonNull JavaClassCS self) {
+        throw new UnsupportedOperationException("visitJavaClassCS is not supported by " + getClass().getName());
     }
     
     public @Nullable Continuation<?> visitJavaImplementationCS(@NonNull JavaImplementationCS self) {

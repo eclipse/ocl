@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2014 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.oclstdlib.ui.contentassist.antlr.internal;
 
 // Hack: Use our own Lexer superclass by means of import. 
@@ -51,8 +61,8 @@ public class InternalOCLstdlibLexer extends Lexer {
     public static final int T__86=86;
     public static final int T__89=89;
     public static final int T__88=88;
-    public static final int RULE_LETTER_CHARACTER=11;
     public static final int RULE_ML_COMMENT=12;
+    public static final int RULE_LETTER_CHARACTER=11;
     public static final int T__71=71;
     public static final int T__72=72;
     public static final int T__70=70;

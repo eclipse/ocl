@@ -14,6 +14,7 @@ package org.eclipse.ocl.examples.xtext.oclstdlib.cs2as;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
@@ -29,6 +30,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS;
@@ -51,6 +53,11 @@ public class OCLstdlibCSContainmentVisitor extends AbstractOCLstdlibCSContainmen
 			return IdManager.METAMODEL;
 		}
 		return super.getPackageId(csElement);
+	}
+
+	@Override
+	public @Nullable Continuation<?> visitJavaClassCS(@NonNull JavaClassCS csElement) {
+		return null;
 	}
 
 	@Override

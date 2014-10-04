@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2014 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.oclstdlib.serializer;
 
 import com.google.inject.Inject;
@@ -774,7 +784,7 @@ public abstract class AbstractOCLstdlibSemanticSequencer extends EssentialOCLSem
 	 *         ownedType=TypedMultiplicityRefCS 
 	 *         invalidating?='invalidating'? 
 	 *         validating?='validating'? 
-	 *         implementation=[JvmType|SINGLE_QUOTED_STRING]? 
+	 *         implementation=[JavaClassCS|SINGLE_QUOTED_STRING]? 
 	 *         (ownedAnnotation+=AnnotationElementCS | ownedPrecondition+=PostCS | ownedPostcondition+=PreCS)*
 	 *     )
 	 */
@@ -794,7 +804,7 @@ public abstract class AbstractOCLstdlibSemanticSequencer extends EssentialOCLSem
 	 *         validating?='validating'? 
 	 *         invalidating?='invalidating'? 
 	 *         precedence=[Precedence|Name]? 
-	 *         implementation=[JvmType|SINGLE_QUOTED_STRING]? 
+	 *         implementation=[JavaClassCS|SINGLE_QUOTED_STRING]? 
 	 *         (ownedAnnotation+=AnnotationElementCS | ownedBodyExpression+=SpecificationCS | ownedPostcondition+=PostCS | ownedPrecondition+=PreCS)*
 	 *     )
 	 */
@@ -840,7 +850,7 @@ public abstract class AbstractOCLstdlibSemanticSequencer extends EssentialOCLSem
 	 *         static?='static'? 
 	 *         name=Name 
 	 *         ownedType=TypedMultiplicityRefCS 
-	 *         implementation=[JvmType|SINGLE_QUOTED_STRING]? 
+	 *         implementation=[JavaClassCS|SINGLE_QUOTED_STRING]? 
 	 *         ownedAnnotation+=AnnotationElementCS*
 	 *     )
 	 */

@@ -40,6 +40,10 @@ public abstract class AbstractExtendingOCLstdlibCSVisitor<R, C>
 		super(context);
 	}	
 
+	public @Nullable R visitJavaClassCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaClassCS object) {
+		return visitNamedElementCS(object);
+	}
+
 	public @Nullable R visitLibClassCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibClassCS object) {
 		return visitClassCS(object);
 	}

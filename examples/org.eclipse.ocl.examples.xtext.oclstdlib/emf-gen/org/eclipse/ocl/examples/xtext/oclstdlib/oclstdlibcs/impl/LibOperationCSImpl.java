@@ -21,11 +21,11 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.xtext.base.basecs.impl.OperationCSImpl;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaImplementationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.util.OCLstdlibCSVisitor;
-import org.eclipse.xtext.common.types.JvmType;
 
 /**
  * <!-- begin-user-doc -->
@@ -56,7 +56,7 @@ public class LibOperationCSImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected JvmType implementation;
+	protected JavaClassCS implementation;
 
 	/**
 	 * The cached value of the '{@link #getPrecedence() <em>Precedence</em>}' reference.
@@ -152,11 +152,11 @@ public class LibOperationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public JvmType getImplementation() {
+	public JavaClassCS getImplementation() {
 		if (implementation != null && implementation.eIsProxy())
 		{
 			InternalEObject oldImplementation = (InternalEObject)implementation;
-			implementation = (JvmType)eResolveProxy(oldImplementation);
+			implementation = (JavaClassCS)eResolveProxy(oldImplementation);
 			if (implementation != oldImplementation)
 			{
 				if (eNotificationRequired())
@@ -171,7 +171,8 @@ public class LibOperationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public JvmType basicGetImplementation() {
+	public JavaClassCS basicGetImplementation()
+	{
 		return implementation;
 	}
 
@@ -180,8 +181,9 @@ public class LibOperationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setImplementation(JvmType newImplementation) {
-		JvmType oldImplementation = implementation;
+	public void setImplementation(JavaClassCS newImplementation)
+	{
+		JavaClassCS oldImplementation = implementation;
 		implementation = newImplementation;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, OCLstdlibCSPackage.LIB_OPERATION_CS__IMPLEMENTATION, oldImplementation, implementation));
@@ -329,7 +331,7 @@ public class LibOperationCSImpl
 		switch (featureID)
 		{
 			case OCLstdlibCSPackage.LIB_OPERATION_CS__IMPLEMENTATION:
-				setImplementation((JvmType)newValue);
+				setImplementation((JavaClassCS)newValue);
 				return;
 			case OCLstdlibCSPackage.LIB_OPERATION_CS__PRECEDENCE:
 				setPrecedence((Precedence)newValue);
@@ -357,7 +359,7 @@ public class LibOperationCSImpl
 		switch (featureID)
 		{
 			case OCLstdlibCSPackage.LIB_OPERATION_CS__IMPLEMENTATION:
-				setImplementation((JvmType)null);
+				setImplementation((JavaClassCS)null);
 				return;
 			case OCLstdlibCSPackage.LIB_OPERATION_CS__PRECEDENCE:
 				setPrecedence((Precedence)null);

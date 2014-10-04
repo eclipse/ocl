@@ -13,7 +13,16 @@
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.scoping;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.xtext.base.scoping.AbstractJavaClassScope;
+import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLScopeProvider;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage;
+import org.eclipse.xtext.scoping.IScope;
 
 /**
  * This class contains custom scoping description.
@@ -24,4 +33,28 @@ import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLScopeProv
  */
 public class OCLstdlibScopeProvider extends EssentialOCLScopeProvider
 {
+	@Override
+	public IScope getScope(EObject context, EReference reference) {
+		if (context == null) {
+			return IScope.NULLSCOPE;
+		}
+		Resource csResource = context.eResource();
+		if (csResource == null) {
+			return IScope.NULLSCOPE;
+		}
+		EClass eReferenceType = reference.getEReferenceType();
+		if (eReferenceType == OCLstdlibCSPackage.Literals.JAVA_CLASS_CS) {
+			if (csResource instanceof BaseCSResource) {
+				AbstractJavaClassScope adapter = JavaClassScope.findAdapter((BaseCSResource)csResource);
+				if (adapter == null) {
+					// Should already be there so this fall-back classLoader is not used.
+					@SuppressWarnings("null")@NonNull ClassLoader classLoader = csResource.getClass().getClassLoader();
+					adapter = JavaClassScope.getAdapter((BaseCSResource)csResource, classLoader);
+				}
+				return adapter;
+			}
+			return IScope.NULLSCOPE;
+		}
+		return super.getScope(context, reference);
+	}
 }

@@ -1625,7 +1625,7 @@ ruleLibIterationCS returns [EObject current=null]
         }
 	otherlv_21=RULE_SINGLE_QUOTED_STRING
 	{
-		newLeafNode(otherlv_21, grammarAccess.getLibIterationCSAccess().getImplementationJvmTypeCrossReference_13_1_0()); 
+		newLeafNode(otherlv_21, grammarAccess.getLibIterationCSAccess().getImplementationJavaClassCSCrossReference_13_1_0()); 
 	}
 
 )
@@ -2247,7 +2247,7 @@ ruleLibOperationCS returns [EObject current=null]
         }
 	otherlv_17=RULE_SINGLE_QUOTED_STRING
 	{
-		newLeafNode(otherlv_17, grammarAccess.getLibOperationCSAccess().getImplementationJvmTypeCrossReference_12_1_0()); 
+		newLeafNode(otherlv_17, grammarAccess.getLibOperationCSAccess().getImplementationJavaClassCSCrossReference_12_1_0()); 
 	}
 
 )
@@ -2848,7 +2848,7 @@ ruleLibPropertyCS returns [EObject current=null]
         }
 	otherlv_6=RULE_SINGLE_QUOTED_STRING
 	{
-		newLeafNode(otherlv_6, grammarAccess.getLibPropertyCSAccess().getImplementationJvmTypeCrossReference_5_1_0()); 
+		newLeafNode(otherlv_6, grammarAccess.getLibPropertyCSAccess().getImplementationJavaClassCSCrossReference_5_1_0()); 
 	}
 
 )

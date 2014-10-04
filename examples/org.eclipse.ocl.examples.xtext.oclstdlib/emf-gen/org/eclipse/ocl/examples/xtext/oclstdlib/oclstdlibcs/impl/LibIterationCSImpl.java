@@ -26,11 +26,11 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.xtext.base.basecs.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.impl.OperationCSImpl;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaImplementationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.util.OCLstdlibCSVisitor;
-import org.eclipse.xtext.common.types.JvmType;
 
 /**
  * <!-- begin-user-doc -->
@@ -61,7 +61,7 @@ public class LibIterationCSImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected JvmType implementation;
+	protected JavaClassCS implementation;
 
 	/**
 	 * The cached value of the '{@link #getOwnedIterator() <em>Owned Iterator</em>}' containment reference list.
@@ -147,11 +147,11 @@ public class LibIterationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public JvmType getImplementation() {
+	public JavaClassCS getImplementation() {
 		if (implementation != null && implementation.eIsProxy())
 		{
 			InternalEObject oldImplementation = (InternalEObject)implementation;
-			implementation = (JvmType)eResolveProxy(oldImplementation);
+			implementation = (JavaClassCS)eResolveProxy(oldImplementation);
 			if (implementation != oldImplementation)
 			{
 				if (eNotificationRequired())
@@ -166,7 +166,8 @@ public class LibIterationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public JvmType basicGetImplementation() {
+	public JavaClassCS basicGetImplementation()
+	{
 		return implementation;
 	}
 
@@ -175,8 +176,9 @@ public class LibIterationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setImplementation(JvmType newImplementation) {
-		JvmType oldImplementation = implementation;
+	public void setImplementation(JavaClassCS newImplementation)
+	{
+		JavaClassCS oldImplementation = implementation;
 		implementation = newImplementation;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, OCLstdlibCSPackage.LIB_ITERATION_CS__IMPLEMENTATION, oldImplementation, implementation));
@@ -307,7 +309,7 @@ public class LibIterationCSImpl
 		switch (featureID)
 		{
 			case OCLstdlibCSPackage.LIB_ITERATION_CS__IMPLEMENTATION:
-				setImplementation((JvmType)newValue);
+				setImplementation((JavaClassCS)newValue);
 				return;
 			case OCLstdlibCSPackage.LIB_ITERATION_CS__OWNED_ITERATOR:
 				getOwnedIterator().clear();
@@ -337,7 +339,7 @@ public class LibIterationCSImpl
 		switch (featureID)
 		{
 			case OCLstdlibCSPackage.LIB_ITERATION_CS__IMPLEMENTATION:
-				setImplementation((JvmType)null);
+				setImplementation((JavaClassCS)null);
 				return;
 			case OCLstdlibCSPackage.LIB_ITERATION_CS__OWNED_ITERATOR:
 				getOwnedIterator().clear();

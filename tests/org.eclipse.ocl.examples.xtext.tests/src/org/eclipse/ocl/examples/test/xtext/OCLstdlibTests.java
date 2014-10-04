@@ -52,7 +52,7 @@ import org.eclipse.ocl.examples.pivot.utilities.AS2Moniker;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
-import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingService;
+import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.JavaClassScope;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 
 import com.google.common.collect.Iterables;
@@ -188,7 +188,6 @@ public class OCLstdlibTests extends XtextTestCase
 
 	@Override
 	protected void setUp() throws Exception {
-		EssentialOCLLinkingService.DEBUG_RETRY = true;
 		super.setUp();
 		metaModelManager = new MetaModelManager();
 	}
@@ -261,6 +260,7 @@ public class OCLstdlibTests extends XtextTestCase
 		new ProjectMap().initializeResourceSet(resourceSet);
 		URI libraryURI = URI.createPlatformResourceURI("org.eclipse.ocl.examples.library/model/OCL-2.5.oclstdlib", true);
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(libraryURI);
+		JavaClassScope.getAdapter(xtextResource, getClass().getClassLoader());
 		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
 		xtextResource.load(null);
 		CS2PivotResourceAdapter adapter = xtextResource.findCS2ASAdapter();

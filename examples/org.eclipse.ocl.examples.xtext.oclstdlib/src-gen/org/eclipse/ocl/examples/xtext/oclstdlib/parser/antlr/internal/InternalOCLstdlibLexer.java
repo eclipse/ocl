@@ -51,8 +51,8 @@ public class InternalOCLstdlibLexer extends Lexer {
     public static final int T__86=86;
     public static final int T__89=89;
     public static final int T__88=88;
-    public static final int RULE_LETTER_CHARACTER=11;
     public static final int RULE_ML_COMMENT=12;
+    public static final int RULE_LETTER_CHARACTER=11;
     public static final int T__71=71;
     public static final int T__72=72;
     public static final int T__70=70;

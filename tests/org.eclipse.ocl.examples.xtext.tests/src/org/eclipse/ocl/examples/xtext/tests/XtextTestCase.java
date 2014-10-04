@@ -88,6 +88,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SquareBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.JavaClassScope;
 import org.eclipse.xtext.util.EmfFormatter;
 
 public class XtextTestCase extends PivotTestCase
@@ -311,7 +312,9 @@ public class XtextTestCase extends PivotTestCase
 		try {
 			MetaModelManagerResourceSetAdapter.getAdapter(DomainUtil.nonNullState(resourceSet), metaModelManager);
 			URI libraryURI = getProjectFileURI(fileName);
-			BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(libraryURI);
+			@SuppressWarnings("null")@NonNull BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(libraryURI);
+			@SuppressWarnings("null")@NonNull ClassLoader classLoader = getClass().getClassLoader();
+			JavaClassScope.getAdapter(xtextResource, classLoader);
 			InputStream inputStream = new URIConverter.ReadableInputStream(testFile, "UTF-8");
 			xtextResource.load(inputStream, null);
 			Bag<String> actualErrorMessages = new BagImpl<String>();

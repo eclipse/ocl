@@ -13,12 +13,18 @@ package org.eclipse.ocl.examples.test.xtext;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.eclipse.core.resources.ICommand;
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IProjectDescription;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -29,6 +35,8 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.oclinecore.ui.OCLinEcoreUiModule;
 import org.eclipse.ocl.examples.xtext.oclinecore.ui.internal.OCLinEcoreActivator;
+import org.eclipse.ocl.examples.xtext.oclstdlib.ui.OCLstdlibUiModule;
+import org.eclipse.ocl.examples.xtext.oclstdlib.ui.internal.OCLstdlibActivator;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
@@ -81,6 +89,11 @@ public class CompletionProposalTests extends XtextTestCase
 				return false;
 			}
 			return true;
+		}
+
+		@Override
+		public String toString() {
+			return name;
 		}	
 	}
 	
@@ -122,7 +135,7 @@ public class CompletionProposalTests extends XtextTestCase
 	public static void assertExcludes(ICompletionProposal[] actualProposals, IReferenceCompletionProposal expectedProposal) {
 		for (ICompletionProposal actualProposal : actualProposals) {
 			if (expectedProposal.covers(actualProposal)) {
-				fail("Unexpected completion proposal" + expectedProposal);
+				fail("Unexpected completion proposal " + expectedProposal);
 			}
 		}
 	}
@@ -133,37 +146,66 @@ public class CompletionProposalTests extends XtextTestCase
 				return;
 			}
 		}
-		fail("Missing completion proposal" + expectedProposal);
+		fail("Missing completion proposal " + expectedProposal);
 	}
 
 	protected XtextContentAssistProcessor contentAssistProcessor = null;
 	protected XtextEditor editor = null;
 	
-	protected FileEditorInput createEcoreFileEditorInput(String projectName, String fileName, String testDocument)throws IOException, CoreException {
+	protected @NonNull FileEditorInput createEcoreFileEditorInput(@NonNull IContainer container, @NonNull String fileName, @NonNull String testDocument)throws IOException, CoreException {
 		OCL ocl0 = OCL.newInstance();
 		MetaModelManager metaModelManager0 = ocl0.getMetaModelManager();
 		String ecoreString = createEcoreString(metaModelManager0, fileName, testDocument, true);
 		InputStream inputStream = new URIConverter.ReadableInputStream(ecoreString, "UTF-8");
-		FileEditorInput fileEditorInput = createFileEditorInput(projectName, fileName, inputStream);
+		FileEditorInput fileEditorInput = createFileEditorInput(container, fileName, inputStream);
 		metaModelManager0.dispose();
 		return fileEditorInput;
 	}
-
-	protected FileEditorInput createFileEditorInput(String projectName, String testFile, InputStream inputStream) throws CoreException {
-		IProject project = createProject(projectName);
-		IFile file1 = project.getFile(testFile);
-		file1.create(inputStream, true, null);
-		return new FileEditorInput(file1);
+	
+	protected @NonNull IFile createFile(@NonNull IContainer container, @NonNull String fileName, @NonNull String fileContents) throws IOException, CoreException {
+		InputStream inputStream = new URIConverter.ReadableInputStream(fileContents, "UTF-8");
+		IFile iFile = container.getFile(new Path(fileName));
+		if (iFile.exists()) {
+			iFile.delete(true, null);
+		}
+		iFile.create(inputStream, true, null);
+		return iFile;
 	}
 
-	protected IProject createProject(String projectName) throws CoreException {
+	protected @NonNull FileEditorInput createFileEditorInput(@NonNull IContainer container, @NonNull String fileName, @NonNull InputStream inputStream) throws CoreException {
+		IFile file1 = container.getFile(new Path(fileName));
+		file1.create(inputStream, true, null);
+		return new FileEditorInput(file1) {};	// Ensure classloader is here
+	}
+
+	protected @NonNull IFolder createFolder(@NonNull IContainer container, @NonNull String folderName) throws CoreException {
+		IFolder folder = container.getFolder(new Path(folderName));
+		if (!folder.exists()) {
+			folder.create(true,  false,  null);
+		}
+		return folder;
+	}
+
+	protected @NonNull IProject createProject(@NonNull String projectName) throws CoreException {
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		IWorkspaceRoot root = workspace.getRoot();
 		IProject project = root.getProject(projectName);
 		if (!project.exists()) {
 			project.create(null);
 		}
-		project.open(null);
+		if (!project.isOpen()) {
+			project.open(null);
+		}
+		IProjectDescription description = project.getDescription();
+		ICommand command1 = description.newCommand();
+		command1.setBuilderName("org.eclipse.jdt.core.javabuilder");
+		ICommand command2 = description.newCommand();
+		command2.setBuilderName("org.eclipse.pde.ManifestBuilder");
+		ICommand command3 = description.newCommand();
+		command3.setBuilderName("org.eclipse.pde.SchemaBuilder");
+		description.setBuildSpec(new ICommand[]{command1, command2, command3});
+		description.setNatureIds(new String[]{"org.eclipse.pde.PluginNature", "org.eclipse.jdt.core.javanature"});
+		project.setDescription(description, null);
 		return project;
 	}
 
@@ -215,10 +257,33 @@ public class CompletionProposalTests extends XtextTestCase
 	}
 
 	protected void doSetUp(@NonNull String editorId, Injector injector, @NonNull String fileName, @NonNull String initialContent)
-			throws CoreException, PartInitException {
+			throws CoreException, PartInitException, IOException {
 		contentAssistProcessor = injector.getInstance(XtextContentAssistProcessor.class);
 		InputStream inputStream = new URIConverter.ReadableInputStream(initialContent, "UTF-8");
-		FileEditorInput fileEditorInput = createFileEditorInput("test", fileName, inputStream);
+		IProject project = createProject("CompletionProposalTests");	
+		createFile(createFolder(project, "META-INF"), "MANIFEST.MF",
+			"Manifest-Version: 1.0\n"+
+			"Bundle-ManifestVersion: 2\n"+
+			"Bundle-Name: CompletionProposalTests\n"+
+			"Bundle-SymbolicName: CompletionProposalTests\n"+
+			"Bundle-Version: 1.0.0.qualifier\n"+
+			"Bundle-RequiredExecutionEnvironment: JavaSE-1.6\n"+
+			"Require-Bundle: org.eclipse.ocl.examples.library\n"+
+			"");
+		createFile(project, ".classpath",
+			"<classpath>\n" + 
+			"			<classpathentry kind=\"con\" path=\"org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5\"/>\n" + 
+			"			<classpathentry kind=\"con\" path=\"org.eclipse.pde.core.requiredPlugins\"/>\n" + 
+			"			<classpathentry kind=\"src\" path=\"src\"/>\n" + 
+			"			<classpathentry kind=\"output\" path=\"bin\"/>\n" + 
+			"		</classpath>\n"+
+			"");
+		createFile(createFolder(project, "src"), "Test.java",
+			"import org.eclipse.emf.ecore.provider.*;\n"+
+			"public class Test {}\n"+
+			"");
+		project.build(IncrementalProjectBuilder.FULL_BUILD, null);
+		FileEditorInput fileEditorInput = createFileEditorInput(project, fileName, inputStream);
 		IWorkbench workbench = PlatformUI.getWorkbench();
 		IWorkbenchWindow activeWorkbenchWindow = workbench.getActiveWorkbenchWindow();
 		IWorkbenchPage page = activeWorkbenchWindow.getActivePage();
@@ -235,5 +300,55 @@ public class CompletionProposalTests extends XtextTestCase
 		doTestEditor("package p : p = 'p' { class C { property s:String; invariant I:self.$}}",
 			new IReferenceCompletionProposal[]{sNameProposal}, null/*new IReferenceCompletionProposal[]{selfKeywordProposal}*/);
 		doTearDown(editor);
+	}
+
+	public void testEditor_OCLstdlib_Completions() throws Exception {
+		Injector injector = OCLstdlibActivator.getInstance().getInjector(OCLstdlibActivator.ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_OCLSTDLIB_OCLSTDLIB);
+		doSetUp(OCLstdlibUiModule.EDITOR_ID, injector, "completion.oclstdlib",
+			"import 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib';\n" +
+			"library ocl : ocl = 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib' {\n" +
+			"	type Complex : PrimitiveType {\n" +
+			"	}\n" +
+			"}';\n");
+		try {
+			IReferenceCompletionProposal proposal1a = new ReferenceConfigurableCompletionProposal("PrimitiveType");
+			IReferenceCompletionProposal proposal1b = new ReferenceConfigurableCompletionProposal("{");
+			doTestEditor(
+				"import 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib';\n" +
+				"library ocl : ocl = 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib' {\n" +
+				"	type Complex : Primitive$ {\n" +
+				"	}\n" +
+				"}';\n",
+				new IReferenceCompletionProposal[]{proposal1a, proposal1b}, null);
+			//
+			//	Completion proposal that probably resolves to a Jar entry.
+			//
+			IReferenceCompletionProposal proposal2a = new ReferenceConfigurableCompletionProposal("org.eclipse.emf.common.util.Reflect");
+			IReferenceCompletionProposal proposal2b = new ReferenceConfigurableCompletionProposal("org.eclipse.emf.common.util.ResourceLocator");
+			doTestEditor(
+				"import 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib';\n" +
+				"library ocl : ocl = 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib' {\n" +
+				"	type Complex : PrimitiveType {\n" +
+				"		operation testing() : String => 'org.eclipse.emf.common.util.R$';\n" +
+				"	}\n" +
+				"}';\n",
+				new IReferenceCompletionProposal[]{proposal2a, proposal2b}, null);
+			//
+			//	Completion proposal that probably resolves to a folder entry.
+			//
+			IReferenceCompletionProposal proposal3a = new ReferenceConfigurableCompletionProposal("org.eclipse.ocl.examples.domain.ids.impl.OclInvalidTypeIdImpl");
+			IReferenceCompletionProposal proposal3b = new ReferenceConfigurableCompletionProposal("org.eclipse.ocl.examples.domain.ids.impl.OclVoidTypeIdImpl");
+			doTestEditor(
+				"import 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib';\n" +
+				"library ocl : ocl = 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib' {\n" +
+				"	type Complex : PrimitiveType {\n" +
+				"		operation testing() : String => 'org.eclipse.ocl.examples.domain.ids.impl.O$';\n" +
+				"	}\n" +
+				"}';\n",
+				new IReferenceCompletionProposal[]{proposal3a, proposal3b}, null);
+		}
+		finally {
+			doTearDown(editor);
+		}
 	}
 }

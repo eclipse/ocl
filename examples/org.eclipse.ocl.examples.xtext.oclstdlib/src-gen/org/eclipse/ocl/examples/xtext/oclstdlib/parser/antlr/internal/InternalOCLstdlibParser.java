@@ -4707,7 +4707,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                     otherlv_21=(Token)match(input,RULE_SINGLE_QUOTED_STRING,FollowSets000.FOLLOW_RULE_SINGLE_QUOTED_STRING_in_ruleLibIterationCS3482); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      		newLeafNode(otherlv_21, grammarAccess.getLibIterationCSAccess().getImplementationJvmTypeCrossReference_13_1_0()); 
+                      		newLeafNode(otherlv_21, grammarAccess.getLibIterationCSAccess().getImplementationJavaClassCSCrossReference_13_1_0()); 
                       	
                     }
 
@@ -6424,7 +6424,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                     otherlv_17=(Token)match(input,RULE_SINGLE_QUOTED_STRING,FollowSets000.FOLLOW_RULE_SINGLE_QUOTED_STRING_in_ruleLibOperationCS4750); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      		newLeafNode(otherlv_17, grammarAccess.getLibOperationCSAccess().getImplementationJvmTypeCrossReference_12_1_0()); 
+                      		newLeafNode(otherlv_17, grammarAccess.getLibOperationCSAccess().getImplementationJavaClassCSCrossReference_12_1_0()); 
                       	
                     }
 
@@ -8055,7 +8055,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                     otherlv_6=(Token)match(input,RULE_SINGLE_QUOTED_STRING,FollowSets000.FOLLOW_RULE_SINGLE_QUOTED_STRING_in_ruleLibPropertyCS5897); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      		newLeafNode(otherlv_6, grammarAccess.getLibPropertyCSAccess().getImplementationJvmTypeCrossReference_5_1_0()); 
+                      		newLeafNode(otherlv_6, grammarAccess.getLibPropertyCSAccess().getImplementationJavaClassCSCrossReference_5_1_0()); 
                       	
                     }
 

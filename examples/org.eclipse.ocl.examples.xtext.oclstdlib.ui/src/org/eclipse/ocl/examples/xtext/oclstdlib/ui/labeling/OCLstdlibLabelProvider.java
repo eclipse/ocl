@@ -13,6 +13,7 @@ package org.eclipse.ocl.examples.xtext.oclstdlib.ui.labeling;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.labeling.BaseLabelProvider;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaClassCS;
 
 import com.google.inject.Inject;
 
@@ -27,15 +28,8 @@ public class OCLstdlibLabelProvider extends BaseLabelProvider {
 	public OCLstdlibLabelProvider(@NonNull AdapterFactoryLabelProvider delegate) {
 		super(delegate);
 	}
-
-//	@Override
-//	protected void appendMultiplicity(StringBuilder s, TypedElementCS ele) {}	
-
-/*	protected String text(LibClassCS ele) {
-		StringBuilder s = new StringBuilder();
-		appendName(s, ele);
-		appendTemplateSignature(s, ele);
-		appendSuperTypes(s, ele.getOwnedConformsTo());
-		return s.toString();
-	} */
+	 
+    String image(JavaClassCS ele) {
+      return "/org.eclipse.ocl.examples.xtext.oclstdlib.ui/icons/class_obj.gif";
+    }	 
 }

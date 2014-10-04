@@ -25,15 +25,14 @@ import org.eclipse.ocl.examples.xtext.base.cs2as.AmbiguitiesAdapter;
 import org.eclipse.ocl.examples.xtext.base.cs2as.ExceptionAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.BaseScopeProvider;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
-import org.eclipse.xtext.common.types.TypesPackage;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.linking.impl.DefaultLinkingService;
 import org.eclipse.xtext.linking.impl.IllegalNodeException;
+import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.nodemodel.ILeafNode;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.resource.IEObjectDescription;
-import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.IScopeProvider;
 
@@ -46,10 +45,10 @@ public class EssentialOCLLinkingService extends DefaultLinkingService
 	private static int depth = -1;
 	
 	@Inject
-	private IValueConverterService valueConverterService;
-
+	private IQualifiedNameConverter qualifiedNameConverter;
+	
 	@Inject
-	private IGlobalScopeProvider globalScopeProvider;
+	private IValueConverterService valueConverterService;
 	
 	@Override
 	public List<EObject> getLinkedObjects(EObject context, EReference ref, INode node) throws IllegalNodeException {
@@ -63,25 +62,17 @@ public class EssentialOCLLinkingService extends DefaultLinkingService
 				}
 				return Collections.emptyList();
 			}
-			IScope scope = null;
-			String uri = TypesPackage.eNS_URI;
-//			if (ref.getEReferenceType().getEPackage() == TypesPackage.eINSTANCE) {	// This was costly, so don't inflict it when not needed
-			if (ref.getEReferenceType().getEPackage().getNsURI().equals(uri)) {
-				scope = globalScopeProvider.getScope(context.eResource(), ref, null);
-			}
-			else {
-				scope = getScope(context, ref);
-				if (traceLookup) {
-//					EObject target = ((ScopeView)scope).getTarget();
-//					String inString = target instanceof ElementCS ? ((ElementCS)target).getSignature() : target.toString();
-//					BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " in " + inString);
-					BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text);
-				}
+			IScope scope = getScope(context, ref);
+			if (traceLookup) {
+//				EObject target = ((ScopeView)scope).getTarget();
+//				String inString = target instanceof ElementCS ? ((ElementCS)target).getSignature() : target.toString();
+//				BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " in " + inString);
+				BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text);
 			}
 			if (scope == null) {
 				return Collections.emptyList();
 			}
-			QualifiedName qualifiedName = QualifiedName.create(text);				// FIXME use IQualifiedNameConverter
+			QualifiedName qualifiedName = qualifiedNameConverter.toQualifiedName(text);
 			List<EObject> linkedObjects = lookUp(scope, qualifiedName);
 			if ((linkedObjects.size() <= 0) && text.startsWith("_")) {				// Deprecated compatibility
 				linkedObjects = lookUp(scope, QualifiedName.create(text.substring(1)));

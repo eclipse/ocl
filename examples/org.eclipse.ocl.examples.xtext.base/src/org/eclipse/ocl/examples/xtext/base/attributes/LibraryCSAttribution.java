@@ -41,8 +41,9 @@ import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
 import org.eclipse.ocl.examples.xtext.base.basecs.LibraryCS;
-import org.eclipse.ocl.examples.xtext.base.cs2as.ValidationDiagnostic;
 import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot.UnresolvedProxyMessageProvider;
+import org.eclipse.ocl.examples.xtext.base.cs2as.ValidationDiagnostic;
+import org.eclipse.ocl.examples.xtext.base.scoping.AbstractJavaClassScope;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.xtext.nodemodel.INode;
@@ -128,7 +129,12 @@ public class LibraryCSAttribution extends AbstractAttribution implements Unresol
 			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 			MetaModelManagerResourceSetAdapter.getAdapter(csResourceSet, metaModelManager);
 			try {
-				Resource importedResource = csResourceSet.getResource(uri2, true);
+				Resource importedResource = csResourceSet.createResource(uri2);
+				AbstractJavaClassScope outerClassScope = AbstractJavaClassScope.findAdapter(csResource);
+				if ((outerClassScope != null) && (importedResource instanceof BaseCSResource)) {
+					outerClassScope.getAdapter((BaseCSResource)importedResource);
+				}
+				importedResource.load(null);
 				List<EObject> contents = importedResource.getContents();
 				if (contents.size() > 0) {
 					for (EObject content : contents) {
