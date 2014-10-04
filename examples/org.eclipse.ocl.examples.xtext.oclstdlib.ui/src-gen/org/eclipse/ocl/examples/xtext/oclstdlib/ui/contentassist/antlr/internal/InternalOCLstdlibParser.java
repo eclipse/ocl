@@ -1,13 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2014 E.D.Willink and others.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *     E.D.Willink - initial API and implementation
- *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.oclstdlib.ui.contentassist.antlr.internal; 
 
 import java.io.InputStream;
@@ -54806,23 +54796,23 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
             // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:18874:1: ( RULE_SINGLE_QUOTED_STRING )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getLibIterationCSAccess().getImplementationJvmTypeCrossReference_13_1_0()); 
+               before(grammarAccess.getLibIterationCSAccess().getImplementationJavaClassCSCrossReference_13_1_0()); 
             }
             // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:18875:1: ( RULE_SINGLE_QUOTED_STRING )
             // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:18876:1: RULE_SINGLE_QUOTED_STRING
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getLibIterationCSAccess().getImplementationJvmTypeSINGLE_QUOTED_STRINGTerminalRuleCall_13_1_0_1()); 
+               before(grammarAccess.getLibIterationCSAccess().getImplementationJavaClassCSSINGLE_QUOTED_STRINGTerminalRuleCall_13_1_0_1()); 
             }
             match(input,RULE_SINGLE_QUOTED_STRING,FollowSets001.FOLLOW_RULE_SINGLE_QUOTED_STRING_in_rule__LibIterationCS__ImplementationAssignment_13_138323); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getLibIterationCSAccess().getImplementationJvmTypeSINGLE_QUOTED_STRINGTerminalRuleCall_13_1_0_1()); 
+               after(grammarAccess.getLibIterationCSAccess().getImplementationJavaClassCSSINGLE_QUOTED_STRINGTerminalRuleCall_13_1_0_1()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getLibIterationCSAccess().getImplementationJvmTypeCrossReference_13_1_0()); 
+               after(grammarAccess.getLibIterationCSAccess().getImplementationJavaClassCSCrossReference_13_1_0()); 
             }
 
             }
@@ -55905,23 +55895,23 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
             // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:19263:1: ( RULE_SINGLE_QUOTED_STRING )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getLibOperationCSAccess().getImplementationJvmTypeCrossReference_12_1_0()); 
+               before(grammarAccess.getLibOperationCSAccess().getImplementationJavaClassCSCrossReference_12_1_0()); 
             }
             // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:19264:1: ( RULE_SINGLE_QUOTED_STRING )
             // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:19265:1: RULE_SINGLE_QUOTED_STRING
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getLibOperationCSAccess().getImplementationJvmTypeSINGLE_QUOTED_STRINGTerminalRuleCall_12_1_0_1()); 
+               before(grammarAccess.getLibOperationCSAccess().getImplementationJavaClassCSSINGLE_QUOTED_STRINGTerminalRuleCall_12_1_0_1()); 
             }
             match(input,RULE_SINGLE_QUOTED_STRING,FollowSets001.FOLLOW_RULE_SINGLE_QUOTED_STRING_in_rule__LibOperationCS__ImplementationAssignment_12_139112); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getLibOperationCSAccess().getImplementationJvmTypeSINGLE_QUOTED_STRINGTerminalRuleCall_12_1_0_1()); 
+               after(grammarAccess.getLibOperationCSAccess().getImplementationJavaClassCSSINGLE_QUOTED_STRINGTerminalRuleCall_12_1_0_1()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getLibOperationCSAccess().getImplementationJvmTypeCrossReference_12_1_0()); 
+               after(grammarAccess.getLibOperationCSAccess().getImplementationJavaClassCSCrossReference_12_1_0()); 
             }
 
             }
@@ -56956,23 +56946,23 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
             // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:19620:1: ( RULE_SINGLE_QUOTED_STRING )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getLibPropertyCSAccess().getImplementationJvmTypeCrossReference_5_1_0()); 
+               before(grammarAccess.getLibPropertyCSAccess().getImplementationJavaClassCSCrossReference_5_1_0()); 
             }
             // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:19621:1: ( RULE_SINGLE_QUOTED_STRING )
             // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:19622:1: RULE_SINGLE_QUOTED_STRING
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getLibPropertyCSAccess().getImplementationJvmTypeSINGLE_QUOTED_STRINGTerminalRuleCall_5_1_0_1()); 
+               before(grammarAccess.getLibPropertyCSAccess().getImplementationJavaClassCSSINGLE_QUOTED_STRINGTerminalRuleCall_5_1_0_1()); 
             }
             match(input,RULE_SINGLE_QUOTED_STRING,FollowSets001.FOLLOW_RULE_SINGLE_QUOTED_STRING_in_rule__LibPropertyCS__ImplementationAssignment_5_139846); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getLibPropertyCSAccess().getImplementationJvmTypeSINGLE_QUOTED_STRINGTerminalRuleCall_5_1_0_1()); 
+               after(grammarAccess.getLibPropertyCSAccess().getImplementationJavaClassCSSINGLE_QUOTED_STRINGTerminalRuleCall_5_1_0_1()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getLibPropertyCSAccess().getImplementationJvmTypeCrossReference_5_1_0()); 
+               after(grammarAccess.getLibPropertyCSAccess().getImplementationJavaClassCSCrossReference_5_1_0()); 
             }
 
             }

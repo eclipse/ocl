@@ -18871,12 +18871,12 @@ rule__LibIterationCS__ImplementationAssignment_13_1
     }
 :
 (
-{ before(grammarAccess.getLibIterationCSAccess().getImplementationJvmTypeCrossReference_13_1_0()); }
+{ before(grammarAccess.getLibIterationCSAccess().getImplementationJavaClassCSCrossReference_13_1_0()); }
 (
-{ before(grammarAccess.getLibIterationCSAccess().getImplementationJvmTypeSINGLE_QUOTED_STRINGTerminalRuleCall_13_1_0_1()); }
-	RULE_SINGLE_QUOTED_STRING{ after(grammarAccess.getLibIterationCSAccess().getImplementationJvmTypeSINGLE_QUOTED_STRINGTerminalRuleCall_13_1_0_1()); }
+{ before(grammarAccess.getLibIterationCSAccess().getImplementationJavaClassCSSINGLE_QUOTED_STRINGTerminalRuleCall_13_1_0_1()); }
+	RULE_SINGLE_QUOTED_STRING{ after(grammarAccess.getLibIterationCSAccess().getImplementationJavaClassCSSINGLE_QUOTED_STRINGTerminalRuleCall_13_1_0_1()); }
 )
-{ after(grammarAccess.getLibIterationCSAccess().getImplementationJvmTypeCrossReference_13_1_0()); }
+{ after(grammarAccess.getLibIterationCSAccess().getImplementationJavaClassCSCrossReference_13_1_0()); }
 )
 
 ;
@@ -19260,12 +19260,12 @@ rule__LibOperationCS__ImplementationAssignment_12_1
     }
 :
 (
-{ before(grammarAccess.getLibOperationCSAccess().getImplementationJvmTypeCrossReference_12_1_0()); }
+{ before(grammarAccess.getLibOperationCSAccess().getImplementationJavaClassCSCrossReference_12_1_0()); }
 (
-{ before(grammarAccess.getLibOperationCSAccess().getImplementationJvmTypeSINGLE_QUOTED_STRINGTerminalRuleCall_12_1_0_1()); }
-	RULE_SINGLE_QUOTED_STRING{ after(grammarAccess.getLibOperationCSAccess().getImplementationJvmTypeSINGLE_QUOTED_STRINGTerminalRuleCall_12_1_0_1()); }
+{ before(grammarAccess.getLibOperationCSAccess().getImplementationJavaClassCSSINGLE_QUOTED_STRINGTerminalRuleCall_12_1_0_1()); }
+	RULE_SINGLE_QUOTED_STRING{ after(grammarAccess.getLibOperationCSAccess().getImplementationJavaClassCSSINGLE_QUOTED_STRINGTerminalRuleCall_12_1_0_1()); }
 )
-{ after(grammarAccess.getLibOperationCSAccess().getImplementationJvmTypeCrossReference_12_1_0()); }
+{ after(grammarAccess.getLibOperationCSAccess().getImplementationJavaClassCSCrossReference_12_1_0()); }
 )
 
 ;
@@ -19617,12 +19617,12 @@ rule__LibPropertyCS__ImplementationAssignment_5_1
     }
 :
 (
-{ before(grammarAccess.getLibPropertyCSAccess().getImplementationJvmTypeCrossReference_5_1_0()); }
+{ before(grammarAccess.getLibPropertyCSAccess().getImplementationJavaClassCSCrossReference_5_1_0()); }
 (
-{ before(grammarAccess.getLibPropertyCSAccess().getImplementationJvmTypeSINGLE_QUOTED_STRINGTerminalRuleCall_5_1_0_1()); }
-	RULE_SINGLE_QUOTED_STRING{ after(grammarAccess.getLibPropertyCSAccess().getImplementationJvmTypeSINGLE_QUOTED_STRINGTerminalRuleCall_5_1_0_1()); }
+{ before(grammarAccess.getLibPropertyCSAccess().getImplementationJavaClassCSSINGLE_QUOTED_STRINGTerminalRuleCall_5_1_0_1()); }
+	RULE_SINGLE_QUOTED_STRING{ after(grammarAccess.getLibPropertyCSAccess().getImplementationJavaClassCSSINGLE_QUOTED_STRINGTerminalRuleCall_5_1_0_1()); }
 )
-{ after(grammarAccess.getLibPropertyCSAccess().getImplementationJvmTypeCrossReference_5_1_0()); }
+{ after(grammarAccess.getLibPropertyCSAccess().getImplementationJavaClassCSCrossReference_5_1_0()); }
 )
 
 ;

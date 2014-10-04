@@ -19,7 +19,6 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.ui.internal.OCLstdlibActivator;
 import org.eclipse.ocl.examples.xtext.oclstdlib.ui.refactoring.OCLstdlibReferenceUpdater;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.AbstractElement;
-import org.eclipse.xtext.common.types.access.jdt.IJavaProjectProvider;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.FollowElement;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.ParserBasedContentAssistContextFactory;
 
@@ -50,33 +49,6 @@ public class OCLstdlibUiModule extends AbstractOCLstdlibUiModule
 	@SuppressWarnings("restriction")
 	public Class<? extends org.eclipse.xtext.ui.refactoring.IReferenceUpdater> bindIReferenceUpdater() {
 		return OCLstdlibReferenceUpdater.class;
-	}
-	
-	@Override
-	public Class<? extends IJavaProjectProvider> bindIJavaProjectProvider() {
-		return NonXtextResourceSetBasedProjectProvider.class;
-	}
-
-	@Override
-	@SuppressWarnings("restriction")
-	public Class<? extends org.eclipse.xtext.common.types.access.IJvmTypeProvider.Factory> bindIJvmTypeProvider$Factory() {
-		if (USE_RUNTIME_CONFIGURATION) {
-			return org.eclipse.xtext.common.types.access.ClasspathTypeProviderFactory.class;
-		}
-		else {
-			return super.bindIJvmTypeProvider$Factory();
-		}
-	}
-
-	@Override
-	@SuppressWarnings("restriction")
-	public Class<? extends org.eclipse.xtext.common.types.xtext.AbstractTypeScopeProvider> bindAbstractTypeScopeProvider() {
-		if (USE_RUNTIME_CONFIGURATION) {
-			return org.eclipse.xtext.common.types.xtext.ClasspathBasedTypeScopeProvider.class;
-		}
-		else {
-			return super.bindAbstractTypeScopeProvider();
-		}
 	}
 
 	public static class Bug382088Workaround extends ParserBasedContentAssistContextFactory.StatefulFactory

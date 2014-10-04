@@ -801,7 +801,7 @@ public abstract class AbstractOCLstdlibSemanticSequencer extends EssentialOCLSem
 	 *         ownedType=TypedMultiplicityRefCS 
 	 *         invalidating?='invalidating'? 
 	 *         validating?='validating'? 
-	 *         implementation=[JvmType|SINGLE_QUOTED_STRING]? 
+	 *         implementation=[JavaClassCS|SINGLE_QUOTED_STRING]? 
 	 *         (ownedAnnotation+=AnnotationElementCS | ownedPrecondition+=PostCS | ownedPostcondition+=PreCS)*
 	 *     )
 	 */
@@ -821,7 +821,7 @@ public abstract class AbstractOCLstdlibSemanticSequencer extends EssentialOCLSem
 	 *         validating?='validating'? 
 	 *         invalidating?='invalidating'? 
 	 *         precedence=[Precedence|Name]? 
-	 *         implementation=[JvmType|SINGLE_QUOTED_STRING]? 
+	 *         implementation=[JavaClassCS|SINGLE_QUOTED_STRING]? 
 	 *         (ownedAnnotation+=AnnotationElementCS | ownedBodyExpression+=SpecificationCS | ownedPostcondition+=PostCS | ownedPrecondition+=PreCS)*
 	 *     )
 	 */
@@ -867,7 +867,7 @@ public abstract class AbstractOCLstdlibSemanticSequencer extends EssentialOCLSem
 	 *         static?='static'? 
 	 *         name=Name 
 	 *         ownedType=TypedMultiplicityRefCS 
-	 *         implementation=[JvmType|SINGLE_QUOTED_STRING]? 
+	 *         implementation=[JavaClassCS|SINGLE_QUOTED_STRING]? 
 	 *         ownedAnnotation+=AnnotationElementCS*
 	 *     )
 	 */
