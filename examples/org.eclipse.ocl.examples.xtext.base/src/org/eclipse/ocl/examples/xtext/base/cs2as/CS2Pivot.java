@@ -50,6 +50,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.RootCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
+import org.eclipse.ocl.examples.xtext.base.scoping.AbstractJavaClassScope;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CSI2PivotMapping;
 import org.eclipse.osgi.util.NLS;
@@ -533,8 +534,14 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 		} */
 		Map<BaseCSResource, ASResource> cs2asResourceMap = new HashMap<BaseCSResource, ASResource>();
 		for (BaseCSResource csResource : csResources) {
-			ASResource asResource = cs2PivotMapping.getASResource(csResource);
-			cs2asResourceMap.put(csResource, asResource);
+			if (csResource != null) {
+				ASResource asResource = cs2PivotMapping.getASResource(csResource);
+				cs2asResourceMap.put(csResource, asResource);
+				AbstractJavaClassScope javaClassScope = AbstractJavaClassScope.findAdapter(csResource);
+				if (javaClassScope != null) {
+					javaClassScope.installContents(csResource);
+				}
+			}
 		}
 		conversion.garbageCollect(cs2asResourceMap);
 		cs2PivotMapping.update();

@@ -22,7 +22,8 @@ import org.eclipse.ocl.examples.pivot.NamedElement;
 public interface BaseCSResource2 extends BaseCSResource
 {
 	/**
-	 * Return a non-null NamedElement if element is able to be accessed by a qualified path; Other elements must use a quoted URI.
+	 * Return a non-null NamedElement if element is able to be accessed by a qualified path;
+	 * Other elements must use a quoted URI.
 	 */
 	@Nullable NamedElement isPathable(@NonNull EObject element);
 }

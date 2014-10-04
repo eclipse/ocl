@@ -87,7 +87,6 @@ import org.eclipse.ocl.examples.xtext.markup.MarkupStandaloneSetup;
 import org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcoreStandaloneSetup;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.OCLinEcoreCSPackage;
 import org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlibStandaloneSetup;
-import org.eclipse.ocl.examples.xtext.oclstdlib.ui.OCLstdlibUiModule;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.XtextPackage;
 import org.eclipse.xtext.resource.IResourceServiceProvider;
@@ -401,7 +400,6 @@ public class PivotTestCase extends TestCase
 	}
 
 	public static void doOCLstdlibSetup() {
-    	OCLstdlibUiModule.USE_RUNTIME_CONFIGURATION = EMFPlugin.IS_ECLIPSE_RUNNING;
     	if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
 			OCLstdlibStandaloneSetup.doSetup();			// FIXME BUG 382058
     	}

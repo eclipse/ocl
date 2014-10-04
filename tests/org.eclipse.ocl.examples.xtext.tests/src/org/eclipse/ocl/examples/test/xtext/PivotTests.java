@@ -34,6 +34,7 @@ import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.oclinecore.pivot2cs.OCLinEcorePivot2CS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.cs2as.OCLstdlibCS2Pivot;
+import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.JavaClassScope;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.xtext.resource.impl.ListBasedDiagnosticConsumer;
 
@@ -186,6 +187,7 @@ public class PivotTests extends XtextTestCase
 		URI output2URI = getProjectFileURI(output2Name);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(inputURI);
+		JavaClassScope.getAdapter(xtextResource, getClass().getClassLoader());
 		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
 		xtextResource.load(null);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " gotResource()");

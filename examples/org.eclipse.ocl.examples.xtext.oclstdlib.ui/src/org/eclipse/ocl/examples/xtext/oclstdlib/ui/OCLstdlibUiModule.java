@@ -21,6 +21,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.AbstractElement;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.FollowElement;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.ParserBasedContentAssistContextFactory;
+import org.eclipse.xtext.ui.editor.model.IResourceForEditorInputFactory;
 
 import com.google.common.collect.Multimap;
 
@@ -30,8 +31,6 @@ import com.google.common.collect.Multimap;
 public class OCLstdlibUiModule extends AbstractOCLstdlibUiModule
 {
 	public static final String EDITOR_ID = OCLstdlibActivator.ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_OCLSTDLIB_OCLSTDLIB;
-	
-	public static boolean USE_RUNTIME_CONFIGURATION = false;		// Set true for JUnit plugin tests
 	
 	public OCLstdlibUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
@@ -49,6 +48,11 @@ public class OCLstdlibUiModule extends AbstractOCLstdlibUiModule
 	@SuppressWarnings("restriction")
 	public Class<? extends org.eclipse.xtext.ui.refactoring.IReferenceUpdater> bindIReferenceUpdater() {
 		return OCLstdlibReferenceUpdater.class;
+	}
+
+	@Override
+	public Class<? extends IResourceForEditorInputFactory> bindIResourceForEditorInputFactory() {
+		return OCLstdlibJavaClassPathResourceForIEditorInputFactory.class;
 	}
 
 	public static class Bug382088Workaround extends ParserBasedContentAssistContextFactory.StatefulFactory

@@ -17,7 +17,6 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -25,10 +24,6 @@ import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.examples.xtext.base.cs2as.ExceptionAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.BaseScopeProvider;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
-import org.eclipse.xtext.common.types.TypesPackage;
-import org.eclipse.xtext.common.types.access.impl.ClasspathTypeProvider;
-import org.eclipse.xtext.common.types.access.impl.IndexedJvmTypeAccess;
-import org.eclipse.xtext.common.types.xtext.ClasspathBasedTypeScope;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.linking.impl.DefaultLinkingService;
 import org.eclipse.xtext.linking.impl.IllegalNodeException;
@@ -42,7 +37,6 @@ import org.eclipse.xtext.scoping.IScopeProvider;
 
 import com.google.inject.Inject;
 
-@SuppressWarnings("restriction")
 public class EssentialOCLLinkingService extends DefaultLinkingService
 {
 	public static boolean DEBUG_RETRY = false;			// Set true to retry for debug tracing
@@ -73,13 +67,10 @@ public class EssentialOCLLinkingService extends DefaultLinkingService
 	private static int depth = -1;
 	
 	@Inject
-	private IValueConverterService valueConverterService;
-	
-	@Inject
 	private IQualifiedNameConverter qualifiedNameConverter;
 	
 	@Inject
-	private IndexedJvmTypeAccess indexedJvmTypeAccess;
+	private IValueConverterService valueConverterService;
 	
 	@Override
 	public List<EObject> getLinkedObjects(EObject context, EReference ref, INode node) throws IllegalNodeException {
@@ -93,28 +84,17 @@ public class EssentialOCLLinkingService extends DefaultLinkingService
 				}
 				return Collections.emptyList();
 			}
-			IScope scope = null;
-			String uri = TypesPackage.eNS_URI;
-//			if (ref.getEReferenceType().getEPackage() == TypesPackage.eINSTANCE) {	// This was costly, so don't inflict it when not needed
-			if (ref.getEReferenceType().getEPackage().getNsURI().equals(uri)) {
-				ResourceSet resourceSet = context.eResource().getResourceSet();
-				ClasspathTypeProvider classpathTypeProvider = new ClasspathTypeProvider(resourceSet.getClass().getClassLoader(), resourceSet, indexedJvmTypeAccess);
-				scope = new ClasspathBasedTypeScope(classpathTypeProvider, qualifiedNameConverter, null);
-//				scope = globalScopeProvider.getScope(context.eResource(), ref, null);
-			}
-			else {
-				scope = getScope(context, ref);
-				if (traceLookup) {
-//					EObject target = ((ScopeView)scope).getTarget();
-//					String inString = target instanceof ElementCS ? ((ElementCS)target).getSignature() : target.toString();
-//					BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " in " + inString);
-					BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text);
-				}
+			IScope scope = getScope(context, ref);
+			if (traceLookup) {
+//				EObject target = ((ScopeView)scope).getTarget();
+//				String inString = target instanceof ElementCS ? ((ElementCS)target).getSignature() : target.toString();
+//				BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " in " + inString);
+				BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text);
 			}
 			if (scope == null) {
 				return Collections.emptyList();
 			}
-			QualifiedName qualifiedName = QualifiedName.create(text);				// FIXME use IQualifiedNameConverter
+			QualifiedName qualifiedName = qualifiedNameConverter.toQualifiedName(text);
 			List<EObject> linkedObjects = lookUp(scope, qualifiedName);
 			if ((linkedObjects.size() <= 0) && text.startsWith("_")) {				// Deprecated compatibility
 				linkedObjects = lookUp(scope, QualifiedName.create(text.substring(1)));

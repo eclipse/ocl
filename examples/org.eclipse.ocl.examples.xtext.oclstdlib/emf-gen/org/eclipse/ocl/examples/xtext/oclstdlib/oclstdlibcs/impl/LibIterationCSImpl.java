@@ -166,7 +166,8 @@ public class LibIterationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public JavaClassCS basicGetImplementation() {
+	public JavaClassCS basicGetImplementation()
+	{
 		return implementation;
 	}
 

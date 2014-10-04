@@ -2791,6 +2791,20 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 	}
 
 	/**
+	 * Return the names of all the  projects/bundles.
+	 * @since 3.5
+	 */
+	public @Nullable Set<String> getProjectNames() {
+		Map<String, IProjectDescriptor> project2descriptor2 = getProjectDescriptors();
+		if (project2descriptor2 == null) {
+			return null;
+		}
+		else {
+			return project2descriptor2.keySet();
+		}
+	}
+
+	/**
 	 * Initialize the
 	 * {@link EcorePlugin#getEPackageNsURIToGenModelLocationMap()} so that in a
 	 * standalone environment the locations of all genmodels are available.

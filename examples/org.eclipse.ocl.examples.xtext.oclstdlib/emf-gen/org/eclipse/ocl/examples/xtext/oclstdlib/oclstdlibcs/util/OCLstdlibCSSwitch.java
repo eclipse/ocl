@@ -36,7 +36,18 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.VisitableCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.*;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaClassCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaImplementationCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibClassCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibConstraintCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPackageCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPropertyCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibRootPackageCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaTypeName;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.PrecedenceCS;
 
 /**
  * <!-- begin-user-doc -->

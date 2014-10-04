@@ -76,7 +76,7 @@ public class EssentialOCLProposalProvider extends AbstractEssentialOCLProposalPr
 		public ICompletionProposal apply(IEObjectDescription candidate) {
 			ICompletionProposal proposal = super.apply(candidate);
 			EObject eObject = candidate.getEObjectOrProxy();
-			if ((proposal instanceof ConfigurableCompletionProposal) && !eObject.eIsProxy()) {
+			if ((proposal instanceof ConfigurableCompletionProposal) && (eObject != null) && !eObject.eIsProxy()) {
 				ConfigurableCompletionProposal configurableCompletionProposal = (ConfigurableCompletionProposal)proposal;
 				int priority = configurableCompletionProposal.getPriority() + getPriorityBoost(eObject);
 				configurableCompletionProposal.setPriority(priority);
@@ -127,7 +127,7 @@ public class EssentialOCLProposalProvider extends AbstractEssentialOCLProposalPr
 		if ((currentModel instanceof Pivotable) && ((Pivotable)currentModel).getPivot() == null) {
 			Resource eResource = currentModel.eResource();
 			@SuppressWarnings("null")@NonNull List<Diagnostic> errors = eResource.getErrors();
-			int errorsSize = errors.size();
+			@SuppressWarnings("unused") int errorsSize = errors.size();
 			if ((eResource instanceof BaseCSResource) && ElementUtil.hasSyntaxError(errors)) {
 				//
 				//	If we skipped the semantic analysis because of syntax errors, take a shot at it now
@@ -143,7 +143,7 @@ public class EssentialOCLProposalProvider extends AbstractEssentialOCLProposalPr
 					/* Never let an Exception leak out to abort Xtext */
 					exception.getClass();					// Just a debug breakpoint opportunity.
 				}
-				assert errorsSize == errors.size();
+//				assert errorsSize == errors.size();
 			}
 //			System.out.println("createProposals: for " + context.getPreviousModel().eClass().getName() + "  then " + currentModel.eClass().getName() + " with \"" + context.getPrefix() + "\"");
 		}

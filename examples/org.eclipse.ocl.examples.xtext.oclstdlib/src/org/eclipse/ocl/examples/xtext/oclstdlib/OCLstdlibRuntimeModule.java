@@ -18,7 +18,6 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.OCLstdlibScopeProvider;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibValueConverterService;
 import org.eclipse.ocl.examples.xtext.oclstdlib.utilities.OCLstdlibCSResource;
 import org.eclipse.ocl.examples.xtext.oclstdlib.validation.OCLstdlibCompositeEValidator;
-import org.eclipse.xtext.common.types.access.ClasspathTypeProviderFactory;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.resource.XtextResource;
@@ -31,7 +30,6 @@ import com.google.inject.name.Names;
 /**
  * Use this class to register components to be used within the IDE.
  */
-@SuppressWarnings("restriction")
 public class OCLstdlibRuntimeModule extends org.eclipse.ocl.examples.xtext.oclstdlib.AbstractOCLstdlibRuntimeModule
 {	
 	@Override
@@ -65,10 +63,6 @@ public class OCLstdlibRuntimeModule extends org.eclipse.ocl.examples.xtext.oclst
 	@Override
 	public Class<? extends IScopeProvider> bindIScopeProvider() {
 		return OCLstdlibScopeProvider.class;
-	}
-	
-	public Class<? extends ClasspathTypeProviderFactory> bindClasspathTypeProviderFactory() {
-		return ClasspathTypeProviderFactory.class;
 	}
 	
 	@Override

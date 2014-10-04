@@ -116,7 +116,8 @@ public class LibPropertyCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public JavaClassCS basicGetImplementation() {
+	public JavaClassCS basicGetImplementation()
+	{
 		return implementation;
 	}
 

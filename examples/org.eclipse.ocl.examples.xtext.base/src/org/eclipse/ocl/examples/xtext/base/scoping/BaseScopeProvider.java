@@ -20,12 +20,8 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
-import org.eclipse.xtext.common.types.TypesPackage;
-import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
-
-import com.google.inject.Inject;
 
 /**
  * This class contains custom scoping description.
@@ -36,9 +32,6 @@ import com.google.inject.Inject;
  */
 public class BaseScopeProvider extends AbstractDeclarativeScopeProvider
 {
-	@Inject
-	private IGlobalScopeProvider globalScopeProvider;
-
 	public static final @NonNull TracingOption LOOKUP = new TracingOption(
 		"org.eclipse.ocl.examples.xtext.base", "lookup"); //$NON-NLS-1$//$NON-NLS-2$
 
@@ -47,12 +40,12 @@ public class BaseScopeProvider extends AbstractDeclarativeScopeProvider
 		if (context == null) {
 			return IScope.NULLSCOPE;
 		}
+		if (reference == null) {
+			return IScope.NULLSCOPE;
+		}
 		Resource csResource = context.eResource();
 		if (csResource == null) {
 			return IScope.NULLSCOPE;
-		}
-		if (reference.getEReferenceType().getEPackage().getNsURI().equals(TypesPackage.eNS_URI)) {
-			return globalScopeProvider.getScope(csResource, reference, null);
 		}
 		MetaModelManager metaModelManager = PivotUtil.findMetaModelManager(csResource);
 		if (metaModelManager == null) {

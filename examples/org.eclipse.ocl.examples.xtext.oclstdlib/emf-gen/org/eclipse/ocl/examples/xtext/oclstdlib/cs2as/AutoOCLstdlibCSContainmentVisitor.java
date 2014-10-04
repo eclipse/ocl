@@ -47,10 +47,10 @@ public class AutoOCLstdlibCSContainmentVisitor
         this.converter = context.getConverter();
         this.idResolver = converter.getMetaModelManager().getIdResolver();
     }
-
-	public @Nullable Continuation<?> visitJavaClassCS(@NonNull JavaClassCS object) {
-		return null;
-	}
+    
+    public @Nullable Continuation<?> visitJavaClassCS(@NonNull JavaClassCS self) {
+        throw new UnsupportedOperationException("visitJavaClassCS is not supported by " + getClass().getName());
+    }
     
     public @Nullable Continuation<?> visitJavaImplementationCS(@NonNull JavaImplementationCS self) {
         throw new UnsupportedOperationException("visitJavaImplementationCS is not supported by " + getClass().getName());

@@ -24,6 +24,7 @@ import org.eclipse.ocl.examples.pivot.ecore.Ecore2Moniker;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.JavaClassScope;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 
 /**
@@ -168,7 +169,9 @@ public class MonikerTests extends XtextTestCase
 		String pivotName = stem + PivotConstants.DOT_OCL_AS_FILE_EXTENSION;
 		URI inputURI = getProjectFileURI(inputName);
 		URI pivotURI = getProjectFileURI(pivotName);
-		BaseCSResource csResource = (BaseCSResource) resourceSet.getResource(inputURI, true);
+		BaseCSResource csResource = (BaseCSResource) resourceSet.createResource(inputURI);
+		JavaClassScope.getAdapter(csResource, getClass().getClassLoader());
+		csResource.load(null);;
 		assertNoResourceErrors("Load failed", csResource);
 		assertNoUnresolvedProxies("Unresolved proxies", csResource);
 		assertNoValidationErrors("CS validation problems", csResource);
