@@ -43,23 +43,33 @@ ID: SIMPLE_ID | ESCAPED_ID;
 terminal INT: // String to allow diverse re-use
 	('0'..'9')+;		// multiple leading zeroes occur as floating point fractional part
 
+/* A lowerbounded integer is used to define the lowerbound of a collection multiplicity. The value may not be the unlimited value. */
 LOWER returns ecore::EInt:
 	INT
 ;
 
+/* An upperbounded integer is used to define the upperbound of a collection multiplicity. The value may be the unlimited value. */
 UPPER returns ecore::EInt:
 	INT | '*'
 ;
 
+/* A number may be an integer or floating point value. The declaration here appears to be that for just an integer. This is to avoid
+ * lookahead conflicts in simple lexers between a dot within a floating point number and the dot-dot in a CollectionLiteralPartCS. A
+ * practical implementation should give high priority to a successful parse of INT ('.' INT)? (('e' | 'E') ('+' | '-')? INT)? than
+ * to the unsuccessful partial parse of INT '..'. The type of the INT terminal is String to allow the floating point syntax to be used.
+ */
 NUMBER_LITERAL returns BigNumber: // Not terminal to allow parser backtracking to sort out "5..7"
 	INT; // EssentialOCLTokenSource pieces this together ('.' INT)? (('e' | 'E') ('+' | '-')? INT)?;
 
+/* A multi-line comment supports a comment that may span more than one line using familiar slash-star...star-slash comment delimiters */
 terminal ML_COMMENT:
 	'/*' ->'*/';
 
+/* A single-line comment supports a comment that terminates at the end of the line */
 terminal SL_COMMENT:
 	'--' !('\n' | '\r')* ('\r'? '\n')?;
 
+/* Whitespace may occur between any pair of tokens */
 terminal WS:
 	(' ' | '\t' | '\r' | '\n')+;
 
@@ -69,6 +79,7 @@ terminal ANY_OTHER:
 URI:
 	SINGLE_QUOTED_STRING;
 
+/** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> */
 EssentialOCLReservedKeyword:
 	'and'
 	| 'else'
@@ -82,12 +93,15 @@ EssentialOCLReservedKeyword:
 	| 'then'
 	| 'xor';
 
+/** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> */
 EssentialOCLUnaryOperatorCS returns UnaryOperatorCS:
 	name=('-' | 'not');
 
+/** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> */
 EssentialOCLInfixOperatorCS returns BinaryOperatorCS:
 	name=('*' | '/' | '+' | '-' | '>' | '<' | '>=' | '<=' | '=' | '<>' | 'and' | 'or' | 'xor' | 'implies');
 
+/** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> */
 EssentialOCLNavigationOperatorCS returns NavigationOperatorCS:
 	name=('.' | '->');
 
@@ -112,13 +126,14 @@ UnaryOperatorCS returns UnaryOperatorCS: 			// Intended to be overrideable
 //---------------------------------------------------------------------
 //  Names
 //---------------------------------------------------------------------
-
+/** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> */
 EssentialOCLUnrestrictedName returns ecore::EString:
 	Identifier;
 
 UnrestrictedName returns ecore::EString: // Intended to be overridden
 	EssentialOCLUnrestrictedName;
 
+/** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> */
 EssentialOCLUnreservedName returns ecore::EString:
 	UnrestrictedName
 |	CollectionTypeIdentifier
@@ -272,10 +287,12 @@ ExpCS returns ExpCS:
 | 	({PrefixExpCS} ownedOperator+=UnaryOperatorCS+ ownedExpression=LetExpCS)
 |	LetExpCS;
 
+/* A prefixed expression is elaborates a primary expression with zero or more unary prefix operators. */
 PrefixedExpCS returns ExpCS:
 	({PrefixExpCS} ownedOperator+=UnaryOperatorCS+ ownedExpression=PrimaryExpCS)
 | 	PrimaryExpCS;
 
+/* A primary expression identifies the basic expressions from which more complex expressions may be constructed. */
 PrimaryExpCS returns ExpCS:
 	NestedExpCS
 |	IfExpCS
@@ -286,10 +303,13 @@ PrimaryExpCS returns ExpCS:
 | 	TypeLiteralExpCS
 | 	NameExpCS;
 
+/* A name expression is a generalised rule for expressions that start with a name and which may be followed by square, round or
+ * curly bracket clauses and optionally an @pre as well.*/
 NameExpCS returns NameExpCS:
 	pathName=PathNameCS squareBracketedClauses+=SquareBracketedClauseCS*
 	roundBracketedClause=RoundBracketedClauseCS? curlyBracketedClause=CurlyBracketedClauseCS? (atPre?='@' 'pre')?;
 
+/* A curly bracket clause is a generalized rule for the literal arguments of collections, maps, tuples and type constructors.*/
 CurlyBracketedClauseCS:
 	{CurlyBracketedClauseCS} '{'
 		( ((ownedParts+=ConstructorPartCS (',' ownedParts+=ConstructorPartCS)*))?
@@ -297,6 +317,7 @@ CurlyBracketedClauseCS:
 		) '}'
 	;
 	
+/* A curly bracket clause is a generalized rule for template specialisations and operations arguments.*/
 RoundBracketedClauseCS:
 	{RoundBracketedClauseCS} '(' (
 		arguments+=NavigatingArgCS (arguments+=NavigatingCommaArgCS)*
@@ -305,18 +326,25 @@ RoundBracketedClauseCS:
 		)? ')'
 	;
 
+/* A square bracket clause is a generalized rule for association class qualifiers and roles.*/
 SquareBracketedClauseCS:
 	'[' terms+=ExpCS (',' terms+=ExpCS)* ']';
 
+/* A navigating argument is a generalized rule for the first argument in a round bracket clause. This is typically the first operation
+ * parameter or an iterator. */
 NavigatingArgCS returns NavigatingArgCS:
 	name=NavigatingArgExpCS (':' ownedType=TypeExpCS ('=' init=ExpCS)?)?;	// Type-less init is an illegal infix expression
 
+/* A navigating bar argument is a generalized rule for a bar-prefixed argument in a round bracket clause. This is typically the body of an iteration. */
 NavigatingBarArgCS returns NavigatingArgCS:
 	prefix='|' name=NavigatingArgExpCS (':' ownedType=TypeExpCS ('=' init=ExpCS)?)?;	// Type-less init is an illegal infix expression
 
+/* A navigating comma argument is a generalized rule for non-first argument in a round bracket clause. These are typically non-first operation
+ * parameters or a second iterator. */
 NavigatingCommaArgCS returns NavigatingArgCS:
 	prefix=',' name=NavigatingArgExpCS (':' ownedType=TypeExpCS ('=' init=ExpCS)?)?;	// Type-less init is an illegal infix expression
 
+/* A navigating semi argument is a generalized rule for a semicolon prefixed argument in a round bracket clause. This is typically an iterate accumulator. */
 NavigatingSemiArgCS returns NavigatingArgCS:
 	prefix=';' name=NavigatingArgExpCS (':' ownedType=TypeExpCS ('=' init=ExpCS)?)?;	// Type-less init is an illegal infix expression
 

@@ -10,19 +10,22 @@
  *
  * Run As->MWE2 Workflow to regenerate the pivot model.
  *******************************************************************************/
-module GenerateOCLstdlibAsLaTeX
+module GenerateXtextAsLaTeX
 
+import org.eclipse.ocl.examples.build.latex.*
 import org.eclipse.ocl.examples.build.utilities.*
-import org.eclipse.ocl.examples.build.xtend.*
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.emf.ecore.resource.impl.*
 
-var sourceName = "org.eclipse.ocl.examples.library"
+var sourceName
 var targetName = "org.eclipse.ocl.examples.build"
+var modelFile
+var latexFileName
+var labelPrefix = ""
 
 /**
- *	Generate the OCLstdlib Model, by converting oclstdlib.oclstdlib to OCLstdlib.java.
+ *	Generate the LaTeX documentation for an Xtext grammar, by converting ${modelFile} from ${sourceName} to ${latexFileName} in ${targetName}.
  */
 Workflow {
 	bean = ResourceSetImpl : resourceSet {}
@@ -30,11 +33,12 @@ Workflow {
     	platformUri = ".."
     }
     bean = GenModelSetup { resourceSet = resourceSet }
-    component = GenerateAsLaTeXXtend { resourceSet = resourceSet
+    component = GenerateLaTeXForGrammarXtend { resourceSet = resourceSet
     	projectName = "${sourceName}"
-    	modelFile = "model/OCL-2.5.oclstdlib"
-    	latexFolder = "/${targetName}/latex"
-    	latexFileName = "ocl-standard-library"
+    	modelFile = "${modelFile}"
+    	latexFolder = "/${targetName}/latex-gen"
+    	latexFileName = "${latexFileName}"
+    	labelPrefix = "${labelPrefix}"
     }
 }
 

@@ -8,27 +8,17 @@
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.build.xtend
+package org.eclipse.ocl.examples.build.latex
 
 import org.eclipse.jdt.annotation.NonNull
 import org.eclipse.ocl.examples.pivot.Namespace
 import org.eclipse.ocl.examples.pivot.Element
 import org.eclipse.ocl.examples.pivot.Model
 
-public class GenerateAsLaTeXXtend extends GenerateAsLaTeXUtils
+public class GenerateLaTeXForLibraryXtend extends GenerateLaTeXForLibraryUtils
 {
 	@NonNull protected override String generateLaTeX(@NonNull Model model) {
 		'''
-		\section{The OCL Standard Library}\label{StandardLibrary}
-		
-		This documentation on the OCL Standard Library is auto-generated from the
-		org.eclipse.ocl.examples.library/model/OCL-2.5.oclstdlib that defines
-		the behaviour of the Pivot evaluator and the Xtext editors. It is similar to the OCL 2.4 functionality.
-		It is a prototype of functionality for OCL 2.5 where the use of models may eliminate ambiguities.
-		
-		The library support for the Ecore and UML bindings in Luna has been upgraded so that the available operations
-		are similar to those documented here for the Pivot binding.
-		
 		«emitPrecedences(model)»
 		
 		«emitClasses(model)»
@@ -151,7 +141,7 @@ public class GenerateAsLaTeXXtend extends GenerateAsLaTeXUtils
 	
 	protected def emitPrecedences(Model asRoot) {
 		'''
-		\subsection{Precedences})\label{Precedences}
+		\subsection{Precedences}\label{Precedences}
 
 		«FOR asPrecedence : getPrecedences(asRoot) SEPARATOR ' < '»\textbf{«asPrecedence.name»}«ENDFOR»
 		'''

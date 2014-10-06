@@ -1,0 +1,48 @@
+\documentclass{scrreprt}   % instead of  \documentclass[a4paper]{article}
+%\usepackage{graphicx}
+% the following style (can also be included by copy and paste)
+% tries to mimic the Framemaker layout used by the OMG standards,
+% i.e.:
+% - paper size 8.28x11 inch
+% - text size 6.7x8in
+% - times roman, helvetica, and courier as fonts
+% - ragged right paragraph formatting
+\usepackage{omg}
+%\usepackage{url}
+%\usepackage{pifont}
+\usepackage{upquote}
+\usepackage{alltt}
+
+
+\begin{document}
+
+\section{Scope}
+\section{Conformance}
+\section{Normative References}
+\section{Terms and Definitions}
+\section{Symbols}
+\section{Additional Information}
+
+\section{Abstract Syntax}
+
+\section{Concrete Syntax for Essential OCL}
+\input{../latex-gen/essential-ocl-grammar}
+
+\section{Concrete Syntax for Complete OCL}
+\input{../latex-gen/complete-ocl-grammar}
+
+\section{Evaluation Semantics}
+
+\section{OCL Standard Library}
+This documentation on the OCL Standard Library is auto-generated from the
+org.eclipse.ocl.examples.library/model/OCL-2.5.oclstdlib that defines
+the behaviour of the Pivot evaluator and the Xtext editors. It is similar to the OCL 2.4 functionality.
+It is a prototype of functionality for OCL 2.5 where the use of models may eliminate ambiguities.
+		
+The library support for the Ecore and UML bindings in Luna has been upgraded so that the available operations
+are similar to those documented here for the Pivot binding.
+\input{../latex-gen/ocl-standard-library}
+
+\end{document}
+
+

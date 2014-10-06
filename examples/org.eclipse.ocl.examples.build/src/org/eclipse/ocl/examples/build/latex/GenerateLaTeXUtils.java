@@ -8,7 +8,7 @@
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.build.xtend;
+package org.eclipse.ocl.examples.build.latex;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -48,7 +48,7 @@ import org.eclipse.ocl.examples.xtext.markup.util.MarkupSwitch;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.parser.IParseResult;
 
-public abstract class GenerateAsLaTeXUtils extends GenerateAsLaTeX
+public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 {
 	protected final @NonNull Comparator<Nameable> nameableComparator = new Comparator<Nameable>()
 	{
@@ -107,12 +107,12 @@ public abstract class GenerateAsLaTeXUtils extends GenerateAsLaTeX
 		}
 	}
 
-	protected static class MarkupToTextile extends MarkupSwitch<String>
+	protected static class MarkupToLaTeX extends MarkupSwitch<String>
 	{
 		@SuppressWarnings("unused") private final Namespace scope;
 		private final StringBuilder s = new StringBuilder();
 		
-		public MarkupToTextile(Namespace scope) {
+		public MarkupToLaTeX(Namespace scope) {
 			this.scope = scope;
 		}
 
@@ -339,6 +339,6 @@ public abstract class GenerateAsLaTeXUtils extends GenerateAsLaTeX
 	}
 
 	protected String prettyPrint(MarkupElement element, Namespace scope) {
-		return new MarkupToTextile(scope).doSwitch(element);
+		return new MarkupToLaTeX(scope).doSwitch(element);
 	}
 }
