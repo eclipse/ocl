@@ -10,7 +10,7 @@
  *
  * Run As->MWE2 Workflow to regenerate the pivot model.
  *******************************************************************************/
-module GenerateOCLstdlibAsLaTeX
+module GenerateLaTeXForLibrary
 
 import org.eclipse.ocl.examples.build.latex.*
 import org.eclipse.ocl.examples.build.utilities.*

@@ -16,24 +16,36 @@
 
 \begin{document}
 
-\section{Scope}
-\section{Conformance}
-\section{Normative References}
-\section{Terms and Definitions}
-\section{Symbols}
-\section{Additional Information}
+\chapter{Scope}
+\chapter{Conformance}
+\chapter{Normative References}
+\chapter{Terms and Definitions}
+\chapter{Symbols}
+\chapter{Additional Information}
 
-\section{Abstract Syntax}
+\chapter{Abstract Syntax}
+\section{Pivot Abstract Syntax Model}
+\input{../latex-gen/abstract-syntax}
 
-\section{Concrete Syntax for Essential OCL}
+\chapter{Concrete Syntax for Essential OCL}
+\section{Base Concrete Syntax Model}
+\input{../latex-gen/base-cs}
+\section{Essential OCL Concrete Syntax Model}
+\input{../latex-gen/essential-ocl-cs}
+\section{Essential OCL Grammar}
 \input{../latex-gen/essential-ocl-grammar}
 
-\section{Concrete Syntax for Complete OCL}
+\chapter{Concrete Syntax for Complete OCL}
+\section{Complete OCL Concrete Syntax Model}
+\input{../latex-gen/complete-ocl-cs}
+\section{Complete OCL Grammar}
 \input{../latex-gen/complete-ocl-grammar}
 
-\section{Evaluation Semantics}
+\chapter{Evaluation Semantics}
+\section{Model}
+\input{../latex-gen/evaluation-semantics}
 
-\section{OCL Standard Library}
+\chapter{OCL Standard Library}
 This documentation on the OCL Standard Library is auto-generated from the
 org.eclipse.ocl.examples.library/model/OCL-2.5.oclstdlib that defines
 the behaviour of the Pivot evaluator and the Xtext editors. It is similar to the OCL 2.4 functionality.
@@ -41,6 +53,7 @@ It is a prototype of functionality for OCL 2.5 where the use of models may elimi
 		
 The library support for the Ecore and UML bindings in Luna has been upgraded so that the available operations
 are similar to those documented here for the Pivot binding.
+\section{Library Model}
 \input{../latex-gen/ocl-standard-library}
 
 \end{document}
