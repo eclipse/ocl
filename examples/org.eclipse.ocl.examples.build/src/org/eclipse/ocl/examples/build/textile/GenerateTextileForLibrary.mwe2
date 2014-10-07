@@ -11,11 +11,10 @@
  *
  * Run As->MWE2 Workflow to regenerate the pivot model.
  *******************************************************************************/
-module GenerateOCLstdlibAsTextile
+module GenerateTextileForLibrary
 
+import org.eclipse.ocl.examples.build.textile.*
 import org.eclipse.ocl.examples.build.utilities.*
-import org.eclipse.ocl.examples.build.xtend.*
-import org.eclipse.emf.mwe.utils.*
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.emf.ecore.resource.impl.*
 
@@ -31,7 +30,7 @@ Workflow {
     	platformUri = ".."
     }
     bean = GenModelSetup { resourceSet = resourceSet }
-    component = GenerateOCLstdlibAsTextileXtend { resourceSet = resourceSet
+    component = GenerateTextileForLibraryXtend { resourceSet = resourceSet
     	projectName = "${sourceName}"
     	modelFile = "model/OCL-2.5.oclstdlib"
     	textileFolder = "/../doc/${targetName}/doc"

@@ -8,7 +8,7 @@
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.build.xtend;
+package org.eclipse.ocl.examples.build.textile;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -48,7 +48,7 @@ import org.eclipse.ocl.examples.xtext.markup.util.MarkupSwitch;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.parser.IParseResult;
 
-public abstract class GenerateOCLstdlibAsTextileUtils extends GenerateOCLstdlibAsTextile
+public abstract class GenerateTextileForLibraryUtils extends GenerateTextileForLibrary
 {
 	protected final @NonNull Comparator<Nameable> nameableComparator = new Comparator<Nameable>()
 	{

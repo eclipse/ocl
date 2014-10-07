@@ -8,14 +8,14 @@
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.build.xtend
+package org.eclipse.ocl.examples.build.textile
 
 import org.eclipse.jdt.annotation.NonNull
 import org.eclipse.ocl.examples.pivot.Namespace
 import org.eclipse.ocl.examples.pivot.Element
 import org.eclipse.ocl.examples.pivot.Model
 
-public class GenerateOCLstdlibAsTextileXtend extends GenerateOCLstdlibAsTextileUtils
+public class GenerateTextileForLibraryXtend extends GenerateTextileForLibraryUtils
 {
 	@NonNull protected override String generateTextile(@NonNull Model model) {
 		'''

@@ -8,7 +8,7 @@
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.build.xtend;
+package org.eclipse.ocl.examples.build.textile;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -37,7 +37,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlibStandaloneSetup;
 
-public abstract class GenerateOCLstdlibAsTextile extends AbstractWorkflowComponent
+public abstract class GenerateTextileForLibrary extends AbstractWorkflowComponent
 {
 	protected Logger log = Logger.getLogger(getClass());	
 	protected ResourceSet resourceSet = null;	
@@ -48,7 +48,7 @@ public abstract class GenerateOCLstdlibAsTextile extends AbstractWorkflowCompone
 
 	protected String sourceFile;
 
-	protected GenerateOCLstdlibAsTextile() {
+	protected GenerateTextileForLibrary() {
 		OCLstdlibStandaloneSetup.doSetup();
 	}	
 
