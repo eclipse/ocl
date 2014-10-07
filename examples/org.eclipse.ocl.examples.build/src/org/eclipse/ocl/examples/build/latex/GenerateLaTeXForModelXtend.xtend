@@ -63,7 +63,7 @@ public class GenerateLaTeXForModelXtend extends GenerateLaTeXForModelUtils
 			«emitComment(asClass, asClass)»
 			«IF asClass.getSuperClasses().size() > 0»
 			
-			conformsTo «FOR asSuperClass : asClass.getSuperClasses() SEPARATOR ', '»"«prettyPrint(asSuperClass, asSuperClass)»":«asSuperClass.name»«ENDFOR»
+			conformsTo «FOR asSuperClass : asClass.getSuperClasses() SEPARATOR ', '»«prettyPrint(asSuperClass, asSuperClass)»«ENDFOR»
 			«ENDIF»
 			«emitAttributes(asClass)»
 			«emitAssociations(asClass)»

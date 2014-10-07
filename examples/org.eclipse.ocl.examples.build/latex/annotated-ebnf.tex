@@ -1,0 +1,69 @@
+\chapter{Annotated EBNF}\label{ocl:AnnotatedEBNF}
+
+This exposition of the Concrete Syntax grammars in Clauses \ref{ocl:EssentialOCLConcreteSyntax} and \ref{ocl:CompleteOCLConcreteSyntax} uses an Annotated Extended Backus Naur Format that will be familiar to users of the Xtext tool. Since Xtext lacks a formal specification and (E)BNF has a variety of specifications, the form of Annotated BNF used in this specifiication is defined in this clause.
+
+
+\section{Production Rules}
+
+A grammar comprises production rules, each of which comprises one or more terms.
+
+There are two kinds of porduction rule.
+
+Terminal or lexer rules aggregate one or more characters or terminal productions to yield a terminal productions.
+
+Terminal productions passed between lexer and parser are called tokens.
+
+Parser rules aggregate one or more tokens or parser pruductions to yeld another parser production token.
+
+One parser rule is distinguished as the start of the grammar. 
+
+\section{Terminal terms}
+
+Terminal terms identify characters that must be present in the input.
+
+\subsection{Keyword}
+
+A keyword is a literal sequence of characters. It is represented by the sequence of characters surrounded by single quotes. A single quote or backslash character are escaped by preceding backslash character. Tab, newline and carriage retirn are denoted by a backslash followed by a t, n or r respectively.
+
+e.g. \verb|'else'|.
+
+\subsection{Character Range}
+
+A single character from an inclusive character range may be specified by two single character keywords separated by a dot-dot.
+
+e.g. \verb|'0'..'9'|.
+
+\subsection{Negation}
+
+A single character inclusive production may be inverted to an exclusion by a preceding exclamation mark.
+
+e.g. \verb|!'\n'|.
+
+\subsection{Until Range}
+
+\subsection{Wildcard}
+
+\subsection{Whitespace}
+
+
+\section{Generic terms}
+
+\subsection{Rule Call}
+
+\subsection{Repetition}
+
+\subsection{Alternation}
+
+\subsection{Grouping}
+
+\section{Parser terms}
+
+\section{Annotation terms}
+
+\subsection{Assignment}
+
+\subsection{CrossReference}
+
+\subsection{Typing}
+
+\subsection{Action}
