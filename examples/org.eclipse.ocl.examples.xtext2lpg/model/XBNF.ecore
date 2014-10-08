@@ -33,12 +33,12 @@
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Conjunction" eSuperTypes="#//AbstractElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" unique="false"
-        lowerBound="1" upperBound="-1" eType="#//AbstractElement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" lowerBound="1"
+        upperBound="-1" eType="#//AbstractElement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Disjunction" eSuperTypes="#//AbstractElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="conjunctions" unique="false"
-        lowerBound="1" upperBound="-1" eType="#//Conjunction" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conjunctions" lowerBound="1"
+        upperBound="-1" eType="#//Conjunction" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EOF" eSuperTypes="#//AbstractElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="Epsilon" eSuperTypes="#//AbstractElement"/>

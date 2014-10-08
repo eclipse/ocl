@@ -4,9 +4,8 @@
     nsPrefix="xbnfwc">
   <eClassifiers xsi:type="ecore:EClass" name="Alternatives" eSuperTypes="#//CompoundElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="CompoundElement" abstract="true" eSuperTypes="XBNF.ecore#//AbstractElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" unique="false"
-        lowerBound="1" upperBound="-1" eType="ecore:EClass XBNF.ecore#//AbstractElement"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" lowerBound="1"
+        upperBound="-1" eType="ecore:EClass XBNF.ecore#//AbstractElement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OneOrMore" eSuperTypes="#//CompoundElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="Succession" eSuperTypes="#//CompoundElement"/>

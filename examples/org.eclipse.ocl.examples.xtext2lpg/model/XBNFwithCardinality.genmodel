@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.ocl.examples.xtext2lpg/emf-gen" modelPluginID="org.eclipse.ocl.examples.xtext2lpg"
+    modelName="XBNFwithCardinality" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
+    runtimeVersion="2.7" operationReflection="true" importOrganizing="true">
+  <foreignModel>XBNFwithCardinality.ecore</foreignModel>
+  <genPackages prefix="XBNFwithCardinality" basePackage="org.eclipse.ocl.examples.xtext2lpg"
+      disposableProviderFactory="true" ecorePackage="XBNFwithCardinality.ecore#/">
+    <genClasses ecoreClass="XBNFwithCardinality.ecore#//Alternatives"/>
+    <genClasses image="false" ecoreClass="XBNFwithCardinality.ecore#//CompoundElement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XBNFwithCardinality.ecore#//CompoundElement/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="XBNFwithCardinality.ecore#//OneOrMore"/>
+    <genClasses ecoreClass="XBNFwithCardinality.ecore#//Succession"/>
+    <genClasses ecoreClass="XBNFwithCardinality.ecore#//ZeroOrMore"/>
+    <genClasses ecoreClass="XBNFwithCardinality.ecore#//ZeroOrOne"/>
+  </genPackages>
+  <genPackages prefix="XBNF" basePackage="org.eclipse.ocl.examples.xtext2lpg" disposableProviderFactory="true"
+      ecorePackage="XBNF.ecore#/">
+    <genClasses image="false" ecoreClass="XBNF.ecore#//AbstractElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XBNF.ecore#//AbstractElement/debug"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference XBNF.ecore#//AbstractElement/parentRule"/>
+    </genClasses>
+    <genClasses ecoreClass="XBNF.ecore#//AbstractRule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XBNF.ecore#//AbstractRule/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XBNF.ecore#//AbstractRule/element"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XBNF.ecore#//AbstractRule/debug"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XBNF.ecore#//AbstractRule/kind"/>
+    </genClasses>
+    <genClasses ecoreClass="XBNF.ecore#//ActionAssignment">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference XBNF.ecore#//ActionAssignment/type"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="XBNF.ecore#//Assignment">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference XBNF.ecore#//Assignment/feature"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XBNF.ecore#//Assignment/operator"/>
+    </genClasses>
+    <genClasses ecoreClass="XBNF.ecore#//CharacterRange">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XBNF.ecore#//CharacterRange/left"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XBNF.ecore#//CharacterRange/right"/>
+    </genClasses>
+    <genClasses ecoreClass="XBNF.ecore#//Conjunction">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XBNF.ecore#//Conjunction/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="XBNF.ecore#//Disjunction">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XBNF.ecore#//Disjunction/conjunctions"/>
+    </genClasses>
+    <genClasses ecoreClass="XBNF.ecore#//EOF"/>
+    <genClasses ecoreClass="XBNF.ecore#//Epsilon"/>
+    <genClasses ecoreClass="XBNF.ecore#//Grammar">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XBNF.ecore#//Grammar/name"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference XBNF.ecore#//Grammar/syntax"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference XBNF.ecore#//Grammar/goals"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XBNF.ecore#//Grammar/rules"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XBNF.ecore#//Grammar/debug"/>
+    </genClasses>
+    <genClasses ecoreClass="XBNF.ecore#//Keyword">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XBNF.ecore#//Keyword/value"/>
+    </genClasses>
+    <genClasses ecoreClass="XBNF.ecore#//KeywordAssignment"/>
+    <genClasses ecoreClass="XBNF.ecore#//LexerGrammar"/>
+    <genClasses ecoreClass="XBNF.ecore#//NegatedToken">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XBNF.ecore#//NegatedToken/terminal"/>
+    </genClasses>
+    <genClasses ecoreClass="XBNF.ecore#//ParserGrammar"/>
+    <genClasses ecoreClass="XBNF.ecore#//ParserRule"/>
+    <genClasses ecoreClass="XBNF.ecore#//RuleCall">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference XBNF.ecore#//RuleCall/referredRule"/>
+    </genClasses>
+    <genClasses ecoreClass="XBNF.ecore#//RuleCallAssignment"/>
+    <genClasses ecoreClass="XBNF.ecore#//Syntax">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XBNF.ecore#//Syntax/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XBNF.ecore#//Syntax/grammars"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XBNF.ecore#//Syntax/debug"/>
+    </genClasses>
+    <genClasses ecoreClass="XBNF.ecore#//TerminalRule"/>
+    <genClasses image="false" ecoreClass="XBNF.ecore#//TypedRule">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference XBNF.ecore#//TypedRule/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XBNF.ecore#//TypedRule/subrules"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference XBNF.ecore#//TypedRule/grammar"/>
+    </genClasses>
+    <genClasses ecoreClass="XBNF.ecore#//UntilToken">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XBNF.ecore#//UntilToken/terminal"/>
+    </genClasses>
+    <genClasses ecoreClass="XBNF.ecore#//UntypedRule"/>
+    <genClasses ecoreClass="XBNF.ecore#//Wildcard"/>
+  </genPackages>
+</genmodel:GenModel>

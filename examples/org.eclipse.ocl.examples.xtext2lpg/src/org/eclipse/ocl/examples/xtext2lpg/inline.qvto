@@ -1,0 +1,325 @@
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2012 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ */
+/*
+Inline BNF sub-rules calls that do not involve recursion,
+thereby performing shifts rather than reduces within original rules.
+*/
+modeltype ECORE uses 'http://www.eclipse.org/emf/2002/Ecore';
+modeltype XBNF uses 'http://www.eclipse.org/ocl/XBNF';
+
+transformation inline(in xtext : XBNF, out XBNF);
+
+/**
+	This intermediate avoids the need for Sequence{Sequence{AbstractElement}}.
+*/
+intermediate class ElementRun
+{
+	references elements : AbstractElement[*] ordered;
+};
+
+main() {
+	xtext.rootObjects()[XBNF::Syntax]->map syntax2syntax();
+}
+
+mapping XBNF::Syntax::syntax2syntax() : XBNF::Syntax {
+	name := self.name;
+	grammars := self.grammars->map grammar2grammar();
+}
+
+mapping XBNF::Grammar::grammar2grammar() : XBNF::Grammar
+disjuncts
+LexerGrammar::lexerGrammar2grammar,
+ParserGrammar::parserGrammar2grammar
+{}
+
+---------------------------------------------------------------------------------------
+--	Copy the lexer rules
+---------------------------------------------------------------------------------------
+
+mapping XBNF::LexerGrammar::lexerGrammar2grammar() : XBNF::LexerGrammar {
+	name := self.name;
+	rules := self.rules->select(oclIsKindOf(TerminalRule)).oclAsType(TerminalRule)->map terminalRule2rule();
+	goals := self.goals.resolveone(TypedRule);
+}
+
+mapping XBNF::TerminalRule::terminalRule2rule() : XBNF::TerminalRule
+{
+	name := self.name;
+	debug := self.debug;
+	type := self.type;
+	element := self.element.map element2lexerElement();
+} 
+
+mapping XBNF::AbstractElement::element2lexerElement() : XBNF::AbstractElement
+disjuncts
+CharacterRange::keyword2lexerElement,
+Keyword::keyword2lexerElement,
+NegatedToken::negatedToken2lexerElement,
+RuleCall::ruleCall2lexerElement,
+--Succession::succession2lexerElement,
+UntilToken::untilToken2lexerElement,
+Wildcard::wildcard2lexerElement,
+AbstractElement::element2lexerElement_default
+{}
+
+mapping XBNF::AbstractElement::element2lexerElement_default() : XBNF::Wildcard {
+	debug := 'default';
+}
+
+mapping XBNF::CharacterRange::keyword2lexerElement() : XBNF::CharacterRange {
+	debug := self.debug;
+	left := self.left;
+	right := self.right;
+}
+
+mapping XBNF::Keyword::keyword2lexerElement() : XBNF::Keyword {
+	debug := self.debug;
+	value := self.value;
+}
+
+mapping XBNF::NegatedToken::negatedToken2lexerElement() : XBNF::UntilToken {
+	debug := self.debug;
+	terminal := self.terminal.map element2lexerElement();
+}
+
+mapping XBNF::RuleCall::ruleCall2lexerElement() : XBNF::RuleCall {
+	debug := self.referredRule.name;
+	referredRule := self.referredRule.late resolveone(XBNF::AbstractRule);
+}
+
+mapping XBNF::UntilToken::untilToken2lexerElement() : XBNF::UntilToken {
+	debug := self.debug;
+	terminal := self.terminal.map element2lexerElement();
+}
+
+mapping XBNF::Wildcard::wildcard2lexerElement() : XBNF::Wildcard {
+	debug := self.debug;
+}
+
+---------------------------------------------------------------------------------------
+--	Create the extra parser rules for XBNF alternatives
+---------------------------------------------------------------------------------------
+mapping XBNF::ParserGrammar::parserGrammar2grammar() : XBNF::ParserGrammar {
+	name := self.name;
+	var parserRules : Sequence(TypedRule) = self.rules->asSequence()->reject(oclIsKindOf(TerminalRule))->sortedBy(name);
+	rules := parserRules->map parserRule2rule_map();
+	goals := self.goals.resolveone(TypedRule);
+}
+
+mapping XBNF::TypedRule::parserRule2rule_map() : XBNF::TypedRule
+disjuncts ParserRule::parserRule2rule
+{
+}
+
+mapping XBNF::ParserRule::parserRule2rule() : XBNF::ParserRule
+{
+	name := self.name;
+	type := self.type;	
+	var inlineables : Set(UntypedRule) = self.getInlineables();
+--	debug := inlineables->size().toString() + '/' + subrules->size().toString();
+	var disjunction : Disjunction = self.element.oclAsType(Disjunction);
+	var inlinedTerms : Set(ElementRun) = disjunction.inlineInlineables(inlineables);
+	element := object Disjunction {
+		debug := inlinedTerms->size().toString() + '/' + disjunction.conjunctions->size().toString()
+			 + ' ' + inlineables->size().toString() + '/' + subrules->size().toString();
+		conjunctions := inlinedTerms->map run2conjunction();
+	};
+	var nonInlineables : Set(UntypedRule) = self.subrules - inlineables;
+	subrules := nonInlineables->map untypedRule2untypedRule(inlineables);
+} 
+
+mapping ElementRun::run2conjunction() : XBNF::Conjunction
+{
+	debug := self.elements->size().toString();
+	elements := self.elements->map element2element(self);
+} 
+
+mapping UntypedRule::untypedRule2untypedRule(inlineables : Set(AbstractRule)) : XBNF::UntypedRule
+{
+	var disjunction : Disjunction = self.element.oclAsType(Disjunction);
+	var inlinedTerms : Set(ElementRun) = disjunction.inlineInlineables(inlineables);
+	name := self.name;
+	element := object Disjunction {
+		conjunctions := inlinedTerms->map run2conjunction();
+	};
+} 
+
+---------------------------------------------------------------------------------------
+--	Compute what can be inlined
+---------------------------------------------------------------------------------------
+/**
+	Return all rules that may be inlined, i.e rules that do not recurse.
+*/
+helper TypedRule::getInlineables() : Set(UntypedRule)
+{
+	var recursions : Set(UntypedRule) = self.subrules->select(r : UntypedRule |
+		let disjunction : Disjunction = r.element.oclAsType(Disjunction) in
+		let elements : Collection(AbstractElement) = disjunction.conjunctions.elements in
+		let ruleCalls : Collection(RuleCall) = elements->select(oclIsKindOf(RuleCall)).oclAsType(RuleCall) in
+		let calledRules : Set(AbstractRule) = ruleCalls.referredRule->asSet() in
+		calledRules->includes(r));
+	var maybeInlineables : Set(UntypedRule) = self.subrules - recursions;
+	return self.getInlineables_getMore(Set{}, maybeInlineables);
+}
+helper TypedRule::getInlineables_getMore(knownInlineables : Set(UntypedRule), maybeInlineables : Set(UntypedRule)) : Set(UntypedRule)
+{
+	var moreInlineables : Set(UntypedRule) = maybeInlineables->select(
+		let disjunction : Disjunction = element.oclAsType(Disjunction) in
+		let elements : Collection(AbstractElement) = disjunction.conjunctions.elements in
+		let ruleCalls : Collection(RuleCall) = elements->select(oclIsKindOf(RuleCall)).oclAsType(RuleCall) in
+		let calledRules : Set(AbstractRule) = ruleCalls.referredRule->asSet() in
+		calledRules->intersection(maybeInlineables)->isEmpty());
+	return	if moreInlineables->isEmpty()
+			then knownInlineables
+			else self.getInlineables_getMore(knownInlineables->union(moreInlineables), maybeInlineables-moreInlineables)
+			endif;
+}
+
+---------------------------------------------------------------------------------------
+--	Return the inlined content
+---------------------------------------------------------------------------------------
+helper Disjunction::inlineInlineables(inlineables : Set(AbstractRule)) : Set(ElementRun)
+{
+	return self.conjunctions->iterate(e : Conjunction;
+		acc : Set(ElementRun) = Set{} |
+		acc->union(e.inlineInlineables(inlineables)));
+}
+
+/**
+	Return all alternatives for this sequence of elements when all accesses to any of inlineables are transitively inlined
+	as a sequence of the alternatives, each of which is a sequence of elements.
+*/
+helper Conjunction::inlineInlineables(inlineables : Set(AbstractRule)) : Set(ElementRun)
+{
+	return self.elements->iterate(e : AbstractElement;
+		acc : Set(ElementRun) = Set{} |
+		inlineInlineables_catProductSeqSeq(acc, e.inlineInlineables(self, inlineables)));
+}
+/**
+	Return the concatenation product of first and second sequence of sequences.
+	i.e. a sequence of the concatenations of each first inner sequence with each second inner sequence. 
+*/
+helper inlineInlineables_catProductSeqSeq(first : Set(ElementRun), second : Set(ElementRun)) : Set(ElementRun)
+{
+	return if first.elements->isEmpty()
+		then second
+		else if second.elements->isEmpty()
+			then first
+			else first->iterate(aFirst : ElementRun;
+				acc1 : Set(ElementRun) = Set{} |
+				acc1->union(second->iterate(aSecond : ElementRun;
+						acc2 : Set(ElementRun) = Set{} |
+						acc2->including(inlineInlineables_catSeq(aFirst, aSecond))
+						)))
+			endif
+		endif;
+}
+/**
+	Return the concatenation of first and second sequences
+*/
+helper inlineInlineables_catSeq(first : ElementRun, second : ElementRun) : ElementRun
+{
+	return object ElementRun {
+		elements := second.elements->iterate(e : AbstractElement;
+			acc : Sequence(AbstractElement) = first.elements |
+			acc->append(e));
+	};
+}
+
+/**
+	Return all alternatives for this element when accesses to any of inlineables are transitively inlined
+	as a sequence of the alternatives, each of which is a sequence of elements.
+*/
+helper AbstractElement::inlineInlineables(conjunction : Conjunction, inlineables : Set(AbstractRule)) : Set(ElementRun)
+{
+	return Set{object ElementRun { elements := Sequence{self}}};
+}
+helper Epsilon::inlineInlineables(conjunction : Conjunction, inlineables : Set(AbstractRule)) : Set(ElementRun)
+{
+	return Set{object ElementRun { elements := Sequence{}; }};
+}
+helper RuleCall::inlineInlineables(conjunction : Conjunction, inlineables : Set(AbstractRule)) : Set(ElementRun)
+{
+	return	if inlineables->includes(self.referredRule)
+			then self.referredRule.inlineInlineables_getSeqSeq(inlineables)
+			else Set{object ElementRun { elements := Sequence{self}; }}
+			endif;
+}
+/**
+	Return the disjunction of conjunctions of elements as a sequence of sequence of elements. 
+*/
+helper AbstractRule::inlineInlineables_getSeqSeq(inlineables : Set(AbstractRule)) : Set(ElementRun)
+{
+	var disjunction : Disjunction = self.element.oclAsType(Disjunction);
+	return disjunction.inlineInlineables(inlineables);
+}
+
+mapping Conjunction::conjunction2elementRun() : ElementRun
+{
+	elements := self.elements;
+}
+
+---------------------------------------------------------------------------------------
+--	Map selected elements to the output elements
+---------------------------------------------------------------------------------------
+mapping XBNF::AbstractElement::element2element(disambiguator : ElementRun) : XBNF::AbstractElement
+disjuncts
+ActionAssignment::actionAssignment2element,
+Epsilon::epsilon2element,
+KeywordAssignment::keywordAssignment2element,
+Keyword::keyword2element,
+RuleCallAssignment::ruleCallAssignment2element,
+RuleCall::ruleCall2element,
+AbstractElement::element2element_default
+{}
+
+mapping XBNF::AbstractElement::element2element_default(disambiguator : ElementRun) : XBNF::Wildcard {
+	debug := 'default';
+}
+
+mapping XBNF::ActionAssignment::actionAssignment2element(disambiguator : ElementRun) : XBNF::ActionAssignment {
+	debug := self.debug;
+	feature := self.feature;
+	operator := self.operator;
+	type := self.type;
+}
+
+mapping XBNF::Epsilon::epsilon2element(disambiguator : ElementRun) : XBNF::Epsilon {
+	debug := self.debug;
+}
+
+mapping XBNF::Keyword::keyword2element(disambiguator : ElementRun) : XBNF::Keyword {
+	debug := self.debug;
+	value := self.value;
+}
+
+mapping XBNF::KeywordAssignment::keywordAssignment2element(disambiguator : ElementRun) : XBNF::KeywordAssignment
+inherits XBNF::Keyword::keyword2element
+{
+	feature := self.feature;
+	operator := self.operator;
+}
+
+mapping XBNF::RuleCall::ruleCall2element(disambiguator : ElementRun) : XBNF::RuleCall {
+	debug := self.debug;
+	referredRule := self.referredRule.late resolveone(XBNF::AbstractRule);
+}
+
+mapping XBNF::RuleCallAssignment::ruleCallAssignment2element(disambiguator : ElementRun) : XBNF::RuleCallAssignment
+inherits XBNF::RuleCall::ruleCall2element
+{
+	feature := self.feature;
+	operator := self.operator;
+}

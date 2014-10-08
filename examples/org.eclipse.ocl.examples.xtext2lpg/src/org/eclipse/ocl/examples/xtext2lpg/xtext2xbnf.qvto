@@ -1,0 +1,284 @@
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2012 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ */
+/*
+	Convert a *.xtext file (CS resource) into an XBNF instance.
+	
+	Feature references are resolved to EStructuralFeature references.
+	Cardinality is exposed as OneOrMore, ZeroOrOne, ZeroOrMore wrappers
+	
+Bugs:
+	No support for enum rules, predicates 	
+*/
+
+modeltype XTEXT uses 'http://www.eclipse.org/2008/Xtext';
+modeltype ECORE uses 'http://www.eclipse.org/emf/2002/Ecore';
+modeltype XBNF uses 'http://www.eclipse.org/ocl/XBNF';
+modeltype XBNFwc uses 'http://www.eclipse.org/ocl/XBNFwithCardinality';
+
+transformation xtext2xbnf(in xtext : XTEXT, out XBNF);
+
+main() {
+	xtext.rootObjects()[XTEXT::Grammar]->map grammar2syntax();
+}
+
+mapping XTEXT::Grammar::grammar2syntax() : XBNF::Syntax {
+	
+/*	var selfRules : OrderedSet(AbstractRule) = self.rules;
+	var selfRootElements : Set(AbstractElement) = selfRules.oclAsType(EObject).eAllContents().alternatives->asSet();
+	var allElements : Set(AbstractElement) = selfRootElements->closure(if oclIsKindOf(CompoundElement) then oclAsType(CompoundElement).elements else null endif)->union(selfRootElements);
+	var ruleCalls : Set(RuleCall) = allElements->select(oclIsKindOf(RuleCall)).oclAsType(RuleCall)->asSet();
+	var ruleCalls : Set(RuleCall) = allElements->select(oclIsKindOf(RuleCall)).oclAsType(RuleCall)->asSet();
+	var allRules : OrderedSet(AbstractRule) = ruleCalls.rule->asSet()->union(selfRules)->sortedBy(name);
+	var lexerRules : Sequence(TypedRule) = allRules->reject(oclIsKindOf(ParserRule))->map typedRule2rule();
+	var parserRules : Sequence(TypedRule) = allRules->select(oclIsKindOf(ParserRule))->map typedRule2rule(); */
+	var allGrammars : Sequence(Grammar) = self->asSet()->closure(usedGrammars->asSet())->asSequence()->prepend(self);
+	name := self.name;
+--	var ruleCalls : Set(RuleCall) = self.oclAsType(EObject)->closure(eContents())->select(oclIsKindOf(RuleCall)).oclAsType(RuleCall)->asSet();
+--	debug := XTEXT::Grammar.allInstances()->size().toString() + ' ' + ruleCalls->size().toString();
+	grammars := allGrammars->iterate(g ; acc : Sequence(XBNF::Grammar) = Sequence{} | acc->append(g.map grammar2lexerGrammar())->append(g.map grammar2parserGrammar()));
+}
+
+/*query gatherRules(knownRules : Set(AbstractRule), candidateRules : Set(AbstractRule)) : Set(AbstractRule)
+{
+	var moreKnownRules = knownRules->union(candidateRules);
+	var moreCalls : Set(RuleCall) = candidateRules.oclAsType(EObject)->closure(eContents().oclAsType(EObject)->asSet())->select(oclIsKindOf(RuleCall)).oclAsType(RuleCall)->asSet();
+	var moreRules : Set(AbstractRule) = moreCalls.rule->asSet() - moreKnownRules;
+	var t = object XBNF::ParserGrammar { name = 'test '; };
+--	var t1 = object XBNF::ParserGrammar { name = 'test1 ' + knownRules->size().toString(); };
+--	var t2 = object XBNF::ParserGrammar { name = 'test2 ' + knownRules->size().toString() + '/' + candidateRules->size().toString() + ' => ' + moreRules->size().toString(); };
+	return moreKnownRules;
+--	return if moreRules->isEmpty() then moreKnownRules else gatherRules(moreKnownRules, moreRules) endif;
+}*/
+
+mapping XTEXT::Grammar::grammar2lexerGrammar() : XBNF::LexerGrammar {
+	var lexerRules : Sequence(TypedRule) = self.rules->reject(oclIsKindOf(ParserRule))->map typedRule2rule();
+	name := self.name + 'Lexer';
+	rules := lexerRules;
+	goals := lexerRules->first()->asSequence();
+}
+
+mapping XTEXT::Grammar::grammar2parserGrammar() : XBNF::ParserGrammar {
+	var parserRules : Sequence(TypedRule) = self.rules->select(oclIsKindOf(ParserRule))->map typedRule2rule();
+--	var noRules : Set(AbstractRule) = Set{};
+--	var allParserRules : Set(AbstractRule) = gatherRules(noRules, self.rules->first().oclAsType(AbstractRule)->asSet());
+	name := self.name + 'Parser';
+	rules := parserRules->sortedBy(name);
+	goals := parserRules->first()->asSequence();
+}
+
+---------------------------------------------------------------------------------------
+--	Map rule to rule
+---------------------------------------------------------------------------------------
+mapping XTEXT::AbstractRule::typedRule2rule() : XBNF::TypedRule 
+disjuncts EnumRule::enumRule2rule,
+ParserRule::parserRule2rule,
+TerminalRule::terminalRule2rule
+{}
+
+abstract mapping XTEXT::AbstractRule::abstractRule2rule_base() : XBNF::TypedRule
+{
+	name := self.name;
+	type := self.type.classifier;
+	element := self.alternatives.element2element();
+}
+
+mapping XTEXT::EnumRule::enumRule2rule() : XBNF::TerminalRule
+inherits AbstractRule::abstractRule2rule_base
+{
+	kind := 'EnumRule';
+}
+
+mapping XTEXT::ParserRule::parserRule2rule() : XBNF::ParserRule
+inherits AbstractRule::abstractRule2rule_base
+{
+	kind := 'ParserRule';
+}
+
+mapping XTEXT::TerminalRule::terminalRule2rule() : XBNF::TerminalRule
+inherits AbstractRule::abstractRule2rule_base
+{
+	kind := 'TerminalRule';
+}
+
+---------------------------------------------------------------------------------------
+--	Map element to element
+---------------------------------------------------------------------------------------
+helper XTEXT::AbstractElement::element2element() : XBNF::AbstractElement
+{
+	return
+	if self.cardinality = '?' then object ZeroOrOne { debug := self.cardinality; elements := self.element2element2()->asSequence(); }
+	else if self.cardinality = '+' then object OneOrMore { debug := self.cardinality; elements := self.element2element2()->asSequence(); }
+	else if self.cardinality = '*' then object ZeroOrMore { debug := self.cardinality; elements := self.element2element2()->asSequence(); }
+	else self.element2element2()
+	endif
+	endif
+	endif;
+}
+
+helper XTEXT::AbstractElement::element2element2() : XBNF::AbstractElement
+{
+	return self.map abstractElement2element();
+}
+
+helper XTEXT::Assignment::element2element2() : XBNF::AbstractElement
+{
+	var theRule : AbstractRule = self.terminal.oclAsType(RuleCall).rule;
+	var classifier : EClass = self.getClass();
+	var feature : EStructuralFeature = classifier.eAllStructuralFeatures->select(s | s.name = self.feature)->any(true);
+	return self.terminal.map assignment2assignments(self, feature);
+}
+
+mapping XTEXT::AbstractElement::abstractElement2element() : XBNF::AbstractElement
+disjuncts Action::action2element,
+Alternatives::alternatives2element,
+CharacterRange::characterRange2element,
+CompoundElement::compoundElement2sequentialTerm,
+EOF::eof2element,
+EnumLiteralDeclaration::enumLiteralDeclaration2element,
+Group::group2element,
+Keyword::keyword2element,
+NegatedToken::negatedToken2element,
+RuleCall::ruleCall2element,
+UnorderedGroup::unorderedGroup2element,
+UntilToken::untilToken2element,
+Wildcard::wildcard2element
+{}
+
+mapping XTEXT::Action::action2element() : XBNF::ActionAssignment
+when { self.feature <> null }
+{
+	var classifier : EClass = self.type.classifier.oclAsType(EClass);
+	debug := self.feature + ':' + classifier.name + self.operator + 'current';
+	feature := classifier.eAllStructuralFeatures->select(s | s.name = self.feature)->any(true);
+	operator := self.operator;
+	type := self.type.classifier;
+}
+
+mapping XTEXT::Alternatives::alternatives2element() : XBNFwc::Alternatives {
+	debug := '|';
+	elements := self.elements->element2element();
+}
+
+mapping XTEXT::CharacterRange::characterRange2element() : XBNF::CharacterRange {
+	debug := '[' + self.left.value + '-' + self.right.value + ']';
+	left := self.left.value;
+	right := self.right.value;
+}
+
+mapping XTEXT::CompoundElement::compoundElement2sequentialTerm() : XBNFwc::Succession
+{
+	elements := self.elements->element2element();
+}
+
+mapping XTEXT::EOF::eof2element() : XBNF::EOF {
+	debug := 'EOF';
+}
+
+mapping XTEXT::EnumLiteralDeclaration::enumLiteralDeclaration2element() : XBNF::RuleCall {
+	debug := 'EnumLiteralDeclaration';
+}
+
+mapping XTEXT::Group::group2element() : XBNF::RuleCall {
+	debug := 'Group';
+}
+
+mapping XTEXT::Keyword::keyword2element() : XBNF::Keyword {
+	debug := '"' + self.value + '"';
+	value := self.value;
+}
+
+mapping XTEXT::NegatedToken::negatedToken2element() : XBNF::NegatedToken {
+	debug := 'NegatedToken';
+	terminal := self.terminal.element2element();
+}
+
+mapping XTEXT::RuleCall::ruleCall2element() : XBNF::RuleCall {
+	debug := self.rule.name;
+	referredRule := self.rule.late resolveone(XBNF::AbstractRule);
+}
+
+mapping XTEXT::UnorderedGroup::unorderedGroup2element() : XBNF::RuleCall {
+	debug := 'UnorderedGroup';
+}
+
+mapping XTEXT::UntilToken::untilToken2element() : XBNF::UntilToken {
+	debug := 'UntilToken';
+	terminal := self.terminal.element2element();
+}
+
+mapping XTEXT::Wildcard::wildcard2element() : XBNF::Wildcard {
+	debug := 'Wildcard';
+}
+
+---------------------------------------------------------------------------------------
+--	Map an Assignment.terminal to the appropriate assignnments
+---------------------------------------------------------------------------------------
+mapping XTEXT::AbstractElement::assignment2assignments(assignment : Assignment, theFeature : EStructuralFeature) : XBNF::AbstractElement
+disjuncts Alternatives::alternatives2assignments,
+CrossReference::crossReference2assignments,
+Keyword::keyword2assignments,
+RuleCall::ruleCall2assignments
+{}
+
+mapping XTEXT::Alternatives::alternatives2assignments(assignment : Assignment, theFeature : EStructuralFeature) : XBNFwc::Alternatives
+{
+	elements := self.elements->map assignment2assignments(assignment, theFeature);
+}
+
+mapping XTEXT::CrossReference::crossReference2assignments(assignment : Assignment, theFeature : EStructuralFeature) : XBNF::RuleCallAssignment
+{
+	var theRule : AbstractRule = self.terminal.oclAsType(RuleCall).rule;
+	debug := '#1 ' + theFeature.name + assignment.operator + theRule.name;
+	feature := theFeature;
+	operator := assignment.operator;
+	referredRule := theRule.late resolveone(XBNF::AbstractRule);
+}
+
+mapping XTEXT::Keyword::keyword2assignments(assignment : Assignment, theFeature : EStructuralFeature) : XBNF::KeywordAssignment
+{
+	debug := '"' + self.value + '"';
+	feature := theFeature;
+	operator := assignment.operator;
+	value := self.value;
+}
+
+mapping XTEXT::RuleCall::ruleCall2assignments(assignment : Assignment, theFeature : EStructuralFeature) : XBNF::RuleCallAssignment
+{
+	debug := '#2 ' + theFeature.name + assignment.operator + self.rule.name;
+	feature := theFeature;
+	operator := assignment.operator;
+	referredRule := self.rule.late resolveone(XBNF::AbstractRule);
+}
+
+---------------------------------------------------------------------------------------
+--	Return the EClass that scopes feature assignments
+---------------------------------------------------------------------------------------
+query XTEXT::AbstractElement::getClass() : ECORE::EClass {
+	var container : EObject = self.oclAsType(EObject).eContainer();
+	return if container.oclIsKindOf(AbstractRule)
+	then container.oclAsType(AbstractRule).type.classifier.oclAsType(EClass)
+	else container.oclAsType(AbstractElement).getClass()
+	endif
+}
+
+query XTEXT::CompoundElement::getClass() : ECORE::EClass {
+	var container : EObject = self.oclAsType(EObject).eContainer();
+	return if (self.elements->first().oclIsKindOf(Action))
+	then self.elements->first().oclAsType(Action).type.classifier.oclAsType(EClass)
+	else if container.oclIsKindOf(AbstractRule)
+	then container.oclAsType(AbstractRule).type.classifier.oclAsType(EClass)
+	else container.oclAsType(AbstractElement).getClass()
+	endif endif
+}
