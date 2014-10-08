@@ -67,6 +67,7 @@ org.eclipse.emf.mwe2.runtime.workflow.Workflow {
     	uri = "${projectURI}/src/org/eclipse/ocl/examples/xtext2lpg/xtext2xbnf.qvto"
     	in = "${EssentialOCLxtext}"
     	out = "${EssentialOCLxtextXBNF}"
+    	validate = true
     }
 /*     component = QVToTransformationExecutor {
     	resourceSet = resourceSet
@@ -91,6 +92,7 @@ org.eclipse.emf.mwe2.runtime.workflow.Workflow {
     	uri = "${projectURI}/src/org/eclipse/ocl/examples/xtext2lpg/normalize.qvto"
     	in = "${EssentialOCLxtextXBNF}"
     	out = "${EssentialOCLnormalXBNF}"
+    	validate = true
     }
 /*    component = QVToTransformationExecutor {
     	resourceSet = resourceSet
@@ -115,6 +117,7 @@ org.eclipse.emf.mwe2.runtime.workflow.Workflow {
     	uri = "${projectURI}/src/org/eclipse/ocl/examples/xtext2lpg/inline.qvto"
     	in = "${EssentialOCLnormalXBNF}"
     	out = "${EssentialOCLinlineXBNF}"
+    	validate = false
     }
 /*    component = QVToTransformationExecutor {
     	resourceSet = resourceSet

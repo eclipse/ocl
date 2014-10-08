@@ -19,21 +19,27 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.URIHandlerImpl;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.m2m.qvt.oml.BasicModelExtent;
 import org.eclipse.m2m.qvt.oml.ExecutionContextImpl;
 import org.eclipse.m2m.qvt.oml.ExecutionDiagnostic;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.m2m.qvt.oml.TransformationExecutor;
 import org.eclipse.m2m.qvt.oml.util.StringBufferLog;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.domain.validation.DomainSubstitutionLabelProvider;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 public class QVToTransformationExecutor extends AbstractWorkflowComponent
 {
@@ -45,6 +51,7 @@ public class QVToTransformationExecutor extends AbstractWorkflowComponent
 	private String out = null;	
 	private String trace = null;
 	private String encoding = "UTF-8"; //$NON-NLS-1$
+	private boolean validate = true;
 	
 	public void addIn(String fileName) {
 		ins.add(fileName);
@@ -55,6 +62,10 @@ public class QVToTransformationExecutor extends AbstractWorkflowComponent
 		if (getUri() == null) {
 			issues.addError(this, "uri not specified.");
 		}
+	}
+	
+	public String getEncoding() {
+		return encoding;
 	}
 
 	public String getOut() {
@@ -74,6 +85,20 @@ public class QVToTransformationExecutor extends AbstractWorkflowComponent
 
 	public String getUri() {
 		return uri;
+	}
+
+	public boolean getValidate() {
+		return validate;
+	}
+
+	/**
+	 * Clients may override to do any configuration 
+	 * properties initialization
+	 * 
+	 * @return creates a context to be used by the transformation
+	 */
+	protected void initializeConfigurationProperties(ExecutionContextImpl context) {
+		// do nothing
 	}
 
 	@Override
@@ -158,21 +183,37 @@ public class QVToTransformationExecutor extends AbstractWorkflowComponent
 				options.put(XMLResource.OPTION_URI_HANDLER, new URIHandlerImpl.PlatformSchemeAware());
 				options.put(XMLResource.OPTION_SCHEMA_LOCATION, Boolean.TRUE);
 				outResource.save(options);
+				if (validate) {
+					validate(outResource);
+				}
 			} catch (IOException e) {
 				issues.addError(this, "Failed to save ", outURI, e, null);
 				return;
 			}	
 		}
 	}
+	
+	public void setEncoding(String encoding) {
+		this.encoding = encoding;
+	}
 
+	/**
+	 * @param uri the QVTo output URI
+	 */
 	public void setOut(String out) {
 		this.out = out;
 	}
 	
+	/**
+	 * @param resourceSet the ResourceSet to re-use
+	 */
 	public void setResourceSet(ResourceSet resourceSet) {
 		this.resourceSet = resourceSet;
 	}
 
+	/**
+	 * @param uri the QVTo trace URI
+	 */
 	public void setTrace(String trace) {
 		this.trace = trace;
 	}
@@ -184,23 +225,31 @@ public class QVToTransformationExecutor extends AbstractWorkflowComponent
 		this.uri = uri;
 	}
 	
-	public String getEncoding() {
-		return encoding;
-	}
-	
-	public void setEncoding(String encoding) {
-		this.encoding = encoding;
-	}
-
 	/**
-	 * Clients may override to do any configuration 
-	 * properties initialization
-	 * 
-	 * @return creates a context to be used by the transformation
+	 * @param validate True to validate the output model
 	 */
-	protected void initializeConfigurationProperties(ExecutionContextImpl context) {
-		// do nothing
+	public void setValidate(boolean validate) {
+		this.validate = validate;
 	}
 	
+	public static void validate(@NonNull Resource resource) throws IOException {
+		for (EObject eObject : resource.getContents()) {
+			Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
+			Resource eResource = DomainUtil.nonNullState(eObject.eResource());
+			PivotUtil.getMetaModelManager(eResource);	// FIXME oclIsKindOf fails because ExecutableStandardLibrary.getMetaclass is bad
+			Diagnostic diagnostic = Diagnostician.INSTANCE.validate(eObject, validationContext);
+			List<Diagnostic> children = diagnostic.getChildren();
+			if (children.size() <= 0) {
+				return;
+			}
+			StringBuilder s = new StringBuilder();
+			s.append(children.size() + " validation errors");
+			for (Diagnostic child : children){
+				s.append("\n\t");
+				s.append(child.getMessage());
+			}
+			throw new IOException(s.toString());
+		}
+	}
 
 }
