@@ -11,49 +11,41 @@
 package org.eclipse.ocl.examples.xtext2lpg
 
 import org.eclipse.jdt.annotation.NonNull
-import org.eclipse.ocl.examples.xtext2lpg.XBNF.Syntax
+import org.eclipse.ocl.examples.xtext2lpg.XBNF.AbstractElement
+import org.eclipse.ocl.examples.xtext2lpg.XBNF.AbstractRule
+import org.eclipse.ocl.examples.xtext2lpg.XBNF.ActionAssignment
+import org.eclipse.ocl.examples.xtext2lpg.XBNF.Disjunction
+import org.eclipse.ocl.examples.xtext2lpg.XBNF.Epsilon
+import org.eclipse.ocl.examples.xtext2lpg.XBNF.Keyword
+import org.eclipse.ocl.examples.xtext2lpg.XBNF.KeywordAssignment
 import org.eclipse.ocl.examples.xtext2lpg.XBNF.LexerGrammar
 import org.eclipse.ocl.examples.xtext2lpg.XBNF.ParserGrammar
-import org.eclipse.ocl.examples.xtext2lpg.XBNF.TypedRule
-import org.eclipse.ocl.examples.xtext2lpg.XBNF.AbstractRule
-import org.eclipse.ocl.examples.xtext2lpg.XBNF.Disjunction
-import org.eclipse.ocl.examples.xtext2lpg.XBNF.ActionAssignment
-import org.eclipse.ocl.examples.xtext2lpg.XBNF.Epsilon
-import org.eclipse.ocl.examples.xtext2lpg.XBNF.RuleCallAssignment
 import org.eclipse.ocl.examples.xtext2lpg.XBNF.RuleCall
-import org.eclipse.ocl.examples.xtext2lpg.XBNF.KeywordAssignment
-import org.eclipse.ocl.examples.xtext2lpg.XBNF.Keyword
-import org.eclipse.ocl.examples.xtext2lpg.XBNF.AbstractElement
+import org.eclipse.ocl.examples.xtext2lpg.XBNF.RuleCallAssignment
+import org.eclipse.ocl.examples.xtext2lpg.XBNF.Syntax
+import org.eclipse.ocl.examples.xtext2lpg.XBNF.TypedRule
+import org.eclipse.ocl.examples.xtext2lpg.XBNF.CharacterRange
 
 public class GenerateLPGXtend extends GenerateLPGUtils
 {
 	@NonNull protected override String generateLPGKWLexer(@NonNull Syntax syntax) {
-		generateKWLexer(syntax)
+		return generateKWLexer(getLexerGrammar(syntax), getParserGrammar(syntax))
 	}
 	@NonNull protected override String generateLPGLexer(@NonNull Syntax syntax) {
-		for (grammar : syntax.grammars) {
-			if (grammar instanceof LexerGrammar) {
-				return generateLexer(grammar);
-			}
-		}
-		return "";
-	}
-	@NonNull protected override String generateLPGParser(@NonNull Syntax syntax) {
-		for (grammar : syntax.grammars) {
-			if (grammar instanceof ParserGrammar) {
-				return generateParser(grammar);
-			}
-		}
-		return "";
+		return generateLexer(getLexerGrammar(syntax), getParserGrammar(syntax));
 	}
 	
- 	protected def String generateKWLexer(Syntax syntax) {
-		var keywordValues = syntax.getSortedKWValues();
+	@NonNull protected override String generateLPGParser(@NonNull Syntax syntax) {
+		return generateParser(getParserGrammar(syntax));
+	}
+	
+ 	protected def String generateKWLexer(@NonNull LexerGrammar lexerGrammar, @NonNull ParserGrammar parserGrammar) {
+		var keywordValues = getSortedKWValues(parserGrammar);
 		'''
 		%options slr
 		%options fp=«syntaxName»KWLexer,prefix=Char_
 		%options noserialize
-		%options package=«emitSyntaxPackage(syntax)»
+		%options package=«emitSyntaxPackage(lexerGrammar.syntax)»
 		%options template=../lpg/KeywordTemplateF.gi
 		%options export_terminals=("«syntaxName»Parsersym.java", "TK_")
 		%options include_directory="../lpg"
@@ -109,20 +101,21 @@ public class GenerateLPGXtend extends GenerateLPGUtils
 		'''
 	}
 
- 	protected def String generateLexer(LexerGrammar grammar) {
-		var syntax = grammar.syntax;
+ 	protected def String generateLexer(@NonNull LexerGrammar lexerGrammar, @NonNull ParserGrammar parserGrammar) {
+		var syntax = lexerGrammar.getSyntax();
 		var syntaxName = emitSyntaxName(syntax);
-		var punctValues = getSortedPunctValues(syntax);
+		var punctValues = getSortedPunctValues(parserGrammar);
 		var terminalRules = getSortedTerminalRules(syntax);
 		var alphaChars = getSortedAlphaChars(syntax);
 		var punctChars = getSortedPunctChars(syntax);
+		var characterRanges = getSortedCharacterRanges(lexerGrammar);
 		'''
 		%options escape=$
 		%options la=2
 		%options fp=«syntaxName»Lexer,prefix=Char_
 		%options single-productions
 		%options noserialize
-		%options package=«emitSyntaxPackage(grammar.syntax)»
+		%options package=«emitSyntaxPackage(syntax)»
 		%options template=../lpg/LexerTemplateF.gi
 		%options filter=«syntaxName»KWLexer.gi
 		%options export_terminals=("«syntaxName»Parsersym.java", "TK_")
@@ -150,7 +143,11 @@ public class GenerateLPGXtend extends GenerateLPGUtils
 		
 		%Terminals
 			«FOR c : alphaChars SEPARATOR ' '»«c»«ENDFOR»
-			
+			«FOR characterRange : characterRanges»
+
+				«characterRange.getDebug()» ::=«FOR c : getCharacters(characterRange)» «c»«ENDFOR»
+			«ENDFOR»
+
 			«FOR c : punctChars»
 				«emitLabel(c)» ::= '«c»'
 			«ENDFOR»
@@ -161,28 +158,28 @@ public class GenerateLPGXtend extends GenerateLPGUtils
 		%End
 		
 		%Rules
-		«FOR keywordValue : punctValues»
-				Token ::= «FOR c : keywordValue.toCharArray() SEPARATOR ' '»'«c»'«ENDFOR»
-					/.$BeginAction
-								makeToken($_«emitLabel(keywordValue)»);
-					  $EndAction
-					./
+			«FOR keywordValue : punctValues»
+			Token ::= «FOR c : keywordValue.toCharArray() SEPARATOR ' '»'«c»'«ENDFOR»
+				/.$BeginAction
+							makeToken($_«emitLabel(keywordValue)»);
+				  $EndAction
+				./
 
-		«ENDFOR»
-		«FOR terminalRule : terminalRules»
-				«terminalRule.name» ::= '#'
-					/.$BeginAction
-									makeToken($_«terminalRule.name»);
-					  $EndAction
-					./
+			«ENDFOR»
+			«FOR characterRange : characterRanges»
+			«characterRange.getDebug()» -> «FOR c : getCharacters(characterRange) SEPARATOR ' | '»'«c»'«ENDFOR»
 
-		«ENDFOR»
+			«ENDFOR»
+			«FOR terminalRule : terminalRules»
+			«generateTerminalRule(terminalRule)»
+
+			«ENDFOR»
 		%End
 		'''
 	}
 
- 	protected def String generateParser(ParserGrammar parser) {
-		var syntax = parser.syntax;
+ 	protected def String generateParser(@NonNull ParserGrammar parserGrammar) {
+		var syntax = parserGrammar.getSyntax();
 		var syntaxName = emitSyntaxName(syntax);
 		'''
 		%options escape=$
@@ -196,7 +193,7 @@ public class GenerateLPGXtend extends GenerateLPGUtils
 		%options include_directory=".;../lpg"
 		
 		%Start
-		«FOR rule : parser.goals»
+		«FOR rule : parserGrammar.goals»
 			«rule.name»
 		«ENDFOR»
 		%End
@@ -226,31 +223,52 @@ public class GenerateLPGXtend extends GenerateLPGUtils
 				«terminalRule.name»
 			«ENDFOR»
 			
-			«FOR keywordValue : getSortedPunctValues(syntax)»
+			«FOR keywordValue : getSortedPunctValues(parserGrammar)»
 				«emitLabel(keywordValue)» ::= '«keywordValue»'
 			«ENDFOR»
 		%End
 		
 		%Rules
-		«FOR parserRule : getSortedParserRules(parser) SEPARATOR '\n'»
-			«FOR rule : selectRules(parser.rules, parserRule.name)»
-				«generateRule(rule)»
+		«FOR parserRule : getSortedParserRules(parserGrammar) SEPARATOR '\n'»
+			«FOR rule : selectRules(parserGrammar.rules, parserRule.name)»
+				«generateParserRule(rule)»
 			«ENDFOR»
 		«ENDFOR»
 		%End
 		'''
 	}
 
-	protected def String generateRule(TypedRule rule) {
+	protected def String generateParserRule(TypedRule rule) {
 		'''
-		«generateDisjunction(rule)»
+		«generateParserDisjunction(rule)»
 		«FOR subrule : getSortedSubRules(rule.subrules)»
-			«generateDisjunction(subrule)»
+			«generateParserDisjunction(subrule)»
 		«ENDFOR»
 		'''
 	}
 
-	protected def String generateDisjunction(AbstractRule rule) {
+	protected def String generateTerminalRule(TypedRule rule) {
+		'''
+		«generateLexerDisjunction(rule)»
+		«FOR subrule : getSortedSubRules(rule.subrules)»
+			«generateLexerDisjunction(subrule)»
+		«ENDFOR»
+		'''
+	}
+
+	protected def String generateLexerDisjunction(AbstractRule rule) {
+		'''
+		«FOR conjunction : getSortedConjunctions(rule.element as Disjunction)»
+		«rule.name» ::=«IF conjunction.elements.isEmpty()» %empty«ELSE»«FOR element : conjunction.elements» «generateTerm(element)»«ENDFOR»«ENDIF»
+			/.$BeginAction
+							makeToken($_«rule.name»);
+			  $EndAction
+			./
+		«ENDFOR»
+		'''
+	}
+
+	protected def String generateParserDisjunction(AbstractRule rule) {
 		'''
 		«FOR conjunction : getSortedConjunctions(rule.element as Disjunction)»
 		«rule.name» ::=«IF conjunction.elements.isEmpty()» %empty«ELSE»«FOR element : conjunction.elements» «generateTerm(element)»«ENDFOR»«ENDIF»
@@ -261,6 +279,7 @@ public class GenerateLPGXtend extends GenerateLPGUtils
 	protected def String generateTerm(AbstractElement element) {
 		switch element {
 			ActionAssignment: return ""
+			CharacterRange: return element.getDebug()
 			Epsilon: return "%empty"
 			RuleCallAssignment: return element.referredRule.name
 			RuleCall: return element.referredRule.name

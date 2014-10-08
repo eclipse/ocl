@@ -13,17 +13,22 @@ package org.eclipse.ocl.examples.xtext2lpg;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.xtext2lpg.XBNF.AbstractRule;
+import org.eclipse.ocl.examples.xtext2lpg.XBNF.CharacterRange;
 import org.eclipse.ocl.examples.xtext2lpg.XBNF.Conjunction;
 import org.eclipse.ocl.examples.xtext2lpg.XBNF.Disjunction;
+import org.eclipse.ocl.examples.xtext2lpg.XBNF.Grammar;
 import org.eclipse.ocl.examples.xtext2lpg.XBNF.Keyword;
+import org.eclipse.ocl.examples.xtext2lpg.XBNF.LexerGrammar;
 import org.eclipse.ocl.examples.xtext2lpg.XBNF.ParserGrammar;
 import org.eclipse.ocl.examples.xtext2lpg.XBNF.Syntax;
 import org.eclipse.ocl.examples.xtext2lpg.XBNF.TerminalRule;
@@ -34,14 +39,22 @@ import org.eclipse.ocl.examples.xtext2lpg.XBNF.UntypedRule;
 
 public abstract class GenerateLPGUtils extends GenerateLPG
 {
-	protected final @NonNull Comparator<AbstractRule> ruleComparator = new Comparator<AbstractRule>()
+	protected final @NonNull Comparator<CharacterRange> characterRangeComparator = new Comparator<CharacterRange>()
 	{
-		public int compare(AbstractRule o1, AbstractRule o2) {
-			String m1 = o1.getName(); 
-			String m2 = o2.getName();
+		public int compare(CharacterRange o1, CharacterRange o2) {
+			String m1 = o1.getLeft(); 
+			String m2 = o2.getLeft();
 			if (m1 == null) m1 = "";
 			if (m2 == null) m2 = "";
-			return m1.compareTo(m2);
+			int diff = m1.compareTo(m2);
+			if (diff == 0) {
+				m1 = o1.getRight(); 
+				m2 = o2.getRight();
+				if (m1 == null) m1 = "";
+				if (m2 == null) m2 = "";
+				diff = m1.compareTo(m2);
+			}
+			return diff;
 		}
 	};
 
@@ -53,45 +66,92 @@ public abstract class GenerateLPGUtils extends GenerateLPG
 			return m1 - m2;
 		}
 	};
+	
+	protected final @NonNull Comparator<AbstractRule> ruleComparator = new Comparator<AbstractRule>()
+	{
+		public int compare(AbstractRule o1, AbstractRule o2) {
+			String m1 = o1.getName(); 
+			String m2 = o2.getName();
+			if (m1 == null) m1 = "";
+			if (m2 == null) m2 = "";
+			return m1.compareTo(m2);
+		}
+	};
+	
+	protected static final @NonNull Map<String, String> keyword2label = new HashMap<String, String>();
+	
+	static {
+		keyword2label.put("_", "USCORE");
+		keyword2label.put("&", "AND");
+		keyword2label.put("@", "AT");
+		keyword2label.put("|", "BAR");
+		keyword2label.put("^", "CARET");
+		keyword2label.put(":", "COLON");
+		keyword2label.put(",", "COMMA");
+		keyword2label.put(".", "DOT");
+		keyword2label.put("=", "EQUALS");
+		keyword2label.put("#", "HASH");
+		keyword2label.put("<", "LANGLE");
+		keyword2label.put("{", "LBRACE");
+		keyword2label.put("(", "LPAREN");
+		keyword2label.put("[", "LSQUARE");
+		keyword2label.put("-", "MINUS");
+		keyword2label.put("!", "PLING");
+		keyword2label.put("+", "PLUS");
+		keyword2label.put("?", "QUERY");
+		keyword2label.put(">", "RANGLE");
+		keyword2label.put("}", "RBRACE");
+		keyword2label.put(")", "RPAREN");
+		keyword2label.put("]", "RSQUARE");
+		keyword2label.put(";", "SEMICOLON");
+		keyword2label.put("/", "SLASH");
+		keyword2label.put("*", "STAR");
+		keyword2label.put("'", "SQUOTE");
+		keyword2label.put("\"", "DQUOTE");
+		keyword2label.put("\\", "BSLASH");
+		keyword2label.put("\r", "CR");
+		keyword2label.put("\n", "LF");
+		keyword2label.put("\t", "HTAB");
+		keyword2label.put(" ", "SPACE");
+		keyword2label.put("->", "ARROW");
+		keyword2label.put("..", "DOTDOT");
+		keyword2label.put("<=", "LESSEQ");
+		keyword2label.put(">=", "GTREQ");
+		keyword2label.put("<>", "NOTEQ");
+		keyword2label.put("::", "SCOPE");
+	}
 
 	protected String emitKeyword(String keywordValue) {
 		return keywordValue.replace("\\w","$0 ");
 	}
 
 	protected String emitLabel(String keywordValue) {
-		if (keywordValue.matches("[0-9a-zA-Z]*")) {
-			return keywordValue;
+		String label = keyword2label.get(keywordValue);
+		if (label == null) {
+			label = keywordValue;
 		}
-		String label = keywordValue;
-		label = label.replace("&", "AND");
-		label = label.replace("@", "AT");
-		label = label.replace("|", "BAR");
-		label = label.replace("^", "CARET");
-		label = label.replace(":", "COLON");
-		label = label.replace(",", "COMMA");
-		label = label.replace(".", "DOT");
-		label = label.replace("=", "EQUALS");
-		label = label.replace("#", "HASH");
-		label = label.replace("<", "LANGLE");
-		label = label.replace("{", "LBRACE");
-		label = label.replace("(", "LPAREN");
-		label = label.replace("[", "LSQUARE");
-		label = label.replace("-", "MINUS");
-		label = label.replace("!", "PLING");
-		label = label.replace("+", "PLUS");
-		label = label.replace("?", "QUERY");
-		label = label.replace(">", "RANGLE");
-		label = label.replace("}", "RBRACE");
-		label = label.replace(")", "RPAREN");
-		label = label.replace("]", "RSQUARE");
-		label = label.replace(";", "SEMICOLON");
-		label = label.replace("/", "SLASH");
-		label = label.replace("*", "STAR");
 		if (label.matches("[a-zA-Z]*")) {
 			return label;
 		}
 		else {
-			return "xx"; //keywordValue.codePoints()->iterate(c : Integer; acc : String = '' | acc + '_' + c.toString())
+			StringBuilder s = new StringBuilder();
+			for (int i = 0; i < label.length(); i++) {
+				char c = label.charAt(i);
+				String mapped = keyword2label.get(String.valueOf(c));
+				if (mapped != null) {
+					if (i > 0) {
+						s.append("_");
+					}
+					s.append(mapped);
+				}
+				else {
+					if (i == 0) {
+						s.append("T");
+					}
+					s.append("_" + (int)c);
+				}
+			}
+			return s.toString();
 		}
 	}
 
@@ -109,6 +169,34 @@ public abstract class GenerateLPGUtils extends GenerateLPG
 		return name.substring(0, lastCharacter-1);
 	}
 
+	protected @NonNull List<String> getCharacters(@NonNull CharacterRange characterRange) {
+		List<String> allCharacters = new ArrayList<String>();
+		char left = characterRange.getLeft().charAt(0);
+		char right = characterRange.getRight().charAt(0);
+		for (char c = left; c <= right; c++) {
+			allCharacters.add(String.valueOf(c));
+		}
+		return allCharacters;
+	}
+
+	protected @NonNull LexerGrammar getLexerGrammar(@NonNull Syntax syntax) {
+		for (Grammar grammar : syntax.getGrammars()) {
+			if (grammar instanceof LexerGrammar) {
+				return (LexerGrammar)grammar;
+			}
+		}
+		throw new IllegalStateException("No LexerGrammar");
+	}
+
+	protected @NonNull ParserGrammar getParserGrammar(@NonNull Syntax syntax) {
+		for (Grammar grammar : syntax.getGrammars()) {
+			if (grammar instanceof ParserGrammar) {
+				return (ParserGrammar)grammar;
+			}
+		}
+		throw new IllegalStateException("No ParserGrammar");
+	}
+	
 	protected @NonNull List<String> getSortedAlphaChars(@NonNull Syntax syntax) {
 		Set<Character> allElements = new HashSet<Character>();
 		for (TreeIterator<EObject> tit = syntax.eAllContents(); tit.hasNext(); ) {
@@ -130,10 +218,75 @@ public abstract class GenerateLPGUtils extends GenerateLPG
 		return sortedElements;
 	}
 
+	protected @NonNull List<CharacterRange> getSortedCharacterRanges(@NonNull LexerGrammar lexerGrammar) {
+		Set<CharacterRange> allElements = new HashSet<CharacterRange>();
+		for (TreeIterator<EObject> tit = lexerGrammar.eAllContents(); tit.hasNext(); ) {
+			EObject eObject = tit.next();
+			if (eObject instanceof CharacterRange) {
+				CharacterRange characterRange = (CharacterRange) eObject;
+				String label = null;
+				for (CharacterRange knownRange : allElements) {
+					if (characterRange.getLeft().equals(knownRange.getLeft()) && characterRange.getRight().equals(knownRange.getRight())) {
+						label = knownRange.getDebug();
+					}
+				}
+				if (label == null) {
+					allElements.add(characterRange);
+					String left = characterRange.getLeft();
+					String right = characterRange.getRight();
+					if (left.equals("0") && right.equals("9")) {
+						label = "DIGITS";
+					}
+					else if (left.equals("a") && right.equals("z")) {
+						label = "LOWERS";
+					}
+					else if (left.equals("A") && right.equals("Z")) {
+						label = "UPPERS";
+					}
+					else {
+						label = "RANGE_" + allElements.size();
+					}
+				}
+				characterRange.setDebug(label);
+			}
+		}
+		List<CharacterRange> sortedElements = new ArrayList<CharacterRange>(allElements);
+		Collections.sort(sortedElements, characterRangeComparator);
+		return sortedElements;
+	}
+
 	protected @NonNull List<Conjunction> getSortedConjunctions(@NonNull Disjunction disjunction) {
 		List<Conjunction> sortedConjunctions = new ArrayList<Conjunction>(disjunction.getConjunctions());
 		Collections.sort(sortedConjunctions, conjunctionComparator);
 		return sortedConjunctions;
+	}
+
+	protected @NonNull List<String> getSortedKWValues(@NonNull ParserGrammar parserGrammar) {
+		Set<String> allElements = new HashSet<String>();
+		for (TreeIterator<EObject> tit = parserGrammar.eAllContents(); tit.hasNext(); ) {
+			EObject eObject = tit.next();
+			if (eObject instanceof Keyword) {
+				String keywordValue = ((Keyword) eObject).getValue();
+				if (keywordValue.matches("[a-zA-Z]+")) {
+					allElements.add(keywordValue);
+				}
+			}
+		}
+		List<String> sortedElements = new ArrayList<String>(allElements);
+		Collections.sort(sortedElements);
+		return sortedElements;
+	}
+
+	protected @NonNull List<TypedRule> getSortedParserRules(@NonNull ParserGrammar parserGrammar) {
+		Set<TypedRule> allElements = new HashSet<TypedRule>();
+		for (TypedRule subRule : parserGrammar.getRules()) {
+			if (!(subRule instanceof TerminalRule)) {
+				allElements.add(subRule);
+			}
+		}
+		List<TypedRule> sortedElements = new ArrayList<TypedRule>(allElements);
+		Collections.sort(sortedElements, ruleComparator);
+		return sortedElements;
 	}
 
 	protected @NonNull List<String> getSortedPunctChars(@NonNull Syntax syntax) {
@@ -157,37 +310,9 @@ public abstract class GenerateLPGUtils extends GenerateLPG
 		return sortedElements;
 	}
 
-	protected @NonNull List<String> getSortedKWValues(@NonNull Syntax syntax) {
+	protected @NonNull List<String> getSortedPunctValues(@NonNull ParserGrammar parserGrammar) {
 		Set<String> allElements = new HashSet<String>();
-		for (TreeIterator<EObject> tit = syntax.eAllContents(); tit.hasNext(); ) {
-			EObject eObject = tit.next();
-			if (eObject instanceof Keyword) {
-				String keywordValue = ((Keyword) eObject).getValue();
-				if (keywordValue.matches("[a-zA-Z]+")) {
-					allElements.add(keywordValue);
-				}
-			}
-		}
-		List<String> sortedElements = new ArrayList<String>(allElements);
-		Collections.sort(sortedElements);
-		return sortedElements;
-	}
-
-	protected @NonNull List<TypedRule> getSortedParserRules(@NonNull ParserGrammar parser) {
-		Set<TypedRule> allElements = new HashSet<TypedRule>();
-		for (TypedRule subRule : parser.getRules()) {
-			if (!(subRule instanceof TerminalRule)) {
-				allElements.add(subRule);
-			}
-		}
-		List<TypedRule> sortedElements = new ArrayList<TypedRule>(allElements);
-		Collections.sort(sortedElements, ruleComparator);
-		return sortedElements;
-	}
-
-	protected @NonNull List<String> getSortedPunctValues(@NonNull Syntax syntax) {
-		Set<String> allElements = new HashSet<String>();
-		for (TreeIterator<EObject> tit = syntax.eAllContents(); tit.hasNext(); ) {
+		for (TreeIterator<EObject> tit = parserGrammar.eAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
 			if (eObject instanceof Keyword) {
 				String keywordValue = ((Keyword) eObject).getValue();

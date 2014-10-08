@@ -75,7 +75,7 @@ mapping XBNF::TerminalRule::terminalRule2rule() : XBNF::TerminalRule
 
 mapping XBNF::AbstractElement::element2lexerElement() : XBNF::AbstractElement
 disjuncts
-CharacterRange::keyword2lexerElement,
+CharacterRange::characterRange2lexerElement,
 Keyword::keyword2lexerElement,
 NegatedToken::negatedToken2lexerElement,
 RuleCall::ruleCall2lexerElement,
@@ -89,7 +89,7 @@ mapping XBNF::AbstractElement::element2lexerElement_default() : XBNF::Wildcard {
 	debug := 'default';
 }
 
-mapping XBNF::CharacterRange::keyword2lexerElement() : XBNF::CharacterRange {
+mapping XBNF::CharacterRange::characterRange2lexerElement() : XBNF::CharacterRange {
 	debug := self.debug;
 	left := self.left;
 	right := self.right;
@@ -288,6 +288,7 @@ mapping Conjunction::conjunction2elementRun() : ElementRun
 mapping XBNF::AbstractElement::element2element(disambiguator : ElementRun) : XBNF::AbstractElement
 disjuncts
 ActionAssignment::actionAssignment2element,
+CharacterRange::characterRange2element,
 Epsilon::epsilon2element,
 KeywordAssignment::keywordAssignment2element,
 Keyword::keyword2element,
@@ -305,6 +306,12 @@ mapping XBNF::ActionAssignment::actionAssignment2element(disambiguator : Element
 	feature := self.feature;
 	operator := self.operator;
 	type := self.type;
+}
+
+mapping XBNF::CharacterRange::characterRange2element(disambiguator : ElementRun) : XBNF::CharacterRange {
+	debug := self.debug;
+	left := self.left;
+	right := self.right;
 }
 
 mapping XBNF::Epsilon::epsilon2element(disambiguator : ElementRun) : XBNF::Epsilon {
