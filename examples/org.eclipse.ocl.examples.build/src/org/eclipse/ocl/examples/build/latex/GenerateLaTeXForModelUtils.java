@@ -23,9 +23,6 @@ import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.pivot.Model;
-
-
 
 public abstract class GenerateLaTeXForModelUtils extends GenerateLaTeXForModel
 {
@@ -39,7 +36,6 @@ public abstract class GenerateLaTeXForModelUtils extends GenerateLaTeXForModel
 			return m1.compareTo(m2);
 		}
 	};
-
 
 	protected @NonNull List<EClass> getSortedEClasses(@NonNull EPackage ePackage) {
 		Set<EClass> allElements = new HashSet<EClass>();
