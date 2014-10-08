@@ -50,7 +50,7 @@ ParserGrammar::parserGrammar2grammar
 
 mapping XBNF::LexerGrammar::lexerGrammar2grammar() : XBNF::LexerGrammar {
 	name := self.name;
-	rules := self.rules->select(oclIsKindOf(TerminalRule)).oclAsType(TerminalRule)->map terminalRule2rule();
+	rules := self.rules->selectByKind(TerminalRule)->map terminalRule2rule();
 	goals := self.goals.resolveone(TypedRule);
 }
 
@@ -59,7 +59,18 @@ mapping XBNF::TerminalRule::terminalRule2rule() : XBNF::TerminalRule
 	name := self.name;
 	debug := self.debug;
 	type := self.type;
-	element := self.element.map element2lexerElement();
+
+	var inlineables : Set(UntypedRule) = self.getInlineables();
+--	debug := inlineables->size().toString() + '/' + subrules->size().toString();
+	var disjunction : Disjunction = self.element.oclAsType(Disjunction);
+	var inlinedTerms : Set(ElementRun) = disjunction.inlineInlineables(inlineables);
+	element := object Disjunction {
+		debug := inlinedTerms->size().toString() + '/' + disjunction.conjunctions->size().toString()
+			 + ' ' + inlineables->size().toString() + '/' + subrules->size().toString();
+		conjunctions := inlinedTerms->map run2conjunction();
+	};
+	var nonInlineables : Set(UntypedRule) = self.subrules - inlineables;
+	subrules := nonInlineables->map untypedRule2untypedRule(inlineables);
 } 
 
 mapping XBNF::AbstractElement::element2lexerElement() : XBNF::AbstractElement

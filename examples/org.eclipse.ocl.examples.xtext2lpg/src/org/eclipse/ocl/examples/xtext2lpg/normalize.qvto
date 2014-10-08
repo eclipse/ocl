@@ -82,7 +82,23 @@ mapping XBNF::TerminalRule::terminalRule2rule(firstRules : Set(TypedRule)) : XBN
 	name := self.name;
 	debug := self.debug;
 	type := self.type;
-	element := self.element.map element2element(self.name, subRules, self, firstRules);
+	var candidate := self.element.map element2element(self.name, subRules, self, firstRules);
+	element := if candidate.oclIsKindOf(Disjunction)
+				then candidate
+				else if candidate.oclIsKindOf(Conjunction)
+				then object Disjunction {
+					debug := self.debug;
+					conjunctions += candidate.oclAsType(Conjunction);
+				}
+				else object Disjunction {
+					debug := self.debug;
+					conjunctions += object Conjunction {
+						debug := self.debug;
+						elements += candidate;
+					};
+				}
+				endif
+				endif;
 	subrules := subRules->iterate(r; acc : Sequence(XBNF::UntypedRule) = Sequence{} | acc->append(r));
 } 
 
