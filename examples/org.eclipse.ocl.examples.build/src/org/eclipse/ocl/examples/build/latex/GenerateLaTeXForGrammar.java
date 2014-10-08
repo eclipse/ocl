@@ -12,10 +12,6 @@ package org.eclipse.ocl.examples.build.latex;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URISyntaxException;
-import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -23,42 +19,20 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIHandler;
-import org.eclipse.emf.ecore.resource.impl.URIHandlerImpl;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.build.utilities.ClasspathURIHandler;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
 import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.XtextStandaloneSetup;
-import org.eclipse.xtext.resource.ClassloaderClasspathUriResolver;
 
 public abstract class GenerateLaTeXForGrammar extends GenerateLaTeXUtils
 {
-	public class ClasspathURIHandler extends URIHandlerImpl
-	{
-		private final @NonNull ClassloaderClasspathUriResolver resolver = new ClassloaderClasspathUriResolver();
-	
-		@Override
-		public boolean canHandle(URI uri) {
-			return "classpath".equals(uri.scheme());
-		}
-	
-		@Override
-		public InputStream createInputStream(URI uri, Map<?, ?> options) throws IOException {
-			try {
-				URI resolvedURI = resolver.findResourceOnClasspath(getClass().getClassLoader(), uri);
-				return super.createInputStream(resolvedURI, options);
-			} catch (URISyntaxException e) {
-				e.printStackTrace();
-			}
-			return null;
-		}
-	}
-	
 	protected String labelPrefix = "";
 
 	protected abstract String encodeForLaTeX(String latexContent);
