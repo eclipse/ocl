@@ -1,5 +1,13 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2014 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.util;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -78,6 +86,10 @@ public class XBNFwithCardinalityAdapterFactory extends AdapterFactoryImpl {
 				return createCompoundElementAdapter();
 			}
 			@Override
+			public Adapter caseMultiplicityElement(MultiplicityElement object) {
+				return createMultiplicityElementAdapter();
+			}
+			@Override
 			public Adapter caseOneOrMore(OneOrMore object) {
 				return createOneOrMoreAdapter();
 			}
@@ -142,6 +154,20 @@ public class XBNFwithCardinalityAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCompoundElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.MultiplicityElement <em>Multiplicity Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.MultiplicityElement
+	 * @generated
+	 */
+	public Adapter createMultiplicityElementAdapter() {
 		return null;
 	}
 

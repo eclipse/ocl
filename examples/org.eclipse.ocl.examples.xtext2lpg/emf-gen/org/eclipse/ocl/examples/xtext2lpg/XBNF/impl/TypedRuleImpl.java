@@ -1,24 +1,26 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2014 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.ocl.examples.xtext2lpg.XBNF.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.ocl.examples.xtext2lpg.XBNF.Grammar;
 import org.eclipse.ocl.examples.xtext2lpg.XBNF.TypedRule;
 import org.eclipse.ocl.examples.xtext2lpg.XBNF.UntypedRule;
@@ -124,7 +126,7 @@ public abstract class TypedRuleImpl extends AbstractRuleImpl implements TypedRul
 	 */
 	public EList<UntypedRule> getSubrules() {
 		if (subrules == null) {
-			subrules = new EObjectContainmentEList<UntypedRule>(UntypedRule.class, this, XBNFPackage.TYPED_RULE__SUBRULES);
+			subrules = new EObjectContainmentWithInverseEList<UntypedRule>(UntypedRule.class, this, XBNFPackage.TYPED_RULE__SUBRULES, XBNFPackage.UNTYPED_RULE__TYPED_RULE);
 		}
 		return subrules;
 	}
@@ -175,9 +177,12 @@ public abstract class TypedRuleImpl extends AbstractRuleImpl implements TypedRul
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case XBNFPackage.TYPED_RULE__SUBRULES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSubrules()).basicAdd(otherEnd, msgs);
 			case XBNFPackage.TYPED_RULE__GRAMMAR:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);

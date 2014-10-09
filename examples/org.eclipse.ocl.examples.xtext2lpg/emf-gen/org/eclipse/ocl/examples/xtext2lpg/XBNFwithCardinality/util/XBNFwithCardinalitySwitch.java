@@ -1,5 +1,13 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2014 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.util;
 
 import org.eclipse.emf.ecore.EObject;
@@ -83,10 +91,17 @@ public class XBNFwithCardinalitySwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case XBNFwithCardinalityPackage.MULTIPLICITY_ELEMENT: {
+				MultiplicityElement multiplicityElement = (MultiplicityElement)theEObject;
+				T result = caseMultiplicityElement(multiplicityElement);
+				if (result == null) result = caseAbstractElement(multiplicityElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case XBNFwithCardinalityPackage.ONE_OR_MORE: {
 				OneOrMore oneOrMore = (OneOrMore)theEObject;
 				T result = caseOneOrMore(oneOrMore);
-				if (result == null) result = caseCompoundElement(oneOrMore);
+				if (result == null) result = caseMultiplicityElement(oneOrMore);
 				if (result == null) result = caseAbstractElement(oneOrMore);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -102,7 +117,7 @@ public class XBNFwithCardinalitySwitch<T> extends Switch<T> {
 			case XBNFwithCardinalityPackage.ZERO_OR_MORE: {
 				ZeroOrMore zeroOrMore = (ZeroOrMore)theEObject;
 				T result = caseZeroOrMore(zeroOrMore);
-				if (result == null) result = caseCompoundElement(zeroOrMore);
+				if (result == null) result = caseMultiplicityElement(zeroOrMore);
 				if (result == null) result = caseAbstractElement(zeroOrMore);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -110,7 +125,7 @@ public class XBNFwithCardinalitySwitch<T> extends Switch<T> {
 			case XBNFwithCardinalityPackage.ZERO_OR_ONE: {
 				ZeroOrOne zeroOrOne = (ZeroOrOne)theEObject;
 				T result = caseZeroOrOne(zeroOrOne);
-				if (result == null) result = caseCompoundElement(zeroOrOne);
+				if (result == null) result = caseMultiplicityElement(zeroOrOne);
 				if (result == null) result = caseAbstractElement(zeroOrOne);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -146,6 +161,21 @@ public class XBNFwithCardinalitySwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCompoundElement(CompoundElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Multiplicity Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Multiplicity Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMultiplicityElement(MultiplicityElement object) {
 		return null;
 	}
 

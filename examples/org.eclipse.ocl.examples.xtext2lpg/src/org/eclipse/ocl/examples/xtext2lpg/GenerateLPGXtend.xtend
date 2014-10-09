@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *******************************************************************************/
@@ -25,6 +25,8 @@ import org.eclipse.ocl.examples.xtext2lpg.XBNF.RuleCallAssignment
 import org.eclipse.ocl.examples.xtext2lpg.XBNF.Syntax
 import org.eclipse.ocl.examples.xtext2lpg.XBNF.TypedRule
 import org.eclipse.ocl.examples.xtext2lpg.XBNF.CharacterRange
+import org.eclipse.ocl.examples.xtext2lpg.XBNF.Wildcard
+import org.eclipse.ocl.examples.xtext2lpg.XBNF.UntilToken
 
 public class GenerateLPGXtend extends GenerateLPGUtils
 {
@@ -106,7 +108,7 @@ public class GenerateLPGXtend extends GenerateLPGUtils
 		var syntaxName = emitSyntaxName(syntax);
 		var punctValues = getSortedPunctValues(parserGrammar);
 		var terminalRules = getSortedTerminalRules(syntax);
-		var alphaChars = getSortedAlphaChars(syntax);
+//		var alphaChars = getSortedAlphaChars(syntax);
 		var punctChars = getSortedPunctChars(syntax);
 		var characterRanges = getSortedCharacterRanges(lexerGrammar);
 		'''
@@ -142,14 +144,12 @@ public class GenerateLPGXtend extends GenerateLPGUtils
 		%End
 		
 		%Terminals
-			«FOR c : alphaChars SEPARATOR ' '»«c»«ENDFOR»
 			«FOR characterRange : characterRanges»
+				«FOR c : getCharacters(characterRange) SEPARATOR ' '»«c»«ENDFOR»
 
-				«characterRange.getDebug()» ::=«FOR c : getCharacters(characterRange)» «c»«ENDFOR»
 			«ENDFOR»
-
 			«FOR c : punctChars»
-				«emitLabel(c)» ::= '«c»'
+				«emitLabel(c)» ::= «emitQuotedCharacter(c)»
 			«ENDFOR»
 		%End
 		
@@ -285,6 +285,8 @@ public class GenerateLPGXtend extends GenerateLPGUtils
 			RuleCall: return element.referredRule.name
 			KeywordAssignment: return emitLabel(element.value)
 			Keyword: return emitLabel(element.value)
+			UntilToken: return "UNTIL " + generateTerm(element.terminal)
+			Wildcard: return '.'
 			default: return "<<<" + element.eClass.name + ">>>"
 		}		
 	}

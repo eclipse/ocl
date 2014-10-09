@@ -1,5 +1,13 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2014 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.ocl.examples.xtext2lpg.XBNF;
 
 import org.eclipse.emf.common.util.EList;
@@ -54,6 +62,7 @@ public interface TypedRule extends AbstractRule {
 	/**
 	 * Returns the value of the '<em><b>Subrules</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext2lpg.XBNF.UntypedRule}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext2lpg.XBNF.UntypedRule#getTypedRule <em>Typed Rule</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Subrules</em>' containment reference list isn't clear,
@@ -62,7 +71,8 @@ public interface TypedRule extends AbstractRule {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Subrules</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.xtext2lpg.XBNF.XBNFPackage#getTypedRule_Subrules()
-	 * @model containment="true" ordered="false"
+	 * @see org.eclipse.ocl.examples.xtext2lpg.XBNF.UntypedRule#getTypedRule
+	 * @model opposite="typedRule" containment="true"
 	 * @generated
 	 */
 	EList<UntypedRule> getSubrules();

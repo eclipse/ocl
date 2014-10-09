@@ -22,6 +22,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.xtext2lpg.XBNF.AbstractElement;
 import org.eclipse.ocl.examples.xtext2lpg.XBNF.AbstractRule;
 import org.eclipse.ocl.examples.xtext2lpg.XBNF.CharacterRange;
 import org.eclipse.ocl.examples.xtext2lpg.XBNF.Conjunction;
@@ -63,7 +64,22 @@ public abstract class GenerateLPGUtils extends GenerateLPG
 		public int compare(Conjunction o1, Conjunction o2) {
 			int m1 = o1.getElements().size(); 
 			int m2 = o2.getElements().size();
-			return m1 - m2;
+			int diff = m1 - m2;
+			if (diff == 0) {
+				for (int i = 0; i < m1; i++) {
+					AbstractElement e1 = o1.getElements().get(i);
+					AbstractElement e2 = o2.getElements().get(i);
+					String d1 = e1.getDebug(); 
+					String d2 = e2.getDebug();
+					if (d1 == null) d1 = "";
+					if (d2 == null) d2 = "";
+					diff = d1.compareTo(d2);
+					if (diff != 0) {
+						break;
+					}
+				}
+			}
+			return diff;
 		}
 	};
 	
@@ -125,6 +141,10 @@ public abstract class GenerateLPGUtils extends GenerateLPG
 		return keywordValue.replace("\\w","$0 ");
 	}
 
+	protected String emitLabel(Character keywordValue) {
+		return emitLabel(keywordValue.toString());
+	}
+
 	protected String emitLabel(String keywordValue) {
 		String label = keyword2label.get(keywordValue);
 		if (label == null) {
@@ -155,6 +175,25 @@ public abstract class GenerateLPGUtils extends GenerateLPG
 		}
 	}
 
+	protected String emitQuotedCharacter(Character c) {
+		if (c == '\f') {
+			return "FormFeed";
+		}
+		if (c == '\n') {
+			return "NewLine";
+		}
+		if (c == '\r') {
+			return "Return";
+		}
+		if (c == '\t') {
+			return "HorizontalTab";
+		}
+		if (c == '\'') {
+			return "\"'\"";
+		}
+		return "'" + c + "'";
+	}
+	
 	protected String emitSyntaxName(Syntax syntax) { 
 		String name = syntax.getName();
 		int lastDot = name.lastIndexOf('.');
@@ -289,7 +328,7 @@ public abstract class GenerateLPGUtils extends GenerateLPG
 		return sortedElements;
 	}
 
-	protected @NonNull List<String> getSortedPunctChars(@NonNull Syntax syntax) {
+	protected @NonNull List<Character> getSortedPunctChars(@NonNull Syntax syntax) {
 		Set<Character> allElements = new HashSet<Character>();
 		for (TreeIterator<EObject> tit = syntax.eAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
@@ -302,10 +341,7 @@ public abstract class GenerateLPGUtils extends GenerateLPG
 				}
 			}
 		}
-		List<String> sortedElements = new ArrayList<String>();
-		for (Character c : allElements) {
-			sortedElements.add(c.toString());
-		}
+		List<Character> sortedElements = new ArrayList<Character>(allElements);
 		Collections.sort(sortedElements);
 		return sortedElements;
 	}

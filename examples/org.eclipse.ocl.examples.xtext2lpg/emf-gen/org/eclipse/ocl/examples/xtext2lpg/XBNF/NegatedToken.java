@@ -1,5 +1,13 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2014 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.ocl.examples.xtext2lpg.XBNF;
 
 
@@ -31,7 +39,7 @@ public interface NegatedToken extends AbstractElement {
 	 * @return the value of the '<em>Terminal</em>' containment reference.
 	 * @see #setTerminal(AbstractElement)
 	 * @see org.eclipse.ocl.examples.xtext2lpg.XBNF.XBNFPackage#getNegatedToken_Terminal()
-	 * @model containment="true" required="true" ordered="false"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	AbstractElement getTerminal();

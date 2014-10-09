@@ -1,5 +1,13 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2014 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.impl;
 
 import org.eclipse.emf.ecore.EClass;
@@ -14,6 +22,7 @@ import org.eclipse.ocl.examples.xtext2lpg.XBNF.impl.XBNFPackageImpl;
 
 import org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.Alternatives;
 import org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.CompoundElement;
+import org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.MultiplicityElement;
 import org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.OneOrMore;
 import org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.Succession;
 import org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.XBNFwithCardinalityFactory;
@@ -41,6 +50,13 @@ public class XBNFwithCardinalityPackageImpl extends EPackageImpl implements XBNF
 	 * @generated
 	 */
 	private EClass compoundElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass multiplicityElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -168,6 +184,24 @@ public class XBNFwithCardinalityPackageImpl extends EPackageImpl implements XBNF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getMultiplicityElement() {
+		return multiplicityElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMultiplicityElement_Element() {
+		return (EReference)multiplicityElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getOneOrMore() {
 		return oneOrMoreEClass;
 	}
@@ -232,6 +266,9 @@ public class XBNFwithCardinalityPackageImpl extends EPackageImpl implements XBNF
 		compoundElementEClass = createEClass(COMPOUND_ELEMENT);
 		createEReference(compoundElementEClass, COMPOUND_ELEMENT__ELEMENTS);
 
+		multiplicityElementEClass = createEClass(MULTIPLICITY_ELEMENT);
+		createEReference(multiplicityElementEClass, MULTIPLICITY_ELEMENT__ELEMENT);
+
 		oneOrMoreEClass = createEClass(ONE_OR_MORE);
 
 		successionEClass = createEClass(SUCCESSION);
@@ -274,16 +311,20 @@ public class XBNFwithCardinalityPackageImpl extends EPackageImpl implements XBNF
 		// Add supertypes to classes
 		alternativesEClass.getESuperTypes().add(this.getCompoundElement());
 		compoundElementEClass.getESuperTypes().add(theXBNFPackage.getAbstractElement());
-		oneOrMoreEClass.getESuperTypes().add(this.getCompoundElement());
+		multiplicityElementEClass.getESuperTypes().add(theXBNFPackage.getAbstractElement());
+		oneOrMoreEClass.getESuperTypes().add(this.getMultiplicityElement());
 		successionEClass.getESuperTypes().add(this.getCompoundElement());
-		zeroOrMoreEClass.getESuperTypes().add(this.getCompoundElement());
-		zeroOrOneEClass.getESuperTypes().add(this.getCompoundElement());
+		zeroOrMoreEClass.getESuperTypes().add(this.getMultiplicityElement());
+		zeroOrOneEClass.getESuperTypes().add(this.getMultiplicityElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(alternativesEClass, Alternatives.class, "Alternatives", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(compoundElementEClass, CompoundElement.class, "CompoundElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompoundElement_Elements(), theXBNFPackage.getAbstractElement(), null, "elements", null, 1, -1, CompoundElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(multiplicityElementEClass, MultiplicityElement.class, "MultiplicityElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMultiplicityElement_Element(), theXBNFPackage.getAbstractElement(), null, "element", null, 1, 1, MultiplicityElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(oneOrMoreEClass, OneOrMore.class, "OneOrMore", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

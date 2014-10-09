@@ -1,5 +1,13 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2014 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.impl;
 
 import org.eclipse.emf.ecore.EClass;
@@ -16,7 +24,7 @@ import org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.ZeroOrOne;
  *
  * @generated
  */
-public class ZeroOrOneImpl extends CompoundElementImpl implements ZeroOrOne {
+public class ZeroOrOneImpl extends MultiplicityElementImpl implements ZeroOrOne {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

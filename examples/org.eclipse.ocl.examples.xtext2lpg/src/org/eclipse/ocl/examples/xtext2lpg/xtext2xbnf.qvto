@@ -118,9 +118,9 @@ inherits AbstractRule::abstractRule2rule_base
 helper XTEXT::AbstractElement::element2element() : XBNF::AbstractElement
 {
 	return
-	if self.cardinality = '?' then object ZeroOrOne { debug := self.cardinality; elements := self.element2element2()->asSequence(); }
-	else if self.cardinality = '+' then object OneOrMore { debug := self.cardinality; elements := self.element2element2()->asSequence(); }
-	else if self.cardinality = '*' then object ZeroOrMore { debug := self.cardinality; elements := self.element2element2()->asSequence(); }
+	if self.cardinality = '?' then object ZeroOrOne { debug := self.cardinality; element := self.element2element2(); }
+	else if self.cardinality = '+' then object OneOrMore { debug := self.cardinality; element := self.element2element2(); }
+	else if self.cardinality = '*' then object ZeroOrMore { debug := self.cardinality; element := self.element2element2(); }
 	else self.element2element2()
 	endif
 	endif

@@ -1,5 +1,13 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2014 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.ocl.examples.xtext2lpg.XBNF;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -21,6 +29,8 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see org.eclipse.ocl.examples.xtext2lpg.XBNF.XBNFFactory
  * @model kind="package"
+ *        annotation="http://www.eclipse.org/OCL/Import ecore='http://www.eclipse.org/emf/2002/Ecore'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot'"
  * @generated
  */
 public interface XBNFPackage extends EPackage {
@@ -1191,13 +1201,22 @@ public interface XBNFPackage extends EPackage {
 	int RULE_CALL__REFERRED_RULE = ABSTRACT_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE_CALL__NAME = ABSTRACT_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Rule Call</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RULE_CALL_FEATURE_COUNT = ABSTRACT_ELEMENT_FEATURE_COUNT + 1;
+	int RULE_CALL_FEATURE_COUNT = ABSTRACT_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Rule Call</em>' class.
@@ -1264,13 +1283,22 @@ public interface XBNFPackage extends EPackage {
 	int RULE_CALL_ASSIGNMENT__REFERRED_RULE = ASSIGNMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE_CALL_ASSIGNMENT__NAME = ASSIGNMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Rule Call Assignment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RULE_CALL_ASSIGNMENT_FEATURE_COUNT = ASSIGNMENT_FEATURE_COUNT + 1;
+	int RULE_CALL_ASSIGNMENT_FEATURE_COUNT = ASSIGNMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Rule Call Assignment</em>' class.
@@ -1529,13 +1557,22 @@ public interface XBNFPackage extends EPackage {
 	int UNTYPED_RULE__KIND = ABSTRACT_RULE__KIND;
 
 	/**
+	 * The feature id for the '<em><b>Typed Rule</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNTYPED_RULE__TYPED_RULE = ABSTRACT_RULE_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Untyped Rule</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNTYPED_RULE_FEATURE_COUNT = ABSTRACT_RULE_FEATURE_COUNT + 0;
+	int UNTYPED_RULE_FEATURE_COUNT = ABSTRACT_RULE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Untyped Rule</em>' class.
@@ -1995,6 +2032,17 @@ public interface XBNFPackage extends EPackage {
 	EReference getRuleCall_ReferredRule();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext2lpg.XBNF.RuleCall#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.eclipse.ocl.examples.xtext2lpg.XBNF.RuleCall#getName()
+	 * @see #getRuleCall()
+	 * @generated
+	 */
+	EAttribute getRuleCall_Name();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext2lpg.XBNF.RuleCallAssignment <em>Rule Call Assignment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2130,6 +2178,17 @@ public interface XBNFPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getUntypedRule();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.xtext2lpg.XBNF.UntypedRule#getTypedRule <em>Typed Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Typed Rule</em>'.
+	 * @see org.eclipse.ocl.examples.xtext2lpg.XBNF.UntypedRule#getTypedRule()
+	 * @see #getUntypedRule()
+	 * @generated
+	 */
+	EReference getUntypedRule_TypedRule();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext2lpg.XBNF.Wildcard <em>Wildcard</em>}'.
@@ -2503,6 +2562,14 @@ public interface XBNFPackage extends EPackage {
 		EReference RULE_CALL__REFERRED_RULE = eINSTANCE.getRuleCall_ReferredRule();
 
 		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RULE_CALL__NAME = eINSTANCE.getRuleCall_Name();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext2lpg.XBNF.impl.RuleCallAssignmentImpl <em>Rule Call Assignment</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2617,6 +2684,14 @@ public interface XBNFPackage extends EPackage {
 		 * @generated
 		 */
 		EClass UNTYPED_RULE = eINSTANCE.getUntypedRule();
+
+		/**
+		 * The meta object literal for the '<em><b>Typed Rule</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference UNTYPED_RULE__TYPED_RULE = eINSTANCE.getUntypedRule_TypedRule();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext2lpg.XBNF.impl.WildcardImpl <em>Wildcard</em>}' class.

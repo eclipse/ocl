@@ -1,5 +1,13 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2014 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.ocl.examples.xtext2lpg.XBNF;
 
 import org.eclipse.emf.common.util.EList;
@@ -36,7 +44,7 @@ public interface Syntax extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.ocl.examples.xtext2lpg.XBNF.XBNFPackage#getSyntax_Name()
-	 * @model required="true" ordered="false"
+	 * @model required="true"
 	 * @generated
 	 */
 	String getName();
@@ -80,7 +88,7 @@ public interface Syntax extends EObject {
 	 * @return the value of the '<em>Debug</em>' attribute.
 	 * @see #setDebug(String)
 	 * @see org.eclipse.ocl.examples.xtext2lpg.XBNF.XBNFPackage#getSyntax_Debug()
-	 * @model ordered="false"
+	 * @model
 	 * @generated
 	 */
 	String getDebug();

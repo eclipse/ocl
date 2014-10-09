@@ -8,50 +8,47 @@
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.xtext2lpg.XBNF.impl;
+package org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.ocl.examples.xtext2lpg.XBNF.AbstractElement;
-import org.eclipse.ocl.examples.xtext2lpg.XBNF.UntilToken;
-import org.eclipse.ocl.examples.xtext2lpg.XBNF.XBNFPackage;
+import org.eclipse.ocl.examples.xtext2lpg.XBNF.impl.AbstractElementImpl;
+import org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.MultiplicityElement;
+import org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.XBNFwithCardinalityPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Until Token</b></em>'.
+ * An implementation of the model object '<em><b>Multiplicity Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext2lpg.XBNF.impl.UntilTokenImpl#getTerminal <em>Terminal</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.impl.MultiplicityElementImpl#getElement <em>Element</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class UntilTokenImpl extends AbstractElementImpl implements UntilToken {
+public abstract class MultiplicityElementImpl extends AbstractElementImpl implements MultiplicityElement {
 	/**
-	 * The cached value of the '{@link #getTerminal() <em>Terminal</em>}' containment reference.
+	 * The cached value of the '{@link #getElement() <em>Element</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTerminal()
+	 * @see #getElement()
 	 * @generated
 	 * @ordered
 	 */
-	protected AbstractElement terminal;
-
+	protected AbstractElement element;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected UntilTokenImpl() {
+	protected MultiplicityElementImpl() {
 		super();
 	}
 
@@ -62,7 +59,7 @@ public class UntilTokenImpl extends AbstractElementImpl implements UntilToken {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return XBNFPackage.Literals.UNTIL_TOKEN;
+		return XBNFwithCardinalityPackage.Literals.MULTIPLICITY_ELEMENT;
 	}
 
 	/**
@@ -70,8 +67,8 @@ public class UntilTokenImpl extends AbstractElementImpl implements UntilToken {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AbstractElement getTerminal() {
-		return terminal;
+	public AbstractElement getElement() {
+		return element;
 	}
 
 	/**
@@ -79,11 +76,11 @@ public class UntilTokenImpl extends AbstractElementImpl implements UntilToken {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTerminal(AbstractElement newTerminal, NotificationChain msgs) {
-		AbstractElement oldTerminal = terminal;
-		terminal = newTerminal;
+	public NotificationChain basicSetElement(AbstractElement newElement, NotificationChain msgs) {
+		AbstractElement oldElement = element;
+		element = newElement;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XBNFPackage.UNTIL_TOKEN__TERMINAL, oldTerminal, newTerminal);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XBNFwithCardinalityPackage.MULTIPLICITY_ELEMENT__ELEMENT, oldElement, newElement);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -94,18 +91,18 @@ public class UntilTokenImpl extends AbstractElementImpl implements UntilToken {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTerminal(AbstractElement newTerminal) {
-		if (newTerminal != terminal) {
+	public void setElement(AbstractElement newElement) {
+		if (newElement != element) {
 			NotificationChain msgs = null;
-			if (terminal != null)
-				msgs = ((InternalEObject)terminal).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XBNFPackage.UNTIL_TOKEN__TERMINAL, null, msgs);
-			if (newTerminal != null)
-				msgs = ((InternalEObject)newTerminal).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XBNFPackage.UNTIL_TOKEN__TERMINAL, null, msgs);
-			msgs = basicSetTerminal(newTerminal, msgs);
+			if (element != null)
+				msgs = ((InternalEObject)element).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XBNFwithCardinalityPackage.MULTIPLICITY_ELEMENT__ELEMENT, null, msgs);
+			if (newElement != null)
+				msgs = ((InternalEObject)newElement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XBNFwithCardinalityPackage.MULTIPLICITY_ELEMENT__ELEMENT, null, msgs);
+			msgs = basicSetElement(newElement, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, XBNFPackage.UNTIL_TOKEN__TERMINAL, newTerminal, newTerminal));
+			eNotify(new ENotificationImpl(this, Notification.SET, XBNFwithCardinalityPackage.MULTIPLICITY_ELEMENT__ELEMENT, newElement, newElement));
 	}
 
 	/**
@@ -116,8 +113,8 @@ public class UntilTokenImpl extends AbstractElementImpl implements UntilToken {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case XBNFPackage.UNTIL_TOKEN__TERMINAL:
-				return basicSetTerminal(null, msgs);
+			case XBNFwithCardinalityPackage.MULTIPLICITY_ELEMENT__ELEMENT:
+				return basicSetElement(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -130,8 +127,8 @@ public class UntilTokenImpl extends AbstractElementImpl implements UntilToken {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case XBNFPackage.UNTIL_TOKEN__TERMINAL:
-				return getTerminal();
+			case XBNFwithCardinalityPackage.MULTIPLICITY_ELEMENT__ELEMENT:
+				return getElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -144,8 +141,8 @@ public class UntilTokenImpl extends AbstractElementImpl implements UntilToken {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case XBNFPackage.UNTIL_TOKEN__TERMINAL:
-				setTerminal((AbstractElement)newValue);
+			case XBNFwithCardinalityPackage.MULTIPLICITY_ELEMENT__ELEMENT:
+				setElement((AbstractElement)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -159,8 +156,8 @@ public class UntilTokenImpl extends AbstractElementImpl implements UntilToken {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case XBNFPackage.UNTIL_TOKEN__TERMINAL:
-				setTerminal((AbstractElement)null);
+			case XBNFwithCardinalityPackage.MULTIPLICITY_ELEMENT__ELEMENT:
+				setElement((AbstractElement)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -174,10 +171,10 @@ public class UntilTokenImpl extends AbstractElementImpl implements UntilToken {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case XBNFPackage.UNTIL_TOKEN__TERMINAL:
-				return terminal != null;
+			case XBNFwithCardinalityPackage.MULTIPLICITY_ELEMENT__ELEMENT:
+				return element != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //UntilTokenImpl
+} //MultiplicityElementImpl

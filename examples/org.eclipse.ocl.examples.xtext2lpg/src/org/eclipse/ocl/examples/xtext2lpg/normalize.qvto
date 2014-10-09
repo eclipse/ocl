@@ -15,7 +15,7 @@
 /*
 http://lampwww.epfl.ch/teaching/archive/compilation-ssc/2000/part4/parsing/node3.html
 
-For building parsers (especially bottom-up) a BNF grammar is often better, than EBNF. But it's easy to convert an XBNF Grammar to XBNF:
+For building parsers (especially bottom-up) a BNF grammar is often better, than EBNF. But it's easy to convert an EBNF Grammar to BNF:
 
     Convert every repetition { E } to a fresh non-terminal X and add
     X = $\epsilon$ | X E.
@@ -28,7 +28,7 @@ For building parsers (especially bottom-up) a BNF grammar is often better, than 
     X = E | E'. becomes X = E. X = E'. 
     
 ---
-	As above, also normalizse so that the output is a
+	As above, also normalize so that the output is a
 	rule comprising
 	-- a disjunction of
 	-- one or more conjunctions comprising
@@ -52,13 +52,11 @@ mapping XBNF::Syntax::syntax2syntax() : XBNF::Syntax {
 	var firstRules : OrderedSet(TypedRule) = allRules->collect(r1 | allRules->select(r2 | r1.name = r2.name)->first())->asOrderedSet();
 	name := self.name;
 	grammars := Sequence { self.map grammars2lexerGrammar(firstRules), self.map grammars2parserGrammar(firstRules) };
+	var untypedRules : Sequence(UntypedRule) := grammars.allSubobjectsOfKind(UntypedRule)->selectByKind(UntypedRule);
+	untypedRules->forEach(untypedRule) {
+		untypedRule.name := untypedRule.typedRule.name + '_' + untypedRule.typedRule.subrules->indexOf(untypedRule).toString();
+	};
 }
-
---mapping XBNF::Grammar::grammar2grammar() : XBNF::Grammar
---disjuncts
---LexerGrammar::lexerGrammar2grammar,
---ParserGrammar::parserGrammar2grammar
---{}
 
 ---------------------------------------------------------------------------------------
 --	Copy the lexer rules
@@ -66,23 +64,16 @@ mapping XBNF::Syntax::syntax2syntax() : XBNF::Syntax {
 
 mapping XBNF::Syntax::grammars2lexerGrammar(firstRules : Set(TypedRule)) : XBNF::LexerGrammar {
 	name := self.name;
-	rules := self.grammars.rules->select(oclIsKindOf(TerminalRule)).oclAsType(TerminalRule)->map terminalRule2rule(firstRules);
+	rules := self.grammars.rules->selectByKind(TerminalRule)->map terminalRule2rule(firstRules);
 	goals := self.grammars.goals.resolveone(TypedRule);
 }
-
---mapping XBNF::LexerGrammar::lexerGrammar2grammar() : XBNF::LexerGrammar {
---	name := self.name;
---	rules := self.rules->select(oclIsKindOf(TerminalRule)).oclAsType(TerminalRule)->map terminalRule2rule();
---	goals := self.goals.resolveone(TypedRule);
---}
 
 mapping XBNF::TerminalRule::terminalRule2rule(firstRules : Set(TypedRule)) : XBNF::TerminalRule
 {
 	var subRules : List(XBNF::UntypedRule) = List{};
 	name := self.name;
-	debug := self.debug;
 	type := self.type;
-	var candidate := self.element.map element2element(self.name, subRules, self, firstRules);
+	var candidate := self.element.map element2element(subRules, null, self, firstRules);
 	element := if candidate.oclIsKindOf(Disjunction)
 				then candidate
 				else if candidate.oclIsKindOf(Conjunction)
@@ -99,85 +90,9 @@ mapping XBNF::TerminalRule::terminalRule2rule(firstRules : Set(TypedRule)) : XBN
 				}
 				endif
 				endif;
+	debug := subRules->size().toString();
 	subrules := subRules->iterate(r; acc : Sequence(XBNF::UntypedRule) = Sequence{} | acc->append(r));
 } 
-
-/*
-mapping XBNF::AbstractElement::element2lexerElement() : XBNF::AbstractElement
-disjuncts
-Alternatives::alternatives2lexerElement,
-CharacterRange::keyword2lexerElement,
-Keyword::keyword2lexerElement,
-NegatedToken::negatedToken2lexerElement,
-OneOrMore::oneOrMore2lexerElement,
-RuleCall::ruleCall2lexerElement,
-Succession::succession2lexerElement,
-UntilToken::untilToken2lexerElement,
-Wildcard::wildcard2lexerElement,
-ZeroOrMore::zeroOrMore2lexerElement,
-ZeroOrOne::zeroOrOne2lexerElement,
-AbstractElement::element2lexerElement_default
-{}
-
-mapping XBNF::AbstractElement::element2lexerElement_default() : XBNF::Wildcard {
-	debug := 'default';
-}
-
-mapping XBNFwc::Alternatives::alternatives2lexerElement() : XBNFwc::Alternatives {
-	debug := self.debug;
-	elements := self.elements->map element2lexerElement();
-}
-
-mapping XBNF::CharacterRange::keyword2lexerElement() : XBNF::CharacterRange {
-	debug := self.debug;
-	left := self.left;
-	right := self.right;
-}
-
-mapping XBNF::Keyword::keyword2lexerElement() : XBNF::Keyword {
-	debug := self.debug;
-	value := self.value;
-}
-
-mapping XBNF::NegatedToken::negatedToken2lexerElement() : XBNF::UntilToken {
-	debug := self.debug;
-	terminal := self.terminal.map element2lexerElement();
-}
-
-mapping XBNFwc::OneOrMore::oneOrMore2lexerElement() : XBNFwc::Succession {
-	debug := self.debug;
-	elements := self.elements->map element2lexerElement();
-}
-
-mapping XBNF::RuleCall::ruleCall2lexerElement() : XBNF::RuleCall {
-	debug := self.rule.name;
-	rule := self.rule.late resolveone(XBNF::AbstractRule);
-}
-
-mapping XBNFwc::Succession::succession2lexerElement() : XBNFwc::Succession {
-	debug := self.debug;
-	elements := self.elements->map element2lexerElement();
-}
-
-mapping XBNF::UntilToken::untilToken2lexerElement() : XBNF::UntilToken {
-	debug := self.debug;
-	terminal := self.terminal.map element2lexerElement();
-}
-
-mapping XBNF::Wildcard::wildcard2lexerElement() : XBNF::Wildcard {
-	debug := self.debug;
-}
-
-mapping XBNFwc::ZeroOrMore::zeroOrMore2lexerElement() : XBNFwc::Succession {
-	debug := self.debug;
-	elements := self.elements->map element2lexerElement();
-}
-
-mapping XBNFwc::ZeroOrOne::zeroOrOne2lexerElement() : XBNFwc::Succession {
-	debug := self.debug;
-	elements := self.elements->map element2lexerElement();
-}
-*/
 
 ---------------------------------------------------------------------------------------
 --	Create the extra parser rules for XBNF compounds
@@ -185,46 +100,19 @@ mapping XBNFwc::ZeroOrOne::zeroOrOne2lexerElement() : XBNFwc::Succession {
 
 mapping XBNF::Syntax::grammars2parserGrammar(firstRules : Set(TypedRule)) : XBNF::ParserGrammar {
 	name := self.name;
---	var parserRules : Sequence(ParserRule) = self.grammars.rules->asSequence()->select(oclIsKindOf(ParserRule)).oclAsType(ParserRule);
---	var parserRuleNames : Set(String) = parserRules.name->asSet()->sortedBy(n | n);
---	rules := parserRuleNames->iterate(n; acc : OrderedSet(ParserRule) = Set{} |
---		let firstRule : ParserRule = parserRules->select(name = n)->first() in
---		let mappedRule : ParserRule = firstRule.map parserRule2rule() in
---		acc->append(mappedRule));
-	var parserRules : Sequence(ParserRule) = self.grammars.rules->select(oclIsKindOf(ParserRule)).oclAsType(ParserRule);
+	var parserRules : Sequence(ParserRule) = self.grammars.rules->selectByKind(ParserRule);
 	var parserRuleNames : OrderedSet(String) = parserRules.name->asSet()->sortedBy(n | n);
 	var sortedParserRules : Sequence(ParserRule) = parserRules->sortedBy(name);
 	rules := parserRuleNames->iterate(prn; acc : OrderedSet(ParserRule) = OrderedSet{} |
 		let pr : ParserRule = parserRules->select(name = prn)->any(true) in acc->append(pr.map parserRule2rule(firstRules)));
---	rules := sortedParserRules->iterate(pr; acc : Sequence(ParserRule) = Sequence{} | acc->append(pr.map parserRule2rule()));
-	goals := self.grammars->select(oclIsKindOf(ParserGrammar)).goals->first().resolveone(TypedRule);
+	goals := self.grammars->selectByKind(ParserGrammar).goals->first().resolveone(TypedRule);
 }
-
---mapping XBNF::ParserGrammar::parserGrammar2grammar() : XBNF::ParserGrammar {
---	name := self.name;
---	var parserRules : Sequence(ParserRule) = self.rules->select(oclIsKindOf(ParserRule)).oclAsType(ParserRule)->sortedBy(name);
---	rules := parserRules->map parserRule2rule();
---	goals := self.goals.resolveone(TypedRule);
---}
 
 mapping XBNF::ParserRule::parserRule2rule(firstRules : Set(TypedRule)) : XBNF::ParserRule
 {
 	var subRules : List(XBNF::UntypedRule) = List{};
-	var theElement : AbstractElement = self.element.map element2element(self.name, subRules, self, firstRules);
-	var disjunction : Disjunction = 
-		if theElement.oclIsKindOf(Disjunction)
-		then theElement.oclAsType(Disjunction)
-		else object Disjunction {
-			conjunctions := Sequence {
-				if theElement.oclIsKindOf(Conjunction)
-				then theElement.oclAsType(Conjunction)
-				else object Conjunction {
-					elements := theElement->asSequence();
-				}
-				endif
-			};
-		}
-		endif;
+	var theElement : AbstractElement = self.element.map element2element(subRules, null, self, firstRules);
+	var disjunction : Disjunction = theElement.asDisjunction();
 	name := self.name;
 	debug := self.debug;
 	type := self.type;
@@ -232,7 +120,7 @@ mapping XBNF::ParserRule::parserRule2rule(firstRules : Set(TypedRule)) : XBNF::P
 	subrules := subRules->iterate(r; acc : Sequence(XBNF::UntypedRule) = Sequence{} | acc->append(r));
 } 
 
-mapping XBNF::AbstractElement::element2element(parentRule : String, subRules : List(XBNF::UntypedRule), disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::AbstractElement
+mapping XBNF::AbstractElement::element2element(inout subRules : List(XBNF::UntypedRule), tailElement : AbstractElement, disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::AbstractElement
 disjuncts
 ActionAssignment::actionAssignment2element,
 Alternatives::alternativesAtRoot2element,
@@ -252,215 +140,309 @@ ZeroOrOne::zeroOrOne2element,
 AbstractElement::element2element_default
 {}
 
-mapping XBNF::AbstractElement::element2element_default(parentRule : String, subRules : List(XBNF::UntypedRule), disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::Wildcard {
-	debug := 'default';
+mapping XBNF::AbstractElement::element2element_default(inout subRules : List(XBNF::UntypedRule), tailElement : AbstractElement, disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::AbstractElement {
+	init {
+		result := object Wildcard {
+			debug := 'default';
+		}.appendAsConjunctions(tailElement);
+	}
 }
 
-mapping XBNF::ActionAssignment::actionAssignment2element(parentRule : String, subRules : List(XBNF::UntypedRule), disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::ActionAssignment {
-	debug := self.debug;
-	feature := self.feature;
-	operator := self.operator;
-	type := self.type;
+mapping XBNF::ActionAssignment::actionAssignment2element(inout subRules : List(XBNF::UntypedRule), tailElement : AbstractElement, disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::AbstractElement {
+	init {
+		result := object ActionAssignment {
+			debug := self.debug;
+			feature := self.feature;
+			operator := self.operator;
+			type := self.type;
+		}.appendAsConjunctions(tailElement);
+	}
 }
 
-mapping XBNFwc::Alternatives::alternativesAtRoot2element(parentRule : String, subRules : List(XBNF::UntypedRule), disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::Disjunction
+mapping XBNFwc::Alternatives::alternativesAtRoot2element(inout subRules : List(XBNF::UntypedRule), tailElement : AbstractElement, disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::AbstractElement
 when { self.parentRule <> null }
 {
-	debug := self.debug;
-	conjunctions := self.elements->iterate(e; acc : Sequence(Conjunction) = Sequence {} |
-			acc->append(object Conjunction {
-							elements := e.succession(Sequence{}, e)->map element2element(parentRule, subRules, disambiguator, firstRules)
-						}));
-						
+	init {
+		result := object Disjunction {
+			debug := self.debug;
+			conjunctions := self.elements->iterate(e; acc : Sequence(Conjunction) = Sequence {} |
+					let eFlat = e.flattenAndMap(subRules, null, firstRules) in
+					acc->append(eFlat.asConjunction()));
+		}.appendAsConjunctions(tailElement);
+	}
 }
 
-mapping XBNFwc::Alternatives::alternativesNested2element(parentRule : String, inout subRules : List(XBNF::UntypedRule), disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::RuleCall
+mapping XBNFwc::Alternatives::alternativesNested2element(inout subRules : List(XBNF::UntypedRule), tailElement : AbstractElement, disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::AbstractElement
 {
-	var me : Alternatives = self;
-	var alternatives : OrderedSet(AbstractElement) = self.elements;
-	var oneRule : XBNF::UntypedRule = object UntypedRule {
-		element := object Disjunction {
-			debug := '1 : ' + alternatives->size().toString();
-			conjunctions := alternatives->iterate(e; acc : Sequence(Conjunction) = Sequence{} | 
-				acc->append(object Conjunction {
-					elements := e.succession(Sequence{}, e)->map element2element(parentRule, subRules, e, firstRules);
-				}));
-		};
-		name := parentRule + '_' + subRules->size().toString();
-	};
-	subRules->add(oneRule);
-	debug := oneRule.name;
-	referredRule := oneRule;
+	init {
+		var me : Alternatives = self;
+		var alternatives : OrderedSet(AbstractElement) = self.elements;
+		var oneRule : XBNF::UntypedRule = object Disjunction {
+				debug := '1 : ' + alternatives->size().toString();
+				conjunctions := alternatives->iterate(e; acc : Sequence(Conjunction) = Sequence{} | 
+					let eFlat = e.flattenAndMap(subRules, null, firstRules) in
+					acc->append(eFlat.asConjunction()));
+			}.asRule();
+		subRules->add(oneRule);
+		result := oneRule.asRuleCall().appendAsConjunctions(tailElement);
+	}
 }
 
-mapping XBNF::CharacterRange::characterRange2element(parentRule : String, subRules : List(XBNF::UntypedRule), disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::CharacterRange {
-	debug := self.debug;
-	left := self.left;
-	right := self.right;
+mapping XBNF::CharacterRange::characterRange2element(inout subRules : List(XBNF::UntypedRule), tailElement : AbstractElement, disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::AbstractElement {
+	init {
+		result := object CharacterRange {
+			debug := self.debug;
+			left := self.left;
+			right := self.right;
+		}.appendAsConjunctions(tailElement);
+	}
 }
 
-mapping XBNF::Keyword::keyword2element(parentRule : String, subRules : List(XBNF::UntypedRule), disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::Keyword {
-	debug := self.debug;
-	value := self.value;
+mapping XBNF::Keyword::keyword2element(inout subRules : List(XBNF::UntypedRule), tailElement : AbstractElement, disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::AbstractElement {
+	init {
+		result := object Keyword {
+			debug := self.debug;
+			value := self.value;
+		}.appendAsConjunctions(tailElement);
+	}
 }
 
-mapping XBNF::KeywordAssignment::keywordAssignment2element(parentRule : String, subRules : List(XBNF::UntypedRule), disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::KeywordAssignment {
-	debug := self.debug;
-	feature := self.feature;
-	operator := self.operator;
-	value := self.value;
+mapping XBNF::KeywordAssignment::keywordAssignment2element(inout subRules : List(XBNF::UntypedRule), tailElement : AbstractElement, disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::AbstractElement {
+	init {
+		result := object KeywordAssignment {
+			debug := self.debug;
+			feature := self.feature;
+			operator := self.operator;
+			value := self.value;
+		}.appendAsConjunctions(tailElement);
+	}
 }
 
-mapping XBNF::NegatedToken::negatedToken2element(parentRule : String, subRules : List(XBNF::UntypedRule), disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::UntilToken {
-	debug := self.debug;
-	terminal := self.terminal.map element2element(parentRule, subRules, disambiguator, firstRules);
+mapping XBNF::NegatedToken::negatedToken2element(inout subRules : List(XBNF::UntypedRule), tailElement : AbstractElement, disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::AbstractElement {
+	init {
+		result := object NegatedToken {
+			debug := self.debug;
+			terminal := self.terminal.map element2element(subRules, null, disambiguator, firstRules);
+		}.appendAsConjunctions(tailElement);
+	}
 }
 
-mapping XBNFwc::OneOrMore::oneOrMore2element(parentRule : String, inout subRules : List(XBNF::UntypedRule), disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::RuleCall {
-	var oneRule : XBNF::UntypedRule = self.map element2subRule(parentRule, subRules, disambiguator, firstRules);
-	subRules->add(oneRule);
-	var oneOrMoreRule : XBNF::UntypedRule = oneRule.map rule2oneOrMoreSubRule(parentRule, subRules);
-	subRules->add(oneOrMoreRule);
-	debug := oneOrMoreRule.name;
-	referredRule := oneOrMoreRule;
+//
+//		x+ Y
+//
+//		X1: x
+//		X2: X1 Y
+//		X3: X1 X2
+//		X: X2 | X3
+// - we must handle Y to avoid shift reduce conflicts
+//
+mapping XBNFwc::OneOrMore::oneOrMore2element(inout subRules : List(XBNF::UntypedRule), tailElement : AbstractElement, disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::AbstractElement {
+	init {
+		var eFlat := self.element.flattenAndMap(subRules, null, firstRules);
+		var oneRule : XBNF::UntypedRule = eFlat.asRule();
+		subRules->add(oneRule);
+		var oneOrMoreRule := object UntypedRule {};
+		oneOrMoreRule.element := object Disjunction { debug := '1 or +';
+				conjunctions := Sequence {
+					object Conjunction {
+						elements := Sequence { oneRule.asRuleCall() };
+						if (tailElement <> null) {
+							elements += tailElement;
+						};
+					},
+					object Conjunction {
+						elements := Sequence { oneRule.asRuleCall(), oneOrMoreRule.asRuleCall() };
+					}
+				};
+			};
+		subRules->add(oneOrMoreRule);
+		result := oneOrMoreRule.asRuleCall();
+	}
 }
 
-mapping XBNF::RuleCall::ruleCall2element(parentRule : String, subRules : List(XBNF::UntypedRule), disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::RuleCall {
-	debug := self.debug;
-	referredRule := firstRules->select(r | r.name = self.referredRule.name)->any(true).late resolveone(XBNF::AbstractRule);
+mapping XBNF::RuleCall::ruleCall2element(inout subRules : List(XBNF::UntypedRule), tailElement : AbstractElement, disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::AbstractElement {
+	init {
+		result := object RuleCall {
+			debug := self.debug;
+			referredRule := firstRules->select(r | r.name = self.referredRule.name)->any(true).late resolveone(XBNF::AbstractRule);
+		}.appendAsConjunctions(tailElement);
+	}
 }
 
-mapping XBNF::RuleCallAssignment::ruleCallAssignment2element(parentRule : String, subRules : List(XBNF::UntypedRule), disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::RuleCallAssignment {
---	var syntax : Syntax = self.referredRule.grammar.syntax;
-	debug := self.debug;
-	feature := self.feature;
-	operator := self.operator;
-	referredRule := firstRules->select(r | r.name = self.referredRule.name)->any(true).late resolveone(XBNF::AbstractRule);
+mapping XBNF::RuleCallAssignment::ruleCallAssignment2element(inout subRules : List(XBNF::UntypedRule), tailElement : AbstractElement, disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::AbstractElement {
+	init {
+		result := object RuleCallAssignment {
+			debug := self.debug;
+			feature := self.feature;
+			operator := self.operator;
+			referredRule := firstRules->select(r | r.name = self.referredRule.name)->any(true).late resolveone(XBNF::AbstractRule);
+		}.appendAsConjunctions(tailElement);
+	}
 }
 
-mapping XBNFwc::Succession::succession2element(parentRule : String, subRules : List(XBNF::UntypedRule), disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::Conjunction {
-	debug := self.debug;
-	elements := self.succession(Sequence{}, self)->map element2element(parentRule, subRules, disambiguator, firstRules);
+mapping XBNFwc::Succession::succession2element(inout subRules : List(XBNF::UntypedRule), tailElement : AbstractElement, disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::AbstractElement {
+	init {
+		var mappedTailElement : AbstractElement := if tailElement <> null then tailElement.map element2element(subRules, null, disambiguator, firstRules) else null endif;
+		var element : AbstractElement := self.flattenAndMap(subRules, mappedTailElement, firstRules);
+		result := element.asConjunction();
+	}
 }
 
-mapping XBNF::UntilToken::untilToken2element(parentRule : String, subRules : List(XBNF::UntypedRule), disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::UntilToken {
-	debug := self.debug;
-	terminal := self.terminal.map element2element(parentRule, subRules, disambiguator, firstRules);
+mapping XBNF::UntilToken::untilToken2element(inout subRules : List(XBNF::UntypedRule), tailElement : AbstractElement, disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::AbstractElement {
+	init {
+		result := object UntilToken {
+			debug := self.debug;
+			terminal := self.terminal.map element2element(subRules, null, disambiguator, firstRules);
+		}.appendAsConjunctions(tailElement);
+	}
 }
 
-mapping XBNF::Wildcard::wildcard2element(parentRule : String, subRules : List(XBNF::UntypedRule), disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::Wildcard {
-	debug := self.debug;
+mapping XBNF::Wildcard::wildcard2element(inout subRules : List(XBNF::UntypedRule), tailElement : AbstractElement, disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::AbstractElement {
+	init {
+		result := object Wildcard {
+			debug := self.debug;
+		}.appendAsConjunctions(tailElement);
+	}
 }
 
-mapping XBNFwc::ZeroOrMore::zeroOrMore2element(parentRule : String, inout subRules : List(XBNF::UntypedRule), disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::RuleCall {
-	var oneRule : UntypedRule = self.map element2subRule(parentRule, subRules, disambiguator, firstRules);
-	subRules->add(oneRule);
-	var oneOrMoreRule : UntypedRule = oneRule.map rule2oneOrMoreSubRule(parentRule, subRules);
-	subRules->add(oneOrMoreRule);
-	var zeroOrMoreRule : UntypedRule = object UntypedRule {
-		element := object Disjunction {
-			debug := '0 or +';
+//
+//		x* Y
+//
+//		X1: x
+//		X2: Y
+//		X3: X1 X2
+//		X: X2 | X3
+//
+mapping XBNFwc::ZeroOrMore::zeroOrMore2element(inout subRules : List(XBNF::UntypedRule), tailElement : AbstractElement, disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::AbstractElement {
+	init {
+		var eFlat := self.element.flattenAndMap(subRules, null, firstRules);
+		var oneRule = eFlat.asRule();
+		subRules->add(oneRule);
+		var oneOrMoreRule := object UntypedRule {};
+		oneOrMoreRule.element := object Disjunction { debug := '1 or +';
 			conjunctions := Sequence {
 				object Conjunction {
-					elements := Sequence {
-						object XBNF::Epsilon {}
-					};
+					elements := Sequence { oneRule.asRuleCall() };
 				},
 				object Conjunction {
-					elements := Sequence {
-						object XBNF::RuleCall {
-							debug := oneOrMoreRule.name;
-							referredRule := oneOrMoreRule;
-						}
-					};
+					elements := Sequence { oneOrMoreRule.asRuleCall(), oneRule.asRuleCall() };
 				}
 			};
 		};
-		name := parentRule + '_' + subRules->size().toString();
-	};
-	subRules->add(zeroOrMoreRule);
-	debug := zeroOrMoreRule.name;
-	referredRule := zeroOrMoreRule
+		subRules->add(oneOrMoreRule);
+		var zeroOrMoreRule = object Disjunction { debug := '0 or +';
+			conjunctions := Sequence {
+				object XBNF::Epsilon {}.asConjunction(),
+				oneOrMoreRule.asRuleCall().asConjunction()
+			};
+		}.asRule();
+		subRules->add(zeroOrMoreRule);
+		result := zeroOrMoreRule.asRuleCall().appendAsConjunctions(tailElement);
+	}
 }
 
-mapping XBNFwc::ZeroOrOne::zeroOrOne2element(parentRule : String, inout subRules : List(XBNF::UntypedRule), disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::RuleCall {
-	var me : CompoundElement = self;
-	var alternatives : OrderedSet(AbstractElement) = self.elements;
-	var zeroOrOneRule : UntypedRule = object UntypedRule {
-		element := object Disjunction {
-			debug := '0 or 1';
-			conjunctions := alternatives->iterate(e; acc : Sequence(Conjunction) = Sequence {
-					object Conjunction {
-						elements := Sequence {
-							object XBNF::Epsilon {}
-						};
-					}
-				} | 
-				acc->append(object Conjunction {
-					elements := e.succession(Sequence{}, e)->map element2element(parentRule, subRules, e, firstRules);
-				}));
-		};
-		name := parentRule + '_' + subRules->size().toString();
-	};
-	subRules->add(zeroOrOneRule);
-	debug := zeroOrOneRule.name;
-	referredRule := zeroOrOneRule
+//
+//		x?
+//
+//		X1: x
+//		X: epsilon | X1
+//
+mapping XBNFwc::ZeroOrOne::zeroOrOne2element(inout subRules : List(XBNF::UntypedRule), tailElement : AbstractElement, disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::AbstractElement {
+	init {
+		var eFlat := self.element.flattenAndMap(subRules, null, firstRules);
+		var zeroOrOneRule : UntypedRule = object Disjunction {
+				debug := '0 or 1';
+				conjunctions := Sequence { object XBNF::Epsilon {}.asConjunction(), eFlat.asConjunction() };
+			}.asRule();
+		subRules->add(zeroOrOneRule);
+		result := zeroOrOneRule.asRuleCall().appendAsConjunctions(tailElement);
+	}
 }
 
 -- Helpers
 
-mapping XBNFwc::CompoundElement::element2subRule(parentRule : String, inout subRules : List(XBNF::UntypedRule), disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::UntypedRule {
-	var me : CompoundElement = self;
-	var alternatives : OrderedSet(AbstractElement) = self.elements;
-	element := object Disjunction {
-		debug := '1';
-		conjunctions := alternatives->iterate(e; acc : Sequence(Conjunction) = Sequence{} | 
-					acc->append(object Conjunction {
-						elements := e.succession(Sequence{}, e)->map element2element(parentRule, subRules, e, firstRules);
-					}));
-	};
-	name := parentRule + '_' + subRules->size().toString();
+---------------------------------------------------------------------------------------
+--	Return the conjunction of this element and tailElement which may be null.
+---------------------------------------------------------------------------------------
+helper XBNF::AbstractElement::appendAsConjunctions(tailElement : AbstractElement) : AbstractElement {
+	return	if tailElement = null then
+				self
+			else if tailElement.oclIsKindOf(Conjunction) then
+				object Conjunction { elements := tailElement.oclAsType(Conjunction).elements->prepend(self); }
+			else
+				object Conjunction { elements := Sequence{self, tailElement}; }
+			endif
+			endif;
 }
 
-mapping XBNF::AbstractRule::rule2oneOrMoreSubRule(parentRule : String, subRules : List(XBNF::UntypedRule)) : XBNF::UntypedRule {
-	name := parentRule + '_' + subRules->size().toString();
-	element := object Disjunction {
-		debug := '1 or +';
-		conjunctions := Sequence {
-			object Conjunction {
-				elements := Sequence {
-					object RuleCall {
-						debug := self.name;
-						referredRule := self;
-					}
-				};
-			},
-			object Conjunction {
-				elements := Sequence {
-					object XBNF::RuleCall {
-						debug := result.name;
-						referredRule := result;
-					},
-					object XBNF::RuleCall {
-						debug := self.name;
-						referredRule := self;
-					}
-				};
-			}
-		};
+helper XBNF::Conjunction::appendAsConjunctions(tailElement : AbstractElement) : AbstractElement {
+	return	if tailElement = null then
+				self
+			else if tailElement.oclIsKindOf(Conjunction) then
+				object Conjunction { elements := tailElement.oclAsType(Conjunction).elements
+					->iterate(e; acc : Sequence(AbstractElement) = self.elements->asSequence() | acc->append(e));}
+			else 
+				object Conjunction { elements := self.elements->append(tailElement);}
+			endif
+			endif;
+}
+
+---------------------------------------------------------------------------------------
+--	Return a conjunction containing thos element.
+---------------------------------------------------------------------------------------
+helper AbstractElement::asConjunction() : Conjunction {
+	return object Conjunction { debug := '1'; elements := self->asSequence(); };
+}
+
+helper Conjunction::asConjunction() : Conjunction {
+	return self;
+}
+
+---------------------------------------------------------------------------------------
+--	Return a disjunction containing thos element.
+---------------------------------------------------------------------------------------
+helper AbstractElement::asDisjunction() : Disjunction {
+	return object Disjunction { debug := '1'; conjunctions := self.asConjunction()->asSequence(); };
+}
+
+helper Disjunction::asDisjunction() : Disjunction {
+	return self;
+}
+
+---------------------------------------------------------------------------------------
+--	Return a rule containing thos element.
+---------------------------------------------------------------------------------------
+helper AbstractElement::asRule() : UntypedRule {
+	return object UntypedRule {
+		element := self.asDisjunction();
+	};
+}
+
+helper AbstractRule::asRuleCall() : RuleCall {
+	return object RuleCall {
+		debug := self.name;
+		referredRule := self;
 	};
 }
 
 ---------------------------------------------------------------------------------------
---	Return an in-order sequence of flattened terms.
+--	Return an in-order sequence of the flattened terms comprising head followed by self.
 ---------------------------------------------------------------------------------------
-helper XBNF::AbstractElement::succession(head : Sequence(AbstractElement), disambiguator : OclAny) : Sequence(AbstractElement)
+helper AbstractElement::flattenAndMap(inout subRules : List(XBNF::UntypedRule), outerTailElement : AbstractElement, firstRules : Set(TypedRule)) : AbstractElement {
+	var flatElements : Sequence(AbstractElement) := self.flatten(Sequence{}, self);
+	var flatSize : Integer = flatElements->size();
+	return Sequence{1..flatSize}->iterate(i; innerTailElement : AbstractElement = outerTailElement |
+		let iReverse = flatSize-i+1 in
+		let flatElement = flatElements->at(iReverse) in
+		flatElement.map element2element(subRules, innerTailElement, self, firstRules));
+}
+
+helper XBNF::AbstractElement::flatten(head : Sequence(AbstractElement), disambiguator : OclAny) : Sequence(AbstractElement)
 {
 	return head->append(self);
 }
 
-helper XBNFwc::Succession::succession(head : Sequence(AbstractElement), disambiguator : OclAny) : Sequence(AbstractElement)
+helper XBNFwc::Succession::flatten(head : Sequence(AbstractElement), disambiguator : OclAny) : Sequence(AbstractElement)
 {
-	return self.elements->iterate(e; acc : Sequence(AbstractElement) = head | e.succession(acc, disambiguator));
+	return self.elements->iterate(e; acc : Sequence(AbstractElement) = head | e.flatten(acc, disambiguator));
 }
-

@@ -1,11 +1,18 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2014 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.ocl.examples.xtext2lpg.XBNF.XBNFPackage;
 
 /**
@@ -168,14 +175,14 @@ public interface XBNFwithCardinalityPackage extends EPackage {
 	int ALTERNATIVES_OPERATION_COUNT = COMPOUND_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.impl.OneOrMoreImpl <em>One Or More</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.impl.MultiplicityElementImpl <em>Multiplicity Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.impl.OneOrMoreImpl
-	 * @see org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.impl.XBNFwithCardinalityPackageImpl#getOneOrMore()
+	 * @see org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.impl.MultiplicityElementImpl
+	 * @see org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.impl.XBNFwithCardinalityPackageImpl#getMultiplicityElement()
 	 * @generated
 	 */
-	int ONE_OR_MORE = 2;
+	int MULTIPLICITY_ELEMENT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Debug</b></em>' attribute.
@@ -184,7 +191,7 @@ public interface XBNFwithCardinalityPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ONE_OR_MORE__DEBUG = COMPOUND_ELEMENT__DEBUG;
+	int MULTIPLICITY_ELEMENT__DEBUG = XBNFPackage.ABSTRACT_ELEMENT__DEBUG;
 
 	/**
 	 * The feature id for the '<em><b>Parent Rule</b></em>' container reference.
@@ -193,16 +200,71 @@ public interface XBNFwithCardinalityPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ONE_OR_MORE__PARENT_RULE = COMPOUND_ELEMENT__PARENT_RULE;
+	int MULTIPLICITY_ELEMENT__PARENT_RULE = XBNFPackage.ABSTRACT_ELEMENT__PARENT_RULE;
 
 	/**
-	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Element</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ONE_OR_MORE__ELEMENTS = COMPOUND_ELEMENT__ELEMENTS;
+	int MULTIPLICITY_ELEMENT__ELEMENT = XBNFPackage.ABSTRACT_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Multiplicity Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLICITY_ELEMENT_FEATURE_COUNT = XBNFPackage.ABSTRACT_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Multiplicity Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLICITY_ELEMENT_OPERATION_COUNT = XBNFPackage.ABSTRACT_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.impl.OneOrMoreImpl <em>One Or More</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.impl.OneOrMoreImpl
+	 * @see org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.impl.XBNFwithCardinalityPackageImpl#getOneOrMore()
+	 * @generated
+	 */
+	int ONE_OR_MORE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Debug</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ONE_OR_MORE__DEBUG = MULTIPLICITY_ELEMENT__DEBUG;
+
+	/**
+	 * The feature id for the '<em><b>Parent Rule</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ONE_OR_MORE__PARENT_RULE = MULTIPLICITY_ELEMENT__PARENT_RULE;
+
+	/**
+	 * The feature id for the '<em><b>Element</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ONE_OR_MORE__ELEMENT = MULTIPLICITY_ELEMENT__ELEMENT;
 
 	/**
 	 * The number of structural features of the '<em>One Or More</em>' class.
@@ -211,7 +273,7 @@ public interface XBNFwithCardinalityPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ONE_OR_MORE_FEATURE_COUNT = COMPOUND_ELEMENT_FEATURE_COUNT + 0;
+	int ONE_OR_MORE_FEATURE_COUNT = MULTIPLICITY_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>One Or More</em>' class.
@@ -220,7 +282,7 @@ public interface XBNFwithCardinalityPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ONE_OR_MORE_OPERATION_COUNT = COMPOUND_ELEMENT_OPERATION_COUNT + 0;
+	int ONE_OR_MORE_OPERATION_COUNT = MULTIPLICITY_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.impl.SuccessionImpl <em>Succession</em>}' class.
@@ -230,7 +292,7 @@ public interface XBNFwithCardinalityPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.impl.XBNFwithCardinalityPackageImpl#getSuccession()
 	 * @generated
 	 */
-	int SUCCESSION = 3;
+	int SUCCESSION = 4;
 
 	/**
 	 * The feature id for the '<em><b>Debug</b></em>' attribute.
@@ -285,7 +347,7 @@ public interface XBNFwithCardinalityPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.impl.XBNFwithCardinalityPackageImpl#getZeroOrMore()
 	 * @generated
 	 */
-	int ZERO_OR_MORE = 4;
+	int ZERO_OR_MORE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Debug</b></em>' attribute.
@@ -294,7 +356,7 @@ public interface XBNFwithCardinalityPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ZERO_OR_MORE__DEBUG = COMPOUND_ELEMENT__DEBUG;
+	int ZERO_OR_MORE__DEBUG = MULTIPLICITY_ELEMENT__DEBUG;
 
 	/**
 	 * The feature id for the '<em><b>Parent Rule</b></em>' container reference.
@@ -303,16 +365,16 @@ public interface XBNFwithCardinalityPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ZERO_OR_MORE__PARENT_RULE = COMPOUND_ELEMENT__PARENT_RULE;
+	int ZERO_OR_MORE__PARENT_RULE = MULTIPLICITY_ELEMENT__PARENT_RULE;
 
 	/**
-	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Element</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ZERO_OR_MORE__ELEMENTS = COMPOUND_ELEMENT__ELEMENTS;
+	int ZERO_OR_MORE__ELEMENT = MULTIPLICITY_ELEMENT__ELEMENT;
 
 	/**
 	 * The number of structural features of the '<em>Zero Or More</em>' class.
@@ -321,7 +383,7 @@ public interface XBNFwithCardinalityPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ZERO_OR_MORE_FEATURE_COUNT = COMPOUND_ELEMENT_FEATURE_COUNT + 0;
+	int ZERO_OR_MORE_FEATURE_COUNT = MULTIPLICITY_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Zero Or More</em>' class.
@@ -330,7 +392,7 @@ public interface XBNFwithCardinalityPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ZERO_OR_MORE_OPERATION_COUNT = COMPOUND_ELEMENT_OPERATION_COUNT + 0;
+	int ZERO_OR_MORE_OPERATION_COUNT = MULTIPLICITY_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.impl.ZeroOrOneImpl <em>Zero Or One</em>}' class.
@@ -340,7 +402,7 @@ public interface XBNFwithCardinalityPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.impl.XBNFwithCardinalityPackageImpl#getZeroOrOne()
 	 * @generated
 	 */
-	int ZERO_OR_ONE = 5;
+	int ZERO_OR_ONE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Debug</b></em>' attribute.
@@ -349,7 +411,7 @@ public interface XBNFwithCardinalityPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ZERO_OR_ONE__DEBUG = COMPOUND_ELEMENT__DEBUG;
+	int ZERO_OR_ONE__DEBUG = MULTIPLICITY_ELEMENT__DEBUG;
 
 	/**
 	 * The feature id for the '<em><b>Parent Rule</b></em>' container reference.
@@ -358,16 +420,16 @@ public interface XBNFwithCardinalityPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ZERO_OR_ONE__PARENT_RULE = COMPOUND_ELEMENT__PARENT_RULE;
+	int ZERO_OR_ONE__PARENT_RULE = MULTIPLICITY_ELEMENT__PARENT_RULE;
 
 	/**
-	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Element</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ZERO_OR_ONE__ELEMENTS = COMPOUND_ELEMENT__ELEMENTS;
+	int ZERO_OR_ONE__ELEMENT = MULTIPLICITY_ELEMENT__ELEMENT;
 
 	/**
 	 * The number of structural features of the '<em>Zero Or One</em>' class.
@@ -376,7 +438,7 @@ public interface XBNFwithCardinalityPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ZERO_OR_ONE_FEATURE_COUNT = COMPOUND_ELEMENT_FEATURE_COUNT + 0;
+	int ZERO_OR_ONE_FEATURE_COUNT = MULTIPLICITY_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Zero Or One</em>' class.
@@ -385,7 +447,7 @@ public interface XBNFwithCardinalityPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ZERO_OR_ONE_OPERATION_COUNT = COMPOUND_ELEMENT_OPERATION_COUNT + 0;
+	int ZERO_OR_ONE_OPERATION_COUNT = MULTIPLICITY_ELEMENT_OPERATION_COUNT + 0;
 
 
 	/**
@@ -418,6 +480,27 @@ public interface XBNFwithCardinalityPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getCompoundElement_Elements();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.MultiplicityElement <em>Multiplicity Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Multiplicity Element</em>'.
+	 * @see org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.MultiplicityElement
+	 * @generated
+	 */
+	EClass getMultiplicityElement();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.MultiplicityElement#getElement <em>Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Element</em>'.
+	 * @see org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.MultiplicityElement#getElement()
+	 * @see #getMultiplicityElement()
+	 * @generated
+	 */
+	EReference getMultiplicityElement_Element();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.OneOrMore <em>One Or More</em>}'.
@@ -509,6 +592,24 @@ public interface XBNFwithCardinalityPackage extends EPackage {
 		 * @generated
 		 */
 		EReference COMPOUND_ELEMENT__ELEMENTS = eINSTANCE.getCompoundElement_Elements();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.impl.MultiplicityElementImpl <em>Multiplicity Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.impl.MultiplicityElementImpl
+		 * @see org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.impl.XBNFwithCardinalityPackageImpl#getMultiplicityElement()
+		 * @generated
+		 */
+		EClass MULTIPLICITY_ELEMENT = eINSTANCE.getMultiplicityElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Element</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MULTIPLICITY_ELEMENT__ELEMENT = eINSTANCE.getMultiplicityElement_Element();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.impl.OneOrMoreImpl <em>One Or More</em>}' class.

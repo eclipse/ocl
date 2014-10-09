@@ -1,25 +1,27 @@
 /*******************************************************************************
- * Copyright (c) 2014 E.D.Willink and others.
+ * Copyright (c) 2010, 2012 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality;
+package org.eclipse.ocl.examples.build.utilities;
 
+import org.apache.log4j.Logger;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>One Or More</b></em>'.
- * <!-- end-user-doc -->
- *
- *
- * @see org.eclipse.ocl.examples.xtext2lpg.XBNFwithCardinality.XBNFwithCardinalityPackage#getOneOrMore()
- * @model
- * @generated
  */
-public interface OneOrMore extends MultiplicityElement {
-} // OneOrMore
+public class OCLDelegateSetup
+{
+	private Logger log = Logger.getLogger(getClass());	
+	
+	public void setResourceSet(ResourceSet resourceSet) {
+		log.info("Setup OCL Delegates");
+		OCLDelegateDomain.initialize(resourceSet);
+	}
+}
