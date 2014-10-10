@@ -1,11 +1,21 @@
 import 'Environment.ecore'
 import 'Pivot.ecore'
 
-package pivot
+package ocl
 
-context Element
+context OclElement
+
 def: parentEnv() : env::Environment =
-	let parent = oclContainer() in if parent.oclIsKindOf(Element) then parent.oclAsType(Element)._env(self) else null endif
+	let parent = oclContainer() in if parent = null then env::Environment { } else parent._env(self) endif
+
+def : _env(child : OclElement) : env::Environment =
+	parentEnv()
+	
+def : lookupVariable(vName : String) : Variable =
+	self._env(null).namedElements->selectByKind(Variable)->select(name = vName)
+endpackage
+
+package pivot
 		
 context Class
 def : _env(child : Element) : env::Environment =
