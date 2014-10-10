@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.StringLiteralExpCS#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.StringLiteralExpCS#getSegments <em>Segments</em>}</li>
  * </ul>
  * </p>
  *
@@ -32,19 +32,19 @@ public interface StringLiteralExpCS
 		extends PrimitiveLiteralExpCS {
 
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute list.
+	 * Returns the value of the '<em><b>Segments</b></em>' attribute list.
 	 * The list contents are of type {@link java.lang.String}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute list isn't clear,
+	 * If the meaning of the '<em>Segments</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute list.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getStringLiteralExpCS_Name()
+	 * @return the value of the '<em>Segments</em>' attribute list.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getStringLiteralExpCS_Segments()
 	 * @model unique="false"
 	 * @generated
 	 */
-	EList<String> getName();
+	EList<String> getSegments();
 
 } // StringLiteralExpCS

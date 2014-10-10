@@ -57,7 +57,7 @@ public class EssentialOCLOutlineTreeProvider extends BaseOutlineTreeProvider
 	}
 
 	protected void _createChildren(IOutlineNode parentNode, PrefixExpCS csPrefixExp) {
-		for (UnaryOperatorCS csOperator : csPrefixExp.getOwnedOperator()) {
+		for (UnaryOperatorCS csOperator : csPrefixExp.getOwnedOperators()) {
 			createNode(parentNode, csOperator);
 		}
 		createNode(parentNode, csPrefixExp.getOwnedExpression());
@@ -80,7 +80,7 @@ public class EssentialOCLOutlineTreeProvider extends BaseOutlineTreeProvider
 		// Find the root.
 		//
 		if (csInfixExp != null) {
-			List<BinaryOperatorCS> ownedOperator = csInfixExp.getOwnedOperator();
+			List<BinaryOperatorCS> ownedOperator = csInfixExp.getOwnedOperators();
 			if (ownedOperator.size() > 0) {
 				OperatorCS csRoot = ownedOperator.get(0);
 				for (OperatorCS csParent = csRoot.getParent(); csParent != null; csParent = csParent.getParent()) {

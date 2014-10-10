@@ -38,6 +38,7 @@ public class CompleteOCLFormatter extends AbstractEssentialOCLFormatter
 		configureCollectionLiteralExpCS(c, f.getCollectionLiteralExpCSAccess());
 		configureCollectionTypeCS(c, f.getCollectionTypeCSAccess());
 		configureCurlyBracketedClauseCS(c, f.getCurlyBracketedClauseCSAccess());
+		configureElseIfThenExpCS(c, f.getElseIfThenExpCSAccess());
 	    configureEssentialOCLNavigationOperatorCS(c, f.getEssentialOCLNavigationOperatorCSAccess());
 		configureIfExpCS(c, f.getIfExpCSAccess());
 		configureLetExpCS(c, f.getLetExpCSAccess());

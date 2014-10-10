@@ -19,8 +19,8 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfThenExpCS#getCondition <em>Condition</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfThenExpCS#getThenExpression <em>Then Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfThenExpCS#getOwnedCondition <em>Owned Condition</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfThenExpCS#getOwnedThenExpression <em>Owned Then Expression</em>}</li>
  * </ul>
  * </p>
  *
@@ -31,55 +31,55 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
 public interface IfThenExpCS extends ExpCS
 {
 	/**
-	 * Returns the value of the '<em><b>Condition</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Condition</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Condition</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Condition</em>' containment reference.
-	 * @see #setCondition(ExpCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getIfThenExpCS_Condition()
+	 * @return the value of the '<em>Owned Condition</em>' containment reference.
+	 * @see #setOwnedCondition(ExpCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getIfThenExpCS_OwnedCondition()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ExpCS getCondition();
+	ExpCS getOwnedCondition();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfThenExpCS#getCondition <em>Condition</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfThenExpCS#getOwnedCondition <em>Owned Condition</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Condition</em>' containment reference.
-	 * @see #getCondition()
+	 * @param value the new value of the '<em>Owned Condition</em>' containment reference.
+	 * @see #getOwnedCondition()
 	 * @generated
 	 */
-	void setCondition(ExpCS value);
+	void setOwnedCondition(ExpCS value);
 
 	/**
-	 * Returns the value of the '<em><b>Then Expression</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Then Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Then Expression</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Then Expression</em>' containment reference.
-	 * @see #setThenExpression(ExpCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getIfThenExpCS_ThenExpression()
+	 * @return the value of the '<em>Owned Then Expression</em>' containment reference.
+	 * @see #setOwnedThenExpression(ExpCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getIfThenExpCS_OwnedThenExpression()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ExpCS getThenExpression();
+	ExpCS getOwnedThenExpression();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfThenExpCS#getThenExpression <em>Then Expression</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfThenExpCS#getOwnedThenExpression <em>Owned Then Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Then Expression</em>' containment reference.
-	 * @see #getThenExpression()
+	 * @param value the new value of the '<em>Owned Then Expression</em>' containment reference.
+	 * @see #getOwnedThenExpression()
 	 * @generated
 	 */
-	void setThenExpression(ExpCS value);
+	void setOwnedThenExpression(ExpCS value);
 
 } // IfThenExpCS

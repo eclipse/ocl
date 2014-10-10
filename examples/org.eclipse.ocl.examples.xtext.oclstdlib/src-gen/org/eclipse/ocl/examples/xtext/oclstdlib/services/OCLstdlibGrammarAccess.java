@@ -3158,7 +3158,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 
 	/// ** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> * /
 	//EssentialOCLNavigationOperatorCS returns NavigationOperatorCS:
-	//	name=("." | "->");
+	//	name=("." | "->" | "?." | "?->");
 	public EssentialOCLGrammarAccess.EssentialOCLNavigationOperatorCSElements getEssentialOCLNavigationOperatorCSAccess() {
 		return gaEssentialOCL.getEssentialOCLNavigationOperatorCSAccess();
 	}
@@ -3429,7 +3429,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CollectionLiteralPartCS:
-	//	expressionCS=ExpCS (".." lastExpressionCS=ExpCS)?;
+	//	ownedExpressionCS=ExpCS (".." ownedLastExpressionCS=ExpCS)?;
 	public EssentialOCLGrammarAccess.CollectionLiteralPartCSElements getCollectionLiteralPartCSAccess() {
 		return gaEssentialOCL.getCollectionLiteralPartCSAccess();
 	}
@@ -3439,13 +3439,23 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ConstructorPartCS:
-	//	property=[pivot::Property|UnrestrictedName] "=" initExpression=ExpCS;
+	//	referredProperty=[pivot::Property|UnrestrictedName] "=" ownedInitExpression=ExpCS;
 	public EssentialOCLGrammarAccess.ConstructorPartCSElements getConstructorPartCSAccess() {
 		return gaEssentialOCL.getConstructorPartCSAccess();
 	}
 	
 	public ParserRule getConstructorPartCSRule() {
 		return getConstructorPartCSAccess().getRule();
+	}
+
+	//LambdaLiteralExpCS:
+	//	"Lambda" "{" ownedExpressionCS=ExpCS "}";
+	public EssentialOCLGrammarAccess.LambdaLiteralExpCSElements getLambdaLiteralExpCSAccess() {
+		return gaEssentialOCL.getLambdaLiteralExpCSAccess();
+	}
+	
+	public ParserRule getLambdaLiteralExpCSRule() {
+		return getLambdaLiteralExpCSAccess().getRule();
 	}
 
 	//PrimitiveLiteralExpCS:
@@ -3470,7 +3480,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TupleLiteralPartCS:
-	//	name=UnrestrictedName (":" ownedType=TypeExpCS)? "=" initExpression=ExpCS;
+	//	name=UnrestrictedName (":" ownedType=TypeExpCS)? "=" ownedInitExpression=ExpCS;
 	public EssentialOCLGrammarAccess.TupleLiteralPartCSElements getTupleLiteralPartCSAccess() {
 		return gaEssentialOCL.getTupleLiteralPartCSAccess();
 	}
@@ -3480,7 +3490,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NumberLiteralExpCS:
-	//	name=NUMBER_LITERAL;
+	//	symbol=NUMBER_LITERAL;
 	public EssentialOCLGrammarAccess.NumberLiteralExpCSElements getNumberLiteralExpCSAccess() {
 		return gaEssentialOCL.getNumberLiteralExpCSAccess();
 	}
@@ -3490,7 +3500,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StringLiteralExpCS:
-	//	name+=StringLiteral+;
+	//	segments+=StringLiteral+;
 	public EssentialOCLGrammarAccess.StringLiteralExpCSElements getStringLiteralExpCSAccess() {
 		return gaEssentialOCL.getStringLiteralExpCSAccess();
 	}
@@ -3500,7 +3510,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//BooleanLiteralExpCS:
-	//	name="true" | name="false";
+	//	symbol="true" | symbol="false";
 	public EssentialOCLGrammarAccess.BooleanLiteralExpCSElements getBooleanLiteralExpCSAccess() {
 		return gaEssentialOCL.getBooleanLiteralExpCSAccess();
 	}
@@ -3570,7 +3580,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypeNameExpCS:
-	//	pathName=PathNameCS;
+	//	ownedPathName=PathNameCS;
 	public EssentialOCLGrammarAccess.TypeNameExpCSElements getTypeNameExpCSAccess() {
 		return gaEssentialOCL.getTypeNameExpCSAccess();
 	}
@@ -3603,10 +3613,10 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	//
 	////   a = (64 / 16) / (let b : Integer in 8 / (let c : Integer in 4 ))
 	// ExpCS:
-	//	PrefixedExpCS ({InfixExpCS.ownedExpression+=current} ownedOperator+=BinaryOperatorCS (ownedExpression+=PrefixedExpCS
-	//	(ownedOperator+=BinaryOperatorCS ownedExpression+=PrefixedExpCS)* (ownedOperator+=BinaryOperatorCS
-	//	ownedExpression+=LetExpCS)? | ownedExpression+=LetExpCS))? | {PrefixExpCS} ownedOperator+=UnaryOperatorCS+
-	//	ownedExpression=LetExpCS | LetExpCS;
+	//	PrefixedExpCS ({InfixExpCS.ownedExpressions+=current} ownedOperators+=BinaryOperatorCS
+	//	(ownedExpressions+=PrefixedExpCS (ownedOperators+=BinaryOperatorCS ownedExpressions+=PrefixedExpCS)*
+	//	(ownedOperators+=BinaryOperatorCS ownedExpressions+=LetExpCS)? | ownedExpressions+=LetExpCS))? | {PrefixExpCS}
+	//	ownedOperators+=UnaryOperatorCS+ ownedExpression=LetExpCS | LetExpCS;
 	public EssentialOCLGrammarAccess.ExpCSElements getExpCSAccess() {
 		return gaEssentialOCL.getExpCSAccess();
 	}
@@ -3617,7 +3627,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 
 	/// * A prefixed expression is elaborates a primary expression with zero or more unary prefix operators. * / PrefixedExpCS
 	//returns ExpCS:
-	//	{PrefixExpCS} ownedOperator+=UnaryOperatorCS+ ownedExpression=PrimaryExpCS | PrimaryExpCS;
+	//	{PrefixExpCS} ownedOperators+=UnaryOperatorCS+ ownedExpression=PrimaryExpCS | PrimaryExpCS;
 	public EssentialOCLGrammarAccess.PrefixedExpCSElements getPrefixedExpCSAccess() {
 		return gaEssentialOCL.getPrefixedExpCSAccess();
 	}
@@ -3629,7 +3639,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	/// * A primary expression identifies the basic expressions from which more complex expressions may be constructed. * /
 	//PrimaryExpCS returns ExpCS:
 	//	NestedExpCS | IfExpCS | SelfExpCS | PrimitiveLiteralExpCS | TupleLiteralExpCS | CollectionLiteralExpCS |
-	//	TypeLiteralExpCS | NameExpCS;
+	//	LambdaLiteralExpCS | TypeLiteralExpCS | NameExpCS;
 	public EssentialOCLGrammarAccess.PrimaryExpCSElements getPrimaryExpCSAccess() {
 		return gaEssentialOCL.getPrimaryExpCSAccess();
 	}
@@ -3641,8 +3651,9 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	/// * A name expression is a generalised rule for expressions that start with a name and which may be followed by square, round or
 	// * curly bracket clauses and optionally an @pre as well.* /
 	//NameExpCS:
-	//	pathName=PathNameCS squareBracketedClauses+=SquareBracketedClauseCS* roundBracketedClause=RoundBracketedClauseCS?
-	//	curlyBracketedClause=CurlyBracketedClauseCS? (atPre?="@" "pre")?;
+	//	ownedPathName=PathNameCS ownedSquareBracketedClauses+=SquareBracketedClauseCS*
+	//	ownedRoundBracketedClause=RoundBracketedClauseCS? ownedCurlyBracketedClause=CurlyBracketedClauseCS? (atPre?="@"
+	//	"pre")?;
 	public EssentialOCLGrammarAccess.NameExpCSElements getNameExpCSAccess() {
 		return gaEssentialOCL.getNameExpCSAccess();
 	}
@@ -3665,9 +3676,9 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 
 	/// * A curly bracket clause is a generalized rule for template specialisations and operations arguments.* /
 	//RoundBracketedClauseCS:
-	//	{RoundBracketedClauseCS} "(" (arguments+=NavigatingArgCS arguments+=NavigatingCommaArgCS*
-	//	(arguments+=NavigatingSemiArgCS arguments+=NavigatingCommaArgCS*)? (arguments+=NavigatingBarArgCS
-	//	arguments+=NavigatingCommaArgCS*)?)? ")";
+	//	{RoundBracketedClauseCS} "(" (ownedArguments+=NavigatingArgCS ownedArguments+=NavigatingCommaArgCS*
+	//	(ownedArguments+=NavigatingSemiArgCS ownedArguments+=NavigatingCommaArgCS*)? (ownedArguments+=NavigatingBarArgCS
+	//	ownedArguments+=NavigatingCommaArgCS*)*)? ")";
 	public EssentialOCLGrammarAccess.RoundBracketedClauseCSElements getRoundBracketedClauseCSAccess() {
 		return gaEssentialOCL.getRoundBracketedClauseCSAccess();
 	}
@@ -3677,7 +3688,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * A square bracket clause is a generalized rule for association class qualifiers and roles.* / SquareBracketedClauseCS:
-	//	"[" terms+=ExpCS ("," terms+=ExpCS)* "]";
+	//	"[" ownedTerms+=ExpCS ("," ownedTerms+=ExpCS)* "]";
 	public EssentialOCLGrammarAccess.SquareBracketedClauseCSElements getSquareBracketedClauseCSAccess() {
 		return gaEssentialOCL.getSquareBracketedClauseCSAccess();
 	}
@@ -3690,7 +3701,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	// * parameter or an iterator. * /
 	//// Type-less init is an illegal infix expression
 	// NavigatingArgCS:
-	//	name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?;
+	//	ownedNameExpression=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" ownedInitExpression=ExpCS)? | "in"
+	//	ownedInitExpression=ExpCS)?;
 	public EssentialOCLGrammarAccess.NavigatingArgCSElements getNavigatingArgCSAccess() {
 		return gaEssentialOCL.getNavigatingArgCSAccess();
 	}
@@ -3702,7 +3714,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	/// * A navigating bar argument is a generalized rule for a bar-prefixed argument in a round bracket clause. This is typically the body of an iteration. * /
 	//// Type-less init is an illegal infix expression
 	// NavigatingBarArgCS returns NavigatingArgCS:
-	//	prefix="|" name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?;
+	//	prefix="|" ownedNameExpression=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" ownedInitExpression=ExpCS)?)?;
 	public EssentialOCLGrammarAccess.NavigatingBarArgCSElements getNavigatingBarArgCSAccess() {
 		return gaEssentialOCL.getNavigatingBarArgCSAccess();
 	}
@@ -3715,7 +3727,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	// * parameters or a second iterator. * /
 	//// Type-less init is an illegal infix expression
 	// NavigatingCommaArgCS returns NavigatingArgCS:
-	//	prefix="," name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?;
+	//	prefix="," ownedNameExpression=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" ownedInitExpression=ExpCS)? | "in"
+	//	ownedInitExpression=ExpCS)?;
 	public EssentialOCLGrammarAccess.NavigatingCommaArgCSElements getNavigatingCommaArgCSAccess() {
 		return gaEssentialOCL.getNavigatingCommaArgCSAccess();
 	}
@@ -3727,7 +3740,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	/// * A navigating semi argument is a generalized rule for a semicolon prefixed argument in a round bracket clause. This is typically an iterate accumulator. * /
 	//// Type-less init is an illegal infix expression
 	// NavigatingSemiArgCS returns NavigatingArgCS:
-	//	prefix=";" name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?;
+	//	prefix=";" ownedNameExpression=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" ownedInitExpression=ExpCS)?)?;
 	public EssentialOCLGrammarAccess.NavigatingSemiArgCSElements getNavigatingSemiArgCSAccess() {
 		return gaEssentialOCL.getNavigatingSemiArgCSAccess();
 	}
@@ -3749,7 +3762,9 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IfExpCS:
-	//	"if" condition=ExpCS "then" thenExpression=ExpCS "else" elseExpression=ExpCS "endif";
+	//	"if" ownedCondition=ExpCS "then" ownedThenExpression=ExpCS //	ifThenExpressions+=IfThenExpCS
+	//
+	//	ownedIfThenExpressions+=ElseIfThenExpCS* "else" ownedElseExpression=ExpCS "endif";
 	public EssentialOCLGrammarAccess.IfExpCSElements getIfExpCSAccess() {
 		return gaEssentialOCL.getIfExpCSAccess();
 	}
@@ -3758,8 +3773,23 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getIfExpCSAccess().getRule();
 	}
 
+	////IfThenExpCS returns IfThenExpCS:
+	// //	'if' condition=ExpCS
+	// //	'then' thenExpression=ExpCS
+	// //;
+	// ElseIfThenExpCS
+	//returns IfThenExpCS:
+	//	"elseif" ownedCondition=ExpCS "then" ownedThenExpression=ExpCS;
+	public EssentialOCLGrammarAccess.ElseIfThenExpCSElements getElseIfThenExpCSAccess() {
+		return gaEssentialOCL.getElseIfThenExpCSAccess();
+	}
+	
+	public ParserRule getElseIfThenExpCSRule() {
+		return getElseIfThenExpCSAccess().getRule();
+	}
+
 	//LetExpCS:
-	//	"let" variable+=LetVariableCS ("," variable+=LetVariableCS)* "in" in=ExpCS;
+	//	"let" ownedVariables+=LetVariableCS ("," ownedVariables+=LetVariableCS)* "in" ownedInExpression=ExpCS;
 	public EssentialOCLGrammarAccess.LetExpCSElements getLetExpCSAccess() {
 		return gaEssentialOCL.getLetExpCSAccess();
 	}
@@ -3769,7 +3799,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LetVariableCS:
-	//	name=UnrestrictedName (":" ownedType=TypeExpCS)? "=" initExpression=ExpCS;
+	//	name=UnrestrictedName ownedRoundBracketedClause=RoundBracketedClauseCS? (":" ownedType=TypeExpCS)? "="
+	//	ownedInitExpression=ExpCS;
 	public EssentialOCLGrammarAccess.LetVariableCSElements getLetVariableCSAccess() {
 		return gaEssentialOCL.getLetVariableCSAccess();
 	}

@@ -43,8 +43,8 @@ public class NavigatingArgCSAttribution extends AbstractAttribution
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		NavigatingArgCS fromArgument = (NavigatingArgCS)target;
 		NavigationRole role = fromArgument.getRole();
-		RoundBracketedClauseCS csRoundBracketedClause = fromArgument.getRoundBracketedClause();
-		NameExpCS targetElement = csRoundBracketedClause.getNameExp();
+		RoundBracketedClauseCS csRoundBracketedClause = fromArgument.getOwningRoundBracketedClause();
+		NameExpCS targetElement = csRoundBracketedClause.getOwningNameExp();
 		assert targetElement != null;
 		NavigationOperatorCS csNavigationOperator = NavigationUtil.getNavigationOperator(targetElement);
 		OCLExpression pivot = PivotUtil.getPivot(OCLExpression.class, targetElement);	// NB QVTr's RelationCallExp is not a CallExp

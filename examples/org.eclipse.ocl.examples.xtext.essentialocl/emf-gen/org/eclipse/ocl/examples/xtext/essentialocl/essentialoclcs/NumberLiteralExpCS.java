@@ -19,7 +19,7 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NumberLiteralExpCS#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NumberLiteralExpCS#getSymbol <em>Symbol</em>}</li>
  * </ul>
  * </p>
  *
@@ -31,29 +31,29 @@ public interface NumberLiteralExpCS
 		extends PrimitiveLiteralExpCS {
 
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * Returns the value of the '<em><b>Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(Number)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getNumberLiteralExpCS_Name()
+	 * @return the value of the '<em>Symbol</em>' attribute.
+	 * @see #setSymbol(Number)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getNumberLiteralExpCS_Symbol()
 	 * @model dataType="org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BigNumber"
 	 * @generated
 	 */
-	Number getName();
+	Number getSymbol();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NumberLiteralExpCS#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NumberLiteralExpCS#getSymbol <em>Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
+	 * @param value the new value of the '<em>Symbol</em>' attribute.
+	 * @see #getSymbol()
 	 * @generated
 	 */
-	void setName(Number value);
+	void setSymbol(Number value);
 
 } // NumberLiteralExpCS

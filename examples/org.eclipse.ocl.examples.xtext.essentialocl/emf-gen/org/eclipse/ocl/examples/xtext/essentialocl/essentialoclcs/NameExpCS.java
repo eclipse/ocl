@@ -24,11 +24,11 @@ import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getPathName <em>Path Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getOwnedPathName <em>Owned Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#isAtPre <em>At Pre</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getCurlyBracketedClause <em>Curly Bracketed Clause</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getRoundBracketedClause <em>Round Bracketed Clause</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getSquareBracketedClauses <em>Square Bracketed Clauses</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getOwnedCurlyBracketedClause <em>Owned Curly Bracketed Clause</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getOwnedRoundBracketedClause <em>Owned Round Bracketed Clause</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getOwnedSquareBracketedClauses <em>Owned Square Bracketed Clauses</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getSourceType <em>Source Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getSourceTypeValue <em>Source Type Value</em>}</li>
  * </ul>
@@ -42,30 +42,30 @@ public interface NameExpCS
 		extends ExpCS {
 
 	/**
-	 * Returns the value of the '<em><b>Path Name</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Path Name</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Path Name</em>' containment reference.
-	 * @see #setPathName(PathNameCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getNameExpCS_PathName()
+	 * @return the value of the '<em>Owned Path Name</em>' containment reference.
+	 * @see #setOwnedPathName(PathNameCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getNameExpCS_OwnedPathName()
 	 * @model containment="true"
 	 * @generated
 	 */
-	PathNameCS getPathName();
+	PathNameCS getOwnedPathName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getPathName <em>Path Name</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getOwnedPathName <em>Owned Path Name</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Path Name</em>' containment reference.
-	 * @see #getPathName()
+	 * @param value the new value of the '<em>Owned Path Name</em>' containment reference.
+	 * @see #getOwnedPathName()
 	 * @generated
 	 */
-	void setPathName(PathNameCS value);
+	void setOwnedPathName(PathNameCS value);
 
 	/**
 	 * Returns the value of the '<em><b>At Pre</b></em>' attribute.
@@ -95,78 +95,78 @@ public interface NameExpCS
 	void setAtPre(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Curly Bracketed Clause</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS#getNameExp <em>Name Exp</em>}'.
+	 * Returns the value of the '<em><b>Owned Curly Bracketed Clause</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS#getOwningNameExp <em>Owning Name Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Curly Bracketed Clause</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Curly Bracketed Clause</em>' containment reference.
-	 * @see #setCurlyBracketedClause(CurlyBracketedClauseCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getNameExpCS_CurlyBracketedClause()
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS#getNameExp
-	 * @model opposite="nameExp" containment="true"
+	 * @return the value of the '<em>Owned Curly Bracketed Clause</em>' containment reference.
+	 * @see #setOwnedCurlyBracketedClause(CurlyBracketedClauseCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getNameExpCS_OwnedCurlyBracketedClause()
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS#getOwningNameExp
+	 * @model opposite="owningNameExp" containment="true"
 	 * @generated
 	 */
-	CurlyBracketedClauseCS getCurlyBracketedClause();
+	CurlyBracketedClauseCS getOwnedCurlyBracketedClause();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getCurlyBracketedClause <em>Curly Bracketed Clause</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getOwnedCurlyBracketedClause <em>Owned Curly Bracketed Clause</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Curly Bracketed Clause</em>' containment reference.
-	 * @see #getCurlyBracketedClause()
+	 * @param value the new value of the '<em>Owned Curly Bracketed Clause</em>' containment reference.
+	 * @see #getOwnedCurlyBracketedClause()
 	 * @generated
 	 */
-	void setCurlyBracketedClause(CurlyBracketedClauseCS value);
+	void setOwnedCurlyBracketedClause(CurlyBracketedClauseCS value);
 
 	/**
-	 * Returns the value of the '<em><b>Round Bracketed Clause</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS#getNameExp <em>Name Exp</em>}'.
+	 * Returns the value of the '<em><b>Owned Round Bracketed Clause</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS#getOwningNameExp <em>Owning Name Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Round Bracketed Clause</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Round Bracketed Clause</em>' containment reference.
-	 * @see #setRoundBracketedClause(RoundBracketedClauseCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getNameExpCS_RoundBracketedClause()
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS#getNameExp
-	 * @model opposite="nameExp" containment="true"
+	 * @return the value of the '<em>Owned Round Bracketed Clause</em>' containment reference.
+	 * @see #setOwnedRoundBracketedClause(RoundBracketedClauseCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getNameExpCS_OwnedRoundBracketedClause()
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS#getOwningNameExp
+	 * @model opposite="owningNameExp" containment="true"
 	 * @generated
 	 */
-	RoundBracketedClauseCS getRoundBracketedClause();
+	RoundBracketedClauseCS getOwnedRoundBracketedClause();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getRoundBracketedClause <em>Round Bracketed Clause</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getOwnedRoundBracketedClause <em>Owned Round Bracketed Clause</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Round Bracketed Clause</em>' containment reference.
-	 * @see #getRoundBracketedClause()
+	 * @param value the new value of the '<em>Owned Round Bracketed Clause</em>' containment reference.
+	 * @see #getOwnedRoundBracketedClause()
 	 * @generated
 	 */
-	void setRoundBracketedClause(RoundBracketedClauseCS value);
+	void setOwnedRoundBracketedClause(RoundBracketedClauseCS value);
 
 	/**
-	 * Returns the value of the '<em><b>Square Bracketed Clauses</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Square Bracketed Clauses</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SquareBracketedClauseCS}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SquareBracketedClauseCS#getNameExp <em>Name Exp</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SquareBracketedClauseCS#getOwningNameExp <em>Owning Name Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Square Bracketed Clauses</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Square Bracketed Clauses</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getNameExpCS_SquareBracketedClauses()
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SquareBracketedClauseCS#getNameExp
-	 * @model opposite="nameExp" containment="true" upper="2"
+	 * @return the value of the '<em>Owned Square Bracketed Clauses</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getNameExpCS_OwnedSquareBracketedClauses()
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SquareBracketedClauseCS#getOwningNameExp
+	 * @model opposite="owningNameExp" containment="true" upper="2"
 	 * @generated
 	 */
-	@NonNull EList<SquareBracketedClauseCS> getSquareBracketedClauses();
+	@NonNull EList<SquareBracketedClauseCS> getOwnedSquareBracketedClauses();
 
 	/**
 	 * Returns the value of the '<em><b>Source Type</b></em>' reference.

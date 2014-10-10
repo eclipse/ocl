@@ -38,8 +38,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.RoundBracketedClauseCSImpl#getNameExp <em>Name Exp</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.RoundBracketedClauseCSImpl#getArguments <em>Arguments</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.RoundBracketedClauseCSImpl#getOwningNameExp <em>Owning Name Exp</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.RoundBracketedClauseCSImpl#getOwnedArguments <em>Owned Arguments</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,14 +48,14 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
 public class RoundBracketedClauseCSImpl extends ContextLessElementCSImpl implements RoundBracketedClauseCS
 {
 	/**
-	 * The cached value of the '{@link #getArguments() <em>Arguments</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedArguments() <em>Owned Arguments</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getArguments()
+	 * @see #getOwnedArguments()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<NavigatingArgCS> arguments;
+	protected EList<NavigatingArgCS> ownedArguments;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -82,9 +82,9 @@ public class RoundBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NameExpCS getNameExp()
+	public NameExpCS getOwningNameExp()
 	{
-		if (eContainerFeatureID() != EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__NAME_EXP) return null;
+		if (eContainerFeatureID() != EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP) return null;
 		return (NameExpCS)eInternalContainer();
 	}
 
@@ -93,9 +93,9 @@ public class RoundBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetNameExp(NameExpCS newNameExp, NotificationChain msgs)
+	public NotificationChain basicSetOwningNameExp(NameExpCS newOwningNameExp, NotificationChain msgs)
 	{
-		msgs = eBasicSetContainer((InternalEObject)newNameExp, EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__NAME_EXP, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newOwningNameExp, EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP, msgs);
 		return msgs;
 	}
 
@@ -104,22 +104,22 @@ public class RoundBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNameExp(NameExpCS newNameExp)
+	public void setOwningNameExp(NameExpCS newOwningNameExp)
 	{
-		if (newNameExp != eInternalContainer() || (eContainerFeatureID() != EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__NAME_EXP && newNameExp != null))
+		if (newOwningNameExp != eInternalContainer() || (eContainerFeatureID() != EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP && newOwningNameExp != null))
 		{
-			if (EcoreUtil.isAncestor(this, newNameExp))
+			if (EcoreUtil.isAncestor(this, newOwningNameExp))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newNameExp != null)
-				msgs = ((InternalEObject)newNameExp).eInverseAdd(this, EssentialOCLCSPackage.NAME_EXP_CS__ROUND_BRACKETED_CLAUSE, NameExpCS.class, msgs);
-			msgs = basicSetNameExp(newNameExp, msgs);
+			if (newOwningNameExp != null)
+				msgs = ((InternalEObject)newOwningNameExp).eInverseAdd(this, EssentialOCLCSPackage.NAME_EXP_CS__OWNED_ROUND_BRACKETED_CLAUSE, NameExpCS.class, msgs);
+			msgs = basicSetOwningNameExp(newOwningNameExp, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__NAME_EXP, newNameExp, newNameExp));
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP, newOwningNameExp, newOwningNameExp));
 	}
 
 	/**
@@ -128,13 +128,13 @@ public class RoundBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	 * @generated
 	 */
 	@SuppressWarnings("null")
-	public @NonNull EList<NavigatingArgCS> getArguments()
+	public @NonNull EList<NavigatingArgCS> getOwnedArguments()
 	{
-		if (arguments == null)
+		if (ownedArguments == null)
 		{
-			arguments = new EObjectContainmentWithInverseEList<NavigatingArgCS>(NavigatingArgCS.class, this, EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__ARGUMENTS, EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROUND_BRACKETED_CLAUSE);
+			ownedArguments = new EObjectContainmentWithInverseEList<NavigatingArgCS>(NavigatingArgCS.class, this, EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNED_ARGUMENTS, EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNING_ROUND_BRACKETED_CLAUSE);
 		}
-		return arguments;
+		return ownedArguments;
 	}
 
 	/**
@@ -148,12 +148,12 @@ public class RoundBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__NAME_EXP:
+			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetNameExp((NameExpCS)otherEnd, msgs);
-			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__ARGUMENTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getArguments()).basicAdd(otherEnd, msgs);
+				return basicSetOwningNameExp((NameExpCS)otherEnd, msgs);
+			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNED_ARGUMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedArguments()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -168,10 +168,10 @@ public class RoundBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__NAME_EXP:
-				return basicSetNameExp(null, msgs);
-			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__ARGUMENTS:
-				return ((InternalEList<?>)getArguments()).basicRemove(otherEnd, msgs);
+			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
+				return basicSetOwningNameExp(null, msgs);
+			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNED_ARGUMENTS:
+				return ((InternalEList<?>)getOwnedArguments()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -186,8 +186,8 @@ public class RoundBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	{
 		switch (eContainerFeatureID())
 		{
-			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__NAME_EXP:
-				return eInternalContainer().eInverseRemove(this, EssentialOCLCSPackage.NAME_EXP_CS__ROUND_BRACKETED_CLAUSE, NameExpCS.class, msgs);
+			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
+				return eInternalContainer().eInverseRemove(this, EssentialOCLCSPackage.NAME_EXP_CS__OWNED_ROUND_BRACKETED_CLAUSE, NameExpCS.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -202,10 +202,10 @@ public class RoundBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__NAME_EXP:
-				return getNameExp();
-			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__ARGUMENTS:
-				return getArguments();
+			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
+				return getOwningNameExp();
+			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNED_ARGUMENTS:
+				return getOwnedArguments();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -221,12 +221,12 @@ public class RoundBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__NAME_EXP:
-				setNameExp((NameExpCS)newValue);
+			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
+				setOwningNameExp((NameExpCS)newValue);
 				return;
-			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__ARGUMENTS:
-				getArguments().clear();
-				getArguments().addAll((Collection<? extends NavigatingArgCS>)newValue);
+			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNED_ARGUMENTS:
+				getOwnedArguments().clear();
+				getOwnedArguments().addAll((Collection<? extends NavigatingArgCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -242,11 +242,11 @@ public class RoundBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__NAME_EXP:
-				setNameExp((NameExpCS)null);
+			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
+				setOwningNameExp((NameExpCS)null);
 				return;
-			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__ARGUMENTS:
-				getArguments().clear();
+			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNED_ARGUMENTS:
+				getOwnedArguments().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -262,10 +262,10 @@ public class RoundBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__NAME_EXP:
-				return getNameExp() != null;
-			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__ARGUMENTS:
-				return arguments != null && !arguments.isEmpty();
+			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
+				return getOwningNameExp() != null;
+			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNED_ARGUMENTS:
+				return ownedArguments != null && !ownedArguments.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -14,6 +14,7 @@ import org.eclipse.ocl.examples.xtext.base.formatting.AbstractBaseFormatter;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.CollectionLiteralExpCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.CollectionTypeCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.CurlyBracketedClauseCSElements;
+import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.ElseIfThenExpCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.EssentialOCLNavigationOperatorCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.IfExpCSElements;
 //import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.IndexExpCSElements;
@@ -53,12 +54,19 @@ public abstract class AbstractEssentialOCLFormatter extends AbstractBaseFormatte
 	}
 
 	protected void configureIfExpCS(FormattingConfig c, IfExpCSElements a) {
-		c.setLinewrap().after(a.getConditionAssignment_1());
-		c.setLinewrap().after(a.getThenExpressionAssignment_3());
-		c.setLinewrap().after(a.getElseExpressionAssignment_5());
+		c.setLinewrap().after(a.getOwnedConditionAssignment_1());
+		c.setLinewrap().after(a.getOwnedThenExpressionAssignment_3());
+		c.setLinewrap().after(a.getOwnedElseExpressionAssignment_6());
 		c.setIndentation(a.getIfKeyword_0(), a.getThenKeyword_2());
-		c.setIndentation(a.getThenKeyword_2(), a.getElseKeyword_4());
-		c.setIndentation(a.getElseKeyword_4(), a.getEndifKeyword_6());
+		c.setIndentation(a.getThenKeyword_2(), a.getOwnedThenExpressionAssignment_3());
+		c.setIndentation(a.getElseKeyword_5(), a.getEndifKeyword_7());
+	}
+
+	protected void configureElseIfThenExpCS(FormattingConfig c, ElseIfThenExpCSElements a) {
+		c.setLinewrap().after(a.getOwnedConditionAssignment_1());
+		c.setLinewrap().after(a.getOwnedThenExpressionAssignment_3());
+		c.setIndentation(a.getElseifKeyword_0(), a.getThenKeyword_2());
+		c.setIndentation(a.getThenKeyword_2(), a.getOwnedThenExpressionAssignment_3());
 	}
 
 	protected void configureLetExpCS(FormattingConfig c, LetExpCSElements a) {

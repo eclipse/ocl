@@ -86,7 +86,7 @@ public abstract class AbstractImplicitSourceNamedElementIterator<T extends Named
 				}
 			}
 		}
-		else if ((csParent instanceof NameExpCS) && (((NameExpCS)csParent).getRoundBracketedClause() != null)){
+		else if ((csParent instanceof NameExpCS) && (((NameExpCS)csParent).getOwnedRoundBracketedClause() != null)){
 			OCLExpression asCallExp = PivotUtil.getPivot(OCLExpression.class, (NameExpCS)csParent);
 			if (asCallExp instanceof LoopExp) {
 				List<Variable> asIterators = ((LoopExp)asCallExp).getIterator();

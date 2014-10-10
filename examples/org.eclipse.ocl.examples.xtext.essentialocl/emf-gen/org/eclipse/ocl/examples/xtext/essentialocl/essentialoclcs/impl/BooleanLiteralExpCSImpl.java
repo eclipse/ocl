@@ -27,7 +27,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.BooleanLiteralExpCSImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.BooleanLiteralExpCSImpl#getSymbol <em>Symbol</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,24 +38,24 @@ public class BooleanLiteralExpCSImpl
 		implements BooleanLiteralExpCS {
 
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The default value of the '{@link #getSymbol() <em>Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #getSymbol()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = null;
+	protected static final String SYMBOL_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The cached value of the '{@link #getSymbol() <em>Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #getSymbol()
 	 * @generated
 	 * @ordered
 	 */
-	protected String name = NAME_EDEFAULT;
+	protected String symbol = SYMBOL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -81,8 +81,8 @@ public class BooleanLiteralExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
-		return name;
+	public String getSymbol() {
+		return symbol;
 	}
 
 	/**
@@ -90,11 +90,11 @@ public class BooleanLiteralExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
+	public void setSymbol(String newSymbol) {
+		String oldSymbol = symbol;
+		symbol = newSymbol;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.BOOLEAN_LITERAL_EXP_CS__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.BOOLEAN_LITERAL_EXP_CS__SYMBOL, oldSymbol, symbol));
 	}
 
 	/**
@@ -116,8 +116,8 @@ public class BooleanLiteralExpCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.BOOLEAN_LITERAL_EXP_CS__NAME:
-				return getName();
+			case EssentialOCLCSPackage.BOOLEAN_LITERAL_EXP_CS__SYMBOL:
+				return getSymbol();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -131,8 +131,8 @@ public class BooleanLiteralExpCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.BOOLEAN_LITERAL_EXP_CS__NAME:
-				setName((String)newValue);
+			case EssentialOCLCSPackage.BOOLEAN_LITERAL_EXP_CS__SYMBOL:
+				setSymbol((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -147,8 +147,8 @@ public class BooleanLiteralExpCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.BOOLEAN_LITERAL_EXP_CS__NAME:
-				setName(NAME_EDEFAULT);
+			case EssentialOCLCSPackage.BOOLEAN_LITERAL_EXP_CS__SYMBOL:
+				setSymbol(SYMBOL_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -163,8 +163,8 @@ public class BooleanLiteralExpCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.BOOLEAN_LITERAL_EXP_CS__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case EssentialOCLCSPackage.BOOLEAN_LITERAL_EXP_CS__SYMBOL:
+				return SYMBOL_EDEFAULT == null ? symbol != null : !SYMBOL_EDEFAULT.equals(symbol);
 		}
 		return super.eIsSet(featureID);
 	}

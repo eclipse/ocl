@@ -18,8 +18,8 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS#getLetExpression <em>Let Expression</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS#getRoundBracketedClause <em>Round Bracketed Clause</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS#getOwningLetExpression <em>Owning Let Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS#getOwnedRoundBracketedClause <em>Owned Round Bracketed Clause</em>}</li>
  * </ul>
  * </p>
  *
@@ -31,57 +31,57 @@ public interface LetVariableCS
 		extends VariableCS, ExpCS {
 
 	/**
-	 * Returns the value of the '<em><b>Let Expression</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS#getVariable <em>Variable</em>}'.
+	 * Returns the value of the '<em><b>Owning Let Expression</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS#getOwnedVariables <em>Owned Variables</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Let Expression</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Let Expression</em>' container reference.
-	 * @see #setLetExpression(LetExpCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getLetVariableCS_LetExpression()
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS#getVariable
-	 * @model opposite="variable" transient="false"
+	 * @return the value of the '<em>Owning Let Expression</em>' container reference.
+	 * @see #setOwningLetExpression(LetExpCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getLetVariableCS_OwningLetExpression()
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS#getOwnedVariables
+	 * @model opposite="ownedVariables" transient="false"
 	 * @generated
 	 */
-	LetExpCS getLetExpression();
+	LetExpCS getOwningLetExpression();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS#getLetExpression <em>Let Expression</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS#getOwningLetExpression <em>Owning Let Expression</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Let Expression</em>' container reference.
-	 * @see #getLetExpression()
+	 * @param value the new value of the '<em>Owning Let Expression</em>' container reference.
+	 * @see #getOwningLetExpression()
 	 * @generated
 	 */
-	void setLetExpression(LetExpCS value);
+	void setOwningLetExpression(LetExpCS value);
 
 	/**
-	 * Returns the value of the '<em><b>Round Bracketed Clause</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Round Bracketed Clause</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Round Bracketed Clause</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Round Bracketed Clause</em>' containment reference.
-	 * @see #setRoundBracketedClause(RoundBracketedClauseCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getLetVariableCS_RoundBracketedClause()
+	 * @return the value of the '<em>Owned Round Bracketed Clause</em>' containment reference.
+	 * @see #setOwnedRoundBracketedClause(RoundBracketedClauseCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getLetVariableCS_OwnedRoundBracketedClause()
 	 * @model containment="true"
 	 * @generated
 	 */
-	RoundBracketedClauseCS getRoundBracketedClause();
+	RoundBracketedClauseCS getOwnedRoundBracketedClause();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS#getRoundBracketedClause <em>Round Bracketed Clause</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS#getOwnedRoundBracketedClause <em>Owned Round Bracketed Clause</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Round Bracketed Clause</em>' containment reference.
-	 * @see #getRoundBracketedClause()
+	 * @param value the new value of the '<em>Owned Round Bracketed Clause</em>' containment reference.
+	 * @see #getOwnedRoundBracketedClause()
 	 * @generated
 	 */
-	void setRoundBracketedClause(RoundBracketedClauseCS value);
+	void setOwnedRoundBracketedClause(RoundBracketedClauseCS value);
 
 } // VariableCS

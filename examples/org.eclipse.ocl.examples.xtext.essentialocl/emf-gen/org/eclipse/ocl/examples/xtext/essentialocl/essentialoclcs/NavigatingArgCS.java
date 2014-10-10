@@ -21,12 +21,12 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getRoundBracketedClause <em>Round Bracketed Clause</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getOwningRoundBracketedClause <em>Owning Round Bracketed Clause</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getRole <em>Role</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getPrefix <em>Prefix</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getOwnedNameExpression <em>Owned Name Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getOwnedType <em>Owned Type</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getInit <em>Init</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getOwnedInitExpression <em>Owned Init Expression</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,32 +38,32 @@ public interface NavigatingArgCS
 		extends ModelElementCS {
 
 	/**
-	 * Returns the value of the '<em><b>Round Bracketed Clause</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS#getArguments <em>Arguments</em>}'.
+	 * Returns the value of the '<em><b>Owning Round Bracketed Clause</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS#getOwnedArguments <em>Owned Arguments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Round Bracketed Clause</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Round Bracketed Clause</em>' container reference.
-	 * @see #setRoundBracketedClause(RoundBracketedClauseCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getNavigatingArgCS_RoundBracketedClause()
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS#getArguments
-	 * @model opposite="arguments" transient="false"
+	 * @return the value of the '<em>Owning Round Bracketed Clause</em>' container reference.
+	 * @see #setOwningRoundBracketedClause(RoundBracketedClauseCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getNavigatingArgCS_OwningRoundBracketedClause()
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS#getOwnedArguments
+	 * @model opposite="ownedArguments" transient="false"
 	 * @generated
 	 */
-	RoundBracketedClauseCS getRoundBracketedClause();
+	RoundBracketedClauseCS getOwningRoundBracketedClause();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getRoundBracketedClause <em>Round Bracketed Clause</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getOwningRoundBracketedClause <em>Owning Round Bracketed Clause</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Round Bracketed Clause</em>' container reference.
-	 * @see #getRoundBracketedClause()
+	 * @param value the new value of the '<em>Owning Round Bracketed Clause</em>' container reference.
+	 * @see #getOwningRoundBracketedClause()
 	 * @generated
 	 */
-	void setRoundBracketedClause(RoundBracketedClauseCS value);
+	void setOwningRoundBracketedClause(RoundBracketedClauseCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Role</b></em>' attribute.
@@ -121,30 +121,30 @@ public interface NavigatingArgCS
 	void setPrefix(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' containment reference.
-	 * @see #setName(ExpCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getNavigatingArgCS_Name()
+	 * @return the value of the '<em>Owned Name Expression</em>' containment reference.
+	 * @see #setOwnedNameExpression(ExpCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getNavigatingArgCS_OwnedNameExpression()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ExpCS getName();
+	ExpCS getOwnedNameExpression();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getName <em>Name</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getOwnedNameExpression <em>Owned Name Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' containment reference.
-	 * @see #getName()
+	 * @param value the new value of the '<em>Owned Name Expression</em>' containment reference.
+	 * @see #getOwnedNameExpression()
 	 * @generated
 	 */
-	void setName(ExpCS value);
+	void setOwnedNameExpression(ExpCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Type</b></em>' containment reference.
@@ -173,29 +173,29 @@ public interface NavigatingArgCS
 	void setOwnedType(TypedRefCS value);
 
 	/**
-	 * Returns the value of the '<em><b>Init</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Init Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Init</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Init</em>' containment reference.
-	 * @see #setInit(ExpCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getNavigatingArgCS_Init()
+	 * @return the value of the '<em>Owned Init Expression</em>' containment reference.
+	 * @see #setOwnedInitExpression(ExpCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getNavigatingArgCS_OwnedInitExpression()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ExpCS getInit();
+	ExpCS getOwnedInitExpression();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getInit <em>Init</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getOwnedInitExpression <em>Owned Init Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Init</em>' containment reference.
-	 * @see #getInit()
+	 * @param value the new value of the '<em>Owned Init Expression</em>' containment reference.
+	 * @see #getOwnedInitExpression()
 	 * @generated
 	 */
-	void setInit(ExpCS value);
+	void setOwnedInitExpression(ExpCS value);
 
 } // NavigatingArgCS

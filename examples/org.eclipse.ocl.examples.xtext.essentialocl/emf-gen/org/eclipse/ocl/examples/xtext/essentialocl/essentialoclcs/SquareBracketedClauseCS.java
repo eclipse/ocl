@@ -21,8 +21,8 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ContextLessElementCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SquareBracketedClauseCS#getNameExp <em>Name Exp</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SquareBracketedClauseCS#getTerms <em>Terms</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SquareBracketedClauseCS#getOwningNameExp <em>Owning Name Exp</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SquareBracketedClauseCS#getOwnedTerms <em>Owned Terms</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,35 +33,35 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ContextLessElementCS;
 public interface SquareBracketedClauseCS extends ContextLessElementCS
 {
 	/**
-	 * Returns the value of the '<em><b>Name Exp</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getSquareBracketedClauses <em>Square Bracketed Clauses</em>}'.
+	 * Returns the value of the '<em><b>Owning Name Exp</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getOwnedSquareBracketedClauses <em>Owned Square Bracketed Clauses</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name Exp</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name Exp</em>' container reference.
-	 * @see #setNameExp(NameExpCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getSquareBracketedClauseCS_NameExp()
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getSquareBracketedClauses
-	 * @model opposite="squareBracketedClauses" transient="false"
+	 * @return the value of the '<em>Owning Name Exp</em>' container reference.
+	 * @see #setOwningNameExp(NameExpCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getSquareBracketedClauseCS_OwningNameExp()
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getOwnedSquareBracketedClauses
+	 * @model opposite="ownedSquareBracketedClauses" transient="false"
 	 * @generated
 	 */
-	NameExpCS getNameExp();
+	NameExpCS getOwningNameExp();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SquareBracketedClauseCS#getNameExp <em>Name Exp</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SquareBracketedClauseCS#getOwningNameExp <em>Owning Name Exp</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name Exp</em>' container reference.
-	 * @see #getNameExp()
+	 * @param value the new value of the '<em>Owning Name Exp</em>' container reference.
+	 * @see #getOwningNameExp()
 	 * @generated
 	 */
-	void setNameExp(NameExpCS value);
+	void setOwningNameExp(NameExpCS value);
 
 	/**
-	 * Returns the value of the '<em><b>Terms</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Terms</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -69,11 +69,11 @@ public interface SquareBracketedClauseCS extends ContextLessElementCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Terms</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getSquareBracketedClauseCS_Terms()
+	 * @return the value of the '<em>Owned Terms</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getSquareBracketedClauseCS_OwnedTerms()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<ExpCS> getTerms();
+	EList<ExpCS> getOwnedTerms();
 
 } // SquareBracketedClauseCS

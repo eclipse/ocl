@@ -29,7 +29,7 @@ public class LetExpCSAttribution extends AbstractAttribution
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		if (environmentView.accepts(PivotPackage.Literals.VARIABLE)) {
 			LetExpCS targetElement = (LetExpCS)target;
-			for (VariableCS csVariable : targetElement.getVariable()) {
+			for (VariableCS csVariable : targetElement.getOwnedVariables()) {
 				Variable variable = PivotUtil.getPivot(Variable.class, csVariable);
 				if (variable != null) {		// Maybe null while resolving namespaces
 					environmentView.addNamedElement(variable);

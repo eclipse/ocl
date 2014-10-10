@@ -102,10 +102,10 @@ public class EssentialOCLScoping
 			else if (csContext instanceof NameExpCS) {
 				NameExpCS csNameExp = (NameExpCS)csContext;
 				navigationArgument = csNameExp;
-				RoundBracketedClauseCS csRoundBracketedClause = csNameExp.getRoundBracketedClause();
+				RoundBracketedClauseCS csRoundBracketedClause = csNameExp.getOwnedRoundBracketedClause();
 				if (csRoundBracketedClause != null) {
 					argumentText = getOperationArguments(csRoundBracketedClause);
-					List<NavigatingArgCS> arguments = csRoundBracketedClause.getArguments();
+					List<NavigatingArgCS> arguments = csRoundBracketedClause.getOwnedArguments();
 					if ((arguments.size() > 0) && (arguments.get(0).getRole() == NavigationRole.ITERATOR)) {
 						messageTemplate = OCLMessages.UnresolvedIterationCall_ERROR_;
 					}
@@ -150,7 +150,7 @@ public class EssentialOCLScoping
 				}
 				EObject eContainer = aSource.eContainer();
 				if (eContainer instanceof NavigatingArgCS) {
-					aSource = ((NavigatingArgCS)eContainer).getRoundBracketedClause().getNameExp();
+					aSource = ((NavigatingArgCS)eContainer).getOwningRoundBracketedClause().getOwningNameExp();
 				}
 				else if (eContainer instanceof InfixExpCS) {
 					aSource = (InfixExpCS)eContainer;
@@ -203,7 +203,7 @@ public class EssentialOCLScoping
 		}
 		
 		public String getOperationArguments(@NonNull RoundBracketedClauseCS csRoundBracketedClause) {
-			List<NavigatingArgCS> arguments = csRoundBracketedClause.getArguments();
+			List<NavigatingArgCS> arguments = csRoundBracketedClause.getOwnedArguments();
 			StringBuilder s = new StringBuilder();
 			for (NavigatingArgCS csArgument : arguments) {
 				TypedElement pivot = PivotUtil.getPivot(TypedElement.class, csArgument);

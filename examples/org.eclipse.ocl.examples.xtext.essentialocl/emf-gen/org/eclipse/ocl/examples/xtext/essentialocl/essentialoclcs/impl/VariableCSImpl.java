@@ -33,7 +33,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.VariableCSImpl#getOwnedType <em>Owned Type</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.VariableCSImpl#getInitExpression <em>Init Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.VariableCSImpl#getOwnedInitExpression <em>Owned Init Expression</em>}</li>
  * </ul>
  * </p>
  *
@@ -54,14 +54,14 @@ public class VariableCSImpl
 	protected TypedRefCS ownedType;
 
 	/**
-	 * The cached value of the '{@link #getInitExpression() <em>Init Expression</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedInitExpression() <em>Owned Init Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getInitExpression()
+	 * @see #getOwnedInitExpression()
 	 * @generated
 	 * @ordered
 	 */
-	protected ExpCS initExpression;
+	protected ExpCS ownedInitExpression;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -133,8 +133,8 @@ public class VariableCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpCS getInitExpression() {
-		return initExpression;
+	public ExpCS getOwnedInitExpression() {
+		return ownedInitExpression;
 	}
 
 	/**
@@ -142,13 +142,13 @@ public class VariableCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInitExpression(ExpCS newInitExpression,
-			NotificationChain msgs) {
-		ExpCS oldInitExpression = initExpression;
-		initExpression = newInitExpression;
+	public NotificationChain basicSetOwnedInitExpression(ExpCS newOwnedInitExpression, NotificationChain msgs)
+	{
+		ExpCS oldOwnedInitExpression = ownedInitExpression;
+		ownedInitExpression = newOwnedInitExpression;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.VARIABLE_CS__INIT_EXPRESSION, oldInitExpression, newInitExpression);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.VARIABLE_CS__OWNED_INIT_EXPRESSION, oldOwnedInitExpression, newOwnedInitExpression);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -159,19 +159,19 @@ public class VariableCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInitExpression(ExpCS newInitExpression) {
-		if (newInitExpression != initExpression)
+	public void setOwnedInitExpression(ExpCS newOwnedInitExpression) {
+		if (newOwnedInitExpression != ownedInitExpression)
 		{
 			NotificationChain msgs = null;
-			if (initExpression != null)
-				msgs = ((InternalEObject)initExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.VARIABLE_CS__INIT_EXPRESSION, null, msgs);
-			if (newInitExpression != null)
-				msgs = ((InternalEObject)newInitExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.VARIABLE_CS__INIT_EXPRESSION, null, msgs);
-			msgs = basicSetInitExpression(newInitExpression, msgs);
+			if (ownedInitExpression != null)
+				msgs = ((InternalEObject)ownedInitExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.VARIABLE_CS__OWNED_INIT_EXPRESSION, null, msgs);
+			if (newOwnedInitExpression != null)
+				msgs = ((InternalEObject)newOwnedInitExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.VARIABLE_CS__OWNED_INIT_EXPRESSION, null, msgs);
+			msgs = basicSetOwnedInitExpression(newOwnedInitExpression, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.VARIABLE_CS__INIT_EXPRESSION, newInitExpression, newInitExpression));
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.VARIABLE_CS__OWNED_INIT_EXPRESSION, newOwnedInitExpression, newOwnedInitExpression));
 	}
 
 	/**
@@ -186,8 +186,8 @@ public class VariableCSImpl
 		{
 			case EssentialOCLCSPackage.VARIABLE_CS__OWNED_TYPE:
 				return basicSetOwnedType(null, msgs);
-			case EssentialOCLCSPackage.VARIABLE_CS__INIT_EXPRESSION:
-				return basicSetInitExpression(null, msgs);
+			case EssentialOCLCSPackage.VARIABLE_CS__OWNED_INIT_EXPRESSION:
+				return basicSetOwnedInitExpression(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -203,8 +203,8 @@ public class VariableCSImpl
 		{
 			case EssentialOCLCSPackage.VARIABLE_CS__OWNED_TYPE:
 				return getOwnedType();
-			case EssentialOCLCSPackage.VARIABLE_CS__INIT_EXPRESSION:
-				return getInitExpression();
+			case EssentialOCLCSPackage.VARIABLE_CS__OWNED_INIT_EXPRESSION:
+				return getOwnedInitExpression();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -221,8 +221,8 @@ public class VariableCSImpl
 			case EssentialOCLCSPackage.VARIABLE_CS__OWNED_TYPE:
 				setOwnedType((TypedRefCS)newValue);
 				return;
-			case EssentialOCLCSPackage.VARIABLE_CS__INIT_EXPRESSION:
-				setInitExpression((ExpCS)newValue);
+			case EssentialOCLCSPackage.VARIABLE_CS__OWNED_INIT_EXPRESSION:
+				setOwnedInitExpression((ExpCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -240,8 +240,8 @@ public class VariableCSImpl
 			case EssentialOCLCSPackage.VARIABLE_CS__OWNED_TYPE:
 				setOwnedType((TypedRefCS)null);
 				return;
-			case EssentialOCLCSPackage.VARIABLE_CS__INIT_EXPRESSION:
-				setInitExpression((ExpCS)null);
+			case EssentialOCLCSPackage.VARIABLE_CS__OWNED_INIT_EXPRESSION:
+				setOwnedInitExpression((ExpCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -258,8 +258,8 @@ public class VariableCSImpl
 		{
 			case EssentialOCLCSPackage.VARIABLE_CS__OWNED_TYPE:
 				return ownedType != null;
-			case EssentialOCLCSPackage.VARIABLE_CS__INIT_EXPRESSION:
-				return initExpression != null;
+			case EssentialOCLCSPackage.VARIABLE_CS__OWNED_INIT_EXPRESSION:
+				return ownedInitExpression != null;
 		}
 		return super.eIsSet(featureID);
 	}

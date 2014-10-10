@@ -36,7 +36,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.PrefixExpCSImpl#getOwnedOperator <em>Owned Operator</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.PrefixExpCSImpl#getOwnedOperators <em>Owned Operators</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.PrefixExpCSImpl#getOwnedExpression <em>Owned Expression</em>}</li>
  * </ul>
  * </p>
@@ -48,14 +48,14 @@ public class PrefixExpCSImpl
 		implements PrefixExpCS {
 
 	/**
-	 * The cached value of the '{@link #getOwnedOperator() <em>Owned Operator</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedOperators() <em>Owned Operators</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedOperator()
+	 * @see #getOwnedOperators()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<UnaryOperatorCS> ownedOperator;
+	protected EList<UnaryOperatorCS> ownedOperators;
 
 	/**
 	 * The cached value of the '{@link #getOwnedExpression() <em>Owned Expression</em>}' containment reference.
@@ -91,12 +91,12 @@ public class PrefixExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<UnaryOperatorCS> getOwnedOperator() {
-		if (ownedOperator == null)
+	public EList<UnaryOperatorCS> getOwnedOperators() {
+		if (ownedOperators == null)
 		{
-			ownedOperator = new EObjectContainmentEList<UnaryOperatorCS>(UnaryOperatorCS.class, this, EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_OPERATOR);
+			ownedOperators = new EObjectContainmentEList<UnaryOperatorCS>(UnaryOperatorCS.class, this, EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_OPERATORS);
 		}
-		return ownedOperator;
+		return ownedOperators;
 	}
 
 	/**
@@ -155,8 +155,8 @@ public class PrefixExpCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_OPERATOR:
-				return ((InternalEList<?>)getOwnedOperator()).basicRemove(otherEnd, msgs);
+			case EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_OPERATORS:
+				return ((InternalEList<?>)getOwnedOperators()).basicRemove(otherEnd, msgs);
 			case EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_EXPRESSION:
 				return basicSetOwnedExpression(null, msgs);
 		}
@@ -172,8 +172,8 @@ public class PrefixExpCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_OPERATOR:
-				return getOwnedOperator();
+			case EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_OPERATORS:
+				return getOwnedOperators();
 			case EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_EXPRESSION:
 				return getOwnedExpression();
 		}
@@ -190,9 +190,9 @@ public class PrefixExpCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_OPERATOR:
-				getOwnedOperator().clear();
-				getOwnedOperator().addAll((Collection<? extends UnaryOperatorCS>)newValue);
+			case EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_OPERATORS:
+				getOwnedOperators().clear();
+				getOwnedOperators().addAll((Collection<? extends UnaryOperatorCS>)newValue);
 				return;
 			case EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_EXPRESSION:
 				setOwnedExpression((ExpCS)newValue);
@@ -210,8 +210,8 @@ public class PrefixExpCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_OPERATOR:
-				getOwnedOperator().clear();
+			case EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_OPERATORS:
+				getOwnedOperators().clear();
 				return;
 			case EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_EXPRESSION:
 				setOwnedExpression((ExpCS)null);
@@ -229,8 +229,8 @@ public class PrefixExpCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_OPERATOR:
-				return ownedOperator != null && !ownedOperator.isEmpty();
+			case EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_OPERATORS:
+				return ownedOperators != null && !ownedOperators.isEmpty();
 			case EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_EXPRESSION:
 				return ownedExpression != null;
 		}

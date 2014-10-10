@@ -19,7 +19,7 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LambdaLiteralExpCS#getExpressionCS <em>Expression CS</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LambdaLiteralExpCS#getOwnedExpressionCS <em>Owned Expression CS</em>}</li>
  * </ul>
  * </p>
  *
@@ -30,29 +30,29 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
 public interface LambdaLiteralExpCS extends LiteralExpCS
 {
 	/**
-	 * Returns the value of the '<em><b>Expression CS</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Expression CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Expression CS</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Expression CS</em>' containment reference.
-	 * @see #setExpressionCS(ExpCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getLambdaLiteralExpCS_ExpressionCS()
+	 * @return the value of the '<em>Owned Expression CS</em>' containment reference.
+	 * @see #setOwnedExpressionCS(ExpCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getLambdaLiteralExpCS_OwnedExpressionCS()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ExpCS getExpressionCS();
+	ExpCS getOwnedExpressionCS();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LambdaLiteralExpCS#getExpressionCS <em>Expression CS</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LambdaLiteralExpCS#getOwnedExpressionCS <em>Owned Expression CS</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Expression CS</em>' containment reference.
-	 * @see #getExpressionCS()
+	 * @param value the new value of the '<em>Owned Expression CS</em>' containment reference.
+	 * @see #getOwnedExpressionCS()
 	 * @generated
 	 */
-	void setExpressionCS(ExpCS value);
+	void setOwnedExpressionCS(ExpCS value);
 
 } // LambdaLiteralExpCS

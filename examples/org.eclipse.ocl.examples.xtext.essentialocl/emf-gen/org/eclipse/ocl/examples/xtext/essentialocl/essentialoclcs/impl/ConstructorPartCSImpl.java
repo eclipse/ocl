@@ -35,9 +35,9 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ConstructorPartCSImpl#getCurlyBracketClause <em>Curly Bracket Clause</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ConstructorPartCSImpl#getProperty <em>Property</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ConstructorPartCSImpl#getInitExpression <em>Init Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ConstructorPartCSImpl#getOwningCurlyBracketClause <em>Owning Curly Bracket Clause</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ConstructorPartCSImpl#getReferredProperty <em>Referred Property</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ConstructorPartCSImpl#getOwnedInitExpression <em>Owned Init Expression</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,24 +48,24 @@ public class ConstructorPartCSImpl
 		implements ConstructorPartCS {
 
 	/**
-	 * The cached value of the '{@link #getProperty() <em>Property</em>}' reference.
+	 * The cached value of the '{@link #getReferredProperty() <em>Referred Property</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProperty()
+	 * @see #getReferredProperty()
 	 * @generated
 	 * @ordered
 	 */
-	protected Property property;
+	protected Property referredProperty;
 
 	/**
-	 * The cached value of the '{@link #getInitExpression() <em>Init Expression</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedInitExpression() <em>Owned Init Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getInitExpression()
+	 * @see #getOwnedInitExpression()
 	 * @generated
 	 * @ordered
 	 */
-	protected ExpCS initExpression;
+	protected ExpCS ownedInitExpression;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -91,9 +91,9 @@ public class ConstructorPartCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CurlyBracketedClauseCS getCurlyBracketClause()
+	public CurlyBracketedClauseCS getOwningCurlyBracketClause()
 	{
-		if (eContainerFeatureID() != EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__CURLY_BRACKET_CLAUSE) return null;
+		if (eContainerFeatureID() != EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__OWNING_CURLY_BRACKET_CLAUSE) return null;
 		return (CurlyBracketedClauseCS)eInternalContainer();
 	}
 
@@ -102,9 +102,9 @@ public class ConstructorPartCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetCurlyBracketClause(CurlyBracketedClauseCS newCurlyBracketClause, NotificationChain msgs)
+	public NotificationChain basicSetOwningCurlyBracketClause(CurlyBracketedClauseCS newOwningCurlyBracketClause, NotificationChain msgs)
 	{
-		msgs = eBasicSetContainer((InternalEObject)newCurlyBracketClause, EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__CURLY_BRACKET_CLAUSE, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newOwningCurlyBracketClause, EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__OWNING_CURLY_BRACKET_CLAUSE, msgs);
 		return msgs;
 	}
 
@@ -113,22 +113,22 @@ public class ConstructorPartCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCurlyBracketClause(CurlyBracketedClauseCS newCurlyBracketClause)
+	public void setOwningCurlyBracketClause(CurlyBracketedClauseCS newOwningCurlyBracketClause)
 	{
-		if (newCurlyBracketClause != eInternalContainer() || (eContainerFeatureID() != EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__CURLY_BRACKET_CLAUSE && newCurlyBracketClause != null))
+		if (newOwningCurlyBracketClause != eInternalContainer() || (eContainerFeatureID() != EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__OWNING_CURLY_BRACKET_CLAUSE && newOwningCurlyBracketClause != null))
 		{
-			if (EcoreUtil.isAncestor(this, newCurlyBracketClause))
+			if (EcoreUtil.isAncestor(this, newOwningCurlyBracketClause))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newCurlyBracketClause != null)
-				msgs = ((InternalEObject)newCurlyBracketClause).eInverseAdd(this, EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNED_PARTS, CurlyBracketedClauseCS.class, msgs);
-			msgs = basicSetCurlyBracketClause(newCurlyBracketClause, msgs);
+			if (newOwningCurlyBracketClause != null)
+				msgs = ((InternalEObject)newOwningCurlyBracketClause).eInverseAdd(this, EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNED_PARTS, CurlyBracketedClauseCS.class, msgs);
+			msgs = basicSetOwningCurlyBracketClause(newOwningCurlyBracketClause, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__CURLY_BRACKET_CLAUSE, newCurlyBracketClause, newCurlyBracketClause));
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__OWNING_CURLY_BRACKET_CLAUSE, newOwningCurlyBracketClause, newOwningCurlyBracketClause));
 	}
 
 	/**
@@ -136,18 +136,18 @@ public class ConstructorPartCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Property getProperty() {
-		if (property != null && ((EObject)property).eIsProxy())
+	public Property getReferredProperty() {
+		if (referredProperty != null && ((EObject)referredProperty).eIsProxy())
 		{
-			InternalEObject oldProperty = (InternalEObject)property;
-			property = (Property)eResolveProxy(oldProperty);
-			if (property != oldProperty)
+			InternalEObject oldReferredProperty = (InternalEObject)referredProperty;
+			referredProperty = (Property)eResolveProxy(oldReferredProperty);
+			if (referredProperty != oldReferredProperty)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__PROPERTY, oldProperty, property));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__REFERRED_PROPERTY, oldReferredProperty, referredProperty));
 			}
 		}
-		return property;
+		return referredProperty;
 	}
 
 	/**
@@ -155,8 +155,9 @@ public class ConstructorPartCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Property basicGetProperty() {
-		return property;
+	public Property basicGetReferredProperty()
+	{
+		return referredProperty;
 	}
 
 	/**
@@ -164,11 +165,11 @@ public class ConstructorPartCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setProperty(Property newProperty) {
-		Property oldProperty = property;
-		property = newProperty;
+	public void setReferredProperty(Property newReferredProperty) {
+		Property oldReferredProperty = referredProperty;
+		referredProperty = newReferredProperty;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__PROPERTY, oldProperty, property));
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__REFERRED_PROPERTY, oldReferredProperty, referredProperty));
 	}
 
 	/**
@@ -176,8 +177,8 @@ public class ConstructorPartCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpCS getInitExpression() {
-		return initExpression;
+	public ExpCS getOwnedInitExpression() {
+		return ownedInitExpression;
 	}
 
 	/**
@@ -185,13 +186,13 @@ public class ConstructorPartCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInitExpression(ExpCS newInitExpression,
-			NotificationChain msgs) {
-		ExpCS oldInitExpression = initExpression;
-		initExpression = newInitExpression;
+	public NotificationChain basicSetOwnedInitExpression(ExpCS newOwnedInitExpression, NotificationChain msgs)
+	{
+		ExpCS oldOwnedInitExpression = ownedInitExpression;
+		ownedInitExpression = newOwnedInitExpression;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__INIT_EXPRESSION, oldInitExpression, newInitExpression);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__OWNED_INIT_EXPRESSION, oldOwnedInitExpression, newOwnedInitExpression);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -202,19 +203,19 @@ public class ConstructorPartCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInitExpression(ExpCS newInitExpression) {
-		if (newInitExpression != initExpression)
+	public void setOwnedInitExpression(ExpCS newOwnedInitExpression) {
+		if (newOwnedInitExpression != ownedInitExpression)
 		{
 			NotificationChain msgs = null;
-			if (initExpression != null)
-				msgs = ((InternalEObject)initExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__INIT_EXPRESSION, null, msgs);
-			if (newInitExpression != null)
-				msgs = ((InternalEObject)newInitExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__INIT_EXPRESSION, null, msgs);
-			msgs = basicSetInitExpression(newInitExpression, msgs);
+			if (ownedInitExpression != null)
+				msgs = ((InternalEObject)ownedInitExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__OWNED_INIT_EXPRESSION, null, msgs);
+			if (newOwnedInitExpression != null)
+				msgs = ((InternalEObject)newOwnedInitExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__OWNED_INIT_EXPRESSION, null, msgs);
+			msgs = basicSetOwnedInitExpression(newOwnedInitExpression, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__INIT_EXPRESSION, newInitExpression, newInitExpression));
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__OWNED_INIT_EXPRESSION, newOwnedInitExpression, newOwnedInitExpression));
 	}
 
 	/**
@@ -227,10 +228,10 @@ public class ConstructorPartCSImpl
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__CURLY_BRACKET_CLAUSE:
+			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__OWNING_CURLY_BRACKET_CLAUSE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetCurlyBracketClause((CurlyBracketedClauseCS)otherEnd, msgs);
+				return basicSetOwningCurlyBracketClause((CurlyBracketedClauseCS)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -245,10 +246,10 @@ public class ConstructorPartCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__CURLY_BRACKET_CLAUSE:
-				return basicSetCurlyBracketClause(null, msgs);
-			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__INIT_EXPRESSION:
-				return basicSetInitExpression(null, msgs);
+			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__OWNING_CURLY_BRACKET_CLAUSE:
+				return basicSetOwningCurlyBracketClause(null, msgs);
+			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__OWNED_INIT_EXPRESSION:
+				return basicSetOwnedInitExpression(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -263,7 +264,7 @@ public class ConstructorPartCSImpl
 	{
 		switch (eContainerFeatureID())
 		{
-			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__CURLY_BRACKET_CLAUSE:
+			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__OWNING_CURLY_BRACKET_CLAUSE:
 				return eInternalContainer().eInverseRemove(this, EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNED_PARTS, CurlyBracketedClauseCS.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
@@ -278,13 +279,13 @@ public class ConstructorPartCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__CURLY_BRACKET_CLAUSE:
-				return getCurlyBracketClause();
-			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__PROPERTY:
-				if (resolve) return getProperty();
-				return basicGetProperty();
-			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__INIT_EXPRESSION:
-				return getInitExpression();
+			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__OWNING_CURLY_BRACKET_CLAUSE:
+				return getOwningCurlyBracketClause();
+			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__REFERRED_PROPERTY:
+				if (resolve) return getReferredProperty();
+				return basicGetReferredProperty();
+			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__OWNED_INIT_EXPRESSION:
+				return getOwnedInitExpression();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -298,14 +299,14 @@ public class ConstructorPartCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__CURLY_BRACKET_CLAUSE:
-				setCurlyBracketClause((CurlyBracketedClauseCS)newValue);
+			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__OWNING_CURLY_BRACKET_CLAUSE:
+				setOwningCurlyBracketClause((CurlyBracketedClauseCS)newValue);
 				return;
-			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__PROPERTY:
-				setProperty((Property)newValue);
+			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__REFERRED_PROPERTY:
+				setReferredProperty((Property)newValue);
 				return;
-			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__INIT_EXPRESSION:
-				setInitExpression((ExpCS)newValue);
+			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__OWNED_INIT_EXPRESSION:
+				setOwnedInitExpression((ExpCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -320,14 +321,14 @@ public class ConstructorPartCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__CURLY_BRACKET_CLAUSE:
-				setCurlyBracketClause((CurlyBracketedClauseCS)null);
+			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__OWNING_CURLY_BRACKET_CLAUSE:
+				setOwningCurlyBracketClause((CurlyBracketedClauseCS)null);
 				return;
-			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__PROPERTY:
-				setProperty((Property)null);
+			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__REFERRED_PROPERTY:
+				setReferredProperty((Property)null);
 				return;
-			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__INIT_EXPRESSION:
-				setInitExpression((ExpCS)null);
+			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__OWNED_INIT_EXPRESSION:
+				setOwnedInitExpression((ExpCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -342,12 +343,12 @@ public class ConstructorPartCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__CURLY_BRACKET_CLAUSE:
-				return getCurlyBracketClause() != null;
-			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__PROPERTY:
-				return property != null;
-			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__INIT_EXPRESSION:
-				return initExpression != null;
+			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__OWNING_CURLY_BRACKET_CLAUSE:
+				return getOwningCurlyBracketClause() != null;
+			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__REFERRED_PROPERTY:
+				return referredProperty != null;
+			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__OWNED_INIT_EXPRESSION:
+				return ownedInitExpression != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -368,6 +369,6 @@ public class ConstructorPartCSImpl
 	 * @generated NOT
 	 */
 	public String getName() {
-		return getProperty().getName();
+		return getReferredProperty().getName();
 	}
 } //ConstructorPartCSImpl

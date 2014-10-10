@@ -22,9 +22,9 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS#getCurlyBracketClause <em>Curly Bracket Clause</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS#getProperty <em>Property</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS#getInitExpression <em>Init Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS#getOwningCurlyBracketClause <em>Owning Curly Bracket Clause</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS#getReferredProperty <em>Referred Property</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS#getOwnedInitExpression <em>Owned Init Expression</em>}</li>
  * </ul>
  * </p>
  *
@@ -36,7 +36,7 @@ public interface ConstructorPartCS
 		extends ModelElementCS, Nameable {
 
 	/**
-	 * Returns the value of the '<em><b>Curly Bracket Clause</b></em>' container reference.
+	 * Returns the value of the '<em><b>Owning Curly Bracket Clause</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS#getOwnedParts <em>Owned Parts</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -44,75 +44,75 @@ public interface ConstructorPartCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Curly Bracket Clause</em>' container reference.
-	 * @see #setCurlyBracketClause(CurlyBracketedClauseCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getConstructorPartCS_CurlyBracketClause()
+	 * @return the value of the '<em>Owning Curly Bracket Clause</em>' container reference.
+	 * @see #setOwningCurlyBracketClause(CurlyBracketedClauseCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getConstructorPartCS_OwningCurlyBracketClause()
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS#getOwnedParts
 	 * @model opposite="ownedParts" transient="false"
 	 * @generated
 	 */
-	CurlyBracketedClauseCS getCurlyBracketClause();
+	CurlyBracketedClauseCS getOwningCurlyBracketClause();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS#getCurlyBracketClause <em>Curly Bracket Clause</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS#getOwningCurlyBracketClause <em>Owning Curly Bracket Clause</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Curly Bracket Clause</em>' container reference.
-	 * @see #getCurlyBracketClause()
+	 * @param value the new value of the '<em>Owning Curly Bracket Clause</em>' container reference.
+	 * @see #getOwningCurlyBracketClause()
 	 * @generated
 	 */
-	void setCurlyBracketClause(CurlyBracketedClauseCS value);
+	void setOwningCurlyBracketClause(CurlyBracketedClauseCS value);
 
 	/**
-	 * Returns the value of the '<em><b>Property</b></em>' reference.
+	 * Returns the value of the '<em><b>Referred Property</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Property</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Property</em>' reference.
-	 * @see #setProperty(Property)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getConstructorPartCS_Property()
+	 * @return the value of the '<em>Referred Property</em>' reference.
+	 * @see #setReferredProperty(Property)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getConstructorPartCS_ReferredProperty()
 	 * @model required="true"
 	 * @generated
 	 */
-	Property getProperty();
+	Property getReferredProperty();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS#getProperty <em>Property</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS#getReferredProperty <em>Referred Property</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Property</em>' reference.
-	 * @see #getProperty()
+	 * @param value the new value of the '<em>Referred Property</em>' reference.
+	 * @see #getReferredProperty()
 	 * @generated
 	 */
-	void setProperty(Property value);
+	void setReferredProperty(Property value);
 
 	/**
-	 * Returns the value of the '<em><b>Init Expression</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Init Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Init Expression</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Init Expression</em>' containment reference.
-	 * @see #setInitExpression(ExpCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getConstructorPartCS_InitExpression()
+	 * @return the value of the '<em>Owned Init Expression</em>' containment reference.
+	 * @see #setOwnedInitExpression(ExpCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getConstructorPartCS_OwnedInitExpression()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	ExpCS getInitExpression();
+	ExpCS getOwnedInitExpression();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS#getInitExpression <em>Init Expression</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS#getOwnedInitExpression <em>Owned Init Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Init Expression</em>' containment reference.
-	 * @see #getInitExpression()
+	 * @param value the new value of the '<em>Owned Init Expression</em>' containment reference.
+	 * @see #getOwnedInitExpression()
 	 * @generated
 	 */
-	void setInitExpression(ExpCS value);
+	void setOwnedInitExpression(ExpCS value);
 
 } // ConstructorPartCS

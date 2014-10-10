@@ -20,8 +20,8 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralPartCS#getExpressionCS <em>Expression CS</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralPartCS#getLastExpressionCS <em>Last Expression CS</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralPartCS#getOwnedExpressionCS <em>Owned Expression CS</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralPartCS#getOwnedLastExpressionCS <em>Owned Last Expression CS</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,55 +33,55 @@ public interface CollectionLiteralPartCS
 		extends ModelElementCS {
 
 	/**
-	 * Returns the value of the '<em><b>Expression CS</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Expression CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Expression CS</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Expression CS</em>' containment reference.
-	 * @see #setExpressionCS(ExpCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getCollectionLiteralPartCS_ExpressionCS()
+	 * @return the value of the '<em>Owned Expression CS</em>' containment reference.
+	 * @see #setOwnedExpressionCS(ExpCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getCollectionLiteralPartCS_OwnedExpressionCS()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ExpCS getExpressionCS();
+	ExpCS getOwnedExpressionCS();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralPartCS#getExpressionCS <em>Expression CS</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralPartCS#getOwnedExpressionCS <em>Owned Expression CS</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Expression CS</em>' containment reference.
-	 * @see #getExpressionCS()
+	 * @param value the new value of the '<em>Owned Expression CS</em>' containment reference.
+	 * @see #getOwnedExpressionCS()
 	 * @generated
 	 */
-	void setExpressionCS(ExpCS value);
+	void setOwnedExpressionCS(ExpCS value);
 
 	/**
-	 * Returns the value of the '<em><b>Last Expression CS</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Last Expression CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Last Expression CS</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Last Expression CS</em>' containment reference.
-	 * @see #setLastExpressionCS(ExpCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getCollectionLiteralPartCS_LastExpressionCS()
+	 * @return the value of the '<em>Owned Last Expression CS</em>' containment reference.
+	 * @see #setOwnedLastExpressionCS(ExpCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getCollectionLiteralPartCS_OwnedLastExpressionCS()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ExpCS getLastExpressionCS();
+	ExpCS getOwnedLastExpressionCS();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralPartCS#getLastExpressionCS <em>Last Expression CS</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralPartCS#getOwnedLastExpressionCS <em>Owned Last Expression CS</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Last Expression CS</em>' containment reference.
-	 * @see #getLastExpressionCS()
+	 * @param value the new value of the '<em>Owned Last Expression CS</em>' containment reference.
+	 * @see #getOwnedLastExpressionCS()
 	 * @generated
 	 */
-	void setLastExpressionCS(ExpCS value);
+	void setOwnedLastExpressionCS(ExpCS value);
 
 } // CollectionLiteralPartCS

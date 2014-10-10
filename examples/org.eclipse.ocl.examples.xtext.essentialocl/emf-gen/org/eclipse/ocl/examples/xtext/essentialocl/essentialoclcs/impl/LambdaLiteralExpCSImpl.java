@@ -36,7 +36,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LambdaLiteralExpCSImpl#getExpressionCS <em>Expression CS</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LambdaLiteralExpCSImpl#getOwnedExpressionCS <em>Owned Expression CS</em>}</li>
  * </ul>
  * </p>
  *
@@ -45,15 +45,14 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
 public class LambdaLiteralExpCSImpl extends LiteralExpCSImpl implements LambdaLiteralExpCS
 {
 	/**
-	 * The cached value of the '{@link #getExpressionCS() <em>Expression CS</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedExpressionCS() <em>Owned Expression CS</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExpressionCS()
+	 * @see #getOwnedExpressionCS()
 	 * @generated
 	 * @ordered
 	 */
-	protected ExpCS expressionCS;
-
+	protected ExpCS ownedExpressionCS;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,9 +79,9 @@ public class LambdaLiteralExpCSImpl extends LiteralExpCSImpl implements LambdaLi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpCS getExpressionCS()
+	public ExpCS getOwnedExpressionCS()
 	{
-		return expressionCS;
+		return ownedExpressionCS;
 	}
 
 	/**
@@ -90,13 +89,13 @@ public class LambdaLiteralExpCSImpl extends LiteralExpCSImpl implements LambdaLi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetExpressionCS(ExpCS newExpressionCS, NotificationChain msgs)
+	public NotificationChain basicSetOwnedExpressionCS(ExpCS newOwnedExpressionCS, NotificationChain msgs)
 	{
-		ExpCS oldExpressionCS = expressionCS;
-		expressionCS = newExpressionCS;
+		ExpCS oldOwnedExpressionCS = ownedExpressionCS;
+		ownedExpressionCS = newOwnedExpressionCS;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__EXPRESSION_CS, oldExpressionCS, newExpressionCS);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION_CS, oldOwnedExpressionCS, newOwnedExpressionCS);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -107,20 +106,20 @@ public class LambdaLiteralExpCSImpl extends LiteralExpCSImpl implements LambdaLi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExpressionCS(ExpCS newExpressionCS)
+	public void setOwnedExpressionCS(ExpCS newOwnedExpressionCS)
 	{
-		if (newExpressionCS != expressionCS)
+		if (newOwnedExpressionCS != ownedExpressionCS)
 		{
 			NotificationChain msgs = null;
-			if (expressionCS != null)
-				msgs = ((InternalEObject)expressionCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__EXPRESSION_CS, null, msgs);
-			if (newExpressionCS != null)
-				msgs = ((InternalEObject)newExpressionCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__EXPRESSION_CS, null, msgs);
-			msgs = basicSetExpressionCS(newExpressionCS, msgs);
+			if (ownedExpressionCS != null)
+				msgs = ((InternalEObject)ownedExpressionCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION_CS, null, msgs);
+			if (newOwnedExpressionCS != null)
+				msgs = ((InternalEObject)newOwnedExpressionCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION_CS, null, msgs);
+			msgs = basicSetOwnedExpressionCS(newOwnedExpressionCS, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__EXPRESSION_CS, newExpressionCS, newExpressionCS));
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION_CS, newOwnedExpressionCS, newOwnedExpressionCS));
 	}
 
 	/**
@@ -133,8 +132,8 @@ public class LambdaLiteralExpCSImpl extends LiteralExpCSImpl implements LambdaLi
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__EXPRESSION_CS:
-				return basicSetExpressionCS(null, msgs);
+			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION_CS:
+				return basicSetOwnedExpressionCS(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -149,8 +148,8 @@ public class LambdaLiteralExpCSImpl extends LiteralExpCSImpl implements LambdaLi
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__EXPRESSION_CS:
-				return getExpressionCS();
+			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION_CS:
+				return getOwnedExpressionCS();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -165,8 +164,8 @@ public class LambdaLiteralExpCSImpl extends LiteralExpCSImpl implements LambdaLi
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__EXPRESSION_CS:
-				setExpressionCS((ExpCS)newValue);
+			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION_CS:
+				setOwnedExpressionCS((ExpCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -182,8 +181,8 @@ public class LambdaLiteralExpCSImpl extends LiteralExpCSImpl implements LambdaLi
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__EXPRESSION_CS:
-				setExpressionCS((ExpCS)null);
+			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION_CS:
+				setOwnedExpressionCS((ExpCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -199,8 +198,8 @@ public class LambdaLiteralExpCSImpl extends LiteralExpCSImpl implements LambdaLi
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__EXPRESSION_CS:
-				return expressionCS != null;
+			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION_CS:
+				return ownedExpressionCS != null;
 		}
 		return super.eIsSet(featureID);
 	}

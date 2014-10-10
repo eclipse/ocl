@@ -30,7 +30,7 @@ public class OperationMatcher extends AbstractOperationMatcher
 
 	public OperationMatcher(@NonNull MetaModelManager metaModelManager, @Nullable Type sourceType, @Nullable Type sourceTypeValue, @NonNull RoundBracketedClauseCS csRoundBracketedClause) {
 		super(metaModelManager, sourceType, sourceTypeValue);
-		for (NavigatingArgCS csNavigatingArg : csRoundBracketedClause.getArguments()) {
+		for (NavigatingArgCS csNavigatingArg : csRoundBracketedClause.getOwnedArguments()) {
 			if (csNavigatingArg.getRole() == NavigationRole.EXPRESSION) {
 				asArguments.add(PivotUtil.getPivot(OCLExpression.class, csNavigatingArg));
 			}

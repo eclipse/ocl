@@ -211,13 +211,13 @@ CollectionLiteralExpCS returns CollectionLiteralExpCS:
 	'}';
 
 CollectionLiteralPartCS returns CollectionLiteralPartCS:
-	expressionCS=ExpCS ('..' lastExpressionCS=ExpCS)?;
+	ownedExpressionCS=ExpCS ('..' ownedLastExpressionCS=ExpCS)?;
 
 ConstructorPartCS returns ConstructorPartCS:
-	property=[pivot::Property|UnrestrictedName] '=' initExpression=ExpCS;
+	referredProperty=[pivot::Property|UnrestrictedName] '=' ownedInitExpression=ExpCS;
 
 LambdaLiteralExpCS returns LambdaLiteralExpCS:
-	'Lambda' '{' expressionCS=ExpCS '}';
+	'Lambda' '{' ownedExpressionCS=ExpCS '}';
 
 PrimitiveLiteralExpCS returns PrimitiveLiteralExpCS:
 	NumberLiteralExpCS
@@ -231,17 +231,17 @@ TupleLiteralExpCS returns TupleLiteralExpCS:
 	'Tuple' '{' ownedParts+=TupleLiteralPartCS (',' ownedParts+=TupleLiteralPartCS)* '}';
 
 TupleLiteralPartCS returns TupleLiteralPartCS:
-	name=UnrestrictedName (':' ownedType=TypeExpCS)? '=' initExpression=ExpCS;
+	name=UnrestrictedName (':' ownedType=TypeExpCS)? '=' ownedInitExpression=ExpCS;
 
 NumberLiteralExpCS returns NumberLiteralExpCS:
-	name=NUMBER_LITERAL;
+	symbol=NUMBER_LITERAL;
 
 StringLiteralExpCS returns StringLiteralExpCS:
-	name+=StringLiteral+;
+	segments+=StringLiteral+;
 
 BooleanLiteralExpCS returns BooleanLiteralExpCS:
-	name='true'
-	| name='false';
+	symbol='true'
+	| symbol='false';
 
 UnlimitedNaturalLiteralExpCS returns UnlimitedNaturalLiteralExpCS:
 	{UnlimitedNaturalLiteralExpCS} '*';
@@ -264,7 +264,7 @@ TypeLiteralExpCS returns TypeLiteralExpCS:
 	ownedType=TypeLiteralWithMultiplicityCS;
 
 TypeNameExpCS returns TypeNameExpCS:
-	pathName=PathNameCS;
+	ownedPathName=PathNameCS;
 
 TypeExpCS returns base::TypedRefCS:
 	(TypeNameExpCS | TypeLiteralCS) multiplicity=MultiplicityCS?;
@@ -279,21 +279,21 @@ TypeExpCS returns base::TypedRefCS:
 //   a = (64 / 16) / (let b : Integer in 8 / (let c : Integer in 4 ))
 ExpCS returns ExpCS:
 	(PrefixedExpCS
-		({InfixExpCS.ownedExpression+=current} ownedOperator+=BinaryOperatorCS
-			(	(ownedExpression+=PrefixedExpCS
-					(ownedOperator+=BinaryOperatorCS ownedExpression+=PrefixedExpCS)*
-					(ownedOperator+=BinaryOperatorCS ownedExpression+=LetExpCS)?
+		({InfixExpCS.ownedExpressions+=current} ownedOperators+=BinaryOperatorCS
+			(	(ownedExpressions+=PrefixedExpCS
+					(ownedOperators+=BinaryOperatorCS ownedExpressions+=PrefixedExpCS)*
+					(ownedOperators+=BinaryOperatorCS ownedExpressions+=LetExpCS)?
 				)
-			|	(ownedExpression+=LetExpCS)
+			|	(ownedExpressions+=LetExpCS)
 			)
 		)?
 	)
-| 	({PrefixExpCS} ownedOperator+=UnaryOperatorCS+ ownedExpression=LetExpCS)
+| 	({PrefixExpCS} ownedOperators+=UnaryOperatorCS+ ownedExpression=LetExpCS)
 |	LetExpCS;
 
 /* A prefixed expression is elaborates a primary expression with zero or more unary prefix operators. */
 PrefixedExpCS returns ExpCS:
-	({PrefixExpCS} ownedOperator+=UnaryOperatorCS+ ownedExpression=PrimaryExpCS)
+	({PrefixExpCS} ownedOperators+=UnaryOperatorCS+ ownedExpression=PrimaryExpCS)
 | 	PrimaryExpCS;
 
 /* A primary expression identifies the basic expressions from which more complex expressions may be constructed. */
@@ -311,8 +311,8 @@ PrimaryExpCS returns ExpCS:
 /* A name expression is a generalised rule for expressions that start with a name and which may be followed by square, round or
  * curly bracket clauses and optionally an @pre as well.*/
 NameExpCS returns NameExpCS:
-	pathName=PathNameCS squareBracketedClauses+=SquareBracketedClauseCS*
-	roundBracketedClause=RoundBracketedClauseCS? curlyBracketedClause=CurlyBracketedClauseCS? (atPre?='@' 'pre')?;
+	ownedPathName=PathNameCS ownedSquareBracketedClauses+=SquareBracketedClauseCS*
+	ownedRoundBracketedClause=RoundBracketedClauseCS? ownedCurlyBracketedClause=CurlyBracketedClauseCS? (atPre?='@' 'pre')?;
 
 /* A curly bracket clause is a generalized rule for the literal arguments of collections, maps, tuples and type constructors.*/
 CurlyBracketedClauseCS:
@@ -325,33 +325,33 @@ CurlyBracketedClauseCS:
 /* A curly bracket clause is a generalized rule for template specialisations and operations arguments.*/
 RoundBracketedClauseCS:
 	{RoundBracketedClauseCS} '(' (
-		arguments+=NavigatingArgCS (arguments+=NavigatingCommaArgCS)*
-		(arguments+=NavigatingSemiArgCS (arguments+=NavigatingCommaArgCS)*)?
-		(arguments+=NavigatingBarArgCS (arguments+=NavigatingCommaArgCS)*)*
+		ownedArguments+=NavigatingArgCS (ownedArguments+=NavigatingCommaArgCS)*
+		(ownedArguments+=NavigatingSemiArgCS (ownedArguments+=NavigatingCommaArgCS)*)?
+		(ownedArguments+=NavigatingBarArgCS (ownedArguments+=NavigatingCommaArgCS)*)*
 		)? ')'
 	;
 
 /* A square bracket clause is a generalized rule for association class qualifiers and roles.*/
 SquareBracketedClauseCS:
-	'[' terms+=ExpCS (',' terms+=ExpCS)* ']';
+	'[' ownedTerms+=ExpCS (',' ownedTerms+=ExpCS)* ']';
 
 /* A navigating argument is a generalized rule for the first argument in a round bracket clause. This is typically the first operation
  * parameter or an iterator. */
 NavigatingArgCS returns NavigatingArgCS:
-	name=NavigatingArgExpCS ((':' ownedType=TypeExpCS ('=' init=ExpCS)?) | ('in' init=ExpCS))?;	// Type-less init is an illegal infix expression
+	ownedNameExpression=NavigatingArgExpCS ((':' ownedType=TypeExpCS ('=' ownedInitExpression=ExpCS)?) | ('in' ownedInitExpression=ExpCS))?;	// Type-less init is an illegal infix expression
 
 /* A navigating bar argument is a generalized rule for a bar-prefixed argument in a round bracket clause. This is typically the body of an iteration. */
 NavigatingBarArgCS returns NavigatingArgCS:
-	prefix='|' name=NavigatingArgExpCS (':' ownedType=TypeExpCS ('=' init=ExpCS)?)?;	// Type-less init is an illegal infix expression
+	prefix='|' ownedNameExpression=NavigatingArgExpCS (':' ownedType=TypeExpCS ('=' ownedInitExpression=ExpCS)?)?;	// Type-less init is an illegal infix expression
 
 /* A navigating comma argument is a generalized rule for non-first argument in a round bracket clause. These are typically non-first operation
  * parameters or a second iterator. */
 NavigatingCommaArgCS returns NavigatingArgCS:
-	prefix=',' name=NavigatingArgExpCS ((':' ownedType=TypeExpCS ('=' init=ExpCS)?) | ('in' init=ExpCS))?;	// Type-less init is an illegal infix expression
+	prefix=',' ownedNameExpression=NavigatingArgExpCS ((':' ownedType=TypeExpCS ('=' ownedInitExpression=ExpCS)?) | ('in' ownedInitExpression=ExpCS))?;	// Type-less init is an illegal infix expression
 
 /* A navigating semi argument is a generalized rule for a semicolon prefixed argument in a round bracket clause. This is typically an iterate accumulator. */
 NavigatingSemiArgCS returns NavigatingArgCS:
-	prefix=';' name=NavigatingArgExpCS (':' ownedType=TypeExpCS ('=' init=ExpCS)?)?;	// Type-less init is an illegal infix expression
+	prefix=';' ownedNameExpression=NavigatingArgExpCS (':' ownedType=TypeExpCS ('=' ownedInitExpression=ExpCS)?)?;	// Type-less init is an illegal infix expression
 
 NavigatingArgExpCS returns ExpCS: // Intended to be overridden
 	ExpCS
@@ -359,27 +359,27 @@ NavigatingArgExpCS returns ExpCS: // Intended to be overridden
 ;
 
 IfExpCS returns IfExpCS:
-	'if' condition=ExpCS
-	'then' thenExpression=ExpCS
+	'if' ownedCondition=ExpCS
+	'then' ownedThenExpression=ExpCS
 //	ifThenExpressions+=IfThenExpCS
-	(ifThenExpressions+=ElseIfThenExpCS)*
-	'else' elseExpression=ExpCS
+	(ownedIfThenExpressions+=ElseIfThenExpCS)*
+	'else' ownedElseExpression=ExpCS
 	'endif';
 //IfThenExpCS returns IfThenExpCS:
 //	'if' condition=ExpCS
 //	'then' thenExpression=ExpCS
 //;
 ElseIfThenExpCS returns IfThenExpCS:
-	'elseif' condition=ExpCS
-	'then' thenExpression=ExpCS
+	'elseif' ownedCondition=ExpCS
+	'then' ownedThenExpression=ExpCS
 ;
 
 LetExpCS returns LetExpCS:
-	'let' variable+=LetVariableCS (',' variable+=LetVariableCS)*
-	'in' in=ExpCS;
+	'let' ownedVariables+=LetVariableCS (',' ownedVariables+=LetVariableCS)*
+	'in' ownedInExpression=ExpCS;
 
 LetVariableCS returns LetVariableCS:
-	name=UnrestrictedName roundBracketedClause=RoundBracketedClauseCS? (':' ownedType=TypeExpCS)? '=' initExpression=ExpCS;
+	name=UnrestrictedName ownedRoundBracketedClause=RoundBracketedClauseCS? (':' ownedType=TypeExpCS)? '=' ownedInitExpression=ExpCS;
 
 NestedExpCS returns NestedExpCS:
 	'(' source=ExpCS ')';

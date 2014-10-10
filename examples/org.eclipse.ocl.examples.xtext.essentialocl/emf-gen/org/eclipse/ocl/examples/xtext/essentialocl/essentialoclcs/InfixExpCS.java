@@ -20,8 +20,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedExpression <em>Owned Expression</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedOperator <em>Owned Operator</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedExpressions <em>Owned Expressions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedOperators <em>Owned Operators</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,7 +33,7 @@ public interface InfixExpCS
 		extends ExpCS {
 
 	/**
-	 * Returns the value of the '<em><b>Owned Expression</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Expressions</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -41,15 +41,15 @@ public interface InfixExpCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Expression</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getInfixExpCS_OwnedExpression()
+	 * @return the value of the '<em>Owned Expressions</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getInfixExpCS_OwnedExpressions()
 	 * @model containment="true" lower="2"
 	 * @generated
 	 */
-	EList<ExpCS> getOwnedExpression();
+	EList<ExpCS> getOwnedExpressions();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Operator</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Operators</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -57,11 +57,11 @@ public interface InfixExpCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Operator</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getInfixExpCS_OwnedOperator()
+	 * @return the value of the '<em>Owned Operators</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getInfixExpCS_OwnedOperators()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<BinaryOperatorCS> getOwnedOperator();
+	EList<BinaryOperatorCS> getOwnedOperators();
 
 } // BinaryExpressionCS

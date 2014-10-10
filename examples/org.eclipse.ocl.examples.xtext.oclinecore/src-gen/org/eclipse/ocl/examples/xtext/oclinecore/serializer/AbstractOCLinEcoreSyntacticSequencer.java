@@ -261,7 +261,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	
 	/**
 	 * Syntax:
-	 *     ';' | ('{' (('derivation' UnrestrictedName? ':' ';') | ('initial' UnrestrictedName? ':' ';'))* '}')
+	 *     ('{' (('initial' UnrestrictedName? ':' ';') | ('derivation' UnrestrictedName? ':' ';'))* '}') | ';'
 	 */
 	protected void emit_AttributeCS_SemicolonKeyword_6_1_or___LeftCurlyBracketKeyword_6_0_0_____DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2_SemicolonKeyword_6_0_1_1_4___or___InitialKeyword_6_0_1_2_0_UnrestrictedNameParserRuleCall_6_0_1_2_1_q_ColonKeyword_6_0_1_2_2_SemicolonKeyword_6_0_1_2_4____a_RightCurlyBracketKeyword_6_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -302,7 +302,6 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	/**
 	 * Syntax:
 	 *     (
-	     ('derivation' UnrestrictedName? ':' (';' 'derivation' UnrestrictedName? ':')*) | 
 	     (
 	         ('derivation' UnrestrictedName? ':' (';' 'derivation' UnrestrictedName? ':')* ';')? 
 	         ('initial' UnrestrictedName? ':' ';')+ 
@@ -318,7 +317,8 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	             ':' 
 	             (';' 'derivation' UnrestrictedName? ':')*
 	         )*
-	     )
+	     ) | 
+	     ('derivation' UnrestrictedName? ':' (';' 'derivation' UnrestrictedName? ':')*)
 	 )
 	 */
 	protected void emit_AttributeCS___DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2___SemicolonKeyword_6_0_1_1_4_DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2__a___or_____DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2___SemicolonKeyword_6_0_1_1_4_DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2__a_SemicolonKeyword_6_0_1_1_4__q___InitialKeyword_6_0_1_2_0_UnrestrictedNameParserRuleCall_6_0_1_2_1_q_ColonKeyword_6_0_1_2_2_SemicolonKeyword_6_0_1_2_4__p_DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2___SemicolonKeyword_6_0_1_1_4_DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2__a___SemicolonKeyword_6_0_1_1_4___InitialKeyword_6_0_1_2_0_UnrestrictedNameParserRuleCall_6_0_1_2_1_q_ColonKeyword_6_0_1_2_2_SemicolonKeyword_6_0_1_2_4__p_DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2___SemicolonKeyword_6_0_1_1_4_DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2__a__a__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -344,7 +344,6 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	/**
 	 * Syntax:
 	 *     (
-	     ('initial' UnrestrictedName? ':' (';' 'initial' UnrestrictedName? ':')*) | 
 	     (
 	         ('initial' UnrestrictedName? ':' (';' 'initial' UnrestrictedName? ':')* ';')? 
 	         ('derivation' UnrestrictedName? ':' ';')+ 
@@ -360,7 +359,8 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	             ':' 
 	             (';' 'initial' UnrestrictedName? ':')*
 	         )*
-	     )
+	     ) | 
+	     ('initial' UnrestrictedName? ':' (';' 'initial' UnrestrictedName? ':')*)
 	 )
 	 */
 	protected void emit_AttributeCS___InitialKeyword_6_0_1_2_0_UnrestrictedNameParserRuleCall_6_0_1_2_1_q_ColonKeyword_6_0_1_2_2___SemicolonKeyword_6_0_1_2_4_InitialKeyword_6_0_1_2_0_UnrestrictedNameParserRuleCall_6_0_1_2_1_q_ColonKeyword_6_0_1_2_2__a___or_____InitialKeyword_6_0_1_2_0_UnrestrictedNameParserRuleCall_6_0_1_2_1_q_ColonKeyword_6_0_1_2_2___SemicolonKeyword_6_0_1_2_4_InitialKeyword_6_0_1_2_0_UnrestrictedNameParserRuleCall_6_0_1_2_1_q_ColonKeyword_6_0_1_2_2__a_SemicolonKeyword_6_0_1_2_4__q___DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2_SemicolonKeyword_6_0_1_1_4__p_InitialKeyword_6_0_1_2_0_UnrestrictedNameParserRuleCall_6_0_1_2_1_q_ColonKeyword_6_0_1_2_2___SemicolonKeyword_6_0_1_2_4_InitialKeyword_6_0_1_2_0_UnrestrictedNameParserRuleCall_6_0_1_2_1_q_ColonKeyword_6_0_1_2_2__a___SemicolonKeyword_6_0_1_2_4___DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2_SemicolonKeyword_6_0_1_1_4__p_InitialKeyword_6_0_1_2_0_UnrestrictedNameParserRuleCall_6_0_1_2_1_q_ColonKeyword_6_0_1_2_2___SemicolonKeyword_6_0_1_2_4_InitialKeyword_6_0_1_2_0_UnrestrictedNameParserRuleCall_6_0_1_2_1_q_ColonKeyword_6_0_1_2_2__a__a__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -401,7 +401,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	
 	/**
 	 * Syntax:
-	 *     (('derivation' UnrestrictedName? ':' ';') | ('initial' UnrestrictedName? ':' ';'))*
+	 *     (('initial' UnrestrictedName? ':' ';') | ('derivation' UnrestrictedName? ':' ';'))*
 	 */
 	protected void emit_AttributeCS_____DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2_SemicolonKeyword_6_0_1_1_4___or___InitialKeyword_6_0_1_2_0_UnrestrictedNameParserRuleCall_6_0_1_2_1_q_ColonKeyword_6_0_1_2_2_SemicolonKeyword_6_0_1_2_4____a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -409,7 +409,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	
 	/**
 	 * Syntax:
-	 *     ';' | ('{' '}')
+	 *     ('{' '}') | ';'
 	 */
 	protected void emit_ClassCS_SemicolonKeyword_7_1_or___LeftCurlyBracketKeyword_7_0_0_RightCurlyBracketKeyword_7_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -433,7 +433,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	
 	/**
 	 * Syntax:
-	 *     ';' | ('{' '}')
+	 *     ('{' '}') | ';'
 	 */
 	protected void emit_EnumerationCS_SemicolonKeyword_5_1_or___LeftCurlyBracketKeyword_5_0_0_RightCurlyBracketKeyword_5_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -449,7 +449,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	
 	/**
 	 * Syntax:
-	 *     ';' | ('{' '}')
+	 *     ('{' '}') | ';'
 	 */
 	protected void emit_EnumerationLiteralCS_SemicolonKeyword_2_1_or___LeftCurlyBracketKeyword_2_0_0_RightCurlyBracketKeyword_2_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -457,7 +457,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	
 	/**
 	 * Syntax:
-	 *     ';' | (':' ';')
+	 *     (':' ';') | ';'
 	 */
 	protected void emit_InvariantConstraintCS_SemicolonKeyword_3_1_or___ColonKeyword_3_0_0_SemicolonKeyword_3_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -473,7 +473,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	
 	/**
 	 * Syntax:
-	 *     ';' | ('{' ('body' UnrestrictedName? ':' ';')* '}')
+	 *     ('{' ('body' UnrestrictedName? ':' ';')* '}') | ';'
 	 */
 	protected void emit_OperationCS_SemicolonKeyword_10_1_or___LeftCurlyBracketKeyword_10_0_0___BodyKeyword_10_0_1_2_0_UnrestrictedNameParserRuleCall_10_0_1_2_1_q_ColonKeyword_10_0_1_2_2_SemicolonKeyword_10_0_1_2_4__a_RightCurlyBracketKeyword_10_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -545,7 +545,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	
 	/**
 	 * Syntax:
-	 *     ';' | ('{' (('derivation' UnrestrictedName? ':' ';') | ('initial' UnrestrictedName? ':' ';'))* '}')
+	 *     ';' | ('{' (('initial' UnrestrictedName? ':' ';') | ('derivation' UnrestrictedName? ':' ';'))* '}')
 	 */
 	protected void emit_ReferenceCS_SemicolonKeyword_7_1_or___LeftCurlyBracketKeyword_7_0_0_____DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2_SemicolonKeyword_7_0_1_2_4___or___InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2_SemicolonKeyword_7_0_1_3_4____a_RightCurlyBracketKeyword_7_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -586,7 +586,6 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	/**
 	 * Syntax:
 	 *     (
-	     ('derivation' UnrestrictedName? ':' (';' 'derivation' UnrestrictedName? ':')*) | 
 	     (
 	         ('derivation' UnrestrictedName? ':' (';' 'derivation' UnrestrictedName? ':')* ';')? 
 	         ('initial' UnrestrictedName? ':' ';')+ 
@@ -602,7 +601,8 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	             ':' 
 	             (';' 'derivation' UnrestrictedName? ':')*
 	         )*
-	     )
+	     ) | 
+	     ('derivation' UnrestrictedName? ':' (';' 'derivation' UnrestrictedName? ':')*)
 	 )
 	 */
 	protected void emit_ReferenceCS___DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2___SemicolonKeyword_7_0_1_2_4_DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2__a___or_____DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2___SemicolonKeyword_7_0_1_2_4_DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2__a_SemicolonKeyword_7_0_1_2_4__q___InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2_SemicolonKeyword_7_0_1_3_4__p_DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2___SemicolonKeyword_7_0_1_2_4_DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2__a___SemicolonKeyword_7_0_1_2_4___InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2_SemicolonKeyword_7_0_1_3_4__p_DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2___SemicolonKeyword_7_0_1_2_4_DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2__a__a__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -628,7 +628,6 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	/**
 	 * Syntax:
 	 *     (
-	     ('initial' UnrestrictedName? ':' (';' 'initial' UnrestrictedName? ':')*) | 
 	     (
 	         ('initial' UnrestrictedName? ':' (';' 'initial' UnrestrictedName? ':')* ';')? 
 	         ('derivation' UnrestrictedName? ':' ';')+ 
@@ -644,7 +643,8 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	             ':' 
 	             (';' 'initial' UnrestrictedName? ':')*
 	         )*
-	     )
+	     ) | 
+	     ('initial' UnrestrictedName? ':' (';' 'initial' UnrestrictedName? ':')*)
 	 )
 	 */
 	protected void emit_ReferenceCS___InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2___SemicolonKeyword_7_0_1_3_4_InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2__a___or_____InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2___SemicolonKeyword_7_0_1_3_4_InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2__a_SemicolonKeyword_7_0_1_3_4__q___DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2_SemicolonKeyword_7_0_1_2_4__p_InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2___SemicolonKeyword_7_0_1_3_4_InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2__a___SemicolonKeyword_7_0_1_3_4___DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2_SemicolonKeyword_7_0_1_2_4__p_InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2___SemicolonKeyword_7_0_1_3_4_InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2__a__a__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {

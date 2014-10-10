@@ -32,10 +32,10 @@ public class ConstructorPartCSAttribution extends AbstractAttribution
 	@Override
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
-		if (containmentFeature == EssentialOCLCSPackage.Literals.CONSTRUCTOR_PART_CS__PROPERTY) {
+		if (containmentFeature == EssentialOCLCSPackage.Literals.CONSTRUCTOR_PART_CS__REFERRED_PROPERTY) {
 			ConstructorPartCS targetElement = (ConstructorPartCS)target;
-			CurlyBracketedClauseCS csCurlyBracketClause = targetElement.getCurlyBracketClause();
-			NameExpCS csNameExp = csCurlyBracketClause.getNameExp();
+			CurlyBracketedClauseCS csCurlyBracketClause = targetElement.getOwningCurlyBracketClause();
+			NameExpCS csNameExp = csCurlyBracketClause.getOwningNameExp();
 			ConstructorExp pivot = PivotUtil.getPivot(ConstructorExp.class, csNameExp);
 			if (pivot != null) {
 				Type type = pivot.getType();

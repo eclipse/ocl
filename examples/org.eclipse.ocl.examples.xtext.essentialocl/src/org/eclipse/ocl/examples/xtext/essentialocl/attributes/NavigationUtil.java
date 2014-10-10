@@ -60,13 +60,13 @@ public class NavigationUtil
 	}
 
 	public static boolean isIteration(@NonNull MetaModelManager metaModelManager, @NonNull RoundBracketedClauseCS csRoundBracketedClause, @NonNull CollectionType type) {
-		for (NavigatingArgCS csArg : csRoundBracketedClause.getArguments()) {
+		for (NavigatingArgCS csArg : csRoundBracketedClause.getOwnedArguments()) {
 			if (csArg.getRole() != NavigationRole.EXPRESSION) {
 				return true;
 			}
 		}
-		NameExpCS csNameExp = csRoundBracketedClause.getNameExp();
-		PathNameCS pathName = csNameExp.getPathName();
+		NameExpCS csNameExp = csRoundBracketedClause.getOwningNameExp();
+		PathNameCS pathName = csNameExp.getOwnedPathName();
 		List<PathElementCS> path = pathName.getPath();
 		if (path.size() != 1) {
 			return false;

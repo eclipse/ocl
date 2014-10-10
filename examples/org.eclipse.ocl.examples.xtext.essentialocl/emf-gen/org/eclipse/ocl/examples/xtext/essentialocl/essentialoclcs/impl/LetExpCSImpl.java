@@ -36,8 +36,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetExpCSImpl#getVariable <em>Variable</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetExpCSImpl#getIn <em>In</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetExpCSImpl#getOwnedVariables <em>Owned Variables</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetExpCSImpl#getOwnedInExpression <em>Owned In Expression</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,24 +48,24 @@ public class LetExpCSImpl
 		implements LetExpCS {
 
 	/**
-	 * The cached value of the '{@link #getVariable() <em>Variable</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedVariables() <em>Owned Variables</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getVariable()
+	 * @see #getOwnedVariables()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<LetVariableCS> variable;
+	protected EList<LetVariableCS> ownedVariables;
 
 	/**
-	 * The cached value of the '{@link #getIn() <em>In</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedInExpression() <em>Owned In Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getIn()
+	 * @see #getOwnedInExpression()
 	 * @generated
 	 * @ordered
 	 */
-	protected ExpCS in;
+	protected ExpCS ownedInExpression;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -91,12 +91,12 @@ public class LetExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<LetVariableCS> getVariable() {
-		if (variable == null)
+	public EList<LetVariableCS> getOwnedVariables() {
+		if (ownedVariables == null)
 		{
-			variable = new EObjectContainmentWithInverseEList<LetVariableCS>(LetVariableCS.class, this, EssentialOCLCSPackage.LET_EXP_CS__VARIABLE, EssentialOCLCSPackage.LET_VARIABLE_CS__LET_EXPRESSION);
+			ownedVariables = new EObjectContainmentWithInverseEList<LetVariableCS>(LetVariableCS.class, this, EssentialOCLCSPackage.LET_EXP_CS__OWNED_VARIABLES, EssentialOCLCSPackage.LET_VARIABLE_CS__OWNING_LET_EXPRESSION);
 		}
-		return variable;
+		return ownedVariables;
 	}
 
 	/**
@@ -104,8 +104,8 @@ public class LetExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpCS getIn() {
-		return in;
+	public ExpCS getOwnedInExpression() {
+		return ownedInExpression;
 	}
 
 	/**
@@ -113,12 +113,13 @@ public class LetExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetIn(ExpCS newIn, NotificationChain msgs) {
-		ExpCS oldIn = in;
-		in = newIn;
+	public NotificationChain basicSetOwnedInExpression(ExpCS newOwnedInExpression, NotificationChain msgs)
+	{
+		ExpCS oldOwnedInExpression = ownedInExpression;
+		ownedInExpression = newOwnedInExpression;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.LET_EXP_CS__IN, oldIn, newIn);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.LET_EXP_CS__OWNED_IN_EXPRESSION, oldOwnedInExpression, newOwnedInExpression);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -129,19 +130,19 @@ public class LetExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIn(ExpCS newIn) {
-		if (newIn != in)
+	public void setOwnedInExpression(ExpCS newOwnedInExpression) {
+		if (newOwnedInExpression != ownedInExpression)
 		{
 			NotificationChain msgs = null;
-			if (in != null)
-				msgs = ((InternalEObject)in).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.LET_EXP_CS__IN, null, msgs);
-			if (newIn != null)
-				msgs = ((InternalEObject)newIn).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.LET_EXP_CS__IN, null, msgs);
-			msgs = basicSetIn(newIn, msgs);
+			if (ownedInExpression != null)
+				msgs = ((InternalEObject)ownedInExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.LET_EXP_CS__OWNED_IN_EXPRESSION, null, msgs);
+			if (newOwnedInExpression != null)
+				msgs = ((InternalEObject)newOwnedInExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.LET_EXP_CS__OWNED_IN_EXPRESSION, null, msgs);
+			msgs = basicSetOwnedInExpression(newOwnedInExpression, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.LET_EXP_CS__IN, newIn, newIn));
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.LET_EXP_CS__OWNED_IN_EXPRESSION, newOwnedInExpression, newOwnedInExpression));
 	}
 
 	/**
@@ -155,8 +156,8 @@ public class LetExpCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.LET_EXP_CS__VARIABLE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getVariable()).basicAdd(otherEnd, msgs);
+			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_VARIABLES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedVariables()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -171,10 +172,10 @@ public class LetExpCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.LET_EXP_CS__VARIABLE:
-				return ((InternalEList<?>)getVariable()).basicRemove(otherEnd, msgs);
-			case EssentialOCLCSPackage.LET_EXP_CS__IN:
-				return basicSetIn(null, msgs);
+			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_VARIABLES:
+				return ((InternalEList<?>)getOwnedVariables()).basicRemove(otherEnd, msgs);
+			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_IN_EXPRESSION:
+				return basicSetOwnedInExpression(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -188,10 +189,10 @@ public class LetExpCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.LET_EXP_CS__VARIABLE:
-				return getVariable();
-			case EssentialOCLCSPackage.LET_EXP_CS__IN:
-				return getIn();
+			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_VARIABLES:
+				return getOwnedVariables();
+			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_IN_EXPRESSION:
+				return getOwnedInExpression();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -206,12 +207,12 @@ public class LetExpCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.LET_EXP_CS__VARIABLE:
-				getVariable().clear();
-				getVariable().addAll((Collection<? extends LetVariableCS>)newValue);
+			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_VARIABLES:
+				getOwnedVariables().clear();
+				getOwnedVariables().addAll((Collection<? extends LetVariableCS>)newValue);
 				return;
-			case EssentialOCLCSPackage.LET_EXP_CS__IN:
-				setIn((ExpCS)newValue);
+			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_IN_EXPRESSION:
+				setOwnedInExpression((ExpCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -226,11 +227,11 @@ public class LetExpCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.LET_EXP_CS__VARIABLE:
-				getVariable().clear();
+			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_VARIABLES:
+				getOwnedVariables().clear();
 				return;
-			case EssentialOCLCSPackage.LET_EXP_CS__IN:
-				setIn((ExpCS)null);
+			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_IN_EXPRESSION:
+				setOwnedInExpression((ExpCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -245,10 +246,10 @@ public class LetExpCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.LET_EXP_CS__VARIABLE:
-				return variable != null && !variable.isEmpty();
-			case EssentialOCLCSPackage.LET_EXP_CS__IN:
-				return in != null;
+			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_VARIABLES:
+				return ownedVariables != null && !ownedVariables.isEmpty();
+			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_IN_EXPRESSION:
+				return ownedInExpression != null;
 		}
 		return super.eIsSet(featureID);
 	}

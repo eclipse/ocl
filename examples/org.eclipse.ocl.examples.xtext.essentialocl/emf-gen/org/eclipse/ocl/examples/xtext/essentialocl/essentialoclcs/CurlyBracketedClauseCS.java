@@ -21,7 +21,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ContextLessElementCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS#getNameExp <em>Name Exp</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS#getOwningNameExp <em>Owning Name Exp</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS#getOwnedParts <em>Owned Parts</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS#getValue <em>Value</em>}</li>
  * </ul>
@@ -34,37 +34,37 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ContextLessElementCS;
 public interface CurlyBracketedClauseCS extends ContextLessElementCS
 {
 	/**
-	 * Returns the value of the '<em><b>Name Exp</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getCurlyBracketedClause <em>Curly Bracketed Clause</em>}'.
+	 * Returns the value of the '<em><b>Owning Name Exp</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getOwnedCurlyBracketedClause <em>Owned Curly Bracketed Clause</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name Exp</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name Exp</em>' container reference.
-	 * @see #setNameExp(NameExpCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getCurlyBracketedClauseCS_NameExp()
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getCurlyBracketedClause
-	 * @model opposite="curlyBracketedClause" transient="false"
+	 * @return the value of the '<em>Owning Name Exp</em>' container reference.
+	 * @see #setOwningNameExp(NameExpCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getCurlyBracketedClauseCS_OwningNameExp()
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getOwnedCurlyBracketedClause
+	 * @model opposite="ownedCurlyBracketedClause" transient="false"
 	 * @generated
 	 */
-	NameExpCS getNameExp();
+	NameExpCS getOwningNameExp();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS#getNameExp <em>Name Exp</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS#getOwningNameExp <em>Owning Name Exp</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name Exp</em>' container reference.
-	 * @see #getNameExp()
+	 * @param value the new value of the '<em>Owning Name Exp</em>' container reference.
+	 * @see #getOwningNameExp()
 	 * @generated
 	 */
-	void setNameExp(NameExpCS value);
+	void setOwningNameExp(NameExpCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Parts</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS#getCurlyBracketClause <em>Curly Bracket Clause</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS#getOwningCurlyBracketClause <em>Owning Curly Bracket Clause</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Parts</em>' containment reference list isn't clear,
@@ -73,8 +73,8 @@ public interface CurlyBracketedClauseCS extends ContextLessElementCS
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Parts</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getCurlyBracketedClauseCS_OwnedParts()
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS#getCurlyBracketClause
-	 * @model opposite="curlyBracketClause" containment="true"
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS#getOwningCurlyBracketClause
+	 * @model opposite="owningCurlyBracketClause" containment="true"
 	 * @generated
 	 */
 	EList<ConstructorPartCS> getOwnedParts();

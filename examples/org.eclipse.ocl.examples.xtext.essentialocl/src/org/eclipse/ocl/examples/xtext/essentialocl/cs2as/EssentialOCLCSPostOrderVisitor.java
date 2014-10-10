@@ -166,8 +166,8 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 		//
 		//	Build the tree leaf-to root precedence at a time.
 		//
-		List<ExpCS> csExpressions = csInfix.getOwnedExpression();
-		List<BinaryOperatorCS> csOperators = csInfix.getOwnedOperator();
+		List<ExpCS> csExpressions = csInfix.getOwnedExpressions();
+		List<BinaryOperatorCS> csOperators = csInfix.getOwnedOperators();
 		for (Precedence precedence : sortedPrecedences) {
 			// null precedence arises when precedence or operation-to-precedence is wrong
 			boolean isLeft = precedence == null || (precedence.getAssociativity() == AssociativityKind.LEFT);
@@ -203,8 +203,8 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 	 * Return a map of operator indexes for each used precedence.
 	 */
 	protected Map<Precedence, List<Integer>> createInfixPrecedenceToOperatorIndexesMap(InfixExpCS csInfix) {
-		List<BinaryOperatorCS> csOperators = csInfix.getOwnedOperator();
-		int operatorCount = csInfix.getOwnedExpression().size()-1;	// Ignore a spurious trailing operator from a syntax error
+		List<BinaryOperatorCS> csOperators = csInfix.getOwnedOperators();
+		int operatorCount = csInfix.getOwnedExpressions().size()-1;	// Ignore a spurious trailing operator from a syntax error
 		Map<Precedence, List<Integer>> precedenceToOperatorIndex = new HashMap<Precedence, List<Integer>>();
 		for (int operatorIndex = 0; operatorIndex < operatorCount; operatorIndex++) {
 			BinaryOperatorCS csOperator = csOperators.get(operatorIndex);
@@ -223,7 +223,7 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 
 	protected void initializePrefixOperators(PrefixExpCS prefixExpCS, OperatorCS csParent) {
 		prefixExpCS.setParent(null);		// FIXME asymmetric
-		for (UnaryOperatorCS csUnaryOperator : prefixExpCS.getOwnedOperator()) {
+		for (UnaryOperatorCS csUnaryOperator : prefixExpCS.getOwnedOperators()) {
 			if (csParent instanceof UnaryOperatorCS) {
 				setSource(csParent, csUnaryOperator);
 			}
@@ -242,12 +242,12 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 	}
 
 	protected void interleavePrefixes(InfixExpCS csElement) {
-		for (ExpCS csExp : csElement.getOwnedExpression()) {
+		for (ExpCS csExp : csElement.getOwnedExpressions()) {
 			if (csExp instanceof PrefixExpCS) {
 				PrefixExpCS prefixExpCS = (PrefixExpCS)csExp;
 				OperatorCS csExpressionParent = prefixExpCS.getParent();
 				initializePrefixOperators(prefixExpCS, csExpressionParent);			
-				for (UnaryOperatorCS csUnaryOperator : prefixExpCS.getOwnedOperator()) {
+				for (UnaryOperatorCS csUnaryOperator : prefixExpCS.getOwnedOperators()) {
 					interleaveUnaryOperator(csUnaryOperator);
 				}			
 			}

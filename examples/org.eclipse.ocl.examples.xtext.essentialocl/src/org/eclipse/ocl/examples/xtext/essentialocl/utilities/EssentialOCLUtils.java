@@ -34,14 +34,14 @@ public class EssentialOCLUtils	// FIXME Find some extensible instantiation echan
 	 */
 	public static ModelElementCS getPivotedCS(EObject csElement) {
 		if (csElement instanceof InfixExpCS) {
-			OperatorCS csOperator = ((InfixExpCS)csElement).getOwnedOperator().get(0);
+			OperatorCS csOperator = ((InfixExpCS)csElement).getOwnedOperators().get(0);
 			while (csOperator.getParent() != null) {
 				csOperator = csOperator.getParent();
 			}
 			return getPivotedCS(csOperator);
 		}
 		else if (csElement instanceof NavigatingArgCS) {
-			return getPivotedCS(((NavigatingArgCS)csElement).getName());
+			return getPivotedCS(((NavigatingArgCS)csElement).getOwnedNameExpression());
 		}
 		else if (csElement instanceof NavigationOperatorCS) {
 			return getPivotedCS(((NavigationOperatorCS)csElement).getArgument());
@@ -50,7 +50,7 @@ public class EssentialOCLUtils	// FIXME Find some extensible instantiation echan
 			return getPivotedCS(((NestedExpCS)csElement).getSource());
 		}
 		else if (csElement instanceof PrefixExpCS) {
-			return getPivotedCS(((PrefixExpCS)csElement).getOwnedOperator().get(0));
+			return getPivotedCS(((PrefixExpCS)csElement).getOwnedOperators().get(0));
 		}
 		else if (csElement instanceof ModelElementCS) {
 			return (ModelElementCS) csElement;

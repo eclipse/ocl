@@ -29,8 +29,8 @@ public class LetVariableCSAttribution extends AbstractAttribution
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		if (environmentView.accepts(PivotPackage.Literals.VARIABLE)) {
 			LetVariableCS targetElement = (LetVariableCS)target;
-			LetExpCS letExpression = targetElement.getLetExpression();
-			for (LetVariableCS csVariable : letExpression.getVariable()) {
+			LetExpCS letExpression = targetElement.getOwningLetExpression();
+			for (LetVariableCS csVariable : letExpression.getOwnedVariables()) {
 				if (csVariable == targetElement) {
 					break;
 				}

@@ -97,7 +97,7 @@ public class EssentialOCLLabelProvider extends BaseLabelProvider
 	} */
 
 	protected String text(BooleanLiteralExpCS ele) {
-		return String.valueOf(ele.getName());
+		return String.valueOf(ele.getSymbol());
 	}
 
 	protected String text(ExpCS ele) {
@@ -109,7 +109,7 @@ public class EssentialOCLLabelProvider extends BaseLabelProvider
 	}
 
 	protected String text(NameExpCS ele) {
-		return String.valueOf(ele.getPathName().toString());
+		return String.valueOf(ele.getOwnedPathName().toString());
 	}
 
 	protected String text(NavigatingArgCS ele) {
@@ -125,7 +125,7 @@ public class EssentialOCLLabelProvider extends BaseLabelProvider
 	}
 
 	protected String text(NumberLiteralExpCS ele) {
-		return String.valueOf(ele.getName());
+		return String.valueOf(ele.getSymbol());
 	}
 
 	protected String image(OperatorCS ele) {
@@ -145,7 +145,7 @@ public class EssentialOCLLabelProvider extends BaseLabelProvider
 	}
 
 	protected String text(StringLiteralExpCS ele) {
-		return String.valueOf(ele.getName());
+		return String.valueOf(ele.getSegments());
 	}
 
 }

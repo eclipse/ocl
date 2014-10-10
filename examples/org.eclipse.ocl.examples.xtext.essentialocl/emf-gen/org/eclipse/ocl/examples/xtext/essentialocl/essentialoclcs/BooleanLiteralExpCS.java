@@ -18,7 +18,7 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteralExpCS#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteralExpCS#getSymbol <em>Symbol</em>}</li>
  * </ul>
  * </p>
  *
@@ -30,29 +30,29 @@ public interface BooleanLiteralExpCS
 		extends PrimitiveLiteralExpCS {
 
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * Returns the value of the '<em><b>Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getBooleanLiteralExpCS_Name()
+	 * @return the value of the '<em>Symbol</em>' attribute.
+	 * @see #setSymbol(String)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getBooleanLiteralExpCS_Symbol()
 	 * @model
 	 * @generated
 	 */
-	String getName();
+	String getSymbol();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteralExpCS#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteralExpCS#getSymbol <em>Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
+	 * @param value the new value of the '<em>Symbol</em>' attribute.
+	 * @see #getSymbol()
 	 * @generated
 	 */
-	void setName(String value);
+	void setSymbol(String value);
 
 } // BooleanLiteralExpCS

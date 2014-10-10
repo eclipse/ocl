@@ -29,7 +29,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.StringLiteralExpCSImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.StringLiteralExpCSImpl#getSegments <em>Segments</em>}</li>
  * </ul>
  * </p>
  *
@@ -40,15 +40,14 @@ public class StringLiteralExpCSImpl
 		implements StringLiteralExpCS {
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute list.
+	 * The cached value of the '{@link #getSegments() <em>Segments</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #getSegments()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<String> name;
-
+	protected EList<String> segments;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,12 +72,13 @@ public class StringLiteralExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<String> getName() {
-		if (name == null)
+	public EList<String> getSegments()
+	{
+		if (segments == null)
 		{
-			name = new EDataTypeEList<String>(String.class, this, EssentialOCLCSPackage.STRING_LITERAL_EXP_CS__NAME);
+			segments = new EDataTypeEList<String>(String.class, this, EssentialOCLCSPackage.STRING_LITERAL_EXP_CS__SEGMENTS);
 		}
-		return name;
+		return segments;
 	}
 
 	/**
@@ -100,8 +100,8 @@ public class StringLiteralExpCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.STRING_LITERAL_EXP_CS__NAME:
-				return getName();
+			case EssentialOCLCSPackage.STRING_LITERAL_EXP_CS__SEGMENTS:
+				return getSegments();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -116,9 +116,9 @@ public class StringLiteralExpCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.STRING_LITERAL_EXP_CS__NAME:
-				getName().clear();
-				getName().addAll((Collection<? extends String>)newValue);
+			case EssentialOCLCSPackage.STRING_LITERAL_EXP_CS__SEGMENTS:
+				getSegments().clear();
+				getSegments().addAll((Collection<? extends String>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -133,8 +133,8 @@ public class StringLiteralExpCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.STRING_LITERAL_EXP_CS__NAME:
-				getName().clear();
+			case EssentialOCLCSPackage.STRING_LITERAL_EXP_CS__SEGMENTS:
+				getSegments().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -149,8 +149,8 @@ public class StringLiteralExpCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.STRING_LITERAL_EXP_CS__NAME:
-				return name != null && !name.isEmpty();
+			case EssentialOCLCSPackage.STRING_LITERAL_EXP_CS__SEGMENTS:
+				return segments != null && !segments.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

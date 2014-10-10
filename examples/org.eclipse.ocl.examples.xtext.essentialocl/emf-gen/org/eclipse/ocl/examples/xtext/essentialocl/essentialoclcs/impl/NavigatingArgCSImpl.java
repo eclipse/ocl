@@ -35,12 +35,12 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NavigatingArgCSImpl#getRoundBracketedClause <em>Round Bracketed Clause</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NavigatingArgCSImpl#getOwningRoundBracketedClause <em>Owning Round Bracketed Clause</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NavigatingArgCSImpl#getRole <em>Role</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NavigatingArgCSImpl#getPrefix <em>Prefix</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NavigatingArgCSImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NavigatingArgCSImpl#getOwnedNameExpression <em>Owned Name Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NavigatingArgCSImpl#getOwnedType <em>Owned Type</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NavigatingArgCSImpl#getInit <em>Init</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NavigatingArgCSImpl#getOwnedInitExpression <em>Owned Init Expression</em>}</li>
  * </ul>
  * </p>
  *
@@ -91,14 +91,14 @@ public class NavigatingArgCSImpl
 	protected String prefix = PREFIX_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedNameExpression() <em>Owned Name Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #getOwnedNameExpression()
 	 * @generated
 	 * @ordered
 	 */
-	protected ExpCS name;
+	protected ExpCS ownedNameExpression;
 
 	/**
 	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' containment reference.
@@ -111,14 +111,14 @@ public class NavigatingArgCSImpl
 	protected TypedRefCS ownedType;
 
 	/**
-	 * The cached value of the '{@link #getInit() <em>Init</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedInitExpression() <em>Owned Init Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getInit()
+	 * @see #getOwnedInitExpression()
 	 * @generated
 	 * @ordered
 	 */
-	protected ExpCS init;
+	protected ExpCS ownedInitExpression;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -144,9 +144,9 @@ public class NavigatingArgCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RoundBracketedClauseCS getRoundBracketedClause()
+	public RoundBracketedClauseCS getOwningRoundBracketedClause()
 	{
-		if (eContainerFeatureID() != EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROUND_BRACKETED_CLAUSE) return null;
+		if (eContainerFeatureID() != EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNING_ROUND_BRACKETED_CLAUSE) return null;
 		return (RoundBracketedClauseCS)eInternalContainer();
 	}
 
@@ -155,9 +155,9 @@ public class NavigatingArgCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetRoundBracketedClause(RoundBracketedClauseCS newRoundBracketedClause, NotificationChain msgs)
+	public NotificationChain basicSetOwningRoundBracketedClause(RoundBracketedClauseCS newOwningRoundBracketedClause, NotificationChain msgs)
 	{
-		msgs = eBasicSetContainer((InternalEObject)newRoundBracketedClause, EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROUND_BRACKETED_CLAUSE, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newOwningRoundBracketedClause, EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNING_ROUND_BRACKETED_CLAUSE, msgs);
 		return msgs;
 	}
 
@@ -166,22 +166,22 @@ public class NavigatingArgCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRoundBracketedClause(RoundBracketedClauseCS newRoundBracketedClause)
+	public void setOwningRoundBracketedClause(RoundBracketedClauseCS newOwningRoundBracketedClause)
 	{
-		if (newRoundBracketedClause != eInternalContainer() || (eContainerFeatureID() != EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROUND_BRACKETED_CLAUSE && newRoundBracketedClause != null))
+		if (newOwningRoundBracketedClause != eInternalContainer() || (eContainerFeatureID() != EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNING_ROUND_BRACKETED_CLAUSE && newOwningRoundBracketedClause != null))
 		{
-			if (EcoreUtil.isAncestor(this, newRoundBracketedClause))
+			if (EcoreUtil.isAncestor(this, newOwningRoundBracketedClause))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newRoundBracketedClause != null)
-				msgs = ((InternalEObject)newRoundBracketedClause).eInverseAdd(this, EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__ARGUMENTS, RoundBracketedClauseCS.class, msgs);
-			msgs = basicSetRoundBracketedClause(newRoundBracketedClause, msgs);
+			if (newOwningRoundBracketedClause != null)
+				msgs = ((InternalEObject)newOwningRoundBracketedClause).eInverseAdd(this, EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNED_ARGUMENTS, RoundBracketedClauseCS.class, msgs);
+			msgs = basicSetOwningRoundBracketedClause(newOwningRoundBracketedClause, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROUND_BRACKETED_CLAUSE, newRoundBracketedClause, newRoundBracketedClause));
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNING_ROUND_BRACKETED_CLAUSE, newOwningRoundBracketedClause, newOwningRoundBracketedClause));
 	}
 
 	/**
@@ -231,8 +231,8 @@ public class NavigatingArgCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpCS getName() {
-		return name;
+	public ExpCS getOwnedNameExpression() {
+		return ownedNameExpression;
 	}
 
 	/**
@@ -240,12 +240,13 @@ public class NavigatingArgCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetName(ExpCS newName, NotificationChain msgs) {
-		ExpCS oldName = name;
-		name = newName;
+	public NotificationChain basicSetOwnedNameExpression(ExpCS newOwnedNameExpression, NotificationChain msgs)
+	{
+		ExpCS oldOwnedNameExpression = ownedNameExpression;
+		ownedNameExpression = newOwnedNameExpression;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAVIGATING_ARG_CS__NAME, oldName, newName);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNED_NAME_EXPRESSION, oldOwnedNameExpression, newOwnedNameExpression);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -256,19 +257,19 @@ public class NavigatingArgCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(ExpCS newName) {
-		if (newName != name)
+	public void setOwnedNameExpression(ExpCS newOwnedNameExpression) {
+		if (newOwnedNameExpression != ownedNameExpression)
 		{
 			NotificationChain msgs = null;
-			if (name != null)
-				msgs = ((InternalEObject)name).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.NAVIGATING_ARG_CS__NAME, null, msgs);
-			if (newName != null)
-				msgs = ((InternalEObject)newName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.NAVIGATING_ARG_CS__NAME, null, msgs);
-			msgs = basicSetName(newName, msgs);
+			if (ownedNameExpression != null)
+				msgs = ((InternalEObject)ownedNameExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNED_NAME_EXPRESSION, null, msgs);
+			if (newOwnedNameExpression != null)
+				msgs = ((InternalEObject)newOwnedNameExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNED_NAME_EXPRESSION, null, msgs);
+			msgs = basicSetOwnedNameExpression(newOwnedNameExpression, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAVIGATING_ARG_CS__NAME, newName, newName));
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNED_NAME_EXPRESSION, newOwnedNameExpression, newOwnedNameExpression));
 	}
 
 	/**
@@ -322,8 +323,8 @@ public class NavigatingArgCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpCS getInit() {
-		return init;
+	public ExpCS getOwnedInitExpression() {
+		return ownedInitExpression;
 	}
 
 	/**
@@ -331,12 +332,13 @@ public class NavigatingArgCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInit(ExpCS newInit, NotificationChain msgs) {
-		ExpCS oldInit = init;
-		init = newInit;
+	public NotificationChain basicSetOwnedInitExpression(ExpCS newOwnedInitExpression, NotificationChain msgs)
+	{
+		ExpCS oldOwnedInitExpression = ownedInitExpression;
+		ownedInitExpression = newOwnedInitExpression;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAVIGATING_ARG_CS__INIT, oldInit, newInit);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNED_INIT_EXPRESSION, oldOwnedInitExpression, newOwnedInitExpression);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -347,19 +349,19 @@ public class NavigatingArgCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInit(ExpCS newInit) {
-		if (newInit != init)
+	public void setOwnedInitExpression(ExpCS newOwnedInitExpression) {
+		if (newOwnedInitExpression != ownedInitExpression)
 		{
 			NotificationChain msgs = null;
-			if (init != null)
-				msgs = ((InternalEObject)init).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.NAVIGATING_ARG_CS__INIT, null, msgs);
-			if (newInit != null)
-				msgs = ((InternalEObject)newInit).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.NAVIGATING_ARG_CS__INIT, null, msgs);
-			msgs = basicSetInit(newInit, msgs);
+			if (ownedInitExpression != null)
+				msgs = ((InternalEObject)ownedInitExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNED_INIT_EXPRESSION, null, msgs);
+			if (newOwnedInitExpression != null)
+				msgs = ((InternalEObject)newOwnedInitExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNED_INIT_EXPRESSION, null, msgs);
+			msgs = basicSetOwnedInitExpression(newOwnedInitExpression, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAVIGATING_ARG_CS__INIT, newInit, newInit));
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNED_INIT_EXPRESSION, newOwnedInitExpression, newOwnedInitExpression));
 	}
 
 	/**
@@ -382,10 +384,10 @@ public class NavigatingArgCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROUND_BRACKETED_CLAUSE:
+			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNING_ROUND_BRACKETED_CLAUSE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetRoundBracketedClause((RoundBracketedClauseCS)otherEnd, msgs);
+				return basicSetOwningRoundBracketedClause((RoundBracketedClauseCS)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -400,14 +402,14 @@ public class NavigatingArgCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROUND_BRACKETED_CLAUSE:
-				return basicSetRoundBracketedClause(null, msgs);
-			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__NAME:
-				return basicSetName(null, msgs);
+			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNING_ROUND_BRACKETED_CLAUSE:
+				return basicSetOwningRoundBracketedClause(null, msgs);
+			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNED_NAME_EXPRESSION:
+				return basicSetOwnedNameExpression(null, msgs);
 			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNED_TYPE:
 				return basicSetOwnedType(null, msgs);
-			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__INIT:
-				return basicSetInit(null, msgs);
+			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNED_INIT_EXPRESSION:
+				return basicSetOwnedInitExpression(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -422,8 +424,8 @@ public class NavigatingArgCSImpl
 			NotificationChain msgs) {
 		switch (eContainerFeatureID())
 		{
-			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROUND_BRACKETED_CLAUSE:
-				return eInternalContainer().eInverseRemove(this, EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__ARGUMENTS, RoundBracketedClauseCS.class, msgs);
+			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNING_ROUND_BRACKETED_CLAUSE:
+				return eInternalContainer().eInverseRemove(this, EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNED_ARGUMENTS, RoundBracketedClauseCS.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -437,18 +439,18 @@ public class NavigatingArgCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROUND_BRACKETED_CLAUSE:
-				return getRoundBracketedClause();
+			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNING_ROUND_BRACKETED_CLAUSE:
+				return getOwningRoundBracketedClause();
 			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROLE:
 				return getRole();
 			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__PREFIX:
 				return getPrefix();
-			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__NAME:
-				return getName();
+			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNED_NAME_EXPRESSION:
+				return getOwnedNameExpression();
 			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNED_TYPE:
 				return getOwnedType();
-			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__INIT:
-				return getInit();
+			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNED_INIT_EXPRESSION:
+				return getOwnedInitExpression();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -462,8 +464,8 @@ public class NavigatingArgCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROUND_BRACKETED_CLAUSE:
-				setRoundBracketedClause((RoundBracketedClauseCS)newValue);
+			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNING_ROUND_BRACKETED_CLAUSE:
+				setOwningRoundBracketedClause((RoundBracketedClauseCS)newValue);
 				return;
 			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROLE:
 				setRole((NavigationRole)newValue);
@@ -471,14 +473,14 @@ public class NavigatingArgCSImpl
 			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__PREFIX:
 				setPrefix((String)newValue);
 				return;
-			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__NAME:
-				setName((ExpCS)newValue);
+			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNED_NAME_EXPRESSION:
+				setOwnedNameExpression((ExpCS)newValue);
 				return;
 			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNED_TYPE:
 				setOwnedType((TypedRefCS)newValue);
 				return;
-			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__INIT:
-				setInit((ExpCS)newValue);
+			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNED_INIT_EXPRESSION:
+				setOwnedInitExpression((ExpCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -493,8 +495,8 @@ public class NavigatingArgCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROUND_BRACKETED_CLAUSE:
-				setRoundBracketedClause((RoundBracketedClauseCS)null);
+			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNING_ROUND_BRACKETED_CLAUSE:
+				setOwningRoundBracketedClause((RoundBracketedClauseCS)null);
 				return;
 			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROLE:
 				setRole(ROLE_EDEFAULT);
@@ -502,14 +504,14 @@ public class NavigatingArgCSImpl
 			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__PREFIX:
 				setPrefix(PREFIX_EDEFAULT);
 				return;
-			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__NAME:
-				setName((ExpCS)null);
+			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNED_NAME_EXPRESSION:
+				setOwnedNameExpression((ExpCS)null);
 				return;
 			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNED_TYPE:
 				setOwnedType((TypedRefCS)null);
 				return;
-			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__INIT:
-				setInit((ExpCS)null);
+			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNED_INIT_EXPRESSION:
+				setOwnedInitExpression((ExpCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -524,18 +526,18 @@ public class NavigatingArgCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROUND_BRACKETED_CLAUSE:
-				return getRoundBracketedClause() != null;
+			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNING_ROUND_BRACKETED_CLAUSE:
+				return getOwningRoundBracketedClause() != null;
 			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROLE:
 				return role != ROLE_EDEFAULT;
 			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__PREFIX:
 				return PREFIX_EDEFAULT == null ? prefix != null : !PREFIX_EDEFAULT.equals(prefix);
-			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__NAME:
-				return name != null;
+			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNED_NAME_EXPRESSION:
+				return ownedNameExpression != null;
 			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNED_TYPE:
 				return ownedType != null;
-			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__INIT:
-				return init != null;
+			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNED_INIT_EXPRESSION:
+				return ownedInitExpression != null;
 		}
 		return super.eIsSet(featureID);
 	}

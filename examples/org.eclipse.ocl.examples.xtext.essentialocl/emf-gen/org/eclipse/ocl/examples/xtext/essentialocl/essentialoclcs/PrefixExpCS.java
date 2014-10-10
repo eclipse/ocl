@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS#getOwnedOperator <em>Owned Operator</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS#getOwnedOperators <em>Owned Operators</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS#getOwnedExpression <em>Owned Expression</em>}</li>
  * </ul>
  * </p>
@@ -33,7 +33,7 @@ public interface PrefixExpCS
 		extends ExpCS {
 
 	/**
-	 * Returns the value of the '<em><b>Owned Operator</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Operators</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.UnaryOperatorCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -41,12 +41,12 @@ public interface PrefixExpCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Operator</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getPrefixExpCS_OwnedOperator()
+	 * @return the value of the '<em>Owned Operators</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getPrefixExpCS_OwnedOperators()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<UnaryOperatorCS> getOwnedOperator();
+	EList<UnaryOperatorCS> getOwnedOperators();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Expression</b></em>' containment reference.

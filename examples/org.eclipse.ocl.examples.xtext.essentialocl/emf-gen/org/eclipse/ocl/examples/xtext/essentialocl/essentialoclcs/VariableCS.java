@@ -22,7 +22,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS#getOwnedType <em>Owned Type</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS#getInitExpression <em>Init Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS#getOwnedInitExpression <em>Owned Init Expression</em>}</li>
  * </ul>
  * </p>
  *
@@ -60,29 +60,29 @@ public interface VariableCS
 	void setOwnedType(TypedRefCS value);
 
 	/**
-	 * Returns the value of the '<em><b>Init Expression</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Init Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Init Expression</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Init Expression</em>' containment reference.
-	 * @see #setInitExpression(ExpCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getVariableCS_InitExpression()
+	 * @return the value of the '<em>Owned Init Expression</em>' containment reference.
+	 * @see #setOwnedInitExpression(ExpCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getVariableCS_OwnedInitExpression()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ExpCS getInitExpression();
+	ExpCS getOwnedInitExpression();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS#getInitExpression <em>Init Expression</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS#getOwnedInitExpression <em>Owned Init Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Init Expression</em>' containment reference.
-	 * @see #getInitExpression()
+	 * @param value the new value of the '<em>Owned Init Expression</em>' containment reference.
+	 * @see #getOwnedInitExpression()
 	 * @generated
 	 */
-	void setInitExpression(ExpCS value);
+	void setOwnedInitExpression(ExpCS value);
 
 } // VariableCS

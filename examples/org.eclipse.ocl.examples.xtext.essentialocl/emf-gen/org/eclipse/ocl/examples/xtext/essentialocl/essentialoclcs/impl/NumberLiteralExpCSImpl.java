@@ -28,7 +28,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NumberLiteralExpCSImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NumberLiteralExpCSImpl#getSymbol <em>Symbol</em>}</li>
  * </ul>
  * </p>
  *
@@ -39,24 +39,24 @@ public class NumberLiteralExpCSImpl
 		implements NumberLiteralExpCS {
 
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The default value of the '{@link #getSymbol() <em>Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #getSymbol()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Number NAME_EDEFAULT = null;
+	protected static final Number SYMBOL_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The cached value of the '{@link #getSymbol() <em>Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #getSymbol()
 	 * @generated
 	 * @ordered
 	 */
-	protected Number name = NAME_EDEFAULT;
+	protected Number symbol = SYMBOL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -82,8 +82,8 @@ public class NumberLiteralExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Number getName() {
-		return name;
+	public Number getSymbol() {
+		return symbol;
 	}
 
 	/**
@@ -91,11 +91,11 @@ public class NumberLiteralExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(Number newName) {
-		Number oldName = name;
-		name = newName;
+	public void setSymbol(Number newSymbol) {
+		Number oldSymbol = symbol;
+		symbol = newSymbol;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NUMBER_LITERAL_EXP_CS__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NUMBER_LITERAL_EXP_CS__SYMBOL, oldSymbol, symbol));
 	}
 
 	/**
@@ -117,8 +117,8 @@ public class NumberLiteralExpCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.NUMBER_LITERAL_EXP_CS__NAME:
-				return getName();
+			case EssentialOCLCSPackage.NUMBER_LITERAL_EXP_CS__SYMBOL:
+				return getSymbol();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -132,8 +132,8 @@ public class NumberLiteralExpCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.NUMBER_LITERAL_EXP_CS__NAME:
-				setName((Number)newValue);
+			case EssentialOCLCSPackage.NUMBER_LITERAL_EXP_CS__SYMBOL:
+				setSymbol((Number)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -148,8 +148,8 @@ public class NumberLiteralExpCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.NUMBER_LITERAL_EXP_CS__NAME:
-				setName(NAME_EDEFAULT);
+			case EssentialOCLCSPackage.NUMBER_LITERAL_EXP_CS__SYMBOL:
+				setSymbol(SYMBOL_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -164,8 +164,8 @@ public class NumberLiteralExpCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.NUMBER_LITERAL_EXP_CS__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case EssentialOCLCSPackage.NUMBER_LITERAL_EXP_CS__SYMBOL:
+				return SYMBOL_EDEFAULT == null ? symbol != null : !SYMBOL_EDEFAULT.equals(symbol);
 		}
 		return super.eIsSet(featureID);
 	}

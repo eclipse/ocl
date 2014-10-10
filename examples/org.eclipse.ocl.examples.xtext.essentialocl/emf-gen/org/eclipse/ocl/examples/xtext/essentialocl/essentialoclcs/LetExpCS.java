@@ -20,8 +20,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS#getVariable <em>Variable</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS#getIn <em>In</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS#getOwnedVariables <em>Owned Variables</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS#getOwnedInExpression <em>Owned In Expression</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,47 +33,47 @@ public interface LetExpCS
 		extends ExpCS {
 
 	/**
-	 * Returns the value of the '<em><b>Variable</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Variables</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS#getLetExpression <em>Let Expression</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS#getOwningLetExpression <em>Owning Let Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Variable</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Variable</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getLetExpCS_Variable()
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS#getLetExpression
-	 * @model opposite="letExpression" containment="true"
+	 * @return the value of the '<em>Owned Variables</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getLetExpCS_OwnedVariables()
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS#getOwningLetExpression
+	 * @model opposite="owningLetExpression" containment="true"
 	 * @generated
 	 */
-	EList<LetVariableCS> getVariable();
+	EList<LetVariableCS> getOwnedVariables();
 
 	/**
-	 * Returns the value of the '<em><b>In</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned In Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>In</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>In</em>' containment reference.
-	 * @see #setIn(ExpCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getLetExpCS_In()
+	 * @return the value of the '<em>Owned In Expression</em>' containment reference.
+	 * @see #setOwnedInExpression(ExpCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getLetExpCS_OwnedInExpression()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ExpCS getIn();
+	ExpCS getOwnedInExpression();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS#getIn <em>In</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS#getOwnedInExpression <em>Owned In Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>In</em>' containment reference.
-	 * @see #getIn()
+	 * @param value the new value of the '<em>Owned In Expression</em>' containment reference.
+	 * @see #getOwnedInExpression()
 	 * @generated
 	 */
-	void setIn(ExpCS value);
+	void setOwnedInExpression(ExpCS value);
 
 } // LetExpCS

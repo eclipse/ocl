@@ -42,11 +42,11 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getPathName <em>Path Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getOwnedPathName <em>Owned Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#isAtPre <em>At Pre</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getCurlyBracketedClause <em>Curly Bracketed Clause</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getRoundBracketedClause <em>Round Bracketed Clause</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getSquareBracketedClauses <em>Square Bracketed Clauses</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getOwnedCurlyBracketedClause <em>Owned Curly Bracketed Clause</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getOwnedRoundBracketedClause <em>Owned Round Bracketed Clause</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getOwnedSquareBracketedClauses <em>Owned Square Bracketed Clauses</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getSourceType <em>Source Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getSourceTypeValue <em>Source Type Value</em>}</li>
  * </ul>
@@ -59,14 +59,14 @@ public class NameExpCSImpl
 		implements NameExpCS {
 
 	/**
-	 * The cached value of the '{@link #getPathName() <em>Path Name</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedPathName() <em>Owned Path Name</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPathName()
+	 * @see #getOwnedPathName()
 	 * @generated
 	 * @ordered
 	 */
-	protected PathNameCS pathName;
+	protected PathNameCS ownedPathName;
 
 	/**
 	 * The default value of the '{@link #isAtPre() <em>At Pre</em>}' attribute.
@@ -89,34 +89,34 @@ public class NameExpCSImpl
 	protected boolean atPre = AT_PRE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getCurlyBracketedClause() <em>Curly Bracketed Clause</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedCurlyBracketedClause() <em>Owned Curly Bracketed Clause</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCurlyBracketedClause()
+	 * @see #getOwnedCurlyBracketedClause()
 	 * @generated
 	 * @ordered
 	 */
-	protected CurlyBracketedClauseCS curlyBracketedClause;
+	protected CurlyBracketedClauseCS ownedCurlyBracketedClause;
 
 	/**
-	 * The cached value of the '{@link #getRoundBracketedClause() <em>Round Bracketed Clause</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedRoundBracketedClause() <em>Owned Round Bracketed Clause</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRoundBracketedClause()
+	 * @see #getOwnedRoundBracketedClause()
 	 * @generated
 	 * @ordered
 	 */
-	protected RoundBracketedClauseCS roundBracketedClause;
+	protected RoundBracketedClauseCS ownedRoundBracketedClause;
 
 	/**
-	 * The cached value of the '{@link #getSquareBracketedClauses() <em>Square Bracketed Clauses</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedSquareBracketedClauses() <em>Owned Square Bracketed Clauses</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSquareBracketedClauses()
+	 * @see #getOwnedSquareBracketedClauses()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<SquareBracketedClauseCS> squareBracketedClauses;
+	protected EList<SquareBracketedClauseCS> ownedSquareBracketedClauses;
 
 	/**
 	 * The cached value of the '{@link #getSourceType() <em>Source Type</em>}' reference.
@@ -162,9 +162,9 @@ public class NameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PathNameCS getPathName()
+	public PathNameCS getOwnedPathName()
 	{
-		return pathName;
+		return ownedPathName;
 	}
 
 	/**
@@ -172,13 +172,13 @@ public class NameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetPathName(PathNameCS newPathName, NotificationChain msgs)
+	public NotificationChain basicSetOwnedPathName(PathNameCS newOwnedPathName, NotificationChain msgs)
 	{
-		PathNameCS oldPathName = pathName;
-		pathName = newPathName;
+		PathNameCS oldOwnedPathName = ownedPathName;
+		ownedPathName = newOwnedPathName;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAME_EXP_CS__PATH_NAME, oldPathName, newPathName);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAME_EXP_CS__OWNED_PATH_NAME, oldOwnedPathName, newOwnedPathName);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -189,20 +189,20 @@ public class NameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPathName(PathNameCS newPathName)
+	public void setOwnedPathName(PathNameCS newOwnedPathName)
 	{
-		if (newPathName != pathName)
+		if (newOwnedPathName != ownedPathName)
 		{
 			NotificationChain msgs = null;
-			if (pathName != null)
-				msgs = ((InternalEObject)pathName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.NAME_EXP_CS__PATH_NAME, null, msgs);
-			if (newPathName != null)
-				msgs = ((InternalEObject)newPathName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.NAME_EXP_CS__PATH_NAME, null, msgs);
-			msgs = basicSetPathName(newPathName, msgs);
+			if (ownedPathName != null)
+				msgs = ((InternalEObject)ownedPathName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.NAME_EXP_CS__OWNED_PATH_NAME, null, msgs);
+			if (newOwnedPathName != null)
+				msgs = ((InternalEObject)newOwnedPathName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.NAME_EXP_CS__OWNED_PATH_NAME, null, msgs);
+			msgs = basicSetOwnedPathName(newOwnedPathName, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAME_EXP_CS__PATH_NAME, newPathName, newPathName));
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAME_EXP_CS__OWNED_PATH_NAME, newOwnedPathName, newOwnedPathName));
 	}
 
 	/**
@@ -277,9 +277,9 @@ public class NameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CurlyBracketedClauseCS getCurlyBracketedClause()
+	public CurlyBracketedClauseCS getOwnedCurlyBracketedClause()
 	{
-		return curlyBracketedClause;
+		return ownedCurlyBracketedClause;
 	}
 
 	/**
@@ -287,13 +287,13 @@ public class NameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetCurlyBracketedClause(CurlyBracketedClauseCS newCurlyBracketedClause, NotificationChain msgs)
+	public NotificationChain basicSetOwnedCurlyBracketedClause(CurlyBracketedClauseCS newOwnedCurlyBracketedClause, NotificationChain msgs)
 	{
-		CurlyBracketedClauseCS oldCurlyBracketedClause = curlyBracketedClause;
-		curlyBracketedClause = newCurlyBracketedClause;
+		CurlyBracketedClauseCS oldOwnedCurlyBracketedClause = ownedCurlyBracketedClause;
+		ownedCurlyBracketedClause = newOwnedCurlyBracketedClause;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAME_EXP_CS__CURLY_BRACKETED_CLAUSE, oldCurlyBracketedClause, newCurlyBracketedClause);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE, oldOwnedCurlyBracketedClause, newOwnedCurlyBracketedClause);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -304,20 +304,20 @@ public class NameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCurlyBracketedClause(CurlyBracketedClauseCS newCurlyBracketedClause)
+	public void setOwnedCurlyBracketedClause(CurlyBracketedClauseCS newOwnedCurlyBracketedClause)
 	{
-		if (newCurlyBracketedClause != curlyBracketedClause)
+		if (newOwnedCurlyBracketedClause != ownedCurlyBracketedClause)
 		{
 			NotificationChain msgs = null;
-			if (curlyBracketedClause != null)
-				msgs = ((InternalEObject)curlyBracketedClause).eInverseRemove(this, EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__NAME_EXP, CurlyBracketedClauseCS.class, msgs);
-			if (newCurlyBracketedClause != null)
-				msgs = ((InternalEObject)newCurlyBracketedClause).eInverseAdd(this, EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__NAME_EXP, CurlyBracketedClauseCS.class, msgs);
-			msgs = basicSetCurlyBracketedClause(newCurlyBracketedClause, msgs);
+			if (ownedCurlyBracketedClause != null)
+				msgs = ((InternalEObject)ownedCurlyBracketedClause).eInverseRemove(this, EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP, CurlyBracketedClauseCS.class, msgs);
+			if (newOwnedCurlyBracketedClause != null)
+				msgs = ((InternalEObject)newOwnedCurlyBracketedClause).eInverseAdd(this, EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP, CurlyBracketedClauseCS.class, msgs);
+			msgs = basicSetOwnedCurlyBracketedClause(newOwnedCurlyBracketedClause, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAME_EXP_CS__CURLY_BRACKETED_CLAUSE, newCurlyBracketedClause, newCurlyBracketedClause));
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE, newOwnedCurlyBracketedClause, newOwnedCurlyBracketedClause));
 	}
 
 	/**
@@ -325,9 +325,9 @@ public class NameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RoundBracketedClauseCS getRoundBracketedClause()
+	public RoundBracketedClauseCS getOwnedRoundBracketedClause()
 	{
-		return roundBracketedClause;
+		return ownedRoundBracketedClause;
 	}
 
 	/**
@@ -335,13 +335,13 @@ public class NameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetRoundBracketedClause(RoundBracketedClauseCS newRoundBracketedClause, NotificationChain msgs)
+	public NotificationChain basicSetOwnedRoundBracketedClause(RoundBracketedClauseCS newOwnedRoundBracketedClause, NotificationChain msgs)
 	{
-		RoundBracketedClauseCS oldRoundBracketedClause = roundBracketedClause;
-		roundBracketedClause = newRoundBracketedClause;
+		RoundBracketedClauseCS oldOwnedRoundBracketedClause = ownedRoundBracketedClause;
+		ownedRoundBracketedClause = newOwnedRoundBracketedClause;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAME_EXP_CS__ROUND_BRACKETED_CLAUSE, oldRoundBracketedClause, newRoundBracketedClause);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAME_EXP_CS__OWNED_ROUND_BRACKETED_CLAUSE, oldOwnedRoundBracketedClause, newOwnedRoundBracketedClause);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -352,20 +352,20 @@ public class NameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRoundBracketedClause(RoundBracketedClauseCS newRoundBracketedClause)
+	public void setOwnedRoundBracketedClause(RoundBracketedClauseCS newOwnedRoundBracketedClause)
 	{
-		if (newRoundBracketedClause != roundBracketedClause)
+		if (newOwnedRoundBracketedClause != ownedRoundBracketedClause)
 		{
 			NotificationChain msgs = null;
-			if (roundBracketedClause != null)
-				msgs = ((InternalEObject)roundBracketedClause).eInverseRemove(this, EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__NAME_EXP, RoundBracketedClauseCS.class, msgs);
-			if (newRoundBracketedClause != null)
-				msgs = ((InternalEObject)newRoundBracketedClause).eInverseAdd(this, EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__NAME_EXP, RoundBracketedClauseCS.class, msgs);
-			msgs = basicSetRoundBracketedClause(newRoundBracketedClause, msgs);
+			if (ownedRoundBracketedClause != null)
+				msgs = ((InternalEObject)ownedRoundBracketedClause).eInverseRemove(this, EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP, RoundBracketedClauseCS.class, msgs);
+			if (newOwnedRoundBracketedClause != null)
+				msgs = ((InternalEObject)newOwnedRoundBracketedClause).eInverseAdd(this, EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP, RoundBracketedClauseCS.class, msgs);
+			msgs = basicSetOwnedRoundBracketedClause(newOwnedRoundBracketedClause, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAME_EXP_CS__ROUND_BRACKETED_CLAUSE, newRoundBracketedClause, newRoundBracketedClause));
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAME_EXP_CS__OWNED_ROUND_BRACKETED_CLAUSE, newOwnedRoundBracketedClause, newOwnedRoundBracketedClause));
 	}
 
 	/**
@@ -374,13 +374,13 @@ public class NameExpCSImpl
 	 * @generated
 	 */
 	@SuppressWarnings("null")
-	public @NonNull EList<SquareBracketedClauseCS> getSquareBracketedClauses()
+	public @NonNull EList<SquareBracketedClauseCS> getOwnedSquareBracketedClauses()
 	{
-		if (squareBracketedClauses == null)
+		if (ownedSquareBracketedClauses == null)
 		{
-			squareBracketedClauses = new EObjectContainmentWithInverseEList<SquareBracketedClauseCS>(SquareBracketedClauseCS.class, this, EssentialOCLCSPackage.NAME_EXP_CS__SQUARE_BRACKETED_CLAUSES, EssentialOCLCSPackage.SQUARE_BRACKETED_CLAUSE_CS__NAME_EXP);
+			ownedSquareBracketedClauses = new EObjectContainmentWithInverseEList<SquareBracketedClauseCS>(SquareBracketedClauseCS.class, this, EssentialOCLCSPackage.NAME_EXP_CS__OWNED_SQUARE_BRACKETED_CLAUSES, EssentialOCLCSPackage.SQUARE_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP);
 		}
-		return squareBracketedClauses;
+		return ownedSquareBracketedClauses;
 	}
 
 	/**
@@ -404,16 +404,16 @@ public class NameExpCSImpl
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.NAME_EXP_CS__CURLY_BRACKETED_CLAUSE:
-				if (curlyBracketedClause != null)
-					msgs = ((InternalEObject)curlyBracketedClause).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.NAME_EXP_CS__CURLY_BRACKETED_CLAUSE, null, msgs);
-				return basicSetCurlyBracketedClause((CurlyBracketedClauseCS)otherEnd, msgs);
-			case EssentialOCLCSPackage.NAME_EXP_CS__ROUND_BRACKETED_CLAUSE:
-				if (roundBracketedClause != null)
-					msgs = ((InternalEObject)roundBracketedClause).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.NAME_EXP_CS__ROUND_BRACKETED_CLAUSE, null, msgs);
-				return basicSetRoundBracketedClause((RoundBracketedClauseCS)otherEnd, msgs);
-			case EssentialOCLCSPackage.NAME_EXP_CS__SQUARE_BRACKETED_CLAUSES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSquareBracketedClauses()).basicAdd(otherEnd, msgs);
+			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
+				if (ownedCurlyBracketedClause != null)
+					msgs = ((InternalEObject)ownedCurlyBracketedClause).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE, null, msgs);
+				return basicSetOwnedCurlyBracketedClause((CurlyBracketedClauseCS)otherEnd, msgs);
+			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_ROUND_BRACKETED_CLAUSE:
+				if (ownedRoundBracketedClause != null)
+					msgs = ((InternalEObject)ownedRoundBracketedClause).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.NAME_EXP_CS__OWNED_ROUND_BRACKETED_CLAUSE, null, msgs);
+				return basicSetOwnedRoundBracketedClause((RoundBracketedClauseCS)otherEnd, msgs);
+			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_SQUARE_BRACKETED_CLAUSES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedSquareBracketedClauses()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -424,7 +424,7 @@ public class NameExpCSImpl
 	 * @generated NOT
 	 */
 	public NamedElement getNamedElement() {
-		Element element = getPathName().getElement();
+		Element element = getOwnedPathName().getElement();
 		return element instanceof NamedElement
 			? (NamedElement) element
 			: null;
@@ -449,14 +449,14 @@ public class NameExpCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.NAME_EXP_CS__PATH_NAME:
-				return basicSetPathName(null, msgs);
-			case EssentialOCLCSPackage.NAME_EXP_CS__CURLY_BRACKETED_CLAUSE:
-				return basicSetCurlyBracketedClause(null, msgs);
-			case EssentialOCLCSPackage.NAME_EXP_CS__ROUND_BRACKETED_CLAUSE:
-				return basicSetRoundBracketedClause(null, msgs);
-			case EssentialOCLCSPackage.NAME_EXP_CS__SQUARE_BRACKETED_CLAUSES:
-				return ((InternalEList<?>)getSquareBracketedClauses()).basicRemove(otherEnd, msgs);
+			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_PATH_NAME:
+				return basicSetOwnedPathName(null, msgs);
+			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
+				return basicSetOwnedCurlyBracketedClause(null, msgs);
+			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_ROUND_BRACKETED_CLAUSE:
+				return basicSetOwnedRoundBracketedClause(null, msgs);
+			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_SQUARE_BRACKETED_CLAUSES:
+				return ((InternalEList<?>)getOwnedSquareBracketedClauses()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -470,16 +470,16 @@ public class NameExpCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.NAME_EXP_CS__PATH_NAME:
-				return getPathName();
+			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_PATH_NAME:
+				return getOwnedPathName();
 			case EssentialOCLCSPackage.NAME_EXP_CS__AT_PRE:
 				return isAtPre();
-			case EssentialOCLCSPackage.NAME_EXP_CS__CURLY_BRACKETED_CLAUSE:
-				return getCurlyBracketedClause();
-			case EssentialOCLCSPackage.NAME_EXP_CS__ROUND_BRACKETED_CLAUSE:
-				return getRoundBracketedClause();
-			case EssentialOCLCSPackage.NAME_EXP_CS__SQUARE_BRACKETED_CLAUSES:
-				return getSquareBracketedClauses();
+			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
+				return getOwnedCurlyBracketedClause();
+			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_ROUND_BRACKETED_CLAUSE:
+				return getOwnedRoundBracketedClause();
+			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_SQUARE_BRACKETED_CLAUSES:
+				return getOwnedSquareBracketedClauses();
 			case EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPE:
 				return getSourceType();
 			case EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPE_VALUE:
@@ -498,21 +498,21 @@ public class NameExpCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.NAME_EXP_CS__PATH_NAME:
-				setPathName((PathNameCS)newValue);
+			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_PATH_NAME:
+				setOwnedPathName((PathNameCS)newValue);
 				return;
 			case EssentialOCLCSPackage.NAME_EXP_CS__AT_PRE:
 				setAtPre((Boolean)newValue);
 				return;
-			case EssentialOCLCSPackage.NAME_EXP_CS__CURLY_BRACKETED_CLAUSE:
-				setCurlyBracketedClause((CurlyBracketedClauseCS)newValue);
+			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
+				setOwnedCurlyBracketedClause((CurlyBracketedClauseCS)newValue);
 				return;
-			case EssentialOCLCSPackage.NAME_EXP_CS__ROUND_BRACKETED_CLAUSE:
-				setRoundBracketedClause((RoundBracketedClauseCS)newValue);
+			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_ROUND_BRACKETED_CLAUSE:
+				setOwnedRoundBracketedClause((RoundBracketedClauseCS)newValue);
 				return;
-			case EssentialOCLCSPackage.NAME_EXP_CS__SQUARE_BRACKETED_CLAUSES:
-				getSquareBracketedClauses().clear();
-				getSquareBracketedClauses().addAll((Collection<? extends SquareBracketedClauseCS>)newValue);
+			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_SQUARE_BRACKETED_CLAUSES:
+				getOwnedSquareBracketedClauses().clear();
+				getOwnedSquareBracketedClauses().addAll((Collection<? extends SquareBracketedClauseCS>)newValue);
 				return;
 			case EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPE:
 				setSourceType((Type)newValue);
@@ -533,20 +533,20 @@ public class NameExpCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.NAME_EXP_CS__PATH_NAME:
-				setPathName((PathNameCS)null);
+			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_PATH_NAME:
+				setOwnedPathName((PathNameCS)null);
 				return;
 			case EssentialOCLCSPackage.NAME_EXP_CS__AT_PRE:
 				setAtPre(AT_PRE_EDEFAULT);
 				return;
-			case EssentialOCLCSPackage.NAME_EXP_CS__CURLY_BRACKETED_CLAUSE:
-				setCurlyBracketedClause((CurlyBracketedClauseCS)null);
+			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
+				setOwnedCurlyBracketedClause((CurlyBracketedClauseCS)null);
 				return;
-			case EssentialOCLCSPackage.NAME_EXP_CS__ROUND_BRACKETED_CLAUSE:
-				setRoundBracketedClause((RoundBracketedClauseCS)null);
+			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_ROUND_BRACKETED_CLAUSE:
+				setOwnedRoundBracketedClause((RoundBracketedClauseCS)null);
 				return;
-			case EssentialOCLCSPackage.NAME_EXP_CS__SQUARE_BRACKETED_CLAUSES:
-				getSquareBracketedClauses().clear();
+			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_SQUARE_BRACKETED_CLAUSES:
+				getOwnedSquareBracketedClauses().clear();
 				return;
 			case EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPE:
 				setSourceType((Type)null);
@@ -567,16 +567,16 @@ public class NameExpCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.NAME_EXP_CS__PATH_NAME:
-				return pathName != null;
+			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_PATH_NAME:
+				return ownedPathName != null;
 			case EssentialOCLCSPackage.NAME_EXP_CS__AT_PRE:
 				return atPre != AT_PRE_EDEFAULT;
-			case EssentialOCLCSPackage.NAME_EXP_CS__CURLY_BRACKETED_CLAUSE:
-				return curlyBracketedClause != null;
-			case EssentialOCLCSPackage.NAME_EXP_CS__ROUND_BRACKETED_CLAUSE:
-				return roundBracketedClause != null;
-			case EssentialOCLCSPackage.NAME_EXP_CS__SQUARE_BRACKETED_CLAUSES:
-				return squareBracketedClauses != null && !squareBracketedClauses.isEmpty();
+			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
+				return ownedCurlyBracketedClause != null;
+			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_ROUND_BRACKETED_CLAUSE:
+				return ownedRoundBracketedClause != null;
+			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_SQUARE_BRACKETED_CLAUSES:
+				return ownedSquareBracketedClauses != null && !ownedSquareBracketedClauses.isEmpty();
 			case EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPE:
 				return sourceType != null;
 			case EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPE_VALUE:

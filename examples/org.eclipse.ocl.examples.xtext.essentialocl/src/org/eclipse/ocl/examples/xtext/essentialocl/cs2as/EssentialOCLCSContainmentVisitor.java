@@ -119,9 +119,9 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 				// If init without type is ever legal; Fixup a = b				
 			}
 		} */
-		ExpCS csName = csArgument.getName();
+		ExpCS csName = csArgument.getOwnedNameExpression();
 		if (csName instanceof NameExpCS) {
-			PathNameCS csPathName = ((NameExpCS)csName).getPathName();
+			PathNameCS csPathName = ((NameExpCS)csName).getOwnedPathName();
 			@NonNull Variable parameter = context.refreshModelElement(Variable.class, PivotPackage.Literals.VARIABLE, csName);
 			ICompositeNode node = NodeModelUtils.getNode(csName);
 			if (node != null) {
@@ -142,7 +142,7 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 	@Override
 	public Continuation<?> visitBooleanLiteralExpCS(@NonNull BooleanLiteralExpCS csElement) {
 		@NonNull BooleanLiteralExp pivotElement = context.refreshModelElement(BooleanLiteralExp.class, PivotPackage.Literals.BOOLEAN_LITERAL_EXP, csElement);
-		pivotElement.setBooleanSymbol(Boolean.valueOf(csElement.getName()));
+		pivotElement.setBooleanSymbol(Boolean.valueOf(csElement.getSymbol()));
 		return null;
 	}
 
@@ -155,7 +155,7 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 
 	@Override
 	public Continuation<?> visitCollectionLiteralPartCS(@NonNull CollectionLiteralPartCS csElement) {
-		if (csElement.getLastExpressionCS() == null) {
+		if (csElement.getOwnedLastExpressionCS() == null) {
 			context.refreshModelElement(CollectionItem.class, PivotPackage.Literals.COLLECTION_ITEM, csElement);	
 		}
 		else {
@@ -336,7 +336,7 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 
 	@Override
 	public Continuation<?> visitNumberLiteralExpCS(@NonNull NumberLiteralExpCS csElement) {
-		Number number = csElement.getName();
+		Number number = csElement.getSymbol();
 		if ((number instanceof BigDecimal) || (number instanceof Double) || (number instanceof Float)) {
 			@NonNull RealLiteralExp pivotElement = context.refreshModelElement(RealLiteralExp.class, PivotPackage.Literals.REAL_LITERAL_EXP, csElement);
 			pivotElement.setRealSymbol(number);
@@ -412,7 +412,7 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 
 	@Override
 	public @Nullable Continuation<?> visitRoundBracketedClauseCS(@NonNull RoundBracketedClauseCS csElement) {
-		List<NavigatingArgCS> csArguments = csElement.getArguments();
+		List<NavigatingArgCS> csArguments = csElement.getOwnedArguments();
 		if (csArguments.size() > 0) {
 			// Last argument is always an expression
 			//	then preceding initialized terms are accumulators
@@ -429,7 +429,7 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 						break;
 					}
 					case ACCUMULATOR: {
-						if (csArgument.getInit() != null) {
+						if (csArgument.getOwnedInitExpression() != null) {
 							setParameterRole(csArgument, NavigationRole.ACCUMULATOR);
 							if (";".equals(csArgument.getPrefix())) {
 								role = NavigationRole.ITERATOR;
@@ -460,17 +460,17 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 	@Override
 	public Continuation<?> visitStringLiteralExpCS(@NonNull StringLiteralExpCS csElement) {
 		@NonNull StringLiteralExp pivotElement = context.refreshModelElement(StringLiteralExp.class, PivotPackage.Literals.STRING_LITERAL_EXP, csElement);
-		List<String> names = csElement.getName();
-		if (names.size() == 0) {
+		List<String> segments = csElement.getSegments();
+		if (segments.size() == 0) {
 			pivotElement.setStringSymbol("");
 		}
-		else if (names.size() == 1) {
-			pivotElement.setStringSymbol(names.get(0));
+		else if (segments.size() == 1) {
+			pivotElement.setStringSymbol(segments.get(0));
 		}
 		else {
 			StringBuilder s = new StringBuilder();
-			for (String name : names) {
-				s.append(name);
+			for (String segment : segments) {
+				s.append(segment);
 			}
 			pivotElement.setStringSymbol(s.toString());
 		}
@@ -497,7 +497,7 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 
 	@Override
 	public Continuation<?> visitTypeNameExpCS(@NonNull TypeNameExpCS csElement) {
-		PathNameCS pathName = csElement.getPathName();
+		PathNameCS pathName = csElement.getOwnedPathName();
 		assert pathName != null;
 		CS2Pivot.setElementType(pathName, PivotPackage.Literals.TYPE, csElement, null);
 		return null;

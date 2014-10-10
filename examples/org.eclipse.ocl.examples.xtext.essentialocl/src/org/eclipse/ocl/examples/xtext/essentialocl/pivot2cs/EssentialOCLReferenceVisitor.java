@@ -104,11 +104,11 @@ public class EssentialOCLReferenceVisitor extends BaseReferenceVisitor
 		TypeNameExpCS csRef = EssentialOCLCSFactory.eINSTANCE.createTypeNameExpCS();
 		csRef.setPivot(object);
 //		csRef.setElement(object);
-		PathNameCS csPathName = csRef.getPathName();
+		PathNameCS csPathName = csRef.getOwnedPathName();
 		if (csPathName == null) {
 			csPathName = BaseCSFactory.eINSTANCE.createPathNameCS();
 			assert csPathName != null;
-			csRef.setPathName(csPathName);
+			csRef.setOwnedPathName(csPathName);
 		}
 		context.refreshPathName(csPathName, object, scope);
 		if (object instanceof org.eclipse.ocl.examples.pivot.Class) {
