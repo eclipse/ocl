@@ -327,7 +327,7 @@ RoundBracketedClauseCS:
 	{RoundBracketedClauseCS} '(' (
 		arguments+=NavigatingArgCS (arguments+=NavigatingCommaArgCS)*
 		(arguments+=NavigatingSemiArgCS (arguments+=NavigatingCommaArgCS)*)?
-		(arguments+=NavigatingBarArgCS (arguments+=NavigatingCommaArgCS)*)?
+		(arguments+=NavigatingBarArgCS (arguments+=NavigatingCommaArgCS)*)*
 		)? ')'
 	;
 
@@ -338,7 +338,7 @@ SquareBracketedClauseCS:
 /* A navigating argument is a generalized rule for the first argument in a round bracket clause. This is typically the first operation
  * parameter or an iterator. */
 NavigatingArgCS returns NavigatingArgCS:
-	name=NavigatingArgExpCS (':' ownedType=TypeExpCS ('=' init=ExpCS)?)?;	// Type-less init is an illegal infix expression
+	name=NavigatingArgExpCS ((':' ownedType=TypeExpCS ('=' init=ExpCS)?) | ('in' init=ExpCS))?;	// Type-less init is an illegal infix expression
 
 /* A navigating bar argument is a generalized rule for a bar-prefixed argument in a round bracket clause. This is typically the body of an iteration. */
 NavigatingBarArgCS returns NavigatingArgCS:
@@ -347,7 +347,7 @@ NavigatingBarArgCS returns NavigatingArgCS:
 /* A navigating comma argument is a generalized rule for non-first argument in a round bracket clause. These are typically non-first operation
  * parameters or a second iterator. */
 NavigatingCommaArgCS returns NavigatingArgCS:
-	prefix=',' name=NavigatingArgExpCS (':' ownedType=TypeExpCS ('=' init=ExpCS)?)?;	// Type-less init is an illegal infix expression
+	prefix=',' name=NavigatingArgExpCS ((':' ownedType=TypeExpCS ('=' init=ExpCS)?) | ('in' init=ExpCS))?;	// Type-less init is an illegal infix expression
 
 /* A navigating semi argument is a generalized rule for a semicolon prefixed argument in a round bracket clause. This is typically an iterate accumulator. */
 NavigatingSemiArgCS returns NavigatingArgCS:
