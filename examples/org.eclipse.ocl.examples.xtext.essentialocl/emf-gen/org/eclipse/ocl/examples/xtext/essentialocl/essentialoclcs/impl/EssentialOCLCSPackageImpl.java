@@ -1278,6 +1278,16 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getLetVariableCS_RoundBracketedClause()
+	{
+		return (EReference)letVariableCSEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private boolean isCreated = false;
 
 	/**
@@ -1347,6 +1357,7 @@ public class EssentialOCLCSPackageImpl
 
 		letVariableCSEClass = createEClass(LET_VARIABLE_CS);
 		createEReference(letVariableCSEClass, LET_VARIABLE_CS__LET_EXPRESSION);
+		createEReference(letVariableCSEClass, LET_VARIABLE_CS__ROUND_BRACKETED_CLAUSE);
 
 		literalExpCSEClass = createEClass(LITERAL_EXP_CS);
 
@@ -1557,6 +1568,7 @@ public class EssentialOCLCSPackageImpl
 
 		initEClass(letVariableCSEClass, LetVariableCS.class, "LetVariableCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getLetVariableCS_LetExpression(), this.getLetExpCS(), this.getLetExpCS_Variable(), "letExpression", null, 0, 1, LetVariableCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getLetVariableCS_RoundBracketedClause(), this.getRoundBracketedClauseCS(), null, "roundBracketedClause", null, 0, 1, LetVariableCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(literalExpCSEClass, LiteralExpCS.class, "LiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

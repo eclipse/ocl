@@ -19,6 +19,7 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS#getLetExpression <em>Let Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS#getRoundBracketedClause <em>Round Bracketed Clause</em>}</li>
  * </ul>
  * </p>
  *
@@ -56,5 +57,31 @@ public interface LetVariableCS
 	 * @generated
 	 */
 	void setLetExpression(LetExpCS value);
+
+	/**
+	 * Returns the value of the '<em><b>Round Bracketed Clause</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Round Bracketed Clause</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Round Bracketed Clause</em>' containment reference.
+	 * @see #setRoundBracketedClause(RoundBracketedClauseCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getLetVariableCS_RoundBracketedClause()
+	 * @model containment="true"
+	 * @generated
+	 */
+	RoundBracketedClauseCS getRoundBracketedClause();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS#getRoundBracketedClause <em>Round Bracketed Clause</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Round Bracketed Clause</em>' containment reference.
+	 * @see #getRoundBracketedClause()
+	 * @generated
+	 */
+	void setRoundBracketedClause(RoundBracketedClauseCS value);
 
 } // VariableCS

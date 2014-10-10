@@ -1861,13 +1861,22 @@ public interface EssentialOCLCSPackage
 	int LET_VARIABLE_CS__LET_EXPRESSION = VARIABLE_CS_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Round Bracketed Clause</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LET_VARIABLE_CS__ROUND_BRACKETED_CLAUSE = VARIABLE_CS_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Let Variable CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LET_VARIABLE_CS_FEATURE_COUNT = VARIABLE_CS_FEATURE_COUNT + 3;
+	int LET_VARIABLE_CS_FEATURE_COUNT = VARIABLE_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -4345,6 +4354,17 @@ public interface EssentialOCLCSPackage
 	EReference getLetVariableCS_LetExpression();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS#getRoundBracketedClause <em>Round Bracketed Clause</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Round Bracketed Clause</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS#getRoundBracketedClause()
+	 * @see #getLetVariableCS()
+	 * @generated
+	 */
+	EReference getLetVariableCS_RoundBracketedClause();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * Defines literals for the meta objects that represent
 	 * <ul>
@@ -5185,6 +5205,14 @@ public interface EssentialOCLCSPackage
 		 * @generated
 		 */
 		EReference LET_VARIABLE_CS__LET_EXPRESSION = eINSTANCE.getLetVariableCS_LetExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Round Bracketed Clause</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LET_VARIABLE_CS__ROUND_BRACKETED_CLAUSE = eINSTANCE.getLetVariableCS_RoundBracketedClause();
 
 	}
 

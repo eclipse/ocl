@@ -83,6 +83,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="LetVariableCS" eSuperTypes="#//VariableCS #//ExpCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="letExpression" eType="#//LetExpCS"
         eOpposite="#//LetExpCS/variable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roundBracketedClause" eType="#//RoundBracketedClauseCS"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LiteralExpCS" eSuperTypes="#//ExpCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="NameExpCS" eSuperTypes="#//ExpCS">

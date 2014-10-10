@@ -365,7 +365,7 @@ LetExpCS returns LetExpCS:
 	'in' in=ExpCS;
 
 LetVariableCS returns LetVariableCS:
-	name=UnrestrictedName (':' ownedType=TypeExpCS)? '=' initExpression=ExpCS;
+	name=UnrestrictedName roundBracketedClause=RoundBracketedClauseCS? (':' ownedType=TypeExpCS)? '=' initExpression=ExpCS;
 
 NestedExpCS returns NestedExpCS:
 	'(' source=ExpCS ')';

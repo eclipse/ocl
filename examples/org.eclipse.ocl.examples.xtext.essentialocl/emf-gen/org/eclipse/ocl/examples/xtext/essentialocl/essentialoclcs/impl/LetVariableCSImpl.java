@@ -24,6 +24,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.EssentialOCLCSVisitor;
 
 /**
@@ -36,6 +37,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetVariableCSImpl#getParent <em>Parent</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetVariableCSImpl#isHasError <em>Has Error</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetVariableCSImpl#getLetExpression <em>Let Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetVariableCSImpl#getRoundBracketedClause <em>Round Bracketed Clause</em>}</li>
  * </ul>
  * </p>
  *
@@ -73,6 +75,16 @@ public class LetVariableCSImpl
 	 * @ordered
 	 */
 	protected boolean hasError = HAS_ERROR_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getRoundBracketedClause() <em>Round Bracketed Clause</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRoundBracketedClause()
+	 * @generated
+	 * @ordered
+	 */
+	protected RoundBracketedClauseCS roundBracketedClause;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -185,6 +197,54 @@ public class LetVariableCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public RoundBracketedClauseCS getRoundBracketedClause()
+	{
+		return roundBracketedClause;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetRoundBracketedClause(RoundBracketedClauseCS newRoundBracketedClause, NotificationChain msgs)
+	{
+		RoundBracketedClauseCS oldRoundBracketedClause = roundBracketedClause;
+		roundBracketedClause = newRoundBracketedClause;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.LET_VARIABLE_CS__ROUND_BRACKETED_CLAUSE, oldRoundBracketedClause, newRoundBracketedClause);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRoundBracketedClause(RoundBracketedClauseCS newRoundBracketedClause)
+	{
+		if (newRoundBracketedClause != roundBracketedClause)
+		{
+			NotificationChain msgs = null;
+			if (roundBracketedClause != null)
+				msgs = ((InternalEObject)roundBracketedClause).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.LET_VARIABLE_CS__ROUND_BRACKETED_CLAUSE, null, msgs);
+			if (newRoundBracketedClause != null)
+				msgs = ((InternalEObject)newRoundBracketedClause).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.LET_VARIABLE_CS__ROUND_BRACKETED_CLAUSE, null, msgs);
+			msgs = basicSetRoundBracketedClause(newRoundBracketedClause, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.LET_VARIABLE_CS__ROUND_BRACKETED_CLAUSE, newRoundBracketedClause, newRoundBracketedClause));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
@@ -210,6 +270,8 @@ public class LetVariableCSImpl
 		{
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__LET_EXPRESSION:
 				return basicSetLetExpression(null, msgs);
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__ROUND_BRACKETED_CLAUSE:
+				return basicSetRoundBracketedClause(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -245,6 +307,8 @@ public class LetVariableCSImpl
 				return isHasError();
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__LET_EXPRESSION:
 				return getLetExpression();
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__ROUND_BRACKETED_CLAUSE:
+				return getRoundBracketedClause();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -266,6 +330,9 @@ public class LetVariableCSImpl
 				return;
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__LET_EXPRESSION:
 				setLetExpression((LetExpCS)newValue);
+				return;
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__ROUND_BRACKETED_CLAUSE:
+				setRoundBracketedClause((RoundBracketedClauseCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -289,6 +356,9 @@ public class LetVariableCSImpl
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__LET_EXPRESSION:
 				setLetExpression((LetExpCS)null);
 				return;
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__ROUND_BRACKETED_CLAUSE:
+				setRoundBracketedClause((RoundBracketedClauseCS)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -308,6 +378,8 @@ public class LetVariableCSImpl
 				return hasError != HAS_ERROR_EDEFAULT;
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__LET_EXPRESSION:
 				return getLetExpression() != null;
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__ROUND_BRACKETED_CLAUSE:
+				return roundBracketedClause != null;
 		}
 		return super.eIsSet(featureID);
 	}
