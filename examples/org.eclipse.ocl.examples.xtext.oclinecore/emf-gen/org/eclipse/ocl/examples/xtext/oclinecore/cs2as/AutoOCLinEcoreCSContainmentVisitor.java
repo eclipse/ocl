@@ -25,7 +25,6 @@ public class AutoOCLinEcoreCSContainmentVisitor
 	extends NewEssentialOCLCSContainmentVisitor
 	implements OCLinEcoreCSVisitor<Continuation<?>>
 {
-    
     protected final @NonNull CS2Pivot converter;
     protected final @NonNull IdResolver idResolver;
     

@@ -30,6 +30,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpSpecificati
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvalidLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LambdaLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LiteralExpCS;
@@ -59,7 +60,6 @@ public class AutoEssentialOCLCSContainmentVisitor
 	extends NewBaseCSContainmentVisitor
 	implements EssentialOCLCSVisitor<Continuation<?>>
 {
-    
     protected final @NonNull CS2Pivot converter;
     protected final @NonNull IdResolver idResolver;
     
@@ -124,6 +124,10 @@ public class AutoEssentialOCLCSContainmentVisitor
     
     public @Nullable Continuation<?> visitInvalidLiteralExpCS(@NonNull InvalidLiteralExpCS self) {
         throw new UnsupportedOperationException("visitInvalidLiteralExpCS is not supported by " + getClass().getName());
+    }
+    
+    public @Nullable Continuation<?> visitLambdaLiteralExpCS(@NonNull LambdaLiteralExpCS self) {
+        throw new UnsupportedOperationException("visitLambdaLiteralExpCS is not supported by " + getClass().getName());
     }
     
     public @Nullable Continuation<?> visitLetExpCS(@NonNull LetExpCS self) {

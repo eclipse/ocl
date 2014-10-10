@@ -216,6 +216,9 @@ CollectionLiteralPartCS returns CollectionLiteralPartCS:
 ConstructorPartCS returns ConstructorPartCS:
 	property=[pivot::Property|UnrestrictedName] '=' initExpression=ExpCS;
 
+LambdaLiteralExpCS returns LambdaLiteralExpCS:
+	'Lambda' '{' expressionCS=ExpCS '}';
+
 PrimitiveLiteralExpCS returns PrimitiveLiteralExpCS:
 	NumberLiteralExpCS
 	| StringLiteralExpCS
@@ -301,6 +304,7 @@ PrimaryExpCS returns ExpCS:
 | 	PrimitiveLiteralExpCS
 | 	TupleLiteralExpCS
 | 	CollectionLiteralExpCS
+| 	LambdaLiteralExpCS
 | 	TypeLiteralExpCS
 | 	NameExpCS;
 

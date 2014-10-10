@@ -95,6 +95,10 @@ public abstract class AbstractEssentialOCLCSLeft2RightVisitor
 		return visitPrimitiveLiteralExpCS(csElement);
 	}
 
+	public @Nullable Element visitLambdaLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LambdaLiteralExpCS csElement) {
+		return visitLiteralExpCS(csElement);
+	}
+
 	public @Nullable Element visitLetExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS csElement) {
 		return visitExpCS(csElement);
 	}

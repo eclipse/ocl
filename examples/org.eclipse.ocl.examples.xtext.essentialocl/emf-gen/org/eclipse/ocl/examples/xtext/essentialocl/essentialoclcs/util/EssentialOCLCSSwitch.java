@@ -265,6 +265,20 @@ public class EssentialOCLCSSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS:
+			{
+				LambdaLiteralExpCS lambdaLiteralExpCS = (LambdaLiteralExpCS)theEObject;
+				T result = caseLambdaLiteralExpCS(lambdaLiteralExpCS);
+				if (result == null) result = caseLiteralExpCS(lambdaLiteralExpCS);
+				if (result == null) result = caseExpCS(lambdaLiteralExpCS);
+				if (result == null) result = caseModelElementCS(lambdaLiteralExpCS);
+				if (result == null) result = casePivotableElementCS(lambdaLiteralExpCS);
+				if (result == null) result = caseElementCS(lambdaLiteralExpCS);
+				if (result == null) result = casePivotable(lambdaLiteralExpCS);
+				if (result == null) result = caseVisitableCS(lambdaLiteralExpCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case EssentialOCLCSPackage.LET_EXP_CS:
 			{
 				LetExpCS letExpCS = (LetExpCS)theEObject;
@@ -781,6 +795,22 @@ public class EssentialOCLCSSwitch<T>
 	 * @generated
 	 */
 	public T caseInvalidLiteralExpCS(InvalidLiteralExpCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Lambda Literal Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Lambda Literal Exp CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLambdaLiteralExpCS(LambdaLiteralExpCS object)
+	{
 		return null;
 	}
 

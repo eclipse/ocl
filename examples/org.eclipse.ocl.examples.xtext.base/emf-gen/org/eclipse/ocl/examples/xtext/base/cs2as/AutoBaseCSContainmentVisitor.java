@@ -134,7 +134,7 @@ public class AutoBaseCSContainmentVisitor
     }
     
     public @Nullable Continuation<?> visiting(@NonNull VisitableCS visitable) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("AutoBaseCSContainmentVisitor is not supported by \"" + getClass().getName() + "\"");
     }
     
     public @Nullable Continuation<?> visitAnnotationCS(@NonNull AnnotationCS self) {
@@ -361,7 +361,7 @@ public class AutoBaseCSContainmentVisitor
             result.setName(name);
         }
         //
-        // Package::nestedPackage
+        // Package::ownedPackages
         //
         final @Nullable /*@Thrown*/ List<PackageCS> ownedNestedPackage = self.getOwnedNestedPackage();
         assert ownedNestedPackage != null;

@@ -95,6 +95,10 @@ public abstract class AbstractEssentialOCLCSPreOrderVisitor
 		return visitPrimitiveLiteralExpCS(csElement);
 	}
 
+	public @Nullable Continuation<?> visitLambdaLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LambdaLiteralExpCS csElement) {
+		return visitLiteralExpCS(csElement);
+	}
+
 	public @Nullable Continuation<?> visitLetExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS csElement) {
 		return visitExpCS(csElement);
 	}

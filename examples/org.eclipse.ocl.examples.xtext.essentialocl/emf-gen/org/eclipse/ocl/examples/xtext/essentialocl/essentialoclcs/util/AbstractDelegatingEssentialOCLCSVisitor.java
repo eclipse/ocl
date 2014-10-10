@@ -88,6 +88,10 @@ public abstract class AbstractDelegatingEssentialOCLCSVisitor<R, C, D extends Es
 		return delegate.visitInvalidLiteralExpCS(object);
 	}
 
+	public @Nullable R visitLambdaLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LambdaLiteralExpCS object) {
+		return delegate.visitLambdaLiteralExpCS(object);
+	}
+
 	public @Nullable R visitLetExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS object) {
 		return delegate.visitLetExpCS(object);
 	}

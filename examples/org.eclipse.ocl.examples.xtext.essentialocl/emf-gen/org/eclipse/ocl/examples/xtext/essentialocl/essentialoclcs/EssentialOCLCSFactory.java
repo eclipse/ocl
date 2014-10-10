@@ -302,6 +302,15 @@ public interface EssentialOCLCSFactory
 	InvalidLiteralExpCS createInvalidLiteralExpCS();
 
 	/**
+	 * Returns a new object of class '<em>Lambda Literal Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Lambda Literal Exp CS</em>'.
+	 * @generated
+	 */
+	LambdaLiteralExpCS createLambdaLiteralExpCS();
+
+	/**
 	 * Returns a new object of class '<em>Null Literal Exp CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

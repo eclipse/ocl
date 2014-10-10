@@ -92,6 +92,10 @@ public abstract class AbstractExtendingEssentialOCLCSVisitor<R, C>
 		return visitPrimitiveLiteralExpCS(object);
 	}
 
+	public @Nullable R visitLambdaLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LambdaLiteralExpCS object) {
+		return visitLiteralExpCS(object);
+	}
+
 	public @Nullable R visitLetExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS object) {
 		return visitExpCS(object);
 	}

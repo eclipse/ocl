@@ -33,7 +33,6 @@ public class AutoOCLstdlibCSContainmentVisitor
 	extends NewEssentialOCLCSContainmentVisitor
 	implements OCLstdlibCSVisitor<Continuation<?>>
 {
-    
     protected final @NonNull CS2Pivot converter;
     protected final @NonNull IdResolver idResolver;
     

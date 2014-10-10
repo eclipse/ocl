@@ -35,7 +35,6 @@ public class AutoCompleteOCLCSContainmentVisitor
 	extends NewEssentialOCLCSContainmentVisitor
 	implements CompleteOCLCSVisitor<Continuation<?>>
 {
-    
     protected final @NonNull CS2Pivot converter;
     protected final @NonNull IdResolver idResolver;
     

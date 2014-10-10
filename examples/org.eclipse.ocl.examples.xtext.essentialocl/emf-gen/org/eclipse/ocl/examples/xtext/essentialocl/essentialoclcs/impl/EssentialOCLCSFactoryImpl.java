@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.*;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralExpCS;
@@ -119,6 +120,7 @@ public class EssentialOCLCSFactoryImpl
 			case EssentialOCLCSPackage.IF_EXP_CS: return createIfExpCS();
 			case EssentialOCLCSPackage.INFIX_EXP_CS: return createInfixExpCS();
 			case EssentialOCLCSPackage.INVALID_LITERAL_EXP_CS: return createInvalidLiteralExpCS();
+			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS: return createLambdaLiteralExpCS();
 			case EssentialOCLCSPackage.LET_EXP_CS: return createLetExpCS();
 			case EssentialOCLCSPackage.LET_VARIABLE_CS: return createLetVariableCS();
 			case EssentialOCLCSPackage.LITERAL_EXP_CS: return createLiteralExpCS();
@@ -495,6 +497,17 @@ public class EssentialOCLCSFactoryImpl
 	public InvalidLiteralExpCS createInvalidLiteralExpCS() {
 		InvalidLiteralExpCSImpl invalidLiteralExpCS = new InvalidLiteralExpCSImpl();
 		return invalidLiteralExpCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LambdaLiteralExpCS createLambdaLiteralExpCS()
+	{
+		LambdaLiteralExpCSImpl lambdaLiteralExpCS = new LambdaLiteralExpCSImpl();
+		return lambdaLiteralExpCS;
 	}
 
 	/**

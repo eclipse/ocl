@@ -156,6 +156,11 @@ public class EssentialOCLCSAdapterFactory
 				return createInvalidLiteralExpCSAdapter();
 			}
 			@Override
+			public Adapter caseLambdaLiteralExpCS(LambdaLiteralExpCS object)
+			{
+				return createLambdaLiteralExpCSAdapter();
+			}
+			@Override
 			public Adapter caseLetExpCS(LetExpCS object)
 			{
 				return createLetExpCSAdapter();
@@ -535,6 +540,21 @@ public class EssentialOCLCSAdapterFactory
 	 * @generated
 	 */
 	public Adapter createInvalidLiteralExpCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LambdaLiteralExpCS <em>Lambda Literal Exp CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LambdaLiteralExpCS
+	 * @generated
+	 */
+	public Adapter createLambdaLiteralExpCSAdapter()
+	{
 		return null;
 	}
 
