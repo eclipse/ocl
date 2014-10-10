@@ -330,15 +330,23 @@ public abstract class GenerateLPGUtils extends GenerateLPG
 		return sortedElements;
 	}
 
-	protected @NonNull List<Character> getSortedPunctChars(@NonNull Syntax syntax) {
+	protected @NonNull List<Character> getSortedPunctChars(@NonNull LexerGrammar lexerGrammar) {
+		Set<String> characterTerminals = new HashSet<String>();
+		for (CharacterRange characterRange: getSortedCharacterRanges(lexerGrammar)) {
+			for (String character: getCharacters(characterRange)) {
+				characterTerminals.add(character);
+			}
+		}
 		Set<Character> allElements = new HashSet<Character>();
-		for (TreeIterator<EObject> tit = syntax.eAllContents(); tit.hasNext(); ) {
+		for (TreeIterator<EObject> tit = lexerGrammar.eAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
 			if (eObject instanceof Keyword) {
 				String keywordValue = ((Keyword) eObject).getValue();
 				if (!keywordValue.matches("[a-zA-Z]+")) {
 					for (char c : keywordValue.toCharArray()) {
-						allElements.add(c);
+						if (!characterTerminals.contains(String.valueOf(c))) {
+							allElements.add(c);
+						}
 					}
 				}
 			}

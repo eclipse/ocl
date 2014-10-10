@@ -108,8 +108,7 @@ public class GenerateLPGXtend extends GenerateLPGUtils
 		var syntaxName = emitSyntaxName(syntax);
 		var punctValues = getSortedPunctValues(parserGrammar);
 		var terminalRules = getSortedTerminalRules(syntax);
-//		var alphaChars = getSortedAlphaChars(syntax);
-		var punctChars = getSortedPunctChars(syntax);
+		var punctChars = getSortedPunctChars(lexerGrammar);
 		var characterRanges = getSortedCharacterRanges(lexerGrammar);
 		'''
 		%options escape=$
