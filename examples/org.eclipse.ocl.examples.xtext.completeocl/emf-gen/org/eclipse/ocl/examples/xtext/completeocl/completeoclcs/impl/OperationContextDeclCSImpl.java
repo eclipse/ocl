@@ -41,12 +41,12 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.OperationContextDeclCSImpl#getOperation <em>Operation</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.OperationContextDeclCSImpl#getParameters <em>Parameters</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.OperationContextDeclCSImpl#getResult <em>Result</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.OperationContextDeclCSImpl#getPreconditions <em>Preconditions</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.OperationContextDeclCSImpl#getPostconditions <em>Postconditions</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.OperationContextDeclCSImpl#getBodies <em>Bodies</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.OperationContextDeclCSImpl#getReferredOperation <em>Referred Operation</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.OperationContextDeclCSImpl#getOwnedParameters <em>Owned Parameters</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.OperationContextDeclCSImpl#getOwnedResult <em>Owned Result</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.OperationContextDeclCSImpl#getOwnedPreconditions <em>Owned Preconditions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.OperationContextDeclCSImpl#getOwnedPostconditions <em>Owned Postconditions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.OperationContextDeclCSImpl#getOwnedBodies <em>Owned Bodies</em>}</li>
  * </ul>
  * </p>
  *
@@ -57,54 +57,54 @@ public class OperationContextDeclCSImpl
 		implements OperationContextDeclCS {
 
 	/**
-	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedParameters() <em>Owned Parameters</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getParameters()
+	 * @see #getOwnedParameters()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ParameterCS> parameters;
+	protected EList<ParameterCS> ownedParameters;
 
 	/**
-	 * The cached value of the '{@link #getResult() <em>Result</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedResult() <em>Owned Result</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getResult()
+	 * @see #getOwnedResult()
 	 * @generated
 	 * @ordered
 	 */
-	protected VariableCS result;
+	protected VariableCS ownedResult;
 
 	/**
-	 * The cached value of the '{@link #getPreconditions() <em>Preconditions</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedPreconditions() <em>Owned Preconditions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPreconditions()
+	 * @see #getOwnedPreconditions()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ConstraintCS> preconditions;
+	protected EList<ConstraintCS> ownedPreconditions;
 
 	/**
-	 * The cached value of the '{@link #getPostconditions() <em>Postconditions</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedPostconditions() <em>Owned Postconditions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPostconditions()
+	 * @see #getOwnedPostconditions()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ConstraintCS> postconditions;
+	protected EList<ConstraintCS> ownedPostconditions;
 
 	/**
-	 * The cached value of the '{@link #getBodies() <em>Bodies</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedBodies() <em>Owned Bodies</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBodies()
+	 * @see #getOwnedBodies()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ExpSpecificationCS> bodies;
+	protected EList<ExpSpecificationCS> ownedBodies;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -130,12 +130,12 @@ public class OperationContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ParameterCS> getParameters() {
-		if (parameters == null)
+	public EList<ParameterCS> getOwnedParameters() {
+		if (ownedParameters == null)
 		{
-			parameters = new EObjectContainmentEList<ParameterCS>(ParameterCS.class, this, CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__PARAMETERS);
+			ownedParameters = new EObjectContainmentEList<ParameterCS>(ParameterCS.class, this, CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_PARAMETERS);
 		}
-		return parameters;
+		return ownedParameters;
 	}
 
 	/**
@@ -143,15 +143,15 @@ public class OperationContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public VariableCS getResult() {
-		if (result == null) {
+	public VariableCS getOwnedResult() {
+		if (ownedResult == null) {
 			VariableCS resultVariable = EssentialOCLCSFactory.eINSTANCE
 				.createVariableCS();
 			resultVariable.setName(Environment.RESULT_VARIABLE_NAME);
 			// FIXME			resultVariable.setType(getType());
-			setResult(resultVariable);
+			setOwnedResult(resultVariable);
 		}
-		return result;
+		return ownedResult;
 	}
 
 	/**
@@ -159,13 +159,13 @@ public class OperationContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetResult(VariableCS newResult,
-			NotificationChain msgs) {
-		VariableCS oldResult = result;
-		result = newResult;
+	public NotificationChain basicSetOwnedResult(VariableCS newOwnedResult, NotificationChain msgs)
+	{
+		VariableCS oldOwnedResult = ownedResult;
+		ownedResult = newOwnedResult;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__RESULT, oldResult, newResult);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_RESULT, oldOwnedResult, newOwnedResult);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -176,19 +176,19 @@ public class OperationContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setResult(VariableCS newResult) {
-		if (newResult != result)
+	public void setOwnedResult(VariableCS newOwnedResult) {
+		if (newOwnedResult != ownedResult)
 		{
 			NotificationChain msgs = null;
-			if (result != null)
-				msgs = ((InternalEObject)result).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__RESULT, null, msgs);
-			if (newResult != null)
-				msgs = ((InternalEObject)newResult).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__RESULT, null, msgs);
-			msgs = basicSetResult(newResult, msgs);
+			if (ownedResult != null)
+				msgs = ((InternalEObject)ownedResult).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_RESULT, null, msgs);
+			if (newOwnedResult != null)
+				msgs = ((InternalEObject)newOwnedResult).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_RESULT, null, msgs);
+			msgs = basicSetOwnedResult(newOwnedResult, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__RESULT, newResult, newResult));
+			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_RESULT, newOwnedResult, newOwnedResult));
 	}
 
 	/**
@@ -196,12 +196,12 @@ public class OperationContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ConstraintCS> getPreconditions() {
-		if (preconditions == null)
+	public EList<ConstraintCS> getOwnedPreconditions() {
+		if (ownedPreconditions == null)
 		{
-			preconditions = new EObjectContainmentEList<ConstraintCS>(ConstraintCS.class, this, CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__PRECONDITIONS);
+			ownedPreconditions = new EObjectContainmentEList<ConstraintCS>(ConstraintCS.class, this, CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_PRECONDITIONS);
 		}
-		return preconditions;
+		return ownedPreconditions;
 	}
 
 	/**
@@ -209,12 +209,12 @@ public class OperationContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ConstraintCS> getPostconditions() {
-		if (postconditions == null)
+	public EList<ConstraintCS> getOwnedPostconditions() {
+		if (ownedPostconditions == null)
 		{
-			postconditions = new EObjectContainmentEList<ConstraintCS>(ConstraintCS.class, this, CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__POSTCONDITIONS);
+			ownedPostconditions = new EObjectContainmentEList<ConstraintCS>(ConstraintCS.class, this, CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_POSTCONDITIONS);
 		}
-		return postconditions;
+		return ownedPostconditions;
 	}
 
 	/**
@@ -222,12 +222,12 @@ public class OperationContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ExpSpecificationCS> getBodies() {
-		if (bodies == null)
+	public EList<ExpSpecificationCS> getOwnedBodies() {
+		if (ownedBodies == null)
 		{
-			bodies = new EObjectContainmentEList<ExpSpecificationCS>(ExpSpecificationCS.class, this, CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__BODIES);
+			ownedBodies = new EObjectContainmentEList<ExpSpecificationCS>(ExpSpecificationCS.class, this, CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_BODIES);
 		}
-		return bodies;
+		return ownedBodies;
 	}
 
 	/**
@@ -240,16 +240,16 @@ public class OperationContextDeclCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__PARAMETERS:
-				return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
-			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__RESULT:
-				return basicSetResult(null, msgs);
-			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__PRECONDITIONS:
-				return ((InternalEList<?>)getPreconditions()).basicRemove(otherEnd, msgs);
-			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__POSTCONDITIONS:
-				return ((InternalEList<?>)getPostconditions()).basicRemove(otherEnd, msgs);
-			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__BODIES:
-				return ((InternalEList<?>)getBodies()).basicRemove(otherEnd, msgs);
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_PARAMETERS:
+				return ((InternalEList<?>)getOwnedParameters()).basicRemove(otherEnd, msgs);
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_RESULT:
+				return basicSetOwnedResult(null, msgs);
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_PRECONDITIONS:
+				return ((InternalEList<?>)getOwnedPreconditions()).basicRemove(otherEnd, msgs);
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_POSTCONDITIONS:
+				return ((InternalEList<?>)getOwnedPostconditions()).basicRemove(otherEnd, msgs);
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_BODIES:
+				return ((InternalEList<?>)getOwnedBodies()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -263,18 +263,18 @@ public class OperationContextDeclCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OPERATION:
-				return getOperation();
-			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__PARAMETERS:
-				return getParameters();
-			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__RESULT:
-				return getResult();
-			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__PRECONDITIONS:
-				return getPreconditions();
-			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__POSTCONDITIONS:
-				return getPostconditions();
-			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__BODIES:
-				return getBodies();
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__REFERRED_OPERATION:
+				return getReferredOperation();
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_PARAMETERS:
+				return getOwnedParameters();
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_RESULT:
+				return getOwnedResult();
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_PRECONDITIONS:
+				return getOwnedPreconditions();
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_POSTCONDITIONS:
+				return getOwnedPostconditions();
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_BODIES:
+				return getOwnedBodies();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -289,24 +289,24 @@ public class OperationContextDeclCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__PARAMETERS:
-				getParameters().clear();
-				getParameters().addAll((Collection<? extends ParameterCS>)newValue);
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_PARAMETERS:
+				getOwnedParameters().clear();
+				getOwnedParameters().addAll((Collection<? extends ParameterCS>)newValue);
 				return;
-			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__RESULT:
-				setResult((VariableCS)newValue);
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_RESULT:
+				setOwnedResult((VariableCS)newValue);
 				return;
-			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__PRECONDITIONS:
-				getPreconditions().clear();
-				getPreconditions().addAll((Collection<? extends ConstraintCS>)newValue);
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_PRECONDITIONS:
+				getOwnedPreconditions().clear();
+				getOwnedPreconditions().addAll((Collection<? extends ConstraintCS>)newValue);
 				return;
-			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__POSTCONDITIONS:
-				getPostconditions().clear();
-				getPostconditions().addAll((Collection<? extends ConstraintCS>)newValue);
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_POSTCONDITIONS:
+				getOwnedPostconditions().clear();
+				getOwnedPostconditions().addAll((Collection<? extends ConstraintCS>)newValue);
 				return;
-			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__BODIES:
-				getBodies().clear();
-				getBodies().addAll((Collection<? extends ExpSpecificationCS>)newValue);
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_BODIES:
+				getOwnedBodies().clear();
+				getOwnedBodies().addAll((Collection<? extends ExpSpecificationCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -321,20 +321,20 @@ public class OperationContextDeclCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__PARAMETERS:
-				getParameters().clear();
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_PARAMETERS:
+				getOwnedParameters().clear();
 				return;
-			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__RESULT:
-				setResult((VariableCS)null);
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_RESULT:
+				setOwnedResult((VariableCS)null);
 				return;
-			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__PRECONDITIONS:
-				getPreconditions().clear();
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_PRECONDITIONS:
+				getOwnedPreconditions().clear();
 				return;
-			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__POSTCONDITIONS:
-				getPostconditions().clear();
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_POSTCONDITIONS:
+				getOwnedPostconditions().clear();
 				return;
-			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__BODIES:
-				getBodies().clear();
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_BODIES:
+				getOwnedBodies().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -349,18 +349,18 @@ public class OperationContextDeclCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OPERATION:
-				return getOperation() != null;
-			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__PARAMETERS:
-				return parameters != null && !parameters.isEmpty();
-			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__RESULT:
-				return result != null;
-			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__PRECONDITIONS:
-				return preconditions != null && !preconditions.isEmpty();
-			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__POSTCONDITIONS:
-				return postconditions != null && !postconditions.isEmpty();
-			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__BODIES:
-				return bodies != null && !bodies.isEmpty();
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__REFERRED_OPERATION:
+				return getReferredOperation() != null;
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_PARAMETERS:
+				return ownedParameters != null && !ownedParameters.isEmpty();
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_RESULT:
+				return ownedResult != null;
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_PRECONDITIONS:
+				return ownedPreconditions != null && !ownedPreconditions.isEmpty();
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_POSTCONDITIONS:
+				return ownedPostconditions != null && !ownedPostconditions.isEmpty();
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_BODIES:
+				return ownedBodies != null && !ownedBodies.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -380,10 +380,10 @@ public class OperationContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Operation getOperation() {
-		if (pathName == null) {
+	public Operation getReferredOperation() {
+		if (ownedPathName == null) {
 			return null;
 		}
-		return (Operation) pathName.getElement();
+		return (Operation) ownedPathName.getElement();
 	}
 } //OperationContextDeclCSImpl

@@ -25,12 +25,12 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getOperation <em>Operation</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getParameters <em>Parameters</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getResult <em>Result</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getPreconditions <em>Preconditions</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getPostconditions <em>Postconditions</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getBodies <em>Bodies</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getReferredOperation <em>Referred Operation</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getOwnedParameters <em>Owned Parameters</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getOwnedResult <em>Owned Result</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getOwnedPreconditions <em>Owned Preconditions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getOwnedPostconditions <em>Owned Postconditions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getOwnedBodies <em>Owned Bodies</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,22 +42,22 @@ public interface OperationContextDeclCS
 		extends FeatureContextDeclCS {
 
 	/**
-	 * Returns the value of the '<em><b>Operation</b></em>' reference.
+	 * Returns the value of the '<em><b>Referred Operation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Operation</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Operation</em>' reference.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getOperationContextDeclCS_Operation()
+	 * @return the value of the '<em>Referred Operation</em>' reference.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getOperationContextDeclCS_ReferredOperation()
 	 * @model resolveProxies="false" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
-	Operation getOperation();
+	Operation getReferredOperation();
 
 	/**
-	 * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Parameters</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.ParameterCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -65,41 +65,41 @@ public interface OperationContextDeclCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Parameters</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getOperationContextDeclCS_Parameters()
+	 * @return the value of the '<em>Owned Parameters</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getOperationContextDeclCS_OwnedParameters()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ParameterCS> getParameters();
+	EList<ParameterCS> getOwnedParameters();
 
 	/**
-	 * Returns the value of the '<em><b>Result</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Result</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Result</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Result</em>' containment reference.
-	 * @see #setResult(VariableCS)
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getOperationContextDeclCS_Result()
+	 * @return the value of the '<em>Owned Result</em>' containment reference.
+	 * @see #setOwnedResult(VariableCS)
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getOperationContextDeclCS_OwnedResult()
 	 * @model containment="true" transient="true" derived="true"
 	 * @generated
 	 */
-	VariableCS getResult();
+	VariableCS getOwnedResult();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getResult <em>Result</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getOwnedResult <em>Owned Result</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Result</em>' containment reference.
-	 * @see #getResult()
+	 * @param value the new value of the '<em>Owned Result</em>' containment reference.
+	 * @see #getOwnedResult()
 	 * @generated
 	 */
-	void setResult(VariableCS value);
+	void setOwnedResult(VariableCS value);
 
 	/**
-	 * Returns the value of the '<em><b>Preconditions</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Preconditions</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -107,15 +107,15 @@ public interface OperationContextDeclCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Preconditions</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getOperationContextDeclCS_Preconditions()
+	 * @return the value of the '<em>Owned Preconditions</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getOperationContextDeclCS_OwnedPreconditions()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ConstraintCS> getPreconditions();
+	EList<ConstraintCS> getOwnedPreconditions();
 
 	/**
-	 * Returns the value of the '<em><b>Postconditions</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Postconditions</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -123,15 +123,15 @@ public interface OperationContextDeclCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Postconditions</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getOperationContextDeclCS_Postconditions()
+	 * @return the value of the '<em>Owned Postconditions</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getOperationContextDeclCS_OwnedPostconditions()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ConstraintCS> getPostconditions();
+	EList<ConstraintCS> getOwnedPostconditions();
 
 	/**
-	 * Returns the value of the '<em><b>Bodies</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Bodies</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpSpecificationCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -139,11 +139,11 @@ public interface OperationContextDeclCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Bodies</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getOperationContextDeclCS_Bodies()
+	 * @return the value of the '<em>Owned Bodies</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getOperationContextDeclCS_OwnedBodies()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ExpSpecificationCS> getBodies();
+	EList<ExpSpecificationCS> getOwnedBodies();
 
 } // OperationContextDeclCS

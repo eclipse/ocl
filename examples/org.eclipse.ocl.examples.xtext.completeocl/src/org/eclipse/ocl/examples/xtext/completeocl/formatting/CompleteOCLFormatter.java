@@ -88,13 +88,13 @@ public class CompleteOCLFormatter extends AbstractEssentialOCLFormatter
 		    c.setNoSpace().before(a.getCommaKeyword_6_1_0());
 		    c.setNoSpace().before(a.getRightParenthesisKeyword_7());
 			setNoSpaceLineWrap(c, a.getColonKeyword_8());
-		    c.setLinewrap(2).after(a.getSpecificationAssignment_11());
+		    c.setLinewrap(2).after(a.getOwnedSpecificationAssignment_11());
 	    }
 	    {
 			DefPropertyCSElements a = f.getDefPropertyCSAccess();
 		    c.setLinewrap(2).before(a.getDefKeyword_1());
 			setNoSpaceLineWrap(c, a.getColonKeyword_3());
-		    c.setLinewrap(2).after(a.getSpecificationAssignment_8());
+		    c.setLinewrap(2).after(a.getOwnedSpecificationAssignment_8());
 	    }
 	    {
 	    }
@@ -115,14 +115,15 @@ public class CompleteOCLFormatter extends AbstractEssentialOCLFormatter
 			c.setLinewrap(2).before(a.getPostKeyword_7_1_0());
 			c.setLinewrap(2).before(a.getBodyKeyword_7_2_0());
 			setNoSpaceLineWrap(c, a.getColonKeyword_7_2_2());
-		    c.setLinewrap(2).after(a.getBodiesAssignment_7_2_3());
+		    c.setLinewrap(2).after(a.getOwnedBodiesAssignment_7_2_3());
 	    }
 	    {
 	    	PackageDeclarationCSElements a = f.getPackageDeclarationCSAccess();
 		    c.setLinewrap(2).before(a.getPackageKeyword_0());
-		    c.setLinewrap(2).before(a.getEndpackageKeyword_3());
-		    c.setLinewrap(2).after(a.getEndpackageKeyword_3());
-			c.setIndentation(a.getPackageKeyword_0(), a.getEndpackageKeyword_3());
+			c.setLinewrap(2).before(a.getInvKeyword_2_0());
+		    c.setLinewrap(2).before(a.getEndpackageKeyword_4());
+		    c.setLinewrap(2).after(a.getEndpackageKeyword_4());
+			c.setIndentation(a.getPackageKeyword_0(), a.getEndpackageKeyword_4());
 	    }
 	    {
 	    	PropertyContextDeclCSElements a = f.getPropertyContextDeclCSAccess();
@@ -131,7 +132,7 @@ public class CompleteOCLFormatter extends AbstractEssentialOCLFormatter
 			c.setLinewrap(2).before(a.getDeriveKeyword_4_0_0());
 			c.setLinewrap(2).before(a.getInitKeyword_4_1_0());
 			setNoSpaceLineWrap(c, a.getColonKeyword_4_1_1());
-		    c.setLinewrap(2).after(a.getDefaultExpressionsAssignment_4_1_2());
+		    c.setLinewrap(2).after(a.getOwnedDefaultExpressionsAssignment_4_1_2());
 //		    c.setLinewrap(2).before(a.getDeriveKeyword_0());
 	    }
 	    {	// comments

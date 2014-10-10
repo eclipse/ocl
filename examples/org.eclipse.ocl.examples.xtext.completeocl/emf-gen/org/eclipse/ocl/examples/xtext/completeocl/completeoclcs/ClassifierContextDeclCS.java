@@ -22,9 +22,9 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getSelfName <em>Self Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getClassifier <em>Classifier</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getInvariants <em>Invariants</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getDefinitions <em>Definitions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getReferredClassifier <em>Referred Classifier</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getOwnedInvariants <em>Owned Invariants</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getOwnedDefinitions <em>Owned Definitions</em>}</li>
  * </ul>
  * </p>
  *
@@ -62,22 +62,22 @@ public interface ClassifierContextDeclCS
 	void setSelfName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Classifier</b></em>' reference.
+	 * Returns the value of the '<em><b>Referred Classifier</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Classifier</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Classifier</em>' reference.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getClassifierContextDeclCS_Classifier()
+	 * @return the value of the '<em>Referred Classifier</em>' reference.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getClassifierContextDeclCS_ReferredClassifier()
 	 * @model resolveProxies="false" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
-	org.eclipse.ocl.examples.pivot.Class getClassifier();
+	org.eclipse.ocl.examples.pivot.Class getReferredClassifier();
 
 	/**
-	 * Returns the value of the '<em><b>Invariants</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Invariants</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -85,29 +85,29 @@ public interface ClassifierContextDeclCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Invariants</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getClassifierContextDeclCS_Invariants()
+	 * @return the value of the '<em>Owned Invariants</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getClassifierContextDeclCS_OwnedInvariants()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ConstraintCS> getInvariants();
+	EList<ConstraintCS> getOwnedInvariants();
 
 	/**
-	 * Returns the value of the '<em><b>Definitions</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Definitions</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS#getClassifierContextDecl <em>Classifier Context Decl</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS#getOwningClassifierContextDecl <em>Owning Classifier Context Decl</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Definitions</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Definitions</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getClassifierContextDeclCS_Definitions()
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS#getClassifierContextDecl
-	 * @model opposite="classifierContextDecl" containment="true"
+	 * @return the value of the '<em>Owned Definitions</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getClassifierContextDeclCS_OwnedDefinitions()
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS#getOwningClassifierContextDecl
+	 * @model opposite="owningClassifierContextDecl" containment="true"
 	 * @generated
 	 */
-	EList<DefCS> getDefinitions();
+	EList<DefCS> getOwnedDefinitions();
 
 } // ClassifierContextDeclCS

@@ -44,9 +44,9 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.util.CompleteOCL
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.CompleteOCLDocumentCSImpl#getOwnedImport <em>Owned Import</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.CompleteOCLDocumentCSImpl#getOwnedLibrary <em>Owned Library</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.CompleteOCLDocumentCSImpl#getPackages <em>Packages</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.CompleteOCLDocumentCSImpl#getContexts <em>Contexts</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.CompleteOCLDocumentCSImpl#getOwnedInclude <em>Owned Include</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.CompleteOCLDocumentCSImpl#getOwnedPackages <em>Owned Packages</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.CompleteOCLDocumentCSImpl#getOwnedContexts <em>Owned Contexts</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.CompleteOCLDocumentCSImpl#getOwnedIncludes <em>Owned Includes</em>}</li>
  * </ul>
  * </p>
  *
@@ -77,34 +77,34 @@ public class CompleteOCLDocumentCSImpl
 	protected EList<LibraryCS> ownedLibrary;
 
 	/**
-	 * The cached value of the '{@link #getPackages() <em>Packages</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedPackages() <em>Owned Packages</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPackages()
+	 * @see #getOwnedPackages()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<PackageDeclarationCS> packages;
+	protected EList<PackageDeclarationCS> ownedPackages;
 
 	/**
-	 * The cached value of the '{@link #getContexts() <em>Contexts</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedContexts() <em>Owned Contexts</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getContexts()
+	 * @see #getOwnedContexts()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ContextDeclCS> contexts;
+	protected EList<ContextDeclCS> ownedContexts;
 
 	/**
-	 * The cached value of the '{@link #getOwnedInclude() <em>Owned Include</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedIncludes() <em>Owned Includes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedInclude()
+	 * @see #getOwnedIncludes()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<IncludeCS> ownedInclude;
+	protected EList<IncludeCS> ownedIncludes;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -158,12 +158,12 @@ public class CompleteOCLDocumentCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<PackageDeclarationCS> getPackages() {
-		if (packages == null)
+	public EList<PackageDeclarationCS> getOwnedPackages() {
+		if (ownedPackages == null)
 		{
-			packages = new EObjectContainmentEList<PackageDeclarationCS>(PackageDeclarationCS.class, this, CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__PACKAGES);
+			ownedPackages = new EObjectContainmentEList<PackageDeclarationCS>(PackageDeclarationCS.class, this, CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_PACKAGES);
 		}
-		return packages;
+		return ownedPackages;
 	}
 
 	/**
@@ -171,12 +171,12 @@ public class CompleteOCLDocumentCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ContextDeclCS> getContexts() {
-		if (contexts == null)
+	public EList<ContextDeclCS> getOwnedContexts() {
+		if (ownedContexts == null)
 		{
-			contexts = new EObjectContainmentEList<ContextDeclCS>(ContextDeclCS.class, this, CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__CONTEXTS);
+			ownedContexts = new EObjectContainmentEList<ContextDeclCS>(ContextDeclCS.class, this, CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_CONTEXTS);
 		}
-		return contexts;
+		return ownedContexts;
 	}
 
 	/**
@@ -184,12 +184,12 @@ public class CompleteOCLDocumentCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<IncludeCS> getOwnedInclude() {
-		if (ownedInclude == null)
+	public EList<IncludeCS> getOwnedIncludes() {
+		if (ownedIncludes == null)
 		{
-			ownedInclude = new EObjectContainmentEList<IncludeCS>(IncludeCS.class, this, CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_INCLUDE);
+			ownedIncludes = new EObjectContainmentEList<IncludeCS>(IncludeCS.class, this, CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_INCLUDES);
 		}
-		return ownedInclude;
+		return ownedIncludes;
 	}
 
 	/**
@@ -206,12 +206,12 @@ public class CompleteOCLDocumentCSImpl
 				return ((InternalEList<?>)getOwnedImport()).basicRemove(otherEnd, msgs);
 			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_LIBRARY:
 				return ((InternalEList<?>)getOwnedLibrary()).basicRemove(otherEnd, msgs);
-			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__PACKAGES:
-				return ((InternalEList<?>)getPackages()).basicRemove(otherEnd, msgs);
-			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__CONTEXTS:
-				return ((InternalEList<?>)getContexts()).basicRemove(otherEnd, msgs);
-			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_INCLUDE:
-				return ((InternalEList<?>)getOwnedInclude()).basicRemove(otherEnd, msgs);
+			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_PACKAGES:
+				return ((InternalEList<?>)getOwnedPackages()).basicRemove(otherEnd, msgs);
+			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_CONTEXTS:
+				return ((InternalEList<?>)getOwnedContexts()).basicRemove(otherEnd, msgs);
+			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_INCLUDES:
+				return ((InternalEList<?>)getOwnedIncludes()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -229,12 +229,12 @@ public class CompleteOCLDocumentCSImpl
 				return getOwnedImport();
 			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_LIBRARY:
 				return getOwnedLibrary();
-			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__PACKAGES:
-				return getPackages();
-			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__CONTEXTS:
-				return getContexts();
-			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_INCLUDE:
-				return getOwnedInclude();
+			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_PACKAGES:
+				return getOwnedPackages();
+			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_CONTEXTS:
+				return getOwnedContexts();
+			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_INCLUDES:
+				return getOwnedIncludes();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -257,17 +257,17 @@ public class CompleteOCLDocumentCSImpl
 				getOwnedLibrary().clear();
 				getOwnedLibrary().addAll((Collection<? extends LibraryCS>)newValue);
 				return;
-			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__PACKAGES:
-				getPackages().clear();
-				getPackages().addAll((Collection<? extends PackageDeclarationCS>)newValue);
+			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_PACKAGES:
+				getOwnedPackages().clear();
+				getOwnedPackages().addAll((Collection<? extends PackageDeclarationCS>)newValue);
 				return;
-			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__CONTEXTS:
-				getContexts().clear();
-				getContexts().addAll((Collection<? extends ContextDeclCS>)newValue);
+			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_CONTEXTS:
+				getOwnedContexts().clear();
+				getOwnedContexts().addAll((Collection<? extends ContextDeclCS>)newValue);
 				return;
-			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_INCLUDE:
-				getOwnedInclude().clear();
-				getOwnedInclude().addAll((Collection<? extends IncludeCS>)newValue);
+			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_INCLUDES:
+				getOwnedIncludes().clear();
+				getOwnedIncludes().addAll((Collection<? extends IncludeCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -288,14 +288,14 @@ public class CompleteOCLDocumentCSImpl
 			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_LIBRARY:
 				getOwnedLibrary().clear();
 				return;
-			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__PACKAGES:
-				getPackages().clear();
+			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_PACKAGES:
+				getOwnedPackages().clear();
 				return;
-			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__CONTEXTS:
-				getContexts().clear();
+			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_CONTEXTS:
+				getOwnedContexts().clear();
 				return;
-			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_INCLUDE:
-				getOwnedInclude().clear();
+			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_INCLUDES:
+				getOwnedIncludes().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -314,12 +314,12 @@ public class CompleteOCLDocumentCSImpl
 				return ownedImport != null && !ownedImport.isEmpty();
 			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_LIBRARY:
 				return ownedLibrary != null && !ownedLibrary.isEmpty();
-			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__PACKAGES:
-				return packages != null && !packages.isEmpty();
-			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__CONTEXTS:
-				return contexts != null && !contexts.isEmpty();
-			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_INCLUDE:
-				return ownedInclude != null && !ownedInclude.isEmpty();
+			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_PACKAGES:
+				return ownedPackages != null && !ownedPackages.isEmpty();
+			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_CONTEXTS:
+				return ownedContexts != null && !ownedContexts.isEmpty();
+			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_INCLUDES:
+				return ownedIncludes != null && !ownedIncludes.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

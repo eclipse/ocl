@@ -240,7 +240,8 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIncludeCS_Namespace() {
+	public EReference getIncludeCS_ReferredNamespace()
+	{
 		return (EReference)includeCSEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -258,7 +259,8 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPackageDeclarationCS_Package() {
+	public EReference getPackageDeclarationCS_ReferredPackage()
+	{
 		return (EReference)packageDeclarationCSEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -267,8 +269,19 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPackageDeclarationCS_Contexts() {
+	public EReference getPackageDeclarationCS_OwnedContexts()
+	{
 		return (EReference)packageDeclarationCSEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPackageDeclarationCS_OwnedInvariants()
+	{
+		return (EReference)packageDeclarationCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -285,7 +298,8 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPathNameDeclCS_PathName() {
+	public EReference getPathNameDeclCS_OwnedPathName()
+	{
 		return (EReference)pathNameDeclCSEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -312,7 +326,8 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPropertyContextDeclCS_Property() {
+	public EReference getPropertyContextDeclCS_ReferredProperty()
+	{
 		return (EReference)propertyContextDeclCSEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -321,7 +336,8 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPropertyContextDeclCS_DefaultExpressions() {
+	public EReference getPropertyContextDeclCS_OwnedDefaultExpressions()
+	{
 		return (EReference)propertyContextDeclCSEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -330,7 +346,8 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPropertyContextDeclCS_DerivedInvariants() {
+	public EReference getPropertyContextDeclCS_OwnedDerivedInvariants()
+	{
 		return (EReference)propertyContextDeclCSEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -366,7 +383,8 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClassifierContextDeclCS_Classifier() {
+	public EReference getClassifierContextDeclCS_ReferredClassifier()
+	{
 		return (EReference)classifierContextDeclCSEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -375,7 +393,8 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClassifierContextDeclCS_Invariants() {
+	public EReference getClassifierContextDeclCS_OwnedInvariants()
+	{
 		return (EReference)classifierContextDeclCSEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -384,7 +403,8 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClassifierContextDeclCS_Definitions() {
+	public EReference getClassifierContextDeclCS_OwnedDefinitions()
+	{
 		return (EReference)classifierContextDeclCSEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -402,7 +422,8 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCompleteOCLDocumentCS_Packages() {
+	public EReference getCompleteOCLDocumentCS_OwnedPackages()
+	{
 		return (EReference)completeOCLDocumentCSEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -411,7 +432,8 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCompleteOCLDocumentCS_Contexts() {
+	public EReference getCompleteOCLDocumentCS_OwnedContexts()
+	{
 		return (EReference)completeOCLDocumentCSEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -420,7 +442,8 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCompleteOCLDocumentCS_OwnedInclude() {
+	public EReference getCompleteOCLDocumentCS_OwnedIncludes()
+	{
 		return (EReference)completeOCLDocumentCSEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -456,7 +479,8 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDefCS_ClassifierContextDecl() {
+	public EReference getDefCS_OwningClassifierContextDecl()
+	{
 		return (EReference)defCSEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -465,7 +489,8 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDefCS_Specification() {
+	public EReference getDefCS_OwnedSpecification()
+	{
 		return (EReference)defCSEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -492,7 +517,8 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDefOperationCS_Parameters() {
+	public EReference getDefOperationCS_OwnedParameters()
+	{
 		return (EReference)defOperationCSEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -519,7 +545,8 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOperationContextDeclCS_Operation() {
+	public EReference getOperationContextDeclCS_ReferredOperation()
+	{
 		return (EReference)operationContextDeclCSEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -528,7 +555,8 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOperationContextDeclCS_Parameters() {
+	public EReference getOperationContextDeclCS_OwnedParameters()
+	{
 		return (EReference)operationContextDeclCSEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -537,7 +565,8 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOperationContextDeclCS_Result() {
+	public EReference getOperationContextDeclCS_OwnedResult()
+	{
 		return (EReference)operationContextDeclCSEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -546,7 +575,8 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOperationContextDeclCS_Preconditions() {
+	public EReference getOperationContextDeclCS_OwnedPreconditions()
+	{
 		return (EReference)operationContextDeclCSEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -555,7 +585,8 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOperationContextDeclCS_Postconditions() {
+	public EReference getOperationContextDeclCS_OwnedPostconditions()
+	{
 		return (EReference)operationContextDeclCSEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -564,7 +595,8 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOperationContextDeclCS_Bodies() {
+	public EReference getOperationContextDeclCS_OwnedBodies()
+	{
 		return (EReference)operationContextDeclCSEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -589,24 +621,24 @@ public class CompleteOCLCSPackageImpl
 		// Create classes and their features
 		classifierContextDeclCSEClass = createEClass(CLASSIFIER_CONTEXT_DECL_CS);
 		createEAttribute(classifierContextDeclCSEClass, CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME);
-		createEReference(classifierContextDeclCSEClass, CLASSIFIER_CONTEXT_DECL_CS__CLASSIFIER);
-		createEReference(classifierContextDeclCSEClass, CLASSIFIER_CONTEXT_DECL_CS__INVARIANTS);
-		createEReference(classifierContextDeclCSEClass, CLASSIFIER_CONTEXT_DECL_CS__DEFINITIONS);
+		createEReference(classifierContextDeclCSEClass, CLASSIFIER_CONTEXT_DECL_CS__REFERRED_CLASSIFIER);
+		createEReference(classifierContextDeclCSEClass, CLASSIFIER_CONTEXT_DECL_CS__OWNED_INVARIANTS);
+		createEReference(classifierContextDeclCSEClass, CLASSIFIER_CONTEXT_DECL_CS__OWNED_DEFINITIONS);
 
 		completeOCLDocumentCSEClass = createEClass(COMPLETE_OCL_DOCUMENT_CS);
-		createEReference(completeOCLDocumentCSEClass, COMPLETE_OCL_DOCUMENT_CS__PACKAGES);
-		createEReference(completeOCLDocumentCSEClass, COMPLETE_OCL_DOCUMENT_CS__CONTEXTS);
-		createEReference(completeOCLDocumentCSEClass, COMPLETE_OCL_DOCUMENT_CS__OWNED_INCLUDE);
+		createEReference(completeOCLDocumentCSEClass, COMPLETE_OCL_DOCUMENT_CS__OWNED_PACKAGES);
+		createEReference(completeOCLDocumentCSEClass, COMPLETE_OCL_DOCUMENT_CS__OWNED_CONTEXTS);
+		createEReference(completeOCLDocumentCSEClass, COMPLETE_OCL_DOCUMENT_CS__OWNED_INCLUDES);
 
 		contextDeclCSEClass = createEClass(CONTEXT_DECL_CS);
 
 		defCSEClass = createEClass(DEF_CS);
-		createEReference(defCSEClass, DEF_CS__CLASSIFIER_CONTEXT_DECL);
-		createEReference(defCSEClass, DEF_CS__SPECIFICATION);
+		createEReference(defCSEClass, DEF_CS__OWNING_CLASSIFIER_CONTEXT_DECL);
+		createEReference(defCSEClass, DEF_CS__OWNED_SPECIFICATION);
 		createEAttribute(defCSEClass, DEF_CS__STATIC);
 
 		defOperationCSEClass = createEClass(DEF_OPERATION_CS);
-		createEReference(defOperationCSEClass, DEF_OPERATION_CS__PARAMETERS);
+		createEReference(defOperationCSEClass, DEF_OPERATION_CS__OWNED_PARAMETERS);
 
 		defPropertyCSEClass = createEClass(DEF_PROPERTY_CS);
 
@@ -615,30 +647,31 @@ public class CompleteOCLCSPackageImpl
 		createEReference(featureContextDeclCSEClass, FEATURE_CONTEXT_DECL_CS__OWNED_TYPE);
 
 		includeCSEClass = createEClass(INCLUDE_CS);
-		createEReference(includeCSEClass, INCLUDE_CS__NAMESPACE);
+		createEReference(includeCSEClass, INCLUDE_CS__REFERRED_NAMESPACE);
 
 		oclMessageArgCSEClass = createEClass(OCL_MESSAGE_ARG_CS);
 		createEReference(oclMessageArgCSEClass, OCL_MESSAGE_ARG_CS__TYPE);
 
 		operationContextDeclCSEClass = createEClass(OPERATION_CONTEXT_DECL_CS);
-		createEReference(operationContextDeclCSEClass, OPERATION_CONTEXT_DECL_CS__OPERATION);
-		createEReference(operationContextDeclCSEClass, OPERATION_CONTEXT_DECL_CS__PARAMETERS);
-		createEReference(operationContextDeclCSEClass, OPERATION_CONTEXT_DECL_CS__RESULT);
-		createEReference(operationContextDeclCSEClass, OPERATION_CONTEXT_DECL_CS__PRECONDITIONS);
-		createEReference(operationContextDeclCSEClass, OPERATION_CONTEXT_DECL_CS__POSTCONDITIONS);
-		createEReference(operationContextDeclCSEClass, OPERATION_CONTEXT_DECL_CS__BODIES);
+		createEReference(operationContextDeclCSEClass, OPERATION_CONTEXT_DECL_CS__REFERRED_OPERATION);
+		createEReference(operationContextDeclCSEClass, OPERATION_CONTEXT_DECL_CS__OWNED_PARAMETERS);
+		createEReference(operationContextDeclCSEClass, OPERATION_CONTEXT_DECL_CS__OWNED_RESULT);
+		createEReference(operationContextDeclCSEClass, OPERATION_CONTEXT_DECL_CS__OWNED_PRECONDITIONS);
+		createEReference(operationContextDeclCSEClass, OPERATION_CONTEXT_DECL_CS__OWNED_POSTCONDITIONS);
+		createEReference(operationContextDeclCSEClass, OPERATION_CONTEXT_DECL_CS__OWNED_BODIES);
 
 		packageDeclarationCSEClass = createEClass(PACKAGE_DECLARATION_CS);
-		createEReference(packageDeclarationCSEClass, PACKAGE_DECLARATION_CS__PACKAGE);
-		createEReference(packageDeclarationCSEClass, PACKAGE_DECLARATION_CS__CONTEXTS);
+		createEReference(packageDeclarationCSEClass, PACKAGE_DECLARATION_CS__REFERRED_PACKAGE);
+		createEReference(packageDeclarationCSEClass, PACKAGE_DECLARATION_CS__OWNED_CONTEXTS);
+		createEReference(packageDeclarationCSEClass, PACKAGE_DECLARATION_CS__OWNED_INVARIANTS);
 
 		pathNameDeclCSEClass = createEClass(PATH_NAME_DECL_CS);
-		createEReference(pathNameDeclCSEClass, PATH_NAME_DECL_CS__PATH_NAME);
+		createEReference(pathNameDeclCSEClass, PATH_NAME_DECL_CS__OWNED_PATH_NAME);
 
 		propertyContextDeclCSEClass = createEClass(PROPERTY_CONTEXT_DECL_CS);
-		createEReference(propertyContextDeclCSEClass, PROPERTY_CONTEXT_DECL_CS__PROPERTY);
-		createEReference(propertyContextDeclCSEClass, PROPERTY_CONTEXT_DECL_CS__DEFAULT_EXPRESSIONS);
-		createEReference(propertyContextDeclCSEClass, PROPERTY_CONTEXT_DECL_CS__DERIVED_INVARIANTS);
+		createEReference(propertyContextDeclCSEClass, PROPERTY_CONTEXT_DECL_CS__REFERRED_PROPERTY);
+		createEReference(propertyContextDeclCSEClass, PROPERTY_CONTEXT_DECL_CS__OWNED_DEFAULT_EXPRESSIONS);
+		createEReference(propertyContextDeclCSEClass, PROPERTY_CONTEXT_DECL_CS__OWNED_DERIVED_INVARIANTS);
 	}
 
 	/**
@@ -693,24 +726,24 @@ public class CompleteOCLCSPackageImpl
 		// Initialize classes and features; add operations and parameters
 		initEClass(classifierContextDeclCSEClass, ClassifierContextDeclCS.class, "ClassifierContextDeclCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getClassifierContextDeclCS_SelfName(), ecorePackage.getEString(), "selfName", null, 0, 1, ClassifierContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getClassifierContextDeclCS_Classifier(), thePivotPackage.getClass_(), null, "classifier", null, 0, 1, ClassifierContextDeclCS.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getClassifierContextDeclCS_Invariants(), theBaseCSPackage.getConstraintCS(), null, "invariants", null, 0, -1, ClassifierContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getClassifierContextDeclCS_Definitions(), this.getDefCS(), this.getDefCS_ClassifierContextDecl(), "definitions", null, 0, -1, ClassifierContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClassifierContextDeclCS_ReferredClassifier(), thePivotPackage.getClass_(), null, "referredClassifier", null, 0, 1, ClassifierContextDeclCS.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getClassifierContextDeclCS_OwnedInvariants(), theBaseCSPackage.getConstraintCS(), null, "ownedInvariants", null, 0, -1, ClassifierContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClassifierContextDeclCS_OwnedDefinitions(), this.getDefCS(), this.getDefCS_OwningClassifierContextDecl(), "ownedDefinitions", null, 0, -1, ClassifierContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(completeOCLDocumentCSEClass, CompleteOCLDocumentCS.class, "CompleteOCLDocumentCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCompleteOCLDocumentCS_Packages(), this.getPackageDeclarationCS(), null, "packages", null, 0, -1, CompleteOCLDocumentCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCompleteOCLDocumentCS_Contexts(), this.getContextDeclCS(), null, "contexts", null, 0, -1, CompleteOCLDocumentCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCompleteOCLDocumentCS_OwnedInclude(), this.getIncludeCS(), null, "ownedInclude", null, 0, -1, CompleteOCLDocumentCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCompleteOCLDocumentCS_OwnedPackages(), this.getPackageDeclarationCS(), null, "ownedPackages", null, 0, -1, CompleteOCLDocumentCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCompleteOCLDocumentCS_OwnedContexts(), this.getContextDeclCS(), null, "ownedContexts", null, 0, -1, CompleteOCLDocumentCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCompleteOCLDocumentCS_OwnedIncludes(), this.getIncludeCS(), null, "ownedIncludes", null, 0, -1, CompleteOCLDocumentCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(contextDeclCSEClass, ContextDeclCS.class, "ContextDeclCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(defCSEClass, DefCS.class, "DefCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDefCS_ClassifierContextDecl(), this.getClassifierContextDeclCS(), this.getClassifierContextDeclCS_Definitions(), "classifierContextDecl", null, 0, 1, DefCS.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDefCS_Specification(), theEssentialOCLCSPackage.getExpSpecificationCS(), null, "specification", null, 0, 1, DefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDefCS_OwningClassifierContextDecl(), this.getClassifierContextDeclCS(), this.getClassifierContextDeclCS_OwnedDefinitions(), "owningClassifierContextDecl", null, 0, 1, DefCS.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDefCS_OwnedSpecification(), theEssentialOCLCSPackage.getExpSpecificationCS(), null, "ownedSpecification", null, 0, 1, DefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDefCS_Static(), ecorePackage.getEBoolean(), "static", null, 0, 1, DefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(defOperationCSEClass, DefOperationCS.class, "DefOperationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDefOperationCS_Parameters(), theBaseCSPackage.getParameterCS(), null, "parameters", null, 0, -1, DefOperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDefOperationCS_OwnedParameters(), theBaseCSPackage.getParameterCS(), null, "ownedParameters", null, 0, -1, DefOperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(defPropertyCSEClass, DefPropertyCS.class, "DefPropertyCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -719,30 +752,31 @@ public class CompleteOCLCSPackageImpl
 		initEReference(getFeatureContextDeclCS_OwnedType(), theBaseCSPackage.getTypedRefCS(), null, "ownedType", null, 0, 1, FeatureContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(includeCSEClass, IncludeCS.class, "IncludeCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getIncludeCS_Namespace(), thePivotPackage.getNamespace(), null, "namespace", null, 0, 1, IncludeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIncludeCS_ReferredNamespace(), thePivotPackage.getNamespace(), null, "referredNamespace", null, 0, 1, IncludeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(oclMessageArgCSEClass, OCLMessageArgCS.class, "OCLMessageArgCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOCLMessageArgCS_Type(), theBaseCSPackage.getTypeCS(), null, "type", null, 0, 1, OCLMessageArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(operationContextDeclCSEClass, OperationContextDeclCS.class, "OperationContextDeclCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getOperationContextDeclCS_Operation(), thePivotPackage.getOperation(), null, "operation", null, 0, 1, OperationContextDeclCS.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getOperationContextDeclCS_Parameters(), theBaseCSPackage.getParameterCS(), null, "parameters", null, 0, -1, OperationContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getOperationContextDeclCS_Result(), theEssentialOCLCSPackage.getVariableCS(), null, "result", null, 0, 1, OperationContextDeclCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getOperationContextDeclCS_Preconditions(), theBaseCSPackage.getConstraintCS(), null, "preconditions", null, 0, -1, OperationContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getOperationContextDeclCS_Postconditions(), theBaseCSPackage.getConstraintCS(), null, "postconditions", null, 0, -1, OperationContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getOperationContextDeclCS_Bodies(), theEssentialOCLCSPackage.getExpSpecificationCS(), null, "bodies", null, 0, -1, OperationContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOperationContextDeclCS_ReferredOperation(), thePivotPackage.getOperation(), null, "referredOperation", null, 0, 1, OperationContextDeclCS.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getOperationContextDeclCS_OwnedParameters(), theBaseCSPackage.getParameterCS(), null, "ownedParameters", null, 0, -1, OperationContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOperationContextDeclCS_OwnedResult(), theEssentialOCLCSPackage.getVariableCS(), null, "ownedResult", null, 0, 1, OperationContextDeclCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getOperationContextDeclCS_OwnedPreconditions(), theBaseCSPackage.getConstraintCS(), null, "ownedPreconditions", null, 0, -1, OperationContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOperationContextDeclCS_OwnedPostconditions(), theBaseCSPackage.getConstraintCS(), null, "ownedPostconditions", null, 0, -1, OperationContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOperationContextDeclCS_OwnedBodies(), theEssentialOCLCSPackage.getExpSpecificationCS(), null, "ownedBodies", null, 0, -1, OperationContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(packageDeclarationCSEClass, PackageDeclarationCS.class, "PackageDeclarationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPackageDeclarationCS_Package(), thePivotPackage.getPackage(), null, "package", null, 0, 1, PackageDeclarationCS.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getPackageDeclarationCS_Contexts(), this.getContextDeclCS(), null, "contexts", null, 0, -1, PackageDeclarationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPackageDeclarationCS_ReferredPackage(), thePivotPackage.getPackage(), null, "referredPackage", null, 0, 1, PackageDeclarationCS.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getPackageDeclarationCS_OwnedContexts(), this.getContextDeclCS(), null, "ownedContexts", null, 0, -1, PackageDeclarationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPackageDeclarationCS_OwnedInvariants(), theBaseCSPackage.getConstraintCS(), null, "ownedInvariants", null, 0, -1, PackageDeclarationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(pathNameDeclCSEClass, PathNameDeclCS.class, "PathNameDeclCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPathNameDeclCS_PathName(), theBaseCSPackage.getPathNameCS(), null, "pathName", null, 0, 1, PathNameDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPathNameDeclCS_OwnedPathName(), theBaseCSPackage.getPathNameCS(), null, "ownedPathName", null, 0, 1, PathNameDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(propertyContextDeclCSEClass, PropertyContextDeclCS.class, "PropertyContextDeclCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPropertyContextDeclCS_Property(), thePivotPackage.getProperty(), null, "property", null, 0, 1, PropertyContextDeclCS.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getPropertyContextDeclCS_DefaultExpressions(), theEssentialOCLCSPackage.getExpSpecificationCS(), null, "defaultExpressions", null, 0, -1, PropertyContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPropertyContextDeclCS_DerivedInvariants(), theBaseCSPackage.getConstraintCS(), null, "derivedInvariants", null, 0, -1, PropertyContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPropertyContextDeclCS_ReferredProperty(), thePivotPackage.getProperty(), null, "referredProperty", null, 0, 1, PropertyContextDeclCS.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getPropertyContextDeclCS_OwnedDefaultExpressions(), theEssentialOCLCSPackage.getExpSpecificationCS(), null, "ownedDefaultExpressions", null, 0, -1, PropertyContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPropertyContextDeclCS_OwnedDerivedInvariants(), theBaseCSPackage.getConstraintCS(), null, "ownedDerivedInvariants", null, 0, -1, PropertyContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

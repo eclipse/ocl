@@ -29,9 +29,9 @@ public class PropertyContextCSAttribution extends AbstractAttribution
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		PropertyContextDeclCS targetElement = (PropertyContextDeclCS)target;
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
-		if ((containmentFeature == CompleteOCLCSPackage.Literals.PROPERTY_CONTEXT_DECL_CS__DEFAULT_EXPRESSIONS)
-		 || (containmentFeature == CompleteOCLCSPackage.Literals.PROPERTY_CONTEXT_DECL_CS__DERIVED_INVARIANTS)) {
-			Property property = targetElement.getProperty();
+		if ((containmentFeature == CompleteOCLCSPackage.Literals.PROPERTY_CONTEXT_DECL_CS__OWNED_DEFAULT_EXPRESSIONS)
+		 || (containmentFeature == CompleteOCLCSPackage.Literals.PROPERTY_CONTEXT_DECL_CS__OWNED_DERIVED_INVARIANTS)) {
+			Property property = targetElement.getReferredProperty();
 			if (property != null) {
 				org.eclipse.ocl.examples.pivot.Class type = property.getOwningClass();
 				if (type != null) {

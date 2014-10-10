@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
@@ -36,8 +37,9 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.util.CompleteOCL
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.PackageDeclarationCSImpl#getPackage <em>Package</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.PackageDeclarationCSImpl#getContexts <em>Contexts</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.PackageDeclarationCSImpl#getReferredPackage <em>Referred Package</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.PackageDeclarationCSImpl#getOwnedContexts <em>Owned Contexts</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.PackageDeclarationCSImpl#getOwnedInvariants <em>Owned Invariants</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,15 +50,23 @@ public class PackageDeclarationCSImpl
 		implements PackageDeclarationCS {
 
 	/**
-	 * The cached value of the '{@link #getContexts() <em>Contexts</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedContexts() <em>Owned Contexts</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getContexts()
+	 * @see #getOwnedContexts()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ContextDeclCS> contexts;
-
+	protected EList<ContextDeclCS> ownedContexts;
+	/**
+	 * The cached value of the '{@link #getOwnedInvariants() <em>Owned Invariants</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedInvariants()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ConstraintCS> ownedInvariants;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -81,12 +91,26 @@ public class PackageDeclarationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ContextDeclCS> getContexts() {
-		if (contexts == null)
+	public EList<ContextDeclCS> getOwnedContexts() {
+		if (ownedContexts == null)
 		{
-			contexts = new EObjectContainmentEList<ContextDeclCS>(ContextDeclCS.class, this, CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__CONTEXTS);
+			ownedContexts = new EObjectContainmentEList<ContextDeclCS>(ContextDeclCS.class, this, CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__OWNED_CONTEXTS);
 		}
-		return contexts;
+		return ownedContexts;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ConstraintCS> getOwnedInvariants()
+	{
+		if (ownedInvariants == null)
+		{
+			ownedInvariants = new EObjectContainmentEList<ConstraintCS>(ConstraintCS.class, this, CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__OWNED_INVARIANTS);
+		}
+		return ownedInvariants;
 	}
 
 	/**
@@ -99,8 +123,10 @@ public class PackageDeclarationCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__CONTEXTS:
-				return ((InternalEList<?>)getContexts()).basicRemove(otherEnd, msgs);
+			case CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__OWNED_CONTEXTS:
+				return ((InternalEList<?>)getOwnedContexts()).basicRemove(otherEnd, msgs);
+			case CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__OWNED_INVARIANTS:
+				return ((InternalEList<?>)getOwnedInvariants()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -114,10 +140,12 @@ public class PackageDeclarationCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__PACKAGE:
-				return getPackage();
-			case CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__CONTEXTS:
-				return getContexts();
+			case CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__REFERRED_PACKAGE:
+				return getReferredPackage();
+			case CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__OWNED_CONTEXTS:
+				return getOwnedContexts();
+			case CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__OWNED_INVARIANTS:
+				return getOwnedInvariants();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -132,9 +160,13 @@ public class PackageDeclarationCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__CONTEXTS:
-				getContexts().clear();
-				getContexts().addAll((Collection<? extends ContextDeclCS>)newValue);
+			case CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__OWNED_CONTEXTS:
+				getOwnedContexts().clear();
+				getOwnedContexts().addAll((Collection<? extends ContextDeclCS>)newValue);
+				return;
+			case CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__OWNED_INVARIANTS:
+				getOwnedInvariants().clear();
+				getOwnedInvariants().addAll((Collection<? extends ConstraintCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -149,8 +181,11 @@ public class PackageDeclarationCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__CONTEXTS:
-				getContexts().clear();
+			case CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__OWNED_CONTEXTS:
+				getOwnedContexts().clear();
+				return;
+			case CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__OWNED_INVARIANTS:
+				getOwnedInvariants().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -165,10 +200,12 @@ public class PackageDeclarationCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__PACKAGE:
-				return getPackage() != null;
-			case CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__CONTEXTS:
-				return contexts != null && !contexts.isEmpty();
+			case CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__REFERRED_PACKAGE:
+				return getReferredPackage() != null;
+			case CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__OWNED_CONTEXTS:
+				return ownedContexts != null && !ownedContexts.isEmpty();
+			case CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__OWNED_INVARIANTS:
+				return ownedInvariants != null && !ownedInvariants.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -188,13 +225,13 @@ public class PackageDeclarationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public org.eclipse.ocl.examples.pivot.Package getPackage() {
-		PathNameCS pathName2 = pathName;
-		if (pathName2 == null) {
+	public org.eclipse.ocl.examples.pivot.Package getReferredPackage() {
+		PathNameCS ownedPathName2 = ownedPathName;
+		if (ownedPathName2 == null) {
 			return null;
 		}
-		CS2Pivot.setElementType(pathName2, PivotPackage.Literals.PACKAGE, this,
+		CS2Pivot.setElementType(ownedPathName2, PivotPackage.Literals.PACKAGE, this,
 			null);
-		return (org.eclipse.ocl.examples.pivot.Package) pathName2.getElement();
+		return (org.eclipse.ocl.examples.pivot.Package) ownedPathName2.getElement();
 	}
 } //PackageDeclarationCSImpl

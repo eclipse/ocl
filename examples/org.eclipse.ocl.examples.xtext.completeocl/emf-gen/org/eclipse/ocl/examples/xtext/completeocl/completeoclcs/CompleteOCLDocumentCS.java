@@ -22,9 +22,9 @@ import org.eclipse.ocl.examples.xtext.base.basecs.RootCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLDocumentCS#getPackages <em>Packages</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLDocumentCS#getContexts <em>Contexts</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLDocumentCS#getOwnedInclude <em>Owned Include</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLDocumentCS#getOwnedPackages <em>Owned Packages</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLDocumentCS#getOwnedContexts <em>Owned Contexts</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLDocumentCS#getOwnedIncludes <em>Owned Includes</em>}</li>
  * </ul>
  * </p>
  *
@@ -36,7 +36,7 @@ public interface CompleteOCLDocumentCS
 		extends NamespaceCS, RootCS {
 
 	/**
-	 * Returns the value of the '<em><b>Packages</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Packages</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PackageDeclarationCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -44,15 +44,15 @@ public interface CompleteOCLDocumentCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Packages</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getCompleteOCLDocumentCS_Packages()
+	 * @return the value of the '<em>Owned Packages</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getCompleteOCLDocumentCS_OwnedPackages()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<PackageDeclarationCS> getPackages();
+	EList<PackageDeclarationCS> getOwnedPackages();
 
 	/**
-	 * Returns the value of the '<em><b>Contexts</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Contexts</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ContextDeclCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -60,15 +60,15 @@ public interface CompleteOCLDocumentCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Contexts</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getCompleteOCLDocumentCS_Contexts()
+	 * @return the value of the '<em>Owned Contexts</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getCompleteOCLDocumentCS_OwnedContexts()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ContextDeclCS> getContexts();
+	EList<ContextDeclCS> getOwnedContexts();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Include</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Includes</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.IncludeCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -76,11 +76,11 @@ public interface CompleteOCLDocumentCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Include</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getCompleteOCLDocumentCS_OwnedInclude()
+	 * @return the value of the '<em>Owned Includes</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getCompleteOCLDocumentCS_OwnedIncludes()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<IncludeCS> getOwnedInclude();
+	EList<IncludeCS> getOwnedIncludes();
 
 } // DocumentCS

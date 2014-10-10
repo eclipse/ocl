@@ -21,7 +21,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ParameterCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefOperationCS#getParameters <em>Parameters</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefOperationCS#getOwnedParameters <em>Owned Parameters</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,7 +33,7 @@ public interface DefOperationCS
 		extends DefCS {
 
 	/**
-	 * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Parameters</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.ParameterCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -41,11 +41,11 @@ public interface DefOperationCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Parameters</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getDefOperationCS_Parameters()
+	 * @return the value of the '<em>Owned Parameters</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getDefOperationCS_OwnedParameters()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ParameterCS> getParameters();
+	EList<ParameterCS> getOwnedParameters();
 
 } // DefOperationCS

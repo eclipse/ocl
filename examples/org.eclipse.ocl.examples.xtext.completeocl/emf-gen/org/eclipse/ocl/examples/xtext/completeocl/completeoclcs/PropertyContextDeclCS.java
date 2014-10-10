@@ -23,9 +23,9 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpSpecificati
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PropertyContextDeclCS#getProperty <em>Property</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PropertyContextDeclCS#getDefaultExpressions <em>Default Expressions</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PropertyContextDeclCS#getDerivedInvariants <em>Derived Invariants</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PropertyContextDeclCS#getReferredProperty <em>Referred Property</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PropertyContextDeclCS#getOwnedDefaultExpressions <em>Owned Default Expressions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PropertyContextDeclCS#getOwnedDerivedInvariants <em>Owned Derived Invariants</em>}</li>
  * </ul>
  * </p>
  *
@@ -37,22 +37,22 @@ public interface PropertyContextDeclCS
 		extends FeatureContextDeclCS {
 
 	/**
-	 * Returns the value of the '<em><b>Property</b></em>' reference.
+	 * Returns the value of the '<em><b>Referred Property</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Property</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Property</em>' reference.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getPropertyContextDeclCS_Property()
+	 * @return the value of the '<em>Referred Property</em>' reference.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getPropertyContextDeclCS_ReferredProperty()
 	 * @model resolveProxies="false" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
-	Property getProperty();
+	Property getReferredProperty();
 
 	/**
-	 * Returns the value of the '<em><b>Default Expressions</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Default Expressions</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpSpecificationCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -60,15 +60,15 @@ public interface PropertyContextDeclCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Default Expressions</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getPropertyContextDeclCS_DefaultExpressions()
+	 * @return the value of the '<em>Owned Default Expressions</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getPropertyContextDeclCS_OwnedDefaultExpressions()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ExpSpecificationCS> getDefaultExpressions();
+	EList<ExpSpecificationCS> getOwnedDefaultExpressions();
 
 	/**
-	 * Returns the value of the '<em><b>Derived Invariants</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Derived Invariants</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -76,11 +76,11 @@ public interface PropertyContextDeclCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Derived Invariants</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getPropertyContextDeclCS_DerivedInvariants()
+	 * @return the value of the '<em>Owned Derived Invariants</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getPropertyContextDeclCS_OwnedDerivedInvariants()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ConstraintCS> getDerivedInvariants();
+	EList<ConstraintCS> getOwnedDerivedInvariants();
 
 } // PropertyContextDeclCS

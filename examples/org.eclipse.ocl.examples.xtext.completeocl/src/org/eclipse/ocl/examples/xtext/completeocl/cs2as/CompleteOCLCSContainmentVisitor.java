@@ -270,7 +270,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 			contextPackage = context.refreshModelElement(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, csElement);
 			String newName = modelPackage.getName();
 			if (csElement != null) {
-				List<PathElementCS> newPath = csElement.getPathName().getPath();
+				List<PathElementCS> newPath = csElement.getOwnedPathName().getPath();
 				PathElementCS lastPathElement = newPath.get(newPath.size() - 1);
 				Element asElement = lastPathElement.getPivot();
 				if ((asElement instanceof Nameable) && !asElement.eIsProxy()) {
@@ -358,11 +358,11 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 
 	@Override
 	public Continuation<?> visitClassifierContextDeclCS(@NonNull ClassifierContextDeclCS csElement) {
-		org.eclipse.ocl.examples.pivot.Class modelClassifier = csElement.getClassifier();
+		org.eclipse.ocl.examples.pivot.Class modelClassifier = csElement.getReferredClassifier();
 		if (modelClassifier != null) {
 			Type contextClassifier = refreshContextType(modelClassifier, csElement);
 			if (contextClassifier != null) {
-				for (ConstraintCS csInvariant : csElement.getInvariants()) {
+				for (ConstraintCS csInvariant : csElement.getOwnedInvariants()) {
 					Constraint constraint = PivotUtil.getPivot(Constraint.class, csInvariant);
 					if (constraint != null) {
 						List<Element> constrainedElements = constraint.getConstrainedElement();
@@ -383,8 +383,8 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 
 	@Override
 	public Continuation<?> visitCompleteOCLDocumentCS(@NonNull CompleteOCLDocumentCS csElement) {
-		for (IncludeCS csInclude : csElement.getOwnedInclude()) {
-			csInclude.getNamespace();					// Resolve the proxy to perform the import.
+		for (IncludeCS csInclude : csElement.getOwnedIncludes()) {
+			csInclude.getReferredNamespace();					// Resolve the proxy to perform the import.
 		}
 		@NonNull Model contextRoot = refreshRoot(Model.class, PivotPackage.Literals.MODEL, csElement);
 		List<Model> modelRoots = new ArrayList<Model>();
@@ -402,13 +402,13 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 	@Override
 	public Continuation<?> visitDefOperationCS(@NonNull DefOperationCS csElement) {
 		@NonNull Operation contextOperation = refreshNamedElement(Operation.class, PivotPackage.Literals.OPERATION, csElement);
-		ClassifierContextDeclCS csClassifierContextDecl = csElement.getClassifierContextDecl();
-		org.eclipse.ocl.examples.pivot.Class modelClassifier = csClassifierContextDecl.getClassifier();
+		ClassifierContextDeclCS csClassifierContextDecl = csElement.getOwningClassifierContextDecl();
+		org.eclipse.ocl.examples.pivot.Class modelClassifier = csClassifierContextDecl.getReferredClassifier();
 		if (modelClassifier != null) {
 			registerOperation(modelClassifier, contextOperation);
 		}
-		context.refreshPivotList(Parameter.class, contextOperation.getOwnedParameter(), csElement.getParameters());
-		ExpressionInOCL pivotSpecification = PivotUtil.getPivot(ExpressionInOCL.class, csElement.getSpecification());
+		context.refreshPivotList(Parameter.class, contextOperation.getOwnedParameter(), csElement.getOwnedParameters());
+		ExpressionInOCL pivotSpecification = PivotUtil.getPivot(ExpressionInOCL.class, csElement.getOwnedSpecification());
 		contextOperation.setBodyExpression(pivotSpecification);
 		return null;
 	}
@@ -416,8 +416,8 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 	@Override
 	public Continuation<?> visitDefPropertyCS(@NonNull DefPropertyCS csElement) {
 		@NonNull Property contextProperty = refreshNamedElement(Property.class, PivotPackage.Literals.PROPERTY, csElement);
-		ClassifierContextDeclCS csClassifierContextDecl = csElement.getClassifierContextDecl();
-		org.eclipse.ocl.examples.pivot.Class modelClassifier = csClassifierContextDecl.getClassifier();
+		ClassifierContextDeclCS csClassifierContextDecl = csElement.getOwningClassifierContextDecl();
+		org.eclipse.ocl.examples.pivot.Class modelClassifier = csClassifierContextDecl.getReferredClassifier();
 		if (modelClassifier != null) {
 			registerProperty(modelClassifier, contextProperty);
 		}
@@ -426,7 +426,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		contextProperty.setIsTransient(true);
 		contextProperty.setIsVolatile(true);
 		contextProperty.setIsResolveProxies(false);
-		ExpressionInOCL pivotSpecification = PivotUtil.getPivot(ExpressionInOCL.class, csElement.getSpecification());
+		ExpressionInOCL pivotSpecification = PivotUtil.getPivot(ExpressionInOCL.class, csElement.getOwnedSpecification());
 		contextProperty.setDefaultExpression(pivotSpecification);
 		return null;
 	}
@@ -457,9 +457,9 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 
 	@Override
 	public Continuation<?> visitOperationContextDeclCS(@NonNull OperationContextDeclCS csElement) {
-		List<ParameterCS> csParameters = csElement.getParameters();
+		List<ParameterCS> csParameters = csElement.getOwnedParameters();
 		assert csParameters != null;
-		PathNameCS pathName = csElement.getPathName();
+		PathNameCS pathName = csElement.getOwnedPathName();
 		assert pathName != null;
 		CS2Pivot.setElementType(pathName, PivotPackage.Literals.OPERATION, csElement,
 			new OperationDeclScopeFilter(null, csParameters));
@@ -478,7 +478,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		}
 		context.refreshPivotList(Parameter.class, contextOperation.getOwnedParameter(), csParameters);
 		context.refreshComments(contextOperation, csElement);
-		for (ConstraintCS csPrecondition : csElement.getPreconditions()) {
+		for (ConstraintCS csPrecondition : csElement.getOwnedPreconditions()) {
 			Constraint precondition = PivotUtil.getPivot(Constraint.class, csPrecondition);
 			if (precondition != null) {
 				List<Element> constrainedElements = precondition.getConstrainedElement();
@@ -492,7 +492,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 				preconditions.add(precondition);
 			}
 		}
-		for (ConstraintCS csPostcondition : csElement.getPostconditions()) {
+		for (ConstraintCS csPostcondition : csElement.getOwnedPostconditions()) {
 			Constraint postcondition = PivotUtil.getPivot(Constraint.class, csPostcondition);
 			if (postcondition != null) {
 				List<Element> constrainedElements = postcondition.getConstrainedElement();
@@ -506,7 +506,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 				postconditions.add(postcondition);
 			}
 		}
-		List<ExpSpecificationCS> csBodies = csElement.getBodies();
+		List<ExpSpecificationCS> csBodies = csElement.getOwnedBodies();
 		int iMax = csBodies.size();
 		for (int i = 1; i < iMax; i++) {
 			SpecificationCS csBody = csBodies.get(i);
@@ -521,7 +521,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 
 	@Override
 	public Continuation<?> visitPackageDeclarationCS(@NonNull PackageDeclarationCS csElement) {
-		org.eclipse.ocl.examples.pivot.Package modelPackage = csElement.getPackage();
+		org.eclipse.ocl.examples.pivot.Package modelPackage = csElement.getReferredPackage();
 		if (modelPackage != null) {
 			refreshContextPackage(modelPackage, csElement);
 		}
@@ -530,7 +530,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 
 	@Override
 	public Continuation<?> visitPropertyContextDeclCS(@NonNull PropertyContextDeclCS csElement) {
-		Property modelProperty = csElement.getProperty();
+		Property modelProperty = csElement.getReferredProperty();
 		@NonNull Property contextProperty = context.refreshModelElement(Property.class, PivotPackage.Literals.PROPERTY, csElement);
 		if ((modelProperty != null) && !modelProperty.eIsProxy()) {
 			context.refreshName(contextProperty, DomainUtil.nonNullModel(modelProperty.getName()));
@@ -542,7 +542,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 			}
 		}
 		context.refreshComments(contextProperty, csElement);
-		for (ConstraintCS csInvariant : csElement.getDerivedInvariants()) {
+		for (ConstraintCS csInvariant : csElement.getOwnedDerivedInvariants()) {
 			Constraint invariant = PivotUtil.getPivot(Constraint.class, csInvariant);
 			if (invariant != null) {
 				List<Element> constrainedElements = invariant.getConstrainedElement();
@@ -556,7 +556,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 				invariants.add(invariant);
 			}
 		}
-		List<ExpSpecificationCS> csDefaults = csElement.getDefaultExpressions();
+		List<ExpSpecificationCS> csDefaults = csElement.getOwnedDefaultExpressions();
 		int iMax = csDefaults.size();
 		for (int i = 1; i < iMax; i++) {
 			SpecificationCS csDefault = csDefaults.get(i);

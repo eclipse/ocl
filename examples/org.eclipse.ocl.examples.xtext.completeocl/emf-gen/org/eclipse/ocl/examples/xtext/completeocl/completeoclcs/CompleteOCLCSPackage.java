@@ -184,13 +184,13 @@ public interface CompleteOCLCSPackage
 	int PATH_NAME_DECL_CS__CSI = BaseCSPackage.MODEL_ELEMENT_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_NAME_DECL_CS__PATH_NAME = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
+	int PATH_NAME_DECL_CS__OWNED_PATH_NAME = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Path Name Decl CS</em>' class.
@@ -247,13 +247,13 @@ public interface CompleteOCLCSPackage
 	int CONTEXT_DECL_CS__CSI = PATH_NAME_DECL_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_DECL_CS__PATH_NAME = PATH_NAME_DECL_CS__PATH_NAME;
+	int CONTEXT_DECL_CS__OWNED_PATH_NAME = PATH_NAME_DECL_CS__OWNED_PATH_NAME;
 
 	/**
 	 * The number of structural features of the '<em>Context Decl CS</em>' class.
@@ -310,13 +310,13 @@ public interface CompleteOCLCSPackage
 	int CLASSIFIER_CONTEXT_DECL_CS__CSI = CONTEXT_DECL_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME = CONTEXT_DECL_CS__PATH_NAME;
+	int CLASSIFIER_CONTEXT_DECL_CS__OWNED_PATH_NAME = CONTEXT_DECL_CS__OWNED_PATH_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Self Name</b></em>' attribute.
@@ -328,31 +328,31 @@ public interface CompleteOCLCSPackage
 	int CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME = CONTEXT_DECL_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Classifier</b></em>' reference.
+	 * The feature id for the '<em><b>Referred Classifier</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER_CONTEXT_DECL_CS__CLASSIFIER = CONTEXT_DECL_CS_FEATURE_COUNT + 1;
+	int CLASSIFIER_CONTEXT_DECL_CS__REFERRED_CLASSIFIER = CONTEXT_DECL_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Invariants</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER_CONTEXT_DECL_CS__INVARIANTS = CONTEXT_DECL_CS_FEATURE_COUNT + 2;
+	int CLASSIFIER_CONTEXT_DECL_CS__OWNED_INVARIANTS = CONTEXT_DECL_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Definitions</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Definitions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER_CONTEXT_DECL_CS__DEFINITIONS = CONTEXT_DECL_CS_FEATURE_COUNT + 3;
+	int CLASSIFIER_CONTEXT_DECL_CS__OWNED_DEFINITIONS = CONTEXT_DECL_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Classifier Context Decl CS</em>' class.
@@ -446,31 +446,31 @@ public interface CompleteOCLCSPackage
 	int COMPLETE_OCL_DOCUMENT_CS__OWNED_LIBRARY = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Packages</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Packages</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_OCL_DOCUMENT_CS__PACKAGES = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 2;
+	int COMPLETE_OCL_DOCUMENT_CS__OWNED_PACKAGES = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Contexts</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Contexts</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_OCL_DOCUMENT_CS__CONTEXTS = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 3;
+	int COMPLETE_OCL_DOCUMENT_CS__OWNED_CONTEXTS = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Owned Include</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Includes</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_OCL_DOCUMENT_CS__OWNED_INCLUDE = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 4;
+	int COMPLETE_OCL_DOCUMENT_CS__OWNED_INCLUDES = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Complete OCL Document CS</em>' class.
@@ -563,22 +563,22 @@ public interface CompleteOCLCSPackage
 	int DEF_CS__OPTIONAL = BaseCSPackage.TYPED_ELEMENT_CS__OPTIONAL;
 
 	/**
-	 * The feature id for the '<em><b>Classifier Context Decl</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Classifier Context Decl</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS__CLASSIFIER_CONTEXT_DECL = BaseCSPackage.TYPED_ELEMENT_CS_FEATURE_COUNT + 0;
+	int DEF_CS__OWNING_CLASSIFIER_CONTEXT_DECL = BaseCSPackage.TYPED_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Specification</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Specification</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS__SPECIFICATION = BaseCSPackage.TYPED_ELEMENT_CS_FEATURE_COUNT + 1;
+	int DEF_CS__OWNED_SPECIFICATION = BaseCSPackage.TYPED_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Static</b></em>' attribute.
@@ -690,22 +690,22 @@ public interface CompleteOCLCSPackage
 	int DEF_OPERATION_CS__OPTIONAL = DEF_CS__OPTIONAL;
 
 	/**
-	 * The feature id for the '<em><b>Classifier Context Decl</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Classifier Context Decl</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_OPERATION_CS__CLASSIFIER_CONTEXT_DECL = DEF_CS__CLASSIFIER_CONTEXT_DECL;
+	int DEF_OPERATION_CS__OWNING_CLASSIFIER_CONTEXT_DECL = DEF_CS__OWNING_CLASSIFIER_CONTEXT_DECL;
 
 	/**
-	 * The feature id for the '<em><b>Specification</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Specification</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_OPERATION_CS__SPECIFICATION = DEF_CS__SPECIFICATION;
+	int DEF_OPERATION_CS__OWNED_SPECIFICATION = DEF_CS__OWNED_SPECIFICATION;
 
 	/**
 	 * The feature id for the '<em><b>Static</b></em>' attribute.
@@ -717,13 +717,13 @@ public interface CompleteOCLCSPackage
 	int DEF_OPERATION_CS__STATIC = DEF_CS__STATIC;
 
 	/**
-	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_OPERATION_CS__PARAMETERS = DEF_CS_FEATURE_COUNT + 0;
+	int DEF_OPERATION_CS__OWNED_PARAMETERS = DEF_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Def Operation CS</em>' class.
@@ -826,22 +826,22 @@ public interface CompleteOCLCSPackage
 	int DEF_PROPERTY_CS__OPTIONAL = DEF_CS__OPTIONAL;
 
 	/**
-	 * The feature id for the '<em><b>Classifier Context Decl</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Classifier Context Decl</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_PROPERTY_CS__CLASSIFIER_CONTEXT_DECL = DEF_CS__CLASSIFIER_CONTEXT_DECL;
+	int DEF_PROPERTY_CS__OWNING_CLASSIFIER_CONTEXT_DECL = DEF_CS__OWNING_CLASSIFIER_CONTEXT_DECL;
 
 	/**
-	 * The feature id for the '<em><b>Specification</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Specification</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_PROPERTY_CS__SPECIFICATION = DEF_CS__SPECIFICATION;
+	int DEF_PROPERTY_CS__OWNED_SPECIFICATION = DEF_CS__OWNED_SPECIFICATION;
 
 	/**
 	 * The feature id for the '<em><b>Static</b></em>' attribute.
@@ -917,13 +917,13 @@ public interface CompleteOCLCSPackage
 	int FEATURE_CONTEXT_DECL_CS__CSI = CONTEXT_DECL_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CONTEXT_DECL_CS__PATH_NAME = CONTEXT_DECL_CS__PATH_NAME;
+	int FEATURE_CONTEXT_DECL_CS__OWNED_PATH_NAME = CONTEXT_DECL_CS__OWNED_PATH_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Class</b></em>' reference.
@@ -1017,13 +1017,13 @@ public interface CompleteOCLCSPackage
 	int INCLUDE_CS__NAME = BaseCSPackage.NAMESPACE_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Namespace</b></em>' reference.
+	 * The feature id for the '<em><b>Referred Namespace</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INCLUDE_CS__NAMESPACE = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 0;
+	int INCLUDE_CS__REFERRED_NAMESPACE = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Include CS</em>' class.
@@ -1171,13 +1171,13 @@ public interface CompleteOCLCSPackage
 	int OPERATION_CONTEXT_DECL_CS__CSI = FEATURE_CONTEXT_DECL_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CONTEXT_DECL_CS__PATH_NAME = FEATURE_CONTEXT_DECL_CS__PATH_NAME;
+	int OPERATION_CONTEXT_DECL_CS__OWNED_PATH_NAME = FEATURE_CONTEXT_DECL_CS__OWNED_PATH_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Class</b></em>' reference.
@@ -1198,58 +1198,58 @@ public interface CompleteOCLCSPackage
 	int OPERATION_CONTEXT_DECL_CS__OWNED_TYPE = FEATURE_CONTEXT_DECL_CS__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Operation</b></em>' reference.
+	 * The feature id for the '<em><b>Referred Operation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CONTEXT_DECL_CS__OPERATION = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 0;
+	int OPERATION_CONTEXT_DECL_CS__REFERRED_OPERATION = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CONTEXT_DECL_CS__PARAMETERS = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 1;
+	int OPERATION_CONTEXT_DECL_CS__OWNED_PARAMETERS = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Result</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Result</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CONTEXT_DECL_CS__RESULT = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 2;
+	int OPERATION_CONTEXT_DECL_CS__OWNED_RESULT = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Preconditions</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Preconditions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CONTEXT_DECL_CS__PRECONDITIONS = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 3;
+	int OPERATION_CONTEXT_DECL_CS__OWNED_PRECONDITIONS = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Postconditions</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Postconditions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CONTEXT_DECL_CS__POSTCONDITIONS = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 4;
+	int OPERATION_CONTEXT_DECL_CS__OWNED_POSTCONDITIONS = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Bodies</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Bodies</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CONTEXT_DECL_CS__BODIES = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 5;
+	int OPERATION_CONTEXT_DECL_CS__OWNED_BODIES = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Operation Context Decl CS</em>' class.
@@ -1306,31 +1306,40 @@ public interface CompleteOCLCSPackage
 	int PACKAGE_DECLARATION_CS__CSI = PATH_NAME_DECL_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_DECLARATION_CS__PATH_NAME = PATH_NAME_DECL_CS__PATH_NAME;
+	int PACKAGE_DECLARATION_CS__OWNED_PATH_NAME = PATH_NAME_DECL_CS__OWNED_PATH_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' reference.
+	 * The feature id for the '<em><b>Referred Package</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_DECLARATION_CS__PACKAGE = PATH_NAME_DECL_CS_FEATURE_COUNT + 0;
+	int PACKAGE_DECLARATION_CS__REFERRED_PACKAGE = PATH_NAME_DECL_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Contexts</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Contexts</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_DECLARATION_CS__CONTEXTS = PATH_NAME_DECL_CS_FEATURE_COUNT + 1;
+	int PACKAGE_DECLARATION_CS__OWNED_CONTEXTS = PATH_NAME_DECL_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_DECLARATION_CS__OWNED_INVARIANTS = PATH_NAME_DECL_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Package Declaration CS</em>' class.
@@ -1339,7 +1348,7 @@ public interface CompleteOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_DECLARATION_CS_FEATURE_COUNT = PATH_NAME_DECL_CS_FEATURE_COUNT + 2;
+	int PACKAGE_DECLARATION_CS_FEATURE_COUNT = PATH_NAME_DECL_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -1387,13 +1396,13 @@ public interface CompleteOCLCSPackage
 	int PROPERTY_CONTEXT_DECL_CS__CSI = FEATURE_CONTEXT_DECL_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CONTEXT_DECL_CS__PATH_NAME = FEATURE_CONTEXT_DECL_CS__PATH_NAME;
+	int PROPERTY_CONTEXT_DECL_CS__OWNED_PATH_NAME = FEATURE_CONTEXT_DECL_CS__OWNED_PATH_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Class</b></em>' reference.
@@ -1414,31 +1423,31 @@ public interface CompleteOCLCSPackage
 	int PROPERTY_CONTEXT_DECL_CS__OWNED_TYPE = FEATURE_CONTEXT_DECL_CS__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Property</b></em>' reference.
+	 * The feature id for the '<em><b>Referred Property</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CONTEXT_DECL_CS__PROPERTY = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 0;
+	int PROPERTY_CONTEXT_DECL_CS__REFERRED_PROPERTY = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Default Expressions</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Default Expressions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CONTEXT_DECL_CS__DEFAULT_EXPRESSIONS = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 1;
+	int PROPERTY_CONTEXT_DECL_CS__OWNED_DEFAULT_EXPRESSIONS = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Derived Invariants</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Derived Invariants</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CONTEXT_DECL_CS__DERIVED_INVARIANTS = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 2;
+	int PROPERTY_CONTEXT_DECL_CS__OWNED_DERIVED_INVARIANTS = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Property Context Decl CS</em>' class.
@@ -1492,15 +1501,15 @@ public interface CompleteOCLCSPackage
 	EClass getIncludeCS();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.IncludeCS#getNamespace <em>Namespace</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.IncludeCS#getReferredNamespace <em>Referred Namespace</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Namespace</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.IncludeCS#getNamespace()
+	 * @return the meta object for the reference '<em>Referred Namespace</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.IncludeCS#getReferredNamespace()
 	 * @see #getIncludeCS()
 	 * @generated
 	 */
-	EReference getIncludeCS_Namespace();
+	EReference getIncludeCS_ReferredNamespace();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PackageDeclarationCS <em>Package Declaration CS</em>}'.
@@ -1513,26 +1522,37 @@ public interface CompleteOCLCSPackage
 	EClass getPackageDeclarationCS();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PackageDeclarationCS#getPackage <em>Package</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PackageDeclarationCS#getReferredPackage <em>Referred Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Package</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PackageDeclarationCS#getPackage()
+	 * @return the meta object for the reference '<em>Referred Package</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PackageDeclarationCS#getReferredPackage()
 	 * @see #getPackageDeclarationCS()
 	 * @generated
 	 */
-	EReference getPackageDeclarationCS_Package();
+	EReference getPackageDeclarationCS_ReferredPackage();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PackageDeclarationCS#getContexts <em>Contexts</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PackageDeclarationCS#getOwnedContexts <em>Owned Contexts</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Contexts</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PackageDeclarationCS#getContexts()
+	 * @return the meta object for the containment reference list '<em>Owned Contexts</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PackageDeclarationCS#getOwnedContexts()
 	 * @see #getPackageDeclarationCS()
 	 * @generated
 	 */
-	EReference getPackageDeclarationCS_Contexts();
+	EReference getPackageDeclarationCS_OwnedContexts();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PackageDeclarationCS#getOwnedInvariants <em>Owned Invariants</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Invariants</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PackageDeclarationCS#getOwnedInvariants()
+	 * @see #getPackageDeclarationCS()
+	 * @generated
+	 */
+	EReference getPackageDeclarationCS_OwnedInvariants();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PathNameDeclCS <em>Path Name Decl CS</em>}'.
@@ -1545,15 +1565,15 @@ public interface CompleteOCLCSPackage
 	EClass getPathNameDeclCS();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PathNameDeclCS#getPathName <em>Path Name</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PathNameDeclCS#getOwnedPathName <em>Owned Path Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Path Name</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PathNameDeclCS#getPathName()
+	 * @return the meta object for the containment reference '<em>Owned Path Name</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PathNameDeclCS#getOwnedPathName()
 	 * @see #getPathNameDeclCS()
 	 * @generated
 	 */
-	EReference getPathNameDeclCS_PathName();
+	EReference getPathNameDeclCS_OwnedPathName();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ContextDeclCS <em>Context Decl CS</em>}'.
@@ -1576,37 +1596,37 @@ public interface CompleteOCLCSPackage
 	EClass getPropertyContextDeclCS();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PropertyContextDeclCS#getProperty <em>Property</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PropertyContextDeclCS#getReferredProperty <em>Referred Property</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Property</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PropertyContextDeclCS#getProperty()
+	 * @return the meta object for the reference '<em>Referred Property</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PropertyContextDeclCS#getReferredProperty()
 	 * @see #getPropertyContextDeclCS()
 	 * @generated
 	 */
-	EReference getPropertyContextDeclCS_Property();
+	EReference getPropertyContextDeclCS_ReferredProperty();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PropertyContextDeclCS#getDefaultExpressions <em>Default Expressions</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PropertyContextDeclCS#getOwnedDefaultExpressions <em>Owned Default Expressions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Default Expressions</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PropertyContextDeclCS#getDefaultExpressions()
+	 * @return the meta object for the containment reference list '<em>Owned Default Expressions</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PropertyContextDeclCS#getOwnedDefaultExpressions()
 	 * @see #getPropertyContextDeclCS()
 	 * @generated
 	 */
-	EReference getPropertyContextDeclCS_DefaultExpressions();
+	EReference getPropertyContextDeclCS_OwnedDefaultExpressions();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PropertyContextDeclCS#getDerivedInvariants <em>Derived Invariants</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PropertyContextDeclCS#getOwnedDerivedInvariants <em>Owned Derived Invariants</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Derived Invariants</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PropertyContextDeclCS#getDerivedInvariants()
+	 * @return the meta object for the containment reference list '<em>Owned Derived Invariants</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PropertyContextDeclCS#getOwnedDerivedInvariants()
 	 * @see #getPropertyContextDeclCS()
 	 * @generated
 	 */
-	EReference getPropertyContextDeclCS_DerivedInvariants();
+	EReference getPropertyContextDeclCS_OwnedDerivedInvariants();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1639,37 +1659,37 @@ public interface CompleteOCLCSPackage
 	EAttribute getClassifierContextDeclCS_SelfName();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getClassifier <em>Classifier</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getReferredClassifier <em>Referred Classifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Classifier</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getClassifier()
+	 * @return the meta object for the reference '<em>Referred Classifier</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getReferredClassifier()
 	 * @see #getClassifierContextDeclCS()
 	 * @generated
 	 */
-	EReference getClassifierContextDeclCS_Classifier();
+	EReference getClassifierContextDeclCS_ReferredClassifier();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getInvariants <em>Invariants</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getOwnedInvariants <em>Owned Invariants</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Invariants</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getInvariants()
+	 * @return the meta object for the containment reference list '<em>Owned Invariants</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getOwnedInvariants()
 	 * @see #getClassifierContextDeclCS()
 	 * @generated
 	 */
-	EReference getClassifierContextDeclCS_Invariants();
+	EReference getClassifierContextDeclCS_OwnedInvariants();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getDefinitions <em>Definitions</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getOwnedDefinitions <em>Owned Definitions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Definitions</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getDefinitions()
+	 * @return the meta object for the containment reference list '<em>Owned Definitions</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getOwnedDefinitions()
 	 * @see #getClassifierContextDeclCS()
 	 * @generated
 	 */
-	EReference getClassifierContextDeclCS_Definitions();
+	EReference getClassifierContextDeclCS_OwnedDefinitions();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLDocumentCS <em>Complete OCL Document CS</em>}'.
@@ -1682,37 +1702,37 @@ public interface CompleteOCLCSPackage
 	EClass getCompleteOCLDocumentCS();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLDocumentCS#getPackages <em>Packages</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLDocumentCS#getOwnedPackages <em>Owned Packages</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Packages</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLDocumentCS#getPackages()
+	 * @return the meta object for the containment reference list '<em>Owned Packages</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLDocumentCS#getOwnedPackages()
 	 * @see #getCompleteOCLDocumentCS()
 	 * @generated
 	 */
-	EReference getCompleteOCLDocumentCS_Packages();
+	EReference getCompleteOCLDocumentCS_OwnedPackages();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLDocumentCS#getContexts <em>Contexts</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLDocumentCS#getOwnedContexts <em>Owned Contexts</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Contexts</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLDocumentCS#getContexts()
+	 * @return the meta object for the containment reference list '<em>Owned Contexts</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLDocumentCS#getOwnedContexts()
 	 * @see #getCompleteOCLDocumentCS()
 	 * @generated
 	 */
-	EReference getCompleteOCLDocumentCS_Contexts();
+	EReference getCompleteOCLDocumentCS_OwnedContexts();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLDocumentCS#getOwnedInclude <em>Owned Include</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLDocumentCS#getOwnedIncludes <em>Owned Includes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Include</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLDocumentCS#getOwnedInclude()
+	 * @return the meta object for the containment reference list '<em>Owned Includes</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLDocumentCS#getOwnedIncludes()
 	 * @see #getCompleteOCLDocumentCS()
 	 * @generated
 	 */
-	EReference getCompleteOCLDocumentCS_OwnedInclude();
+	EReference getCompleteOCLDocumentCS_OwnedIncludes();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OCLMessageArgCS <em>OCL Message Arg CS</em>}'.
@@ -1746,26 +1766,26 @@ public interface CompleteOCLCSPackage
 	EClass getDefCS();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS#getClassifierContextDecl <em>Classifier Context Decl</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS#getOwningClassifierContextDecl <em>Owning Classifier Context Decl</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Classifier Context Decl</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS#getClassifierContextDecl()
+	 * @return the meta object for the container reference '<em>Owning Classifier Context Decl</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS#getOwningClassifierContextDecl()
 	 * @see #getDefCS()
 	 * @generated
 	 */
-	EReference getDefCS_ClassifierContextDecl();
+	EReference getDefCS_OwningClassifierContextDecl();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS#getSpecification <em>Specification</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS#getOwnedSpecification <em>Owned Specification</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Specification</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS#getSpecification()
+	 * @return the meta object for the containment reference '<em>Owned Specification</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS#getOwnedSpecification()
 	 * @see #getDefCS()
 	 * @generated
 	 */
-	EReference getDefCS_Specification();
+	EReference getDefCS_OwnedSpecification();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS#isStatic <em>Static</em>}'.
@@ -1789,15 +1809,15 @@ public interface CompleteOCLCSPackage
 	EClass getDefOperationCS();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefOperationCS#getParameters <em>Parameters</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefOperationCS#getOwnedParameters <em>Owned Parameters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Parameters</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefOperationCS#getParameters()
+	 * @return the meta object for the containment reference list '<em>Owned Parameters</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefOperationCS#getOwnedParameters()
 	 * @see #getDefOperationCS()
 	 * @generated
 	 */
-	EReference getDefOperationCS_Parameters();
+	EReference getDefOperationCS_OwnedParameters();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefPropertyCS <em>Def Property CS</em>}'.
@@ -1820,70 +1840,70 @@ public interface CompleteOCLCSPackage
 	EClass getOperationContextDeclCS();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getOperation <em>Operation</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getReferredOperation <em>Referred Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Operation</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getOperation()
+	 * @return the meta object for the reference '<em>Referred Operation</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getReferredOperation()
 	 * @see #getOperationContextDeclCS()
 	 * @generated
 	 */
-	EReference getOperationContextDeclCS_Operation();
+	EReference getOperationContextDeclCS_ReferredOperation();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getParameters <em>Parameters</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getOwnedParameters <em>Owned Parameters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Parameters</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getParameters()
+	 * @return the meta object for the containment reference list '<em>Owned Parameters</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getOwnedParameters()
 	 * @see #getOperationContextDeclCS()
 	 * @generated
 	 */
-	EReference getOperationContextDeclCS_Parameters();
+	EReference getOperationContextDeclCS_OwnedParameters();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getResult <em>Result</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getOwnedResult <em>Owned Result</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Result</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getResult()
+	 * @return the meta object for the containment reference '<em>Owned Result</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getOwnedResult()
 	 * @see #getOperationContextDeclCS()
 	 * @generated
 	 */
-	EReference getOperationContextDeclCS_Result();
+	EReference getOperationContextDeclCS_OwnedResult();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getPreconditions <em>Preconditions</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getOwnedPreconditions <em>Owned Preconditions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Preconditions</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getPreconditions()
+	 * @return the meta object for the containment reference list '<em>Owned Preconditions</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getOwnedPreconditions()
 	 * @see #getOperationContextDeclCS()
 	 * @generated
 	 */
-	EReference getOperationContextDeclCS_Preconditions();
+	EReference getOperationContextDeclCS_OwnedPreconditions();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getPostconditions <em>Postconditions</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getOwnedPostconditions <em>Owned Postconditions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Postconditions</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getPostconditions()
+	 * @return the meta object for the containment reference list '<em>Owned Postconditions</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getOwnedPostconditions()
 	 * @see #getOperationContextDeclCS()
 	 * @generated
 	 */
-	EReference getOperationContextDeclCS_Postconditions();
+	EReference getOperationContextDeclCS_OwnedPostconditions();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getBodies <em>Bodies</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getOwnedBodies <em>Owned Bodies</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Bodies</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getBodies()
+	 * @return the meta object for the containment reference list '<em>Owned Bodies</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getOwnedBodies()
 	 * @see #getOperationContextDeclCS()
 	 * @generated
 	 */
-	EReference getOperationContextDeclCS_Bodies();
+	EReference getOperationContextDeclCS_OwnedBodies();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1936,12 +1956,12 @@ public interface CompleteOCLCSPackage
 		EClass INCLUDE_CS = eINSTANCE.getIncludeCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Namespace</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Referred Namespace</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference INCLUDE_CS__NAMESPACE = eINSTANCE.getIncludeCS_Namespace();
+		EReference INCLUDE_CS__REFERRED_NAMESPACE = eINSTANCE.getIncludeCS_ReferredNamespace();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.PackageDeclarationCSImpl <em>Package Declaration CS</em>}' class.
@@ -1954,20 +1974,28 @@ public interface CompleteOCLCSPackage
 		EClass PACKAGE_DECLARATION_CS = eINSTANCE.getPackageDeclarationCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Package</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Referred Package</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PACKAGE_DECLARATION_CS__PACKAGE = eINSTANCE.getPackageDeclarationCS_Package();
+		EReference PACKAGE_DECLARATION_CS__REFERRED_PACKAGE = eINSTANCE.getPackageDeclarationCS_ReferredPackage();
 
 		/**
-		 * The meta object literal for the '<em><b>Contexts</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Contexts</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PACKAGE_DECLARATION_CS__CONTEXTS = eINSTANCE.getPackageDeclarationCS_Contexts();
+		EReference PACKAGE_DECLARATION_CS__OWNED_CONTEXTS = eINSTANCE.getPackageDeclarationCS_OwnedContexts();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Invariants</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PACKAGE_DECLARATION_CS__OWNED_INVARIANTS = eINSTANCE.getPackageDeclarationCS_OwnedInvariants();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.PathNameDeclCSImpl <em>Path Name Decl CS</em>}' class.
@@ -1980,12 +2008,12 @@ public interface CompleteOCLCSPackage
 		EClass PATH_NAME_DECL_CS = eINSTANCE.getPathNameDeclCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Path Name</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Owned Path Name</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PATH_NAME_DECL_CS__PATH_NAME = eINSTANCE.getPathNameDeclCS_PathName();
+		EReference PATH_NAME_DECL_CS__OWNED_PATH_NAME = eINSTANCE.getPathNameDeclCS_OwnedPathName();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.ContextDeclCSImpl <em>Context Decl CS</em>}' class.
@@ -2008,28 +2036,28 @@ public interface CompleteOCLCSPackage
 		EClass PROPERTY_CONTEXT_DECL_CS = eINSTANCE.getPropertyContextDeclCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Property</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Referred Property</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PROPERTY_CONTEXT_DECL_CS__PROPERTY = eINSTANCE.getPropertyContextDeclCS_Property();
+		EReference PROPERTY_CONTEXT_DECL_CS__REFERRED_PROPERTY = eINSTANCE.getPropertyContextDeclCS_ReferredProperty();
 
 		/**
-		 * The meta object literal for the '<em><b>Default Expressions</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Default Expressions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PROPERTY_CONTEXT_DECL_CS__DEFAULT_EXPRESSIONS = eINSTANCE.getPropertyContextDeclCS_DefaultExpressions();
+		EReference PROPERTY_CONTEXT_DECL_CS__OWNED_DEFAULT_EXPRESSIONS = eINSTANCE.getPropertyContextDeclCS_OwnedDefaultExpressions();
 
 		/**
-		 * The meta object literal for the '<em><b>Derived Invariants</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Derived Invariants</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PROPERTY_CONTEXT_DECL_CS__DERIVED_INVARIANTS = eINSTANCE.getPropertyContextDeclCS_DerivedInvariants();
+		EReference PROPERTY_CONTEXT_DECL_CS__OWNED_DERIVED_INVARIANTS = eINSTANCE.getPropertyContextDeclCS_OwnedDerivedInvariants();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.ClassifierContextDeclCSImpl <em>Classifier Context Decl CS</em>}' class.
@@ -2050,28 +2078,28 @@ public interface CompleteOCLCSPackage
 		EAttribute CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME = eINSTANCE.getClassifierContextDeclCS_SelfName();
 
 		/**
-		 * The meta object literal for the '<em><b>Classifier</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Referred Classifier</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CLASSIFIER_CONTEXT_DECL_CS__CLASSIFIER = eINSTANCE.getClassifierContextDeclCS_Classifier();
+		EReference CLASSIFIER_CONTEXT_DECL_CS__REFERRED_CLASSIFIER = eINSTANCE.getClassifierContextDeclCS_ReferredClassifier();
 
 		/**
-		 * The meta object literal for the '<em><b>Invariants</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Invariants</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CLASSIFIER_CONTEXT_DECL_CS__INVARIANTS = eINSTANCE.getClassifierContextDeclCS_Invariants();
+		EReference CLASSIFIER_CONTEXT_DECL_CS__OWNED_INVARIANTS = eINSTANCE.getClassifierContextDeclCS_OwnedInvariants();
 
 		/**
-		 * The meta object literal for the '<em><b>Definitions</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Definitions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CLASSIFIER_CONTEXT_DECL_CS__DEFINITIONS = eINSTANCE.getClassifierContextDeclCS_Definitions();
+		EReference CLASSIFIER_CONTEXT_DECL_CS__OWNED_DEFINITIONS = eINSTANCE.getClassifierContextDeclCS_OwnedDefinitions();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.CompleteOCLDocumentCSImpl <em>Complete OCL Document CS</em>}' class.
@@ -2084,28 +2112,28 @@ public interface CompleteOCLCSPackage
 		EClass COMPLETE_OCL_DOCUMENT_CS = eINSTANCE.getCompleteOCLDocumentCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Packages</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Packages</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPLETE_OCL_DOCUMENT_CS__PACKAGES = eINSTANCE.getCompleteOCLDocumentCS_Packages();
+		EReference COMPLETE_OCL_DOCUMENT_CS__OWNED_PACKAGES = eINSTANCE.getCompleteOCLDocumentCS_OwnedPackages();
 
 		/**
-		 * The meta object literal for the '<em><b>Contexts</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Contexts</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPLETE_OCL_DOCUMENT_CS__CONTEXTS = eINSTANCE.getCompleteOCLDocumentCS_Contexts();
+		EReference COMPLETE_OCL_DOCUMENT_CS__OWNED_CONTEXTS = eINSTANCE.getCompleteOCLDocumentCS_OwnedContexts();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Include</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Includes</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPLETE_OCL_DOCUMENT_CS__OWNED_INCLUDE = eINSTANCE.getCompleteOCLDocumentCS_OwnedInclude();
+		EReference COMPLETE_OCL_DOCUMENT_CS__OWNED_INCLUDES = eINSTANCE.getCompleteOCLDocumentCS_OwnedIncludes();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.DefCSImpl <em>Def CS</em>}' class.
@@ -2118,20 +2146,20 @@ public interface CompleteOCLCSPackage
 		EClass DEF_CS = eINSTANCE.getDefCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Classifier Context Decl</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Owning Classifier Context Decl</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DEF_CS__CLASSIFIER_CONTEXT_DECL = eINSTANCE.getDefCS_ClassifierContextDecl();
+		EReference DEF_CS__OWNING_CLASSIFIER_CONTEXT_DECL = eINSTANCE.getDefCS_OwningClassifierContextDecl();
 
 		/**
-		 * The meta object literal for the '<em><b>Specification</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Owned Specification</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DEF_CS__SPECIFICATION = eINSTANCE.getDefCS_Specification();
+		EReference DEF_CS__OWNED_SPECIFICATION = eINSTANCE.getDefCS_OwnedSpecification();
 
 		/**
 		 * The meta object literal for the '<em><b>Static</b></em>' attribute feature.
@@ -2152,12 +2180,12 @@ public interface CompleteOCLCSPackage
 		EClass DEF_OPERATION_CS = eINSTANCE.getDefOperationCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Parameters</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Parameters</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DEF_OPERATION_CS__PARAMETERS = eINSTANCE.getDefOperationCS_Parameters();
+		EReference DEF_OPERATION_CS__OWNED_PARAMETERS = eINSTANCE.getDefOperationCS_OwnedParameters();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.DefPropertyCSImpl <em>Def Property CS</em>}' class.
@@ -2180,52 +2208,52 @@ public interface CompleteOCLCSPackage
 		EClass OPERATION_CONTEXT_DECL_CS = eINSTANCE.getOperationContextDeclCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Operation</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Referred Operation</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference OPERATION_CONTEXT_DECL_CS__OPERATION = eINSTANCE.getOperationContextDeclCS_Operation();
+		EReference OPERATION_CONTEXT_DECL_CS__REFERRED_OPERATION = eINSTANCE.getOperationContextDeclCS_ReferredOperation();
 
 		/**
-		 * The meta object literal for the '<em><b>Parameters</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Parameters</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference OPERATION_CONTEXT_DECL_CS__PARAMETERS = eINSTANCE.getOperationContextDeclCS_Parameters();
+		EReference OPERATION_CONTEXT_DECL_CS__OWNED_PARAMETERS = eINSTANCE.getOperationContextDeclCS_OwnedParameters();
 
 		/**
-		 * The meta object literal for the '<em><b>Result</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Owned Result</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference OPERATION_CONTEXT_DECL_CS__RESULT = eINSTANCE.getOperationContextDeclCS_Result();
+		EReference OPERATION_CONTEXT_DECL_CS__OWNED_RESULT = eINSTANCE.getOperationContextDeclCS_OwnedResult();
 
 		/**
-		 * The meta object literal for the '<em><b>Preconditions</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Preconditions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference OPERATION_CONTEXT_DECL_CS__PRECONDITIONS = eINSTANCE.getOperationContextDeclCS_Preconditions();
+		EReference OPERATION_CONTEXT_DECL_CS__OWNED_PRECONDITIONS = eINSTANCE.getOperationContextDeclCS_OwnedPreconditions();
 
 		/**
-		 * The meta object literal for the '<em><b>Postconditions</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Postconditions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference OPERATION_CONTEXT_DECL_CS__POSTCONDITIONS = eINSTANCE.getOperationContextDeclCS_Postconditions();
+		EReference OPERATION_CONTEXT_DECL_CS__OWNED_POSTCONDITIONS = eINSTANCE.getOperationContextDeclCS_OwnedPostconditions();
 
 		/**
-		 * The meta object literal for the '<em><b>Bodies</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Bodies</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference OPERATION_CONTEXT_DECL_CS__BODIES = eINSTANCE.getOperationContextDeclCS_Bodies();
+		EReference OPERATION_CONTEXT_DECL_CS__OWNED_BODIES = eINSTANCE.getOperationContextDeclCS_OwnedBodies();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.OCLMessageArgCSImpl <em>OCL Message Arg CS</em>}' class.

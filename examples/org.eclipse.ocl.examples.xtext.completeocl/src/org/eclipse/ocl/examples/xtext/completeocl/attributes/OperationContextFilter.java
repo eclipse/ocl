@@ -41,7 +41,7 @@ public class OperationContextFilter implements ScopeFilter
 //		if (context != metaModelManager.getPrimaryElement(forType)) {
 //			return false;
 //		}
-		List<ParameterCS> contextParameters = csOperationContext.getParameters();
+		List<ParameterCS> contextParameters = csOperationContext.getOwnedParameters();
 		List<Parameter> candidateParameters = candidateOperation.getOwnedParameter();
 		int iMax = contextParameters.size();
 		if (iMax != candidateParameters.size()) {

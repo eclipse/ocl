@@ -28,8 +28,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpSpecificati
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.DefCSImpl#getClassifierContextDecl <em>Classifier Context Decl</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.DefCSImpl#getSpecification <em>Specification</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.DefCSImpl#getOwningClassifierContextDecl <em>Owning Classifier Context Decl</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.DefCSImpl#getOwnedSpecification <em>Owned Specification</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.DefCSImpl#isStatic <em>Static</em>}</li>
  * </ul>
  * </p>
@@ -41,14 +41,14 @@ public abstract class DefCSImpl
 		implements DefCS {
 
 	/**
-	 * The cached value of the '{@link #getSpecification() <em>Specification</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedSpecification() <em>Owned Specification</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSpecification()
+	 * @see #getOwnedSpecification()
 	 * @generated
 	 * @ordered
 	 */
-	protected ExpSpecificationCS specification;
+	protected ExpSpecificationCS ownedSpecification;
 
 	/**
 	 * The default value of the '{@link #isStatic() <em>Static</em>}' attribute.
@@ -94,8 +94,8 @@ public abstract class DefCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClassifierContextDeclCS getClassifierContextDecl() {
-		if (eContainerFeatureID() != CompleteOCLCSPackage.DEF_CS__CLASSIFIER_CONTEXT_DECL) return null;
+	public ClassifierContextDeclCS getOwningClassifierContextDecl() {
+		if (eContainerFeatureID() != CompleteOCLCSPackage.DEF_CS__OWNING_CLASSIFIER_CONTEXT_DECL) return null;
 		return (ClassifierContextDeclCS)eInternalContainer();
 	}
 
@@ -104,8 +104,8 @@ public abstract class DefCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpSpecificationCS getSpecification() {
-		return specification;
+	public ExpSpecificationCS getOwnedSpecification() {
+		return ownedSpecification;
 	}
 
 	/**
@@ -113,13 +113,13 @@ public abstract class DefCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSpecification(
-			ExpSpecificationCS newSpecification, NotificationChain msgs) {
-		ExpSpecificationCS oldSpecification = specification;
-		specification = newSpecification;
+	public NotificationChain basicSetOwnedSpecification(ExpSpecificationCS newOwnedSpecification, NotificationChain msgs)
+	{
+		ExpSpecificationCS oldOwnedSpecification = ownedSpecification;
+		ownedSpecification = newOwnedSpecification;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSPackage.DEF_CS__SPECIFICATION, oldSpecification, newSpecification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSPackage.DEF_CS__OWNED_SPECIFICATION, oldOwnedSpecification, newOwnedSpecification);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -130,19 +130,19 @@ public abstract class DefCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSpecification(ExpSpecificationCS newSpecification) {
-		if (newSpecification != specification)
+	public void setOwnedSpecification(ExpSpecificationCS newOwnedSpecification) {
+		if (newOwnedSpecification != ownedSpecification)
 		{
 			NotificationChain msgs = null;
-			if (specification != null)
-				msgs = ((InternalEObject)specification).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSPackage.DEF_CS__SPECIFICATION, null, msgs);
-			if (newSpecification != null)
-				msgs = ((InternalEObject)newSpecification).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSPackage.DEF_CS__SPECIFICATION, null, msgs);
-			msgs = basicSetSpecification(newSpecification, msgs);
+			if (ownedSpecification != null)
+				msgs = ((InternalEObject)ownedSpecification).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSPackage.DEF_CS__OWNED_SPECIFICATION, null, msgs);
+			if (newOwnedSpecification != null)
+				msgs = ((InternalEObject)newOwnedSpecification).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSPackage.DEF_CS__OWNED_SPECIFICATION, null, msgs);
+			msgs = basicSetOwnedSpecification(newOwnedSpecification, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSPackage.DEF_CS__SPECIFICATION, newSpecification, newSpecification));
+			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSPackage.DEF_CS__OWNED_SPECIFICATION, newOwnedSpecification, newOwnedSpecification));
 	}
 
 	/**
@@ -186,10 +186,10 @@ public abstract class DefCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.DEF_CS__CLASSIFIER_CONTEXT_DECL:
+			case CompleteOCLCSPackage.DEF_CS__OWNING_CLASSIFIER_CONTEXT_DECL:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return eBasicSetContainer(otherEnd, CompleteOCLCSPackage.DEF_CS__CLASSIFIER_CONTEXT_DECL, msgs);
+				return eBasicSetContainer(otherEnd, CompleteOCLCSPackage.DEF_CS__OWNING_CLASSIFIER_CONTEXT_DECL, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -204,10 +204,10 @@ public abstract class DefCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.DEF_CS__CLASSIFIER_CONTEXT_DECL:
-				return eBasicSetContainer(null, CompleteOCLCSPackage.DEF_CS__CLASSIFIER_CONTEXT_DECL, msgs);
-			case CompleteOCLCSPackage.DEF_CS__SPECIFICATION:
-				return basicSetSpecification(null, msgs);
+			case CompleteOCLCSPackage.DEF_CS__OWNING_CLASSIFIER_CONTEXT_DECL:
+				return eBasicSetContainer(null, CompleteOCLCSPackage.DEF_CS__OWNING_CLASSIFIER_CONTEXT_DECL, msgs);
+			case CompleteOCLCSPackage.DEF_CS__OWNED_SPECIFICATION:
+				return basicSetOwnedSpecification(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -222,8 +222,8 @@ public abstract class DefCSImpl
 			NotificationChain msgs) {
 		switch (eContainerFeatureID())
 		{
-			case CompleteOCLCSPackage.DEF_CS__CLASSIFIER_CONTEXT_DECL:
-				return eInternalContainer().eInverseRemove(this, CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__DEFINITIONS, ClassifierContextDeclCS.class, msgs);
+			case CompleteOCLCSPackage.DEF_CS__OWNING_CLASSIFIER_CONTEXT_DECL:
+				return eInternalContainer().eInverseRemove(this, CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_DEFINITIONS, ClassifierContextDeclCS.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -237,10 +237,10 @@ public abstract class DefCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.DEF_CS__CLASSIFIER_CONTEXT_DECL:
-				return getClassifierContextDecl();
-			case CompleteOCLCSPackage.DEF_CS__SPECIFICATION:
-				return getSpecification();
+			case CompleteOCLCSPackage.DEF_CS__OWNING_CLASSIFIER_CONTEXT_DECL:
+				return getOwningClassifierContextDecl();
+			case CompleteOCLCSPackage.DEF_CS__OWNED_SPECIFICATION:
+				return getOwnedSpecification();
 			case CompleteOCLCSPackage.DEF_CS__STATIC:
 				return isStatic();
 		}
@@ -256,8 +256,8 @@ public abstract class DefCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.DEF_CS__SPECIFICATION:
-				setSpecification((ExpSpecificationCS)newValue);
+			case CompleteOCLCSPackage.DEF_CS__OWNED_SPECIFICATION:
+				setOwnedSpecification((ExpSpecificationCS)newValue);
 				return;
 			case CompleteOCLCSPackage.DEF_CS__STATIC:
 				setStatic((Boolean)newValue);
@@ -275,8 +275,8 @@ public abstract class DefCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.DEF_CS__SPECIFICATION:
-				setSpecification((ExpSpecificationCS)null);
+			case CompleteOCLCSPackage.DEF_CS__OWNED_SPECIFICATION:
+				setOwnedSpecification((ExpSpecificationCS)null);
 				return;
 			case CompleteOCLCSPackage.DEF_CS__STATIC:
 				setStatic(STATIC_EDEFAULT);
@@ -294,10 +294,10 @@ public abstract class DefCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.DEF_CS__CLASSIFIER_CONTEXT_DECL:
-				return getClassifierContextDecl() != null;
-			case CompleteOCLCSPackage.DEF_CS__SPECIFICATION:
-				return specification != null;
+			case CompleteOCLCSPackage.DEF_CS__OWNING_CLASSIFIER_CONTEXT_DECL:
+				return getOwningClassifierContextDecl() != null;
+			case CompleteOCLCSPackage.DEF_CS__OWNED_SPECIFICATION:
+				return ownedSpecification != null;
 			case CompleteOCLCSPackage.DEF_CS__STATIC:
 				return static_ != STATIC_EDEFAULT;
 		}

@@ -180,7 +180,7 @@ public class IncludeCSAttribution extends AbstractAttribution implements Unresol
 	}
 
 	public @NonNull EReference getEReference() {
-		@SuppressWarnings("null") @NonNull EReference eReference = CompleteOCLCSPackage.Literals.INCLUDE_CS__NAMESPACE;
+		@SuppressWarnings("null") @NonNull EReference eReference = CompleteOCLCSPackage.Literals.INCLUDE_CS__REFERRED_NAMESPACE;
 		return eReference;
 	}
 

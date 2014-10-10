@@ -114,11 +114,11 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 	}
 
 	protected void refreshPathNamedElement(@NonNull PathNameDeclCS csDecl, @NonNull NamedElement namedElement, Namespace scope) {
-		PathNameCS csPathName = csDecl.getPathName();
+		PathNameCS csPathName = csDecl.getOwnedPathName();
 		if (csPathName == null) {
 			csPathName = BaseCSFactory.eINSTANCE.createPathNameCS();
 			assert csPathName != null;
-			csDecl.setPathName(csPathName);
+			csDecl.setOwnedPathName(csPathName);
 		}
 		context.refreshPathName(csPathName, namedElement, scope);
 	}
@@ -134,7 +134,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		if ((csContext != null) && (objectPackage != null)) {
 			refreshPathNamedElement(csContext, object, objectPackage);
 			importPackage(objectPackage);
-			context.refreshList(csContext.getInvariants(), context.visitDeclarations(ConstraintCS.class, ownedInvariant, null));
+			context.refreshList(csContext.getOwnedInvariants(), context.visitDeclarations(ConstraintCS.class, ownedInvariant, null));
 		}
 		return csContext;
 	}
@@ -215,10 +215,10 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 			if (owningPackage != null) {
 				importPackage(owningPackage);
 			}
-			context.refreshList(csContext.getParameters(), context.visitDeclarations(ParameterCS.class, object.getOwnedParameter(), null));
-			context.refreshList(csContext.getPreconditions(), context.visitDeclarations(ConstraintCS.class, object.getPrecondition(), null));
-			context.refreshList(csContext.getPostconditions(), context.visitDeclarations(ConstraintCS.class, object.getPostcondition(), null));
-			context.refreshList(csContext.getBodies(), context.visitDeclarationAsList(ExpSpecificationCS.class, object.getBodyExpression()));
+			context.refreshList(csContext.getOwnedParameters(), context.visitDeclarations(ParameterCS.class, object.getOwnedParameter(), null));
+			context.refreshList(csContext.getOwnedPreconditions(), context.visitDeclarations(ConstraintCS.class, object.getPrecondition(), null));
+			context.refreshList(csContext.getOwnedPostconditions(), context.visitDeclarations(ConstraintCS.class, object.getPostcondition(), null));
+			context.refreshList(csContext.getOwnedBodies(), context.visitDeclarationAsList(ExpSpecificationCS.class, object.getBodyExpression()));
 			context.setScope(savedScope);
 		}
 		return csContext;
@@ -256,7 +256,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 //				context.refreshList(csPackage.getOwnedType(), context.visitDeclarations(ClassifierCS.class, object.getOwnedType(), null));
 				refreshPathNamedElement(csPackage, object, PivotUtil.getContainingNamespace(object));
 				importPackage(object);
-				context.refreshList(csPackage.getContexts(), contexts);
+				context.refreshList(csPackage.getOwnedContexts(), contexts);
 				csElement = csPackage;
 			}
 		}
@@ -287,7 +287,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 			importPackage(modelPackage);
 			// FIXME derivationInvariants here rather than in Classifier
 //			context.refreshList(csContext.getRules(), context.visitDeclarations(ContextConstraintCS.class, ownedRule, null));
-			context.refreshList(csContext.getDefaultExpressions(), context.visitDeclarationAsList(ExpSpecificationCS.class, object.getDefaultExpression()));
+			context.refreshList(csContext.getOwnedDefaultExpressions(), context.visitDeclarationAsList(ExpSpecificationCS.class, object.getDefaultExpression()));
 			context.setScope(savedScope);
 		}
 		return csContext;
@@ -317,7 +317,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		List<Package> nestedPackages = object.getOwnedPackages();
 		assert nestedPackages != null;
 		gatherPackages(allPackages, nestedPackages); 
-		context.refreshList(csDocument.getPackages(), context.visitDeclarations(PackageDeclarationCS.class, allPackages, null));
+		context.refreshList(csDocument.getOwnedPackages(), context.visitDeclarations(PackageDeclarationCS.class, allPackages, null));
 		csElement = csDocument;
 		return csElement;
 	}

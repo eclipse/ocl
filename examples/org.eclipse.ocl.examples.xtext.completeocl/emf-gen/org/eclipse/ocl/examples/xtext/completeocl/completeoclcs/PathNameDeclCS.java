@@ -22,7 +22,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PathNameDeclCS#getPathName <em>Path Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PathNameDeclCS#getOwnedPathName <em>Owned Path Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -34,29 +34,29 @@ public interface PathNameDeclCS
 		extends ModelElementCS, MorePivotable {
 
 	/**
-	 * Returns the value of the '<em><b>Path Name</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Qualified Element Ref</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Path Name</em>' containment reference.
-	 * @see #setPathName(PathNameCS)
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getPathNameDeclCS_PathName()
+	 * @return the value of the '<em>Owned Path Name</em>' containment reference.
+	 * @see #setOwnedPathName(PathNameCS)
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getPathNameDeclCS_OwnedPathName()
 	 * @model containment="true"
 	 * @generated
 	 */
-	PathNameCS getPathName();
+	PathNameCS getOwnedPathName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PathNameDeclCS#getPathName <em>Path Name</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PathNameDeclCS#getOwnedPathName <em>Owned Path Name</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Path Name</em>' containment reference.
-	 * @see #getPathName()
+	 * @param value the new value of the '<em>Owned Path Name</em>' containment reference.
+	 * @see #getOwnedPathName()
 	 * @generated
 	 */
-	void setPathName(PathNameCS value);
+	void setOwnedPathName(PathNameCS value);
 
 } // NamedElementDeclCS

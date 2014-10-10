@@ -33,7 +33,7 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.util.CompleteOCL
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.DefOperationCSImpl#getParameters <em>Parameters</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.DefOperationCSImpl#getOwnedParameters <em>Owned Parameters</em>}</li>
  * </ul>
  * </p>
  *
@@ -44,15 +44,14 @@ public class DefOperationCSImpl
 		implements DefOperationCS {
 
 	/**
-	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedParameters() <em>Owned Parameters</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getParameters()
+	 * @see #getOwnedParameters()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ParameterCS> parameters;
-
+	protected EList<ParameterCS> ownedParameters;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -77,12 +76,12 @@ public class DefOperationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ParameterCS> getParameters() {
-		if (parameters == null)
+	public EList<ParameterCS> getOwnedParameters() {
+		if (ownedParameters == null)
 		{
-			parameters = new EObjectContainmentEList<ParameterCS>(ParameterCS.class, this, CompleteOCLCSPackage.DEF_OPERATION_CS__PARAMETERS);
+			ownedParameters = new EObjectContainmentEList<ParameterCS>(ParameterCS.class, this, CompleteOCLCSPackage.DEF_OPERATION_CS__OWNED_PARAMETERS);
 		}
-		return parameters;
+		return ownedParameters;
 	}
 
 	/**
@@ -95,8 +94,8 @@ public class DefOperationCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.DEF_OPERATION_CS__PARAMETERS:
-				return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
+			case CompleteOCLCSPackage.DEF_OPERATION_CS__OWNED_PARAMETERS:
+				return ((InternalEList<?>)getOwnedParameters()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -110,8 +109,8 @@ public class DefOperationCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.DEF_OPERATION_CS__PARAMETERS:
-				return getParameters();
+			case CompleteOCLCSPackage.DEF_OPERATION_CS__OWNED_PARAMETERS:
+				return getOwnedParameters();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -126,9 +125,9 @@ public class DefOperationCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.DEF_OPERATION_CS__PARAMETERS:
-				getParameters().clear();
-				getParameters().addAll((Collection<? extends ParameterCS>)newValue);
+			case CompleteOCLCSPackage.DEF_OPERATION_CS__OWNED_PARAMETERS:
+				getOwnedParameters().clear();
+				getOwnedParameters().addAll((Collection<? extends ParameterCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -143,8 +142,8 @@ public class DefOperationCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.DEF_OPERATION_CS__PARAMETERS:
-				getParameters().clear();
+			case CompleteOCLCSPackage.DEF_OPERATION_CS__OWNED_PARAMETERS:
+				getOwnedParameters().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -159,8 +158,8 @@ public class DefOperationCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.DEF_OPERATION_CS__PARAMETERS:
-				return parameters != null && !parameters.isEmpty();
+			case CompleteOCLCSPackage.DEF_OPERATION_CS__OWNED_PARAMETERS:
+				return ownedParameters != null && !ownedParameters.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

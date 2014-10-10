@@ -18,8 +18,8 @@ import "http://www.eclipse.org/ocl/3.1.0/Pivot" as pivot
 import "http://www.eclipse.org/ocl/3.1.0/CompleteOCLCST"
 //generate completeOCL "http://www.eclipse.org/ocl/examples/xtext/completeocl/CompleteOCL"
 CompleteOCLDocumentCS returns CompleteOCLDocumentCS:
-	(ownedImport+=ImportCS | ownedInclude+=IncludeCS | ownedLibrary+=LibraryCS)*
-	(packages+=PackageDeclarationCS | contexts+=ContextDeclCS)*;
+	(ownedImport+=ImportCS | ownedIncludes+=IncludeCS | ownedLibrary+=LibraryCS)*
+	(ownedPackages+=PackageDeclarationCS | ownedContexts+=ContextDeclCS)*;
 
 terminal UNQUOTED_STRING:	// Never forward parsed; just provides a placeholder
 	'£$%^£$%^'				//  for reverse serialisation of embedded OCL 
@@ -63,9 +63,9 @@ PrimitiveTypeIdentifier:
 
 ClassifierContextDeclCS returns ClassifierContextDeclCS:
 	'context' (selfName=UnrestrictedName)?
-	pathName=PathNameCS
-	(('inv' invariants+=ConstraintCS)
-	| definitions+=DefCS
+	ownedPathName=PathNameCS
+	(('inv' ownedInvariants+=ConstraintCS)
+	| ownedDefinitions+=DefCS
 	)+;
 
 ConstraintCS returns base::ConstraintCS:
@@ -81,44 +81,44 @@ DefCS returns DefCS:
 
 DefOperationCS returns DefOperationCS:
 	(static?='static')? 'def' UnrestrictedName? ':'
-		name=UnrestrictedName '(' (parameters+=DefParameterCS (',' parameters+=DefParameterCS)*)? ')' ':' (ownedType=TypeExpCS)?
-		 '=' specification=SpecificationCS;
+		name=UnrestrictedName '(' (ownedParameters+=DefParameterCS (',' ownedParameters+=DefParameterCS)*)? ')' ':' (ownedType=TypeExpCS)?
+		 '=' ownedSpecification=SpecificationCS;
 
 DefParameterCS returns base::ParameterCS:
 	name=UnrestrictedName ':' ownedType=TypeExpCS;
 
 DefPropertyCS returns DefPropertyCS:
 	(static?='static')? 'def' UnrestrictedName? ':' name=UnrestrictedName ':' ownedType=TypeExpCS
-		'=' specification=SpecificationCS;
+		'=' ownedSpecification=SpecificationCS;
 
 ImportCS returns base::ImportCS:
 	'import' (name=Identifier ':')? pathName=URIPathNameCS (all?='::*')?;
 
 IncludeCS returns IncludeCS:
-	'include' namespace=[pivot::Namespace|URI];
+	'include' referredNamespace=[pivot::Namespace|URI];
 
 LibraryCS returns base::LibraryCS:
 	'library' package=[pivot::Package|URI];
 
 OperationContextDeclCS returns OperationContextDeclCS:
-	'context' pathName=PathNameCS '(' 
-	(parameters+=ParameterCS (',' parameters+=ParameterCS)*)?
+	'context' ownedPathName=PathNameCS '(' 
+	(ownedParameters+=ParameterCS (',' ownedParameters+=ParameterCS)*)?
 	')' ':' (ownedType=TypeExpCS)?
-	(('pre' preconditions+=ConstraintCS)
-	| ('post' postconditions+=ConstraintCS)
-	| ('body' UnrestrictedName? ':' bodies+=SpecificationCS)
+	(('pre' ownedPreconditions+=ConstraintCS)
+	| ('post' ownedPostconditions+=ConstraintCS)
+	| ('body' UnrestrictedName? ':' ownedBodies+=SpecificationCS)
 	)*;
 
 PackageDeclarationCS returns PackageDeclarationCS:
-	'package' pathName=PathNameCS (contexts+=ContextDeclCS)* 'endpackage';
+	'package' ownedPathName=PathNameCS ('inv' ownedInvariants+=ConstraintCS)* (ownedContexts+=ContextDeclCS)* 'endpackage';
 
 ParameterCS returns base::ParameterCS:
 	(name=UnrestrictedName ':')? ownedType=TypeExpCS;
 
 PropertyContextDeclCS returns PropertyContextDeclCS:
-	'context' pathName=PathNameCS ':' (ownedType=TypeExpCS)?
-	(('derive' derivedInvariants+=ConstraintCS)
-	| ('init' ':' defaultExpressions+=SpecificationCS)
+	'context' ownedPathName=PathNameCS ':' (ownedType=TypeExpCS)?
+	(('derive' ownedDerivedInvariants+=ConstraintCS)
+	| ('init' ':' ownedDefaultExpressions+=SpecificationCS)
 	)*;
 
 SpecificationCS returns essentialocl::ExpSpecificationCS:

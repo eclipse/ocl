@@ -74,7 +74,7 @@ public class CompleteOCLCSPostOrderVisitor extends AbstractCompleteOCLCSPostOrde
 
 	@Override
 	public Continuation<?> visitOperationContextDeclCS(@NonNull OperationContextDeclCS csElement) {
-		Operation modelOperation = csElement.getOperation();
+		Operation modelOperation = csElement.getReferredOperation();
 		if ((modelOperation != null) && !modelOperation.eIsProxy()) {
 			Operation contextOperation = PivotUtil.getPivot(Operation.class, csElement);
 			if (contextOperation != null) {

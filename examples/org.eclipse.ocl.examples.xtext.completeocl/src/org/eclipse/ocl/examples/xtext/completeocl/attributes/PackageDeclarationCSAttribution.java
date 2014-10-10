@@ -27,8 +27,8 @@ public class PackageDeclarationCSAttribution extends AbstractAttribution
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		PackageDeclarationCS targetElement = (PackageDeclarationCS)target;
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
-		if (containmentFeature == CompleteOCLCSPackage.Literals.PACKAGE_DECLARATION_CS__CONTEXTS) {
-			org.eclipse.ocl.examples.pivot.Package pkg = targetElement.getPackage();
+		if (containmentFeature == CompleteOCLCSPackage.Literals.PACKAGE_DECLARATION_CS__OWNED_CONTEXTS) {
+			org.eclipse.ocl.examples.pivot.Package pkg = targetElement.getReferredPackage();
 			if (pkg != null) {
 				environmentView.addAllPackages(pkg);
 				environmentView.addAllTypes(pkg);

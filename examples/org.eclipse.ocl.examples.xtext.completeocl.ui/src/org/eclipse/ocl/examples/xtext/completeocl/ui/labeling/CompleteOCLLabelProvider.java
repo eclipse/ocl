@@ -65,7 +65,7 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 	}
 
 	protected String text(ClassifierContextDeclCS ele) {
-		org.eclipse.ocl.examples.pivot.Class classifier = ele.getClassifier();
+		org.eclipse.ocl.examples.pivot.Class classifier = ele.getReferredClassifier();
 		if (classifier == null) {
 			return "<<null>>";
 		}
@@ -115,7 +115,7 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 	protected String text(DefOperationCS ele) {
 		StringBuilder s = new StringBuilder();
 		appendString(s, ele.getName());
-		List<ParameterCS> parameters = ele.getParameters();
+		List<ParameterCS> parameters = ele.getOwnedParameters();
 		if (!parameters.isEmpty()) {
 			s.append("(");
 			String prefix = "";
@@ -175,7 +175,7 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 
 	protected String text(OperationContextDeclCS ele) {
 		StringBuilder s = new StringBuilder();
-		Operation operation = ele.getOperation();
+		Operation operation = ele.getReferredOperation();
 		if (operation == null) {
 			return "<<null>>";
 		}
@@ -215,7 +215,7 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 			return "<<null>>";
 		}
 		AliasAnalysis aliasAnalysis = AliasAnalysis.getAdapter(eResource, metaModelManager);
-		Element pivot = ele.getPackage();
+		Element pivot = ele.getReferredPackage();
 		if (pivot == null) {
 			return "<<null>>";
 		}
@@ -247,7 +247,7 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 
 	protected String text(PropertyContextDeclCS ele) {
 		StringBuilder s = new StringBuilder();
-		Property feature = ele.getProperty();
+		Property feature = ele.getReferredProperty();
 		if (feature == null) {
 			return "<<null>>";
 		}

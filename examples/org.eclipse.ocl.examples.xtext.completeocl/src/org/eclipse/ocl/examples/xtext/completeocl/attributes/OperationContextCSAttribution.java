@@ -53,12 +53,12 @@ public class OperationContextCSAttribution extends AbstractAttribution
 		else if (containmentFeature == CompleteOCLCSPackage.Literals.CONTEXT_DECL_CS__NAMESPACE) {
 			return getNextNamespaceScope(environmentView, scopeView, targetElement.getNamespace());
 		}
-		else*/ if ((containmentFeature == CompleteOCLCSPackage.Literals.OPERATION_CONTEXT_DECL_CS__POSTCONDITIONS)
-				|| (containmentFeature == CompleteOCLCSPackage.Literals.OPERATION_CONTEXT_DECL_CS__PRECONDITIONS)
-				|| (containmentFeature == CompleteOCLCSPackage.Literals.OPERATION_CONTEXT_DECL_CS__BODIES)) {
+		else*/ if ((containmentFeature == CompleteOCLCSPackage.Literals.OPERATION_CONTEXT_DECL_CS__OWNED_POSTCONDITIONS)
+				|| (containmentFeature == CompleteOCLCSPackage.Literals.OPERATION_CONTEXT_DECL_CS__OWNED_PRECONDITIONS)
+				|| (containmentFeature == CompleteOCLCSPackage.Literals.OPERATION_CONTEXT_DECL_CS__OWNED_BODIES)) {
 //			return getNextNamespaceScope(environmentView, scopeView, target.getNamespace());
 //			Operation operation = targetElement.getOperation();
-			PathNameCS pathName = targetElement.getPathName();
+			PathNameCS pathName = targetElement.getOwnedPathName();
 			if (pathName != null) {
 				List<PathElementCS> path = pathName.getPath();
 				if (path.size() > 1) {

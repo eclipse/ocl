@@ -21,8 +21,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpSpecificati
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS#getClassifierContextDecl <em>Classifier Context Decl</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS#getSpecification <em>Specification</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS#getOwningClassifierContextDecl <em>Owning Classifier Context Decl</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS#getOwnedSpecification <em>Owned Specification</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS#isStatic <em>Static</em>}</li>
  * </ul>
  * </p>
@@ -35,47 +35,47 @@ public interface DefCS
 		extends TypedElementCS {
 
 	/**
-	 * Returns the value of the '<em><b>Classifier Context Decl</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getDefinitions <em>Definitions</em>}'.
+	 * Returns the value of the '<em><b>Owning Classifier Context Decl</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getOwnedDefinitions <em>Owned Definitions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Classifier Context Decl</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Classifier Context Decl</em>' container reference.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getDefCS_ClassifierContextDecl()
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getDefinitions
-	 * @model opposite="definitions" transient="false" changeable="false"
+	 * @return the value of the '<em>Owning Classifier Context Decl</em>' container reference.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getDefCS_OwningClassifierContextDecl()
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getOwnedDefinitions
+	 * @model opposite="ownedDefinitions" transient="false" changeable="false"
 	 * @generated
 	 */
-	ClassifierContextDeclCS getClassifierContextDecl();
+	ClassifierContextDeclCS getOwningClassifierContextDecl();
 
 	/**
-	 * Returns the value of the '<em><b>Specification</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Specification</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Specification</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Specification</em>' containment reference.
-	 * @see #setSpecification(ExpSpecificationCS)
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getDefCS_Specification()
+	 * @return the value of the '<em>Owned Specification</em>' containment reference.
+	 * @see #setOwnedSpecification(ExpSpecificationCS)
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getDefCS_OwnedSpecification()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ExpSpecificationCS getSpecification();
+	ExpSpecificationCS getOwnedSpecification();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS#getSpecification <em>Specification</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS#getOwnedSpecification <em>Owned Specification</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Specification</em>' containment reference.
-	 * @see #getSpecification()
+	 * @param value the new value of the '<em>Owned Specification</em>' containment reference.
+	 * @see #getOwnedSpecification()
 	 * @generated
 	 */
-	void setSpecification(ExpSpecificationCS value);
+	void setOwnedSpecification(ExpSpecificationCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Static</b></em>' attribute.

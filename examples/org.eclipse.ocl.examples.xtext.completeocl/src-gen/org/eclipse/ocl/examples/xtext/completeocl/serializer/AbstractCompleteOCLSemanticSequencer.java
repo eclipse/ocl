@@ -574,7 +574,7 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	
 	/**
 	 * Constraint:
-	 *     (selfName=UnrestrictedName? pathName=PathNameCS (invariants+=ConstraintCS | definitions+=DefCS)+)
+	 *     (selfName=UnrestrictedName? ownedPathName=PathNameCS (ownedInvariants+=ConstraintCS | ownedDefinitions+=DefCS)+)
 	 */
 	protected void sequence_ClassifierContextDeclCS(EObject context, ClassifierContextDeclCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -583,7 +583,10 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	
 	/**
 	 * Constraint:
-	 *     ((ownedImport+=ImportCS | ownedInclude+=IncludeCS | ownedLibrary+=LibraryCS)* (packages+=PackageDeclarationCS | contexts+=ContextDeclCS)*)
+	 *     (
+	 *         (ownedImport+=ImportCS | ownedIncludes+=IncludeCS | ownedLibrary+=LibraryCS)* 
+	 *         (ownedPackages+=PackageDeclarationCS | ownedContexts+=ContextDeclCS)*
+	 *     )
 	 */
 	protected void sequence_CompleteOCLDocumentCS(EObject context, CompleteOCLDocumentCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -629,9 +632,9 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	 *     (
 	 *         static?='static'? 
 	 *         name=UnrestrictedName 
-	 *         (parameters+=DefParameterCS parameters+=DefParameterCS*)? 
+	 *         (ownedParameters+=DefParameterCS ownedParameters+=DefParameterCS*)? 
 	 *         ownedType=TypeExpCS? 
-	 *         specification=SpecificationCS
+	 *         ownedSpecification=SpecificationCS
 	 *     )
 	 */
 	protected void sequence_DefOperationCS(EObject context, DefOperationCS semanticObject) {
@@ -650,7 +653,7 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	
 	/**
 	 * Constraint:
-	 *     (static?='static'? name=UnrestrictedName ownedType=TypeExpCS specification=SpecificationCS)
+	 *     (static?='static'? name=UnrestrictedName ownedType=TypeExpCS ownedSpecification=SpecificationCS)
 	 */
 	protected void sequence_DefPropertyCS(EObject context, DefPropertyCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -668,7 +671,7 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	
 	/**
 	 * Constraint:
-	 *     namespace=[Namespace|URI]
+	 *     referredNamespace=[Namespace|URI]
 	 */
 	protected void sequence_IncludeCS(EObject context, IncludeCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -696,10 +699,10 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	/**
 	 * Constraint:
 	 *     (
-	 *         pathName=PathNameCS 
-	 *         (parameters+=ParameterCS parameters+=ParameterCS*)? 
+	 *         ownedPathName=PathNameCS 
+	 *         (ownedParameters+=ParameterCS ownedParameters+=ParameterCS*)? 
 	 *         ownedType=TypeExpCS? 
-	 *         (preconditions+=ConstraintCS | postconditions+=ConstraintCS | bodies+=SpecificationCS)*
+	 *         (ownedPreconditions+=ConstraintCS | ownedPostconditions+=ConstraintCS | ownedBodies+=SpecificationCS)*
 	 *     )
 	 */
 	protected void sequence_OperationContextDeclCS(EObject context, OperationContextDeclCS semanticObject) {
@@ -709,7 +712,7 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	
 	/**
 	 * Constraint:
-	 *     (pathName=PathNameCS contexts+=ContextDeclCS*)
+	 *     (ownedPathName=PathNameCS ownedInvariants+=ConstraintCS* ownedContexts+=ContextDeclCS*)
 	 */
 	protected void sequence_PackageDeclarationCS(EObject context, PackageDeclarationCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -727,7 +730,7 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	
 	/**
 	 * Constraint:
-	 *     (pathName=PathNameCS ownedType=TypeExpCS? (derivedInvariants+=ConstraintCS | defaultExpressions+=SpecificationCS)*)
+	 *     (ownedPathName=PathNameCS ownedType=TypeExpCS? (ownedDerivedInvariants+=ConstraintCS | ownedDefaultExpressions+=SpecificationCS)*)
 	 */
 	protected void sequence_PropertyContextDeclCS(EObject context, PropertyContextDeclCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

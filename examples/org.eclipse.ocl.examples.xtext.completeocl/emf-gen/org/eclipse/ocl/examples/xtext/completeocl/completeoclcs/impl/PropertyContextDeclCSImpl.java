@@ -38,9 +38,9 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpSpecificati
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.PropertyContextDeclCSImpl#getProperty <em>Property</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.PropertyContextDeclCSImpl#getDefaultExpressions <em>Default Expressions</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.PropertyContextDeclCSImpl#getDerivedInvariants <em>Derived Invariants</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.PropertyContextDeclCSImpl#getReferredProperty <em>Referred Property</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.PropertyContextDeclCSImpl#getOwnedDefaultExpressions <em>Owned Default Expressions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.PropertyContextDeclCSImpl#getOwnedDerivedInvariants <em>Owned Derived Invariants</em>}</li>
  * </ul>
  * </p>
  *
@@ -51,24 +51,24 @@ public class PropertyContextDeclCSImpl
 		implements PropertyContextDeclCS {
 
 	/**
-	 * The cached value of the '{@link #getDefaultExpressions() <em>Default Expressions</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedDefaultExpressions() <em>Owned Default Expressions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDefaultExpressions()
+	 * @see #getOwnedDefaultExpressions()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ExpSpecificationCS> defaultExpressions;
+	protected EList<ExpSpecificationCS> ownedDefaultExpressions;
 
 	/**
-	 * The cached value of the '{@link #getDerivedInvariants() <em>Derived Invariants</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedDerivedInvariants() <em>Owned Derived Invariants</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDerivedInvariants()
+	 * @see #getOwnedDerivedInvariants()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ConstraintCS> derivedInvariants;
+	protected EList<ConstraintCS> ownedDerivedInvariants;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -98,12 +98,12 @@ public class PropertyContextDeclCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__PROPERTY:
-				return getProperty();
-			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__DEFAULT_EXPRESSIONS:
-				return getDefaultExpressions();
-			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__DERIVED_INVARIANTS:
-				return getDerivedInvariants();
+			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__REFERRED_PROPERTY:
+				return getReferredProperty();
+			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__OWNED_DEFAULT_EXPRESSIONS:
+				return getOwnedDefaultExpressions();
+			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__OWNED_DERIVED_INVARIANTS:
+				return getOwnedDerivedInvariants();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -118,13 +118,13 @@ public class PropertyContextDeclCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__DEFAULT_EXPRESSIONS:
-				getDefaultExpressions().clear();
-				getDefaultExpressions().addAll((Collection<? extends ExpSpecificationCS>)newValue);
+			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__OWNED_DEFAULT_EXPRESSIONS:
+				getOwnedDefaultExpressions().clear();
+				getOwnedDefaultExpressions().addAll((Collection<? extends ExpSpecificationCS>)newValue);
 				return;
-			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__DERIVED_INVARIANTS:
-				getDerivedInvariants().clear();
-				getDerivedInvariants().addAll((Collection<? extends ConstraintCS>)newValue);
+			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__OWNED_DERIVED_INVARIANTS:
+				getOwnedDerivedInvariants().clear();
+				getOwnedDerivedInvariants().addAll((Collection<? extends ConstraintCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -139,11 +139,11 @@ public class PropertyContextDeclCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__DEFAULT_EXPRESSIONS:
-				getDefaultExpressions().clear();
+			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__OWNED_DEFAULT_EXPRESSIONS:
+				getOwnedDefaultExpressions().clear();
 				return;
-			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__DERIVED_INVARIANTS:
-				getDerivedInvariants().clear();
+			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__OWNED_DERIVED_INVARIANTS:
+				getOwnedDerivedInvariants().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -158,12 +158,12 @@ public class PropertyContextDeclCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__PROPERTY:
-				return getProperty() != null;
-			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__DEFAULT_EXPRESSIONS:
-				return defaultExpressions != null && !defaultExpressions.isEmpty();
-			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__DERIVED_INVARIANTS:
-				return derivedInvariants != null && !derivedInvariants.isEmpty();
+			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__REFERRED_PROPERTY:
+				return getReferredProperty() != null;
+			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__OWNED_DEFAULT_EXPRESSIONS:
+				return ownedDefaultExpressions != null && !ownedDefaultExpressions.isEmpty();
+			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__OWNED_DERIVED_INVARIANTS:
+				return ownedDerivedInvariants != null && !ownedDerivedInvariants.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -183,14 +183,14 @@ public class PropertyContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Property getProperty() {
-		PathNameCS pathName2 = pathName;
-		if (pathName2 == null) {
+	public Property getReferredProperty() {
+		PathNameCS ownedPathName2 = ownedPathName;
+		if (ownedPathName2 == null) {
 			return null;
 		}
-		CS2Pivot.setElementType(pathName2, PivotPackage.Literals.PROPERTY,
+		CS2Pivot.setElementType(ownedPathName2, PivotPackage.Literals.PROPERTY,
 			this, null);
-		return (Property) pathName2.getElement();
+		return (Property) ownedPathName2.getElement();
 	}
 
 	/**
@@ -198,12 +198,12 @@ public class PropertyContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ExpSpecificationCS> getDefaultExpressions() {
-		if (defaultExpressions == null)
+	public EList<ExpSpecificationCS> getOwnedDefaultExpressions() {
+		if (ownedDefaultExpressions == null)
 		{
-			defaultExpressions = new EObjectContainmentEList<ExpSpecificationCS>(ExpSpecificationCS.class, this, CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__DEFAULT_EXPRESSIONS);
+			ownedDefaultExpressions = new EObjectContainmentEList<ExpSpecificationCS>(ExpSpecificationCS.class, this, CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__OWNED_DEFAULT_EXPRESSIONS);
 		}
-		return defaultExpressions;
+		return ownedDefaultExpressions;
 	}
 
 	/**
@@ -211,12 +211,12 @@ public class PropertyContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ConstraintCS> getDerivedInvariants() {
-		if (derivedInvariants == null)
+	public EList<ConstraintCS> getOwnedDerivedInvariants() {
+		if (ownedDerivedInvariants == null)
 		{
-			derivedInvariants = new EObjectContainmentEList<ConstraintCS>(ConstraintCS.class, this, CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__DERIVED_INVARIANTS);
+			ownedDerivedInvariants = new EObjectContainmentEList<ConstraintCS>(ConstraintCS.class, this, CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__OWNED_DERIVED_INVARIANTS);
 		}
-		return derivedInvariants;
+		return ownedDerivedInvariants;
 	}
 
 	/**
@@ -229,10 +229,10 @@ public class PropertyContextDeclCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__DEFAULT_EXPRESSIONS:
-				return ((InternalEList<?>)getDefaultExpressions()).basicRemove(otherEnd, msgs);
-			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__DERIVED_INVARIANTS:
-				return ((InternalEList<?>)getDerivedInvariants()).basicRemove(otherEnd, msgs);
+			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__OWNED_DEFAULT_EXPRESSIONS:
+				return ((InternalEList<?>)getOwnedDefaultExpressions()).basicRemove(otherEnd, msgs);
+			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__OWNED_DERIVED_INVARIANTS:
+				return ((InternalEList<?>)getOwnedDerivedInvariants()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}

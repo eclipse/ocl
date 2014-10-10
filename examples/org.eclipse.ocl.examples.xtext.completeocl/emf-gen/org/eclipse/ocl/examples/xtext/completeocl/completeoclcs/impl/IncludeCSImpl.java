@@ -31,7 +31,7 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.util.CompleteOCL
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.IncludeCSImpl#getNamespace <em>Namespace</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.IncludeCSImpl#getReferredNamespace <em>Referred Namespace</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,15 +42,14 @@ public class IncludeCSImpl
 		implements IncludeCS {
 
 	/**
-	 * The cached value of the '{@link #getNamespace() <em>Namespace</em>}' reference.
+	 * The cached value of the '{@link #getReferredNamespace() <em>Referred Namespace</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNamespace()
+	 * @see #getReferredNamespace()
 	 * @generated
 	 * @ordered
 	 */
-	protected Namespace namespace;
-
+	protected Namespace referredNamespace;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,18 +74,18 @@ public class IncludeCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Namespace getNamespace() {
-		if (namespace != null && ((EObject)namespace).eIsProxy())
+	public Namespace getReferredNamespace() {
+		if (referredNamespace != null && ((EObject)referredNamespace).eIsProxy())
 		{
-			InternalEObject oldNamespace = (InternalEObject)namespace;
-			namespace = (Namespace)eResolveProxy(oldNamespace);
-			if (namespace != oldNamespace)
+			InternalEObject oldReferredNamespace = (InternalEObject)referredNamespace;
+			referredNamespace = (Namespace)eResolveProxy(oldReferredNamespace);
+			if (referredNamespace != oldReferredNamespace)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CompleteOCLCSPackage.INCLUDE_CS__NAMESPACE, oldNamespace, namespace));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CompleteOCLCSPackage.INCLUDE_CS__REFERRED_NAMESPACE, oldReferredNamespace, referredNamespace));
 			}
 		}
-		return namespace;
+		return referredNamespace;
 	}
 
 	/**
@@ -94,8 +93,9 @@ public class IncludeCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Namespace basicGetNamespace() {
-		return namespace;
+	public Namespace basicGetReferredNamespace()
+	{
+		return referredNamespace;
 	}
 
 	/**
@@ -103,11 +103,11 @@ public class IncludeCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNamespace(Namespace newNamespace) {
-		Namespace oldNamespace = namespace;
-		namespace = newNamespace;
+	public void setReferredNamespace(Namespace newReferredNamespace) {
+		Namespace oldReferredNamespace = referredNamespace;
+		referredNamespace = newReferredNamespace;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSPackage.INCLUDE_CS__NAMESPACE, oldNamespace, namespace));
+			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSPackage.INCLUDE_CS__REFERRED_NAMESPACE, oldReferredNamespace, referredNamespace));
 	}
 
 	/**
@@ -119,9 +119,9 @@ public class IncludeCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.INCLUDE_CS__NAMESPACE:
-				if (resolve) return getNamespace();
-				return basicGetNamespace();
+			case CompleteOCLCSPackage.INCLUDE_CS__REFERRED_NAMESPACE:
+				if (resolve) return getReferredNamespace();
+				return basicGetReferredNamespace();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -135,8 +135,8 @@ public class IncludeCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.INCLUDE_CS__NAMESPACE:
-				setNamespace((Namespace)newValue);
+			case CompleteOCLCSPackage.INCLUDE_CS__REFERRED_NAMESPACE:
+				setReferredNamespace((Namespace)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -151,8 +151,8 @@ public class IncludeCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.INCLUDE_CS__NAMESPACE:
-				setNamespace((Namespace)null);
+			case CompleteOCLCSPackage.INCLUDE_CS__REFERRED_NAMESPACE:
+				setReferredNamespace((Namespace)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -167,8 +167,8 @@ public class IncludeCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.INCLUDE_CS__NAMESPACE:
-				return namespace != null;
+			case CompleteOCLCSPackage.INCLUDE_CS__REFERRED_NAMESPACE:
+				return referredNamespace != null;
 		}
 		return super.eIsSet(featureID);
 	}

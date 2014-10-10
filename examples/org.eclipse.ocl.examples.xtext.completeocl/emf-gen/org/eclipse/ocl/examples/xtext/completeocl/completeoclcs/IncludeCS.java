@@ -21,7 +21,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.NamespaceCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.IncludeCS#getNamespace <em>Namespace</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.IncludeCS#getReferredNamespace <em>Referred Namespace</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,29 +33,29 @@ public interface IncludeCS
 		extends NamespaceCS {
 
 	/**
-	 * Returns the value of the '<em><b>Namespace</b></em>' reference.
+	 * Returns the value of the '<em><b>Referred Namespace</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Namespace</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Namespace</em>' reference.
-	 * @see #setNamespace(Namespace)
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getIncludeCS_Namespace()
+	 * @return the value of the '<em>Referred Namespace</em>' reference.
+	 * @see #setReferredNamespace(Namespace)
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getIncludeCS_ReferredNamespace()
 	 * @model
 	 * @generated
 	 */
-	Namespace getNamespace();
+	Namespace getReferredNamespace();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.IncludeCS#getNamespace <em>Namespace</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.IncludeCS#getReferredNamespace <em>Referred Namespace</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Namespace</em>' reference.
-	 * @see #getNamespace()
+	 * @param value the new value of the '<em>Referred Namespace</em>' reference.
+	 * @see #getReferredNamespace()
 	 * @generated
 	 */
-	void setNamespace(Namespace value);
+	void setReferredNamespace(Namespace value);
 
 } // IncludeCS
