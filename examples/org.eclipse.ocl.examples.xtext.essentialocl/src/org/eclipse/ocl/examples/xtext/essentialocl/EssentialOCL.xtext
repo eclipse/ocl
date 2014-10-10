@@ -103,7 +103,7 @@ EssentialOCLInfixOperatorCS returns BinaryOperatorCS:
 
 /** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> */
 EssentialOCLNavigationOperatorCS returns NavigationOperatorCS:
-	name=('.' | '->');
+	name=('.' | '->' | '?.' | '?->');
 
 Identifier:
 	ID;
