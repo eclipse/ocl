@@ -361,8 +361,18 @@ NavigatingArgExpCS returns ExpCS: // Intended to be overridden
 IfExpCS returns IfExpCS:
 	'if' condition=ExpCS
 	'then' thenExpression=ExpCS
+//	ifThenExpressions+=IfThenExpCS
+	(ifThenExpressions+=ElseIfThenExpCS)*
 	'else' elseExpression=ExpCS
 	'endif';
+//IfThenExpCS returns IfThenExpCS:
+//	'if' condition=ExpCS
+//	'then' thenExpression=ExpCS
+//;
+ElseIfThenExpCS returns IfThenExpCS:
+	'elseif' condition=ExpCS
+	'then' thenExpression=ExpCS
+;
 
 LetExpCS returns LetExpCS:
 	'let' variable+=LetVariableCS (',' variable+=LetVariableCS)*

@@ -118,6 +118,7 @@ public class EssentialOCLCSFactoryImpl
 			case EssentialOCLCSPackage.EXP_CS: return createExpCS();
 			case EssentialOCLCSPackage.EXP_SPECIFICATION_CS: return createExpSpecificationCS();
 			case EssentialOCLCSPackage.IF_EXP_CS: return createIfExpCS();
+			case EssentialOCLCSPackage.IF_THEN_EXP_CS: return createIfThenExpCS();
 			case EssentialOCLCSPackage.INFIX_EXP_CS: return createInfixExpCS();
 			case EssentialOCLCSPackage.INVALID_LITERAL_EXP_CS: return createInvalidLiteralExpCS();
 			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS: return createLambdaLiteralExpCS();
@@ -567,6 +568,17 @@ public class EssentialOCLCSFactoryImpl
 	public IfExpCS createIfExpCS() {
 		IfExpCSImpl ifExpCS = new IfExpCSImpl();
 		return ifExpCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfThenExpCS createIfThenExpCS()
+	{
+		IfThenExpCSImpl ifThenExpCS = new IfThenExpCSImpl();
+		return ifThenExpCS;
 	}
 
 	/**

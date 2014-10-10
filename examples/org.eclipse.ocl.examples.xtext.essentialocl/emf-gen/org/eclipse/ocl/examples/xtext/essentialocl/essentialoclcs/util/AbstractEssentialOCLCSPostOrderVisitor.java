@@ -87,6 +87,10 @@ public abstract class AbstractEssentialOCLCSPostOrderVisitor
 		return visitExpCS(csElement);
 	}
 
+	public @Nullable Continuation<?> visitIfThenExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfThenExpCS csElement) {
+		return visitExpCS(csElement);
+	}
+
 	public @Nullable Continuation<?> visitInfixExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS csElement) {
 		return visitExpCS(csElement);
 	}

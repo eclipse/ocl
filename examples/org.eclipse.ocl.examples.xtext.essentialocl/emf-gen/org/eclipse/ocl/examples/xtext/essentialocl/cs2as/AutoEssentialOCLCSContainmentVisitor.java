@@ -28,6 +28,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketed
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpSpecificationCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfThenExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvalidLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LambdaLiteralExpCS;
@@ -116,6 +117,10 @@ public class AutoEssentialOCLCSContainmentVisitor
     
     public @Nullable Continuation<?> visitIfExpCS(@NonNull IfExpCS self) {
         throw new UnsupportedOperationException("visitIfExpCS is not supported by " + getClass().getName());
+    }
+    
+    public @Nullable Continuation<?> visitIfThenExpCS(@NonNull IfThenExpCS self) {
+        throw new UnsupportedOperationException("visitIfThenExpCS is not supported by " + getClass().getName());
     }
     
     public @Nullable Continuation<?> visitInfixExpCS(@NonNull InfixExpCS self) {

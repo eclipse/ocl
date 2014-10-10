@@ -65,7 +65,15 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="thenExpression" eType="#//ExpCS"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ifThenExpressions" upperBound="-1"
+        eType="#//IfThenExpCS" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elseExpression" eType="#//ExpCS"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IfThenExpCS" eSuperTypes="#//ExpCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//ExpCS"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="thenExpression" eType="#//ExpCS"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InfixExpCS" eSuperTypes="#//ExpCS">

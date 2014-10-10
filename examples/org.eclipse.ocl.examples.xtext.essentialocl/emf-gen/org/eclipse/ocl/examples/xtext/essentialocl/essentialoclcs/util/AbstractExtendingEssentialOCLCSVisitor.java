@@ -84,6 +84,10 @@ public abstract class AbstractExtendingEssentialOCLCSVisitor<R, C>
 		return visitExpCS(object);
 	}
 
+	public @Nullable R visitIfThenExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfThenExpCS object) {
+		return visitExpCS(object);
+	}
+
 	public @Nullable R visitInfixExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS object) {
 		return visitExpCS(object);
 	}

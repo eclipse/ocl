@@ -97,7 +97,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getLiteralExpCS()
 	 * @generated
 	 */
-	int LITERAL_EXP_CS = 16;
+	int LITERAL_EXP_CS = 17;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CollectionLiteralExpCSImpl <em>Collection Literal Exp CS</em>}' class.
@@ -127,7 +127,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getPrimitiveLiteralExpCS()
 	 * @generated
 	 */
-	int PRIMITIVE_LITERAL_EXP_CS = 25;
+	int PRIMITIVE_LITERAL_EXP_CS = 26;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.TupleLiteralExpCSImpl <em>Tuple Literal Exp CS</em>}' class.
@@ -137,7 +137,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getTupleLiteralExpCS()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_EXP_CS = 30;
+	int TUPLE_LITERAL_EXP_CS = 31;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.StringLiteralExpCSImpl <em>String Literal Exp CS</em>}' class.
@@ -147,7 +147,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getStringLiteralExpCS()
 	 * @generated
 	 */
-	int STRING_LITERAL_EXP_CS = 29;
+	int STRING_LITERAL_EXP_CS = 30;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.BooleanLiteralExpCSImpl <em>Boolean Literal Exp CS</em>}' class.
@@ -167,7 +167,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getInvalidLiteralExpCS()
 	 * @generated
 	 */
-	int INVALID_LITERAL_EXP_CS = 12;
+	int INVALID_LITERAL_EXP_CS = 13;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NullLiteralExpCSImpl <em>Null Literal Exp CS</em>}' class.
@@ -177,7 +177,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNullLiteralExpCS()
 	 * @generated
 	 */
-	int NULL_LITERAL_EXP_CS = 21;
+	int NULL_LITERAL_EXP_CS = 22;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IfExpCSImpl <em>If Exp CS</em>}' class.
@@ -197,7 +197,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getLetExpCS()
 	 * @generated
 	 */
-	int LET_EXP_CS = 14;
+	int LET_EXP_CS = 15;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.InfixExpCSImpl <em>Infix Exp CS</em>}' class.
@@ -207,7 +207,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getInfixExpCS()
 	 * @generated
 	 */
-	int INFIX_EXP_CS = 11;
+	int INFIX_EXP_CS = 12;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl <em>Name Exp CS</em>}' class.
@@ -217,7 +217,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNameExpCS()
 	 * @generated
 	 */
-	int NAME_EXP_CS = 17;
+	int NAME_EXP_CS = 18;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.TypeNameExpCSImpl <em>Type Name Exp CS</em>}' class.
@@ -227,7 +227,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getTypeNameExpCS()
 	 * @generated
 	 */
-	int TYPE_NAME_EXP_CS = 33;
+	int TYPE_NAME_EXP_CS = 34;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NavigatingArgCSImpl <em>Navigating Arg CS</em>}' class.
@@ -237,7 +237,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNavigatingArgCS()
 	 * @generated
 	 */
-	int NAVIGATING_ARG_CS = 18;
+	int NAVIGATING_ARG_CS = 19;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NestedExpCSImpl <em>Nested Exp CS</em>}' class.
@@ -247,7 +247,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNestedExpCS()
 	 * @generated
 	 */
-	int NESTED_EXP_CS = 20;
+	int NESTED_EXP_CS = 21;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NumberLiteralExpCSImpl <em>Number Literal Exp CS</em>}' class.
@@ -257,7 +257,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNumberLiteralExpCS()
 	 * @generated
 	 */
-	int NUMBER_LITERAL_EXP_CS = 22;
+	int NUMBER_LITERAL_EXP_CS = 23;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperatorCSImpl <em>Operator CS</em>}' class.
@@ -267,7 +267,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getOperatorCS()
 	 * @generated
 	 */
-	int OPERATOR_CS = 23;
+	int OPERATOR_CS = 24;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.BinaryOperatorCSImpl <em>Binary Operator CS</em>}' class.
@@ -1009,7 +1009,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getVariableCS()
 	 * @generated
 	 */
-	int VARIABLE_CS = 36;
+	int VARIABLE_CS = 37;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetVariableCSImpl <em>Let Variable CS</em>}' class.
@@ -1019,7 +1019,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getLetVariableCS()
 	 * @generated
 	 */
-	int LET_VARIABLE_CS = 15;
+	int LET_VARIABLE_CS = 16;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ConstructorPartCSImpl <em>Constructor Part CS</em>}' class.
@@ -1411,13 +1411,22 @@ public interface EssentialOCLCSPackage
 	int IF_EXP_CS__THEN_EXPRESSION = EXP_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>If Then Expressions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_EXP_CS__IF_THEN_EXPRESSIONS = EXP_CS_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Else Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IF_EXP_CS__ELSE_EXPRESSION = EXP_CS_FEATURE_COUNT + 2;
+	int IF_EXP_CS__ELSE_EXPRESSION = EXP_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>If Exp CS</em>' class.
@@ -1426,7 +1435,107 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IF_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 3;
+	int IF_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 4;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IfThenExpCSImpl <em>If Then Exp CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IfThenExpCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getIfThenExpCS()
+	 * @generated
+	 */
+	int IF_THEN_EXP_CS = 11;
+
+	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_THEN_EXP_CS__LOGICAL_PARENT = EXP_CS__LOGICAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Pivot</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_THEN_EXP_CS__PIVOT = EXP_CS__PIVOT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_THEN_EXP_CS__OWNED_ANNOTATION = EXP_CS__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_THEN_EXP_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
+
+	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_THEN_EXP_CS__CSI = EXP_CS__CSI;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_THEN_EXP_CS__PARENT = EXP_CS__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_THEN_EXP_CS__HAS_ERROR = EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_THEN_EXP_CS__CONDITION = EXP_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Then Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_THEN_EXP_CS__THEN_EXPRESSION = EXP_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>If Then Exp CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_THEN_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -1598,7 +1707,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getLambdaLiteralExpCS()
 	 * @generated
 	 */
-	int LAMBDA_LITERAL_EXP_CS = 13;
+	int LAMBDA_LITERAL_EXP_CS = 14;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -2220,7 +2329,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNavigationOperatorCS()
 	 * @generated
 	 */
-	int NAVIGATION_OPERATOR_CS = 19;
+	int NAVIGATION_OPERATOR_CS = 20;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -2563,7 +2672,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getPrefixExpCS()
 	 * @generated
 	 */
-	int PREFIX_EXP_CS = 24;
+	int PREFIX_EXP_CS = 25;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -2663,7 +2772,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getRoundBracketedClauseCS()
 	 * @generated
 	 */
-	int ROUND_BRACKETED_CLAUSE_CS = 26;
+	int ROUND_BRACKETED_CLAUSE_CS = 27;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -2709,7 +2818,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getSelfExpCS()
 	 * @generated
 	 */
-	int SELF_EXP_CS = 27;
+	int SELF_EXP_CS = 28;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -2800,7 +2909,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getSquareBracketedClauseCS()
 	 * @generated
 	 */
-	int SQUARE_BRACKETED_CLAUSE_CS = 28;
+	int SQUARE_BRACKETED_CLAUSE_CS = 29;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3008,7 +3117,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getTupleLiteralPartCS()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_PART_CS = 31;
+	int TUPLE_LITERAL_PART_CS = 32;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3099,7 +3208,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getTypeLiteralExpCS()
 	 * @generated
 	 */
-	int TYPE_LITERAL_EXP_CS = 32;
+	int TYPE_LITERAL_EXP_CS = 33;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3244,7 +3353,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getUnaryOperatorCS()
 	 * @generated
 	 */
-	int UNARY_OPERATOR_CS = 34;
+	int UNARY_OPERATOR_CS = 35;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3344,7 +3453,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getUnlimitedNaturalLiteralExpCS()
 	 * @generated
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP_CS = 35;
+	int UNLIMITED_NATURAL_LITERAL_EXP_CS = 36;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3426,7 +3535,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNavigationRole()
 	 * @generated
 	 */
-	int NAVIGATION_ROLE = 37;
+	int NAVIGATION_ROLE = 38;
 
 	/**
 	 * The meta object id for the '<em>Big Number</em>' data type.
@@ -3436,7 +3545,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getBigNumber()
 	 * @generated
 	 */
-	int BIG_NUMBER = 38;
+	int BIG_NUMBER = 39;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS <em>Binary Operator CS</em>}'.
@@ -4370,6 +4479,17 @@ public interface EssentialOCLCSPackage
 	EReference getIfExpCS_ThenExpression();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS#getIfThenExpressions <em>If Then Expressions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>If Then Expressions</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS#getIfThenExpressions()
+	 * @see #getIfExpCS()
+	 * @generated
+	 */
+	EReference getIfExpCS_IfThenExpressions();
+
+	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS#getElseExpression <em>Else Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4379,6 +4499,38 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 */
 	EReference getIfExpCS_ElseExpression();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfThenExpCS <em>If Then Exp CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>If Then Exp CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfThenExpCS
+	 * @generated
+	 */
+	EClass getIfThenExpCS();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfThenExpCS#getCondition <em>Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Condition</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfThenExpCS#getCondition()
+	 * @see #getIfThenExpCS()
+	 * @generated
+	 */
+	EReference getIfThenExpCS_Condition();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfThenExpCS#getThenExpression <em>Then Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Then Expression</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfThenExpCS#getThenExpression()
+	 * @see #getIfThenExpCS()
+	 * @generated
+	 */
+	EReference getIfThenExpCS_ThenExpression();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS <em>Infix Exp CS</em>}'.
@@ -5259,12 +5411,46 @@ public interface EssentialOCLCSPackage
 		EReference IF_EXP_CS__THEN_EXPRESSION = eINSTANCE.getIfExpCS_ThenExpression();
 
 		/**
+		 * The meta object literal for the '<em><b>If Then Expressions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IF_EXP_CS__IF_THEN_EXPRESSIONS = eINSTANCE.getIfExpCS_IfThenExpressions();
+
+		/**
 		 * The meta object literal for the '<em><b>Else Expression</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference IF_EXP_CS__ELSE_EXPRESSION = eINSTANCE.getIfExpCS_ElseExpression();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IfThenExpCSImpl <em>If Then Exp CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IfThenExpCSImpl
+		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getIfThenExpCS()
+		 * @generated
+		 */
+		EClass IF_THEN_EXP_CS = eINSTANCE.getIfThenExpCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IF_THEN_EXP_CS__CONDITION = eINSTANCE.getIfThenExpCS_Condition();
+
+		/**
+		 * The meta object literal for the '<em><b>Then Expression</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IF_THEN_EXP_CS__THEN_EXPRESSION = eINSTANCE.getIfThenExpCS_ThenExpression();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.InfixExpCSImpl <em>Infix Exp CS</em>}' class.

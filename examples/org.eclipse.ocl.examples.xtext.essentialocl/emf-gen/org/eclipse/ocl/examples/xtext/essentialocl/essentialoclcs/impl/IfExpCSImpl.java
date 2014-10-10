@@ -10,17 +10,22 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfThenExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.EssentialOCLCSVisitor;
 
 /**
@@ -32,6 +37,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IfExpCSImpl#getCondition <em>Condition</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IfExpCSImpl#getThenExpression <em>Then Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IfExpCSImpl#getIfThenExpressions <em>If Then Expressions</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IfExpCSImpl#getElseExpression <em>Else Expression</em>}</li>
  * </ul>
  * </p>
@@ -61,6 +67,16 @@ public class IfExpCSImpl
 	 * @ordered
 	 */
 	protected ExpCS thenExpression;
+
+	/**
+	 * The cached value of the '{@link #getIfThenExpressions() <em>If Then Expressions</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIfThenExpressions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<IfThenExpCS> ifThenExpressions;
 
 	/**
 	 * The cached value of the '{@link #getElseExpression() <em>Else Expression</em>}' containment reference.
@@ -188,6 +204,20 @@ public class IfExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<IfThenExpCS> getIfThenExpressions()
+	{
+		if (ifThenExpressions == null)
+		{
+			ifThenExpressions = new EObjectContainmentEList<IfThenExpCS>(IfThenExpCS.class, this, EssentialOCLCSPackage.IF_EXP_CS__IF_THEN_EXPRESSIONS);
+		}
+		return ifThenExpressions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ExpCS getElseExpression() {
 		return elseExpression;
 	}
@@ -243,6 +273,8 @@ public class IfExpCSImpl
 				return basicSetCondition(null, msgs);
 			case EssentialOCLCSPackage.IF_EXP_CS__THEN_EXPRESSION:
 				return basicSetThenExpression(null, msgs);
+			case EssentialOCLCSPackage.IF_EXP_CS__IF_THEN_EXPRESSIONS:
+				return ((InternalEList<?>)getIfThenExpressions()).basicRemove(otherEnd, msgs);
 			case EssentialOCLCSPackage.IF_EXP_CS__ELSE_EXPRESSION:
 				return basicSetElseExpression(null, msgs);
 		}
@@ -262,6 +294,8 @@ public class IfExpCSImpl
 				return getCondition();
 			case EssentialOCLCSPackage.IF_EXP_CS__THEN_EXPRESSION:
 				return getThenExpression();
+			case EssentialOCLCSPackage.IF_EXP_CS__IF_THEN_EXPRESSIONS:
+				return getIfThenExpressions();
 			case EssentialOCLCSPackage.IF_EXP_CS__ELSE_EXPRESSION:
 				return getElseExpression();
 		}
@@ -273,6 +307,7 @@ public class IfExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
@@ -282,6 +317,10 @@ public class IfExpCSImpl
 				return;
 			case EssentialOCLCSPackage.IF_EXP_CS__THEN_EXPRESSION:
 				setThenExpression((ExpCS)newValue);
+				return;
+			case EssentialOCLCSPackage.IF_EXP_CS__IF_THEN_EXPRESSIONS:
+				getIfThenExpressions().clear();
+				getIfThenExpressions().addAll((Collection<? extends IfThenExpCS>)newValue);
 				return;
 			case EssentialOCLCSPackage.IF_EXP_CS__ELSE_EXPRESSION:
 				setElseExpression((ExpCS)newValue);
@@ -305,6 +344,9 @@ public class IfExpCSImpl
 			case EssentialOCLCSPackage.IF_EXP_CS__THEN_EXPRESSION:
 				setThenExpression((ExpCS)null);
 				return;
+			case EssentialOCLCSPackage.IF_EXP_CS__IF_THEN_EXPRESSIONS:
+				getIfThenExpressions().clear();
+				return;
 			case EssentialOCLCSPackage.IF_EXP_CS__ELSE_EXPRESSION:
 				setElseExpression((ExpCS)null);
 				return;
@@ -325,6 +367,8 @@ public class IfExpCSImpl
 				return condition != null;
 			case EssentialOCLCSPackage.IF_EXP_CS__THEN_EXPRESSION:
 				return thenExpression != null;
+			case EssentialOCLCSPackage.IF_EXP_CS__IF_THEN_EXPRESSIONS:
+				return ifThenExpressions != null && !ifThenExpressions.isEmpty();
 			case EssentialOCLCSPackage.IF_EXP_CS__ELSE_EXPRESSION:
 				return elseExpression != null;
 		}

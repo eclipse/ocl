@@ -80,6 +80,10 @@ public abstract class AbstractDelegatingEssentialOCLCSVisitor<R, C, D extends Es
 		return delegate.visitIfExpCS(object);
 	}
 
+	public @Nullable R visitIfThenExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfThenExpCS object) {
+		return delegate.visitIfThenExpCS(object);
+	}
+
 	public @Nullable R visitInfixExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS object) {
 		return delegate.visitInfixExpCS(object);
 	}

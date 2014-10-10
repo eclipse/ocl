@@ -338,6 +338,15 @@ public interface EssentialOCLCSFactory
 	IfExpCS createIfExpCS();
 
 	/**
+	 * Returns a new object of class '<em>If Then Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>If Then Exp CS</em>'.
+	 * @generated
+	 */
+	IfThenExpCS createIfThenExpCS();
+
+	/**
 	 * Returns a new object of class '<em>Infix Exp CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

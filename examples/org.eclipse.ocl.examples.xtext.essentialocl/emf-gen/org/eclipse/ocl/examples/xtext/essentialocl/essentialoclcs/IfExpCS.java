@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>If Exp CS</b></em>'.
@@ -20,6 +22,7 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS#getCondition <em>Condition</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS#getThenExpression <em>Then Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS#getIfThenExpressions <em>If Then Expressions</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS#getElseExpression <em>Else Expression</em>}</li>
  * </ul>
  * </p>
@@ -82,6 +85,22 @@ public interface IfExpCS
 	 * @generated
 	 */
 	void setThenExpression(ExpCS value);
+
+	/**
+	 * Returns the value of the '<em><b>If Then Expressions</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfThenExpCS}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>If Then Expressions</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>If Then Expressions</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getIfExpCS_IfThenExpressions()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<IfThenExpCS> getIfThenExpressions();
 
 	/**
 	 * Returns the value of the '<em><b>Else Expression</b></em>' containment reference.

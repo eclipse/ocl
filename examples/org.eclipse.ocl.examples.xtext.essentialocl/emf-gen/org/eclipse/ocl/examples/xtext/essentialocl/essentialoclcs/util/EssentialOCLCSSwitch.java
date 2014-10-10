@@ -237,6 +237,19 @@ public class EssentialOCLCSSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case EssentialOCLCSPackage.IF_THEN_EXP_CS:
+			{
+				IfThenExpCS ifThenExpCS = (IfThenExpCS)theEObject;
+				T result = caseIfThenExpCS(ifThenExpCS);
+				if (result == null) result = caseExpCS(ifThenExpCS);
+				if (result == null) result = caseModelElementCS(ifThenExpCS);
+				if (result == null) result = casePivotableElementCS(ifThenExpCS);
+				if (result == null) result = caseElementCS(ifThenExpCS);
+				if (result == null) result = casePivotable(ifThenExpCS);
+				if (result == null) result = caseVisitableCS(ifThenExpCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case EssentialOCLCSPackage.INFIX_EXP_CS:
 			{
 				InfixExpCS infixExpCS = (InfixExpCS)theEObject;
@@ -765,6 +778,22 @@ public class EssentialOCLCSSwitch<T>
 	 * @generated
 	 */
 	public T caseIfExpCS(IfExpCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>If Then Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>If Then Exp CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfThenExpCS(IfThenExpCS object)
+	{
 		return null;
 	}
 
