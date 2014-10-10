@@ -681,39 +681,66 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	
-	private MarkupElements pMarkup;
-	private TerminalRule tNUMBER;
-	private TerminalRule tLETTER;
-	private TerminalRule tESCAPED;
-	private TerminalRule tVERTICAL_WS;
-	private TerminalRule tHORIZONTAL_WS;
-	private TerminalRule tINT;
-	private TerminalRule tSTRING;
-	private TerminalRule tID;
-	private TerminalRule tWORD;
-	private TerminalRule tNL;
-	private TerminalRule tWS;
-	private TerminalRule tANY_OTHER;
-	private MarkupKeywordElements pMarkupKeyword;
-	private MarkupElementElements pMarkupElement;
-	private BulletElementElements pBulletElement;
-	private FontElementElements pFontElement;
-	private FigureElementElements pFigureElement;
-	private FigureRefElementElements pFigureRefElement;
-	private FootnoteElementElements pFootnoteElement;
-	private HeadingElementElements pHeadingElement;
-	private NewLineElementElements pNewLineElement;
-	private NullElementElements pNullElement;
-	private OCLCodeElementElements pOCLCodeElement;
-	private OCLEvalElementElements pOCLEvalElement;
-	private OCLTextElementElements pOCLTextElement;
-	private TextElementElements pTextElement;
+	private final MarkupElements pMarkup;
+	private final TerminalRule tNUMBER;
+	private final TerminalRule tLETTER;
+	private final TerminalRule tESCAPED;
+	private final TerminalRule tVERTICAL_WS;
+	private final TerminalRule tHORIZONTAL_WS;
+	private final TerminalRule tINT;
+	private final TerminalRule tSTRING;
+	private final TerminalRule tID;
+	private final TerminalRule tWORD;
+	private final TerminalRule tNL;
+	private final TerminalRule tWS;
+	private final TerminalRule tANY_OTHER;
+	private final MarkupKeywordElements pMarkupKeyword;
+	private final MarkupElementElements pMarkupElement;
+	private final BulletElementElements pBulletElement;
+	private final FontElementElements pFontElement;
+	private final FigureElementElements pFigureElement;
+	private final FigureRefElementElements pFigureRefElement;
+	private final FootnoteElementElements pFootnoteElement;
+	private final HeadingElementElements pHeadingElement;
+	private final NewLineElementElements pNewLineElement;
+	private final NullElementElements pNullElement;
+	private final OCLCodeElementElements pOCLCodeElement;
+	private final OCLEvalElementElements pOCLEvalElement;
+	private final OCLTextElementElements pOCLTextElement;
+	private final TextElementElements pTextElement;
 	
 	private final Grammar grammar;
 
 	@Inject
 	public MarkupGrammarAccess(GrammarProvider grammarProvider) {
 		this.grammar = internalFindGrammar(grammarProvider);
+		this.pMarkup = new MarkupElements();
+		this.tNUMBER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "NUMBER");
+		this.tLETTER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "LETTER");
+		this.tESCAPED = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ESCAPED");
+		this.tVERTICAL_WS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "VERTICAL_WS");
+		this.tHORIZONTAL_WS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "HORIZONTAL_WS");
+		this.tINT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "INT");
+		this.tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING");
+		this.tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ID");
+		this.tWORD = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "WORD");
+		this.tNL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "NL");
+		this.tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "WS");
+		this.tANY_OTHER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ANY_OTHER");
+		this.pMarkupKeyword = new MarkupKeywordElements();
+		this.pMarkupElement = new MarkupElementElements();
+		this.pBulletElement = new BulletElementElements();
+		this.pFontElement = new FontElementElements();
+		this.pFigureElement = new FigureElementElements();
+		this.pFigureRefElement = new FigureRefElementElements();
+		this.pFootnoteElement = new FootnoteElementElements();
+		this.pHeadingElement = new HeadingElementElements();
+		this.pNewLineElement = new NewLineElementElements();
+		this.pNullElement = new NullElementElements();
+		this.pOCLCodeElement = new OCLCodeElementElements();
+		this.pOCLEvalElement = new OCLEvalElementElements();
+		this.pOCLTextElement = new OCLTextElementElements();
+		this.pTextElement = new TextElementElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -742,7 +769,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	//Markup:
 	//	elements+=MarkupElement*;
 	public MarkupElements getMarkupAccess() {
-		return (pMarkup != null) ? pMarkup : (pMarkup = new MarkupElements());
+		return pMarkup;
 	}
 	
 	public ParserRule getMarkupRule() {
@@ -752,79 +779,79 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	//terminal fragment NUMBER:
 	//	"0".."9";
 	public TerminalRule getNUMBERRule() {
-		return (tNUMBER != null) ? tNUMBER : (tNUMBER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "NUMBER"));
+		return tNUMBER;
 	} 
 
 	//terminal fragment LETTER:
 	//	"a".."z" | "A".."Z" | "_";
 	public TerminalRule getLETTERRule() {
-		return (tLETTER != null) ? tLETTER : (tLETTER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "LETTER"));
+		return tLETTER;
 	} 
 
 	//terminal fragment ESCAPED:
 	//	"\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\" | "<" | ">" | "[" | "]");
 	public TerminalRule getESCAPEDRule() {
-		return (tESCAPED != null) ? tESCAPED : (tESCAPED = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ESCAPED"));
+		return tESCAPED;
 	} 
 
 	//terminal fragment VERTICAL_WS:
 	//	"\n" | "\r";
 	public TerminalRule getVERTICAL_WSRule() {
-		return (tVERTICAL_WS != null) ? tVERTICAL_WS : (tVERTICAL_WS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "VERTICAL_WS"));
+		return tVERTICAL_WS;
 	} 
 
 	//terminal fragment HORIZONTAL_WS:
 	//	" " | "\t";
 	public TerminalRule getHORIZONTAL_WSRule() {
-		return (tHORIZONTAL_WS != null) ? tHORIZONTAL_WS : (tHORIZONTAL_WS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "HORIZONTAL_WS"));
+		return tHORIZONTAL_WS;
 	} 
 
 	//terminal INT:
 	//	NUMBER+;
 	public TerminalRule getINTRule() {
-		return (tINT != null) ? tINT : (tINT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "INT"));
+		return tINT;
 	} 
 
 	//terminal STRING:
 	//	"\"" (ESCAPED | !("\\" | "\""))* "\"";
 	public TerminalRule getSTRINGRule() {
-		return (tSTRING != null) ? tSTRING : (tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING"));
+		return tSTRING;
 	} 
 
 	//terminal ID:
 	//	LETTER (LETTER | NUMBER)*;
 	public TerminalRule getIDRule() {
-		return (tID != null) ? tID : (tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ID"));
+		return tID;
 	} 
 
 	//terminal WORD:
 	//	(ESCAPED | !("\\" | "\"" | "[" | "]" | ":" | "#" | "," | HORIZONTAL_WS | VERTICAL_WS))+;
 	public TerminalRule getWORDRule() {
-		return (tWORD != null) ? tWORD : (tWORD = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "WORD"));
+		return tWORD;
 	} 
 
 	//terminal NL:
 	//	(HORIZONTAL_WS* VERTICAL_WS)+;
 	public TerminalRule getNLRule() {
-		return (tNL != null) ? tNL : (tNL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "NL"));
+		return tNL;
 	} 
 
 	//terminal WS:
 	//	HORIZONTAL_WS+;
 	public TerminalRule getWSRule() {
-		return (tWS != null) ? tWS : (tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "WS"));
+		return tWS;
 	} 
 
 	//terminal ANY_OTHER:
 	//	.;
 	public TerminalRule getANY_OTHERRule() {
-		return (tANY_OTHER != null) ? tANY_OTHER : (tANY_OTHER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ANY_OTHER"));
+		return tANY_OTHER;
 	} 
 
 	//MarkupKeyword:
 	//	"b" | "e" | "bullet" | "figure" | "figureRef" | "footnote" | "heading" | "oclCode" | "oclEval" | "oclText";
 	public MarkupKeywordElements getMarkupKeywordAccess() {
-		return (pMarkupKeyword != null) ? pMarkupKeyword : (pMarkupKeyword = new MarkupKeywordElements());
+		return pMarkupKeyword;
 	}
 	
 	public ParserRule getMarkupKeywordRule() {
@@ -837,7 +864,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	//
 	//	TextElement;
 	public MarkupElementElements getMarkupElementAccess() {
-		return (pMarkupElement != null) ? pMarkupElement : (pMarkupElement = new MarkupElementElements());
+		return pMarkupElement;
 	}
 	
 	public ParserRule getMarkupElementRule() {
@@ -847,7 +874,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	//BulletElement:
 	//	{BulletElement} "bullet" (":" level=INT)? "[" elements+=MarkupElement* "]";
 	public BulletElementElements getBulletElementAccess() {
-		return (pBulletElement != null) ? pBulletElement : (pBulletElement = new BulletElementElements());
+		return pBulletElement;
 	}
 	
 	public ParserRule getBulletElementRule() {
@@ -857,7 +884,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	//FontElement:
 	//	font=("b" | "e") "[" elements+=MarkupElement* "]";
 	public FontElementElements getFontElementAccess() {
-		return (pFontElement != null) ? pFontElement : (pFontElement = new FontElementElements());
+		return pFontElement;
 	}
 	
 	public ParserRule getFontElementRule() {
@@ -867,7 +894,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	//FigureElement:
 	//	"figure" ("#" def=ID)? "[" src=STRING ("," alt=STRING ("," requiredWidth=INT ("," requiredHeight=INT)?)?)? "]";
 	public FigureElementElements getFigureElementAccess() {
-		return (pFigureElement != null) ? pFigureElement : (pFigureElement = new FigureElementElements());
+		return pFigureElement;
 	}
 	
 	public ParserRule getFigureElementRule() {
@@ -877,7 +904,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	//FigureRefElement:
 	//	"figureRef" "[" ref=[FigureElement] "]";
 	public FigureRefElementElements getFigureRefElementAccess() {
-		return (pFigureRefElement != null) ? pFigureRefElement : (pFigureRefElement = new FigureRefElementElements());
+		return pFigureRefElement;
 	}
 	
 	public ParserRule getFigureRefElementRule() {
@@ -887,7 +914,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	//FootnoteElement:
 	//	{FootnoteElement} "footnote" "[" elements+=MarkupElement* "]";
 	public FootnoteElementElements getFootnoteElementAccess() {
-		return (pFootnoteElement != null) ? pFootnoteElement : (pFootnoteElement = new FootnoteElementElements());
+		return pFootnoteElement;
 	}
 	
 	public ParserRule getFootnoteElementRule() {
@@ -897,7 +924,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	//HeadingElement:
 	//	{HeadingElement} "heading" (":" level=INT)? "[" elements+=MarkupElement* "]";
 	public HeadingElementElements getHeadingElementAccess() {
-		return (pHeadingElement != null) ? pHeadingElement : (pHeadingElement = new HeadingElementElements());
+		return pHeadingElement;
 	}
 	
 	public ParserRule getHeadingElementRule() {
@@ -907,7 +934,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	//NewLineElement:
 	//	text=NL;
 	public NewLineElementElements getNewLineElementAccess() {
-		return (pNewLineElement != null) ? pNewLineElement : (pNewLineElement = new NewLineElementElements());
+		return pNewLineElement;
 	}
 	
 	public ParserRule getNewLineElementRule() {
@@ -917,7 +944,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	//NullElement:
 	//	{NullElement} "[" elements+=MarkupElement* "]";
 	public NullElementElements getNullElementAccess() {
-		return (pNullElement != null) ? pNullElement : (pNullElement = new NullElementElements());
+		return pNullElement;
 	}
 	
 	public ParserRule getNullElementRule() {
@@ -927,7 +954,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	//OCLCodeElement:
 	//	{OCLCodeElement} "oclCode" "[" elements+=MarkupElement* "]";
 	public OCLCodeElementElements getOCLCodeElementAccess() {
-		return (pOCLCodeElement != null) ? pOCLCodeElement : (pOCLCodeElement = new OCLCodeElementElements());
+		return pOCLCodeElement;
 	}
 	
 	public ParserRule getOCLCodeElementRule() {
@@ -937,7 +964,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	//OCLEvalElement:
 	//	{OCLEvalElement} "oclEval" "[" elements+=MarkupElement* "]";
 	public OCLEvalElementElements getOCLEvalElementAccess() {
-		return (pOCLEvalElement != null) ? pOCLEvalElement : (pOCLEvalElement = new OCLEvalElementElements());
+		return pOCLEvalElement;
 	}
 	
 	public ParserRule getOCLEvalElementRule() {
@@ -947,7 +974,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	//OCLTextElement:
 	//	{OCLTextElement} "oclText" "[" elements+=MarkupElement* "]";
 	public OCLTextElementElements getOCLTextElementAccess() {
-		return (pOCLTextElement != null) ? pOCLTextElement : (pOCLTextElement = new OCLTextElementElements());
+		return pOCLTextElement;
 	}
 	
 	public ParserRule getOCLTextElementRule() {
@@ -957,7 +984,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	//TextElement:
 	//	text+=(ID | WORD | INT | WS | ":" | "#" | ",")+ | text+=MarkupKeyword;
 	public TextElementElements getTextElementAccess() {
-		return (pTextElement != null) ? pTextElement : (pTextElement = new TextElementElements());
+		return pTextElement;
 	}
 	
 	public ParserRule getTextElementRule() {

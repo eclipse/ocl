@@ -136,6 +136,8 @@ public abstract class GenerateLPGUtils extends GenerateLPG
 		keyword2label.put("<>", "NOTEQ");
 		keyword2label.put("::", "SCOPE");
 	}
+	
+	private int state = 0;
 
 	protected String emitKeyword(String keywordValue) {
 		return keywordValue.replace("\\w","$0 ");
@@ -384,6 +386,10 @@ public abstract class GenerateLPGUtils extends GenerateLPG
 		return sortedElements;
 	}
 
+	protected int nextState() {
+		return ++state;
+	}
+	
 	protected @NonNull <T extends AbstractRule> List<T> selectRules(@NonNull Iterable<T> rules, String name) {
 		List<T> selectedRules = new ArrayList<T>();
 		for (T rule : rules) {

@@ -307,38 +307,24 @@ ruleUnrestrictedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRu
     }
 
     |
-	kw='derive' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getDeriveKeyword_1()); 
-    }
-
-    |
 	kw='import' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getImportKeyword_2()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getImportKeyword_1()); 
     }
 
     |
 	kw='include' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getIncludeKeyword_3()); 
-    }
-
-    |
-	kw='init' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getInitKeyword_4()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getIncludeKeyword_2()); 
     }
 
     |
 	kw='library' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getLibraryKeyword_5()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getLibraryKeyword_3()); 
     }
 )
     ;
@@ -1132,25 +1118,21 @@ ruleImportCS returns [EObject current=null]
 	    }
 
 )
-)((
+)(
 (
-		lv_all_4_0=	'::' 
+		lv_all_4_0=	'::*' 
     {
-        newLeafNode(lv_all_4_0, grammarAccess.getImportCSAccess().getAllColonColonKeyword_3_0_0());
+        newLeafNode(lv_all_4_0, grammarAccess.getImportCSAccess().getAllColonColonAsteriskKeyword_3_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getImportCSRule());
 	        }
-       		setWithLastConsumed($current, "all", true, "::");
+       		setWithLastConsumed($current, "all", true, "::*");
 	    }
 
 )
-)	otherlv_5='*' 
-    {
-    	newLeafNode(otherlv_5, grammarAccess.getImportCSAccess().getAsteriskKeyword_3_1());
-    }
 )?)
 ;
 
@@ -2715,10 +2697,10 @@ ruleURIPathNameCS returns [EObject current=null]
     {
     	newLeafNode(otherlv_1, grammarAccess.getURIPathNameCSAccess().getColonColonKeyword_1_0());
     }
-(
+((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getURIPathNameCSAccess().getPathNextPathElementCSParserRuleCall_1_1_0()); 
+	        newCompositeNode(grammarAccess.getURIPathNameCSAccess().getPathNextPathElementCSParserRuleCall_1_1_0_0()); 
 	    }
 		lv_path_2_0=ruleNextPathElementCS		{
 	        if ($current==null) {
@@ -2733,7 +2715,29 @@ ruleURIPathNameCS returns [EObject current=null]
 	    }
 
 )
-))*)
+)	otherlv_3='::' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getURIPathNameCSAccess().getColonColonKeyword_1_1_1());
+    }
+)*(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getURIPathNameCSAccess().getPathNextPathElementCSParserRuleCall_1_2_0()); 
+	    }
+		lv_path_4_0=ruleNextPathElementCS		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getURIPathNameCSRule());
+	        }
+       		add(
+       			$current, 
+       			"path",
+        		lv_path_4_0, 
+        		"NextPathElementCS");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))?)
 ;
 
 

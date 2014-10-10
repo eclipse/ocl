@@ -36,11 +36,11 @@ UnrestrictedName returns ecore::EString:
 	//| 'body'
 	//| 'context'
 	//| 'def'
-	| 'derive'
+	//| 'derive'
 	//|	'endpackage'
 	| 'import'
 	| 'include'
-	| 'init'
+	//| 'init'
 	//| 'inv'
 	| 'library'
 	//|	'package'
@@ -92,7 +92,7 @@ DefPropertyCS returns DefPropertyCS:
 		'=' specification=SpecificationCS;
 
 ImportCS returns base::ImportCS:
-	'import' (name=Identifier ':')? pathName=URIPathNameCS (all?='::' '*')?;
+	'import' (name=Identifier ':')? pathName=URIPathNameCS (all?='::*')?;
 
 IncludeCS returns IncludeCS:
 	'include' namespace=[pivot::Namespace|URI];

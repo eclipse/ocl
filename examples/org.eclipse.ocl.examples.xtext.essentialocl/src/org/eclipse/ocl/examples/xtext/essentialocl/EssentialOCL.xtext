@@ -153,8 +153,9 @@ FirstPathElementCS returns base::PathElementCS:
 NextPathElementCS returns base::PathElementCS:
 	element=[pivot::NamedElement|UnreservedName];
 
+/* This slightly odd formulation avoids an LALR shift-reduce conflict wrt URIFirstPathElementCS '::' '*' */
 URIPathNameCS returns base::PathNameCS:
-	path+=URIFirstPathElementCS ('::' path+=NextPathElementCS)*;
+	path+=URIFirstPathElementCS ('::' (path+=NextPathElementCS '::')* path+=NextPathElementCS)?;
 
 URIFirstPathElementCS returns base::PathElementCS:
 	element=[pivot::NamedElement|UnrestrictedName] | {base::PathElementWithURICS} element=[pivot::Namespace|URI];

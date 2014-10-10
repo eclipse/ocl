@@ -2718,28 +2718,24 @@ ruleImportCS returns [EObject current=null]
 	    }
 
 )
-)((
+)(
 (
-		lv_all_4_0=	'::' 
+		lv_all_4_0=	'::*' 
     {
-        newLeafNode(lv_all_4_0, grammarAccess.getImportCSAccess().getAllColonColonKeyword_3_0_0());
+        newLeafNode(lv_all_4_0, grammarAccess.getImportCSAccess().getAllColonColonAsteriskKeyword_3_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getImportCSRule());
 	        }
-       		setWithLastConsumed($current, "all", true, "::");
+       		setWithLastConsumed($current, "all", true, "::*");
 	    }
 
 )
-)	otherlv_5='*' 
+)?	otherlv_5=';' 
     {
-    	newLeafNode(otherlv_5, grammarAccess.getImportCSAccess().getAsteriskKeyword_3_1());
-    }
-)?	otherlv_6=';' 
-    {
-    	newLeafNode(otherlv_6, grammarAccess.getImportCSAccess().getSemicolonKeyword_4());
+    	newLeafNode(otherlv_5, grammarAccess.getImportCSAccess().getSemicolonKeyword_4());
     }
 )
 ;
@@ -6170,10 +6166,10 @@ ruleURIPathNameCS returns [EObject current=null]
     {
     	newLeafNode(otherlv_1, grammarAccess.getURIPathNameCSAccess().getColonColonKeyword_1_0());
     }
-(
+((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getURIPathNameCSAccess().getPathNextPathElementCSParserRuleCall_1_1_0()); 
+	        newCompositeNode(grammarAccess.getURIPathNameCSAccess().getPathNextPathElementCSParserRuleCall_1_1_0_0()); 
 	    }
 		lv_path_2_0=ruleNextPathElementCS		{
 	        if ($current==null) {
@@ -6188,7 +6184,29 @@ ruleURIPathNameCS returns [EObject current=null]
 	    }
 
 )
-))*)
+)	otherlv_3='::' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getURIPathNameCSAccess().getColonColonKeyword_1_1_1());
+    }
+)*(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getURIPathNameCSAccess().getPathNextPathElementCSParserRuleCall_1_2_0()); 
+	    }
+		lv_path_4_0=ruleNextPathElementCS		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getURIPathNameCSRule());
+	        }
+       		add(
+       			$current, 
+       			"path",
+        		lv_path_4_0, 
+        		"NextPathElementCS");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))?)
 ;
 
 

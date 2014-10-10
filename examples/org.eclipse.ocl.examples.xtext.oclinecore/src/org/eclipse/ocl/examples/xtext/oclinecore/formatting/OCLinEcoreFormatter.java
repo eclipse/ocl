@@ -143,9 +143,7 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 	    }
 	    {
 	    	ImportCSElements a = f.getImportCSAccess();
-			c.setNoSpace().around(a.getAllColonColonKeyword_3_0_0());	
-			c.setNoSpace().around(a.getAsteriskKeyword_3_1());	
-			setNoSpaceLineWrap(c, a.getSemicolonKeyword_4());
+			c.setNoSpace().around(a.getAllColonColonAsteriskKeyword_3_0());
 	    }
 	    {
 			InvariantConstraintCSElements a = f.getInvariantConstraintCSAccess();

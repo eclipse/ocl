@@ -154,7 +154,8 @@ mapping XBNF::ParserRule::parserRule2rule() : XBNF::ParserRule
 mapping ElementRun::run2conjunction() : XBNF::Conjunction
 {
 	debug := self.elements->size().toString();
-	elements := self.elements->map element2element(self);
+	elements := if self.elements->notEmpty() then self.elements->map element2element(self)
+		else object Epsilon{}->asSequence() endif;
 } 
 
 mapping UntypedRule::untypedRule2untypedRule(inlineables : Set(AbstractRule)) : XBNF::UntypedRule

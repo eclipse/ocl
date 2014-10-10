@@ -136,7 +136,7 @@ helper XTEXT::Assignment::element2element2() : XBNF::AbstractElement
 {
 	var theRule : AbstractRule = self.terminal.oclAsType(RuleCall).rule;
 	var classifier : EClass = self.getClass();
-	var feature : EStructuralFeature = classifier.eAllStructuralFeatures->select(s | s.name = self.feature)->any(true);
+	var feature : EStructuralFeature = classifier.eAllStructuralFeatures->select(s | (s.name = self.feature) or (s.name.toUpperCase() = ('is' + self.feature).toUpperCase()))->any(true);
 	return self.terminal.map assignment2assignments(self, feature);
 }
 
@@ -161,7 +161,7 @@ when { self.feature <> null }
 {
 	var classifier : EClass = self.type.classifier.oclAsType(EClass);
 	debug := self.feature + ':' + classifier.name + self.operator + 'current';
-	feature := classifier.eAllStructuralFeatures->select(s | s.name = self.feature)->any(true);
+	feature := classifier.eAllStructuralFeatures->select(s | (s.name = self.feature) or (s.name.toUpperCase() = ('is' + self.feature).toUpperCase()))->any(true);
 	operator := self.operator;
 	type := self.type.classifier;
 }

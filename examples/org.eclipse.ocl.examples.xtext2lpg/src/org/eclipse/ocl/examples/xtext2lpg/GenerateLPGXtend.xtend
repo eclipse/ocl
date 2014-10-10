@@ -271,7 +271,7 @@ public class GenerateLPGXtend extends GenerateLPGUtils
 	protected def String generateParserDisjunction(AbstractRule rule) {
 		'''
 		«FOR conjunction : getSortedConjunctions(rule.element as Disjunction)»
-		«rule.name» ::=«IF conjunction.elements.isEmpty()» %empty«ELSE»«FOR element : conjunction.elements» «generateTerm(element)»«ENDFOR»«ENDIF»
+		«rule.name» ::=«IF conjunction.elements.isEmpty()» %empty«ELSE»«FOR element : conjunction.elements» «generateTerm(element)»«ENDFOR»«ENDIF» --«nextState()»
 		«ENDFOR»
 		'''
 	}

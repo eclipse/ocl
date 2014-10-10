@@ -197,7 +197,7 @@ EnumerationLiteralCS returns base::EnumerationLiteralCS:
 ;
 
 ImportCS returns base::ImportCS:
-	'import' (name=UnrestrictedName ':')? pathName=URIPathNameCS (all?='::' '*')? ';'
+	'import' (name=UnrestrictedName ':')? pathName=URIPathNameCS (all?='::*')? ';'
 ;
 
 LibraryCS returns base::LibraryCS:

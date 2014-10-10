@@ -794,7 +794,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	
 	/**
 	 * Constraint:
-	 *     (name=UnrestrictedName? pathName=URIPathNameCS all?='::'?)
+	 *     (name=UnrestrictedName? pathName=URIPathNameCS all?='::*'?)
 	 */
 	protected void sequence_ImportCS(EObject context, ImportCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

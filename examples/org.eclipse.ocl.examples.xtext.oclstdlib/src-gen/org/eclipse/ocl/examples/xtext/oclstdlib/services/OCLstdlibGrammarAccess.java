@@ -99,20 +99,21 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cStaticKeyword_17 = (Keyword)cAlternatives.eContents().get(17);
 		private final Keyword cSuperKeyword_18 = (Keyword)cAlternatives.eContents().get(18);
 		private final Keyword cTypeKeyword_19 = (Keyword)cAlternatives.eContents().get(19);
-		private final Keyword cTypeofKeyword_20 = (Keyword)cAlternatives.eContents().get(20);
-		private final Keyword cValidatingKeyword_21 = (Keyword)cAlternatives.eContents().get(21);
+		private final Keyword cValidatingKeyword_20 = (Keyword)cAlternatives.eContents().get(20);
 		
 		////|	'Lambda'
 		// //|	'Tuple'
 		// RestrictedKeywords:
-		//	"annotation" | "conformsTo" | "documentation" | "extends" | "import" | "inv" | "invalidating" | "iteration" | "left"
-		//	| "library" | "operation" | "package" | "post" | "pre" | "precedence" | "property" | "right" | "static" | "super" |
-		//	"type" | "typeof" | "validating";
+		//	"annotation" //|	'typeof'
+		// | "conformsTo" | "documentation" | "extends" | "import" | "inv" | "invalidating" |
+		//	"iteration" | "left" | "library" | "operation" | "package" | "post" | "pre" | "precedence" | "property" | "right" |
+		//	"static" | "super" | "type" | "validating";
 		public ParserRule getRule() { return rule; }
 
-		//"annotation" | "conformsTo" | "documentation" | "extends" | "import" | "inv" | "invalidating" | "iteration" | "left" |
-		//"library" | "operation" | "package" | "post" | "pre" | "precedence" | "property" | "right" | "static" | "super" |
-		//"type" | "typeof" | "validating"
+		//"annotation" //|	'typeof'
+		// | "conformsTo" | "documentation" | "extends" | "import" | "inv" | "invalidating" |
+		//"iteration" | "left" | "library" | "operation" | "package" | "post" | "pre" | "precedence" | "property" | "right" |
+		//"static" | "super" | "type" | "validating"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//"annotation"
@@ -175,11 +176,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//"type"
 		public Keyword getTypeKeyword_19() { return cTypeKeyword_19; }
 
-		//"typeof"
-		public Keyword getTypeofKeyword_20() { return cTypeofKeyword_20; }
-
 		//"validating"
-		public Keyword getValidatingKeyword_21() { return cValidatingKeyword_21; }
+		public Keyword getValidatingKeyword_20() { return cValidatingKeyword_20; }
 	}
 
 	public class NameElements extends AbstractParserRuleElementFinder {
@@ -2563,9 +2561,10 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	////|	'Lambda'
 	// //|	'Tuple'
 	// RestrictedKeywords:
-	//	"annotation" | "conformsTo" | "documentation" | "extends" | "import" | "inv" | "invalidating" | "iteration" | "left"
-	//	| "library" | "operation" | "package" | "post" | "pre" | "precedence" | "property" | "right" | "static" | "super" |
-	//	"type" | "typeof" | "validating";
+	//	"annotation" //|	'typeof'
+	// | "conformsTo" | "documentation" | "extends" | "import" | "inv" | "invalidating" |
+	//	"iteration" | "left" | "library" | "operation" | "package" | "post" | "pre" | "precedence" | "property" | "right" |
+	//	"static" | "super" | "type" | "validating";
 	public RestrictedKeywordsElements getRestrictedKeywordsAccess() {
 		return pRestrictedKeywords;
 	}
@@ -3048,6 +3047,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return gaEssentialOCL.getINTRule();
 	} 
 
+	/// * A lowerbounded integer is used to define the lowerbound of a collection multiplicity. The value may not be the unlimited value. * /
 	//LOWER returns ecore::EInt:
 	//	INT;
 	public EssentialOCLGrammarAccess.LOWERElements getLOWERAccess() {
@@ -3058,6 +3058,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getLOWERAccess().getRule();
 	}
 
+	/// * An upperbounded integer is used to define the upperbound of a collection multiplicity. The value may be the unlimited value. * /
 	//UPPER returns ecore::EInt:
 	//	INT | "*";
 	public EssentialOCLGrammarAccess.UPPERElements getUPPERAccess() {
@@ -3068,6 +3069,11 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getUPPERAccess().getRule();
 	}
 
+	/// * A number may be an integer or floating point value. The declaration here appears to be that for just an integer. This is to avoid
+	// * lookahead conflicts in simple lexers between a dot within a floating point number and the dot-dot in a CollectionLiteralPartCS. A
+	// * practical implementation should give high priority to a successful parse of INT ('.' INT)? (('e' | 'E') ('+' | '-')? INT)? than
+	// * to the unsuccessful partial parse of INT '..'. The type of the INT terminal is String to allow the floating point syntax to be used.
+	// * /
 	//// Not terminal to allow parser backtracking to sort out "5..7"
 	//
 	//// EssentialOCLTokenSource pieces this together ('.' INT)? (('e' | 'E') ('+' | '-')? INT)?;
@@ -3082,19 +3088,20 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getNUMBER_LITERALAccess().getRule();
 	}
 
+	/// * A multi-line comment supports a comment that may span more than one line using familiar slash-star...star-slash comment delimiters * /
 	//terminal ML_COMMENT:
 	//	"/ *"->"* /";
 	public TerminalRule getML_COMMENTRule() {
 		return gaEssentialOCL.getML_COMMENTRule();
 	} 
 
-	//terminal SL_COMMENT:
+	/// * A single-line comment supports a comment that terminates at the end of the line * / terminal SL_COMMENT:
 	//	"--" !("\n" | "\r")* ("\r"? "\n")?;
 	public TerminalRule getSL_COMMENTRule() {
 		return gaEssentialOCL.getSL_COMMENTRule();
 	} 
 
-	//terminal WS:
+	/// * Whitespace may occur between any pair of tokens * / terminal WS:
 	//	(" " | "\t" | "\r" | "\n")+;
 	public TerminalRule getWSRule() {
 		return gaEssentialOCL.getWSRule();
@@ -3116,6 +3123,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getURIAccess().getRule();
 	}
 
+	/// ** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> * /
 	//EssentialOCLReservedKeyword:
 	//	"and" | "else" | "endif" | "if" | "implies" | "in" | "let" | "not" | "or" | "then" | "xor";
 	public EssentialOCLGrammarAccess.EssentialOCLReservedKeywordElements getEssentialOCLReservedKeywordAccess() {
@@ -3126,6 +3134,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getEssentialOCLReservedKeywordAccess().getRule();
 	}
 
+	/// ** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> * /
 	//EssentialOCLUnaryOperatorCS returns UnaryOperatorCS:
 	//	name=("-" | "not");
 	public EssentialOCLGrammarAccess.EssentialOCLUnaryOperatorCSElements getEssentialOCLUnaryOperatorCSAccess() {
@@ -3136,6 +3145,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getEssentialOCLUnaryOperatorCSAccess().getRule();
 	}
 
+	/// ** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> * /
 	//EssentialOCLInfixOperatorCS returns BinaryOperatorCS:
 	//	name=("*" | "/" | "+" | "-" | ">" | "<" | ">=" | "<=" | "=" | "<>" | "and" | "or" | "xor" | "implies");
 	public EssentialOCLGrammarAccess.EssentialOCLInfixOperatorCSElements getEssentialOCLInfixOperatorCSAccess() {
@@ -3146,6 +3156,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getEssentialOCLInfixOperatorCSAccess().getRule();
 	}
 
+	/// ** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> * /
 	//EssentialOCLNavigationOperatorCS returns NavigationOperatorCS:
 	//	name=("." | "->");
 	public EssentialOCLGrammarAccess.EssentialOCLNavigationOperatorCSElements getEssentialOCLNavigationOperatorCSAccess() {
@@ -3213,8 +3224,9 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	// //  Names
 	//
 	////---------------------------------------------------------------------
-	// EssentialOCLUnrestrictedName returns
-	//ecore::EString:
+	//
+	/// ** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> * /
+	//EssentialOCLUnrestrictedName returns ecore::EString:
 	//	Identifier;
 	public EssentialOCLGrammarAccess.EssentialOCLUnrestrictedNameElements getEssentialOCLUnrestrictedNameAccess() {
 		return gaEssentialOCL.getEssentialOCLUnrestrictedNameAccess();
@@ -3235,6 +3247,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getUnrestrictedNameAccess().getRule();
 	}
 
+	/// ** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> * /
 	//EssentialOCLUnreservedName returns ecore::EString:
 	//	UnrestrictedName | CollectionTypeIdentifier | PrimitiveTypeIdentifier | "Tuple";
 	public EssentialOCLGrammarAccess.EssentialOCLUnreservedNameElements getEssentialOCLUnreservedNameAccess() {
@@ -3286,8 +3299,9 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getNextPathElementCSAccess().getRule();
 	}
 
+	/// * This slightly odd formulation avoids an LALR shift-reduce conflict wrt URIFirstPathElementCS '::' '*' * /
 	//URIPathNameCS returns base::PathNameCS:
-	//	path+=URIFirstPathElementCS ("::" path+=NextPathElementCS)*;
+	//	path+=URIFirstPathElementCS ("::" (path+=NextPathElementCS "::")* path+=NextPathElementCS)?;
 	public EssentialOCLGrammarAccess.URIPathNameCSElements getURIPathNameCSAccess() {
 		return gaEssentialOCL.getURIPathNameCSAccess();
 	}
@@ -3601,7 +3615,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getExpCSAccess().getRule();
 	}
 
-	//PrefixedExpCS returns ExpCS:
+	/// * A prefixed expression is elaborates a primary expression with zero or more unary prefix operators. * / PrefixedExpCS
+	//returns ExpCS:
 	//	{PrefixExpCS} ownedOperator+=UnaryOperatorCS+ ownedExpression=PrimaryExpCS | PrimaryExpCS;
 	public EssentialOCLGrammarAccess.PrefixedExpCSElements getPrefixedExpCSAccess() {
 		return gaEssentialOCL.getPrefixedExpCSAccess();
@@ -3611,6 +3626,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getPrefixedExpCSAccess().getRule();
 	}
 
+	/// * A primary expression identifies the basic expressions from which more complex expressions may be constructed. * /
 	//PrimaryExpCS returns ExpCS:
 	//	NestedExpCS | IfExpCS | SelfExpCS | PrimitiveLiteralExpCS | TupleLiteralExpCS | CollectionLiteralExpCS |
 	//	TypeLiteralExpCS | NameExpCS;
@@ -3622,6 +3638,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getPrimaryExpCSAccess().getRule();
 	}
 
+	/// * A name expression is a generalised rule for expressions that start with a name and which may be followed by square, round or
+	// * curly bracket clauses and optionally an @pre as well.* /
 	//NameExpCS:
 	//	pathName=PathNameCS squareBracketedClauses+=SquareBracketedClauseCS* roundBracketedClause=RoundBracketedClauseCS?
 	//	curlyBracketedClause=CurlyBracketedClauseCS? (atPre?="@" "pre")?;
@@ -3633,6 +3651,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getNameExpCSAccess().getRule();
 	}
 
+	/// * A curly bracket clause is a generalized rule for the literal arguments of collections, maps, tuples and type constructors.* /
 	//CurlyBracketedClauseCS:
 	//	{CurlyBracketedClauseCS} "{" ((ownedParts+=ConstructorPartCS ("," ownedParts+=ConstructorPartCS)*)? |
 	//	value=StringLiteral) "}";
@@ -3644,6 +3663,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getCurlyBracketedClauseCSAccess().getRule();
 	}
 
+	/// * A curly bracket clause is a generalized rule for template specialisations and operations arguments.* /
 	//RoundBracketedClauseCS:
 	//	{RoundBracketedClauseCS} "(" (arguments+=NavigatingArgCS arguments+=NavigatingCommaArgCS*
 	//	(arguments+=NavigatingSemiArgCS arguments+=NavigatingCommaArgCS*)? (arguments+=NavigatingBarArgCS
@@ -3656,7 +3676,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getRoundBracketedClauseCSAccess().getRule();
 	}
 
-	//SquareBracketedClauseCS:
+	/// * A square bracket clause is a generalized rule for association class qualifiers and roles.* / SquareBracketedClauseCS:
 	//	"[" terms+=ExpCS ("," terms+=ExpCS)* "]";
 	public EssentialOCLGrammarAccess.SquareBracketedClauseCSElements getSquareBracketedClauseCSAccess() {
 		return gaEssentialOCL.getSquareBracketedClauseCSAccess();
@@ -3666,6 +3686,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getSquareBracketedClauseCSAccess().getRule();
 	}
 
+	/// * A navigating argument is a generalized rule for the first argument in a round bracket clause. This is typically the first operation
+	// * parameter or an iterator. * /
 	//// Type-less init is an illegal infix expression
 	// NavigatingArgCS:
 	//	name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?;
@@ -3677,6 +3699,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getNavigatingArgCSAccess().getRule();
 	}
 
+	/// * A navigating bar argument is a generalized rule for a bar-prefixed argument in a round bracket clause. This is typically the body of an iteration. * /
 	//// Type-less init is an illegal infix expression
 	// NavigatingBarArgCS returns NavigatingArgCS:
 	//	prefix="|" name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?;
@@ -3688,6 +3711,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getNavigatingBarArgCSAccess().getRule();
 	}
 
+	/// * A navigating comma argument is a generalized rule for non-first argument in a round bracket clause. These are typically non-first operation
+	// * parameters or a second iterator. * /
 	//// Type-less init is an illegal infix expression
 	// NavigatingCommaArgCS returns NavigatingArgCS:
 	//	prefix="," name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?;
@@ -3699,6 +3724,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getNavigatingCommaArgCSAccess().getRule();
 	}
 
+	/// * A navigating semi argument is a generalized rule for a semicolon prefixed argument in a round bracket clause. This is typically an iterate accumulator. * /
 	//// Type-less init is an illegal infix expression
 	// NavigatingSemiArgCS returns NavigatingArgCS:
 	//	prefix=";" name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?;

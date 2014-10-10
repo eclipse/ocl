@@ -329,17 +329,10 @@ ruleRestrictedKeywords returns [AntlrDatatypeRuleToken current=new AntlrDatatype
     }
 
     |
-	kw='typeof' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getRestrictedKeywordsAccess().getTypeofKeyword_20()); 
-    }
-
-    |
 	kw='validating' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getRestrictedKeywordsAccess().getValidatingKeyword_21()); 
+        newLeafNode(kw, grammarAccess.getRestrictedKeywordsAccess().getValidatingKeyword_20()); 
     }
 )
     ;

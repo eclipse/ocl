@@ -3225,19 +3225,11 @@ rule__RestrictedKeywords__Alternatives
 )
 
     |(
-{ before(grammarAccess.getRestrictedKeywordsAccess().getTypeofKeyword_20()); }
-
-	'typeof' 
-
-{ after(grammarAccess.getRestrictedKeywordsAccess().getTypeofKeyword_20()); }
-)
-
-    |(
-{ before(grammarAccess.getRestrictedKeywordsAccess().getValidatingKeyword_21()); }
+{ before(grammarAccess.getRestrictedKeywordsAccess().getValidatingKeyword_20()); }
 
 	'validating' 
 
-{ after(grammarAccess.getRestrictedKeywordsAccess().getValidatingKeyword_21()); }
+{ after(grammarAccess.getRestrictedKeywordsAccess().getValidatingKeyword_20()); }
 )
 
 ;
@@ -12745,6 +12737,7 @@ finally {
 
 
 
+
 rule__URIFirstPathElementCS__Group_1__0
     @init {
 		int stackSize = keepStackSize();
@@ -20173,6 +20166,7 @@ rule__NextPathElementCS__ElementAssignment
 finally {
 	restoreStackSize(stackSize);
 }
+
 
 
 

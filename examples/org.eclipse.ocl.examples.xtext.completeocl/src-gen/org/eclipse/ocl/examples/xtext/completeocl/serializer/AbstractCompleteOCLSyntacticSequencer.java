@@ -42,11 +42,9 @@ public abstract class AbstractCompleteOCLSyntacticSequencer extends AbstractSynt
 	/**
 	 * UnrestrictedName returns ecore::EString:
 	 * 	EssentialOCLUnrestrictedName
-	 * 				| 'derive'
-	 * 		| 'import'
+	 * 						| 'import'
 	 * 	| 'include'
-	 * 	| 'init'
-	 * 		| 'library'
+	 * 			| 'library'
 	 * 				;
 	 */
 	protected String getUnrestrictedNameToken(EObject semanticObject, RuleCall ruleCall, INode node) {

@@ -19,22 +19,14 @@ import org.eclipse.m2m.internal.qvt.oml.runtime.ant.QvtoAntTransformationTask
 
 var projectName = "org.eclipse.ocl.examples.xtext2lpg"
 var projectURI = "platform:/resource/${projectName}"
-//var CompleteOCLxtext = "platform:/resource/org.eclipse.ocl.examples.xtext.completeocl/src/org/eclipse/ocl/examples/xtext/completeocl/CompleteOCL.xtext"
-//var CompleteOCLxtextXBNF = "platform:/resource/${projectName}/lpg-gen/CompleteOCL.xtext.XBNF"
-//var CompleteOCLnormalXBNF = "platform:/resource/${projectName}/lpg-gen/CompleteOCL.normal.XBNF"
-//var CompleteOCLinlineXBNF = "platform:/resource/${projectName}/lpg-gen/CompleteOCL.inline.XBNF"
-var EssentialOCLxtext = "platform:/resource/org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/EssentialOCL.xtext"
-var EssentialOCLxtextXBNF = "platform:/resource/${projectName}/lpg-gen/EssentialOCL.xtext.XBNF"
-var EssentialOCLnormalXBNF = "platform:/resource/${projectName}/lpg-gen/EssentialOCL.normal.XBNF"
-var EssentialOCLinlineXBNF = "platform:/resource/${projectName}/lpg-gen/EssentialOCL.inline.XBNF"
-//var OCLinEcorextext = "platform:/resource/org.eclipse.ocl.examples.xtext.oclinecore/src/org/eclipse/ocl/examples/xtext/oclinecore/OCLinEcore.xtext"
-//var OCLinEcorextextXBNF = "platform:/resource/${projectName}/lpg-gen/OCLinEcore.xtext.XBNF"
-//var OCLinEcorenormalXBNF = "platform:/resource/${projectName}/lpg-gen/OCLinEcore.normal.XBNF"
-//var OCLinEcoreinlineXBNF = "platform:/resource/${projectName}/lpg-gen/OCLinEcore.inline.XBNF"
-//var OCLstdlibxtext = "platform:/resource/org.eclipse.ocl.examples.xtext.oclstdlib/src/org/eclipse/ocl/examples/xtext/oclstdlib/OCLstdlib.xtext"
-//var OCLstdlibxtextXBNF = "platform:/resource/${projectName}/lpg-gen/OCLstdlib.xtext.XBNF"
-//var OCLstdlibnormalXBNF = "platform:/resource/${projectName}/lpg-gen/OCLstdlib.normal.XBNF"
-//var OCLstdlibinlineXBNF = "platform:/resource/${projectName}/lpg-gen/OCLstdlib.inline.XBNF"
+var syntaxName // e.g. "OCLinEcore"
+var grammarPath // e.g. "platform:/resource/org.eclipse.ocl.examples.xtext.oclinecore/src/org/eclipse/ocl/examples/xtext/oclinecore/OCLinEcore.xtext"
+var grammar.XBNF = "platform:/resource/${projectName}/lpg-gen/${syntaxName}.xtext.XBNF"
+var normalized.XBNF = "platform:/resource/${projectName}/lpg-gen/${syntaxName}.normal.XBNF"
+var inlined.XBNF = "platform:/resource/${projectName}/lpg-gen/${syntaxName}.inline.XBNF"
+var lpgExe
+var lpgIncs
+var lpgOpts = ""
 
 /**
  *	Generate the Concrete Syntax Models used by the Xtext editors.
@@ -56,6 +48,7 @@ org.eclipse.emf.mwe2.runtime.workflow.Workflow {
 	}
 	bean = XtextStandaloneSetupBean {}
 	bean = OCLDelegateSetup { resourceSet = resourceSet }
+	bean = ClasspathURIHandler { resourceSet = resourceSet }			// Needed for OCLstdlib
     bean = ProjectMapSetup { resourceSet = resourceSet }
 //    bean = DynamicEPackageSetup { resourceSet = resourceSet
 //		dynamicEPackage = "/${projectName}/model/XBNF.ecore"
@@ -64,98 +57,35 @@ org.eclipse.emf.mwe2.runtime.workflow.Workflow {
     component = QVToTransformationExecutor {
     	resourceSet = resourceSet
     	uri = "${projectURI}/src/org/eclipse/ocl/examples/xtext2lpg/xtext2xbnf.qvto"
-    	in = "${EssentialOCLxtext}"
-    	out = "${EssentialOCLxtextXBNF}"
+    	in = "${grammarPath}"
+    	out = "${grammar.XBNF}"
     	validate = true
     }
-/*     component = QVToTransformationExecutor {
-    	resourceSet = resourceSet
-    	uri = "${projectURI}/src/org/eclipse/ocl/examples/xtext2lpg/xtext2xbnf.qvto"
-    	in = "${CompleteOCLxtext}"
-    	out = "${CompleteOCLxtextXBNF}"
-    }
-    component = QVToTransformationExecutor {
-    	resourceSet = resourceSet
-    	uri = "${projectURI}/src/org/eclipse/ocl/examples/xtext2lpg/xtext2xbnf.qvto"
-    	in = "${OCLinEcorextext}"
-    	out = "${OCLinEcorextextXBNF}"
-    }
-    component = QVToTransformationExecutor {
-    	resourceSet = resourceSet
-    	uri = "${projectURI}/src/org/eclipse/ocl/examples/xtext2lpg/xtext2xbnf.qvto"
-    	in = "${OCLstdlibxtext}"
-    	out = "${OCLstdlibxtextXBNF}"
-    } */
     component = QVToTransformationExecutor {
     	resourceSet = resourceSet
     	uri = "${projectURI}/src/org/eclipse/ocl/examples/xtext2lpg/normalize.qvto"
-    	in = "${EssentialOCLxtextXBNF}"
-    	out = "${EssentialOCLnormalXBNF}"
+    	in = "${grammar.XBNF}"
+    	out = "${normalized.XBNF}"
     	validate = true
     }
-/*    component = QVToTransformationExecutor {
-    	resourceSet = resourceSet
-    	uri = "${projectURI}/src/org/eclipse/ocl/examples/xtext2lpg/normalize.qvto"
-    	in = "${CompleteOCLxtextXBNF}"
-    	out = "${CompleteOCLnormalXBNF}"
-    }
-    component = QVToTransformationExecutor {
-    	resourceSet = resourceSet
-    	uri = "${projectURI}/src/org/eclipse/ocl/examples/xtext2lpg/normalize.qvto"
-    	in = "${OCLinEcorextextXBNF}"
-    	out = "${OCLinEcorenormalXBNF}"
-    }
-    component = QVToTransformationExecutor {
-    	resourceSet = resourceSet
-    	uri = "${projectURI}/src/org/eclipse/ocl/examples/xtext2lpg/normalize.qvto"
-    	in = "${OCLstdlibxtextXBNF}"
-    	out = "${OCLstdlibnormalXBNF}"
-    } */
     component = QVToTransformationExecutor {
     	resourceSet = resourceSet
     	uri = "${projectURI}/src/org/eclipse/ocl/examples/xtext2lpg/inline.qvto"
-    	in = "${EssentialOCLnormalXBNF}"
-    	out = "${EssentialOCLinlineXBNF}"
+    	in = "${normalized.XBNF}"
+    	out = "${inlined.XBNF}"
     	validate = true
-    }
-/*    component = QVToTransformationExecutor {
-    	resourceSet = resourceSet
-    	uri = "${projectURI}/src/org/eclipse/ocl/examples/xtext2lpg/inline.qvto"
-    	in = "${CompleteOCLnormalXBNF}"
-    	out = "${CompleteOCLinlineXBNF}"
-    }
-    component = QVToTransformationExecutor {
-    	resourceSet = resourceSet
-    	uri = "${projectURI}/src/org/eclipse/ocl/examples/xtext2lpg/inline.qvto"
-    	in = "${OCLinEcorenormalXBNF}"
-    	out = "${OCLinEcoreinlineXBNF}"
-    }
-    component = QVToTransformationExecutor {
-    	resourceSet = resourceSet
-    	uri = "${projectURI}/src/org/eclipse/ocl/examples/xtext2lpg/inline.qvto"
-    	in = "${OCLstdlibnormalXBNF}"
-    	out = "${OCLstdlibinlineXBNF}"
-    } */
+     }
     component = GenerateLPGXtend { resourceSet = resourceSet
-    	in = "${EssentialOCLinlineXBNF}"
+    	in = "${inlined.XBNF}"
     	javaFolder = "../${projectName}/lpg-gen"
     	javaPackageName = "${projectName}"
-    	syntaxName = "EssentialOCL"
+    	syntaxName = "${syntaxName}"
     }
-/*    component = GenerateLPG { resourceSet = resourceSet
-    	in = "${CompleteOCLinlineXBNF}"
-    	javaFolder = "../${projectName}/lpg-gen"
-    	javaPackageName = "${projectName}"
+    component = RunLPG {
+    	in = "../${projectName}/lpg-gen/${syntaxName}Parser.gi"
+    	lpgExe = "${lpgExe}"
+    	lpgIncs = "${lpgIncs}"
+    	lpgOpts = "${lpgOpts}"
     }
-    component = GenerateLPG { resourceSet = resourceSet
-    	in = "${OCLinEcoreinlineXBNF}"
-    	javaFolder = "../${projectName}/lpg-gen"
-    	javaPackageName = "${projectName}"
-    }
-    component = GenerateLPG { resourceSet = resourceSet
-    	in = "${OCLstdlibinlineXBNF}"
-    	javaFolder = "../${projectName}/lpg-gen"
-    	javaPackageName = "${projectName}"
-    } */
 }
 

@@ -927,7 +927,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends AbstractDele
 	
 	/**
 	 * Constraint:
-	 *     (path+=URIFirstPathElementCS path+=NextPathElementCS*)
+	 *     (path+=URIFirstPathElementCS (path+=NextPathElementCS* path+=NextPathElementCS)?)
 	 */
 	protected void sequence_URIPathNameCS(EObject context, PathNameCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -100,7 +100,7 @@ public interface Grammar extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Goals</em>' reference list.
 	 * @see org.eclipse.ocl.examples.xtext2lpg.XBNF.XBNFPackage#getGrammar_Goals()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<TypedRule> getGoals();
@@ -118,7 +118,7 @@ public interface Grammar extends EObject {
 	 * @return the value of the '<em>Rules</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.xtext2lpg.XBNF.XBNFPackage#getGrammar_Rules()
 	 * @see org.eclipse.ocl.examples.xtext2lpg.XBNF.TypedRule#getGrammar
-	 * @model opposite="grammar" containment="true" required="true" ordered="false"
+	 * @model opposite="grammar" containment="true" ordered="false"
 	 * @generated
 	 */
 	EList<TypedRule> getRules();

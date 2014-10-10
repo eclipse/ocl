@@ -633,7 +633,7 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	
 	/**
 	 * Constraint:
-	 *     (name=Identifier? pathName=URIPathNameCS all?='::'?)
+	 *     (name=Identifier? pathName=URIPathNameCS all?='::*'?)
 	 */
 	protected void sequence_ImportCS(EObject context, ImportCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

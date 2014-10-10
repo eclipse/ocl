@@ -49,7 +49,7 @@ RestrictedKeywords:
 |	'static'
 |	'super'
 |	'type'
-|	'typeof'
+//|	'typeof'
 |	'validating'
 //|	'Lambda'
 //|	'Tuple'

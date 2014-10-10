@@ -2796,6 +2796,7 @@ finally {
 
 
 
+
 rule__URIFirstPathElementCS__Group_1__0
     @init {
 		int stackSize = keepStackSize();
@@ -8303,6 +8304,7 @@ rule__NextPathElementCS__ElementAssignment
 finally {
 	restoreStackSize(stackSize);
 }
+
 
 
 

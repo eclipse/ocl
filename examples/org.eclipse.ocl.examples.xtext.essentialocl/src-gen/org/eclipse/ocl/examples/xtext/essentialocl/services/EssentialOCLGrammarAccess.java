@@ -58,6 +58,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LOWER");
 		private final RuleCall cINTTerminalRuleCall = (RuleCall)rule.eContents().get(1);
 		
+		/// * A lowerbounded integer is used to define the lowerbound of a collection multiplicity. The value may not be the unlimited value. * /
 		//LOWER returns ecore::EInt:
 		//	INT;
 		public ParserRule getRule() { return rule; }
@@ -72,6 +73,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cINTTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final Keyword cAsteriskKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		
+		/// * An upperbounded integer is used to define the upperbound of a collection multiplicity. The value may be the unlimited value. * /
 		//UPPER returns ecore::EInt:
 		//	INT | "*";
 		public ParserRule getRule() { return rule; }
@@ -90,6 +92,11 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NUMBER_LITERAL");
 		private final RuleCall cINTTerminalRuleCall = (RuleCall)rule.eContents().get(1);
 		
+		/// * A number may be an integer or floating point value. The declaration here appears to be that for just an integer. This is to avoid
+		// * lookahead conflicts in simple lexers between a dot within a floating point number and the dot-dot in a CollectionLiteralPartCS. A
+		// * practical implementation should give high priority to a successful parse of INT ('.' INT)? (('e' | 'E') ('+' | '-')? INT)? than
+		// * to the unsuccessful partial parse of INT '..'. The type of the INT terminal is String to allow the floating point syntax to be used.
+		// * /
 		//// Not terminal to allow parser backtracking to sort out "5..7"
 		//
 		//// EssentialOCLTokenSource pieces this together ('.' INT)? (('e' | 'E') ('+' | '-')? INT)?;
@@ -129,6 +136,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cThenKeyword_9 = (Keyword)cAlternatives.eContents().get(9);
 		private final Keyword cXorKeyword_10 = (Keyword)cAlternatives.eContents().get(10);
 		
+		/// ** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> * /
 		//EssentialOCLReservedKeyword:
 		//	"and" | "else" | "endif" | "if" | "implies" | "in" | "let" | "not" | "or" | "then" | "xor";
 		public ParserRule getRule() { return rule; }
@@ -177,6 +185,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cNameHyphenMinusKeyword_0_0 = (Keyword)cNameAlternatives_0.eContents().get(0);
 		private final Keyword cNameNotKeyword_0_1 = (Keyword)cNameAlternatives_0.eContents().get(1);
 		
+		/// ** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> * /
 		//EssentialOCLUnaryOperatorCS returns UnaryOperatorCS:
 		//	name=("-" | "not");
 		public ParserRule getRule() { return rule; }
@@ -213,6 +222,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cNameXorKeyword_0_12 = (Keyword)cNameAlternatives_0.eContents().get(12);
 		private final Keyword cNameImpliesKeyword_0_13 = (Keyword)cNameAlternatives_0.eContents().get(13);
 		
+		/// ** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> * /
 		//EssentialOCLInfixOperatorCS returns BinaryOperatorCS:
 		//	name=("*" | "/" | "+" | "-" | ">" | "<" | ">=" | "<=" | "=" | "<>" | "and" | "or" | "xor" | "implies");
 		public ParserRule getRule() { return rule; }
@@ -273,6 +283,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cNameFullStopKeyword_0_0 = (Keyword)cNameAlternatives_0.eContents().get(0);
 		private final Keyword cNameHyphenMinusGreaterThanSignKeyword_0_1 = (Keyword)cNameAlternatives_0.eContents().get(1);
 		
+		/// ** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> * /
 		//EssentialOCLNavigationOperatorCS returns NavigationOperatorCS:
 		//	name=("." | "->");
 		public ParserRule getRule() { return rule; }
@@ -381,8 +392,9 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		// //  Names
 		//
 		////---------------------------------------------------------------------
-		// EssentialOCLUnrestrictedName returns
-		//ecore::EString:
+		//
+		/// ** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> * /
+		//EssentialOCLUnrestrictedName returns ecore::EString:
 		//	Identifier;
 		public ParserRule getRule() { return rule; }
 
@@ -411,6 +423,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPrimitiveTypeIdentifierParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final Keyword cTupleKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
 		
+		/// ** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> * /
 		//EssentialOCLUnreservedName returns ecore::EString:
 		//	UnrestrictedName | CollectionTypeIdentifier | PrimitiveTypeIdentifier | "Tuple";
 		public ParserRule getRule() { return rule; }
@@ -527,14 +540,19 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPathURIFirstPathElementCSParserRuleCall_0_0 = (RuleCall)cPathAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Keyword cColonColonKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cPathAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cPathNextPathElementCSParserRuleCall_1_1_0 = (RuleCall)cPathAssignment_1_1.eContents().get(0);
+		private final Group cGroup_1_1 = (Group)cGroup_1.eContents().get(1);
+		private final Assignment cPathAssignment_1_1_0 = (Assignment)cGroup_1_1.eContents().get(0);
+		private final RuleCall cPathNextPathElementCSParserRuleCall_1_1_0_0 = (RuleCall)cPathAssignment_1_1_0.eContents().get(0);
+		private final Keyword cColonColonKeyword_1_1_1 = (Keyword)cGroup_1_1.eContents().get(1);
+		private final Assignment cPathAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cPathNextPathElementCSParserRuleCall_1_2_0 = (RuleCall)cPathAssignment_1_2.eContents().get(0);
 		
+		/// * This slightly odd formulation avoids an LALR shift-reduce conflict wrt URIFirstPathElementCS '::' '*' * /
 		//URIPathNameCS returns base::PathNameCS:
-		//	path+=URIFirstPathElementCS ("::" path+=NextPathElementCS)*;
+		//	path+=URIFirstPathElementCS ("::" (path+=NextPathElementCS "::")* path+=NextPathElementCS)?;
 		public ParserRule getRule() { return rule; }
 
-		//path+=URIFirstPathElementCS ("::" path+=NextPathElementCS)*
+		//path+=URIFirstPathElementCS ("::" (path+=NextPathElementCS "::")* path+=NextPathElementCS)?
 		public Group getGroup() { return cGroup; }
 
 		//path+=URIFirstPathElementCS
@@ -543,17 +561,29 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//URIFirstPathElementCS
 		public RuleCall getPathURIFirstPathElementCSParserRuleCall_0_0() { return cPathURIFirstPathElementCSParserRuleCall_0_0; }
 
-		//("::" path+=NextPathElementCS)*
+		//("::" (path+=NextPathElementCS "::")* path+=NextPathElementCS)?
 		public Group getGroup_1() { return cGroup_1; }
 
 		//"::"
 		public Keyword getColonColonKeyword_1_0() { return cColonColonKeyword_1_0; }
 
+		//(path+=NextPathElementCS "::")*
+		public Group getGroup_1_1() { return cGroup_1_1; }
+
 		//path+=NextPathElementCS
-		public Assignment getPathAssignment_1_1() { return cPathAssignment_1_1; }
+		public Assignment getPathAssignment_1_1_0() { return cPathAssignment_1_1_0; }
 
 		//NextPathElementCS
-		public RuleCall getPathNextPathElementCSParserRuleCall_1_1_0() { return cPathNextPathElementCSParserRuleCall_1_1_0; }
+		public RuleCall getPathNextPathElementCSParserRuleCall_1_1_0_0() { return cPathNextPathElementCSParserRuleCall_1_1_0_0; }
+
+		//"::"
+		public Keyword getColonColonKeyword_1_1_1() { return cColonColonKeyword_1_1_1; }
+
+		//path+=NextPathElementCS
+		public Assignment getPathAssignment_1_2() { return cPathAssignment_1_2; }
+
+		//NextPathElementCS
+		public RuleCall getPathNextPathElementCSParserRuleCall_1_2_0() { return cPathNextPathElementCSParserRuleCall_1_2_0; }
 	}
 
 	public class URIFirstPathElementCSElements extends AbstractParserRuleElementFinder {
@@ -1586,7 +1616,8 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOwnedExpressionPrimaryExpCSParserRuleCall_0_2_0 = (RuleCall)cOwnedExpressionAssignment_0_2.eContents().get(0);
 		private final RuleCall cPrimaryExpCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		//PrefixedExpCS returns ExpCS:
+		/// * A prefixed expression is elaborates a primary expression with zero or more unary prefix operators. * / PrefixedExpCS
+		//returns ExpCS:
 		//	{PrefixExpCS} ownedOperator+=UnaryOperatorCS+ ownedExpression=PrimaryExpCS | PrimaryExpCS;
 		public ParserRule getRule() { return rule; }
 
@@ -1627,6 +1658,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTypeLiteralExpCSParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		private final RuleCall cNameExpCSParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
 		
+		/// * A primary expression identifies the basic expressions from which more complex expressions may be constructed. * /
 		//PrimaryExpCS returns ExpCS:
 		//	NestedExpCS | IfExpCS | SelfExpCS | PrimitiveLiteralExpCS | TupleLiteralExpCS | CollectionLiteralExpCS |
 		//	TypeLiteralExpCS | NameExpCS;
@@ -1677,6 +1709,8 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cAtPreCommercialAtKeyword_4_0_0 = (Keyword)cAtPreAssignment_4_0.eContents().get(0);
 		private final Keyword cPreKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
 		
+		/// * A name expression is a generalised rule for expressions that start with a name and which may be followed by square, round or
+		// * curly bracket clauses and optionally an @pre as well.* /
 		//NameExpCS:
 		//	pathName=PathNameCS squareBracketedClauses+=SquareBracketedClauseCS* roundBracketedClause=RoundBracketedClauseCS?
 		//	curlyBracketedClause=CurlyBracketedClauseCS? (atPre?="@" "pre")?;
@@ -1740,6 +1774,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValueStringLiteralParserRuleCall_2_1_0 = (RuleCall)cValueAssignment_2_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
+		/// * A curly bracket clause is a generalized rule for the literal arguments of collections, maps, tuples and type constructors.* /
 		//CurlyBracketedClauseCS:
 		//	{CurlyBracketedClauseCS} "{" ((ownedParts+=ConstructorPartCS ("," ownedParts+=ConstructorPartCS)*)? |
 		//	value=StringLiteral) "}";
@@ -1811,6 +1846,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cArgumentsNavigatingCommaArgCSParserRuleCall_2_3_1_0 = (RuleCall)cArgumentsAssignment_2_3_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
+		/// * A curly bracket clause is a generalized rule for template specialisations and operations arguments.* /
 		//RoundBracketedClauseCS:
 		//	{RoundBracketedClauseCS} "(" (arguments+=NavigatingArgCS arguments+=NavigatingCommaArgCS*
 		//	(arguments+=NavigatingSemiArgCS arguments+=NavigatingCommaArgCS*)? (arguments+=NavigatingBarArgCS
@@ -1890,7 +1926,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTermsExpCSParserRuleCall_2_1_0 = (RuleCall)cTermsAssignment_2_1.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		//SquareBracketedClauseCS:
+		/// * A square bracket clause is a generalized rule for association class qualifiers and roles.* / SquareBracketedClauseCS:
 		//	"[" terms+=ExpCS ("," terms+=ExpCS)* "]";
 		public ParserRule getRule() { return rule; }
 
@@ -1936,6 +1972,8 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cInitAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
 		private final RuleCall cInitExpCSParserRuleCall_1_2_1_0 = (RuleCall)cInitAssignment_1_2_1.eContents().get(0);
 		
+		/// * A navigating argument is a generalized rule for the first argument in a round bracket clause. This is typically the first operation
+		// * parameter or an iterator. * /
 		//// Type-less init is an illegal infix expression
 		// NavigatingArgCS:
 		//	name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?;
@@ -1991,6 +2029,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cInitAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
 		private final RuleCall cInitExpCSParserRuleCall_2_2_1_0 = (RuleCall)cInitAssignment_2_2_1.eContents().get(0);
 		
+		/// * A navigating bar argument is a generalized rule for a bar-prefixed argument in a round bracket clause. This is typically the body of an iteration. * /
 		//// Type-less init is an illegal infix expression
 		// NavigatingBarArgCS returns NavigatingArgCS:
 		//	prefix="|" name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?;
@@ -2052,6 +2091,8 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cInitAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
 		private final RuleCall cInitExpCSParserRuleCall_2_2_1_0 = (RuleCall)cInitAssignment_2_2_1.eContents().get(0);
 		
+		/// * A navigating comma argument is a generalized rule for non-first argument in a round bracket clause. These are typically non-first operation
+		// * parameters or a second iterator. * /
 		//// Type-less init is an illegal infix expression
 		// NavigatingCommaArgCS returns NavigatingArgCS:
 		//	prefix="," name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?;
@@ -2113,6 +2154,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cInitAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
 		private final RuleCall cInitExpCSParserRuleCall_2_2_1_0 = (RuleCall)cInitAssignment_2_2_1.eContents().get(0);
 		
+		/// * A navigating semi argument is a generalized rule for a semicolon prefixed argument in a round bracket clause. This is typically an iterate accumulator. * /
 		//// Type-less init is an illegal infix expression
 		// NavigatingSemiArgCS returns NavigatingArgCS:
 		//	prefix=";" name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?;
@@ -2373,92 +2415,172 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	
-	private ModelElements pModel;
-	private TerminalRule tESCAPED_CHARACTER;
-	private TerminalRule tLETTER_CHARACTER;
-	private TerminalRule tDOUBLE_QUOTED_STRING;
-	private TerminalRule tSINGLE_QUOTED_STRING;
-	private TerminalRule tML_SINGLE_QUOTED_STRING;
-	private TerminalRule tSIMPLE_ID;
-	private TerminalRule tESCAPED_ID;
-	private IDElements pID;
-	private TerminalRule tINT;
-	private LOWERElements pLOWER;
-	private UPPERElements pUPPER;
-	private NUMBER_LITERALElements pNUMBER_LITERAL;
-	private TerminalRule tML_COMMENT;
-	private TerminalRule tSL_COMMENT;
-	private TerminalRule tWS;
-	private TerminalRule tANY_OTHER;
-	private URIElements pURI;
-	private EssentialOCLReservedKeywordElements pEssentialOCLReservedKeyword;
-	private EssentialOCLUnaryOperatorCSElements pEssentialOCLUnaryOperatorCS;
-	private EssentialOCLInfixOperatorCSElements pEssentialOCLInfixOperatorCS;
-	private EssentialOCLNavigationOperatorCSElements pEssentialOCLNavigationOperatorCS;
-	private IdentifierElements pIdentifier;
-	private StringLiteralElements pStringLiteral;
-	private BinaryOperatorCSElements pBinaryOperatorCS;
-	private InfixOperatorCSElements pInfixOperatorCS;
-	private NavigationOperatorCSElements pNavigationOperatorCS;
-	private UnaryOperatorCSElements pUnaryOperatorCS;
-	private EssentialOCLUnrestrictedNameElements pEssentialOCLUnrestrictedName;
-	private UnrestrictedNameElements pUnrestrictedName;
-	private EssentialOCLUnreservedNameElements pEssentialOCLUnreservedName;
-	private UnreservedNameElements pUnreservedName;
-	private PathNameCSElements pPathNameCS;
-	private FirstPathElementCSElements pFirstPathElementCS;
-	private NextPathElementCSElements pNextPathElementCS;
-	private URIPathNameCSElements pURIPathNameCS;
-	private URIFirstPathElementCSElements pURIFirstPathElementCS;
-	private PrimitiveTypeIdentifierElements pPrimitiveTypeIdentifier;
-	private PrimitiveTypeCSElements pPrimitiveTypeCS;
-	private CollectionTypeIdentifierElements pCollectionTypeIdentifier;
-	private CollectionTypeCSElements pCollectionTypeCS;
-	private MultiplicityBoundsCSElements pMultiplicityBoundsCS;
-	private MultiplicityCSElements pMultiplicityCS;
-	private MultiplicityStringCSElements pMultiplicityStringCS;
-	private TupleTypeCSElements pTupleTypeCS;
-	private TuplePartCSElements pTuplePartCS;
-	private CollectionLiteralExpCSElements pCollectionLiteralExpCS;
-	private CollectionLiteralPartCSElements pCollectionLiteralPartCS;
-	private ConstructorPartCSElements pConstructorPartCS;
-	private PrimitiveLiteralExpCSElements pPrimitiveLiteralExpCS;
-	private TupleLiteralExpCSElements pTupleLiteralExpCS;
-	private TupleLiteralPartCSElements pTupleLiteralPartCS;
-	private NumberLiteralExpCSElements pNumberLiteralExpCS;
-	private StringLiteralExpCSElements pStringLiteralExpCS;
-	private BooleanLiteralExpCSElements pBooleanLiteralExpCS;
-	private UnlimitedNaturalLiteralExpCSElements pUnlimitedNaturalLiteralExpCS;
-	private InvalidLiteralExpCSElements pInvalidLiteralExpCS;
-	private NullLiteralExpCSElements pNullLiteralExpCS;
-	private TypeLiteralCSElements pTypeLiteralCS;
-	private TypeLiteralWithMultiplicityCSElements pTypeLiteralWithMultiplicityCS;
-	private TypeLiteralExpCSElements pTypeLiteralExpCS;
-	private TypeNameExpCSElements pTypeNameExpCS;
-	private TypeExpCSElements pTypeExpCS;
-	private ExpCSElements pExpCS;
-	private PrefixedExpCSElements pPrefixedExpCS;
-	private PrimaryExpCSElements pPrimaryExpCS;
-	private NameExpCSElements pNameExpCS;
-	private CurlyBracketedClauseCSElements pCurlyBracketedClauseCS;
-	private RoundBracketedClauseCSElements pRoundBracketedClauseCS;
-	private SquareBracketedClauseCSElements pSquareBracketedClauseCS;
-	private NavigatingArgCSElements pNavigatingArgCS;
-	private NavigatingBarArgCSElements pNavigatingBarArgCS;
-	private NavigatingCommaArgCSElements pNavigatingCommaArgCS;
-	private NavigatingSemiArgCSElements pNavigatingSemiArgCS;
-	private NavigatingArgExpCSElements pNavigatingArgExpCS;
-	private IfExpCSElements pIfExpCS;
-	private LetExpCSElements pLetExpCS;
-	private LetVariableCSElements pLetVariableCS;
-	private NestedExpCSElements pNestedExpCS;
-	private SelfExpCSElements pSelfExpCS;
+	private final ModelElements pModel;
+	private final TerminalRule tESCAPED_CHARACTER;
+	private final TerminalRule tLETTER_CHARACTER;
+	private final TerminalRule tDOUBLE_QUOTED_STRING;
+	private final TerminalRule tSINGLE_QUOTED_STRING;
+	private final TerminalRule tML_SINGLE_QUOTED_STRING;
+	private final TerminalRule tSIMPLE_ID;
+	private final TerminalRule tESCAPED_ID;
+	private final IDElements pID;
+	private final TerminalRule tINT;
+	private final LOWERElements pLOWER;
+	private final UPPERElements pUPPER;
+	private final NUMBER_LITERALElements pNUMBER_LITERAL;
+	private final TerminalRule tML_COMMENT;
+	private final TerminalRule tSL_COMMENT;
+	private final TerminalRule tWS;
+	private final TerminalRule tANY_OTHER;
+	private final URIElements pURI;
+	private final EssentialOCLReservedKeywordElements pEssentialOCLReservedKeyword;
+	private final EssentialOCLUnaryOperatorCSElements pEssentialOCLUnaryOperatorCS;
+	private final EssentialOCLInfixOperatorCSElements pEssentialOCLInfixOperatorCS;
+	private final EssentialOCLNavigationOperatorCSElements pEssentialOCLNavigationOperatorCS;
+	private final IdentifierElements pIdentifier;
+	private final StringLiteralElements pStringLiteral;
+	private final BinaryOperatorCSElements pBinaryOperatorCS;
+	private final InfixOperatorCSElements pInfixOperatorCS;
+	private final NavigationOperatorCSElements pNavigationOperatorCS;
+	private final UnaryOperatorCSElements pUnaryOperatorCS;
+	private final EssentialOCLUnrestrictedNameElements pEssentialOCLUnrestrictedName;
+	private final UnrestrictedNameElements pUnrestrictedName;
+	private final EssentialOCLUnreservedNameElements pEssentialOCLUnreservedName;
+	private final UnreservedNameElements pUnreservedName;
+	private final PathNameCSElements pPathNameCS;
+	private final FirstPathElementCSElements pFirstPathElementCS;
+	private final NextPathElementCSElements pNextPathElementCS;
+	private final URIPathNameCSElements pURIPathNameCS;
+	private final URIFirstPathElementCSElements pURIFirstPathElementCS;
+	private final PrimitiveTypeIdentifierElements pPrimitiveTypeIdentifier;
+	private final PrimitiveTypeCSElements pPrimitiveTypeCS;
+	private final CollectionTypeIdentifierElements pCollectionTypeIdentifier;
+	private final CollectionTypeCSElements pCollectionTypeCS;
+	private final MultiplicityBoundsCSElements pMultiplicityBoundsCS;
+	private final MultiplicityCSElements pMultiplicityCS;
+	private final MultiplicityStringCSElements pMultiplicityStringCS;
+	private final TupleTypeCSElements pTupleTypeCS;
+	private final TuplePartCSElements pTuplePartCS;
+	private final CollectionLiteralExpCSElements pCollectionLiteralExpCS;
+	private final CollectionLiteralPartCSElements pCollectionLiteralPartCS;
+	private final ConstructorPartCSElements pConstructorPartCS;
+	private final PrimitiveLiteralExpCSElements pPrimitiveLiteralExpCS;
+	private final TupleLiteralExpCSElements pTupleLiteralExpCS;
+	private final TupleLiteralPartCSElements pTupleLiteralPartCS;
+	private final NumberLiteralExpCSElements pNumberLiteralExpCS;
+	private final StringLiteralExpCSElements pStringLiteralExpCS;
+	private final BooleanLiteralExpCSElements pBooleanLiteralExpCS;
+	private final UnlimitedNaturalLiteralExpCSElements pUnlimitedNaturalLiteralExpCS;
+	private final InvalidLiteralExpCSElements pInvalidLiteralExpCS;
+	private final NullLiteralExpCSElements pNullLiteralExpCS;
+	private final TypeLiteralCSElements pTypeLiteralCS;
+	private final TypeLiteralWithMultiplicityCSElements pTypeLiteralWithMultiplicityCS;
+	private final TypeLiteralExpCSElements pTypeLiteralExpCS;
+	private final TypeNameExpCSElements pTypeNameExpCS;
+	private final TypeExpCSElements pTypeExpCS;
+	private final ExpCSElements pExpCS;
+	private final PrefixedExpCSElements pPrefixedExpCS;
+	private final PrimaryExpCSElements pPrimaryExpCS;
+	private final NameExpCSElements pNameExpCS;
+	private final CurlyBracketedClauseCSElements pCurlyBracketedClauseCS;
+	private final RoundBracketedClauseCSElements pRoundBracketedClauseCS;
+	private final SquareBracketedClauseCSElements pSquareBracketedClauseCS;
+	private final NavigatingArgCSElements pNavigatingArgCS;
+	private final NavigatingBarArgCSElements pNavigatingBarArgCS;
+	private final NavigatingCommaArgCSElements pNavigatingCommaArgCS;
+	private final NavigatingSemiArgCSElements pNavigatingSemiArgCS;
+	private final NavigatingArgExpCSElements pNavigatingArgExpCS;
+	private final IfExpCSElements pIfExpCS;
+	private final LetExpCSElements pLetExpCS;
+	private final LetVariableCSElements pLetVariableCS;
+	private final NestedExpCSElements pNestedExpCS;
+	private final SelfExpCSElements pSelfExpCS;
 	
 	private final Grammar grammar;
 
 	@Inject
 	public EssentialOCLGrammarAccess(GrammarProvider grammarProvider) {
 		this.grammar = internalFindGrammar(grammarProvider);
+		this.pModel = new ModelElements();
+		this.tESCAPED_CHARACTER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ESCAPED_CHARACTER");
+		this.tLETTER_CHARACTER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "LETTER_CHARACTER");
+		this.tDOUBLE_QUOTED_STRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DOUBLE_QUOTED_STRING");
+		this.tSINGLE_QUOTED_STRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SINGLE_QUOTED_STRING");
+		this.tML_SINGLE_QUOTED_STRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ML_SINGLE_QUOTED_STRING");
+		this.tSIMPLE_ID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SIMPLE_ID");
+		this.tESCAPED_ID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ESCAPED_ID");
+		this.pID = new IDElements();
+		this.tINT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "INT");
+		this.pLOWER = new LOWERElements();
+		this.pUPPER = new UPPERElements();
+		this.pNUMBER_LITERAL = new NUMBER_LITERALElements();
+		this.tML_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ML_COMMENT");
+		this.tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SL_COMMENT");
+		this.tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "WS");
+		this.tANY_OTHER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ANY_OTHER");
+		this.pURI = new URIElements();
+		this.pEssentialOCLReservedKeyword = new EssentialOCLReservedKeywordElements();
+		this.pEssentialOCLUnaryOperatorCS = new EssentialOCLUnaryOperatorCSElements();
+		this.pEssentialOCLInfixOperatorCS = new EssentialOCLInfixOperatorCSElements();
+		this.pEssentialOCLNavigationOperatorCS = new EssentialOCLNavigationOperatorCSElements();
+		this.pIdentifier = new IdentifierElements();
+		this.pStringLiteral = new StringLiteralElements();
+		this.pBinaryOperatorCS = new BinaryOperatorCSElements();
+		this.pInfixOperatorCS = new InfixOperatorCSElements();
+		this.pNavigationOperatorCS = new NavigationOperatorCSElements();
+		this.pUnaryOperatorCS = new UnaryOperatorCSElements();
+		this.pEssentialOCLUnrestrictedName = new EssentialOCLUnrestrictedNameElements();
+		this.pUnrestrictedName = new UnrestrictedNameElements();
+		this.pEssentialOCLUnreservedName = new EssentialOCLUnreservedNameElements();
+		this.pUnreservedName = new UnreservedNameElements();
+		this.pPathNameCS = new PathNameCSElements();
+		this.pFirstPathElementCS = new FirstPathElementCSElements();
+		this.pNextPathElementCS = new NextPathElementCSElements();
+		this.pURIPathNameCS = new URIPathNameCSElements();
+		this.pURIFirstPathElementCS = new URIFirstPathElementCSElements();
+		this.pPrimitiveTypeIdentifier = new PrimitiveTypeIdentifierElements();
+		this.pPrimitiveTypeCS = new PrimitiveTypeCSElements();
+		this.pCollectionTypeIdentifier = new CollectionTypeIdentifierElements();
+		this.pCollectionTypeCS = new CollectionTypeCSElements();
+		this.pMultiplicityBoundsCS = new MultiplicityBoundsCSElements();
+		this.pMultiplicityCS = new MultiplicityCSElements();
+		this.pMultiplicityStringCS = new MultiplicityStringCSElements();
+		this.pTupleTypeCS = new TupleTypeCSElements();
+		this.pTuplePartCS = new TuplePartCSElements();
+		this.pCollectionLiteralExpCS = new CollectionLiteralExpCSElements();
+		this.pCollectionLiteralPartCS = new CollectionLiteralPartCSElements();
+		this.pConstructorPartCS = new ConstructorPartCSElements();
+		this.pPrimitiveLiteralExpCS = new PrimitiveLiteralExpCSElements();
+		this.pTupleLiteralExpCS = new TupleLiteralExpCSElements();
+		this.pTupleLiteralPartCS = new TupleLiteralPartCSElements();
+		this.pNumberLiteralExpCS = new NumberLiteralExpCSElements();
+		this.pStringLiteralExpCS = new StringLiteralExpCSElements();
+		this.pBooleanLiteralExpCS = new BooleanLiteralExpCSElements();
+		this.pUnlimitedNaturalLiteralExpCS = new UnlimitedNaturalLiteralExpCSElements();
+		this.pInvalidLiteralExpCS = new InvalidLiteralExpCSElements();
+		this.pNullLiteralExpCS = new NullLiteralExpCSElements();
+		this.pTypeLiteralCS = new TypeLiteralCSElements();
+		this.pTypeLiteralWithMultiplicityCS = new TypeLiteralWithMultiplicityCSElements();
+		this.pTypeLiteralExpCS = new TypeLiteralExpCSElements();
+		this.pTypeNameExpCS = new TypeNameExpCSElements();
+		this.pTypeExpCS = new TypeExpCSElements();
+		this.pExpCS = new ExpCSElements();
+		this.pPrefixedExpCS = new PrefixedExpCSElements();
+		this.pPrimaryExpCS = new PrimaryExpCSElements();
+		this.pNameExpCS = new NameExpCSElements();
+		this.pCurlyBracketedClauseCS = new CurlyBracketedClauseCSElements();
+		this.pRoundBracketedClauseCS = new RoundBracketedClauseCSElements();
+		this.pSquareBracketedClauseCS = new SquareBracketedClauseCSElements();
+		this.pNavigatingArgCS = new NavigatingArgCSElements();
+		this.pNavigatingBarArgCS = new NavigatingBarArgCSElements();
+		this.pNavigatingCommaArgCS = new NavigatingCommaArgCSElements();
+		this.pNavigatingSemiArgCS = new NavigatingSemiArgCSElements();
+		this.pNavigatingArgExpCS = new NavigatingArgExpCSElements();
+		this.pIfExpCS = new IfExpCSElements();
+		this.pLetExpCS = new LetExpCSElements();
+		this.pLetVariableCS = new LetVariableCSElements();
+		this.pNestedExpCS = new NestedExpCSElements();
+		this.pSelfExpCS = new SelfExpCSElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -2488,7 +2610,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	// Model returns ContextCS:
 	//	ownedExpression=ExpCS;
 	public ModelElements getModelAccess() {
-		return (pModel != null) ? pModel : (pModel = new ModelElements());
+		return pModel;
 	}
 	
 	public ParserRule getModelRule() {
@@ -2498,49 +2620,49 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//terminal fragment ESCAPED_CHARACTER:
 	//	"\\" ("b" | "t" | "n" | "f" | "r" | "u" | "\"" | "\'" | "\\");
 	public TerminalRule getESCAPED_CHARACTERRule() {
-		return (tESCAPED_CHARACTER != null) ? tESCAPED_CHARACTER : (tESCAPED_CHARACTER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ESCAPED_CHARACTER"));
+		return tESCAPED_CHARACTER;
 	} 
 
 	//terminal fragment LETTER_CHARACTER:
 	//	"a".."z" | "A".."Z" | "_";
 	public TerminalRule getLETTER_CHARACTERRule() {
-		return (tLETTER_CHARACTER != null) ? tLETTER_CHARACTER : (tLETTER_CHARACTER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "LETTER_CHARACTER"));
+		return tLETTER_CHARACTER;
 	} 
 
 	//terminal DOUBLE_QUOTED_STRING:
 	//	"\"" (ESCAPED_CHARACTER | !("\\" | "\""))* "\"";
 	public TerminalRule getDOUBLE_QUOTED_STRINGRule() {
-		return (tDOUBLE_QUOTED_STRING != null) ? tDOUBLE_QUOTED_STRING : (tDOUBLE_QUOTED_STRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DOUBLE_QUOTED_STRING"));
+		return tDOUBLE_QUOTED_STRING;
 	} 
 
 	//terminal SINGLE_QUOTED_STRING:
 	//	"\'" (ESCAPED_CHARACTER | !("\\" | "\'"))* "\'";
 	public TerminalRule getSINGLE_QUOTED_STRINGRule() {
-		return (tSINGLE_QUOTED_STRING != null) ? tSINGLE_QUOTED_STRING : (tSINGLE_QUOTED_STRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SINGLE_QUOTED_STRING"));
+		return tSINGLE_QUOTED_STRING;
 	} 
 
 	//terminal ML_SINGLE_QUOTED_STRING:
 	//	"/\'"->"\'/";
 	public TerminalRule getML_SINGLE_QUOTED_STRINGRule() {
-		return (tML_SINGLE_QUOTED_STRING != null) ? tML_SINGLE_QUOTED_STRING : (tML_SINGLE_QUOTED_STRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ML_SINGLE_QUOTED_STRING"));
+		return tML_SINGLE_QUOTED_STRING;
 	} 
 
 	//terminal SIMPLE_ID:
 	//	LETTER_CHARACTER (LETTER_CHARACTER | "0".."9")*;
 	public TerminalRule getSIMPLE_IDRule() {
-		return (tSIMPLE_ID != null) ? tSIMPLE_ID : (tSIMPLE_ID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SIMPLE_ID"));
+		return tSIMPLE_ID;
 	} 
 
 	//terminal ESCAPED_ID:
 	//	"_" SINGLE_QUOTED_STRING;
 	public TerminalRule getESCAPED_IDRule() {
-		return (tESCAPED_ID != null) ? tESCAPED_ID : (tESCAPED_ID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ESCAPED_ID"));
+		return tESCAPED_ID;
 	} 
 
 	//ID:
 	//	SIMPLE_ID | ESCAPED_ID;
 	public IDElements getIDAccess() {
-		return (pID != null) ? pID : (pID = new IDElements());
+		return pID;
 	}
 	
 	public ParserRule getIDRule() {
@@ -2552,29 +2674,36 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	// terminal INT:
 	//	"0".."9"+;
 	public TerminalRule getINTRule() {
-		return (tINT != null) ? tINT : (tINT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "INT"));
+		return tINT;
 	} 
 
+	/// * A lowerbounded integer is used to define the lowerbound of a collection multiplicity. The value may not be the unlimited value. * /
 	//LOWER returns ecore::EInt:
 	//	INT;
 	public LOWERElements getLOWERAccess() {
-		return (pLOWER != null) ? pLOWER : (pLOWER = new LOWERElements());
+		return pLOWER;
 	}
 	
 	public ParserRule getLOWERRule() {
 		return getLOWERAccess().getRule();
 	}
 
+	/// * An upperbounded integer is used to define the upperbound of a collection multiplicity. The value may be the unlimited value. * /
 	//UPPER returns ecore::EInt:
 	//	INT | "*";
 	public UPPERElements getUPPERAccess() {
-		return (pUPPER != null) ? pUPPER : (pUPPER = new UPPERElements());
+		return pUPPER;
 	}
 	
 	public ParserRule getUPPERRule() {
 		return getUPPERAccess().getRule();
 	}
 
+	/// * A number may be an integer or floating point value. The declaration here appears to be that for just an integer. This is to avoid
+	// * lookahead conflicts in simple lexers between a dot within a floating point number and the dot-dot in a CollectionLiteralPartCS. A
+	// * practical implementation should give high priority to a successful parse of INT ('.' INT)? (('e' | 'E') ('+' | '-')? INT)? than
+	// * to the unsuccessful partial parse of INT '..'. The type of the INT terminal is String to allow the floating point syntax to be used.
+	// * /
 	//// Not terminal to allow parser backtracking to sort out "5..7"
 	//
 	//// EssentialOCLTokenSource pieces this together ('.' INT)? (('e' | 'E') ('+' | '-')? INT)?;
@@ -2582,81 +2711,86 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//BigNumber:
 	//	INT;
 	public NUMBER_LITERALElements getNUMBER_LITERALAccess() {
-		return (pNUMBER_LITERAL != null) ? pNUMBER_LITERAL : (pNUMBER_LITERAL = new NUMBER_LITERALElements());
+		return pNUMBER_LITERAL;
 	}
 	
 	public ParserRule getNUMBER_LITERALRule() {
 		return getNUMBER_LITERALAccess().getRule();
 	}
 
+	/// * A multi-line comment supports a comment that may span more than one line using familiar slash-star...star-slash comment delimiters * /
 	//terminal ML_COMMENT:
 	//	"/ *"->"* /";
 	public TerminalRule getML_COMMENTRule() {
-		return (tML_COMMENT != null) ? tML_COMMENT : (tML_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ML_COMMENT"));
+		return tML_COMMENT;
 	} 
 
-	//terminal SL_COMMENT:
+	/// * A single-line comment supports a comment that terminates at the end of the line * / terminal SL_COMMENT:
 	//	"--" !("\n" | "\r")* ("\r"? "\n")?;
 	public TerminalRule getSL_COMMENTRule() {
-		return (tSL_COMMENT != null) ? tSL_COMMENT : (tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SL_COMMENT"));
+		return tSL_COMMENT;
 	} 
 
-	//terminal WS:
+	/// * Whitespace may occur between any pair of tokens * / terminal WS:
 	//	(" " | "\t" | "\r" | "\n")+;
 	public TerminalRule getWSRule() {
-		return (tWS != null) ? tWS : (tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "WS"));
+		return tWS;
 	} 
 
 	//terminal ANY_OTHER:
 	//	.;
 	public TerminalRule getANY_OTHERRule() {
-		return (tANY_OTHER != null) ? tANY_OTHER : (tANY_OTHER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ANY_OTHER"));
+		return tANY_OTHER;
 	} 
 
 	//URI:
 	//	SINGLE_QUOTED_STRING;
 	public URIElements getURIAccess() {
-		return (pURI != null) ? pURI : (pURI = new URIElements());
+		return pURI;
 	}
 	
 	public ParserRule getURIRule() {
 		return getURIAccess().getRule();
 	}
 
+	/// ** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> * /
 	//EssentialOCLReservedKeyword:
 	//	"and" | "else" | "endif" | "if" | "implies" | "in" | "let" | "not" | "or" | "then" | "xor";
 	public EssentialOCLReservedKeywordElements getEssentialOCLReservedKeywordAccess() {
-		return (pEssentialOCLReservedKeyword != null) ? pEssentialOCLReservedKeyword : (pEssentialOCLReservedKeyword = new EssentialOCLReservedKeywordElements());
+		return pEssentialOCLReservedKeyword;
 	}
 	
 	public ParserRule getEssentialOCLReservedKeywordRule() {
 		return getEssentialOCLReservedKeywordAccess().getRule();
 	}
 
+	/// ** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> * /
 	//EssentialOCLUnaryOperatorCS returns UnaryOperatorCS:
 	//	name=("-" | "not");
 	public EssentialOCLUnaryOperatorCSElements getEssentialOCLUnaryOperatorCSAccess() {
-		return (pEssentialOCLUnaryOperatorCS != null) ? pEssentialOCLUnaryOperatorCS : (pEssentialOCLUnaryOperatorCS = new EssentialOCLUnaryOperatorCSElements());
+		return pEssentialOCLUnaryOperatorCS;
 	}
 	
 	public ParserRule getEssentialOCLUnaryOperatorCSRule() {
 		return getEssentialOCLUnaryOperatorCSAccess().getRule();
 	}
 
+	/// ** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> * /
 	//EssentialOCLInfixOperatorCS returns BinaryOperatorCS:
 	//	name=("*" | "/" | "+" | "-" | ">" | "<" | ">=" | "<=" | "=" | "<>" | "and" | "or" | "xor" | "implies");
 	public EssentialOCLInfixOperatorCSElements getEssentialOCLInfixOperatorCSAccess() {
-		return (pEssentialOCLInfixOperatorCS != null) ? pEssentialOCLInfixOperatorCS : (pEssentialOCLInfixOperatorCS = new EssentialOCLInfixOperatorCSElements());
+		return pEssentialOCLInfixOperatorCS;
 	}
 	
 	public ParserRule getEssentialOCLInfixOperatorCSRule() {
 		return getEssentialOCLInfixOperatorCSAccess().getRule();
 	}
 
+	/// ** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> * /
 	//EssentialOCLNavigationOperatorCS returns NavigationOperatorCS:
 	//	name=("." | "->");
 	public EssentialOCLNavigationOperatorCSElements getEssentialOCLNavigationOperatorCSAccess() {
-		return (pEssentialOCLNavigationOperatorCS != null) ? pEssentialOCLNavigationOperatorCS : (pEssentialOCLNavigationOperatorCS = new EssentialOCLNavigationOperatorCSElements());
+		return pEssentialOCLNavigationOperatorCS;
 	}
 	
 	public ParserRule getEssentialOCLNavigationOperatorCSRule() {
@@ -2666,7 +2800,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//Identifier:
 	//	ID;
 	public IdentifierElements getIdentifierAccess() {
-		return (pIdentifier != null) ? pIdentifier : (pIdentifier = new IdentifierElements());
+		return pIdentifier;
 	}
 	
 	public ParserRule getIdentifierRule() {
@@ -2676,7 +2810,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//StringLiteral:
 	//	SINGLE_QUOTED_STRING;
 	public StringLiteralElements getStringLiteralAccess() {
-		return (pStringLiteral != null) ? pStringLiteral : (pStringLiteral = new StringLiteralElements());
+		return pStringLiteral;
 	}
 	
 	public ParserRule getStringLiteralRule() {
@@ -2686,7 +2820,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//BinaryOperatorCS:
 	//	InfixOperatorCS | NavigationOperatorCS;
 	public BinaryOperatorCSElements getBinaryOperatorCSAccess() {
-		return (pBinaryOperatorCS != null) ? pBinaryOperatorCS : (pBinaryOperatorCS = new BinaryOperatorCSElements());
+		return pBinaryOperatorCS;
 	}
 	
 	public ParserRule getBinaryOperatorCSRule() {
@@ -2697,7 +2831,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	// InfixOperatorCS returns BinaryOperatorCS:
 	//	EssentialOCLInfixOperatorCS;
 	public InfixOperatorCSElements getInfixOperatorCSAccess() {
-		return (pInfixOperatorCS != null) ? pInfixOperatorCS : (pInfixOperatorCS = new InfixOperatorCSElements());
+		return pInfixOperatorCS;
 	}
 	
 	public ParserRule getInfixOperatorCSRule() {
@@ -2708,7 +2842,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	// NavigationOperatorCS:
 	//	EssentialOCLNavigationOperatorCS;
 	public NavigationOperatorCSElements getNavigationOperatorCSAccess() {
-		return (pNavigationOperatorCS != null) ? pNavigationOperatorCS : (pNavigationOperatorCS = new NavigationOperatorCSElements());
+		return pNavigationOperatorCS;
 	}
 	
 	public ParserRule getNavigationOperatorCSRule() {
@@ -2719,7 +2853,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	// UnaryOperatorCS:
 	//	EssentialOCLUnaryOperatorCS;
 	public UnaryOperatorCSElements getUnaryOperatorCSAccess() {
-		return (pUnaryOperatorCS != null) ? pUnaryOperatorCS : (pUnaryOperatorCS = new UnaryOperatorCSElements());
+		return pUnaryOperatorCS;
 	}
 	
 	public ParserRule getUnaryOperatorCSRule() {
@@ -2730,11 +2864,12 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	// //  Names
 	//
 	////---------------------------------------------------------------------
-	// EssentialOCLUnrestrictedName returns
-	//ecore::EString:
+	//
+	/// ** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> * /
+	//EssentialOCLUnrestrictedName returns ecore::EString:
 	//	Identifier;
 	public EssentialOCLUnrestrictedNameElements getEssentialOCLUnrestrictedNameAccess() {
-		return (pEssentialOCLUnrestrictedName != null) ? pEssentialOCLUnrestrictedName : (pEssentialOCLUnrestrictedName = new EssentialOCLUnrestrictedNameElements());
+		return pEssentialOCLUnrestrictedName;
 	}
 	
 	public ParserRule getEssentialOCLUnrestrictedNameRule() {
@@ -2745,17 +2880,18 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	// UnrestrictedName returns ecore::EString:
 	//	EssentialOCLUnrestrictedName;
 	public UnrestrictedNameElements getUnrestrictedNameAccess() {
-		return (pUnrestrictedName != null) ? pUnrestrictedName : (pUnrestrictedName = new UnrestrictedNameElements());
+		return pUnrestrictedName;
 	}
 	
 	public ParserRule getUnrestrictedNameRule() {
 		return getUnrestrictedNameAccess().getRule();
 	}
 
+	/// ** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> * /
 	//EssentialOCLUnreservedName returns ecore::EString:
 	//	UnrestrictedName | CollectionTypeIdentifier | PrimitiveTypeIdentifier | "Tuple";
 	public EssentialOCLUnreservedNameElements getEssentialOCLUnreservedNameAccess() {
-		return (pEssentialOCLUnreservedName != null) ? pEssentialOCLUnreservedName : (pEssentialOCLUnreservedName = new EssentialOCLUnreservedNameElements());
+		return pEssentialOCLUnreservedName;
 	}
 	
 	public ParserRule getEssentialOCLUnreservedNameRule() {
@@ -2766,7 +2902,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	// UnreservedName returns ecore::EString:
 	//	EssentialOCLUnreservedName;
 	public UnreservedNameElements getUnreservedNameAccess() {
-		return (pUnreservedName != null) ? pUnreservedName : (pUnreservedName = new UnreservedNameElements());
+		return pUnreservedName;
 	}
 	
 	public ParserRule getUnreservedNameRule() {
@@ -2776,7 +2912,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//PathNameCS returns base::PathNameCS:
 	//	path+=FirstPathElementCS ("::" path+=NextPathElementCS)*;
 	public PathNameCSElements getPathNameCSAccess() {
-		return (pPathNameCS != null) ? pPathNameCS : (pPathNameCS = new PathNameCSElements());
+		return pPathNameCS;
 	}
 	
 	public ParserRule getPathNameCSRule() {
@@ -2786,7 +2922,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//FirstPathElementCS returns base::PathElementCS:
 	//	element=[pivot::NamedElement|UnrestrictedName];
 	public FirstPathElementCSElements getFirstPathElementCSAccess() {
-		return (pFirstPathElementCS != null) ? pFirstPathElementCS : (pFirstPathElementCS = new FirstPathElementCSElements());
+		return pFirstPathElementCS;
 	}
 	
 	public ParserRule getFirstPathElementCSRule() {
@@ -2796,17 +2932,18 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//NextPathElementCS returns base::PathElementCS:
 	//	element=[pivot::NamedElement|UnreservedName];
 	public NextPathElementCSElements getNextPathElementCSAccess() {
-		return (pNextPathElementCS != null) ? pNextPathElementCS : (pNextPathElementCS = new NextPathElementCSElements());
+		return pNextPathElementCS;
 	}
 	
 	public ParserRule getNextPathElementCSRule() {
 		return getNextPathElementCSAccess().getRule();
 	}
 
+	/// * This slightly odd formulation avoids an LALR shift-reduce conflict wrt URIFirstPathElementCS '::' '*' * /
 	//URIPathNameCS returns base::PathNameCS:
-	//	path+=URIFirstPathElementCS ("::" path+=NextPathElementCS)*;
+	//	path+=URIFirstPathElementCS ("::" (path+=NextPathElementCS "::")* path+=NextPathElementCS)?;
 	public URIPathNameCSElements getURIPathNameCSAccess() {
-		return (pURIPathNameCS != null) ? pURIPathNameCS : (pURIPathNameCS = new URIPathNameCSElements());
+		return pURIPathNameCS;
 	}
 	
 	public ParserRule getURIPathNameCSRule() {
@@ -2816,7 +2953,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//URIFirstPathElementCS returns base::PathElementCS:
 	//	element=[pivot::NamedElement|UnrestrictedName] | {base::PathElementWithURICS} element=[pivot::Namespace|URI];
 	public URIFirstPathElementCSElements getURIFirstPathElementCSAccess() {
-		return (pURIFirstPathElementCS != null) ? pURIFirstPathElementCS : (pURIFirstPathElementCS = new URIFirstPathElementCSElements());
+		return pURIFirstPathElementCS;
 	}
 	
 	public ParserRule getURIFirstPathElementCSRule() {
@@ -2830,7 +2967,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	// PrimitiveTypeIdentifier:
 	//	"Boolean" | "Integer" | "Real" | "String" | "UnlimitedNatural" | "OclAny" | "OclInvalid" | "OclVoid";
 	public PrimitiveTypeIdentifierElements getPrimitiveTypeIdentifierAccess() {
-		return (pPrimitiveTypeIdentifier != null) ? pPrimitiveTypeIdentifier : (pPrimitiveTypeIdentifier = new PrimitiveTypeIdentifierElements());
+		return pPrimitiveTypeIdentifier;
 	}
 	
 	public ParserRule getPrimitiveTypeIdentifierRule() {
@@ -2840,7 +2977,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//PrimitiveTypeCS returns base::PrimitiveTypeRefCS:
 	//	name=PrimitiveTypeIdentifier;
 	public PrimitiveTypeCSElements getPrimitiveTypeCSAccess() {
-		return (pPrimitiveTypeCS != null) ? pPrimitiveTypeCS : (pPrimitiveTypeCS = new PrimitiveTypeCSElements());
+		return pPrimitiveTypeCS;
 	}
 	
 	public ParserRule getPrimitiveTypeCSRule() {
@@ -2850,7 +2987,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//CollectionTypeIdentifier returns ecore::EString:
 	//	"Set" | "Bag" | "Sequence" | "Collection" | "OrderedSet";
 	public CollectionTypeIdentifierElements getCollectionTypeIdentifierAccess() {
-		return (pCollectionTypeIdentifier != null) ? pCollectionTypeIdentifier : (pCollectionTypeIdentifier = new CollectionTypeIdentifierElements());
+		return pCollectionTypeIdentifier;
 	}
 	
 	public ParserRule getCollectionTypeIdentifierRule() {
@@ -2860,7 +2997,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//CollectionTypeCS:
 	//	name=CollectionTypeIdentifier ("(" ownedType=TypeExpCS ")")?;
 	public CollectionTypeCSElements getCollectionTypeCSAccess() {
-		return (pCollectionTypeCS != null) ? pCollectionTypeCS : (pCollectionTypeCS = new CollectionTypeCSElements());
+		return pCollectionTypeCS;
 	}
 	
 	public ParserRule getCollectionTypeCSRule() {
@@ -2870,7 +3007,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//MultiplicityBoundsCS returns base::MultiplicityBoundsCS:
 	//	lowerBound=LOWER (".." upperBound=UPPER)?;
 	public MultiplicityBoundsCSElements getMultiplicityBoundsCSAccess() {
-		return (pMultiplicityBoundsCS != null) ? pMultiplicityBoundsCS : (pMultiplicityBoundsCS = new MultiplicityBoundsCSElements());
+		return pMultiplicityBoundsCS;
 	}
 	
 	public ParserRule getMultiplicityBoundsCSRule() {
@@ -2880,7 +3017,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//MultiplicityCS returns base::MultiplicityCS:
 	//	"[" (MultiplicityBoundsCS | MultiplicityStringCS) "]";
 	public MultiplicityCSElements getMultiplicityCSAccess() {
-		return (pMultiplicityCS != null) ? pMultiplicityCS : (pMultiplicityCS = new MultiplicityCSElements());
+		return pMultiplicityCS;
 	}
 	
 	public ParserRule getMultiplicityCSRule() {
@@ -2890,7 +3027,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//MultiplicityStringCS returns base::MultiplicityStringCS:
 	//	stringBounds=("*" | "+" | "?");
 	public MultiplicityStringCSElements getMultiplicityStringCSAccess() {
-		return (pMultiplicityStringCS != null) ? pMultiplicityStringCS : (pMultiplicityStringCS = new MultiplicityStringCSElements());
+		return pMultiplicityStringCS;
 	}
 	
 	public ParserRule getMultiplicityStringCSRule() {
@@ -2900,7 +3037,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//TupleTypeCS returns base::TupleTypeCS:
 	//	name="Tuple" ("(" (ownedParts+=TuplePartCS ("," ownedParts+=TuplePartCS)*)? ")")?;
 	public TupleTypeCSElements getTupleTypeCSAccess() {
-		return (pTupleTypeCS != null) ? pTupleTypeCS : (pTupleTypeCS = new TupleTypeCSElements());
+		return pTupleTypeCS;
 	}
 	
 	public ParserRule getTupleTypeCSRule() {
@@ -2910,7 +3047,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//TuplePartCS returns base::TuplePartCS:
 	//	name=UnrestrictedName ":" ownedType=TypeExpCS;
 	public TuplePartCSElements getTuplePartCSAccess() {
-		return (pTuplePartCS != null) ? pTuplePartCS : (pTuplePartCS = new TuplePartCSElements());
+		return pTuplePartCS;
 	}
 	
 	public ParserRule getTuplePartCSRule() {
@@ -2924,7 +3061,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	// CollectionLiteralExpCS:
 	//	ownedType=CollectionTypeCS "{" (ownedParts+=CollectionLiteralPartCS ("," ownedParts+=CollectionLiteralPartCS)*)? "}";
 	public CollectionLiteralExpCSElements getCollectionLiteralExpCSAccess() {
-		return (pCollectionLiteralExpCS != null) ? pCollectionLiteralExpCS : (pCollectionLiteralExpCS = new CollectionLiteralExpCSElements());
+		return pCollectionLiteralExpCS;
 	}
 	
 	public ParserRule getCollectionLiteralExpCSRule() {
@@ -2934,7 +3071,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//CollectionLiteralPartCS:
 	//	expressionCS=ExpCS (".." lastExpressionCS=ExpCS)?;
 	public CollectionLiteralPartCSElements getCollectionLiteralPartCSAccess() {
-		return (pCollectionLiteralPartCS != null) ? pCollectionLiteralPartCS : (pCollectionLiteralPartCS = new CollectionLiteralPartCSElements());
+		return pCollectionLiteralPartCS;
 	}
 	
 	public ParserRule getCollectionLiteralPartCSRule() {
@@ -2944,7 +3081,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//ConstructorPartCS:
 	//	property=[pivot::Property|UnrestrictedName] "=" initExpression=ExpCS;
 	public ConstructorPartCSElements getConstructorPartCSAccess() {
-		return (pConstructorPartCS != null) ? pConstructorPartCS : (pConstructorPartCS = new ConstructorPartCSElements());
+		return pConstructorPartCS;
 	}
 	
 	public ParserRule getConstructorPartCSRule() {
@@ -2955,7 +3092,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//	NumberLiteralExpCS | StringLiteralExpCS | BooleanLiteralExpCS | UnlimitedNaturalLiteralExpCS | InvalidLiteralExpCS |
 	//	NullLiteralExpCS;
 	public PrimitiveLiteralExpCSElements getPrimitiveLiteralExpCSAccess() {
-		return (pPrimitiveLiteralExpCS != null) ? pPrimitiveLiteralExpCS : (pPrimitiveLiteralExpCS = new PrimitiveLiteralExpCSElements());
+		return pPrimitiveLiteralExpCS;
 	}
 	
 	public ParserRule getPrimitiveLiteralExpCSRule() {
@@ -2965,7 +3102,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//TupleLiteralExpCS:
 	//	"Tuple" "{" ownedParts+=TupleLiteralPartCS ("," ownedParts+=TupleLiteralPartCS)* "}";
 	public TupleLiteralExpCSElements getTupleLiteralExpCSAccess() {
-		return (pTupleLiteralExpCS != null) ? pTupleLiteralExpCS : (pTupleLiteralExpCS = new TupleLiteralExpCSElements());
+		return pTupleLiteralExpCS;
 	}
 	
 	public ParserRule getTupleLiteralExpCSRule() {
@@ -2975,7 +3112,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//TupleLiteralPartCS:
 	//	name=UnrestrictedName (":" ownedType=TypeExpCS)? "=" initExpression=ExpCS;
 	public TupleLiteralPartCSElements getTupleLiteralPartCSAccess() {
-		return (pTupleLiteralPartCS != null) ? pTupleLiteralPartCS : (pTupleLiteralPartCS = new TupleLiteralPartCSElements());
+		return pTupleLiteralPartCS;
 	}
 	
 	public ParserRule getTupleLiteralPartCSRule() {
@@ -2985,7 +3122,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//NumberLiteralExpCS:
 	//	name=NUMBER_LITERAL;
 	public NumberLiteralExpCSElements getNumberLiteralExpCSAccess() {
-		return (pNumberLiteralExpCS != null) ? pNumberLiteralExpCS : (pNumberLiteralExpCS = new NumberLiteralExpCSElements());
+		return pNumberLiteralExpCS;
 	}
 	
 	public ParserRule getNumberLiteralExpCSRule() {
@@ -2995,7 +3132,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//StringLiteralExpCS:
 	//	name+=StringLiteral+;
 	public StringLiteralExpCSElements getStringLiteralExpCSAccess() {
-		return (pStringLiteralExpCS != null) ? pStringLiteralExpCS : (pStringLiteralExpCS = new StringLiteralExpCSElements());
+		return pStringLiteralExpCS;
 	}
 	
 	public ParserRule getStringLiteralExpCSRule() {
@@ -3005,7 +3142,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//BooleanLiteralExpCS:
 	//	name="true" | name="false";
 	public BooleanLiteralExpCSElements getBooleanLiteralExpCSAccess() {
-		return (pBooleanLiteralExpCS != null) ? pBooleanLiteralExpCS : (pBooleanLiteralExpCS = new BooleanLiteralExpCSElements());
+		return pBooleanLiteralExpCS;
 	}
 	
 	public ParserRule getBooleanLiteralExpCSRule() {
@@ -3015,7 +3152,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//UnlimitedNaturalLiteralExpCS:
 	//	{UnlimitedNaturalLiteralExpCS} "*";
 	public UnlimitedNaturalLiteralExpCSElements getUnlimitedNaturalLiteralExpCSAccess() {
-		return (pUnlimitedNaturalLiteralExpCS != null) ? pUnlimitedNaturalLiteralExpCS : (pUnlimitedNaturalLiteralExpCS = new UnlimitedNaturalLiteralExpCSElements());
+		return pUnlimitedNaturalLiteralExpCS;
 	}
 	
 	public ParserRule getUnlimitedNaturalLiteralExpCSRule() {
@@ -3025,7 +3162,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//InvalidLiteralExpCS:
 	//	{InvalidLiteralExpCS} "invalid";
 	public InvalidLiteralExpCSElements getInvalidLiteralExpCSAccess() {
-		return (pInvalidLiteralExpCS != null) ? pInvalidLiteralExpCS : (pInvalidLiteralExpCS = new InvalidLiteralExpCSElements());
+		return pInvalidLiteralExpCS;
 	}
 	
 	public ParserRule getInvalidLiteralExpCSRule() {
@@ -3035,7 +3172,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//NullLiteralExpCS:
 	//	{NullLiteralExpCS} "null";
 	public NullLiteralExpCSElements getNullLiteralExpCSAccess() {
-		return (pNullLiteralExpCS != null) ? pNullLiteralExpCS : (pNullLiteralExpCS = new NullLiteralExpCSElements());
+		return pNullLiteralExpCS;
 	}
 	
 	public ParserRule getNullLiteralExpCSRule() {
@@ -3045,7 +3182,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//TypeLiteralCS returns base::TypedRefCS:
 	//	PrimitiveTypeCS | CollectionTypeCS | TupleTypeCS;
 	public TypeLiteralCSElements getTypeLiteralCSAccess() {
-		return (pTypeLiteralCS != null) ? pTypeLiteralCS : (pTypeLiteralCS = new TypeLiteralCSElements());
+		return pTypeLiteralCS;
 	}
 	
 	public ParserRule getTypeLiteralCSRule() {
@@ -3055,7 +3192,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//TypeLiteralWithMultiplicityCS returns base::TypedRefCS:
 	//	TypeLiteralCS multiplicity=MultiplicityCS?;
 	public TypeLiteralWithMultiplicityCSElements getTypeLiteralWithMultiplicityCSAccess() {
-		return (pTypeLiteralWithMultiplicityCS != null) ? pTypeLiteralWithMultiplicityCS : (pTypeLiteralWithMultiplicityCS = new TypeLiteralWithMultiplicityCSElements());
+		return pTypeLiteralWithMultiplicityCS;
 	}
 	
 	public ParserRule getTypeLiteralWithMultiplicityCSRule() {
@@ -3065,7 +3202,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//TypeLiteralExpCS:
 	//	ownedType=TypeLiteralWithMultiplicityCS;
 	public TypeLiteralExpCSElements getTypeLiteralExpCSAccess() {
-		return (pTypeLiteralExpCS != null) ? pTypeLiteralExpCS : (pTypeLiteralExpCS = new TypeLiteralExpCSElements());
+		return pTypeLiteralExpCS;
 	}
 	
 	public ParserRule getTypeLiteralExpCSRule() {
@@ -3075,7 +3212,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//TypeNameExpCS:
 	//	pathName=PathNameCS;
 	public TypeNameExpCSElements getTypeNameExpCSAccess() {
-		return (pTypeNameExpCS != null) ? pTypeNameExpCS : (pTypeNameExpCS = new TypeNameExpCSElements());
+		return pTypeNameExpCS;
 	}
 	
 	public ParserRule getTypeNameExpCSRule() {
@@ -3085,7 +3222,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//TypeExpCS returns base::TypedRefCS:
 	//	(TypeNameExpCS | TypeLiteralCS) multiplicity=MultiplicityCS?;
 	public TypeExpCSElements getTypeExpCSAccess() {
-		return (pTypeExpCS != null) ? pTypeExpCS : (pTypeExpCS = new TypeExpCSElements());
+		return pTypeExpCS;
 	}
 	
 	public ParserRule getTypeExpCSRule() {
@@ -3111,116 +3248,128 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//	ownedExpression+=LetExpCS)? | ownedExpression+=LetExpCS))? | {PrefixExpCS} ownedOperator+=UnaryOperatorCS+
 	//	ownedExpression=LetExpCS | LetExpCS;
 	public ExpCSElements getExpCSAccess() {
-		return (pExpCS != null) ? pExpCS : (pExpCS = new ExpCSElements());
+		return pExpCS;
 	}
 	
 	public ParserRule getExpCSRule() {
 		return getExpCSAccess().getRule();
 	}
 
-	//PrefixedExpCS returns ExpCS:
+	/// * A prefixed expression is elaborates a primary expression with zero or more unary prefix operators. * / PrefixedExpCS
+	//returns ExpCS:
 	//	{PrefixExpCS} ownedOperator+=UnaryOperatorCS+ ownedExpression=PrimaryExpCS | PrimaryExpCS;
 	public PrefixedExpCSElements getPrefixedExpCSAccess() {
-		return (pPrefixedExpCS != null) ? pPrefixedExpCS : (pPrefixedExpCS = new PrefixedExpCSElements());
+		return pPrefixedExpCS;
 	}
 	
 	public ParserRule getPrefixedExpCSRule() {
 		return getPrefixedExpCSAccess().getRule();
 	}
 
+	/// * A primary expression identifies the basic expressions from which more complex expressions may be constructed. * /
 	//PrimaryExpCS returns ExpCS:
 	//	NestedExpCS | IfExpCS | SelfExpCS | PrimitiveLiteralExpCS | TupleLiteralExpCS | CollectionLiteralExpCS |
 	//	TypeLiteralExpCS | NameExpCS;
 	public PrimaryExpCSElements getPrimaryExpCSAccess() {
-		return (pPrimaryExpCS != null) ? pPrimaryExpCS : (pPrimaryExpCS = new PrimaryExpCSElements());
+		return pPrimaryExpCS;
 	}
 	
 	public ParserRule getPrimaryExpCSRule() {
 		return getPrimaryExpCSAccess().getRule();
 	}
 
+	/// * A name expression is a generalised rule for expressions that start with a name and which may be followed by square, round or
+	// * curly bracket clauses and optionally an @pre as well.* /
 	//NameExpCS:
 	//	pathName=PathNameCS squareBracketedClauses+=SquareBracketedClauseCS* roundBracketedClause=RoundBracketedClauseCS?
 	//	curlyBracketedClause=CurlyBracketedClauseCS? (atPre?="@" "pre")?;
 	public NameExpCSElements getNameExpCSAccess() {
-		return (pNameExpCS != null) ? pNameExpCS : (pNameExpCS = new NameExpCSElements());
+		return pNameExpCS;
 	}
 	
 	public ParserRule getNameExpCSRule() {
 		return getNameExpCSAccess().getRule();
 	}
 
+	/// * A curly bracket clause is a generalized rule for the literal arguments of collections, maps, tuples and type constructors.* /
 	//CurlyBracketedClauseCS:
 	//	{CurlyBracketedClauseCS} "{" ((ownedParts+=ConstructorPartCS ("," ownedParts+=ConstructorPartCS)*)? |
 	//	value=StringLiteral) "}";
 	public CurlyBracketedClauseCSElements getCurlyBracketedClauseCSAccess() {
-		return (pCurlyBracketedClauseCS != null) ? pCurlyBracketedClauseCS : (pCurlyBracketedClauseCS = new CurlyBracketedClauseCSElements());
+		return pCurlyBracketedClauseCS;
 	}
 	
 	public ParserRule getCurlyBracketedClauseCSRule() {
 		return getCurlyBracketedClauseCSAccess().getRule();
 	}
 
+	/// * A curly bracket clause is a generalized rule for template specialisations and operations arguments.* /
 	//RoundBracketedClauseCS:
 	//	{RoundBracketedClauseCS} "(" (arguments+=NavigatingArgCS arguments+=NavigatingCommaArgCS*
 	//	(arguments+=NavigatingSemiArgCS arguments+=NavigatingCommaArgCS*)? (arguments+=NavigatingBarArgCS
 	//	arguments+=NavigatingCommaArgCS*)?)? ")";
 	public RoundBracketedClauseCSElements getRoundBracketedClauseCSAccess() {
-		return (pRoundBracketedClauseCS != null) ? pRoundBracketedClauseCS : (pRoundBracketedClauseCS = new RoundBracketedClauseCSElements());
+		return pRoundBracketedClauseCS;
 	}
 	
 	public ParserRule getRoundBracketedClauseCSRule() {
 		return getRoundBracketedClauseCSAccess().getRule();
 	}
 
-	//SquareBracketedClauseCS:
+	/// * A square bracket clause is a generalized rule for association class qualifiers and roles.* / SquareBracketedClauseCS:
 	//	"[" terms+=ExpCS ("," terms+=ExpCS)* "]";
 	public SquareBracketedClauseCSElements getSquareBracketedClauseCSAccess() {
-		return (pSquareBracketedClauseCS != null) ? pSquareBracketedClauseCS : (pSquareBracketedClauseCS = new SquareBracketedClauseCSElements());
+		return pSquareBracketedClauseCS;
 	}
 	
 	public ParserRule getSquareBracketedClauseCSRule() {
 		return getSquareBracketedClauseCSAccess().getRule();
 	}
 
+	/// * A navigating argument is a generalized rule for the first argument in a round bracket clause. This is typically the first operation
+	// * parameter or an iterator. * /
 	//// Type-less init is an illegal infix expression
 	// NavigatingArgCS:
 	//	name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?;
 	public NavigatingArgCSElements getNavigatingArgCSAccess() {
-		return (pNavigatingArgCS != null) ? pNavigatingArgCS : (pNavigatingArgCS = new NavigatingArgCSElements());
+		return pNavigatingArgCS;
 	}
 	
 	public ParserRule getNavigatingArgCSRule() {
 		return getNavigatingArgCSAccess().getRule();
 	}
 
+	/// * A navigating bar argument is a generalized rule for a bar-prefixed argument in a round bracket clause. This is typically the body of an iteration. * /
 	//// Type-less init is an illegal infix expression
 	// NavigatingBarArgCS returns NavigatingArgCS:
 	//	prefix="|" name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?;
 	public NavigatingBarArgCSElements getNavigatingBarArgCSAccess() {
-		return (pNavigatingBarArgCS != null) ? pNavigatingBarArgCS : (pNavigatingBarArgCS = new NavigatingBarArgCSElements());
+		return pNavigatingBarArgCS;
 	}
 	
 	public ParserRule getNavigatingBarArgCSRule() {
 		return getNavigatingBarArgCSAccess().getRule();
 	}
 
+	/// * A navigating comma argument is a generalized rule for non-first argument in a round bracket clause. These are typically non-first operation
+	// * parameters or a second iterator. * /
 	//// Type-less init is an illegal infix expression
 	// NavigatingCommaArgCS returns NavigatingArgCS:
 	//	prefix="," name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?;
 	public NavigatingCommaArgCSElements getNavigatingCommaArgCSAccess() {
-		return (pNavigatingCommaArgCS != null) ? pNavigatingCommaArgCS : (pNavigatingCommaArgCS = new NavigatingCommaArgCSElements());
+		return pNavigatingCommaArgCS;
 	}
 	
 	public ParserRule getNavigatingCommaArgCSRule() {
 		return getNavigatingCommaArgCSAccess().getRule();
 	}
 
+	/// * A navigating semi argument is a generalized rule for a semicolon prefixed argument in a round bracket clause. This is typically an iterate accumulator. * /
 	//// Type-less init is an illegal infix expression
 	// NavigatingSemiArgCS returns NavigatingArgCS:
 	//	prefix=";" name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?;
 	public NavigatingSemiArgCSElements getNavigatingSemiArgCSAccess() {
-		return (pNavigatingSemiArgCS != null) ? pNavigatingSemiArgCS : (pNavigatingSemiArgCS = new NavigatingSemiArgCSElements());
+		return pNavigatingSemiArgCS;
 	}
 	
 	public ParserRule getNavigatingSemiArgCSRule() {
@@ -3232,7 +3381,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	// NavigatingArgExpCS returns ExpCS:
 	//	ExpCS;
 	public NavigatingArgExpCSElements getNavigatingArgExpCSAccess() {
-		return (pNavigatingArgExpCS != null) ? pNavigatingArgExpCS : (pNavigatingArgExpCS = new NavigatingArgExpCSElements());
+		return pNavigatingArgExpCS;
 	}
 	
 	public ParserRule getNavigatingArgExpCSRule() {
@@ -3242,7 +3391,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//IfExpCS:
 	//	"if" condition=ExpCS "then" thenExpression=ExpCS "else" elseExpression=ExpCS "endif";
 	public IfExpCSElements getIfExpCSAccess() {
-		return (pIfExpCS != null) ? pIfExpCS : (pIfExpCS = new IfExpCSElements());
+		return pIfExpCS;
 	}
 	
 	public ParserRule getIfExpCSRule() {
@@ -3252,7 +3401,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//LetExpCS:
 	//	"let" variable+=LetVariableCS ("," variable+=LetVariableCS)* "in" in=ExpCS;
 	public LetExpCSElements getLetExpCSAccess() {
-		return (pLetExpCS != null) ? pLetExpCS : (pLetExpCS = new LetExpCSElements());
+		return pLetExpCS;
 	}
 	
 	public ParserRule getLetExpCSRule() {
@@ -3262,7 +3411,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//LetVariableCS:
 	//	name=UnrestrictedName (":" ownedType=TypeExpCS)? "=" initExpression=ExpCS;
 	public LetVariableCSElements getLetVariableCSAccess() {
-		return (pLetVariableCS != null) ? pLetVariableCS : (pLetVariableCS = new LetVariableCSElements());
+		return pLetVariableCS;
 	}
 	
 	public ParserRule getLetVariableCSRule() {
@@ -3272,7 +3421,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//NestedExpCS:
 	//	"(" source=ExpCS ")";
 	public NestedExpCSElements getNestedExpCSAccess() {
-		return (pNestedExpCS != null) ? pNestedExpCS : (pNestedExpCS = new NestedExpCSElements());
+		return pNestedExpCS;
 	}
 	
 	public ParserRule getNestedExpCSRule() {
@@ -3282,7 +3431,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//SelfExpCS:
 	//	{SelfExpCS} "self";
 	public SelfExpCSElements getSelfExpCSAccess() {
-		return (pSelfExpCS != null) ? pSelfExpCS : (pSelfExpCS = new SelfExpCSElements());
+		return pSelfExpCS;
 	}
 	
 	public ParserRule getSelfExpCSRule() {

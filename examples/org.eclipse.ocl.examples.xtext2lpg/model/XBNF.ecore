@@ -49,9 +49,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="syntax" lowerBound="1"
         eType="#//Syntax" resolveProxies="false" eOpposite="#//Syntax/grammars"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="goals" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//TypedRule"/>
+        upperBound="-1" eType="#//TypedRule"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rules" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//TypedRule" containment="true" eOpposite="#//TypedRule/grammar"/>
+        upperBound="-1" eType="#//TypedRule" containment="true" eOpposite="#//TypedRule/grammar"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="debug" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Keyword" eSuperTypes="#//AbstractElement">
