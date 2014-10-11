@@ -146,6 +146,20 @@ public class EssentialOCLCSSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS:
+			{
+				CollectionPatternCS collectionPatternCS = (CollectionPatternCS)theEObject;
+				T result = caseCollectionPatternCS(collectionPatternCS);
+				if (result == null) result = caseTypedRefCS(collectionPatternCS);
+				if (result == null) result = caseTypeRefCS(collectionPatternCS);
+				if (result == null) result = caseElementRefCS(collectionPatternCS);
+				if (result == null) result = casePivotableElementCS(collectionPatternCS);
+				if (result == null) result = caseElementCS(collectionPatternCS);
+				if (result == null) result = casePivotable(collectionPatternCS);
+				if (result == null) result = caseVisitableCS(collectionPatternCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case EssentialOCLCSPackage.COLLECTION_TYPE_CS:
 			{
 				CollectionTypeCS collectionTypeCS = (CollectionTypeCS)theEObject;
@@ -434,6 +448,19 @@ public class EssentialOCLCSSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case EssentialOCLCSPackage.PATTERN_EXP_CS:
+			{
+				PatternExpCS patternExpCS = (PatternExpCS)theEObject;
+				T result = casePatternExpCS(patternExpCS);
+				if (result == null) result = caseExpCS(patternExpCS);
+				if (result == null) result = caseModelElementCS(patternExpCS);
+				if (result == null) result = casePivotableElementCS(patternExpCS);
+				if (result == null) result = caseElementCS(patternExpCS);
+				if (result == null) result = casePivotable(patternExpCS);
+				if (result == null) result = caseVisitableCS(patternExpCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case EssentialOCLCSPackage.PREFIX_EXP_CS:
 			{
 				PrefixExpCS prefixExpCS = (PrefixExpCS)theEObject;
@@ -672,6 +699,22 @@ public class EssentialOCLCSSwitch<T>
 	 * @generated
 	 */
 	public T caseCollectionLiteralPartCS(CollectionLiteralPartCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Collection Pattern CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Collection Pattern CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCollectionPatternCS(CollectionPatternCS object)
+	{
 		return null;
 	}
 
@@ -990,6 +1033,22 @@ public class EssentialOCLCSSwitch<T>
 	 * @generated
 	 */
 	public T caseOperatorCS(OperatorCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Pattern Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Pattern Exp CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePatternExpCS(PatternExpCS object)
+	{
 		return null;
 	}
 

@@ -111,6 +111,7 @@ public class EssentialOCLCSFactoryImpl
 			case EssentialOCLCSPackage.BOOLEAN_LITERAL_EXP_CS: return createBooleanLiteralExpCS();
 			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS: return createCollectionLiteralExpCS();
 			case EssentialOCLCSPackage.COLLECTION_LITERAL_PART_CS: return createCollectionLiteralPartCS();
+			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS: return createCollectionPatternCS();
 			case EssentialOCLCSPackage.COLLECTION_TYPE_CS: return createCollectionTypeCS();
 			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS: return createConstructorPartCS();
 			case EssentialOCLCSPackage.CONTEXT_CS: return createContextCS();
@@ -131,6 +132,7 @@ public class EssentialOCLCSFactoryImpl
 			case EssentialOCLCSPackage.NESTED_EXP_CS: return createNestedExpCS();
 			case EssentialOCLCSPackage.NULL_LITERAL_EXP_CS: return createNullLiteralExpCS();
 			case EssentialOCLCSPackage.NUMBER_LITERAL_EXP_CS: return createNumberLiteralExpCS();
+			case EssentialOCLCSPackage.PATTERN_EXP_CS: return createPatternExpCS();
 			case EssentialOCLCSPackage.PREFIX_EXP_CS: return createPrefixExpCS();
 			case EssentialOCLCSPackage.PRIMITIVE_LITERAL_EXP_CS: return createPrimitiveLiteralExpCS();
 			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS: return createRoundBracketedClauseCS();
@@ -413,6 +415,17 @@ public class EssentialOCLCSFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public CollectionPatternCS createCollectionPatternCS()
+	{
+		CollectionPatternCSImpl collectionPatternCS = new CollectionPatternCSImpl();
+		return collectionPatternCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public PrimitiveLiteralExpCS createPrimitiveLiteralExpCS() {
 		PrimitiveLiteralExpCSImpl primitiveLiteralExpCS = new PrimitiveLiteralExpCSImpl();
 		return primitiveLiteralExpCS;
@@ -529,6 +542,17 @@ public class EssentialOCLCSFactoryImpl
 	public NumberLiteralExpCS createNumberLiteralExpCS() {
 		NumberLiteralExpCSImpl numberLiteralExpCS = new NumberLiteralExpCSImpl();
 		return numberLiteralExpCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PatternExpCS createPatternExpCS()
+	{
+		PatternExpCSImpl patternExpCS = new PatternExpCSImpl();
+		return patternExpCS;
 	}
 
 	/**

@@ -221,6 +221,15 @@ public interface EssentialOCLCSFactory
 	CollectionLiteralPartCS createCollectionLiteralPartCS();
 
 	/**
+	 * Returns a new object of class '<em>Collection Pattern CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Collection Pattern CS</em>'.
+	 * @generated
+	 */
+	CollectionPatternCS createCollectionPatternCS();
+
+	/**
 	 * Returns a new object of class '<em>Primitive Literal Exp CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -327,6 +336,15 @@ public interface EssentialOCLCSFactory
 	 * @generated
 	 */
 	NumberLiteralExpCS createNumberLiteralExpCS();
+
+	/**
+	 * Returns a new object of class '<em>Pattern Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Pattern Exp CS</em>'.
+	 * @generated
+	 */
+	PatternExpCS createPatternExpCS();
 
 	/**
 	 * Returns a new object of class '<em>If Exp CS</em>'.

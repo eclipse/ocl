@@ -24,6 +24,8 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS#getOwnedPathName <em>Owned Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS#getElement <em>Element</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS#getOwnedCurlyBracketedClause <em>Owned Curly Bracketed Clause</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS#getOwnedPatternGuard <em>Owned Pattern Guard</em>}</li>
  * </ul>
  * </p>
  *
@@ -74,5 +76,57 @@ public interface TypeNameExpCS
 	 * @generated
 	 */
 	Type getElement();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Curly Bracketed Clause</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Curly Bracketed Clause</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Curly Bracketed Clause</em>' containment reference.
+	 * @see #setOwnedCurlyBracketedClause(CurlyBracketedClauseCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getTypeNameExpCS_OwnedCurlyBracketedClause()
+	 * @model containment="true"
+	 * @generated
+	 */
+	CurlyBracketedClauseCS getOwnedCurlyBracketedClause();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS#getOwnedCurlyBracketedClause <em>Owned Curly Bracketed Clause</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Curly Bracketed Clause</em>' containment reference.
+	 * @see #getOwnedCurlyBracketedClause()
+	 * @generated
+	 */
+	void setOwnedCurlyBracketedClause(CurlyBracketedClauseCS value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Pattern Guard</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Pattern Guard</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Pattern Guard</em>' containment reference.
+	 * @see #setOwnedPatternGuard(ExpCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getTypeNameExpCS_OwnedPatternGuard()
+	 * @model containment="true"
+	 * @generated
+	 */
+	ExpCS getOwnedPatternGuard();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS#getOwnedPatternGuard <em>Owned Pattern Guard</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Pattern Guard</em>' containment reference.
+	 * @see #getOwnedPatternGuard()
+	 * @generated
+	 */
+	void setOwnedPatternGuard(ExpCS value);
 
 } // TypeNameExpCS

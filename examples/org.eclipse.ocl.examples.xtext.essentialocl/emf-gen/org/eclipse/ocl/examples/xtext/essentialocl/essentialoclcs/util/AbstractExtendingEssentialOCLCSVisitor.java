@@ -56,6 +56,10 @@ public abstract class AbstractExtendingEssentialOCLCSVisitor<R, C>
 		return visitModelElementCS(object);
 	}
 
+	public @Nullable R visitCollectionPatternCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionPatternCS object) {
+		return visitTypedRefCS(object);
+	}
+
 	public @Nullable R visitCollectionTypeCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionTypeCS object) {
 		return visitTypedRefCS(object);
 	}
@@ -137,6 +141,10 @@ public abstract class AbstractExtendingEssentialOCLCSVisitor<R, C>
 	}
 
 	public @Nullable R visitOperatorCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS object) {
+		return visitExpCS(object);
+	}
+
+	public @Nullable R visitPatternExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PatternExpCS object) {
 		return visitExpCS(object);
 	}
 

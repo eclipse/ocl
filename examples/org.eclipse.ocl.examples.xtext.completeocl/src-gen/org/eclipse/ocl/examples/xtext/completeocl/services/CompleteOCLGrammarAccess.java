@@ -2167,10 +2167,8 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getNextPathElementCSAccess().getRule();
 	}
 
-	/// * This slightly odd formulation avoids an LALR shift-reduce conflict wrt URIFirstPathElementCS '::' '*' * /
 	//URIPathNameCS returns base::PathNameCS:
-	//	ownedPathElements+=URIFirstPathElementCS ("::" (ownedPathElements+=NextPathElementCS "::")*
-	//	ownedPathElements+=NextPathElementCS)?;
+	//	ownedPathElements+=URIFirstPathElementCS ("::" ownedPathElements+=NextPathElementCS)*;
 	public EssentialOCLGrammarAccess.URIPathNameCSElements getURIPathNameCSAccess() {
 		return gaEssentialOCL.getURIPathNameCSAccess();
 	}
@@ -2285,7 +2283,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CollectionLiteralPartCS:
-	//	ownedExpressionCS=ExpCS (".." ownedLastExpressionCS=ExpCS)?;
+	//	ownedExpressionCS=ExpCS (".." ownedLastExpressionCS=ExpCS)? | ownedExpressionCS=PatternExpCS;
 	public EssentialOCLGrammarAccess.CollectionLiteralPartCSElements getCollectionLiteralPartCSAccess() {
 		return gaEssentialOCL.getCollectionLiteralPartCSAccess();
 	}
@@ -2294,14 +2292,36 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getCollectionLiteralPartCSAccess().getRule();
 	}
 
-	//ConstructorPartCS:
-	//	referredProperty=[pivot::Property|UnrestrictedName] "=" ownedInitExpression=ExpCS;
+	//CollectionPatternCS:
+	//	ownedType=CollectionTypeCS "{" (ownedParts+=PatternExpCS ("," ownedParts+=PatternExpCS)* ("++"
+	//	restVariableName=Identifier))? "}";
+	public EssentialOCLGrammarAccess.CollectionPatternCSElements getCollectionPatternCSAccess() {
+		return gaEssentialOCL.getCollectionPatternCSAccess();
+	}
+	
+	public ParserRule getCollectionPatternCSRule() {
+		return getCollectionPatternCSAccess().getRule();
+	}
+
+	//// PatternPartCS
+	// ConstructorPartCS:
+	//	referredProperty=[pivot::Property|UnrestrictedName] "=" ownedInitExpression=(ExpCS | PatternExpCS);
 	public EssentialOCLGrammarAccess.ConstructorPartCSElements getConstructorPartCSAccess() {
 		return gaEssentialOCL.getConstructorPartCSAccess();
 	}
 	
 	public ParserRule getConstructorPartCSRule() {
 		return getConstructorPartCSAccess().getRule();
+	}
+
+	//PatternExpCS:
+	//	patternVariableName=UnrestrictedName? ":" ownedPatternType=TypeExpCS;
+	public EssentialOCLGrammarAccess.PatternExpCSElements getPatternExpCSAccess() {
+		return gaEssentialOCL.getPatternExpCSAccess();
+	}
+	
+	public ParserRule getPatternExpCSRule() {
+		return getPatternExpCSAccess().getRule();
 	}
 
 	//LambdaLiteralExpCS:
@@ -2436,7 +2456,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypeNameExpCS:
-	//	ownedPathName=PathNameCS;
+	//	ownedPathName=PathNameCS (ownedCurlyBracketedClause=CurlyBracketedClauseCS ("{" ownedPatternGuard=ExpCS "}")?)?;
 	public EssentialOCLGrammarAccess.TypeNameExpCSElements getTypeNameExpCSAccess() {
 		return gaEssentialOCL.getTypeNameExpCSAccess();
 	}
@@ -2446,7 +2466,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypeExpCS returns base::TypedRefCS:
-	//	(TypeNameExpCS | TypeLiteralCS) ownedMultiplicity=MultiplicityCS?;
+	//	(TypeNameExpCS | TypeLiteralCS | CollectionPatternCS) ownedMultiplicity=MultiplicityCS?;
 	public EssentialOCLGrammarAccess.TypeExpCSElements getTypeExpCSAccess() {
 		return gaEssentialOCL.getTypeExpCSAccess();
 	}
@@ -2558,7 +2578,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//// Type-less init is an illegal infix expression
 	// NavigatingArgCS:
 	//	ownedNameExpression=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" ownedInitExpression=ExpCS)? | "in"
-	//	ownedInitExpression=ExpCS)?;
+	//	ownedInitExpression=ExpCS)? | ":" ownedType=TypeExpCS;
 	public EssentialOCLGrammarAccess.NavigatingArgCSElements getNavigatingArgCSAccess() {
 		return gaEssentialOCL.getNavigatingArgCSAccess();
 	}
@@ -2606,7 +2626,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IfExpCS:
-	//	"if" ownedCondition=ExpCS "then" ownedThenExpression=ExpCS //	ifThenExpressions+=IfThenExpCS
+	//	"if" ownedCondition=(ExpCS | PatternExpCS) "then" ownedThenExpression=ExpCS //	ifThenExpressions+=IfThenExpCS
 	//
 	//	ownedIfThenExpressions+=ElseIfThenExpCS* "else" ownedElseExpression=ExpCS "endif";
 	public EssentialOCLGrammarAccess.IfExpCSElements getIfExpCSAccess() {

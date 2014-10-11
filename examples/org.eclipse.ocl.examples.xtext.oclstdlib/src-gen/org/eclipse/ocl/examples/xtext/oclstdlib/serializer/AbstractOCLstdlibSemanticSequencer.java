@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperator
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralPartCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionPatternCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ContextCS;
@@ -48,6 +49,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOper
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NullLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NumberLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PatternExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SelfExpCS;
@@ -331,6 +333,16 @@ public abstract class AbstractOCLstdlibSemanticSequencer extends EssentialOCLSem
 					return; 
 				}
 				else break;
+			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS:
+				if(context == grammarAccess.getCollectionPatternCSRule()) {
+					sequence_CollectionPatternCS(context, (CollectionPatternCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getTypeExpCSRule()) {
+					sequence_CollectionPatternCS_TypeExpCS(context, (CollectionPatternCS) semanticObject); 
+					return; 
+				}
+				else break;
 			case EssentialOCLCSPackage.COLLECTION_TYPE_CS:
 				if(context == grammarAccess.getCollectionTypeCSRule() ||
 				   context == grammarAccess.getTypeLiteralCSRule()) {
@@ -500,6 +512,12 @@ public abstract class AbstractOCLstdlibSemanticSequencer extends EssentialOCLSem
 				   context == grammarAccess.getPrimaryExpCSRule() ||
 				   context == grammarAccess.getPrimitiveLiteralExpCSRule()) {
 					sequence_NumberLiteralExpCS(context, (NumberLiteralExpCS) semanticObject); 
+					return; 
+				}
+				else break;
+			case EssentialOCLCSPackage.PATTERN_EXP_CS:
+				if(context == grammarAccess.getPatternExpCSRule()) {
+					sequence_PatternExpCS(context, (PatternExpCS) semanticObject); 
 					return; 
 				}
 				else break;

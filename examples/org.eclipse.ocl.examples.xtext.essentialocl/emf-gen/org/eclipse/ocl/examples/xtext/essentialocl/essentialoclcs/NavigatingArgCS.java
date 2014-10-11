@@ -42,7 +42,7 @@ public interface NavigatingArgCS
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS#getOwnedArguments <em>Owned Arguments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Round Bracketed Clause</em>' container reference isn't clear,
+	 * If the meaning of the '<em>Owning Round Bracketed Clause</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->

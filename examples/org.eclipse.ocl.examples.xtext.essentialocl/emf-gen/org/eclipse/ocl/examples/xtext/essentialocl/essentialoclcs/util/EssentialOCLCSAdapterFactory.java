@@ -111,6 +111,11 @@ public class EssentialOCLCSAdapterFactory
 				return createCollectionLiteralPartCSAdapter();
 			}
 			@Override
+			public Adapter caseCollectionPatternCS(CollectionPatternCS object)
+			{
+				return createCollectionPatternCSAdapter();
+			}
+			@Override
 			public Adapter caseCollectionTypeCS(CollectionTypeCS object)
 			{
 				return createCollectionTypeCSAdapter();
@@ -214,6 +219,11 @@ public class EssentialOCLCSAdapterFactory
 			public Adapter caseOperatorCS(OperatorCS object)
 			{
 				return createOperatorCSAdapter();
+			}
+			@Override
+			public Adapter casePatternExpCS(PatternExpCS object)
+			{
+				return createPatternExpCSAdapter();
 			}
 			@Override
 			public Adapter casePrefixExpCS(PrefixExpCS object)
@@ -418,6 +428,21 @@ public class EssentialOCLCSAdapterFactory
 	 * @generated
 	 */
 	public Adapter createCollectionLiteralPartCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionPatternCS <em>Collection Pattern CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionPatternCS
+	 * @generated
+	 */
+	public Adapter createCollectionPatternCSAdapter()
+	{
 		return null;
 	}
 
@@ -715,6 +740,21 @@ public class EssentialOCLCSAdapterFactory
 	 * @generated
 	 */
 	public Adapter createOperatorCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PatternExpCS <em>Pattern Exp CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PatternExpCS
+	 * @generated
+	 */
+	public Adapter createPatternExpCSAdapter()
+	{
 		return null;
 	}
 

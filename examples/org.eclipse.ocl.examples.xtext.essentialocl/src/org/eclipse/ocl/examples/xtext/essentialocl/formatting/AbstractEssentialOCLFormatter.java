@@ -158,6 +158,5 @@ public abstract class AbstractEssentialOCLFormatter extends AbstractBaseFormatte
 
 	protected void configureURIPathNameCS(FormattingConfig c, URIPathNameCSElements a) {
 	    c.setNoSpace().around(a.getColonColonKeyword_1_0());
-	    c.setNoSpace().around(a.getColonColonKeyword_1_1_1());
 	}
 }

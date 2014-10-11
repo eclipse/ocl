@@ -59,6 +59,10 @@ public abstract class AbstractEssentialOCLCSPreOrderVisitor
 		return visitModelElementCS(csElement);
 	}
 
+	public @Nullable Continuation<?> visitCollectionPatternCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionPatternCS csElement) {
+		return visitTypedRefCS(csElement);
+	}
+
 	public @Nullable Continuation<?> visitCollectionTypeCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionTypeCS csElement) {
 		return visitTypedRefCS(csElement);
 	}
@@ -140,6 +144,10 @@ public abstract class AbstractEssentialOCLCSPreOrderVisitor
 	}
 
 	public @Nullable Continuation<?> visitOperatorCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS csElement) {
+		return visitExpCS(csElement);
+	}
+
+	public @Nullable Continuation<?> visitPatternExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PatternExpCS csElement) {
 		return visitExpCS(csElement);
 	}
 

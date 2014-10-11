@@ -52,6 +52,10 @@ public abstract class AbstractDelegatingEssentialOCLCSVisitor<R, C, D extends Es
 		return delegate.visitCollectionLiteralPartCS(object);
 	}
 
+	public @Nullable R visitCollectionPatternCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionPatternCS object) {
+		return delegate.visitCollectionPatternCS(object);
+	}
+
 	public @Nullable R visitCollectionTypeCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionTypeCS object) {
 		return delegate.visitCollectionTypeCS(object);
 	}
@@ -134,6 +138,10 @@ public abstract class AbstractDelegatingEssentialOCLCSVisitor<R, C, D extends Es
 
 	public @Nullable R visitOperatorCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS object) {
 		return delegate.visitOperatorCS(object);
+	}
+
+	public @Nullable R visitPatternExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PatternExpCS object) {
+		return delegate.visitPatternExpCS(object);
 	}
 
 	public @Nullable R visitPrefixExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS object) {

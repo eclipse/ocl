@@ -21,6 +21,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperator
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralPartCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionPatternCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ContextCS;
@@ -42,6 +43,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NullLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NumberLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PatternExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrimitiveLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS;
@@ -234,4 +236,16 @@ public class AutoEssentialOCLCSContainmentVisitor
     public @Nullable Continuation<?> visitNavigationRole(@NonNull Enumerator self) {
         throw new UnsupportedOperationException("visitNavigationRole is not supported by " + getClass().getName());
     }
+
+	@Nullable
+	public Continuation<?> visitPatternExpCS(@NonNull PatternExpCS object) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Nullable
+	public Continuation<?> visitCollectionPatternCS(@NonNull CollectionPatternCS object) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

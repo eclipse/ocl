@@ -153,9 +153,8 @@ FirstPathElementCS returns base::PathElementCS:
 NextPathElementCS returns base::PathElementCS:
 	referredElement=[pivot::NamedElement|UnreservedName];
 
-/* This slightly odd formulation avoids an LALR shift-reduce conflict wrt URIFirstPathElementCS '::' '*' */
 URIPathNameCS returns base::PathNameCS:
-	ownedPathElements+=URIFirstPathElementCS ('::' (ownedPathElements+=NextPathElementCS '::')* ownedPathElements+=NextPathElementCS)?;
+	ownedPathElements+=URIFirstPathElementCS ('::' ownedPathElements+=NextPathElementCS)*;
 
 URIFirstPathElementCS returns base::PathElementCS:
 	referredElement=[pivot::NamedElement|UnrestrictedName] | {base::PathElementWithURICS} referredElement=[pivot::Namespace|URI];
@@ -211,10 +210,20 @@ CollectionLiteralExpCS returns CollectionLiteralExpCS:
 	'}';
 
 CollectionLiteralPartCS returns CollectionLiteralPartCS:
-	ownedExpressionCS=ExpCS ('..' ownedLastExpressionCS=ExpCS)?;
+	(ownedExpressionCS=ExpCS ('..' ownedLastExpressionCS=ExpCS)?) | ownedExpressionCS=PatternExpCS;
 
-ConstructorPartCS returns ConstructorPartCS:
-	referredProperty=[pivot::Property|UnrestrictedName] '=' ownedInitExpression=ExpCS;
+CollectionPatternCS returns CollectionPatternCS:
+	ownedType=CollectionTypeCS
+	'{' (ownedParts+=PatternExpCS
+	(',' ownedParts+=PatternExpCS)*
+	('++' restVariableName=Identifier))?
+	'}';
+
+ConstructorPartCS returns ConstructorPartCS:		// PatternPartCS
+	referredProperty=[pivot::Property|UnrestrictedName] '='ownedInitExpression=(ExpCS|PatternExpCS);
+
+PatternExpCS:
+	patternVariableName=UnrestrictedName? ':' ownedPatternType=TypeExpCS;
 
 LambdaLiteralExpCS returns LambdaLiteralExpCS:
 	'Lambda' '{' ownedExpressionCS=ExpCS '}';
@@ -264,10 +273,10 @@ TypeLiteralExpCS returns TypeLiteralExpCS:
 	ownedType=TypeLiteralWithMultiplicityCS;
 
 TypeNameExpCS returns TypeNameExpCS:
-	ownedPathName=PathNameCS;
+	ownedPathName=PathNameCS (ownedCurlyBracketedClause=CurlyBracketedClauseCS ('{' ownedPatternGuard=ExpCS '}')?)?;
 
 TypeExpCS returns base::TypedRefCS:
-	(TypeNameExpCS | TypeLiteralCS) ownedMultiplicity=MultiplicityCS?;
+	(TypeNameExpCS | TypeLiteralCS | CollectionPatternCS) ownedMultiplicity=MultiplicityCS?;
 
 	//---------------------------------------------------------------------
 //  Expressions
@@ -338,7 +347,8 @@ SquareBracketedClauseCS:
 /* A navigating argument is a generalized rule for the first argument in a round bracket clause. This is typically the first operation
  * parameter or an iterator. */
 NavigatingArgCS returns NavigatingArgCS:
-	ownedNameExpression=NavigatingArgExpCS ((':' ownedType=TypeExpCS ('=' ownedInitExpression=ExpCS)?) | ('in' ownedInitExpression=ExpCS))?;	// Type-less init is an illegal infix expression
+	(ownedNameExpression=NavigatingArgExpCS ((':' ownedType=TypeExpCS ('=' ownedInitExpression=ExpCS)?) | ('in' ownedInitExpression=ExpCS))?)
+	| (':' ownedType=TypeExpCS);	// Type-less init is an illegal infix expression
 
 /* A navigating bar argument is a generalized rule for a bar-prefixed argument in a round bracket clause. This is typically the body of an iteration. */
 NavigatingBarArgCS returns NavigatingArgCS:
@@ -359,7 +369,7 @@ NavigatingArgExpCS returns ExpCS: // Intended to be overridden
 ;
 
 IfExpCS returns IfExpCS:
-	'if' ownedCondition=ExpCS
+	'if' ownedCondition=(ExpCS|PatternExpCS)
 	'then' ownedThenExpression=ExpCS
 //	ifThenExpressions+=IfThenExpCS
 	(ownedIfThenExpressions+=ElseIfThenExpCS)*
@@ -386,4 +396,3 @@ NestedExpCS returns NestedExpCS:
 
 SelfExpCS returns SelfExpCS:
 	{SelfExpCS} 'self';
-		
