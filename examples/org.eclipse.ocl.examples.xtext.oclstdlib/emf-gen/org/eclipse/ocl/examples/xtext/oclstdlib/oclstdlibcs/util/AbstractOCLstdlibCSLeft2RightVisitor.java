@@ -75,7 +75,7 @@ public abstract class AbstractOCLstdlibCSLeft2RightVisitor
 		return visitRootPackageCS(csElement);
 	}
 
-	public @Nullable Element visitMetaTypeName(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaTypeName csElement) {
+	public @Nullable Element visitMetaclassNameCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaclassNameCS csElement) {
 		return visitElementCS(csElement);
 	}
 

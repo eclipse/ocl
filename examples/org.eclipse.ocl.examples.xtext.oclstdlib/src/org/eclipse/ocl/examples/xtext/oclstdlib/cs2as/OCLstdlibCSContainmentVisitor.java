@@ -36,7 +36,7 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPackageCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibRootPackageCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaTypeName;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaclassNameCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.PrecedenceCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.util.AbstractOCLstdlibCSContainmentVisitor;
@@ -63,7 +63,7 @@ public class OCLstdlibCSContainmentVisitor extends AbstractOCLstdlibCSContainmen
 	@Override
 	public Continuation<?> visitLibClassCS(@NonNull LibClassCS csElement) {
 		EClass eClass = null;
-		MetaTypeName metaType = OCLstdlibCS2Pivot.lookUpMetaTypeName(csElement, OCLstdlibCSPackage.Literals.LIB_CLASS_CS__META_TYPE_NAME);
+		MetaclassNameCS metaType = OCLstdlibCS2Pivot.lookUpMetaTypeName(csElement, OCLstdlibCSPackage.Literals.LIB_CLASS_CS__METACLASS_NAME);
 		if ((metaType != null) && !metaType.eIsProxy()) {
 			String metaTypeName = metaType.getName();
 			eClass = (EClass) EcoreUtils.getNamedElement(PivotPackage.eINSTANCE.getEClassifiers(), metaTypeName);
@@ -83,11 +83,11 @@ public class OCLstdlibCSContainmentVisitor extends AbstractOCLstdlibCSContainmen
 	@Override
 	public Continuation<?> visitLibIterationCS(@NonNull LibIterationCS csElement) {
 		@NonNull Iteration pivotElement = refreshNamedElement(Iteration.class, PivotPackage.Literals.ITERATION, csElement);
-		pivotElement.setIsInvalidating(csElement.isInvalidating());
-		pivotElement.setIsValidating(csElement.isValidating());
+		pivotElement.setIsInvalidating(csElement.isIsInvalidating());
+		pivotElement.setIsValidating(csElement.isIsValidating());
 		context.refreshTemplateSignature(csElement, pivotElement);
-		context.refreshPivotList(Parameter.class, pivotElement.getOwnedIterator(), csElement.getOwnedIterator());
-		context.refreshPivotList(Parameter.class, pivotElement.getOwnedAccumulator(), csElement.getOwnedAccumulator());
+		context.refreshPivotList(Parameter.class, pivotElement.getOwnedIterator(), csElement.getOwnedIterators());
+		context.refreshPivotList(Parameter.class, pivotElement.getOwnedAccumulator(), csElement.getOwnedAccumulators());
 		context.refreshPivotList(Parameter.class, pivotElement.getOwnedParameter(), csElement.getOwnedParameters());
 		return null;
 	}
@@ -96,8 +96,8 @@ public class OCLstdlibCSContainmentVisitor extends AbstractOCLstdlibCSContainmen
 	public Continuation<?> visitLibOperationCS(@NonNull LibOperationCS csElement) {
 		Continuation<?> cont = super.visitLibOperationCS(csElement);
 		@NonNull Operation pivotElement = refreshNamedElement(Operation.class, PivotPackage.Literals.OPERATION, csElement);
-		pivotElement.setIsInvalidating(csElement.isInvalidating());
-		pivotElement.setIsValidating(csElement.isValidating());
+		pivotElement.setIsInvalidating(csElement.isIsInvalidating());
+		pivotElement.setIsValidating(csElement.isIsValidating());
 		return cont;
 	}
 
@@ -122,7 +122,7 @@ public class OCLstdlibCSContainmentVisitor extends AbstractOCLstdlibCSContainmen
 	@Override
 	public Continuation<?> visitPrecedenceCS(@NonNull PrecedenceCS csElement) {
 		@NonNull Precedence pivotElement = refreshNamedElement(Precedence.class, PivotPackage.Literals.PRECEDENCE, csElement);
-		pivotElement.setAssociativity(csElement.isRightAssociative() ? AssociativityKind.RIGHT : AssociativityKind.LEFT);
+		pivotElement.setAssociativity(csElement.isIsRightAssociative() ? AssociativityKind.RIGHT : AssociativityKind.LEFT);
 		return null;
 	}
 }

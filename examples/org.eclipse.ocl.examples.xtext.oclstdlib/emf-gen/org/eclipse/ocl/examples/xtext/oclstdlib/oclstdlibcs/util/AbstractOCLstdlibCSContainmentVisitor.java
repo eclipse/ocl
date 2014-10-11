@@ -75,7 +75,7 @@ public abstract class AbstractOCLstdlibCSContainmentVisitor
 		return visitRootPackageCS(csElement);
 	}
 
-	public @Nullable Continuation<?> visitMetaTypeName(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaTypeName csElement) {
+	public @Nullable Continuation<?> visitMetaclassNameCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaclassNameCS csElement) {
 		return visitElementCS(csElement);
 	}
 

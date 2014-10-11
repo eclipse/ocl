@@ -771,7 +771,7 @@ public abstract class AbstractOCLstdlibSemanticSequencer extends EssentialOCLSem
 	 *     (
 	 *         name=AnyName 
 	 *         ownedSignature=TemplateSignatureCS? 
-	 *         metaTypeName=[MetaTypeName|AnyName]? 
+	 *         metaclassName=[MetaclassNameCS|AnyName]? 
 	 *         (ownedSuperTypes+=TypedRefCS ownedSuperTypes+=TypedRefCS*)? 
 	 *         (ownedOperations+=OperationCS | ownedProperties+=LibPropertyCS | ownedConstraints+=InvCS | ownedAnnotations+=AnnotationElementCS)*
 	 *     )
@@ -786,13 +786,13 @@ public abstract class AbstractOCLstdlibSemanticSequencer extends EssentialOCLSem
 	 *     (
 	 *         name=Name 
 	 *         ownedSignature=TemplateSignatureCS? 
-	 *         ownedIterator+=IteratorCS 
-	 *         ownedIterator+=IteratorCS* 
-	 *         (ownedAccumulator+=AccumulatorCS ownedAccumulator+=AccumulatorCS*)? 
+	 *         ownedIterators+=IteratorCS 
+	 *         ownedIterators+=IteratorCS* 
+	 *         (ownedAccumulators+=AccumulatorCS ownedAccumulators+=AccumulatorCS*)? 
 	 *         (ownedParameters+=ParameterCS ownedParameters+=ParameterCS*)? 
 	 *         ownedType=TypedMultiplicityRefCS 
-	 *         invalidating?='invalidating'? 
-	 *         validating?='validating'? 
+	 *         isInvalidating?='invalidating'? 
+	 *         isValidating?='validating'? 
 	 *         implementation=[JavaClassCS|SINGLE_QUOTED_STRING]? 
 	 *         (ownedAnnotations+=AnnotationElementCS | ownedPreconditions+=PostCS | ownedPostconditions+=PreCS)*
 	 *     )
@@ -805,13 +805,13 @@ public abstract class AbstractOCLstdlibSemanticSequencer extends EssentialOCLSem
 	/**
 	 * Constraint:
 	 *     (
-	 *         static?='static'? 
+	 *         isStatic?='static'? 
 	 *         name=Name 
 	 *         ownedSignature=TemplateSignatureCS? 
 	 *         (ownedParameters+=ParameterCS ownedParameters+=ParameterCS*)? 
 	 *         ownedType=TypedMultiplicityRefCS 
-	 *         validating?='validating'? 
-	 *         invalidating?='invalidating'? 
+	 *         isValidating?='validating'? 
+	 *         isInvalidating?='invalidating'? 
 	 *         precedence=[Precedence|Name]? 
 	 *         implementation=[JavaClassCS|SINGLE_QUOTED_STRING]? 
 	 *         (ownedAnnotations+=AnnotationElementCS | ownedBodyExpressions+=SpecificationCS | ownedPostconditions+=PostCS | ownedPreconditions+=PreCS)*
@@ -827,7 +827,7 @@ public abstract class AbstractOCLstdlibSemanticSequencer extends EssentialOCLSem
 	 *     (
 	 *         name=Name 
 	 *         (nsPrefix=Identifier nsURI=URI)? 
-	 *         (ownedPackages+=PackageCS | ownedPrecedence+=PrecedenceCS+ | ownedClasses+=ClassCS | ownedAnnotations+=AnnotationElementCS)*
+	 *         (ownedPackages+=PackageCS | ownedPrecedences+=PrecedenceCS+ | ownedClasses+=ClassCS | ownedAnnotations+=AnnotationElementCS)*
 	 *     )
 	 */
 	protected void sequence_LibPackageCS(EObject context, LibPackageCS semanticObject) {
@@ -856,7 +856,7 @@ public abstract class AbstractOCLstdlibSemanticSequencer extends EssentialOCLSem
 	/**
 	 * Constraint:
 	 *     (
-	 *         static?='static'? 
+	 *         isStatic?='static'? 
 	 *         name=Name 
 	 *         ownedType=TypedMultiplicityRefCS 
 	 *         implementation=[JavaClassCS|SINGLE_QUOTED_STRING]? 
@@ -951,7 +951,7 @@ public abstract class AbstractOCLstdlibSemanticSequencer extends EssentialOCLSem
 	
 	/**
 	 * Constraint:
-	 *     (rightAssociative?='right'? name=Name)
+	 *     (isRightAssociative?='right'? name=Name)
 	 */
 	protected void sequence_PrecedenceCS(EObject context, PrecedenceCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

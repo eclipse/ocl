@@ -32,7 +32,7 @@ import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCS2Pivot;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaTypeName;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaclassNameCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSFactory;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.util.OCLstdlibCSVisitor;
 import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
@@ -41,18 +41,18 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 public class OCLstdlibCS2Pivot extends EssentialOCLCS2Pivot
 {	
-	private static @Nullable Map<String, MetaTypeName> metaTypeNames = null;
+	private static @Nullable Map<String, MetaclassNameCS> metaTypeNames = null;
 
-	public static @Nullable MetaTypeName lookUpMetaTypeName(@NonNull EObject csElement, /*@NonNull*/ EStructuralFeature eFeature) {
-		Map<String, MetaTypeName> metaTypeNames2 = metaTypeNames;
+	public static @Nullable MetaclassNameCS lookUpMetaTypeName(@NonNull EObject csElement, /*@NonNull*/ EStructuralFeature eFeature) {
+		Map<String, MetaclassNameCS> metaTypeNames2 = metaTypeNames;
 		if (metaTypeNames2 == null) {
 			Resource metaTypeResource = new ResourceImpl(URI.createURI("internal_list;;//of_meta-type_names"));
 			List<EObject> metaTypes = metaTypeResource.getContents();
-			metaTypeNames2 = metaTypeNames = new HashMap<String, MetaTypeName>();
+			metaTypeNames2 = metaTypeNames = new HashMap<String, MetaclassNameCS>();
 			for (EClassifier eClassifier : PivotPackage.eINSTANCE.getEClassifiers()) {
 				if (eClassifier instanceof EClass) {
 					if (PivotPackage.Literals.CLASS.isSuperTypeOf((EClass) eClassifier)) {
-						MetaTypeName metaTypeName = OCLstdlibCSFactory.eINSTANCE.createMetaTypeName();
+						MetaclassNameCS metaTypeName = OCLstdlibCSFactory.eINSTANCE.createMetaclassNameCS();
 						String name = eClassifier.getName();
 						metaTypeName.setName(name);
 						metaTypeNames2.put(name, metaTypeName);
@@ -64,7 +64,7 @@ public class OCLstdlibCS2Pivot extends EssentialOCLCS2Pivot
 		List<INode> featureNodes = NodeModelUtils.findNodesForFeature(csElement, eFeature);
 		if ((featureNodes != null) && (featureNodes.size() > 0)) {
 			String metaTypeNameText = NodeModelUtils.getTokenText(featureNodes.get(0));
-			MetaTypeName metaTypeName = metaTypeNames2.get(metaTypeNameText);
+			MetaclassNameCS metaTypeName = metaTypeNames2.get(metaTypeNameText);
 			csElement.eSet(eFeature, metaTypeName);
 			return metaTypeName;
 		}

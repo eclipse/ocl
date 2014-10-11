@@ -25,7 +25,7 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPackageCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPropertyCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibRootPackageCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaTypeName;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaclassNameCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.PrecedenceCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.util.OCLstdlibCSVisitor;
 
@@ -84,7 +84,7 @@ public class AutoOCLstdlibContainmentVisitor
         throw new UnsupportedOperationException();
     }
     
-    public @Nullable Continuation<?> visitMetaTypeName(@NonNull MetaTypeName self) {
+    public @Nullable Continuation<?> visitMetaclassNameCS(@NonNull MetaclassNameCS self) {
         throw new UnsupportedOperationException();
     }
     

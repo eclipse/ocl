@@ -21,7 +21,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.AttributeCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPropertyCS#isStatic <em>Static</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPropertyCS#isIsStatic <em>Is Static</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,7 +33,7 @@ public interface LibPropertyCS
 		extends AttributeCS, JavaImplementationCS {
 
 	/**
-	 * Returns the value of the '<em><b>Static</b></em>' attribute.
+	 * Returns the value of the '<em><b>Is Static</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -41,22 +41,22 @@ public interface LibPropertyCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Static</em>' attribute.
-	 * @see #setStatic(boolean)
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage#getLibPropertyCS_Static()
+	 * @return the value of the '<em>Is Static</em>' attribute.
+	 * @see #setIsStatic(boolean)
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage#getLibPropertyCS_IsStatic()
 	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean"
 	 * @generated
 	 */
-	boolean isStatic();
+	boolean isIsStatic();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPropertyCS#isStatic <em>Static</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPropertyCS#isIsStatic <em>Is Static</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Static</em>' attribute.
-	 * @see #isStatic()
+	 * @param value the new value of the '<em>Is Static</em>' attribute.
+	 * @see #isIsStatic()
 	 * @generated
 	 */
-	void setStatic(boolean value);
+	void setIsStatic(boolean value);
 
 } // LibPropertyCS

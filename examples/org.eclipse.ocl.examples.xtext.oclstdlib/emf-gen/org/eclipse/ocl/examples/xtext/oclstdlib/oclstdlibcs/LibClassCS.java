@@ -20,7 +20,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibClassCS#getMetaTypeName <em>Meta Type Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibClassCS#getMetaclassName <em>Metaclass Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -32,29 +32,29 @@ public interface LibClassCS
 		extends StructuredClassCS {
 
 	/**
-	 * Returns the value of the '<em><b>Meta Type Name</b></em>' reference.
+	 * Returns the value of the '<em><b>Metaclass Name</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Meta Type Name</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Meta Type Name</em>' reference.
-	 * @see #setMetaTypeName(MetaTypeName)
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage#getLibClassCS_MetaTypeName()
+	 * @return the value of the '<em>Metaclass Name</em>' reference.
+	 * @see #setMetaclassName(MetaclassNameCS)
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage#getLibClassCS_MetaclassName()
 	 * @model transient="true"
 	 * @generated
 	 */
-	MetaTypeName getMetaTypeName();
+	MetaclassNameCS getMetaclassName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibClassCS#getMetaTypeName <em>Meta Type Name</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibClassCS#getMetaclassName <em>Metaclass Name</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Meta Type Name</em>' reference.
-	 * @see #getMetaTypeName()
+	 * @param value the new value of the '<em>Metaclass Name</em>' reference.
+	 * @see #getMetaclassName()
 	 * @generated
 	 */
-	void setMetaTypeName(MetaTypeName value);
+	void setMetaclassName(MetaclassNameCS value);
 
 } // LibClassCS

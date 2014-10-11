@@ -24,7 +24,7 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPackageCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPropertyCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibRootPackageCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaTypeName;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaclassNameCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSFactory;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.PrecedenceCS;
@@ -88,7 +88,7 @@ public class OCLstdlibCSFactoryImpl
 			case OCLstdlibCSPackage.LIB_PACKAGE_CS: return createLibPackageCS();
 			case OCLstdlibCSPackage.LIB_PROPERTY_CS: return createLibPropertyCS();
 			case OCLstdlibCSPackage.LIB_ROOT_PACKAGE_CS: return createLibRootPackageCS();
-			case OCLstdlibCSPackage.META_TYPE_NAME: return createMetaTypeName();
+			case OCLstdlibCSPackage.METACLASS_NAME_CS: return createMetaclassNameCS();
 			case OCLstdlibCSPackage.PRECEDENCE_CS: return createPrecedenceCS();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -183,9 +183,10 @@ public class OCLstdlibCSFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MetaTypeName createMetaTypeName() {
-		MetaTypeNameImpl metaTypeName = new MetaTypeNameImpl();
-		return metaTypeName;
+	public MetaclassNameCS createMetaclassNameCS()
+	{
+		MetaclassNameCSImpl metaclassNameCS = new MetaclassNameCSImpl();
+		return metaclassNameCS;
 	}
 
 	/**

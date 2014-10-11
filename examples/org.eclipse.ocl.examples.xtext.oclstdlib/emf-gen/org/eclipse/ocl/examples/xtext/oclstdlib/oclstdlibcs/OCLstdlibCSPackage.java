@@ -356,13 +356,13 @@ public interface OCLstdlibCSPackage
 	int LIB_CLASS_CS__OWNED_METACLASS = BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_METACLASS;
 
 	/**
-	 * The feature id for the '<em><b>Meta Type Name</b></em>' reference.
+	 * The feature id for the '<em><b>Metaclass Name</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__META_TYPE_NAME = BaseCSPackage.STRUCTURED_CLASS_CS_FEATURE_COUNT + 0;
+	int LIB_CLASS_CS__METACLASS_NAME = BaseCSPackage.STRUCTURED_CLASS_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Lib Class CS</em>' class.
@@ -617,40 +617,40 @@ public interface OCLstdlibCSPackage
 	int LIB_ITERATION_CS__IMPLEMENTATION = BaseCSPackage.OPERATION_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Owned Iterator</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Iterators</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_ITERATION_CS__OWNED_ITERATOR = BaseCSPackage.OPERATION_CS_FEATURE_COUNT + 1;
+	int LIB_ITERATION_CS__OWNED_ITERATORS = BaseCSPackage.OPERATION_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Owned Accumulator</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Accumulators</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_ITERATION_CS__OWNED_ACCUMULATOR = BaseCSPackage.OPERATION_CS_FEATURE_COUNT + 2;
+	int LIB_ITERATION_CS__OWNED_ACCUMULATORS = BaseCSPackage.OPERATION_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Invalidating</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Invalidating</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_ITERATION_CS__INVALIDATING = BaseCSPackage.OPERATION_CS_FEATURE_COUNT + 3;
+	int LIB_ITERATION_CS__IS_INVALIDATING = BaseCSPackage.OPERATION_CS_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Validating</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Validating</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_ITERATION_CS__VALIDATING = BaseCSPackage.OPERATION_CS_FEATURE_COUNT + 4;
+	int LIB_ITERATION_CS__IS_VALIDATING = BaseCSPackage.OPERATION_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Lib Iteration CS</em>' class.
@@ -824,31 +824,31 @@ public interface OCLstdlibCSPackage
 	int LIB_OPERATION_CS__PRECEDENCE = BaseCSPackage.OPERATION_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Invalidating</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Invalidating</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_OPERATION_CS__INVALIDATING = BaseCSPackage.OPERATION_CS_FEATURE_COUNT + 2;
+	int LIB_OPERATION_CS__IS_INVALIDATING = BaseCSPackage.OPERATION_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Static</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_OPERATION_CS__STATIC = BaseCSPackage.OPERATION_CS_FEATURE_COUNT + 3;
+	int LIB_OPERATION_CS__IS_STATIC = BaseCSPackage.OPERATION_CS_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Validating</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Validating</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_OPERATION_CS__VALIDATING = BaseCSPackage.OPERATION_CS_FEATURE_COUNT + 4;
+	int LIB_OPERATION_CS__IS_VALIDATING = BaseCSPackage.OPERATION_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Lib Operation CS</em>' class.
@@ -960,13 +960,13 @@ public interface OCLstdlibCSPackage
 	int LIB_PACKAGE_CS__NS_URI = BaseCSPackage.PACKAGE_CS__NS_URI;
 
 	/**
-	 * The feature id for the '<em><b>Owned Precedence</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Precedences</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_PACKAGE_CS__OWNED_PRECEDENCE = BaseCSPackage.PACKAGE_CS_FEATURE_COUNT + 0;
+	int LIB_PACKAGE_CS__OWNED_PRECEDENCES = BaseCSPackage.PACKAGE_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Lib Package CS</em>' class.
@@ -1095,13 +1095,13 @@ public interface OCLstdlibCSPackage
 	int LIB_PROPERTY_CS__IMPLEMENTATION = BaseCSPackage.ATTRIBUTE_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Static</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_PROPERTY_CS__STATIC = BaseCSPackage.ATTRIBUTE_CS_FEATURE_COUNT + 1;
+	int LIB_PROPERTY_CS__IS_STATIC = BaseCSPackage.ATTRIBUTE_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Lib Property CS</em>' class.
@@ -1204,14 +1204,14 @@ public interface OCLstdlibCSPackage
 	int LIB_ROOT_PACKAGE_CS_FEATURE_COUNT = BaseCSPackage.ROOT_PACKAGE_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.MetaTypeNameImpl <em>Meta Type Name</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.MetaclassNameCSImpl <em>Metaclass Name CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.MetaTypeNameImpl
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.OCLstdlibCSPackageImpl#getMetaTypeName()
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.MetaclassNameCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.OCLstdlibCSPackageImpl#getMetaclassNameCS()
 	 * @generated
 	 */
-	int META_TYPE_NAME = 9;
+	int METACLASS_NAME_CS = 9;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -1220,7 +1220,7 @@ public interface OCLstdlibCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int META_TYPE_NAME__LOGICAL_PARENT = BaseCSPackage.ELEMENT_CS__LOGICAL_PARENT;
+	int METACLASS_NAME_CS__LOGICAL_PARENT = BaseCSPackage.ELEMENT_CS__LOGICAL_PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1229,16 +1229,16 @@ public interface OCLstdlibCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int META_TYPE_NAME__NAME = BaseCSPackage.ELEMENT_CS_FEATURE_COUNT + 0;
+	int METACLASS_NAME_CS__NAME = BaseCSPackage.ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Meta Type Name</em>' class.
+	 * The number of structural features of the '<em>Metaclass Name CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int META_TYPE_NAME_FEATURE_COUNT = BaseCSPackage.ELEMENT_CS_FEATURE_COUNT + 1;
+	int METACLASS_NAME_CS_FEATURE_COUNT = BaseCSPackage.ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.PrecedenceCSImpl <em>Precedence CS</em>}' class.
@@ -1305,13 +1305,13 @@ public interface OCLstdlibCSPackage
 	int PRECEDENCE_CS__NAME = BaseCSPackage.NAMED_ELEMENT_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Right Associative</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Right Associative</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRECEDENCE_CS__RIGHT_ASSOCIATIVE = BaseCSPackage.NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
+	int PRECEDENCE_CS__IS_RIGHT_ASSOCIATIVE = BaseCSPackage.NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Precedence CS</em>' class.
@@ -1343,15 +1343,15 @@ public interface OCLstdlibCSPackage
 	EClass getLibClassCS();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibClassCS#getMetaTypeName <em>Meta Type Name</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibClassCS#getMetaclassName <em>Metaclass Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Meta Type Name</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibClassCS#getMetaTypeName()
+	 * @return the meta object for the reference '<em>Metaclass Name</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibClassCS#getMetaclassName()
 	 * @see #getLibClassCS()
 	 * @generated
 	 */
-	EReference getLibClassCS_MetaTypeName();
+	EReference getLibClassCS_MetaclassName();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibConstraintCS <em>Lib Constraint CS</em>}'.
@@ -1374,48 +1374,48 @@ public interface OCLstdlibCSPackage
 	EClass getLibIterationCS();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS#getOwnedIterator <em>Owned Iterator</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS#getOwnedIterators <em>Owned Iterators</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Iterator</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS#getOwnedIterator()
+	 * @return the meta object for the containment reference list '<em>Owned Iterators</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS#getOwnedIterators()
 	 * @see #getLibIterationCS()
 	 * @generated
 	 */
-	EReference getLibIterationCS_OwnedIterator();
+	EReference getLibIterationCS_OwnedIterators();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS#getOwnedAccumulator <em>Owned Accumulator</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS#getOwnedAccumulators <em>Owned Accumulators</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Accumulator</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS#getOwnedAccumulator()
+	 * @return the meta object for the containment reference list '<em>Owned Accumulators</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS#getOwnedAccumulators()
 	 * @see #getLibIterationCS()
 	 * @generated
 	 */
-	EReference getLibIterationCS_OwnedAccumulator();
+	EReference getLibIterationCS_OwnedAccumulators();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS#isInvalidating <em>Invalidating</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS#isIsInvalidating <em>Is Invalidating</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Invalidating</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS#isInvalidating()
+	 * @return the meta object for the attribute '<em>Is Invalidating</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS#isIsInvalidating()
 	 * @see #getLibIterationCS()
 	 * @generated
 	 */
-	EAttribute getLibIterationCS_Invalidating();
+	EAttribute getLibIterationCS_IsInvalidating();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS#isValidating <em>Validating</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS#isIsValidating <em>Is Validating</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Validating</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS#isValidating()
+	 * @return the meta object for the attribute '<em>Is Validating</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS#isIsValidating()
 	 * @see #getLibIterationCS()
 	 * @generated
 	 */
-	EAttribute getLibIterationCS_Validating();
+	EAttribute getLibIterationCS_IsValidating();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS <em>Lib Operation CS</em>}'.
@@ -1439,37 +1439,37 @@ public interface OCLstdlibCSPackage
 	EReference getLibOperationCS_Precedence();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#isInvalidating <em>Invalidating</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#isIsInvalidating <em>Is Invalidating</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Invalidating</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#isInvalidating()
+	 * @return the meta object for the attribute '<em>Is Invalidating</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#isIsInvalidating()
 	 * @see #getLibOperationCS()
 	 * @generated
 	 */
-	EAttribute getLibOperationCS_Invalidating();
+	EAttribute getLibOperationCS_IsInvalidating();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#isStatic <em>Static</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#isIsStatic <em>Is Static</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Static</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#isStatic()
+	 * @return the meta object for the attribute '<em>Is Static</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#isIsStatic()
 	 * @see #getLibOperationCS()
 	 * @generated
 	 */
-	EAttribute getLibOperationCS_Static();
+	EAttribute getLibOperationCS_IsStatic();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#isValidating <em>Validating</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#isIsValidating <em>Is Validating</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Validating</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#isValidating()
+	 * @return the meta object for the attribute '<em>Is Validating</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#isIsValidating()
 	 * @see #getLibOperationCS()
 	 * @generated
 	 */
-	EAttribute getLibOperationCS_Validating();
+	EAttribute getLibOperationCS_IsValidating();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPackageCS <em>Lib Package CS</em>}'.
@@ -1482,15 +1482,15 @@ public interface OCLstdlibCSPackage
 	EClass getLibPackageCS();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPackageCS#getOwnedPrecedence <em>Owned Precedence</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPackageCS#getOwnedPrecedences <em>Owned Precedences</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Precedence</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPackageCS#getOwnedPrecedence()
+	 * @return the meta object for the containment reference list '<em>Owned Precedences</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPackageCS#getOwnedPrecedences()
 	 * @see #getLibPackageCS()
 	 * @generated
 	 */
-	EReference getLibPackageCS_OwnedPrecedence();
+	EReference getLibPackageCS_OwnedPrecedences();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPropertyCS <em>Lib Property CS</em>}'.
@@ -1503,15 +1503,15 @@ public interface OCLstdlibCSPackage
 	EClass getLibPropertyCS();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPropertyCS#isStatic <em>Static</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPropertyCS#isIsStatic <em>Is Static</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Static</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPropertyCS#isStatic()
+	 * @return the meta object for the attribute '<em>Is Static</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPropertyCS#isIsStatic()
 	 * @see #getLibPropertyCS()
 	 * @generated
 	 */
-	EAttribute getLibPropertyCS_Static();
+	EAttribute getLibPropertyCS_IsStatic();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibRootPackageCS <em>Lib Root Package CS</em>}'.
@@ -1524,25 +1524,25 @@ public interface OCLstdlibCSPackage
 	EClass getLibRootPackageCS();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaTypeName <em>Meta Type Name</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaclassNameCS <em>Metaclass Name CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Meta Type Name</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaTypeName
+	 * @return the meta object for class '<em>Metaclass Name CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaclassNameCS
 	 * @generated
 	 */
-	EClass getMetaTypeName();
+	EClass getMetaclassNameCS();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaTypeName#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaclassNameCS#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaTypeName#getName()
-	 * @see #getMetaTypeName()
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaclassNameCS#getName()
+	 * @see #getMetaclassNameCS()
 	 * @generated
 	 */
-	EAttribute getMetaTypeName_Name();
+	EAttribute getMetaclassNameCS_Name();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaImplementationCS <em>Java Implementation CS</em>}'.
@@ -1576,15 +1576,15 @@ public interface OCLstdlibCSPackage
 	EClass getPrecedenceCS();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.PrecedenceCS#isRightAssociative <em>Right Associative</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.PrecedenceCS#isIsRightAssociative <em>Is Right Associative</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Right Associative</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.PrecedenceCS#isRightAssociative()
+	 * @return the meta object for the attribute '<em>Is Right Associative</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.PrecedenceCS#isIsRightAssociative()
 	 * @see #getPrecedenceCS()
 	 * @generated
 	 */
-	EAttribute getPrecedenceCS_RightAssociative();
+	EAttribute getPrecedenceCS_IsRightAssociative();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1630,12 +1630,12 @@ public interface OCLstdlibCSPackage
 		EClass LIB_CLASS_CS = eINSTANCE.getLibClassCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Meta Type Name</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Metaclass Name</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LIB_CLASS_CS__META_TYPE_NAME = eINSTANCE.getLibClassCS_MetaTypeName();
+		EReference LIB_CLASS_CS__METACLASS_NAME = eINSTANCE.getLibClassCS_MetaclassName();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.LibConstraintCSImpl <em>Lib Constraint CS</em>}' class.
@@ -1658,36 +1658,36 @@ public interface OCLstdlibCSPackage
 		EClass LIB_ITERATION_CS = eINSTANCE.getLibIterationCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Iterator</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Iterators</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LIB_ITERATION_CS__OWNED_ITERATOR = eINSTANCE.getLibIterationCS_OwnedIterator();
+		EReference LIB_ITERATION_CS__OWNED_ITERATORS = eINSTANCE.getLibIterationCS_OwnedIterators();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Accumulator</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Accumulators</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LIB_ITERATION_CS__OWNED_ACCUMULATOR = eINSTANCE.getLibIterationCS_OwnedAccumulator();
+		EReference LIB_ITERATION_CS__OWNED_ACCUMULATORS = eINSTANCE.getLibIterationCS_OwnedAccumulators();
 
 		/**
-		 * The meta object literal for the '<em><b>Invalidating</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Is Invalidating</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LIB_ITERATION_CS__INVALIDATING = eINSTANCE.getLibIterationCS_Invalidating();
+		EAttribute LIB_ITERATION_CS__IS_INVALIDATING = eINSTANCE.getLibIterationCS_IsInvalidating();
 
 		/**
-		 * The meta object literal for the '<em><b>Validating</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Is Validating</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LIB_ITERATION_CS__VALIDATING = eINSTANCE.getLibIterationCS_Validating();
+		EAttribute LIB_ITERATION_CS__IS_VALIDATING = eINSTANCE.getLibIterationCS_IsValidating();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.LibOperationCSImpl <em>Lib Operation CS</em>}' class.
@@ -1708,28 +1708,28 @@ public interface OCLstdlibCSPackage
 		EReference LIB_OPERATION_CS__PRECEDENCE = eINSTANCE.getLibOperationCS_Precedence();
 
 		/**
-		 * The meta object literal for the '<em><b>Invalidating</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Is Invalidating</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LIB_OPERATION_CS__INVALIDATING = eINSTANCE.getLibOperationCS_Invalidating();
+		EAttribute LIB_OPERATION_CS__IS_INVALIDATING = eINSTANCE.getLibOperationCS_IsInvalidating();
 
 		/**
-		 * The meta object literal for the '<em><b>Static</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Is Static</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LIB_OPERATION_CS__STATIC = eINSTANCE.getLibOperationCS_Static();
+		EAttribute LIB_OPERATION_CS__IS_STATIC = eINSTANCE.getLibOperationCS_IsStatic();
 
 		/**
-		 * The meta object literal for the '<em><b>Validating</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Is Validating</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LIB_OPERATION_CS__VALIDATING = eINSTANCE.getLibOperationCS_Validating();
+		EAttribute LIB_OPERATION_CS__IS_VALIDATING = eINSTANCE.getLibOperationCS_IsValidating();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.LibPackageCSImpl <em>Lib Package CS</em>}' class.
@@ -1742,12 +1742,12 @@ public interface OCLstdlibCSPackage
 		EClass LIB_PACKAGE_CS = eINSTANCE.getLibPackageCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Precedence</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Precedences</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LIB_PACKAGE_CS__OWNED_PRECEDENCE = eINSTANCE.getLibPackageCS_OwnedPrecedence();
+		EReference LIB_PACKAGE_CS__OWNED_PRECEDENCES = eINSTANCE.getLibPackageCS_OwnedPrecedences();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.LibPropertyCSImpl <em>Lib Property CS</em>}' class.
@@ -1760,12 +1760,12 @@ public interface OCLstdlibCSPackage
 		EClass LIB_PROPERTY_CS = eINSTANCE.getLibPropertyCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Static</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Is Static</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LIB_PROPERTY_CS__STATIC = eINSTANCE.getLibPropertyCS_Static();
+		EAttribute LIB_PROPERTY_CS__IS_STATIC = eINSTANCE.getLibPropertyCS_IsStatic();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.LibRootPackageCSImpl <em>Lib Root Package CS</em>}' class.
@@ -1778,14 +1778,14 @@ public interface OCLstdlibCSPackage
 		EClass LIB_ROOT_PACKAGE_CS = eINSTANCE.getLibRootPackageCS();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.MetaTypeNameImpl <em>Meta Type Name</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.MetaclassNameCSImpl <em>Metaclass Name CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.MetaTypeNameImpl
-		 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.OCLstdlibCSPackageImpl#getMetaTypeName()
+		 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.MetaclassNameCSImpl
+		 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.OCLstdlibCSPackageImpl#getMetaclassNameCS()
 		 * @generated
 		 */
-		EClass META_TYPE_NAME = eINSTANCE.getMetaTypeName();
+		EClass METACLASS_NAME_CS = eINSTANCE.getMetaclassNameCS();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -1793,7 +1793,7 @@ public interface OCLstdlibCSPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute META_TYPE_NAME__NAME = eINSTANCE.getMetaTypeName_Name();
+		EAttribute METACLASS_NAME_CS__NAME = eINSTANCE.getMetaclassNameCS_Name();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaImplementationCS <em>Java Implementation CS</em>}' class.
@@ -1824,12 +1824,12 @@ public interface OCLstdlibCSPackage
 		EClass PRECEDENCE_CS = eINSTANCE.getPrecedenceCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Right Associative</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Is Right Associative</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PRECEDENCE_CS__RIGHT_ASSOCIATIVE = eINSTANCE.getPrecedenceCS_RightAssociative();
+		EAttribute PRECEDENCE_CS__IS_RIGHT_ASSOCIATIVE = eINSTANCE.getPrecedenceCS_IsRightAssociative();
 
 	}
 

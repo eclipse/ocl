@@ -22,15 +22,15 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaTypeName#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaclassNameCS#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage#getMetaTypeName()
+ * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage#getMetaclassNameCS()
  * @model superTypes="org.eclipse.ocl.examples.xtext.base.basecs.ElementCS org.eclipse.ocl.examples.pivot.Nameable"
  * @generated
  */
-public interface MetaTypeName
+public interface MetaclassNameCS
 		extends ElementCS, Nameable, org.eclipse.ocl.examples.domain.elements.DomainNamedElement {
 
 	/**
@@ -43,14 +43,14 @@ public interface MetaTypeName
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage#getMetaTypeName_Name()
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage#getMetaclassNameCS_Name()
 	 * @model
 	 * @generated
 	 */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaTypeName#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaclassNameCS#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.

@@ -23,9 +23,9 @@ import org.eclipse.ocl.examples.xtext.base.basecs.OperationCS;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#getPrecedence <em>Precedence</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#isInvalidating <em>Invalidating</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#isStatic <em>Static</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#isValidating <em>Validating</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#isIsInvalidating <em>Is Invalidating</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#isIsStatic <em>Is Static</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#isIsValidating <em>Is Validating</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,84 +63,84 @@ public interface LibOperationCS
 	void setPrecedence(Precedence value);
 
 	/**
-	 * Returns the value of the '<em><b>Invalidating</b></em>' attribute.
+	 * Returns the value of the '<em><b>Is Invalidating</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Invalidating</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Is Invalidating</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Invalidating</em>' attribute.
-	 * @see #setInvalidating(boolean)
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage#getLibOperationCS_Invalidating()
+	 * @return the value of the '<em>Is Invalidating</em>' attribute.
+	 * @see #setIsInvalidating(boolean)
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage#getLibOperationCS_IsInvalidating()
 	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean"
 	 * @generated
 	 */
-	boolean isInvalidating();
+	boolean isIsInvalidating();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#isInvalidating <em>Invalidating</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#isIsInvalidating <em>Is Invalidating</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Invalidating</em>' attribute.
-	 * @see #isInvalidating()
+	 * @param value the new value of the '<em>Is Invalidating</em>' attribute.
+	 * @see #isIsInvalidating()
 	 * @generated
 	 */
-	void setInvalidating(boolean value);
+	void setIsInvalidating(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Static</b></em>' attribute.
+	 * Returns the value of the '<em><b>Is Static</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Static</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Is Static</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Static</em>' attribute.
-	 * @see #setStatic(boolean)
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage#getLibOperationCS_Static()
+	 * @return the value of the '<em>Is Static</em>' attribute.
+	 * @see #setIsStatic(boolean)
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage#getLibOperationCS_IsStatic()
 	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean"
 	 * @generated
 	 */
-	boolean isStatic();
+	boolean isIsStatic();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#isStatic <em>Static</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#isIsStatic <em>Is Static</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Static</em>' attribute.
-	 * @see #isStatic()
+	 * @param value the new value of the '<em>Is Static</em>' attribute.
+	 * @see #isIsStatic()
 	 * @generated
 	 */
-	void setStatic(boolean value);
+	void setIsStatic(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Validating</b></em>' attribute.
+	 * Returns the value of the '<em><b>Is Validating</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Validating</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Is Validating</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Validating</em>' attribute.
-	 * @see #setValidating(boolean)
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage#getLibOperationCS_Validating()
+	 * @return the value of the '<em>Is Validating</em>' attribute.
+	 * @see #setIsValidating(boolean)
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage#getLibOperationCS_IsValidating()
 	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean"
 	 * @generated
 	 */
-	boolean isValidating();
+	boolean isIsValidating();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#isValidating <em>Validating</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#isIsValidating <em>Is Validating</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Validating</em>' attribute.
-	 * @see #isValidating()
+	 * @param value the new value of the '<em>Is Validating</em>' attribute.
+	 * @see #isIsValidating()
 	 * @generated
 	 */
-	void setValidating(boolean value);
+	void setIsValidating(boolean value);
 
 } // LibOperationCS

@@ -21,7 +21,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.PackageCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPackageCS#getOwnedPrecedence <em>Owned Precedence</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPackageCS#getOwnedPrecedences <em>Owned Precedences</em>}</li>
  * </ul>
  * </p>
  *
@@ -32,7 +32,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.PackageCS;
 public interface LibPackageCS extends PackageCS
 {
 	/**
-	 * Returns the value of the '<em><b>Owned Precedence</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Precedences</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.PrecedenceCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -40,11 +40,11 @@ public interface LibPackageCS extends PackageCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Precedence</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage#getLibPackageCS_OwnedPrecedence()
+	 * @return the value of the '<em>Owned Precedences</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage#getLibPackageCS_OwnedPrecedences()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<PrecedenceCS> getOwnedPrecedence();
+	EList<PrecedenceCS> getOwnedPrecedences();
 
 } // LibPackageCS

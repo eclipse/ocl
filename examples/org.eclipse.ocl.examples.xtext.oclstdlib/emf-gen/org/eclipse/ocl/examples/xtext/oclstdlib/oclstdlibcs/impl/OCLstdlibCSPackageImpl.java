@@ -28,7 +28,7 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPackageCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPropertyCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibRootPackageCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaTypeName;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaclassNameCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSFactory;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.PrecedenceCS;
@@ -104,7 +104,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass metaTypeNameEClass = null;
+	private EClass metaclassNameCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -208,7 +208,8 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLibClassCS_MetaTypeName() {
+	public EReference getLibClassCS_MetaclassName()
+	{
 		return (EReference)libClassCSEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -235,7 +236,8 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLibIterationCS_OwnedIterator() {
+	public EReference getLibIterationCS_OwnedIterators()
+	{
 		return (EReference)libIterationCSEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -244,7 +246,8 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLibIterationCS_OwnedAccumulator() {
+	public EReference getLibIterationCS_OwnedAccumulators()
+	{
 		return (EReference)libIterationCSEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -253,7 +256,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLibIterationCS_Invalidating()
+	public EAttribute getLibIterationCS_IsInvalidating()
 	{
 		return (EAttribute)libIterationCSEClass.getEStructuralFeatures().get(2);
 	}
@@ -263,7 +266,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLibIterationCS_Validating()
+	public EAttribute getLibIterationCS_IsValidating()
 	{
 		return (EAttribute)libIterationCSEClass.getEStructuralFeatures().get(3);
 	}
@@ -291,7 +294,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLibOperationCS_Invalidating()
+	public EAttribute getLibOperationCS_IsInvalidating()
 	{
 		return (EAttribute)libOperationCSEClass.getEStructuralFeatures().get(1);
 	}
@@ -301,7 +304,8 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLibOperationCS_Static() {
+	public EAttribute getLibOperationCS_IsStatic()
+	{
 		return (EAttribute)libOperationCSEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -310,7 +314,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLibOperationCS_Validating()
+	public EAttribute getLibOperationCS_IsValidating()
 	{
 		return (EAttribute)libOperationCSEClass.getEStructuralFeatures().get(3);
 	}
@@ -330,7 +334,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLibPackageCS_OwnedPrecedence()
+	public EReference getLibPackageCS_OwnedPrecedences()
 	{
 		return (EReference)libPackageCSEClass.getEStructuralFeatures().get(0);
 	}
@@ -349,7 +353,8 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLibPropertyCS_Static() {
+	public EAttribute getLibPropertyCS_IsStatic()
+	{
 		return (EAttribute)libPropertyCSEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -368,8 +373,9 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMetaTypeName() {
-		return metaTypeNameEClass;
+	public EClass getMetaclassNameCS()
+	{
+		return metaclassNameCSEClass;
 	}
 
 	/**
@@ -377,8 +383,9 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMetaTypeName_Name() {
-		return (EAttribute)metaTypeNameEClass.getEStructuralFeatures().get(0);
+	public EAttribute getMetaclassNameCS_Name()
+	{
+		return (EAttribute)metaclassNameCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -413,7 +420,8 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPrecedenceCS_RightAssociative() {
+	public EAttribute getPrecedenceCS_IsRightAssociative()
+	{
 		return (EAttribute)precedenceCSEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -452,35 +460,35 @@ public class OCLstdlibCSPackageImpl
 		createEReference(javaImplementationCSEClass, JAVA_IMPLEMENTATION_CS__IMPLEMENTATION);
 
 		libClassCSEClass = createEClass(LIB_CLASS_CS);
-		createEReference(libClassCSEClass, LIB_CLASS_CS__META_TYPE_NAME);
+		createEReference(libClassCSEClass, LIB_CLASS_CS__METACLASS_NAME);
 
 		libConstraintCSEClass = createEClass(LIB_CONSTRAINT_CS);
 
 		libIterationCSEClass = createEClass(LIB_ITERATION_CS);
-		createEReference(libIterationCSEClass, LIB_ITERATION_CS__OWNED_ITERATOR);
-		createEReference(libIterationCSEClass, LIB_ITERATION_CS__OWNED_ACCUMULATOR);
-		createEAttribute(libIterationCSEClass, LIB_ITERATION_CS__INVALIDATING);
-		createEAttribute(libIterationCSEClass, LIB_ITERATION_CS__VALIDATING);
+		createEReference(libIterationCSEClass, LIB_ITERATION_CS__OWNED_ITERATORS);
+		createEReference(libIterationCSEClass, LIB_ITERATION_CS__OWNED_ACCUMULATORS);
+		createEAttribute(libIterationCSEClass, LIB_ITERATION_CS__IS_INVALIDATING);
+		createEAttribute(libIterationCSEClass, LIB_ITERATION_CS__IS_VALIDATING);
 
 		libOperationCSEClass = createEClass(LIB_OPERATION_CS);
 		createEReference(libOperationCSEClass, LIB_OPERATION_CS__PRECEDENCE);
-		createEAttribute(libOperationCSEClass, LIB_OPERATION_CS__INVALIDATING);
-		createEAttribute(libOperationCSEClass, LIB_OPERATION_CS__STATIC);
-		createEAttribute(libOperationCSEClass, LIB_OPERATION_CS__VALIDATING);
+		createEAttribute(libOperationCSEClass, LIB_OPERATION_CS__IS_INVALIDATING);
+		createEAttribute(libOperationCSEClass, LIB_OPERATION_CS__IS_STATIC);
+		createEAttribute(libOperationCSEClass, LIB_OPERATION_CS__IS_VALIDATING);
 
 		libPackageCSEClass = createEClass(LIB_PACKAGE_CS);
-		createEReference(libPackageCSEClass, LIB_PACKAGE_CS__OWNED_PRECEDENCE);
+		createEReference(libPackageCSEClass, LIB_PACKAGE_CS__OWNED_PRECEDENCES);
 
 		libPropertyCSEClass = createEClass(LIB_PROPERTY_CS);
-		createEAttribute(libPropertyCSEClass, LIB_PROPERTY_CS__STATIC);
+		createEAttribute(libPropertyCSEClass, LIB_PROPERTY_CS__IS_STATIC);
 
 		libRootPackageCSEClass = createEClass(LIB_ROOT_PACKAGE_CS);
 
-		metaTypeNameEClass = createEClass(META_TYPE_NAME);
-		createEAttribute(metaTypeNameEClass, META_TYPE_NAME__NAME);
+		metaclassNameCSEClass = createEClass(METACLASS_NAME_CS);
+		createEAttribute(metaclassNameCSEClass, METACLASS_NAME_CS__NAME);
 
 		precedenceCSEClass = createEClass(PRECEDENCE_CS);
-		createEAttribute(precedenceCSEClass, PRECEDENCE_CS__RIGHT_ASSOCIATIVE);
+		createEAttribute(precedenceCSEClass, PRECEDENCE_CS__IS_RIGHT_ASSOCIATIVE);
 	}
 
 	/**
@@ -526,8 +534,8 @@ public class OCLstdlibCSPackageImpl
 		libPropertyCSEClass.getESuperTypes().add(theBaseCSPackage.getAttributeCS());
 		libPropertyCSEClass.getESuperTypes().add(this.getJavaImplementationCS());
 		libRootPackageCSEClass.getESuperTypes().add(theBaseCSPackage.getRootPackageCS());
-		metaTypeNameEClass.getESuperTypes().add(theBaseCSPackage.getElementCS());
-		metaTypeNameEClass.getESuperTypes().add(thePivotPackage.getNameable());
+		metaclassNameCSEClass.getESuperTypes().add(theBaseCSPackage.getElementCS());
+		metaclassNameCSEClass.getESuperTypes().add(thePivotPackage.getNameable());
 		precedenceCSEClass.getESuperTypes().add(theBaseCSPackage.getNamedElementCS());
 
 		// Initialize classes and features; add operations and parameters
@@ -537,35 +545,35 @@ public class OCLstdlibCSPackageImpl
 		initEReference(getJavaImplementationCS_Implementation(), this.getJavaClassCS(), null, "implementation", null, 0, 1, JavaImplementationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(libClassCSEClass, LibClassCS.class, "LibClassCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLibClassCS_MetaTypeName(), this.getMetaTypeName(), null, "metaTypeName", null, 0, 1, LibClassCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLibClassCS_MetaclassName(), this.getMetaclassNameCS(), null, "metaclassName", null, 0, 1, LibClassCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(libConstraintCSEClass, LibConstraintCS.class, "LibConstraintCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(libIterationCSEClass, LibIterationCS.class, "LibIterationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLibIterationCS_OwnedIterator(), theBaseCSPackage.getParameterCS(), null, "ownedIterator", null, 0, -1, LibIterationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLibIterationCS_OwnedAccumulator(), theBaseCSPackage.getParameterCS(), null, "ownedAccumulator", null, 0, -1, LibIterationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLibIterationCS_Invalidating(), thePivotPackage.getBoolean(), "invalidating", "false", 0, 1, LibIterationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLibIterationCS_Validating(), thePivotPackage.getBoolean(), "validating", "false", 0, 1, LibIterationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLibIterationCS_OwnedIterators(), theBaseCSPackage.getParameterCS(), null, "ownedIterators", null, 0, -1, LibIterationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLibIterationCS_OwnedAccumulators(), theBaseCSPackage.getParameterCS(), null, "ownedAccumulators", null, 0, -1, LibIterationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLibIterationCS_IsInvalidating(), thePivotPackage.getBoolean(), "isInvalidating", "false", 0, 1, LibIterationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLibIterationCS_IsValidating(), thePivotPackage.getBoolean(), "isValidating", "false", 0, 1, LibIterationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(libOperationCSEClass, LibOperationCS.class, "LibOperationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLibOperationCS_Precedence(), thePivotPackage.getPrecedence(), null, "precedence", null, 0, 1, LibOperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLibOperationCS_Invalidating(), thePivotPackage.getBoolean(), "invalidating", "false", 0, 1, LibOperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLibOperationCS_Static(), thePivotPackage.getBoolean(), "static", "false", 0, 1, LibOperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLibOperationCS_Validating(), thePivotPackage.getBoolean(), "validating", "false", 0, 1, LibOperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLibOperationCS_IsInvalidating(), thePivotPackage.getBoolean(), "isInvalidating", "false", 0, 1, LibOperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLibOperationCS_IsStatic(), thePivotPackage.getBoolean(), "isStatic", "false", 0, 1, LibOperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLibOperationCS_IsValidating(), thePivotPackage.getBoolean(), "isValidating", "false", 0, 1, LibOperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(libPackageCSEClass, LibPackageCS.class, "LibPackageCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLibPackageCS_OwnedPrecedence(), this.getPrecedenceCS(), null, "ownedPrecedence", null, 0, -1, LibPackageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLibPackageCS_OwnedPrecedences(), this.getPrecedenceCS(), null, "ownedPrecedences", null, 0, -1, LibPackageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(libPropertyCSEClass, LibPropertyCS.class, "LibPropertyCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getLibPropertyCS_Static(), thePivotPackage.getBoolean(), "static", "false", 0, 1, LibPropertyCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLibPropertyCS_IsStatic(), thePivotPackage.getBoolean(), "isStatic", "false", 0, 1, LibPropertyCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(libRootPackageCSEClass, LibRootPackageCS.class, "LibRootPackageCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(metaTypeNameEClass, MetaTypeName.class, "MetaTypeName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMetaTypeName_Name(), ecorePackage.getEString(), "name", null, 0, 1, MetaTypeName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(metaclassNameCSEClass, MetaclassNameCS.class, "MetaclassNameCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getMetaclassNameCS_Name(), ecorePackage.getEString(), "name", null, 0, 1, MetaclassNameCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(precedenceCSEClass, PrecedenceCS.class, "PrecedenceCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPrecedenceCS_RightAssociative(), ecorePackage.getEBoolean(), "rightAssociative", "false", 0, 1, PrecedenceCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPrecedenceCS_IsRightAssociative(), ecorePackage.getEBoolean(), "isRightAssociative", "false", 0, 1, PrecedenceCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

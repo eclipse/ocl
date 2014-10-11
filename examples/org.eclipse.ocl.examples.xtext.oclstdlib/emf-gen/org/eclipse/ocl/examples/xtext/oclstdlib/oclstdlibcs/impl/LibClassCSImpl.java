@@ -19,7 +19,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.xtext.base.basecs.impl.StructuredClassCSImpl;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibClassCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaTypeName;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaclassNameCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.util.OCLstdlibCSVisitor;
 
@@ -30,7 +30,7 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.util.OCLstdlibCSVisi
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.LibClassCSImpl#getMetaTypeName <em>Meta Type Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.LibClassCSImpl#getMetaclassName <em>Metaclass Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -41,15 +41,14 @@ public class LibClassCSImpl
 		implements LibClassCS {
 
 	/**
-	 * The cached value of the '{@link #getMetaTypeName() <em>Meta Type Name</em>}' reference.
+	 * The cached value of the '{@link #getMetaclassName() <em>Metaclass Name</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMetaTypeName()
+	 * @see #getMetaclassName()
 	 * @generated
 	 * @ordered
 	 */
-	protected MetaTypeName metaTypeName;
-
+	protected MetaclassNameCS metaclassName;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -74,18 +73,18 @@ public class LibClassCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MetaTypeName getMetaTypeName() {
-		if (metaTypeName != null && metaTypeName.eIsProxy())
+	public MetaclassNameCS getMetaclassName() {
+		if (metaclassName != null && metaclassName.eIsProxy())
 		{
-			InternalEObject oldMetaTypeName = (InternalEObject)metaTypeName;
-			metaTypeName = (MetaTypeName)eResolveProxy(oldMetaTypeName);
-			if (metaTypeName != oldMetaTypeName)
+			InternalEObject oldMetaclassName = (InternalEObject)metaclassName;
+			metaclassName = (MetaclassNameCS)eResolveProxy(oldMetaclassName);
+			if (metaclassName != oldMetaclassName)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OCLstdlibCSPackage.LIB_CLASS_CS__META_TYPE_NAME, oldMetaTypeName, metaTypeName));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OCLstdlibCSPackage.LIB_CLASS_CS__METACLASS_NAME, oldMetaclassName, metaclassName));
 			}
 		}
-		return metaTypeName;
+		return metaclassName;
 	}
 
 	/**
@@ -93,8 +92,9 @@ public class LibClassCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MetaTypeName basicGetMetaTypeName() {
-		return metaTypeName;
+	public MetaclassNameCS basicGetMetaclassName()
+	{
+		return metaclassName;
 	}
 
 	/**
@@ -102,11 +102,11 @@ public class LibClassCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMetaTypeName(MetaTypeName newMetaTypeName) {
-		MetaTypeName oldMetaTypeName = metaTypeName;
-		metaTypeName = newMetaTypeName;
+	public void setMetaclassName(MetaclassNameCS newMetaclassName) {
+		MetaclassNameCS oldMetaclassName = metaclassName;
+		metaclassName = newMetaclassName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OCLstdlibCSPackage.LIB_CLASS_CS__META_TYPE_NAME, oldMetaTypeName, metaTypeName));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLstdlibCSPackage.LIB_CLASS_CS__METACLASS_NAME, oldMetaclassName, metaclassName));
 	}
 
 	/**
@@ -118,9 +118,9 @@ public class LibClassCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case OCLstdlibCSPackage.LIB_CLASS_CS__META_TYPE_NAME:
-				if (resolve) return getMetaTypeName();
-				return basicGetMetaTypeName();
+			case OCLstdlibCSPackage.LIB_CLASS_CS__METACLASS_NAME:
+				if (resolve) return getMetaclassName();
+				return basicGetMetaclassName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -134,8 +134,8 @@ public class LibClassCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case OCLstdlibCSPackage.LIB_CLASS_CS__META_TYPE_NAME:
-				setMetaTypeName((MetaTypeName)newValue);
+			case OCLstdlibCSPackage.LIB_CLASS_CS__METACLASS_NAME:
+				setMetaclassName((MetaclassNameCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -150,8 +150,8 @@ public class LibClassCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case OCLstdlibCSPackage.LIB_CLASS_CS__META_TYPE_NAME:
-				setMetaTypeName((MetaTypeName)null);
+			case OCLstdlibCSPackage.LIB_CLASS_CS__METACLASS_NAME:
+				setMetaclassName((MetaclassNameCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -166,8 +166,8 @@ public class LibClassCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case OCLstdlibCSPackage.LIB_CLASS_CS__META_TYPE_NAME:
-				return metaTypeName != null;
+			case OCLstdlibCSPackage.LIB_CLASS_CS__METACLASS_NAME:
+				return metaclassName != null;
 		}
 		return super.eIsSet(featureID);
 	}

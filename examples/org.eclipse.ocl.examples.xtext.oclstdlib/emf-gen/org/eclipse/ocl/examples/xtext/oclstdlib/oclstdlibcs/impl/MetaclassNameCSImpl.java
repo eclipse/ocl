@@ -17,7 +17,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.xtext.base.basecs.impl.ElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaTypeName;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaclassNameCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.util.OCLstdlibCSVisitor;
 
@@ -28,15 +28,15 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.util.OCLstdlibCSVisi
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.MetaTypeNameImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.MetaclassNameCSImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class MetaTypeNameImpl
+public class MetaclassNameCSImpl
 		extends ElementCSImpl
-		implements MetaTypeName {
+		implements MetaclassNameCS {
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -63,7 +63,7 @@ public class MetaTypeNameImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MetaTypeNameImpl() {
+	protected MetaclassNameCSImpl() {
 		super();
 	}
 
@@ -74,7 +74,7 @@ public class MetaTypeNameImpl
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return OCLstdlibCSPackage.Literals.META_TYPE_NAME;
+		return OCLstdlibCSPackage.Literals.METACLASS_NAME_CS;
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class MetaTypeNameImpl
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OCLstdlibCSPackage.META_TYPE_NAME__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLstdlibCSPackage.METACLASS_NAME_CS__NAME, oldName, name));
 	}
 
 	/**
@@ -107,7 +107,7 @@ public class MetaTypeNameImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case OCLstdlibCSPackage.META_TYPE_NAME__NAME:
+			case OCLstdlibCSPackage.METACLASS_NAME_CS__NAME:
 				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -122,7 +122,7 @@ public class MetaTypeNameImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case OCLstdlibCSPackage.META_TYPE_NAME__NAME:
+			case OCLstdlibCSPackage.METACLASS_NAME_CS__NAME:
 				setName((String)newValue);
 				return;
 		}
@@ -138,7 +138,7 @@ public class MetaTypeNameImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case OCLstdlibCSPackage.META_TYPE_NAME__NAME:
+			case OCLstdlibCSPackage.METACLASS_NAME_CS__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 		}
@@ -154,7 +154,7 @@ public class MetaTypeNameImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case OCLstdlibCSPackage.META_TYPE_NAME__NAME:
+			case OCLstdlibCSPackage.METACLASS_NAME_CS__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
@@ -167,7 +167,7 @@ public class MetaTypeNameImpl
 	@SuppressWarnings("unchecked")
 	@Override
 	public @Nullable <R> R accept(@NonNull BaseCSVisitor<R> visitor) {
-		return (R) ((OCLstdlibCSVisitor<?>)visitor).visitMetaTypeName(this);
+		return (R) ((OCLstdlibCSVisitor<?>)visitor).visitMetaclassNameCS(this);
 	}
 
 	/**

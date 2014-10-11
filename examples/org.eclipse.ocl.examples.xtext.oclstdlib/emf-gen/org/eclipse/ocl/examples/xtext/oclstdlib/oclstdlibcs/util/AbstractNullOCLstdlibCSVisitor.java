@@ -68,7 +68,7 @@ public abstract class AbstractNullOCLstdlibCSVisitor<R, C>
 		return null;
 	}
 
-	public @Nullable R visitMetaTypeName(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaTypeName object) {
+	public @Nullable R visitMetaclassNameCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaclassNameCS object) {
 		return null;
 	}
 

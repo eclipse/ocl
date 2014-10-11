@@ -20,7 +20,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.NamedElementCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.PrecedenceCS#isRightAssociative <em>Right Associative</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.PrecedenceCS#isIsRightAssociative <em>Is Right Associative</em>}</li>
  * </ul>
  * </p>
  *
@@ -32,7 +32,7 @@ public interface PrecedenceCS
 		extends NamedElementCS {
 
 	/**
-	 * Returns the value of the '<em><b>Right Associative</b></em>' attribute.
+	 * Returns the value of the '<em><b>Is Right Associative</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -40,22 +40,22 @@ public interface PrecedenceCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Right Associative</em>' attribute.
-	 * @see #setRightAssociative(boolean)
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage#getPrecedenceCS_RightAssociative()
+	 * @return the value of the '<em>Is Right Associative</em>' attribute.
+	 * @see #setIsRightAssociative(boolean)
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage#getPrecedenceCS_IsRightAssociative()
 	 * @model default="false"
 	 * @generated
 	 */
-	boolean isRightAssociative();
+	boolean isIsRightAssociative();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.PrecedenceCS#isRightAssociative <em>Right Associative</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.PrecedenceCS#isIsRightAssociative <em>Is Right Associative</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Right Associative</em>' attribute.
-	 * @see #isRightAssociative()
+	 * @param value the new value of the '<em>Is Right Associative</em>' attribute.
+	 * @see #isIsRightAssociative()
 	 * @generated
 	 */
-	void setRightAssociative(boolean value);
+	void setIsRightAssociative(boolean value);
 
 } // PrecedenceCS

@@ -28,7 +28,7 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.util.OCLstdlibCSVisi
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.PrecedenceCSImpl#isRightAssociative <em>Right Associative</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.PrecedenceCSImpl#isIsRightAssociative <em>Is Right Associative</em>}</li>
  * </ul>
  * </p>
  *
@@ -39,24 +39,24 @@ public class PrecedenceCSImpl
 		implements PrecedenceCS {
 
 	/**
-	 * The default value of the '{@link #isRightAssociative() <em>Right Associative</em>}' attribute.
+	 * The default value of the '{@link #isIsRightAssociative() <em>Is Right Associative</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isRightAssociative()
+	 * @see #isIsRightAssociative()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean RIGHT_ASSOCIATIVE_EDEFAULT = false;
+	protected static final boolean IS_RIGHT_ASSOCIATIVE_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isRightAssociative() <em>Right Associative</em>}' attribute.
+	 * The cached value of the '{@link #isIsRightAssociative() <em>Is Right Associative</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isRightAssociative()
+	 * @see #isIsRightAssociative()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean rightAssociative = RIGHT_ASSOCIATIVE_EDEFAULT;
+	protected boolean isRightAssociative = IS_RIGHT_ASSOCIATIVE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -82,8 +82,8 @@ public class PrecedenceCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isRightAssociative() {
-		return rightAssociative;
+	public boolean isIsRightAssociative() {
+		return isRightAssociative;
 	}
 
 	/**
@@ -91,11 +91,11 @@ public class PrecedenceCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRightAssociative(boolean newRightAssociative) {
-		boolean oldRightAssociative = rightAssociative;
-		rightAssociative = newRightAssociative;
+	public void setIsRightAssociative(boolean newIsRightAssociative) {
+		boolean oldIsRightAssociative = isRightAssociative;
+		isRightAssociative = newIsRightAssociative;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OCLstdlibCSPackage.PRECEDENCE_CS__RIGHT_ASSOCIATIVE, oldRightAssociative, rightAssociative));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLstdlibCSPackage.PRECEDENCE_CS__IS_RIGHT_ASSOCIATIVE, oldIsRightAssociative, isRightAssociative));
 	}
 
 	/**
@@ -107,8 +107,8 @@ public class PrecedenceCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case OCLstdlibCSPackage.PRECEDENCE_CS__RIGHT_ASSOCIATIVE:
-				return isRightAssociative();
+			case OCLstdlibCSPackage.PRECEDENCE_CS__IS_RIGHT_ASSOCIATIVE:
+				return isIsRightAssociative();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -122,8 +122,8 @@ public class PrecedenceCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case OCLstdlibCSPackage.PRECEDENCE_CS__RIGHT_ASSOCIATIVE:
-				setRightAssociative((Boolean)newValue);
+			case OCLstdlibCSPackage.PRECEDENCE_CS__IS_RIGHT_ASSOCIATIVE:
+				setIsRightAssociative((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -138,8 +138,8 @@ public class PrecedenceCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case OCLstdlibCSPackage.PRECEDENCE_CS__RIGHT_ASSOCIATIVE:
-				setRightAssociative(RIGHT_ASSOCIATIVE_EDEFAULT);
+			case OCLstdlibCSPackage.PRECEDENCE_CS__IS_RIGHT_ASSOCIATIVE:
+				setIsRightAssociative(IS_RIGHT_ASSOCIATIVE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -154,8 +154,8 @@ public class PrecedenceCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case OCLstdlibCSPackage.PRECEDENCE_CS__RIGHT_ASSOCIATIVE:
-				return rightAssociative != RIGHT_ASSOCIATIVE_EDEFAULT;
+			case OCLstdlibCSPackage.PRECEDENCE_CS__IS_RIGHT_ASSOCIATIVE:
+				return isRightAssociative != IS_RIGHT_ASSOCIATIVE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

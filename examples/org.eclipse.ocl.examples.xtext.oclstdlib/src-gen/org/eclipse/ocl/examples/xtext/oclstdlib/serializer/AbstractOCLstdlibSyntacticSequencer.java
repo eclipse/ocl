@@ -77,7 +77,7 @@ public abstract class AbstractOCLstdlibSyntacticSequencer extends AbstractSyntac
 
 	/**
 	 * Syntax:
-	 *     ';' | ('{' '}')
+	 *     ('{' '}') | ';'
 	 */
 	protected void emit_LibIterationCS_SemicolonKeyword_14_1_or___LeftCurlyBracketKeyword_14_0_0_RightCurlyBracketKeyword_14_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

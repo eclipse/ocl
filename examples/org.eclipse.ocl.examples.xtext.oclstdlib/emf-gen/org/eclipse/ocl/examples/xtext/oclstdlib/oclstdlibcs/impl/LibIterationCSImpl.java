@@ -40,10 +40,10 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.util.OCLstdlibCSVisi
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.LibIterationCSImpl#getImplementation <em>Implementation</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.LibIterationCSImpl#getOwnedIterator <em>Owned Iterator</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.LibIterationCSImpl#getOwnedAccumulator <em>Owned Accumulator</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.LibIterationCSImpl#isInvalidating <em>Invalidating</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.LibIterationCSImpl#isValidating <em>Validating</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.LibIterationCSImpl#getOwnedIterators <em>Owned Iterators</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.LibIterationCSImpl#getOwnedAccumulators <em>Owned Accumulators</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.LibIterationCSImpl#isIsInvalidating <em>Is Invalidating</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.LibIterationCSImpl#isIsValidating <em>Is Validating</em>}</li>
  * </ul>
  * </p>
  *
@@ -64,64 +64,64 @@ public class LibIterationCSImpl
 	protected JavaClassCS implementation;
 
 	/**
-	 * The cached value of the '{@link #getOwnedIterator() <em>Owned Iterator</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedIterators() <em>Owned Iterators</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedIterator()
+	 * @see #getOwnedIterators()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ParameterCS> ownedIterator;
+	protected EList<ParameterCS> ownedIterators;
 
 	/**
-	 * The cached value of the '{@link #getOwnedAccumulator() <em>Owned Accumulator</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedAccumulators() <em>Owned Accumulators</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedAccumulator()
+	 * @see #getOwnedAccumulators()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ParameterCS> ownedAccumulator;
+	protected EList<ParameterCS> ownedAccumulators;
 
 	/**
-	 * The default value of the '{@link #isInvalidating() <em>Invalidating</em>}' attribute.
+	 * The default value of the '{@link #isIsInvalidating() <em>Is Invalidating</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isInvalidating()
+	 * @see #isIsInvalidating()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean INVALIDATING_EDEFAULT = false;
+	protected static final boolean IS_INVALIDATING_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isInvalidating() <em>Invalidating</em>}' attribute.
+	 * The cached value of the '{@link #isIsInvalidating() <em>Is Invalidating</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isInvalidating()
+	 * @see #isIsInvalidating()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean invalidating = INVALIDATING_EDEFAULT;
+	protected boolean isInvalidating = IS_INVALIDATING_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isValidating() <em>Validating</em>}' attribute.
+	 * The default value of the '{@link #isIsValidating() <em>Is Validating</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isValidating()
+	 * @see #isIsValidating()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean VALIDATING_EDEFAULT = false;
+	protected static final boolean IS_VALIDATING_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isValidating() <em>Validating</em>}' attribute.
+	 * The cached value of the '{@link #isIsValidating() <em>Is Validating</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isValidating()
+	 * @see #isIsValidating()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean validating = VALIDATING_EDEFAULT;
+	protected boolean isValidating = IS_VALIDATING_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -189,12 +189,13 @@ public class LibIterationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ParameterCS> getOwnedIterator() {
-		if (ownedIterator == null)
+	public EList<ParameterCS> getOwnedIterators()
+	{
+		if (ownedIterators == null)
 		{
-			ownedIterator = new EObjectContainmentEList<ParameterCS>(ParameterCS.class, this, OCLstdlibCSPackage.LIB_ITERATION_CS__OWNED_ITERATOR);
+			ownedIterators = new EObjectContainmentEList<ParameterCS>(ParameterCS.class, this, OCLstdlibCSPackage.LIB_ITERATION_CS__OWNED_ITERATORS);
 		}
-		return ownedIterator;
+		return ownedIterators;
 	}
 
 	/**
@@ -202,12 +203,13 @@ public class LibIterationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ParameterCS> getOwnedAccumulator() {
-		if (ownedAccumulator == null)
+	public EList<ParameterCS> getOwnedAccumulators()
+	{
+		if (ownedAccumulators == null)
 		{
-			ownedAccumulator = new EObjectContainmentEList<ParameterCS>(ParameterCS.class, this, OCLstdlibCSPackage.LIB_ITERATION_CS__OWNED_ACCUMULATOR);
+			ownedAccumulators = new EObjectContainmentEList<ParameterCS>(ParameterCS.class, this, OCLstdlibCSPackage.LIB_ITERATION_CS__OWNED_ACCUMULATORS);
 		}
-		return ownedAccumulator;
+		return ownedAccumulators;
 	}
 
 	/**
@@ -215,9 +217,9 @@ public class LibIterationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isInvalidating()
+	public boolean isIsInvalidating()
 	{
-		return invalidating;
+		return isInvalidating;
 	}
 
 	/**
@@ -225,12 +227,12 @@ public class LibIterationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInvalidating(boolean newInvalidating)
+	public void setIsInvalidating(boolean newIsInvalidating)
 	{
-		boolean oldInvalidating = invalidating;
-		invalidating = newInvalidating;
+		boolean oldIsInvalidating = isInvalidating;
+		isInvalidating = newIsInvalidating;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OCLstdlibCSPackage.LIB_ITERATION_CS__INVALIDATING, oldInvalidating, invalidating));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLstdlibCSPackage.LIB_ITERATION_CS__IS_INVALIDATING, oldIsInvalidating, isInvalidating));
 	}
 
 	/**
@@ -238,9 +240,9 @@ public class LibIterationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isValidating()
+	public boolean isIsValidating()
 	{
-		return validating;
+		return isValidating;
 	}
 
 	/**
@@ -248,12 +250,12 @@ public class LibIterationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValidating(boolean newValidating)
+	public void setIsValidating(boolean newIsValidating)
 	{
-		boolean oldValidating = validating;
-		validating = newValidating;
+		boolean oldIsValidating = isValidating;
+		isValidating = newIsValidating;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OCLstdlibCSPackage.LIB_ITERATION_CS__VALIDATING, oldValidating, validating));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLstdlibCSPackage.LIB_ITERATION_CS__IS_VALIDATING, oldIsValidating, isValidating));
 	}
 
 	/**
@@ -266,10 +268,10 @@ public class LibIterationCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case OCLstdlibCSPackage.LIB_ITERATION_CS__OWNED_ITERATOR:
-				return ((InternalEList<?>)getOwnedIterator()).basicRemove(otherEnd, msgs);
-			case OCLstdlibCSPackage.LIB_ITERATION_CS__OWNED_ACCUMULATOR:
-				return ((InternalEList<?>)getOwnedAccumulator()).basicRemove(otherEnd, msgs);
+			case OCLstdlibCSPackage.LIB_ITERATION_CS__OWNED_ITERATORS:
+				return ((InternalEList<?>)getOwnedIterators()).basicRemove(otherEnd, msgs);
+			case OCLstdlibCSPackage.LIB_ITERATION_CS__OWNED_ACCUMULATORS:
+				return ((InternalEList<?>)getOwnedAccumulators()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -286,14 +288,14 @@ public class LibIterationCSImpl
 			case OCLstdlibCSPackage.LIB_ITERATION_CS__IMPLEMENTATION:
 				if (resolve) return getImplementation();
 				return basicGetImplementation();
-			case OCLstdlibCSPackage.LIB_ITERATION_CS__OWNED_ITERATOR:
-				return getOwnedIterator();
-			case OCLstdlibCSPackage.LIB_ITERATION_CS__OWNED_ACCUMULATOR:
-				return getOwnedAccumulator();
-			case OCLstdlibCSPackage.LIB_ITERATION_CS__INVALIDATING:
-				return isInvalidating();
-			case OCLstdlibCSPackage.LIB_ITERATION_CS__VALIDATING:
-				return isValidating();
+			case OCLstdlibCSPackage.LIB_ITERATION_CS__OWNED_ITERATORS:
+				return getOwnedIterators();
+			case OCLstdlibCSPackage.LIB_ITERATION_CS__OWNED_ACCUMULATORS:
+				return getOwnedAccumulators();
+			case OCLstdlibCSPackage.LIB_ITERATION_CS__IS_INVALIDATING:
+				return isIsInvalidating();
+			case OCLstdlibCSPackage.LIB_ITERATION_CS__IS_VALIDATING:
+				return isIsValidating();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -311,19 +313,19 @@ public class LibIterationCSImpl
 			case OCLstdlibCSPackage.LIB_ITERATION_CS__IMPLEMENTATION:
 				setImplementation((JavaClassCS)newValue);
 				return;
-			case OCLstdlibCSPackage.LIB_ITERATION_CS__OWNED_ITERATOR:
-				getOwnedIterator().clear();
-				getOwnedIterator().addAll((Collection<? extends ParameterCS>)newValue);
+			case OCLstdlibCSPackage.LIB_ITERATION_CS__OWNED_ITERATORS:
+				getOwnedIterators().clear();
+				getOwnedIterators().addAll((Collection<? extends ParameterCS>)newValue);
 				return;
-			case OCLstdlibCSPackage.LIB_ITERATION_CS__OWNED_ACCUMULATOR:
-				getOwnedAccumulator().clear();
-				getOwnedAccumulator().addAll((Collection<? extends ParameterCS>)newValue);
+			case OCLstdlibCSPackage.LIB_ITERATION_CS__OWNED_ACCUMULATORS:
+				getOwnedAccumulators().clear();
+				getOwnedAccumulators().addAll((Collection<? extends ParameterCS>)newValue);
 				return;
-			case OCLstdlibCSPackage.LIB_ITERATION_CS__INVALIDATING:
-				setInvalidating((Boolean)newValue);
+			case OCLstdlibCSPackage.LIB_ITERATION_CS__IS_INVALIDATING:
+				setIsInvalidating((Boolean)newValue);
 				return;
-			case OCLstdlibCSPackage.LIB_ITERATION_CS__VALIDATING:
-				setValidating((Boolean)newValue);
+			case OCLstdlibCSPackage.LIB_ITERATION_CS__IS_VALIDATING:
+				setIsValidating((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -341,17 +343,17 @@ public class LibIterationCSImpl
 			case OCLstdlibCSPackage.LIB_ITERATION_CS__IMPLEMENTATION:
 				setImplementation((JavaClassCS)null);
 				return;
-			case OCLstdlibCSPackage.LIB_ITERATION_CS__OWNED_ITERATOR:
-				getOwnedIterator().clear();
+			case OCLstdlibCSPackage.LIB_ITERATION_CS__OWNED_ITERATORS:
+				getOwnedIterators().clear();
 				return;
-			case OCLstdlibCSPackage.LIB_ITERATION_CS__OWNED_ACCUMULATOR:
-				getOwnedAccumulator().clear();
+			case OCLstdlibCSPackage.LIB_ITERATION_CS__OWNED_ACCUMULATORS:
+				getOwnedAccumulators().clear();
 				return;
-			case OCLstdlibCSPackage.LIB_ITERATION_CS__INVALIDATING:
-				setInvalidating(INVALIDATING_EDEFAULT);
+			case OCLstdlibCSPackage.LIB_ITERATION_CS__IS_INVALIDATING:
+				setIsInvalidating(IS_INVALIDATING_EDEFAULT);
 				return;
-			case OCLstdlibCSPackage.LIB_ITERATION_CS__VALIDATING:
-				setValidating(VALIDATING_EDEFAULT);
+			case OCLstdlibCSPackage.LIB_ITERATION_CS__IS_VALIDATING:
+				setIsValidating(IS_VALIDATING_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -368,14 +370,14 @@ public class LibIterationCSImpl
 		{
 			case OCLstdlibCSPackage.LIB_ITERATION_CS__IMPLEMENTATION:
 				return implementation != null;
-			case OCLstdlibCSPackage.LIB_ITERATION_CS__OWNED_ITERATOR:
-				return ownedIterator != null && !ownedIterator.isEmpty();
-			case OCLstdlibCSPackage.LIB_ITERATION_CS__OWNED_ACCUMULATOR:
-				return ownedAccumulator != null && !ownedAccumulator.isEmpty();
-			case OCLstdlibCSPackage.LIB_ITERATION_CS__INVALIDATING:
-				return invalidating != INVALIDATING_EDEFAULT;
-			case OCLstdlibCSPackage.LIB_ITERATION_CS__VALIDATING:
-				return validating != VALIDATING_EDEFAULT;
+			case OCLstdlibCSPackage.LIB_ITERATION_CS__OWNED_ITERATORS:
+				return ownedIterators != null && !ownedIterators.isEmpty();
+			case OCLstdlibCSPackage.LIB_ITERATION_CS__OWNED_ACCUMULATORS:
+				return ownedAccumulators != null && !ownedAccumulators.isEmpty();
+			case OCLstdlibCSPackage.LIB_ITERATION_CS__IS_INVALIDATING:
+				return isInvalidating != IS_INVALIDATING_EDEFAULT;
+			case OCLstdlibCSPackage.LIB_ITERATION_CS__IS_VALIDATING:
+				return isValidating != IS_VALIDATING_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

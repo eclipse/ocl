@@ -95,7 +95,7 @@ public class OCLstdlibCSPreOrderVisitor extends AbstractOCLstdlibCSPreOrderVisit
 					precedence = null;
 				}
 				pivotElement.setPrecedence(precedence);
-				pivotElement.setIsStatic(csElement.isStatic());
+				pivotElement.setIsStatic(csElement.isIsStatic());
 				JavaClassCS implementation = csElement.getImplementation();
 				if ((implementation != null) && !implementation.eIsProxy()) {
 					pivotElement.setImplementationClass(implementation.getName());
@@ -115,7 +115,7 @@ public class OCLstdlibCSPreOrderVisitor extends AbstractOCLstdlibCSPreOrderVisit
 		public BasicContinuation<?> execute() {
 			Property pivotElement = PivotUtil.getPivot(Property.class, csElement);
 			if (pivotElement != null) {
-				pivotElement.setIsStatic(csElement.isStatic());
+				pivotElement.setIsStatic(csElement.isIsStatic());
 				JavaClassCS implementation = csElement.getImplementation();
 				if ((implementation != null) && !implementation.eIsProxy()) {
 					pivotElement.setImplementationClass(implementation.getName());
@@ -135,7 +135,7 @@ public class OCLstdlibCSPreOrderVisitor extends AbstractOCLstdlibCSPreOrderVisit
 		public BasicContinuation<?> execute() {
 			Library pivotElement = PivotUtil.getPivot(Library.class, csElement);
 			if (pivotElement != null) {
-				context.refreshPivotList(Precedence.class, pivotElement.getOwnedPrecedence(), csElement.getOwnedPrecedence());
+				context.refreshPivotList(Precedence.class, pivotElement.getOwnedPrecedence(), csElement.getOwnedPrecedences());
 			}
 			return null;
 		}

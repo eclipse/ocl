@@ -879,7 +879,7 @@ ruleLibClassCS returns [EObject current=null]
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getLibClassCSAccess().getMetaTypeNameMetaTypeNameCrossReference_3_1_0()); 
+	        newCompositeNode(grammarAccess.getLibClassCSAccess().getMetaclassNameMetaclassNameCSCrossReference_3_1_0()); 
 	    }
 		ruleAnyName		{ 
 	        afterParserOrEnumRuleCall();
@@ -1421,16 +1421,16 @@ ruleLibIterationCS returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getLibIterationCSAccess().getOwnedIteratorIteratorCSParserRuleCall_4_0()); 
+	        newCompositeNode(grammarAccess.getLibIterationCSAccess().getOwnedIteratorsIteratorCSParserRuleCall_4_0()); 
 	    }
-		lv_ownedIterator_4_0=ruleIteratorCS		{
+		lv_ownedIterators_4_0=ruleIteratorCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getLibIterationCSRule());
 	        }
        		add(
        			$current, 
-       			"ownedIterator",
-        		lv_ownedIterator_4_0, 
+       			"ownedIterators",
+        		lv_ownedIterators_4_0, 
         		"IteratorCS");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -1443,16 +1443,16 @@ ruleLibIterationCS returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getLibIterationCSAccess().getOwnedIteratorIteratorCSParserRuleCall_5_1_0()); 
+	        newCompositeNode(grammarAccess.getLibIterationCSAccess().getOwnedIteratorsIteratorCSParserRuleCall_5_1_0()); 
 	    }
-		lv_ownedIterator_6_0=ruleIteratorCS		{
+		lv_ownedIterators_6_0=ruleIteratorCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getLibIterationCSRule());
 	        }
        		add(
        			$current, 
-       			"ownedIterator",
-        		lv_ownedIterator_6_0, 
+       			"ownedIterators",
+        		lv_ownedIterators_6_0, 
         		"IteratorCS");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -1465,16 +1465,16 @@ ruleLibIterationCS returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getLibIterationCSAccess().getOwnedAccumulatorAccumulatorCSParserRuleCall_6_1_0()); 
+	        newCompositeNode(grammarAccess.getLibIterationCSAccess().getOwnedAccumulatorsAccumulatorCSParserRuleCall_6_1_0()); 
 	    }
-		lv_ownedAccumulator_8_0=ruleAccumulatorCS		{
+		lv_ownedAccumulators_8_0=ruleAccumulatorCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getLibIterationCSRule());
 	        }
        		add(
        			$current, 
-       			"ownedAccumulator",
-        		lv_ownedAccumulator_8_0, 
+       			"ownedAccumulators",
+        		lv_ownedAccumulators_8_0, 
         		"AccumulatorCS");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -1487,16 +1487,16 @@ ruleLibIterationCS returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getLibIterationCSAccess().getOwnedAccumulatorAccumulatorCSParserRuleCall_6_2_1_0()); 
+	        newCompositeNode(grammarAccess.getLibIterationCSAccess().getOwnedAccumulatorsAccumulatorCSParserRuleCall_6_2_1_0()); 
 	    }
-		lv_ownedAccumulator_10_0=ruleAccumulatorCS		{
+		lv_ownedAccumulators_10_0=ruleAccumulatorCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getLibIterationCSRule());
 	        }
        		add(
        			$current, 
-       			"ownedAccumulator",
-        		lv_ownedAccumulator_10_0, 
+       			"ownedAccumulators",
+        		lv_ownedAccumulators_10_0, 
         		"AccumulatorCS");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -1574,31 +1574,31 @@ ruleLibIterationCS returns [EObject current=null]
 )
 )(
 (
-		lv_invalidating_18_0=	'invalidating' 
+		lv_isInvalidating_18_0=	'invalidating' 
     {
-        newLeafNode(lv_invalidating_18_0, grammarAccess.getLibIterationCSAccess().getInvalidatingInvalidatingKeyword_11_0());
+        newLeafNode(lv_isInvalidating_18_0, grammarAccess.getLibIterationCSAccess().getIsInvalidatingInvalidatingKeyword_11_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getLibIterationCSRule());
 	        }
-       		setWithLastConsumed($current, "invalidating", true, "invalidating");
+       		setWithLastConsumed($current, "isInvalidating", true, "invalidating");
 	    }
 
 )
 )?(
 (
-		lv_validating_19_0=	'validating' 
+		lv_isValidating_19_0=	'validating' 
     {
-        newLeafNode(lv_validating_19_0, grammarAccess.getLibIterationCSAccess().getValidatingValidatingKeyword_12_0());
+        newLeafNode(lv_isValidating_19_0, grammarAccess.getLibIterationCSAccess().getIsValidatingValidatingKeyword_12_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getLibIterationCSRule());
 	        }
-       		setWithLastConsumed($current, "validating", true, "validating");
+       		setWithLastConsumed($current, "isValidating", true, "validating");
 	    }
 
 )
@@ -2045,16 +2045,16 @@ ruleLibOperationCS returns [EObject current=null]
     @after { leaveRule(); }:
 ((
 (
-		lv_static_0_0=	'static' 
+		lv_isStatic_0_0=	'static' 
     {
-        newLeafNode(lv_static_0_0, grammarAccess.getLibOperationCSAccess().getStaticStaticKeyword_0_0());
+        newLeafNode(lv_isStatic_0_0, grammarAccess.getLibOperationCSAccess().getIsStaticStaticKeyword_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getLibOperationCSRule());
 	        }
-       		setWithLastConsumed($current, "static", true, "static");
+       		setWithLastConsumed($current, "isStatic", true, "static");
 	    }
 
 )
@@ -2170,31 +2170,31 @@ ruleLibOperationCS returns [EObject current=null]
 )
 )(
 (
-		lv_validating_11_0=	'validating' 
+		lv_isValidating_11_0=	'validating' 
     {
-        newLeafNode(lv_validating_11_0, grammarAccess.getLibOperationCSAccess().getValidatingValidatingKeyword_9_0());
+        newLeafNode(lv_isValidating_11_0, grammarAccess.getLibOperationCSAccess().getIsValidatingValidatingKeyword_9_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getLibOperationCSRule());
 	        }
-       		setWithLastConsumed($current, "validating", true, "validating");
+       		setWithLastConsumed($current, "isValidating", true, "validating");
 	    }
 
 )
 )?(
 (
-		lv_invalidating_12_0=	'invalidating' 
+		lv_isInvalidating_12_0=	'invalidating' 
     {
-        newLeafNode(lv_invalidating_12_0, grammarAccess.getLibOperationCSAccess().getInvalidatingInvalidatingKeyword_10_0());
+        newLeafNode(lv_isInvalidating_12_0, grammarAccess.getLibOperationCSAccess().getIsInvalidatingInvalidatingKeyword_10_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getLibOperationCSRule());
 	        }
-       		setWithLastConsumed($current, "invalidating", true, "invalidating");
+       		setWithLastConsumed($current, "isInvalidating", true, "invalidating");
 	    }
 
 )
@@ -2472,16 +2472,16 @@ ruleLibPackageCS returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getLibPackageCSAccess().getOwnedPrecedencePrecedenceCSParserRuleCall_4_1_1_0()); 
+	        newCompositeNode(grammarAccess.getLibPackageCSAccess().getOwnedPrecedencesPrecedenceCSParserRuleCall_4_1_1_0()); 
 	    }
-		lv_ownedPrecedence_9_0=rulePrecedenceCS		{
+		lv_ownedPrecedences_9_0=rulePrecedenceCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getLibPackageCSRule());
 	        }
        		add(
        			$current, 
-       			"ownedPrecedence",
-        		lv_ownedPrecedence_9_0, 
+       			"ownedPrecedences",
+        		lv_ownedPrecedences_9_0, 
         		"PrecedenceCS");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2768,16 +2768,16 @@ ruleLibPropertyCS returns [EObject current=null]
     @after { leaveRule(); }:
 ((
 (
-		lv_static_0_0=	'static' 
+		lv_isStatic_0_0=	'static' 
     {
-        newLeafNode(lv_static_0_0, grammarAccess.getLibPropertyCSAccess().getStaticStaticKeyword_0_0());
+        newLeafNode(lv_isStatic_0_0, grammarAccess.getLibPropertyCSAccess().getIsStaticStaticKeyword_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getLibPropertyCSRule());
 	        }
-       		setWithLastConsumed($current, "static", true, "static");
+       		setWithLastConsumed($current, "isStatic", true, "static");
 	    }
 
 )
@@ -3116,16 +3116,16 @@ rulePrecedenceCS returns [EObject current=null]
 
     |(
 (
-		lv_rightAssociative_1_0=	'right' 
+		lv_isRightAssociative_1_0=	'right' 
     {
-        newLeafNode(lv_rightAssociative_1_0, grammarAccess.getPrecedenceCSAccess().getRightAssociativeRightKeyword_0_1_0());
+        newLeafNode(lv_isRightAssociative_1_0, grammarAccess.getPrecedenceCSAccess().getIsRightAssociativeRightKeyword_0_1_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getPrecedenceCSRule());
 	        }
-       		setWithLastConsumed($current, "rightAssociative", true, "right");
+       		setWithLastConsumed($current, "isRightAssociative", true, "right");
 	    }
 
 )

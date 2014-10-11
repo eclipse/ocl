@@ -105,13 +105,13 @@ public interface OCLstdlibCSFactory
 	LibRootPackageCS createLibRootPackageCS();
 
 	/**
-	 * Returns a new object of class '<em>Meta Type Name</em>'.
+	 * Returns a new object of class '<em>Metaclass Name CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Meta Type Name</em>'.
+	 * @return a new object of class '<em>Metaclass Name CS</em>'.
 	 * @generated
 	 */
-	MetaTypeName createMetaTypeName();
+	MetaclassNameCS createMetaclassNameCS();
 
 	/**
 	 * Returns a new object of class '<em>Precedence CS</em>'.

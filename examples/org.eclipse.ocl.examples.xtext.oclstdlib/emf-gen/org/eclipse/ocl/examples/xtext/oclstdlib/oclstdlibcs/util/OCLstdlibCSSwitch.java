@@ -45,7 +45,7 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPackageCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPropertyCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibRootPackageCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaTypeName;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaclassNameCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.PrecedenceCS;
 
@@ -254,13 +254,13 @@ public class OCLstdlibCSSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case OCLstdlibCSPackage.META_TYPE_NAME:
+			case OCLstdlibCSPackage.METACLASS_NAME_CS:
 			{
-				MetaTypeName metaTypeName = (MetaTypeName)theEObject;
-				T result = caseMetaTypeName(metaTypeName);
-				if (result == null) result = caseElementCS(metaTypeName);
-				if (result == null) result = caseNameable(metaTypeName);
-				if (result == null) result = caseVisitableCS(metaTypeName);
+				MetaclassNameCS metaclassNameCS = (MetaclassNameCS)theEObject;
+				T result = caseMetaclassNameCS(metaclassNameCS);
+				if (result == null) result = caseElementCS(metaclassNameCS);
+				if (result == null) result = caseNameable(metaclassNameCS);
+				if (result == null) result = caseVisitableCS(metaclassNameCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -406,17 +406,18 @@ public class OCLstdlibCSSwitch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Meta Type Name</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Metaclass Name CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Meta Type Name</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Metaclass Name CS</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMetaTypeName(MetaTypeName object) {
+	public T caseMetaclassNameCS(MetaclassNameCS object)
+	{
 		return null;
 	}
 

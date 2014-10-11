@@ -34,7 +34,7 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.util.OCLstdlibCSVisi
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.LibPackageCSImpl#getOwnedPrecedence <em>Owned Precedence</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.LibPackageCSImpl#getOwnedPrecedences <em>Owned Precedences</em>}</li>
  * </ul>
  * </p>
  *
@@ -43,15 +43,14 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.util.OCLstdlibCSVisi
 public class LibPackageCSImpl extends PackageCSImpl implements LibPackageCS
 {
 	/**
-	 * The cached value of the '{@link #getOwnedPrecedence() <em>Owned Precedence</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedPrecedences() <em>Owned Precedences</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedPrecedence()
+	 * @see #getOwnedPrecedences()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<PrecedenceCS> ownedPrecedence;
-
+	protected EList<PrecedenceCS> ownedPrecedences;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,13 +77,13 @@ public class LibPackageCSImpl extends PackageCSImpl implements LibPackageCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<PrecedenceCS> getOwnedPrecedence()
+	public EList<PrecedenceCS> getOwnedPrecedences()
 	{
-		if (ownedPrecedence == null)
+		if (ownedPrecedences == null)
 		{
-			ownedPrecedence = new EObjectContainmentEList<PrecedenceCS>(PrecedenceCS.class, this, OCLstdlibCSPackage.LIB_PACKAGE_CS__OWNED_PRECEDENCE);
+			ownedPrecedences = new EObjectContainmentEList<PrecedenceCS>(PrecedenceCS.class, this, OCLstdlibCSPackage.LIB_PACKAGE_CS__OWNED_PRECEDENCES);
 		}
-		return ownedPrecedence;
+		return ownedPrecedences;
 	}
 
 	/**
@@ -97,8 +96,8 @@ public class LibPackageCSImpl extends PackageCSImpl implements LibPackageCS
 	{
 		switch (featureID)
 		{
-			case OCLstdlibCSPackage.LIB_PACKAGE_CS__OWNED_PRECEDENCE:
-				return ((InternalEList<?>)getOwnedPrecedence()).basicRemove(otherEnd, msgs);
+			case OCLstdlibCSPackage.LIB_PACKAGE_CS__OWNED_PRECEDENCES:
+				return ((InternalEList<?>)getOwnedPrecedences()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -113,8 +112,8 @@ public class LibPackageCSImpl extends PackageCSImpl implements LibPackageCS
 	{
 		switch (featureID)
 		{
-			case OCLstdlibCSPackage.LIB_PACKAGE_CS__OWNED_PRECEDENCE:
-				return getOwnedPrecedence();
+			case OCLstdlibCSPackage.LIB_PACKAGE_CS__OWNED_PRECEDENCES:
+				return getOwnedPrecedences();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -130,9 +129,9 @@ public class LibPackageCSImpl extends PackageCSImpl implements LibPackageCS
 	{
 		switch (featureID)
 		{
-			case OCLstdlibCSPackage.LIB_PACKAGE_CS__OWNED_PRECEDENCE:
-				getOwnedPrecedence().clear();
-				getOwnedPrecedence().addAll((Collection<? extends PrecedenceCS>)newValue);
+			case OCLstdlibCSPackage.LIB_PACKAGE_CS__OWNED_PRECEDENCES:
+				getOwnedPrecedences().clear();
+				getOwnedPrecedences().addAll((Collection<? extends PrecedenceCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -148,8 +147,8 @@ public class LibPackageCSImpl extends PackageCSImpl implements LibPackageCS
 	{
 		switch (featureID)
 		{
-			case OCLstdlibCSPackage.LIB_PACKAGE_CS__OWNED_PRECEDENCE:
-				getOwnedPrecedence().clear();
+			case OCLstdlibCSPackage.LIB_PACKAGE_CS__OWNED_PRECEDENCES:
+				getOwnedPrecedences().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -165,8 +164,8 @@ public class LibPackageCSImpl extends PackageCSImpl implements LibPackageCS
 	{
 		switch (featureID)
 		{
-			case OCLstdlibCSPackage.LIB_PACKAGE_CS__OWNED_PRECEDENCE:
-				return ownedPrecedence != null && !ownedPrecedence.isEmpty();
+			case OCLstdlibCSPackage.LIB_PACKAGE_CS__OWNED_PRECEDENCES:
+				return ownedPrecedences != null && !ownedPrecedences.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

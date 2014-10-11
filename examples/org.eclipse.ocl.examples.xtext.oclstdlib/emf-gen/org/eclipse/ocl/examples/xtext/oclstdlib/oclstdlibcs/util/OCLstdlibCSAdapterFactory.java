@@ -46,7 +46,7 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPackageCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPropertyCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibRootPackageCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaTypeName;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaclassNameCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.PrecedenceCS;
 
@@ -157,9 +157,9 @@ public class OCLstdlibCSAdapterFactory
 				return createLibRootPackageCSAdapter();
 			}
 			@Override
-			public Adapter caseMetaTypeName(MetaTypeName object)
+			public Adapter caseMetaclassNameCS(MetaclassNameCS object)
 			{
-				return createMetaTypeNameAdapter();
+				return createMetaclassNameCSAdapter();
 			}
 			@Override
 			public Adapter casePrecedenceCS(PrecedenceCS object)
@@ -412,16 +412,17 @@ public class OCLstdlibCSAdapterFactory
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaTypeName <em>Meta Type Name</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaclassNameCS <em>Metaclass Name CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaTypeName
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaclassNameCS
 	 * @generated
 	 */
-	public Adapter createMetaTypeNameAdapter() {
+	public Adapter createMetaclassNameCSAdapter()
+	{
 		return null;
 	}
 

@@ -94,7 +94,7 @@ AnnotationElementCS returns base::AnnotationElementCS:
 LibClassCS returns LibClassCS:
 	'type' name=AnyName
 	(ownedSignature=TemplateSignatureCS)?
-	(':' metaTypeName=[MetaTypeName|AnyName])?
+	(':' metaclassName=[MetaclassNameCS|AnyName])?
 	('conformsTo' ownedSuperTypes+=TypedRefCS (',' ownedSuperTypes+=TypedRefCS)*)?
 	'{' (ownedOperations+=OperationCS
 	   | ownedProperties+=LibPropertyCS
@@ -123,13 +123,13 @@ InvCS returns LibConstraintCS:
 LibIterationCS returns LibIterationCS:
 	'iteration' name=Name
 	(ownedSignature=TemplateSignatureCS)?
-	'(' ownedIterator+=IteratorCS (',' ownedIterator+=IteratorCS)*
-	(';' ownedAccumulator+=AccumulatorCS (',' ownedAccumulator+=AccumulatorCS)*)?
+	'(' ownedIterators+=IteratorCS (',' ownedIterators+=IteratorCS)*
+	(';' ownedAccumulators+=AccumulatorCS (',' ownedAccumulators+=AccumulatorCS)*)?
 	('|' ownedParameters+=ParameterCS (',' ownedParameters+=ParameterCS)*)?
 	')'
 	':' ownedType=TypedMultiplicityRefCS
-	(invalidating?='invalidating')?
-	(validating?='validating')?
+	(isInvalidating?='invalidating')?
+	(isValidating?='validating')?
 	('=>' implementation=[JavaClassCS|SINGLE_QUOTED_STRING])?
 	(('{' (ownedAnnotations+=AnnotationElementCS
 	     | ownedPreconditions+=PostCS
@@ -161,12 +161,12 @@ OperationCS returns base::OperationCS:
 ;
 
 LibOperationCS returns LibOperationCS:
-	(static?='static')? 'operation' name=Name
+	(isStatic?='static')? 'operation' name=Name
 	(ownedSignature=TemplateSignatureCS)?
 	'(' (ownedParameters+=ParameterCS (',' ownedParameters+=ParameterCS)*)? ')'
 	':' ownedType=TypedMultiplicityRefCS
-	(validating?='validating')?
-	(invalidating?='invalidating')?
+	(isValidating?='validating')?
+	(isInvalidating?='invalidating')?
 	('precedence' '=' precedence=[pivot::Precedence|Name])?
 	('=>' implementation=[JavaClassCS|SINGLE_QUOTED_STRING])?
 	(('{' (ownedAnnotations+=AnnotationElementCS
@@ -181,7 +181,7 @@ LibPackageCS returns LibPackageCS:
     'library' name=Name
 	(':' nsPrefix=Identifier '=' nsURI=URI)?
 	'{' (ownedPackages+=PackageCS
-		| ('precedence' (ownedPrecedence+=PrecedenceCS)+ ';')
+		| ('precedence' (ownedPrecedences+=PrecedenceCS)+ ';')
 	    | ownedClasses+=ClassCS
 		| ownedAnnotations+=AnnotationElementCS)*
 	'}'
@@ -202,7 +202,7 @@ ParameterCS returns base::ParameterCS:
 ;
 
 LibPropertyCS returns LibPropertyCS:
-	(static?='static')? 'property' name=Name
+	(isStatic?='static')? 'property' name=Name
 	':' ownedType=TypedMultiplicityRefCS
 	('=>' implementation=[JavaClassCS|SINGLE_QUOTED_STRING])?
 	(	('{' (ownedAnnotations+=AnnotationElementCS)* '}')
@@ -219,7 +219,7 @@ PreCS returns LibConstraintCS:
 ;
 
 PrecedenceCS returns PrecedenceCS:
-	('left'|rightAssociative?='right') ':' name=Name
+	('left'|isRightAssociative?='right') ':' name=Name
 ;	
 
 SpecificationCS returns essentialocl::ExpSpecificationCS:
