@@ -93,7 +93,8 @@ public class ErrorTests extends XtextTestCase
 			"inv test:\n" +
 			"	let classifiers:Set(EClassifier) = self.eClassifiers in let filtered";
 		Bag<String> bag = new BagImpl<String>();
-		bag.add("mismatched input '<EOF>' expecting '='");
+		bag.add("mismatched input 'inv' expecting '('");
+		bag.add("mismatched input '<EOF>' expecting 'endpackage'");
 		doBadLoadFromString("string.ocl", testFile, bag);
 	}
 }

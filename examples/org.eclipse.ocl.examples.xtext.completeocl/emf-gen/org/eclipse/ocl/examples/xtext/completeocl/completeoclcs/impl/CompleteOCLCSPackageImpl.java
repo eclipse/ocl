@@ -698,8 +698,8 @@ public class CompleteOCLCSPackageImpl
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		PivotPackage thePivotPackage = (PivotPackage)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI);
 		BaseCSPackage theBaseCSPackage = (BaseCSPackage)EPackage.Registry.INSTANCE.getEPackage(BaseCSPackage.eNS_URI);
+		PivotPackage thePivotPackage = (PivotPackage)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI);
 		EssentialOCLCSPackage theEssentialOCLCSPackage = (EssentialOCLCSPackage)EPackage.Registry.INSTANCE.getEPackage(EssentialOCLCSPackage.eNS_URI);
 
 		// Create type parameters
@@ -708,16 +708,19 @@ public class CompleteOCLCSPackageImpl
 
 		// Add supertypes to classes
 		classifierContextDeclCSEClass.getESuperTypes().add(this.getContextDeclCS());
+		classifierContextDeclCSEClass.getESuperTypes().add(theBaseCSPackage.getTemplateableElementCS());
 		completeOCLDocumentCSEClass.getESuperTypes().add(theBaseCSPackage.getNamespaceCS());
 		completeOCLDocumentCSEClass.getESuperTypes().add(theBaseCSPackage.getRootCS());
 		contextDeclCSEClass.getESuperTypes().add(this.getPathNameDeclCS());
 		defCSEClass.getESuperTypes().add(theBaseCSPackage.getTypedElementCS());
 		defOperationCSEClass.getESuperTypes().add(this.getDefCS());
+		defOperationCSEClass.getESuperTypes().add(theBaseCSPackage.getTemplateableElementCS());
 		defPropertyCSEClass.getESuperTypes().add(this.getDefCS());
 		featureContextDeclCSEClass.getESuperTypes().add(this.getContextDeclCS());
 		includeCSEClass.getESuperTypes().add(theBaseCSPackage.getNamespaceCS());
 		oclMessageArgCSEClass.getESuperTypes().add(theEssentialOCLCSPackage.getExpCS());
 		operationContextDeclCSEClass.getESuperTypes().add(this.getFeatureContextDeclCS());
+		operationContextDeclCSEClass.getESuperTypes().add(theBaseCSPackage.getTemplateableElementCS());
 		packageDeclarationCSEClass.getESuperTypes().add(this.getPathNameDeclCS());
 		pathNameDeclCSEClass.getESuperTypes().add(theBaseCSPackage.getModelElementCS());
 		pathNameDeclCSEClass.getESuperTypes().add(thePivotPackage.getMorePivotable());

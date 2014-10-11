@@ -24,8 +24,11 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ParameterCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS;
@@ -41,6 +44,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.OperationContextDeclCSImpl#getOwnedSignature <em>Owned Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.OperationContextDeclCSImpl#getReferredOperation <em>Referred Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.OperationContextDeclCSImpl#getOwnedParameters <em>Owned Parameters</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.OperationContextDeclCSImpl#getOwnedResult <em>Owned Result</em>}</li>
@@ -55,6 +59,16 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS;
 public class OperationContextDeclCSImpl
 		extends FeatureContextDeclCSImpl
 		implements OperationContextDeclCS {
+
+	/**
+	 * The cached value of the '{@link #getOwnedSignature() <em>Owned Signature</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedSignature()
+	 * @generated
+	 * @ordered
+	 */
+	protected TemplateSignatureCS ownedSignature;
 
 	/**
 	 * The cached value of the '{@link #getOwnedParameters() <em>Owned Parameters</em>}' containment reference list.
@@ -123,6 +137,54 @@ public class OperationContextDeclCSImpl
 	@Override
 	protected EClass eStaticClass() {
 		return CompleteOCLCSPackage.Literals.OPERATION_CONTEXT_DECL_CS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TemplateSignatureCS getOwnedSignature()
+	{
+		return ownedSignature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwnedSignature(TemplateSignatureCS newOwnedSignature, NotificationChain msgs)
+	{
+		TemplateSignatureCS oldOwnedSignature = ownedSignature;
+		ownedSignature = newOwnedSignature;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_SIGNATURE, oldOwnedSignature, newOwnedSignature);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnedSignature(TemplateSignatureCS newOwnedSignature)
+	{
+		if (newOwnedSignature != ownedSignature)
+		{
+			NotificationChain msgs = null;
+			if (ownedSignature != null)
+				msgs = ((InternalEObject)ownedSignature).eInverseRemove(this, BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNING_ELEMENT, TemplateSignatureCS.class, msgs);
+			if (newOwnedSignature != null)
+				msgs = ((InternalEObject)newOwnedSignature).eInverseAdd(this, BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNING_ELEMENT, TemplateSignatureCS.class, msgs);
+			msgs = basicSetOwnedSignature(newOwnedSignature, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_SIGNATURE, newOwnedSignature, newOwnedSignature));
 	}
 
 	/**
@@ -236,10 +298,30 @@ public class OperationContextDeclCSImpl
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_SIGNATURE:
+				if (ownedSignature != null)
+					msgs = ((InternalEObject)ownedSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_SIGNATURE, null, msgs);
+				return basicSetOwnedSignature((TemplateSignatureCS)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_SIGNATURE:
+				return basicSetOwnedSignature(null, msgs);
 			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_PARAMETERS:
 				return ((InternalEList<?>)getOwnedParameters()).basicRemove(otherEnd, msgs);
 			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_RESULT:
@@ -263,6 +345,8 @@ public class OperationContextDeclCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_SIGNATURE:
+				return getOwnedSignature();
 			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__REFERRED_OPERATION:
 				return getReferredOperation();
 			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_PARAMETERS:
@@ -289,6 +373,9 @@ public class OperationContextDeclCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_SIGNATURE:
+				setOwnedSignature((TemplateSignatureCS)newValue);
+				return;
 			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_PARAMETERS:
 				getOwnedParameters().clear();
 				getOwnedParameters().addAll((Collection<? extends ParameterCS>)newValue);
@@ -321,6 +408,9 @@ public class OperationContextDeclCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_SIGNATURE:
+				setOwnedSignature((TemplateSignatureCS)null);
+				return;
 			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_PARAMETERS:
 				getOwnedParameters().clear();
 				return;
@@ -349,6 +439,8 @@ public class OperationContextDeclCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_SIGNATURE:
+				return ownedSignature != null;
 			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__REFERRED_OPERATION:
 				return getReferredOperation() != null;
 			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_PARAMETERS:
@@ -363,6 +455,44 @@ public class OperationContextDeclCSImpl
 				return ownedBodies != null && !ownedBodies.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
+	{
+		if (baseClass == TemplateableElementCS.class)
+		{
+			switch (derivedFeatureID)
+			{
+				case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_SIGNATURE: return BaseCSPackage.TEMPLATEABLE_ELEMENT_CS__OWNED_SIGNATURE;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
+	{
+		if (baseClass == TemplateableElementCS.class)
+		{
+			switch (baseFeatureID)
+			{
+				case BaseCSPackage.TEMPLATEABLE_ELEMENT_CS__OWNED_SIGNATURE: return CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS__OWNED_SIGNATURE;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**

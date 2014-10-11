@@ -24,8 +24,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS;
@@ -40,6 +43,7 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.util.CompleteOCL
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.ClassifierContextDeclCSImpl#getOwnedSignature <em>Owned Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.ClassifierContextDeclCSImpl#getSelfName <em>Self Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.ClassifierContextDeclCSImpl#getReferredClassifier <em>Referred Classifier</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.ClassifierContextDeclCSImpl#getOwnedInvariants <em>Owned Invariants</em>}</li>
@@ -52,6 +56,16 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.util.CompleteOCL
 public class ClassifierContextDeclCSImpl
 		extends ContextDeclCSImpl
 		implements ClassifierContextDeclCS {
+
+	/**
+	 * The cached value of the '{@link #getOwnedSignature() <em>Owned Signature</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedSignature()
+	 * @generated
+	 * @ordered
+	 */
+	protected TemplateSignatureCS ownedSignature;
 
 	/**
 	 * The default value of the '{@link #getSelfName() <em>Self Name</em>}' attribute.
@@ -117,6 +131,54 @@ public class ClassifierContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public TemplateSignatureCS getOwnedSignature()
+	{
+		return ownedSignature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwnedSignature(TemplateSignatureCS newOwnedSignature, NotificationChain msgs)
+	{
+		TemplateSignatureCS oldOwnedSignature = ownedSignature;
+		ownedSignature = newOwnedSignature;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_SIGNATURE, oldOwnedSignature, newOwnedSignature);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnedSignature(TemplateSignatureCS newOwnedSignature)
+	{
+		if (newOwnedSignature != ownedSignature)
+		{
+			NotificationChain msgs = null;
+			if (ownedSignature != null)
+				msgs = ((InternalEObject)ownedSignature).eInverseRemove(this, BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNING_ELEMENT, TemplateSignatureCS.class, msgs);
+			if (newOwnedSignature != null)
+				msgs = ((InternalEObject)newOwnedSignature).eInverseAdd(this, BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNING_ELEMENT, TemplateSignatureCS.class, msgs);
+			msgs = basicSetOwnedSignature(newOwnedSignature, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_SIGNATURE, newOwnedSignature, newOwnedSignature));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getSelfName() {
 		return selfName;
 	}
@@ -142,6 +204,8 @@ public class ClassifierContextDeclCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_SIGNATURE:
+				return getOwnedSignature();
 			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME:
 				return getSelfName();
 			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__REFERRED_CLASSIFIER:
@@ -164,6 +228,9 @@ public class ClassifierContextDeclCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_SIGNATURE:
+				setOwnedSignature((TemplateSignatureCS)newValue);
+				return;
 			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME:
 				setSelfName((String)newValue);
 				return;
@@ -188,6 +255,9 @@ public class ClassifierContextDeclCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_SIGNATURE:
+				setOwnedSignature((TemplateSignatureCS)null);
+				return;
 			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME:
 				setSelfName(SELF_NAME_EDEFAULT);
 				return;
@@ -210,6 +280,8 @@ public class ClassifierContextDeclCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_SIGNATURE:
+				return ownedSignature != null;
 			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME:
 				return SELF_NAME_EDEFAULT == null ? selfName != null : !SELF_NAME_EDEFAULT.equals(selfName);
 			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__REFERRED_CLASSIFIER:
@@ -220,6 +292,44 @@ public class ClassifierContextDeclCSImpl
 				return ownedDefinitions != null && !ownedDefinitions.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
+	{
+		if (baseClass == TemplateableElementCS.class)
+		{
+			switch (derivedFeatureID)
+			{
+				case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_SIGNATURE: return BaseCSPackage.TEMPLATEABLE_ELEMENT_CS__OWNED_SIGNATURE;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
+	{
+		if (baseClass == TemplateableElementCS.class)
+		{
+			switch (baseFeatureID)
+			{
+				case BaseCSPackage.TEMPLATEABLE_ELEMENT_CS__OWNED_SIGNATURE: return CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_SIGNATURE;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**
@@ -293,6 +403,10 @@ public class ClassifierContextDeclCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_SIGNATURE:
+				if (ownedSignature != null)
+					msgs = ((InternalEObject)ownedSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_SIGNATURE, null, msgs);
+				return basicSetOwnedSignature((TemplateSignatureCS)otherEnd, msgs);
 			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_DEFINITIONS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedDefinitions()).basicAdd(otherEnd, msgs);
 		}
@@ -309,6 +423,8 @@ public class ClassifierContextDeclCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_SIGNATURE:
+				return basicSetOwnedSignature(null, msgs);
 			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_INVARIANTS:
 				return ((InternalEList<?>)getOwnedInvariants()).basicRemove(otherEnd, msgs);
 			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_DEFINITIONS:

@@ -12,6 +12,7 @@ package org.eclipse.ocl.examples.xtext.completeocl.completeoclcs;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,7 +34,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
  * @generated
  */
 public interface ClassifierContextDeclCS
-		extends ContextDeclCS {
+		extends ContextDeclCS, TemplateableElementCS {
 
 	/**
 	 * Returns the value of the '<em><b>Self Name</b></em>' attribute.

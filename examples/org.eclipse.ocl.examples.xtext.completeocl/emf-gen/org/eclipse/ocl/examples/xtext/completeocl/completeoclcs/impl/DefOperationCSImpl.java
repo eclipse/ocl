@@ -12,15 +12,20 @@ package org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
 import org.eclipse.ocl.examples.xtext.base.basecs.ParameterCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefOperationCS;
@@ -33,6 +38,7 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.util.CompleteOCL
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.DefOperationCSImpl#getOwnedSignature <em>Owned Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.DefOperationCSImpl#getOwnedParameters <em>Owned Parameters</em>}</li>
  * </ul>
  * </p>
@@ -43,6 +49,15 @@ public class DefOperationCSImpl
 		extends DefCSImpl
 		implements DefOperationCS {
 
+	/**
+	 * The cached value of the '{@link #getOwnedSignature() <em>Owned Signature</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedSignature()
+	 * @generated
+	 * @ordered
+	 */
+	protected TemplateSignatureCS ownedSignature;
 	/**
 	 * The cached value of the '{@link #getOwnedParameters() <em>Owned Parameters</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -76,6 +91,54 @@ public class DefOperationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public TemplateSignatureCS getOwnedSignature()
+	{
+		return ownedSignature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwnedSignature(TemplateSignatureCS newOwnedSignature, NotificationChain msgs)
+	{
+		TemplateSignatureCS oldOwnedSignature = ownedSignature;
+		ownedSignature = newOwnedSignature;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSPackage.DEF_OPERATION_CS__OWNED_SIGNATURE, oldOwnedSignature, newOwnedSignature);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnedSignature(TemplateSignatureCS newOwnedSignature)
+	{
+		if (newOwnedSignature != ownedSignature)
+		{
+			NotificationChain msgs = null;
+			if (ownedSignature != null)
+				msgs = ((InternalEObject)ownedSignature).eInverseRemove(this, BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNING_ELEMENT, TemplateSignatureCS.class, msgs);
+			if (newOwnedSignature != null)
+				msgs = ((InternalEObject)newOwnedSignature).eInverseAdd(this, BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNING_ELEMENT, TemplateSignatureCS.class, msgs);
+			msgs = basicSetOwnedSignature(newOwnedSignature, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSPackage.DEF_OPERATION_CS__OWNED_SIGNATURE, newOwnedSignature, newOwnedSignature));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<ParameterCS> getOwnedParameters() {
 		if (ownedParameters == null)
 		{
@@ -90,10 +153,30 @@ public class DefOperationCSImpl
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case CompleteOCLCSPackage.DEF_OPERATION_CS__OWNED_SIGNATURE:
+				if (ownedSignature != null)
+					msgs = ((InternalEObject)ownedSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSPackage.DEF_OPERATION_CS__OWNED_SIGNATURE, null, msgs);
+				return basicSetOwnedSignature((TemplateSignatureCS)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case CompleteOCLCSPackage.DEF_OPERATION_CS__OWNED_SIGNATURE:
+				return basicSetOwnedSignature(null, msgs);
 			case CompleteOCLCSPackage.DEF_OPERATION_CS__OWNED_PARAMETERS:
 				return ((InternalEList<?>)getOwnedParameters()).basicRemove(otherEnd, msgs);
 		}
@@ -109,6 +192,8 @@ public class DefOperationCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case CompleteOCLCSPackage.DEF_OPERATION_CS__OWNED_SIGNATURE:
+				return getOwnedSignature();
 			case CompleteOCLCSPackage.DEF_OPERATION_CS__OWNED_PARAMETERS:
 				return getOwnedParameters();
 		}
@@ -125,6 +210,9 @@ public class DefOperationCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case CompleteOCLCSPackage.DEF_OPERATION_CS__OWNED_SIGNATURE:
+				setOwnedSignature((TemplateSignatureCS)newValue);
+				return;
 			case CompleteOCLCSPackage.DEF_OPERATION_CS__OWNED_PARAMETERS:
 				getOwnedParameters().clear();
 				getOwnedParameters().addAll((Collection<? extends ParameterCS>)newValue);
@@ -142,6 +230,9 @@ public class DefOperationCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case CompleteOCLCSPackage.DEF_OPERATION_CS__OWNED_SIGNATURE:
+				setOwnedSignature((TemplateSignatureCS)null);
+				return;
 			case CompleteOCLCSPackage.DEF_OPERATION_CS__OWNED_PARAMETERS:
 				getOwnedParameters().clear();
 				return;
@@ -158,10 +249,50 @@ public class DefOperationCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case CompleteOCLCSPackage.DEF_OPERATION_CS__OWNED_SIGNATURE:
+				return ownedSignature != null;
 			case CompleteOCLCSPackage.DEF_OPERATION_CS__OWNED_PARAMETERS:
 				return ownedParameters != null && !ownedParameters.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
+	{
+		if (baseClass == TemplateableElementCS.class)
+		{
+			switch (derivedFeatureID)
+			{
+				case CompleteOCLCSPackage.DEF_OPERATION_CS__OWNED_SIGNATURE: return BaseCSPackage.TEMPLATEABLE_ELEMENT_CS__OWNED_SIGNATURE;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
+	{
+		if (baseClass == TemplateableElementCS.class)
+		{
+			switch (baseFeatureID)
+			{
+				case BaseCSPackage.TEMPLATEABLE_ELEMENT_CS__OWNED_SIGNATURE: return CompleteOCLCSPackage.DEF_OPERATION_CS__OWNED_SIGNATURE;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**

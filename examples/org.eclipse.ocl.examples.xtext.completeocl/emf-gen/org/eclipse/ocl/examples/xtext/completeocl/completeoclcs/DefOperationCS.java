@@ -12,6 +12,7 @@ package org.eclipse.ocl.examples.xtext.completeocl.completeoclcs;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.examples.xtext.base.basecs.ParameterCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +31,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ParameterCS;
  * @generated
  */
 public interface DefOperationCS
-		extends DefCS {
+		extends DefCS, TemplateableElementCS {
 
 	/**
 	 * Returns the value of the '<em><b>Owned Parameters</b></em>' containment reference list.

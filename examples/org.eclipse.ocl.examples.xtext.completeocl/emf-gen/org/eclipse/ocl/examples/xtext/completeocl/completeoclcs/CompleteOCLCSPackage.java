@@ -319,13 +319,22 @@ public interface CompleteOCLCSPackage
 	int CLASSIFIER_CONTEXT_DECL_CS__OWNED_PATH_NAME = CONTEXT_DECL_CS__OWNED_PATH_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Owned Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASSIFIER_CONTEXT_DECL_CS__OWNED_SIGNATURE = CONTEXT_DECL_CS_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Self Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME = CONTEXT_DECL_CS_FEATURE_COUNT + 0;
+	int CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME = CONTEXT_DECL_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Referred Classifier</b></em>' reference.
@@ -334,7 +343,7 @@ public interface CompleteOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER_CONTEXT_DECL_CS__REFERRED_CLASSIFIER = CONTEXT_DECL_CS_FEATURE_COUNT + 1;
+	int CLASSIFIER_CONTEXT_DECL_CS__REFERRED_CLASSIFIER = CONTEXT_DECL_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
@@ -343,7 +352,7 @@ public interface CompleteOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER_CONTEXT_DECL_CS__OWNED_INVARIANTS = CONTEXT_DECL_CS_FEATURE_COUNT + 2;
+	int CLASSIFIER_CONTEXT_DECL_CS__OWNED_INVARIANTS = CONTEXT_DECL_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Owned Definitions</b></em>' containment reference list.
@@ -352,7 +361,7 @@ public interface CompleteOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER_CONTEXT_DECL_CS__OWNED_DEFINITIONS = CONTEXT_DECL_CS_FEATURE_COUNT + 3;
+	int CLASSIFIER_CONTEXT_DECL_CS__OWNED_DEFINITIONS = CONTEXT_DECL_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Classifier Context Decl CS</em>' class.
@@ -361,7 +370,7 @@ public interface CompleteOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER_CONTEXT_DECL_CS_FEATURE_COUNT = CONTEXT_DECL_CS_FEATURE_COUNT + 4;
+	int CLASSIFIER_CONTEXT_DECL_CS_FEATURE_COUNT = CONTEXT_DECL_CS_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.CompleteOCLDocumentCSImpl <em>Complete OCL Document CS</em>}' class.
@@ -717,13 +726,22 @@ public interface CompleteOCLCSPackage
 	int DEF_OPERATION_CS__STATIC = DEF_CS__STATIC;
 
 	/**
+	 * The feature id for the '<em><b>Owned Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_OPERATION_CS__OWNED_SIGNATURE = DEF_CS_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Owned Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_OPERATION_CS__OWNED_PARAMETERS = DEF_CS_FEATURE_COUNT + 0;
+	int DEF_OPERATION_CS__OWNED_PARAMETERS = DEF_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Def Operation CS</em>' class.
@@ -732,7 +750,7 @@ public interface CompleteOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_OPERATION_CS_FEATURE_COUNT = DEF_CS_FEATURE_COUNT + 1;
+	int DEF_OPERATION_CS_FEATURE_COUNT = DEF_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.DefPropertyCSImpl <em>Def Property CS</em>}' class.
@@ -1198,13 +1216,22 @@ public interface CompleteOCLCSPackage
 	int OPERATION_CONTEXT_DECL_CS__OWNED_TYPE = FEATURE_CONTEXT_DECL_CS__OWNED_TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CONTEXT_DECL_CS__OWNED_SIGNATURE = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Referred Operation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CONTEXT_DECL_CS__REFERRED_OPERATION = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 0;
+	int OPERATION_CONTEXT_DECL_CS__REFERRED_OPERATION = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owned Parameters</b></em>' containment reference list.
@@ -1213,7 +1240,7 @@ public interface CompleteOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CONTEXT_DECL_CS__OWNED_PARAMETERS = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 1;
+	int OPERATION_CONTEXT_DECL_CS__OWNED_PARAMETERS = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Owned Result</b></em>' containment reference.
@@ -1222,7 +1249,7 @@ public interface CompleteOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CONTEXT_DECL_CS__OWNED_RESULT = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 2;
+	int OPERATION_CONTEXT_DECL_CS__OWNED_RESULT = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Owned Preconditions</b></em>' containment reference list.
@@ -1231,7 +1258,7 @@ public interface CompleteOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CONTEXT_DECL_CS__OWNED_PRECONDITIONS = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 3;
+	int OPERATION_CONTEXT_DECL_CS__OWNED_PRECONDITIONS = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Owned Postconditions</b></em>' containment reference list.
@@ -1240,7 +1267,7 @@ public interface CompleteOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CONTEXT_DECL_CS__OWNED_POSTCONDITIONS = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 4;
+	int OPERATION_CONTEXT_DECL_CS__OWNED_POSTCONDITIONS = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Owned Bodies</b></em>' containment reference list.
@@ -1249,7 +1276,7 @@ public interface CompleteOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CONTEXT_DECL_CS__OWNED_BODIES = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 5;
+	int OPERATION_CONTEXT_DECL_CS__OWNED_BODIES = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Operation Context Decl CS</em>' class.
@@ -1258,7 +1285,7 @@ public interface CompleteOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CONTEXT_DECL_CS_FEATURE_COUNT = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 6;
+	int OPERATION_CONTEXT_DECL_CS_FEATURE_COUNT = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.

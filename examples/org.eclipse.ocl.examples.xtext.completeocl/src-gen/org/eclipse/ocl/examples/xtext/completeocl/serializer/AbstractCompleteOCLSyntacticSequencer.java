@@ -20,7 +20,7 @@ public abstract class AbstractCompleteOCLSyntacticSequencer extends AbstractSynt
 	protected CompleteOCLGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_DefOperationCS_UnrestrictedNameParserRuleCall_2_q;
 	protected AbstractElementAlias match_DefPropertyCS_UnrestrictedNameParserRuleCall_2_q;
-	protected AbstractElementAlias match_OperationContextDeclCS_UnrestrictedNameParserRuleCall_7_2_1_q;
+	protected AbstractElementAlias match_OperationContextDeclCS_UnrestrictedNameParserRuleCall_8_2_1_q;
 	protected AbstractElementAlias match_TupleTypeCS___LeftParenthesisKeyword_1_0_RightParenthesisKeyword_1_2__q;
 	
 	@Inject
@@ -28,7 +28,7 @@ public abstract class AbstractCompleteOCLSyntacticSequencer extends AbstractSynt
 		grammarAccess = (CompleteOCLGrammarAccess) access;
 		match_DefOperationCS_UnrestrictedNameParserRuleCall_2_q = new TokenAlias(false, true, grammarAccess.getDefOperationCSAccess().getUnrestrictedNameParserRuleCall_2());
 		match_DefPropertyCS_UnrestrictedNameParserRuleCall_2_q = new TokenAlias(false, true, grammarAccess.getDefPropertyCSAccess().getUnrestrictedNameParserRuleCall_2());
-		match_OperationContextDeclCS_UnrestrictedNameParserRuleCall_7_2_1_q = new TokenAlias(false, true, grammarAccess.getOperationContextDeclCSAccess().getUnrestrictedNameParserRuleCall_7_2_1());
+		match_OperationContextDeclCS_UnrestrictedNameParserRuleCall_8_2_1_q = new TokenAlias(false, true, grammarAccess.getOperationContextDeclCSAccess().getUnrestrictedNameParserRuleCall_8_2_1());
 		match_TupleTypeCS___LeftParenthesisKeyword_1_0_RightParenthesisKeyword_1_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getLeftParenthesisKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getRightParenthesisKeyword_1_2()));
 	}
 	
@@ -63,8 +63,8 @@ public abstract class AbstractCompleteOCLSyntacticSequencer extends AbstractSynt
 				emit_DefOperationCS_UnrestrictedNameParserRuleCall_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_DefPropertyCS_UnrestrictedNameParserRuleCall_2_q.equals(syntax))
 				emit_DefPropertyCS_UnrestrictedNameParserRuleCall_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_OperationContextDeclCS_UnrestrictedNameParserRuleCall_7_2_1_q.equals(syntax))
-				emit_OperationContextDeclCS_UnrestrictedNameParserRuleCall_7_2_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_OperationContextDeclCS_UnrestrictedNameParserRuleCall_8_2_1_q.equals(syntax))
+				emit_OperationContextDeclCS_UnrestrictedNameParserRuleCall_8_2_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_TupleTypeCS___LeftParenthesisKeyword_1_0_RightParenthesisKeyword_1_2__q.equals(syntax))
 				emit_TupleTypeCS___LeftParenthesisKeyword_1_0_RightParenthesisKeyword_1_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
@@ -91,7 +91,7 @@ public abstract class AbstractCompleteOCLSyntacticSequencer extends AbstractSynt
 	 * Syntax:
 	 *     UnrestrictedName?
 	 */
-	protected void emit_OperationContextDeclCS_UnrestrictedNameParserRuleCall_7_2_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_OperationContextDeclCS_UnrestrictedNameParserRuleCall_8_2_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

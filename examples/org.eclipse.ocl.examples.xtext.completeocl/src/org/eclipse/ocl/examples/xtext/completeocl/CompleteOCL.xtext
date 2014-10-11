@@ -62,8 +62,8 @@ PrimitiveTypeIdentifier:
 	| 'OclVoid';
 
 ClassifierContextDeclCS returns ClassifierContextDeclCS:
-	'context' (selfName=UnrestrictedName)?
-	ownedPathName=PathNameCS
+	'context' (ownedSignature=TemplateSignatureCS)? (selfName=UnrestrictedName)?
+	ownedPathName=PathNameCS	
 	(('inv' ownedInvariants+=ConstraintCS)
 	| ownedDefinitions+=DefCS
 	)+;
@@ -80,7 +80,7 @@ DefCS returns DefCS:
 	DefOperationCS|DefPropertyCS;
 
 DefOperationCS returns DefOperationCS:
-	(static?='static')? 'def' UnrestrictedName? ':'
+	(static?='static')? 'def' UnrestrictedName? ':' (ownedSignature=TemplateSignatureCS)?
 		name=UnrestrictedName '(' (ownedParameters+=DefParameterCS (',' ownedParameters+=DefParameterCS)*)? ')' ':' (ownedType=TypeExpCS)?
 		 '=' ownedSpecification=SpecificationCS;
 
@@ -101,9 +101,8 @@ LibraryCS returns base::LibraryCS:
 	'library' referredPackage=[pivot::Package|URI];
 
 OperationContextDeclCS returns OperationContextDeclCS:
-	'context' ownedPathName=PathNameCS '(' 
-	(ownedParameters+=ParameterCS (',' ownedParameters+=ParameterCS)*)?
-	')' ':' (ownedType=TypeExpCS)?
+	'context' (ownedSignature=TemplateSignatureCS)? ownedPathName=PathNameCS
+	'(' (ownedParameters+=ParameterCS (',' ownedParameters+=ParameterCS)*)? ')' ':' (ownedType=TypeExpCS)?
 	(('pre' ownedPreconditions+=ConstraintCS)
 	| ('post' ownedPostconditions+=ConstraintCS)
 	| ('body' UnrestrictedName? ':' ownedBodies+=SpecificationCS)
@@ -124,6 +123,44 @@ PropertyContextDeclCS returns PropertyContextDeclCS:
 SpecificationCS returns essentialocl::ExpSpecificationCS:
 	ownedExpression=ExpCS | exprString=UNQUOTED_STRING;
 
+TemplateBindingCS returns base::TemplateBindingCS:
+	('(' ownedSubstitutions+=TemplateParameterSubstitutionCS (',' ownedSubstitutions+=TemplateParameterSubstitutionCS)* ')')	
+;
+
+TemplateParameterSubstitutionCS returns base::TemplateParameterSubstitutionCS:
+	ownedActualParameter=TypeRefCS	
+;
+
+TemplateSignatureCS returns base::TemplateSignatureCS:
+	('(' ownedParameters+=TypeParameterCS (',' ownedParameters+=TypeParameterCS)* ')')
+|	('<' ownedParameters+=TypeParameterCS (',' ownedParameters+=TypeParameterCS)* '>')
+;
+
+TypeParameterCS returns base::TypeParameterCS:
+	name=UnrestrictedName
+	( ('extends' ownedExtends+=TypedRefCS ('&&' ownedExtends+=TypedRefCS)*)
+	| ('super' ownedSuper=TypedRefCS)
+	)?
+;
+
+TypeRefCS returns base::TypeRefCS:
+	TypedRefCS | WildcardTypeRefCS
+;
+
+TypedRefCS returns base::TypedRefCS:
+	TypeLiteralCS | TypedTypeRefCS
+;
+
+TypedTypeRefCS returns base::TypedTypeRefCS:
+	ownedPathName=PathNameCS (ownedTemplateBinding=TemplateBindingCS)?
+;
+
+WildcardTypeRefCS returns base::WildcardTypeRefCS:
+	{base::WildcardTypeRefCS} '?'
+	( ('extends' ownedExtends=TypedRefCS)
+	| ('super' ownedSuper=TypedRefCS)
+	)?
+;
 //---------------------------------------------------------------------------------
 //	EssentialOCL overrides
 //---------------------------------------------------------------------------------

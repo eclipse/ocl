@@ -22,6 +22,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PivotableElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.RootCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.VisitableCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.*;
@@ -68,7 +69,7 @@ public class CompleteOCLCSSwitch<T>
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param ePackage the package in question.
+	 * @parameter ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
@@ -93,6 +94,7 @@ public class CompleteOCLCSSwitch<T>
 				ClassifierContextDeclCS classifierContextDeclCS = (ClassifierContextDeclCS)theEObject;
 				T result = caseClassifierContextDeclCS(classifierContextDeclCS);
 				if (result == null) result = caseContextDeclCS(classifierContextDeclCS);
+				if (result == null) result = caseTemplateableElementCS(classifierContextDeclCS);
 				if (result == null) result = casePathNameDeclCS(classifierContextDeclCS);
 				if (result == null) result = caseModelElementCS(classifierContextDeclCS);
 				if (result == null) result = caseMorePivotable(classifierContextDeclCS);
@@ -153,6 +155,7 @@ public class CompleteOCLCSSwitch<T>
 				DefOperationCS defOperationCS = (DefOperationCS)theEObject;
 				T result = caseDefOperationCS(defOperationCS);
 				if (result == null) result = caseDefCS(defOperationCS);
+				if (result == null) result = caseTemplateableElementCS(defOperationCS);
 				if (result == null) result = caseTypedElementCS(defOperationCS);
 				if (result == null) result = caseNamedElementCS(defOperationCS);
 				if (result == null) result = caseModelElementCS(defOperationCS);
@@ -228,6 +231,7 @@ public class CompleteOCLCSSwitch<T>
 				OperationContextDeclCS operationContextDeclCS = (OperationContextDeclCS)theEObject;
 				T result = caseOperationContextDeclCS(operationContextDeclCS);
 				if (result == null) result = caseFeatureContextDeclCS(operationContextDeclCS);
+				if (result == null) result = caseTemplateableElementCS(operationContextDeclCS);
 				if (result == null) result = caseContextDeclCS(operationContextDeclCS);
 				if (result == null) result = casePathNameDeclCS(operationContextDeclCS);
 				if (result == null) result = caseModelElementCS(operationContextDeclCS);
@@ -328,6 +332,22 @@ public class CompleteOCLCSSwitch<T>
 	 * @generated
 	 */
 	public T caseMorePivotable(MorePivotable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Templateable Element CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Templateable Element CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTemplateableElementCS(TemplateableElementCS object)
+	{
 		return null;
 	}
 

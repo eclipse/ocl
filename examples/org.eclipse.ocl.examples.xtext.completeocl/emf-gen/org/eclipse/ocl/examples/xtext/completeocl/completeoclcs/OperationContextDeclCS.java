@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ParameterCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpSpecificationCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS;
 
@@ -39,7 +40,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS;
  * @generated
  */
 public interface OperationContextDeclCS
-		extends FeatureContextDeclCS {
+		extends FeatureContextDeclCS, TemplateableElementCS {
 
 	/**
 	 * Returns the value of the '<em><b>Referred Operation</b></em>' reference.
