@@ -989,7 +989,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCollectionLiteralPartCS_OwnedExpressionCS()
+	public EReference getCollectionLiteralPartCS_OwnedExpression()
 	{
 		return (EReference)collectionLiteralPartCSEClass.getEStructuralFeatures().get(0);
 	}
@@ -999,7 +999,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCollectionLiteralPartCS_OwnedLastExpressionCS()
+	public EReference getCollectionLiteralPartCS_OwnedLastExpression()
 	{
 		return (EReference)collectionLiteralPartCSEClass.getEStructuralFeatures().get(1);
 	}
@@ -1525,8 +1525,8 @@ public class EssentialOCLCSPackageImpl
 		createEReference(collectionLiteralExpCSEClass, COLLECTION_LITERAL_EXP_CS__OWNED_PARTS);
 
 		collectionLiteralPartCSEClass = createEClass(COLLECTION_LITERAL_PART_CS);
-		createEReference(collectionLiteralPartCSEClass, COLLECTION_LITERAL_PART_CS__OWNED_EXPRESSION_CS);
-		createEReference(collectionLiteralPartCSEClass, COLLECTION_LITERAL_PART_CS__OWNED_LAST_EXPRESSION_CS);
+		createEReference(collectionLiteralPartCSEClass, COLLECTION_LITERAL_PART_CS__OWNED_EXPRESSION);
+		createEReference(collectionLiteralPartCSEClass, COLLECTION_LITERAL_PART_CS__OWNED_LAST_EXPRESSION);
 
 		collectionPatternCSEClass = createEClass(COLLECTION_PATTERN_CS);
 		createEReference(collectionPatternCSEClass, COLLECTION_PATTERN_CS__OWNED_TYPE);
@@ -1760,8 +1760,8 @@ public class EssentialOCLCSPackageImpl
 		initEReference(getCollectionLiteralExpCS_OwnedParts(), this.getCollectionLiteralPartCS(), null, "ownedParts", null, 0, -1, CollectionLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(collectionLiteralPartCSEClass, CollectionLiteralPartCS.class, "CollectionLiteralPartCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getCollectionLiteralPartCS_OwnedExpressionCS(), this.getExpCS(), null, "ownedExpressionCS", null, 0, 1, CollectionLiteralPartCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getCollectionLiteralPartCS_OwnedLastExpressionCS(), this.getExpCS(), null, "ownedLastExpressionCS", null, 0, 1, CollectionLiteralPartCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getCollectionLiteralPartCS_OwnedExpression(), this.getExpCS(), null, "ownedExpression", null, 0, 1, CollectionLiteralPartCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getCollectionLiteralPartCS_OwnedLastExpression(), this.getExpCS(), null, "ownedLastExpression", null, 0, 1, CollectionLiteralPartCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(collectionPatternCSEClass, CollectionPatternCS.class, "CollectionPatternCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getCollectionPatternCS_OwnedType(), this.getCollectionTypeCS(), null, "ownedType", null, 0, 1, CollectionPatternCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

@@ -1220,12 +1220,12 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 
 	@Override
 	public Element visitCollectionLiteralPartCS(@NonNull CollectionLiteralPartCS csCollectionLiteralPart) {
-		ExpCS csFirst = csCollectionLiteralPart.getOwnedExpressionCS();
+		ExpCS csFirst = csCollectionLiteralPart.getOwnedExpression();
 		if (csFirst == null) {
 			return null;
 		}
 		OCLExpression pivotFirst = context.visitLeft2Right(OCLExpression.class, csFirst);
-		ExpCS csLast = csCollectionLiteralPart.getOwnedLastExpressionCS();
+		ExpCS csLast = csCollectionLiteralPart.getOwnedLastExpression();
 		if (csLast == null) {
 			CollectionItem expression = PivotUtil.getPivot(CollectionItem.class, csCollectionLiteralPart);	
 			if (expression != null) {

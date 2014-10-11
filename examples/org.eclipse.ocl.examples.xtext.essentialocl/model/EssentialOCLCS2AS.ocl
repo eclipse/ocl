@@ -20,7 +20,7 @@ package essentialoclcs
 context BooleanLiteralExpCS
 def : ast() : ocl::BooleanLiteralExp = 
 	ocl::BooleanLiteralExp {
-		booleanSymbol =	if name = 'true' 
+		booleanSymbol =	if symbol = 'true' 
 						then true
 						else false
 						endif,
@@ -37,13 +37,13 @@ def : ast() : ocl::CollectionLiteralExp =
 
 context CollectionLiteralPartCS
 def : ast() : ocl::CollectionLiteralPart = 
-	if lastExpressionCS = null
+	if ownedLastExpression = null
 	then ocl::CollectionItem {
-			item = expressionCS.ast()	
+			item = ownedExpression.ast()	
 		}
 	else ocl::CollectionRange {
-			first = expressionCS.ast(),
-			last = lastExpressionCS.ast()
+			first = ownedExpression.ast(),
+			last = ownedLastExpression.ast()
 		}
 	endif
 
@@ -51,17 +51,17 @@ context CollectionTypeCS
 def : ast() : ocl::CollectionType =
 	 -- env().lookupCollectionType(name, ownedType)
 	let lower : Integer = 
-			if multiplicity = null
+			if ownedMultiplicity = null
 			then null
-			else multiplicity.getLower()
+			else ownedMultiplicity.getLower()
 			endif,
 		upper : UnlimitedNatural =
-			if multiplicity = null
+			if ownedMultiplicity = null
 			then null
 			else 
-				if multiplicity.getUpper() = -1
+				if ownedMultiplicity.getUpper() = -1
 				then *
-				else multiplicity.getUpper()
+				else ownedMultiplicity.getUpper()
 				endif
 			endif
 	in	ocl::CollectionType {
@@ -102,8 +102,8 @@ def : ast() : ocl::CollectionType =
 context ConstructorPartCS
 def : ast() :  ocl::ConstructorPart =
 	ocl::ConstructorPart {
-		initExpression = initExpression.ast(),
-		referredProperty = property -- REF Xtext cross-reference
+		initExpression = ownedInitExpression.ast(),
+		referredProperty = referredProperty -- REF Xtext cross-reference
 	}
 	
 -- TODO special context initializer
@@ -132,9 +132,9 @@ def : ast() : ocl::ExpressionInOCL =
 context IfExpCS
 def : ast() : ocl::IfExp =
 	ocl::IfExp {
-		condition = condition.ast(),
-		thenExpression = thenExpression.ast(),
-		elseExpression = elseExpression.ast()
+		condition = ownedCondition.ast(),
+		thenExpression = ownedThenExpression.ast(),
+		elseExpression = ownedElseExpression.ast()
 	}
 	
 -- TODO	No idea what is this. Nothing in the spec
@@ -142,18 +142,18 @@ def : ast() : ocl::IfExp =
 
 context InfixExpCS
 def : ast() : ocl::OperationCallExp = 
-	let first : ExpCS = ownedExpression->first(),
-		others : Sequence(ExpCS) = ownedExpression->excluding(first)
+	let first : ExpCS = ownedExpressions->first(),
+		others : Sequence(ExpCS) = ownedExpressions->excluding(first)
 	in  others->iterate(x : ExpCS; result : ocl::OperationCallExp = null |
 					if result = null
 					then result = ocl::OperationCallExp {
-						name = ownedOperator->at(others->indexOf(x)),
+						name = ownedOperators->at(others->indexOf(x)),
 						source = first.ast(),
 						argument = Sequence(ocl::OperationCallExp) {x.ast()}
 						-- TODO referred operation = name resolution
 					}
 					else result = ocl::OperationCallExp {
-						name = ownedOperator->at(others->indexOf(x)),
+						name = ownedOperators->at(others->indexOf(x)),
 						source = result,
 						argument = Sequence(ocl::OperationCallExp) {x.ast()}
 						-- TODO referredOperation = name resolution
@@ -168,11 +168,11 @@ def : ast() : ocl::InvalidLiteralExp =
 
 context LetExpCS
 def : ast() : ocl::LetExp = 
-	variable->reverse()->iterate(x : LetVariableCS; result : ocl::LetExp = null |
+	ownedVariables->reverse()->iterate(x : LetVariableCS; result : ocl::LetExp = null |
 				if result = null
 				then result = ocl::LetExp {
 						variable = x.ast(),
-						_'in' = _'in'.ast()
+						_'in' = ownedInExpression.ast()
 					}
 				else result = ocl::LetExp {
 						variable = x.ast(),
@@ -194,7 +194,7 @@ def : ast() : ocl::LetExp =
 context	NameExpCS
 def : ast() : ocl::NamedElement =
 	-- env().lookupPathName(pathName)
-	pathName.ast().oclAsType(ocl::NamedElement) -- FIXME PathNameCS should probably do the conversion
+	ownedPathName.ast().oclAsType(ocl::NamedElement) -- FIXME PathNameCS should probably do the conversion
 	
 -- TODO	
 --context NavigatingArgCS
@@ -221,7 +221,7 @@ def : ast() : ocl::NullLiteralExp =
 context NumberLiteralExpCS
 def : ast() : ocl::NumericLiteralExp =
 	ocl::IntegerLiteralExp {
-		integerSymbol = name -- FIXME Integer/Real/		
+		integerSymbol = symbol -- FIXME Integer/Real/		
 	}
 	
 -- TO ADD to CS
@@ -236,7 +236,7 @@ def : ast() : ocl::NumericLiteralExp =
 	
 context PrefixExpCS
 def : ast() : ocl::OperationCallExp = 
-	ownedOperator->reverse()->iterate(x : UnaryOperatorCS; result : ocl::OperationCallExp = null |
+	ownedOperators->reverse()->iterate(x : UnaryOperatorCS; result : ocl::OperationCallExp = null |
 					if result = null
 					then result = ocl::OperationCallExp {
 							name = x.name,
@@ -263,7 +263,7 @@ def :  ast() : ocl::VariableExp =
 context StringLiteralExpCS
 def : ast() : ocl::StringLiteralExp = 
 	ocl::StringLiteralExp {
-		stringSymbol = name->iterate(x : String, result : String = '' |
+		stringSymbol = segments->iterate(x : String, result : String = '' |
 						result = result.concat(x)),
 		type = String
 	}
@@ -279,7 +279,7 @@ context TupleLiteralPartCS
 def : ast() : ocl::TupleLiteralPart = 
 	ocl::TupleLiteralPart {
 		name = name,
-		initExpression = initExpression,
+		initExpression = ownedInitExpression,
 		type = ownedType.ast()
 	}
 	
@@ -307,7 +307,7 @@ context VariableCS
 def : ast() : ocl::Variable = 
 	ocl::Variable {
 		name = name,
-		initExpression = initExpression.ast(),
+		initExpression = ownedInitExpression.ast(),
 		type = ownedType.ast()
 	}
 endpackage

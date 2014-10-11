@@ -1011,48 +1011,48 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "CollectionLiteralPartCS");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Assignment cOwnedExpressionCSAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
-		private final RuleCall cOwnedExpressionCSExpCSParserRuleCall_0_0_0 = (RuleCall)cOwnedExpressionCSAssignment_0_0.eContents().get(0);
+		private final Assignment cOwnedExpressionAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
+		private final RuleCall cOwnedExpressionExpCSParserRuleCall_0_0_0 = (RuleCall)cOwnedExpressionAssignment_0_0.eContents().get(0);
 		private final Group cGroup_0_1 = (Group)cGroup_0.eContents().get(1);
 		private final Keyword cFullStopFullStopKeyword_0_1_0 = (Keyword)cGroup_0_1.eContents().get(0);
-		private final Assignment cOwnedLastExpressionCSAssignment_0_1_1 = (Assignment)cGroup_0_1.eContents().get(1);
-		private final RuleCall cOwnedLastExpressionCSExpCSParserRuleCall_0_1_1_0 = (RuleCall)cOwnedLastExpressionCSAssignment_0_1_1.eContents().get(0);
-		private final Assignment cOwnedExpressionCSAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final RuleCall cOwnedExpressionCSPatternExpCSParserRuleCall_1_0 = (RuleCall)cOwnedExpressionCSAssignment_1.eContents().get(0);
+		private final Assignment cOwnedLastExpressionAssignment_0_1_1 = (Assignment)cGroup_0_1.eContents().get(1);
+		private final RuleCall cOwnedLastExpressionExpCSParserRuleCall_0_1_1_0 = (RuleCall)cOwnedLastExpressionAssignment_0_1_1.eContents().get(0);
+		private final Assignment cOwnedExpressionAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final RuleCall cOwnedExpressionPatternExpCSParserRuleCall_1_0 = (RuleCall)cOwnedExpressionAssignment_1.eContents().get(0);
 		
 		//CollectionLiteralPartCS:
-		//	ownedExpressionCS=ExpCS (".." ownedLastExpressionCS=ExpCS)? | ownedExpressionCS=PatternExpCS;
+		//	ownedExpression=ExpCS (".." ownedLastExpression=ExpCS)? | ownedExpression=PatternExpCS;
 		public ParserRule getRule() { return rule; }
 
-		//ownedExpressionCS=ExpCS (".." ownedLastExpressionCS=ExpCS)? | ownedExpressionCS=PatternExpCS
+		//ownedExpression=ExpCS (".." ownedLastExpression=ExpCS)? | ownedExpression=PatternExpCS
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//ownedExpressionCS=ExpCS (".." ownedLastExpressionCS=ExpCS)?
+		//ownedExpression=ExpCS (".." ownedLastExpression=ExpCS)?
 		public Group getGroup_0() { return cGroup_0; }
 
-		//ownedExpressionCS=ExpCS
-		public Assignment getOwnedExpressionCSAssignment_0_0() { return cOwnedExpressionCSAssignment_0_0; }
+		//ownedExpression=ExpCS
+		public Assignment getOwnedExpressionAssignment_0_0() { return cOwnedExpressionAssignment_0_0; }
 
 		//ExpCS
-		public RuleCall getOwnedExpressionCSExpCSParserRuleCall_0_0_0() { return cOwnedExpressionCSExpCSParserRuleCall_0_0_0; }
+		public RuleCall getOwnedExpressionExpCSParserRuleCall_0_0_0() { return cOwnedExpressionExpCSParserRuleCall_0_0_0; }
 
-		//(".." ownedLastExpressionCS=ExpCS)?
+		//(".." ownedLastExpression=ExpCS)?
 		public Group getGroup_0_1() { return cGroup_0_1; }
 
 		//".."
 		public Keyword getFullStopFullStopKeyword_0_1_0() { return cFullStopFullStopKeyword_0_1_0; }
 
-		//ownedLastExpressionCS=ExpCS
-		public Assignment getOwnedLastExpressionCSAssignment_0_1_1() { return cOwnedLastExpressionCSAssignment_0_1_1; }
+		//ownedLastExpression=ExpCS
+		public Assignment getOwnedLastExpressionAssignment_0_1_1() { return cOwnedLastExpressionAssignment_0_1_1; }
 
 		//ExpCS
-		public RuleCall getOwnedLastExpressionCSExpCSParserRuleCall_0_1_1_0() { return cOwnedLastExpressionCSExpCSParserRuleCall_0_1_1_0; }
+		public RuleCall getOwnedLastExpressionExpCSParserRuleCall_0_1_1_0() { return cOwnedLastExpressionExpCSParserRuleCall_0_1_1_0; }
 
-		//ownedExpressionCS=PatternExpCS
-		public Assignment getOwnedExpressionCSAssignment_1() { return cOwnedExpressionCSAssignment_1; }
+		//ownedExpression=PatternExpCS
+		public Assignment getOwnedExpressionAssignment_1() { return cOwnedExpressionAssignment_1; }
 
 		//PatternExpCS
-		public RuleCall getOwnedExpressionCSPatternExpCSParserRuleCall_1_0() { return cOwnedExpressionCSPatternExpCSParserRuleCall_1_0; }
+		public RuleCall getOwnedExpressionPatternExpCSParserRuleCall_1_0() { return cOwnedExpressionPatternExpCSParserRuleCall_1_0; }
 	}
 
 	public class CollectionPatternCSElements extends AbstractParserRuleElementFinder {
@@ -3411,7 +3411,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CollectionLiteralPartCS:
-	//	ownedExpressionCS=ExpCS (".." ownedLastExpressionCS=ExpCS)? | ownedExpressionCS=PatternExpCS;
+	//	ownedExpression=ExpCS (".." ownedLastExpression=ExpCS)? | ownedExpression=PatternExpCS;
 	public CollectionLiteralPartCSElements getCollectionLiteralPartCSAccess() {
 		return pCollectionLiteralPartCS;
 	}

@@ -316,7 +316,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 	public @Nullable ElementCS visitCollectionItem(@NonNull CollectionItem asCollectionItem) {
 		CollectionLiteralPartCS csCollectionLiteralPart = EssentialOCLCSFactory.eINSTANCE.createCollectionLiteralPartCS();
 		csCollectionLiteralPart.setPivot(asCollectionItem);
-		csCollectionLiteralPart.setOwnedExpressionCS(createExpCS(asCollectionItem.getItem()));
+		csCollectionLiteralPart.setOwnedExpression(createExpCS(asCollectionItem.getItem()));
 		return csCollectionLiteralPart;
 	}
 
@@ -341,8 +341,8 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 	public @Nullable ElementCS visitCollectionRange(@NonNull CollectionRange asCollectionRange) {
 		CollectionLiteralPartCS csCollectionLiteralPart = EssentialOCLCSFactory.eINSTANCE.createCollectionLiteralPartCS();
 		csCollectionLiteralPart.setPivot(asCollectionRange);
-		csCollectionLiteralPart.setOwnedExpressionCS(createExpCS(asCollectionRange.getFirst()));
-		csCollectionLiteralPart.setOwnedLastExpressionCS(createExpCS(asCollectionRange.getLast()));
+		csCollectionLiteralPart.setOwnedExpression(createExpCS(asCollectionRange.getFirst()));
+		csCollectionLiteralPart.setOwnedLastExpression(createExpCS(asCollectionRange.getLast()));
 		return csCollectionLiteralPart;
 	}
 

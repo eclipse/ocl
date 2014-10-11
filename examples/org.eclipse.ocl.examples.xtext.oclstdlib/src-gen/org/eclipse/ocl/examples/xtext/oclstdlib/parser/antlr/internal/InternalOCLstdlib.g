@@ -5762,16 +5762,16 @@ ruleCollectionLiteralPartCS returns [EObject current=null]
 (((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionCSExpCSParserRuleCall_0_0_0()); 
+	        newCompositeNode(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionExpCSParserRuleCall_0_0_0()); 
 	    }
-		lv_ownedExpressionCS_0_0=ruleExpCS		{
+		lv_ownedExpression_0_0=ruleExpCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getCollectionLiteralPartCSRule());
 	        }
        		set(
        			$current, 
-       			"ownedExpressionCS",
-        		lv_ownedExpressionCS_0_0, 
+       			"ownedExpression",
+        		lv_ownedExpression_0_0, 
         		"ExpCS");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -5784,16 +5784,16 @@ ruleCollectionLiteralPartCS returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedLastExpressionCSExpCSParserRuleCall_0_1_1_0()); 
+	        newCompositeNode(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedLastExpressionExpCSParserRuleCall_0_1_1_0()); 
 	    }
-		lv_ownedLastExpressionCS_2_0=ruleExpCS		{
+		lv_ownedLastExpression_2_0=ruleExpCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getCollectionLiteralPartCSRule());
 	        }
        		set(
        			$current, 
-       			"ownedLastExpressionCS",
-        		lv_ownedLastExpressionCS_2_0, 
+       			"ownedLastExpression",
+        		lv_ownedLastExpression_2_0, 
         		"ExpCS");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -5803,16 +5803,16 @@ ruleCollectionLiteralPartCS returns [EObject current=null]
     |(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionCSPatternExpCSParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionPatternExpCSParserRuleCall_1_0()); 
 	    }
-		lv_ownedExpressionCS_3_0=rulePatternExpCS		{
+		lv_ownedExpression_3_0=rulePatternExpCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getCollectionLiteralPartCSRule());
 	        }
        		set(
        			$current, 
-       			"ownedExpressionCS",
-        		lv_ownedExpressionCS_3_0, 
+       			"ownedExpression",
+        		lv_ownedExpression_3_0, 
         		"PatternExpCS");
 	        afterParserOrEnumRuleCall();
 	    }

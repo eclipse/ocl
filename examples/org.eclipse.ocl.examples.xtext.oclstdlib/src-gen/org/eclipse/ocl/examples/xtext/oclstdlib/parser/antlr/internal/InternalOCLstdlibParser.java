@@ -16582,47 +16582,47 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleCollectionLiteralPartCS"
-    // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5758:1: ruleCollectionLiteralPartCS returns [EObject current=null] : ( ( ( (lv_ownedExpressionCS_0_0= ruleExpCS ) ) (otherlv_1= '..' ( (lv_ownedLastExpressionCS_2_0= ruleExpCS ) ) )? ) | ( (lv_ownedExpressionCS_3_0= rulePatternExpCS ) ) ) ;
+    // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5758:1: ruleCollectionLiteralPartCS returns [EObject current=null] : ( ( ( (lv_ownedExpression_0_0= ruleExpCS ) ) (otherlv_1= '..' ( (lv_ownedLastExpression_2_0= ruleExpCS ) ) )? ) | ( (lv_ownedExpression_3_0= rulePatternExpCS ) ) ) ;
     public final EObject ruleCollectionLiteralPartCS() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_1=null;
-        EObject lv_ownedExpressionCS_0_0 = null;
+        EObject lv_ownedExpression_0_0 = null;
 
-        EObject lv_ownedLastExpressionCS_2_0 = null;
+        EObject lv_ownedLastExpression_2_0 = null;
 
-        EObject lv_ownedExpressionCS_3_0 = null;
+        EObject lv_ownedExpression_3_0 = null;
 
 
          enterRule(); 
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5761:28: ( ( ( ( (lv_ownedExpressionCS_0_0= ruleExpCS ) ) (otherlv_1= '..' ( (lv_ownedLastExpressionCS_2_0= ruleExpCS ) ) )? ) | ( (lv_ownedExpressionCS_3_0= rulePatternExpCS ) ) ) )
-            // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5762:1: ( ( ( (lv_ownedExpressionCS_0_0= ruleExpCS ) ) (otherlv_1= '..' ( (lv_ownedLastExpressionCS_2_0= ruleExpCS ) ) )? ) | ( (lv_ownedExpressionCS_3_0= rulePatternExpCS ) ) )
+            // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5761:28: ( ( ( ( (lv_ownedExpression_0_0= ruleExpCS ) ) (otherlv_1= '..' ( (lv_ownedLastExpression_2_0= ruleExpCS ) ) )? ) | ( (lv_ownedExpression_3_0= rulePatternExpCS ) ) ) )
+            // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5762:1: ( ( ( (lv_ownedExpression_0_0= ruleExpCS ) ) (otherlv_1= '..' ( (lv_ownedLastExpression_2_0= ruleExpCS ) ) )? ) | ( (lv_ownedExpression_3_0= rulePatternExpCS ) ) )
             {
-            // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5762:1: ( ( ( (lv_ownedExpressionCS_0_0= ruleExpCS ) ) (otherlv_1= '..' ( (lv_ownedLastExpressionCS_2_0= ruleExpCS ) ) )? ) | ( (lv_ownedExpressionCS_3_0= rulePatternExpCS ) ) )
+            // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5762:1: ( ( ( (lv_ownedExpression_0_0= ruleExpCS ) ) (otherlv_1= '..' ( (lv_ownedLastExpression_2_0= ruleExpCS ) ) )? ) | ( (lv_ownedExpression_3_0= rulePatternExpCS ) ) )
             int alt101=2;
             alt101 = dfa101.predict(input);
             switch (alt101) {
                 case 1 :
-                    // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5762:2: ( ( (lv_ownedExpressionCS_0_0= ruleExpCS ) ) (otherlv_1= '..' ( (lv_ownedLastExpressionCS_2_0= ruleExpCS ) ) )? )
+                    // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5762:2: ( ( (lv_ownedExpression_0_0= ruleExpCS ) ) (otherlv_1= '..' ( (lv_ownedLastExpression_2_0= ruleExpCS ) ) )? )
                     {
-                    // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5762:2: ( ( (lv_ownedExpressionCS_0_0= ruleExpCS ) ) (otherlv_1= '..' ( (lv_ownedLastExpressionCS_2_0= ruleExpCS ) ) )? )
-                    // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5762:3: ( (lv_ownedExpressionCS_0_0= ruleExpCS ) ) (otherlv_1= '..' ( (lv_ownedLastExpressionCS_2_0= ruleExpCS ) ) )?
+                    // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5762:2: ( ( (lv_ownedExpression_0_0= ruleExpCS ) ) (otherlv_1= '..' ( (lv_ownedLastExpression_2_0= ruleExpCS ) ) )? )
+                    // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5762:3: ( (lv_ownedExpression_0_0= ruleExpCS ) ) (otherlv_1= '..' ( (lv_ownedLastExpression_2_0= ruleExpCS ) ) )?
                     {
-                    // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5762:3: ( (lv_ownedExpressionCS_0_0= ruleExpCS ) )
-                    // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5763:1: (lv_ownedExpressionCS_0_0= ruleExpCS )
+                    // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5762:3: ( (lv_ownedExpression_0_0= ruleExpCS ) )
+                    // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5763:1: (lv_ownedExpression_0_0= ruleExpCS )
                     {
-                    // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5763:1: (lv_ownedExpressionCS_0_0= ruleExpCS )
-                    // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5764:3: lv_ownedExpressionCS_0_0= ruleExpCS
+                    // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5763:1: (lv_ownedExpression_0_0= ruleExpCS )
+                    // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5764:3: lv_ownedExpression_0_0= ruleExpCS
                     {
                     if ( state.backtracking==0 ) {
                        
-                      	        newCompositeNode(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionCSExpCSParserRuleCall_0_0_0()); 
+                      	        newCompositeNode(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionExpCSParserRuleCall_0_0_0()); 
                       	    
                     }
                     pushFollow(FollowSets000.FOLLOW_ruleExpCS_in_ruleCollectionLiteralPartCS13095);
-                    lv_ownedExpressionCS_0_0=ruleExpCS();
+                    lv_ownedExpression_0_0=ruleExpCS();
 
                     state._fsp--;
                     if (state.failed) return current;
@@ -16633,8 +16633,8 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                       	        }
                              		set(
                              			current, 
-                             			"ownedExpressionCS",
-                              		lv_ownedExpressionCS_0_0, 
+                             			"ownedExpression",
+                              		lv_ownedExpression_0_0, 
                               		"ExpCS");
                       	        afterParserOrEnumRuleCall();
                       	    
@@ -16645,7 +16645,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5780:2: (otherlv_1= '..' ( (lv_ownedLastExpressionCS_2_0= ruleExpCS ) ) )?
+                    // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5780:2: (otherlv_1= '..' ( (lv_ownedLastExpression_2_0= ruleExpCS ) ) )?
                     int alt100=2;
                     int LA100_0 = input.LA(1);
 
@@ -16654,7 +16654,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                     }
                     switch (alt100) {
                         case 1 :
-                            // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5780:4: otherlv_1= '..' ( (lv_ownedLastExpressionCS_2_0= ruleExpCS ) )
+                            // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5780:4: otherlv_1= '..' ( (lv_ownedLastExpression_2_0= ruleExpCS ) )
                             {
                             otherlv_1=(Token)match(input,91,FollowSets000.FOLLOW_91_in_ruleCollectionLiteralPartCS13108); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
@@ -16662,19 +16662,19 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                                   	newLeafNode(otherlv_1, grammarAccess.getCollectionLiteralPartCSAccess().getFullStopFullStopKeyword_0_1_0());
                                   
                             }
-                            // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5784:1: ( (lv_ownedLastExpressionCS_2_0= ruleExpCS ) )
-                            // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5785:1: (lv_ownedLastExpressionCS_2_0= ruleExpCS )
+                            // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5784:1: ( (lv_ownedLastExpression_2_0= ruleExpCS ) )
+                            // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5785:1: (lv_ownedLastExpression_2_0= ruleExpCS )
                             {
-                            // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5785:1: (lv_ownedLastExpressionCS_2_0= ruleExpCS )
-                            // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5786:3: lv_ownedLastExpressionCS_2_0= ruleExpCS
+                            // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5785:1: (lv_ownedLastExpression_2_0= ruleExpCS )
+                            // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5786:3: lv_ownedLastExpression_2_0= ruleExpCS
                             {
                             if ( state.backtracking==0 ) {
                                
-                              	        newCompositeNode(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedLastExpressionCSExpCSParserRuleCall_0_1_1_0()); 
+                              	        newCompositeNode(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedLastExpressionExpCSParserRuleCall_0_1_1_0()); 
                               	    
                             }
                             pushFollow(FollowSets000.FOLLOW_ruleExpCS_in_ruleCollectionLiteralPartCS13129);
-                            lv_ownedLastExpressionCS_2_0=ruleExpCS();
+                            lv_ownedLastExpression_2_0=ruleExpCS();
 
                             state._fsp--;
                             if (state.failed) return current;
@@ -16685,8 +16685,8 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                               	        }
                                      		set(
                                      			current, 
-                                     			"ownedLastExpressionCS",
-                                      		lv_ownedLastExpressionCS_2_0, 
+                                     			"ownedLastExpression",
+                                      		lv_ownedLastExpression_2_0, 
                                       		"ExpCS");
                               	        afterParserOrEnumRuleCall();
                               	    
@@ -16710,21 +16710,21 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5803:6: ( (lv_ownedExpressionCS_3_0= rulePatternExpCS ) )
+                    // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5803:6: ( (lv_ownedExpression_3_0= rulePatternExpCS ) )
                     {
-                    // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5803:6: ( (lv_ownedExpressionCS_3_0= rulePatternExpCS ) )
-                    // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5804:1: (lv_ownedExpressionCS_3_0= rulePatternExpCS )
+                    // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5803:6: ( (lv_ownedExpression_3_0= rulePatternExpCS ) )
+                    // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5804:1: (lv_ownedExpression_3_0= rulePatternExpCS )
                     {
-                    // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5804:1: (lv_ownedExpressionCS_3_0= rulePatternExpCS )
-                    // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5805:3: lv_ownedExpressionCS_3_0= rulePatternExpCS
+                    // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5804:1: (lv_ownedExpression_3_0= rulePatternExpCS )
+                    // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:5805:3: lv_ownedExpression_3_0= rulePatternExpCS
                     {
                     if ( state.backtracking==0 ) {
                        
-                      	        newCompositeNode(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionCSPatternExpCSParserRuleCall_1_0()); 
+                      	        newCompositeNode(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionPatternExpCSParserRuleCall_1_0()); 
                       	    
                     }
                     pushFollow(FollowSets000.FOLLOW_rulePatternExpCS_in_ruleCollectionLiteralPartCS13159);
-                    lv_ownedExpressionCS_3_0=rulePatternExpCS();
+                    lv_ownedExpression_3_0=rulePatternExpCS();
 
                     state._fsp--;
                     if (state.failed) return current;
@@ -16735,8 +16735,8 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
                       	        }
                              		set(
                              			current, 
-                             			"ownedExpressionCS",
-                              		lv_ownedExpressionCS_3_0, 
+                             			"ownedExpression",
+                              		lv_ownedExpression_3_0, 
                               		"PatternExpCS");
                       	        afterParserOrEnumRuleCall();
                       	    
@@ -25342,7 +25342,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
             this.transition = DFA101_transition;
         }
         public String getDescription() {
-            return "5762:1: ( ( ( (lv_ownedExpressionCS_0_0= ruleExpCS ) ) (otherlv_1= '..' ( (lv_ownedLastExpressionCS_2_0= ruleExpCS ) ) )? ) | ( (lv_ownedExpressionCS_3_0= rulePatternExpCS ) ) )";
+            return "5762:1: ( ( ( (lv_ownedExpression_0_0= ruleExpCS ) ) (otherlv_1= '..' ( (lv_ownedLastExpression_2_0= ruleExpCS ) ) )? ) | ( (lv_ownedExpression_3_0= rulePatternExpCS ) ) )";
         }
     }
     static final String DFA104_eotS =

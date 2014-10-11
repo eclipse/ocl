@@ -493,7 +493,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends AbstractDele
 	
 	/**
 	 * Constraint:
-	 *     ((ownedExpressionCS=ExpCS ownedLastExpressionCS=ExpCS?) | ownedExpressionCS=PatternExpCS)
+	 *     ((ownedExpression=ExpCS ownedLastExpression=ExpCS?) | ownedExpression=PatternExpCS)
 	 */
 	protected void sequence_CollectionLiteralPartCS(EObject context, CollectionLiteralPartCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

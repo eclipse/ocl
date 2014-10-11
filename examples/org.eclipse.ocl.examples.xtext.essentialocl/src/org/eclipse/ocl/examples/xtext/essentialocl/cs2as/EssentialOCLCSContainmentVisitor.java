@@ -155,7 +155,7 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 
 	@Override
 	public Continuation<?> visitCollectionLiteralPartCS(@NonNull CollectionLiteralPartCS csElement) {
-		if (csElement.getOwnedLastExpressionCS() == null) {
+		if (csElement.getOwnedLastExpression() == null) {
 			context.refreshModelElement(CollectionItem.class, PivotPackage.Literals.COLLECTION_ITEM, csElement);	
 		}
 		else {

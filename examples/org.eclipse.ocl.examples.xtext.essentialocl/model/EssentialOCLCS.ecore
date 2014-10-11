@@ -21,10 +21,10 @@
         eType="#//CollectionLiteralPartCS" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CollectionLiteralPartCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#//ModelElementCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedExpressionCS" eType="#//ExpCS"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedExpression" eType="#//ExpCS"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedLastExpressionCS"
-        eType="#//ExpCS" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedLastExpression" eType="#//ExpCS"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CollectionPatternCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#//TypedRefCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" eType="#//CollectionTypeCS"

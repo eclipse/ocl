@@ -210,7 +210,7 @@ CollectionLiteralExpCS returns CollectionLiteralExpCS:
 	'}';
 
 CollectionLiteralPartCS returns CollectionLiteralPartCS:
-	(ownedExpressionCS=ExpCS ('..' ownedLastExpressionCS=ExpCS)?) | ownedExpressionCS=PatternExpCS;
+	(ownedExpression=ExpCS ('..' ownedLastExpression=ExpCS)?) | ownedExpression=PatternExpCS;
 
 CollectionPatternCS returns CollectionPatternCS:
 	ownedType=CollectionTypeCS

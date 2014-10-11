@@ -2538,9 +2538,9 @@ rule__CollectionLiteralPartCS__Alternatives
 )
 
     |(
-{ before(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionCSAssignment_1()); }
-(rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_1)
-{ after(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionCSAssignment_1()); }
+{ before(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionAssignment_1()); }
+(rule__CollectionLiteralPartCS__OwnedExpressionAssignment_1)
+{ after(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionAssignment_1()); }
 )
 
 ;
@@ -4152,9 +4152,9 @@ rule__CollectionLiteralPartCS__Group_0__0__Impl
     }
 :
 (
-{ before(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionCSAssignment_0_0()); }
-(rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_0_0)
-{ after(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionCSAssignment_0_0()); }
+{ before(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionAssignment_0_0()); }
+(rule__CollectionLiteralPartCS__OwnedExpressionAssignment_0_0)
+{ after(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionAssignment_0_0()); }
 )
 
 ;
@@ -4243,9 +4243,9 @@ rule__CollectionLiteralPartCS__Group_0_1__1__Impl
     }
 :
 (
-{ before(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedLastExpressionCSAssignment_0_1_1()); }
-(rule__CollectionLiteralPartCS__OwnedLastExpressionCSAssignment_0_1_1)
-{ after(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedLastExpressionCSAssignment_0_1_1()); }
+{ before(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedLastExpressionAssignment_0_1_1()); }
+(rule__CollectionLiteralPartCS__OwnedLastExpressionAssignment_0_1_1)
+{ after(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedLastExpressionAssignment_0_1_1()); }
 )
 
 ;
@@ -9999,14 +9999,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_0_0
+rule__CollectionLiteralPartCS__OwnedExpressionAssignment_0_0
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionCSExpCSParserRuleCall_0_0_0()); }
-	ruleExpCS{ after(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionCSExpCSParserRuleCall_0_0_0()); }
+{ before(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionExpCSParserRuleCall_0_0_0()); }
+	ruleExpCS{ after(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionExpCSParserRuleCall_0_0_0()); }
 )
 
 ;
@@ -10014,14 +10014,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__CollectionLiteralPartCS__OwnedLastExpressionCSAssignment_0_1_1
+rule__CollectionLiteralPartCS__OwnedLastExpressionAssignment_0_1_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedLastExpressionCSExpCSParserRuleCall_0_1_1_0()); }
-	ruleExpCS{ after(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedLastExpressionCSExpCSParserRuleCall_0_1_1_0()); }
+{ before(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedLastExpressionExpCSParserRuleCall_0_1_1_0()); }
+	ruleExpCS{ after(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedLastExpressionExpCSParserRuleCall_0_1_1_0()); }
 )
 
 ;
@@ -10029,14 +10029,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_1
+rule__CollectionLiteralPartCS__OwnedExpressionAssignment_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionCSPatternExpCSParserRuleCall_1_0()); }
-	rulePatternExpCS{ after(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionCSPatternExpCSParserRuleCall_1_0()); }
+{ before(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionPatternExpCSParserRuleCall_1_0()); }
+	rulePatternExpCS{ after(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionPatternExpCSParserRuleCall_1_0()); }
 )
 
 ;

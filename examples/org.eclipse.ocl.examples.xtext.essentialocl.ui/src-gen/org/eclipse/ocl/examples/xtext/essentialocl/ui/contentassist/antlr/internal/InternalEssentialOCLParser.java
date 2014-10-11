@@ -7716,13 +7716,13 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__CollectionLiteralPartCS__Alternatives"
-    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2529:1: rule__CollectionLiteralPartCS__Alternatives : ( ( ( rule__CollectionLiteralPartCS__Group_0__0 ) ) | ( ( rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_1 ) ) );
+    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2529:1: rule__CollectionLiteralPartCS__Alternatives : ( ( ( rule__CollectionLiteralPartCS__Group_0__0 ) ) | ( ( rule__CollectionLiteralPartCS__OwnedExpressionAssignment_1 ) ) );
     public final void rule__CollectionLiteralPartCS__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2533:1: ( ( ( rule__CollectionLiteralPartCS__Group_0__0 ) ) | ( ( rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_1 ) ) )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2533:1: ( ( ( rule__CollectionLiteralPartCS__Group_0__0 ) ) | ( ( rule__CollectionLiteralPartCS__OwnedExpressionAssignment_1 ) ) )
             int alt14=2;
             switch ( input.LA(1) ) {
             case RULE_INT:
@@ -7839,19 +7839,19 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2540:6: ( ( rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_1 ) )
+                    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2540:6: ( ( rule__CollectionLiteralPartCS__OwnedExpressionAssignment_1 ) )
                     {
-                    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2540:6: ( ( rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_1 ) )
-                    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2541:1: ( rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_1 )
+                    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2540:6: ( ( rule__CollectionLiteralPartCS__OwnedExpressionAssignment_1 ) )
+                    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2541:1: ( rule__CollectionLiteralPartCS__OwnedExpressionAssignment_1 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionCSAssignment_1()); 
+                       before(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionAssignment_1()); 
                     }
-                    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2542:1: ( rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_1 )
-                    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2542:2: rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_1
+                    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2542:1: ( rule__CollectionLiteralPartCS__OwnedExpressionAssignment_1 )
+                    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2542:2: rule__CollectionLiteralPartCS__OwnedExpressionAssignment_1
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_1_in_rule__CollectionLiteralPartCS__Alternatives5450);
-                    rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_1();
+                    pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralPartCS__OwnedExpressionAssignment_1_in_rule__CollectionLiteralPartCS__Alternatives5450);
+                    rule__CollectionLiteralPartCS__OwnedExpressionAssignment_1();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -7859,7 +7859,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionCSAssignment_1()); 
+                       after(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionAssignment_1()); 
                     }
 
                     }
@@ -12990,26 +12990,26 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__CollectionLiteralPartCS__Group_0__0__Impl"
-    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4149:1: rule__CollectionLiteralPartCS__Group_0__0__Impl : ( ( rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_0_0 ) ) ;
+    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4149:1: rule__CollectionLiteralPartCS__Group_0__0__Impl : ( ( rule__CollectionLiteralPartCS__OwnedExpressionAssignment_0_0 ) ) ;
     public final void rule__CollectionLiteralPartCS__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4153:1: ( ( ( rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_0_0 ) ) )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4154:1: ( ( rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_0_0 ) )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4153:1: ( ( ( rule__CollectionLiteralPartCS__OwnedExpressionAssignment_0_0 ) ) )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4154:1: ( ( rule__CollectionLiteralPartCS__OwnedExpressionAssignment_0_0 ) )
             {
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4154:1: ( ( rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_0_0 ) )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4155:1: ( rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_0_0 )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4154:1: ( ( rule__CollectionLiteralPartCS__OwnedExpressionAssignment_0_0 ) )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4155:1: ( rule__CollectionLiteralPartCS__OwnedExpressionAssignment_0_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionCSAssignment_0_0()); 
+               before(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionAssignment_0_0()); 
             }
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4156:1: ( rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_0_0 )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4156:2: rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_0_0
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4156:1: ( rule__CollectionLiteralPartCS__OwnedExpressionAssignment_0_0 )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4156:2: rule__CollectionLiteralPartCS__OwnedExpressionAssignment_0_0
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_0_0_in_rule__CollectionLiteralPartCS__Group_0__0__Impl8796);
-            rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_0_0();
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralPartCS__OwnedExpressionAssignment_0_0_in_rule__CollectionLiteralPartCS__Group_0__0__Impl8796);
+            rule__CollectionLiteralPartCS__OwnedExpressionAssignment_0_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -13017,7 +13017,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionCSAssignment_0_0()); 
+               after(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionAssignment_0_0()); 
             }
 
             }
@@ -13248,26 +13248,26 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__CollectionLiteralPartCS__Group_0_1__1__Impl"
-    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4240:1: rule__CollectionLiteralPartCS__Group_0_1__1__Impl : ( ( rule__CollectionLiteralPartCS__OwnedLastExpressionCSAssignment_0_1_1 ) ) ;
+    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4240:1: rule__CollectionLiteralPartCS__Group_0_1__1__Impl : ( ( rule__CollectionLiteralPartCS__OwnedLastExpressionAssignment_0_1_1 ) ) ;
     public final void rule__CollectionLiteralPartCS__Group_0_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4244:1: ( ( ( rule__CollectionLiteralPartCS__OwnedLastExpressionCSAssignment_0_1_1 ) ) )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4245:1: ( ( rule__CollectionLiteralPartCS__OwnedLastExpressionCSAssignment_0_1_1 ) )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4244:1: ( ( ( rule__CollectionLiteralPartCS__OwnedLastExpressionAssignment_0_1_1 ) ) )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4245:1: ( ( rule__CollectionLiteralPartCS__OwnedLastExpressionAssignment_0_1_1 ) )
             {
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4245:1: ( ( rule__CollectionLiteralPartCS__OwnedLastExpressionCSAssignment_0_1_1 ) )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4246:1: ( rule__CollectionLiteralPartCS__OwnedLastExpressionCSAssignment_0_1_1 )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4245:1: ( ( rule__CollectionLiteralPartCS__OwnedLastExpressionAssignment_0_1_1 ) )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4246:1: ( rule__CollectionLiteralPartCS__OwnedLastExpressionAssignment_0_1_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedLastExpressionCSAssignment_0_1_1()); 
+               before(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedLastExpressionAssignment_0_1_1()); 
             }
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4247:1: ( rule__CollectionLiteralPartCS__OwnedLastExpressionCSAssignment_0_1_1 )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4247:2: rule__CollectionLiteralPartCS__OwnedLastExpressionCSAssignment_0_1_1
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4247:1: ( rule__CollectionLiteralPartCS__OwnedLastExpressionAssignment_0_1_1 )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4247:2: rule__CollectionLiteralPartCS__OwnedLastExpressionAssignment_0_1_1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralPartCS__OwnedLastExpressionCSAssignment_0_1_1_in_rule__CollectionLiteralPartCS__Group_0_1__1__Impl8977);
-            rule__CollectionLiteralPartCS__OwnedLastExpressionCSAssignment_0_1_1();
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralPartCS__OwnedLastExpressionAssignment_0_1_1_in_rule__CollectionLiteralPartCS__Group_0_1__1__Impl8977);
+            rule__CollectionLiteralPartCS__OwnedLastExpressionAssignment_0_1_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -13275,7 +13275,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedLastExpressionCSAssignment_0_1_1()); 
+               after(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedLastExpressionAssignment_0_1_1()); 
             }
 
             }
@@ -29214,9 +29214,9 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
     // $ANTLR end "rule__CollectionLiteralExpCS__OwnedPartsAssignment_2_1_1"
 
 
-    // $ANTLR start "rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_0_0"
-    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10002:1: rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_0_0 : ( ruleExpCS ) ;
-    public final void rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_0_0() throws RecognitionException {
+    // $ANTLR start "rule__CollectionLiteralPartCS__OwnedExpressionAssignment_0_0"
+    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10002:1: rule__CollectionLiteralPartCS__OwnedExpressionAssignment_0_0 : ( ruleExpCS ) ;
+    public final void rule__CollectionLiteralPartCS__OwnedExpressionAssignment_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -29228,15 +29228,15 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10008:1: ruleExpCS
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionCSExpCSParserRuleCall_0_0_0()); 
+               before(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionExpCSParserRuleCall_0_0_0()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleExpCS_in_rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_0_020360);
+            pushFollow(FollowSets000.FOLLOW_ruleExpCS_in_rule__CollectionLiteralPartCS__OwnedExpressionAssignment_0_020360);
             ruleExpCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionCSExpCSParserRuleCall_0_0_0()); 
+               after(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionExpCSParserRuleCall_0_0_0()); 
             }
 
             }
@@ -29256,12 +29256,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_0_0"
+    // $ANTLR end "rule__CollectionLiteralPartCS__OwnedExpressionAssignment_0_0"
 
 
-    // $ANTLR start "rule__CollectionLiteralPartCS__OwnedLastExpressionCSAssignment_0_1_1"
-    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10017:1: rule__CollectionLiteralPartCS__OwnedLastExpressionCSAssignment_0_1_1 : ( ruleExpCS ) ;
-    public final void rule__CollectionLiteralPartCS__OwnedLastExpressionCSAssignment_0_1_1() throws RecognitionException {
+    // $ANTLR start "rule__CollectionLiteralPartCS__OwnedLastExpressionAssignment_0_1_1"
+    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10017:1: rule__CollectionLiteralPartCS__OwnedLastExpressionAssignment_0_1_1 : ( ruleExpCS ) ;
+    public final void rule__CollectionLiteralPartCS__OwnedLastExpressionAssignment_0_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -29273,15 +29273,15 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10023:1: ruleExpCS
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedLastExpressionCSExpCSParserRuleCall_0_1_1_0()); 
+               before(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedLastExpressionExpCSParserRuleCall_0_1_1_0()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleExpCS_in_rule__CollectionLiteralPartCS__OwnedLastExpressionCSAssignment_0_1_120391);
+            pushFollow(FollowSets000.FOLLOW_ruleExpCS_in_rule__CollectionLiteralPartCS__OwnedLastExpressionAssignment_0_1_120391);
             ruleExpCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedLastExpressionCSExpCSParserRuleCall_0_1_1_0()); 
+               after(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedLastExpressionExpCSParserRuleCall_0_1_1_0()); 
             }
 
             }
@@ -29301,12 +29301,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "rule__CollectionLiteralPartCS__OwnedLastExpressionCSAssignment_0_1_1"
+    // $ANTLR end "rule__CollectionLiteralPartCS__OwnedLastExpressionAssignment_0_1_1"
 
 
-    // $ANTLR start "rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_1"
-    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10032:1: rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_1 : ( rulePatternExpCS ) ;
-    public final void rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__CollectionLiteralPartCS__OwnedExpressionAssignment_1"
+    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10032:1: rule__CollectionLiteralPartCS__OwnedExpressionAssignment_1 : ( rulePatternExpCS ) ;
+    public final void rule__CollectionLiteralPartCS__OwnedExpressionAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -29318,15 +29318,15 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10038:1: rulePatternExpCS
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionCSPatternExpCSParserRuleCall_1_0()); 
+               before(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionPatternExpCSParserRuleCall_1_0()); 
             }
-            pushFollow(FollowSets000.FOLLOW_rulePatternExpCS_in_rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_120422);
+            pushFollow(FollowSets000.FOLLOW_rulePatternExpCS_in_rule__CollectionLiteralPartCS__OwnedExpressionAssignment_120422);
             rulePatternExpCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionCSPatternExpCSParserRuleCall_1_0()); 
+               after(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionPatternExpCSParserRuleCall_1_0()); 
             }
 
             }
@@ -29346,7 +29346,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_1"
+    // $ANTLR end "rule__CollectionLiteralPartCS__OwnedExpressionAssignment_1"
 
 
     // $ANTLR start "rule__CollectionPatternCS__OwnedTypeAssignment_0"
@@ -34065,7 +34065,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         public static final BitSet FOLLOW_20_in_rule__MultiplicityStringCS__StringBoundsAlternatives_05378 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_49_in_rule__MultiplicityStringCS__StringBoundsAlternatives_05398 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__Group_0__0_in_rule__CollectionLiteralPartCS__Alternatives5432 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_1_in_rule__CollectionLiteralPartCS__Alternatives5450 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__OwnedExpressionAssignment_1_in_rule__CollectionLiteralPartCS__Alternatives5450 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleExpCS_in_rule__ConstructorPartCS__OwnedInitExpressionAlternatives_2_05483 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rulePatternExpCS_in_rule__ConstructorPartCS__OwnedInitExpressionAlternatives_2_05500 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleNumberLiteralExpCS_in_rule__PrimitiveLiteralExpCS__Alternatives5532 = new BitSet(new long[]{0x0000000000000002L});
@@ -34207,14 +34207,14 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__OwnedPartsAssignment_2_1_1_in_rule__CollectionLiteralExpCS__Group_2_1__1__Impl8732 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__Group_0__0__Impl_in_rule__CollectionLiteralPartCS__Group_0__08766 = new BitSet(new long[]{0x0020000000000000L});
         public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__Group_0__1_in_rule__CollectionLiteralPartCS__Group_0__08769 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_0_0_in_rule__CollectionLiteralPartCS__Group_0__0__Impl8796 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__OwnedExpressionAssignment_0_0_in_rule__CollectionLiteralPartCS__Group_0__0__Impl8796 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__Group_0__1__Impl_in_rule__CollectionLiteralPartCS__Group_0__18826 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__Group_0_1__0_in_rule__CollectionLiteralPartCS__Group_0__1__Impl8853 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__Group_0_1__0__Impl_in_rule__CollectionLiteralPartCS__Group_0_1__08888 = new BitSet(new long[]{0xE009FFF8000700F0L,0x0000000000000784L});
         public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__Group_0_1__1_in_rule__CollectionLiteralPartCS__Group_0_1__08891 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_53_in_rule__CollectionLiteralPartCS__Group_0_1__0__Impl8919 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__Group_0_1__1__Impl_in_rule__CollectionLiteralPartCS__Group_0_1__18950 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__OwnedLastExpressionCSAssignment_0_1_1_in_rule__CollectionLiteralPartCS__Group_0_1__1__Impl8977 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__OwnedLastExpressionAssignment_0_1_1_in_rule__CollectionLiteralPartCS__Group_0_1__1__Impl8977 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__CollectionPatternCS__Group__0__Impl_in_rule__CollectionPatternCS__Group__09011 = new BitSet(new long[]{0x0400000000000000L});
         public static final BitSet FOLLOW_rule__CollectionPatternCS__Group__1_in_rule__CollectionPatternCS__Group__09014 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__CollectionPatternCS__OwnedTypeAssignment_0_in_rule__CollectionPatternCS__Group__0__Impl9041 = new BitSet(new long[]{0x0000000000000002L});
@@ -34682,9 +34682,9 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         public static final BitSet FOLLOW_ruleCollectionTypeCS_in_rule__CollectionLiteralExpCS__OwnedTypeAssignment_020267 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleCollectionLiteralPartCS_in_rule__CollectionLiteralExpCS__OwnedPartsAssignment_2_020298 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleCollectionLiteralPartCS_in_rule__CollectionLiteralExpCS__OwnedPartsAssignment_2_1_120329 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleExpCS_in_rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_0_020360 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleExpCS_in_rule__CollectionLiteralPartCS__OwnedLastExpressionCSAssignment_0_1_120391 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rulePatternExpCS_in_rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_120422 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleExpCS_in_rule__CollectionLiteralPartCS__OwnedExpressionAssignment_0_020360 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleExpCS_in_rule__CollectionLiteralPartCS__OwnedLastExpressionAssignment_0_1_120391 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rulePatternExpCS_in_rule__CollectionLiteralPartCS__OwnedExpressionAssignment_120422 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleCollectionTypeCS_in_rule__CollectionPatternCS__OwnedTypeAssignment_020453 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rulePatternExpCS_in_rule__CollectionPatternCS__OwnedPartsAssignment_2_020484 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rulePatternExpCS_in_rule__CollectionPatternCS__OwnedPartsAssignment_2_1_120515 = new BitSet(new long[]{0x0000000000000002L});

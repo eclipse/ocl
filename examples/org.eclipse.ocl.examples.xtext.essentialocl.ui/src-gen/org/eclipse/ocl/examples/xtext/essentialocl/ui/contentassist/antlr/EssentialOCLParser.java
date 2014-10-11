@@ -171,9 +171,9 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getCollectionLiteralExpCSAccess().getOwnedTypeAssignment_0(), "rule__CollectionLiteralExpCS__OwnedTypeAssignment_0");
 					put(grammarAccess.getCollectionLiteralExpCSAccess().getOwnedPartsAssignment_2_0(), "rule__CollectionLiteralExpCS__OwnedPartsAssignment_2_0");
 					put(grammarAccess.getCollectionLiteralExpCSAccess().getOwnedPartsAssignment_2_1_1(), "rule__CollectionLiteralExpCS__OwnedPartsAssignment_2_1_1");
-					put(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionCSAssignment_0_0(), "rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_0_0");
-					put(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedLastExpressionCSAssignment_0_1_1(), "rule__CollectionLiteralPartCS__OwnedLastExpressionCSAssignment_0_1_1");
-					put(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionCSAssignment_1(), "rule__CollectionLiteralPartCS__OwnedExpressionCSAssignment_1");
+					put(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionAssignment_0_0(), "rule__CollectionLiteralPartCS__OwnedExpressionAssignment_0_0");
+					put(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedLastExpressionAssignment_0_1_1(), "rule__CollectionLiteralPartCS__OwnedLastExpressionAssignment_0_1_1");
+					put(grammarAccess.getCollectionLiteralPartCSAccess().getOwnedExpressionAssignment_1(), "rule__CollectionLiteralPartCS__OwnedExpressionAssignment_1");
 					put(grammarAccess.getCollectionPatternCSAccess().getOwnedTypeAssignment_0(), "rule__CollectionPatternCS__OwnedTypeAssignment_0");
 					put(grammarAccess.getCollectionPatternCSAccess().getOwnedPartsAssignment_2_0(), "rule__CollectionPatternCS__OwnedPartsAssignment_2_0");
 					put(grammarAccess.getCollectionPatternCSAccess().getOwnedPartsAssignment_2_1_1(), "rule__CollectionPatternCS__OwnedPartsAssignment_2_1_1");

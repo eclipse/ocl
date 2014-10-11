@@ -901,22 +901,22 @@ public interface EssentialOCLCSPackage
 	int COLLECTION_LITERAL_PART_CS__CSI = BaseCSPackage.MODEL_ELEMENT_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Owned Expression CS</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_LITERAL_PART_CS__OWNED_EXPRESSION_CS = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
+	int COLLECTION_LITERAL_PART_CS__OWNED_EXPRESSION = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Owned Last Expression CS</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Last Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_LITERAL_PART_CS__OWNED_LAST_EXPRESSION_CS = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
+	int COLLECTION_LITERAL_PART_CS__OWNED_LAST_EXPRESSION = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Collection Literal Part CS</em>' class.
@@ -4376,26 +4376,26 @@ public interface EssentialOCLCSPackage
 	EClass getCollectionLiteralPartCS();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralPartCS#getOwnedExpressionCS <em>Owned Expression CS</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralPartCS#getOwnedExpression <em>Owned Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Expression CS</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralPartCS#getOwnedExpressionCS()
+	 * @return the meta object for the containment reference '<em>Owned Expression</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralPartCS#getOwnedExpression()
 	 * @see #getCollectionLiteralPartCS()
 	 * @generated
 	 */
-	EReference getCollectionLiteralPartCS_OwnedExpressionCS();
+	EReference getCollectionLiteralPartCS_OwnedExpression();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralPartCS#getOwnedLastExpressionCS <em>Owned Last Expression CS</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralPartCS#getOwnedLastExpression <em>Owned Last Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Last Expression CS</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralPartCS#getOwnedLastExpressionCS()
+	 * @return the meta object for the containment reference '<em>Owned Last Expression</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralPartCS#getOwnedLastExpression()
 	 * @see #getCollectionLiteralPartCS()
 	 * @generated
 	 */
-	EReference getCollectionLiteralPartCS_OwnedLastExpressionCS();
+	EReference getCollectionLiteralPartCS_OwnedLastExpression();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionPatternCS <em>Collection Pattern CS</em>}'.
@@ -5465,20 +5465,20 @@ public interface EssentialOCLCSPackage
 		EClass COLLECTION_LITERAL_PART_CS = eINSTANCE.getCollectionLiteralPartCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Expression CS</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Owned Expression</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COLLECTION_LITERAL_PART_CS__OWNED_EXPRESSION_CS = eINSTANCE.getCollectionLiteralPartCS_OwnedExpressionCS();
+		EReference COLLECTION_LITERAL_PART_CS__OWNED_EXPRESSION = eINSTANCE.getCollectionLiteralPartCS_OwnedExpression();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Last Expression CS</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Owned Last Expression</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COLLECTION_LITERAL_PART_CS__OWNED_LAST_EXPRESSION_CS = eINSTANCE.getCollectionLiteralPartCS_OwnedLastExpressionCS();
+		EReference COLLECTION_LITERAL_PART_CS__OWNED_LAST_EXPRESSION = eINSTANCE.getCollectionLiteralPartCS_OwnedLastExpression();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CollectionPatternCSImpl <em>Collection Pattern CS</em>}' class.
