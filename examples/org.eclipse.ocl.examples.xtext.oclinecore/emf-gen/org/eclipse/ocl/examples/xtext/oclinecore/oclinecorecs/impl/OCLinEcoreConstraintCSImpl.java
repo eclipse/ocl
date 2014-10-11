@@ -28,7 +28,7 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.util.OCLinEcoreCSV
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.impl.OCLinEcoreConstraintCSImpl#isCallable <em>Callable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.impl.OCLinEcoreConstraintCSImpl#isIsCallable <em>Is Callable</em>}</li>
  * </ul>
  * </p>
  *
@@ -36,24 +36,23 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.util.OCLinEcoreCSV
  */
 public class OCLinEcoreConstraintCSImpl extends ConstraintCSImpl implements OCLinEcoreConstraintCS {
 	/**
-	 * The default value of the '{@link #isCallable() <em>Callable</em>}' attribute.
+	 * The default value of the '{@link #isIsCallable() <em>Is Callable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isCallable()
+	 * @see #isIsCallable()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean CALLABLE_EDEFAULT = false;
+	protected static final boolean IS_CALLABLE_EDEFAULT = false;
 	/**
-	 * The cached value of the '{@link #isCallable() <em>Callable</em>}' attribute.
+	 * The cached value of the '{@link #isIsCallable() <em>Is Callable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isCallable()
+	 * @see #isIsCallable()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean callable = CALLABLE_EDEFAULT;
-
+	protected boolean isCallable = IS_CALLABLE_EDEFAULT;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,9 +77,9 @@ public class OCLinEcoreConstraintCSImpl extends ConstraintCSImpl implements OCLi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isCallable()
+	public boolean isIsCallable()
 	{
-		return callable;
+		return isCallable;
 	}
 
 	/**
@@ -88,12 +87,12 @@ public class OCLinEcoreConstraintCSImpl extends ConstraintCSImpl implements OCLi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCallable(boolean newCallable)
+	public void setIsCallable(boolean newIsCallable)
 	{
-		boolean oldCallable = callable;
-		callable = newCallable;
+		boolean oldIsCallable = isCallable;
+		isCallable = newIsCallable;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OCLinEcoreCSPackage.OC_LIN_ECORE_CONSTRAINT_CS__CALLABLE, oldCallable, callable));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLinEcoreCSPackage.OC_LIN_ECORE_CONSTRAINT_CS__IS_CALLABLE, oldIsCallable, isCallable));
 	}
 
 	/**
@@ -117,8 +116,8 @@ public class OCLinEcoreConstraintCSImpl extends ConstraintCSImpl implements OCLi
 	{
 		switch (featureID)
 		{
-			case OCLinEcoreCSPackage.OC_LIN_ECORE_CONSTRAINT_CS__CALLABLE:
-				return isCallable();
+			case OCLinEcoreCSPackage.OC_LIN_ECORE_CONSTRAINT_CS__IS_CALLABLE:
+				return isIsCallable();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -133,8 +132,8 @@ public class OCLinEcoreConstraintCSImpl extends ConstraintCSImpl implements OCLi
 	{
 		switch (featureID)
 		{
-			case OCLinEcoreCSPackage.OC_LIN_ECORE_CONSTRAINT_CS__CALLABLE:
-				setCallable((Boolean)newValue);
+			case OCLinEcoreCSPackage.OC_LIN_ECORE_CONSTRAINT_CS__IS_CALLABLE:
+				setIsCallable((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -150,8 +149,8 @@ public class OCLinEcoreConstraintCSImpl extends ConstraintCSImpl implements OCLi
 	{
 		switch (featureID)
 		{
-			case OCLinEcoreCSPackage.OC_LIN_ECORE_CONSTRAINT_CS__CALLABLE:
-				setCallable(CALLABLE_EDEFAULT);
+			case OCLinEcoreCSPackage.OC_LIN_ECORE_CONSTRAINT_CS__IS_CALLABLE:
+				setIsCallable(IS_CALLABLE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -167,8 +166,8 @@ public class OCLinEcoreConstraintCSImpl extends ConstraintCSImpl implements OCLi
 	{
 		switch (featureID)
 		{
-			case OCLinEcoreCSPackage.OC_LIN_ECORE_CONSTRAINT_CS__CALLABLE:
-				return callable != CALLABLE_EDEFAULT;
+			case OCLinEcoreCSPackage.OC_LIN_ECORE_CONSTRAINT_CS__IS_CALLABLE:
+				return isCallable != IS_CALLABLE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

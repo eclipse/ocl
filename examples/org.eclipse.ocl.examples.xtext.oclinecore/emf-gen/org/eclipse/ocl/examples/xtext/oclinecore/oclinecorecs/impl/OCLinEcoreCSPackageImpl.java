@@ -129,7 +129,7 @@ public class OCLinEcoreCSPackageImpl extends EPackageImpl implements OCLinEcoreC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getOCLinEcoreConstraintCS_Callable()
+	public EAttribute getOCLinEcoreConstraintCS_IsCallable()
 	{
 		return (EAttribute)ocLinEcoreConstraintCSEClass.getEStructuralFeatures().get(0);
 	}
@@ -194,7 +194,7 @@ public class OCLinEcoreCSPackageImpl extends EPackageImpl implements OCLinEcoreC
 
 		// Create classes and their features
 		ocLinEcoreConstraintCSEClass = createEClass(OC_LIN_ECORE_CONSTRAINT_CS);
-		createEAttribute(ocLinEcoreConstraintCSEClass, OC_LIN_ECORE_CONSTRAINT_CS__CALLABLE);
+		createEAttribute(ocLinEcoreConstraintCSEClass, OC_LIN_ECORE_CONSTRAINT_CS__IS_CALLABLE);
 
 		sysMLCSEClass = createEClass(SYS_MLCS);
 		createEAttribute(sysMLCSEClass, SYS_MLCS__VALUE);
@@ -239,7 +239,7 @@ public class OCLinEcoreCSPackageImpl extends EPackageImpl implements OCLinEcoreC
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(ocLinEcoreConstraintCSEClass, OCLinEcoreConstraintCS.class, "OCLinEcoreConstraintCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getOCLinEcoreConstraintCS_Callable(), ecorePackage.getEBoolean(), "callable", null, 0, 1, OCLinEcoreConstraintCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getOCLinEcoreConstraintCS_IsCallable(), ecorePackage.getEBoolean(), "isCallable", null, 0, 1, OCLinEcoreConstraintCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sysMLCSEClass, SysMLCS.class, "SysMLCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSysMLCS_Value(), ecorePackage.getEString(), "value", null, 0, 1, SysMLCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

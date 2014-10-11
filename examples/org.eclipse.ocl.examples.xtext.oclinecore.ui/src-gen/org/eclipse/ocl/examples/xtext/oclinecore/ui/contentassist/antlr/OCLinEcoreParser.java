@@ -291,7 +291,7 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTopLevelCSAccess().getOwnedLibrariesAssignment_2(), "rule__TopLevelCS__OwnedLibrariesAssignment_2");
 					put(grammarAccess.getTopLevelCSAccess().getOwnedImportsAssignment_3(), "rule__TopLevelCS__OwnedImportsAssignment_3");
 					put(grammarAccess.getTopLevelCSAccess().getOwnedPackagesAssignment_4(), "rule__TopLevelCS__OwnedPackagesAssignment_4");
-					put(grammarAccess.getInvariantConstraintCSAccess().getCallableAssignment_0(), "rule__InvariantConstraintCS__CallableAssignment_0");
+					put(grammarAccess.getInvariantConstraintCSAccess().getIsCallableAssignment_0(), "rule__InvariantConstraintCS__IsCallableAssignment_0");
 					put(grammarAccess.getInvariantConstraintCSAccess().getStereotypeAssignment_1(), "rule__InvariantConstraintCS__StereotypeAssignment_1");
 					put(grammarAccess.getInvariantConstraintCSAccess().getNameAssignment_2_0(), "rule__InvariantConstraintCS__NameAssignment_2_0");
 					put(grammarAccess.getInvariantConstraintCSAccess().getOwnedMessageSpecificationAssignment_2_1_1(), "rule__InvariantConstraintCS__OwnedMessageSpecificationAssignment_2_1_1");

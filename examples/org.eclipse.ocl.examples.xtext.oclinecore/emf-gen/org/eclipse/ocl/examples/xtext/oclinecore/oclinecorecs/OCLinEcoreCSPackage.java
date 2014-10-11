@@ -102,15 +102,15 @@ public interface OCLinEcoreCSPackage extends EPackage {
 	EClass getOCLinEcoreConstraintCS();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.OCLinEcoreConstraintCS#isCallable <em>Callable</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.OCLinEcoreConstraintCS#isIsCallable <em>Is Callable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Callable</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.OCLinEcoreConstraintCS#isCallable()
+	 * @return the meta object for the attribute '<em>Is Callable</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.OCLinEcoreConstraintCS#isIsCallable()
 	 * @see #getOCLinEcoreConstraintCS()
 	 * @generated
 	 */
-	EAttribute getOCLinEcoreConstraintCS_Callable();
+	EAttribute getOCLinEcoreConstraintCS_IsCallable();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.SysMLCS <em>Sys MLCS</em>}'.
@@ -225,13 +225,13 @@ public interface OCLinEcoreCSPackage extends EPackage {
 	int OC_LIN_ECORE_CONSTRAINT_CS__OWNED_MESSAGE_SPECIFICATION = BaseCSPackage.CONSTRAINT_CS__OWNED_MESSAGE_SPECIFICATION;
 
 	/**
-	 * The feature id for the '<em><b>Callable</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Callable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__CALLABLE = BaseCSPackage.CONSTRAINT_CS_FEATURE_COUNT + 0;
+	int OC_LIN_ECORE_CONSTRAINT_CS__IS_CALLABLE = BaseCSPackage.CONSTRAINT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>OC Lin Ecore Constraint CS</em>' class.
@@ -447,12 +447,12 @@ public interface OCLinEcoreCSPackage extends EPackage {
 		 */
 		EClass OC_LIN_ECORE_CONSTRAINT_CS = eINSTANCE.getOCLinEcoreConstraintCS();
 		/**
-		 * The meta object literal for the '<em><b>Callable</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Is Callable</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute OC_LIN_ECORE_CONSTRAINT_CS__CALLABLE = eINSTANCE.getOCLinEcoreConstraintCS_Callable();
+		EAttribute OC_LIN_ECORE_CONSTRAINT_CS__IS_CALLABLE = eINSTANCE.getOCLinEcoreConstraintCS_IsCallable();
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.impl.SysMLCSImpl <em>Sys MLCS</em>}' class.
 		 * <!-- begin-user-doc -->

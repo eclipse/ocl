@@ -1672,11 +1672,11 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleInvariantConstraintCS"
-    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:568:1: ruleInvariantConstraintCS returns [EObject current=null] : ( ( (lv_callable_0_0= 'callable' ) )? ( (lv_stereotype_1_0= 'invariant' ) ) ( ( (lv_name_2_0= ruleUnrestrictedName ) ) (otherlv_3= '(' ( (lv_ownedMessageSpecification_4_0= ruleSpecificationCS ) ) otherlv_5= ')' )? )? ( (otherlv_6= ':' ( (lv_ownedSpecification_7_0= ruleSpecificationCS ) )? otherlv_8= ';' ) | otherlv_9= ';' ) ) ;
+    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:568:1: ruleInvariantConstraintCS returns [EObject current=null] : ( ( (lv_isCallable_0_0= 'callable' ) )? ( (lv_stereotype_1_0= 'invariant' ) ) ( ( (lv_name_2_0= ruleUnrestrictedName ) ) (otherlv_3= '(' ( (lv_ownedMessageSpecification_4_0= ruleSpecificationCS ) ) otherlv_5= ')' )? )? ( (otherlv_6= ':' ( (lv_ownedSpecification_7_0= ruleSpecificationCS ) )? otherlv_8= ';' ) | otherlv_9= ';' ) ) ;
     public final EObject ruleInvariantConstraintCS() throws RecognitionException {
         EObject current = null;
 
-        Token lv_callable_0_0=null;
+        Token lv_isCallable_0_0=null;
         Token lv_stereotype_1_0=null;
         Token otherlv_3=null;
         Token otherlv_5=null;
@@ -1693,13 +1693,13 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:571:28: ( ( ( (lv_callable_0_0= 'callable' ) )? ( (lv_stereotype_1_0= 'invariant' ) ) ( ( (lv_name_2_0= ruleUnrestrictedName ) ) (otherlv_3= '(' ( (lv_ownedMessageSpecification_4_0= ruleSpecificationCS ) ) otherlv_5= ')' )? )? ( (otherlv_6= ':' ( (lv_ownedSpecification_7_0= ruleSpecificationCS ) )? otherlv_8= ';' ) | otherlv_9= ';' ) ) )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:572:1: ( ( (lv_callable_0_0= 'callable' ) )? ( (lv_stereotype_1_0= 'invariant' ) ) ( ( (lv_name_2_0= ruleUnrestrictedName ) ) (otherlv_3= '(' ( (lv_ownedMessageSpecification_4_0= ruleSpecificationCS ) ) otherlv_5= ')' )? )? ( (otherlv_6= ':' ( (lv_ownedSpecification_7_0= ruleSpecificationCS ) )? otherlv_8= ';' ) | otherlv_9= ';' ) )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:571:28: ( ( ( (lv_isCallable_0_0= 'callable' ) )? ( (lv_stereotype_1_0= 'invariant' ) ) ( ( (lv_name_2_0= ruleUnrestrictedName ) ) (otherlv_3= '(' ( (lv_ownedMessageSpecification_4_0= ruleSpecificationCS ) ) otherlv_5= ')' )? )? ( (otherlv_6= ':' ( (lv_ownedSpecification_7_0= ruleSpecificationCS ) )? otherlv_8= ';' ) | otherlv_9= ';' ) ) )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:572:1: ( ( (lv_isCallable_0_0= 'callable' ) )? ( (lv_stereotype_1_0= 'invariant' ) ) ( ( (lv_name_2_0= ruleUnrestrictedName ) ) (otherlv_3= '(' ( (lv_ownedMessageSpecification_4_0= ruleSpecificationCS ) ) otherlv_5= ')' )? )? ( (otherlv_6= ':' ( (lv_ownedSpecification_7_0= ruleSpecificationCS ) )? otherlv_8= ';' ) | otherlv_9= ';' ) )
             {
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:572:1: ( ( (lv_callable_0_0= 'callable' ) )? ( (lv_stereotype_1_0= 'invariant' ) ) ( ( (lv_name_2_0= ruleUnrestrictedName ) ) (otherlv_3= '(' ( (lv_ownedMessageSpecification_4_0= ruleSpecificationCS ) ) otherlv_5= ')' )? )? ( (otherlv_6= ':' ( (lv_ownedSpecification_7_0= ruleSpecificationCS ) )? otherlv_8= ';' ) | otherlv_9= ';' ) )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:572:2: ( (lv_callable_0_0= 'callable' ) )? ( (lv_stereotype_1_0= 'invariant' ) ) ( ( (lv_name_2_0= ruleUnrestrictedName ) ) (otherlv_3= '(' ( (lv_ownedMessageSpecification_4_0= ruleSpecificationCS ) ) otherlv_5= ')' )? )? ( (otherlv_6= ':' ( (lv_ownedSpecification_7_0= ruleSpecificationCS ) )? otherlv_8= ';' ) | otherlv_9= ';' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:572:1: ( ( (lv_isCallable_0_0= 'callable' ) )? ( (lv_stereotype_1_0= 'invariant' ) ) ( ( (lv_name_2_0= ruleUnrestrictedName ) ) (otherlv_3= '(' ( (lv_ownedMessageSpecification_4_0= ruleSpecificationCS ) ) otherlv_5= ')' )? )? ( (otherlv_6= ':' ( (lv_ownedSpecification_7_0= ruleSpecificationCS ) )? otherlv_8= ';' ) | otherlv_9= ';' ) )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:572:2: ( (lv_isCallable_0_0= 'callable' ) )? ( (lv_stereotype_1_0= 'invariant' ) ) ( ( (lv_name_2_0= ruleUnrestrictedName ) ) (otherlv_3= '(' ( (lv_ownedMessageSpecification_4_0= ruleSpecificationCS ) ) otherlv_5= ')' )? )? ( (otherlv_6= ':' ( (lv_ownedSpecification_7_0= ruleSpecificationCS ) )? otherlv_8= ';' ) | otherlv_9= ';' )
             {
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:572:2: ( (lv_callable_0_0= 'callable' ) )?
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:572:2: ( (lv_isCallable_0_0= 'callable' ) )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -1708,15 +1708,15 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
             }
             switch (alt8) {
                 case 1 :
-                    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:573:1: (lv_callable_0_0= 'callable' )
+                    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:573:1: (lv_isCallable_0_0= 'callable' )
                     {
-                    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:573:1: (lv_callable_0_0= 'callable' )
-                    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:574:3: lv_callable_0_0= 'callable'
+                    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:573:1: (lv_isCallable_0_0= 'callable' )
+                    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:574:3: lv_isCallable_0_0= 'callable'
                     {
-                    lv_callable_0_0=(Token)match(input,22,FollowSets000.FOLLOW_22_in_ruleInvariantConstraintCS1418); if (state.failed) return current;
+                    lv_isCallable_0_0=(Token)match(input,22,FollowSets000.FOLLOW_22_in_ruleInvariantConstraintCS1418); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                              newLeafNode(lv_callable_0_0, grammarAccess.getInvariantConstraintCSAccess().getCallableCallableKeyword_0_0());
+                              newLeafNode(lv_isCallable_0_0, grammarAccess.getInvariantConstraintCSAccess().getIsCallableCallableKeyword_0_0());
                           
                     }
                     if ( state.backtracking==0 ) {
@@ -1724,7 +1724,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                       	        if (current==null) {
                       	            current = createModelElement(grammarAccess.getInvariantConstraintCSRule());
                       	        }
-                             		setWithLastConsumed(current, "callable", true, "callable");
+                             		setWithLastConsumed(current, "isCallable", true, "callable");
                       	    
                     }
 

@@ -806,7 +806,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	/**
 	 * Constraint:
 	 *     (
-	 *         callable?='callable'? 
+	 *         isCallable?='callable'? 
 	 *         stereotype='invariant' 
 	 *         (name=UnrestrictedName ownedMessageSpecification=SpecificationCS?)? 
 	 *         ownedSpecification=SpecificationCS?

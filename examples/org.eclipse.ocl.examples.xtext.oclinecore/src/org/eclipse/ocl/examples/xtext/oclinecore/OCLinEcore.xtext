@@ -87,7 +87,7 @@ UnrestrictedName returns ecore::EString:
 ;
 
 InvariantConstraintCS returns OCLinEcoreConstraintCS:
-	(callable?='callable')? stereotype='invariant' (name=UnrestrictedName ('(' ownedMessageSpecification=SpecificationCS ')')?)?
+	(isCallable?='callable')? stereotype='invariant' (name=UnrestrictedName ('(' ownedMessageSpecification=SpecificationCS ')')?)?
 	((':' ownedSpecification=SpecificationCS? ';') | ';')
 ;
 

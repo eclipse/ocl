@@ -571,16 +571,16 @@ ruleInvariantConstraintCS returns [EObject current=null]
     @after { leaveRule(); }:
 ((
 (
-		lv_callable_0_0=	'callable' 
+		lv_isCallable_0_0=	'callable' 
     {
-        newLeafNode(lv_callable_0_0, grammarAccess.getInvariantConstraintCSAccess().getCallableCallableKeyword_0_0());
+        newLeafNode(lv_isCallable_0_0, grammarAccess.getInvariantConstraintCSAccess().getIsCallableCallableKeyword_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getInvariantConstraintCSRule());
 	        }
-       		setWithLastConsumed($current, "callable", true, "callable");
+       		setWithLastConsumed($current, "isCallable", true, "callable");
 	    }
 
 )

@@ -32,7 +32,7 @@ public class OCLinEcoreCSPostOrderVisitor extends AbstractOCLinEcoreCSPostOrderV
 		Continuation<?> continuation = super.visitOCLinEcoreConstraintCS(csConstraint);
 		Constraint pivotElement = PivotUtil.getPivot(Constraint.class, csConstraint);
 		if (pivotElement != null) {
-			pivotElement.setIsCallable(csConstraint.isCallable());
+			pivotElement.setIsCallable(csConstraint.isIsCallable());
 		}
 		return continuation;
 	}

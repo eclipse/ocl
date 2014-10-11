@@ -20,7 +20,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.OCLinEcoreConstraintCS#isCallable <em>Callable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.OCLinEcoreConstraintCS#isIsCallable <em>Is Callable</em>}</li>
  * </ul>
  * </p>
  *
@@ -31,29 +31,29 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
 public interface OCLinEcoreConstraintCS extends ConstraintCS {
 
 	/**
-	 * Returns the value of the '<em><b>Callable</b></em>' attribute.
+	 * Returns the value of the '<em><b>Is Callable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Callable</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Callable</em>' attribute.
-	 * @see #setCallable(boolean)
-	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.OCLinEcoreCSPackage#getOCLinEcoreConstraintCS_Callable()
+	 * @return the value of the '<em>Is Callable</em>' attribute.
+	 * @see #setIsCallable(boolean)
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.OCLinEcoreCSPackage#getOCLinEcoreConstraintCS_IsCallable()
 	 * @model
 	 * @generated
 	 */
-	boolean isCallable();
+	boolean isIsCallable();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.OCLinEcoreConstraintCS#isCallable <em>Callable</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.OCLinEcoreConstraintCS#isIsCallable <em>Is Callable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Callable</em>' attribute.
-	 * @see #isCallable()
+	 * @param value the new value of the '<em>Is Callable</em>' attribute.
+	 * @see #isIsCallable()
 	 * @generated
 	 */
-	void setCallable(boolean value);
+	void setIsCallable(boolean value);
 
 } // ConstraintCS

@@ -5737,9 +5737,9 @@ rule__InvariantConstraintCS__Group__0__Impl
     }
 :
 (
-{ before(grammarAccess.getInvariantConstraintCSAccess().getCallableAssignment_0()); }
-(rule__InvariantConstraintCS__CallableAssignment_0)?
-{ after(grammarAccess.getInvariantConstraintCSAccess().getCallableAssignment_0()); }
+{ before(grammarAccess.getInvariantConstraintCSAccess().getIsCallableAssignment_0()); }
+(rule__InvariantConstraintCS__IsCallableAssignment_0)?
+{ after(grammarAccess.getInvariantConstraintCSAccess().getIsCallableAssignment_0()); }
 )
 
 ;
@@ -22337,22 +22337,22 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__InvariantConstraintCS__CallableAssignment_0
+rule__InvariantConstraintCS__IsCallableAssignment_0
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getInvariantConstraintCSAccess().getCallableCallableKeyword_0_0()); }
+{ before(grammarAccess.getInvariantConstraintCSAccess().getIsCallableCallableKeyword_0_0()); }
 (
-{ before(grammarAccess.getInvariantConstraintCSAccess().getCallableCallableKeyword_0_0()); }
+{ before(grammarAccess.getInvariantConstraintCSAccess().getIsCallableCallableKeyword_0_0()); }
 
 	'callable' 
 
-{ after(grammarAccess.getInvariantConstraintCSAccess().getCallableCallableKeyword_0_0()); }
+{ after(grammarAccess.getInvariantConstraintCSAccess().getIsCallableCallableKeyword_0_0()); }
 )
 
-{ after(grammarAccess.getInvariantConstraintCSAccess().getCallableCallableKeyword_0_0()); }
+{ after(grammarAccess.getInvariantConstraintCSAccess().getIsCallableCallableKeyword_0_0()); }
 )
 
 ;

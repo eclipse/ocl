@@ -9,7 +9,7 @@
     <details key="pivot" value="../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#/"/>
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="OCLinEcoreConstraintCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#//ConstraintCS">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="callable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isCallable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SysMLCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#//AnnotationElementCS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
