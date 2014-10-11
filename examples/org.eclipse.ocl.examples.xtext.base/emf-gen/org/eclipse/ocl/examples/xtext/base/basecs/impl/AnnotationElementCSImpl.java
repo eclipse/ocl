@@ -30,7 +30,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.DetailCS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.AnnotationElementCSImpl#getOwnedDetail <em>Owned Detail</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.AnnotationElementCSImpl#getOwnedDetails <em>Owned Details</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,14 +38,14 @@ import org.eclipse.ocl.examples.xtext.base.basecs.DetailCS;
  */
 public abstract class AnnotationElementCSImpl extends NamedElementCSImpl implements AnnotationElementCS {
 	/**
-	 * The cached value of the '{@link #getOwnedDetail() <em>Owned Detail</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedDetails() <em>Owned Details</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedDetail()
+	 * @see #getOwnedDetails()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<DetailCS> ownedDetail;
+	protected EList<DetailCS> ownedDetails;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,13 +70,13 @@ public abstract class AnnotationElementCSImpl extends NamedElementCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<DetailCS> getOwnedDetail()
+	public EList<DetailCS> getOwnedDetails()
 	{
-		if (ownedDetail == null)
+		if (ownedDetails == null)
 		{
-			ownedDetail = new EObjectContainmentEList<DetailCS>(DetailCS.class, this, BaseCSPackage.ANNOTATION_ELEMENT_CS__OWNED_DETAIL);
+			ownedDetails = new EObjectContainmentEList<DetailCS>(DetailCS.class, this, BaseCSPackage.ANNOTATION_ELEMENT_CS__OWNED_DETAILS);
 		}
-		return ownedDetail;
+		return ownedDetails;
 	}
 
 	/**
@@ -88,8 +88,8 @@ public abstract class AnnotationElementCSImpl extends NamedElementCSImpl impleme
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case BaseCSPackage.ANNOTATION_ELEMENT_CS__OWNED_DETAIL:
-				return ((InternalEList<?>)getOwnedDetail()).basicRemove(otherEnd, msgs);
+			case BaseCSPackage.ANNOTATION_ELEMENT_CS__OWNED_DETAILS:
+				return ((InternalEList<?>)getOwnedDetails()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -103,8 +103,8 @@ public abstract class AnnotationElementCSImpl extends NamedElementCSImpl impleme
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case BaseCSPackage.ANNOTATION_ELEMENT_CS__OWNED_DETAIL:
-				return getOwnedDetail();
+			case BaseCSPackage.ANNOTATION_ELEMENT_CS__OWNED_DETAILS:
+				return getOwnedDetails();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -119,9 +119,9 @@ public abstract class AnnotationElementCSImpl extends NamedElementCSImpl impleme
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case BaseCSPackage.ANNOTATION_ELEMENT_CS__OWNED_DETAIL:
-				getOwnedDetail().clear();
-				getOwnedDetail().addAll((Collection<? extends DetailCS>)newValue);
+			case BaseCSPackage.ANNOTATION_ELEMENT_CS__OWNED_DETAILS:
+				getOwnedDetails().clear();
+				getOwnedDetails().addAll((Collection<? extends DetailCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -136,8 +136,8 @@ public abstract class AnnotationElementCSImpl extends NamedElementCSImpl impleme
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.ANNOTATION_ELEMENT_CS__OWNED_DETAIL:
-				getOwnedDetail().clear();
+			case BaseCSPackage.ANNOTATION_ELEMENT_CS__OWNED_DETAILS:
+				getOwnedDetails().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -152,8 +152,8 @@ public abstract class AnnotationElementCSImpl extends NamedElementCSImpl impleme
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.ANNOTATION_ELEMENT_CS__OWNED_DETAIL:
-				return ownedDetail != null && !ownedDetail.isEmpty();
+			case BaseCSPackage.ANNOTATION_ELEMENT_CS__OWNED_DETAILS:
+				return ownedDetails != null && !ownedDetails.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

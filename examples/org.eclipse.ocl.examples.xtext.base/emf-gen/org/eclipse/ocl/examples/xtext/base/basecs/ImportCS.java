@@ -22,9 +22,9 @@ import org.eclipse.ocl.examples.pivot.Namespace;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ImportCS#getPathName <em>Path Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ImportCS#getNamespace <em>Namespace</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ImportCS#isAll <em>All</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ImportCS#getOwnedPathName <em>Owned Path Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ImportCS#getReferredNamespace <em>Referred Namespace</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ImportCS#isIsAll <em>Is All</em>}</li>
  * </ul>
  * </p>
  *
@@ -34,48 +34,48 @@ import org.eclipse.ocl.examples.pivot.Namespace;
  */
 public interface ImportCS extends NamespaceCS {
 	/**
-	 * Returns the value of the '<em><b>Path Name</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Path Name</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Path Name</em>' containment reference.
-	 * @see #setPathName(PathNameCS)
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getImportCS_PathName()
+	 * @return the value of the '<em>Owned Path Name</em>' containment reference.
+	 * @see #setOwnedPathName(PathNameCS)
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getImportCS_OwnedPathName()
 	 * @model containment="true"
 	 * @generated
 	 */
-	PathNameCS getPathName();
+	PathNameCS getOwnedPathName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.ImportCS#getPathName <em>Path Name</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.ImportCS#getOwnedPathName <em>Owned Path Name</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Path Name</em>' containment reference.
-	 * @see #getPathName()
+	 * @param value the new value of the '<em>Owned Path Name</em>' containment reference.
+	 * @see #getOwnedPathName()
 	 * @generated
 	 */
-	void setPathName(PathNameCS value);
+	void setOwnedPathName(PathNameCS value);
 
 	/**
-	 * Returns the value of the '<em><b>Namespace</b></em>' reference.
+	 * Returns the value of the '<em><b>Referred Namespace</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Namespace</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Namespace</em>' reference.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getImportCS_Namespace()
+	 * @return the value of the '<em>Referred Namespace</em>' reference.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getImportCS_ReferredNamespace()
 	 * @model resolveProxies="false" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
-	Namespace getNamespace();
+	Namespace getReferredNamespace();
 
 	/**
-	 * Returns the value of the '<em><b>All</b></em>' attribute.
+	 * Returns the value of the '<em><b>Is All</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -83,22 +83,22 @@ public interface ImportCS extends NamespaceCS {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>All</em>' attribute.
-	 * @see #setAll(boolean)
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getImportCS_All()
+	 * @return the value of the '<em>Is All</em>' attribute.
+	 * @see #setIsAll(boolean)
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getImportCS_IsAll()
 	 * @model default="false" transient="true"
 	 * @generated
 	 */
-	boolean isAll();
+	boolean isIsAll();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.ImportCS#isAll <em>All</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.ImportCS#isIsAll <em>Is All</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>All</em>' attribute.
-	 * @see #isAll()
+	 * @param value the new value of the '<em>Is All</em>' attribute.
+	 * @see #isIsAll()
 	 * @generated
 	 */
-	void setAll(boolean value);
+	void setIsAll(boolean value);
 
 } // ImportCS

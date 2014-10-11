@@ -27,7 +27,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.base.basecs.ClassCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.ISources;
@@ -121,10 +121,10 @@ public class CreateDynamicInstanceHandler extends AbstractHandler
 					return null; 
 				}		
 				EObject currentModel = NodeModelUtils.findActualSemanticObjectFor(lastVisibleNode);						
-				if (!(currentModel instanceof ClassCS)) {
+				if (!(currentModel instanceof StructuredClassCS)) {
 					return null; 
 				}		
-				ClassCS oclInEcoreClass = (ClassCS) currentModel;
+				StructuredClassCS oclInEcoreClass = (StructuredClassCS) currentModel;
 				return PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Class.class, oclInEcoreClass);
 			}					
 		});

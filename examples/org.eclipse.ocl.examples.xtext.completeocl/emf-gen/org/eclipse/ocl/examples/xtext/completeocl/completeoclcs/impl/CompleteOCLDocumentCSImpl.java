@@ -42,8 +42,8 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.util.CompleteOCL
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.CompleteOCLDocumentCSImpl#getOwnedImport <em>Owned Import</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.CompleteOCLDocumentCSImpl#getOwnedLibrary <em>Owned Library</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.CompleteOCLDocumentCSImpl#getOwnedImports <em>Owned Imports</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.CompleteOCLDocumentCSImpl#getOwnedLibraries <em>Owned Libraries</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.CompleteOCLDocumentCSImpl#getOwnedPackages <em>Owned Packages</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.CompleteOCLDocumentCSImpl#getOwnedContexts <em>Owned Contexts</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.CompleteOCLDocumentCSImpl#getOwnedIncludes <em>Owned Includes</em>}</li>
@@ -57,24 +57,24 @@ public class CompleteOCLDocumentCSImpl
 		implements CompleteOCLDocumentCS {
 
 	/**
-	 * The cached value of the '{@link #getOwnedImport() <em>Owned Import</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedImports() <em>Owned Imports</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedImport()
+	 * @see #getOwnedImports()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ImportCS> ownedImport;
+	protected EList<ImportCS> ownedImports;
 
 	/**
-	 * The cached value of the '{@link #getOwnedLibrary() <em>Owned Library</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedLibraries() <em>Owned Libraries</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedLibrary()
+	 * @see #getOwnedLibraries()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<LibraryCS> ownedLibrary;
+	protected EList<LibraryCS> ownedLibraries;
 
 	/**
 	 * The cached value of the '{@link #getOwnedPackages() <em>Owned Packages</em>}' containment reference list.
@@ -130,13 +130,13 @@ public class CompleteOCLDocumentCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ImportCS> getOwnedImport()
+	public EList<ImportCS> getOwnedImports()
 	{
-		if (ownedImport == null)
+		if (ownedImports == null)
 		{
-			ownedImport = new EObjectContainmentEList<ImportCS>(ImportCS.class, this, CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_IMPORT);
+			ownedImports = new EObjectContainmentEList<ImportCS>(ImportCS.class, this, CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_IMPORTS);
 		}
-		return ownedImport;
+		return ownedImports;
 	}
 
 	/**
@@ -144,13 +144,13 @@ public class CompleteOCLDocumentCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<LibraryCS> getOwnedLibrary()
+	public EList<LibraryCS> getOwnedLibraries()
 	{
-		if (ownedLibrary == null)
+		if (ownedLibraries == null)
 		{
-			ownedLibrary = new EObjectContainmentEList<LibraryCS>(LibraryCS.class, this, CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_LIBRARY);
+			ownedLibraries = new EObjectContainmentEList<LibraryCS>(LibraryCS.class, this, CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_LIBRARIES);
 		}
-		return ownedLibrary;
+		return ownedLibraries;
 	}
 
 	/**
@@ -202,10 +202,10 @@ public class CompleteOCLDocumentCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_IMPORT:
-				return ((InternalEList<?>)getOwnedImport()).basicRemove(otherEnd, msgs);
-			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_LIBRARY:
-				return ((InternalEList<?>)getOwnedLibrary()).basicRemove(otherEnd, msgs);
+			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_IMPORTS:
+				return ((InternalEList<?>)getOwnedImports()).basicRemove(otherEnd, msgs);
+			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_LIBRARIES:
+				return ((InternalEList<?>)getOwnedLibraries()).basicRemove(otherEnd, msgs);
 			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_PACKAGES:
 				return ((InternalEList<?>)getOwnedPackages()).basicRemove(otherEnd, msgs);
 			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_CONTEXTS:
@@ -225,10 +225,10 @@ public class CompleteOCLDocumentCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_IMPORT:
-				return getOwnedImport();
-			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_LIBRARY:
-				return getOwnedLibrary();
+			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_IMPORTS:
+				return getOwnedImports();
+			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_LIBRARIES:
+				return getOwnedLibraries();
 			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_PACKAGES:
 				return getOwnedPackages();
 			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_CONTEXTS:
@@ -249,13 +249,13 @@ public class CompleteOCLDocumentCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_IMPORT:
-				getOwnedImport().clear();
-				getOwnedImport().addAll((Collection<? extends ImportCS>)newValue);
+			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_IMPORTS:
+				getOwnedImports().clear();
+				getOwnedImports().addAll((Collection<? extends ImportCS>)newValue);
 				return;
-			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_LIBRARY:
-				getOwnedLibrary().clear();
-				getOwnedLibrary().addAll((Collection<? extends LibraryCS>)newValue);
+			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_LIBRARIES:
+				getOwnedLibraries().clear();
+				getOwnedLibraries().addAll((Collection<? extends LibraryCS>)newValue);
 				return;
 			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_PACKAGES:
 				getOwnedPackages().clear();
@@ -282,11 +282,11 @@ public class CompleteOCLDocumentCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_IMPORT:
-				getOwnedImport().clear();
+			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_IMPORTS:
+				getOwnedImports().clear();
 				return;
-			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_LIBRARY:
-				getOwnedLibrary().clear();
+			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_LIBRARIES:
+				getOwnedLibraries().clear();
 				return;
 			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_PACKAGES:
 				getOwnedPackages().clear();
@@ -310,10 +310,10 @@ public class CompleteOCLDocumentCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_IMPORT:
-				return ownedImport != null && !ownedImport.isEmpty();
-			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_LIBRARY:
-				return ownedLibrary != null && !ownedLibrary.isEmpty();
+			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_IMPORTS:
+				return ownedImports != null && !ownedImports.isEmpty();
+			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_LIBRARIES:
+				return ownedLibraries != null && !ownedLibraries.isEmpty();
 			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_PACKAGES:
 				return ownedPackages != null && !ownedPackages.isEmpty();
 			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_CONTEXTS:
@@ -336,8 +336,8 @@ public class CompleteOCLDocumentCSImpl
 		{
 			switch (derivedFeatureID)
 			{
-				case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_IMPORT: return BaseCSPackage.ROOT_CS__OWNED_IMPORT;
-				case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_LIBRARY: return BaseCSPackage.ROOT_CS__OWNED_LIBRARY;
+				case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_IMPORTS: return BaseCSPackage.ROOT_CS__OWNED_IMPORTS;
+				case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_LIBRARIES: return BaseCSPackage.ROOT_CS__OWNED_LIBRARIES;
 				default: return -1;
 			}
 		}
@@ -356,8 +356,8 @@ public class CompleteOCLDocumentCSImpl
 		{
 			switch (baseFeatureID)
 			{
-				case BaseCSPackage.ROOT_CS__OWNED_IMPORT: return CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_IMPORT;
-				case BaseCSPackage.ROOT_CS__OWNED_LIBRARY: return CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_LIBRARY;
+				case BaseCSPackage.ROOT_CS__OWNED_IMPORTS: return CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_IMPORTS;
+				case BaseCSPackage.ROOT_CS__OWNED_LIBRARIES: return CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS__OWNED_LIBRARIES;
 				default: return -1;
 			}
 		}

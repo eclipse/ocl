@@ -173,7 +173,7 @@ public class AliasAnalysis extends AdapterImpl
 			EObject eObject = tit.next();
 			if (eObject instanceof ImportCS) {
 				String name = ((ImportCS)eObject).getName();
-				Namespace namespace = ((ImportCS)eObject).getNamespace();
+				Namespace namespace = ((ImportCS)eObject).getReferredNamespace();
 				if (namespace instanceof org.eclipse.ocl.examples.pivot.Package) {
 					org.eclipse.ocl.examples.pivot.Package namespace2 = (org.eclipse.ocl.examples.pivot.Package) namespace;
 					CompletePackage completePackage = metaModelManager.getCompletePackage(namespace2);

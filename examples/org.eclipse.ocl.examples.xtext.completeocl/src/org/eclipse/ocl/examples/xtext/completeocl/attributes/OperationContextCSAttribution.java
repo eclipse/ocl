@@ -60,9 +60,9 @@ public class OperationContextCSAttribution extends AbstractAttribution
 //			Operation operation = targetElement.getOperation();
 			PathNameCS pathName = targetElement.getOwnedPathName();
 			if (pathName != null) {
-				List<PathElementCS> path = pathName.getPath();
+				List<PathElementCS> path = pathName.getOwnedPathElements();
 				if (path.size() > 1) {
-					Element element = path.get(path.size()-2).getElement();
+					Element element = path.get(path.size()-2).getReferredElement();
 					if (element instanceof org.eclipse.ocl.examples.pivot.Class) {
 						org.eclipse.ocl.examples.pivot.Class type = (org.eclipse.ocl.examples.pivot.Class) element;
 //						MetaModelManager metaModelManager = environmentView.getMetaModelManager();

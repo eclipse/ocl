@@ -33,7 +33,7 @@ public class PathElementCSAttribution extends AbstractAttribution
 		PathElementCS csPathElement = (PathElementCS)target;
 		EClassifier eClassifier = csPathElement.getElementType();
 		if (eClassifier == null) {									// If this is actually a definition
-			Element element = csPathElement.basicGetElement();
+			Element element = csPathElement.basicGetReferredElement();
 			if (!element.eIsProxy()) {
 				environmentView.addNamedElement((NamedElement)element);
 			}
@@ -44,8 +44,8 @@ public class PathElementCSAttribution extends AbstractAttribution
 		ScopeFilter scopeFilter = null;
 		try {
 			environmentView.setRequiredType(eClassifier);
-			PathNameCS csPathName = csPathElement.getPathName();
-			List<PathElementCS> path = csPathName.getPath();
+			PathNameCS csPathName = csPathElement.getOwningPathName();
+			List<PathElementCS> path = csPathName.getOwnedPathElements();
 			int index = path.indexOf(csPathElement);
 			boolean lastElement = index >= path.size()-1;
 			environmentView.setIsQualifier(!lastElement);
@@ -59,7 +59,7 @@ public class PathElementCSAttribution extends AbstractAttribution
 				environmentView.computeLookups(scopeView.getParent().getParent());
 			}
 			else {									// Subsequent elements in previous scope
-				Element parent = path.get(index-1).getElement();
+				Element parent = path.get(index-1).getReferredElement();
 				if ((parent != null) && !parent.eIsProxy()) {
 //					environmentView.computeLookups(parent, null);
 					environmentView.computeQualifiedLookups(parent);

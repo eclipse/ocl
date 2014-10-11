@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.PackageCS#getOwnedType <em>Owned Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.PackageCS#getOwnedClasses <em>Owned Classes</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.PackageCS#getNsPrefix <em>Ns Prefix</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.PackageCS#getNsURI <em>Ns URI</em>}</li>
  * </ul>
@@ -33,22 +33,22 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface PackageCS extends PackageOwnerCS, NamespaceCS {
 	/**
-	 * Returns the value of the '<em><b>Owned Type</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS#getOwner <em>Owner</em>}'.
+	 * Returns the value of the '<em><b>Owned Classes</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.ClassCS}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.basecs.ClassCS#getOwningPackage <em>Owning Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owned Type</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Owned Classes</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Type</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getPackageCS_OwnedType()
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS#getOwner
-	 * @model opposite="owner" containment="true"
+	 * @return the value of the '<em>Owned Classes</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getPackageCS_OwnedClasses()
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ClassCS#getOwningPackage
+	 * @model opposite="owningPackage" containment="true"
 	 * @generated
 	 */
-	EList<ClassifierCS> getOwnedType();
+	EList<ClassCS> getOwnedClasses();
 
 	/**
 	 * Returns the value of the '<em><b>Ns Prefix</b></em>' attribute.
@@ -106,17 +106,9 @@ public interface PackageCS extends PackageOwnerCS, NamespaceCS {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='ocl::Package{\n\t\t\t\t-- TODO\n\t\t\t\tname = name,\n\t\t\t\townedPackages = ownedNestedPackage.ast()\n\t\t\t}'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='ocl::Package{\r\n\t\t\t\t-- TODO\r\n\t\t\t\tname = name,\r\n\t\t\t\townedPackages = ownedPackages.ast()\r\n\t\t\t}'"
 	 * @generated
 	 */
 	org.eclipse.ocl.examples.pivot.Package ast();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	ClassifierCS getClassifier(String name);
 
 } // PackageCS

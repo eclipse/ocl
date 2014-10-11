@@ -98,13 +98,13 @@ public interface OCLstdlibCSPackage
 	int JAVA_CLASS_CS__PIVOT = BaseCSPackage.NAMED_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JAVA_CLASS_CS__OWNED_ANNOTATION = BaseCSPackage.NAMED_ELEMENT_CS__OWNED_ANNOTATION;
+	int JAVA_CLASS_CS__OWNED_ANNOTATIONS = BaseCSPackage.NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -227,7 +227,7 @@ public interface OCLstdlibCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__LOGICAL_PARENT = BaseCSPackage.CLASS_CS__LOGICAL_PARENT;
+	int LIB_CLASS_CS__LOGICAL_PARENT = BaseCSPackage.STRUCTURED_CLASS_CS__LOGICAL_PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -236,16 +236,16 @@ public interface OCLstdlibCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__PIVOT = BaseCSPackage.CLASS_CS__PIVOT;
+	int LIB_CLASS_CS__PIVOT = BaseCSPackage.STRUCTURED_CLASS_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__OWNED_ANNOTATION = BaseCSPackage.CLASS_CS__OWNED_ANNOTATION;
+	int LIB_CLASS_CS__OWNED_ANNOTATIONS = BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -254,7 +254,7 @@ public interface OCLstdlibCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__ORIGINAL_XMI_ID = BaseCSPackage.CLASS_CS__ORIGINAL_XMI_ID;
+	int LIB_CLASS_CS__ORIGINAL_XMI_ID = BaseCSPackage.STRUCTURED_CLASS_CS__ORIGINAL_XMI_ID;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -263,7 +263,7 @@ public interface OCLstdlibCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__CSI = BaseCSPackage.CLASS_CS__CSI;
+	int LIB_CLASS_CS__CSI = BaseCSPackage.STRUCTURED_CLASS_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -272,25 +272,25 @@ public interface OCLstdlibCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__NAME = BaseCSPackage.CLASS_CS__NAME;
+	int LIB_CLASS_CS__NAME = BaseCSPackage.STRUCTURED_CLASS_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__OWNED_TEMPLATE_SIGNATURE = BaseCSPackage.CLASS_CS__OWNED_TEMPLATE_SIGNATURE;
+	int LIB_CLASS_CS__OWNED_SIGNATURE = BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_SIGNATURE;
 
 	/**
-	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__OWNER = BaseCSPackage.CLASS_CS__OWNER;
+	int LIB_CLASS_CS__OWNING_PACKAGE = BaseCSPackage.STRUCTURED_CLASS_CS__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -299,61 +299,61 @@ public interface OCLstdlibCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__INSTANCE_CLASS_NAME = BaseCSPackage.CLASS_CS__INSTANCE_CLASS_NAME;
+	int LIB_CLASS_CS__INSTANCE_CLASS_NAME = BaseCSPackage.STRUCTURED_CLASS_CS__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__OWNED_CONSTRAINT = BaseCSPackage.CLASS_CS__OWNED_CONSTRAINT;
+	int LIB_CLASS_CS__OWNED_CONSTRAINTS = BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_CONSTRAINTS;
 
 	/**
-	 * The feature id for the '<em><b>Qualifier</b></em>' attribute list.
+	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__QUALIFIER = BaseCSPackage.CLASS_CS__QUALIFIER;
+	int LIB_CLASS_CS__QUALIFIERS = BaseCSPackage.STRUCTURED_CLASS_CS__QUALIFIERS;
 
 	/**
-	 * The feature id for the '<em><b>Owned Super Type</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Super Types</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__OWNED_SUPER_TYPE = BaseCSPackage.CLASS_CS__OWNED_SUPER_TYPE;
+	int LIB_CLASS_CS__OWNED_SUPER_TYPES = BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_SUPER_TYPES;
 
 	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__OWNED_OPERATION = BaseCSPackage.CLASS_CS__OWNED_OPERATION;
+	int LIB_CLASS_CS__OWNED_OPERATIONS = BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_OPERATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Owned Property</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__OWNED_PROPERTY = BaseCSPackage.CLASS_CS__OWNED_PROPERTY;
+	int LIB_CLASS_CS__OWNED_PROPERTIES = BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Owned Meta Type</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Metaclass</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__OWNED_META_TYPE = BaseCSPackage.CLASS_CS__OWNED_META_TYPE;
+	int LIB_CLASS_CS__OWNED_METACLASS = BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_METACLASS;
 
 	/**
 	 * The feature id for the '<em><b>Meta Type Name</b></em>' reference.
@@ -362,7 +362,7 @@ public interface OCLstdlibCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__META_TYPE_NAME = BaseCSPackage.CLASS_CS_FEATURE_COUNT + 0;
+	int LIB_CLASS_CS__META_TYPE_NAME = BaseCSPackage.STRUCTURED_CLASS_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Lib Class CS</em>' class.
@@ -371,7 +371,7 @@ public interface OCLstdlibCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS_FEATURE_COUNT = BaseCSPackage.CLASS_CS_FEATURE_COUNT + 1;
+	int LIB_CLASS_CS_FEATURE_COUNT = BaseCSPackage.STRUCTURED_CLASS_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -392,13 +392,13 @@ public interface OCLstdlibCSPackage
 	int LIB_CONSTRAINT_CS__PIVOT = BaseCSPackage.CONSTRAINT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CONSTRAINT_CS__OWNED_ANNOTATION = BaseCSPackage.CONSTRAINT_CS__OWNED_ANNOTATION;
+	int LIB_CONSTRAINT_CS__OWNED_ANNOTATIONS = BaseCSPackage.CONSTRAINT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -437,22 +437,22 @@ public interface OCLstdlibCSPackage
 	int LIB_CONSTRAINT_CS__STEREOTYPE = BaseCSPackage.CONSTRAINT_CS__STEREOTYPE;
 
 	/**
-	 * The feature id for the '<em><b>Specification</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Specification</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CONSTRAINT_CS__SPECIFICATION = BaseCSPackage.CONSTRAINT_CS__SPECIFICATION;
+	int LIB_CONSTRAINT_CS__OWNED_SPECIFICATION = BaseCSPackage.CONSTRAINT_CS__OWNED_SPECIFICATION;
 
 	/**
-	 * The feature id for the '<em><b>Message Specification</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Message Specification</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CONSTRAINT_CS__MESSAGE_SPECIFICATION = BaseCSPackage.CONSTRAINT_CS__MESSAGE_SPECIFICATION;
+	int LIB_CONSTRAINT_CS__OWNED_MESSAGE_SPECIFICATION = BaseCSPackage.CONSTRAINT_CS__OWNED_MESSAGE_SPECIFICATION;
 
 	/**
 	 * The number of structural features of the '<em>Lib Constraint CS</em>' class.
@@ -482,13 +482,13 @@ public interface OCLstdlibCSPackage
 	int LIB_ITERATION_CS__PIVOT = BaseCSPackage.OPERATION_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_ITERATION_CS__OWNED_ANNOTATION = BaseCSPackage.OPERATION_CS__OWNED_ANNOTATION;
+	int LIB_ITERATION_CS__OWNED_ANNOTATIONS = BaseCSPackage.OPERATION_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -527,31 +527,31 @@ public interface OCLstdlibCSPackage
 	int LIB_ITERATION_CS__OWNED_TYPE = BaseCSPackage.OPERATION_CS__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Qualifier</b></em>' attribute list.
+	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_ITERATION_CS__QUALIFIER = BaseCSPackage.OPERATION_CS__QUALIFIER;
+	int LIB_ITERATION_CS__QUALIFIERS = BaseCSPackage.OPERATION_CS__QUALIFIERS;
 
 	/**
-	 * The feature id for the '<em><b>Optional</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_ITERATION_CS__OPTIONAL = BaseCSPackage.OPERATION_CS__OPTIONAL;
+	int LIB_ITERATION_CS__IS_OPTIONAL = BaseCSPackage.OPERATION_CS__IS_OPTIONAL;
 
 	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_ITERATION_CS__OWNED_TEMPLATE_SIGNATURE = BaseCSPackage.OPERATION_CS__OWNED_TEMPLATE_SIGNATURE;
+	int LIB_ITERATION_CS__OWNED_SIGNATURE = BaseCSPackage.OPERATION_CS__OWNED_SIGNATURE;
 
 	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
@@ -563,49 +563,49 @@ public interface OCLstdlibCSPackage
 	int LIB_ITERATION_CS__OWNING_CLASS = BaseCSPackage.OPERATION_CS__OWNING_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Owned Parameter</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_ITERATION_CS__OWNED_PARAMETER = BaseCSPackage.OPERATION_CS__OWNED_PARAMETER;
+	int LIB_ITERATION_CS__OWNED_PARAMETERS = BaseCSPackage.OPERATION_CS__OWNED_PARAMETERS;
 
 	/**
-	 * The feature id for the '<em><b>Owned Exception</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Exceptions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_ITERATION_CS__OWNED_EXCEPTION = BaseCSPackage.OPERATION_CS__OWNED_EXCEPTION;
+	int LIB_ITERATION_CS__OWNED_EXCEPTIONS = BaseCSPackage.OPERATION_CS__OWNED_EXCEPTIONS;
 
 	/**
-	 * The feature id for the '<em><b>Owned Precondition</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Preconditions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_ITERATION_CS__OWNED_PRECONDITION = BaseCSPackage.OPERATION_CS__OWNED_PRECONDITION;
+	int LIB_ITERATION_CS__OWNED_PRECONDITIONS = BaseCSPackage.OPERATION_CS__OWNED_PRECONDITIONS;
 
 	/**
-	 * The feature id for the '<em><b>Owned Postcondition</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Postconditions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_ITERATION_CS__OWNED_POSTCONDITION = BaseCSPackage.OPERATION_CS__OWNED_POSTCONDITION;
+	int LIB_ITERATION_CS__OWNED_POSTCONDITIONS = BaseCSPackage.OPERATION_CS__OWNED_POSTCONDITIONS;
 
 	/**
-	 * The feature id for the '<em><b>Owned Body Expression</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Body Expressions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_ITERATION_CS__OWNED_BODY_EXPRESSION = BaseCSPackage.OPERATION_CS__OWNED_BODY_EXPRESSION;
+	int LIB_ITERATION_CS__OWNED_BODY_EXPRESSIONS = BaseCSPackage.OPERATION_CS__OWNED_BODY_EXPRESSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Implementation</b></em>' reference.
@@ -680,13 +680,13 @@ public interface OCLstdlibCSPackage
 	int LIB_OPERATION_CS__PIVOT = BaseCSPackage.OPERATION_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_OPERATION_CS__OWNED_ANNOTATION = BaseCSPackage.OPERATION_CS__OWNED_ANNOTATION;
+	int LIB_OPERATION_CS__OWNED_ANNOTATIONS = BaseCSPackage.OPERATION_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -725,31 +725,31 @@ public interface OCLstdlibCSPackage
 	int LIB_OPERATION_CS__OWNED_TYPE = BaseCSPackage.OPERATION_CS__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Qualifier</b></em>' attribute list.
+	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_OPERATION_CS__QUALIFIER = BaseCSPackage.OPERATION_CS__QUALIFIER;
+	int LIB_OPERATION_CS__QUALIFIERS = BaseCSPackage.OPERATION_CS__QUALIFIERS;
 
 	/**
-	 * The feature id for the '<em><b>Optional</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_OPERATION_CS__OPTIONAL = BaseCSPackage.OPERATION_CS__OPTIONAL;
+	int LIB_OPERATION_CS__IS_OPTIONAL = BaseCSPackage.OPERATION_CS__IS_OPTIONAL;
 
 	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_OPERATION_CS__OWNED_TEMPLATE_SIGNATURE = BaseCSPackage.OPERATION_CS__OWNED_TEMPLATE_SIGNATURE;
+	int LIB_OPERATION_CS__OWNED_SIGNATURE = BaseCSPackage.OPERATION_CS__OWNED_SIGNATURE;
 
 	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
@@ -761,49 +761,49 @@ public interface OCLstdlibCSPackage
 	int LIB_OPERATION_CS__OWNING_CLASS = BaseCSPackage.OPERATION_CS__OWNING_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Owned Parameter</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_OPERATION_CS__OWNED_PARAMETER = BaseCSPackage.OPERATION_CS__OWNED_PARAMETER;
+	int LIB_OPERATION_CS__OWNED_PARAMETERS = BaseCSPackage.OPERATION_CS__OWNED_PARAMETERS;
 
 	/**
-	 * The feature id for the '<em><b>Owned Exception</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Exceptions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_OPERATION_CS__OWNED_EXCEPTION = BaseCSPackage.OPERATION_CS__OWNED_EXCEPTION;
+	int LIB_OPERATION_CS__OWNED_EXCEPTIONS = BaseCSPackage.OPERATION_CS__OWNED_EXCEPTIONS;
 
 	/**
-	 * The feature id for the '<em><b>Owned Precondition</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Preconditions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_OPERATION_CS__OWNED_PRECONDITION = BaseCSPackage.OPERATION_CS__OWNED_PRECONDITION;
+	int LIB_OPERATION_CS__OWNED_PRECONDITIONS = BaseCSPackage.OPERATION_CS__OWNED_PRECONDITIONS;
 
 	/**
-	 * The feature id for the '<em><b>Owned Postcondition</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Postconditions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_OPERATION_CS__OWNED_POSTCONDITION = BaseCSPackage.OPERATION_CS__OWNED_POSTCONDITION;
+	int LIB_OPERATION_CS__OWNED_POSTCONDITIONS = BaseCSPackage.OPERATION_CS__OWNED_POSTCONDITIONS;
 
 	/**
-	 * The feature id for the '<em><b>Owned Body Expression</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Body Expressions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_OPERATION_CS__OWNED_BODY_EXPRESSION = BaseCSPackage.OPERATION_CS__OWNED_BODY_EXPRESSION;
+	int LIB_OPERATION_CS__OWNED_BODY_EXPRESSIONS = BaseCSPackage.OPERATION_CS__OWNED_BODY_EXPRESSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Implementation</b></em>' reference.
@@ -888,13 +888,13 @@ public interface OCLstdlibCSPackage
 	int LIB_PACKAGE_CS__PIVOT = BaseCSPackage.PACKAGE_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_PACKAGE_CS__OWNED_ANNOTATION = BaseCSPackage.PACKAGE_CS__OWNED_ANNOTATION;
+	int LIB_PACKAGE_CS__OWNED_ANNOTATIONS = BaseCSPackage.PACKAGE_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -915,13 +915,13 @@ public interface OCLstdlibCSPackage
 	int LIB_PACKAGE_CS__CSI = BaseCSPackage.PACKAGE_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Owned Nested Package</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Packages</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_PACKAGE_CS__OWNED_NESTED_PACKAGE = BaseCSPackage.PACKAGE_CS__OWNED_NESTED_PACKAGE;
+	int LIB_PACKAGE_CS__OWNED_PACKAGES = BaseCSPackage.PACKAGE_CS__OWNED_PACKAGES;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -933,13 +933,13 @@ public interface OCLstdlibCSPackage
 	int LIB_PACKAGE_CS__NAME = BaseCSPackage.PACKAGE_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Classes</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_PACKAGE_CS__OWNED_TYPE = BaseCSPackage.PACKAGE_CS__OWNED_TYPE;
+	int LIB_PACKAGE_CS__OWNED_CLASSES = BaseCSPackage.PACKAGE_CS__OWNED_CLASSES;
 
 	/**
 	 * The feature id for the '<em><b>Ns Prefix</b></em>' attribute.
@@ -996,13 +996,13 @@ public interface OCLstdlibCSPackage
 	int LIB_PROPERTY_CS__PIVOT = BaseCSPackage.ATTRIBUTE_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_PROPERTY_CS__OWNED_ANNOTATION = BaseCSPackage.ATTRIBUTE_CS__OWNED_ANNOTATION;
+	int LIB_PROPERTY_CS__OWNED_ANNOTATIONS = BaseCSPackage.ATTRIBUTE_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1041,31 +1041,31 @@ public interface OCLstdlibCSPackage
 	int LIB_PROPERTY_CS__OWNED_TYPE = BaseCSPackage.ATTRIBUTE_CS__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Qualifier</b></em>' attribute list.
+	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_PROPERTY_CS__QUALIFIER = BaseCSPackage.ATTRIBUTE_CS__QUALIFIER;
+	int LIB_PROPERTY_CS__QUALIFIERS = BaseCSPackage.ATTRIBUTE_CS__QUALIFIERS;
 
 	/**
-	 * The feature id for the '<em><b>Optional</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_PROPERTY_CS__OPTIONAL = BaseCSPackage.ATTRIBUTE_CS__OPTIONAL;
+	int LIB_PROPERTY_CS__IS_OPTIONAL = BaseCSPackage.ATTRIBUTE_CS__IS_OPTIONAL;
 
 	/**
-	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_PROPERTY_CS__OWNER = BaseCSPackage.ATTRIBUTE_CS__OWNER;
+	int LIB_PROPERTY_CS__OWNING_CLASS = BaseCSPackage.ATTRIBUTE_CS__OWNING_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Default</b></em>' attribute.
@@ -1077,13 +1077,13 @@ public interface OCLstdlibCSPackage
 	int LIB_PROPERTY_CS__DEFAULT = BaseCSPackage.ATTRIBUTE_CS__DEFAULT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Default Expression</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Default Expressions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_PROPERTY_CS__OWNED_DEFAULT_EXPRESSION = BaseCSPackage.ATTRIBUTE_CS__OWNED_DEFAULT_EXPRESSION;
+	int LIB_PROPERTY_CS__OWNED_DEFAULT_EXPRESSIONS = BaseCSPackage.ATTRIBUTE_CS__OWNED_DEFAULT_EXPRESSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Implementation</b></em>' reference.
@@ -1141,13 +1141,13 @@ public interface OCLstdlibCSPackage
 	int LIB_ROOT_PACKAGE_CS__PIVOT = BaseCSPackage.ROOT_PACKAGE_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_ROOT_PACKAGE_CS__OWNED_ANNOTATION = BaseCSPackage.ROOT_PACKAGE_CS__OWNED_ANNOTATION;
+	int LIB_ROOT_PACKAGE_CS__OWNED_ANNOTATIONS = BaseCSPackage.ROOT_PACKAGE_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1168,31 +1168,31 @@ public interface OCLstdlibCSPackage
 	int LIB_ROOT_PACKAGE_CS__CSI = BaseCSPackage.ROOT_PACKAGE_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Owned Nested Package</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Packages</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_ROOT_PACKAGE_CS__OWNED_NESTED_PACKAGE = BaseCSPackage.ROOT_PACKAGE_CS__OWNED_NESTED_PACKAGE;
+	int LIB_ROOT_PACKAGE_CS__OWNED_PACKAGES = BaseCSPackage.ROOT_PACKAGE_CS__OWNED_PACKAGES;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Imports</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_ROOT_PACKAGE_CS__OWNED_IMPORT = BaseCSPackage.ROOT_PACKAGE_CS__OWNED_IMPORT;
+	int LIB_ROOT_PACKAGE_CS__OWNED_IMPORTS = BaseCSPackage.ROOT_PACKAGE_CS__OWNED_IMPORTS;
 
 	/**
-	 * The feature id for the '<em><b>Owned Library</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Libraries</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_ROOT_PACKAGE_CS__OWNED_LIBRARY = BaseCSPackage.ROOT_PACKAGE_CS__OWNED_LIBRARY;
+	int LIB_ROOT_PACKAGE_CS__OWNED_LIBRARIES = BaseCSPackage.ROOT_PACKAGE_CS__OWNED_LIBRARIES;
 
 	/**
 	 * The number of structural features of the '<em>Lib Root Package CS</em>' class.
@@ -1269,13 +1269,13 @@ public interface OCLstdlibCSPackage
 	int PRECEDENCE_CS__PIVOT = BaseCSPackage.NAMED_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRECEDENCE_CS__OWNED_ANNOTATION = BaseCSPackage.NAMED_ELEMENT_CS__OWNED_ANNOTATION;
+	int PRECEDENCE_CS__OWNED_ANNOTATIONS = BaseCSPackage.NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.

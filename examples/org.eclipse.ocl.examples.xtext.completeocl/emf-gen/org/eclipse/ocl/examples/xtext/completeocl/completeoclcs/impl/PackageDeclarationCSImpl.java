@@ -232,6 +232,6 @@ public class PackageDeclarationCSImpl
 		}
 		CS2Pivot.setElementType(ownedPathName2, PivotPackage.Literals.PACKAGE, this,
 			null);
-		return (org.eclipse.ocl.examples.pivot.Package) ownedPathName2.getElement();
+		return (org.eclipse.ocl.examples.pivot.Package) ownedPathName2.getReferredElement();
 	}
 } //PackageDeclarationCSImpl

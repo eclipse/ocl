@@ -32,7 +32,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.basecs.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
-import org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.DetailCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.DocumentationCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
@@ -123,13 +123,13 @@ public class BaseCSPostOrderVisitor extends AbstractExtendingBaseCSVisitor<Conti
 		Annotation pivotElement = PivotUtil.getPivot(Annotation.class, csAnnotation);
 		if (pivotElement != null) {
 			context.handleVisitNamedElement(csAnnotation, pivotElement);
-			context.refreshPivotList(Detail.class, pivotElement.getOwnedDetail(), csAnnotation.getOwnedDetail());
-			context.refreshPivotList(Element.class, pivotElement.getOwnedContent(), csAnnotation.getOwnedContent());
-			List<ModelElementRefCS> csReferences = csAnnotation.getOwnedReference();
+			context.refreshPivotList(Detail.class, pivotElement.getOwnedDetail(), csAnnotation.getOwnedDetails());
+			context.refreshPivotList(Element.class, pivotElement.getOwnedContent(), csAnnotation.getOwnedContents());
+			List<ModelElementRefCS> csReferences = csAnnotation.getOwnedReferences();
 			if (csReferences.size() > 0) {
 				List<Element> references = new ArrayList<Element>(csReferences.size());
 				for (ModelElementRefCS csReference : csReferences) {
-					Element element = csReference.getElement();
+					Element element = csReference.getReferredElement();
 					if (element != null) {
 						references.add(element);
 					}
@@ -149,11 +149,11 @@ public class BaseCSPostOrderVisitor extends AbstractExtendingBaseCSVisitor<Conti
 	}
 
 	@Override
-	public Continuation<?> visitClassifierCS(@NonNull ClassifierCS csClassifier) {
+	public Continuation<?> visitClassCS(@NonNull ClassCS csClassifier) {
 		org.eclipse.ocl.examples.pivot.Class pivotElement = PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Class.class, csClassifier);
 		if (pivotElement != null) {
 			context.handleVisitNamedElement(csClassifier, pivotElement);
-			context.refreshPivotList(Constraint.class, pivotElement.getOwnedInvariants(), csClassifier.getOwnedConstraint());
+			context.refreshPivotList(Constraint.class, pivotElement.getOwnedInvariants(), csClassifier.getOwnedConstraints());
 		}
 		return null;
 	}
@@ -177,7 +177,7 @@ public class BaseCSPostOrderVisitor extends AbstractExtendingBaseCSVisitor<Conti
 		Annotation pivotElement = PivotUtil.getPivot(Annotation.class, csDocumentation);
 		if (pivotElement != null) {
 			context.handleVisitNamedElement(csDocumentation, pivotElement);
-			context.refreshPivotList(Detail.class, pivotElement.getOwnedDetail(), csDocumentation.getOwnedDetail());
+			context.refreshPivotList(Detail.class, pivotElement.getOwnedDetail(), csDocumentation.getOwnedDetails());
 		}
 		return null;
 	}
@@ -209,7 +209,7 @@ public class BaseCSPostOrderVisitor extends AbstractExtendingBaseCSVisitor<Conti
 
 	@Override
 	public Continuation<?> visitModelElementRefCS(@NonNull ModelElementRefCS object) {
-		Element element = object.getPathName().getElement();
+		Element element = object.getOwnedPathName().getReferredElement();
 		if (element != null) {
 			context.installPivotReference(object, element, BaseCSPackage.Literals.PIVOTABLE_ELEMENT_CS__PIVOT);
 		}
@@ -239,11 +239,11 @@ public class BaseCSPostOrderVisitor extends AbstractExtendingBaseCSVisitor<Conti
 	public Continuation<?> visitOperationCS(@NonNull OperationCS csElement) {
 		Operation pivotOperation = PivotUtil.getPivot(Operation.class, csElement);
 		if (pivotOperation != null) {
-			context.refreshList(Type.class, pivotOperation.getRaisedException(), csElement.getOwnedException());
+			context.refreshList(Type.class, pivotOperation.getRaisedException(), csElement.getOwnedExceptions());
 			TypedRefCS ownedType = csElement.getOwnedType();
 			boolean isTypeof = false;
 			if (ownedType  instanceof TypedTypeRefCS) {
-				isTypeof = ((TypedTypeRefCS)ownedType).isTypeof();
+				isTypeof = ((TypedTypeRefCS)ownedType).isIsTypeof();
 			}
 			pivotOperation.setIsTypeof(isTypeof);
 		}
@@ -285,12 +285,12 @@ public class BaseCSPostOrderVisitor extends AbstractExtendingBaseCSVisitor<Conti
 		Continuation<?> continuation = super.visitReferenceCS(csReference);
 		Property pivotElement = PivotUtil.getPivot(Property.class, csReference);
 		if (pivotElement != null) {
-			Property pivotOpposite = csReference.getOpposite();
+			Property pivotOpposite = csReference.getReferredOpposite();
 			if ((pivotOpposite != null) && pivotOpposite.eIsProxy()) {
 				pivotOpposite = null;
 			}
 			pivotElement.setOpposite(pivotOpposite);
-			context.refreshList(pivotElement.getKeys(), csReference.getKeys());
+			context.refreshList(pivotElement.getKeys(), csReference.getReferredKeys());
 //			BasicContinuation<?> continuation = visitTypedElementCS(csReference);
 //			assert continuation == null;
 			if (pivotOpposite == null) {

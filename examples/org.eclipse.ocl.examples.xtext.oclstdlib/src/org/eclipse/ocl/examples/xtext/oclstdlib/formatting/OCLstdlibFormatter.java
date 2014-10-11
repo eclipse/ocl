@@ -16,10 +16,10 @@ package org.eclipse.ocl.examples.xtext.oclstdlib.formatting;
 import org.eclipse.ocl.examples.xtext.essentialocl.formatting.AbstractEssentialOCLFormatter;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.AnnotationCSElements;
-import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.ClassCSElements;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.DocumentationCSElements;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.InvCSElements;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LambdaTypeCSElements;
+import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibClassCSElements;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibIterationCSElements;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibOperationCSElements;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibPackageCSElements;
@@ -73,7 +73,7 @@ public class OCLstdlibFormatter extends AbstractEssentialOCLFormatter {
 	    c.setLinewrap(2).before(f.getML_COMMENTRule());
 	    c.setLinewrap(1).after(f.getML_COMMENTRule());
 
-	    c.setLinewrap(2).between(f.getClassCSRule(), f.getClassCSRule());
+	    c.setLinewrap(2).between(f.getLibClassCSRule(), f.getLibClassCSRule());
 
 	    {
 			AnnotationCSElements a = f.getAnnotationCSAccess();
@@ -84,7 +84,7 @@ public class OCLstdlibFormatter extends AbstractEssentialOCLFormatter {
 			setNoSpaceLineWrap(c, a.getSemicolonKeyword_3_1());
 	    }
 	    {
-			ClassCSElements a = f.getClassCSAccess();
+			LibClassCSElements a = f.getLibClassCSAccess();
 			c.setNoSpace().before(a.getCommaKeyword_4_2_0());
 			setBraces(c, a.getLeftCurlyBracketKeyword_5(), a.getRightCurlyBracketKeyword_7());
 	    }

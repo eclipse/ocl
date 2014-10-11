@@ -256,19 +256,19 @@ public class BaseScopeView extends AbstractScope implements IScopeView
 	@Override
 	public /*@NonNull*/ Iterable<IEObjectDescription> getElements(EObject object) {
 		String descriptiveName = null;
-		if (targetReference == BaseCSPackage.Literals.IMPORT_CS__NAMESPACE) {
+		if (targetReference == BaseCSPackage.Literals.IMPORT_CS__REFERRED_NAMESPACE) {
 			descriptiveName = getNonASURI(object);
 		}
-		else if (targetReference == BaseCSPackage.Literals.MODEL_ELEMENT_REF_CS__ELEMENT) {
+		else if (targetReference == BaseCSPackage.Literals.MODEL_ELEMENT_REF_CS__REFERRED_ELEMENT) {
 			descriptiveName = getNonASURI(object);
 		}
-		else if (targetReference == BaseCSPackage.Literals.REFERENCE_CS__OPPOSITE) {
+		else if (targetReference == BaseCSPackage.Literals.REFERENCE_CS__REFERRED_OPPOSITE) {
 			descriptiveName = ((NamedElement)object).getName();
 		}
-		else if (targetReference == BaseCSPackage.Literals.REFERENCE_CS__KEYS) {
+		else if (targetReference == BaseCSPackage.Literals.REFERENCE_CS__REFERRED_KEYS) {
 			descriptiveName = ((NamedElement)object).getName();
 		}
-		else if ((targetReference == BaseCSPackage.Literals.TYPED_TYPE_REF_CS__TYPE) && (object instanceof Type)) {
+		else if ((targetReference == BaseCSPackage.Literals.TYPED_TYPE_REF_CS__REFERRED_TYPE) && (object instanceof Type)) {
 			if (object instanceof PrimitiveType) {		// FIXME Redundant if namespaces correct
 				descriptiveName = ((PrimitiveType)object).getName();
 			}

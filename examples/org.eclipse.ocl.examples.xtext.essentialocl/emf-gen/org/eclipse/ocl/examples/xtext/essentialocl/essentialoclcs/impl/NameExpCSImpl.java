@@ -424,7 +424,7 @@ public class NameExpCSImpl
 	 * @generated NOT
 	 */
 	public NamedElement getNamedElement() {
-		Element element = getOwnedPathName().getElement();
+		Element element = getOwnedPathName().getReferredElement();
 		return element instanceof NamedElement
 			? (NamedElement) element
 			: null;

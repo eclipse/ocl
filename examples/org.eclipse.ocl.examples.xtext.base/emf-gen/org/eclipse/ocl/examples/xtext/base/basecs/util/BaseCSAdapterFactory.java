@@ -100,11 +100,6 @@ public class BaseCSAdapterFactory extends AdapterFactoryImpl {
 				return createClassCSAdapter();
 			}
 			@Override
-			public Adapter caseClassifierCS(ClassifierCS object)
-			{
-				return createClassifierCSAdapter();
-			}
-			@Override
 			public Adapter caseConstraintCS(ConstraintCS object)
 			{
 				return createConstraintCSAdapter();
@@ -270,6 +265,11 @@ public class BaseCSAdapterFactory extends AdapterFactoryImpl {
 				return createSpecificationCSAdapter();
 			}
 			@Override
+			public Adapter caseStructuredClassCS(StructuredClassCS object)
+			{
+				return createStructuredClassCSAdapter();
+			}
+			@Override
 			public Adapter caseStructuralFeatureCS(StructuralFeatureCS object)
 			{
 				return createStructuralFeatureCSAdapter();
@@ -433,21 +433,8 @@ public class BaseCSAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ClassCS
 	 * @generated
 	 */
-	public Adapter createClassCSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS <em>Classifier CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS
-	 * @generated
-	 */
-	public Adapter createClassifierCSAdapter() {
+	public Adapter createClassCSAdapter()
+	{
 		return null;
 	}
 
@@ -929,6 +916,21 @@ public class BaseCSAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSpecificationCSAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS <em>Structured Class CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS
+	 * @generated
+	 */
+	public Adapter createStructuredClassCSAdapter()
 	{
 		return null;
 	}

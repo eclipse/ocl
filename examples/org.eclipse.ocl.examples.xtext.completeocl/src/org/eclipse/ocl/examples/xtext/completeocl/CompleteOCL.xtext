@@ -18,7 +18,7 @@ import "http://www.eclipse.org/ocl/3.1.0/Pivot" as pivot
 import "http://www.eclipse.org/ocl/3.1.0/CompleteOCLCST"
 //generate completeOCL "http://www.eclipse.org/ocl/examples/xtext/completeocl/CompleteOCL"
 CompleteOCLDocumentCS returns CompleteOCLDocumentCS:
-	(ownedImport+=ImportCS | ownedIncludes+=IncludeCS | ownedLibrary+=LibraryCS)*
+	(ownedImports+=ImportCS | ownedIncludes+=IncludeCS | ownedLibraries+=LibraryCS)*
 	(ownedPackages+=PackageDeclarationCS | ownedContexts+=ContextDeclCS)*;
 
 terminal UNQUOTED_STRING:	// Never forward parsed; just provides a placeholder
@@ -69,7 +69,7 @@ ClassifierContextDeclCS returns ClassifierContextDeclCS:
 	)+;
 
 ConstraintCS returns base::ConstraintCS:
-	(name=UnrestrictedName ('(' messageSpecification=SpecificationCS ')')?)? ':' specification=SpecificationCS;
+	(name=UnrestrictedName ('(' ownedMessageSpecification=SpecificationCS ')')?)? ':' ownedSpecification=SpecificationCS;
 
 ContextDeclCS returns ContextDeclCS:
 	PropertyContextDeclCS
@@ -92,13 +92,13 @@ DefPropertyCS returns DefPropertyCS:
 		'=' ownedSpecification=SpecificationCS;
 
 ImportCS returns base::ImportCS:
-	'import' (name=Identifier ':')? pathName=URIPathNameCS (all?='::*')?;
+	'import' (name=Identifier ':')? ownedPathName=URIPathNameCS (isAll?='::*')?;
 
 IncludeCS returns IncludeCS:
 	'include' referredNamespace=[pivot::Namespace|URI];
 
 LibraryCS returns base::LibraryCS:
-	'library' package=[pivot::Package|URI];
+	'library' referredPackage=[pivot::Package|URI];
 
 OperationContextDeclCS returns OperationContextDeclCS:
 	'context' ownedPathName=PathNameCS '(' 

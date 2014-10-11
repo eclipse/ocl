@@ -52,7 +52,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.basecs.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSFactory;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
-import org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.DetailCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
@@ -158,11 +158,11 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 					ImportCS importCS = BaseCSFactory.eINSTANCE.createImportCS();
 					importCS.setName(alias);
 					@SuppressWarnings("null") @NonNull PathNameCS csPathName = BaseCSFactory.eINSTANCE.createPathNameCS();
-					importCS.setPathName(csPathName);
-					List<PathElementCS> csPath = csPathName.getPath();
+					importCS.setOwnedPathName(csPathName);
+					List<PathElementCS> csPath = csPathName.getOwnedPathElements();
 					PathElementWithURICS csSimpleRef = BaseCSFactory.eINSTANCE.createPathElementWithURICS();
 					csPath.add(csSimpleRef);
-					csSimpleRef.setElement(importedNamespace);
+					csSimpleRef.setReferredElement(importedNamespace);
 					csSimpleRef.setUri(importURI);
 					importCS.setPivot(importedNamespace);
 					imports.add(importCS);
@@ -174,7 +174,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		}
 		aliasAnalysis = AliasAnalysis.getAdapter(csResource, metaModelManager);
 		for (ImportCS csImport : imports) {
-			Namespace namespace = csImport.getNamespace();
+			Namespace namespace = csImport.getReferredNamespace();
 			String alias = csImport.getName();
 			if ((namespace != null) && (alias == null)) {
 				alias = aliasAnalysis.getAlias(namespace, null);
@@ -201,8 +201,8 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		Collections.sort(imports, new Comparator<ImportCS>()
 		{
 			public int compare(ImportCS o1, ImportCS o2) {
-				Namespace ns1 = o1.getNamespace();
-				Namespace ns2 = o2.getNamespace();
+				Namespace ns1 = o1.getReferredNamespace();
+				Namespace ns2 = o2.getReferredNamespace();
 				int d1 = PivotUtil.getContainmentDepth(ns1);
 				int d2 = PivotUtil.getContainmentDepth(ns2);
 				if (d1 != d2) {
@@ -213,7 +213,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 				return n1.compareTo(n2);
 			}
 		});
-		documentCS.getOwnedImport().addAll(imports);
+		documentCS.getOwnedImports().addAll(imports);
 	}
 
 	public @Nullable BaseCSResource getCSResource() {
@@ -301,22 +301,22 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		}
 	}
 
-	protected <T extends ClassifierCS> T refreshClassifier(@NonNull Class<T> csClass, /*@NonNull*/ EClass csEClass, @NonNull org.eclipse.ocl.examples.pivot.Class object) {
+	protected <T extends ClassCS> T refreshClassifier(@NonNull Class<T> csClass, /*@NonNull*/ EClass csEClass, @NonNull org.eclipse.ocl.examples.pivot.Class object) {
 		T csElement = refreshNamedElement(csClass, csEClass, object);
 		List<ConstraintCS> csInvariants = visitDeclarations(ConstraintCS.class, object.getOwnedInvariants(), null);
 		for (ConstraintCS csInvariant : csInvariants) {
 			csInvariant.setStereotype(UMLReflection.INVARIANT);
 		}
-		refreshList(csElement.getOwnedConstraint(), csInvariants);
+		refreshList(csElement.getOwnedConstraints(), csInvariants);
 		TemplateSignature ownedTemplateSignature = object.getOwnedTemplateSignature();
 		if (ownedTemplateSignature != null) {
-			csElement.setOwnedTemplateSignature(visitDeclaration(TemplateSignatureCS.class, ownedTemplateSignature));
+			csElement.setOwnedSignature(visitDeclaration(TemplateSignatureCS.class, ownedTemplateSignature));
 		}
 		if (object.eIsSet(PivotPackage.Literals.CLASS__INSTANCE_CLASS_NAME)) {
 			csElement.setInstanceClassName(object.getInstanceClassName());
 		}
 		else {
-			csElement.eUnset(BaseCSPackage.Literals.CLASSIFIER_CS__INSTANCE_CLASS_NAME);
+			csElement.eUnset(BaseCSPackage.Literals.CLASS_CS__INSTANCE_CLASS_NAME);
 		}
 		return csElement;
 	}
@@ -338,7 +338,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		T csElement = refreshElement(csClass, csEClass, object);
 		String name = object.getName();
 		csElement.setName(name);
-		refreshList(csElement.getOwnedAnnotation(), visitDeclarations(AnnotationCS.class, object.getOwnedAnnotation(), null));
+		refreshList(csElement.getOwnedAnnotations(), visitDeclarations(AnnotationCS.class, object.getOwnedAnnotation(), null));
 		return csElement;
 	}
 
@@ -378,11 +378,11 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 				}
 			}
 		}
-		List<PathElementCS> csPath = csPathName.getPath();
+		List<PathElementCS> csPath = csPathName.getOwnedPathElements();
 		csPath.clear();		// FIXME re-use
 		PathElementCS csSimpleRef = BaseCSFactory.eINSTANCE.createPathElementCS();
 		csPath.add(csSimpleRef);
-		csSimpleRef.setElement(primaryElement);
+		csSimpleRef.setReferredElement(primaryElement);
 		BaseCSResource csResource2 = this.csResource;
 		if ((csResource2 == null) || (csResource2.isPathable(primaryElement) == null)) {
 			return;
@@ -398,7 +398,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 			}
 			csSimpleRef = BaseCSFactory.eINSTANCE.createPathElementCS();
 			csPath.add(0, csSimpleRef);
-			csSimpleRef.setElement((Element) eContainer);
+			csSimpleRef.setReferredElement((Element) eContainer);
 		}
 	}
 
@@ -447,12 +447,12 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 
 	public <T extends StructuralFeatureCS> T refreshStructuralFeature(@NonNull Class<T> csClass, /*@NonNull */EClass csEClass, @NonNull Property object) {
 		T csElement = refreshTypedElement(csClass, csEClass, object);
-		refreshQualifiers(csElement.getQualifier(), "derived", object.isDerived());
-		refreshQualifiers(csElement.getQualifier(), "readonly", object.isReadOnly());
-		refreshQualifiers(csElement.getQualifier(), "static", object.isStatic());
-		refreshQualifiers(csElement.getQualifier(), "transient", object.isTransient());
-		refreshQualifiers(csElement.getQualifier(), "unsettable", object.isUnsettable());
-		refreshQualifiers(csElement.getQualifier(), "volatile", object.isVolatile());
+		refreshQualifiers(csElement.getQualifiers(), "derived", object.isDerived());
+		refreshQualifiers(csElement.getQualifiers(), "readonly", object.isReadOnly());
+		refreshQualifiers(csElement.getQualifiers(), "static", object.isStatic());
+		refreshQualifiers(csElement.getQualifiers(), "transient", object.isTransient());
+		refreshQualifiers(csElement.getQualifiers(), "unsettable", object.isUnsettable());
+		refreshQualifiers(csElement.getQualifiers(), "volatile", object.isVolatile());
 		if (object.eIsSet(PivotPackage.Literals.PROPERTY__DEFAULT)) {
 			csElement.setDefault(object.getDefault());
 		}
@@ -493,7 +493,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 				lower = collectionType.getLower().intValue();
 				Number upper2 = collectionType.getUpper();
 				upper = upper2 instanceof Unlimited ? -1 : upper2.intValue();
-				List<String> qualifiers = csElement.getQualifier();
+				List<String> qualifiers = csElement.getQualifiers();
 				refreshQualifiers(qualifiers, "ordered", "!ordered", collectionType.isOrdered() ? Boolean.TRUE : null);
 				refreshQualifiers(qualifiers, "unique", "!unique", collectionType.isUnique() ? null : Boolean.FALSE);
 			}
@@ -502,7 +502,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 				upper = 1;
 			}
 			if ((lower == 1) && (upper == 1)) {
-				csTypeRef.setMultiplicity(null);
+				csTypeRef.setOwnedMultiplicity(null);
 			}
 			else {
 				String stringValue = null;
@@ -525,7 +525,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 				if (stringValue != null) {
 					MultiplicityStringCS csMultiplicity = BaseCSFactory.eINSTANCE.createMultiplicityStringCS();
 					csMultiplicity.setStringBounds(stringValue);
-					csTypeRef.setMultiplicity(csMultiplicity);
+					csTypeRef.setOwnedMultiplicity(csMultiplicity);
 				}
 				else {
 					MultiplicityBoundsCS csMultiplicity = BaseCSFactory.eINSTANCE.createMultiplicityBoundsCS();
@@ -535,7 +535,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 					if (upper != 1) {
 						csMultiplicity.setUpperBound(upper);
 					}
-					csTypeRef.setMultiplicity(csMultiplicity);
+					csTypeRef.setOwnedMultiplicity(csMultiplicity);
 				}
 			}
 		}

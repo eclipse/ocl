@@ -86,16 +86,16 @@ ruleCompleteOCLDocumentCS returns [EObject current=null]
 (((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getCompleteOCLDocumentCSAccess().getOwnedImportImportCSParserRuleCall_0_0_0()); 
+	        newCompositeNode(grammarAccess.getCompleteOCLDocumentCSAccess().getOwnedImportsImportCSParserRuleCall_0_0_0()); 
 	    }
-		lv_ownedImport_0_0=ruleImportCS		{
+		lv_ownedImports_0_0=ruleImportCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getCompleteOCLDocumentCSRule());
 	        }
        		add(
        			$current, 
-       			"ownedImport",
-        		lv_ownedImport_0_0, 
+       			"ownedImports",
+        		lv_ownedImports_0_0, 
         		"ImportCS");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -124,16 +124,16 @@ ruleCompleteOCLDocumentCS returns [EObject current=null]
     |(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getCompleteOCLDocumentCSAccess().getOwnedLibraryLibraryCSParserRuleCall_0_2_0()); 
+	        newCompositeNode(grammarAccess.getCompleteOCLDocumentCSAccess().getOwnedLibrariesLibraryCSParserRuleCall_0_2_0()); 
 	    }
-		lv_ownedLibrary_2_0=ruleLibraryCS		{
+		lv_ownedLibraries_2_0=ruleLibraryCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getCompleteOCLDocumentCSRule());
 	        }
        		add(
        			$current, 
-       			"ownedLibrary",
-        		lv_ownedLibrary_2_0, 
+       			"ownedLibraries",
+        		lv_ownedLibraries_2_0, 
         		"LibraryCS");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -564,16 +564,16 @@ ruleConstraintCS returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getConstraintCSAccess().getMessageSpecificationSpecificationCSParserRuleCall_0_1_1_0()); 
+	        newCompositeNode(grammarAccess.getConstraintCSAccess().getOwnedMessageSpecificationSpecificationCSParserRuleCall_0_1_1_0()); 
 	    }
-		lv_messageSpecification_2_0=ruleSpecificationCS		{
+		lv_ownedMessageSpecification_2_0=ruleSpecificationCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getConstraintCSRule());
 	        }
        		set(
        			$current, 
-       			"messageSpecification",
-        		lv_messageSpecification_2_0, 
+       			"ownedMessageSpecification",
+        		lv_ownedMessageSpecification_2_0, 
         		"SpecificationCS");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -590,16 +590,16 @@ ruleConstraintCS returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getConstraintCSAccess().getSpecificationSpecificationCSParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getConstraintCSAccess().getOwnedSpecificationSpecificationCSParserRuleCall_2_0()); 
 	    }
-		lv_specification_5_0=ruleSpecificationCS		{
+		lv_ownedSpecification_5_0=ruleSpecificationCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getConstraintCSRule());
 	        }
        		set(
        			$current, 
-       			"specification",
-        		lv_specification_5_0, 
+       			"ownedSpecification",
+        		lv_ownedSpecification_5_0, 
         		"SpecificationCS");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -1103,16 +1103,16 @@ ruleImportCS returns [EObject current=null]
 )?(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getImportCSAccess().getPathNameURIPathNameCSParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getImportCSAccess().getOwnedPathNameURIPathNameCSParserRuleCall_2_0()); 
 	    }
-		lv_pathName_3_0=ruleURIPathNameCS		{
+		lv_ownedPathName_3_0=ruleURIPathNameCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getImportCSRule());
 	        }
        		set(
        			$current, 
-       			"pathName",
-        		lv_pathName_3_0, 
+       			"ownedPathName",
+        		lv_ownedPathName_3_0, 
         		"URIPathNameCS");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -1120,16 +1120,16 @@ ruleImportCS returns [EObject current=null]
 )
 )(
 (
-		lv_all_4_0=	'::*' 
+		lv_isAll_4_0=	'::*' 
     {
-        newLeafNode(lv_all_4_0, grammarAccess.getImportCSAccess().getAllColonColonAsteriskKeyword_3_0());
+        newLeafNode(lv_isAll_4_0, grammarAccess.getImportCSAccess().getIsAllColonColonAsteriskKeyword_3_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getImportCSRule());
 	        }
-       		setWithLastConsumed($current, "all", true, "::*");
+       		setWithLastConsumed($current, "isAll", true, "::*");
 	    }
 
 )
@@ -1212,7 +1212,7 @@ ruleLibraryCS returns [EObject current=null]
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getLibraryCSAccess().getPackagePackageCrossReference_1_0()); 
+	        newCompositeNode(grammarAccess.getLibraryCSAccess().getReferredPackagePackageCrossReference_1_0()); 
 	    }
 		ruleURI		{ 
 	        afterParserOrEnumRuleCall();
@@ -2585,16 +2585,16 @@ rulePathNameCS returns [EObject current=null]
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPathNameCSAccess().getPathFirstPathElementCSParserRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getPathNameCSAccess().getOwnedPathElementsFirstPathElementCSParserRuleCall_0_0()); 
 	    }
-		lv_path_0_0=ruleFirstPathElementCS		{
+		lv_ownedPathElements_0_0=ruleFirstPathElementCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getPathNameCSRule());
 	        }
        		add(
        			$current, 
-       			"path",
-        		lv_path_0_0, 
+       			"ownedPathElements",
+        		lv_ownedPathElements_0_0, 
         		"FirstPathElementCS");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2607,16 +2607,16 @@ rulePathNameCS returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPathNameCSAccess().getPathNextPathElementCSParserRuleCall_1_1_0()); 
+	        newCompositeNode(grammarAccess.getPathNameCSAccess().getOwnedPathElementsNextPathElementCSParserRuleCall_1_1_0()); 
 	    }
-		lv_path_2_0=ruleNextPathElementCS		{
+		lv_ownedPathElements_2_0=ruleNextPathElementCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getPathNameCSRule());
 	        }
        		add(
        			$current, 
-       			"path",
-        		lv_path_2_0, 
+       			"ownedPathElements",
+        		lv_ownedPathElements_2_0, 
         		"NextPathElementCS");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2654,7 +2654,7 @@ ruleFirstPathElementCS returns [EObject current=null]
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getFirstPathElementCSAccess().getElementNamedElementCrossReference_0()); 
+	        newCompositeNode(grammarAccess.getFirstPathElementCSAccess().getReferredElementNamedElementCrossReference_0()); 
 	    }
 		ruleUnrestrictedName		{ 
 	        afterParserOrEnumRuleCall();
@@ -2693,7 +2693,7 @@ ruleNextPathElementCS returns [EObject current=null]
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getNextPathElementCSAccess().getElementNamedElementCrossReference_0()); 
+	        newCompositeNode(grammarAccess.getNextPathElementCSAccess().getReferredElementNamedElementCrossReference_0()); 
 	    }
 		ruleUnreservedName		{ 
 	        afterParserOrEnumRuleCall();
@@ -2724,16 +2724,16 @@ ruleURIPathNameCS returns [EObject current=null]
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getURIPathNameCSAccess().getPathURIFirstPathElementCSParserRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getURIPathNameCSAccess().getOwnedPathElementsURIFirstPathElementCSParserRuleCall_0_0()); 
 	    }
-		lv_path_0_0=ruleURIFirstPathElementCS		{
+		lv_ownedPathElements_0_0=ruleURIFirstPathElementCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getURIPathNameCSRule());
 	        }
        		add(
        			$current, 
-       			"path",
-        		lv_path_0_0, 
+       			"ownedPathElements",
+        		lv_ownedPathElements_0_0, 
         		"URIFirstPathElementCS");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2746,16 +2746,16 @@ ruleURIPathNameCS returns [EObject current=null]
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getURIPathNameCSAccess().getPathNextPathElementCSParserRuleCall_1_1_0_0()); 
+	        newCompositeNode(grammarAccess.getURIPathNameCSAccess().getOwnedPathElementsNextPathElementCSParserRuleCall_1_1_0_0()); 
 	    }
-		lv_path_2_0=ruleNextPathElementCS		{
+		lv_ownedPathElements_2_0=ruleNextPathElementCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getURIPathNameCSRule());
 	        }
        		add(
        			$current, 
-       			"path",
-        		lv_path_2_0, 
+       			"ownedPathElements",
+        		lv_ownedPathElements_2_0, 
         		"NextPathElementCS");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2768,16 +2768,16 @@ ruleURIPathNameCS returns [EObject current=null]
 )*(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getURIPathNameCSAccess().getPathNextPathElementCSParserRuleCall_1_2_0()); 
+	        newCompositeNode(grammarAccess.getURIPathNameCSAccess().getOwnedPathElementsNextPathElementCSParserRuleCall_1_2_0()); 
 	    }
-		lv_path_4_0=ruleNextPathElementCS		{
+		lv_ownedPathElements_4_0=ruleNextPathElementCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getURIPathNameCSRule());
 	        }
        		add(
        			$current, 
-       			"path",
-        		lv_path_4_0, 
+       			"ownedPathElements",
+        		lv_ownedPathElements_4_0, 
         		"NextPathElementCS");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2815,7 +2815,7 @@ ruleURIFirstPathElementCS returns [EObject current=null]
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getURIFirstPathElementCSAccess().getElementNamedElementCrossReference_0_0()); 
+	        newCompositeNode(grammarAccess.getURIFirstPathElementCSAccess().getReferredElementNamedElementCrossReference_0_0()); 
 	    }
 		ruleUnrestrictedName		{ 
 	        afterParserOrEnumRuleCall();
@@ -2843,7 +2843,7 @@ ruleURIFirstPathElementCS returns [EObject current=null]
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getURIFirstPathElementCSAccess().getElementNamespaceCrossReference_1_1_0()); 
+	        newCompositeNode(grammarAccess.getURIFirstPathElementCSAccess().getReferredElementNamespaceCrossReference_1_1_0()); 
 	    }
 		ruleURI		{ 
 	        afterParserOrEnumRuleCall();
@@ -4173,16 +4173,16 @@ ruleTypeLiteralWithMultiplicityCS returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getTypeLiteralWithMultiplicityCSAccess().getMultiplicityMultiplicityCSParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getTypeLiteralWithMultiplicityCSAccess().getOwnedMultiplicityMultiplicityCSParserRuleCall_1_0()); 
 	    }
-		lv_multiplicity_1_0=ruleMultiplicityCS		{
+		lv_ownedMultiplicity_1_0=ruleMultiplicityCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getTypeLiteralWithMultiplicityCSRule());
 	        }
        		set(
        			$current, 
-       			"multiplicity",
-        		lv_multiplicity_1_0, 
+       			"ownedMultiplicity",
+        		lv_ownedMultiplicity_1_0, 
         		"MultiplicityCS");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -4315,16 +4315,16 @@ ruleTypeExpCS returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getTypeExpCSAccess().getMultiplicityMultiplicityCSParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getTypeExpCSAccess().getOwnedMultiplicityMultiplicityCSParserRuleCall_1_0()); 
 	    }
-		lv_multiplicity_2_0=ruleMultiplicityCS		{
+		lv_ownedMultiplicity_2_0=ruleMultiplicityCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getTypeExpCSRule());
 	        }
        		set(
        			$current, 
-       			"multiplicity",
-        		lv_multiplicity_2_0, 
+       			"ownedMultiplicity",
+        		lv_ownedMultiplicity_2_0, 
         		"MultiplicityCS");
 	        afterParserOrEnumRuleCall();
 	    }

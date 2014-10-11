@@ -157,9 +157,9 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 		else if (semanticObject instanceof PathElementCS) {
 			// UnrestrictedName or UnreservedName
 			PathElementCS pathElement = (PathElementCS)semanticObject;
-			PathNameCS pathName = pathElement.getPathName();
-			int index = pathName.getPath().indexOf(pathElement);
-			Element element = pathElement.getElement();
+			PathNameCS pathName = pathElement.getOwningPathName();
+			int index = pathName.getOwnedPathElements().indexOf(pathElement);
+			Element element = pathElement.getReferredElement();
 			if (element != null) {
 				Resource csResource = pathElement.eResource();
 				assert csResource != null;

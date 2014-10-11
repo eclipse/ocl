@@ -20,8 +20,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS#getOwningTemplateElement <em>Owning Template Element</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS#getOwnedTemplateParameter <em>Owned Template Parameter</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS#getOwningElement <em>Owning Element</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS#getOwnedParameters <em>Owned Parameters</em>}</li>
  * </ul>
  * </p>
  *
@@ -31,49 +31,49 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface TemplateSignatureCS extends ModelElementCS {
 	/**
-	 * Returns the value of the '<em><b>Owning Template Element</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS#getOwnedTemplateSignature <em>Owned Template Signature</em>}'.
+	 * Returns the value of the '<em><b>Owning Element</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS#getOwnedSignature <em>Owned Signature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Template Element</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Template Element</em>' container reference.
-	 * @see #setOwningTemplateElement(TemplateableElementCS)
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTemplateSignatureCS_OwningTemplateElement()
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS#getOwnedTemplateSignature
-	 * @model opposite="ownedTemplateSignature" transient="false"
+	 * @return the value of the '<em>Owning Element</em>' container reference.
+	 * @see #setOwningElement(TemplateableElementCS)
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTemplateSignatureCS_OwningElement()
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS#getOwnedSignature
+	 * @model opposite="ownedSignature" transient="false"
 	 * @generated
 	 */
-	TemplateableElementCS getOwningTemplateElement();
+	TemplateableElementCS getOwningElement();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS#getOwningTemplateElement <em>Owning Template Element</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS#getOwningElement <em>Owning Element</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Template Element</em>' container reference.
-	 * @see #getOwningTemplateElement()
+	 * @param value the new value of the '<em>Owning Element</em>' container reference.
+	 * @see #getOwningElement()
 	 * @generated
 	 */
-	void setOwningTemplateElement(TemplateableElementCS value);
+	void setOwningElement(TemplateableElementCS value);
 
 	/**
-	 * Returns the value of the '<em><b>Owned Template Parameter</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Parameters</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterCS}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterCS#getOwningTemplateSignature <em>Owning Template Signature</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterCS#getOwningSignature <em>Owning Signature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Template Parameter</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Template Parameter</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTemplateSignatureCS_OwnedTemplateParameter()
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterCS#getOwningTemplateSignature
-	 * @model opposite="owningTemplateSignature" containment="true"
+	 * @return the value of the '<em>Owned Parameters</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTemplateSignatureCS_OwnedParameters()
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterCS#getOwningSignature
+	 * @model opposite="owningSignature" containment="true"
 	 * @generated
 	 */
-	EList<TemplateParameterCS> getOwnedTemplateParameter();
+	EList<TemplateParameterCS> getOwnedParameters();
 
 } // TemplateSignatureCS

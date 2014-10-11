@@ -31,9 +31,9 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ImportCSImpl#getPathName <em>Path Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ImportCSImpl#getNamespace <em>Namespace</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ImportCSImpl#isAll <em>All</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ImportCSImpl#getOwnedPathName <em>Owned Path Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ImportCSImpl#getReferredNamespace <em>Referred Namespace</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ImportCSImpl#isIsAll <em>Is All</em>}</li>
  * </ul>
  * </p>
  *
@@ -41,33 +41,32 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  */
 public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	/**
-	 * The cached value of the '{@link #getPathName() <em>Path Name</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedPathName() <em>Owned Path Name</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPathName()
+	 * @see #getOwnedPathName()
 	 * @generated
 	 * @ordered
 	 */
-	protected PathNameCS pathName;
+	protected PathNameCS ownedPathName;
 	/**
-	 * The default value of the '{@link #isAll() <em>All</em>}' attribute.
+	 * The default value of the '{@link #isIsAll() <em>Is All</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isAll()
+	 * @see #isIsAll()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean ALL_EDEFAULT = false;
+	protected static final boolean IS_ALL_EDEFAULT = false;
 	/**
-	 * The cached value of the '{@link #isAll() <em>All</em>}' attribute.
+	 * The cached value of the '{@link #isIsAll() <em>Is All</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isAll()
+	 * @see #isIsAll()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean all = ALL_EDEFAULT;
-
+	protected boolean isAll = IS_ALL_EDEFAULT;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -92,9 +91,9 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PathNameCS getPathName()
+	public PathNameCS getOwnedPathName()
 	{
-		return pathName;
+		return ownedPathName;
 	}
 
 	/**
@@ -102,13 +101,13 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetPathName(PathNameCS newPathName, NotificationChain msgs)
+	public NotificationChain basicSetOwnedPathName(PathNameCS newOwnedPathName, NotificationChain msgs)
 	{
-		PathNameCS oldPathName = pathName;
-		pathName = newPathName;
+		PathNameCS oldOwnedPathName = ownedPathName;
+		ownedPathName = newOwnedPathName;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSPackage.IMPORT_CS__PATH_NAME, oldPathName, newPathName);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSPackage.IMPORT_CS__OWNED_PATH_NAME, oldOwnedPathName, newOwnedPathName);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -119,20 +118,20 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPathName(PathNameCS newPathName)
+	public void setOwnedPathName(PathNameCS newOwnedPathName)
 	{
-		if (newPathName != pathName)
+		if (newOwnedPathName != ownedPathName)
 		{
 			NotificationChain msgs = null;
-			if (pathName != null)
-				msgs = ((InternalEObject)pathName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.IMPORT_CS__PATH_NAME, null, msgs);
-			if (newPathName != null)
-				msgs = ((InternalEObject)newPathName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.IMPORT_CS__PATH_NAME, null, msgs);
-			msgs = basicSetPathName(newPathName, msgs);
+			if (ownedPathName != null)
+				msgs = ((InternalEObject)ownedPathName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.IMPORT_CS__OWNED_PATH_NAME, null, msgs);
+			if (newOwnedPathName != null)
+				msgs = ((InternalEObject)newOwnedPathName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.IMPORT_CS__OWNED_PATH_NAME, null, msgs);
+			msgs = basicSetOwnedPathName(newOwnedPathName, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.IMPORT_CS__PATH_NAME, newPathName, newPathName));
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.IMPORT_CS__OWNED_PATH_NAME, newOwnedPathName, newOwnedPathName));
 	}
 
 	/**
@@ -140,9 +139,9 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isAll()
+	public boolean isIsAll()
 	{
-		return all;
+		return isAll;
 	}
 
 	/**
@@ -150,12 +149,12 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAll(boolean newAll)
+	public void setIsAll(boolean newIsAll)
 	{
-		boolean oldAll = all;
-		all = newAll;
+		boolean oldIsAll = isAll;
+		isAll = newIsAll;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.IMPORT_CS__ALL, oldAll, all));
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.IMPORT_CS__IS_ALL, oldIsAll, isAll));
 	}
 
 	/**
@@ -179,8 +178,8 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.IMPORT_CS__PATH_NAME:
-				return basicSetPathName(null, msgs);
+			case BaseCSPackage.IMPORT_CS__OWNED_PATH_NAME:
+				return basicSetOwnedPathName(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -194,12 +193,12 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case BaseCSPackage.IMPORT_CS__PATH_NAME:
-				return getPathName();
-			case BaseCSPackage.IMPORT_CS__NAMESPACE:
-				return getNamespace();
-			case BaseCSPackage.IMPORT_CS__ALL:
-				return isAll();
+			case BaseCSPackage.IMPORT_CS__OWNED_PATH_NAME:
+				return getOwnedPathName();
+			case BaseCSPackage.IMPORT_CS__REFERRED_NAMESPACE:
+				return getReferredNamespace();
+			case BaseCSPackage.IMPORT_CS__IS_ALL:
+				return isIsAll();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -213,11 +212,11 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case BaseCSPackage.IMPORT_CS__PATH_NAME:
-				setPathName((PathNameCS)newValue);
+			case BaseCSPackage.IMPORT_CS__OWNED_PATH_NAME:
+				setOwnedPathName((PathNameCS)newValue);
 				return;
-			case BaseCSPackage.IMPORT_CS__ALL:
-				setAll((Boolean)newValue);
+			case BaseCSPackage.IMPORT_CS__IS_ALL:
+				setIsAll((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -232,11 +231,11 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.IMPORT_CS__PATH_NAME:
-				setPathName((PathNameCS)null);
+			case BaseCSPackage.IMPORT_CS__OWNED_PATH_NAME:
+				setOwnedPathName((PathNameCS)null);
 				return;
-			case BaseCSPackage.IMPORT_CS__ALL:
-				setAll(ALL_EDEFAULT);
+			case BaseCSPackage.IMPORT_CS__IS_ALL:
+				setIsAll(IS_ALL_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -251,12 +250,12 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.IMPORT_CS__PATH_NAME:
-				return pathName != null;
-			case BaseCSPackage.IMPORT_CS__NAMESPACE:
-				return getNamespace() != null;
-			case BaseCSPackage.IMPORT_CS__ALL:
-				return all != ALL_EDEFAULT;
+			case BaseCSPackage.IMPORT_CS__OWNED_PATH_NAME:
+				return ownedPathName != null;
+			case BaseCSPackage.IMPORT_CS__REFERRED_NAMESPACE:
+				return getReferredNamespace() != null;
+			case BaseCSPackage.IMPORT_CS__IS_ALL:
+				return isAll != IS_ALL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -275,10 +274,10 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Namespace getNamespace() {
-		if (pathName == null) {
+	public Namespace getReferredNamespace() {
+		if (ownedPathName == null) {
 			return null;
 		}
-		return (Namespace) pathName.getElement();
+		return (Namespace) ownedPathName.getReferredElement();
 	}
 } //ImportCSImpl

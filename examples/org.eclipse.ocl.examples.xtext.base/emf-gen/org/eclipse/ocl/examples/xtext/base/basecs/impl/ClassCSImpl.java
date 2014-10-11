@@ -1,92 +1,111 @@
 /*******************************************************************************
  * Copyright (c) 2010, 2012 E.D.Willink and others.
- * All rights reserved.   This program and the accompanying materials
+ * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   E.D.Willink - Initial API and implementation
+ *     E.D.Willink - initial API and implementation
  *******************************************************************************/
+
 package org.eclipse.ocl.examples.xtext.base.basecs.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
 import org.eclipse.ocl.examples.xtext.base.basecs.ClassCS;
-import org.eclipse.ocl.examples.xtext.base.basecs.OperationCS;
-import org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS;
-import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
-import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
+import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.PackageCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.TypeCS;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Class CS</b></em>'.
+ * An implementation of the model object '<em><b>Classifier CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ClassCSImpl#getOwnedSuperType <em>Owned Super Type</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ClassCSImpl#getOwnedOperation <em>Owned Operation</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ClassCSImpl#getOwnedProperty <em>Owned Property</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ClassCSImpl#getOwnedMetaType <em>Owned Meta Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ClassCSImpl#getOwnedSignature <em>Owned Signature</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ClassCSImpl#getOwningPackage <em>Owning Package</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ClassCSImpl#getInstanceClassName <em>Instance Class Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ClassCSImpl#getOwnedConstraints <em>Owned Constraints</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ClassCSImpl#getQualifiers <em>Qualifiers</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ClassCSImpl extends ClassifierCSImpl implements ClassCS {
+public abstract class ClassCSImpl extends NamedElementCSImpl implements ClassCS {
 	/**
-	 * The cached value of the '{@link #getOwnedSuperType() <em>Owned Super Type</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedSignature() <em>Owned Signature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedSuperType()
+	 * @see #getOwnedSignature()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TypedRefCS> ownedSuperType;
-
+	protected TemplateSignatureCS ownedSignature;
 	/**
-	 * The cached value of the '{@link #getOwnedOperation() <em>Owned Operation</em>}' containment reference list.
+	 * The default value of the '{@link #getInstanceClassName() <em>Instance Class Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedOperation()
+	 * @see #getInstanceClassName()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<OperationCS> ownedOperation;
-
+	protected static final String INSTANCE_CLASS_NAME_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getOwnedProperty() <em>Owned Property</em>}' containment reference list.
+	 * The cached value of the '{@link #getInstanceClassName() <em>Instance Class Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedProperty()
+	 * @see #getInstanceClassName()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<StructuralFeatureCS> ownedProperty;
-
+	protected String instanceClassName = INSTANCE_CLASS_NAME_EDEFAULT;
 	/**
-	 * The cached value of the '{@link #getOwnedMetaType() <em>Owned Meta Type</em>}' containment reference.
+	 * This is true if the Instance Class Name attribute has been set.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedMetaType()
 	 * @generated
 	 * @ordered
 	 */
-	protected TypedRefCS ownedMetaType;
-
+	protected boolean instanceClassNameESet;
+	/**
+	 * The cached value of the '{@link #getOwnedConstraints() <em>Owned Constraints</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedConstraints()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ConstraintCS> ownedConstraints;
+	/**
+	 * The cached value of the '{@link #getQualifiers() <em>Qualifiers</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getQualifiers()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> qualifiers;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -111,12 +130,8 @@ public class ClassCSImpl extends ClassifierCSImpl implements ClassCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TypedRefCS> getOwnedSuperType() {
-		if (ownedSuperType == null)
-		{
-			ownedSuperType = new EObjectContainmentEList.Unsettable<TypedRefCS>(TypedRefCS.class, this, BaseCSPackage.CLASS_CS__OWNED_SUPER_TYPE);
-		}
-		return ownedSuperType;
+	public TemplateSignatureCS getOwnedSignature() {
+		return ownedSignature;
 	}
 
 	/**
@@ -124,67 +139,13 @@ public class ClassCSImpl extends ClassifierCSImpl implements ClassCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetOwnedSuperType() {
-		if (ownedSuperType != null) ((InternalEList.Unsettable<?>)ownedSuperType).unset();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwnedSuperType() {
-		return ownedSuperType != null && ((InternalEList.Unsettable<?>)ownedSuperType).isSet();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<OperationCS> getOwnedOperation() {
-		if (ownedOperation == null)
-		{
-			ownedOperation = new EObjectContainmentWithInverseEList<OperationCS>(OperationCS.class, this, BaseCSPackage.CLASS_CS__OWNED_OPERATION, BaseCSPackage.OPERATION_CS__OWNING_CLASS);
-		}
-		return ownedOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<StructuralFeatureCS> getOwnedProperty() {
-		if (ownedProperty == null)
-		{
-			ownedProperty = new EObjectContainmentWithInverseEList<StructuralFeatureCS>(StructuralFeatureCS.class, this, BaseCSPackage.CLASS_CS__OWNED_PROPERTY, BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNER);
-		}
-		return ownedProperty;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TypedRefCS getOwnedMetaType()
+	public NotificationChain basicSetOwnedSignature(TemplateSignatureCS newOwnedSignature, NotificationChain msgs)
 	{
-		return ownedMetaType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwnedMetaType(TypedRefCS newOwnedMetaType, NotificationChain msgs)
-	{
-		TypedRefCS oldOwnedMetaType = ownedMetaType;
-		ownedMetaType = newOwnedMetaType;
+		TemplateSignatureCS oldOwnedSignature = ownedSignature;
+		ownedSignature = newOwnedSignature;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSPackage.CLASS_CS__OWNED_META_TYPE, oldOwnedMetaType, newOwnedMetaType);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSPackage.CLASS_CS__OWNED_SIGNATURE, oldOwnedSignature, newOwnedSignature);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -195,20 +156,19 @@ public class ClassCSImpl extends ClassifierCSImpl implements ClassCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwnedMetaType(TypedRefCS newOwnedMetaType)
-	{
-		if (newOwnedMetaType != ownedMetaType)
+	public void setOwnedSignature(TemplateSignatureCS newOwnedSignature) {
+		if (newOwnedSignature != ownedSignature)
 		{
 			NotificationChain msgs = null;
-			if (ownedMetaType != null)
-				msgs = ((InternalEObject)ownedMetaType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.CLASS_CS__OWNED_META_TYPE, null, msgs);
-			if (newOwnedMetaType != null)
-				msgs = ((InternalEObject)newOwnedMetaType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.CLASS_CS__OWNED_META_TYPE, null, msgs);
-			msgs = basicSetOwnedMetaType(newOwnedMetaType, msgs);
+			if (ownedSignature != null)
+				msgs = ((InternalEObject)ownedSignature).eInverseRemove(this, BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNING_ELEMENT, TemplateSignatureCS.class, msgs);
+			if (newOwnedSignature != null)
+				msgs = ((InternalEObject)newOwnedSignature).eInverseAdd(this, BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNING_ELEMENT, TemplateSignatureCS.class, msgs);
+			msgs = basicSetOwnedSignature(newOwnedSignature, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.CLASS_CS__OWNED_META_TYPE, newOwnedMetaType, newOwnedMetaType));
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.CLASS_CS__OWNED_SIGNATURE, newOwnedSignature, newOwnedSignature));
 	}
 
 	/**
@@ -216,15 +176,186 @@ public class ClassCSImpl extends ClassifierCSImpl implements ClassCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
+	public PackageCS getOwningPackage() {
+		if (eContainerFeatureID() != BaseCSPackage.CLASS_CS__OWNING_PACKAGE) return null;
+		return (PackageCS)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwningPackage(PackageCS newOwningPackage, NotificationChain msgs)
+	{
+		msgs = eBasicSetContainer((InternalEObject)newOwningPackage, BaseCSPackage.CLASS_CS__OWNING_PACKAGE, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwningPackage(PackageCS newOwningPackage)
+	{
+		if (newOwningPackage != eInternalContainer() || (eContainerFeatureID() != BaseCSPackage.CLASS_CS__OWNING_PACKAGE && newOwningPackage != null))
+		{
+			if (EcoreUtil.isAncestor(this, newOwningPackage))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwningPackage != null)
+				msgs = ((InternalEObject)newOwningPackage).eInverseAdd(this, BaseCSPackage.PACKAGE_CS__OWNED_CLASSES, PackageCS.class, msgs);
+			msgs = basicSetOwningPackage(newOwningPackage, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.CLASS_CS__OWNING_PACKAGE, newOwningPackage, newOwningPackage));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getInstanceClassName()
+	{
+		return instanceClassName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setInstanceClassName(String newInstanceClassName)
+	{
+		String oldInstanceClassName = instanceClassName;
+		instanceClassName = newInstanceClassName;
+		boolean oldInstanceClassNameESet = instanceClassNameESet;
+		instanceClassNameESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.CLASS_CS__INSTANCE_CLASS_NAME, oldInstanceClassName, instanceClassName, !oldInstanceClassNameESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetInstanceClassName()
+	{
+		String oldInstanceClassName = instanceClassName;
+		boolean oldInstanceClassNameESet = instanceClassNameESet;
+		instanceClassName = INSTANCE_CLASS_NAME_EDEFAULT;
+		instanceClassNameESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, BaseCSPackage.CLASS_CS__INSTANCE_CLASS_NAME, oldInstanceClassName, INSTANCE_CLASS_NAME_EDEFAULT, oldInstanceClassNameESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetInstanceClassName()
+	{
+		return instanceClassNameESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ConstraintCS> getOwnedConstraints()
+	{
+		if (ownedConstraints == null)
+		{
+			ownedConstraints = new EObjectContainmentEList<ConstraintCS>(ConstraintCS.class, this, BaseCSPackage.CLASS_CS__OWNED_CONSTRAINTS);
+		}
+		return ownedConstraints;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<String> getQualifiers()
+	{
+		if (qualifiers == null)
+		{
+			qualifiers = new EDataTypeUniqueEList<String>(String.class, this, BaseCSPackage.CLASS_CS__QUALIFIERS);
+		}
+		return qualifiers;
+	}
+
+	/**
+	 * The cached invocation delegate for the '{@link #ast() <em>Ast</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ast()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate AST__EINVOCATION_DELEGATE = ((EOperation.Internal)BaseCSPackage.Literals.CLASS_CS.getEOperations().get(0)).getInvocationDelegate();
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Type ast()
+	{
+		try
+		{
+			return (Type)AST__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite)
+		{
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString()
+	{
+		return super.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public TemplateSignatureCS getTemplateSignature() {
+		return getOwnedSignature();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case BaseCSPackage.CLASS_CS__OWNED_OPERATION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedOperation()).basicAdd(otherEnd, msgs);
-			case BaseCSPackage.CLASS_CS__OWNED_PROPERTY:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedProperty()).basicAdd(otherEnd, msgs);
+			case BaseCSPackage.CLASS_CS__OWNED_SIGNATURE:
+				if (ownedSignature != null)
+					msgs = ((InternalEObject)ownedSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.CLASS_CS__OWNED_SIGNATURE, null, msgs);
+				return basicSetOwnedSignature((TemplateSignatureCS)otherEnd, msgs);
+			case BaseCSPackage.CLASS_CS__OWNING_PACKAGE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwningPackage((PackageCS)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -238,16 +369,29 @@ public class ClassCSImpl extends ClassifierCSImpl implements ClassCS {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case BaseCSPackage.CLASS_CS__OWNED_SUPER_TYPE:
-				return ((InternalEList<?>)getOwnedSuperType()).basicRemove(otherEnd, msgs);
-			case BaseCSPackage.CLASS_CS__OWNED_OPERATION:
-				return ((InternalEList<?>)getOwnedOperation()).basicRemove(otherEnd, msgs);
-			case BaseCSPackage.CLASS_CS__OWNED_PROPERTY:
-				return ((InternalEList<?>)getOwnedProperty()).basicRemove(otherEnd, msgs);
-			case BaseCSPackage.CLASS_CS__OWNED_META_TYPE:
-				return basicSetOwnedMetaType(null, msgs);
+			case BaseCSPackage.CLASS_CS__OWNED_SIGNATURE:
+				return basicSetOwnedSignature(null, msgs);
+			case BaseCSPackage.CLASS_CS__OWNING_PACKAGE:
+				return basicSetOwningPackage(null, msgs);
+			case BaseCSPackage.CLASS_CS__OWNED_CONSTRAINTS:
+				return ((InternalEList<?>)getOwnedConstraints()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID())
+		{
+			case BaseCSPackage.CLASS_CS__OWNING_PACKAGE:
+				return eInternalContainer().eInverseRemove(this, BaseCSPackage.PACKAGE_CS__OWNED_CLASSES, PackageCS.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -259,14 +403,16 @@ public class ClassCSImpl extends ClassifierCSImpl implements ClassCS {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case BaseCSPackage.CLASS_CS__OWNED_SUPER_TYPE:
-				return getOwnedSuperType();
-			case BaseCSPackage.CLASS_CS__OWNED_OPERATION:
-				return getOwnedOperation();
-			case BaseCSPackage.CLASS_CS__OWNED_PROPERTY:
-				return getOwnedProperty();
-			case BaseCSPackage.CLASS_CS__OWNED_META_TYPE:
-				return getOwnedMetaType();
+			case BaseCSPackage.CLASS_CS__OWNED_SIGNATURE:
+				return getOwnedSignature();
+			case BaseCSPackage.CLASS_CS__OWNING_PACKAGE:
+				return getOwningPackage();
+			case BaseCSPackage.CLASS_CS__INSTANCE_CLASS_NAME:
+				return getInstanceClassName();
+			case BaseCSPackage.CLASS_CS__OWNED_CONSTRAINTS:
+				return getOwnedConstraints();
+			case BaseCSPackage.CLASS_CS__QUALIFIERS:
+				return getQualifiers();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -281,20 +427,22 @@ public class ClassCSImpl extends ClassifierCSImpl implements ClassCS {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case BaseCSPackage.CLASS_CS__OWNED_SUPER_TYPE:
-				getOwnedSuperType().clear();
-				getOwnedSuperType().addAll((Collection<? extends TypedRefCS>)newValue);
+			case BaseCSPackage.CLASS_CS__OWNED_SIGNATURE:
+				setOwnedSignature((TemplateSignatureCS)newValue);
 				return;
-			case BaseCSPackage.CLASS_CS__OWNED_OPERATION:
-				getOwnedOperation().clear();
-				getOwnedOperation().addAll((Collection<? extends OperationCS>)newValue);
+			case BaseCSPackage.CLASS_CS__OWNING_PACKAGE:
+				setOwningPackage((PackageCS)newValue);
 				return;
-			case BaseCSPackage.CLASS_CS__OWNED_PROPERTY:
-				getOwnedProperty().clear();
-				getOwnedProperty().addAll((Collection<? extends StructuralFeatureCS>)newValue);
+			case BaseCSPackage.CLASS_CS__INSTANCE_CLASS_NAME:
+				setInstanceClassName((String)newValue);
 				return;
-			case BaseCSPackage.CLASS_CS__OWNED_META_TYPE:
-				setOwnedMetaType((TypedRefCS)newValue);
+			case BaseCSPackage.CLASS_CS__OWNED_CONSTRAINTS:
+				getOwnedConstraints().clear();
+				getOwnedConstraints().addAll((Collection<? extends ConstraintCS>)newValue);
+				return;
+			case BaseCSPackage.CLASS_CS__QUALIFIERS:
+				getQualifiers().clear();
+				getQualifiers().addAll((Collection<? extends String>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -309,17 +457,20 @@ public class ClassCSImpl extends ClassifierCSImpl implements ClassCS {
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.CLASS_CS__OWNED_SUPER_TYPE:
-				unsetOwnedSuperType();
+			case BaseCSPackage.CLASS_CS__OWNED_SIGNATURE:
+				setOwnedSignature((TemplateSignatureCS)null);
 				return;
-			case BaseCSPackage.CLASS_CS__OWNED_OPERATION:
-				getOwnedOperation().clear();
+			case BaseCSPackage.CLASS_CS__OWNING_PACKAGE:
+				setOwningPackage((PackageCS)null);
 				return;
-			case BaseCSPackage.CLASS_CS__OWNED_PROPERTY:
-				getOwnedProperty().clear();
+			case BaseCSPackage.CLASS_CS__INSTANCE_CLASS_NAME:
+				unsetInstanceClassName();
 				return;
-			case BaseCSPackage.CLASS_CS__OWNED_META_TYPE:
-				setOwnedMetaType((TypedRefCS)null);
+			case BaseCSPackage.CLASS_CS__OWNED_CONSTRAINTS:
+				getOwnedConstraints().clear();
+				return;
+			case BaseCSPackage.CLASS_CS__QUALIFIERS:
+				getQualifiers().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -334,24 +485,67 @@ public class ClassCSImpl extends ClassifierCSImpl implements ClassCS {
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.CLASS_CS__OWNED_SUPER_TYPE:
-				return isSetOwnedSuperType();
-			case BaseCSPackage.CLASS_CS__OWNED_OPERATION:
-				return ownedOperation != null && !ownedOperation.isEmpty();
-			case BaseCSPackage.CLASS_CS__OWNED_PROPERTY:
-				return ownedProperty != null && !ownedProperty.isEmpty();
-			case BaseCSPackage.CLASS_CS__OWNED_META_TYPE:
-				return ownedMetaType != null;
+			case BaseCSPackage.CLASS_CS__OWNED_SIGNATURE:
+				return ownedSignature != null;
+			case BaseCSPackage.CLASS_CS__OWNING_PACKAGE:
+				return getOwningPackage() != null;
+			case BaseCSPackage.CLASS_CS__INSTANCE_CLASS_NAME:
+				return isSetInstanceClassName();
+			case BaseCSPackage.CLASS_CS__OWNED_CONSTRAINTS:
+				return ownedConstraints != null && !ownedConstraints.isEmpty();
+			case BaseCSPackage.CLASS_CS__QUALIFIERS:
+				return qualifiers != null && !qualifiers.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public @Nullable <R> R accept(@NonNull BaseCSVisitor<R> visitor) {
-		return visitor.visitClassCS(this);
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == TypeCS.class)
+		{
+			switch (derivedFeatureID)
+			{
+				default: return -1;
+			}
+		}
+		if (baseClass == TemplateableElementCS.class)
+		{
+			switch (derivedFeatureID)
+			{
+				case BaseCSPackage.CLASS_CS__OWNED_SIGNATURE: return BaseCSPackage.TEMPLATEABLE_ELEMENT_CS__OWNED_SIGNATURE;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
-} //ClassCSImpl
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == TypeCS.class)
+		{
+			switch (baseFeatureID)
+			{
+				default: return -1;
+			}
+		}
+		if (baseClass == TemplateableElementCS.class)
+		{
+			switch (baseFeatureID)
+			{
+				case BaseCSPackage.TEMPLATEABLE_ELEMENT_CS__OWNED_SIGNATURE: return BaseCSPackage.CLASS_CS__OWNED_SIGNATURE;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+} //ClassifierCSImpl

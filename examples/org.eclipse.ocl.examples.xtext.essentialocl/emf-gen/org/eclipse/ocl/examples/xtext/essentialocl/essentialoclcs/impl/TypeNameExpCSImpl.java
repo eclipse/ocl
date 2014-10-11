@@ -228,6 +228,6 @@ public class TypeNameExpCSImpl
 		if (ownedPathName == null) {
 			return null;
 		}
-		return (Type) ownedPathName.getElement();
+		return (Type) ownedPathName.getReferredElement();
 	}
 } //TypeNameExpCSImpl

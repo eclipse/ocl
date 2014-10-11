@@ -27,7 +27,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TypedRefCSImpl#getMultiplicity <em>Multiplicity</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TypedRefCSImpl#getOwnedMultiplicity <em>Owned Multiplicity</em>}</li>
  * </ul>
  * </p>
  *
@@ -35,15 +35,14 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
  */
 public abstract class TypedRefCSImpl extends TypeRefCSImpl implements TypedRefCS {
 	/**
-	 * The cached value of the '{@link #getMultiplicity() <em>Multiplicity</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedMultiplicity() <em>Owned Multiplicity</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMultiplicity()
+	 * @see #getOwnedMultiplicity()
 	 * @generated
 	 * @ordered
 	 */
-	protected MultiplicityCS multiplicity;
-
+	protected MultiplicityCS ownedMultiplicity;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,9 +67,9 @@ public abstract class TypedRefCSImpl extends TypeRefCSImpl implements TypedRefCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MultiplicityCS getMultiplicity()
+	public MultiplicityCS getOwnedMultiplicity()
 	{
-		return multiplicity;
+		return ownedMultiplicity;
 	}
 
 	/**
@@ -78,13 +77,13 @@ public abstract class TypedRefCSImpl extends TypeRefCSImpl implements TypedRefCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetMultiplicity(MultiplicityCS newMultiplicity, NotificationChain msgs)
+	public NotificationChain basicSetOwnedMultiplicity(MultiplicityCS newOwnedMultiplicity, NotificationChain msgs)
 	{
-		MultiplicityCS oldMultiplicity = multiplicity;
-		multiplicity = newMultiplicity;
+		MultiplicityCS oldOwnedMultiplicity = ownedMultiplicity;
+		ownedMultiplicity = newOwnedMultiplicity;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSPackage.TYPED_REF_CS__MULTIPLICITY, oldMultiplicity, newMultiplicity);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSPackage.TYPED_REF_CS__OWNED_MULTIPLICITY, oldOwnedMultiplicity, newOwnedMultiplicity);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -95,20 +94,20 @@ public abstract class TypedRefCSImpl extends TypeRefCSImpl implements TypedRefCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMultiplicity(MultiplicityCS newMultiplicity)
+	public void setOwnedMultiplicity(MultiplicityCS newOwnedMultiplicity)
 	{
-		if (newMultiplicity != multiplicity)
+		if (newOwnedMultiplicity != ownedMultiplicity)
 		{
 			NotificationChain msgs = null;
-			if (multiplicity != null)
-				msgs = ((InternalEObject)multiplicity).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.TYPED_REF_CS__MULTIPLICITY, null, msgs);
-			if (newMultiplicity != null)
-				msgs = ((InternalEObject)newMultiplicity).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.TYPED_REF_CS__MULTIPLICITY, null, msgs);
-			msgs = basicSetMultiplicity(newMultiplicity, msgs);
+			if (ownedMultiplicity != null)
+				msgs = ((InternalEObject)ownedMultiplicity).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.TYPED_REF_CS__OWNED_MULTIPLICITY, null, msgs);
+			if (newOwnedMultiplicity != null)
+				msgs = ((InternalEObject)newOwnedMultiplicity).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.TYPED_REF_CS__OWNED_MULTIPLICITY, null, msgs);
+			msgs = basicSetOwnedMultiplicity(newOwnedMultiplicity, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.TYPED_REF_CS__MULTIPLICITY, newMultiplicity, newMultiplicity));
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.TYPED_REF_CS__OWNED_MULTIPLICITY, newOwnedMultiplicity, newOwnedMultiplicity));
 	}
 
 	/**
@@ -121,8 +120,8 @@ public abstract class TypedRefCSImpl extends TypeRefCSImpl implements TypedRefCS
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.TYPED_REF_CS__MULTIPLICITY:
-				return basicSetMultiplicity(null, msgs);
+			case BaseCSPackage.TYPED_REF_CS__OWNED_MULTIPLICITY:
+				return basicSetOwnedMultiplicity(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -137,8 +136,8 @@ public abstract class TypedRefCSImpl extends TypeRefCSImpl implements TypedRefCS
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.TYPED_REF_CS__MULTIPLICITY:
-				return getMultiplicity();
+			case BaseCSPackage.TYPED_REF_CS__OWNED_MULTIPLICITY:
+				return getOwnedMultiplicity();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -153,8 +152,8 @@ public abstract class TypedRefCSImpl extends TypeRefCSImpl implements TypedRefCS
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.TYPED_REF_CS__MULTIPLICITY:
-				setMultiplicity((MultiplicityCS)newValue);
+			case BaseCSPackage.TYPED_REF_CS__OWNED_MULTIPLICITY:
+				setOwnedMultiplicity((MultiplicityCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -170,8 +169,8 @@ public abstract class TypedRefCSImpl extends TypeRefCSImpl implements TypedRefCS
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.TYPED_REF_CS__MULTIPLICITY:
-				setMultiplicity((MultiplicityCS)null);
+			case BaseCSPackage.TYPED_REF_CS__OWNED_MULTIPLICITY:
+				setOwnedMultiplicity((MultiplicityCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -187,8 +186,8 @@ public abstract class TypedRefCSImpl extends TypeRefCSImpl implements TypedRefCS
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.TYPED_REF_CS__MULTIPLICITY:
-				return multiplicity != null;
+			case BaseCSPackage.TYPED_REF_CS__OWNED_MULTIPLICITY:
+				return ownedMultiplicity != null;
 		}
 		return super.eIsSet(featureID);
 	}

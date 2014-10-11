@@ -15,7 +15,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.xtext.base.basecs.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.AttributeCS;
-import org.eclipse.ocl.examples.xtext.base.basecs.ClassCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.DataTypeCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.DetailCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.EnumerationCS;
@@ -68,7 +68,7 @@ public class OCLinEcoreLabelProvider extends EssentialOCLLabelProvider {
 		return "/org.eclipse.emf.ecore.edit/icons/full/obj16/EAttribute.gif";
 	}
 
-	protected String image(ClassCS ele) {
+	protected String image(StructuredClassCS ele) {
 		return "/org.eclipse.emf.ecore.edit/icons/full/obj16/EClass.gif";
 	}
 

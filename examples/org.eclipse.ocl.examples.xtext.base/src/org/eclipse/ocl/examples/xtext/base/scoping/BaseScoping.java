@@ -51,18 +51,18 @@ public class BaseScoping
 	private static final class SimpleNamedElementRefCSTypeUnresolvedProxyMessageProvider extends AbstractUnresolvedProxyMessageProvider
 	{		
 		private SimpleNamedElementRefCSTypeUnresolvedProxyMessageProvider() {
-			super(BaseCSPackage.Literals.PATH_ELEMENT_CS__ELEMENT);
+			super(BaseCSPackage.Literals.PATH_ELEMENT_CS__REFERRED_ELEMENT);
 		}
 		
 		@Override
 		public @Nullable String getMessage(@NonNull EObject context, @NonNull String linkText) {
 			PathElementCS pathElement = (PathElementCS)context;
 			EClassifier elementType = pathElement.getElementType();
-			PathNameCS pathName = pathElement.getPathName();
-			List<PathElementCS> path = pathName.getPath();
+			PathNameCS pathName = pathElement.getOwningPathName();
+			List<PathElementCS> path = pathName.getOwnedPathElements();
 			int index = path.indexOf(pathElement);
 			if (index > 0) {
-				Element pathScope = path.get(index-1).getElement();
+				Element pathScope = path.get(index-1).getReferredElement();
 				if ((pathScope == null) || pathScope.eIsProxy()) {
 					return null;		// Suppress message for child when parent has error
 				}
@@ -76,7 +76,7 @@ public class BaseScoping
 	private static final class TypedTypeRefCSTypeUnresolvedProxyMessageProvider extends AbstractUnresolvedProxyMessageProvider
 	{		
 		private TypedTypeRefCSTypeUnresolvedProxyMessageProvider() {
-			super(BaseCSPackage.Literals.TYPED_TYPE_REF_CS__TYPE);
+			super(BaseCSPackage.Literals.TYPED_TYPE_REF_CS__REFERRED_TYPE);
 		}
 		
 		@Override

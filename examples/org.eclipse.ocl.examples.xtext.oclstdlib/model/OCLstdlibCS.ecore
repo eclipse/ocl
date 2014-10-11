@@ -18,7 +18,7 @@
       interface="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="implementation" eType="#//JavaClassCS"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LibClassCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#//ClassCS">
+  <eClassifiers xsi:type="ecore:EClass" name="LibClassCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#//StructuredClassCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="metaTypeName" eType="#//MetaTypeName"
         transient="true"/>
   </eClassifiers>

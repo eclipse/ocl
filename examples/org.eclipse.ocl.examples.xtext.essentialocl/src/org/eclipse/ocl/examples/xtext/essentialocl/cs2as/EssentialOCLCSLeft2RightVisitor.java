@@ -296,7 +296,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		if (csPathName == null) {
 			return null;
 		}
-		List<PathElementCS> csPathElements = csPathName.getPath();
+		List<PathElementCS> csPathElements = csPathName.getOwnedPathElements();
 		if (csPathElements == null) {
 			return null;
 		}
@@ -309,7 +309,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			return null;
 		}
 		assert csLastPathElement.getElementType() != null;
-		Element asElement = csLastPathElement.basicGetElement();
+		Element asElement = csLastPathElement.basicGetReferredElement();
 		if ((asElement instanceof Operation) && !asElement.eIsProxy()) {
 			return new ResolvedInvocation((Operation)asElement);
 		}
@@ -637,7 +637,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		NameExpCS csNameExp = csRoundBracketedClause.getOwningNameExp();
 		PathNameCS csPathName = csNameExp.getOwnedPathName();
 		if (csPathName != null) {			// QVTr overrides to select a wider search
-			List<PathElementCS> csPath = csPathName.getPath();
+			List<PathElementCS> csPath = csPathName.getOwnedPathElements();
 			int pathSize = csPath.size();
 			if (pathSize > 0) {
 				PathElementCS csLastPathElement = csPath.get(pathSize-1);

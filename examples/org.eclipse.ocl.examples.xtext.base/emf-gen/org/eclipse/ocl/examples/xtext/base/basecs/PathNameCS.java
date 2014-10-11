@@ -23,8 +23,8 @@ import org.eclipse.ocl.examples.pivot.util.Pivotable;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS#getPath <em>Path</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS#getElement <em>Element</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS#getOwnedPathElements <em>Owned Path Elements</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS#getReferredElement <em>Referred Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS#getContext <em>Context</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS#getScopeFilter <em>Scope Filter</em>}</li>
  * </ul>
@@ -37,37 +37,37 @@ import org.eclipse.ocl.examples.pivot.util.Pivotable;
 public interface PathNameCS extends ElementCS, Pivotable
 {
 	/**
-	 * Returns the value of the '<em><b>Path</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Path Elements</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS#getPathName <em>Path Name</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS#getOwningPathName <em>Owning Path Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Path</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Path</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getPathNameCS_Path()
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS#getPathName
-	 * @model opposite="pathName" containment="true" required="true"
+	 * @return the value of the '<em>Owned Path Elements</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getPathNameCS_OwnedPathElements()
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS#getOwningPathName
+	 * @model opposite="owningPathName" containment="true" required="true"
 	 * @generated
 	 */
-	EList<PathElementCS> getPath();
+	EList<PathElementCS> getOwnedPathElements();
 
 	/**
-	 * Returns the value of the '<em><b>Element</b></em>' reference.
+	 * Returns the value of the '<em><b>Referred Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Element</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Element</em>' reference.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getPathNameCS_Element()
+	 * @return the value of the '<em>Referred Element</em>' reference.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getPathNameCS_ReferredElement()
 	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
-	Element getElement();
+	Element getReferredElement();
 
 	/**
 	 * Returns the value of the '<em><b>Context</b></em>' reference.

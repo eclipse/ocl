@@ -145,20 +145,20 @@ UnreservedName returns ecore::EString: // Intended to be overridden
 	EssentialOCLUnreservedName;
 
 PathNameCS returns base::PathNameCS:
-	path+=FirstPathElementCS ('::' path+=NextPathElementCS)*;
+	ownedPathElements+=FirstPathElementCS ('::' ownedPathElements+=NextPathElementCS)*;
 
 FirstPathElementCS returns base::PathElementCS:
-	element=[pivot::NamedElement|UnrestrictedName];
+	referredElement=[pivot::NamedElement|UnrestrictedName];
 
 NextPathElementCS returns base::PathElementCS:
-	element=[pivot::NamedElement|UnreservedName];
+	referredElement=[pivot::NamedElement|UnreservedName];
 
 /* This slightly odd formulation avoids an LALR shift-reduce conflict wrt URIFirstPathElementCS '::' '*' */
 URIPathNameCS returns base::PathNameCS:
-	path+=URIFirstPathElementCS ('::' (path+=NextPathElementCS '::')* path+=NextPathElementCS)?;
+	ownedPathElements+=URIFirstPathElementCS ('::' (ownedPathElements+=NextPathElementCS '::')* ownedPathElements+=NextPathElementCS)?;
 
 URIFirstPathElementCS returns base::PathElementCS:
-	element=[pivot::NamedElement|UnrestrictedName] | {base::PathElementWithURICS} element=[pivot::Namespace|URI];
+	referredElement=[pivot::NamedElement|UnrestrictedName] | {base::PathElementWithURICS} referredElement=[pivot::Namespace|URI];
 
 //---------------------------------------------------------------------
 //  Types
@@ -258,7 +258,7 @@ TypeLiteralCS returns base::TypedRefCS:
 	| TupleTypeCS;
 
 TypeLiteralWithMultiplicityCS returns base::TypedRefCS:
-	TypeLiteralCS multiplicity=MultiplicityCS?;
+	TypeLiteralCS ownedMultiplicity=MultiplicityCS?;
 
 TypeLiteralExpCS returns TypeLiteralExpCS:
 	ownedType=TypeLiteralWithMultiplicityCS;
@@ -267,7 +267,7 @@ TypeNameExpCS returns TypeNameExpCS:
 	ownedPathName=PathNameCS;
 
 TypeExpCS returns base::TypedRefCS:
-	(TypeNameExpCS | TypeLiteralCS) multiplicity=MultiplicityCS?;
+	(TypeNameExpCS | TypeLiteralCS) ownedMultiplicity=MultiplicityCS?;
 
 	//---------------------------------------------------------------------
 //  Expressions

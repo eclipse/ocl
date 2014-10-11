@@ -23,11 +23,11 @@ import org.eclipse.ocl.examples.pivot.Operation;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwningClass <em>Owning Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedParameter <em>Owned Parameter</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedException <em>Owned Exception</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedPrecondition <em>Owned Precondition</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedPostcondition <em>Owned Postcondition</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedBodyExpression <em>Owned Body Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedParameters <em>Owned Parameters</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedExceptions <em>Owned Exceptions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedPreconditions <em>Owned Preconditions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedPostconditions <em>Owned Postconditions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedBodyExpressions <em>Owned Body Expressions</em>}</li>
  * </ul>
  * </p>
  *
@@ -36,88 +36,6 @@ import org.eclipse.ocl.examples.pivot.Operation;
  * @generated
  */
 public interface OperationCS extends FeatureCS, TemplateableElementCS {
-	/**
-	 * Returns the value of the '<em><b>Owned Parameter</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.ParameterCS}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.basecs.ParameterCS#getOwner <em>Owner</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Parameter</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Parameter</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getOperationCS_OwnedParameter()
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ParameterCS#getOwner
-	 * @model opposite="owner" containment="true"
-	 * @generated
-	 */
-	EList<ParameterCS> getOwnedParameter();
-
-	/**
-	 * Returns the value of the '<em><b>Owned Exception</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Exception</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Exception</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getOperationCS_OwnedException()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<TypedRefCS> getOwnedException();
-
-	/**
-	 * Returns the value of the '<em><b>Owned Precondition</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Precondition</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Precondition</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getOperationCS_OwnedPrecondition()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<ConstraintCS> getOwnedPrecondition();
-
-	/**
-	 * Returns the value of the '<em><b>Owned Postcondition</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Postcondition</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Postcondition</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getOperationCS_OwnedPostcondition()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<ConstraintCS> getOwnedPostcondition();
-
-	/**
-	 * Returns the value of the '<em><b>Owned Body Expression</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.SpecificationCS}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Body Expression</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Body Expression</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getOperationCS_OwnedBodyExpression()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<SpecificationCS> getOwnedBodyExpression();
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -129,7 +47,7 @@ public interface OperationCS extends FeatureCS, TemplateableElementCS {
 
 	/**
 	 * Returns the value of the '<em><b>Owning Class</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.basecs.ClassCS#getOwnedOperation <em>Owned Operation</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS#getOwnedOperations <em>Owned Operations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Class</em>' container reference isn't clear,
@@ -137,13 +55,13 @@ public interface OperationCS extends FeatureCS, TemplateableElementCS {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owning Class</em>' container reference.
-	 * @see #setOwningClass(ClassCS)
+	 * @see #setOwningClass(StructuredClassCS)
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getOperationCS_OwningClass()
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ClassCS#getOwnedOperation
-	 * @model opposite="ownedOperation" transient="false"
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS#getOwnedOperations
+	 * @model opposite="ownedOperations" transient="false"
 	 * @generated
 	 */
-	ClassCS getOwningClass();
+	StructuredClassCS getOwningClass();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwningClass <em>Owning Class</em>}' container reference.
@@ -153,6 +71,88 @@ public interface OperationCS extends FeatureCS, TemplateableElementCS {
 	 * @see #getOwningClass()
 	 * @generated
 	 */
-	void setOwningClass(ClassCS value);
+	void setOwningClass(StructuredClassCS value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Parameters</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.ParameterCS}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.basecs.ParameterCS#getOwningOperation <em>Owning Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Parameters</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Parameters</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getOperationCS_OwnedParameters()
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ParameterCS#getOwningOperation
+	 * @model opposite="owningOperation" containment="true"
+	 * @generated
+	 */
+	EList<ParameterCS> getOwnedParameters();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Exceptions</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Exceptions</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Exceptions</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getOperationCS_OwnedExceptions()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<TypedRefCS> getOwnedExceptions();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Preconditions</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Preconditions</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Preconditions</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getOperationCS_OwnedPreconditions()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ConstraintCS> getOwnedPreconditions();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Postconditions</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Postconditions</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Postconditions</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getOperationCS_OwnedPostconditions()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ConstraintCS> getOwnedPostconditions();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Body Expressions</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.SpecificationCS}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Body Expressions</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Body Expressions</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getOperationCS_OwnedBodyExpressions()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<SpecificationCS> getOwnedBodyExpressions();
 
 } // OperationCS

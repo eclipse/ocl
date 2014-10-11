@@ -11,8 +11,6 @@
 
 package org.eclipse.ocl.examples.xtext.base.basecs;
 
-import org.eclipse.ocl.examples.pivot.Namespace;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -22,7 +20,7 @@ import org.eclipse.ocl.examples.pivot.Namespace;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.LibraryCS#getPackage <em>Package</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.LibraryCS#getReferredPackage <em>Referred Package</em>}</li>
  * </ul>
  * </p>
  *
@@ -32,29 +30,29 @@ import org.eclipse.ocl.examples.pivot.Namespace;
  */
 public interface LibraryCS extends NamespaceCS {
 	/**
-	 * Returns the value of the '<em><b>Package</b></em>' reference.
+	 * Returns the value of the '<em><b>Referred Package</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Package</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Package</em>' reference.
-	 * @see #setPackage(Namespace)
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getLibraryCS_Package()
+	 * @return the value of the '<em>Referred Package</em>' reference.
+	 * @see #setReferredPackage(org.eclipse.ocl.examples.pivot.Package)
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getLibraryCS_ReferredPackage()
 	 * @model
 	 * @generated
 	 */
-	Namespace getPackage();
+	org.eclipse.ocl.examples.pivot.Package getReferredPackage();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.LibraryCS#getPackage <em>Package</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.LibraryCS#getReferredPackage <em>Referred Package</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Package</em>' reference.
-	 * @see #getPackage()
+	 * @param value the new value of the '<em>Referred Package</em>' reference.
+	 * @see #getReferredPackage()
 	 * @generated
 	 */
-	void setPackage(Namespace value);
+	void setReferredPackage(org.eclipse.ocl.examples.pivot.Package value);
 
 } // LibraryCS

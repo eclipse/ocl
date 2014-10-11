@@ -6,7 +6,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.xtext.base.basecs.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
-import org.eclipse.ocl.examples.xtext.base.basecs.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.DataTypeCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.DetailCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.DocumentationCS;
@@ -25,6 +24,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.PathElementWithURICS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ReferenceCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS;
@@ -103,16 +103,8 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 					return; 
 				}
 				else break;
-			case BaseCSPackage.CLASS_CS:
-				if(context == grammarAccess.getClassCSRule() ||
-				   context == grammarAccess.getClassifierCSRule() ||
-				   context == grammarAccess.getModelElementCSRule()) {
-					sequence_ClassCS(context, (ClassCS) semanticObject); 
-					return; 
-				}
-				else break;
 			case BaseCSPackage.DATA_TYPE_CS:
-				if(context == grammarAccess.getClassifierCSRule() ||
+				if(context == grammarAccess.getClassCSRule() ||
 				   context == grammarAccess.getDataTypeCSRule() ||
 				   context == grammarAccess.getModelElementCSRule()) {
 					sequence_DataTypeCS(context, (DataTypeCS) semanticObject); 
@@ -133,7 +125,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 				}
 				else break;
 			case BaseCSPackage.ENUMERATION_CS:
-				if(context == grammarAccess.getClassifierCSRule() ||
+				if(context == grammarAccess.getClassCSRule() ||
 				   context == grammarAccess.getEnumerationCSRule() ||
 				   context == grammarAccess.getModelElementCSRule()) {
 					sequence_EnumerationCS(context, (EnumerationCS) semanticObject); 
@@ -255,6 +247,14 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 				   context == grammarAccess.getReferenceCSRule() ||
 				   context == grammarAccess.getStructuralFeatureCSRule()) {
 					sequence_ReferenceCS(context, (ReferenceCS) semanticObject); 
+					return; 
+				}
+				else break;
+			case BaseCSPackage.STRUCTURED_CLASS_CS:
+				if(context == grammarAccess.getClassCSRule() ||
+				   context == grammarAccess.getModelElementCSRule() ||
+				   context == grammarAccess.getStructuredClassCSRule()) {
+					sequence_StructuredClassCS(context, (StructuredClassCS) semanticObject); 
 					return; 
 				}
 				else break;
@@ -686,8 +686,8 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	 * Constraint:
 	 *     (
 	 *         (name=UnrestrictedName | name=SINGLE_QUOTED_STRING)? 
-	 *         (ownedDetail+=DetailCS ownedDetail+=DetailCS*)? 
-	 *         (ownedAnnotation+=AnnotationElementCS | ownedContent+=ModelElementCS | ownedReference+=ModelElementRefCS)*
+	 *         (ownedDetails+=DetailCS ownedDetails+=DetailCS*)? 
+	 *         (ownedAnnotations+=AnnotationElementCS | ownedContents+=ModelElementCS | ownedReferences+=ModelElementRefCS)*
 	 *     )
 	 */
 	protected void sequence_AnnotationCS(EObject context, AnnotationCS semanticObject) {
@@ -698,29 +698,29 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	/**
 	 * Constraint:
 	 *     (
-	 *         ((qualifier+='static' qualifier+='definition'?) | (qualifier+='definition' qualifier+='static'?))? 
+	 *         ((qualifiers+='static' qualifiers+='definition'?) | (qualifiers+='definition' qualifiers+='static'?))? 
 	 *         name=UnrestrictedName 
 	 *         ownedType=TypedMultiplicityRefCS? 
 	 *         default=SINGLE_QUOTED_STRING? 
 	 *         (
-	 *             qualifier+='derived' | 
-	 *             qualifier+='!derived' | 
-	 *             qualifier+='id' | 
-	 *             qualifier+='!id' | 
-	 *             qualifier+='ordered' | 
-	 *             qualifier+='!ordered' | 
-	 *             qualifier+='readonly' | 
-	 *             qualifier+='!readonly' | 
-	 *             qualifier+='transient' | 
-	 *             qualifier+='!transient' | 
-	 *             qualifier+='unique' | 
-	 *             qualifier+='!unique' | 
-	 *             qualifier+='unsettable' | 
-	 *             qualifier+='!unsettable' | 
-	 *             qualifier+='volatile' | 
-	 *             qualifier+='!volatile'
+	 *             qualifiers+='derived' | 
+	 *             qualifiers+='!derived' | 
+	 *             qualifiers+='id' | 
+	 *             qualifiers+='!id' | 
+	 *             qualifiers+='ordered' | 
+	 *             qualifiers+='!ordered' | 
+	 *             qualifiers+='readonly' | 
+	 *             qualifiers+='!readonly' | 
+	 *             qualifiers+='transient' | 
+	 *             qualifiers+='!transient' | 
+	 *             qualifiers+='unique' | 
+	 *             qualifiers+='!unique' | 
+	 *             qualifiers+='unsettable' | 
+	 *             qualifiers+='!unsettable' | 
+	 *             qualifiers+='volatile' | 
+	 *             qualifiers+='!volatile'
 	 *         )* 
-	 *         (ownedAnnotation+=AnnotationElementCS | ownedDefaultExpression+=SpecificationCS? | ownedDefaultExpression+=SpecificationCS?)*
+	 *         (ownedAnnotations+=AnnotationElementCS | ownedDefaultExpressions+=SpecificationCS? | ownedDefaultExpressions+=SpecificationCS?)*
 	 *     )
 	 */
 	protected void sequence_AttributeCS(EObject context, AttributeCS semanticObject) {
@@ -730,24 +730,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	
 	/**
 	 * Constraint:
-	 *     (
-	 *         qualifier+='abstract'? 
-	 *         name=UnrestrictedName 
-	 *         ownedTemplateSignature=TemplateSignatureCS? 
-	 *         (ownedSuperType+=TypedRefCS ownedSuperType+=TypedRefCS*)? 
-	 *         instanceClassName=SINGLE_QUOTED_STRING? 
-	 *         qualifier+='interface'? 
-	 *         (ownedAnnotation+=AnnotationElementCS | ownedOperation+=OperationCS | ownedProperty+=StructuralFeatureCS | ownedConstraint+=InvariantConstraintCS)*
-	 *     )
-	 */
-	protected void sequence_ClassCS(EObject context, ClassCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (name=CollectionTypeIdentifier ownedType=TypeExpCS? multiplicity=MultiplicityCS?)
+	 *     (name=CollectionTypeIdentifier ownedType=TypeExpCS? ownedMultiplicity=MultiplicityCS?)
 	 */
 	protected void sequence_CollectionTypeCS_TypedMultiplicityRefCS(EObject context, CollectionTypeCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -758,10 +741,10 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	 * Constraint:
 	 *     (
 	 *         name=UnrestrictedName 
-	 *         ownedTemplateSignature=TemplateSignatureCS? 
+	 *         ownedSignature=TemplateSignatureCS? 
 	 *         instanceClassName=SINGLE_QUOTED_STRING? 
-	 *         (qualifier+='serializable' | qualifier+='!serializable')? 
-	 *         (ownedAnnotation+=AnnotationElementCS | ownedConstraint+=InvariantConstraintCS)*
+	 *         (qualifiers+='serializable' | qualifiers+='!serializable')? 
+	 *         (ownedAnnotations+=AnnotationElementCS | ownedConstraints+=InvariantConstraintCS)*
 	 *     )
 	 */
 	protected void sequence_DataTypeCS(EObject context, DataTypeCS semanticObject) {
@@ -780,7 +763,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	
 	/**
 	 * Constraint:
-	 *     (value=SINGLE_QUOTED_STRING? (ownedDetail+=DetailCS ownedDetail+=DetailCS*)?)
+	 *     (value=SINGLE_QUOTED_STRING? (ownedDetails+=DetailCS ownedDetails+=DetailCS*)?)
 	 */
 	protected void sequence_DocumentationCS(EObject context, DocumentationCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -791,10 +774,10 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	 * Constraint:
 	 *     (
 	 *         name=UnrestrictedName 
-	 *         ownedTemplateSignature=TemplateSignatureCS? 
+	 *         ownedSignature=TemplateSignatureCS? 
 	 *         instanceClassName=SINGLE_QUOTED_STRING? 
-	 *         (qualifier+='serializable' | qualifier+='!serializable')? 
-	 *         (ownedAnnotation+=AnnotationElementCS | ownedLiterals+=EnumerationLiteralCS | ownedConstraint+=InvariantConstraintCS)*
+	 *         (qualifiers+='serializable' | qualifiers+='!serializable')? 
+	 *         (ownedAnnotations+=AnnotationElementCS | ownedLiterals+=EnumerationLiteralCS | ownedConstraints+=InvariantConstraintCS)*
 	 *     )
 	 */
 	protected void sequence_EnumerationCS(EObject context, EnumerationCS semanticObject) {
@@ -804,7 +787,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	
 	/**
 	 * Constraint:
-	 *     ((name=UnrestrictedName | name=EnumerationLiteralName) value=SIGNED? ownedAnnotation+=AnnotationElementCS*)
+	 *     ((name=UnrestrictedName | name=EnumerationLiteralName) value=SIGNED? ownedAnnotations+=AnnotationElementCS*)
 	 */
 	protected void sequence_EnumerationLiteralCS(EObject context, EnumerationLiteralCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -813,7 +796,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	
 	/**
 	 * Constraint:
-	 *     (name=UnrestrictedName? pathName=URIPathNameCS all?='::*'?)
+	 *     (name=UnrestrictedName? ownedPathName=URIPathNameCS isAll?='::*'?)
 	 */
 	protected void sequence_ImportCS(EObject context, ImportCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -822,7 +805,12 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	
 	/**
 	 * Constraint:
-	 *     (callable?='callable'? stereotype='invariant' (name=UnrestrictedName messageSpecification=SpecificationCS?)? specification=SpecificationCS?)
+	 *     (
+	 *         callable?='callable'? 
+	 *         stereotype='invariant' 
+	 *         (name=UnrestrictedName ownedMessageSpecification=SpecificationCS?)? 
+	 *         ownedSpecification=SpecificationCS?
+	 *     )
 	 */
 	protected void sequence_InvariantConstraintCS(EObject context, OCLinEcoreConstraintCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -831,7 +819,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	
 	/**
 	 * Constraint:
-	 *     (name=UnrestrictedName? package=[Package|URI])
+	 *     (name=UnrestrictedName? referredPackage=[Package|URI])
 	 */
 	protected void sequence_LibraryCS(EObject context, LibraryCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -840,7 +828,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	
 	/**
 	 * Constraint:
-	 *     pathName=PathNameCS
+	 *     ownedPathName=PathNameCS
 	 */
 	protected void sequence_ModelElementRefCS(EObject context, ModelElementRefCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -850,25 +838,25 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	/**
 	 * Constraint:
 	 *     (
-	 *         ((qualifier+='static' qualifier+='definition'?) | (qualifier+='definition' qualifier+='static'?))? 
-	 *         ownedTemplateSignature=TemplateSignatureCS? 
+	 *         ((qualifiers+='static' qualifiers+='definition'?) | (qualifiers+='definition' qualifiers+='static'?))? 
+	 *         ownedSignature=TemplateSignatureCS? 
 	 *         name=UnrestrictedName 
-	 *         (ownedParameter+=ParameterCS ownedParameter+=ParameterCS*)? 
+	 *         (ownedParameters+=ParameterCS ownedParameters+=ParameterCS*)? 
 	 *         ownedType=TypedMultiplicityRefCS? 
-	 *         (ownedException+=TypedRefCS ownedException+=TypedRefCS*)? 
+	 *         (ownedExceptions+=TypedRefCS ownedExceptions+=TypedRefCS*)? 
 	 *         (
-	 *             qualifier+='derived' | 
-	 *             qualifier+='!derived' | 
-	 *             qualifier+='ordered' | 
-	 *             qualifier+='!ordered' | 
-	 *             qualifier+='unique' | 
-	 *             qualifier+='!unique'
+	 *             qualifiers+='derived' | 
+	 *             qualifiers+='!derived' | 
+	 *             qualifiers+='ordered' | 
+	 *             qualifiers+='!ordered' | 
+	 *             qualifiers+='unique' | 
+	 *             qualifiers+='!unique'
 	 *         )* 
 	 *         (
-	 *             ownedAnnotation+=AnnotationElementCS | 
-	 *             ownedPrecondition+=PreconditionConstraintCS | 
-	 *             ownedBodyExpression+=SpecificationCS? | 
-	 *             ownedPostcondition+=PostconditionConstraintCS
+	 *             ownedAnnotations+=AnnotationElementCS | 
+	 *             ownedPreconditions+=PreconditionConstraintCS | 
+	 *             ownedBodyExpressions+=SpecificationCS? | 
+	 *             ownedPostconditions+=PostconditionConstraintCS
 	 *         )*
 	 *     )
 	 */
@@ -883,7 +871,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	 *         name=UnrestrictedName 
 	 *         nsPrefix=UnrestrictedName? 
 	 *         nsURI=URI? 
-	 *         (ownedAnnotation+=AnnotationElementCS | ownedNestedPackage+=PackageCS | ownedType+=ClassifierCS)*
+	 *         (ownedAnnotations+=AnnotationElementCS | ownedPackages+=PackageCS | ownedClasses+=ClassCS)*
 	 *     )
 	 */
 	protected void sequence_PackageCS(EObject context, PackageCS semanticObject) {
@@ -896,8 +884,8 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	 *     (
 	 *         name=UnrestrictedName 
 	 *         ownedType=TypedMultiplicityRefCS? 
-	 *         (qualifier+='ordered' | qualifier+='!ordered' | qualifier+='unique' | qualifier+='!unique')* 
-	 *         ownedAnnotation+=AnnotationElementCS*
+	 *         (qualifiers+='ordered' | qualifiers+='!ordered' | qualifiers+='unique' | qualifiers+='!unique')* 
+	 *         ownedAnnotations+=AnnotationElementCS*
 	 *     )
 	 */
 	protected void sequence_ParameterCS(EObject context, ParameterCS semanticObject) {
@@ -907,7 +895,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	
 	/**
 	 * Constraint:
-	 *     (stereotype='postcondition' (name=UnrestrictedName messageSpecification=SpecificationCS?)? specification=SpecificationCS?)
+	 *     (stereotype='postcondition' (name=UnrestrictedName ownedMessageSpecification=SpecificationCS?)? ownedSpecification=SpecificationCS?)
 	 */
 	protected void sequence_PostconditionConstraintCS(EObject context, OCLinEcoreConstraintCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -916,7 +904,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	
 	/**
 	 * Constraint:
-	 *     (stereotype='precondition' (name=UnrestrictedName messageSpecification=SpecificationCS?)? specification=SpecificationCS?)
+	 *     (stereotype='precondition' (name=UnrestrictedName ownedMessageSpecification=SpecificationCS?)? ownedSpecification=SpecificationCS?)
 	 */
 	protected void sequence_PreconditionConstraintCS(EObject context, OCLinEcoreConstraintCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -925,7 +913,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	
 	/**
 	 * Constraint:
-	 *     (name=PrimitiveTypeIdentifier multiplicity=MultiplicityCS?)
+	 *     (name=PrimitiveTypeIdentifier ownedMultiplicity=MultiplicityCS?)
 	 */
 	protected void sequence_PrimitiveTypeCS_TypedMultiplicityRefCS(EObject context, PrimitiveTypeRefCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -935,36 +923,36 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	/**
 	 * Constraint:
 	 *     (
-	 *         ((qualifier+='static' qualifier+='definition'?) | (qualifier+='definition' qualifier+='static'?))? 
+	 *         ((qualifiers+='static' qualifiers+='definition'?) | (qualifiers+='definition' qualifiers+='static'?))? 
 	 *         name=UnrestrictedName 
-	 *         opposite=[Property|UnrestrictedName]? 
+	 *         referredOpposite=[Property|UnrestrictedName]? 
 	 *         ownedType=TypedMultiplicityRefCS? 
 	 *         default=SINGLE_QUOTED_STRING? 
 	 *         (
-	 *             qualifier+='composes' | 
-	 *             qualifier+='!composes' | 
-	 *             qualifier+='derived' | 
-	 *             qualifier+='!derived' | 
-	 *             qualifier+='ordered' | 
-	 *             qualifier+='!ordered' | 
-	 *             qualifier+='readonly' | 
-	 *             qualifier+='!readonly' | 
-	 *             qualifier+='resolve' | 
-	 *             qualifier+='!resolve' | 
-	 *             qualifier+='transient' | 
-	 *             qualifier+='!transient' | 
-	 *             qualifier+='unique' | 
-	 *             qualifier+='!unique' | 
-	 *             qualifier+='unsettable' | 
-	 *             qualifier+='!unsettable' | 
-	 *             qualifier+='volatile' | 
-	 *             qualifier+='!volatile'
+	 *             qualifiers+='composes' | 
+	 *             qualifiers+='!composes' | 
+	 *             qualifiers+='derived' | 
+	 *             qualifiers+='!derived' | 
+	 *             qualifiers+='ordered' | 
+	 *             qualifiers+='!ordered' | 
+	 *             qualifiers+='readonly' | 
+	 *             qualifiers+='!readonly' | 
+	 *             qualifiers+='resolve' | 
+	 *             qualifiers+='!resolve' | 
+	 *             qualifiers+='transient' | 
+	 *             qualifiers+='!transient' | 
+	 *             qualifiers+='unique' | 
+	 *             qualifiers+='!unique' | 
+	 *             qualifiers+='unsettable' | 
+	 *             qualifiers+='!unsettable' | 
+	 *             qualifiers+='volatile' | 
+	 *             qualifiers+='!volatile'
 	 *         )* 
 	 *         (
-	 *             ownedAnnotation+=AnnotationElementCS | 
-	 *             (keys+=[Property|UnrestrictedName] keys+=[Property|UnrestrictedName]*) | 
-	 *             ownedDefaultExpression+=SpecificationCS? | 
-	 *             ownedDefaultExpression+=SpecificationCS?
+	 *             ownedAnnotations+=AnnotationElementCS | 
+	 *             (referredKeys+=[Property|UnrestrictedName] referredKeys+=[Property|UnrestrictedName]*) | 
+	 *             ownedDefaultExpressions+=SpecificationCS? | 
+	 *             ownedDefaultExpressions+=SpecificationCS?
 	 *         )*
 	 *     )
 	 */
@@ -984,7 +972,24 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	
 	/**
 	 * Constraint:
-	 *     (ownedDetail+=DetailCS | ownedDetail+=DetailCS*)
+	 *     (
+	 *         qualifiers+='abstract'? 
+	 *         name=UnrestrictedName 
+	 *         ownedSignature=TemplateSignatureCS? 
+	 *         (ownedSuperTypes+=TypedRefCS ownedSuperTypes+=TypedRefCS*)? 
+	 *         instanceClassName=SINGLE_QUOTED_STRING? 
+	 *         qualifiers+='interface'? 
+	 *         (ownedAnnotations+=AnnotationElementCS | ownedOperations+=OperationCS | ownedProperties+=StructuralFeatureCS | ownedConstraints+=InvariantConstraintCS)*
+	 *     )
+	 */
+	protected void sequence_StructuredClassCS(EObject context, StructuredClassCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (ownedDetails+=DetailCS | ownedDetails+=DetailCS*)
 	 */
 	protected void sequence_SysMLCS(EObject context, SysMLCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -994,8 +999,8 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	/**
 	 * Constraint:
 	 *     (
-	 *         (ownedParameterSubstitution+=TemplateParameterSubstitutionCS ownedParameterSubstitution+=TemplateParameterSubstitutionCS*) | 
-	 *         (ownedParameterSubstitution+=TemplateParameterSubstitutionCS ownedParameterSubstitution+=TemplateParameterSubstitutionCS*)
+	 *         (ownedSubstitutions+=TemplateParameterSubstitutionCS ownedSubstitutions+=TemplateParameterSubstitutionCS*) | 
+	 *         (ownedSubstitutions+=TemplateParameterSubstitutionCS ownedSubstitutions+=TemplateParameterSubstitutionCS*)
 	 *     )
 	 */
 	protected void sequence_TemplateBindingCS(EObject context, TemplateBindingCS semanticObject) {
@@ -1014,10 +1019,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	
 	/**
 	 * Constraint:
-	 *     (
-	 *         (ownedTemplateParameter+=TypeParameterCS ownedTemplateParameter+=TypeParameterCS*) | 
-	 *         (ownedTemplateParameter+=TypeParameterCS ownedTemplateParameter+=TypeParameterCS*)
-	 *     )
+	 *     ((ownedParameters+=TypeParameterCS ownedParameters+=TypeParameterCS*) | (ownedParameters+=TypeParameterCS ownedParameters+=TypeParameterCS*))
 	 */
 	protected void sequence_TemplateSignatureCS(EObject context, TemplateSignatureCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1026,7 +1028,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	
 	/**
 	 * Constraint:
-	 *     (ownedLibrary+=LibraryCS* ownedImport+=ImportCS* ownedNestedPackage+=PackageCS*)
+	 *     (ownedLibraries+=LibraryCS* ownedImports+=ImportCS* ownedPackages+=PackageCS*)
 	 */
 	protected void sequence_TopLevelCS(EObject context, TopLevelCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1035,7 +1037,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	
 	/**
 	 * Constraint:
-	 *     (name='Tuple' (ownedParts+=TuplePartCS ownedParts+=TuplePartCS*)? multiplicity=MultiplicityCS?)
+	 *     (name='Tuple' (ownedParts+=TuplePartCS ownedParts+=TuplePartCS*)? ownedMultiplicity=MultiplicityCS?)
 	 */
 	protected void sequence_TupleTypeCS_TypedMultiplicityRefCS(EObject context, TupleTypeCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1053,7 +1055,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	
 	/**
 	 * Constraint:
-	 *     (pathName=PathNameCS ownedTemplateBinding=TemplateBindingCS? multiplicity=MultiplicityCS?)
+	 *     (ownedPathName=PathNameCS ownedTemplateBinding=TemplateBindingCS? ownedMultiplicity=MultiplicityCS?)
 	 */
 	protected void sequence_TypedMultiplicityRefCS_TypedTypeRefCS(EObject context, TypedTypeRefCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1062,7 +1064,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	
 	/**
 	 * Constraint:
-	 *     (pathName=PathNameCS ownedTemplateBinding=TemplateBindingCS?)
+	 *     (ownedPathName=PathNameCS ownedTemplateBinding=TemplateBindingCS?)
 	 */
 	protected void sequence_TypedTypeRefCS(EObject context, TypedTypeRefCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1071,7 +1073,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	
 	/**
 	 * Constraint:
-	 *     ((extends=TypedRefCS | super=TypedRefCS)?)
+	 *     ((ownedExtends=TypedRefCS | ownedSuper=TypedRefCS)?)
 	 */
 	protected void sequence_WildcardTypeRefCS(EObject context, WildcardTypeRefCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

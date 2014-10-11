@@ -18,7 +18,6 @@ import org.eclipse.ocl.examples.domain.elements.Nameable;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.xtext.base.basecs.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ClassCS;
-import org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.FeatureCS;
@@ -32,6 +31,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.PivotableElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.RootCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedElementCS;
@@ -135,8 +135,8 @@ public class OCLstdlibCSSwitch<T>
 			{
 				LibClassCS libClassCS = (LibClassCS)theEObject;
 				T result = caseLibClassCS(libClassCS);
+				if (result == null) result = caseStructuredClassCS(libClassCS);
 				if (result == null) result = caseClassCS(libClassCS);
-				if (result == null) result = caseClassifierCS(libClassCS);
 				if (result == null) result = caseNamespaceCS(libClassCS);
 				if (result == null) result = caseNamedElementCS(libClassCS);
 				if (result == null) result = caseTypeCS(libClassCS);
@@ -573,17 +573,18 @@ public class OCLstdlibCSSwitch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Classifier CS</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Class CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Classifier CS</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Class CS</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseClassifierCS(ClassifierCS object) {
+	public T caseClassCS(ClassCS object)
+	{
 		return null;
 	}
 
@@ -741,17 +742,18 @@ public class OCLstdlibCSSwitch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Class CS</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Structured Class CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Class CS</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Structured Class CS</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseClassCS(ClassCS object) {
+	public T caseStructuredClassCS(StructuredClassCS object)
+	{
 		return null;
 	}
 

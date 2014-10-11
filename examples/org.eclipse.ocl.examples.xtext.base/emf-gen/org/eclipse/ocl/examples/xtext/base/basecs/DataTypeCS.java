@@ -10,40 +10,18 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.base.basecs;
 
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Data Type CS</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.DataTypeCS#getLiterals <em>Literals</em>}</li>
- * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getDataTypeCS()
  * @model
  * @generated
  */
-public interface DataTypeCS extends ClassifierCS, NamespaceCS
+public interface DataTypeCS extends ClassCS, NamespaceCS
 {
-	/**
-	 * Returns the value of the '<em><b>Literals</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.EnumerationLiteralCS}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Literals</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Literals</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getDataTypeCS_Literals()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<EnumerationLiteralCS> getLiterals();
 
 } // DataTypeCS

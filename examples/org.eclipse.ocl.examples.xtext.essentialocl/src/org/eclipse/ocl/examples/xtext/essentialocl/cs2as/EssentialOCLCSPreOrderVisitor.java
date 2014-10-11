@@ -81,7 +81,7 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 				if (elementType != null) {
 					IntegerValue lowerValue;
 					IntegerValue upperValue;
-					MultiplicityCS csMultiplicity = csElement.getMultiplicity();
+					MultiplicityCS csMultiplicity = csElement.getOwnedMultiplicity();
 					if (csMultiplicity != null) {
 						lowerValue = ValuesUtil.integerValueOf(csMultiplicity.getLower());
 						int upper = csMultiplicity.getUpper();

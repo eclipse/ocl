@@ -33,8 +33,8 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ReferenceCSImpl#getOpposite <em>Opposite</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ReferenceCSImpl#getKeys <em>Keys</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ReferenceCSImpl#getReferredOpposite <em>Referred Opposite</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ReferenceCSImpl#getReferredKeys <em>Referred Keys</em>}</li>
  * </ul>
  * </p>
  *
@@ -43,24 +43,24 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
 public class ReferenceCSImpl extends StructuralFeatureCSImpl implements ReferenceCS
 {
 	/**
-	 * The cached value of the '{@link #getOpposite() <em>Opposite</em>}' reference.
+	 * The cached value of the '{@link #getReferredOpposite() <em>Referred Opposite</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOpposite()
+	 * @see #getReferredOpposite()
 	 * @generated
 	 * @ordered
 	 */
-	protected Property opposite;
+	protected Property referredOpposite;
 
 	/**
-	 * The cached value of the '{@link #getKeys() <em>Keys</em>}' reference list.
+	 * The cached value of the '{@link #getReferredKeys() <em>Referred Keys</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getKeys()
+	 * @see #getReferredKeys()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Property> keys;
+	protected EList<Property> referredKeys;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -88,19 +88,19 @@ public class ReferenceCSImpl extends StructuralFeatureCSImpl implements Referenc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Property getOpposite()
+	public Property getReferredOpposite()
 	{
-		if (opposite != null && ((EObject)opposite).eIsProxy())
+		if (referredOpposite != null && ((EObject)referredOpposite).eIsProxy())
 		{
-			InternalEObject oldOpposite = (InternalEObject)opposite;
-			opposite = (Property)eResolveProxy(oldOpposite);
-			if (opposite != oldOpposite)
+			InternalEObject oldReferredOpposite = (InternalEObject)referredOpposite;
+			referredOpposite = (Property)eResolveProxy(oldReferredOpposite);
+			if (referredOpposite != oldReferredOpposite)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BaseCSPackage.REFERENCE_CS__OPPOSITE, oldOpposite, opposite));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BaseCSPackage.REFERENCE_CS__REFERRED_OPPOSITE, oldReferredOpposite, referredOpposite));
 			}
 		}
-		return opposite;
+		return referredOpposite;
 	}
 
 	/**
@@ -108,9 +108,9 @@ public class ReferenceCSImpl extends StructuralFeatureCSImpl implements Referenc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Property basicGetOpposite()
+	public Property basicGetReferredOpposite()
 	{
-		return opposite;
+		return referredOpposite;
 	}
 
 	/**
@@ -118,12 +118,12 @@ public class ReferenceCSImpl extends StructuralFeatureCSImpl implements Referenc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOpposite(Property newOpposite)
+	public void setReferredOpposite(Property newReferredOpposite)
 	{
-		Property oldOpposite = opposite;
-		opposite = newOpposite;
+		Property oldReferredOpposite = referredOpposite;
+		referredOpposite = newReferredOpposite;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.REFERENCE_CS__OPPOSITE, oldOpposite, opposite));
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.REFERENCE_CS__REFERRED_OPPOSITE, oldReferredOpposite, referredOpposite));
 	}
 
 	/**
@@ -131,13 +131,13 @@ public class ReferenceCSImpl extends StructuralFeatureCSImpl implements Referenc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Property> getKeys()
+	public EList<Property> getReferredKeys()
 	{
-		if (keys == null)
+		if (referredKeys == null)
 		{
-			keys = new EObjectResolvingEList<Property>(Property.class, this, BaseCSPackage.REFERENCE_CS__KEYS);
+			referredKeys = new EObjectResolvingEList<Property>(Property.class, this, BaseCSPackage.REFERENCE_CS__REFERRED_KEYS);
 		}
-		return keys;
+		return referredKeys;
 	}
 
 	/**
@@ -150,11 +150,11 @@ public class ReferenceCSImpl extends StructuralFeatureCSImpl implements Referenc
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.REFERENCE_CS__OPPOSITE:
-				if (resolve) return getOpposite();
-				return basicGetOpposite();
-			case BaseCSPackage.REFERENCE_CS__KEYS:
-				return getKeys();
+			case BaseCSPackage.REFERENCE_CS__REFERRED_OPPOSITE:
+				if (resolve) return getReferredOpposite();
+				return basicGetReferredOpposite();
+			case BaseCSPackage.REFERENCE_CS__REFERRED_KEYS:
+				return getReferredKeys();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -170,12 +170,12 @@ public class ReferenceCSImpl extends StructuralFeatureCSImpl implements Referenc
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.REFERENCE_CS__OPPOSITE:
-				setOpposite((Property)newValue);
+			case BaseCSPackage.REFERENCE_CS__REFERRED_OPPOSITE:
+				setReferredOpposite((Property)newValue);
 				return;
-			case BaseCSPackage.REFERENCE_CS__KEYS:
-				getKeys().clear();
-				getKeys().addAll((Collection<? extends Property>)newValue);
+			case BaseCSPackage.REFERENCE_CS__REFERRED_KEYS:
+				getReferredKeys().clear();
+				getReferredKeys().addAll((Collection<? extends Property>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -191,11 +191,11 @@ public class ReferenceCSImpl extends StructuralFeatureCSImpl implements Referenc
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.REFERENCE_CS__OPPOSITE:
-				setOpposite((Property)null);
+			case BaseCSPackage.REFERENCE_CS__REFERRED_OPPOSITE:
+				setReferredOpposite((Property)null);
 				return;
-			case BaseCSPackage.REFERENCE_CS__KEYS:
-				getKeys().clear();
+			case BaseCSPackage.REFERENCE_CS__REFERRED_KEYS:
+				getReferredKeys().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -211,10 +211,10 @@ public class ReferenceCSImpl extends StructuralFeatureCSImpl implements Referenc
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.REFERENCE_CS__OPPOSITE:
-				return opposite != null;
-			case BaseCSPackage.REFERENCE_CS__KEYS:
-				return keys != null && !keys.isEmpty();
+			case BaseCSPackage.REFERENCE_CS__REFERRED_OPPOSITE:
+				return referredOpposite != null;
+			case BaseCSPackage.REFERENCE_CS__REFERRED_KEYS:
+				return referredKeys != null && !referredKeys.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

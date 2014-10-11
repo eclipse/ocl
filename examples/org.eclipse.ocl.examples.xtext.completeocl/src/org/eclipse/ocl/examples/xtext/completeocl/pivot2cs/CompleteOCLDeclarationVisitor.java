@@ -148,7 +148,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 			if ((specification != null) && (namespace != null)) {
 				specification.accept(this);					// Deep search for references
 				ExpSpecificationCS csSpec = context.refreshElement(ExpSpecificationCS.class, EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, specification);
-				csElement.setSpecification(csSpec);
+				csElement.setOwnedSpecification(csSpec);
 				//
 				MetaModelManager metaModelManager = context.getMetaModelManager();
 				PrettyPrintOptions.Global prettyPrintOptions = PrettyPrinter.createOptions(null); //metaModelManager.getPrimaryElement(namespace));
@@ -175,7 +175,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 			}
 			else {
 				ExpSpecificationCS csSpec = EssentialOCLCSFactory.eINSTANCE.createExpSpecificationCS();
-				csElement.setSpecification(csSpec);
+				csElement.setOwnedSpecification(csSpec);
 				csSpec.setExprString("\tnull");
 			}
 		}

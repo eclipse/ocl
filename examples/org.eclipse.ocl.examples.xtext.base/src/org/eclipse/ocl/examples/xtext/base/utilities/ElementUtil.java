@@ -50,7 +50,7 @@ import org.eclipse.ocl.examples.pivot.scoping.Attribution;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.attributes.RootCSAttribution;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSFactory;
-import org.eclipse.ocl.examples.xtext.base.basecs.ClassCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.MultiplicityCS;
@@ -100,7 +100,7 @@ public class ElementUtil
 //			}
 //		}
 		//FIXME Obsolete compatibility
-		MultiplicityCS csMultiplicity = csTypeRef.getMultiplicity();
+		MultiplicityCS csMultiplicity = csTypeRef.getOwnedMultiplicity();
 		if (csMultiplicity == null) {
 			return null;
 		}
@@ -108,7 +108,7 @@ public class ElementUtil
 		if (upper == 1) {
 			return null;
 		}
-		List<String> qualifiers = csTypedElement.getQualifier();
+		List<String> qualifiers = csTypedElement.getQualifiers();
 		boolean isOrdered = true;
 		boolean isUnique = true;
 		if (qualifiers.contains("!ordered")) { //$NON-NLS-1$
@@ -261,8 +261,8 @@ public class ElementUtil
 	}
 
 	public static @Nullable TemplateParameter getFormalTemplateParameter(@NonNull TemplateParameterSubstitutionCS csTemplateParameterSubstitution) {
-		TemplateBindingCS csTemplateBinding = csTemplateParameterSubstitution.getOwningTemplateBinding();
-		int index = csTemplateBinding.getOwnedParameterSubstitution().indexOf(csTemplateParameterSubstitution);
+		TemplateBindingCS csTemplateBinding = csTemplateParameterSubstitution.getOwningBinding();
+		int index = csTemplateBinding.getOwnedSubstitutions().indexOf(csTemplateParameterSubstitution);
 		if (index < 0) {
 			return null;
 		}
@@ -296,7 +296,7 @@ public class ElementUtil
 		if (csTypeRef == null) {
 			return 0;		// e.g. missing Operation return type
 		}
-		MultiplicityCS csMultiplicity = csTypeRef.getMultiplicity();
+		MultiplicityCS csMultiplicity = csTypeRef.getOwnedMultiplicity();
 		if (csMultiplicity == null) {
 			return 1;
 		}
@@ -388,7 +388,7 @@ public class ElementUtil
 		if (csTypeRef == null) {
 			return 1;
 		}
-		MultiplicityCS csMultiplicity = csTypeRef.getMultiplicity();
+		MultiplicityCS csMultiplicity = csTypeRef.getOwnedMultiplicity();
 		if (csMultiplicity == null) {
 			return 1;
 		}
@@ -415,7 +415,7 @@ public class ElementUtil
 			if (eObject instanceof OperationCS) {
 				return true;
 			}
-			else if (eObject instanceof ClassCS) {
+			else if (eObject instanceof StructuredClassCS) {
 				return false;
 			}
 		}
@@ -423,21 +423,21 @@ public class ElementUtil
 	}
 
 	public static boolean isOrdered(@NonNull TypedElementCS csTypedElement) {
-		List<String> qualifiers = csTypedElement.getQualifier();
+		List<String> qualifiers = csTypedElement.getQualifiers();
 		assert qualifiers != null;
 		return getQualifier(qualifiers, "ordered", "!ordered", false);
 	}
 
 	public static boolean isUnique(@NonNull TypedElementCS csTypedElement) {
-		List<String> qualifiers = csTypedElement.getQualifier();
+		List<String> qualifiers = csTypedElement.getQualifiers();
 		assert qualifiers != null;
 		return getQualifier(qualifiers, "unique", "!unique", true);
 	}
 
 	public static boolean isSpecialization(@NonNull TemplateBindingCS csTemplateBinding) {
-		TypedTypeRefCS csTypedTypeRef = csTemplateBinding.getOwningTemplateBindableElement();
+		TypedTypeRefCS csTypedTypeRef = csTemplateBinding.getOwningElement();
 		Element type = csTypedTypeRef.getPivot();
-		for (TemplateParameterSubstitutionCS csTemplateParameterSubstitution : csTemplateBinding.getOwnedParameterSubstitution()) {
+		for (TemplateParameterSubstitutionCS csTemplateParameterSubstitution : csTemplateBinding.getOwnedSubstitutions()) {
 			TypeRefCS ownedActualParameter = csTemplateParameterSubstitution.getOwnedActualParameter();
 			if (ownedActualParameter instanceof WildcardTypeRefCS) {
 				return true;
@@ -471,11 +471,11 @@ public class ElementUtil
 	 * @Depreacted. Functionality moved to sole caller in Pivot2CSConversion.refreshPathName()
 	 */
 	public static void setPathName(@NonNull PathNameCS csPathName, @NonNull Element element, Namespace scope) {
-		List<PathElementCS> csPath = csPathName.getPath();
+		List<PathElementCS> csPath = csPathName.getOwnedPathElements();
 		csPath.clear();		// FIXME re-use
 		PathElementCS csSimpleRef = BaseCSFactory.eINSTANCE.createPathElementCS();
 		csPath.add(csSimpleRef);
-		csSimpleRef.setElement(element);
+		csSimpleRef.setReferredElement(element);
 		Resource csResource = csPathName.eResource();
 //		if (csResource == null) {
 //			getCsElement(element)
@@ -494,7 +494,7 @@ public class ElementUtil
 			}
 			csSimpleRef = BaseCSFactory.eINSTANCE.createPathElementCS();
 			csPath.add(0, csSimpleRef);
-			csSimpleRef.setElement((Element) eContainer);
+			csSimpleRef.setReferredElement((Element) eContainer);
 		}
 	}
 }

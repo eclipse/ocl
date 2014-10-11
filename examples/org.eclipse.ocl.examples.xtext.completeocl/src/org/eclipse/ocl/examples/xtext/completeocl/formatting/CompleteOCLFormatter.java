@@ -77,7 +77,7 @@ public class CompleteOCLFormatter extends AbstractEssentialOCLFormatter
 			c.setNoSpace().around(a.getLeftParenthesisKeyword_0_1_0());
 			c.setNoSpace().around(a.getRightParenthesisKeyword_0_1_2());
 			setNoSpaceLineWrap(c, a.getColonKeyword_1());
-		    c.setLinewrap(2).after(a.getSpecificationAssignment_2());
+		    c.setLinewrap(2).after(a.getOwnedSpecificationAssignment_2());
 //		    c.setIndentation(a.getColonKeyword_2(), a.getWSTerminalRuleCall_4());
 	    }
 	    {
@@ -101,7 +101,7 @@ public class CompleteOCLFormatter extends AbstractEssentialOCLFormatter
 	    {
 			ImportCSElements a = f.getImportCSAccess();
 		    c.setLinewrap().before(a.getImportKeyword_0());
-			c.setNoSpace().around(a.getAllColonColonAsteriskKeyword_3_0());	
+			c.setNoSpace().around(a.getIsAllColonColonAsteriskKeyword_3_0());	
 	    }
 	    {
 			OperationContextDeclCSElements a = f.getOperationContextDeclCSAccess();

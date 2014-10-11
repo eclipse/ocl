@@ -29,7 +29,7 @@ import org.eclipse.ocl.examples.pivot.Enumeration;
  * @model
  * @generated
  */
-public interface EnumerationCS extends ClassifierCS, NamespaceCS
+public interface EnumerationCS extends ClassCS, NamespaceCS
 {
 	/**
 	 * Returns the value of the '<em><b>Owned Literals</b></em>' containment reference list.

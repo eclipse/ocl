@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
-import org.eclipse.ocl.examples.xtext.base.basecs.ClassCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS;
 
@@ -38,9 +38,9 @@ import org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.StructuralFeatureCSImpl#getOwner <em>Owner</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.StructuralFeatureCSImpl#getOwningClass <em>Owning Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.StructuralFeatureCSImpl#getDefault <em>Default</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.StructuralFeatureCSImpl#getOwnedDefaultExpression <em>Owned Default Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.StructuralFeatureCSImpl#getOwnedDefaultExpressions <em>Owned Default Expressions</em>}</li>
  * </ul>
  * </p>
  *
@@ -68,14 +68,14 @@ public abstract class StructuralFeatureCSImpl extends TypedElementCSImpl impleme
 	protected String default_ = DEFAULT_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getOwnedDefaultExpression() <em>Owned Default Expression</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedDefaultExpressions() <em>Owned Default Expressions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedDefaultExpression()
+	 * @see #getOwnedDefaultExpressions()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<SpecificationCS> ownedDefaultExpression;
+	protected EList<SpecificationCS> ownedDefaultExpressions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -101,9 +101,9 @@ public abstract class StructuralFeatureCSImpl extends TypedElementCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClassCS getOwner() {
-		if (eContainerFeatureID() != BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNER) return null;
-		return (ClassCS)eInternalContainer();
+	public StructuredClassCS getOwningClass() {
+		if (eContainerFeatureID() != BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS) return null;
+		return (StructuredClassCS)eInternalContainer();
 	}
 
 	/**
@@ -111,8 +111,9 @@ public abstract class StructuralFeatureCSImpl extends TypedElementCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwner(ClassCS newOwner, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newOwner, BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNER, msgs);
+	public NotificationChain basicSetOwningClass(StructuredClassCS newOwningClass, NotificationChain msgs)
+	{
+		msgs = eBasicSetContainer((InternalEObject)newOwningClass, BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS, msgs);
 		return msgs;
 	}
 
@@ -121,21 +122,21 @@ public abstract class StructuralFeatureCSImpl extends TypedElementCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwner(ClassCS newOwner) {
-		if (newOwner != eInternalContainer() || (eContainerFeatureID() != BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNER && newOwner != null))
+	public void setOwningClass(StructuredClassCS newOwningClass) {
+		if (newOwningClass != eInternalContainer() || (eContainerFeatureID() != BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS && newOwningClass != null))
 		{
-			if (EcoreUtil.isAncestor(this, newOwner))
+			if (EcoreUtil.isAncestor(this, newOwningClass))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newOwner != null)
-				msgs = ((InternalEObject)newOwner).eInverseAdd(this, BaseCSPackage.CLASS_CS__OWNED_PROPERTY, ClassCS.class, msgs);
-			msgs = basicSetOwner(newOwner, msgs);
+			if (newOwningClass != null)
+				msgs = ((InternalEObject)newOwningClass).eInverseAdd(this, BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_PROPERTIES, StructuredClassCS.class, msgs);
+			msgs = basicSetOwningClass(newOwningClass, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNER, newOwner, newOwner));
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS, newOwningClass, newOwningClass));
 	}
 
 	/**
@@ -166,13 +167,13 @@ public abstract class StructuralFeatureCSImpl extends TypedElementCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<SpecificationCS> getOwnedDefaultExpression()
+	public EList<SpecificationCS> getOwnedDefaultExpressions()
 	{
-		if (ownedDefaultExpression == null)
+		if (ownedDefaultExpressions == null)
 		{
-			ownedDefaultExpression = new EObjectContainmentEList<SpecificationCS>(SpecificationCS.class, this, BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSION);
+			ownedDefaultExpressions = new EObjectContainmentEList<SpecificationCS>(SpecificationCS.class, this, BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS);
 		}
-		return ownedDefaultExpression;
+		return ownedDefaultExpressions;
 	}
 
 	/**
@@ -222,10 +223,10 @@ public abstract class StructuralFeatureCSImpl extends TypedElementCSImpl impleme
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNER:
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwner((ClassCS)otherEnd, msgs);
+				return basicSetOwningClass((StructuredClassCS)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -239,10 +240,10 @@ public abstract class StructuralFeatureCSImpl extends TypedElementCSImpl impleme
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNER:
-				return basicSetOwner(null, msgs);
-			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSION:
-				return ((InternalEList<?>)getOwnedDefaultExpression()).basicRemove(otherEnd, msgs);
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS:
+				return basicSetOwningClass(null, msgs);
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS:
+				return ((InternalEList<?>)getOwnedDefaultExpressions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -256,8 +257,8 @@ public abstract class StructuralFeatureCSImpl extends TypedElementCSImpl impleme
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID())
 		{
-			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNER:
-				return eInternalContainer().eInverseRemove(this, BaseCSPackage.CLASS_CS__OWNED_PROPERTY, ClassCS.class, msgs);
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS:
+				return eInternalContainer().eInverseRemove(this, BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_PROPERTIES, StructuredClassCS.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -271,12 +272,12 @@ public abstract class StructuralFeatureCSImpl extends TypedElementCSImpl impleme
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNER:
-				return getOwner();
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS:
+				return getOwningClass();
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__DEFAULT:
 				return getDefault();
-			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSION:
-				return getOwnedDefaultExpression();
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS:
+				return getOwnedDefaultExpressions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -291,15 +292,15 @@ public abstract class StructuralFeatureCSImpl extends TypedElementCSImpl impleme
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNER:
-				setOwner((ClassCS)newValue);
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS:
+				setOwningClass((StructuredClassCS)newValue);
 				return;
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__DEFAULT:
 				setDefault((String)newValue);
 				return;
-			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSION:
-				getOwnedDefaultExpression().clear();
-				getOwnedDefaultExpression().addAll((Collection<? extends SpecificationCS>)newValue);
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS:
+				getOwnedDefaultExpressions().clear();
+				getOwnedDefaultExpressions().addAll((Collection<? extends SpecificationCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -314,14 +315,14 @@ public abstract class StructuralFeatureCSImpl extends TypedElementCSImpl impleme
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNER:
-				setOwner((ClassCS)null);
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS:
+				setOwningClass((StructuredClassCS)null);
 				return;
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__DEFAULT:
 				setDefault(DEFAULT_EDEFAULT);
 				return;
-			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSION:
-				getOwnedDefaultExpression().clear();
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS:
+				getOwnedDefaultExpressions().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -336,12 +337,12 @@ public abstract class StructuralFeatureCSImpl extends TypedElementCSImpl impleme
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNER:
-				return getOwner() != null;
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS:
+				return getOwningClass() != null;
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__DEFAULT:
 				return DEFAULT_EDEFAULT == null ? default_ != null : !DEFAULT_EDEFAULT.equals(default_);
-			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSION:
-				return ownedDefaultExpression != null && !ownedDefaultExpression.isEmpty();
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS:
+				return ownedDefaultExpressions != null && !ownedDefaultExpressions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

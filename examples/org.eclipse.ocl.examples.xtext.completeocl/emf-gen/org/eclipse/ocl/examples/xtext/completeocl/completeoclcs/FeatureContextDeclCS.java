@@ -11,7 +11,7 @@
 
 package org.eclipse.ocl.examples.xtext.completeocl.completeoclcs;
 
-import org.eclipse.ocl.examples.xtext.base.basecs.ClassCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
 
 /**
@@ -43,12 +43,12 @@ public interface FeatureContextDeclCS
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Class</em>' reference.
-	 * @see #setClass(ClassCS)
+	 * @see #setClass(StructuredClassCS)
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getFeatureContextDeclCS_Class()
 	 * @model
 	 * @generated
 	 */
-	ClassCS getClass_();
+	StructuredClassCS getClass_();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.FeatureContextDeclCS#getClass_ <em>Class</em>}' reference.
@@ -58,7 +58,7 @@ public interface FeatureContextDeclCS
 	 * @see #getClass_()
 	 * @generated
 	 */
-	void setClass(ClassCS value);
+	void setClass(StructuredClassCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Type</b></em>' containment reference.

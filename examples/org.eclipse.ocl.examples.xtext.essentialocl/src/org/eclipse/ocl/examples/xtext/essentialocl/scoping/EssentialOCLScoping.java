@@ -71,18 +71,18 @@ public class EssentialOCLScoping
 	private static final class PathElementCSUnresolvedProxyMessageProvider extends AbstractUnresolvedProxyMessageProvider
 	{
 		private PathElementCSUnresolvedProxyMessageProvider() {
-			super(BaseCSPackage.Literals.PATH_ELEMENT_CS__ELEMENT);
+			super(BaseCSPackage.Literals.PATH_ELEMENT_CS__REFERRED_ELEMENT);
 		}
 		
 		@Override
 		public String getMessage(@NonNull EObject eObject, @NonNull String linkText) {
 			PathElementCS csPathElement = (PathElementCS) eObject;
-			PathNameCS pathName = csPathElement.getPathName();
-			List<PathElementCS> path = pathName.getPath();
+			PathNameCS pathName = csPathElement.getOwningPathName();
+			List<PathElementCS> path = pathName.getOwnedPathElements();
 			int index = path.indexOf(csPathElement);
 			for (int i = 0; i < index; i++) {
 				PathElementCS csElement = path.get(i);
-				Element element = csElement.basicGetElement();
+				Element element = csElement.basicGetReferredElement();
 				if ((element == null) || element.eIsProxy()) {
 					return null;		// Suppress nested unresolved message
 				}

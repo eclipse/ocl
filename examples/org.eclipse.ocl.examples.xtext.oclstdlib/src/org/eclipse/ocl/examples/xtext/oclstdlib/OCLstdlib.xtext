@@ -19,8 +19,8 @@ import "http://www.eclipse.org/ocl/3.1.0/Pivot" as pivot
 //generate OCLstdlib "http://www.eclipse.org/ocl/examples/xtext/oclstdlib/OCLstdlibCST"
 
 Library returns LibRootPackageCS:
-	(ownedLibrary+=LibraryCS ';')*
-	(ownedNestedPackage+=LibPackageCS)*
+	(ownedLibraries+=LibraryCS ';')*
+	(ownedPackages+=LibPackageCS)*
 ;
 
 Identifier:
@@ -70,10 +70,10 @@ AnyName:
 ;
 
 LibPathNameCS returns base::PathNameCS:
-	path+=LibPathElementCS ('::' path+=LibPathElementCS)*;
+	ownedPathElements+=LibPathElementCS ('::' ownedPathElements+=LibPathElementCS)*;
 
 LibPathElementCS returns base::PathElementCS:
-	element=[pivot::NamedElement|Name];
+	referredElement=[pivot::NamedElement|Name];
 
 AccumulatorCS returns base::ParameterCS:
 	name=Identifier ':' ownedType=TypedMultiplicityRefCS
@@ -81,8 +81,8 @@ AccumulatorCS returns base::ParameterCS:
 
 AnnotationCS returns base::AnnotationCS:
 	'annotation' name=(Identifier|SINGLE_QUOTED_STRING)
-	('(' ownedDetail+=DetailCS (',' ownedDetail+=DetailCS)* ')')?
-	(('{' ownedAnnotation+=AnnotationElementCS '}')
+	('(' ownedDetails+=DetailCS (',' ownedDetails+=DetailCS)* ')')?
+	(('{' ownedAnnotations+=AnnotationElementCS '}')
 	|';'
 	)
 ;
@@ -91,19 +91,19 @@ AnnotationElementCS returns base::AnnotationElementCS:
 	AnnotationCS | DocumentationCS
 ;
 
-ClassCS returns LibClassCS:
+LibClassCS returns LibClassCS:
 	'type' name=AnyName
-	(ownedTemplateSignature=TemplateSignatureCS)?
+	(ownedSignature=TemplateSignatureCS)?
 	(':' metaTypeName=[MetaTypeName|AnyName])?
-	('conformsTo' ownedSuperType+=TypedRefCS (',' ownedSuperType+=TypedRefCS)*)?
-	'{' (ownedOperation+=OperationCS
-	   | ownedProperty+=LibPropertyCS
-	   | ownedConstraint+=InvCS
-	   | ownedAnnotation+=AnnotationElementCS)* '}'
+	('conformsTo' ownedSuperTypes+=TypedRefCS (',' ownedSuperTypes+=TypedRefCS)*)?
+	'{' (ownedOperations+=OperationCS
+	   | ownedProperties+=LibPropertyCS
+	   | ownedConstraints+=InvCS
+	   | ownedAnnotations+=AnnotationElementCS)* '}'
 ;
 
-ClassifierCS returns base::ClassifierCS:
-	ClassCS 
+ClassCS returns base::ClassCS:
+	LibClassCS 
 ;
 
 DetailCS returns base::DetailCS:
@@ -112,28 +112,28 @@ DetailCS returns base::DetailCS:
 
 DocumentationCS returns base::DocumentationCS:
 	{base::DocumentationCS} 'documentation' value=SINGLE_QUOTED_STRING?
-	('(' ownedDetail+=DetailCS (',' ownedDetail+=DetailCS)* ')')?
+	('(' ownedDetails+=DetailCS (',' ownedDetails+=DetailCS)* ')')?
 	 ';'
 ;
 
 InvCS returns LibConstraintCS:
-	stereotype='inv' (name=UnrestrictedName ('(' messageSpecification=SpecificationCS ')')?)? ':' specification=SpecificationCS ';'
+	stereotype='inv' (name=UnrestrictedName ('(' ownedMessageSpecification=SpecificationCS ')')?)? ':' ownedSpecification=SpecificationCS ';'
 ;
 
 LibIterationCS returns LibIterationCS:
 	'iteration' name=Name
-	(ownedTemplateSignature=TemplateSignatureCS)?
+	(ownedSignature=TemplateSignatureCS)?
 	'(' ownedIterator+=IteratorCS (',' ownedIterator+=IteratorCS)*
 	(';' ownedAccumulator+=AccumulatorCS (',' ownedAccumulator+=AccumulatorCS)*)?
-	('|' ownedParameter+=ParameterCS (',' ownedParameter+=ParameterCS)*)?
+	('|' ownedParameters+=ParameterCS (',' ownedParameters+=ParameterCS)*)?
 	')'
 	':' ownedType=TypedMultiplicityRefCS
 	(invalidating?='invalidating')?
 	(validating?='validating')?
 	('=>' implementation=[JavaClassCS|SINGLE_QUOTED_STRING])?
-	(('{' (ownedAnnotation+=AnnotationElementCS
-	     | ownedPrecondition+=PostCS
-	     | ownedPostcondition+=PreCS)* '}')
+	(('{' (ownedAnnotations+=AnnotationElementCS
+	     | ownedPreconditions+=PostCS
+	     | ownedPostconditions+=PreCS)* '}')
 	|';'
 	)
 ;
@@ -143,17 +143,17 @@ IteratorCS returns base::ParameterCS:
 ;
 
 LambdaTypeCS returns base::LambdaTypeCS:
-	name='Lambda' (ownedTemplateSignature=TemplateSignatureCS)? ownedContextType=LambdaContextTypeRefCS	
-	'(' (ownedParameterType+=TypedMultiplicityRefCS (',' ownedParameterType+=TypedMultiplicityRefCS)*)? ')'
+	name='Lambda' (ownedSignature=TemplateSignatureCS)? ownedContextType=LambdaContextTypeRefCS	
+	'(' (ownedParameterTypes+=TypedMultiplicityRefCS (',' ownedParameterTypes+=TypedMultiplicityRefCS)*)? ')'
 	':' ownedResultType=TypedRefCS
 ;
 
 LambdaContextTypeRefCS returns base::TypedTypeRefCS:
-	pathName=LibPathNameCS
+	ownedPathName=LibPathNameCS
 ;
 
 LibraryCS returns base::LibraryCS :
-	'import' package=[pivot::Package|URI]
+	'import' referredPackage=[pivot::Package|URI]
 ;
 
 OperationCS returns base::OperationCS:
@@ -162,17 +162,17 @@ OperationCS returns base::OperationCS:
 
 LibOperationCS returns LibOperationCS:
 	(static?='static')? 'operation' name=Name
-	(ownedTemplateSignature=TemplateSignatureCS)?
-	'(' (ownedParameter+=ParameterCS (',' ownedParameter+=ParameterCS)*)? ')'
+	(ownedSignature=TemplateSignatureCS)?
+	'(' (ownedParameters+=ParameterCS (',' ownedParameters+=ParameterCS)*)? ')'
 	':' ownedType=TypedMultiplicityRefCS
 	(validating?='validating')?
 	(invalidating?='invalidating')?
 	('precedence' '=' precedence=[pivot::Precedence|Name])?
 	('=>' implementation=[JavaClassCS|SINGLE_QUOTED_STRING])?
-	(('{' (ownedAnnotation+=AnnotationElementCS
-	     | ('body' UnrestrictedName? ':' ownedBodyExpression+=SpecificationCS ';')
-	     | ownedPostcondition+=PostCS
-	     | ownedPrecondition+=PreCS)* '}')
+	(('{' (ownedAnnotations+=AnnotationElementCS
+	     | ('body' UnrestrictedName? ':' ownedBodyExpressions+=SpecificationCS ';')
+	     | ownedPostconditions+=PostCS
+	     | ownedPreconditions+=PreCS)* '}')
 	|';'
 	)
 ;
@@ -180,10 +180,10 @@ LibOperationCS returns LibOperationCS:
 LibPackageCS returns LibPackageCS:
     'library' name=Name
 	(':' nsPrefix=Identifier '=' nsURI=URI)?
-	'{' (ownedNestedPackage+=PackageCS
+	'{' (ownedPackages+=PackageCS
 		| ('precedence' (ownedPrecedence+=PrecedenceCS)+ ';')
-	    | ownedType+=ClassifierCS
-		| ownedAnnotation+=AnnotationElementCS)*
+	    | ownedClasses+=ClassCS
+		| ownedAnnotations+=AnnotationElementCS)*
 	'}'
 ;
 
@@ -191,9 +191,9 @@ PackageCS returns base::PackageCS:
 	'package' name=Name
 	(':' nsPrefix=Identifier '=' nsURI=URI)?
 	'{'
-		(ownedNestedPackage+=PackageCS
-	   | ownedType+=ClassifierCS
-	   | ownedAnnotation+=AnnotationElementCS)*
+		(ownedPackages+=PackageCS
+	   | ownedClasses+=ClassCS
+	   | ownedAnnotations+=AnnotationElementCS)*
 	'}'
 ;
 
@@ -205,17 +205,17 @@ LibPropertyCS returns LibPropertyCS:
 	(static?='static')? 'property' name=Name
 	':' ownedType=TypedMultiplicityRefCS
 	('=>' implementation=[JavaClassCS|SINGLE_QUOTED_STRING])?
-	(	('{' (ownedAnnotation+=AnnotationElementCS)* '}')
+	(	('{' (ownedAnnotations+=AnnotationElementCS)* '}')
 	|	';'
 	)
 ;
 
 PostCS returns LibConstraintCS:
-	stereotype='post' (name=UnrestrictedName ('(' messageSpecification=SpecificationCS ')')?)? ':' specification=SpecificationCS ';'
+	stereotype='post' (name=UnrestrictedName ('(' ownedMessageSpecification=SpecificationCS ')')?)? ':' ownedSpecification=SpecificationCS ';'
 ;
 
 PreCS returns LibConstraintCS:
-	stereotype='pre' (name=UnrestrictedName ('(' messageSpecification=SpecificationCS ')')?)? ':' specification=SpecificationCS ';'
+	stereotype='pre' (name=UnrestrictedName ('(' ownedMessageSpecification=SpecificationCS ')')?)? ':' ownedSpecification=SpecificationCS ';'
 ;
 
 PrecedenceCS returns PrecedenceCS:
@@ -226,7 +226,7 @@ SpecificationCS returns essentialocl::ExpSpecificationCS:
 	ownedExpression=ExpCS;
 
 TemplateBindingCS returns base::TemplateBindingCS:
-	'(' ownedParameterSubstitution+=TemplateParameterSubstitutionCS (',' ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* ')'	
+	'(' ownedSubstitutions+=TemplateParameterSubstitutionCS (',' ownedSubstitutions+=TemplateParameterSubstitutionCS)* ')'	
 ;
 
 TemplateParameterSubstitutionCS returns base::TemplateParameterSubstitutionCS:
@@ -234,7 +234,7 @@ TemplateParameterSubstitutionCS returns base::TemplateParameterSubstitutionCS:
 ;
 
 TemplateSignatureCS returns base::TemplateSignatureCS:
-	'(' ownedTemplateParameter+=TypeParameterCS (',' ownedTemplateParameter+=TypeParameterCS)* ')'
+	'(' ownedParameters+=TypeParameterCS (',' ownedParameters+=TypeParameterCS)* ')'
 ;
 
 LibTupleCS returns base::TupleTypeCS:
@@ -257,7 +257,7 @@ TypeRefCS returns base::TypeRefCS:
 ;
 
 TypedMultiplicityRefCS returns base::TypedRefCS:
-	(LibTupleCS | TypedTypeRefCS | LambdaTypeCS) (multiplicity=MultiplicityCS)?
+	(LibTupleCS | TypedTypeRefCS | LambdaTypeCS) (ownedMultiplicity=MultiplicityCS)?
 ;
 
 TypedRefCS returns base::TypedRefCS:
@@ -265,13 +265,13 @@ TypedRefCS returns base::TypedRefCS:
 ;
 
 TypedTypeRefCS returns base::TypedTypeRefCS:
-    (typeof?='typeof' '(' pathName=LibPathNameCS ')')
-  | (pathName=LibPathNameCS (ownedTemplateBinding=TemplateBindingCS)?)
+    (isTypeof?='typeof' '(' ownedPathName=LibPathNameCS ')')
+  | (ownedPathName=LibPathNameCS (ownedTemplateBinding=TemplateBindingCS)?)
 ;
 
 WildcardTypeRefCS returns base::WildcardTypeRefCS:
 	{base::WildcardTypeRefCS} '?'
-	( ('extends' extends=TypedRefCS)
-	| ('super' super=TypedRefCS)
+	( ('extends' ownedExtends=TypedRefCS)
+	| ('super' ownedSuper=TypedRefCS)
 	)?
 ;

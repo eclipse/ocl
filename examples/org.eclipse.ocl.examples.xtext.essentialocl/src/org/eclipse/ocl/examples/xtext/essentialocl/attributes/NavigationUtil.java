@@ -67,12 +67,12 @@ public class NavigationUtil
 		}
 		NameExpCS csNameExp = csRoundBracketedClause.getOwningNameExp();
 		PathNameCS pathName = csNameExp.getOwnedPathName();
-		List<PathElementCS> path = pathName.getPath();
+		List<PathElementCS> path = pathName.getOwnedPathElements();
 		if (path.size() != 1) {
 			return false;
 		}
 		PathElementCS csPathElement = path.get(0);
-		Element unresolvedElement = csPathElement.basicGetElement();
+		Element unresolvedElement = csPathElement.basicGetReferredElement();
 		if ((unresolvedElement != null) && !unresolvedElement.eIsProxy()) {
 			return unresolvedElement instanceof Iteration;
 		}

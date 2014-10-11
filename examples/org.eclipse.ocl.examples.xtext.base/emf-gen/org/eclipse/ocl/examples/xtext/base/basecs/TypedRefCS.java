@@ -21,7 +21,7 @@ package org.eclipse.ocl.examples.xtext.base.basecs;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS#getMultiplicity <em>Multiplicity</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS#getOwnedMultiplicity <em>Owned Multiplicity</em>}</li>
  * </ul>
  * </p>
  *
@@ -32,28 +32,28 @@ package org.eclipse.ocl.examples.xtext.base.basecs;
 public interface TypedRefCS extends TypeRefCS {
 
 	/**
-	 * Returns the value of the '<em><b>Multiplicity</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Multiplicity</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Multiplicity</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Multiplicity</em>' containment reference.
-	 * @see #setMultiplicity(MultiplicityCS)
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTypedRefCS_Multiplicity()
+	 * @return the value of the '<em>Owned Multiplicity</em>' containment reference.
+	 * @see #setOwnedMultiplicity(MultiplicityCS)
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTypedRefCS_OwnedMultiplicity()
 	 * @model containment="true"
 	 * @generated
 	 */
-	MultiplicityCS getMultiplicity();
+	MultiplicityCS getOwnedMultiplicity();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS#getMultiplicity <em>Multiplicity</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS#getOwnedMultiplicity <em>Owned Multiplicity</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Multiplicity</em>' containment reference.
-	 * @see #getMultiplicity()
+	 * @param value the new value of the '<em>Owned Multiplicity</em>' containment reference.
+	 * @see #getOwnedMultiplicity()
 	 * @generated
 	 */
-	void setMultiplicity(MultiplicityCS value);
+	void setOwnedMultiplicity(MultiplicityCS value);
 } // TypedRefCS

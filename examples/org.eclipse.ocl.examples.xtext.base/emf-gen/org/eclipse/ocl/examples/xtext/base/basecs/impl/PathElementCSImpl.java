@@ -36,8 +36,8 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PathElementCSImpl#getPathName <em>Path Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PathElementCSImpl#getElement <em>Element</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PathElementCSImpl#getOwningPathName <em>Owning Path Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PathElementCSImpl#getReferredElement <em>Referred Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PathElementCSImpl#getElementType <em>Element Type</em>}</li>
  * </ul>
  * </p>
@@ -47,14 +47,14 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
 public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 {
 	/**
-	 * The cached value of the '{@link #getElement() <em>Element</em>}' reference.
+	 * The cached value of the '{@link #getReferredElement() <em>Referred Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getElement()
+	 * @see #getReferredElement()
 	 * @generated
 	 * @ordered
 	 */
-	protected Element element;
+	protected Element referredElement;
 
 	/**
 	 * The cached value of the '{@link #getElementType() <em>Element Type</em>}' reference.
@@ -92,9 +92,9 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PathNameCS getPathName()
+	public PathNameCS getOwningPathName()
 	{
-		if (eContainerFeatureID() != BaseCSPackage.PATH_ELEMENT_CS__PATH_NAME) return null;
+		if (eContainerFeatureID() != BaseCSPackage.PATH_ELEMENT_CS__OWNING_PATH_NAME) return null;
 		return (PathNameCS)eInternalContainer();
 	}
 
@@ -103,9 +103,9 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetPathName(PathNameCS newPathName, NotificationChain msgs)
+	public NotificationChain basicSetOwningPathName(PathNameCS newOwningPathName, NotificationChain msgs)
 	{
-		msgs = eBasicSetContainer((InternalEObject)newPathName, BaseCSPackage.PATH_ELEMENT_CS__PATH_NAME, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newOwningPathName, BaseCSPackage.PATH_ELEMENT_CS__OWNING_PATH_NAME, msgs);
 		return msgs;
 	}
 
@@ -114,22 +114,22 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPathName(PathNameCS newPathName)
+	public void setOwningPathName(PathNameCS newOwningPathName)
 	{
-		if (newPathName != eInternalContainer() || (eContainerFeatureID() != BaseCSPackage.PATH_ELEMENT_CS__PATH_NAME && newPathName != null))
+		if (newOwningPathName != eInternalContainer() || (eContainerFeatureID() != BaseCSPackage.PATH_ELEMENT_CS__OWNING_PATH_NAME && newOwningPathName != null))
 		{
-			if (EcoreUtil.isAncestor(this, newPathName))
+			if (EcoreUtil.isAncestor(this, newOwningPathName))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newPathName != null)
-				msgs = ((InternalEObject)newPathName).eInverseAdd(this, BaseCSPackage.PATH_NAME_CS__PATH, PathNameCS.class, msgs);
-			msgs = basicSetPathName(newPathName, msgs);
+			if (newOwningPathName != null)
+				msgs = ((InternalEObject)newOwningPathName).eInverseAdd(this, BaseCSPackage.PATH_NAME_CS__OWNED_PATH_ELEMENTS, PathNameCS.class, msgs);
+			msgs = basicSetOwningPathName(newOwningPathName, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.PATH_ELEMENT_CS__PATH_NAME, newPathName, newPathName));
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.PATH_ELEMENT_CS__OWNING_PATH_NAME, newOwningPathName, newOwningPathName));
 	}
 
 	/**
@@ -137,42 +137,12 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element getElementGen()
+	public void setReferredElement(Element newReferredElement)
 	{
-		if (element != null && ((EObject)element).eIsProxy())
-		{
-			InternalEObject oldElement = (InternalEObject)element;
-			element = (Element)eResolveProxy(oldElement);
-			if (element != oldElement)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BaseCSPackage.PATH_ELEMENT_CS__ELEMENT, oldElement, element));
-			}
-		}
-		return element;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Element basicGetElement()
-	{
-		return element;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setElement(Element newElement)
-	{
-		Element oldElement = element;
-		element = newElement;
+		Element oldReferredElement = referredElement;
+		referredElement = newReferredElement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.PATH_ELEMENT_CS__ELEMENT, oldElement, element));
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.PATH_ELEMENT_CS__REFERRED_ELEMENT, oldReferredElement, referredElement));
 	}
 
 	/**
@@ -208,10 +178,10 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.PATH_ELEMENT_CS__PATH_NAME:
+			case BaseCSPackage.PATH_ELEMENT_CS__OWNING_PATH_NAME:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetPathName((PathNameCS)otherEnd, msgs);
+				return basicSetOwningPathName((PathNameCS)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -226,8 +196,8 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.PATH_ELEMENT_CS__PATH_NAME:
-				return basicSetPathName(null, msgs);
+			case BaseCSPackage.PATH_ELEMENT_CS__OWNING_PATH_NAME:
+				return basicSetOwningPathName(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -242,8 +212,8 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	{
 		switch (eContainerFeatureID())
 		{
-			case BaseCSPackage.PATH_ELEMENT_CS__PATH_NAME:
-				return eInternalContainer().eInverseRemove(this, BaseCSPackage.PATH_NAME_CS__PATH, PathNameCS.class, msgs);
+			case BaseCSPackage.PATH_ELEMENT_CS__OWNING_PATH_NAME:
+				return eInternalContainer().eInverseRemove(this, BaseCSPackage.PATH_NAME_CS__OWNED_PATH_ELEMENTS, PathNameCS.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -258,11 +228,11 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.PATH_ELEMENT_CS__PATH_NAME:
-				return getPathName();
-			case BaseCSPackage.PATH_ELEMENT_CS__ELEMENT:
-				if (resolve) return getElement();
-				return basicGetElement();
+			case BaseCSPackage.PATH_ELEMENT_CS__OWNING_PATH_NAME:
+				return getOwningPathName();
+			case BaseCSPackage.PATH_ELEMENT_CS__REFERRED_ELEMENT:
+				if (resolve) return getReferredElement();
+				return basicGetReferredElement();
 			case BaseCSPackage.PATH_ELEMENT_CS__ELEMENT_TYPE:
 				return getElementType();
 		}
@@ -279,11 +249,11 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.PATH_ELEMENT_CS__PATH_NAME:
-				setPathName((PathNameCS)newValue);
+			case BaseCSPackage.PATH_ELEMENT_CS__OWNING_PATH_NAME:
+				setOwningPathName((PathNameCS)newValue);
 				return;
-			case BaseCSPackage.PATH_ELEMENT_CS__ELEMENT:
-				setElement((Element)newValue);
+			case BaseCSPackage.PATH_ELEMENT_CS__REFERRED_ELEMENT:
+				setReferredElement((Element)newValue);
 				return;
 			case BaseCSPackage.PATH_ELEMENT_CS__ELEMENT_TYPE:
 				setElementType((EClassifier)newValue);
@@ -302,11 +272,11 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.PATH_ELEMENT_CS__PATH_NAME:
-				setPathName((PathNameCS)null);
+			case BaseCSPackage.PATH_ELEMENT_CS__OWNING_PATH_NAME:
+				setOwningPathName((PathNameCS)null);
 				return;
-			case BaseCSPackage.PATH_ELEMENT_CS__ELEMENT:
-				setElement((Element)null);
+			case BaseCSPackage.PATH_ELEMENT_CS__REFERRED_ELEMENT:
+				setReferredElement((Element)null);
 				return;
 			case BaseCSPackage.PATH_ELEMENT_CS__ELEMENT_TYPE:
 				setElementType((EClassifier)null);
@@ -325,10 +295,10 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.PATH_ELEMENT_CS__PATH_NAME:
-				return getPathName() != null;
-			case BaseCSPackage.PATH_ELEMENT_CS__ELEMENT:
-				return element != null;
+			case BaseCSPackage.PATH_ELEMENT_CS__OWNING_PATH_NAME:
+				return getOwningPathName() != null;
+			case BaseCSPackage.PATH_ELEMENT_CS__REFERRED_ELEMENT:
+				return referredElement != null;
 			case BaseCSPackage.PATH_ELEMENT_CS__ELEMENT_TYPE:
 				return elementType != null;
 		}
@@ -347,11 +317,30 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Element getReferredElementGen() {
+		if (referredElement != null && ((EObject)referredElement).eIsProxy())
+		{
+			InternalEObject oldReferredElement = (InternalEObject)referredElement;
+			referredElement = (Element)eResolveProxy(oldReferredElement);
+			if (referredElement != oldReferredElement)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BaseCSPackage.PATH_ELEMENT_CS__REFERRED_ELEMENT, oldReferredElement, referredElement));
+			}
+		}
+		return referredElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Element getElement()
+	public Element getReferredElement()
 	{
-		Element element = getElementGen();
+		Element element = getReferredElementGen();
 		if ((element == null) || ((EObject)element).eIsProxy())
 		{
 			MetaModelManager metaModelManager = PivotUtil.findMetaModelManager(this);
@@ -374,10 +363,20 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Element basicGetReferredElement()
+	{
+		return referredElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public Element getPivot() {
-		return getElement();
+		return getReferredElement();
 	}
 
 	/**

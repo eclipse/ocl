@@ -153,7 +153,7 @@ public class ImportCSAttribution extends AbstractAttribution implements Unresolv
 	}
 
 	public @NonNull EReference getEReference() {
-		@SuppressWarnings("null") @NonNull EReference importCsNamespace = BaseCSPackage.Literals.IMPORT_CS__NAMESPACE;
+		@SuppressWarnings("null") @NonNull EReference importCsNamespace = BaseCSPackage.Literals.IMPORT_CS__REFERRED_NAMESPACE;
 		return importCsNamespace;
 	}
 

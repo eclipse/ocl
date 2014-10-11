@@ -243,7 +243,7 @@ public class ClassifierContextDeclCSImpl
 			return null;
 		}
 		CS2Pivot.setElementType(ownedPathName2, PivotPackage.Literals.TYPE, this, null);
-		return (org.eclipse.ocl.examples.pivot.Class) ownedPathName2.getElement();
+		return (org.eclipse.ocl.examples.pivot.Class) ownedPathName2.getReferredElement();
 	}
 
 	/**

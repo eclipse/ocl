@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS#getOwnedAnnotation <em>Owned Annotation</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS#getOwnedAnnotations <em>Owned Annotations</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS#getOriginalXmiId <em>Original Xmi Id</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS#getCsi <em>Csi</em>}</li>
  * </ul>
@@ -33,7 +33,7 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface ModelElementCS extends PivotableElementCS {
 	/**
-	 * Returns the value of the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.AnnotationElementCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -41,12 +41,12 @@ public interface ModelElementCS extends PivotableElementCS {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Annotation</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getModelElementCS_OwnedAnnotation()
+	 * @return the value of the '<em>Owned Annotations</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getModelElementCS_OwnedAnnotations()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<AnnotationElementCS> getOwnedAnnotation();
+	EList<AnnotationElementCS> getOwnedAnnotations();
 
 	/**
 	 * Returns the value of the '<em><b>Original Xmi Id</b></em>' attribute.

@@ -19,8 +19,8 @@ package org.eclipse.ocl.examples.xtext.base.basecs;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS#getStereotype <em>Stereotype</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS#getSpecification <em>Specification</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS#getMessageSpecification <em>Message Specification</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS#getOwnedSpecification <em>Owned Specification</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS#getOwnedMessageSpecification <em>Owned Message Specification</em>}</li>
  * </ul>
  * </p>
  *
@@ -57,55 +57,55 @@ public interface ConstraintCS extends NamedElementCS
 	void setStereotype(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Specification</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Specification</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Specification</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Specification</em>' containment reference.
-	 * @see #setSpecification(SpecificationCS)
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getConstraintCS_Specification()
+	 * @return the value of the '<em>Owned Specification</em>' containment reference.
+	 * @see #setOwnedSpecification(SpecificationCS)
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getConstraintCS_OwnedSpecification()
 	 * @model containment="true"
 	 * @generated
 	 */
-	SpecificationCS getSpecification();
+	SpecificationCS getOwnedSpecification();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS#getSpecification <em>Specification</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS#getOwnedSpecification <em>Owned Specification</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Specification</em>' containment reference.
-	 * @see #getSpecification()
+	 * @param value the new value of the '<em>Owned Specification</em>' containment reference.
+	 * @see #getOwnedSpecification()
 	 * @generated
 	 */
-	void setSpecification(SpecificationCS value);
+	void setOwnedSpecification(SpecificationCS value);
 
 	/**
-	 * Returns the value of the '<em><b>Message Specification</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Message Specification</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Message Specification</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Message Specification</em>' containment reference.
-	 * @see #setMessageSpecification(SpecificationCS)
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getConstraintCS_MessageSpecification()
+	 * @return the value of the '<em>Owned Message Specification</em>' containment reference.
+	 * @see #setOwnedMessageSpecification(SpecificationCS)
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getConstraintCS_OwnedMessageSpecification()
 	 * @model containment="true"
 	 * @generated
 	 */
-	SpecificationCS getMessageSpecification();
+	SpecificationCS getOwnedMessageSpecification();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS#getMessageSpecification <em>Message Specification</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS#getOwnedMessageSpecification <em>Owned Message Specification</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Message Specification</em>' containment reference.
-	 * @see #getMessageSpecification()
+	 * @param value the new value of the '<em>Owned Message Specification</em>' containment reference.
+	 * @see #getOwnedMessageSpecification()
 	 * @generated
 	 */
-	void setMessageSpecification(SpecificationCS value);
+	void setOwnedMessageSpecification(SpecificationCS value);
 
 } // ConstraintCS

@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
 import org.eclipse.ocl.examples.xtext.base.basecs.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
@@ -30,7 +29,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.LibraryCSImpl#getPackage <em>Package</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.LibraryCSImpl#getReferredPackage <em>Referred Package</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,15 +37,14 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  */
 public class LibraryCSImpl extends NamedElementCSImpl implements LibraryCS {
 	/**
-	 * The cached value of the '{@link #getPackage() <em>Package</em>}' reference.
+	 * The cached value of the '{@link #getReferredPackage() <em>Referred Package</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPackage()
+	 * @see #getReferredPackage()
 	 * @generated
 	 * @ordered
 	 */
-	protected Namespace package_;
-
+	protected org.eclipse.ocl.examples.pivot.Package referredPackage;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,18 +69,18 @@ public class LibraryCSImpl extends NamedElementCSImpl implements LibraryCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Namespace getPackage() {
-		if (package_ != null && ((EObject)package_).eIsProxy())
+	public org.eclipse.ocl.examples.pivot.Package getReferredPackage() {
+		if (referredPackage != null && ((EObject)referredPackage).eIsProxy())
 		{
-			InternalEObject oldPackage = (InternalEObject)package_;
-			package_ = (Namespace)eResolveProxy(oldPackage);
-			if (package_ != oldPackage)
+			InternalEObject oldReferredPackage = (InternalEObject)referredPackage;
+			referredPackage = (org.eclipse.ocl.examples.pivot.Package)eResolveProxy(oldReferredPackage);
+			if (referredPackage != oldReferredPackage)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BaseCSPackage.LIBRARY_CS__PACKAGE, oldPackage, package_));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BaseCSPackage.LIBRARY_CS__REFERRED_PACKAGE, oldReferredPackage, referredPackage));
 			}
 		}
-		return package_;
+		return referredPackage;
 	}
 
 	/**
@@ -90,21 +88,22 @@ public class LibraryCSImpl extends NamedElementCSImpl implements LibraryCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Namespace basicGetPackage() {
-		return package_;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPackage(Namespace newPackage)
+	public org.eclipse.ocl.examples.pivot.Package basicGetReferredPackage()
 	{
-		Namespace oldPackage = package_;
-		package_ = newPackage;
+		return referredPackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReferredPackage(org.eclipse.ocl.examples.pivot.Package newReferredPackage)
+	{
+		org.eclipse.ocl.examples.pivot.Package oldReferredPackage = referredPackage;
+		referredPackage = newReferredPackage;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.LIBRARY_CS__PACKAGE, oldPackage, package_));
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.LIBRARY_CS__REFERRED_PACKAGE, oldReferredPackage, referredPackage));
 	}
 
 	/**
@@ -116,9 +115,9 @@ public class LibraryCSImpl extends NamedElementCSImpl implements LibraryCS {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case BaseCSPackage.LIBRARY_CS__PACKAGE:
-				if (resolve) return getPackage();
-				return basicGetPackage();
+			case BaseCSPackage.LIBRARY_CS__REFERRED_PACKAGE:
+				if (resolve) return getReferredPackage();
+				return basicGetReferredPackage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -132,8 +131,8 @@ public class LibraryCSImpl extends NamedElementCSImpl implements LibraryCS {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case BaseCSPackage.LIBRARY_CS__PACKAGE:
-				setPackage((Namespace)newValue);
+			case BaseCSPackage.LIBRARY_CS__REFERRED_PACKAGE:
+				setReferredPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -148,8 +147,8 @@ public class LibraryCSImpl extends NamedElementCSImpl implements LibraryCS {
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.LIBRARY_CS__PACKAGE:
-				setPackage((Namespace)null);
+			case BaseCSPackage.LIBRARY_CS__REFERRED_PACKAGE:
+				setReferredPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -164,8 +163,8 @@ public class LibraryCSImpl extends NamedElementCSImpl implements LibraryCS {
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.LIBRARY_CS__PACKAGE:
-				return package_ != null;
+			case BaseCSPackage.LIBRARY_CS__REFERRED_PACKAGE:
+				return referredPackage != null;
 		}
 		return super.eIsSet(featureID);
 	}

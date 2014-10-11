@@ -22,7 +22,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSFactory;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
-import org.eclipse.ocl.examples.xtext.base.basecs.ClassCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.DataTypeCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.DetailCS;
@@ -30,7 +30,6 @@ import org.eclipse.ocl.examples.xtext.base.basecs.DocumentationCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.EnumerationCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.EnumerationLiteralCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ImportCS;
-import org.eclipse.ocl.examples.xtext.base.basecs.IteratorKind;
 import org.eclipse.ocl.examples.xtext.base.basecs.LambdaTypeCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementRefCS;
@@ -105,7 +104,6 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 		{
 			case BaseCSPackage.ANNOTATION_CS: return createAnnotationCS();
 			case BaseCSPackage.ATTRIBUTE_CS: return createAttributeCS();
-			case BaseCSPackage.CLASS_CS: return createClassCS();
 			case BaseCSPackage.CONSTRAINT_CS: return createConstraintCS();
 			case BaseCSPackage.DATA_TYPE_CS: return createDataTypeCS();
 			case BaseCSPackage.DETAIL_CS: return createDetailCS();
@@ -128,6 +126,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 			case BaseCSPackage.REFERENCE_CS: return createReferenceCS();
 			case BaseCSPackage.ROOT_PACKAGE_CS: return createRootPackageCS();
 			case BaseCSPackage.SPECIFICATION_CS: return createSpecificationCS();
+			case BaseCSPackage.STRUCTURED_CLASS_CS: return createStructuredClassCS();
 			case BaseCSPackage.TEMPLATE_BINDING_CS: return createTemplateBindingCS();
 			case BaseCSPackage.TEMPLATE_PARAMETER_SUBSTITUTION_CS: return createTemplateParameterSubstitutionCS();
 			case BaseCSPackage.TEMPLATE_SIGNATURE_CS: return createTemplateSignatureCS();
@@ -151,8 +150,6 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	{
 		switch (eDataType.getClassifierID())
 		{
-			case BaseCSPackage.ITERATOR_KIND:
-				return createIteratorKindFromString(eDataType, initialValue);
 			case BaseCSPackage.SCOPE_FILTER:
 				return createScopeFilterFromString(eDataType, initialValue);
 			default:
@@ -170,8 +167,6 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	{
 		switch (eDataType.getClassifierID())
 		{
-			case BaseCSPackage.ITERATOR_KIND:
-				return convertIteratorKindToString(eDataType, instanceValue);
 			case BaseCSPackage.SCOPE_FILTER:
 				return convertScopeFilterToString(eDataType, instanceValue);
 			default:
@@ -199,16 +194,6 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	{
 		AttributeCSImpl attributeCS = new AttributeCSImpl();
 		return attributeCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ClassCS createClassCS() {
-		ClassCSImpl classCS = new ClassCSImpl();
-		return classCS;
 	}
 
 	/**
@@ -452,6 +437,17 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public StructuredClassCS createStructuredClassCS()
+	{
+		StructuredClassCSImpl structuredClassCS = new StructuredClassCSImpl();
+		return structuredClassCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public TemplateBindingCS createTemplateBindingCS() {
 		TemplateBindingCSImpl templateBindingCS = new TemplateBindingCSImpl();
 		return templateBindingCS;
@@ -527,28 +523,6 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	public WildcardTypeRefCS createWildcardTypeRefCS() {
 		WildcardTypeRefCSImpl wildcardTypeRefCS = new WildcardTypeRefCSImpl();
 		return wildcardTypeRefCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IteratorKind createIteratorKindFromString(EDataType eDataType, String initialValue)
-	{
-		IteratorKind result = IteratorKind.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertIteratorKindToString(EDataType eDataType, Object instanceValue)
-	{
-		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

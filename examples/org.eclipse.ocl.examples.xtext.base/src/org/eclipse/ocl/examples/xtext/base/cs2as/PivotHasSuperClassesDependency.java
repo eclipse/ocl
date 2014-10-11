@@ -29,7 +29,7 @@ public class PivotHasSuperClassesDependency extends AbstractDependency<TypedType
 
 	@Override
 	public boolean canExecute() {
-		Type pivot = element.getType();
+		Type pivot = element.getReferredType();
 		if (pivot == null) {
 			return false;
 		}

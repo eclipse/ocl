@@ -384,6 +384,6 @@ public class OperationContextDeclCSImpl
 		if (ownedPathName == null) {
 			return null;
 		}
-		return (Operation) ownedPathName.getElement();
+		return (Operation) ownedPathName.getReferredElement();
 	}
 } //OperationContextDeclCSImpl

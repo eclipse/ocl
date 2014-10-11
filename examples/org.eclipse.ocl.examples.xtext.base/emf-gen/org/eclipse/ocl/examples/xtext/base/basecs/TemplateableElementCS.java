@@ -20,7 +20,7 @@ package org.eclipse.ocl.examples.xtext.base.basecs;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS#getOwnedTemplateSignature <em>Owned Template Signature</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS#getOwnedSignature <em>Owned Signature</em>}</li>
  * </ul>
  * </p>
  *
@@ -30,31 +30,31 @@ package org.eclipse.ocl.examples.xtext.base.basecs;
  */
 public interface TemplateableElementCS extends ElementCS {
 	/**
-	 * Returns the value of the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS#getOwningTemplateElement <em>Owning Template Element</em>}'.
+	 * Returns the value of the '<em><b>Owned Signature</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS#getOwningElement <em>Owning Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Template Signature</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Template Signature</em>' containment reference.
-	 * @see #setOwnedTemplateSignature(TemplateSignatureCS)
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTemplateableElementCS_OwnedTemplateSignature()
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS#getOwningTemplateElement
-	 * @model opposite="owningTemplateElement" containment="true"
+	 * @return the value of the '<em>Owned Signature</em>' containment reference.
+	 * @see #setOwnedSignature(TemplateSignatureCS)
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTemplateableElementCS_OwnedSignature()
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS#getOwningElement
+	 * @model opposite="owningElement" containment="true"
 	 * @generated
 	 */
-	TemplateSignatureCS getOwnedTemplateSignature();
+	TemplateSignatureCS getOwnedSignature();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS#getOwnedTemplateSignature <em>Owned Template Signature</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS#getOwnedSignature <em>Owned Signature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owned Template Signature</em>' containment reference.
-	 * @see #getOwnedTemplateSignature()
+	 * @param value the new value of the '<em>Owned Signature</em>' containment reference.
+	 * @see #getOwnedSignature()
 	 * @generated
 	 */
-	void setOwnedTemplateSignature(TemplateSignatureCS value);
+	void setOwnedSignature(TemplateSignatureCS value);
 
 } // TemplateableElementCS

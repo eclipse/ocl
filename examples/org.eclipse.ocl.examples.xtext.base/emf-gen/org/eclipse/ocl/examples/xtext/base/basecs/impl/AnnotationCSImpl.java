@@ -33,8 +33,8 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.AnnotationCSImpl#getOwnedContent <em>Owned Content</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.AnnotationCSImpl#getOwnedReference <em>Owned Reference</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.AnnotationCSImpl#getOwnedContents <em>Owned Contents</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.AnnotationCSImpl#getOwnedReferences <em>Owned References</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,24 +42,24 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  */
 public class AnnotationCSImpl extends AnnotationElementCSImpl implements AnnotationCS {
 	/**
-	 * The cached value of the '{@link #getOwnedContent() <em>Owned Content</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedContents() <em>Owned Contents</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedContent()
+	 * @see #getOwnedContents()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelElementCS> ownedContent;
+	protected EList<ModelElementCS> ownedContents;
 
 	/**
-	 * The cached value of the '{@link #getOwnedReference() <em>Owned Reference</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedReferences() <em>Owned References</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedReference()
+	 * @see #getOwnedReferences()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelElementRefCS> ownedReference;
+	protected EList<ModelElementRefCS> ownedReferences;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -85,13 +85,13 @@ public class AnnotationCSImpl extends AnnotationElementCSImpl implements Annotat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ModelElementCS> getOwnedContent()
+	public EList<ModelElementCS> getOwnedContents()
 	{
-		if (ownedContent == null)
+		if (ownedContents == null)
 		{
-			ownedContent = new EObjectContainmentEList<ModelElementCS>(ModelElementCS.class, this, BaseCSPackage.ANNOTATION_CS__OWNED_CONTENT);
+			ownedContents = new EObjectContainmentEList<ModelElementCS>(ModelElementCS.class, this, BaseCSPackage.ANNOTATION_CS__OWNED_CONTENTS);
 		}
-		return ownedContent;
+		return ownedContents;
 	}
 
 	/**
@@ -99,13 +99,13 @@ public class AnnotationCSImpl extends AnnotationElementCSImpl implements Annotat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ModelElementRefCS> getOwnedReference()
+	public EList<ModelElementRefCS> getOwnedReferences()
 	{
-		if (ownedReference == null)
+		if (ownedReferences == null)
 		{
-			ownedReference = new EObjectContainmentEList<ModelElementRefCS>(ModelElementRefCS.class, this, BaseCSPackage.ANNOTATION_CS__OWNED_REFERENCE);
+			ownedReferences = new EObjectContainmentEList<ModelElementRefCS>(ModelElementRefCS.class, this, BaseCSPackage.ANNOTATION_CS__OWNED_REFERENCES);
 		}
-		return ownedReference;
+		return ownedReferences;
 	}
 
 	/**
@@ -117,10 +117,10 @@ public class AnnotationCSImpl extends AnnotationElementCSImpl implements Annotat
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case BaseCSPackage.ANNOTATION_CS__OWNED_CONTENT:
-				return ((InternalEList<?>)getOwnedContent()).basicRemove(otherEnd, msgs);
-			case BaseCSPackage.ANNOTATION_CS__OWNED_REFERENCE:
-				return ((InternalEList<?>)getOwnedReference()).basicRemove(otherEnd, msgs);
+			case BaseCSPackage.ANNOTATION_CS__OWNED_CONTENTS:
+				return ((InternalEList<?>)getOwnedContents()).basicRemove(otherEnd, msgs);
+			case BaseCSPackage.ANNOTATION_CS__OWNED_REFERENCES:
+				return ((InternalEList<?>)getOwnedReferences()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -134,10 +134,10 @@ public class AnnotationCSImpl extends AnnotationElementCSImpl implements Annotat
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case BaseCSPackage.ANNOTATION_CS__OWNED_CONTENT:
-				return getOwnedContent();
-			case BaseCSPackage.ANNOTATION_CS__OWNED_REFERENCE:
-				return getOwnedReference();
+			case BaseCSPackage.ANNOTATION_CS__OWNED_CONTENTS:
+				return getOwnedContents();
+			case BaseCSPackage.ANNOTATION_CS__OWNED_REFERENCES:
+				return getOwnedReferences();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -152,13 +152,13 @@ public class AnnotationCSImpl extends AnnotationElementCSImpl implements Annotat
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case BaseCSPackage.ANNOTATION_CS__OWNED_CONTENT:
-				getOwnedContent().clear();
-				getOwnedContent().addAll((Collection<? extends ModelElementCS>)newValue);
+			case BaseCSPackage.ANNOTATION_CS__OWNED_CONTENTS:
+				getOwnedContents().clear();
+				getOwnedContents().addAll((Collection<? extends ModelElementCS>)newValue);
 				return;
-			case BaseCSPackage.ANNOTATION_CS__OWNED_REFERENCE:
-				getOwnedReference().clear();
-				getOwnedReference().addAll((Collection<? extends ModelElementRefCS>)newValue);
+			case BaseCSPackage.ANNOTATION_CS__OWNED_REFERENCES:
+				getOwnedReferences().clear();
+				getOwnedReferences().addAll((Collection<? extends ModelElementRefCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -173,11 +173,11 @@ public class AnnotationCSImpl extends AnnotationElementCSImpl implements Annotat
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.ANNOTATION_CS__OWNED_CONTENT:
-				getOwnedContent().clear();
+			case BaseCSPackage.ANNOTATION_CS__OWNED_CONTENTS:
+				getOwnedContents().clear();
 				return;
-			case BaseCSPackage.ANNOTATION_CS__OWNED_REFERENCE:
-				getOwnedReference().clear();
+			case BaseCSPackage.ANNOTATION_CS__OWNED_REFERENCES:
+				getOwnedReferences().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -192,10 +192,10 @@ public class AnnotationCSImpl extends AnnotationElementCSImpl implements Annotat
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.ANNOTATION_CS__OWNED_CONTENT:
-				return ownedContent != null && !ownedContent.isEmpty();
-			case BaseCSPackage.ANNOTATION_CS__OWNED_REFERENCE:
-				return ownedReference != null && !ownedReference.isEmpty();
+			case BaseCSPackage.ANNOTATION_CS__OWNED_CONTENTS:
+				return ownedContents != null && !ownedContents.isEmpty();
+			case BaseCSPackage.ANNOTATION_CS__OWNED_REFERENCES:
+				return ownedReferences != null && !ownedReferences.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

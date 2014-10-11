@@ -48,11 +48,11 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, Pi
 		org.eclipse.ocl.examples.pivot.Package scopePackage = scopeClass != null ? PivotUtil.getPackage(scopeClass) : null;
 		TypedTypeRefCS csRef = BaseCSFactory.eINSTANCE.createTypedTypeRefCS();
 		Type type = PivotUtil.getUnspecializedTemplateableElement(object);
-		PathNameCS csPathName = csRef.getPathName();
+		PathNameCS csPathName = csRef.getOwnedPathName();
 		if (csPathName == null) {
 			@SuppressWarnings("null") @NonNull PathNameCS csPathName2 = BaseCSFactory.eINSTANCE.createPathNameCS();
 			csPathName = csPathName2;
-			csRef.setPathName(csPathName);
+			csRef.setOwnedPathName(csPathName);
 		}
 		context.refreshPathName(csPathName, type, context.getScope());
 		csRef.setPivot(type);		// FIXME object ??
@@ -84,7 +84,7 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, Pi
 					}
 				}
 			}
-			context.refreshList(csTemplateBinding.getOwnedParameterSubstitution(), csParameterSubstitutions);
+			context.refreshList(csTemplateBinding.getOwnedSubstitutions(), csParameterSubstitutions);
 		}
 //		if (scopePackage == objectPackage) {
 			return csRef;

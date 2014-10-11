@@ -37,7 +37,7 @@ public class EssentialOCLOutlineTreeProvider extends BaseOutlineTreeProvider
 	}
 
 	protected void _createChildren(IOutlineNode parentNode, ConstraintCS constraint) {
-		createChildren(parentNode, constraint.getSpecification());
+		createChildren(parentNode, constraint.getOwnedSpecification());
 	}
 
 /*	protected void _createChildren(IOutlineNode parentNode, InvocationExpCS csExp) {

@@ -40,8 +40,8 @@ import org.eclipse.ocl.examples.xtext.base.basecs.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSFactory;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
+import org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ClassCS;
-import org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.DataTypeCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.DetailCS;
@@ -79,8 +79,8 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	@Override
 	public ElementCS visitAnnotation(@NonNull org.eclipse.ocl.examples.pivot.Annotation object) {
 		AnnotationCS csElement = context.refreshNamedElement(AnnotationCS.class, BaseCSPackage.Literals.ANNOTATION_CS, object);
-		context.refreshList(csElement.getOwnedContent(), context.visitDeclarations(ModelElementCS.class, object.getOwnedContent(), null));
-		context.refreshList(csElement.getOwnedDetail(), context.visitDeclarations(DetailCS.class, object.getOwnedDetail(), null));
+		context.refreshList(csElement.getOwnedContents(), context.visitDeclarations(ModelElementCS.class, object.getOwnedContent(), null));
+		context.refreshList(csElement.getOwnedDetails(), context.visitDeclarations(DetailCS.class, object.getOwnedDetail(), null));
 		List<Element> references = object.getReference();
 		if (references.size() > 0) {
 			List<ModelElementRefCS> csReferences = new ArrayList<ModelElementRefCS>(references.size());
@@ -88,15 +88,15 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 				if (reference != null) {
 					ModelElementRefCS csRef = BaseCSFactory.eINSTANCE.createModelElementRefCS();
 					@SuppressWarnings("null") @NonNull PathNameCS csPathName = BaseCSFactory.eINSTANCE.createPathNameCS();
-					csRef.setPathName(csPathName);
+					csRef.setOwnedPathName(csPathName);
 					context.refreshPathName(csPathName, reference, context.getScope());
 					csReferences.add(csRef);
 				}
 			}
-			context.refreshList(csElement.getOwnedReference(), csReferences);
+			context.refreshList(csElement.getOwnedReferences(), csReferences);
 		}
 		else {
-			csElement.getOwnedReference().clear();
+			csElement.getOwnedReferences().clear();
 		}
 		return csElement;
 	}
@@ -104,25 +104,25 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	@Override
 	public ElementCS visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class object) {
 		org.eclipse.ocl.examples.pivot.Class savedScope = context.setScope(object);
-		ClassCS csElement = context.refreshClassifier(ClassCS.class, BaseCSPackage.Literals.CLASS_CS, object);
-		context.refreshList(csElement.getOwnedProperty(), context.visitDeclarations(StructuralFeatureCS.class, object.getOwnedProperties(),
+		StructuredClassCS csElement = context.refreshClassifier(StructuredClassCS.class, BaseCSPackage.Literals.STRUCTURED_CLASS_CS, object);
+		context.refreshList(csElement.getOwnedProperties(), context.visitDeclarations(StructuralFeatureCS.class, object.getOwnedProperties(),
 			new Pivot2CS.Predicate<Property>()
 			{
 				public boolean filter(@NonNull Property element) {
 					return !element.isImplicit();
 				}
 			}));
-		context.refreshList(csElement.getOwnedOperation(), context.visitDeclarations(OperationCS.class, object.getOwnedOperations(), null));
+		context.refreshList(csElement.getOwnedOperations(), context.visitDeclarations(OperationCS.class, object.getOwnedOperations(), null));
 		final Type oclElementType = context.getStandardLibrary().getOclElementType();
-		context.refreshList(csElement.getOwnedSuperType(), context.visitReferences(TypedRefCS.class, object.getSuperClasses(),
+		context.refreshList(csElement.getOwnedSuperTypes(), context.visitReferences(TypedRefCS.class, object.getSuperClasses(),
 			new Pivot2CS.Predicate<Type>()
 			{
 				public boolean filter(@NonNull Type element) {
 					return element != oclElementType;
 				}
 			}));
-		context.refreshQualifiers(csElement.getQualifier(), "abstract", object.isAbstract());
-		context.refreshQualifiers(csElement.getQualifier(), "interface", object.isInterface());
+		context.refreshQualifiers(csElement.getQualifiers(), "abstract", object.isAbstract());
+		context.refreshQualifiers(csElement.getQualifiers(), "interface", object.isInterface());
 		context.setScope(savedScope);
 		return csElement;
 	}
@@ -137,14 +137,14 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	public ElementCS visitConstraint(@NonNull Constraint object) {
 		ConstraintCS csElement = context.refreshNamedElement(ConstraintCS.class, BaseCSPackage.Literals.CONSTRAINT_CS, object);
 		LanguageExpression specification = object.getSpecification();
-		csElement.setSpecification(specification != null ? context.visitDeclaration(SpecificationCS.class, specification) : null);
+		csElement.setOwnedSpecification(specification != null ? context.visitDeclaration(SpecificationCS.class, specification) : null);
 		return csElement;
 	}
 
 	@Override
 	public ElementCS visitDataType(@NonNull DataType object) {
 		DataTypeCS csElement = context.refreshClassifier(DataTypeCS.class, BaseCSPackage.Literals.DATA_TYPE_CS, object);
-		context.refreshQualifiers(csElement.getQualifier(), "serializable", object.isSerializable());
+		context.refreshQualifiers(csElement.getQualifiers(), "serializable", object.isSerializable());
 		return csElement;
 	}
 
@@ -160,7 +160,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	public ElementCS visitEnumeration(@NonNull org.eclipse.ocl.examples.pivot.Enumeration object) {
 		EnumerationCS csElement = context.refreshClassifier(EnumerationCS.class, BaseCSPackage.Literals.ENUMERATION_CS, object);
 		context.refreshList(csElement.getOwnedLiterals(), context.visitDeclarations(EnumerationLiteralCS.class, object.getOwnedLiteral(), null));
-		context.refreshQualifiers(csElement.getQualifier(), "serializable", object.isSerializable());
+		context.refreshQualifiers(csElement.getQualifiers(), "serializable", object.isSerializable());
 		return csElement;
 	}
 
@@ -197,7 +197,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	@Override
 	public ElementCS visitModel(@NonNull Model object) {
 		RootPackageCS csElement = context.refreshElement(RootPackageCS.class, BaseCSPackage.Literals.ROOT_PACKAGE_CS, object);
-		context.refreshList(csElement.getOwnedNestedPackage(), context.visitDeclarations(PackageCS.class, object.getOwnedPackages(), null));
+		context.refreshList(csElement.getOwnedPackages(), context.visitDeclarations(PackageCS.class, object.getOwnedPackages(), null));
 		context.visitDeclarations(ImportCS.class, object.getImports(), null);
 		return csElement;
 	}
@@ -206,24 +206,24 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	public ElementCS visitOperation(@NonNull Operation object) {
 		OperationCS csElement = context.refreshTypedElement(OperationCS.class, BaseCSPackage.Literals.OPERATION_CS, object);
 		TemplateSignature ownedTemplateSignature = object.getOwnedTemplateSignature();
-		csElement.setOwnedTemplateSignature(context.visitDeclaration(TemplateSignatureCS.class, ownedTemplateSignature));
-		context.refreshList(csElement.getOwnedParameter(), context.visitDeclarations(ParameterCS.class, object.getOwnedParameter(), null));
-		context.refreshList(csElement.getOwnedException(), context.visitReferences(TypedRefCS.class, object.getRaisedException(), null));
+		csElement.setOwnedSignature(context.visitDeclaration(TemplateSignatureCS.class, ownedTemplateSignature));
+		context.refreshList(csElement.getOwnedParameters(), context.visitDeclarations(ParameterCS.class, object.getOwnedParameter(), null));
+		context.refreshList(csElement.getOwnedExceptions(), context.visitReferences(TypedRefCS.class, object.getRaisedException(), null));
 		//
-		context.refreshList(csElement.getOwnedPrecondition(), context.visitDeclarations(ConstraintCS.class, object.getPrecondition(), null));
+		context.refreshList(csElement.getOwnedPreconditions(), context.visitDeclarations(ConstraintCS.class, object.getPrecondition(), null));
 		List<LanguageExpression> bodyExpressions = object.getBodyExpression() != null ? Collections.singletonList(object.getBodyExpression()) : Collections.<LanguageExpression>emptyList();
-		context.refreshList(csElement.getOwnedBodyExpression(), context.visitDeclarations(SpecificationCS.class, bodyExpressions, null));
-		context.refreshList(csElement.getOwnedPostcondition(), context.visitDeclarations(ConstraintCS.class, object.getPostcondition(), null));
+		context.refreshList(csElement.getOwnedBodyExpressions(), context.visitDeclarations(SpecificationCS.class, bodyExpressions, null));
+		context.refreshList(csElement.getOwnedPostconditions(), context.visitDeclarations(ConstraintCS.class, object.getPostcondition(), null));
 		return csElement;
 	}
 
 	@Override
 	public ElementCS visitPackage(@NonNull org.eclipse.ocl.examples.pivot.Package object) {
 		PackageCS csPackage = context.refreshNamedElement(PackageCS.class, BaseCSPackage.Literals.PACKAGE_CS, object);
-		context.refreshList(csPackage.getOwnedType(), context.visitDeclarations(ClassifierCS.class, object.getOwnedClasses(), null));
+		context.refreshList(csPackage.getOwnedClasses(), context.visitDeclarations(ClassCS.class, object.getOwnedClasses(), null));
 		csPackage.setNsPrefix(object.getNsPrefix());
 		csPackage.setNsURI(object.getURI());
-		context.refreshList(csPackage.getOwnedNestedPackage(), context.visitDeclarations(PackageCS.class, object.getOwnedPackages(), null));
+		context.refreshList(csPackage.getOwnedPackages(), context.visitDeclarations(PackageCS.class, object.getOwnedPackages(), null));
 		return csPackage;
 	}
 
@@ -242,34 +242,34 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 		}
 		if (type instanceof DataType) {
 			AttributeCS csAttribute = context.refreshStructuralFeature(AttributeCS.class, BaseCSPackage.Literals.ATTRIBUTE_CS, object);
-			context.refreshQualifiers(csAttribute.getQualifier(), "id", object.isID());
+			context.refreshQualifiers(csAttribute.getQualifiers(), "id", object.isID());
 			csElement = csAttribute;
 		}
 		else {
 			ReferenceCS csReference = context.refreshStructuralFeature(ReferenceCS.class, BaseCSPackage.Literals.REFERENCE_CS, object);
-			context.refreshQualifiers(csReference.getQualifier(), "composes", object.isComposite());
-			context.refreshQualifiers(csReference.getQualifier(), "resolve", "!resolve", object.isResolveProxies() ? null : Boolean.FALSE);
+			context.refreshQualifiers(csReference.getQualifiers(), "composes", object.isComposite());
+			context.refreshQualifiers(csReference.getQualifiers(), "resolve", "!resolve", object.isResolveProxies() ? null : Boolean.FALSE);
 			Property opposite = object.getOpposite();
 			if (opposite != null) {
 				if (!opposite.isImplicit()) {
-					csReference.setOpposite(opposite);
+					csReference.setReferredOpposite(opposite);
 				}
 				else {
 					// FIXME BUG 377626
 				}
 			}
-			context.refreshList(csReference.getKeys(), object.getKeys());
+			context.refreshList(csReference.getReferredKeys(), object.getKeys());
 			csElement = csReference;
 		}
 		List<LanguageExpression> defaultExpressions = object.getDefaultExpression() != null ? Collections.singletonList(object.getDefaultExpression()) : Collections.<LanguageExpression>emptyList();
-		context.refreshList(csElement.getOwnedDefaultExpression(), context.visitDeclarations(SpecificationCS.class, defaultExpressions, null));
+		context.refreshList(csElement.getOwnedDefaultExpressions(), context.visitDeclarations(SpecificationCS.class, defaultExpressions, null));
 		return csElement;
 	}
 
 	@Override
 	public ElementCS visitTemplateSignature(@NonNull TemplateSignature object) {
 		TemplateSignatureCS csElement = context.refreshElement(TemplateSignatureCS.class, BaseCSPackage.Literals.TEMPLATE_SIGNATURE_CS, object);
-		context.refreshList(csElement.getOwnedTemplateParameter(), context.visitDeclarations(TemplateParameterCS.class, object.getOwnedTemplateParameters(), null));
+		context.refreshList(csElement.getOwnedParameters(), context.visitDeclarations(TemplateParameterCS.class, object.getOwnedTemplateParameters(), null));
 		return csElement;
 	}
 

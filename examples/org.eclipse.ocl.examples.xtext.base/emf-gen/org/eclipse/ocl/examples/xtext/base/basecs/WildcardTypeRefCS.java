@@ -20,8 +20,8 @@ package org.eclipse.ocl.examples.xtext.base.basecs;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.WildcardTypeRefCS#getExtends <em>Extends</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.WildcardTypeRefCS#getSuper <em>Super</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.WildcardTypeRefCS#getOwnedExtends <em>Owned Extends</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.WildcardTypeRefCS#getOwnedSuper <em>Owned Super</em>}</li>
  * </ul>
  * </p>
  *
@@ -31,55 +31,55 @@ package org.eclipse.ocl.examples.xtext.base.basecs;
  */
 public interface WildcardTypeRefCS extends TypeRefCS {
 	/**
-	 * Returns the value of the '<em><b>Extends</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Extends</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Extends</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Extends</em>' containment reference.
-	 * @see #setExtends(TypedRefCS)
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getWildcardTypeRefCS_Extends()
+	 * @return the value of the '<em>Owned Extends</em>' containment reference.
+	 * @see #setOwnedExtends(TypedRefCS)
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getWildcardTypeRefCS_OwnedExtends()
 	 * @model containment="true"
 	 * @generated
 	 */
-	TypedRefCS getExtends();
+	TypedRefCS getOwnedExtends();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.WildcardTypeRefCS#getExtends <em>Extends</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.WildcardTypeRefCS#getOwnedExtends <em>Owned Extends</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Extends</em>' containment reference.
-	 * @see #getExtends()
+	 * @param value the new value of the '<em>Owned Extends</em>' containment reference.
+	 * @see #getOwnedExtends()
 	 * @generated
 	 */
-	void setExtends(TypedRefCS value);
+	void setOwnedExtends(TypedRefCS value);
 
 	/**
-	 * Returns the value of the '<em><b>Super</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Super</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Super</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Super</em>' containment reference.
-	 * @see #setSuper(TypedRefCS)
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getWildcardTypeRefCS_Super()
+	 * @return the value of the '<em>Owned Super</em>' containment reference.
+	 * @see #setOwnedSuper(TypedRefCS)
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getWildcardTypeRefCS_OwnedSuper()
 	 * @model containment="true"
 	 * @generated
 	 */
-	TypedRefCS getSuper();
+	TypedRefCS getOwnedSuper();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.WildcardTypeRefCS#getSuper <em>Super</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.WildcardTypeRefCS#getOwnedSuper <em>Owned Super</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Super</em>' containment reference.
-	 * @see #getSuper()
+	 * @param value the new value of the '<em>Owned Super</em>' containment reference.
+	 * @see #getOwnedSuper()
 	 * @generated
 	 */
-	void setSuper(TypedRefCS value);
+	void setOwnedSuper(TypedRefCS value);
 
 } // WildcardTypeRefCS

@@ -29,8 +29,8 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.WildcardTypeRefCSImpl#getExtends <em>Extends</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.WildcardTypeRefCSImpl#getSuper <em>Super</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.WildcardTypeRefCSImpl#getOwnedExtends <em>Owned Extends</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.WildcardTypeRefCSImpl#getOwnedSuper <em>Owned Super</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,24 +38,24 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  */
 public class WildcardTypeRefCSImpl extends TypeRefCSImpl implements WildcardTypeRefCS {
 	/**
-	 * The cached value of the '{@link #getExtends() <em>Extends</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedExtends() <em>Owned Extends</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExtends()
+	 * @see #getOwnedExtends()
 	 * @generated
 	 * @ordered
 	 */
-	protected TypedRefCS extends_;
+	protected TypedRefCS ownedExtends;
 
 	/**
-	 * The cached value of the '{@link #getSuper() <em>Super</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedSuper() <em>Owned Super</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSuper()
+	 * @see #getOwnedSuper()
 	 * @generated
 	 * @ordered
 	 */
-	protected TypedRefCS super_;
+	protected TypedRefCS ownedSuper;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -81,8 +81,8 @@ public class WildcardTypeRefCSImpl extends TypeRefCSImpl implements WildcardType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypedRefCS getExtends() {
-		return extends_;
+	public TypedRefCS getOwnedExtends() {
+		return ownedExtends;
 	}
 
 	/**
@@ -90,12 +90,13 @@ public class WildcardTypeRefCSImpl extends TypeRefCSImpl implements WildcardType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetExtends(TypedRefCS newExtends, NotificationChain msgs) {
-		TypedRefCS oldExtends = extends_;
-		extends_ = newExtends;
+	public NotificationChain basicSetOwnedExtends(TypedRefCS newOwnedExtends, NotificationChain msgs)
+	{
+		TypedRefCS oldOwnedExtends = ownedExtends;
+		ownedExtends = newOwnedExtends;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSPackage.WILDCARD_TYPE_REF_CS__EXTENDS, oldExtends, newExtends);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSPackage.WILDCARD_TYPE_REF_CS__OWNED_EXTENDS, oldOwnedExtends, newOwnedExtends);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -106,19 +107,19 @@ public class WildcardTypeRefCSImpl extends TypeRefCSImpl implements WildcardType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExtends(TypedRefCS newExtends) {
-		if (newExtends != extends_)
+	public void setOwnedExtends(TypedRefCS newOwnedExtends) {
+		if (newOwnedExtends != ownedExtends)
 		{
 			NotificationChain msgs = null;
-			if (extends_ != null)
-				msgs = ((InternalEObject)extends_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.WILDCARD_TYPE_REF_CS__EXTENDS, null, msgs);
-			if (newExtends != null)
-				msgs = ((InternalEObject)newExtends).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.WILDCARD_TYPE_REF_CS__EXTENDS, null, msgs);
-			msgs = basicSetExtends(newExtends, msgs);
+			if (ownedExtends != null)
+				msgs = ((InternalEObject)ownedExtends).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.WILDCARD_TYPE_REF_CS__OWNED_EXTENDS, null, msgs);
+			if (newOwnedExtends != null)
+				msgs = ((InternalEObject)newOwnedExtends).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.WILDCARD_TYPE_REF_CS__OWNED_EXTENDS, null, msgs);
+			msgs = basicSetOwnedExtends(newOwnedExtends, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.WILDCARD_TYPE_REF_CS__EXTENDS, newExtends, newExtends));
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.WILDCARD_TYPE_REF_CS__OWNED_EXTENDS, newOwnedExtends, newOwnedExtends));
 	}
 
 	/**
@@ -126,8 +127,8 @@ public class WildcardTypeRefCSImpl extends TypeRefCSImpl implements WildcardType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypedRefCS getSuper() {
-		return super_;
+	public TypedRefCS getOwnedSuper() {
+		return ownedSuper;
 	}
 
 	/**
@@ -135,12 +136,13 @@ public class WildcardTypeRefCSImpl extends TypeRefCSImpl implements WildcardType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSuper(TypedRefCS newSuper, NotificationChain msgs) {
-		TypedRefCS oldSuper = super_;
-		super_ = newSuper;
+	public NotificationChain basicSetOwnedSuper(TypedRefCS newOwnedSuper, NotificationChain msgs)
+	{
+		TypedRefCS oldOwnedSuper = ownedSuper;
+		ownedSuper = newOwnedSuper;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSPackage.WILDCARD_TYPE_REF_CS__SUPER, oldSuper, newSuper);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSPackage.WILDCARD_TYPE_REF_CS__OWNED_SUPER, oldOwnedSuper, newOwnedSuper);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -151,19 +153,19 @@ public class WildcardTypeRefCSImpl extends TypeRefCSImpl implements WildcardType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSuper(TypedRefCS newSuper) {
-		if (newSuper != super_)
+	public void setOwnedSuper(TypedRefCS newOwnedSuper) {
+		if (newOwnedSuper != ownedSuper)
 		{
 			NotificationChain msgs = null;
-			if (super_ != null)
-				msgs = ((InternalEObject)super_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.WILDCARD_TYPE_REF_CS__SUPER, null, msgs);
-			if (newSuper != null)
-				msgs = ((InternalEObject)newSuper).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.WILDCARD_TYPE_REF_CS__SUPER, null, msgs);
-			msgs = basicSetSuper(newSuper, msgs);
+			if (ownedSuper != null)
+				msgs = ((InternalEObject)ownedSuper).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.WILDCARD_TYPE_REF_CS__OWNED_SUPER, null, msgs);
+			if (newOwnedSuper != null)
+				msgs = ((InternalEObject)newOwnedSuper).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.WILDCARD_TYPE_REF_CS__OWNED_SUPER, null, msgs);
+			msgs = basicSetOwnedSuper(newOwnedSuper, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.WILDCARD_TYPE_REF_CS__SUPER, newSuper, newSuper));
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.WILDCARD_TYPE_REF_CS__OWNED_SUPER, newOwnedSuper, newOwnedSuper));
 	}
 
 	/**
@@ -175,10 +177,10 @@ public class WildcardTypeRefCSImpl extends TypeRefCSImpl implements WildcardType
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case BaseCSPackage.WILDCARD_TYPE_REF_CS__EXTENDS:
-				return basicSetExtends(null, msgs);
-			case BaseCSPackage.WILDCARD_TYPE_REF_CS__SUPER:
-				return basicSetSuper(null, msgs);
+			case BaseCSPackage.WILDCARD_TYPE_REF_CS__OWNED_EXTENDS:
+				return basicSetOwnedExtends(null, msgs);
+			case BaseCSPackage.WILDCARD_TYPE_REF_CS__OWNED_SUPER:
+				return basicSetOwnedSuper(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -192,10 +194,10 @@ public class WildcardTypeRefCSImpl extends TypeRefCSImpl implements WildcardType
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case BaseCSPackage.WILDCARD_TYPE_REF_CS__EXTENDS:
-				return getExtends();
-			case BaseCSPackage.WILDCARD_TYPE_REF_CS__SUPER:
-				return getSuper();
+			case BaseCSPackage.WILDCARD_TYPE_REF_CS__OWNED_EXTENDS:
+				return getOwnedExtends();
+			case BaseCSPackage.WILDCARD_TYPE_REF_CS__OWNED_SUPER:
+				return getOwnedSuper();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -209,11 +211,11 @@ public class WildcardTypeRefCSImpl extends TypeRefCSImpl implements WildcardType
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case BaseCSPackage.WILDCARD_TYPE_REF_CS__EXTENDS:
-				setExtends((TypedRefCS)newValue);
+			case BaseCSPackage.WILDCARD_TYPE_REF_CS__OWNED_EXTENDS:
+				setOwnedExtends((TypedRefCS)newValue);
 				return;
-			case BaseCSPackage.WILDCARD_TYPE_REF_CS__SUPER:
-				setSuper((TypedRefCS)newValue);
+			case BaseCSPackage.WILDCARD_TYPE_REF_CS__OWNED_SUPER:
+				setOwnedSuper((TypedRefCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -228,11 +230,11 @@ public class WildcardTypeRefCSImpl extends TypeRefCSImpl implements WildcardType
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.WILDCARD_TYPE_REF_CS__EXTENDS:
-				setExtends((TypedRefCS)null);
+			case BaseCSPackage.WILDCARD_TYPE_REF_CS__OWNED_EXTENDS:
+				setOwnedExtends((TypedRefCS)null);
 				return;
-			case BaseCSPackage.WILDCARD_TYPE_REF_CS__SUPER:
-				setSuper((TypedRefCS)null);
+			case BaseCSPackage.WILDCARD_TYPE_REF_CS__OWNED_SUPER:
+				setOwnedSuper((TypedRefCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -247,10 +249,10 @@ public class WildcardTypeRefCSImpl extends TypeRefCSImpl implements WildcardType
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.WILDCARD_TYPE_REF_CS__EXTENDS:
-				return extends_ != null;
-			case BaseCSPackage.WILDCARD_TYPE_REF_CS__SUPER:
-				return super_ != null;
+			case BaseCSPackage.WILDCARD_TYPE_REF_CS__OWNED_EXTENDS:
+				return ownedExtends != null;
+			case BaseCSPackage.WILDCARD_TYPE_REF_CS__OWNED_SUPER:
+				return ownedSuper != null;
 		}
 		return super.eIsSet(featureID);
 	}

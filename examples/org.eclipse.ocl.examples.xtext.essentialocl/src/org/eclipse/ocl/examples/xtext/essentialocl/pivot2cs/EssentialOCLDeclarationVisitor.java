@@ -209,8 +209,8 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 	protected @NonNull PathNameCS createPathNameCS(NamedElement asNamedElement) {
 		PathNameCS csPathName = BaseCSFactory.eINSTANCE.createPathNameCS();
 		PathElementCS csPathElement = BaseCSFactory.eINSTANCE.createPathElementCS();
-		csPathElement.setElement(asNamedElement);
-		csPathName.getPath().add(csPathElement);
+		csPathElement.setReferredElement(asNamedElement);
+		csPathName.getOwnedPathElements().add(csPathElement);
 		return csPathName;
 	}
 
@@ -243,7 +243,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 				OCLExpression statusExpression = statusPart.getInitExpression();
 				ExpSpecificationCS csMessage = context.refreshElement(ExpSpecificationCS.class, EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, specification);
 				csMessage.setExprString(messageExpression != null ? PrettyPrinter.print(messageExpression) : "null");
-				csElement.setMessageSpecification(csMessage);
+				csElement.setOwnedMessageSpecification(csMessage);
 				csStatus = context.refreshElement(ExpSpecificationCS.class, EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, specification);
 				csStatus.setExprString(statusExpression != null ? PrettyPrinter.print(statusExpression) : "null");
 			}
@@ -276,7 +276,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 									messageString = messageString.substring(0, lastIndex); 
 								}
 								csMessage.setExprString(messageString);
-								csElement.setMessageSpecification(csMessage);
+								csElement.setOwnedMessageSpecification(csMessage);
 								StringBuilder status = new StringBuilder();			
 								status.append(lines[i].substring(lines[i].indexOf("=")+1, lines[i].length()).trim());
 								for (i++; i < lastLineNumber; i++) {
@@ -295,7 +295,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 			}
 		}
 //		csElement.setSpecification(context.visitDeclaration(SpecificationCS.class, specification));	
-		csElement.setSpecification(csStatus);	
+		csElement.setOwnedSpecification(csStatus);	
 		return csElement;
 	}
 

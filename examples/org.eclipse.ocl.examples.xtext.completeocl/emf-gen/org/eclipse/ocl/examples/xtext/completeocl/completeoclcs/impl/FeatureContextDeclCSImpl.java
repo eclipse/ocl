@@ -16,7 +16,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.ocl.examples.xtext.base.basecs.ClassCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.FeatureContextDeclCS;
@@ -47,7 +47,7 @@ public abstract class FeatureContextDeclCSImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected ClassCS class_;
+	protected StructuredClassCS class_;
 
 	/**
 	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' containment reference.
@@ -83,11 +83,11 @@ public abstract class FeatureContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClassCS getClass_() {
+	public StructuredClassCS getClass_() {
 		if (class_ != null && class_.eIsProxy())
 		{
 			InternalEObject oldClass = (InternalEObject)class_;
-			class_ = (ClassCS)eResolveProxy(oldClass);
+			class_ = (StructuredClassCS)eResolveProxy(oldClass);
 			if (class_ != oldClass)
 			{
 				if (eNotificationRequired())
@@ -102,7 +102,7 @@ public abstract class FeatureContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClassCS basicGetClass() {
+	public StructuredClassCS basicGetClass() {
 		return class_;
 	}
 
@@ -111,8 +111,8 @@ public abstract class FeatureContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setClass(ClassCS newClass) {
-		ClassCS oldClass = class_;
+	public void setClass(StructuredClassCS newClass) {
+		StructuredClassCS oldClass = class_;
 		class_ = newClass;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSPackage.FEATURE_CONTEXT_DECL_CS__CLASS, oldClass, class_));
@@ -208,7 +208,7 @@ public abstract class FeatureContextDeclCSImpl
 		switch (featureID)
 		{
 			case CompleteOCLCSPackage.FEATURE_CONTEXT_DECL_CS__CLASS:
-				setClass((ClassCS)newValue);
+				setClass((StructuredClassCS)newValue);
 				return;
 			case CompleteOCLCSPackage.FEATURE_CONTEXT_DECL_CS__OWNED_TYPE:
 				setOwnedType((TypedRefCS)newValue);
@@ -227,7 +227,7 @@ public abstract class FeatureContextDeclCSImpl
 		switch (featureID)
 		{
 			case CompleteOCLCSPackage.FEATURE_CONTEXT_DECL_CS__CLASS:
-				setClass((ClassCS)null);
+				setClass((StructuredClassCS)null);
 				return;
 			case CompleteOCLCSPackage.FEATURE_CONTEXT_DECL_CS__OWNED_TYPE:
 				setOwnedType((TypedRefCS)null);

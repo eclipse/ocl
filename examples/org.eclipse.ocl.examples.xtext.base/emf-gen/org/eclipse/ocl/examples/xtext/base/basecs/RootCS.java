@@ -20,8 +20,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.RootCS#getOwnedImport <em>Owned Import</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.RootCS#getOwnedLibrary <em>Owned Library</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.RootCS#getOwnedImports <em>Owned Imports</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.RootCS#getOwnedLibraries <em>Owned Libraries</em>}</li>
  * </ul>
  * </p>
  *
@@ -34,7 +34,7 @@ import org.eclipse.emf.common.util.EList;
 public interface RootCS extends ModelElementCS
 {
 	/**
-	 * Returns the value of the '<em><b>Owned Import</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Imports</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.ImportCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -42,15 +42,15 @@ public interface RootCS extends ModelElementCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Import</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getRootCS_OwnedImport()
+	 * @return the value of the '<em>Owned Imports</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getRootCS_OwnedImports()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ImportCS> getOwnedImport();
+	EList<ImportCS> getOwnedImports();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Library</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Libraries</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.LibraryCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -58,11 +58,11 @@ public interface RootCS extends ModelElementCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Library</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getRootCS_OwnedLibrary()
+	 * @return the value of the '<em>Owned Libraries</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getRootCS_OwnedLibraries()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<LibraryCS> getOwnedLibrary();
+	EList<LibraryCS> getOwnedLibraries();
 
 } // RootCS

@@ -27,7 +27,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TemplateParameterCSImpl#getOwningTemplateSignature <em>Owning Template Signature</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TemplateParameterCSImpl#getOwningSignature <em>Owning Signature</em>}</li>
  * </ul>
  * </p>
  *
@@ -61,9 +61,9 @@ public abstract class TemplateParameterCSImpl extends NamedElementCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateSignatureCS getOwningTemplateSignature()
+	public TemplateSignatureCS getOwningSignature()
 	{
-		if (eContainerFeatureID() != BaseCSPackage.TEMPLATE_PARAMETER_CS__OWNING_TEMPLATE_SIGNATURE) return null;
+		if (eContainerFeatureID() != BaseCSPackage.TEMPLATE_PARAMETER_CS__OWNING_SIGNATURE) return null;
 		return (TemplateSignatureCS)eInternalContainer();
 	}
 
@@ -72,9 +72,9 @@ public abstract class TemplateParameterCSImpl extends NamedElementCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwningTemplateSignature(TemplateSignatureCS newOwningTemplateSignature, NotificationChain msgs)
+	public NotificationChain basicSetOwningSignature(TemplateSignatureCS newOwningSignature, NotificationChain msgs)
 	{
-		msgs = eBasicSetContainer((InternalEObject)newOwningTemplateSignature, BaseCSPackage.TEMPLATE_PARAMETER_CS__OWNING_TEMPLATE_SIGNATURE, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newOwningSignature, BaseCSPackage.TEMPLATE_PARAMETER_CS__OWNING_SIGNATURE, msgs);
 		return msgs;
 	}
 
@@ -83,22 +83,22 @@ public abstract class TemplateParameterCSImpl extends NamedElementCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwningTemplateSignature(TemplateSignatureCS newOwningTemplateSignature)
+	public void setOwningSignature(TemplateSignatureCS newOwningSignature)
 	{
-		if (newOwningTemplateSignature != eInternalContainer() || (eContainerFeatureID() != BaseCSPackage.TEMPLATE_PARAMETER_CS__OWNING_TEMPLATE_SIGNATURE && newOwningTemplateSignature != null))
+		if (newOwningSignature != eInternalContainer() || (eContainerFeatureID() != BaseCSPackage.TEMPLATE_PARAMETER_CS__OWNING_SIGNATURE && newOwningSignature != null))
 		{
-			if (EcoreUtil.isAncestor(this, newOwningTemplateSignature))
+			if (EcoreUtil.isAncestor(this, newOwningSignature))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newOwningTemplateSignature != null)
-				msgs = ((InternalEObject)newOwningTemplateSignature).eInverseAdd(this, BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNED_TEMPLATE_PARAMETER, TemplateSignatureCS.class, msgs);
-			msgs = basicSetOwningTemplateSignature(newOwningTemplateSignature, msgs);
+			if (newOwningSignature != null)
+				msgs = ((InternalEObject)newOwningSignature).eInverseAdd(this, BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNED_PARAMETERS, TemplateSignatureCS.class, msgs);
+			msgs = basicSetOwningSignature(newOwningSignature, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.TEMPLATE_PARAMETER_CS__OWNING_TEMPLATE_SIGNATURE, newOwningTemplateSignature, newOwningTemplateSignature));
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.TEMPLATE_PARAMETER_CS__OWNING_SIGNATURE, newOwningSignature, newOwningSignature));
 	}
 
 	/**
@@ -111,10 +111,10 @@ public abstract class TemplateParameterCSImpl extends NamedElementCSImpl impleme
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.TEMPLATE_PARAMETER_CS__OWNING_TEMPLATE_SIGNATURE:
+			case BaseCSPackage.TEMPLATE_PARAMETER_CS__OWNING_SIGNATURE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwningTemplateSignature((TemplateSignatureCS)otherEnd, msgs);
+				return basicSetOwningSignature((TemplateSignatureCS)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -129,8 +129,8 @@ public abstract class TemplateParameterCSImpl extends NamedElementCSImpl impleme
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.TEMPLATE_PARAMETER_CS__OWNING_TEMPLATE_SIGNATURE:
-				return basicSetOwningTemplateSignature(null, msgs);
+			case BaseCSPackage.TEMPLATE_PARAMETER_CS__OWNING_SIGNATURE:
+				return basicSetOwningSignature(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -145,8 +145,8 @@ public abstract class TemplateParameterCSImpl extends NamedElementCSImpl impleme
 	{
 		switch (eContainerFeatureID())
 		{
-			case BaseCSPackage.TEMPLATE_PARAMETER_CS__OWNING_TEMPLATE_SIGNATURE:
-				return eInternalContainer().eInverseRemove(this, BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNED_TEMPLATE_PARAMETER, TemplateSignatureCS.class, msgs);
+			case BaseCSPackage.TEMPLATE_PARAMETER_CS__OWNING_SIGNATURE:
+				return eInternalContainer().eInverseRemove(this, BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNED_PARAMETERS, TemplateSignatureCS.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -161,8 +161,8 @@ public abstract class TemplateParameterCSImpl extends NamedElementCSImpl impleme
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.TEMPLATE_PARAMETER_CS__OWNING_TEMPLATE_SIGNATURE:
-				return getOwningTemplateSignature();
+			case BaseCSPackage.TEMPLATE_PARAMETER_CS__OWNING_SIGNATURE:
+				return getOwningSignature();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -177,8 +177,8 @@ public abstract class TemplateParameterCSImpl extends NamedElementCSImpl impleme
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.TEMPLATE_PARAMETER_CS__OWNING_TEMPLATE_SIGNATURE:
-				setOwningTemplateSignature((TemplateSignatureCS)newValue);
+			case BaseCSPackage.TEMPLATE_PARAMETER_CS__OWNING_SIGNATURE:
+				setOwningSignature((TemplateSignatureCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -194,8 +194,8 @@ public abstract class TemplateParameterCSImpl extends NamedElementCSImpl impleme
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.TEMPLATE_PARAMETER_CS__OWNING_TEMPLATE_SIGNATURE:
-				setOwningTemplateSignature((TemplateSignatureCS)null);
+			case BaseCSPackage.TEMPLATE_PARAMETER_CS__OWNING_SIGNATURE:
+				setOwningSignature((TemplateSignatureCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -211,8 +211,8 @@ public abstract class TemplateParameterCSImpl extends NamedElementCSImpl impleme
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.TEMPLATE_PARAMETER_CS__OWNING_TEMPLATE_SIGNATURE:
-				return getOwningTemplateSignature() != null;
+			case BaseCSPackage.TEMPLATE_PARAMETER_CS__OWNING_SIGNATURE:
+				return getOwningSignature() != null;
 		}
 		return super.eIsSet(featureID);
 	}

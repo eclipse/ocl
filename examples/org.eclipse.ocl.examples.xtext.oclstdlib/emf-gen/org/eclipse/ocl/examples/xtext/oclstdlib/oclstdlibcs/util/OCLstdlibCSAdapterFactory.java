@@ -18,8 +18,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.domain.elements.Nameable;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.xtext.base.basecs.AttributeCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ClassCS;
-import org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.FeatureCS;
@@ -212,9 +212,9 @@ public class OCLstdlibCSAdapterFactory
 				return createTemplateableElementCSAdapter();
 			}
 			@Override
-			public Adapter caseClassifierCS(ClassifierCS object)
+			public Adapter caseClassCS(ClassCS object)
 			{
-				return createClassifierCSAdapter();
+				return createClassCSAdapter();
 			}
 			@Override
 			public Adapter caseNamespaceCS(NamespaceCS object)
@@ -222,9 +222,9 @@ public class OCLstdlibCSAdapterFactory
 				return createNamespaceCSAdapter();
 			}
 			@Override
-			public Adapter caseClassCS(ClassCS object)
+			public Adapter caseStructuredClassCS(StructuredClassCS object)
 			{
-				return createClassCSAdapter();
+				return createStructuredClassCSAdapter();
 			}
 			@Override
 			public Adapter caseConstraintCS(ConstraintCS object)
@@ -566,16 +566,17 @@ public class OCLstdlibCSAdapterFactory
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS <em>Classifier CS</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.basecs.ClassCS <em>Class CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ClassCS
 	 * @generated
 	 */
-	public Adapter createClassifierCSAdapter() {
+	public Adapter createClassCSAdapter()
+	{
 		return null;
 	}
 
@@ -723,16 +724,17 @@ public class OCLstdlibCSAdapterFactory
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.basecs.ClassCS <em>Class CS</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS <em>Structured Class CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ClassCS
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS
 	 * @generated
 	 */
-	public Adapter createClassCSAdapter() {
+	public Adapter createStructuredClassCSAdapter()
+	{
 		return null;
 	}
 

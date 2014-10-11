@@ -45,7 +45,7 @@ public abstract class AbstractExtendingOCLstdlibCSVisitor<R, C>
 	}
 
 	public @Nullable R visitLibClassCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibClassCS object) {
-		return visitClassCS(object);
+		return visitStructuredClassCS(object);
 	}
 
 	public @Nullable R visitLibConstraintCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibConstraintCS object) {

@@ -658,7 +658,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 
 	public void handleVisitNamedElement(@NonNull NamedElementCS csNamedElement, @NonNull NamedElement pivotElement) {
 		List<Element> pivotAnnotations = pivotElement.getOwnedAnnotation();
-		List<AnnotationElementCS> csAnnotations = csNamedElement.getOwnedAnnotation();
+		List<AnnotationElementCS> csAnnotations = csNamedElement.getOwnedAnnotations();
 //		if ((csAnnotations.size() <= 1) && (pivotAnnotations.size() <= 1)) {
 			refreshPivotList(Annotation.class, pivotAnnotations, csAnnotations);
 /*		}
@@ -729,7 +729,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 	public void installPivotTypeWithMultiplicity(@NonNull Type pivotType, @NonNull TypedRefCS csElement) {
 		int lower = 1;;
 		int upper = 1;
-		MultiplicityCS multiplicity = csElement.getMultiplicity();
+		MultiplicityCS multiplicity = csElement.getOwnedMultiplicity();
 		if (multiplicity != null) {
 			lower = multiplicity.getLower();
 			upper = multiplicity.getUpper();
@@ -777,7 +777,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 		if (csOperation == null) {
 			return false;
 		}
-		for (ParameterCS csParameter : csOperation.getOwnedParameter()) {
+		for (ParameterCS csParameter : csOperation.getOwnedParameters()) {
 			Parameter pivot = PivotUtil.getPivot(Parameter.class, csParameter);
 			if (pivot == null) {
 				return true;
@@ -1044,7 +1044,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 	}
 
 	public void refreshTemplateSignature(@NonNull TemplateableElementCS csTemplateableElement, @NonNull TemplateableElement pivotTemplateableElement) {
-		TemplateSignatureCS csTemplateSignature = csTemplateableElement.getOwnedTemplateSignature();
+		TemplateSignatureCS csTemplateSignature = csTemplateableElement.getOwnedSignature();
 		if (csTemplateSignature == null) {
 			if (pivotTemplateableElement.getOwnedTemplateSignature() != null) {
 				pivotTemplateableElement.setOwnedTemplateSignature(null);
@@ -1091,7 +1091,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 		int csIMax = csTemplateBindings.size();
 		int pivotIMax = templateSignatures.size();
 		if (csIMax != pivotIMax) {
-			TypedTypeRefCS owningTemplateBindableElement = csTemplateBindings.get(0).getOwningTemplateBindableElement();
+			TypedTypeRefCS owningTemplateBindableElement = csTemplateBindings.get(0).getOwningElement();
 			String string = owningTemplateBindableElement != null ? owningTemplateBindableElement.toString() : "<null>";
 			logger.warn("Inconsistent template bindings size for " + string); //$NON-NLS-1$
 		}
@@ -1128,7 +1128,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 				installPivotReference(csTemplateBinding, templateBinding, BaseCSPackage.Literals.PIVOTABLE_ELEMENT_CS__PIVOT);
 				@SuppressWarnings("null") @NonNull List<TemplateParameterSubstitution> parameterSubstitutions = templateBinding.getOwnedTemplateParameterSubstitutions();
 				@NonNull List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
-				@SuppressWarnings("null") @NonNull List<TemplateParameterSubstitutionCS> csParameterSubstitutions = csTemplateBinding.getOwnedParameterSubstitution();
+				@SuppressWarnings("null") @NonNull List<TemplateParameterSubstitutionCS> csParameterSubstitutions = csTemplateBinding.getOwnedSubstitutions();
 				specializeTemplateParameterSubstitutions(parameterSubstitutions, templateParameters, csParameterSubstitutions);
 				assert templateSignatures.get(i) == templateBindings.get(i).getTemplateSignature();
 			}
@@ -1199,7 +1199,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 	protected @Nullable TemplateableElement specializeTemplates(@NonNull TypedTypeRefCS csElement) {
 		TemplateBindingCS ownedTemplateBinding = csElement.getOwnedTemplateBinding();
 		assert ownedTemplateBinding != null;
-		org.eclipse.ocl.examples.pivot.Class unspecializedPivotElement = (org.eclipse.ocl.examples.pivot.Class)csElement.getType();	// FIXME cast
+		org.eclipse.ocl.examples.pivot.Class unspecializedPivotElement = (org.eclipse.ocl.examples.pivot.Class)csElement.getReferredType();	// FIXME cast
 //		logger.trace("Specializing " + moniker); //$NON-NLS-1$
 		if ((unspecializedPivotElement == null) || unspecializedPivotElement.eIsProxy()) {
 			String moniker = csElement.toString();
@@ -1212,20 +1212,20 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 		org.eclipse.ocl.examples.pivot.Class specializedPivotElement = PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Class.class, csElement);
 		if (specializedPivotElement == null) {
 			if (unspecializedPivotElement instanceof CollectionType) {
-				TemplateParameterSubstitutionCS csTemplateParameterSubstitution = ownedTemplateBinding.getOwnedParameterSubstitution().get(0);
+				TemplateParameterSubstitutionCS csTemplateParameterSubstitution = ownedTemplateBinding.getOwnedSubstitutions().get(0);
 				Type templateArgument = PivotUtil.getPivot(Type.class, csTemplateParameterSubstitution.getOwnedActualParameter());
 				specializedPivotElement = templateArgument != null ? completeEnvironment.getCollectionType((CollectionType) unspecializedPivotElement, templateArgument, null, null) : unspecializedPivotElement;
 			}
 			else {
 				List<Type> templateArguments = new ArrayList<Type>();
-				for (TemplateParameterSubstitutionCS csTemplateParameterSubstitution : ownedTemplateBinding.getOwnedParameterSubstitution()) {
+				for (TemplateParameterSubstitutionCS csTemplateParameterSubstitution : ownedTemplateBinding.getOwnedSubstitutions()) {
 					Type templateArgument = PivotUtil.getPivot(Type.class, csTemplateParameterSubstitution.getOwnedActualParameter());
 					templateArguments.add(templateArgument);
 				}
 				specializedPivotElement = metaModelManager.getLibraryType(unspecializedPivotElement, templateArguments);
 			}
 		}
-		installPivotReference(csElement, specializedPivotElement, BaseCSPackage.Literals.TYPED_TYPE_REF_CS__TYPE);
+		installPivotReference(csElement, specializedPivotElement, BaseCSPackage.Literals.TYPED_TYPE_REF_CS__REFERRED_TYPE);
 		if (specializedPivotElement != unspecializedPivotElement) {
 			//
 			//	Refresh the pivot specialization bindings and parameter substitutions

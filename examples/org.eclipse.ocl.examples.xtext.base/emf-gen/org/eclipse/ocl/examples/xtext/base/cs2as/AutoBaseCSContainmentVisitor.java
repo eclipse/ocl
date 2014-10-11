@@ -11,7 +11,7 @@ package org.eclipse.ocl.examples.xtext.base.cs2as;
 
 import java.util.Iterator;
 import java.util.List;
-import org.eclipse.emf.common.util.Enumerator;
+
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
@@ -19,6 +19,7 @@ import org.eclipse.ocl.examples.domain.ids.ClassId;
 import org.eclipse.ocl.examples.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.domain.ids.NsURIPackageId;
+import org.eclipse.ocl.examples.domain.ids.PropertyId;
 import org.eclipse.ocl.examples.domain.ids.RootPackageId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
@@ -39,8 +40,8 @@ import org.eclipse.ocl.examples.xtext.base.basecs.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
+import org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ClassCS;
-import org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ContextLessElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.DataTypeCS;
@@ -91,9 +92,6 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.WildcardTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.AbstractBaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.VisitableCS;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
-import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 
 public class AutoBaseCSContainmentVisitor
 	extends AbstractBaseCSVisitor<Continuation<?>, CS2PivotConversion>
@@ -108,6 +106,7 @@ public class AutoBaseCSContainmentVisitor
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_OperationCS = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_3_1_0_s_BaseCST.getClassId("OperationCS", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Package = PACKid_$metamodel$.getClassId("Package", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_PackageCS = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_3_1_0_s_BaseCST.getClassId("PackageCS", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_PackageOwnerCS = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_3_1_0_s_BaseCST.getClassId("PackageOwnerCS", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Parameter = PACKid_$metamodel$.getClassId("Parameter", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_ParameterCS = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_3_1_0_s_BaseCST.getClassId("ParameterCS", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Property = PACKid_$metamodel$.getClassId("Property", 0);
@@ -115,6 +114,7 @@ public class AutoBaseCSContainmentVisitor
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_EnumerationLiteral = TypeId.ORDERED_SET.getSpecializedId(CLSSid_EnumerationLiteral);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_EnumerationLiteralCS = TypeId.ORDERED_SET.getSpecializedId(CLSSid_EnumerationLiteralCS);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_PackageCS = TypeId.ORDERED_SET.getSpecializedId(CLSSid_PackageCS);
+    public static final @NonNull /*@NonInvalid*/ PropertyId PROPid_ownedPackages = CLSSid_PackageOwnerCS.getPropertyId("ownedPackages");
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_EnumerationLiteral = TypeId.SEQUENCE.getSpecializedId(CLSSid_EnumerationLiteral);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_Package = TypeId.SEQUENCE.getSpecializedId(CLSSid_Package);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Package = TypeId.SET.getSpecializedId(CLSSid_Package);
@@ -151,10 +151,6 @@ public class AutoBaseCSContainmentVisitor
     
     public @Nullable Continuation<?> visitClassCS(@NonNull ClassCS self) {
         throw new UnsupportedOperationException("visitClassCS is not supported by " + getClass().getName());
-    }
-    
-    public @Nullable Continuation<?> visitClassifierCS(@NonNull ClassifierCS self) {
-        throw new UnsupportedOperationException("visitClassifierCS is not supported by " + getClass().getName());
     }
     
     public @Nullable Continuation<?> visitConstraintCS(@NonNull ConstraintCS self) {
@@ -363,11 +359,12 @@ public class AutoBaseCSContainmentVisitor
         //
         // Package::ownedPackages
         //
-        final @Nullable /*@Thrown*/ List<PackageCS> ownedNestedPackage = self.getOwnedNestedPackage();
-        assert ownedNestedPackage != null;
-        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedNestedPackage = idResolver.createOrderedSetOfAll(ORD_CLSSid_PackageCS, ownedNestedPackage);
+//        final @NonNull /*@Thrown*/ List<PackageCS> ownedPackages = (List<PackageCS>)IMPPROPid_ownedPackages.evaluate(evaluator, ORD_CLSSid_PackageCS, self);
+        final @Nullable /*@Thrown*/ List<PackageCS> ownedPackages = self.getOwnedPackages();
+        assert ownedPackages != null;
+        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedPackages = idResolver.createOrderedSetOfAll(ORD_CLSSid_PackageCS, ownedPackages);
         @NonNull /*@Thrown*/ SequenceValue.Accumulator accumulator = ValuesUtil.createSequenceAccumulatorValue(SEQ_CLSSid_Package);
-        @Nullable Iterator<?> ITERATOR__1 = BOXED_ownedNestedPackage.iterator();
+        @Nullable Iterator<?> ITERATOR__1 = BOXED_ownedPackages.iterator();
         @NonNull /*@Thrown*/ SequenceValue collect;
         while (true) {
             if (!ITERATOR__1.hasNext()) {
@@ -460,6 +457,10 @@ public class AutoBaseCSContainmentVisitor
         throw new UnsupportedOperationException("visitSpecificationCS is not supported by " + getClass().getName());
     }
     
+    public @Nullable Continuation<?> visitStructuredClassCS(@NonNull StructuredClassCS self) {
+        throw new UnsupportedOperationException("visitStructuredClassCS is not supported by " + getClass().getName());
+    }
+    
     public @Nullable Continuation<?> visitStructuralFeatureCS(@NonNull StructuralFeatureCS self) {
         //
         // Property
@@ -545,10 +546,6 @@ public class AutoBaseCSContainmentVisitor
     
     public @Nullable Continuation<?> visitWildcardTypeRefCS(@NonNull WildcardTypeRefCS self) {
         throw new UnsupportedOperationException("visitWildcardTypeRefCS is not supported by " + getClass().getName());
-    }
-    
-    public @Nullable Continuation<?> visitIteratorKind(@NonNull Enumerator self) {
-        throw new UnsupportedOperationException("visitIteratorKind is not supported by " + getClass().getName());
     }
     
     public @Nullable Continuation<?> visitScopeFilter(@NonNull ScopeFilter self) {

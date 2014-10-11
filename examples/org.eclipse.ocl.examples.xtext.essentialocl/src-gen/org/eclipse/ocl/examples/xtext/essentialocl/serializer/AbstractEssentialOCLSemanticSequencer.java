@@ -493,7 +493,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends AbstractDele
 	
 	/**
 	 * Constraint:
-	 *     (name=CollectionTypeIdentifier ownedType=TypeExpCS? multiplicity=MultiplicityCS?)
+	 *     (name=CollectionTypeIdentifier ownedType=TypeExpCS? ownedMultiplicity=MultiplicityCS?)
 	 */
 	protected void sequence_CollectionTypeCS_TypeExpCS(EObject context, CollectionTypeCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -502,7 +502,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends AbstractDele
 	
 	/**
 	 * Constraint:
-	 *     (name=CollectionTypeIdentifier ownedType=TypeExpCS? multiplicity=MultiplicityCS?)
+	 *     (name=CollectionTypeIdentifier ownedType=TypeExpCS? ownedMultiplicity=MultiplicityCS?)
 	 */
 	protected void sequence_CollectionTypeCS_TypeLiteralWithMultiplicityCS(EObject context, CollectionTypeCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -609,7 +609,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends AbstractDele
 	
 	/**
 	 * Constraint:
-	 *     element=[NamedElement|UnrestrictedName]
+	 *     referredElement=[NamedElement|UnrestrictedName]
 	 */
 	protected void sequence_FirstPathElementCS(EObject context, PathElementCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -750,7 +750,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends AbstractDele
 	
 	/**
 	 * Constraint:
-	 *     element=[NamedElement|UnreservedName]
+	 *     referredElement=[NamedElement|UnreservedName]
 	 */
 	protected void sequence_NextPathElementCS(EObject context, PathElementCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -777,7 +777,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends AbstractDele
 	
 	/**
 	 * Constraint:
-	 *     (path+=FirstPathElementCS path+=NextPathElementCS*)
+	 *     (ownedPathElements+=FirstPathElementCS ownedPathElements+=NextPathElementCS*)
 	 */
 	protected void sequence_PathNameCS(EObject context, PathNameCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -804,7 +804,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends AbstractDele
 	
 	/**
 	 * Constraint:
-	 *     (name=PrimitiveTypeIdentifier multiplicity=MultiplicityCS?)
+	 *     (name=PrimitiveTypeIdentifier ownedMultiplicity=MultiplicityCS?)
 	 */
 	protected void sequence_PrimitiveTypeCS_TypeExpCS(EObject context, PrimitiveTypeRefCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -813,7 +813,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends AbstractDele
 	
 	/**
 	 * Constraint:
-	 *     (name=PrimitiveTypeIdentifier multiplicity=MultiplicityCS?)
+	 *     (name=PrimitiveTypeIdentifier ownedMultiplicity=MultiplicityCS?)
 	 */
 	protected void sequence_PrimitiveTypeCS_TypeLiteralWithMultiplicityCS(EObject context, PrimitiveTypeRefCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -901,7 +901,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends AbstractDele
 	
 	/**
 	 * Constraint:
-	 *     (name='Tuple' (ownedParts+=TuplePartCS ownedParts+=TuplePartCS*)? multiplicity=MultiplicityCS?)
+	 *     (name='Tuple' (ownedParts+=TuplePartCS ownedParts+=TuplePartCS*)? ownedMultiplicity=MultiplicityCS?)
 	 */
 	protected void sequence_TupleTypeCS_TypeExpCS(EObject context, TupleTypeCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -910,7 +910,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends AbstractDele
 	
 	/**
 	 * Constraint:
-	 *     (name='Tuple' (ownedParts+=TuplePartCS ownedParts+=TuplePartCS*)? multiplicity=MultiplicityCS?)
+	 *     (name='Tuple' (ownedParts+=TuplePartCS ownedParts+=TuplePartCS*)? ownedMultiplicity=MultiplicityCS?)
 	 */
 	protected void sequence_TupleTypeCS_TypeLiteralWithMultiplicityCS(EObject context, TupleTypeCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -919,7 +919,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends AbstractDele
 	
 	/**
 	 * Constraint:
-	 *     (ownedPathName=PathNameCS multiplicity=MultiplicityCS?)
+	 *     (ownedPathName=PathNameCS ownedMultiplicity=MultiplicityCS?)
 	 */
 	protected void sequence_TypeExpCS_TypeNameExpCS(EObject context, TypeNameExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -946,7 +946,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends AbstractDele
 	
 	/**
 	 * Constraint:
-	 *     element=[NamedElement|UnrestrictedName]
+	 *     referredElement=[NamedElement|UnrestrictedName]
 	 */
 	protected void sequence_URIFirstPathElementCS(EObject context, PathElementCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -955,7 +955,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends AbstractDele
 	
 	/**
 	 * Constraint:
-	 *     element=[Namespace|URI]
+	 *     referredElement=[Namespace|URI]
 	 */
 	protected void sequence_URIFirstPathElementCS(EObject context, PathElementWithURICS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -964,7 +964,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends AbstractDele
 	
 	/**
 	 * Constraint:
-	 *     (path+=URIFirstPathElementCS (path+=NextPathElementCS* path+=NextPathElementCS)?)
+	 *     (ownedPathElements+=URIFirstPathElementCS (ownedPathElements+=NextPathElementCS* ownedPathElements+=NextPathElementCS)?)
 	 */
 	protected void sequence_URIPathNameCS(EObject context, PathNameCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

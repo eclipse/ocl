@@ -48,7 +48,7 @@ public abstract class AbstractOCLstdlibCSPreOrderVisitor
 	}
 
 	public @Nullable Continuation<?> visitLibClassCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibClassCS csElement) {
-		return visitClassCS(csElement);
+		return visitStructuredClassCS(csElement);
 	}
 
 	public @Nullable Continuation<?> visitLibConstraintCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibConstraintCS csElement) {

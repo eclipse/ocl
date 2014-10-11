@@ -130,9 +130,9 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 					String varName = leafNode.getText();
 					assert varName != null;
 					context.refreshName(parameter, varName);
-					List<PathElementCS> path = csPathName.getPath();
+					List<PathElementCS> path = csPathName.getOwnedPathElements();
 					PathElementCS csPathElement = path.get(path.size()-1);
-					csPathElement.setElement(parameter);	// Resolve the reference that is actually a definition
+					csPathElement.setReferredElement(parameter);	// Resolve the reference that is actually a definition
 					csPathElement.setElementType(null);		// Indicate a definition to the syntax colouring
 				}
 			}
@@ -172,8 +172,8 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 	@Override
 	public Continuation<?> visitConstraintCS(@NonNull ConstraintCS csElement) {
 		@NonNull Constraint asConstraint = refreshNamedElement(Constraint.class, PivotPackage.Literals.CONSTRAINT, csElement);
-		ExpSpecificationCS csStatusSpecification = (ExpSpecificationCS)csElement.getSpecification();
-		ExpSpecificationCS csMessageSpecification = (ExpSpecificationCS)csElement.getMessageSpecification();
+		ExpSpecificationCS csStatusSpecification = (ExpSpecificationCS)csElement.getOwnedSpecification();
+		ExpSpecificationCS csMessageSpecification = (ExpSpecificationCS)csElement.getOwnedMessageSpecification();
 		if (csMessageSpecification == null) {
 			ExpressionInOCL asSpecification = PivotUtil.getPivot(ExpressionInOCL.class, csStatusSpecification);
 			asConstraint.setSpecification(asSpecification);
@@ -266,16 +266,16 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 		EObject eContainer = csElement.eContainer();
 		if (eContainer instanceof ConstraintCS) {
 			ConstraintCS csConstraint = (ConstraintCS) eContainer;
-			SpecificationCS csStatusSpecification = csConstraint.getSpecification();
-			SpecificationCS csMessageSpecification = csConstraint.getMessageSpecification();
+			SpecificationCS csStatusSpecification = csConstraint.getOwnedSpecification();
+			SpecificationCS csMessageSpecification = csConstraint.getOwnedMessageSpecification();
 			if ((csStatusSpecification != null) && (csMessageSpecification != null)) {
 				@NonNull TupleLiteralPart csTupleLiteralPart = context.refreshModelElement(TupleLiteralPart.class, PivotPackage.Literals.TUPLE_LITERAL_PART, csElement);
 				EStructuralFeature eContainingFeature = csElement.eContainingFeature();
-				if (eContainingFeature == BaseCSPackage.Literals.CONSTRAINT_CS__SPECIFICATION) {
+				if (eContainingFeature == BaseCSPackage.Literals.CONSTRAINT_CS__OWNED_SPECIFICATION) {
 					csTupleLiteralPart.setName(PivotConstants.STATUS_PART_NAME);
 					csTupleLiteralPart.setType(standardLibrary.getBooleanType());
 				}
-				else if (eContainingFeature == BaseCSPackage.Literals.CONSTRAINT_CS__MESSAGE_SPECIFICATION) {
+				else if (eContainingFeature == BaseCSPackage.Literals.CONSTRAINT_CS__OWNED_MESSAGE_SPECIFICATION) {
 					csTupleLiteralPart.setName(PivotConstants.MESSAGE_PART_NAME);
 					csTupleLiteralPart.setType(standardLibrary.getStringType());
 				}

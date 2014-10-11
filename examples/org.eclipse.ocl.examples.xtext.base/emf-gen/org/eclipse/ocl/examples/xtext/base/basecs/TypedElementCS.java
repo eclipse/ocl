@@ -22,8 +22,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedElementCS#getOwnedType <em>Owned Type</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedElementCS#getQualifier <em>Qualifier</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedElementCS#isOptional <em>Optional</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedElementCS#getQualifiers <em>Qualifiers</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedElementCS#isIsOptional <em>Is Optional</em>}</li>
  * </ul>
  * </p>
  *
@@ -59,7 +59,7 @@ public interface TypedElementCS extends NamedElementCS {
 	void setOwnedType(TypedRefCS value);
 
 	/**
-	 * Returns the value of the '<em><b>Qualifier</b></em>' attribute list.
+	 * Returns the value of the '<em><b>Qualifiers</b></em>' attribute list.
 	 * The list contents are of type {@link java.lang.String}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -67,37 +67,37 @@ public interface TypedElementCS extends NamedElementCS {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Qualifier</em>' attribute list.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTypedElementCS_Qualifier()
+	 * @return the value of the '<em>Qualifiers</em>' attribute list.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTypedElementCS_Qualifiers()
 	 * @model
 	 * @generated
 	 */
-	EList<String> getQualifier();
+	EList<String> getQualifiers();
 
 	/**
-	 * Returns the value of the '<em><b>Optional</b></em>' attribute.
+	 * Returns the value of the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Optional</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Is Optional</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Optional</em>' attribute.
-	 * @see #setOptional(boolean)
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTypedElementCS_Optional()
+	 * @return the value of the '<em>Is Optional</em>' attribute.
+	 * @see #setIsOptional(boolean)
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTypedElementCS_IsOptional()
 	 * @model
 	 * @generated
 	 */
-	boolean isOptional();
+	boolean isIsOptional();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedElementCS#isOptional <em>Optional</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedElementCS#isIsOptional <em>Is Optional</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Optional</em>' attribute.
-	 * @see #isOptional()
+	 * @param value the new value of the '<em>Is Optional</em>' attribute.
+	 * @see #isIsOptional()
 	 * @generated
 	 */
-	void setOptional(boolean value);
+	void setIsOptional(boolean value);
 
 } // TypedElementCS

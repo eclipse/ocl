@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.AnnotationElementCS#getOwnedDetail <em>Owned Detail</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.AnnotationElementCS#getOwnedDetails <em>Owned Details</em>}</li>
  * </ul>
  * </p>
  *
@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface AnnotationElementCS extends NamedElementCS {
 	/**
-	 * Returns the value of the '<em><b>Owned Detail</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Details</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.DetailCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -39,11 +39,11 @@ public interface AnnotationElementCS extends NamedElementCS {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Detail</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getAnnotationElementCS_OwnedDetail()
+	 * @return the value of the '<em>Owned Details</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getAnnotationElementCS_OwnedDetails()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<DetailCS> getOwnedDetail();
+	EList<DetailCS> getOwnedDetails();
 
 } // AnnotationElementCS

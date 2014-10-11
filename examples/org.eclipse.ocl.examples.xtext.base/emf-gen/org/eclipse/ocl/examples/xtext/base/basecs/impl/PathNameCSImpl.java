@@ -37,8 +37,8 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PathNameCSImpl#getPath <em>Path</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PathNameCSImpl#getElement <em>Element</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PathNameCSImpl#getOwnedPathElements <em>Owned Path Elements</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PathNameCSImpl#getReferredElement <em>Referred Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PathNameCSImpl#getContext <em>Context</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PathNameCSImpl#getScopeFilter <em>Scope Filter</em>}</li>
  * </ul>
@@ -49,14 +49,14 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
 public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 {
 	/**
-	 * The cached value of the '{@link #getPath() <em>Path</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedPathElements() <em>Owned Path Elements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPath()
+	 * @see #getOwnedPathElements()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<PathElementCS> path;
+	protected EList<PathElementCS> ownedPathElements;
 
 	/**
 	 * The cached value of the '{@link #getContext() <em>Context</em>}' reference.
@@ -123,13 +123,13 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<PathElementCS> getPath()
+	public EList<PathElementCS> getOwnedPathElements()
 	{
-		if (path == null)
+		if (ownedPathElements == null)
 		{
-			path = new EObjectContainmentWithInverseEList<PathElementCS>(PathElementCS.class, this, BaseCSPackage.PATH_NAME_CS__PATH, BaseCSPackage.PATH_ELEMENT_CS__PATH_NAME);
+			ownedPathElements = new EObjectContainmentWithInverseEList<PathElementCS>(PathElementCS.class, this, BaseCSPackage.PATH_NAME_CS__OWNED_PATH_ELEMENTS, BaseCSPackage.PATH_ELEMENT_CS__OWNING_PATH_NAME);
 		}
-		return path;
+		return ownedPathElements;
 	}
 
 	/**
@@ -142,8 +142,8 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.PATH_NAME_CS__PATH:
-				return ((InternalEList<?>)getPath()).basicRemove(otherEnd, msgs);
+			case BaseCSPackage.PATH_NAME_CS__OWNED_PATH_ELEMENTS:
+				return ((InternalEList<?>)getOwnedPathElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -158,11 +158,11 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.PATH_NAME_CS__PATH:
-				return getPath();
-			case BaseCSPackage.PATH_NAME_CS__ELEMENT:
-				if (resolve) return getElement();
-				return basicGetElement();
+			case BaseCSPackage.PATH_NAME_CS__OWNED_PATH_ELEMENTS:
+				return getOwnedPathElements();
+			case BaseCSPackage.PATH_NAME_CS__REFERRED_ELEMENT:
+				if (resolve) return getReferredElement();
+				return basicGetReferredElement();
 			case BaseCSPackage.PATH_NAME_CS__CONTEXT:
 				return getContext();
 			case BaseCSPackage.PATH_NAME_CS__SCOPE_FILTER:
@@ -182,9 +182,9 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.PATH_NAME_CS__PATH:
-				getPath().clear();
-				getPath().addAll((Collection<? extends PathElementCS>)newValue);
+			case BaseCSPackage.PATH_NAME_CS__OWNED_PATH_ELEMENTS:
+				getOwnedPathElements().clear();
+				getOwnedPathElements().addAll((Collection<? extends PathElementCS>)newValue);
 				return;
 			case BaseCSPackage.PATH_NAME_CS__CONTEXT:
 				setContext((ElementCS)newValue);
@@ -206,8 +206,8 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.PATH_NAME_CS__PATH:
-				getPath().clear();
+			case BaseCSPackage.PATH_NAME_CS__OWNED_PATH_ELEMENTS:
+				getOwnedPathElements().clear();
 				return;
 			case BaseCSPackage.PATH_NAME_CS__CONTEXT:
 				unsetContext();
@@ -229,10 +229,10 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.PATH_NAME_CS__PATH:
-				return path != null && !path.isEmpty();
-			case BaseCSPackage.PATH_NAME_CS__ELEMENT:
-				return basicGetElement() != null;
+			case BaseCSPackage.PATH_NAME_CS__OWNED_PATH_ELEMENTS:
+				return ownedPathElements != null && !ownedPathElements.isEmpty();
+			case BaseCSPackage.PATH_NAME_CS__REFERRED_ELEMENT:
+				return basicGetReferredElement() != null;
 			case BaseCSPackage.PATH_NAME_CS__CONTEXT:
 				return isSetContext();
 			case BaseCSPackage.PATH_NAME_CS__SCOPE_FILTER:
@@ -261,8 +261,8 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.PATH_NAME_CS__PATH:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getPath()).basicAdd(otherEnd, msgs);
+			case BaseCSPackage.PATH_NAME_CS__OWNED_PATH_ELEMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedPathElements()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -356,16 +356,16 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Element basicGetElement()
+	public Element basicGetReferredElement()
 	{
-		if (path == null) {
+		if (ownedPathElements == null) {
 			return null;
 		}
-		int iMax = path.size();
+		int iMax = ownedPathElements.size();
 		if (iMax <= 0) {
 			return null;
 		}
-		return path.get(iMax-1).basicGetElement();
+		return ownedPathElements.get(iMax-1).basicGetReferredElement();
 	}
 
 	/**
@@ -373,22 +373,22 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Element getElement()
+	public Element getReferredElement()
 	{
-		if (path == null) {
+		if (ownedPathElements == null) {
 			return null;
 		}
-		int iMax = path.size();
+		int iMax = ownedPathElements.size();
 		if (iMax <= 0) {
 			return null;
 		}
 		for (int i = 0; i < iMax-1; i++) {
-			Element element = path.get(i).getElement();
+			Element element = ownedPathElements.get(i).getReferredElement();
 			if (element == null) {
 				return null;
 			}
 		}
-		Element element = path.get(iMax-1).getElement();
+		Element element = ownedPathElements.get(iMax-1).getReferredElement();
 		if (element == null) {
 			return null;
 		}
@@ -404,7 +404,7 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	 * @generated NOT
 	 */
 	public Element getPivot() {
-		return getElement();
+		return getReferredElement();
 	}
 
 	/**

@@ -42,7 +42,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  *
  * @generated
  */
-public class EnumerationCSImpl extends ClassifierCSImpl implements EnumerationCS
+public class EnumerationCSImpl extends ClassCSImpl implements EnumerationCS
 {
 	/**
 	 * The cached value of the '{@link #getOwnedLiterals() <em>Owned Literals</em>}' containment reference list.

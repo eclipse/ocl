@@ -37,10 +37,10 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.LambdaTypeCSImpl#getOwnedTemplateSignature <em>Owned Template Signature</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.LambdaTypeCSImpl#getOwnedSignature <em>Owned Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.LambdaTypeCSImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.LambdaTypeCSImpl#getOwnedContextType <em>Owned Context Type</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.LambdaTypeCSImpl#getOwnedParameterType <em>Owned Parameter Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.LambdaTypeCSImpl#getOwnedParameterTypes <em>Owned Parameter Types</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.LambdaTypeCSImpl#getOwnedResultType <em>Owned Result Type</em>}</li>
  * </ul>
  * </p>
@@ -50,14 +50,14 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
 public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 {
 	/**
-	 * The cached value of the '{@link #getOwnedTemplateSignature() <em>Owned Template Signature</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedSignature() <em>Owned Signature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedTemplateSignature()
+	 * @see #getOwnedSignature()
 	 * @generated
 	 * @ordered
 	 */
-	protected TemplateSignatureCS ownedTemplateSignature;
+	protected TemplateSignatureCS ownedSignature;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -90,14 +90,14 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 	protected TypedRefCS ownedContextType;
 
 	/**
-	 * The cached value of the '{@link #getOwnedParameterType() <em>Owned Parameter Type</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedParameterTypes() <em>Owned Parameter Types</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedParameterType()
+	 * @see #getOwnedParameterTypes()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TypedRefCS> ownedParameterType;
+	protected EList<TypedRefCS> ownedParameterTypes;
 
 	/**
 	 * The cached value of the '{@link #getOwnedResultType() <em>Owned Result Type</em>}' containment reference.
@@ -135,9 +135,9 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateSignatureCS getOwnedTemplateSignature()
+	public TemplateSignatureCS getOwnedSignature()
 	{
-		return ownedTemplateSignature;
+		return ownedSignature;
 	}
 
 	/**
@@ -145,13 +145,13 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwnedTemplateSignature(TemplateSignatureCS newOwnedTemplateSignature, NotificationChain msgs)
+	public NotificationChain basicSetOwnedSignature(TemplateSignatureCS newOwnedSignature, NotificationChain msgs)
 	{
-		TemplateSignatureCS oldOwnedTemplateSignature = ownedTemplateSignature;
-		ownedTemplateSignature = newOwnedTemplateSignature;
+		TemplateSignatureCS oldOwnedSignature = ownedSignature;
+		ownedSignature = newOwnedSignature;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSPackage.LAMBDA_TYPE_CS__OWNED_TEMPLATE_SIGNATURE, oldOwnedTemplateSignature, newOwnedTemplateSignature);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSPackage.LAMBDA_TYPE_CS__OWNED_SIGNATURE, oldOwnedSignature, newOwnedSignature);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -162,20 +162,20 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwnedTemplateSignature(TemplateSignatureCS newOwnedTemplateSignature)
+	public void setOwnedSignature(TemplateSignatureCS newOwnedSignature)
 	{
-		if (newOwnedTemplateSignature != ownedTemplateSignature)
+		if (newOwnedSignature != ownedSignature)
 		{
 			NotificationChain msgs = null;
-			if (ownedTemplateSignature != null)
-				msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNING_TEMPLATE_ELEMENT, TemplateSignatureCS.class, msgs);
-			if (newOwnedTemplateSignature != null)
-				msgs = ((InternalEObject)newOwnedTemplateSignature).eInverseAdd(this, BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNING_TEMPLATE_ELEMENT, TemplateSignatureCS.class, msgs);
-			msgs = basicSetOwnedTemplateSignature(newOwnedTemplateSignature, msgs);
+			if (ownedSignature != null)
+				msgs = ((InternalEObject)ownedSignature).eInverseRemove(this, BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNING_ELEMENT, TemplateSignatureCS.class, msgs);
+			if (newOwnedSignature != null)
+				msgs = ((InternalEObject)newOwnedSignature).eInverseAdd(this, BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNING_ELEMENT, TemplateSignatureCS.class, msgs);
+			msgs = basicSetOwnedSignature(newOwnedSignature, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.LAMBDA_TYPE_CS__OWNED_TEMPLATE_SIGNATURE, newOwnedTemplateSignature, newOwnedTemplateSignature));
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.LAMBDA_TYPE_CS__OWNED_SIGNATURE, newOwnedSignature, newOwnedSignature));
 	}
 
 	/**
@@ -254,13 +254,13 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TypedRefCS> getOwnedParameterType()
+	public EList<TypedRefCS> getOwnedParameterTypes()
 	{
-		if (ownedParameterType == null)
+		if (ownedParameterTypes == null)
 		{
-			ownedParameterType = new EObjectContainmentEList<TypedRefCS>(TypedRefCS.class, this, BaseCSPackage.LAMBDA_TYPE_CS__OWNED_PARAMETER_TYPE);
+			ownedParameterTypes = new EObjectContainmentEList<TypedRefCS>(TypedRefCS.class, this, BaseCSPackage.LAMBDA_TYPE_CS__OWNED_PARAMETER_TYPES);
 		}
-		return ownedParameterType;
+		return ownedParameterTypes;
 	}
 
 	/**
@@ -332,10 +332,10 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_TEMPLATE_SIGNATURE:
-				if (ownedTemplateSignature != null)
-					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.LAMBDA_TYPE_CS__OWNED_TEMPLATE_SIGNATURE, null, msgs);
-				return basicSetOwnedTemplateSignature((TemplateSignatureCS)otherEnd, msgs);
+			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_SIGNATURE:
+				if (ownedSignature != null)
+					msgs = ((InternalEObject)ownedSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.LAMBDA_TYPE_CS__OWNED_SIGNATURE, null, msgs);
+				return basicSetOwnedSignature((TemplateSignatureCS)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -350,12 +350,12 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_TEMPLATE_SIGNATURE:
-				return basicSetOwnedTemplateSignature(null, msgs);
+			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_SIGNATURE:
+				return basicSetOwnedSignature(null, msgs);
 			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_CONTEXT_TYPE:
 				return basicSetOwnedContextType(null, msgs);
-			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_PARAMETER_TYPE:
-				return ((InternalEList<?>)getOwnedParameterType()).basicRemove(otherEnd, msgs);
+			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_PARAMETER_TYPES:
+				return ((InternalEList<?>)getOwnedParameterTypes()).basicRemove(otherEnd, msgs);
 			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_RESULT_TYPE:
 				return basicSetOwnedResultType(null, msgs);
 		}
@@ -372,14 +372,14 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_TEMPLATE_SIGNATURE:
-				return getOwnedTemplateSignature();
+			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_SIGNATURE:
+				return getOwnedSignature();
 			case BaseCSPackage.LAMBDA_TYPE_CS__NAME:
 				return getName();
 			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_CONTEXT_TYPE:
 				return getOwnedContextType();
-			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_PARAMETER_TYPE:
-				return getOwnedParameterType();
+			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_PARAMETER_TYPES:
+				return getOwnedParameterTypes();
 			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_RESULT_TYPE:
 				return getOwnedResultType();
 		}
@@ -397,8 +397,8 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_TEMPLATE_SIGNATURE:
-				setOwnedTemplateSignature((TemplateSignatureCS)newValue);
+			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_SIGNATURE:
+				setOwnedSignature((TemplateSignatureCS)newValue);
 				return;
 			case BaseCSPackage.LAMBDA_TYPE_CS__NAME:
 				setName((String)newValue);
@@ -406,9 +406,9 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_CONTEXT_TYPE:
 				setOwnedContextType((TypedRefCS)newValue);
 				return;
-			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_PARAMETER_TYPE:
-				getOwnedParameterType().clear();
-				getOwnedParameterType().addAll((Collection<? extends TypedRefCS>)newValue);
+			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_PARAMETER_TYPES:
+				getOwnedParameterTypes().clear();
+				getOwnedParameterTypes().addAll((Collection<? extends TypedRefCS>)newValue);
 				return;
 			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_RESULT_TYPE:
 				setOwnedResultType((TypedRefCS)newValue);
@@ -427,8 +427,8 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_TEMPLATE_SIGNATURE:
-				setOwnedTemplateSignature((TemplateSignatureCS)null);
+			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_SIGNATURE:
+				setOwnedSignature((TemplateSignatureCS)null);
 				return;
 			case BaseCSPackage.LAMBDA_TYPE_CS__NAME:
 				setName(NAME_EDEFAULT);
@@ -436,8 +436,8 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_CONTEXT_TYPE:
 				setOwnedContextType((TypedRefCS)null);
 				return;
-			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_PARAMETER_TYPE:
-				getOwnedParameterType().clear();
+			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_PARAMETER_TYPES:
+				getOwnedParameterTypes().clear();
 				return;
 			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_RESULT_TYPE:
 				setOwnedResultType((TypedRefCS)null);
@@ -456,14 +456,14 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_TEMPLATE_SIGNATURE:
-				return ownedTemplateSignature != null;
+			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_SIGNATURE:
+				return ownedSignature != null;
 			case BaseCSPackage.LAMBDA_TYPE_CS__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_CONTEXT_TYPE:
 				return ownedContextType != null;
-			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_PARAMETER_TYPE:
-				return ownedParameterType != null && !ownedParameterType.isEmpty();
+			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_PARAMETER_TYPES:
+				return ownedParameterTypes != null && !ownedParameterTypes.isEmpty();
 			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_RESULT_TYPE:
 				return ownedResultType != null;
 		}
@@ -482,7 +482,7 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 		{
 			switch (derivedFeatureID)
 			{
-				case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_TEMPLATE_SIGNATURE: return BaseCSPackage.TEMPLATEABLE_ELEMENT_CS__OWNED_TEMPLATE_SIGNATURE;
+				case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_SIGNATURE: return BaseCSPackage.TEMPLATEABLE_ELEMENT_CS__OWNED_SIGNATURE;
 				default: return -1;
 			}
 		}
@@ -508,7 +508,7 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 		{
 			switch (baseFeatureID)
 			{
-				case BaseCSPackage.TEMPLATEABLE_ELEMENT_CS__OWNED_TEMPLATE_SIGNATURE: return BaseCSPackage.LAMBDA_TYPE_CS__OWNED_TEMPLATE_SIGNATURE;
+				case BaseCSPackage.TEMPLATEABLE_ELEMENT_CS__OWNED_SIGNATURE: return BaseCSPackage.LAMBDA_TYPE_CS__OWNED_SIGNATURE;
 				default: return -1;
 			}
 		}

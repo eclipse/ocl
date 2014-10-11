@@ -35,7 +35,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.PackageOwnerCS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PackageOwnerCSImpl#getOwnedNestedPackage <em>Owned Nested Package</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PackageOwnerCSImpl#getOwnedPackages <em>Owned Packages</em>}</li>
  * </ul>
  * </p>
  *
@@ -44,15 +44,14 @@ import org.eclipse.ocl.examples.xtext.base.basecs.PackageOwnerCS;
 public abstract class PackageOwnerCSImpl extends ModelElementCSImpl implements PackageOwnerCS
 {
 	/**
-	 * The cached value of the '{@link #getOwnedNestedPackage() <em>Owned Nested Package</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedPackages() <em>Owned Packages</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedNestedPackage()
+	 * @see #getOwnedPackages()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<PackageCS> ownedNestedPackage;
-
+	protected EList<PackageCS> ownedPackages;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -79,13 +78,13 @@ public abstract class PackageOwnerCSImpl extends ModelElementCSImpl implements P
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<PackageCS> getOwnedNestedPackage()
+	public EList<PackageCS> getOwnedPackages()
 	{
-		if (ownedNestedPackage == null)
+		if (ownedPackages == null)
 		{
-			ownedNestedPackage = new EObjectContainmentEList<PackageCS>(PackageCS.class, this, BaseCSPackage.PACKAGE_OWNER_CS__OWNED_NESTED_PACKAGE);
+			ownedPackages = new EObjectContainmentEList<PackageCS>(PackageCS.class, this, BaseCSPackage.PACKAGE_OWNER_CS__OWNED_PACKAGES);
 		}
-		return ownedNestedPackage;
+		return ownedPackages;
 	}
 
 	/**
@@ -98,8 +97,8 @@ public abstract class PackageOwnerCSImpl extends ModelElementCSImpl implements P
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.PACKAGE_OWNER_CS__OWNED_NESTED_PACKAGE:
-				return ((InternalEList<?>)getOwnedNestedPackage()).basicRemove(otherEnd, msgs);
+			case BaseCSPackage.PACKAGE_OWNER_CS__OWNED_PACKAGES:
+				return ((InternalEList<?>)getOwnedPackages()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -114,8 +113,8 @@ public abstract class PackageOwnerCSImpl extends ModelElementCSImpl implements P
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.PACKAGE_OWNER_CS__OWNED_NESTED_PACKAGE:
-				return getOwnedNestedPackage();
+			case BaseCSPackage.PACKAGE_OWNER_CS__OWNED_PACKAGES:
+				return getOwnedPackages();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -131,9 +130,9 @@ public abstract class PackageOwnerCSImpl extends ModelElementCSImpl implements P
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.PACKAGE_OWNER_CS__OWNED_NESTED_PACKAGE:
-				getOwnedNestedPackage().clear();
-				getOwnedNestedPackage().addAll((Collection<? extends PackageCS>)newValue);
+			case BaseCSPackage.PACKAGE_OWNER_CS__OWNED_PACKAGES:
+				getOwnedPackages().clear();
+				getOwnedPackages().addAll((Collection<? extends PackageCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -149,8 +148,8 @@ public abstract class PackageOwnerCSImpl extends ModelElementCSImpl implements P
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.PACKAGE_OWNER_CS__OWNED_NESTED_PACKAGE:
-				getOwnedNestedPackage().clear();
+			case BaseCSPackage.PACKAGE_OWNER_CS__OWNED_PACKAGES:
+				getOwnedPackages().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -166,8 +165,8 @@ public abstract class PackageOwnerCSImpl extends ModelElementCSImpl implements P
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.PACKAGE_OWNER_CS__OWNED_NESTED_PACKAGE:
-				return ownedNestedPackage != null && !ownedNestedPackage.isEmpty();
+			case BaseCSPackage.PACKAGE_OWNER_CS__OWNED_PACKAGES:
+				return ownedPackages != null && !ownedPackages.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

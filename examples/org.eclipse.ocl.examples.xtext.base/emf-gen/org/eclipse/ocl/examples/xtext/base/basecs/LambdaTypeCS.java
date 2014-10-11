@@ -23,7 +23,7 @@ import org.eclipse.ocl.examples.domain.elements.Nameable;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.LambdaTypeCS#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.LambdaTypeCS#getOwnedContextType <em>Owned Context Type</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.LambdaTypeCS#getOwnedParameterType <em>Owned Parameter Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.LambdaTypeCS#getOwnedParameterTypes <em>Owned Parameter Types</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.LambdaTypeCS#getOwnedResultType <em>Owned Result Type</em>}</li>
  * </ul>
  * </p>
@@ -87,7 +87,7 @@ public interface LambdaTypeCS extends TypedRefCS, TemplateableElementCS, Nameabl
 	void setOwnedContextType(TypedRefCS value);
 
 	/**
-	 * Returns the value of the '<em><b>Owned Parameter Type</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Parameter Types</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -95,12 +95,12 @@ public interface LambdaTypeCS extends TypedRefCS, TemplateableElementCS, Nameabl
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Parameter Type</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getLambdaTypeCS_OwnedParameterType()
+	 * @return the value of the '<em>Owned Parameter Types</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getLambdaTypeCS_OwnedParameterTypes()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<TypedRefCS> getOwnedParameterType();
+	EList<TypedRefCS> getOwnedParameterTypes();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Result Type</b></em>' containment reference.

@@ -190,7 +190,7 @@ public class PropertyContextDeclCSImpl
 		}
 		CS2Pivot.setElementType(ownedPathName2, PivotPackage.Literals.PROPERTY,
 			this, null);
-		return (Property) ownedPathName2.getElement();
+		return (Property) ownedPathName2.getReferredElement();
 	}
 
 	/**

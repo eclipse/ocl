@@ -53,10 +53,6 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 	}
 
 	public @Nullable R visitClassCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.ClassCS object) {
-		return visitClassifierCS(object);
-	}
-
-	public @Nullable R visitClassifierCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS object) {
 		return visitNamedElementCS(object);
 	}
 
@@ -69,7 +65,7 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 	}
 
 	public @Nullable R visitDataTypeCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.DataTypeCS object) {
-		return visitClassifierCS(object);
+		return visitClassCS(object);
 	}
 
 	public @Nullable R visitDetailCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.DetailCS object) {
@@ -89,7 +85,7 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 	}
 
 	public @Nullable R visitEnumerationCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.EnumerationCS object) {
-		return visitClassifierCS(object);
+		return visitClassCS(object);
 	}
 
 	public @Nullable R visitEnumerationLiteralCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.EnumerationLiteralCS object) {
@@ -178,6 +174,10 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 
 	public @Nullable R visitStructuralFeatureCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS object) {
 		return visitTypedElementCS(object);
+	}
+
+	public @Nullable R visitStructuredClassCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS object) {
+		return visitClassCS(object);
 	}
 
 	public @Nullable R visitTemplateBindingCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS object) {

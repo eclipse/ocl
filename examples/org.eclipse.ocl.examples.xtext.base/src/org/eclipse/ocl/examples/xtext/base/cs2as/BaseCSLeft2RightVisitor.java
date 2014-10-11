@@ -14,7 +14,7 @@ package org.eclipse.ocl.examples.xtext.base.cs2as;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.xtext.base.basecs.AnnotationCS;
-import org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.DetailCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.OperationCS;
@@ -43,7 +43,7 @@ public class BaseCSLeft2RightVisitor extends AbstractExtendingBaseCSVisitor<Elem
 	}
 
 	@Override
-	public Element visitClassifierCS(@NonNull ClassifierCS object) {
+	public Element visitClassCS(@NonNull ClassCS object) {
 		return null;
 	}
 

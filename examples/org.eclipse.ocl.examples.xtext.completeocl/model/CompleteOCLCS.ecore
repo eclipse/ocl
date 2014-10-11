@@ -42,7 +42,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="DefPropertyCS" eSuperTypes="#//DefCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureContextDeclCS" abstract="true"
       eSuperTypes="#//ContextDeclCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="class" eType="ecore:EClass ../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#//ClassCS"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="class" eType="ecore:EClass ../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#//StructuredClassCS"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" eType="ecore:EClass ../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#//TypedRefCS"
         containment="true"/>
   </eClassifiers>

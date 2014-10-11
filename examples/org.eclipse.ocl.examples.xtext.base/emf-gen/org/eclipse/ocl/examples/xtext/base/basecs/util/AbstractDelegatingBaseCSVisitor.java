@@ -73,10 +73,6 @@ public abstract class AbstractDelegatingBaseCSVisitor<R, C, D extends BaseCSVisi
 		return delegate.visitClassCS(object);
 	}
 
-	public @Nullable R visitClassifierCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS object) {
-		return delegate.visitClassifierCS(object);
-	}
-
 	public @Nullable R visitConstraintCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS object) {
 		return delegate.visitConstraintCS(object);
 	}
@@ -195,6 +191,10 @@ public abstract class AbstractDelegatingBaseCSVisitor<R, C, D extends BaseCSVisi
 
 	public @Nullable R visitStructuralFeatureCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS object) {
 		return delegate.visitStructuralFeatureCS(object);
+	}
+
+	public @Nullable R visitStructuredClassCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS object) {
+		return delegate.visitStructuredClassCS(object);
 	}
 
 	public @Nullable R visitTemplateBindingCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS object) {

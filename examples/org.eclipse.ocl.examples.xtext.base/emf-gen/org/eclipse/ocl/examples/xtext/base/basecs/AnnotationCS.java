@@ -20,8 +20,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.AnnotationCS#getOwnedContent <em>Owned Content</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.AnnotationCS#getOwnedReference <em>Owned Reference</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.AnnotationCS#getOwnedContents <em>Owned Contents</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.AnnotationCS#getOwnedReferences <em>Owned References</em>}</li>
  * </ul>
  * </p>
  *
@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface AnnotationCS extends AnnotationElementCS {
 	/**
-	 * Returns the value of the '<em><b>Owned Content</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Contents</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -39,15 +39,15 @@ public interface AnnotationCS extends AnnotationElementCS {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Content</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getAnnotationCS_OwnedContent()
+	 * @return the value of the '<em>Owned Contents</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getAnnotationCS_OwnedContents()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ModelElementCS> getOwnedContent();
+	EList<ModelElementCS> getOwnedContents();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Reference</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned References</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.ModelElementRefCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -55,11 +55,11 @@ public interface AnnotationCS extends AnnotationElementCS {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Reference</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getAnnotationCS_OwnedReference()
+	 * @return the value of the '<em>Owned References</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getAnnotationCS_OwnedReferences()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ModelElementRefCS> getOwnedReference();
+	EList<ModelElementRefCS> getOwnedReferences();
 
 } // AnnotationCS

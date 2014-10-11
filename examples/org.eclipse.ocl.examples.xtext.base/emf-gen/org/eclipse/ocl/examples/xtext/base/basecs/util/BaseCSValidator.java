@@ -23,8 +23,8 @@ import org.eclipse.ocl.examples.xtext.base.basecs.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
+import org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ClassCS;
-import org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ContextLessElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.DataTypeCS;
@@ -36,7 +36,6 @@ import org.eclipse.ocl.examples.xtext.base.basecs.EnumerationCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.EnumerationLiteralCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.FeatureCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ImportCS;
-import org.eclipse.ocl.examples.xtext.base.basecs.IteratorKind;
 import org.eclipse.ocl.examples.xtext.base.basecs.LambdaTypeCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
@@ -160,8 +159,6 @@ public class BaseCSValidator extends EObjectValidator
 				return validateAttributeCS((AttributeCS)value, diagnostics, context);
 			case BaseCSPackage.CLASS_CS:
 				return validateClassCS((ClassCS)value, diagnostics, context);
-			case BaseCSPackage.CLASSIFIER_CS:
-				return validateClassifierCS((ClassifierCS)value, diagnostics, context);
 			case BaseCSPackage.CONSTRAINT_CS:
 				return validateConstraintCS((ConstraintCS)value, diagnostics, context);
 			case BaseCSPackage.CONTEXT_LESS_ELEMENT_CS:
@@ -228,6 +225,8 @@ public class BaseCSValidator extends EObjectValidator
 				return validateRootPackageCS((RootPackageCS)value, diagnostics, context);
 			case BaseCSPackage.SPECIFICATION_CS:
 				return validateSpecificationCS((SpecificationCS)value, diagnostics, context);
+			case BaseCSPackage.STRUCTURED_CLASS_CS:
+				return validateStructuredClassCS((StructuredClassCS)value, diagnostics, context);
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS:
 				return validateStructuralFeatureCS((StructuralFeatureCS)value, diagnostics, context);
 			case BaseCSPackage.TEMPLATE_BINDING_CS:
@@ -260,8 +259,6 @@ public class BaseCSValidator extends EObjectValidator
 				return validateVisitableCS((VisitableCS)value, diagnostics, context);
 			case BaseCSPackage.WILDCARD_TYPE_REF_CS:
 				return validateWildcardTypeRefCS((WildcardTypeRefCS)value, diagnostics, context);
-			case BaseCSPackage.ITERATOR_KIND:
-				return validateIteratorKind((IteratorKind)value, diagnostics, context);
 			case BaseCSPackage.SCOPE_FILTER:
 				return validateScopeFilter((ScopeFilter)value, diagnostics, context);
 			default:
@@ -307,16 +304,6 @@ public class BaseCSValidator extends EObjectValidator
 	public boolean validateClassCS(ClassCS classCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(classCS, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateClassifierCS(ClassifierCS classifierCS, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(classifierCS, diagnostics, context);
 	}
 
 	/**
@@ -704,6 +691,16 @@ public class BaseCSValidator extends EObjectValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateStructuredClassCS(StructuredClassCS structuredClassCS, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(structuredClassCS, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateStructuralFeatureCS(StructuralFeatureCS structuralFeatureCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(structuralFeatureCS, diagnostics, context);
@@ -857,16 +854,6 @@ public class BaseCSValidator extends EObjectValidator
 	public boolean validateWildcardTypeRefCS(WildcardTypeRefCS wildcardTypeRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(wildcardTypeRefCS, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateIteratorKind(IteratorKind iteratorKind, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return true;
 	}
 
 	/**

@@ -117,7 +117,7 @@ public class QualifiedPath extends QualifiedName
 			}
 			EObject firstElement = null;
 			if (csObject instanceof PathElementCS) {
-				firstElement = ((PathElementCS)csObject).getElement();
+				firstElement = ((PathElementCS)csObject).getReferredElement();
 			}
 			else {
 				firstElement = pathElements.get(0).getElement();

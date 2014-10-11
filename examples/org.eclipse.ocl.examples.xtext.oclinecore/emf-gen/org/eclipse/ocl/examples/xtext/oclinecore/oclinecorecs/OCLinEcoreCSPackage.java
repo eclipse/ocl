@@ -162,13 +162,13 @@ public interface OCLinEcoreCSPackage extends EPackage {
 	int OC_LIN_ECORE_CONSTRAINT_CS__PIVOT = BaseCSPackage.CONSTRAINT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__OWNED_ANNOTATION = BaseCSPackage.CONSTRAINT_CS__OWNED_ANNOTATION;
+	int OC_LIN_ECORE_CONSTRAINT_CS__OWNED_ANNOTATIONS = BaseCSPackage.CONSTRAINT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -207,22 +207,22 @@ public interface OCLinEcoreCSPackage extends EPackage {
 	int OC_LIN_ECORE_CONSTRAINT_CS__STEREOTYPE = BaseCSPackage.CONSTRAINT_CS__STEREOTYPE;
 
 	/**
-	 * The feature id for the '<em><b>Specification</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Specification</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__SPECIFICATION = BaseCSPackage.CONSTRAINT_CS__SPECIFICATION;
+	int OC_LIN_ECORE_CONSTRAINT_CS__OWNED_SPECIFICATION = BaseCSPackage.CONSTRAINT_CS__OWNED_SPECIFICATION;
 
 	/**
-	 * The feature id for the '<em><b>Message Specification</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Message Specification</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__MESSAGE_SPECIFICATION = BaseCSPackage.CONSTRAINT_CS__MESSAGE_SPECIFICATION;
+	int OC_LIN_ECORE_CONSTRAINT_CS__OWNED_MESSAGE_SPECIFICATION = BaseCSPackage.CONSTRAINT_CS__OWNED_MESSAGE_SPECIFICATION;
 
 	/**
 	 * The feature id for the '<em><b>Callable</b></em>' attribute.
@@ -271,13 +271,13 @@ public interface OCLinEcoreCSPackage extends EPackage {
 	int SYS_MLCS__PIVOT = BaseCSPackage.ANNOTATION_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SYS_MLCS__OWNED_ANNOTATION = BaseCSPackage.ANNOTATION_ELEMENT_CS__OWNED_ANNOTATION;
+	int SYS_MLCS__OWNED_ANNOTATIONS = BaseCSPackage.ANNOTATION_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -307,13 +307,13 @@ public interface OCLinEcoreCSPackage extends EPackage {
 	int SYS_MLCS__NAME = BaseCSPackage.ANNOTATION_ELEMENT_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Detail</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Details</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SYS_MLCS__OWNED_DETAIL = BaseCSPackage.ANNOTATION_ELEMENT_CS__OWNED_DETAIL;
+	int SYS_MLCS__OWNED_DETAILS = BaseCSPackage.ANNOTATION_ELEMENT_CS__OWNED_DETAILS;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -362,13 +362,13 @@ public interface OCLinEcoreCSPackage extends EPackage {
 	int TOP_LEVEL_CS__PIVOT = BaseCSPackage.ROOT_PACKAGE_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOP_LEVEL_CS__OWNED_ANNOTATION = BaseCSPackage.ROOT_PACKAGE_CS__OWNED_ANNOTATION;
+	int TOP_LEVEL_CS__OWNED_ANNOTATIONS = BaseCSPackage.ROOT_PACKAGE_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -389,31 +389,31 @@ public interface OCLinEcoreCSPackage extends EPackage {
 	int TOP_LEVEL_CS__CSI = BaseCSPackage.ROOT_PACKAGE_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Owned Nested Package</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Packages</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOP_LEVEL_CS__OWNED_NESTED_PACKAGE = BaseCSPackage.ROOT_PACKAGE_CS__OWNED_NESTED_PACKAGE;
+	int TOP_LEVEL_CS__OWNED_PACKAGES = BaseCSPackage.ROOT_PACKAGE_CS__OWNED_PACKAGES;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Imports</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOP_LEVEL_CS__OWNED_IMPORT = BaseCSPackage.ROOT_PACKAGE_CS__OWNED_IMPORT;
+	int TOP_LEVEL_CS__OWNED_IMPORTS = BaseCSPackage.ROOT_PACKAGE_CS__OWNED_IMPORTS;
 
 	/**
-	 * The feature id for the '<em><b>Owned Library</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Libraries</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOP_LEVEL_CS__OWNED_LIBRARY = BaseCSPackage.ROOT_PACKAGE_CS__OWNED_LIBRARY;
+	int TOP_LEVEL_CS__OWNED_LIBRARIES = BaseCSPackage.ROOT_PACKAGE_CS__OWNED_LIBRARIES;
 
 	/**
 	 * The number of structural features of the '<em>Top Level CS</em>' class.

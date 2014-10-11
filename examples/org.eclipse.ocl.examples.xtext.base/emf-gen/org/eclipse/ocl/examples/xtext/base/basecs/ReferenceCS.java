@@ -23,8 +23,8 @@ import org.eclipse.ocl.examples.pivot.Property;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ReferenceCS#getOpposite <em>Opposite</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ReferenceCS#getKeys <em>Keys</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ReferenceCS#getReferredOpposite <em>Referred Opposite</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ReferenceCS#getReferredKeys <em>Referred Keys</em>}</li>
  * </ul>
  * </p>
  *
@@ -34,33 +34,33 @@ import org.eclipse.ocl.examples.pivot.Property;
  */
 public interface ReferenceCS extends StructuralFeatureCS {
 	/**
-	 * Returns the value of the '<em><b>Opposite</b></em>' reference.
+	 * Returns the value of the '<em><b>Referred Opposite</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Opposite</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Opposite</em>' reference.
-	 * @see #setOpposite(Property)
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getReferenceCS_Opposite()
+	 * @return the value of the '<em>Referred Opposite</em>' reference.
+	 * @see #setReferredOpposite(Property)
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getReferenceCS_ReferredOpposite()
 	 * @model
 	 * @generated
 	 */
-	Property getOpposite();
+	Property getReferredOpposite();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.ReferenceCS#getOpposite <em>Opposite</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.ReferenceCS#getReferredOpposite <em>Referred Opposite</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Opposite</em>' reference.
-	 * @see #getOpposite()
+	 * @param value the new value of the '<em>Referred Opposite</em>' reference.
+	 * @see #getReferredOpposite()
 	 * @generated
 	 */
-	void setOpposite(Property value);
+	void setReferredOpposite(Property value);
 
 	/**
-	 * Returns the value of the '<em><b>Keys</b></em>' reference list.
+	 * Returns the value of the '<em><b>Referred Keys</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Property}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -68,11 +68,11 @@ public interface ReferenceCS extends StructuralFeatureCS {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Keys</em>' reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getReferenceCS_Keys()
+	 * @return the value of the '<em>Referred Keys</em>' reference list.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getReferenceCS_ReferredKeys()
 	 * @model
 	 * @generated
 	 */
-	EList<Property> getKeys();
+	EList<Property> getReferredKeys();
 
 } // ReferenceCS

@@ -20,8 +20,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS#getOwningTemplateBindableElement <em>Owning Template Bindable Element</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS#getOwnedParameterSubstitution <em>Owned Parameter Substitution</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS#getOwningElement <em>Owning Element</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS#getOwnedSubstitutions <em>Owned Substitutions</em>}</li>
  * </ul>
  * </p>
  *
@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface TemplateBindingCS extends ElementRefCS {
 	/**
-	 * Returns the value of the '<em><b>Owning Template Bindable Element</b></em>' container reference.
+	 * Returns the value of the '<em><b>Owning Element</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getOwnedTemplateBinding <em>Owned Template Binding</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -39,41 +39,41 @@ public interface TemplateBindingCS extends ElementRefCS {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Template Bindable Element</em>' container reference.
-	 * @see #setOwningTemplateBindableElement(TypedTypeRefCS)
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTemplateBindingCS_OwningTemplateBindableElement()
+	 * @return the value of the '<em>Owning Element</em>' container reference.
+	 * @see #setOwningElement(TypedTypeRefCS)
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTemplateBindingCS_OwningElement()
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getOwnedTemplateBinding
 	 * @model opposite="ownedTemplateBinding" transient="false"
 	 * @generated
 	 */
-	TypedTypeRefCS getOwningTemplateBindableElement();
+	TypedTypeRefCS getOwningElement();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS#getOwningTemplateBindableElement <em>Owning Template Bindable Element</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS#getOwningElement <em>Owning Element</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Template Bindable Element</em>' container reference.
-	 * @see #getOwningTemplateBindableElement()
+	 * @param value the new value of the '<em>Owning Element</em>' container reference.
+	 * @see #getOwningElement()
 	 * @generated
 	 */
-	void setOwningTemplateBindableElement(TypedTypeRefCS value);
+	void setOwningElement(TypedTypeRefCS value);
 
 	/**
-	 * Returns the value of the '<em><b>Owned Parameter Substitution</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Substitutions</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS#getOwningTemplateBinding <em>Owning Template Binding</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS#getOwningBinding <em>Owning Binding</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Parameter Substitution</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Parameter Substitution</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTemplateBindingCS_OwnedParameterSubstitution()
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS#getOwningTemplateBinding
-	 * @model opposite="owningTemplateBinding" containment="true"
+	 * @return the value of the '<em>Owned Substitutions</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTemplateBindingCS_OwnedSubstitutions()
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS#getOwningBinding
+	 * @model opposite="owningBinding" containment="true"
 	 * @generated
 	 */
-	EList<TemplateParameterSubstitutionCS> getOwnedParameterSubstitution();
+	EList<TemplateParameterSubstitutionCS> getOwnedSubstitutions();
 
 } // TemplateBindingCS

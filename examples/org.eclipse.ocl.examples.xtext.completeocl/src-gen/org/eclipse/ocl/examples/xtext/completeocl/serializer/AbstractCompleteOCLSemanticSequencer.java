@@ -584,7 +584,7 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	/**
 	 * Constraint:
 	 *     (
-	 *         (ownedImport+=ImportCS | ownedIncludes+=IncludeCS | ownedLibrary+=LibraryCS)* 
+	 *         (ownedImports+=ImportCS | ownedIncludes+=IncludeCS | ownedLibraries+=LibraryCS)* 
 	 *         (ownedPackages+=PackageDeclarationCS | ownedContexts+=ContextDeclCS)*
 	 *     )
 	 */
@@ -620,7 +620,7 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	
 	/**
 	 * Constraint:
-	 *     ((name=UnrestrictedName messageSpecification=SpecificationCS?)? specification=SpecificationCS)
+	 *     ((name=UnrestrictedName ownedMessageSpecification=SpecificationCS?)? ownedSpecification=SpecificationCS)
 	 */
 	protected void sequence_ConstraintCS(EObject context, ConstraintCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -662,7 +662,7 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	
 	/**
 	 * Constraint:
-	 *     (name=Identifier? pathName=URIPathNameCS all?='::*'?)
+	 *     (name=Identifier? ownedPathName=URIPathNameCS isAll?='::*'?)
 	 */
 	protected void sequence_ImportCS(EObject context, ImportCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -680,7 +680,7 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	
 	/**
 	 * Constraint:
-	 *     package=[Package|URI]
+	 *     referredPackage=[Package|URI]
 	 */
 	protected void sequence_LibraryCS(EObject context, LibraryCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

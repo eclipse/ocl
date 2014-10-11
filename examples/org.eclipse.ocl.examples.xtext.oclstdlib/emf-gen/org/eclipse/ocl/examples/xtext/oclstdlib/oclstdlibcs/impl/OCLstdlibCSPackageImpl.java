@@ -516,7 +516,7 @@ public class OCLstdlibCSPackageImpl
 
 		// Add supertypes to classes
 		javaClassCSEClass.getESuperTypes().add(theBaseCSPackage.getNamedElementCS());
-		libClassCSEClass.getESuperTypes().add(theBaseCSPackage.getClassCS());
+		libClassCSEClass.getESuperTypes().add(theBaseCSPackage.getStructuredClassCS());
 		libConstraintCSEClass.getESuperTypes().add(theBaseCSPackage.getConstraintCS());
 		libIterationCSEClass.getESuperTypes().add(theBaseCSPackage.getOperationCS());
 		libIterationCSEClass.getESuperTypes().add(this.getJavaImplementationCS());

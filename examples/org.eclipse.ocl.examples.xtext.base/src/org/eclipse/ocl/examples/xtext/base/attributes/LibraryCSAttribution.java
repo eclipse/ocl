@@ -70,6 +70,11 @@ public class LibraryCSAttribution extends AbstractAttribution implements Unresol
 						String name = ((DomainNamedElement)importedElement2).getName();
 						if (name != null) {
 							environmentView.addElement(name, importedElement2);
+							if (importedElement instanceof Model) {
+								for (org.eclipse.ocl.examples.pivot.Package rootPackage : ((Model)importedElement2).getOwnedPackages()) {
+									environmentView.addElement(name, rootPackage);
+								}
+							}
 						}
 					}
 				}
@@ -192,7 +197,7 @@ public class LibraryCSAttribution extends AbstractAttribution implements Unresol
 	}
 
 	public @NonNull EReference getEReference() {
-		@SuppressWarnings("null") @NonNull EReference libraryCsPackage = BaseCSPackage.Literals.LIBRARY_CS__PACKAGE;
+		@SuppressWarnings("null") @NonNull EReference libraryCsPackage = BaseCSPackage.Literals.LIBRARY_CS__REFERRED_PACKAGE;
 		return libraryCsPackage;
 	}
 

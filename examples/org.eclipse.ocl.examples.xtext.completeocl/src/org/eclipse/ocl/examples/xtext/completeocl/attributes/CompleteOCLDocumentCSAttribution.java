@@ -30,8 +30,8 @@ public class CompleteOCLDocumentCSAttribution extends AbstractRootCSAttribution
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		CompleteOCLDocumentCS targetElement = (CompleteOCLDocumentCS)target;
 		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-		for (ImportCS anImport : targetElement.getOwnedImport()) {
-			Namespace namespace = anImport.getNamespace();
+		for (ImportCS anImport : targetElement.getOwnedImports()) {
+			Namespace namespace = anImport.getReferredNamespace();
 			if ((namespace != null) && !namespace.eIsProxy()) {
 				String importName = anImport.getName();
 				if (importName != null) {
@@ -40,7 +40,7 @@ public class CompleteOCLDocumentCSAttribution extends AbstractRootCSAttribution
 					if (namespace instanceof Model) {
 						environmentView.addAllPackages((Model)namespace);
 					} else if (namespace instanceof org.eclipse.ocl.examples.pivot.Package) {		// FIXME This legacy behaviour needs cleaning up
-						if (anImport.isAll()) {
+						if (anImport.isIsAll()) {
 							org.eclipse.ocl.examples.pivot.Package rootPackage = (org.eclipse.ocl.examples.pivot.Package)namespace;
 							environmentView.addAllPackages(rootPackage);
 							environmentView.addAllTypes(rootPackage);

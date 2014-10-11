@@ -14,7 +14,6 @@ package org.eclipse.ocl.examples.xtext.base.basecs;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -95,7 +94,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getElementCS()
 	 * @generated
 	 */
-	int ELEMENT_CS = 10;
+	int ELEMENT_CS = 9;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -123,7 +122,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getPivotableElementCS()
 	 * @generated
 	 */
-	int PIVOTABLE_ELEMENT_CS = 32;
+	int PIVOTABLE_ELEMENT_CS = 31;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -160,7 +159,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getModelElementCS()
 	 * @generated
 	 */
-	int MODEL_ELEMENT_CS = 18;
+	int MODEL_ELEMENT_CS = 17;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -181,13 +180,13 @@ public interface BaseCSPackage extends EPackage {
 	int MODEL_ELEMENT_CS__PIVOT = PIVOTABLE_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_CS__OWNED_ANNOTATION = PIVOTABLE_ELEMENT_CS_FEATURE_COUNT + 0;
+	int MODEL_ELEMENT_CS__OWNED_ANNOTATIONS = PIVOTABLE_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -234,7 +233,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getDetailCS()
 	 * @generated
 	 */
-	int DETAIL_CS = 8;
+	int DETAIL_CS = 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ImportCSImpl <em>Import CS</em>}' class.
@@ -244,7 +243,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getImportCS()
 	 * @generated
 	 */
-	int IMPORT_CS = 15;
+	int IMPORT_CS = 14;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.NamedElementCSImpl <em>Named Element CS</em>}' class.
@@ -254,7 +253,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getNamedElementCS()
 	 * @generated
 	 */
-	int NAMED_ELEMENT_CS = 23;
+	int NAMED_ELEMENT_CS = 22;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -275,13 +274,13 @@ public interface BaseCSPackage extends EPackage {
 	int NAMED_ELEMENT_CS__PIVOT = MODEL_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_CS__OWNED_ANNOTATION = MODEL_ELEMENT_CS__OWNED_ANNOTATION;
+	int NAMED_ELEMENT_CS__OWNED_ANNOTATIONS = MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -329,16 +328,6 @@ public interface BaseCSPackage extends EPackage {
 	int ANNOTATION_ELEMENT_CS__LOGICAL_PARENT = NAMED_ELEMENT_CS__LOGICAL_PARENT;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ClassifierCSImpl <em>Classifier CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.ClassifierCSImpl
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getClassifierCS()
-	 * @generated
-	 */
-	int CLASSIFIER_CS = 4;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TypedElementCSImpl <em>Typed Element CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -356,7 +345,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getFeatureCS()
 	 * @generated
 	 */
-	int FEATURE_CS = 14;
+	int FEATURE_CS = 13;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.StructuralFeatureCSImpl <em>Structural Feature CS</em>}' class.
@@ -379,16 +368,6 @@ public interface BaseCSPackage extends EPackage {
 	int ATTRIBUTE_CS = 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ClassCSImpl <em>Class CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.ClassCSImpl
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getClassCS()
-	 * @generated
-	 */
-	int CLASS_CS = 3;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.LibraryCSImpl <em>Library CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -396,7 +375,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getLibraryCS()
 	 * @generated
 	 */
-	int LIBRARY_CS = 17;
+	int LIBRARY_CS = 16;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.NamespaceCS <em>Namespace CS</em>}' class.
@@ -406,7 +385,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getNamespaceCS()
 	 * @generated
 	 */
-	int NAMESPACE_CS = 24;
+	int NAMESPACE_CS = 23;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.OperationCSImpl <em>Operation CS</em>}' class.
@@ -416,7 +395,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getOperationCS()
 	 * @generated
 	 */
-	int OPERATION_CS = 25;
+	int OPERATION_CS = 24;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PackageCSImpl <em>Package CS</em>}' class.
@@ -426,7 +405,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getPackageCS()
 	 * @generated
 	 */
-	int PACKAGE_CS = 26;
+	int PACKAGE_CS = 25;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ParameterCSImpl <em>Parameter CS</em>}' class.
@@ -436,7 +415,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getParameterCS()
 	 * @generated
 	 */
-	int PARAMETER_CS = 28;
+	int PARAMETER_CS = 27;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PrimitiveTypeRefCSImpl <em>Primitive Type Ref CS</em>}' class.
@@ -446,7 +425,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getPrimitiveTypeRefCS()
 	 * @generated
 	 */
-	int PRIMITIVE_TYPE_REF_CS = 33;
+	int PRIMITIVE_TYPE_REF_CS = 32;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ReferenceCSImpl <em>Reference CS</em>}' class.
@@ -456,7 +435,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getReferenceCS()
 	 * @generated
 	 */
-	int REFERENCE_CS = 34;
+	int REFERENCE_CS = 33;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypeCS <em>Type CS</em>}' class.
@@ -586,7 +565,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getConstraintCS()
 	 * @generated
 	 */
-	int CONSTRAINT_CS = 5;
+	int CONSTRAINT_CS = 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.DataTypeCSImpl <em>Data Type CS</em>}' class.
@@ -596,7 +575,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getDataTypeCS()
 	 * @generated
 	 */
-	int DATA_TYPE_CS = 7;
+	int DATA_TYPE_CS = 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.DocumentationCSImpl <em>Documentation CS</em>}' class.
@@ -606,7 +585,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getDocumentationCS()
 	 * @generated
 	 */
-	int DOCUMENTATION_CS = 9;
+	int DOCUMENTATION_CS = 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.EnumerationCSImpl <em>Enumeration CS</em>}' class.
@@ -616,7 +595,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getEnumerationCS()
 	 * @generated
 	 */
-	int ENUMERATION_CS = 12;
+	int ENUMERATION_CS = 11;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.EnumerationLiteralCSImpl <em>Enumeration Literal CS</em>}' class.
@@ -626,7 +605,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getEnumerationLiteralCS()
 	 * @generated
 	 */
-	int ENUMERATION_LITERAL_CS = 13;
+	int ENUMERATION_LITERAL_CS = 12;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -638,13 +617,13 @@ public interface BaseCSPackage extends EPackage {
 	int ANNOTATION_ELEMENT_CS__PIVOT = NAMED_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION_ELEMENT_CS__OWNED_ANNOTATION = NAMED_ELEMENT_CS__OWNED_ANNOTATION;
+	int ANNOTATION_ELEMENT_CS__OWNED_ANNOTATIONS = NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -674,13 +653,13 @@ public interface BaseCSPackage extends EPackage {
 	int ANNOTATION_ELEMENT_CS__NAME = NAMED_ELEMENT_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Detail</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Details</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION_ELEMENT_CS__OWNED_DETAIL = NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
+	int ANNOTATION_ELEMENT_CS__OWNED_DETAILS = NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Annotation Element CS</em>' class.
@@ -710,13 +689,13 @@ public interface BaseCSPackage extends EPackage {
 	int ANNOTATION_CS__PIVOT = ANNOTATION_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION_CS__OWNED_ANNOTATION = ANNOTATION_ELEMENT_CS__OWNED_ANNOTATION;
+	int ANNOTATION_CS__OWNED_ANNOTATIONS = ANNOTATION_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -746,31 +725,31 @@ public interface BaseCSPackage extends EPackage {
 	int ANNOTATION_CS__NAME = ANNOTATION_ELEMENT_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Detail</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Details</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION_CS__OWNED_DETAIL = ANNOTATION_ELEMENT_CS__OWNED_DETAIL;
+	int ANNOTATION_CS__OWNED_DETAILS = ANNOTATION_ELEMENT_CS__OWNED_DETAILS;
 
 	/**
-	 * The feature id for the '<em><b>Owned Content</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Contents</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION_CS__OWNED_CONTENT = ANNOTATION_ELEMENT_CS_FEATURE_COUNT + 0;
+	int ANNOTATION_CS__OWNED_CONTENTS = ANNOTATION_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Owned Reference</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned References</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION_CS__OWNED_REFERENCE = ANNOTATION_ELEMENT_CS_FEATURE_COUNT + 1;
+	int ANNOTATION_CS__OWNED_REFERENCES = ANNOTATION_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Annotation CS</em>' class.
@@ -800,13 +779,13 @@ public interface BaseCSPackage extends EPackage {
 	int TYPED_ELEMENT_CS__PIVOT = NAMED_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_CS__OWNED_ANNOTATION = NAMED_ELEMENT_CS__OWNED_ANNOTATION;
+	int TYPED_ELEMENT_CS__OWNED_ANNOTATIONS = NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -845,22 +824,22 @@ public interface BaseCSPackage extends EPackage {
 	int TYPED_ELEMENT_CS__OWNED_TYPE = NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Qualifier</b></em>' attribute list.
+	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_CS__QUALIFIER = NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
+	int TYPED_ELEMENT_CS__QUALIFIERS = NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Optional</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_CS__OPTIONAL = NAMED_ELEMENT_CS_FEATURE_COUNT + 2;
+	int TYPED_ELEMENT_CS__IS_OPTIONAL = NAMED_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Typed Element CS</em>' class.
@@ -890,13 +869,13 @@ public interface BaseCSPackage extends EPackage {
 	int FEATURE_CS__PIVOT = TYPED_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CS__OWNED_ANNOTATION = TYPED_ELEMENT_CS__OWNED_ANNOTATION;
+	int FEATURE_CS__OWNED_ANNOTATIONS = TYPED_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -935,22 +914,22 @@ public interface BaseCSPackage extends EPackage {
 	int FEATURE_CS__OWNED_TYPE = TYPED_ELEMENT_CS__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Qualifier</b></em>' attribute list.
+	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CS__QUALIFIER = TYPED_ELEMENT_CS__QUALIFIER;
+	int FEATURE_CS__QUALIFIERS = TYPED_ELEMENT_CS__QUALIFIERS;
 
 	/**
-	 * The feature id for the '<em><b>Optional</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CS__OPTIONAL = TYPED_ELEMENT_CS__OPTIONAL;
+	int FEATURE_CS__IS_OPTIONAL = TYPED_ELEMENT_CS__IS_OPTIONAL;
 
 	/**
 	 * The number of structural features of the '<em>Feature CS</em>' class.
@@ -980,13 +959,13 @@ public interface BaseCSPackage extends EPackage {
 	int STRUCTURAL_FEATURE_CS__PIVOT = FEATURE_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURAL_FEATURE_CS__OWNED_ANNOTATION = FEATURE_CS__OWNED_ANNOTATION;
+	int STRUCTURAL_FEATURE_CS__OWNED_ANNOTATIONS = FEATURE_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1025,31 +1004,31 @@ public interface BaseCSPackage extends EPackage {
 	int STRUCTURAL_FEATURE_CS__OWNED_TYPE = FEATURE_CS__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Qualifier</b></em>' attribute list.
+	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURAL_FEATURE_CS__QUALIFIER = FEATURE_CS__QUALIFIER;
+	int STRUCTURAL_FEATURE_CS__QUALIFIERS = FEATURE_CS__QUALIFIERS;
 
 	/**
-	 * The feature id for the '<em><b>Optional</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURAL_FEATURE_CS__OPTIONAL = FEATURE_CS__OPTIONAL;
+	int STRUCTURAL_FEATURE_CS__IS_OPTIONAL = FEATURE_CS__IS_OPTIONAL;
 
 	/**
-	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURAL_FEATURE_CS__OWNER = FEATURE_CS_FEATURE_COUNT + 0;
+	int STRUCTURAL_FEATURE_CS__OWNING_CLASS = FEATURE_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Default</b></em>' attribute.
@@ -1061,13 +1040,13 @@ public interface BaseCSPackage extends EPackage {
 	int STRUCTURAL_FEATURE_CS__DEFAULT = FEATURE_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Owned Default Expression</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Default Expressions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSION = FEATURE_CS_FEATURE_COUNT + 2;
+	int STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS = FEATURE_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Structural Feature CS</em>' class.
@@ -1097,13 +1076,13 @@ public interface BaseCSPackage extends EPackage {
 	int ATTRIBUTE_CS__PIVOT = STRUCTURAL_FEATURE_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_CS__OWNED_ANNOTATION = STRUCTURAL_FEATURE_CS__OWNED_ANNOTATION;
+	int ATTRIBUTE_CS__OWNED_ANNOTATIONS = STRUCTURAL_FEATURE_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1142,31 +1121,31 @@ public interface BaseCSPackage extends EPackage {
 	int ATTRIBUTE_CS__OWNED_TYPE = STRUCTURAL_FEATURE_CS__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Qualifier</b></em>' attribute list.
+	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_CS__QUALIFIER = STRUCTURAL_FEATURE_CS__QUALIFIER;
+	int ATTRIBUTE_CS__QUALIFIERS = STRUCTURAL_FEATURE_CS__QUALIFIERS;
 
 	/**
-	 * The feature id for the '<em><b>Optional</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_CS__OPTIONAL = STRUCTURAL_FEATURE_CS__OPTIONAL;
+	int ATTRIBUTE_CS__IS_OPTIONAL = STRUCTURAL_FEATURE_CS__IS_OPTIONAL;
 
 	/**
-	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_CS__OWNER = STRUCTURAL_FEATURE_CS__OWNER;
+	int ATTRIBUTE_CS__OWNING_CLASS = STRUCTURAL_FEATURE_CS__OWNING_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Default</b></em>' attribute.
@@ -1178,13 +1157,13 @@ public interface BaseCSPackage extends EPackage {
 	int ATTRIBUTE_CS__DEFAULT = STRUCTURAL_FEATURE_CS__DEFAULT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Default Expression</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Default Expressions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_CS__OWNED_DEFAULT_EXPRESSION = STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSION;
+	int ATTRIBUTE_CS__OWNED_DEFAULT_EXPRESSIONS = STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS;
 
 	/**
 	 * The number of structural features of the '<em>Attribute CS</em>' class.
@@ -1196,112 +1175,14 @@ public interface BaseCSPackage extends EPackage {
 	int ATTRIBUTE_CS_FEATURE_COUNT = STRUCTURAL_FEATURE_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ClassCSImpl <em>Class CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.ClassCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getClassCS()
 	 * @generated
-	 * @ordered
 	 */
-	int CLASSIFIER_CS__LOGICAL_PARENT = NAMED_ELEMENT_CS__LOGICAL_PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Pivot</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASSIFIER_CS__PIVOT = NAMED_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASSIFIER_CS__OWNED_ANNOTATION = NAMED_ELEMENT_CS__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASSIFIER_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASSIFIER_CS__CSI = NAMED_ELEMENT_CS__CSI;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASSIFIER_CS__NAME = NAMED_ELEMENT_CS__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASSIFIER_CS__OWNED_TEMPLATE_SIGNATURE = NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owner</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASSIFIER_CS__OWNER = NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASSIFIER_CS__INSTANCE_CLASS_NAME = NAMED_ELEMENT_CS_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASSIFIER_CS__OWNED_CONSTRAINT = NAMED_ELEMENT_CS_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Qualifier</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASSIFIER_CS__QUALIFIER = NAMED_ELEMENT_CS_FEATURE_COUNT + 4;
-
-	/**
-	 * The number of structural features of the '<em>Classifier CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASSIFIER_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 5;
+	int CLASS_CS = 3;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -1310,7 +1191,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_CS__LOGICAL_PARENT = CLASSIFIER_CS__LOGICAL_PARENT;
+	int CLASS_CS__LOGICAL_PARENT = NAMED_ELEMENT_CS__LOGICAL_PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1319,16 +1200,16 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_CS__PIVOT = CLASSIFIER_CS__PIVOT;
+	int CLASS_CS__PIVOT = NAMED_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_CS__OWNED_ANNOTATION = CLASSIFIER_CS__OWNED_ANNOTATION;
+	int CLASS_CS__OWNED_ANNOTATIONS = NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1337,7 +1218,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_CS__ORIGINAL_XMI_ID = CLASSIFIER_CS__ORIGINAL_XMI_ID;
+	int CLASS_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -1346,7 +1227,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_CS__CSI = CLASSIFIER_CS__CSI;
+	int CLASS_CS__CSI = NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1355,25 +1236,25 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_CS__NAME = CLASSIFIER_CS__NAME;
+	int CLASS_CS__NAME = NAMED_ELEMENT_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_CS__OWNED_TEMPLATE_SIGNATURE = CLASSIFIER_CS__OWNED_TEMPLATE_SIGNATURE;
+	int CLASS_CS__OWNED_SIGNATURE = NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_CS__OWNER = CLASSIFIER_CS__OWNER;
+	int CLASS_CS__OWNING_PACKAGE = NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -1382,61 +1263,25 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_CS__INSTANCE_CLASS_NAME = CLASSIFIER_CS__INSTANCE_CLASS_NAME;
+	int CLASS_CS__INSTANCE_CLASS_NAME = NAMED_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_CS__OWNED_CONSTRAINT = CLASSIFIER_CS__OWNED_CONSTRAINT;
+	int CLASS_CS__OWNED_CONSTRAINTS = NAMED_ELEMENT_CS_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Qualifier</b></em>' attribute list.
+	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_CS__QUALIFIER = CLASSIFIER_CS__QUALIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Owned Super Type</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS__OWNED_SUPER_TYPE = CLASSIFIER_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS__OWNED_OPERATION = CLASSIFIER_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Owned Property</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS__OWNED_PROPERTY = CLASSIFIER_CS_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Owned Meta Type</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS__OWNED_META_TYPE = CLASSIFIER_CS_FEATURE_COUNT + 3;
+	int CLASS_CS__QUALIFIERS = NAMED_ELEMENT_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Class CS</em>' class.
@@ -1445,7 +1290,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_CS_FEATURE_COUNT = CLASSIFIER_CS_FEATURE_COUNT + 4;
+	int CLASS_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ElementRefCSImpl <em>Element Ref CS</em>}' class.
@@ -1455,7 +1300,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getElementRefCS()
 	 * @generated
 	 */
-	int ELEMENT_REF_CS = 11;
+	int ELEMENT_REF_CS = 10;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.LambdaTypeCSImpl <em>Lambda Type CS</em>}' class.
@@ -1465,7 +1310,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getLambdaTypeCS()
 	 * @generated
 	 */
-	int LAMBDA_TYPE_CS = 16;
+	int LAMBDA_TYPE_CS = 15;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ModelElementRefCSImpl <em>Model Element Ref CS</em>}' class.
@@ -1475,7 +1320,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getModelElementRefCS()
 	 * @generated
 	 */
-	int MODEL_ELEMENT_REF_CS = 19;
+	int MODEL_ELEMENT_REF_CS = 18;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -1496,13 +1341,13 @@ public interface BaseCSPackage extends EPackage {
 	int CONSTRAINT_CS__PIVOT = NAMED_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_CS__OWNED_ANNOTATION = NAMED_ELEMENT_CS__OWNED_ANNOTATION;
+	int CONSTRAINT_CS__OWNED_ANNOTATIONS = NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1541,22 +1386,22 @@ public interface BaseCSPackage extends EPackage {
 	int CONSTRAINT_CS__STEREOTYPE = NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Specification</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Specification</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_CS__SPECIFICATION = NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
+	int CONSTRAINT_CS__OWNED_SPECIFICATION = NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Message Specification</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Message Specification</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_CS__MESSAGE_SPECIFICATION = NAMED_ELEMENT_CS_FEATURE_COUNT + 2;
+	int CONSTRAINT_CS__OWNED_MESSAGE_SPECIFICATION = NAMED_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Constraint CS</em>' class.
@@ -1575,7 +1420,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getContextLessElementCS()
 	 * @generated
 	 */
-	int CONTEXT_LESS_ELEMENT_CS = 6;
+	int CONTEXT_LESS_ELEMENT_CS = 5;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -1602,7 +1447,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE_CS__LOGICAL_PARENT = CLASSIFIER_CS__LOGICAL_PARENT;
+	int DATA_TYPE_CS__LOGICAL_PARENT = CLASS_CS__LOGICAL_PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1611,16 +1456,16 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE_CS__PIVOT = CLASSIFIER_CS__PIVOT;
+	int DATA_TYPE_CS__PIVOT = CLASS_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE_CS__OWNED_ANNOTATION = CLASSIFIER_CS__OWNED_ANNOTATION;
+	int DATA_TYPE_CS__OWNED_ANNOTATIONS = CLASS_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1629,7 +1474,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE_CS__ORIGINAL_XMI_ID = CLASSIFIER_CS__ORIGINAL_XMI_ID;
+	int DATA_TYPE_CS__ORIGINAL_XMI_ID = CLASS_CS__ORIGINAL_XMI_ID;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -1638,7 +1483,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE_CS__CSI = CLASSIFIER_CS__CSI;
+	int DATA_TYPE_CS__CSI = CLASS_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1647,25 +1492,25 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE_CS__NAME = CLASSIFIER_CS__NAME;
+	int DATA_TYPE_CS__NAME = CLASS_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE_CS__OWNED_TEMPLATE_SIGNATURE = CLASSIFIER_CS__OWNED_TEMPLATE_SIGNATURE;
+	int DATA_TYPE_CS__OWNED_SIGNATURE = CLASS_CS__OWNED_SIGNATURE;
 
 	/**
-	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE_CS__OWNER = CLASSIFIER_CS__OWNER;
+	int DATA_TYPE_CS__OWNING_PACKAGE = CLASS_CS__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -1674,34 +1519,25 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE_CS__INSTANCE_CLASS_NAME = CLASSIFIER_CS__INSTANCE_CLASS_NAME;
+	int DATA_TYPE_CS__INSTANCE_CLASS_NAME = CLASS_CS__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE_CS__OWNED_CONSTRAINT = CLASSIFIER_CS__OWNED_CONSTRAINT;
+	int DATA_TYPE_CS__OWNED_CONSTRAINTS = CLASS_CS__OWNED_CONSTRAINTS;
 
 	/**
-	 * The feature id for the '<em><b>Qualifier</b></em>' attribute list.
+	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE_CS__QUALIFIER = CLASSIFIER_CS__QUALIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Literals</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE_CS__LITERALS = CLASSIFIER_CS_FEATURE_COUNT + 0;
+	int DATA_TYPE_CS__QUALIFIERS = CLASS_CS__QUALIFIERS;
 
 	/**
 	 * The number of structural features of the '<em>Data Type CS</em>' class.
@@ -1710,7 +1546,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE_CS_FEATURE_COUNT = CLASSIFIER_CS_FEATURE_COUNT + 1;
+	int DATA_TYPE_CS_FEATURE_COUNT = CLASS_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -1731,13 +1567,13 @@ public interface BaseCSPackage extends EPackage {
 	int DETAIL_CS__PIVOT = NAMED_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DETAIL_CS__OWNED_ANNOTATION = NAMED_ELEMENT_CS__OWNED_ANNOTATION;
+	int DETAIL_CS__OWNED_ANNOTATIONS = NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1803,13 +1639,13 @@ public interface BaseCSPackage extends EPackage {
 	int DOCUMENTATION_CS__PIVOT = ANNOTATION_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENTATION_CS__OWNED_ANNOTATION = ANNOTATION_ELEMENT_CS__OWNED_ANNOTATION;
+	int DOCUMENTATION_CS__OWNED_ANNOTATIONS = ANNOTATION_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1839,13 +1675,13 @@ public interface BaseCSPackage extends EPackage {
 	int DOCUMENTATION_CS__NAME = ANNOTATION_ELEMENT_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Detail</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Details</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENTATION_CS__OWNED_DETAIL = ANNOTATION_ELEMENT_CS__OWNED_DETAIL;
+	int DOCUMENTATION_CS__OWNED_DETAILS = ANNOTATION_ELEMENT_CS__OWNED_DETAILS;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1899,7 +1735,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_CS__LOGICAL_PARENT = CLASSIFIER_CS__LOGICAL_PARENT;
+	int ENUMERATION_CS__LOGICAL_PARENT = CLASS_CS__LOGICAL_PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1908,16 +1744,16 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_CS__PIVOT = CLASSIFIER_CS__PIVOT;
+	int ENUMERATION_CS__PIVOT = CLASS_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_CS__OWNED_ANNOTATION = CLASSIFIER_CS__OWNED_ANNOTATION;
+	int ENUMERATION_CS__OWNED_ANNOTATIONS = CLASS_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1926,7 +1762,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_CS__ORIGINAL_XMI_ID = CLASSIFIER_CS__ORIGINAL_XMI_ID;
+	int ENUMERATION_CS__ORIGINAL_XMI_ID = CLASS_CS__ORIGINAL_XMI_ID;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -1935,7 +1771,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_CS__CSI = CLASSIFIER_CS__CSI;
+	int ENUMERATION_CS__CSI = CLASS_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1944,25 +1780,25 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_CS__NAME = CLASSIFIER_CS__NAME;
+	int ENUMERATION_CS__NAME = CLASS_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_CS__OWNED_TEMPLATE_SIGNATURE = CLASSIFIER_CS__OWNED_TEMPLATE_SIGNATURE;
+	int ENUMERATION_CS__OWNED_SIGNATURE = CLASS_CS__OWNED_SIGNATURE;
 
 	/**
-	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_CS__OWNER = CLASSIFIER_CS__OWNER;
+	int ENUMERATION_CS__OWNING_PACKAGE = CLASS_CS__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -1971,25 +1807,25 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_CS__INSTANCE_CLASS_NAME = CLASSIFIER_CS__INSTANCE_CLASS_NAME;
+	int ENUMERATION_CS__INSTANCE_CLASS_NAME = CLASS_CS__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_CS__OWNED_CONSTRAINT = CLASSIFIER_CS__OWNED_CONSTRAINT;
+	int ENUMERATION_CS__OWNED_CONSTRAINTS = CLASS_CS__OWNED_CONSTRAINTS;
 
 	/**
-	 * The feature id for the '<em><b>Qualifier</b></em>' attribute list.
+	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_CS__QUALIFIER = CLASSIFIER_CS__QUALIFIER;
+	int ENUMERATION_CS__QUALIFIERS = CLASS_CS__QUALIFIERS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Literals</b></em>' containment reference list.
@@ -1998,7 +1834,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_CS__OWNED_LITERALS = CLASSIFIER_CS_FEATURE_COUNT + 0;
+	int ENUMERATION_CS__OWNED_LITERALS = CLASS_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Enumeration CS</em>' class.
@@ -2007,7 +1843,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_CS_FEATURE_COUNT = CLASSIFIER_CS_FEATURE_COUNT + 1;
+	int ENUMERATION_CS_FEATURE_COUNT = CLASS_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -2028,13 +1864,13 @@ public interface BaseCSPackage extends EPackage {
 	int ENUMERATION_LITERAL_CS__PIVOT = NAMED_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_LITERAL_CS__OWNED_ANNOTATION = NAMED_ELEMENT_CS__OWNED_ANNOTATION;
+	int ENUMERATION_LITERAL_CS__OWNED_ANNOTATIONS = NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2100,13 +1936,13 @@ public interface BaseCSPackage extends EPackage {
 	int NAMESPACE_CS__PIVOT = NAMED_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMESPACE_CS__OWNED_ANNOTATION = NAMED_ELEMENT_CS__OWNED_ANNOTATION;
+	int NAMESPACE_CS__OWNED_ANNOTATIONS = NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2163,13 +1999,13 @@ public interface BaseCSPackage extends EPackage {
 	int IMPORT_CS__PIVOT = NAMESPACE_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMPORT_CS__OWNED_ANNOTATION = NAMESPACE_CS__OWNED_ANNOTATION;
+	int IMPORT_CS__OWNED_ANNOTATIONS = NAMESPACE_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2199,31 +2035,31 @@ public interface BaseCSPackage extends EPackage {
 	int IMPORT_CS__NAME = NAMESPACE_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMPORT_CS__PATH_NAME = NAMESPACE_CS_FEATURE_COUNT + 0;
+	int IMPORT_CS__OWNED_PATH_NAME = NAMESPACE_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Namespace</b></em>' reference.
+	 * The feature id for the '<em><b>Referred Namespace</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMPORT_CS__NAMESPACE = NAMESPACE_CS_FEATURE_COUNT + 1;
+	int IMPORT_CS__REFERRED_NAMESPACE = NAMESPACE_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>All</b></em>' attribute.
+	 * The feature id for the '<em><b>Is All</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMPORT_CS__ALL = NAMESPACE_CS_FEATURE_COUNT + 2;
+	int IMPORT_CS__IS_ALL = NAMESPACE_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Import CS</em>' class.
@@ -2280,13 +2116,13 @@ public interface BaseCSPackage extends EPackage {
 	int TYPED_REF_CS__PIVOT = TYPE_REF_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Multiplicity</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_REF_CS__MULTIPLICITY = TYPE_REF_CS_FEATURE_COUNT + 0;
+	int TYPED_REF_CS__OWNED_MULTIPLICITY = TYPE_REF_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Typed Ref CS</em>' class.
@@ -2305,7 +2141,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getMultiplicityCS()
 	 * @generated
 	 */
-	int MULTIPLICITY_CS = 21;
+	int MULTIPLICITY_CS = 20;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.MultiplicityBoundsCSImpl <em>Multiplicity Bounds CS</em>}' class.
@@ -2315,7 +2151,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getMultiplicityBoundsCS()
 	 * @generated
 	 */
-	int MULTIPLICITY_BOUNDS_CS = 20;
+	int MULTIPLICITY_BOUNDS_CS = 19;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.MultiplicityStringCSImpl <em>Multiplicity String CS</em>}' class.
@@ -2325,7 +2161,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getMultiplicityStringCS()
 	 * @generated
 	 */
-	int MULTIPLICITY_STRING_CS = 22;
+	int MULTIPLICITY_STRING_CS = 21;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -2346,22 +2182,22 @@ public interface BaseCSPackage extends EPackage {
 	int LAMBDA_TYPE_CS__PIVOT = TYPED_REF_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Multiplicity</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAMBDA_TYPE_CS__MULTIPLICITY = TYPED_REF_CS__MULTIPLICITY;
+	int LAMBDA_TYPE_CS__OWNED_MULTIPLICITY = TYPED_REF_CS__OWNED_MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAMBDA_TYPE_CS__OWNED_TEMPLATE_SIGNATURE = TYPED_REF_CS_FEATURE_COUNT + 0;
+	int LAMBDA_TYPE_CS__OWNED_SIGNATURE = TYPED_REF_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2382,13 +2218,13 @@ public interface BaseCSPackage extends EPackage {
 	int LAMBDA_TYPE_CS__OWNED_CONTEXT_TYPE = TYPED_REF_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Owned Parameter Type</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Parameter Types</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAMBDA_TYPE_CS__OWNED_PARAMETER_TYPE = TYPED_REF_CS_FEATURE_COUNT + 3;
+	int LAMBDA_TYPE_CS__OWNED_PARAMETER_TYPES = TYPED_REF_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Owned Result Type</b></em>' containment reference.
@@ -2427,13 +2263,13 @@ public interface BaseCSPackage extends EPackage {
 	int LIBRARY_CS__PIVOT = NAMESPACE_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_CS__OWNED_ANNOTATION = NAMESPACE_CS__OWNED_ANNOTATION;
+	int LIBRARY_CS__OWNED_ANNOTATIONS = NAMESPACE_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2463,13 +2299,13 @@ public interface BaseCSPackage extends EPackage {
 	int LIBRARY_CS__NAME = NAMESPACE_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' reference.
+	 * The feature id for the '<em><b>Referred Package</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_CS__PACKAGE = NAMESPACE_CS_FEATURE_COUNT + 0;
+	int LIBRARY_CS__REFERRED_PACKAGE = NAMESPACE_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Library CS</em>' class.
@@ -2499,22 +2335,22 @@ public interface BaseCSPackage extends EPackage {
 	int MODEL_ELEMENT_REF_CS__PIVOT = ELEMENT_REF_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_REF_CS__PATH_NAME = ELEMENT_REF_CS_FEATURE_COUNT + 0;
+	int MODEL_ELEMENT_REF_CS__OWNED_PATH_NAME = ELEMENT_REF_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Element</b></em>' reference.
+	 * The feature id for the '<em><b>Referred Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_REF_CS__ELEMENT = ELEMENT_REF_CS_FEATURE_COUNT + 1;
+	int MODEL_ELEMENT_REF_CS__REFERRED_ELEMENT = ELEMENT_REF_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Model Element Ref CS</em>' class.
@@ -2625,13 +2461,13 @@ public interface BaseCSPackage extends EPackage {
 	int OPERATION_CS__PIVOT = FEATURE_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CS__OWNED_ANNOTATION = FEATURE_CS__OWNED_ANNOTATION;
+	int OPERATION_CS__OWNED_ANNOTATIONS = FEATURE_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2670,31 +2506,31 @@ public interface BaseCSPackage extends EPackage {
 	int OPERATION_CS__OWNED_TYPE = FEATURE_CS__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Qualifier</b></em>' attribute list.
+	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CS__QUALIFIER = FEATURE_CS__QUALIFIER;
+	int OPERATION_CS__QUALIFIERS = FEATURE_CS__QUALIFIERS;
 
 	/**
-	 * The feature id for the '<em><b>Optional</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CS__OPTIONAL = FEATURE_CS__OPTIONAL;
+	int OPERATION_CS__IS_OPTIONAL = FEATURE_CS__IS_OPTIONAL;
 
 	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CS__OWNED_TEMPLATE_SIGNATURE = FEATURE_CS_FEATURE_COUNT + 0;
+	int OPERATION_CS__OWNED_SIGNATURE = FEATURE_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
@@ -2706,49 +2542,49 @@ public interface BaseCSPackage extends EPackage {
 	int OPERATION_CS__OWNING_CLASS = FEATURE_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Owned Parameter</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CS__OWNED_PARAMETER = FEATURE_CS_FEATURE_COUNT + 2;
+	int OPERATION_CS__OWNED_PARAMETERS = FEATURE_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Owned Exception</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Exceptions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CS__OWNED_EXCEPTION = FEATURE_CS_FEATURE_COUNT + 3;
+	int OPERATION_CS__OWNED_EXCEPTIONS = FEATURE_CS_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Owned Precondition</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Preconditions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CS__OWNED_PRECONDITION = FEATURE_CS_FEATURE_COUNT + 4;
+	int OPERATION_CS__OWNED_PRECONDITIONS = FEATURE_CS_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Owned Postcondition</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Postconditions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CS__OWNED_POSTCONDITION = FEATURE_CS_FEATURE_COUNT + 5;
+	int OPERATION_CS__OWNED_POSTCONDITIONS = FEATURE_CS_FEATURE_COUNT + 5;
 
 	/**
-	 * The feature id for the '<em><b>Owned Body Expression</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Body Expressions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CS__OWNED_BODY_EXPRESSION = FEATURE_CS_FEATURE_COUNT + 6;
+	int OPERATION_CS__OWNED_BODY_EXPRESSIONS = FEATURE_CS_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Operation CS</em>' class.
@@ -2767,7 +2603,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getPackageOwnerCS()
 	 * @generated
 	 */
-	int PACKAGE_OWNER_CS = 27;
+	int PACKAGE_OWNER_CS = 26;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -2788,13 +2624,13 @@ public interface BaseCSPackage extends EPackage {
 	int PACKAGE_OWNER_CS__PIVOT = MODEL_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_OWNER_CS__OWNED_ANNOTATION = MODEL_ELEMENT_CS__OWNED_ANNOTATION;
+	int PACKAGE_OWNER_CS__OWNED_ANNOTATIONS = MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2815,13 +2651,13 @@ public interface BaseCSPackage extends EPackage {
 	int PACKAGE_OWNER_CS__CSI = MODEL_ELEMENT_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Owned Nested Package</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Packages</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_OWNER_CS__OWNED_NESTED_PACKAGE = MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
+	int PACKAGE_OWNER_CS__OWNED_PACKAGES = MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Package Owner CS</em>' class.
@@ -2851,13 +2687,13 @@ public interface BaseCSPackage extends EPackage {
 	int PACKAGE_CS__PIVOT = PACKAGE_OWNER_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_CS__OWNED_ANNOTATION = PACKAGE_OWNER_CS__OWNED_ANNOTATION;
+	int PACKAGE_CS__OWNED_ANNOTATIONS = PACKAGE_OWNER_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2878,13 +2714,13 @@ public interface BaseCSPackage extends EPackage {
 	int PACKAGE_CS__CSI = PACKAGE_OWNER_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Owned Nested Package</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Packages</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_CS__OWNED_NESTED_PACKAGE = PACKAGE_OWNER_CS__OWNED_NESTED_PACKAGE;
+	int PACKAGE_CS__OWNED_PACKAGES = PACKAGE_OWNER_CS__OWNED_PACKAGES;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2896,13 +2732,13 @@ public interface BaseCSPackage extends EPackage {
 	int PACKAGE_CS__NAME = PACKAGE_OWNER_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Classes</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_CS__OWNED_TYPE = PACKAGE_OWNER_CS_FEATURE_COUNT + 1;
+	int PACKAGE_CS__OWNED_CLASSES = PACKAGE_OWNER_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Ns Prefix</b></em>' attribute.
@@ -2950,13 +2786,13 @@ public interface BaseCSPackage extends EPackage {
 	int PARAMETER_CS__PIVOT = TYPED_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_CS__OWNED_ANNOTATION = TYPED_ELEMENT_CS__OWNED_ANNOTATION;
+	int PARAMETER_CS__OWNED_ANNOTATIONS = TYPED_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2995,31 +2831,31 @@ public interface BaseCSPackage extends EPackage {
 	int PARAMETER_CS__OWNED_TYPE = TYPED_ELEMENT_CS__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Qualifier</b></em>' attribute list.
+	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_CS__QUALIFIER = TYPED_ELEMENT_CS__QUALIFIER;
+	int PARAMETER_CS__QUALIFIERS = TYPED_ELEMENT_CS__QUALIFIERS;
 
 	/**
-	 * The feature id for the '<em><b>Optional</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_CS__OPTIONAL = TYPED_ELEMENT_CS__OPTIONAL;
+	int PARAMETER_CS__IS_OPTIONAL = TYPED_ELEMENT_CS__IS_OPTIONAL;
 
 	/**
-	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Operation</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_CS__OWNER = TYPED_ELEMENT_CS_FEATURE_COUNT + 0;
+	int PARAMETER_CS__OWNING_OPERATION = TYPED_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Parameter CS</em>' class.
@@ -3038,7 +2874,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getPathElementCS()
 	 * @generated
 	 */
-	int PATH_ELEMENT_CS = 29;
+	int PATH_ELEMENT_CS = 28;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3050,22 +2886,22 @@ public interface BaseCSPackage extends EPackage {
 	int PATH_ELEMENT_CS__LOGICAL_PARENT = ELEMENT_CS__LOGICAL_PARENT;
 
 	/**
-	 * The feature id for the '<em><b>Path Name</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Path Name</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_ELEMENT_CS__PATH_NAME = ELEMENT_CS_FEATURE_COUNT + 0;
+	int PATH_ELEMENT_CS__OWNING_PATH_NAME = ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Element</b></em>' reference.
+	 * The feature id for the '<em><b>Referred Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_ELEMENT_CS__ELEMENT = ELEMENT_CS_FEATURE_COUNT + 1;
+	int PATH_ELEMENT_CS__REFERRED_ELEMENT = ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' reference.
@@ -3093,7 +2929,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getPathElementWithURICS()
 	 * @generated
 	 */
-	int PATH_ELEMENT_WITH_URICS = 30;
+	int PATH_ELEMENT_WITH_URICS = 29;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3105,22 +2941,22 @@ public interface BaseCSPackage extends EPackage {
 	int PATH_ELEMENT_WITH_URICS__LOGICAL_PARENT = PATH_ELEMENT_CS__LOGICAL_PARENT;
 
 	/**
-	 * The feature id for the '<em><b>Path Name</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Path Name</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_ELEMENT_WITH_URICS__PATH_NAME = PATH_ELEMENT_CS__PATH_NAME;
+	int PATH_ELEMENT_WITH_URICS__OWNING_PATH_NAME = PATH_ELEMENT_CS__OWNING_PATH_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Element</b></em>' reference.
+	 * The feature id for the '<em><b>Referred Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_ELEMENT_WITH_URICS__ELEMENT = PATH_ELEMENT_CS__ELEMENT;
+	int PATH_ELEMENT_WITH_URICS__REFERRED_ELEMENT = PATH_ELEMENT_CS__REFERRED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' reference.
@@ -3157,7 +2993,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getPathNameCS()
 	 * @generated
 	 */
-	int PATH_NAME_CS = 31;
+	int PATH_NAME_CS = 30;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3169,22 +3005,22 @@ public interface BaseCSPackage extends EPackage {
 	int PATH_NAME_CS__LOGICAL_PARENT = ELEMENT_CS__LOGICAL_PARENT;
 
 	/**
-	 * The feature id for the '<em><b>Path</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Path Elements</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_NAME_CS__PATH = ELEMENT_CS_FEATURE_COUNT + 0;
+	int PATH_NAME_CS__OWNED_PATH_ELEMENTS = ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Element</b></em>' reference.
+	 * The feature id for the '<em><b>Referred Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_NAME_CS__ELEMENT = ELEMENT_CS_FEATURE_COUNT + 1;
+	int PATH_NAME_CS__REFERRED_ELEMENT = ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Context</b></em>' reference.
@@ -3232,13 +3068,13 @@ public interface BaseCSPackage extends EPackage {
 	int PRIMITIVE_TYPE_REF_CS__PIVOT = TYPED_REF_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Multiplicity</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_TYPE_REF_CS__MULTIPLICITY = TYPED_REF_CS__MULTIPLICITY;
+	int PRIMITIVE_TYPE_REF_CS__OWNED_MULTIPLICITY = TYPED_REF_CS__OWNED_MULTIPLICITY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3277,13 +3113,13 @@ public interface BaseCSPackage extends EPackage {
 	int REFERENCE_CS__PIVOT = STRUCTURAL_FEATURE_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_CS__OWNED_ANNOTATION = STRUCTURAL_FEATURE_CS__OWNED_ANNOTATION;
+	int REFERENCE_CS__OWNED_ANNOTATIONS = STRUCTURAL_FEATURE_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3322,31 +3158,31 @@ public interface BaseCSPackage extends EPackage {
 	int REFERENCE_CS__OWNED_TYPE = STRUCTURAL_FEATURE_CS__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Qualifier</b></em>' attribute list.
+	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_CS__QUALIFIER = STRUCTURAL_FEATURE_CS__QUALIFIER;
+	int REFERENCE_CS__QUALIFIERS = STRUCTURAL_FEATURE_CS__QUALIFIERS;
 
 	/**
-	 * The feature id for the '<em><b>Optional</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_CS__OPTIONAL = STRUCTURAL_FEATURE_CS__OPTIONAL;
+	int REFERENCE_CS__IS_OPTIONAL = STRUCTURAL_FEATURE_CS__IS_OPTIONAL;
 
 	/**
-	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_CS__OWNER = STRUCTURAL_FEATURE_CS__OWNER;
+	int REFERENCE_CS__OWNING_CLASS = STRUCTURAL_FEATURE_CS__OWNING_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Default</b></em>' attribute.
@@ -3358,31 +3194,31 @@ public interface BaseCSPackage extends EPackage {
 	int REFERENCE_CS__DEFAULT = STRUCTURAL_FEATURE_CS__DEFAULT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Default Expression</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Default Expressions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_CS__OWNED_DEFAULT_EXPRESSION = STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSION;
+	int REFERENCE_CS__OWNED_DEFAULT_EXPRESSIONS = STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS;
 
 	/**
-	 * The feature id for the '<em><b>Opposite</b></em>' reference.
+	 * The feature id for the '<em><b>Referred Opposite</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_CS__OPPOSITE = STRUCTURAL_FEATURE_CS_FEATURE_COUNT + 0;
+	int REFERENCE_CS__REFERRED_OPPOSITE = STRUCTURAL_FEATURE_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Keys</b></em>' reference list.
+	 * The feature id for the '<em><b>Referred Keys</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_CS__KEYS = STRUCTURAL_FEATURE_CS_FEATURE_COUNT + 1;
+	int REFERENCE_CS__REFERRED_KEYS = STRUCTURAL_FEATURE_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Reference CS</em>' class.
@@ -3401,7 +3237,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getRootCS()
 	 * @generated
 	 */
-	int ROOT_CS = 35;
+	int ROOT_CS = 34;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3422,13 +3258,13 @@ public interface BaseCSPackage extends EPackage {
 	int ROOT_CS__PIVOT = MODEL_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_CS__OWNED_ANNOTATION = MODEL_ELEMENT_CS__OWNED_ANNOTATION;
+	int ROOT_CS__OWNED_ANNOTATIONS = MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3449,22 +3285,22 @@ public interface BaseCSPackage extends EPackage {
 	int ROOT_CS__CSI = MODEL_ELEMENT_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Imports</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_CS__OWNED_IMPORT = MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
+	int ROOT_CS__OWNED_IMPORTS = MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Owned Library</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Libraries</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_CS__OWNED_LIBRARY = MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
+	int ROOT_CS__OWNED_LIBRARIES = MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Root CS</em>' class.
@@ -3483,7 +3319,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getRootPackageCS()
 	 * @generated
 	 */
-	int ROOT_PACKAGE_CS = 36;
+	int ROOT_PACKAGE_CS = 35;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3504,13 +3340,13 @@ public interface BaseCSPackage extends EPackage {
 	int ROOT_PACKAGE_CS__PIVOT = PACKAGE_OWNER_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_PACKAGE_CS__OWNED_ANNOTATION = PACKAGE_OWNER_CS__OWNED_ANNOTATION;
+	int ROOT_PACKAGE_CS__OWNED_ANNOTATIONS = PACKAGE_OWNER_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3531,31 +3367,31 @@ public interface BaseCSPackage extends EPackage {
 	int ROOT_PACKAGE_CS__CSI = PACKAGE_OWNER_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Owned Nested Package</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Packages</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_PACKAGE_CS__OWNED_NESTED_PACKAGE = PACKAGE_OWNER_CS__OWNED_NESTED_PACKAGE;
+	int ROOT_PACKAGE_CS__OWNED_PACKAGES = PACKAGE_OWNER_CS__OWNED_PACKAGES;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Imports</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_PACKAGE_CS__OWNED_IMPORT = PACKAGE_OWNER_CS_FEATURE_COUNT + 0;
+	int ROOT_PACKAGE_CS__OWNED_IMPORTS = PACKAGE_OWNER_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Owned Library</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Libraries</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_PACKAGE_CS__OWNED_LIBRARY = PACKAGE_OWNER_CS_FEATURE_COUNT + 1;
+	int ROOT_PACKAGE_CS__OWNED_LIBRARIES = PACKAGE_OWNER_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Root Package CS</em>' class.
@@ -3574,7 +3410,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getSpecificationCS()
 	 * @generated
 	 */
-	int SPECIFICATION_CS = 37;
+	int SPECIFICATION_CS = 36;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3595,13 +3431,13 @@ public interface BaseCSPackage extends EPackage {
 	int SPECIFICATION_CS__PIVOT = MODEL_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIFICATION_CS__OWNED_ANNOTATION = MODEL_ELEMENT_CS__OWNED_ANNOTATION;
+	int SPECIFICATION_CS__OWNED_ANNOTATIONS = MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3640,6 +3476,160 @@ public interface BaseCSPackage extends EPackage {
 	int SPECIFICATION_CS_FEATURE_COUNT = MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.StructuredClassCSImpl <em>Structured Class CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.StructuredClassCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getStructuredClassCS()
+	 * @generated
+	 */
+	int STRUCTURED_CLASS_CS = 37;
+
+	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_CLASS_CS__LOGICAL_PARENT = CLASS_CS__LOGICAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Pivot</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_CLASS_CS__PIVOT = CLASS_CS__PIVOT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_CLASS_CS__OWNED_ANNOTATIONS = CLASS_CS__OWNED_ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_CLASS_CS__ORIGINAL_XMI_ID = CLASS_CS__ORIGINAL_XMI_ID;
+
+	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_CLASS_CS__CSI = CLASS_CS__CSI;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_CLASS_CS__NAME = CLASS_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_CLASS_CS__OWNED_SIGNATURE = CLASS_CS__OWNED_SIGNATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_CLASS_CS__OWNING_PACKAGE = CLASS_CS__OWNING_PACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_CLASS_CS__INSTANCE_CLASS_NAME = CLASS_CS__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_CLASS_CS__OWNED_CONSTRAINTS = CLASS_CS__OWNED_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_CLASS_CS__QUALIFIERS = CLASS_CS__QUALIFIERS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Super Types</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_CLASS_CS__OWNED_SUPER_TYPES = CLASS_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_CLASS_CS__OWNED_OPERATIONS = CLASS_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_CLASS_CS__OWNED_PROPERTIES = CLASS_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Owned Metaclass</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_CLASS_CS__OWNED_METACLASS = CLASS_CS_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Structured Class CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_CLASS_CS_FEATURE_COUNT = CLASS_CS_FEATURE_COUNT + 4;
+
+	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3658,22 +3648,22 @@ public interface BaseCSPackage extends EPackage {
 	int TEMPLATE_BINDING_CS__PIVOT = ELEMENT_REF_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Bindable Element</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Element</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_BINDING_CS__OWNING_TEMPLATE_BINDABLE_ELEMENT = ELEMENT_REF_CS_FEATURE_COUNT + 0;
+	int TEMPLATE_BINDING_CS__OWNING_ELEMENT = ELEMENT_REF_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Owned Parameter Substitution</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Substitutions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_BINDING_CS__OWNED_PARAMETER_SUBSTITUTION = ELEMENT_REF_CS_FEATURE_COUNT + 1;
+	int TEMPLATE_BINDING_CS__OWNED_SUBSTITUTIONS = ELEMENT_REF_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Template Binding CS</em>' class.
@@ -3703,13 +3693,13 @@ public interface BaseCSPackage extends EPackage {
 	int TEMPLATE_PARAMETER_CS__PIVOT = NAMED_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_CS__OWNED_ANNOTATION = NAMED_ELEMENT_CS__OWNED_ANNOTATION;
+	int TEMPLATE_PARAMETER_CS__OWNED_ANNOTATIONS = NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3739,13 +3729,13 @@ public interface BaseCSPackage extends EPackage {
 	int TEMPLATE_PARAMETER_CS__NAME = NAMED_ELEMENT_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Signature</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Signature</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_CS__OWNING_TEMPLATE_SIGNATURE = NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
+	int TEMPLATE_PARAMETER_CS__OWNING_SIGNATURE = NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Template Parameter CS</em>' class.
@@ -3775,13 +3765,13 @@ public interface BaseCSPackage extends EPackage {
 	int TEMPLATE_PARAMETER_SUBSTITUTION_CS__PIVOT = MODEL_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNED_ANNOTATION = MODEL_ELEMENT_CS__OWNED_ANNOTATION;
+	int TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNED_ANNOTATIONS = MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3802,13 +3792,13 @@ public interface BaseCSPackage extends EPackage {
 	int TEMPLATE_PARAMETER_SUBSTITUTION_CS__CSI = MODEL_ELEMENT_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Binding</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Binding</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNING_TEMPLATE_BINDING = MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
+	int TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNING_BINDING = MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Actual Parameter</b></em>' containment reference.
@@ -3847,13 +3837,13 @@ public interface BaseCSPackage extends EPackage {
 	int TEMPLATE_SIGNATURE_CS__PIVOT = MODEL_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_SIGNATURE_CS__OWNED_ANNOTATION = MODEL_ELEMENT_CS__OWNED_ANNOTATION;
+	int TEMPLATE_SIGNATURE_CS__OWNED_ANNOTATIONS = MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3874,22 +3864,22 @@ public interface BaseCSPackage extends EPackage {
 	int TEMPLATE_SIGNATURE_CS__CSI = MODEL_ELEMENT_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Element</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Element</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_SIGNATURE_CS__OWNING_TEMPLATE_ELEMENT = MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
+	int TEMPLATE_SIGNATURE_CS__OWNING_ELEMENT = MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Owned Template Parameter</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_SIGNATURE_CS__OWNED_TEMPLATE_PARAMETER = MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
+	int TEMPLATE_SIGNATURE_CS__OWNED_PARAMETERS = MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Template Signature CS</em>' class.
@@ -3910,13 +3900,13 @@ public interface BaseCSPackage extends EPackage {
 	int TEMPLATEABLE_ELEMENT_CS__LOGICAL_PARENT = ELEMENT_CS__LOGICAL_PARENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATEABLE_ELEMENT_CS__OWNED_TEMPLATE_SIGNATURE = ELEMENT_CS_FEATURE_COUNT + 0;
+	int TEMPLATEABLE_ELEMENT_CS__OWNED_SIGNATURE = ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Templateable Element CS</em>' class.
@@ -3956,13 +3946,13 @@ public interface BaseCSPackage extends EPackage {
 	int TUPLE_PART_CS__PIVOT = TYPED_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_PART_CS__OWNED_ANNOTATION = TYPED_ELEMENT_CS__OWNED_ANNOTATION;
+	int TUPLE_PART_CS__OWNED_ANNOTATIONS = TYPED_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -4001,22 +3991,22 @@ public interface BaseCSPackage extends EPackage {
 	int TUPLE_PART_CS__OWNED_TYPE = TYPED_ELEMENT_CS__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Qualifier</b></em>' attribute list.
+	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_PART_CS__QUALIFIER = TYPED_ELEMENT_CS__QUALIFIER;
+	int TUPLE_PART_CS__QUALIFIERS = TYPED_ELEMENT_CS__QUALIFIERS;
 
 	/**
-	 * The feature id for the '<em><b>Optional</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_PART_CS__OPTIONAL = TYPED_ELEMENT_CS__OPTIONAL;
+	int TUPLE_PART_CS__IS_OPTIONAL = TYPED_ELEMENT_CS__IS_OPTIONAL;
 
 	/**
 	 * The number of structural features of the '<em>Tuple Part CS</em>' class.
@@ -4056,13 +4046,13 @@ public interface BaseCSPackage extends EPackage {
 	int TUPLE_TYPE_CS__PIVOT = TYPED_REF_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Multiplicity</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_TYPE_CS__MULTIPLICITY = TYPED_REF_CS__MULTIPLICITY;
+	int TUPLE_TYPE_CS__OWNED_MULTIPLICITY = TYPED_REF_CS__OWNED_MULTIPLICITY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4110,13 +4100,13 @@ public interface BaseCSPackage extends EPackage {
 	int TYPE_CS__PIVOT = MODEL_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_CS__OWNED_ANNOTATION = MODEL_ELEMENT_CS__OWNED_ANNOTATION;
+	int TYPE_CS__OWNED_ANNOTATIONS = MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -4164,13 +4154,13 @@ public interface BaseCSPackage extends EPackage {
 	int TYPE_PARAMETER_CS__PIVOT = TEMPLATE_PARAMETER_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_PARAMETER_CS__OWNED_ANNOTATION = TEMPLATE_PARAMETER_CS__OWNED_ANNOTATION;
+	int TYPE_PARAMETER_CS__OWNED_ANNOTATIONS = TEMPLATE_PARAMETER_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -4200,13 +4190,13 @@ public interface BaseCSPackage extends EPackage {
 	int TYPE_PARAMETER_CS__NAME = TEMPLATE_PARAMETER_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Signature</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Signature</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_PARAMETER_CS__OWNING_TEMPLATE_SIGNATURE = TEMPLATE_PARAMETER_CS__OWNING_TEMPLATE_SIGNATURE;
+	int TYPE_PARAMETER_CS__OWNING_SIGNATURE = TEMPLATE_PARAMETER_CS__OWNING_SIGNATURE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Extends</b></em>' containment reference list.
@@ -4254,31 +4244,31 @@ public interface BaseCSPackage extends EPackage {
 	int TYPED_TYPE_REF_CS__PIVOT = TYPED_REF_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Multiplicity</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_TYPE_REF_CS__MULTIPLICITY = TYPED_REF_CS__MULTIPLICITY;
+	int TYPED_TYPE_REF_CS__OWNED_MULTIPLICITY = TYPED_REF_CS__OWNED_MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_TYPE_REF_CS__PATH_NAME = TYPED_REF_CS_FEATURE_COUNT + 0;
+	int TYPED_TYPE_REF_CS__OWNED_PATH_NAME = TYPED_REF_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * The feature id for the '<em><b>Referred Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_TYPE_REF_CS__TYPE = TYPED_REF_CS_FEATURE_COUNT + 1;
+	int TYPED_TYPE_REF_CS__REFERRED_TYPE = TYPED_REF_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Binding</b></em>' containment reference.
@@ -4290,13 +4280,13 @@ public interface BaseCSPackage extends EPackage {
 	int TYPED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING = TYPED_REF_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Typeof</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_TYPE_REF_CS__TYPEOF = TYPED_REF_CS_FEATURE_COUNT + 3;
+	int TYPED_TYPE_REF_CS__IS_TYPEOF = TYPED_REF_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Typed Type Ref CS</em>' class.
@@ -4326,22 +4316,22 @@ public interface BaseCSPackage extends EPackage {
 	int WILDCARD_TYPE_REF_CS__PIVOT = TYPE_REF_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Extends</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Extends</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WILDCARD_TYPE_REF_CS__EXTENDS = TYPE_REF_CS_FEATURE_COUNT + 0;
+	int WILDCARD_TYPE_REF_CS__OWNED_EXTENDS = TYPE_REF_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Super</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Super</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WILDCARD_TYPE_REF_CS__SUPER = TYPE_REF_CS_FEATURE_COUNT + 1;
+	int WILDCARD_TYPE_REF_CS__OWNED_SUPER = TYPE_REF_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Wildcard Type Ref CS</em>' class.
@@ -4354,17 +4344,6 @@ public interface BaseCSPackage extends EPackage {
 
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.IteratorKind <em>Iterator Kind</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.IteratorKind
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getIteratorKind()
-	 * @generated
-	 */
-	int ITERATOR_KIND = 54;
-
-
-	/**
 	 * The meta object id for the '<em>Scope Filter</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4372,7 +4351,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getScopeFilter()
 	 * @generated
 	 */
-	int SCOPE_FILTER = 55;
+	int SCOPE_FILTER = 54;
 
 
 	/**
@@ -4386,26 +4365,26 @@ public interface BaseCSPackage extends EPackage {
 	EClass getAnnotationCS();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.AnnotationCS#getOwnedContent <em>Owned Content</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.AnnotationCS#getOwnedContents <em>Owned Contents</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Content</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.AnnotationCS#getOwnedContent()
+	 * @return the meta object for the containment reference list '<em>Owned Contents</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.AnnotationCS#getOwnedContents()
 	 * @see #getAnnotationCS()
 	 * @generated
 	 */
-	EReference getAnnotationCS_OwnedContent();
+	EReference getAnnotationCS_OwnedContents();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.AnnotationCS#getOwnedReference <em>Owned Reference</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.AnnotationCS#getOwnedReferences <em>Owned References</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Reference</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.AnnotationCS#getOwnedReference()
+	 * @return the meta object for the containment reference list '<em>Owned References</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.AnnotationCS#getOwnedReferences()
 	 * @see #getAnnotationCS()
 	 * @generated
 	 */
-	EReference getAnnotationCS_OwnedReference();
+	EReference getAnnotationCS_OwnedReferences();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.basecs.AnnotationElementCS <em>Annotation Element CS</em>}'.
@@ -4418,15 +4397,15 @@ public interface BaseCSPackage extends EPackage {
 	EClass getAnnotationElementCS();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.AnnotationElementCS#getOwnedDetail <em>Owned Detail</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.AnnotationElementCS#getOwnedDetails <em>Owned Details</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Detail</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.AnnotationElementCS#getOwnedDetail()
+	 * @return the meta object for the containment reference list '<em>Owned Details</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.AnnotationElementCS#getOwnedDetails()
 	 * @see #getAnnotationElementCS()
 	 * @generated
 	 */
-	EReference getAnnotationElementCS_OwnedDetail();
+	EReference getAnnotationElementCS_OwnedDetails();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.basecs.AttributeCS <em>Attribute CS</em>}'.
@@ -4449,102 +4428,48 @@ public interface BaseCSPackage extends EPackage {
 	EClass getClassCS();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.ClassCS#getOwnedSuperType <em>Owned Super Type</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.ClassCS#getOwningPackage <em>Owning Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Super Type</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ClassCS#getOwnedSuperType()
+	 * @return the meta object for the container reference '<em>Owning Package</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ClassCS#getOwningPackage()
 	 * @see #getClassCS()
 	 * @generated
 	 */
-	EReference getClassCS_OwnedSuperType();
+	EReference getClassCS_OwningPackage();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.ClassCS#getOwnedOperation <em>Owned Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Operation</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ClassCS#getOwnedOperation()
-	 * @see #getClassCS()
-	 * @generated
-	 */
-	EReference getClassCS_OwnedOperation();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.ClassCS#getOwnedProperty <em>Owned Property</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Property</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ClassCS#getOwnedProperty()
-	 * @see #getClassCS()
-	 * @generated
-	 */
-	EReference getClassCS_OwnedProperty();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.ClassCS#getOwnedMetaType <em>Owned Meta Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Meta Type</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ClassCS#getOwnedMetaType()
-	 * @see #getClassCS()
-	 * @generated
-	 */
-	EReference getClassCS_OwnedMetaType();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS <em>Classifier CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Classifier CS</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS
-	 * @generated
-	 */
-	EClass getClassifierCS();
-
-	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS#getOwner <em>Owner</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Owner</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS#getOwner()
-	 * @see #getClassifierCS()
-	 * @generated
-	 */
-	EReference getClassifierCS_Owner();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS#getInstanceClassName <em>Instance Class Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.base.basecs.ClassCS#getInstanceClassName <em>Instance Class Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Instance Class Name</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS#getInstanceClassName()
-	 * @see #getClassifierCS()
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ClassCS#getInstanceClassName()
+	 * @see #getClassCS()
 	 * @generated
 	 */
-	EAttribute getClassifierCS_InstanceClassName();
+	EAttribute getClassCS_InstanceClassName();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS#getOwnedConstraint <em>Owned Constraint</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.ClassCS#getOwnedConstraints <em>Owned Constraints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Constraint</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS#getOwnedConstraint()
-	 * @see #getClassifierCS()
+	 * @return the meta object for the containment reference list '<em>Owned Constraints</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ClassCS#getOwnedConstraints()
+	 * @see #getClassCS()
 	 * @generated
 	 */
-	EReference getClassifierCS_OwnedConstraint();
+	EReference getClassCS_OwnedConstraints();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS#getQualifier <em>Qualifier</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.eclipse.ocl.examples.xtext.base.basecs.ClassCS#getQualifiers <em>Qualifiers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Qualifier</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS#getQualifier()
-	 * @see #getClassifierCS()
+	 * @return the meta object for the attribute list '<em>Qualifiers</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ClassCS#getQualifiers()
+	 * @see #getClassCS()
 	 * @generated
 	 */
-	EAttribute getClassifierCS_Qualifier();
+	EAttribute getClassCS_Qualifiers();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS <em>Constraint CS</em>}'.
@@ -4568,26 +4493,26 @@ public interface BaseCSPackage extends EPackage {
 	EAttribute getConstraintCS_Stereotype();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS#getSpecification <em>Specification</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS#getOwnedSpecification <em>Owned Specification</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Specification</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS#getSpecification()
+	 * @return the meta object for the containment reference '<em>Owned Specification</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS#getOwnedSpecification()
 	 * @see #getConstraintCS()
 	 * @generated
 	 */
-	EReference getConstraintCS_Specification();
+	EReference getConstraintCS_OwnedSpecification();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS#getMessageSpecification <em>Message Specification</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS#getOwnedMessageSpecification <em>Owned Message Specification</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Message Specification</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS#getMessageSpecification()
+	 * @return the meta object for the containment reference '<em>Owned Message Specification</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS#getOwnedMessageSpecification()
 	 * @see #getConstraintCS()
 	 * @generated
 	 */
-	EReference getConstraintCS_MessageSpecification();
+	EReference getConstraintCS_OwnedMessageSpecification();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.basecs.ContextLessElementCS <em>Context Less Element CS</em>}'.
@@ -4608,17 +4533,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getDataTypeCS();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.DataTypeCS#getLiterals <em>Literals</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Literals</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.DataTypeCS#getLiterals()
-	 * @see #getDataTypeCS()
-	 * @generated
-	 */
-	EReference getDataTypeCS_Literals();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.basecs.DetailCS <em>Detail CS</em>}'.
@@ -4756,37 +4670,37 @@ public interface BaseCSPackage extends EPackage {
 	EClass getImportCS();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.ImportCS#getPathName <em>Path Name</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.ImportCS#getOwnedPathName <em>Owned Path Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Path Name</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ImportCS#getPathName()
+	 * @return the meta object for the containment reference '<em>Owned Path Name</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ImportCS#getOwnedPathName()
 	 * @see #getImportCS()
 	 * @generated
 	 */
-	EReference getImportCS_PathName();
+	EReference getImportCS_OwnedPathName();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.ImportCS#getNamespace <em>Namespace</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.ImportCS#getReferredNamespace <em>Referred Namespace</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Namespace</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ImportCS#getNamespace()
+	 * @return the meta object for the reference '<em>Referred Namespace</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ImportCS#getReferredNamespace()
 	 * @see #getImportCS()
 	 * @generated
 	 */
-	EReference getImportCS_Namespace();
+	EReference getImportCS_ReferredNamespace();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.base.basecs.ImportCS#isAll <em>All</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.base.basecs.ImportCS#isIsAll <em>Is All</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>All</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ImportCS#isAll()
+	 * @return the meta object for the attribute '<em>Is All</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ImportCS#isIsAll()
 	 * @see #getImportCS()
 	 * @generated
 	 */
-	EAttribute getImportCS_All();
+	EAttribute getImportCS_IsAll();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.basecs.LambdaTypeCS <em>Lambda Type CS</em>}'.
@@ -4821,15 +4735,15 @@ public interface BaseCSPackage extends EPackage {
 	EReference getLambdaTypeCS_OwnedContextType();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.LambdaTypeCS#getOwnedParameterType <em>Owned Parameter Type</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.LambdaTypeCS#getOwnedParameterTypes <em>Owned Parameter Types</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Parameter Type</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.LambdaTypeCS#getOwnedParameterType()
+	 * @return the meta object for the containment reference list '<em>Owned Parameter Types</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.LambdaTypeCS#getOwnedParameterTypes()
 	 * @see #getLambdaTypeCS()
 	 * @generated
 	 */
-	EReference getLambdaTypeCS_OwnedParameterType();
+	EReference getLambdaTypeCS_OwnedParameterTypes();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.LambdaTypeCS#getOwnedResultType <em>Owned Result Type</em>}'.
@@ -4853,15 +4767,15 @@ public interface BaseCSPackage extends EPackage {
 	EClass getLibraryCS();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.LibraryCS#getPackage <em>Package</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.LibraryCS#getReferredPackage <em>Referred Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Package</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.LibraryCS#getPackage()
+	 * @return the meta object for the reference '<em>Referred Package</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.LibraryCS#getReferredPackage()
 	 * @see #getLibraryCS()
 	 * @generated
 	 */
-	EReference getLibraryCS_Package();
+	EReference getLibraryCS_ReferredPackage();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS <em>Model Element CS</em>}'.
@@ -4874,15 +4788,15 @@ public interface BaseCSPackage extends EPackage {
 	EClass getModelElementCS();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS#getOwnedAnnotation <em>Owned Annotation</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS#getOwnedAnnotations <em>Owned Annotations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Annotation</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS#getOwnedAnnotation()
+	 * @return the meta object for the containment reference list '<em>Owned Annotations</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS#getOwnedAnnotations()
 	 * @see #getModelElementCS()
 	 * @generated
 	 */
-	EReference getModelElementCS_OwnedAnnotation();
+	EReference getModelElementCS_OwnedAnnotations();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS#getOriginalXmiId <em>Original Xmi Id</em>}'.
@@ -4917,26 +4831,26 @@ public interface BaseCSPackage extends EPackage {
 	EClass getModelElementRefCS();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.ModelElementRefCS#getPathName <em>Path Name</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.ModelElementRefCS#getOwnedPathName <em>Owned Path Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Path Name</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ModelElementRefCS#getPathName()
+	 * @return the meta object for the containment reference '<em>Owned Path Name</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ModelElementRefCS#getOwnedPathName()
 	 * @see #getModelElementRefCS()
 	 * @generated
 	 */
-	EReference getModelElementRefCS_PathName();
+	EReference getModelElementRefCS_OwnedPathName();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.ModelElementRefCS#getElement <em>Element</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.ModelElementRefCS#getReferredElement <em>Referred Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Element</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ModelElementRefCS#getElement()
+	 * @return the meta object for the reference '<em>Referred Element</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ModelElementRefCS#getReferredElement()
 	 * @see #getModelElementRefCS()
 	 * @generated
 	 */
-	EReference getModelElementRefCS_Element();
+	EReference getModelElementRefCS_ReferredElement();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.basecs.MultiplicityBoundsCS <em>Multiplicity Bounds CS</em>}'.
@@ -5043,61 +4957,6 @@ public interface BaseCSPackage extends EPackage {
 	EClass getOperationCS();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedParameter <em>Owned Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Parameter</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedParameter()
-	 * @see #getOperationCS()
-	 * @generated
-	 */
-	EReference getOperationCS_OwnedParameter();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedException <em>Owned Exception</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Exception</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedException()
-	 * @see #getOperationCS()
-	 * @generated
-	 */
-	EReference getOperationCS_OwnedException();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedPrecondition <em>Owned Precondition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Precondition</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedPrecondition()
-	 * @see #getOperationCS()
-	 * @generated
-	 */
-	EReference getOperationCS_OwnedPrecondition();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedPostcondition <em>Owned Postcondition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Postcondition</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedPostcondition()
-	 * @see #getOperationCS()
-	 * @generated
-	 */
-	EReference getOperationCS_OwnedPostcondition();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedBodyExpression <em>Owned Body Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Body Expression</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedBodyExpression()
-	 * @see #getOperationCS()
-	 * @generated
-	 */
-	EReference getOperationCS_OwnedBodyExpression();
-
-	/**
 	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwningClass <em>Owning Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5107,6 +4966,61 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getOperationCS_OwningClass();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedParameters <em>Owned Parameters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Parameters</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedParameters()
+	 * @see #getOperationCS()
+	 * @generated
+	 */
+	EReference getOperationCS_OwnedParameters();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedExceptions <em>Owned Exceptions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Exceptions</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedExceptions()
+	 * @see #getOperationCS()
+	 * @generated
+	 */
+	EReference getOperationCS_OwnedExceptions();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedPreconditions <em>Owned Preconditions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Preconditions</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedPreconditions()
+	 * @see #getOperationCS()
+	 * @generated
+	 */
+	EReference getOperationCS_OwnedPreconditions();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedPostconditions <em>Owned Postconditions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Postconditions</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedPostconditions()
+	 * @see #getOperationCS()
+	 * @generated
+	 */
+	EReference getOperationCS_OwnedPostconditions();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedBodyExpressions <em>Owned Body Expressions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Body Expressions</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedBodyExpressions()
+	 * @see #getOperationCS()
+	 * @generated
+	 */
+	EReference getOperationCS_OwnedBodyExpressions();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.basecs.PackageCS <em>Package CS</em>}'.
@@ -5119,15 +5033,15 @@ public interface BaseCSPackage extends EPackage {
 	EClass getPackageCS();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.PackageCS#getOwnedType <em>Owned Type</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.PackageCS#getOwnedClasses <em>Owned Classes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Type</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.PackageCS#getOwnedType()
+	 * @return the meta object for the containment reference list '<em>Owned Classes</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.PackageCS#getOwnedClasses()
 	 * @see #getPackageCS()
 	 * @generated
 	 */
-	EReference getPackageCS_OwnedType();
+	EReference getPackageCS_OwnedClasses();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.base.basecs.PackageCS#getNsPrefix <em>Ns Prefix</em>}'.
@@ -5162,15 +5076,15 @@ public interface BaseCSPackage extends EPackage {
 	EClass getPackageOwnerCS();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.PackageOwnerCS#getOwnedNestedPackage <em>Owned Nested Package</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.PackageOwnerCS#getOwnedPackages <em>Owned Packages</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Nested Package</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.PackageOwnerCS#getOwnedNestedPackage()
+	 * @return the meta object for the containment reference list '<em>Owned Packages</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.PackageOwnerCS#getOwnedPackages()
 	 * @see #getPackageOwnerCS()
 	 * @generated
 	 */
-	EReference getPackageOwnerCS_OwnedNestedPackage();
+	EReference getPackageOwnerCS_OwnedPackages();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.basecs.ParameterCS <em>Parameter CS</em>}'.
@@ -5183,15 +5097,15 @@ public interface BaseCSPackage extends EPackage {
 	EClass getParameterCS();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.ParameterCS#getOwner <em>Owner</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.ParameterCS#getOwningOperation <em>Owning Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Owner</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ParameterCS#getOwner()
+	 * @return the meta object for the container reference '<em>Owning Operation</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ParameterCS#getOwningOperation()
 	 * @see #getParameterCS()
 	 * @generated
 	 */
-	EReference getParameterCS_Owner();
+	EReference getParameterCS_OwningOperation();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS <em>Path Element CS</em>}'.
@@ -5204,26 +5118,26 @@ public interface BaseCSPackage extends EPackage {
 	EClass getPathElementCS();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS#getPathName <em>Path Name</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS#getOwningPathName <em>Owning Path Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Path Name</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS#getPathName()
+	 * @return the meta object for the container reference '<em>Owning Path Name</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS#getOwningPathName()
 	 * @see #getPathElementCS()
 	 * @generated
 	 */
-	EReference getPathElementCS_PathName();
+	EReference getPathElementCS_OwningPathName();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS#getElement <em>Element</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS#getReferredElement <em>Referred Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Element</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS#getElement()
+	 * @return the meta object for the reference '<em>Referred Element</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS#getReferredElement()
 	 * @see #getPathElementCS()
 	 * @generated
 	 */
-	EReference getPathElementCS_Element();
+	EReference getPathElementCS_ReferredElement();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS#getElementType <em>Element Type</em>}'.
@@ -5268,26 +5182,26 @@ public interface BaseCSPackage extends EPackage {
 	EClass getPathNameCS();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS#getPath <em>Path</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS#getOwnedPathElements <em>Owned Path Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Path</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS#getPath()
+	 * @return the meta object for the containment reference list '<em>Owned Path Elements</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS#getOwnedPathElements()
 	 * @see #getPathNameCS()
 	 * @generated
 	 */
-	EReference getPathNameCS_Path();
+	EReference getPathNameCS_OwnedPathElements();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS#getElement <em>Element</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS#getReferredElement <em>Referred Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Element</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS#getElement()
+	 * @return the meta object for the reference '<em>Referred Element</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS#getReferredElement()
 	 * @see #getPathNameCS()
 	 * @generated
 	 */
-	EReference getPathNameCS_Element();
+	EReference getPathNameCS_ReferredElement();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS#getContext <em>Context</em>}'.
@@ -5364,26 +5278,26 @@ public interface BaseCSPackage extends EPackage {
 	EClass getReferenceCS();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.ReferenceCS#getOpposite <em>Opposite</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.ReferenceCS#getReferredOpposite <em>Referred Opposite</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Opposite</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ReferenceCS#getOpposite()
+	 * @return the meta object for the reference '<em>Referred Opposite</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ReferenceCS#getReferredOpposite()
 	 * @see #getReferenceCS()
 	 * @generated
 	 */
-	EReference getReferenceCS_Opposite();
+	EReference getReferenceCS_ReferredOpposite();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.ReferenceCS#getKeys <em>Keys</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.ReferenceCS#getReferredKeys <em>Referred Keys</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Keys</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ReferenceCS#getKeys()
+	 * @return the meta object for the reference list '<em>Referred Keys</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ReferenceCS#getReferredKeys()
 	 * @see #getReferenceCS()
 	 * @generated
 	 */
-	EReference getReferenceCS_Keys();
+	EReference getReferenceCS_ReferredKeys();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.basecs.RootCS <em>Root CS</em>}'.
@@ -5396,26 +5310,26 @@ public interface BaseCSPackage extends EPackage {
 	EClass getRootCS();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.RootCS#getOwnedImport <em>Owned Import</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.RootCS#getOwnedImports <em>Owned Imports</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Import</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.RootCS#getOwnedImport()
+	 * @return the meta object for the containment reference list '<em>Owned Imports</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.RootCS#getOwnedImports()
 	 * @see #getRootCS()
 	 * @generated
 	 */
-	EReference getRootCS_OwnedImport();
+	EReference getRootCS_OwnedImports();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.RootCS#getOwnedLibrary <em>Owned Library</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.RootCS#getOwnedLibraries <em>Owned Libraries</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Library</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.RootCS#getOwnedLibrary()
+	 * @return the meta object for the containment reference list '<em>Owned Libraries</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.RootCS#getOwnedLibraries()
 	 * @see #getRootCS()
 	 * @generated
 	 */
-	EReference getRootCS_OwnedLibrary();
+	EReference getRootCS_OwnedLibraries();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.basecs.RootPackageCS <em>Root Package CS</em>}'.
@@ -5449,6 +5363,60 @@ public interface BaseCSPackage extends EPackage {
 	EAttribute getSpecificationCS_ExprString();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS <em>Structured Class CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Structured Class CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS
+	 * @generated
+	 */
+	EClass getStructuredClassCS();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS#getOwnedSuperTypes <em>Owned Super Types</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Super Types</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS#getOwnedSuperTypes()
+	 * @see #getStructuredClassCS()
+	 * @generated
+	 */
+	EReference getStructuredClassCS_OwnedSuperTypes();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS#getOwnedOperations <em>Owned Operations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Operations</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS#getOwnedOperations()
+	 * @see #getStructuredClassCS()
+	 * @generated
+	 */
+	EReference getStructuredClassCS_OwnedOperations();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS#getOwnedProperties <em>Owned Properties</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Properties</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS#getOwnedProperties()
+	 * @see #getStructuredClassCS()
+	 * @generated
+	 */
+	EReference getStructuredClassCS_OwnedProperties();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS#getOwnedMetaclass <em>Owned Metaclass</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Owned Metaclass</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS#getOwnedMetaclass()
+	 * @see #getStructuredClassCS()
+	 * @generated
+	 */
+	EReference getStructuredClassCS_OwnedMetaclass();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS <em>Structural Feature CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5459,15 +5427,15 @@ public interface BaseCSPackage extends EPackage {
 	EClass getStructuralFeatureCS();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS#getOwner <em>Owner</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS#getOwningClass <em>Owning Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Owner</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS#getOwner()
+	 * @return the meta object for the container reference '<em>Owning Class</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS#getOwningClass()
 	 * @see #getStructuralFeatureCS()
 	 * @generated
 	 */
-	EReference getStructuralFeatureCS_Owner();
+	EReference getStructuralFeatureCS_OwningClass();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS#getDefault <em>Default</em>}'.
@@ -5481,15 +5449,15 @@ public interface BaseCSPackage extends EPackage {
 	EAttribute getStructuralFeatureCS_Default();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS#getOwnedDefaultExpression <em>Owned Default Expression</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS#getOwnedDefaultExpressions <em>Owned Default Expressions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Default Expression</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS#getOwnedDefaultExpression()
+	 * @return the meta object for the containment reference list '<em>Owned Default Expressions</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS#getOwnedDefaultExpressions()
 	 * @see #getStructuralFeatureCS()
 	 * @generated
 	 */
-	EReference getStructuralFeatureCS_OwnedDefaultExpression();
+	EReference getStructuralFeatureCS_OwnedDefaultExpressions();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS <em>Template Binding CS</em>}'.
@@ -5502,26 +5470,26 @@ public interface BaseCSPackage extends EPackage {
 	EClass getTemplateBindingCS();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS#getOwningTemplateBindableElement <em>Owning Template Bindable Element</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS#getOwningElement <em>Owning Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Owning Template Bindable Element</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS#getOwningTemplateBindableElement()
+	 * @return the meta object for the container reference '<em>Owning Element</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS#getOwningElement()
 	 * @see #getTemplateBindingCS()
 	 * @generated
 	 */
-	EReference getTemplateBindingCS_OwningTemplateBindableElement();
+	EReference getTemplateBindingCS_OwningElement();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS#getOwnedParameterSubstitution <em>Owned Parameter Substitution</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS#getOwnedSubstitutions <em>Owned Substitutions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Parameter Substitution</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS#getOwnedParameterSubstitution()
+	 * @return the meta object for the containment reference list '<em>Owned Substitutions</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS#getOwnedSubstitutions()
 	 * @see #getTemplateBindingCS()
 	 * @generated
 	 */
-	EReference getTemplateBindingCS_OwnedParameterSubstitution();
+	EReference getTemplateBindingCS_OwnedSubstitutions();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterCS <em>Template Parameter CS</em>}'.
@@ -5534,15 +5502,15 @@ public interface BaseCSPackage extends EPackage {
 	EClass getTemplateParameterCS();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterCS#getOwningTemplateSignature <em>Owning Template Signature</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterCS#getOwningSignature <em>Owning Signature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Owning Template Signature</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterCS#getOwningTemplateSignature()
+	 * @return the meta object for the container reference '<em>Owning Signature</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterCS#getOwningSignature()
 	 * @see #getTemplateParameterCS()
 	 * @generated
 	 */
-	EReference getTemplateParameterCS_OwningTemplateSignature();
+	EReference getTemplateParameterCS_OwningSignature();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS <em>Template Parameter Substitution CS</em>}'.
@@ -5555,15 +5523,15 @@ public interface BaseCSPackage extends EPackage {
 	EClass getTemplateParameterSubstitutionCS();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS#getOwningTemplateBinding <em>Owning Template Binding</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS#getOwningBinding <em>Owning Binding</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Owning Template Binding</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS#getOwningTemplateBinding()
+	 * @return the meta object for the container reference '<em>Owning Binding</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS#getOwningBinding()
 	 * @see #getTemplateParameterSubstitutionCS()
 	 * @generated
 	 */
-	EReference getTemplateParameterSubstitutionCS_OwningTemplateBinding();
+	EReference getTemplateParameterSubstitutionCS_OwningBinding();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS#getOwnedActualParameter <em>Owned Actual Parameter</em>}'.
@@ -5587,26 +5555,26 @@ public interface BaseCSPackage extends EPackage {
 	EClass getTemplateSignatureCS();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS#getOwningTemplateElement <em>Owning Template Element</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS#getOwningElement <em>Owning Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Owning Template Element</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS#getOwningTemplateElement()
+	 * @return the meta object for the container reference '<em>Owning Element</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS#getOwningElement()
 	 * @see #getTemplateSignatureCS()
 	 * @generated
 	 */
-	EReference getTemplateSignatureCS_OwningTemplateElement();
+	EReference getTemplateSignatureCS_OwningElement();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS#getOwnedTemplateParameter <em>Owned Template Parameter</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS#getOwnedParameters <em>Owned Parameters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Template Parameter</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS#getOwnedTemplateParameter()
+	 * @return the meta object for the containment reference list '<em>Owned Parameters</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS#getOwnedParameters()
 	 * @see #getTemplateSignatureCS()
 	 * @generated
 	 */
-	EReference getTemplateSignatureCS_OwnedTemplateParameter();
+	EReference getTemplateSignatureCS_OwnedParameters();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS <em>Templateable Element CS</em>}'.
@@ -5619,15 +5587,15 @@ public interface BaseCSPackage extends EPackage {
 	EClass getTemplateableElementCS();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS#getOwnedTemplateSignature <em>Owned Template Signature</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS#getOwnedSignature <em>Owned Signature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Template Signature</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS#getOwnedTemplateSignature()
+	 * @return the meta object for the containment reference '<em>Owned Signature</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS#getOwnedSignature()
 	 * @see #getTemplateableElementCS()
 	 * @generated
 	 */
-	EReference getTemplateableElementCS_OwnedTemplateSignature();
+	EReference getTemplateableElementCS_OwnedSignature();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.basecs.TuplePartCS <em>Tuple Part CS</em>}'.
@@ -5745,26 +5713,26 @@ public interface BaseCSPackage extends EPackage {
 	EReference getTypedElementCS_OwnedType();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedElementCS#getQualifier <em>Qualifier</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedElementCS#getQualifiers <em>Qualifiers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Qualifier</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TypedElementCS#getQualifier()
+	 * @return the meta object for the attribute list '<em>Qualifiers</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TypedElementCS#getQualifiers()
 	 * @see #getTypedElementCS()
 	 * @generated
 	 */
-	EAttribute getTypedElementCS_Qualifier();
+	EAttribute getTypedElementCS_Qualifiers();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedElementCS#isOptional <em>Optional</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedElementCS#isIsOptional <em>Is Optional</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Optional</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TypedElementCS#isOptional()
+	 * @return the meta object for the attribute '<em>Is Optional</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TypedElementCS#isIsOptional()
 	 * @see #getTypedElementCS()
 	 * @generated
 	 */
-	EAttribute getTypedElementCS_Optional();
+	EAttribute getTypedElementCS_IsOptional();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS <em>Typed Ref CS</em>}'.
@@ -5777,15 +5745,15 @@ public interface BaseCSPackage extends EPackage {
 	EClass getTypedRefCS();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS#getMultiplicity <em>Multiplicity</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS#getOwnedMultiplicity <em>Owned Multiplicity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Multiplicity</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS#getMultiplicity()
+	 * @return the meta object for the containment reference '<em>Owned Multiplicity</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS#getOwnedMultiplicity()
 	 * @see #getTypedRefCS()
 	 * @generated
 	 */
-	EReference getTypedRefCS_Multiplicity();
+	EReference getTypedRefCS_OwnedMultiplicity();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS <em>Typed Type Ref CS</em>}'.
@@ -5798,26 +5766,26 @@ public interface BaseCSPackage extends EPackage {
 	EClass getTypedTypeRefCS();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getPathName <em>Path Name</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getOwnedPathName <em>Owned Path Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Path Name</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getPathName()
+	 * @return the meta object for the containment reference '<em>Owned Path Name</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getOwnedPathName()
 	 * @see #getTypedTypeRefCS()
 	 * @generated
 	 */
-	EReference getTypedTypeRefCS_PathName();
+	EReference getTypedTypeRefCS_OwnedPathName();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getType <em>Type</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getReferredType <em>Referred Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Type</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getType()
+	 * @return the meta object for the reference '<em>Referred Type</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getReferredType()
 	 * @see #getTypedTypeRefCS()
 	 * @generated
 	 */
-	EReference getTypedTypeRefCS_Type();
+	EReference getTypedTypeRefCS_ReferredType();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getOwnedTemplateBinding <em>Owned Template Binding</em>}'.
@@ -5831,15 +5799,15 @@ public interface BaseCSPackage extends EPackage {
 	EReference getTypedTypeRefCS_OwnedTemplateBinding();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#isTypeof <em>Typeof</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#isIsTypeof <em>Is Typeof</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Typeof</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#isTypeof()
+	 * @return the meta object for the attribute '<em>Is Typeof</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#isIsTypeof()
 	 * @see #getTypedTypeRefCS()
 	 * @generated
 	 */
-	EAttribute getTypedTypeRefCS_Typeof();
+	EAttribute getTypedTypeRefCS_IsTypeof();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.basecs.util.VisitableCS <em>Visitable CS</em>}'.
@@ -5863,36 +5831,26 @@ public interface BaseCSPackage extends EPackage {
 	EClass getWildcardTypeRefCS();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.WildcardTypeRefCS#getExtends <em>Extends</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.WildcardTypeRefCS#getOwnedExtends <em>Owned Extends</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Extends</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.WildcardTypeRefCS#getExtends()
+	 * @return the meta object for the containment reference '<em>Owned Extends</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.WildcardTypeRefCS#getOwnedExtends()
 	 * @see #getWildcardTypeRefCS()
 	 * @generated
 	 */
-	EReference getWildcardTypeRefCS_Extends();
+	EReference getWildcardTypeRefCS_OwnedExtends();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.WildcardTypeRefCS#getSuper <em>Super</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.WildcardTypeRefCS#getOwnedSuper <em>Owned Super</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Super</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.WildcardTypeRefCS#getSuper()
+	 * @return the meta object for the containment reference '<em>Owned Super</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.WildcardTypeRefCS#getOwnedSuper()
 	 * @see #getWildcardTypeRefCS()
 	 * @generated
 	 */
-	EReference getWildcardTypeRefCS_Super();
-
-	/**
-	 * Returns the meta object for enum '{@link org.eclipse.ocl.examples.xtext.base.basecs.IteratorKind <em>Iterator Kind</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Iterator Kind</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.IteratorKind
-	 * @generated
-	 */
-	EEnum getIteratorKind();
+	EReference getWildcardTypeRefCS_OwnedSuper();
 
 	/**
 	 * Returns the meta object for data type '{@link org.eclipse.ocl.examples.pivot.scoping.ScopeFilter <em>Scope Filter</em>}'.
@@ -5938,20 +5896,20 @@ public interface BaseCSPackage extends EPackage {
 		EClass ANNOTATION_CS = eINSTANCE.getAnnotationCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Content</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Contents</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ANNOTATION_CS__OWNED_CONTENT = eINSTANCE.getAnnotationCS_OwnedContent();
+		EReference ANNOTATION_CS__OWNED_CONTENTS = eINSTANCE.getAnnotationCS_OwnedContents();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Reference</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned References</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ANNOTATION_CS__OWNED_REFERENCE = eINSTANCE.getAnnotationCS_OwnedReference();
+		EReference ANNOTATION_CS__OWNED_REFERENCES = eINSTANCE.getAnnotationCS_OwnedReferences();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.AnnotationElementCSImpl <em>Annotation Element CS</em>}' class.
@@ -5964,12 +5922,12 @@ public interface BaseCSPackage extends EPackage {
 		EClass ANNOTATION_ELEMENT_CS = eINSTANCE.getAnnotationElementCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Detail</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Details</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ANNOTATION_ELEMENT_CS__OWNED_DETAIL = eINSTANCE.getAnnotationElementCS_OwnedDetail();
+		EReference ANNOTATION_ELEMENT_CS__OWNED_DETAILS = eINSTANCE.getAnnotationElementCS_OwnedDetails();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.AttributeCSImpl <em>Attribute CS</em>}' class.
@@ -5992,54 +5950,12 @@ public interface BaseCSPackage extends EPackage {
 		EClass CLASS_CS = eINSTANCE.getClassCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Super Type</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owning Package</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CLASS_CS__OWNED_SUPER_TYPE = eINSTANCE.getClassCS_OwnedSuperType();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Operation</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CLASS_CS__OWNED_OPERATION = eINSTANCE.getClassCS_OwnedOperation();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Property</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CLASS_CS__OWNED_PROPERTY = eINSTANCE.getClassCS_OwnedProperty();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Meta Type</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CLASS_CS__OWNED_META_TYPE = eINSTANCE.getClassCS_OwnedMetaType();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ClassifierCSImpl <em>Classifier CS</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.ClassifierCSImpl
-		 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getClassifierCS()
-		 * @generated
-		 */
-		EClass CLASSIFIER_CS = eINSTANCE.getClassifierCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Owner</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CLASSIFIER_CS__OWNER = eINSTANCE.getClassifierCS_Owner();
+		EReference CLASS_CS__OWNING_PACKAGE = eINSTANCE.getClassCS_OwningPackage();
 
 		/**
 		 * The meta object literal for the '<em><b>Instance Class Name</b></em>' attribute feature.
@@ -6047,23 +5963,23 @@ public interface BaseCSPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CLASSIFIER_CS__INSTANCE_CLASS_NAME = eINSTANCE.getClassifierCS_InstanceClassName();
+		EAttribute CLASS_CS__INSTANCE_CLASS_NAME = eINSTANCE.getClassCS_InstanceClassName();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Constraint</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Constraints</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CLASSIFIER_CS__OWNED_CONSTRAINT = eINSTANCE.getClassifierCS_OwnedConstraint();
+		EReference CLASS_CS__OWNED_CONSTRAINTS = eINSTANCE.getClassCS_OwnedConstraints();
 
 		/**
-		 * The meta object literal for the '<em><b>Qualifier</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>Qualifiers</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CLASSIFIER_CS__QUALIFIER = eINSTANCE.getClassifierCS_Qualifier();
+		EAttribute CLASS_CS__QUALIFIERS = eINSTANCE.getClassCS_Qualifiers();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ConstraintCSImpl <em>Constraint CS</em>}' class.
@@ -6084,20 +6000,20 @@ public interface BaseCSPackage extends EPackage {
 		EAttribute CONSTRAINT_CS__STEREOTYPE = eINSTANCE.getConstraintCS_Stereotype();
 
 		/**
-		 * The meta object literal for the '<em><b>Specification</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Owned Specification</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONSTRAINT_CS__SPECIFICATION = eINSTANCE.getConstraintCS_Specification();
+		EReference CONSTRAINT_CS__OWNED_SPECIFICATION = eINSTANCE.getConstraintCS_OwnedSpecification();
 
 		/**
-		 * The meta object literal for the '<em><b>Message Specification</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Owned Message Specification</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONSTRAINT_CS__MESSAGE_SPECIFICATION = eINSTANCE.getConstraintCS_MessageSpecification();
+		EReference CONSTRAINT_CS__OWNED_MESSAGE_SPECIFICATION = eINSTANCE.getConstraintCS_OwnedMessageSpecification();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ContextLessElementCSImpl <em>Context Less Element CS</em>}' class.
@@ -6118,14 +6034,6 @@ public interface BaseCSPackage extends EPackage {
 		 * @generated
 		 */
 		EClass DATA_TYPE_CS = eINSTANCE.getDataTypeCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Literals</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DATA_TYPE_CS__LITERALS = eINSTANCE.getDataTypeCS_Literals();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.DetailCSImpl <em>Detail CS</em>}' class.
@@ -6248,28 +6156,28 @@ public interface BaseCSPackage extends EPackage {
 		EClass IMPORT_CS = eINSTANCE.getImportCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Path Name</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Owned Path Name</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference IMPORT_CS__PATH_NAME = eINSTANCE.getImportCS_PathName();
+		EReference IMPORT_CS__OWNED_PATH_NAME = eINSTANCE.getImportCS_OwnedPathName();
 
 		/**
-		 * The meta object literal for the '<em><b>Namespace</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Referred Namespace</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference IMPORT_CS__NAMESPACE = eINSTANCE.getImportCS_Namespace();
+		EReference IMPORT_CS__REFERRED_NAMESPACE = eINSTANCE.getImportCS_ReferredNamespace();
 
 		/**
-		 * The meta object literal for the '<em><b>All</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Is All</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute IMPORT_CS__ALL = eINSTANCE.getImportCS_All();
+		EAttribute IMPORT_CS__IS_ALL = eINSTANCE.getImportCS_IsAll();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.LambdaTypeCSImpl <em>Lambda Type CS</em>}' class.
@@ -6298,12 +6206,12 @@ public interface BaseCSPackage extends EPackage {
 		EReference LAMBDA_TYPE_CS__OWNED_CONTEXT_TYPE = eINSTANCE.getLambdaTypeCS_OwnedContextType();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Parameter Type</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Parameter Types</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LAMBDA_TYPE_CS__OWNED_PARAMETER_TYPE = eINSTANCE.getLambdaTypeCS_OwnedParameterType();
+		EReference LAMBDA_TYPE_CS__OWNED_PARAMETER_TYPES = eINSTANCE.getLambdaTypeCS_OwnedParameterTypes();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Result Type</b></em>' containment reference feature.
@@ -6324,12 +6232,12 @@ public interface BaseCSPackage extends EPackage {
 		EClass LIBRARY_CS = eINSTANCE.getLibraryCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Package</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Referred Package</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LIBRARY_CS__PACKAGE = eINSTANCE.getLibraryCS_Package();
+		EReference LIBRARY_CS__REFERRED_PACKAGE = eINSTANCE.getLibraryCS_ReferredPackage();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ModelElementCSImpl <em>Model Element CS</em>}' class.
@@ -6342,12 +6250,12 @@ public interface BaseCSPackage extends EPackage {
 		EClass MODEL_ELEMENT_CS = eINSTANCE.getModelElementCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Annotation</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Annotations</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_ELEMENT_CS__OWNED_ANNOTATION = eINSTANCE.getModelElementCS_OwnedAnnotation();
+		EReference MODEL_ELEMENT_CS__OWNED_ANNOTATIONS = eINSTANCE.getModelElementCS_OwnedAnnotations();
 
 		/**
 		 * The meta object literal for the '<em><b>Original Xmi Id</b></em>' attribute feature.
@@ -6376,20 +6284,20 @@ public interface BaseCSPackage extends EPackage {
 		EClass MODEL_ELEMENT_REF_CS = eINSTANCE.getModelElementRefCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Path Name</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Owned Path Name</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_ELEMENT_REF_CS__PATH_NAME = eINSTANCE.getModelElementRefCS_PathName();
+		EReference MODEL_ELEMENT_REF_CS__OWNED_PATH_NAME = eINSTANCE.getModelElementRefCS_OwnedPathName();
 
 		/**
-		 * The meta object literal for the '<em><b>Element</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Referred Element</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_ELEMENT_REF_CS__ELEMENT = eINSTANCE.getModelElementRefCS_Element();
+		EReference MODEL_ELEMENT_REF_CS__REFERRED_ELEMENT = eINSTANCE.getModelElementRefCS_ReferredElement();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.MultiplicityBoundsCSImpl <em>Multiplicity Bounds CS</em>}' class.
@@ -6484,52 +6392,52 @@ public interface BaseCSPackage extends EPackage {
 		EClass OPERATION_CS = eINSTANCE.getOperationCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Parameter</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OPERATION_CS__OWNED_PARAMETER = eINSTANCE.getOperationCS_OwnedParameter();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Exception</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OPERATION_CS__OWNED_EXCEPTION = eINSTANCE.getOperationCS_OwnedException();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Precondition</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OPERATION_CS__OWNED_PRECONDITION = eINSTANCE.getOperationCS_OwnedPrecondition();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Postcondition</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OPERATION_CS__OWNED_POSTCONDITION = eINSTANCE.getOperationCS_OwnedPostcondition();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Body Expression</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OPERATION_CS__OWNED_BODY_EXPRESSION = eINSTANCE.getOperationCS_OwnedBodyExpression();
-
-		/**
 		 * The meta object literal for the '<em><b>Owning Class</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference OPERATION_CS__OWNING_CLASS = eINSTANCE.getOperationCS_OwningClass();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Parameters</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATION_CS__OWNED_PARAMETERS = eINSTANCE.getOperationCS_OwnedParameters();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Exceptions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATION_CS__OWNED_EXCEPTIONS = eINSTANCE.getOperationCS_OwnedExceptions();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Preconditions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATION_CS__OWNED_PRECONDITIONS = eINSTANCE.getOperationCS_OwnedPreconditions();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Postconditions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATION_CS__OWNED_POSTCONDITIONS = eINSTANCE.getOperationCS_OwnedPostconditions();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Body Expressions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATION_CS__OWNED_BODY_EXPRESSIONS = eINSTANCE.getOperationCS_OwnedBodyExpressions();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PackageCSImpl <em>Package CS</em>}' class.
@@ -6542,12 +6450,12 @@ public interface BaseCSPackage extends EPackage {
 		EClass PACKAGE_CS = eINSTANCE.getPackageCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Type</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Classes</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PACKAGE_CS__OWNED_TYPE = eINSTANCE.getPackageCS_OwnedType();
+		EReference PACKAGE_CS__OWNED_CLASSES = eINSTANCE.getPackageCS_OwnedClasses();
 
 		/**
 		 * The meta object literal for the '<em><b>Ns Prefix</b></em>' attribute feature.
@@ -6576,12 +6484,12 @@ public interface BaseCSPackage extends EPackage {
 		EClass PACKAGE_OWNER_CS = eINSTANCE.getPackageOwnerCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Nested Package</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Packages</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PACKAGE_OWNER_CS__OWNED_NESTED_PACKAGE = eINSTANCE.getPackageOwnerCS_OwnedNestedPackage();
+		EReference PACKAGE_OWNER_CS__OWNED_PACKAGES = eINSTANCE.getPackageOwnerCS_OwnedPackages();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ParameterCSImpl <em>Parameter CS</em>}' class.
@@ -6594,12 +6502,12 @@ public interface BaseCSPackage extends EPackage {
 		EClass PARAMETER_CS = eINSTANCE.getParameterCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Owner</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Owning Operation</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PARAMETER_CS__OWNER = eINSTANCE.getParameterCS_Owner();
+		EReference PARAMETER_CS__OWNING_OPERATION = eINSTANCE.getParameterCS_OwningOperation();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PathElementCSImpl <em>Path Element CS</em>}' class.
@@ -6612,20 +6520,20 @@ public interface BaseCSPackage extends EPackage {
 		EClass PATH_ELEMENT_CS = eINSTANCE.getPathElementCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Path Name</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Owning Path Name</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PATH_ELEMENT_CS__PATH_NAME = eINSTANCE.getPathElementCS_PathName();
+		EReference PATH_ELEMENT_CS__OWNING_PATH_NAME = eINSTANCE.getPathElementCS_OwningPathName();
 
 		/**
-		 * The meta object literal for the '<em><b>Element</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Referred Element</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PATH_ELEMENT_CS__ELEMENT = eINSTANCE.getPathElementCS_Element();
+		EReference PATH_ELEMENT_CS__REFERRED_ELEMENT = eINSTANCE.getPathElementCS_ReferredElement();
 
 		/**
 		 * The meta object literal for the '<em><b>Element Type</b></em>' reference feature.
@@ -6664,20 +6572,20 @@ public interface BaseCSPackage extends EPackage {
 		EClass PATH_NAME_CS = eINSTANCE.getPathNameCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Path</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Path Elements</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PATH_NAME_CS__PATH = eINSTANCE.getPathNameCS_Path();
+		EReference PATH_NAME_CS__OWNED_PATH_ELEMENTS = eINSTANCE.getPathNameCS_OwnedPathElements();
 
 		/**
-		 * The meta object literal for the '<em><b>Element</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Referred Element</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PATH_NAME_CS__ELEMENT = eINSTANCE.getPathNameCS_Element();
+		EReference PATH_NAME_CS__REFERRED_ELEMENT = eINSTANCE.getPathNameCS_ReferredElement();
 
 		/**
 		 * The meta object literal for the '<em><b>Context</b></em>' reference feature.
@@ -6742,20 +6650,20 @@ public interface BaseCSPackage extends EPackage {
 		EClass REFERENCE_CS = eINSTANCE.getReferenceCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Opposite</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Referred Opposite</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REFERENCE_CS__OPPOSITE = eINSTANCE.getReferenceCS_Opposite();
+		EReference REFERENCE_CS__REFERRED_OPPOSITE = eINSTANCE.getReferenceCS_ReferredOpposite();
 
 		/**
-		 * The meta object literal for the '<em><b>Keys</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Referred Keys</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REFERENCE_CS__KEYS = eINSTANCE.getReferenceCS_Keys();
+		EReference REFERENCE_CS__REFERRED_KEYS = eINSTANCE.getReferenceCS_ReferredKeys();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.RootCS <em>Root CS</em>}' class.
@@ -6768,20 +6676,20 @@ public interface BaseCSPackage extends EPackage {
 		EClass ROOT_CS = eINSTANCE.getRootCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Import</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Imports</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ROOT_CS__OWNED_IMPORT = eINSTANCE.getRootCS_OwnedImport();
+		EReference ROOT_CS__OWNED_IMPORTS = eINSTANCE.getRootCS_OwnedImports();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Library</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Libraries</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ROOT_CS__OWNED_LIBRARY = eINSTANCE.getRootCS_OwnedLibrary();
+		EReference ROOT_CS__OWNED_LIBRARIES = eINSTANCE.getRootCS_OwnedLibraries();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.RootPackageCSImpl <em>Root Package CS</em>}' class.
@@ -6812,6 +6720,48 @@ public interface BaseCSPackage extends EPackage {
 		EAttribute SPECIFICATION_CS__EXPR_STRING = eINSTANCE.getSpecificationCS_ExprString();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.StructuredClassCSImpl <em>Structured Class CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.StructuredClassCSImpl
+		 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getStructuredClassCS()
+		 * @generated
+		 */
+		EClass STRUCTURED_CLASS_CS = eINSTANCE.getStructuredClassCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Super Types</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STRUCTURED_CLASS_CS__OWNED_SUPER_TYPES = eINSTANCE.getStructuredClassCS_OwnedSuperTypes();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Operations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STRUCTURED_CLASS_CS__OWNED_OPERATIONS = eINSTANCE.getStructuredClassCS_OwnedOperations();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Properties</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STRUCTURED_CLASS_CS__OWNED_PROPERTIES = eINSTANCE.getStructuredClassCS_OwnedProperties();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Metaclass</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STRUCTURED_CLASS_CS__OWNED_METACLASS = eINSTANCE.getStructuredClassCS_OwnedMetaclass();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.StructuralFeatureCSImpl <em>Structural Feature CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6822,12 +6772,12 @@ public interface BaseCSPackage extends EPackage {
 		EClass STRUCTURAL_FEATURE_CS = eINSTANCE.getStructuralFeatureCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Owner</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Owning Class</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference STRUCTURAL_FEATURE_CS__OWNER = eINSTANCE.getStructuralFeatureCS_Owner();
+		EReference STRUCTURAL_FEATURE_CS__OWNING_CLASS = eINSTANCE.getStructuralFeatureCS_OwningClass();
 
 		/**
 		 * The meta object literal for the '<em><b>Default</b></em>' attribute feature.
@@ -6838,12 +6788,12 @@ public interface BaseCSPackage extends EPackage {
 		EAttribute STRUCTURAL_FEATURE_CS__DEFAULT = eINSTANCE.getStructuralFeatureCS_Default();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Default Expression</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Default Expressions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSION = eINSTANCE.getStructuralFeatureCS_OwnedDefaultExpression();
+		EReference STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS = eINSTANCE.getStructuralFeatureCS_OwnedDefaultExpressions();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TemplateBindingCSImpl <em>Template Binding CS</em>}' class.
@@ -6856,20 +6806,20 @@ public interface BaseCSPackage extends EPackage {
 		EClass TEMPLATE_BINDING_CS = eINSTANCE.getTemplateBindingCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Owning Template Bindable Element</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Owning Element</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TEMPLATE_BINDING_CS__OWNING_TEMPLATE_BINDABLE_ELEMENT = eINSTANCE.getTemplateBindingCS_OwningTemplateBindableElement();
+		EReference TEMPLATE_BINDING_CS__OWNING_ELEMENT = eINSTANCE.getTemplateBindingCS_OwningElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Parameter Substitution</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Substitutions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TEMPLATE_BINDING_CS__OWNED_PARAMETER_SUBSTITUTION = eINSTANCE.getTemplateBindingCS_OwnedParameterSubstitution();
+		EReference TEMPLATE_BINDING_CS__OWNED_SUBSTITUTIONS = eINSTANCE.getTemplateBindingCS_OwnedSubstitutions();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TemplateParameterCSImpl <em>Template Parameter CS</em>}' class.
@@ -6882,12 +6832,12 @@ public interface BaseCSPackage extends EPackage {
 		EClass TEMPLATE_PARAMETER_CS = eINSTANCE.getTemplateParameterCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Owning Template Signature</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Owning Signature</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TEMPLATE_PARAMETER_CS__OWNING_TEMPLATE_SIGNATURE = eINSTANCE.getTemplateParameterCS_OwningTemplateSignature();
+		EReference TEMPLATE_PARAMETER_CS__OWNING_SIGNATURE = eINSTANCE.getTemplateParameterCS_OwningSignature();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TemplateParameterSubstitutionCSImpl <em>Template Parameter Substitution CS</em>}' class.
@@ -6900,12 +6850,12 @@ public interface BaseCSPackage extends EPackage {
 		EClass TEMPLATE_PARAMETER_SUBSTITUTION_CS = eINSTANCE.getTemplateParameterSubstitutionCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Owning Template Binding</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Owning Binding</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNING_TEMPLATE_BINDING = eINSTANCE.getTemplateParameterSubstitutionCS_OwningTemplateBinding();
+		EReference TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNING_BINDING = eINSTANCE.getTemplateParameterSubstitutionCS_OwningBinding();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Actual Parameter</b></em>' containment reference feature.
@@ -6926,20 +6876,20 @@ public interface BaseCSPackage extends EPackage {
 		EClass TEMPLATE_SIGNATURE_CS = eINSTANCE.getTemplateSignatureCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Owning Template Element</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Owning Element</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TEMPLATE_SIGNATURE_CS__OWNING_TEMPLATE_ELEMENT = eINSTANCE.getTemplateSignatureCS_OwningTemplateElement();
+		EReference TEMPLATE_SIGNATURE_CS__OWNING_ELEMENT = eINSTANCE.getTemplateSignatureCS_OwningElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Template Parameter</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Parameters</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TEMPLATE_SIGNATURE_CS__OWNED_TEMPLATE_PARAMETER = eINSTANCE.getTemplateSignatureCS_OwnedTemplateParameter();
+		EReference TEMPLATE_SIGNATURE_CS__OWNED_PARAMETERS = eINSTANCE.getTemplateSignatureCS_OwnedParameters();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS <em>Templateable Element CS</em>}' class.
@@ -6952,12 +6902,12 @@ public interface BaseCSPackage extends EPackage {
 		EClass TEMPLATEABLE_ELEMENT_CS = eINSTANCE.getTemplateableElementCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Template Signature</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Owned Signature</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TEMPLATEABLE_ELEMENT_CS__OWNED_TEMPLATE_SIGNATURE = eINSTANCE.getTemplateableElementCS_OwnedTemplateSignature();
+		EReference TEMPLATEABLE_ELEMENT_CS__OWNED_SIGNATURE = eINSTANCE.getTemplateableElementCS_OwnedSignature();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TuplePartCSImpl <em>Tuple Part CS</em>}' class.
@@ -7060,20 +7010,20 @@ public interface BaseCSPackage extends EPackage {
 		EReference TYPED_ELEMENT_CS__OWNED_TYPE = eINSTANCE.getTypedElementCS_OwnedType();
 
 		/**
-		 * The meta object literal for the '<em><b>Qualifier</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>Qualifiers</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TYPED_ELEMENT_CS__QUALIFIER = eINSTANCE.getTypedElementCS_Qualifier();
+		EAttribute TYPED_ELEMENT_CS__QUALIFIERS = eINSTANCE.getTypedElementCS_Qualifiers();
 
 		/**
-		 * The meta object literal for the '<em><b>Optional</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Is Optional</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TYPED_ELEMENT_CS__OPTIONAL = eINSTANCE.getTypedElementCS_Optional();
+		EAttribute TYPED_ELEMENT_CS__IS_OPTIONAL = eINSTANCE.getTypedElementCS_IsOptional();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TypedRefCSImpl <em>Typed Ref CS</em>}' class.
@@ -7086,12 +7036,12 @@ public interface BaseCSPackage extends EPackage {
 		EClass TYPED_REF_CS = eINSTANCE.getTypedRefCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Multiplicity</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Owned Multiplicity</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TYPED_REF_CS__MULTIPLICITY = eINSTANCE.getTypedRefCS_Multiplicity();
+		EReference TYPED_REF_CS__OWNED_MULTIPLICITY = eINSTANCE.getTypedRefCS_OwnedMultiplicity();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TypedTypeRefCSImpl <em>Typed Type Ref CS</em>}' class.
@@ -7104,20 +7054,20 @@ public interface BaseCSPackage extends EPackage {
 		EClass TYPED_TYPE_REF_CS = eINSTANCE.getTypedTypeRefCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Path Name</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Owned Path Name</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TYPED_TYPE_REF_CS__PATH_NAME = eINSTANCE.getTypedTypeRefCS_PathName();
+		EReference TYPED_TYPE_REF_CS__OWNED_PATH_NAME = eINSTANCE.getTypedTypeRefCS_OwnedPathName();
 
 		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Referred Type</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TYPED_TYPE_REF_CS__TYPE = eINSTANCE.getTypedTypeRefCS_Type();
+		EReference TYPED_TYPE_REF_CS__REFERRED_TYPE = eINSTANCE.getTypedTypeRefCS_ReferredType();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Template Binding</b></em>' containment reference feature.
@@ -7128,12 +7078,12 @@ public interface BaseCSPackage extends EPackage {
 		EReference TYPED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING = eINSTANCE.getTypedTypeRefCS_OwnedTemplateBinding();
 
 		/**
-		 * The meta object literal for the '<em><b>Typeof</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Is Typeof</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TYPED_TYPE_REF_CS__TYPEOF = eINSTANCE.getTypedTypeRefCS_Typeof();
+		EAttribute TYPED_TYPE_REF_CS__IS_TYPEOF = eINSTANCE.getTypedTypeRefCS_IsTypeof();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.util.VisitableCS <em>Visitable CS</em>}' class.
@@ -7156,30 +7106,20 @@ public interface BaseCSPackage extends EPackage {
 		EClass WILDCARD_TYPE_REF_CS = eINSTANCE.getWildcardTypeRefCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Extends</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Owned Extends</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference WILDCARD_TYPE_REF_CS__EXTENDS = eINSTANCE.getWildcardTypeRefCS_Extends();
+		EReference WILDCARD_TYPE_REF_CS__OWNED_EXTENDS = eINSTANCE.getWildcardTypeRefCS_OwnedExtends();
 
 		/**
-		 * The meta object literal for the '<em><b>Super</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Owned Super</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference WILDCARD_TYPE_REF_CS__SUPER = eINSTANCE.getWildcardTypeRefCS_Super();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.IteratorKind <em>Iterator Kind</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.xtext.base.basecs.IteratorKind
-		 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getIteratorKind()
-		 * @generated
-		 */
-		EEnum ITERATOR_KIND = eINSTANCE.getIteratorKind();
+		EReference WILDCARD_TYPE_REF_CS__OWNED_SUPER = eINSTANCE.getWildcardTypeRefCS_OwnedSuper();
 
 		/**
 		 * The meta object literal for the '<em>Scope Filter</em>' data type.

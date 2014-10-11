@@ -49,15 +49,6 @@ public interface BaseCSFactory extends EFactory {
 	AttributeCS createAttributeCS();
 
 	/**
-	 * Returns a new object of class '<em>Class CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Class CS</em>'.
-	 * @generated
-	 */
-	ClassCS createClassCS();
-
-	/**
 	 * Returns a new object of class '<em>Constraint CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -254,6 +245,15 @@ public interface BaseCSFactory extends EFactory {
 	 * @generated
 	 */
 	SpecificationCS createSpecificationCS();
+
+	/**
+	 * Returns a new object of class '<em>Structured Class CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Structured Class CS</em>'.
+	 * @generated
+	 */
+	StructuredClassCS createStructuredClassCS();
 
 	/**
 	 * Returns a new object of class '<em>Template Binding CS</em>'.

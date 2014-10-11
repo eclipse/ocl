@@ -20,9 +20,9 @@ import "http://www.eclipse.org/ocl/3.1.0/OCLinEcoreCST"
 
 TopLevelCS :
 	{TopLevelCS} ('module' UnrestrictedName)?
-	(ownedLibrary+=LibraryCS)*
-	(ownedImport+=ImportCS)*
-	(ownedNestedPackage+=PackageCS)*
+	(ownedLibraries+=LibraryCS)*
+	(ownedImports+=ImportCS)*
+	(ownedPackages+=PackageCS)*
 ;
 
 terminal UNQUOTED_STRING:	// Never forward parsed; just provides a placeholder
@@ -87,24 +87,24 @@ UnrestrictedName returns ecore::EString:
 ;
 
 InvariantConstraintCS returns OCLinEcoreConstraintCS:
-	(callable?='callable')? stereotype='invariant' (name=UnrestrictedName ('(' messageSpecification=SpecificationCS ')')?)?
-	((':' specification=SpecificationCS? ';') | ';')
+	(callable?='callable')? stereotype='invariant' (name=UnrestrictedName ('(' ownedMessageSpecification=SpecificationCS ')')?)?
+	((':' ownedSpecification=SpecificationCS? ';') | ';')
 ;
 
 PostconditionConstraintCS returns OCLinEcoreConstraintCS:
-	stereotype='postcondition' (name=UnrestrictedName ('(' messageSpecification=SpecificationCS ')')?)? ':' specification=SpecificationCS? ';'
+	stereotype='postcondition' (name=UnrestrictedName ('(' ownedMessageSpecification=SpecificationCS ')')?)? ':' ownedSpecification=SpecificationCS? ';'
 ;
 
 PreconditionConstraintCS returns OCLinEcoreConstraintCS:
-	stereotype='precondition' (name=UnrestrictedName ('(' messageSpecification=SpecificationCS ')')?)? ':' specification=SpecificationCS? ';'
+	stereotype='precondition' (name=UnrestrictedName ('(' ownedMessageSpecification=SpecificationCS ')')?)? ':' ownedSpecification=SpecificationCS? ';'
 ;
 
 AnnotationCS returns base::AnnotationCS:
 	{base::AnnotationCS} 'annotation' name=(UnrestrictedName|SINGLE_QUOTED_STRING)?
-	('(' ownedDetail+=DetailCS (',' ownedDetail+=DetailCS)* ')')?
-	(('{' (ownedAnnotation+=AnnotationElementCS
-	     | ownedContent+=ModelElementCS
-	     | ownedReference+=ModelElementRefCS
+	('(' ownedDetails+=DetailCS (',' ownedDetails+=DetailCS)* ')')?
+	(('{' (ownedAnnotations+=AnnotationElementCS
+	     | ownedContents+=ModelElementCS
+	     | ownedReferences+=ModelElementRefCS
 	  )+'}')
 	|';'
 	)
@@ -115,54 +115,38 @@ AnnotationElementCS returns base::AnnotationElementCS:
 ;
 
 AttributeCS returns base::AttributeCS:
-	((qualifier+='static' (qualifier+='definition')?) | (qualifier+='definition' (qualifier+='static')?))?
+	((qualifiers+='static' (qualifiers+='definition')?) | (qualifiers+='definition' (qualifiers+='static')?))?
 	'attribute' name=UnrestrictedName
 	(':' ownedType=TypedMultiplicityRefCS)?
 	('=' default=SINGLE_QUOTED_STRING)?
-	('{'((qualifier+='derived' | qualifier+='!derived' |
-		  qualifier+='id' | qualifier+='!id' |
-		  qualifier+='ordered' | qualifier+='!ordered' |
-		  qualifier+='readonly' | qualifier+='!readonly' |
-		  qualifier+='transient' | qualifier+='!transient' |
-		  qualifier+='unique' | qualifier+='!unique' |
-		  qualifier+='unsettable' | qualifier+='!unsettable' |
-		  qualifier+='volatile' | qualifier+='!volatile'
+	('{'((qualifiers+='derived' | qualifiers+='!derived' |
+		  qualifiers+='id' | qualifiers+='!id' |
+		  qualifiers+='ordered' | qualifiers+='!ordered' |
+		  qualifiers+='readonly' | qualifiers+='!readonly' |
+		  qualifiers+='transient' | qualifiers+='!transient' |
+		  qualifiers+='unique' | qualifiers+='!unique' |
+		  qualifiers+='unsettable' | qualifiers+='!unsettable' |
+		  qualifiers+='volatile' | qualifiers+='!volatile'
 	    ) ','? )+
 	'}')?
-	(	('{' (ownedAnnotation+=AnnotationElementCS
-	      | ('derivation' UnrestrictedName? ':' ownedDefaultExpression+=SpecificationCS? ';') 
-	      | ('initial' UnrestrictedName? ':' ownedDefaultExpression+=SpecificationCS? ';') )* '}')
+	(	('{' (ownedAnnotations+=AnnotationElementCS
+	      | ('derivation' UnrestrictedName? ':' ownedDefaultExpressions+=SpecificationCS? ';') 
+	      | ('initial' UnrestrictedName? ':' ownedDefaultExpressions+=SpecificationCS? ';') )* '}')
 	|	';'
 	)
 ;
 
 ClassCS returns base::ClassCS:
-	qualifier+='abstract'?
-	'class' name=UnrestrictedName
-	(ownedTemplateSignature=TemplateSignatureCS)?
-	('extends' ownedSuperType+=TypedRefCS (',' ownedSuperType+=TypedRefCS)*)?
-	(':' instanceClassName=SINGLE_QUOTED_STRING)?
-	('{' qualifier+='interface'
-	 '}')?
-	(	('{' (ownedAnnotation+=AnnotationElementCS
-	        | ownedOperation+=OperationCS
-	        | ownedProperty+=StructuralFeatureCS
-	        | ownedConstraint+=InvariantConstraintCS)* '}')
-	|	';'
-	)
-;
-
-ClassifierCS returns base::ClassifierCS:
-	ClassCS | DataTypeCS | EnumerationCS 
+	StructuredClassCS | DataTypeCS | EnumerationCS 
 ;
 
 DataTypeCS returns base::DataTypeCS:
 	'datatype' name=UnrestrictedName
-	(ownedTemplateSignature=TemplateSignatureCS)?
+	(ownedSignature=TemplateSignatureCS)?
 	(':' instanceClassName=SINGLE_QUOTED_STRING)?
-	('{' (qualifier+='serializable' | qualifier+='!serializable')? '}')?
-	(	('{' (ownedAnnotation+=AnnotationElementCS
-	        | ownedConstraint+=InvariantConstraintCS)* '}')
+	('{' (qualifiers+='serializable' | qualifiers+='!serializable')? '}')?
+	(	('{' (ownedAnnotations+=AnnotationElementCS
+	        | ownedConstraints+=InvariantConstraintCS)* '}')
 	|	';'
 	)
 ;
@@ -173,60 +157,60 @@ DetailCS returns base::DetailCS:
 
 DocumentationCS returns base::DocumentationCS:
 	{base::DocumentationCS} 'documentation' value=SINGLE_QUOTED_STRING?
-	('(' ownedDetail+=DetailCS (',' ownedDetail+=DetailCS)* ')')?
+	('(' ownedDetails+=DetailCS (',' ownedDetails+=DetailCS)* ')')?
 	 ';'
 ;
 
 EnumerationCS returns base::EnumerationCS:
 	'enum' name=UnrestrictedName
-	(ownedTemplateSignature=TemplateSignatureCS)?
+	(ownedSignature=TemplateSignatureCS)?
 	(':' instanceClassName=SINGLE_QUOTED_STRING)?
-	('{' (qualifier+='serializable' | qualifier+='!serializable')? '}')?
-	(	('{' (ownedAnnotation+=AnnotationElementCS
+	('{' (qualifiers+='serializable' | qualifiers+='!serializable')? '}')?
+	(	('{' (ownedAnnotations+=AnnotationElementCS
 	        | ownedLiterals+=EnumerationLiteralCS
-	        | ownedConstraint+=InvariantConstraintCS)* '}')
+	        | ownedConstraints+=InvariantConstraintCS)* '}')
 	| 	';'
 	)
 ;
 
 EnumerationLiteralCS returns base::EnumerationLiteralCS:
 	(('literal' name=UnrestrictedName) | name=EnumerationLiteralName) ('=' value=SIGNED)?
-	(('{' ownedAnnotation+=AnnotationElementCS* '}')
+	(('{' ownedAnnotations+=AnnotationElementCS* '}')
 	|';'
 	)
 ;
 
 ImportCS returns base::ImportCS:
-	'import' (name=UnrestrictedName ':')? pathName=URIPathNameCS (all?='::*')? ';'
+	'import' (name=UnrestrictedName ':')? ownedPathName=URIPathNameCS (isAll?='::*')? ';'
 ;
 
 LibraryCS returns base::LibraryCS:
-	'library' (name=UnrestrictedName ':')? package=[pivot::Package|URI] ';'
+	'library' (name=UnrestrictedName ':')? referredPackage=[pivot::Package|URI] ';'
 ;
 
 ModelElementCS returns base::ModelElementCS:
-	ClassifierCS | EnumerationLiteralCS | OperationCS | PackageCS | StructuralFeatureCS
+	ClassCS | EnumerationLiteralCS | OperationCS | PackageCS | StructuralFeatureCS
 ;
 
 ModelElementRefCS returns base::ModelElementRefCS:
-	'reference' pathName=PathNameCS ';'
+	'reference' ownedPathName=PathNameCS ';'
 ;
 
 OperationCS returns base::OperationCS:
-	((qualifier+='static' (qualifier+='definition')?) | (qualifier+='definition' (qualifier+='static')?))?
-	'operation' (ownedTemplateSignature=TemplateSignatureCS)? name=UnrestrictedName
-	'(' (ownedParameter+=ParameterCS (',' ownedParameter+=ParameterCS)*)? ')'
+	((qualifiers+='static' (qualifiers+='definition')?) | (qualifiers+='definition' (qualifiers+='static')?))?
+	'operation' (ownedSignature=TemplateSignatureCS)? name=UnrestrictedName
+	'(' (ownedParameters+=ParameterCS (',' ownedParameters+=ParameterCS)*)? ')'
 	(':' ownedType=TypedMultiplicityRefCS)?
-	('throws' ownedException+=TypedRefCS (',' ownedException+=TypedRefCS)*)?
-	('{'((qualifier+='derived' | qualifier+='!derived' |
-		  qualifier+='ordered' | qualifier+='!ordered' |
-		  qualifier+='unique' | qualifier+='!unique'
+	('throws' ownedExceptions+=TypedRefCS (',' ownedExceptions+=TypedRefCS)*)?
+	('{'((qualifiers+='derived' | qualifiers+='!derived' |
+		  qualifiers+='ordered' | qualifiers+='!ordered' |
+		  qualifiers+='unique' | qualifiers+='!unique'
 		) ','? )+
 	'}')?
-	(	('{' (ownedAnnotation+=AnnotationElementCS
-	        | ownedPrecondition+=PreconditionConstraintCS
-	        | ('body' UnrestrictedName? ':' ownedBodyExpression+=SpecificationCS? ';')
-	        | ownedPostcondition+=PostconditionConstraintCS)* '}')
+	(	('{' (ownedAnnotations+=AnnotationElementCS
+	        | ownedPreconditions+=PreconditionConstraintCS
+	        | ('body' UnrestrictedName? ':' ownedBodyExpressions+=SpecificationCS? ';')
+	        | ownedPostconditions+=PostconditionConstraintCS)* '}')
 	|	';'
 	)
 ;
@@ -235,7 +219,7 @@ PackageCS returns base::PackageCS:
 	'package' name=UnrestrictedName
 	(':' nsPrefix=UnrestrictedName)? ('=' nsURI=URI)?
 	(('{'
-		(ownedAnnotation+=AnnotationElementCS | ownedNestedPackage+=PackageCS | ownedType+=ClassifierCS)*
+		(ownedAnnotations+=AnnotationElementCS | ownedPackages+=PackageCS | ownedClasses+=ClassCS)*
 		'}')
 	|';'
 	)
@@ -244,34 +228,34 @@ PackageCS returns base::PackageCS:
 ParameterCS returns base::ParameterCS:
 	name=UnrestrictedName
 	(':' ownedType=TypedMultiplicityRefCS)?
-	('{'(( qualifier+='ordered' | qualifier+='!ordered' |
-		   qualifier+='unique' | qualifier+='!unique'
+	('{'(( qualifiers+='ordered' | qualifiers+='!ordered' |
+		   qualifiers+='unique' | qualifiers+='!unique'
 		  ) ','?)+
 	 '}')?
-	('{' ownedAnnotation+=AnnotationElementCS* '}')?
+	('{' ownedAnnotations+=AnnotationElementCS* '}')?
 ;
 
 ReferenceCS returns base::ReferenceCS:
-	((qualifier+='static' (qualifier+='definition')?) | (qualifier+='definition' (qualifier+='static')?))?
+	((qualifiers+='static' (qualifiers+='definition')?) | (qualifiers+='definition' (qualifiers+='static')?))?
 	'property' name=UnrestrictedName
-	('#' opposite=[pivot::Property|UnrestrictedName])?	
+	('#' referredOpposite=[pivot::Property|UnrestrictedName])?	
 	(':' ownedType=TypedMultiplicityRefCS)?
 	('=' default=SINGLE_QUOTED_STRING)?
-	('{'((qualifier+='composes' | qualifier+='!composes' |
-		  qualifier+='derived' | qualifier+='!derived' |
-		  qualifier+='ordered' | qualifier+='!ordered' |
-		  qualifier+='readonly' | qualifier+='!readonly' |
-		  qualifier+='resolve' | qualifier+='!resolve' |
-		  qualifier+='transient' | qualifier+='!transient' |
-		  qualifier+='unique' | qualifier+='!unique' |
-		  qualifier+='unsettable' | qualifier+='!unsettable' |
-		  qualifier+='volatile' | qualifier+='!volatile'
+	('{'((qualifiers+='composes' | qualifiers+='!composes' |
+		  qualifiers+='derived' | qualifiers+='!derived' |
+		  qualifiers+='ordered' | qualifiers+='!ordered' |
+		  qualifiers+='readonly' | qualifiers+='!readonly' |
+		  qualifiers+='resolve' | qualifiers+='!resolve' |
+		  qualifiers+='transient' | qualifiers+='!transient' |
+		  qualifiers+='unique' | qualifiers+='!unique' |
+		  qualifiers+='unsettable' | qualifiers+='!unsettable' |
+		  qualifiers+='volatile' | qualifiers+='!volatile'
 		) ','? )+
 	'}')?
-	(	('{' (ownedAnnotation+=AnnotationElementCS
-			| ('key' keys+=[pivot::Property|UnrestrictedName] (',' keys+=[pivot::Property|UnrestrictedName])* ';')
-	        | ('derivation' UnrestrictedName? ':' ownedDefaultExpression+=SpecificationCS? ';') 
-	        | ('initial' UnrestrictedName? ':' ownedDefaultExpression+=SpecificationCS? ';') )* '}')
+	(	('{' (ownedAnnotations+=AnnotationElementCS
+			| ('key' referredKeys+=[pivot::Property|UnrestrictedName] (',' referredKeys+=[pivot::Property|UnrestrictedName])* ';')
+	        | ('derivation' UnrestrictedName? ':' ownedDefaultExpressions+=SpecificationCS? ';') 
+	        | ('initial' UnrestrictedName? ':' ownedDefaultExpressions+=SpecificationCS? ';') )* '}')
 	|	';'
 	)
 ;
@@ -280,17 +264,33 @@ SpecificationCS returns essentialocl::ExpSpecificationCS:
 	ownedExpression=ExpCS | exprString=UNQUOTED_STRING
 ;
 
+StructuredClassCS returns base::StructuredClassCS:
+	qualifiers+='abstract'?
+	'class' name=UnrestrictedName
+	(ownedSignature=TemplateSignatureCS)?
+	('extends' ownedSuperTypes+=TypedRefCS (',' ownedSuperTypes+=TypedRefCS)*)?
+	(':' instanceClassName=SINGLE_QUOTED_STRING)?
+	('{' qualifiers+='interface'
+	 '}')?
+	(	('{' (ownedAnnotations+=AnnotationElementCS
+	        | ownedOperations+=OperationCS
+	        | ownedProperties+=StructuralFeatureCS
+	        | ownedConstraints+=InvariantConstraintCS)* '}')
+	|	';'
+	)
+;
+
 StructuralFeatureCS returns base::StructuralFeatureCS:
 	AttributeCS | ReferenceCS
 ;
 
 SysMLCS returns SysMLCS:
-	{SysMLCS} 'sysml' ((ownedDetail+=DetailCS ';') | ('{' (ownedDetail+=DetailCS ';')* '}'))
+	{SysMLCS} 'sysml' ((ownedDetails+=DetailCS ';') | ('{' (ownedDetails+=DetailCS ';')* '}'))
 ;
 
 TemplateBindingCS returns base::TemplateBindingCS:
-	('(' ownedParameterSubstitution+=TemplateParameterSubstitutionCS (',' ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* ')')	
-|	('<' ownedParameterSubstitution+=TemplateParameterSubstitutionCS (',' ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* '>')	
+	('(' ownedSubstitutions+=TemplateParameterSubstitutionCS (',' ownedSubstitutions+=TemplateParameterSubstitutionCS)* ')')	
+|	('<' ownedSubstitutions+=TemplateParameterSubstitutionCS (',' ownedSubstitutions+=TemplateParameterSubstitutionCS)* '>')	
 ;
 
 TemplateParameterSubstitutionCS returns base::TemplateParameterSubstitutionCS:
@@ -298,8 +298,8 @@ TemplateParameterSubstitutionCS returns base::TemplateParameterSubstitutionCS:
 ;
 
 TemplateSignatureCS returns base::TemplateSignatureCS:
-	('(' ownedTemplateParameter+=TypeParameterCS (',' ownedTemplateParameter+=TypeParameterCS)* ')')
-|	('<' ownedTemplateParameter+=TypeParameterCS (',' ownedTemplateParameter+=TypeParameterCS)* '>')
+	('(' ownedParameters+=TypeParameterCS (',' ownedParameters+=TypeParameterCS)* ')')
+|	('<' ownedParameters+=TypeParameterCS (',' ownedParameters+=TypeParameterCS)* '>')
 ;
 
 TypeIdentifier:
@@ -323,16 +323,16 @@ TypedRefCS returns base::TypedRefCS:
 ;
 
 TypedMultiplicityRefCS returns base::TypedRefCS:
-	TypedRefCS (multiplicity=MultiplicityCS)?
+	TypedRefCS (ownedMultiplicity=MultiplicityCS)?
 ;
 
 TypedTypeRefCS returns base::TypedTypeRefCS:
-	pathName=PathNameCS (ownedTemplateBinding=TemplateBindingCS)?
+	ownedPathName=PathNameCS (ownedTemplateBinding=TemplateBindingCS)?
 ;
 
 WildcardTypeRefCS returns base::WildcardTypeRefCS:
 	{base::WildcardTypeRefCS} '?'
-	( ('extends' extends=TypedRefCS)
-	| ('super' super=TypedRefCS)
+	( ('extends' ownedExtends=TypedRefCS)
+	| ('super' ownedSuper=TypedRefCS)
 	)?
 ;

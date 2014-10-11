@@ -30,8 +30,8 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ModelElementRefCSImpl#getPathName <em>Path Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ModelElementRefCSImpl#getElement <em>Element</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ModelElementRefCSImpl#getOwnedPathName <em>Owned Path Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ModelElementRefCSImpl#getReferredElement <em>Referred Element</em>}</li>
  * </ul>
  * </p>
  *
@@ -40,15 +40,14 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
 public class ModelElementRefCSImpl extends ElementRefCSImpl implements ModelElementRefCS
 {
 	/**
-	 * The cached value of the '{@link #getPathName() <em>Path Name</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedPathName() <em>Owned Path Name</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPathName()
+	 * @see #getOwnedPathName()
 	 * @generated
 	 * @ordered
 	 */
-	protected PathNameCS pathName;
-
+	protected PathNameCS ownedPathName;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,9 +74,9 @@ public class ModelElementRefCSImpl extends ElementRefCSImpl implements ModelElem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PathNameCS getPathName()
+	public PathNameCS getOwnedPathName()
 	{
-		return pathName;
+		return ownedPathName;
 	}
 
 	/**
@@ -85,13 +84,13 @@ public class ModelElementRefCSImpl extends ElementRefCSImpl implements ModelElem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetPathName(PathNameCS newPathName, NotificationChain msgs)
+	public NotificationChain basicSetOwnedPathName(PathNameCS newOwnedPathName, NotificationChain msgs)
 	{
-		PathNameCS oldPathName = pathName;
-		pathName = newPathName;
+		PathNameCS oldOwnedPathName = ownedPathName;
+		ownedPathName = newOwnedPathName;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSPackage.MODEL_ELEMENT_REF_CS__PATH_NAME, oldPathName, newPathName);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSPackage.MODEL_ELEMENT_REF_CS__OWNED_PATH_NAME, oldOwnedPathName, newOwnedPathName);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -102,20 +101,20 @@ public class ModelElementRefCSImpl extends ElementRefCSImpl implements ModelElem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPathName(PathNameCS newPathName)
+	public void setOwnedPathName(PathNameCS newOwnedPathName)
 	{
-		if (newPathName != pathName)
+		if (newOwnedPathName != ownedPathName)
 		{
 			NotificationChain msgs = null;
-			if (pathName != null)
-				msgs = ((InternalEObject)pathName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.MODEL_ELEMENT_REF_CS__PATH_NAME, null, msgs);
-			if (newPathName != null)
-				msgs = ((InternalEObject)newPathName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.MODEL_ELEMENT_REF_CS__PATH_NAME, null, msgs);
-			msgs = basicSetPathName(newPathName, msgs);
+			if (ownedPathName != null)
+				msgs = ((InternalEObject)ownedPathName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.MODEL_ELEMENT_REF_CS__OWNED_PATH_NAME, null, msgs);
+			if (newOwnedPathName != null)
+				msgs = ((InternalEObject)newOwnedPathName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.MODEL_ELEMENT_REF_CS__OWNED_PATH_NAME, null, msgs);
+			msgs = basicSetOwnedPathName(newOwnedPathName, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.MODEL_ELEMENT_REF_CS__PATH_NAME, newPathName, newPathName));
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.MODEL_ELEMENT_REF_CS__OWNED_PATH_NAME, newOwnedPathName, newOwnedPathName));
 	}
 
 	/**
@@ -128,8 +127,8 @@ public class ModelElementRefCSImpl extends ElementRefCSImpl implements ModelElem
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.MODEL_ELEMENT_REF_CS__PATH_NAME:
-				return basicSetPathName(null, msgs);
+			case BaseCSPackage.MODEL_ELEMENT_REF_CS__OWNED_PATH_NAME:
+				return basicSetOwnedPathName(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -144,10 +143,10 @@ public class ModelElementRefCSImpl extends ElementRefCSImpl implements ModelElem
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.MODEL_ELEMENT_REF_CS__PATH_NAME:
-				return getPathName();
-			case BaseCSPackage.MODEL_ELEMENT_REF_CS__ELEMENT:
-				return getElement();
+			case BaseCSPackage.MODEL_ELEMENT_REF_CS__OWNED_PATH_NAME:
+				return getOwnedPathName();
+			case BaseCSPackage.MODEL_ELEMENT_REF_CS__REFERRED_ELEMENT:
+				return getReferredElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -162,8 +161,8 @@ public class ModelElementRefCSImpl extends ElementRefCSImpl implements ModelElem
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.MODEL_ELEMENT_REF_CS__PATH_NAME:
-				setPathName((PathNameCS)newValue);
+			case BaseCSPackage.MODEL_ELEMENT_REF_CS__OWNED_PATH_NAME:
+				setOwnedPathName((PathNameCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -179,8 +178,8 @@ public class ModelElementRefCSImpl extends ElementRefCSImpl implements ModelElem
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.MODEL_ELEMENT_REF_CS__PATH_NAME:
-				setPathName((PathNameCS)null);
+			case BaseCSPackage.MODEL_ELEMENT_REF_CS__OWNED_PATH_NAME:
+				setOwnedPathName((PathNameCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -196,10 +195,10 @@ public class ModelElementRefCSImpl extends ElementRefCSImpl implements ModelElem
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.MODEL_ELEMENT_REF_CS__PATH_NAME:
-				return pathName != null;
-			case BaseCSPackage.MODEL_ELEMENT_REF_CS__ELEMENT:
-				return getElement() != null;
+			case BaseCSPackage.MODEL_ELEMENT_REF_CS__OWNED_PATH_NAME:
+				return ownedPathName != null;
+			case BaseCSPackage.MODEL_ELEMENT_REF_CS__REFERRED_ELEMENT:
+				return getReferredElement() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -218,11 +217,11 @@ public class ModelElementRefCSImpl extends ElementRefCSImpl implements ModelElem
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Element getElement()
+	public Element getReferredElement()
 	{
-		if (pathName == null) {
+		if (ownedPathName == null) {
 			return null;
 		}
-		return pathName.getElement();
+		return ownedPathName.getReferredElement();
 	}
 } //ModelElementRefCSImpl

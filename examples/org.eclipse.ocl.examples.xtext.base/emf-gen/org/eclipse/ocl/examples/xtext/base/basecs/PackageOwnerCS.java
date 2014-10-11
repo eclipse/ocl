@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.PackageOwnerCS#getOwnedNestedPackage <em>Owned Nested Package</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.PackageOwnerCS#getOwnedPackages <em>Owned Packages</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,7 +33,7 @@ import org.eclipse.emf.common.util.EList;
 public interface PackageOwnerCS extends ModelElementCS
 {
 	/**
-	 * Returns the value of the '<em><b>Owned Nested Package</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Packages</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.PackageCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -41,11 +41,11 @@ public interface PackageOwnerCS extends ModelElementCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Nested Package</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getPackageOwnerCS_OwnedNestedPackage()
+	 * @return the value of the '<em>Owned Packages</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getPackageOwnerCS_OwnedPackages()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<PackageCS> getOwnedNestedPackage();
+	EList<PackageCS> getOwnedPackages();
 
 } // PackageOwnerCS

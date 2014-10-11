@@ -514,7 +514,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		StringBuilder s = new StringBuilder();
 		appendOptionalName(s, ele);
 		s.append(" : ");
-		appendPathName(s, ele.getPathName());
+		appendPathName(s, ele.getOwnedPathName());
 		return s.toString();
 	}
 

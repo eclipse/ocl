@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs;
 
-import org.eclipse.ocl.examples.xtext.base.basecs.ClassCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,7 +29,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ClassCS;
  * @generated
  */
 public interface LibClassCS
-		extends ClassCS {
+		extends StructuredClassCS {
 
 	/**
 	 * Returns the value of the '<em><b>Meta Type Name</b></em>' reference.

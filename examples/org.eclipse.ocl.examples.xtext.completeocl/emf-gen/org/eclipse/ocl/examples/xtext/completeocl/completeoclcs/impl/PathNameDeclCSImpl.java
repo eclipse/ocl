@@ -204,7 +204,7 @@ public abstract class PathNameDeclCSImpl
 		if (ownedPathName == null) {
 			return MetaModelManager.EMPTY_ELEMENT_LIST;
 		}
-		Element pElement = ownedPathName.getElement();
+		Element pElement = ownedPathName.getReferredElement();
 		if (pElement == null) {
 			return MetaModelManager.EMPTY_ELEMENT_LIST;
 		}

@@ -157,13 +157,13 @@ public interface CompleteOCLCSPackage
 	int PATH_NAME_DECL_CS__PIVOT = BaseCSPackage.MODEL_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_NAME_DECL_CS__OWNED_ANNOTATION = BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATION;
+	int PATH_NAME_DECL_CS__OWNED_ANNOTATIONS = BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -220,13 +220,13 @@ public interface CompleteOCLCSPackage
 	int CONTEXT_DECL_CS__PIVOT = PATH_NAME_DECL_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_DECL_CS__OWNED_ANNOTATION = PATH_NAME_DECL_CS__OWNED_ANNOTATION;
+	int CONTEXT_DECL_CS__OWNED_ANNOTATIONS = PATH_NAME_DECL_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -283,13 +283,13 @@ public interface CompleteOCLCSPackage
 	int CLASSIFIER_CONTEXT_DECL_CS__PIVOT = CONTEXT_DECL_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER_CONTEXT_DECL_CS__OWNED_ANNOTATION = CONTEXT_DECL_CS__OWNED_ANNOTATION;
+	int CLASSIFIER_CONTEXT_DECL_CS__OWNED_ANNOTATIONS = CONTEXT_DECL_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -392,13 +392,13 @@ public interface CompleteOCLCSPackage
 	int COMPLETE_OCL_DOCUMENT_CS__PIVOT = BaseCSPackage.NAMESPACE_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_OCL_DOCUMENT_CS__OWNED_ANNOTATION = BaseCSPackage.NAMESPACE_CS__OWNED_ANNOTATION;
+	int COMPLETE_OCL_DOCUMENT_CS__OWNED_ANNOTATIONS = BaseCSPackage.NAMESPACE_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -428,22 +428,22 @@ public interface CompleteOCLCSPackage
 	int COMPLETE_OCL_DOCUMENT_CS__NAME = BaseCSPackage.NAMESPACE_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Import</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Imports</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_OCL_DOCUMENT_CS__OWNED_IMPORT = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 0;
+	int COMPLETE_OCL_DOCUMENT_CS__OWNED_IMPORTS = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Owned Library</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Libraries</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_OCL_DOCUMENT_CS__OWNED_LIBRARY = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 1;
+	int COMPLETE_OCL_DOCUMENT_CS__OWNED_LIBRARIES = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owned Packages</b></em>' containment reference list.
@@ -500,13 +500,13 @@ public interface CompleteOCLCSPackage
 	int DEF_CS__PIVOT = BaseCSPackage.TYPED_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS__OWNED_ANNOTATION = BaseCSPackage.TYPED_ELEMENT_CS__OWNED_ANNOTATION;
+	int DEF_CS__OWNED_ANNOTATIONS = BaseCSPackage.TYPED_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -545,22 +545,22 @@ public interface CompleteOCLCSPackage
 	int DEF_CS__OWNED_TYPE = BaseCSPackage.TYPED_ELEMENT_CS__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Qualifier</b></em>' attribute list.
+	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS__QUALIFIER = BaseCSPackage.TYPED_ELEMENT_CS__QUALIFIER;
+	int DEF_CS__QUALIFIERS = BaseCSPackage.TYPED_ELEMENT_CS__QUALIFIERS;
 
 	/**
-	 * The feature id for the '<em><b>Optional</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS__OPTIONAL = BaseCSPackage.TYPED_ELEMENT_CS__OPTIONAL;
+	int DEF_CS__IS_OPTIONAL = BaseCSPackage.TYPED_ELEMENT_CS__IS_OPTIONAL;
 
 	/**
 	 * The feature id for the '<em><b>Owning Classifier Context Decl</b></em>' container reference.
@@ -627,13 +627,13 @@ public interface CompleteOCLCSPackage
 	int DEF_OPERATION_CS__PIVOT = DEF_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_OPERATION_CS__OWNED_ANNOTATION = DEF_CS__OWNED_ANNOTATION;
+	int DEF_OPERATION_CS__OWNED_ANNOTATIONS = DEF_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -672,22 +672,22 @@ public interface CompleteOCLCSPackage
 	int DEF_OPERATION_CS__OWNED_TYPE = DEF_CS__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Qualifier</b></em>' attribute list.
+	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_OPERATION_CS__QUALIFIER = DEF_CS__QUALIFIER;
+	int DEF_OPERATION_CS__QUALIFIERS = DEF_CS__QUALIFIERS;
 
 	/**
-	 * The feature id for the '<em><b>Optional</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_OPERATION_CS__OPTIONAL = DEF_CS__OPTIONAL;
+	int DEF_OPERATION_CS__IS_OPTIONAL = DEF_CS__IS_OPTIONAL;
 
 	/**
 	 * The feature id for the '<em><b>Owning Classifier Context Decl</b></em>' container reference.
@@ -763,13 +763,13 @@ public interface CompleteOCLCSPackage
 	int DEF_PROPERTY_CS__PIVOT = DEF_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_PROPERTY_CS__OWNED_ANNOTATION = DEF_CS__OWNED_ANNOTATION;
+	int DEF_PROPERTY_CS__OWNED_ANNOTATIONS = DEF_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -808,22 +808,22 @@ public interface CompleteOCLCSPackage
 	int DEF_PROPERTY_CS__OWNED_TYPE = DEF_CS__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Qualifier</b></em>' attribute list.
+	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_PROPERTY_CS__QUALIFIER = DEF_CS__QUALIFIER;
+	int DEF_PROPERTY_CS__QUALIFIERS = DEF_CS__QUALIFIERS;
 
 	/**
-	 * The feature id for the '<em><b>Optional</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_PROPERTY_CS__OPTIONAL = DEF_CS__OPTIONAL;
+	int DEF_PROPERTY_CS__IS_OPTIONAL = DEF_CS__IS_OPTIONAL;
 
 	/**
 	 * The feature id for the '<em><b>Owning Classifier Context Decl</b></em>' container reference.
@@ -890,13 +890,13 @@ public interface CompleteOCLCSPackage
 	int FEATURE_CONTEXT_DECL_CS__PIVOT = CONTEXT_DECL_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CONTEXT_DECL_CS__OWNED_ANNOTATION = CONTEXT_DECL_CS__OWNED_ANNOTATION;
+	int FEATURE_CONTEXT_DECL_CS__OWNED_ANNOTATIONS = CONTEXT_DECL_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -981,13 +981,13 @@ public interface CompleteOCLCSPackage
 	int INCLUDE_CS__PIVOT = BaseCSPackage.NAMESPACE_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INCLUDE_CS__OWNED_ANNOTATION = BaseCSPackage.NAMESPACE_CS__OWNED_ANNOTATION;
+	int INCLUDE_CS__OWNED_ANNOTATIONS = BaseCSPackage.NAMESPACE_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1063,13 +1063,13 @@ public interface CompleteOCLCSPackage
 	int OCL_MESSAGE_ARG_CS__PIVOT = EssentialOCLCSPackage.EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_MESSAGE_ARG_CS__OWNED_ANNOTATION = EssentialOCLCSPackage.EXP_CS__OWNED_ANNOTATION;
+	int OCL_MESSAGE_ARG_CS__OWNED_ANNOTATIONS = EssentialOCLCSPackage.EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1144,13 +1144,13 @@ public interface CompleteOCLCSPackage
 	int OPERATION_CONTEXT_DECL_CS__PIVOT = FEATURE_CONTEXT_DECL_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CONTEXT_DECL_CS__OWNED_ANNOTATION = FEATURE_CONTEXT_DECL_CS__OWNED_ANNOTATION;
+	int OPERATION_CONTEXT_DECL_CS__OWNED_ANNOTATIONS = FEATURE_CONTEXT_DECL_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1279,13 +1279,13 @@ public interface CompleteOCLCSPackage
 	int PACKAGE_DECLARATION_CS__PIVOT = PATH_NAME_DECL_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_DECLARATION_CS__OWNED_ANNOTATION = PATH_NAME_DECL_CS__OWNED_ANNOTATION;
+	int PACKAGE_DECLARATION_CS__OWNED_ANNOTATIONS = PATH_NAME_DECL_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1369,13 +1369,13 @@ public interface CompleteOCLCSPackage
 	int PROPERTY_CONTEXT_DECL_CS__PIVOT = FEATURE_CONTEXT_DECL_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CONTEXT_DECL_CS__OWNED_ANNOTATION = FEATURE_CONTEXT_DECL_CS__OWNED_ANNOTATION;
+	int PROPERTY_CONTEXT_DECL_CS__OWNED_ANNOTATIONS = FEATURE_CONTEXT_DECL_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.

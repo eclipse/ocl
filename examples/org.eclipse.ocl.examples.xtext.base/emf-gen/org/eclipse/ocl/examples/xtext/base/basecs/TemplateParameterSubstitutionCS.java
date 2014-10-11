@@ -19,7 +19,7 @@ package org.eclipse.ocl.examples.xtext.base.basecs;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS#getOwningTemplateBinding <em>Owning Template Binding</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS#getOwningBinding <em>Owning Binding</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS#getOwnedActualParameter <em>Owned Actual Parameter</em>}</li>
  * </ul>
  * </p>
@@ -30,32 +30,32 @@ package org.eclipse.ocl.examples.xtext.base.basecs;
  */
 public interface TemplateParameterSubstitutionCS extends ModelElementCS {
 	/**
-	 * Returns the value of the '<em><b>Owning Template Binding</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS#getOwnedParameterSubstitution <em>Owned Parameter Substitution</em>}'.
+	 * Returns the value of the '<em><b>Owning Binding</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS#getOwnedSubstitutions <em>Owned Substitutions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Template Binding</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Template Binding</em>' container reference.
-	 * @see #setOwningTemplateBinding(TemplateBindingCS)
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTemplateParameterSubstitutionCS_OwningTemplateBinding()
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS#getOwnedParameterSubstitution
-	 * @model opposite="ownedParameterSubstitution" transient="false"
+	 * @return the value of the '<em>Owning Binding</em>' container reference.
+	 * @see #setOwningBinding(TemplateBindingCS)
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTemplateParameterSubstitutionCS_OwningBinding()
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS#getOwnedSubstitutions
+	 * @model opposite="ownedSubstitutions" transient="false"
 	 * @generated
 	 */
-	TemplateBindingCS getOwningTemplateBinding();
+	TemplateBindingCS getOwningBinding();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS#getOwningTemplateBinding <em>Owning Template Binding</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS#getOwningBinding <em>Owning Binding</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Template Binding</em>' container reference.
-	 * @see #getOwningTemplateBinding()
+	 * @param value the new value of the '<em>Owning Binding</em>' container reference.
+	 * @see #getOwningBinding()
 	 * @generated
 	 */
-	void setOwningTemplateBinding(TemplateBindingCS value);
+	void setOwningBinding(TemplateBindingCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Formal Template Parameter</b></em>' reference.

@@ -34,7 +34,6 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	protected AbstractElementAlias match_AttributeCS___SemicolonKeyword_6_0_1_2_4___DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2_SemicolonKeyword_6_0_1_1_4__a_InitialKeyword_6_0_1_2_0_UnrestrictedNameParserRuleCall_6_0_1_2_1_q_ColonKeyword_6_0_1_2_2__a;
 	protected AbstractElementAlias match_AttributeCS___SemicolonKeyword_6_0_1_2_4___DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2_SemicolonKeyword_6_0_1_1_4__a_InitialKeyword_6_0_1_2_0_UnrestrictedNameParserRuleCall_6_0_1_2_1_q_ColonKeyword_6_0_1_2_2__p;
 	protected AbstractElementAlias match_AttributeCS_____DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2_SemicolonKeyword_6_0_1_1_4___or___InitialKeyword_6_0_1_2_0_UnrestrictedNameParserRuleCall_6_0_1_2_1_q_ColonKeyword_6_0_1_2_2_SemicolonKeyword_6_0_1_2_4____a;
-	protected AbstractElementAlias match_ClassCS_SemicolonKeyword_7_1_or___LeftCurlyBracketKeyword_7_0_0_RightCurlyBracketKeyword_7_0_2__;
 	protected AbstractElementAlias match_DataTypeCS_SemicolonKeyword_5_1_or___LeftCurlyBracketKeyword_5_0_0_RightCurlyBracketKeyword_5_0_2__;
 	protected AbstractElementAlias match_DataTypeCS___LeftCurlyBracketKeyword_4_0_RightCurlyBracketKeyword_4_2__q;
 	protected AbstractElementAlias match_EnumerationCS_SemicolonKeyword_5_1_or___LeftCurlyBracketKeyword_5_0_0_RightCurlyBracketKeyword_5_0_2__;
@@ -65,6 +64,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	protected AbstractElementAlias match_ReferenceCS___SemicolonKeyword_7_0_1_3_4___DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2_SemicolonKeyword_7_0_1_2_4__a_InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2__a;
 	protected AbstractElementAlias match_ReferenceCS___SemicolonKeyword_7_0_1_3_4___DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2_SemicolonKeyword_7_0_1_2_4__a_InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2__p;
 	protected AbstractElementAlias match_ReferenceCS_____DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2_SemicolonKeyword_7_0_1_2_4___or___InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2_SemicolonKeyword_7_0_1_3_4____a;
+	protected AbstractElementAlias match_StructuredClassCS_SemicolonKeyword_7_1_or___LeftCurlyBracketKeyword_7_0_0_RightCurlyBracketKeyword_7_0_2__;
 	protected AbstractElementAlias match_TopLevelCS___ModuleKeyword_1_0_UnrestrictedNameParserRuleCall_1_1__q;
 	protected AbstractElementAlias match_TupleTypeCS___LeftParenthesisKeyword_1_0_RightParenthesisKeyword_1_2__q;
 	
@@ -86,7 +86,6 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 		match_AttributeCS___SemicolonKeyword_6_0_1_2_4___DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2_SemicolonKeyword_6_0_1_1_4__a_InitialKeyword_6_0_1_2_0_UnrestrictedNameParserRuleCall_6_0_1_2_1_q_ColonKeyword_6_0_1_2_2__a = new GroupAlias(true, true, new TokenAlias(false, false, grammarAccess.getAttributeCSAccess().getSemicolonKeyword_6_0_1_2_4()), new GroupAlias(true, true, new TokenAlias(false, false, grammarAccess.getAttributeCSAccess().getDerivationKeyword_6_0_1_1_0()), new TokenAlias(false, true, grammarAccess.getAttributeCSAccess().getUnrestrictedNameParserRuleCall_6_0_1_1_1()), new TokenAlias(false, false, grammarAccess.getAttributeCSAccess().getColonKeyword_6_0_1_1_2()), new TokenAlias(false, false, grammarAccess.getAttributeCSAccess().getSemicolonKeyword_6_0_1_1_4())), new TokenAlias(false, false, grammarAccess.getAttributeCSAccess().getInitialKeyword_6_0_1_2_0()), new TokenAlias(false, true, grammarAccess.getAttributeCSAccess().getUnrestrictedNameParserRuleCall_6_0_1_2_1()), new TokenAlias(false, false, grammarAccess.getAttributeCSAccess().getColonKeyword_6_0_1_2_2()));
 		match_AttributeCS___SemicolonKeyword_6_0_1_2_4___DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2_SemicolonKeyword_6_0_1_1_4__a_InitialKeyword_6_0_1_2_0_UnrestrictedNameParserRuleCall_6_0_1_2_1_q_ColonKeyword_6_0_1_2_2__p = new GroupAlias(true, false, new TokenAlias(false, false, grammarAccess.getAttributeCSAccess().getSemicolonKeyword_6_0_1_2_4()), new GroupAlias(true, true, new TokenAlias(false, false, grammarAccess.getAttributeCSAccess().getDerivationKeyword_6_0_1_1_0()), new TokenAlias(false, true, grammarAccess.getAttributeCSAccess().getUnrestrictedNameParserRuleCall_6_0_1_1_1()), new TokenAlias(false, false, grammarAccess.getAttributeCSAccess().getColonKeyword_6_0_1_1_2()), new TokenAlias(false, false, grammarAccess.getAttributeCSAccess().getSemicolonKeyword_6_0_1_1_4())), new TokenAlias(false, false, grammarAccess.getAttributeCSAccess().getInitialKeyword_6_0_1_2_0()), new TokenAlias(false, true, grammarAccess.getAttributeCSAccess().getUnrestrictedNameParserRuleCall_6_0_1_2_1()), new TokenAlias(false, false, grammarAccess.getAttributeCSAccess().getColonKeyword_6_0_1_2_2()));
 		match_AttributeCS_____DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2_SemicolonKeyword_6_0_1_1_4___or___InitialKeyword_6_0_1_2_0_UnrestrictedNameParserRuleCall_6_0_1_2_1_q_ColonKeyword_6_0_1_2_2_SemicolonKeyword_6_0_1_2_4____a = new AlternativeAlias(true, true, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getAttributeCSAccess().getDerivationKeyword_6_0_1_1_0()), new TokenAlias(false, true, grammarAccess.getAttributeCSAccess().getUnrestrictedNameParserRuleCall_6_0_1_1_1()), new TokenAlias(false, false, grammarAccess.getAttributeCSAccess().getColonKeyword_6_0_1_1_2()), new TokenAlias(false, false, grammarAccess.getAttributeCSAccess().getSemicolonKeyword_6_0_1_1_4())), new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getAttributeCSAccess().getInitialKeyword_6_0_1_2_0()), new TokenAlias(false, true, grammarAccess.getAttributeCSAccess().getUnrestrictedNameParserRuleCall_6_0_1_2_1()), new TokenAlias(false, false, grammarAccess.getAttributeCSAccess().getColonKeyword_6_0_1_2_2()), new TokenAlias(false, false, grammarAccess.getAttributeCSAccess().getSemicolonKeyword_6_0_1_2_4())));
-		match_ClassCS_SemicolonKeyword_7_1_or___LeftCurlyBracketKeyword_7_0_0_RightCurlyBracketKeyword_7_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getClassCSAccess().getLeftCurlyBracketKeyword_7_0_0()), new TokenAlias(false, false, grammarAccess.getClassCSAccess().getRightCurlyBracketKeyword_7_0_2())), new TokenAlias(false, false, grammarAccess.getClassCSAccess().getSemicolonKeyword_7_1()));
 		match_DataTypeCS_SemicolonKeyword_5_1_or___LeftCurlyBracketKeyword_5_0_0_RightCurlyBracketKeyword_5_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getDataTypeCSAccess().getLeftCurlyBracketKeyword_5_0_0()), new TokenAlias(false, false, grammarAccess.getDataTypeCSAccess().getRightCurlyBracketKeyword_5_0_2())), new TokenAlias(false, false, grammarAccess.getDataTypeCSAccess().getSemicolonKeyword_5_1()));
 		match_DataTypeCS___LeftCurlyBracketKeyword_4_0_RightCurlyBracketKeyword_4_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getDataTypeCSAccess().getLeftCurlyBracketKeyword_4_0()), new TokenAlias(false, false, grammarAccess.getDataTypeCSAccess().getRightCurlyBracketKeyword_4_2()));
 		match_EnumerationCS_SemicolonKeyword_5_1_or___LeftCurlyBracketKeyword_5_0_0_RightCurlyBracketKeyword_5_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getEnumerationCSAccess().getLeftCurlyBracketKeyword_5_0_0()), new TokenAlias(false, false, grammarAccess.getEnumerationCSAccess().getRightCurlyBracketKeyword_5_0_2())), new TokenAlias(false, false, grammarAccess.getEnumerationCSAccess().getSemicolonKeyword_5_1()));
@@ -117,6 +116,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 		match_ReferenceCS___SemicolonKeyword_7_0_1_3_4___DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2_SemicolonKeyword_7_0_1_2_4__a_InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2__a = new GroupAlias(true, true, new TokenAlias(false, false, grammarAccess.getReferenceCSAccess().getSemicolonKeyword_7_0_1_3_4()), new GroupAlias(true, true, new TokenAlias(false, false, grammarAccess.getReferenceCSAccess().getDerivationKeyword_7_0_1_2_0()), new TokenAlias(false, true, grammarAccess.getReferenceCSAccess().getUnrestrictedNameParserRuleCall_7_0_1_2_1()), new TokenAlias(false, false, grammarAccess.getReferenceCSAccess().getColonKeyword_7_0_1_2_2()), new TokenAlias(false, false, grammarAccess.getReferenceCSAccess().getSemicolonKeyword_7_0_1_2_4())), new TokenAlias(false, false, grammarAccess.getReferenceCSAccess().getInitialKeyword_7_0_1_3_0()), new TokenAlias(false, true, grammarAccess.getReferenceCSAccess().getUnrestrictedNameParserRuleCall_7_0_1_3_1()), new TokenAlias(false, false, grammarAccess.getReferenceCSAccess().getColonKeyword_7_0_1_3_2()));
 		match_ReferenceCS___SemicolonKeyword_7_0_1_3_4___DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2_SemicolonKeyword_7_0_1_2_4__a_InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2__p = new GroupAlias(true, false, new TokenAlias(false, false, grammarAccess.getReferenceCSAccess().getSemicolonKeyword_7_0_1_3_4()), new GroupAlias(true, true, new TokenAlias(false, false, grammarAccess.getReferenceCSAccess().getDerivationKeyword_7_0_1_2_0()), new TokenAlias(false, true, grammarAccess.getReferenceCSAccess().getUnrestrictedNameParserRuleCall_7_0_1_2_1()), new TokenAlias(false, false, grammarAccess.getReferenceCSAccess().getColonKeyword_7_0_1_2_2()), new TokenAlias(false, false, grammarAccess.getReferenceCSAccess().getSemicolonKeyword_7_0_1_2_4())), new TokenAlias(false, false, grammarAccess.getReferenceCSAccess().getInitialKeyword_7_0_1_3_0()), new TokenAlias(false, true, grammarAccess.getReferenceCSAccess().getUnrestrictedNameParserRuleCall_7_0_1_3_1()), new TokenAlias(false, false, grammarAccess.getReferenceCSAccess().getColonKeyword_7_0_1_3_2()));
 		match_ReferenceCS_____DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2_SemicolonKeyword_7_0_1_2_4___or___InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2_SemicolonKeyword_7_0_1_3_4____a = new AlternativeAlias(true, true, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getReferenceCSAccess().getDerivationKeyword_7_0_1_2_0()), new TokenAlias(false, true, grammarAccess.getReferenceCSAccess().getUnrestrictedNameParserRuleCall_7_0_1_2_1()), new TokenAlias(false, false, grammarAccess.getReferenceCSAccess().getColonKeyword_7_0_1_2_2()), new TokenAlias(false, false, grammarAccess.getReferenceCSAccess().getSemicolonKeyword_7_0_1_2_4())), new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getReferenceCSAccess().getInitialKeyword_7_0_1_3_0()), new TokenAlias(false, true, grammarAccess.getReferenceCSAccess().getUnrestrictedNameParserRuleCall_7_0_1_3_1()), new TokenAlias(false, false, grammarAccess.getReferenceCSAccess().getColonKeyword_7_0_1_3_2()), new TokenAlias(false, false, grammarAccess.getReferenceCSAccess().getSemicolonKeyword_7_0_1_3_4())));
+		match_StructuredClassCS_SemicolonKeyword_7_1_or___LeftCurlyBracketKeyword_7_0_0_RightCurlyBracketKeyword_7_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getStructuredClassCSAccess().getLeftCurlyBracketKeyword_7_0_0()), new TokenAlias(false, false, grammarAccess.getStructuredClassCSAccess().getRightCurlyBracketKeyword_7_0_2())), new TokenAlias(false, false, grammarAccess.getStructuredClassCSAccess().getSemicolonKeyword_7_1()));
 		match_TopLevelCS___ModuleKeyword_1_0_UnrestrictedNameParserRuleCall_1_1__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getTopLevelCSAccess().getModuleKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getTopLevelCSAccess().getUnrestrictedNameParserRuleCall_1_1()));
 		match_TupleTypeCS___LeftParenthesisKeyword_1_0_RightParenthesisKeyword_1_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getLeftParenthesisKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getRightParenthesisKeyword_1_2()));
 	}
@@ -181,8 +181,6 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 				emit_AttributeCS___SemicolonKeyword_6_0_1_2_4___DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2_SemicolonKeyword_6_0_1_1_4__a_InitialKeyword_6_0_1_2_0_UnrestrictedNameParserRuleCall_6_0_1_2_1_q_ColonKeyword_6_0_1_2_2__p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_AttributeCS_____DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2_SemicolonKeyword_6_0_1_1_4___or___InitialKeyword_6_0_1_2_0_UnrestrictedNameParserRuleCall_6_0_1_2_1_q_ColonKeyword_6_0_1_2_2_SemicolonKeyword_6_0_1_2_4____a.equals(syntax))
 				emit_AttributeCS_____DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2_SemicolonKeyword_6_0_1_1_4___or___InitialKeyword_6_0_1_2_0_UnrestrictedNameParserRuleCall_6_0_1_2_1_q_ColonKeyword_6_0_1_2_2_SemicolonKeyword_6_0_1_2_4____a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_ClassCS_SemicolonKeyword_7_1_or___LeftCurlyBracketKeyword_7_0_0_RightCurlyBracketKeyword_7_0_2__.equals(syntax))
-				emit_ClassCS_SemicolonKeyword_7_1_or___LeftCurlyBracketKeyword_7_0_0_RightCurlyBracketKeyword_7_0_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_DataTypeCS_SemicolonKeyword_5_1_or___LeftCurlyBracketKeyword_5_0_0_RightCurlyBracketKeyword_5_0_2__.equals(syntax))
 				emit_DataTypeCS_SemicolonKeyword_5_1_or___LeftCurlyBracketKeyword_5_0_0_RightCurlyBracketKeyword_5_0_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_DataTypeCS___LeftCurlyBracketKeyword_4_0_RightCurlyBracketKeyword_4_2__q.equals(syntax))
@@ -243,6 +241,8 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 				emit_ReferenceCS___SemicolonKeyword_7_0_1_3_4___DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2_SemicolonKeyword_7_0_1_2_4__a_InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2__p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_ReferenceCS_____DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2_SemicolonKeyword_7_0_1_2_4___or___InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2_SemicolonKeyword_7_0_1_3_4____a.equals(syntax))
 				emit_ReferenceCS_____DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2_SemicolonKeyword_7_0_1_2_4___or___InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2_SemicolonKeyword_7_0_1_3_4____a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_StructuredClassCS_SemicolonKeyword_7_1_or___LeftCurlyBracketKeyword_7_0_0_RightCurlyBracketKeyword_7_0_2__.equals(syntax))
+				emit_StructuredClassCS_SemicolonKeyword_7_1_or___LeftCurlyBracketKeyword_7_0_0_RightCurlyBracketKeyword_7_0_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_TopLevelCS___ModuleKeyword_1_0_UnrestrictedNameParserRuleCall_1_1__q.equals(syntax))
 				emit_TopLevelCS___ModuleKeyword_1_0_UnrestrictedNameParserRuleCall_1_1__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_TupleTypeCS___LeftParenthesisKeyword_1_0_RightParenthesisKeyword_1_2__q.equals(syntax))
@@ -261,7 +261,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	
 	/**
 	 * Syntax:
-	 *     ';' | ('{' (('initial' UnrestrictedName? ':' ';') | ('derivation' UnrestrictedName? ':' ';'))* '}')
+	 *     ';' | ('{' (('derivation' UnrestrictedName? ':' ';') | ('initial' UnrestrictedName? ':' ';'))* '}')
 	 */
 	protected void emit_AttributeCS_SemicolonKeyword_6_1_or___LeftCurlyBracketKeyword_6_0_0_____DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2_SemicolonKeyword_6_0_1_1_4___or___InitialKeyword_6_0_1_2_0_UnrestrictedNameParserRuleCall_6_0_1_2_1_q_ColonKeyword_6_0_1_2_2_SemicolonKeyword_6_0_1_2_4____a_RightCurlyBracketKeyword_6_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -302,6 +302,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	/**
 	 * Syntax:
 	 *     (
+	     ('derivation' UnrestrictedName? ':' (';' 'derivation' UnrestrictedName? ':')*) | 
 	     (
 	         ('derivation' UnrestrictedName? ':' (';' 'derivation' UnrestrictedName? ':')* ';')? 
 	         ('initial' UnrestrictedName? ':' ';')+ 
@@ -317,8 +318,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	             ':' 
 	             (';' 'derivation' UnrestrictedName? ':')*
 	         )*
-	     ) | 
-	     ('derivation' UnrestrictedName? ':' (';' 'derivation' UnrestrictedName? ':')*)
+	     )
 	 )
 	 */
 	protected void emit_AttributeCS___DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2___SemicolonKeyword_6_0_1_1_4_DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2__a___or_____DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2___SemicolonKeyword_6_0_1_1_4_DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2__a_SemicolonKeyword_6_0_1_1_4__q___InitialKeyword_6_0_1_2_0_UnrestrictedNameParserRuleCall_6_0_1_2_1_q_ColonKeyword_6_0_1_2_2_SemicolonKeyword_6_0_1_2_4__p_DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2___SemicolonKeyword_6_0_1_1_4_DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2__a___SemicolonKeyword_6_0_1_1_4___InitialKeyword_6_0_1_2_0_UnrestrictedNameParserRuleCall_6_0_1_2_1_q_ColonKeyword_6_0_1_2_2_SemicolonKeyword_6_0_1_2_4__p_DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2___SemicolonKeyword_6_0_1_1_4_DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2__a__a__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -401,17 +401,9 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	
 	/**
 	 * Syntax:
-	 *     (('derivation' UnrestrictedName? ':' ';') | ('initial' UnrestrictedName? ':' ';'))*
+	 *     (('initial' UnrestrictedName? ':' ';') | ('derivation' UnrestrictedName? ':' ';'))*
 	 */
 	protected void emit_AttributeCS_____DerivationKeyword_6_0_1_1_0_UnrestrictedNameParserRuleCall_6_0_1_1_1_q_ColonKeyword_6_0_1_1_2_SemicolonKeyword_6_0_1_1_4___or___InitialKeyword_6_0_1_2_0_UnrestrictedNameParserRuleCall_6_0_1_2_1_q_ColonKeyword_6_0_1_2_2_SemicolonKeyword_6_0_1_2_4____a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
-	 *     ';' | ('{' '}')
-	 */
-	protected void emit_ClassCS_SemicolonKeyword_7_1_or___LeftCurlyBracketKeyword_7_0_0_RightCurlyBracketKeyword_7_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -433,7 +425,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	
 	/**
 	 * Syntax:
-	 *     ';' | ('{' '}')
+	 *     ('{' '}') | ';'
 	 */
 	protected void emit_EnumerationCS_SemicolonKeyword_5_1_or___LeftCurlyBracketKeyword_5_0_0_RightCurlyBracketKeyword_5_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -449,7 +441,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	
 	/**
 	 * Syntax:
-	 *     ';' | ('{' '}')
+	 *     ('{' '}') | ';'
 	 */
 	protected void emit_EnumerationLiteralCS_SemicolonKeyword_2_1_or___LeftCurlyBracketKeyword_2_0_0_RightCurlyBracketKeyword_2_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -457,7 +449,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	
 	/**
 	 * Syntax:
-	 *     (':' ';') | ';'
+	 *     ';' | (':' ';')
 	 */
 	protected void emit_InvariantConstraintCS_SemicolonKeyword_3_1_or___ColonKeyword_3_0_0_SemicolonKeyword_3_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -473,7 +465,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	
 	/**
 	 * Syntax:
-	 *     ('{' ('body' UnrestrictedName? ':' ';')* '}') | ';'
+	 *     ';' | ('{' ('body' UnrestrictedName? ':' ';')* '}')
 	 */
 	protected void emit_OperationCS_SemicolonKeyword_10_1_or___LeftCurlyBracketKeyword_10_0_0___BodyKeyword_10_0_1_2_0_UnrestrictedNameParserRuleCall_10_0_1_2_1_q_ColonKeyword_10_0_1_2_2_SemicolonKeyword_10_0_1_2_4__a_RightCurlyBracketKeyword_10_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -513,7 +505,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	
 	/**
 	 * Syntax:
-	 *     ';' | ('{' '}')
+	 *     ('{' '}') | ';'
 	 */
 	protected void emit_PackageCS_SemicolonKeyword_4_1_or___LeftCurlyBracketKeyword_4_0_0_RightCurlyBracketKeyword_4_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -545,7 +537,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	
 	/**
 	 * Syntax:
-	 *     ('{' (('initial' UnrestrictedName? ':' ';') | ('derivation' UnrestrictedName? ':' ';'))* '}') | ';'
+	 *     ('{' (('derivation' UnrestrictedName? ':' ';') | ('initial' UnrestrictedName? ':' ';'))* '}') | ';'
 	 */
 	protected void emit_ReferenceCS_SemicolonKeyword_7_1_or___LeftCurlyBracketKeyword_7_0_0_____DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2_SemicolonKeyword_7_0_1_2_4___or___InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2_SemicolonKeyword_7_0_1_3_4____a_RightCurlyBracketKeyword_7_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -586,6 +578,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	/**
 	 * Syntax:
 	 *     (
+	     ('derivation' UnrestrictedName? ':' (';' 'derivation' UnrestrictedName? ':')*) | 
 	     (
 	         ('derivation' UnrestrictedName? ':' (';' 'derivation' UnrestrictedName? ':')* ';')? 
 	         ('initial' UnrestrictedName? ':' ';')+ 
@@ -601,8 +594,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	             ':' 
 	             (';' 'derivation' UnrestrictedName? ':')*
 	         )*
-	     ) | 
-	     ('derivation' UnrestrictedName? ':' (';' 'derivation' UnrestrictedName? ':')*)
+	     )
 	 )
 	 */
 	protected void emit_ReferenceCS___DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2___SemicolonKeyword_7_0_1_2_4_DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2__a___or_____DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2___SemicolonKeyword_7_0_1_2_4_DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2__a_SemicolonKeyword_7_0_1_2_4__q___InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2_SemicolonKeyword_7_0_1_3_4__p_DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2___SemicolonKeyword_7_0_1_2_4_DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2__a___SemicolonKeyword_7_0_1_2_4___InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2_SemicolonKeyword_7_0_1_3_4__p_DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2___SemicolonKeyword_7_0_1_2_4_DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2__a__a__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -628,7 +620,6 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	/**
 	 * Syntax:
 	 *     (
-	     ('initial' UnrestrictedName? ':' (';' 'initial' UnrestrictedName? ':')*) | 
 	     (
 	         ('initial' UnrestrictedName? ':' (';' 'initial' UnrestrictedName? ':')* ';')? 
 	         ('derivation' UnrestrictedName? ':' ';')+ 
@@ -644,7 +635,8 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	             ':' 
 	             (';' 'initial' UnrestrictedName? ':')*
 	         )*
-	     )
+	     ) | 
+	     ('initial' UnrestrictedName? ':' (';' 'initial' UnrestrictedName? ':')*)
 	 )
 	 */
 	protected void emit_ReferenceCS___InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2___SemicolonKeyword_7_0_1_3_4_InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2__a___or_____InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2___SemicolonKeyword_7_0_1_3_4_InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2__a_SemicolonKeyword_7_0_1_3_4__q___DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2_SemicolonKeyword_7_0_1_2_4__p_InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2___SemicolonKeyword_7_0_1_3_4_InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2__a___SemicolonKeyword_7_0_1_3_4___DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2_SemicolonKeyword_7_0_1_2_4__p_InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2___SemicolonKeyword_7_0_1_3_4_InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2__a__a__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -688,6 +680,14 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	 *     (('initial' UnrestrictedName? ':' ';') | ('derivation' UnrestrictedName? ':' ';'))*
 	 */
 	protected void emit_ReferenceCS_____DerivationKeyword_7_0_1_2_0_UnrestrictedNameParserRuleCall_7_0_1_2_1_q_ColonKeyword_7_0_1_2_2_SemicolonKeyword_7_0_1_2_4___or___InitialKeyword_7_0_1_3_0_UnrestrictedNameParserRuleCall_7_0_1_3_1_q_ColonKeyword_7_0_1_3_2_SemicolonKeyword_7_0_1_3_4____a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Syntax:
+	 *     ('{' '}') | ';'
+	 */
+	protected void emit_StructuredClassCS_SemicolonKeyword_7_1_or___LeftCurlyBracketKeyword_7_0_0_RightCurlyBracketKeyword_7_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

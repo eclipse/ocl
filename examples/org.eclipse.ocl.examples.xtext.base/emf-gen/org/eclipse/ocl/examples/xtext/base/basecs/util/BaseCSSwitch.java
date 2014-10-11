@@ -128,8 +128,6 @@ public class BaseCSSwitch<T> extends Switch<T> {
 			{
 				ClassCS classCS = (ClassCS)theEObject;
 				T result = caseClassCS(classCS);
-				if (result == null) result = caseClassifierCS(classCS);
-				if (result == null) result = caseNamespaceCS(classCS);
 				if (result == null) result = caseNamedElementCS(classCS);
 				if (result == null) result = caseTypeCS(classCS);
 				if (result == null) result = caseTemplateableElementCS(classCS);
@@ -139,22 +137,6 @@ public class BaseCSSwitch<T> extends Switch<T> {
 				if (result == null) result = caseElementCS(classCS);
 				if (result == null) result = casePivotable(classCS);
 				if (result == null) result = caseVisitableCS(classCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BaseCSPackage.CLASSIFIER_CS:
-			{
-				ClassifierCS classifierCS = (ClassifierCS)theEObject;
-				T result = caseClassifierCS(classifierCS);
-				if (result == null) result = caseNamedElementCS(classifierCS);
-				if (result == null) result = caseTypeCS(classifierCS);
-				if (result == null) result = caseTemplateableElementCS(classifierCS);
-				if (result == null) result = caseModelElementCS(classifierCS);
-				if (result == null) result = caseNameable(classifierCS);
-				if (result == null) result = casePivotableElementCS(classifierCS);
-				if (result == null) result = caseElementCS(classifierCS);
-				if (result == null) result = casePivotable(classifierCS);
-				if (result == null) result = caseVisitableCS(classifierCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -185,7 +167,7 @@ public class BaseCSSwitch<T> extends Switch<T> {
 			{
 				DataTypeCS dataTypeCS = (DataTypeCS)theEObject;
 				T result = caseDataTypeCS(dataTypeCS);
-				if (result == null) result = caseClassifierCS(dataTypeCS);
+				if (result == null) result = caseClassCS(dataTypeCS);
 				if (result == null) result = caseNamespaceCS(dataTypeCS);
 				if (result == null) result = caseNamedElementCS(dataTypeCS);
 				if (result == null) result = caseTypeCS(dataTypeCS);
@@ -251,7 +233,7 @@ public class BaseCSSwitch<T> extends Switch<T> {
 			{
 				EnumerationCS enumerationCS = (EnumerationCS)theEObject;
 				T result = caseEnumerationCS(enumerationCS);
-				if (result == null) result = caseClassifierCS(enumerationCS);
+				if (result == null) result = caseClassCS(enumerationCS);
 				if (result == null) result = caseNamespaceCS(enumerationCS);
 				if (result == null) result = caseNamedElementCS(enumerationCS);
 				if (result == null) result = caseTypeCS(enumerationCS);
@@ -590,6 +572,24 @@ public class BaseCSSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BaseCSPackage.STRUCTURED_CLASS_CS:
+			{
+				StructuredClassCS structuredClassCS = (StructuredClassCS)theEObject;
+				T result = caseStructuredClassCS(structuredClassCS);
+				if (result == null) result = caseClassCS(structuredClassCS);
+				if (result == null) result = caseNamespaceCS(structuredClassCS);
+				if (result == null) result = caseNamedElementCS(structuredClassCS);
+				if (result == null) result = caseTypeCS(structuredClassCS);
+				if (result == null) result = caseTemplateableElementCS(structuredClassCS);
+				if (result == null) result = caseModelElementCS(structuredClassCS);
+				if (result == null) result = caseNameable(structuredClassCS);
+				if (result == null) result = casePivotableElementCS(structuredClassCS);
+				if (result == null) result = caseElementCS(structuredClassCS);
+				if (result == null) result = casePivotable(structuredClassCS);
+				if (result == null) result = caseVisitableCS(structuredClassCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS:
 			{
 				StructuralFeatureCS structuralFeatureCS = (StructuralFeatureCS)theEObject;
@@ -857,22 +857,8 @@ public class BaseCSSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseClassCS(ClassCS object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Classifier CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Classifier CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseClassifierCS(ClassifierCS object) {
+	public T caseClassCS(ClassCS object)
+	{
 		return null;
 	}
 
@@ -1387,6 +1373,22 @@ public class BaseCSSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSpecificationCS(SpecificationCS object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Structured Class CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Structured Class CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStructuredClassCS(StructuredClassCS object)
 	{
 		return null;
 	}

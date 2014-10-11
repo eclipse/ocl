@@ -42,7 +42,7 @@ public class OCLinEcoreCSPostOrderVisitor extends AbstractOCLinEcoreCSPostOrderV
 		Annotation pivotElement = PivotUtil.getPivot(Annotation.class, csSysML);
 		if (pivotElement != null) {
 			context.handleVisitNamedElement(csSysML, pivotElement);
-			context.refreshPivotList(Detail.class, pivotElement.getOwnedDetail(), csSysML.getOwnedDetail());
+			context.refreshPivotList(Detail.class, pivotElement.getOwnedDetail(), csSysML.getOwnedDetails());
 		}
 		return null;
 	}

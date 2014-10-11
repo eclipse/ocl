@@ -52,10 +52,6 @@ public abstract class AbstractNullBaseCSVisitor<R, C>
 		return null;
 	}
 
-	public @Nullable R visitClassifierCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS object) {
-		return null;
-	}
-
 	public @Nullable R visitConstraintCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS object) {
 		return null;
 	}
@@ -173,6 +169,10 @@ public abstract class AbstractNullBaseCSVisitor<R, C>
 	}
 
 	public @Nullable R visitStructuralFeatureCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS object) {
+		return null;
+	}
+
+	public @Nullable R visitStructuredClassCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS object) {
 		return null;
 	}
 

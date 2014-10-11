@@ -23,9 +23,9 @@ import org.eclipse.ocl.examples.pivot.Property;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS#getOwner <em>Owner</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS#getOwningClass <em>Owning Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS#getDefault <em>Default</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS#getOwnedDefaultExpression <em>Owned Default Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS#getOwnedDefaultExpressions <em>Owned Default Expressions</em>}</li>
  * </ul>
  * </p>
  *
@@ -36,32 +36,32 @@ import org.eclipse.ocl.examples.pivot.Property;
 public interface StructuralFeatureCS extends FeatureCS {
 
 	/**
-	 * Returns the value of the '<em><b>Owner</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.basecs.ClassCS#getOwnedProperty <em>Owned Property</em>}'.
+	 * Returns the value of the '<em><b>Owning Class</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS#getOwnedProperties <em>Owned Properties</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owner</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owner</em>' container reference.
-	 * @see #setOwner(ClassCS)
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getStructuralFeatureCS_Owner()
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ClassCS#getOwnedProperty
-	 * @model opposite="ownedProperty" transient="false"
+	 * @return the value of the '<em>Owning Class</em>' container reference.
+	 * @see #setOwningClass(StructuredClassCS)
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getStructuralFeatureCS_OwningClass()
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS#getOwnedProperties
+	 * @model opposite="ownedProperties" transient="false"
 	 * @generated
 	 */
-	ClassCS getOwner();
+	StructuredClassCS getOwningClass();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS#getOwner <em>Owner</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS#getOwningClass <em>Owning Class</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owner</em>' container reference.
-	 * @see #getOwner()
+	 * @param value the new value of the '<em>Owning Class</em>' container reference.
+	 * @see #getOwningClass()
 	 * @generated
 	 */
-	void setOwner(ClassCS value);
+	void setOwningClass(StructuredClassCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Default</b></em>' attribute.
@@ -90,7 +90,7 @@ public interface StructuralFeatureCS extends FeatureCS {
 	void setDefault(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Owned Default Expression</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Default Expressions</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.basecs.SpecificationCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -98,12 +98,12 @@ public interface StructuralFeatureCS extends FeatureCS {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Default Expression</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getStructuralFeatureCS_OwnedDefaultExpression()
+	 * @return the value of the '<em>Owned Default Expressions</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getStructuralFeatureCS_OwnedDefaultExpressions()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<SpecificationCS> getOwnedDefaultExpression();
+	EList<SpecificationCS> getOwnedDefaultExpressions();
 
 	/**
 	 * <!-- begin-user-doc -->

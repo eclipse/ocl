@@ -32,7 +32,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ModelElementCSImpl#getOwnedAnnotation <em>Owned Annotation</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ModelElementCSImpl#getOwnedAnnotations <em>Owned Annotations</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ModelElementCSImpl#getOriginalXmiId <em>Original Xmi Id</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ModelElementCSImpl#getCsi <em>Csi</em>}</li>
  * </ul>
@@ -42,14 +42,14 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
  */
 public abstract class ModelElementCSImpl extends PivotableElementCSImpl implements ModelElementCS {
 	/**
-	 * The cached value of the '{@link #getOwnedAnnotation() <em>Owned Annotation</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedAnnotations() <em>Owned Annotations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedAnnotation()
+	 * @see #getOwnedAnnotations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AnnotationElementCS> ownedAnnotation;
+	protected EList<AnnotationElementCS> ownedAnnotations;
 
 	/**
 	 * The default value of the '{@link #getOriginalXmiId() <em>Original Xmi Id</em>}' attribute.
@@ -115,13 +115,13 @@ public abstract class ModelElementCSImpl extends PivotableElementCSImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<AnnotationElementCS> getOwnedAnnotation()
+	public EList<AnnotationElementCS> getOwnedAnnotations()
 	{
-		if (ownedAnnotation == null)
+		if (ownedAnnotations == null)
 		{
-			ownedAnnotation = new EObjectContainmentEList<AnnotationElementCS>(AnnotationElementCS.class, this, BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATION);
+			ownedAnnotations = new EObjectContainmentEList<AnnotationElementCS>(AnnotationElementCS.class, this, BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS);
 		}
-		return ownedAnnotation;
+		return ownedAnnotations;
 	}
 
 	/**
@@ -188,8 +188,8 @@ public abstract class ModelElementCSImpl extends PivotableElementCSImpl implemen
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
+			case BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -203,8 +203,8 @@ public abstract class ModelElementCSImpl extends PivotableElementCSImpl implemen
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
+			case BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
 			case BaseCSPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID:
 				return getOriginalXmiId();
 			case BaseCSPackage.MODEL_ELEMENT_CS__CSI:
@@ -223,9 +223,9 @@ public abstract class ModelElementCSImpl extends PivotableElementCSImpl implemen
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends AnnotationElementCS>)newValue);
+			case BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends AnnotationElementCS>)newValue);
 				return;
 			case BaseCSPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID:
 				setOriginalXmiId((String)newValue);
@@ -246,8 +246,8 @@ public abstract class ModelElementCSImpl extends PivotableElementCSImpl implemen
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
 			case BaseCSPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID:
 				setOriginalXmiId(ORIGINAL_XMI_ID_EDEFAULT);
@@ -268,8 +268,8 @@ public abstract class ModelElementCSImpl extends PivotableElementCSImpl implemen
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
+			case BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
 			case BaseCSPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID:
 				return ORIGINAL_XMI_ID_EDEFAULT == null ? originalXmiId != null : !ORIGINAL_XMI_ID_EDEFAULT.equals(originalXmiId);
 			case BaseCSPackage.MODEL_ELEMENT_CS__CSI:

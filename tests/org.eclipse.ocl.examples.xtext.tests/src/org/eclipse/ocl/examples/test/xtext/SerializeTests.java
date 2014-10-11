@@ -401,7 +401,7 @@ public class SerializeTests extends XtextTestCase
 	public void testSerialize_Imports() throws Exception {
 		XtextResource xtextResource = doSerialize("Imports");
 		RootPackageCS documentCS = (RootPackageCS) xtextResource.getContents().get(0);
-		List<ImportCS> imports = documentCS.getOwnedImport();
+		List<ImportCS> imports = documentCS.getOwnedImports();
 		assertEquals("One import", 1, imports.size());
 	}
 

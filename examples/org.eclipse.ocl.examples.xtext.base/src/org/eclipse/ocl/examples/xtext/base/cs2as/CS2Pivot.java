@@ -116,11 +116,11 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 				}
 			}
 		}
-		int index = containmentsList.indexOf(BaseCSPackage.Literals.ROOT_CS__OWNED_IMPORT);
+		int index = containmentsList.indexOf(BaseCSPackage.Literals.ROOT_CS__OWNED_IMPORTS);
 		if (index > 0) {
 			containmentsList.move(0, index);		// Process imports second
 		}
-		index = containmentsList.indexOf(BaseCSPackage.Literals.ROOT_CS__OWNED_LIBRARY);
+		index = containmentsList.indexOf(BaseCSPackage.Literals.ROOT_CS__OWNED_LIBRARIES);
 		if (index > 0) {
 			containmentsList.move(0, index);		// Process libraries first
 		}
@@ -181,15 +181,15 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 	}
 
 	public static Element basicGetType(TypedTypeRefCS csTypedRef) {
-		List<PathElementCS> path = csTypedRef.getPathName().getPath();
+		List<PathElementCS> path = csTypedRef.getOwnedPathName().getOwnedPathElements();
 		int iLast = path.size()-1;
 		for (int i = 0; i < iLast; i++) {
-			Element element = path.get(i).basicGetElement();
+			Element element = path.get(i).basicGetReferredElement();
 			if (element == null) {
 				return null;
 			}
 		}
-		Element element = path.get(iLast).basicGetElement();
+		Element element = path.get(iLast).basicGetReferredElement();
 		if (element == null) {
 			return null;
 		}
@@ -335,7 +335,7 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 		assert elementType != null;
 		refreshContext(pathNameCS, csContext);
 		refreshScopeFilter(pathNameCS, scopeFilter);
-		List<PathElementCS> path = pathNameCS.getPath();
+		List<PathElementCS> path = pathNameCS.getOwnedPathElements();
 		int iMax = path.size()-1;
 		refreshElementType(path.get(iMax), elementType);
 		if (PivotPackage.Literals.FEATURE.isSuperTypeOf(elementType) && (iMax > 0)) {
@@ -363,21 +363,21 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 	 * @param ambiguities 
 	 */
 	public static void setPathElement(@NonNull PathNameCS csPathName, @Nullable Element element, @Nullable List<? extends EObject> ambiguities) {
-		List<PathElementCS> csPath = csPathName.getPath();
+		List<PathElementCS> csPath = csPathName.getOwnedPathElements();
 		@SuppressWarnings("null")@NonNull PathElementCS csLastElement = csPath.get(csPath.size()-1);
 		AmbiguitiesAdapter.setAmbiguities(csLastElement, ambiguities);
 		if ((element == null) || (ambiguities != null)) {
 			EObject eObject = csLastElement;
 			INode iNode = NodeModelUtils.getNode(csLastElement);
-			Triple<EObject, EReference, INode> triple = Tuples.create(eObject, BaseCSPackage.Literals.PATH_ELEMENT_CS__ELEMENT, iNode);
+			Triple<EObject, EReference, INode> triple = Tuples.create(eObject, BaseCSPackage.Literals.PATH_ELEMENT_CS__REFERRED_ELEMENT, iNode);
 			Resource eResource = csLastElement.eResource();
 			if (eResource instanceof BaseCSResource) {
 				((BaseCSResource)eResource).createAndAddDiagnostic(triple);
 			}
-			csLastElement.setElement(null);
+			csLastElement.setReferredElement(null);
 		}
 		else {
-			csLastElement.setElement(element);
+			csLastElement.setReferredElement(element);
 		}
 	}
 	
@@ -525,7 +525,7 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 
 	public @Nullable Iteration lookupIteration(@NonNull ElementCS csElement, @NonNull PathNameCS csPathName, @Nullable ScopeFilter scopeFilter) {
 		setElementType(csPathName, PivotPackage.Literals.ITERATION, csElement, scopeFilter);
-		Element namedElement = csPathName.getElement();
+		Element namedElement = csPathName.getReferredElement();
 		if (namedElement instanceof Iteration) {
 			return (Iteration) namedElement;
 		}
@@ -536,7 +536,7 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 
 	public @Nullable Operation lookupOperation(@NonNull ElementCS csElement, @NonNull PathNameCS csPathName, @Nullable ScopeFilter scopeFilter) {
 		setElementType(csPathName, PivotPackage.Literals.OPERATION, csElement, scopeFilter);
-		Element namedElement = csPathName.getElement();
+		Element namedElement = csPathName.getReferredElement();
 		if (namedElement instanceof Operation) {
 			return (Operation) namedElement;
 		}
@@ -556,7 +556,7 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 
 	public @Nullable Type lookupType(@NonNull ElementCS csElement, @NonNull PathNameCS csPathName) {
 		setElementType(csPathName, PivotPackage.Literals.TYPE, csElement, null);
-		Element namedElement = csPathName.getElement();
+		Element namedElement = csPathName.getReferredElement();
 		if (namedElement instanceof Type) {
 			return (Type) namedElement;
 		}
@@ -566,7 +566,7 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 	}
 
 	public @Nullable Type lookupTypeQualifier(@NonNull PathNameCS csPathName) {
-		List<PathElementCS> path = csPathName.getPath();
+		List<PathElementCS> path = csPathName.getOwnedPathElements();
 		int iMax = path.size();
 		if (iMax <= 1) {
 			return null;
@@ -576,7 +576,7 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 		for (int i = 0; i < iMax-2; i++) {
 			refreshElementType(path.get(i), PivotPackage.Literals.NAMESPACE);
 		}
-		Element namedElement = pathElementCS.getElement();
+		Element namedElement = pathElementCS.getReferredElement();
 		if (namedElement instanceof Type) {
 			return (Type) namedElement;
 		}
@@ -587,7 +587,7 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 
 	public @Nullable Type lookupTypeValue(@NonNull ElementCS csElement, @NonNull PathNameCS csPathName) {
 		setElementType(csPathName, PivotPackage.Literals.NAMED_ELEMENT, csElement, TypeValueFilter.INSTANCE);	// Type or Variable
-		Element namedElement = csPathName.getElement();
+		Element namedElement = csPathName.getReferredElement();
 		if (namedElement instanceof Type) {
 			return (Type) namedElement;
 		}
@@ -598,7 +598,7 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 
 	public @Nullable Element lookupUndecoratedName(@NonNull ElementCS csElement, @NonNull PathNameCS csPathName) {
 		setElementType(csPathName, PivotPackage.Literals.ELEMENT, csElement, UndecoratedNameFilter.INSTANCE);
-		Element namedElement = csPathName.getElement();
+		Element namedElement = csPathName.getReferredElement();
 		return namedElement;
 	}
 

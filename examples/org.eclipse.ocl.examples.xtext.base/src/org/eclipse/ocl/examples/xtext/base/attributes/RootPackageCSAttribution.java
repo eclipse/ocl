@@ -36,8 +36,8 @@ public class RootPackageCSAttribution extends AbstractRootCSAttribution
 			environmentView.addAllPackages(pivotPackage);
 		}
 		if (environmentView.accepts(PivotPackage.Literals.NAMESPACE)) {
-			for (ImportCS anImport : targetElement.getOwnedImport()) {
-				Namespace namespace = anImport.getNamespace();
+			for (ImportCS anImport : targetElement.getOwnedImports()) {
+				Namespace namespace = anImport.getReferredNamespace();
 				if ((namespace != null) && !namespace.eIsProxy()) {
 					String importName = anImport.getName();
 					if (importName == null) {

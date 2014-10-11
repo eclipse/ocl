@@ -36,8 +36,8 @@ import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.RootPackageCSImpl#getOwnedImport <em>Owned Import</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.RootPackageCSImpl#getOwnedLibrary <em>Owned Library</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.RootPackageCSImpl#getOwnedImports <em>Owned Imports</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.RootPackageCSImpl#getOwnedLibraries <em>Owned Libraries</em>}</li>
  * </ul>
  * </p>
  *
@@ -46,24 +46,24 @@ import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
 public class RootPackageCSImpl extends PackageOwnerCSImpl implements RootPackageCS
 {
 	/**
-	 * The cached value of the '{@link #getOwnedImport() <em>Owned Import</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedImports() <em>Owned Imports</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedImport()
+	 * @see #getOwnedImports()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ImportCS> ownedImport;
+	protected EList<ImportCS> ownedImports;
 
 	/**
-	 * The cached value of the '{@link #getOwnedLibrary() <em>Owned Library</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedLibraries() <em>Owned Libraries</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedLibrary()
+	 * @see #getOwnedLibraries()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<LibraryCS> ownedLibrary;
+	protected EList<LibraryCS> ownedLibraries;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -91,13 +91,13 @@ public class RootPackageCSImpl extends PackageOwnerCSImpl implements RootPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ImportCS> getOwnedImport()
+	public EList<ImportCS> getOwnedImports()
 	{
-		if (ownedImport == null)
+		if (ownedImports == null)
 		{
-			ownedImport = new EObjectContainmentEList<ImportCS>(ImportCS.class, this, BaseCSPackage.ROOT_PACKAGE_CS__OWNED_IMPORT);
+			ownedImports = new EObjectContainmentEList<ImportCS>(ImportCS.class, this, BaseCSPackage.ROOT_PACKAGE_CS__OWNED_IMPORTS);
 		}
-		return ownedImport;
+		return ownedImports;
 	}
 
 	/**
@@ -105,13 +105,13 @@ public class RootPackageCSImpl extends PackageOwnerCSImpl implements RootPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<LibraryCS> getOwnedLibrary()
+	public EList<LibraryCS> getOwnedLibraries()
 	{
-		if (ownedLibrary == null)
+		if (ownedLibraries == null)
 		{
-			ownedLibrary = new EObjectContainmentEList<LibraryCS>(LibraryCS.class, this, BaseCSPackage.ROOT_PACKAGE_CS__OWNED_LIBRARY);
+			ownedLibraries = new EObjectContainmentEList<LibraryCS>(LibraryCS.class, this, BaseCSPackage.ROOT_PACKAGE_CS__OWNED_LIBRARIES);
 		}
-		return ownedLibrary;
+		return ownedLibraries;
 	}
 
 	/**
@@ -124,10 +124,10 @@ public class RootPackageCSImpl extends PackageOwnerCSImpl implements RootPackage
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.ROOT_PACKAGE_CS__OWNED_IMPORT:
-				return ((InternalEList<?>)getOwnedImport()).basicRemove(otherEnd, msgs);
-			case BaseCSPackage.ROOT_PACKAGE_CS__OWNED_LIBRARY:
-				return ((InternalEList<?>)getOwnedLibrary()).basicRemove(otherEnd, msgs);
+			case BaseCSPackage.ROOT_PACKAGE_CS__OWNED_IMPORTS:
+				return ((InternalEList<?>)getOwnedImports()).basicRemove(otherEnd, msgs);
+			case BaseCSPackage.ROOT_PACKAGE_CS__OWNED_LIBRARIES:
+				return ((InternalEList<?>)getOwnedLibraries()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -142,10 +142,10 @@ public class RootPackageCSImpl extends PackageOwnerCSImpl implements RootPackage
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.ROOT_PACKAGE_CS__OWNED_IMPORT:
-				return getOwnedImport();
-			case BaseCSPackage.ROOT_PACKAGE_CS__OWNED_LIBRARY:
-				return getOwnedLibrary();
+			case BaseCSPackage.ROOT_PACKAGE_CS__OWNED_IMPORTS:
+				return getOwnedImports();
+			case BaseCSPackage.ROOT_PACKAGE_CS__OWNED_LIBRARIES:
+				return getOwnedLibraries();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -161,13 +161,13 @@ public class RootPackageCSImpl extends PackageOwnerCSImpl implements RootPackage
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.ROOT_PACKAGE_CS__OWNED_IMPORT:
-				getOwnedImport().clear();
-				getOwnedImport().addAll((Collection<? extends ImportCS>)newValue);
+			case BaseCSPackage.ROOT_PACKAGE_CS__OWNED_IMPORTS:
+				getOwnedImports().clear();
+				getOwnedImports().addAll((Collection<? extends ImportCS>)newValue);
 				return;
-			case BaseCSPackage.ROOT_PACKAGE_CS__OWNED_LIBRARY:
-				getOwnedLibrary().clear();
-				getOwnedLibrary().addAll((Collection<? extends LibraryCS>)newValue);
+			case BaseCSPackage.ROOT_PACKAGE_CS__OWNED_LIBRARIES:
+				getOwnedLibraries().clear();
+				getOwnedLibraries().addAll((Collection<? extends LibraryCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -183,11 +183,11 @@ public class RootPackageCSImpl extends PackageOwnerCSImpl implements RootPackage
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.ROOT_PACKAGE_CS__OWNED_IMPORT:
-				getOwnedImport().clear();
+			case BaseCSPackage.ROOT_PACKAGE_CS__OWNED_IMPORTS:
+				getOwnedImports().clear();
 				return;
-			case BaseCSPackage.ROOT_PACKAGE_CS__OWNED_LIBRARY:
-				getOwnedLibrary().clear();
+			case BaseCSPackage.ROOT_PACKAGE_CS__OWNED_LIBRARIES:
+				getOwnedLibraries().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -203,10 +203,10 @@ public class RootPackageCSImpl extends PackageOwnerCSImpl implements RootPackage
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.ROOT_PACKAGE_CS__OWNED_IMPORT:
-				return ownedImport != null && !ownedImport.isEmpty();
-			case BaseCSPackage.ROOT_PACKAGE_CS__OWNED_LIBRARY:
-				return ownedLibrary != null && !ownedLibrary.isEmpty();
+			case BaseCSPackage.ROOT_PACKAGE_CS__OWNED_IMPORTS:
+				return ownedImports != null && !ownedImports.isEmpty();
+			case BaseCSPackage.ROOT_PACKAGE_CS__OWNED_LIBRARIES:
+				return ownedLibraries != null && !ownedLibraries.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -223,8 +223,8 @@ public class RootPackageCSImpl extends PackageOwnerCSImpl implements RootPackage
 		{
 			switch (derivedFeatureID)
 			{
-				case BaseCSPackage.ROOT_PACKAGE_CS__OWNED_IMPORT: return BaseCSPackage.ROOT_CS__OWNED_IMPORT;
-				case BaseCSPackage.ROOT_PACKAGE_CS__OWNED_LIBRARY: return BaseCSPackage.ROOT_CS__OWNED_LIBRARY;
+				case BaseCSPackage.ROOT_PACKAGE_CS__OWNED_IMPORTS: return BaseCSPackage.ROOT_CS__OWNED_IMPORTS;
+				case BaseCSPackage.ROOT_PACKAGE_CS__OWNED_LIBRARIES: return BaseCSPackage.ROOT_CS__OWNED_LIBRARIES;
 				default: return -1;
 			}
 		}
@@ -243,8 +243,8 @@ public class RootPackageCSImpl extends PackageOwnerCSImpl implements RootPackage
 		{
 			switch (baseFeatureID)
 			{
-				case BaseCSPackage.ROOT_CS__OWNED_IMPORT: return BaseCSPackage.ROOT_PACKAGE_CS__OWNED_IMPORT;
-				case BaseCSPackage.ROOT_CS__OWNED_LIBRARY: return BaseCSPackage.ROOT_PACKAGE_CS__OWNED_LIBRARY;
+				case BaseCSPackage.ROOT_CS__OWNED_IMPORTS: return BaseCSPackage.ROOT_PACKAGE_CS__OWNED_IMPORTS;
+				case BaseCSPackage.ROOT_CS__OWNED_LIBRARIES: return BaseCSPackage.ROOT_PACKAGE_CS__OWNED_LIBRARIES;
 				default: return -1;
 			}
 		}

@@ -270,7 +270,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 			contextPackage = context.refreshModelElement(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, csElement);
 			String newName = modelPackage.getName();
 			if (csElement != null) {
-				List<PathElementCS> newPath = csElement.getOwnedPathName().getPath();
+				List<PathElementCS> newPath = csElement.getOwnedPathName().getOwnedPathElements();
 				PathElementCS lastPathElement = newPath.get(newPath.size() - 1);
 				Element asElement = lastPathElement.getPivot();
 				if ((asElement instanceof Nameable) && !asElement.eIsProxy()) {
@@ -434,7 +434,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 	@Override
 	public Continuation<?> visitImportCS(@NonNull ImportCS csElement) {
 		super.visitImportCS(csElement);
-		Namespace namespace = csElement.getNamespace();													// Resolve the proxy to perform the import.
+		Namespace namespace = csElement.getReferredNamespace();													// Resolve the proxy to perform the import.
 		if ((namespace != null) && !namespace.eIsProxy()) {
 			context.installPivotUsage(csElement, namespace);
 		}
@@ -448,7 +448,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 
 	@Override
 	public Continuation<?> visitLibraryCS(@NonNull LibraryCS csElement) {
-		Namespace pPackage = csElement.getPackage();						// Resolve the proxy to perform the import.
+		Namespace pPackage = csElement.getReferredPackage();						// Resolve the proxy to perform the import.
 		if ((pPackage != null) && !pPackage.eIsProxy()) {
 			context.installPivotUsage(csElement, pPackage);
 		}
@@ -467,9 +467,9 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		 * Types have not yet been resolved so operation overloads are not resolveable.
 		 *
 		Operation modelOperation = csElement.getOperation(); */
-		List<PathElementCS> path = pathName.getPath();
+		List<PathElementCS> path = pathName.getOwnedPathElements();
 		int pathSize = path.size();
-		Element modelParent = pathSize >= 2 ? path.get(pathSize-2).getElement() : null;
+		Element modelParent = pathSize >= 2 ? path.get(pathSize-2).getReferredElement() : null;
 		@NonNull Operation contextOperation = context.refreshModelElement(Operation.class, PivotPackage.Literals.OPERATION, csElement);
 		if (modelParent instanceof org.eclipse.ocl.examples.pivot.Class) {
 			org.eclipse.ocl.examples.pivot.Class modelClassifier = (org.eclipse.ocl.examples.pivot.Class) modelParent;

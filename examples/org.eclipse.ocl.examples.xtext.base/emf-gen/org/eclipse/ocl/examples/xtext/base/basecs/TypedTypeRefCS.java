@@ -20,10 +20,10 @@ import org.eclipse.ocl.examples.pivot.Type;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getPathName <em>Path Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getOwnedPathName <em>Owned Path Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getReferredType <em>Referred Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getOwnedTemplateBinding <em>Owned Template Binding</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#isTypeof <em>Typeof</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#isIsTypeof <em>Is Typeof</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,49 +33,49 @@ import org.eclipse.ocl.examples.pivot.Type;
  */
 public interface TypedTypeRefCS extends TypedRefCS {
 	/**
-	 * Returns the value of the '<em><b>Path Name</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Path Name</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Path Name</em>' containment reference.
-	 * @see #setPathName(PathNameCS)
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTypedTypeRefCS_PathName()
+	 * @return the value of the '<em>Owned Path Name</em>' containment reference.
+	 * @see #setOwnedPathName(PathNameCS)
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTypedTypeRefCS_OwnedPathName()
 	 * @model containment="true"
 	 * @generated
 	 */
-	PathNameCS getPathName();
+	PathNameCS getOwnedPathName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getPathName <em>Path Name</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getOwnedPathName <em>Owned Path Name</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Path Name</em>' containment reference.
-	 * @see #getPathName()
+	 * @param value the new value of the '<em>Owned Path Name</em>' containment reference.
+	 * @see #getOwnedPathName()
 	 * @generated
 	 */
-	void setPathName(PathNameCS value);
+	void setOwnedPathName(PathNameCS value);
 
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' reference.
+	 * Returns the value of the '<em><b>Referred Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' reference.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTypedTypeRefCS_Type()
+	 * @return the value of the '<em>Referred Type</em>' reference.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTypedTypeRefCS_ReferredType()
 	 * @model resolveProxies="false" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
-	Type getType();
+	Type getReferredType();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Template Binding</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS#getOwningTemplateBindableElement <em>Owning Template Bindable Element</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS#getOwningElement <em>Owning Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Template Binding</em>' containment reference isn't clear,
@@ -85,8 +85,8 @@ public interface TypedTypeRefCS extends TypedRefCS {
 	 * @return the value of the '<em>Owned Template Binding</em>' containment reference.
 	 * @see #setOwnedTemplateBinding(TemplateBindingCS)
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTypedTypeRefCS_OwnedTemplateBinding()
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS#getOwningTemplateBindableElement
-	 * @model opposite="owningTemplateBindableElement" containment="true"
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS#getOwningElement
+	 * @model opposite="owningElement" containment="true"
 	 * @generated
 	 */
 	TemplateBindingCS getOwnedTemplateBinding();
@@ -102,30 +102,30 @@ public interface TypedTypeRefCS extends TypedRefCS {
 	void setOwnedTemplateBinding(TemplateBindingCS value);
 
 	/**
-	 * Returns the value of the '<em><b>Typeof</b></em>' attribute.
+	 * Returns the value of the '<em><b>Is Typeof</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Typeof</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Is Typeof</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Typeof</em>' attribute.
-	 * @see #setTypeof(boolean)
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTypedTypeRefCS_Typeof()
+	 * @return the value of the '<em>Is Typeof</em>' attribute.
+	 * @see #setIsTypeof(boolean)
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTypedTypeRefCS_IsTypeof()
 	 * @model default="false" required="true"
 	 * @generated
 	 */
-	boolean isTypeof();
+	boolean isIsTypeof();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#isTypeof <em>Typeof</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#isIsTypeof <em>Is Typeof</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Typeof</em>' attribute.
-	 * @see #isTypeof()
+	 * @param value the new value of the '<em>Is Typeof</em>' attribute.
+	 * @see #isIsTypeof()
 	 * @generated
 	 */
-	void setTypeof(boolean value);
+	void setIsTypeof(boolean value);
 
 } // TypedTypeRefCS
