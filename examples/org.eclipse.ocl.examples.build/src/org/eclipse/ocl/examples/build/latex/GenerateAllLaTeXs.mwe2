@@ -1,0 +1,65 @@
+/*******************************************************************************
+ * Copyright (c) 2014 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *******************************************************************************/
+module GenerateAllLaTeXs
+
+import org.eclipse.ocl.examples.xtext2lpg.*
+import org.eclipse.ocl.examples.build.utilities.*
+import org.eclipse.emf.mwe.utils.*
+import org.eclipse.emf.mwe2.runtime.workflow.*
+
+/**
+ *	Generate all the OCL LaTeX dpcuments.
+ */
+Workflow {
+	component = @GenerateLaTeXForGrammar {
+		sourceName="org.eclipse.ocl.examples.xtext.essentialocl"
+		modelFile="src/org/eclipse/ocl/examples/xtext/essentialocl/EssentialOCL.xtext"
+		latexFileName="essential-ocl-grammar"
+		labelPrefix="ocl:EssentialOCL:"
+	}
+	component = @GenerateLaTeXForGrammar {
+		sourceName="org.eclipse.ocl.examples.xtext.completeocl"
+		modelFile="src/org/eclipse/ocl/examples/xtext/completeocl/CompleteOCL.xtext"
+		latexFileName="completeocl-ocl-grammar"
+		labelPrefix="ocl:CompleteOCL:"
+	}
+	component = @GenerateLaTeXForLibrary {
+		sourceName="org.eclipse.ocl.examples.library"
+		modelFile="model/OCL-2.5.oclstdlib"
+		latexFileName="ocl-standard-library"
+//		labelPrefix="ocl:StandardLibrary:"
+	}
+	component = @GenerateLaTeXForModel {
+		sourceName="org.eclipse.ocl.examples.pivot"
+		modelFile="model/Pivot.ecore"
+		latexFileName="abstract-syntax"
+//		labelPrefix="ocl:AbstractSyntax:"
+	}
+	component = @GenerateLaTeXForModel {
+		sourceName="org.eclipse.ocl.examples.xtext.base"
+		modelFile="model/BaseCS.ecore"
+		latexFileName="base-cs"
+//		labelPrefix="ocl:BaseCS:"
+	}
+	component = @GenerateLaTeXForModel {
+		sourceName="org.eclipse.ocl.examples.xtext.essentialocl"
+		modelFile="model/EssentialOCLCS.ecore"
+		latexFileName="essentialocl-cs"
+//		labelPrefix="ocl:EssentialOCLCS:"
+	}
+	component = @GenerateLaTeXForModel {
+		sourceName="org.eclipse.ocl.examples.xtext.completeocl"
+		modelFile="model/CompleteOCLCS.ecore"
+		latexFileName="completeocl-cs"
+//		labelPrefix="ocl:CompleteOCLCS:"
+	}
+}
+

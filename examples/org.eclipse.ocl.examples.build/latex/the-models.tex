@@ -1,10 +1,10 @@
-\chapter{The Models}\label{ocl:TheModels}
+\oclHeadingOne{The Models}\label{ocl:TheModels}
 
 This specification is substantially auto-generated from the normative models that accompany it.
 
 <<<Migrate all *.ecore files to *.xmi>>>
 
-\section{The Abstract Syntax (AS)}
+\oclHeadingTwo{The Abstract Syntax (AS)}
 
 The abstract syntax model Pivot.ecore is the result of a merge of UML.xmi and OCL.xmi followed by the QVTo transformations UML2EcoreAnalysis.qvto and UML2EcoreSynthesis.qvto that use the UML2PivotinEcore.xmi control file and UML2EcoreControl.ecore and UML2EcoreMapping.ecore intermeiate representations.
 
@@ -12,7 +12,7 @@ Well-formedness rules are provided by Pivot.ocl and Types.ocl.
 
 Name resolution rules are defined in Lookup.ocl.
 
-\section{The Concrete Syntax (CS)}
+\oclHeadingTwo{The Concrete Syntax (CS)}
 
 The non-normative concrete syntax models Base.ecore, EssentialOCL.ecore and CompleteOCL.ecore support the EssentialOCL.xtext and CompleteOCL.xtext grammars.
 
@@ -20,10 +20,10 @@ Mapping between CS and AS is defined by EssentialOCLCS2AS.ocl and CompleteOCLCS2
 
 Disambiguation between generalized CS and precise CS is defined by EssentialOCLCS2CS.ocl.
 
-\section{The Evaluation Semantics}
+\oclHeadingTwo{The Evaluation Semantics}
 
 The evaluation semantics are defined by Values.ecore with well-formedness rules in Values.ocl.
 
-\section{The OCL Standard Library}
+\oclHeadingTwo{The OCL Standard Library}
 
 The library is defined by OCLstdlib.oclas which is a serialization of the non-normative OCL2-5.oclstdlib.

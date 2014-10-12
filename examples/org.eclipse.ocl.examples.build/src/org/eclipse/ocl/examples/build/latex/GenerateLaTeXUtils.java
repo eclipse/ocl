@@ -159,11 +159,11 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 
 		@Override
 		public String caseOCLTextElement(OCLTextElement element) {
-			s.append("@");
+			s.append("#\\oclEmph#{");
 			for (MarkupElement subElement : element.getElements()) {
 				doSwitch(subElement);
 			}
-			s.append("@");
+			s.append("#}");
 			return s.toString();
 		}
 
@@ -206,9 +206,153 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 			System.out.println(parseError);
 		}
 		if (markup == null) {
-			throw new NullPointerException("Missing prsed content for \"" + body + "\"");
+			throw new NullPointerException("Missing parsed content for \"" + body + "\"");
 		}
 		return markup;
+	}
+	
+	protected String emitBeginDefinition() {
+//		return "#\\begin#{oclDefinition#}";
+		return "#\\begin#{verbatim#}";
+	}
+	
+	protected String emitEmphasis(@NonNull String name) {
+		return "#\\oclEmph#{" + encodeSectionText(name) + "#}";
+	}
+	
+	protected String emitEndDefinition() {
+//		return "#\\end#{oclDefinition#}";
+		return "#\\end#{verbatim#}";
+	}
+	
+	protected String emitHeading0a(String name) {
+		return name != null ? "#\\oclHeadingZero#{" + encodeSectionText(name) + "#}" : "";
+	}
+	
+	protected String emitHeading0b(String name) {
+		return name != null ? "#\\oclHeadingZero#{" + encodeSectionText(name) + "#}" : "";
+	}
+	
+	protected String emitHeading1(String name, @Nullable String label) {
+		return name != null ? "#\\oclHeadingOne#{" + encodeSectionText(name) + "#}" + emitLabel(label) : "";
+	}
+	
+	protected String emitHeading2(String name, @Nullable String label) {
+		return name != null ? "#\\oclHeadingTwo#{" + encodeSectionText(name) + "#}" + emitLabel(label) : "";
+	}
+	
+	protected String emitHeading3(String name, @Nullable String label) {
+		return name != null ? "#\\oclHeadingThree#{" + encodeSectionText(name) + "#}" + emitLabel(label) : "";
+	}
+	
+	protected String emitHeading4(String name, @Nullable String label) {
+		return name != null ? "#\\oclHeadingFour#{" + encodeSectionText(name) + "#}" + emitLabel(label) : "";
+	}
+	
+	protected String emitLabel(@Nullable String label) {
+		return label != null ? "#\\label#{" + encodeLabelText(label) + "#}" : "";
+	}
+
+	/**
+	 * Re-encode latexContent to ensure that it is intelligible to LaTeX.
+	 * <p>
+	 * In: all characters as their logical equivalents. Anything that needs to be handled specially by
+	 * LaTeX needs to have a # escape to avoid the application of LaTeX escapes such as textbackslash
+	 * for characters that must not be misinterpreted by LaTeX.
+	 * <p>
+	 * Use "##" for "#", "#anything else for anything else", e.g. "#{" for a LaTeX "{".
+	 */
+	protected String encodeForLaTeX(String latexContent) {
+		StringBuilder s = new StringBuilder();
+		int length = latexContent.length();
+		for (int i = 0; i < length; ) {
+			char c = latexContent.charAt(i++);
+			if (c == '#') {
+				if (i < length) {
+					c = latexContent.charAt(i++);
+				}
+				if (c == '#') {
+					s.append("\\#");
+				}
+				else {
+					s.append(c);
+				}
+			}
+			else if (c == '\\') {
+				s.append("\\textbackslash{}");
+			}
+			else if (c == '<') {
+				s.append("\\textless{}");
+			}
+			else if (c == '>') {
+				s.append("\\textgreater{}");
+			}
+			else if (c == '|') {
+				s.append("\\textbar{}");
+			}
+			else if (c == '_') {
+				s.append("\\_");
+			}
+			else if (c == '$') {
+				s.append("\\$");
+			}
+			else if (c == '&') {
+				s.append("\\&");
+			}
+			else if (c == '%') {
+				s.append("\\%");
+			}
+			else if (c == '{') {
+				s.append("\\{");
+			}
+			else if (c == '}') {
+				s.append("\\}");
+			}
+			else if (c == '~') {
+				s.append("\\~{}");
+			}
+			else if (c == '\'') {
+				s.append("'");
+			}
+			else if (c == '"') {
+				s.append("''");
+			}
+			else if (c == '<') {
+				s.append("\\textless{}");
+			}
+			else {
+				s.append(c);
+			}
+		}
+		return s.toString();
+	}
+	
+	protected String encodeLabelText(@NonNull String string) {
+		StringBuilder s = new StringBuilder();
+		for (int i = 0; i < string.length(); i++) {
+			char c = string.charAt(i);
+			if (c == '_') {
+				s.append("#_");
+			}
+			else {
+				s.append(c);
+			}
+		}
+		return s.toString();
+	}
+	
+	protected String encodeSectionText(@NonNull String string) {
+		StringBuilder s = new StringBuilder();
+		for (int i = 0; i < string.length(); i++) {
+			char c = string.charAt(i);
+			if (c == '_') {
+				s.append("#\\#_");
+			}
+			else {
+				s.append(c);
+			}
+		}
+		return s.toString();
 	}
 
 	protected @NonNull List<Property> getSortedAssociations(@NonNull org.eclipse.ocl.examples.pivot.Class asClass) {

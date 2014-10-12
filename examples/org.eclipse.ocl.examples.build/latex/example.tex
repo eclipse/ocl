@@ -1,0 +1,97 @@
+\documentclass{omgrpt}
+\usepackage{lipsum}
+
+\begin{document}
+\oclHeadingOne{Introduction}\label{sec:ocl-1:introduction}
+The \LaTeX{} style \texttt{omg.sty} tries to mimic the layout used by
+the OMG for the UML/OCL standard documents. To achieve this, the style
+\begin{itemize}
+\item sets the paper size to 8.28x11 inch
+\item sets the text size to 6.7x8 inch
+\item uses the PostScript fonts Times Roman, Helvetica, and Courier
+\item formats paragraphs without initial indentation and ragged 
+  right formatting
+\end{itemize}
+Note that this style works only in combination with one of the
+KomaScript classes, e.g., \texttt{scrbook} (replaces \texttt{book}) or 
+\texttt{scrreprt} (replaces \texttt{report}). As shorthands, this
+package also provides the \texttt{omgrpt} class.
+
+Moreover,  \texttt{omg.sty} provides the following \LaTeX-commands:
+\begin{itemize}
+\item New commands for chapters/sections:
+\begin{itemize}
+\item \verb|\oclHeadingOne{Examples}| for top-level sections
+    (chapters), e.g., \autoref{ocl-1:examples} or ``9 Concrete
+    Syntax''% in~\cite{omg:ocl:2014}.
+\item \verb|\oclHeadingTwo{Examples}| for second-level sections,
+    e.g., \autoref{ocl-2:examples}  or ``9.1 Structure of the Concrete
+    Syntax''% in~\cite{omg:ocl:2014}.
+\item \verb|\oclHeadingThree{Examples}| for third-level sections,
+    e.g., \autoref{ocl-3:examples} or ``9.2.1 Parsing''% in~\cite{omg:ocl:2014}.
+\item \verb|\oclHeadingFour{Examples}| for fourth-level sections,
+    e.g., \autoref{ocl-4:examples} (should be used carefully).
+\item \verb|\oclHeadingZero{Examples}| for fourth-level sections
+    without numbering,
+    e.g., \autoref{ocl-0:examples} or ``Abstract syntax mapping'' (in
+    ``9.4.1 ExpressionInOclCS'')% in~\cite{omg:ocl:2014}).
+  \end{itemize}
+\item New environments
+% ocl-definition e.g. "ExpressionInOclCS.ast : OclExpression" as in 9.3.1
+  \begin{itemize}
+  \item  \verb| \begin{oclDefintion} \ldots  \end{oclDefinition}| for
+    OCL definitions, e.g., ``ExpressionInOclCS.ast : OclExpression''
+    as in 9.3.1% in~\cite{omg:ocl:2014}.
+  \begin{oclDefinition}
+    ExpressionInOclCS.ast : OclExpression
+  \end{oclDefinition}
+  \end{itemize}
+\item New styles for emphasizing or highlighting texts
+  \begin{itemize}
+  \item  \verb|\oclEmph{declaration}| (italics) for declarations and segments of
+OCL text, e.g., \oclEmph{declaration}.
+  \end{itemize}
+\end{itemize}
+
+% \subsection{Labels}
+% All classes will be defined with a label such as "ocl-ExpressionInOCL"
+% All properties will be defined with a label such as "ocl-NamedElement::name"
+% ?? All operations/iterations will be defined with a label such as
+% "ocl-Boolean::and(Boolean)" or "ocl-Collection(T1)::forAll(T1, T1)" ??
+
+
+\oclHeadingOne{Examples}\label{ocl-1:examples}
+\lipsum[1]
+
+\begin{figure}
+  \centering
+  \centerline{\Large\textbf{Example Figure}}
+  \caption{This is an example figure caption}
+\end{figure}
+
+\begin{table}
+  \centering
+  \centerline{\Large\textbf{Example Table}}  
+  \caption{This is an example table caption}
+  \label{tab:asdf}
+\end{table}
+
+\oclHeadingTwo{Lore Ipsum}\label{ocl-2:examples}
+\lipsum[2-3]
+
+\oclHeadingThree{Lore Ipsum}\label{ocl-3:examples}
+\lipsum[2-3]
+
+\oclHeadingFour{Lore Ipsum}\label{ocl-4:examples}
+\lipsum[2-3]
+
+\oclHeadingZero{Lore Ipsum}\label{ocl-0:examples}
+\lipsum[2-3]
+
+\end{document}
+
+
+
+\end{document}
+
+

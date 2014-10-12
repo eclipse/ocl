@@ -30,10 +30,10 @@ public class GenerateLaTeXForLibraryXtend extends GenerateLaTeXForLibraryUtils
 		if (asAssociations.size() > 0) {
 		'''
 
-		\subsubsection{Associations}
+		«emitHeading0a("Associations")»
 		«FOR asAssociation : asAssociations»
 
-			\textbf{«prettyPrint(asAssociation, asClass)»}
+			«emitEmphasis(prettyPrint(asAssociation, asClass))»
 			«emitComment(asAssociation, asClass)»
 		«ENDFOR»
 		'''
@@ -45,10 +45,10 @@ public class GenerateLaTeXForLibraryXtend extends GenerateLaTeXForLibraryUtils
 		if ( asAttributes.size() > 0) {
 		'''
 
-		\subsubsection{Attributes}
+		«emitHeading0a("Attributes")»
 		«FOR asAttribute : asAttributes»
 
-			\textbf{«prettyPrint(asAttribute, asClass)»}
+			«emitEmphasis(prettyPrint(asAttribute, asClass))»
 			«emitComment(asAttribute, asClass)»
 		«ENDFOR»
 		'''
@@ -60,7 +60,7 @@ public class GenerateLaTeXForLibraryXtend extends GenerateLaTeXForLibraryUtils
 		'''
 		«FOR asClass : asClasses»
 			
-			\subsection{«prettyPrint(asClass, asClass)»}\label{«asClass.name»}
+			«emitHeading3(prettyPrint(asClass, asClass), asClass.name)»
 			«emitComment(asClass, asClass)»
 			«IF asClass.getSuperClasses().size() > 0»
 			
@@ -90,15 +90,15 @@ public class GenerateLaTeXForLibraryXtend extends GenerateLaTeXForLibraryUtils
 		if (asIterations.size() > 0) {
 		'''
 
-		\subsubsection{Iterations}
+		«emitHeading0a("Iterations")»
 		«FOR asIteration : asIterations»
 
-			\textbf{«prettyPrint(asIteration, asClass)»}
+			«emitHeading0b(prettyPrint(asIteration, asClass))»
 			«emitComment(asIteration, asClass)»
 			«FOR asConstraint : getSortedConstraints(asIteration)»
-				\begin{verbatim}
+				«emitBeginDefinition()»
 				«prettyPrint(asConstraint, asClass)»
-				\end{verbatim}
+				«emitEndDefinition()»
 			«ENDFOR»
 		«ENDFOR»
 		'''
@@ -110,29 +110,29 @@ public class GenerateLaTeXForLibraryXtend extends GenerateLaTeXForLibraryUtils
 		if (asOperations.size() > 0) {
 		'''
 
-		\subsubsection{Operations}
+		«emitHeading0a("Operations")»
 		«FOR asOperation : asOperations»
 
-			\textbf{«prettyPrint(asOperation, asClass)»«IF asOperation.isInvalidating» invalidating«ENDIF»«IF asOperation.isValidating» validating«ENDIF»}
+			«emitHeading0b(prettyPrint(asOperation, asClass) /*+ (asOperation.isInvalidating ? " invalidating" : "") + (asOperation.isValidating ? " validating" : "")*/)»
 			«IF asOperation.precedence != null»
 			
-				precedence: \textbf{«asOperation.precedence.name»}
+				precedence: «emitEmphasis(asOperation.precedence.name)»
 			«ENDIF»
 			«emitComment(asOperation, asClass)»
 			«FOR asConstraint : getSortedPreconditions(asOperation)»
-				\begin{verbatim}
+				«emitBeginDefinition()»
 				«prettyPrint(asConstraint, asClass)»
-				\end{verbatim}
+				«emitEndDefinition()»
 			«ENDFOR»
 			«IF asOperation.bodyExpression != null»
-				\begin{verbatim}
+				«emitBeginDefinition()»
 				body: «asOperation.bodyExpression.getBody()»
-				\end{verbatim}
+				«emitEndDefinition()»
 			«ENDIF»
 			«FOR asConstraint : getSortedPostconditions(asOperation)»
-				\begin{verbatim}
+				«emitBeginDefinition()»
 				«prettyPrint(asConstraint, asClass)»
-				\end{verbatim}
+				«emitEndDefinition()»
 			«ENDFOR»
 		«ENDFOR»
 		'''
@@ -141,9 +141,9 @@ public class GenerateLaTeXForLibraryXtend extends GenerateLaTeXForLibraryUtils
 	
 	protected def emitPrecedences(Model asRoot) {
 		'''
-		\subsection{Precedences}\label{Precedences}
+		«emitHeading3("Precedences", "Precedences")»
 
-		«FOR asPrecedence : getPrecedences(asRoot) SEPARATOR ' < '»\textbf{«asPrecedence.name»}«ENDFOR»
+		«FOR asPrecedence : getPrecedences(asRoot) SEPARATOR ' < '»«emitEmphasis(asPrecedence.name)»«ENDFOR»
 		'''
 	}
 }

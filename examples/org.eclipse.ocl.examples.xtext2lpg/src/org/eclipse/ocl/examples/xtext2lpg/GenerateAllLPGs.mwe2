@@ -21,8 +21,6 @@ var lpgOpts = ""
 
 /**
  *	Generate all the OCL LPG grammars.
- * 
- * FIXME: this doesn't work. GenerateLPG is reported as unresolveable when run.
  */
 Workflow {
 	component = @GenerateLPG {

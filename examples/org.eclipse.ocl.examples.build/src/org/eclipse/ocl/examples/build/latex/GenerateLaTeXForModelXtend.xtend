@@ -29,10 +29,10 @@ public class GenerateLaTeXForModelXtend extends GenerateLaTeXForModelUtils
 		if (asAssociations.size() > 0) {
 		'''
 
-		\subsubsection{Associations}
+		«emitHeading0a("Associations")»
 		«FOR asAssociation : asAssociations»
 
-			\textbf{«prettyPrint(asAssociation, asClass)»}
+			«emitHeading0b(prettyPrint(asAssociation, asClass))»
 			«emitComment(asAssociation, asClass)»
 		«ENDFOR»
 		'''
@@ -44,10 +44,10 @@ public class GenerateLaTeXForModelXtend extends GenerateLaTeXForModelUtils
 		if ( asAttributes.size() > 0) {
 		'''
 
-		\subsubsection{Attributes}
+		«emitHeading0a("Attributes")»
 		«FOR asAttribute : asAttributes»
 
-			\textbf{«prettyPrint(asAttribute, asClass)»}
+			«emitHeading0b(prettyPrint(asAttribute, asClass))»
 			«emitComment(asAttribute, asClass)»
 		«ENDFOR»
 		'''
@@ -59,7 +59,7 @@ public class GenerateLaTeXForModelXtend extends GenerateLaTeXForModelUtils
 		'''
 		«FOR asClass : asClasses»
 			
-			\subsection{«prettyPrint(asClass, asClass)»}\label{«asClass.name»}
+			«emitHeading3(prettyPrint(asClass, asClass), asClass.name)»
 			«emitComment(asClass, asClass)»
 			«IF asClass.getSuperClasses().size() > 0»
 			
@@ -88,29 +88,29 @@ public class GenerateLaTeXForModelXtend extends GenerateLaTeXForModelUtils
 		if (asOperations.size() > 0) {
 		'''
 
-		\subsubsection{Operations}
+		«emitHeading0a("Operations")»
 		«FOR asOperation : asOperations»
 
-			\textbf{«prettyPrint(asOperation, asClass)»«IF asOperation.isInvalidating» invalidating«ENDIF»«IF asOperation.isValidating» validating«ENDIF»}
+			«emitHeading0b(prettyPrint(asOperation, asClass) /*+ (asOperation.isInvalidating ? " invalidating" : "") + (asOperation.isValidating ? " validating" : "")*/)»
 			«IF asOperation.precedence != null»
 			
-				precedence: \textbf{«asOperation.precedence.name»}
+				precedence: «emitHeading0b(asOperation.precedence.name)»
 			«ENDIF»
 			«emitComment(asOperation, asClass)»
 			«FOR asConstraint : getSortedPreconditions(asOperation)»
-				\begin{verbatim}
+				«emitBeginDefinition»
 				«prettyPrint(asConstraint, asClass)»
-				\end{verbatim}
+				«emitEndDefinition»
 			«ENDFOR»
 			«IF asOperation.bodyExpression != null»
-				\begin{verbatim}
+				«emitBeginDefinition»
 				body: «asOperation.bodyExpression.getBody()»
-				\end{verbatim}
+				«emitEndDefinition»
 			«ENDIF»
 			«FOR asConstraint : getSortedPostconditions(asOperation)»
-				\begin{verbatim}
+				«emitBeginDefinition»
 				«prettyPrint(asConstraint, asClass)»
-				\end{verbatim}
+				«emitEndDefinition»
 			«ENDFOR»
 		«ENDFOR»
 		'''

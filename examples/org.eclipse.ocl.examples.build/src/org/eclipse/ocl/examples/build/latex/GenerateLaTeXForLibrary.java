@@ -27,6 +27,7 @@ import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
+import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.XtextStandaloneSetup;
 
 public abstract class GenerateLaTeXForLibrary extends GenerateLaTeXUtils
@@ -61,8 +62,9 @@ public abstract class GenerateLaTeXForLibrary extends GenerateLaTeXUtils
 			String fileName = folder + "/" + latexFileName + ".tex";
 			log.info("Generating '" + fileName + "'");
 			String latexContent = generateLaTeX((Model)pivotModel);
+			String encodedContent = encodeForLaTeX(latexContent);
 			FileWriter fw = new FileWriter(fileName);
-			fw.append(latexContent);
+			fw.append(encodedContent);
 			fw.close();
 		} catch (RuntimeException e) {
 			throw e;

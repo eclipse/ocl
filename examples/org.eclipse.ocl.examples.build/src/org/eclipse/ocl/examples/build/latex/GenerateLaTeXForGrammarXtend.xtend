@@ -42,7 +42,7 @@ public class GenerateLaTeXForGrammarXtend extends GenerateLaTeXForGrammarUtils
 	protected def emitExternalModels(@NonNull Grammar grammar) {
 		var metamodelDeclarations = getSortedMetamodelDeclarations(grammar);
 		'''
-		«emitSubsection("External Models", labelPrefix + "ExternalModels")»
+		«emitHeading3("External Models", labelPrefix + "ExternalModels")»
 		
 		The following aliases and metamodel URIs are used in the grammar.
 
@@ -55,12 +55,12 @@ public class GenerateLaTeXForGrammarXtend extends GenerateLaTeXForGrammarUtils
 	protected def emitParserRules(@NonNull Grammar grammar) {
 		var parserRules = getSortedParserRules(grammar);
 		'''
-		«emitSubsection("Parser Rules", labelPrefix + "ParserRules")»
+		«emitHeading3("Parser Rules", labelPrefix + "ParserRules")»
 		
 		The parser rules define the parser mapping from parser tokens to generalized concrete syntax elements.
 		«FOR parserRule : parserRules»
 
-		«emitSubsubsection(parserRule.name, labelPrefix + "ParserRule:" + parserRule.name)»
+		«emitHeading4(parserRule.name, labelPrefix + "ParserRule:" + parserRule.name)»
 		«emitComment(parserRule)»
 		Token type: «emitTypeRef(parserRule.type)»
 		«emitAllTT(emitAbstractElement(parserRule.alternatives, true))»
@@ -71,12 +71,12 @@ public class GenerateLaTeXForGrammarXtend extends GenerateLaTeXForGrammarUtils
 	protected def emitTerminalRules(@NonNull Grammar grammar) {
 		var terminalRules = getSortedTerminalRules(grammar);
 		'''
-		«emitSubsection("Terminal Rules", labelPrefix + "TerminalRules")»
+		«emitHeading3("Terminal Rules", labelPrefix + "TerminalRules")»
 		
 		The terminal rules define the lexer mapping from character sequences to parser tokens.
 		«FOR terminalRule : terminalRules»
 
-		«emitSubsubsection(terminalRule.name, labelPrefix + "TerminalRule:" + terminalRule.name)»
+		«emitHeading4(terminalRule.name, labelPrefix + "TerminalRule:" + terminalRule.name)»
 		«emitComment(terminalRule)»
 		Token type: «emitTypeRef(terminalRule.type)»
 		«emitAllTT(emitAbstractElement(terminalRule.alternatives, true))»

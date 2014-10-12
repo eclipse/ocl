@@ -55,8 +55,9 @@ public abstract class GenerateLaTeXForModel extends GenerateLaTeXUtils
 			String fileName = folder + "/" + latexFileName + ".tex";
 			log.info("Generating '" + fileName + "'");
 			String latexContent = generateLaTeX(asModel);
+			String encodedContent = encodeForLaTeX(latexContent);
 			FileWriter fw = new FileWriter(fileName);
-			fw.append(latexContent);
+			fw.append(encodedContent);
 			fw.close();
 		} catch (RuntimeException e) {
 			throw e;

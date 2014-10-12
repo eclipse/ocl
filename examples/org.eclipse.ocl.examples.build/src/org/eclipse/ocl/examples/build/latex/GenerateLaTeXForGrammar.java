@@ -34,8 +34,6 @@ import org.eclipse.xtext.XtextStandaloneSetup;
 public abstract class GenerateLaTeXForGrammar extends GenerateLaTeXUtils
 {
 	protected String labelPrefix = "";
-
-	protected abstract String encodeForLaTeX(String latexContent);
 	
 	protected abstract @NonNull String generateLaTeX(@NonNull Grammar xtextModel);
 

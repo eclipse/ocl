@@ -17,7 +17,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.xtext.AbstractMetamodelDeclaration;
 import org.eclipse.xtext.AbstractRule;
 import org.eclipse.xtext.Grammar;
@@ -151,116 +150,6 @@ public abstract class GenerateLaTeXForGrammarUtils extends GenerateLaTeXForGramm
 			}
 		}
 		s.append("\n\n");
-		return s.toString();
-	}
-	
-	protected String emitLabel(@Nullable String label) {
-		return label != null ? "#\\label#{" + encodeLabelText(label) + "#}" : "";
-	}
-	
-	protected String emitSection(String name, @Nullable String label) {
-		return name != null ? "#\\section#{" + encodeSectionText(name) + "#}" + emitLabel(label) : "";
-	}
-	
-	protected String emitSubsection(String name, @Nullable String label) {
-		return name != null ? "#\\subsection#{" + encodeSectionText(name) + "#}" + emitLabel(label) : "";
-	}
-	
-	protected String emitSubsubsection(String name, @Nullable String label) {
-		return name != null ? "#\\subsubsection#{" + encodeSectionText(name) + "#}" + emitLabel(label) : "";
-	}
-
-	@Override
-	protected String encodeForLaTeX(String latexContent) {
-		StringBuilder s = new StringBuilder();
-		int length = latexContent.length();
-		for (int i = 0; i < length; ) {
-			char c = latexContent.charAt(i++);
-			if (c == '#') {
-				if (i < length) {
-					c = latexContent.charAt(i++);
-				}
-				if (c == '#') {
-					s.append("\\#");
-				}
-				else {
-					s.append(c);
-				}
-			}
-			else if (c == '\\') {
-				s.append("\\textbackslash{}");
-			}
-			else if (c == '<') {
-				s.append("\\textless{}");
-			}
-			else if (c == '>') {
-				s.append("\\textgreater{}");
-			}
-			else if (c == '|') {
-				s.append("\\textbar{}");
-			}
-			else if (c == '_') {
-				s.append("\\_");
-			}
-			else if (c == '$') {
-				s.append("\\$");
-			}
-			else if (c == '&') {
-				s.append("\\&");
-			}
-			else if (c == '%') {
-				s.append("\\%");
-			}
-			else if (c == '{') {
-				s.append("\\{");
-			}
-			else if (c == '}') {
-				s.append("\\}");
-			}
-			else if (c == '~') {
-				s.append("\\~{}");
-			}
-			else if (c == '\'') {
-				s.append("'");
-			}
-			else if (c == '"') {
-				s.append("''");
-			}
-			else if (c == '<') {
-				s.append("\\textless{}");
-			}
-			else {
-				s.append(c);
-			}
-		}
-		return s.toString();
-	}
-	
-	protected String encodeLabelText(@NonNull String string) {
-		StringBuilder s = new StringBuilder();
-		for (int i = 0; i < string.length(); i++) {
-			char c = string.charAt(i);
-			if (c == '_') {
-				s.append("#_");
-			}
-			else {
-				s.append(c);
-			}
-		}
-		return s.toString();
-	}
-	
-	protected String encodeSectionText(@NonNull String string) {
-		StringBuilder s = new StringBuilder();
-		for (int i = 0; i < string.length(); i++) {
-			char c = string.charAt(i);
-			if (c == '_') {
-				s.append("#\\#_");
-			}
-			else {
-				s.append(c);
-			}
-		}
 		return s.toString();
 	}
 	
