@@ -665,6 +665,27 @@ public class EcoreEnvironment
 				}
 			}
 		}
+		// Bug 435807 For CDO at least, the EPackage may still be in Descriptor form.
+		for (Object next : new ArrayList<Object>(registry.values())) {
+		    if (next instanceof EPackage.Descriptor) {
+		        EPackage ePackage = ((EPackage.Descriptor) next).getEPackage();
+		        if (ePackage != null) {
+					
+					// only consider root-level packages when searching by name
+					if ((ePackage.getESuperPackage() == null)
+							&& EcoreForeignMethods.isNamed(name, ePackage)) {
+						
+						EPackage tentativeResult = findNestedPackage(
+								packageNames.subList(1, packageNames.size()),
+								ePackage);
+						
+						if (tentativeResult != null) {
+							return tentativeResult;
+						}
+					}
+				}
+		    }
+		}
 
 		return findPackageByNSPrefix(packageNames, registry);
 	}
