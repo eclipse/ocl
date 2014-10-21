@@ -91,32 +91,15 @@
 			<cs:products alias="output" base="${buckminster.output}/zips/" />
 		</cs:public>
 
-		<cs:public name="package.mdt-ocl-tests" actor="ant">
+		<cs:public name="package.mdt-ocl-Automated-tests" actor="ant">
 			<cs:actorProperties>
 				<cs:property key="buildFile" value="packaging.ant" />
 				<cs:property key="targets" value="package.ius" />
 			</cs:actorProperties>
 			<cs:properties>
-				<cs:property key="content.ius" value="org.eclipse.ocl.tests.feature.group"/>
+				<cs:property key="content.ius" value="org.eclipse.ocl.all.tests.feature.group"/>
 				<cs:property key="target.platform.ius" value="lpg.runtime.java" />
-				<cs:property key="package.name" value="mdt-ocl-tests" />
-			</cs:properties>
-			<cs:prerequisites>
-				<cs:attribute name="site.p2" alias="repository" />
-				<cs:attribute name="site.tp" alias="target.platform.repository" />
-			</cs:prerequisites>
-			<cs:products alias="output" base="${buckminster.output}/zips/" />
-		</cs:public>
-
-		<cs:public name="package.mdt-ocl-examples-tests" actor="ant">
-			<cs:actorProperties>
-				<cs:property key="buildFile" value="packaging.ant" />
-				<cs:property key="targets" value="package.ius" />
-			</cs:actorProperties>
-			<cs:properties>
-				<cs:property key="content.ius" value="org.eclipse.ocl.examples.tests.feature.group"/>
-				<cs:property key="target.platform.ius" value="lpg.runtime.java" />
-				<cs:property key="package.name" value="mdt-ocl-examples-tests" />
+				<cs:property key="package.name" value="mdt-ocl-Automated-tests" />
 			</cs:properties>
 			<cs:prerequisites>
 				<cs:attribute name="site.p2" alias="repository" />
@@ -139,8 +122,7 @@
 			<cs:attribute name="package.mdt-ocl-Update" />
 			<cs:attribute name="package.mdt-ocl-CoreSDK" />
 			<cs:attribute name="package.mdt-ocl-runtime" />
-			<cs:attribute name="package.mdt-ocl-tests" />
-			<cs:attribute name="package.mdt-ocl-examples-tests" />
+			<cs:attribute name="package.mdt-ocl-Automated-tests" />
 		</cs:public>
 		
 	</cs:groups>
