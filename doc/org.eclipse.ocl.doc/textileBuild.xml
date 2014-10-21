@@ -148,7 +148,7 @@
 		<!--
 		<antcall target="wikitext2eclipsehelp"/>
 		-->
-		<antcall target="docbook2eclipsehelp"/>
+		<!--antcall target="docbook2eclipsehelp"/-->
 	</target>
 	
 	<target name="check-docbook">
