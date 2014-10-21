@@ -143,7 +143,7 @@
 	<target name="build-doc" depends="init, install-wikitext, get-docbook-xsl, get-fop">
 		<echo>Building Output...</echo>
 		<antcall target="wikitext2docbook"/>
-		<antcall target="docbook2pdf"/>
+		<!--antcall target="docbook2pdf"/-->
 		<antcall target="docbook2html"/>
 		<!--
 		<antcall target="wikitext2eclipsehelp"/>
