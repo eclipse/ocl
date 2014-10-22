@@ -89,7 +89,7 @@
 		<echo>Packaging site: ${package.name}-tests</echo>
 
 		<!-- create the tests ZIP file -->
-		<zip basedir="${sp:repository}" destfile="${sp:output}/${package.name}-core${package.qualifier}.zip">
+		<zip basedir="${sp:repository}" destfile="${sp:output}/${package.name}-tests${package.qualifier}.zip">
 			<include name="artifacts.jar" />
 			<include name="content.jar" />
 			<include name="p2.index" />
