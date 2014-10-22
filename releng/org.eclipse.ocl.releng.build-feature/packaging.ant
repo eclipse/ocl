@@ -73,7 +73,6 @@
 			<include name="features/org.eclipse.ocl.all_*/**" />
 			<include name="features/org.eclipse.ocl.all.source*/**" />
 			<include name="features/org.eclipse.ocl.core*/**" />
-			<include name="features/org.eclipse.ocl.license*/**" />
 			<include name="features/org.eclipse.ocl.source*/**" />
 			<include name="features/org.eclipse.ocl.uml*/**" />
 			<include name="plugins/lpg.runtime*/**" />
