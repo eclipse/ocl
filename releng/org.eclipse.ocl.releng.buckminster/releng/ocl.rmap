@@ -9,18 +9,19 @@
   <rm:property key="resolve.n4s" value="false"/>
   <rm:property key="build.type" value="I"/>
   <rm:locator pattern="^com\.google.*" searchPathRef="orbit"/>
+  <rm:locator pattern="^org\.antlr\.runtime$" searchPathRef="orbit"/>
   <rm:locator pattern="^org\.apache.*" searchPathRef="orbit"/>
-  <rm:locator pattern="^org\.antlr\.runtime$" searchPathRef="xtext"/>
-  <rm:locator pattern="^org\.eclipse\.acceleo.*" searchPathRef="acceleo"/>
+  <!--rm:locator pattern="^org\.eclipse\.acceleo.*" searchPathRef="acceleo"/-->
   <rm:locator pattern="^org\.eclipse\.draw2d$" searchPathRef="gef"/>
   <rm:locator pattern="^org\.eclipse\.emf\.mwe.*" searchPathRef="mwe"/>
   <rm:locator pattern="^org\.eclipse\.emf\.validation.*" searchPathRef="emf-validation"/>
   <rm:locator pattern="^org\.eclipse\.emf\.examples\.library.*$" searchPathRef="emf-source-code"/>
   <rm:locator pattern="^org\.eclipse\.emf.*" searchPathRef="emf"/>
   <rm:locator pattern="^org\.eclipse\.license.*" searchPathRef="license-source-code"/>
+  <rm:locator pattern="^org\.eclipse\.mylyn.*" searchPathRef="mylyn"/>
   <rm:locator pattern="^org\.eclipse\.ocl.*$" searchPathRef="ocl-source-code"/>
   <rm:locator pattern="^org\.eclipse\.uml2.*" searchPathRef="uml"/>
-  <rm:locator pattern="^org\.eclipse\.xpand.*" searchPathRef="xpand"/>
+  <!--rm:locator pattern="^org\.eclipse\.xpand.*" searchPathRef="xpand"/-->
   <rm:locator pattern="^org\.eclipse\.xtend.lib.*" searchPathRef="xtext"/>
   <rm:locator pattern="^org\.eclipse\.xtend.*" searchPathRef="xpand"/>
   <rm:locator pattern="^org\.eclipse\.xtext.*" searchPathRef="xtext"/>
@@ -101,7 +102,7 @@
       </rm:uri> 
     </rm:provider>
   </rm:searchPath-->
-  <rm:searchPath name="acceleo">
+  <!--rm:searchPath name="acceleo">
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(&amp;(resolve.target.platform=true)(|(build.type=I)(build.type=N)(&amp;(resolve.n4s=true)(build.type=S))))" readerType="p2" source="false" mutable="false">
       <rm:property key="buckminster.source" value="false"/>
       <rm:property key="buckminster.mutable" value="false"/>
@@ -123,7 +124,7 @@
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
-  </rm:searchPath>
+  </rm:searchPath-->
   <rm:searchPath name="emf">
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" resolutionFilter="(&amp;(build.type=N)(resolve.target.platform=true))" readerType="p2" source="false" mutable="false">
       <rm:property key="buckminster.source" value="false"/>
@@ -226,6 +227,29 @@
       <rm:property key="buckminster.source" value="false"/>
       <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/modeling/emft/mwe/updates/releases">
+        <bc:propertyRef key="eclipse.download"/>
+      </rm:uri>
+    </rm:provider>
+  </rm:searchPath>
+  <rm:searchPath name="mylyn">
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(&amp;(resolve.target.platform=true)(|(build.type=I)(build.type=N)(&amp;(resolve.n4s=true)(build.type=S))))" readerType="p2" source="false" mutable="false">
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
+      <rm:uri format="{0}/mylyn/snapshots/nightly">
+        <bc:propertyRef key="eclipse.download"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(&amp;(resolve.target.platform=true)(|(build.type=I)(build.type=N)(build.type=S)))" readerType="p2" source="false" mutable="false">
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
+      <rm:uri format="{0}/mylyn/snapshots/weekly">
+        <bc:propertyRef key="eclipse.download"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(&amp;(resolve.target.platform=true)(|(build.type=I)(build.type=M)(build.type=N)(build.type=R)(build.type=S)))" readerType="p2" source="false" mutable="false">
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
+      <rm:uri format="{0}/mylyn/releases/latest">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
