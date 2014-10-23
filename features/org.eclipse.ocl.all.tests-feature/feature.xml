@@ -20,9 +20,9 @@
       <discovery label="%updateSiteName" url="http://www.eclipse.org/modeling/updates"/>
    </url>
 
-   <includes
+   <!--includes
          id="org.eclipse.ocl.examples.tests"
-         version="0.0.0"/>
+         version="0.0.0"/-->
 
    <includes
          id="org.eclipse.ocl.tests"
