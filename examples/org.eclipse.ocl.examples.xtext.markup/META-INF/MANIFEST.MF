@@ -2,12 +2,12 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.ocl.examples.xtext.markup;singleton:=true
-Bundle-Version: 3.4.100.qualifier
+Bundle-Version: 3.5.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Import-Package: org.apache.log4j
+Import-Package: org.apache.log4j;version="[1.2.15,2.0.0)"
 Export-Package: org.eclipse.ocl.examples.xtext.markup,
  org.eclipse.ocl.examples.xtext.markup.formatting,
  org.eclipse.ocl.examples.xtext.markup.impl,

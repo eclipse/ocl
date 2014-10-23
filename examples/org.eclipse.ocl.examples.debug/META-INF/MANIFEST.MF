@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.ocl.examples.debug;singleton:=true
-Bundle-Version: 1.0.100.qualifier
+Bundle-Version: 1.1.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
@@ -21,5 +21,5 @@ Export-Package: org.eclipse.ocl.examples.debug,
  org.eclipse.ocl.examples.debug.srclookup,
  org.eclipse.ocl.examples.debug.stepper
 Bundle-ActivationPolicy: lazy
-Import-Package: org.apache.log4j;version="1.2.15"
+Import-Package: org.apache.log4j;version="[1.2.15,2.0.0)"
 Bundle-Activator: org.eclipse.ocl.examples.debug.OCLDebugPlugin
