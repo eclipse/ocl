@@ -2,7 +2,8 @@
 <cs:cspecExtension xmlns:com="http://www.eclipse.org/buckminster/Common-1.0" xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0">
 	<cs:dependencies>
 		<cs:dependency name="org.eclipse.ocl.releng.buckminster" componentType="buckminster" />
-		<cs:dependency name="org.eclipse.ocl.all.tests" componentType="eclipse.feature" />
+		<cs:dependency name="org.eclipse.ocl.tests" componentType="eclipse.feature" />
+		<cs:dependency name="org.eclipse.ocl.examples.tests" componentType="eclipse.feature" />
 		<!-- Indirect Dependencies -->
 		<cs:dependency name="org.eclipse.rcp" componentType="eclipse.feature" />		
 		<cs:dependency name="org.eclipse.pde.core" componentType="osgi.bundle"/>

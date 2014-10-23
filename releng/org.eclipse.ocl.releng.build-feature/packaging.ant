@@ -93,7 +93,6 @@
 			<include name="artifacts.jar" />
 			<include name="content.jar" />
 			<include name="p2.index" />
-			<include name="features/org.eclipse.ocl.all.tests*/**" />
 			<include name="features/org.eclipse.ocl.examples.tests*/**" />
 			<include name="features/org.eclipse.ocl.tests*/**" />
 			<include name="plugins/org.eclipse.ocl.ecore.tests_*/**" />
