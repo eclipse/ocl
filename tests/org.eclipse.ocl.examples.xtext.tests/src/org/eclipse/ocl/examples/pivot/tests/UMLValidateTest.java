@@ -375,7 +375,7 @@ public class UMLValidateTest extends AbstractValidateTests
 		ocl.dispose();
 	}
 	
-	public void test_umlValidation_Bug447557() throws IOException {   // This is org.eclipse.ocl.doc/doc/models/1710-m1.uml
+	public void test_umlValidation_Bug447557() throws IOException {
 //		UML2Pivot.TYPE_EXTENSIONS.setState(true);
 //		resetRegistries();
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);

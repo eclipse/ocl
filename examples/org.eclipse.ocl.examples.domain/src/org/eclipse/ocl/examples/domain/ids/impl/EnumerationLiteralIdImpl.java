@@ -16,6 +16,7 @@ import org.eclipse.ocl.examples.domain.ids.EnumerationId;
 import org.eclipse.ocl.examples.domain.ids.EnumerationLiteralId;
 import org.eclipse.ocl.examples.domain.ids.IdVisitor;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
+import org.eclipse.ocl.examples.domain.values.OCLValue;
 
 public class EnumerationLiteralIdImpl extends UnscopedId implements EnumerationLiteralId
 {
@@ -41,5 +42,13 @@ public class EnumerationLiteralIdImpl extends UnscopedId implements EnumerationL
 
 	public @NonNull EnumerationId getParentId() {
 		return parentId;
+	}
+
+	public boolean oclEquals(@NonNull OCLValue thatValue) {
+		return equals(thatValue);
+	}
+
+	public int oclHashCode() {
+		return hashCode();
 	}
 }

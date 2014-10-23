@@ -11,11 +11,12 @@
 package org.eclipse.ocl.examples.domain.ids;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.values.OCLValue;
 
 /**
  * A EnumerationLiteralId provides a unique hierarchical identifier for an enumeration literal.
  */
-public interface EnumerationLiteralId extends ElementId
+public interface EnumerationLiteralId extends ElementId, OCLValue
 {
 	@NonNull String getName();
 	@NonNull EnumerationId getParentId();
