@@ -45,13 +45,15 @@
 	
 	<target name="install-wikitext">
 		<echo>Find wikitext tasks</echo>
-		<echo>echoproperties to "${user.dir}${file.separator}install-wikitext.properties"</echo>
-		<echoproperties destfile="${user.dir}${file.separator}install-wikitext.properties"/>
+		<!--echo>echoproperties to "${user.dir}${file.separator}install-wikitext.properties"</echo>
+		<echoproperties destfile="${user.dir}${file.separator}install-wikitext.properties"/-->
 		<taskdef resource="org/eclipse/mylyn/wikitext/core/ant/tasks.properties">
 			<classpath>
 				<fileset dir="${target.location}${file.separator}plugins">
+					<include name="com.google.guava*.jar"/>
 					<include name="org.eclipse.mylyn.wikitext.core*.jar"/>
 					<include name="org.eclipse.mylyn.wikitext.core.ant*.jar"/>
+					<include name="org.eclipse.mylyn.wikitext.textile.core*.jar"/>
 				</fileset>
 			</classpath>
 		</taskdef>
