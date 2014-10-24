@@ -44,16 +44,8 @@
 
 	
 	<target name="install-wikitext">
-		<taskdef resource="org/eclipse/mylyn/wikitext/core/ant/tasks.properties">
-			<classpath>
-				<!--fileset dir="${basedir}/lib/plugins">
-					<include name="org.eclipse.xtext.wikitext.core*.jar"/>
-				</fileset-->
-				<fileset dir="${wikitext.dir}">
-					<include name="org.eclipse.mylyn.wikitext.*core*.jar"/>
-				</fileset>
-			</classpath>
-		</taskdef>
+		<echoproperties/>
+		<taskdef resource="org/eclipse/mylyn/wikitext/core/ant/tasks.properties"/>
 	</target>
 	
 	<target name="assemble">
