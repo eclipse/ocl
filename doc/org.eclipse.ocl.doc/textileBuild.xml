@@ -44,6 +44,7 @@
 
 	
 	<target name="install-wikitext">
+		<echo>Find wikitext tasks on classpath "${java.class.path}"</echo>
 		<echoproperties/>
 		<taskdef resource="org/eclipse/mylyn/wikitext/core/ant/tasks.properties"/>
 	</target>

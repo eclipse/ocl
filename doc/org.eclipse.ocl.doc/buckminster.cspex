@@ -6,6 +6,9 @@
 	<dependencies>
         <dependency name="org.apache.xalan" componentType="osgi.bundle"/>
         <dependency name="org.apache.xml.serializer" componentType="osgi.bundle"/>
+		<dependency name="org.eclipse.mylyn.wikitext.core" componentType="osgi.bundle" />
+		<dependency name="org.eclipse.mylyn.wikitext.core.ant" componentType="osgi.bundle" />
+		<dependency name="org.eclipse.mylyn.wikitext.textile.core" componentType="osgi.bundle" />
     </dependencies>
 	<actions>
 		<public name="buckminster.prebind" actor="ant">
