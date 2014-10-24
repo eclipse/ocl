@@ -12,9 +12,20 @@
    <feature id="org.eclipse.ocl.examples.unified" version="0.0.0">
       <category name="mdt.ocl"/>
    </feature>
+   <feature id="org.eclipse.ocl.tests" version="0.0.0">
+      <category name="mdt.ocl.tests"/>
+   </feature>
+   <feature id="org.eclipse.ocl.examples.tests" version="0.0.0">
+      <category name="mdt.ocl.tests"/>
+   </feature>
    <category-def name="mdt.ocl" label="OCL${category.qualifier}">
       <description>
          Eclipse OCL${category.qualifier} features.
+      </description>
+   </category-def>
+   <category-def name="mdt.ocl.tests" label="OCL${category.qualifier} tests">
+      <description>
+         Eclipse OCL${category.qualifier} tests.
       </description>
    </category-def>
 </site>
