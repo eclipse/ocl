@@ -9,6 +9,8 @@
 		<cs:dependency name="org.eclipse.pde.core" componentType="osgi.bundle"/>
 		<cs:dependency name="org.eclipse.team.core" componentType="osgi.bundle" />
 		<cs:dependency name="org.apache.log4j" componentType="osgi.bundle" />
+		<cs:dependency name="org.eclipse.test" componentType="osgi.bundle" />
+		<cs:dependency name="org.eclipse.ant.optional.junit" componentType="osgi.bundle" />
 		<!-- We explicitly need to specify this to add the lpg sources into the target platform -->
 		<cs:dependency name="lpg.runtime.java.source" componentType="osgi.bundle" />
 		<!--
