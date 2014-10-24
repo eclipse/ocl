@@ -44,10 +44,17 @@
 
 	
 	<target name="install-wikitext">
-		<echo>Find wikitext tasks on classpath "${java.class.path}"</echo>
+		<echo>Find wikitext tasks</echo>
 		<echo>echoproperties to "${user.dir}${file.separator}install-wikitext.properties"</echo>
 		<echoproperties destfile="${user.dir}${file.separator}install-wikitext.properties"/>
-		<taskdef resource="org/eclipse/mylyn/wikitext/core/ant/tasks.properties"/>
+		<taskdef resource="org/eclipse/mylyn/wikitext/core/ant/tasks.properties">
+			<classpath>
+				<fileset dir="${target.location}${file.separator}plugins">
+					<include name="org.eclipse.mylyn.wikitext.core*.jar"/>
+					<include name="org.eclipse.mylyn.wikitext.core.ant*.jar"/>
+				</fileset>
+			</classpath>
+		</taskdef>
 	</target>
 	
 	<target name="assemble">
