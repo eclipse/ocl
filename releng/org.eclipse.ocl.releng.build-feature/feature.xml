@@ -19,12 +19,11 @@
          id="org.eclipse.ocl.master"
          version="0.0.0"/>
 
-   <!--includes
+   <plugin
          id="org.eclipse.ocl.tests"
-         version="0.0.0"/-->
-
-   <!--includes
-         id="org.eclipse.ocl.examples.tests"
-         version="0.0.0"/-->
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>
