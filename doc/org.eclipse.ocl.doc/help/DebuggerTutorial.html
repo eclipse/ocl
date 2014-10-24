@@ -1,0 +1,530 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Debugger tutorial</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="Tutorials.html" title="Tutorials">
+<link rel="prev" href="CodeGenerationTutorial.html" title="Code Generation tutorial">
+<link rel="next" href="ValidationTutorial.html" title="Validation tutorial">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Debugger tutorial</h1>
+<div class="section" title="Debugger tutorial">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="DebuggerTutorial"></a>Debugger tutorial</h2>
+</div>
+</div>
+</div>
+<p>This tutorial was written for Eclipse Luna: Eclipse 4.4, EMF 2.10, OCL 5.0.</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Some screenshots may be slightly out of date.</p>
+</li>
+</ul>
+</div>
+<p>In this tutorial we will continue the 
+				<a class="link" href="Tutorials.html#OCLinEcoreTutorial" title="OCLinEcore tutorial">OCLinEcore tutorial</a> and show how to use the 
+				<a class="link" href="Debugger.html" title="Debugger (new in Luna)">OCL debugger</a> to debug:
+			</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>constraints typed manually in the Console View</p>
+</li>
+<li class="listitem">
+<p>embedded OCLinEcore validation failures from the Validity View</p>
+</li>
+<li class="listitem">
+<p>Complete OCL validation failures from the Validity View</p>
+</li>
+</ul>
+</div>
+<div class="section" title="Load OCLinEcore Tutorial Example Project">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="LoadOCLinEcoreTutorialExampleProject2"></a>Load OCLinEcore Tutorial Example Project</h3>
+</div>
+</div>
+</div>
+<p>The material for the first two parts of this tutorial is available as part of the OCLinEcore Example project that you
+					may load by selecting 
+					<span class="bold"><strong>New</strong></span> then 
+					<span class="bold"><strong>Example...</strong></span> using the right button context menu of the Project Explorer. This
+					should give the 
+					<span class="bold"><strong>New Example</strong></span> dialog in which you can select the 
+					<span class="bold"><strong>OCL (OCL Constraint Language) Plugins</strong></span> and the 
+					<span class="bold"><strong>OCLinEcore Tutorial</strong></span>.
+				</p>
+<p>The material for the third parts of this tutorial is available as part of the CompleteOCL Example project that you
+					may load in a similar way.</p>
+</div>
+<div class="section" title="The OCL Debugger">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="TheOCLDebugger"></a>The OCL Debugger</h3>
+</div>
+</div>
+</div>
+<p>The OCL debugger is a customization of the Eclipse debugger framework, so most of its functionality should present few surprises to those familiar with the Java debugger.</p>
+<p>There is:</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>a Stack View that shows the current line number in nested Evaluation Environments</p>
+</li>
+<li class="listitem">
+<p>a Variables View in which local and intermediate variables can be re-examined</p>
+</li>
+<li class="listitem">
+<p>an Editor in which the source is highlighted to show the next AST node to be evaluated</p>
+</li>
+<li class="listitem">
+<p>an Outline in which the source is shown in tree form</p>
+</li>
+<li class="listitem">
+<p>a Breakpoints View in which breakpoints can be controlled</p>
+</li>
+</ul>
+</div>
+<p>We will demonstrate some of these facilities by debugging a simple example.</p>
+</div>
+<div class="section" title="Very Simple Debug session">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="VerySimpleDebugsession"></a>Very Simple Debug session</h3>
+</div>
+</div>
+</div>
+<p>We will debug the execution of the OCL expression 
+					<span class="bold"><strong>self.name</strong></span> on an EPackage.
+				</p>
+<div class="section" title="Starting the debugger">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Startingthedebugger"></a>Starting the debugger</h4>
+</div>
+</div>
+</div>
+<p>Double click on 
+						<span class="bold"><strong>model/Tutorial.ecore</strong></span> to open the model and expand the top entry to show the EPackage.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/4500-simple-debugger-model.png"></div>
+<p>
+					
+</p>
+<p>If the model opens with another editor, close it, and open with the Sample Ecore Editor by selecting 
+						<span class="bold"><strong>model/Tutorial.ecore</strong></span> and then 
+						<span class="bold"><strong>Open With-&gt;Sample Ecore Model Editor</strong></span> from the context menu.
+					</p>
+<p>Select the 
+						<span class="bold"><strong>tutorial</strong></span> EPackage and invoke 
+						<span class="bold"><strong>OCL-&gt;Show Xtext OCL Console</strong></span> from the context menu. (Wait a second or two.)
+					</p>
+<p>At the bottom of the Console window type 
+						<span class="bold"><strong>self.name</strong></span>, then hit the Enter key. Then hit the Page Up key to redisplay your entry.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/4500-simple-debugger-input.png"></div>
+<p>
+					
+</p>
+<p>The Console runs an evaluation automatically after hitting Enter and shows the evaluation result: 
+						<span class="bold"><strong>'tutorial'</strong></span>.
+					</p>
+<p>The Console View provides the two pieces of information necessary to run the OCL debugger:</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>an EObject to be used as OCL&rsquo;s 
+								<span class="bold"><strong>self</strong></span>; the Console shows the current selection just below its tool bar
+							</p>
+</li>
+<li class="listitem">
+<p>an OCL expression to execute</p>
+</li>
+</ul>
+</div>
+<p>Start the debugger by clicking the debug icon in the Console View tool bar. (Wait a second or two.)</p>
+<p>The debugger should appear automatically. If it doesn&rsquo;t, your start-debugger-automatically-on-resume preference has inhibited it. You can open the Debug perspective manually by invoking 
+						<span class="bold"><strong>Window-&gt;Open Perspective-&gt;Debug</strong></span> from the Eclipse menu bar.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/4500-simple-debugger-image.png"></div>
+<p>
+					
+</p>
+<p>A Complete OCL document is created automatically to encapsulate the OCL expression inside as an additional operation for the type of the self object. This document is shown in the editor; it is readonly. 
+						<span class="bold"><strong>self</strong></span> is highlighted since the next evaluation to perform is to evaluate the VariableExp AST node that performs the self access.
+					</p>
+<p>The stack display shows the context as line 5 of oclDebugExpression() in the synthesized Complete OCL document.</p>
+<p>The Variables View shows two variables.</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+								
+<span class="bold"><strong>self</strong></span> is the OCL self object
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<span class="bold"><strong>$pc</strong></span> is a synthetic variable representing the current Program Counter
+							</p>
+</li>
+</ul>
+</div>
+<p>The Outline View currently displays the OCL Concrete Syntax tree; you may choose to close this view. In a future release it may change to support breakpoints and the Abstract Syntax Tree.</p>
+</div>
+<div class="section" title="Exploring Variables">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="ExploringVariables"></a>Exploring Variables</h4>
+</div>
+</div>
+</div>
+<p>The Variables View provides an ability to drill down arbitrarily to examine the data available to your program.</p>
+<p>The left column of the display presents the name of a variable and may be expanded to navigate to parts of the data referenced by the variable. Part name displays are currently shown 0-based, rather than 1-based as in OCL. </p>
+<p>The right column variously displays the type of parts that can be expanded and the values of those that cannot. An OCL syntax is used so Strings appear in single quotes and Collections use names such as OrderedSet. </p>
+<p>The bottom line shows a textual rendering of the selected variable. For many types of data a helpful rendering is available. For others the fallback is to the default Java toString() functionality. </p>
+<p>Click on the expand/collapse icon to the left of 
+						<span class="bold"><strong>$pc</strong></span> to expand it and allow inspection of the OCL AST. A VariableExp is next to execute and its 
+						<span class="bold"><strong>$pc.referredVariable</strong></span> or 
+						<span class="bold"><strong>$pc.type</strong></span> may be examined to see more program detail.
+					</p>
+<p>Click on the expand/collapse icon to the left of 
+						<span class="bold"><strong>self</strong></span>, which is an 
+						<span class="bold"><strong>ecore::EPackage</strong></span>, to expand it and shows its fields such as 
+						<span class="bold"><strong>name</strong></span> which is 
+						<span class="bold"><strong>'tutorial'</strong></span>.
+					</p>
+<p>Click on the expand/collapse icon to the left of 
+						<span class="bold"><strong>self.eClassifiers</strong></span> to show the four classifiers.
+					</p>
+<p>Select 
+						<span class="bold"><strong>self.eClassifiers[ 1 ]</strong></span> so that the bottom line display shows that the second is named Book. 
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/4500-simple-debugger-image.png"></div>
+<p>
+					
+</p>
+<p>The Variables View provides more insight that the Sample Ecore Properties View, so you may find it convenient to use a trivial OCL debugger session using 
+						<span class="bold"><strong>self</strong></span> as the OCL expression to browse arbitrary model data.
+					</p>
+</div>
+<div class="section" title="Stepping Execution">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="SteppingExecution"></a>Stepping Execution</h4>
+</div>
+</div>
+</div>
+<p>Click F5 or the 
+						<span class="bold"><strong>Step Into</strong></span> icon to advance execution by one AST node evaluation.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/4500-simple-debugger-step1.png"></div>
+<p>
+					
+</p>
+<p>The editor now highlights 
+						<span class="bold"><strong>.name</strong></span> and 
+						<span class="bold"><strong>$pc</strong></span> shows a PropertCallyExp as the next execution. 
+						<span class="bold"><strong>$pc.referredVariable</strong></span> shows that it is 
+						<span class="bold"><strong>ecore::ENamedElement:name</strong></span>.
+					</p>
+<p>An additional synthetic variable 
+						<span class="bold"><strong>$source</strong></span> shows the result of the 
+						<span class="bold"><strong>self</strong></span> evaluation that forms the source term of the PropertyCallExp. As expected this is the same as 
+						<span class="bold"><strong>self</strong></span>.
+					</p>
+<p>Click F5 or the 
+						<span class="bold"><strong>Step Into</strong></span> icon again to advance execution by a further AST node evaluation.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/4500-simple-debugger-step2.png"></div>
+<p>
+					
+</p>
+<p>The whole of 
+						<span class="bold"><strong>self.name</strong></span> is highlighted and 
+						<span class="bold"><strong>$pc</strong></span> shows that the overall ExpressionInOCL is about to be evaluated. The synthetic 
+						<span class="bold"><strong>$bodyExpression</strong></span> for its input shows that 
+						<span class="bold"><strong>self.name</strong></span> evaluated to 
+						<span class="bold"><strong>'tutorial'</strong></span>.
+					</p>
+</div>
+</div>
+<div class="section" title="Debugging a Validation failure">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="DebuggingaValidationfailure"></a>Debugging a Validation failure</h3>
+</div>
+</div>
+</div>
+<p>OCL is useful for elaborating models with additional well-formedness rules, but when these fail it can be difficult to understand why a failure occurred, particularly if the bug is in the OCL rather than the model. We will now show how the OCL debugger can be used to debug a validation failure.</p>
+<p>Double click on 
+					<span class="bold"><strong>model/Tutorial.xmi</strong></span> to open the model, and expand the top two entries to show some detail.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4500-validation-debugger-model.png"></div>
+<p>
+				
+</p>
+<p>If the model opens with another editor, close it, and open with the Sample Reflective Ecore Model Editor by selecting 
+					<span class="bold"><strong>model/Tutorial.xmi</strong></span> and then 
+					<span class="bold"><strong>Open With-&gt;Sample Reflective Ecore Model Editor</strong></span> from the context menu.
+				</p>
+<p>Select the first line and invoke 
+					<span class="bold"><strong>Validate</strong></span> from the context menu. (Wait a second.) Optionally click on Details.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4500-validation-debugger-errors.png"></div>
+<p>
+				
+</p>
+<p>These error messages provide insufficient precision to really understand the problems, so click 
+					<span class="bold"><strong>OK</strong></span> to dismiss the popup then select 
+					<span class="bold"><strong>Book b2</strong></span>, which has an error, and invoke 
+					<span class="bold"><strong>OCL-&gt;Show Validity View</strong></span> to provide more insight.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4500-validation-debugger-vv1.png"></div>
+<p>
+				
+</p>
+<p>Click the 
+					<span class="bold"><strong>Pin</strong></span> icon in the Validity View tool bar to avoid thrashing whenever you change mouse selection.
+				</p>
+<p>Uncheck the top 
+					<span class="bold"><strong>ecore</strong></span> line in the Metamodel Constraints since we are not interested in the successful Ecore metamodel constraints just those in the 
+					<span class="bold"><strong>tutorial</strong></span> metamodel.
+				</p>
+<p>Similarly uncheck the bottom line in the Model Elements since we are not interested in the successful metamodel, just those in the tutorial model.</p>
+<p>Click on the + tool bar icon so that the detail is shown.</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4500-validation-debugger-vv2.png"></div>
+<p>
+				
+</p>
+<p>We will now debug the failure of the 
+					<span class="bold"><strong>tutorial::Book::SufficientCopies</strong></span> on the 
+					<span class="bold"><strong>Library lib::Book b2</strong></span> model element. Select either of the leaf warnings, that is either the 
+					<span class="bold"><strong>tutorial::Book::SufficientCopies</strong></span> child of 
+					<span class="bold"><strong>Book b2</strong></span> in the left hand pane, or the 
+					<span class="bold"><strong>Library lib::Book b2</strong></span> child of 
+					<span class="bold"><strong>SufficientCopies</strong></span> in the right hand pane, and invoke 
+					<span class="bold"><strong>Debug Single Enabled Selection</strong></span>. Wait a second or two and the debugger starts. If it doesn&rsquo;t, open the Debugger perspective manually.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4500-validation-debugger-image.png"></div>
+<p>
+				
+</p>
+<p>The debugger shows 
+					<span class="bold"><strong>library.loans-&gt;select((book = self))-&gt;size() &lt;= copies</strong></span> with 
+					<span class="bold"><strong>library</strong></span> highlighted as the next execution. The 
+					<span class="bold"><strong>library</strong></span> is a shorthand for 
+					<span class="bold"><strong>self.library</strong></span> so 
+					<span class="bold"><strong>$pc</strong></span> in the Variables View shows a VariableExp for self as the next instruction.
+				</p>
+<p>Click F5 or 
+					<span class="bold"><strong>Step Into</strong></span> and 
+					<span class="bold"><strong>$pc</strong></span> advances but the editor highlight is unchanged since there is insufficient source detail to distinguish the original 
+					<span class="bold"><strong>self</strong></span> from the subsequent 
+					<span class="bold"><strong>.library</strong></span>.
+				</p>
+<p>Click F5 or 
+					<span class="bold"><strong>Step Into</strong></span> a few more times and the highlight will show the iteration within the 
+					<span class="bold"><strong>select</strong></span> body, allowing each state of each element to be examined to determine why the exhibited behavior occurs.
+				</p>
+<p>Continue to Click F5 or 
+					<span class="bold"><strong>Step Into</strong></span> until 
+					<span class="bold"><strong>-&gt;size()</strong></span> is highlighted. 
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4500-validation-debugger-step1.png"></div>
+<p>
+				
+</p>
+<p>Expanding 
+					<span class="bold"><strong>$source</strong></span> in the Variables View shows the Set of three selected Loans each of which has the same book as self.
+				</p>Click F5 or 
+				<span class="bold"><strong>Step Into</strong></span> three more times until 
+				<span class="bold"><strong>&lt;=</strong></span> is highlighted. 
+				<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4500-validation-debugger-step2.png"></div>
+<p>
+				
+</p>
+<p>We can now see that the 
+					<span class="bold"><strong>$source</strong></span>, left hand side, of the comparison is 3 and the 
+					<span class="bold"><strong>$argument[ 0 ]</strong></span>, right hand side is 2. A further step and we see the result as 
+					<span class="bold"><strong>$bodyExpression</strong></span> demonstrating why the validation failed.
+				</p>
+</div>
+<div class="section" title="Debugging Complete OCL validation failure">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="DebuggingCompleteOCLvalidationfailure"></a>Debugging Complete OCL validation failure</h3>
+</div>
+</div>
+</div>
+<p>The two preceding examples displayed their source text in a synthesized Complete OCL document.</p>
+<p>In this example we debug a failure fir which the OCL is already available in a Complete OCL document.</p>
+<p>Open the 
+					<span class="bold"><strong>model/EcoreTestFile.ecore</strong></span> from the Complete OCL project using the Sample Ecore Editor.
+				</p>
+<p>Within the Ecore editor use 
+					<span class="bold"><strong>OCL-&gt;Load Document</strong></span> and then drag and drop 
+					<span class="bold"><strong>model/ExtraEcoreValidation.ocl</strong></span> and click 
+					<span class="bold"><strong>OK</strong></span> to dismiss the pop up.
+				</p>
+<p>Again within the Ecore editor use 
+					<span class="bold"><strong>OCL-&gt;Show Validity View</strong></span> to see the constraint/element pairs. 
+					<span class="italic">If the Validity View was already visible, close it and re-show it since in Luna addition of a Complete OCL document fails to refresh correctly.</span>
+				
+</p>
+<p>In the Validity View, uncheck the top two MetaModel Constraint contributions retaining just the ExtraEcoreValidation.ocl contributions. Click the plus icon in the Metamodel Constraint tool bar to expand all entries.</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4500-complete-ocl-debugger-model.png"></div>
+<p>
+				
+</p>
+<p>Select the bottom right BadClass model element below the DerivationIsVolatile constraint and invoke 
+					<span class="bold"><strong>Debug Single Enabled Selection</strong></span>. (wait a second or two). The debugger should start, if not open the Debugger perspective manually.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4500-complete-ocl-debugger-image.png"></div>
+<p>
+				
+</p>
+<p>Both 
+					<span class="bold"><strong>asError</strong></span> and 
+					<span class="bold"><strong>hasDerivation</strong></span> are OCL-defined so as you step you successively navigate into the defined property and operation.
+				</p>
+</div>
+<div class="section" title="Console experiments">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Consoleexperiments"></a>Console experiments</h3>
+</div>
+</div>
+</div>
+<p>While debugging, the original OCL expression from the Console is presented in a Complete OCL editor. This editor is readonly so you cannot edit it to correct mistakes or to experiment.</p>
+<p>You may however safely use the OCL Console to perform further experiments. Select a suitable self object in the Variable View and cut and paste to prepare your experimental OCL expression.</p>
+<p>
+					
+<span class="italic">In Luna, Console selections cannot be Collections so you are unfortunately restricted to single objects.</span>
+				
+</p>
+</div>
+<div class="section" title="Longer range stepping">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Longerrangestepping"></a>Longer range stepping</h3>
+</div>
+</div>
+</div>
+<p>In the examples above we have only used F5 or 
+					<span class="bold"><strong>Step Into</strong></span>.
+				</p>
+<p>In principle the tedious stepping through an iteration can be avoided by F7 or 
+					<span class="bold"><strong>Step Return</strong></span> which should terminate on the popped evaluation environment at the end of the iteration. 
+					<span class="italic">This facility has not been adequately tested in Luna</span>.
+				</p>
+<p>If you arrange for some line breaks in your source text you can use F6 or 
+					<span class="bold"><strong>Step Next</strong></span> to proceed until the line number advances. 
+					<span class="italic">This facility has not been adequately tested in Luna</span>. Line breaks can be added in the OCL Console using Shift and Enter together.
+				</p>
+</div>
+<div class="section" title="Break points">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Breakpoints"></a>Break points</h3>
+</div>
+</div>
+</div>
+<p>When debugging OCL from Complete OCL documents, the original document is a suitable source for the debugger and so line breakpoints can be set. 
+					<span class="italic">This facility has not been adequately tested in Luna</span>
+				
+</p>
+</div>
+</div>
+</body>
+</html>

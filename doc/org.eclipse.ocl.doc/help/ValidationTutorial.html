@@ -1,0 +1,322 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Validation tutorial</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="Tutorials.html" title="Tutorials">
+<link rel="prev" href="DebuggerTutorial.html" title="Debugger tutorial">
+<link rel="next" href="OCLInterpreterTutorial.html" title="Working with Classic OCL">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Validation tutorial</h1>
+<div class="section" title="Validation tutorial">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="ValidationTutorial"></a>Validation tutorial</h2>
+</div>
+</div>
+</div>
+<p>This tutorial was written for Eclipse Luna: Eclipse 4.4, EMF 2.10, OCL 5.0.</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Some screenshots may be slightly out of date.</p>
+</li>
+</ul>
+</div>
+<p>The standard EMF validation facilities are very useful for avoiding model errors and work well when the models are correct or at least nearly correct. In this tutorial we show how the 
+				<a class="link" href="ValidityView.html" title="Validity View (new in Luna)">Validity View</a> can provide greater insight into what works and what doesn&rsquo;t.
+			</p>
+<p>We will show how to</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>identify all constraints applicable to a particular model element</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="circle">
+<li class="listitem">
+<p>the constraint text</p>
+</li>
+<li class="listitem">
+<p>the validation status</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="listitem">
+<p>identify all model elements constrained by a particular constraint</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="circle">
+<li class="listitem">
+<p>the constraint text</p>
+</li>
+<li class="listitem">
+<p>the validation status</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="listitem">
+<p>filter the displayed model elements and constraints</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="circle">
+<li class="listitem">
+<p>by name</p>
+</li>
+<li class="listitem">
+<p>by status</p>
+</li>
+<li class="listitem">
+<p>by model</p>
+</li>
+<li class="listitem">
+<p>by metamodel</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="listitem">
+<p>launch an OCL debugger for a particular model element and constraint</p>
+</li>
+</ul>
+</div>
+<div class="section" title="Load Complete OCL Tutorial Example Project">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="LoadCompleteOCLTutorialExampleProject2"></a>Load Complete OCL Tutorial Example Project</h3>
+</div>
+</div>
+</div>
+<p>The material for this tutorial is available as part of the Complete OCL Example project that you
+					may load by selecting 
+					<span class="bold"><strong>New</strong></span> then 
+					<span class="bold"><strong>Example...</strong></span> using the right button context menu of the Project Explorer. This
+					should give the 
+					<span class="bold"><strong>New Example</strong></span> dialog in which you can select the OCL (OCL Constraint Language) Plugins and the Complete OCL Tutorial.
+				</p>
+</div>
+<div class="section" title="Load Test Model">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="LoadTestModel"></a>Load Test Model</h3>
+</div>
+</div>
+</div>
+<p>Double click on 
+					<span class="bold"><strong>model/XMITestFile.xmi</strong></span> to open the model and expand the top entry to show the EPackage.
+				</p>
+<p>If the model opens with another editor, close it, and open with the Sample Reflective Ecore Editor by selecting 
+					<span class="bold"><strong>model/Tutorial.ecore</strong></span> and then 
+					<span class="bold"><strong>Open With-&gt;Sample Reflective Ecore Model Editor</strong></span> from the context menu.
+				</p>
+<p>Within the editor invoke 
+					<span class="bold"><strong>OCL-&gt;Load Document</strong></span> to load 
+					<span class="bold"><strong>model/ExtraEcoreValidation.ocl</strong></span> and again to load 
+					<span class="bold"><strong>model/ExtraXMIValidation.ocl</strong></span>
+				
+</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4600-validation-view-model.png"></div>
+<p>
+				
+</p>
+<p>Your source ResourceSet now contains four resources</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>the XMITestFile.xmi model</p>
+</li>
+<li class="listitem">
+<p>the EcoreTestFile.ecore metamodel</p>
+</li>
+<li class="listitem">
+<p>the ExtraXMIValidation.ocl additional model validation rules</p>
+</li>
+<li class="listitem">
+<p>the ExtraEcoreValidation.ocl additional metamodel validation rules</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="EMF Validation">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="EMFValidation"></a>EMF Validation</h3>
+</div>
+</div>
+</div>
+<p>Select the 
+					<span class="bold"><strong>XMITestFile.xmi</strong></span> and invoke 
+					<span class="bold"><strong>Validate</strong></span> from the context menu. Click 
+					<span class="bold"><strong>OK</strong></span> to dismiss.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4600-validation-view-model-errors.png"></div>
+<p>
+				
+</p>
+<p>Select the 
+					<span class="bold"><strong>EcoreTestFile.ecore</strong></span> and invoke 
+					<span class="bold"><strong>Validate</strong></span> from the context menu. Click 
+					<span class="bold"><strong>OK</strong></span> to dismiss.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4600-validation-view-metamodel-errors.png"></div>
+<p>
+				
+</p>
+<p>The above results clearly show problems, but not necessarily all the problems and do not show what was actually done. Sometimes validation of a model element terminates prematurely once an error has been reported. On other occasions some constraints are not run and so no corresponding errors are detected.</p>
+<p>The above limitations are not a problem, when everything is working well, but when you have a misunderstanding as to what is being validated, a bad day can get very much worse.</p>
+<div class="section" title="Validaty View Validation">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="ValidatyViewValidation"></a>Validaty View Validation</h4>
+</div>
+</div>
+</div>
+<p>Select 
+						<span class="bold"><strong>OCL-&gt;Show Validity View</strong></span> from the editor context menu.
+					</p>
+<p>The left hand pane shows the root model elements in a similar way to the Sample Reflective Ecore Editor.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/4600-validation-view-model-elements.png"></div>
+<p>
+					
+</p>
+<p>The right hand pane shows the root metamodel constraint sources.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/4600-validation-view-metamodel-constraints.png"></div>
+<p>
+					
+</p>
+<p>Each may be expanded using the control at the start of each line or the more general controls in the tool bars.</p>
+<p>Important tip: click the pin icon in the Validity Model tool bar to stop the Validity View chasing your mouse selections.</p>
+<p>You may now obtain the more detailed validation results by clicking on the green Run icon in the main Validation View tool bar.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/4600-validation-view-root-results.png"></div>
+<p>
+					
+</p>
+<p>Use the hover text to see how many validations have been rounded up into each root display.</p>
+</div>
+<div class="section" title="Filtering by Root Models">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="FilteringbyRootModels"></a>Filtering by Root Models</h4>
+</div>
+</div>
+</div>
+<p>There are 36 results in total, which is more than we want to look at, even for this very small model.</p>
+<p>The 
+						<span class="bold"><strong>ecore in http://www.eclipse.org/emf/2002/Ecore</strong></span> root constraint is contributing 30 successes without problem, so we ignore it by unchecking the enable checkbox preceding it.
+					</p>
+<p>The 
+						<span class="bold"><strong>basecs in http://www.eclipse.org/ocl/3.1.0/BaseCST</strong></span> root constraint similarly contributing 2 successes without problem, so we ignore it as well by unchecking the enable checkbox preceding it.
+					</p>
+<p>The model is so simple that we can now expand it completely. Click on the + expand icons.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/4600-validation-view-some-results.png"></div>
+<p>
+					
+</p>
+<p>You can hover over constraints to see the details and invoke 
+						<span class="bold"><strong>Show In Editor</strong></span> to navigate to them. 
+					</p>
+</div>
+<div class="section" title="Filtering by Status">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="FilteringbyStatus"></a>Filtering by Status</h4>
+</div>
+</div>
+</div>
+<p>The many successes are often of limited interest, so we may concentrate on Errors by invoking 
+						<span class="bold"><strong>Show all Errors</strong></span> from the Filtering pull down towards the right of the main Validation View tool bar.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/4600-validation-view-error-results.png"></div>
+<p>
+					
+</p>
+<p>Having found an error of interest we can see it in context. Select the error, remove the 
+						<span class="bold"><strong>Show all Errors</strong></span> filtering, and enable the view of all constraints by clicking the tick icon in the Model Constraint pane tool bar.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="cimages/4600-validation-view-results-context.png"></div>
+<p>
+					
+</p>
+<p>This shows the error, two warnings and seven successes.</p>
+<p>Double clicking on the erroneous child constraint makes the constraint visible in the right hand pane, showing that the constraint is only applied to this one model element.</p>
+</div>
+<div class="section" title="Debugging constraints">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Debuggingconstraints"></a>Debugging constraints</h4>
+</div>
+</div>
+</div>
+<p>Maybe it&rsquo;s time for some debugging. Select the leaf constraint below a model element, or the leaf element below a constraint and invoke 
+						<span class="bold"><strong>Debug Single Enabled Selection</strong></span> to start the OCL debugger to step through the problematic constraint on the problematic model element. (Select the debugger perspective explicitly if it doesn&rsquo;t open automatically.)
+					</p>
+<p>Use of the OCL debugger is described in the 
+						<a class="link" href="DebuggerTutorial.html" title="Debugger tutorial">Debugger Tutorial</a>.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/4600-validation-view-debugger.png"></div>
+<p>
+					
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>

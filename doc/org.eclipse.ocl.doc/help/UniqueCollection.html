@@ -1,0 +1,97 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>UniqueCollection(T)</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="StandardLibrary.html" title="The OCL Standard Library">
+<link rel="prev" href="Type.html" title="Type">
+<link rel="next" href="UnlimitedNatural.html" title="UnlimitedNatural">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">
+				
+					UniqueCollection(T)
+				
+			</h1>
+<div class="section" title="UniqueCollection(T)">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="UniqueCollection"></a>
+				<span class="bold"><strong>
+					<code class="code">UniqueCollection(T)</code>
+				</strong></span>
+			
+</h2>
+</div>
+</div>
+</div>
+<p>The UniqueCollection type provides the shared functionality of the OrderedSet and Set
+				collections for which the elements are unique.
+				The common supertype of UniqueCollection is Collection.</p>
+<p>conformsTo 
+				<a class="link" href="Collection.html" title="Collection(T)">
+					<code class="code">Collection(T)</code>
+				</a>
+			
+</p>
+<p>
+				
+<span class="bold"><strong>Operations</strong></span>
+			
+</p>
+<p>
+				
+<code class="code">-(s : UniqueCollection(OclAny)) : UniqueCollection(T)</code>
+				precedence: 
+				<code class="code">ADDITIVE</code>
+			
+</p>
+<p>The elements of 
+				<code class="code">self</code>, which are not in s.
+			</p>
+<p>
+				
+<code class="code">intersection(c : Collection(T)) : Set(T)</code>
+			
+</p>
+<p>The intersection of 
+				<code class="code">self</code> and c (i.e., the set of all elements that are in both 
+				<code class="code">self</code> and c).
+			</p>
+<p>
+				
+<code class="code">symmetricDifference(s : UniqueCollection(OclAny)) : Set(T)</code>
+			
+</p>
+<p>The set containing all the elements that are in 
+				<code class="code">self</code> or s, but not in both.
+			</p>
+<p>
+				
+<code class="code">union(s : UniqueCollection(T)) : Set(T)</code>
+			
+</p>
+<p>The set consisting of all elements in 
+				<code class="code">self</code> and all elements in s.
+			</p>
+<p>
+				
+<span class="bold"><strong>Iterations</strong></span>
+			
+</p>
+<p>
+				
+<code class="code">sortedBy(i : T[?] | lambda : Lambda T() : OclAny) : OrderedSet(T)</code>
+			
+</p>
+<p>Results in the ordered set containing all elements of the source collection.
+				The element for which body has the lowest value comes first, and so on.
+				The type of the body expression must have the &lt; operation defined.
+				The &lt; operation must return a Boolean value and must be transitive (i.e., if a &lt; b and b &lt; c, then a &lt; c).</p>
+</div>
+</body>
+</html>

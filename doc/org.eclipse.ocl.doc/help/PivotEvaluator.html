@@ -1,0 +1,274 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>The Pivot Evaluator</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="PivotProgrammersGuide.html" title="Unified or Pivot Programmers Guide">
+<link rel="prev" href="PivotProgrammersGuide.html" title="Unified or Pivot Programmers Guide">
+<link rel="next" href="PivotStandalone.html" title="Pivot Standalone Configuration">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">The Pivot Evaluator</h1>
+<div class="section" title="The Pivot Evaluator">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="PivotEvaluator"></a>The Pivot Evaluator</h2>
+</div>
+</div>
+</div>
+<p>The Pivot evaluator is a complete reimplementation of the classic evaluator to exploit experience and the Pivot metamodel</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>numeric growth beyond 32/64 bits is accommodated</p>
+</li>
+<li class="listitem">
+<p>equal numbers are equal regardless of type</p>
+</li>
+<li class="listitem">
+<p>templated types are supported</p>
+</li>
+<li class="listitem">
+<p>library operations are modeled and extensible</p>
+</li>
+<li class="listitem">
+<p>oclType() returns a Metaclass(OclSelf) offering full reflection without loss of static typing</p>
+</li>
+<li class="listitem">
+<p>optimised virtual function dispatch tables</p>
+</li>
+<li class="listitem">
+<p>code generation to Java</p>
+</li>
+</ul>
+</div>
+<p>The APIs of the two evaluators are very similar since Ecore compatibility is very important. For basic OCL evaluation, users should not notice any functional difference between the two evaluators. The Pivot evaluator is generally between 2 and 5 times faster as well as being more accurate. The code generated evaluation may be a further 20 times faster.</p>
+<div class="section" title="The Evolving Pivot Value System">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="PivotValue-History"></a>The Evolving Pivot Value System</h3>
+</div>
+</div>
+</div>
+<p>The classic evaluator uses Ecore and Java library representations such as EObject, Integer, String and Set directly for evaluation. This avoids conversion costs but incurs OCL accuracy challenges for numeric equality and growth.</p>
+<p>The Juno release of the Pivot evaluator use polymorphic 
+					<code class="code">Value</code> representations such as EObjectValue, IntegerValue, StringValue and SetValue. This avoids the OCL accuracy difficulties but requires wrapper objects and incurs conversion costs wherever a compatible Ecore API is in use.
+				</p>
+<p>The IntegerValue and RealValue classes avoid the equivalence and accuracy problems of Integer and Double by implementing Object.equals(Object) with OCL semantics.</p>
+<p>The costs of the polymorphic Boolean, String and EObject wrappers became apparent when testing the code generator and so the Kepler and Luna releases use a hybrid representation. Unboxed values (the natural Ecore and Java representation) are used wherever OCL and Java have compatible semantics, that is for Boolean, String, null, invalid/exception and EObjects that are not Types. Boxed polymorphic value representations are used wherever OCL and Java semantics differ, that is for IntegerValue, RealValue, CollectionValue, TupleValue and TypeValue. This avoids unnecessary conversion costs, but requires many instanceof tests to compensate for the lack of Value polymorphism. When generating code, static analysis can often eliminate many of the instanceof cases and so the hybrid representation is faster.</p>
+</div>
+<div class="section" title="The Pivot Value System">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="PivotValues"></a>The Pivot Value System</h3>
+</div>
+</div>
+</div>
+<p>Every value has a unique type identity supervised by the 
+					<code class="code">IdManager</code> class. This unique identity can be shared by multiple OCL applications that may have distinct type systems as a result of Complete OCL complements.
+				</p>
+<p>Every value has a type that is determined from its type identity by a type-system-specific 
+					<code class="code">IdResolver</code> instance, which also supports conversion between boxed and unboxed value representations.
+				</p>
+<div class="section" title="Value Conversions">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="PivotValueConversions"></a>Value Conversions</h4>
+</div>
+</div>
+</div>
+<p>The values are managed by a 
+						<code class="code">ValueFactory</code> which provides many utility methods such as 
+						<code class="code">ValueFactory.valueOf(Object)</code> for creating a 
+						<code class="code">Value</code> from a naked Java object. The reverse conversion from a value to a naked Java object may be be performed by 
+						<code class="code">Value.asObject()</code> with
+						methods in derived value classes providing stronger type returns.
+					</p>
+</div>
+<div class="section" title="Polymorphic Integers">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="PivotIntegers"></a>Polymorphic Integers</h4>
+</div>
+</div>
+</div>
+<p>The 
+						<code class="code">IntegerValue</code> interface has a family of IntIntegerValueImpl, LongIntegerValueImpl and BigIntegerValueImpl realizations that use Java types internally but support numeric growth where necessary without imposing the overheads of BigInteger on the vast majority of mundane usages. The wrapping of 
+						<code class="code">int</code> in 
+						<code class="code">IntegerIntValueImpl</code> is very comparable to the wrapping of 
+						<code class="code">int</code> in 
+						<code class="code">java.lang.Integer</code> so there is little performance or representation cost.
+					</p>
+<p>This enables the Pivot evaluator to handle unlimited integers as specified by the OMG OCL specification.</p>
+<div class="blockquote">
+<blockquote class="blockquote">
+<p>
+							Prior to the Juno release the handling of greater than 32 bit integers in the classic evaluator was suspect. The Juno release enhances support to allow for 64 bit integers but makes no provision for greater than 64 bit evaluations.</p>
+</blockquote>
+</div>
+<p></p>
+</div>
+<div class="section" title="Polymorphic Collections">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="PivotCollections"></a>Polymorphic Collections</h4>
+</div>
+</div>
+</div>
+<p>The 
+						<code class="code">CollectionValue</code> interface has multiple implementations for Bag, OrderedSet, Sequence and Set with implementations that observe OMG OCL semantics.
+					</p>
+<div class="blockquote">
+<blockquote class="blockquote">
+<p>
+							The classic implementation uses Java collections directly, which unfortunately means that the Java semantics for equality is used. Consequently the classic evaluator incorrectly evaluates 
+							<code class="code">Set{1,1.0}-&gt;size()</code> as 
+							<code class="code">2</code>.
+						</p>
+</blockquote>
+</div>
+<p></p>
+<p>Using a distinct hierarchy of collection classes opens up opportunities for smart operation, such as in-place update for collections that are rendered redundant by a calculation.</p>
+<div class="blockquote">
+<blockquote class="blockquote">
+<p>
+							The classic implementation creates a new collection at every opportunity.</p>
+</blockquote>
+</div>
+<p></p>
+</div>
+<div class="section" title="Polymorphic Objects">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="PivotObjects"></a>Polymorphic Objects</h4>
+</div>
+</div>
+</div>
+<p>The 
+						<code class="code">ObjectValue</code> interface has an implementation for EObject and further implementations for more specialized objects such as types.
+					</p>
+<p>The Pivot evaluator can be used on alternate data models by providing an alternate 
+						<code class="code">ObjectValue</code> to wrap
+						an alternative form of data object.
+					</p>
+<div class="blockquote">
+<blockquote class="blockquote">
+<p>
+							The classic implementation uses EObject directly, which makes use of non-EObject data models rather hard.</p>
+</blockquote>
+</div>
+<p></p>
+</div>
+</div>
+<div class="section" title="The Pivot Evaluator Type System">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="ThePivotEvaluatorTypeSystem"></a>The Pivot Evaluator Type System</h3>
+</div>
+</div>
+</div>
+<p>The Pivot Evaluator uses a very lightweight type system so that alternate implementations can be used.</p>
+<p>For compiled evaluation, a dispatch-table based implementation is used.</p>
+<p>For OCL compilation, a UML-aligned representation of the combined UML, OCL, library and user type systems is used.</p>
+<div class="blockquote">
+<blockquote class="blockquote">
+<p>
+						The classic implementation uses either UML or Ecore meta-models directly, with Ecore as the meta-meta-model. Consequently there was no support for oclType(). Reflection was available in the non-OMF Ecore domain, so
+						the meta-meta-class is &ldquo;EClass&rdquo; rather than &ldquo;Class&rdquo;.</p>
+</blockquote>
+</div>
+<p></p>
+</div>
+<div class="section" title="The Pivot Evaluator Implementation System">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="ThePivotEvaluatorImplementationSystem"></a>The Pivot Evaluator Implementation System</h3>
+</div>
+</div>
+</div>
+<p>The Pivot evaluator may be used in an interpreted form similar to the classic evaluator. In this form the evaluator performs a tree-walk over the Abstract Syntax Tree of the OCL expression. Languages that extend OCL may extend this tree-walk by implementing the relevant visitor evaluations for additional AST nodes.</p>
+<p>A partially optimized code generator is available for the Pivot evaluator for which the code generator walks the AST at compile-time. The code generator may be extended to support code generation for languages that extend OCL. See the QVTi code generator in the QVTd project as an example.</p>
+</div>
+<div class="section" title="Polymorphic Implementations">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="PolymorphicImplementations"></a>Polymorphic Implementations</h3>
+</div>
+</div>
+</div>
+<p>The OCL Standard Library comprises packages of classes with one class per library feature, each class implementing the polymorphic implementation interface.</p>
+<p>Provision of additional library function therefore requires</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>provision of the Java class for the library feature</p>
+</li>
+<li class="listitem">
+<p>declaration of the library feature </p>
+</li>
+</ul>
+</div>
+<p>Library features (properties, operations and iterations) are declared in a Standard Library model that identifies the invocation signature and binds it to a Java implementation.</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/6200-library-declarations.png"></div>
+<p>
+				
+</p>
+<p>The extract from 
+					<code class="code">/org.eclipse.ocl.examples.library/model/OCL-2.5.oclstdlib</code> shows the declaration of the 
+					<code class="code">Collection</code> type as a templated type with a 
+					<code class="code">T</code> parameter. The 
+					<code class="code">Collection</code> type conformsTo (extends/inherits/generalizes) the 
+					<code class="code">OclAny</code> type and is an instance of the 
+					<code class="code">CollectionType</code> meta-type.
+				</p>
+<p>The 
+					<code class="code">asSet</code> operation takes no arguments and returns a 
+					<code class="code">Set(T)</code>, a set of the collection template type. The declaration is bound to 
+					<code class="code">org.eclipse.ocl.examples.library.collection.CollectionAsSetOperation</code> which is the Java class name of the implementation.
+				</p>
+<p>The 
+					<code class="code">exists</code> iteration has two overloads, taking one or two iterators of the collection template type. The iteration body is a lambda expression operating on a collection template element with no additional arguments to return a Boolean value. The iteration also returns a Boolean value. The same Java implementation class is used for both one and two argument forms.
+				</p>
+<div class="blockquote">
+<blockquote class="blockquote">
+<p>
+						The corresponding implementations in the classic evaluator were mostly inlined within the 
+						<code class="code">EvaluationVisitorImpl.visitOperationCallExp</code> method and so were difficult to extend.
+					</p>
+<p>The corresponding declarations in the classic evaluator were partially modeled in 
+						<span class="bold"><strong>oclstdlib.ecore</strong></span> or 
+						<span class="bold"><strong>oclstdlib.uml</strong></span>, although in practice an equivalent manually code model initialization is used. The type declarations used by the parser and analyzer are independently coded and do not support iterations as modeled concepts.
+					</p>
+</blockquote>
+</div>
+<p></p>
+</div>
+</div>
+</body>
+</html>

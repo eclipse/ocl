@@ -1,0 +1,284 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>OCL Integration</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="UsersGuide.html" title="Users Guide">
+<link rel="prev" href="Debugger.html" title="Debugger (new in Luna)">
+<link rel="next" href="OCLinPapyrus.html" title="OCL in UML (using Papyrus)">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">OCL Integration</h1>
+<div class="section" title="OCL Integration">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="Integration"></a>OCL Integration</h2>
+</div>
+</div>
+</div>
+<p>The 
+				<a class="link" href="OCLinEcore.html" title="The OCLinEcore Language">OCLinEcore Editor</a> editor enables OCL to be embedded in Ecore. This section explains how that OCL is executed.
+			</p>
+<p>The 
+				<a class="link" href="CompleteOCL.html" title="The Complete OCL Language">Complete OCL</a> editor enables OCL to be provided as a complementing document. This section explains how that complement is installed to become part of the complemented model.
+			</p>
+<p>The 
+				<a class="link" href="InteractiveOCL.html" title="Console">Interactive OCL</a> console allows you to load OCL and execute OCL expression interactively.
+			</p>
+<p>The 
+				<a class="link" href="ProgrammersGuide.html" title="Classic Ecore/UML Programmers Guide">Java API</a> explains how you can take control of the OCL installation and activation.
+			</p>
+<div class="section" title="OCL execution in Ecore / EMF Delegates">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Integration-OCLinEcore"></a>OCL execution in Ecore / EMF Delegates</h3>
+</div>
+</div>
+</div>
+<p>The EMF delegate mechanisms and EAnnotations that enable EMF to delegate to OCL to support</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>validation of invariants</p>
+</li>
+<li class="listitem">
+<p>execution of operation bodies</p>
+</li>
+<li class="listitem">
+<p>evaluation of property initial and derived values</p>
+</li>
+</ul>
+</div>
+<p>are described in the 
+					<a class="link" href="Delegates.html" title="Delegates">Delegates</a> section of the Programmers Guide.
+				</p>
+</div>
+<div class="section" title="Custom Validation Messages">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Integration-Messages"></a>Custom Validation Messages</h3>
+</div>
+</div>
+</div>
+<p>Eclipse OCL supports the production of custom messages by defining a String-valued message expression as a parenthesized clause on an invariant.</p>
+<div class="section" title="Underlying support">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Underlyingsupport"></a>Underlying support</h4>
+</div>
+</div>
+</div>
+<p>An OCL invariant is an expression that returns a true or false value.</p>
+<p>In Juno and Kepler, Eclipse OCL supported an extension whereby a null return indicated an &lsquo;error&rsquo; rather than a &lsquo;warning&rsquo;, and an invalid return was &lsquo;fatal&rsquo;.</p>
+<p>Luna supports a rich-invariant idiom whereby an invariant can compute a tuple of results, only one of which is actually returned by tooling that does not understand the idiom. Rather than</p>
+<div class="literallayout">
+<p>
+<code class="code">invariant&nbsp;InvariantName:<br>
+	boolean-valued-invariant-expression;<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>You can code additional information by recoding</p>
+<p>ocl-status-expression</p>
+<p>as</p>
+<div class="literallayout">
+<p>
+<code class="code">invariant&nbsp;InvariantName:<br>
+	Tuple{<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;status=boolean-valued-invariant-expression,<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;message=string-valued-message-expression,<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;severity=integer-valued-severity-expression,&nbsp;--&nbsp;-ve&nbsp;error,0&nbsp;ok,+ve&nbsp;warn<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;more&nbsp;custom&nbsp;fields&nbsp;as&nbsp;desired<br>
+	}.status;<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>The idiom is a little verbose, but compatible with all OCL tooling. Eclipse OCL provides some editor enhancements to make the usage more acceptable.</p>
+</div>
+<div class="section" title="Editor syntax">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Editorsyntax"></a>Editor syntax</h4>
+</div>
+</div>
+</div>
+<p>In the OCLinEcoreTutorial Example there is an alternative syntax for custom messages.</p>
+<div class="literallayout">
+<p>
+<code class="code">invariant&nbsp;SufficientCopies:<br>
+	library.loans-&gt;select((book&nbsp;=&nbsp;self))-&gt;size()&nbsp;&lt;=&nbsp;copies;<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>may be changed to</p>
+<div class="literallayout">
+<p>
+<code class="code">invariant&nbsp;SufficientCopies('There&nbsp;are&nbsp;'<br>
+	+&nbsp;library.loans-&gt;select((book&nbsp;=&nbsp;self))-&gt;size().toString()<br>
+	+&nbsp;'&nbsp;loans&nbsp;for&nbsp;the&nbsp;'&nbsp;+&nbsp;copies.toString()&nbsp;+&nbsp;'&nbsp;copies&nbsp;of&nbsp;\''&nbsp;+&nbsp;name&nbsp;+&nbsp;'\''):<br>
+	library.loans-&gt;select((book&nbsp;=&nbsp;self))-&gt;size()&nbsp;&lt;=&nbsp;copies;<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>to replace the default diagnostic:</p>
+<div class="literallayout">
+<p>
+<code class="code">The&nbsp;'SufficientCopies'&nbsp;constraint&nbsp;is&nbsp;violated&nbsp;on&nbsp;'Book&nbsp;b2'.<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>by</p>
+<div class="literallayout">
+<p>
+<code class="code">There&nbsp;are&nbsp;3&nbsp;loans&nbsp;for&nbsp;the&nbsp;2&nbsp;copies&nbsp;of&nbsp;'b2'.<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>Unfortunately, in the Luna release, EMF does not support this customization. This must be activated explicitly using an EValidator that is aware of the ValidationDelegateExtension extended API. This is available by using the 
+						<a class="link" href="PivotProgrammersGuide.html#OCLinEcoreEObjectValidator" title="OCLinEcoreEObjectValidator">OCLinEcoreEObjectValidator</a>.
+					</p>
+</div>
+</div>
+<div class="section" title="CompleteOCL Validation">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Integration-CompleteOCL"></a>CompleteOCL Validation</h3>
+</div>
+</div>
+</div>
+<p>Integration of Complete OCL documents is harder because Complete OCL complements pre-existing models. These cannot always be aware of the existence of that complement, since the author of a model cannot know what complements may be added by its users.</p>
+<p>The complete model formed from the primary models and the OCL complements is application-specific and so applications must gather the contributions together. Prior to the Indigo release, this restricted Complete OCL usage to Java applications that could gather the complements.</p>
+<p>The 
+					<a class="link" href="PivotProgrammersGuide.html#CompleteOCLEObjectValidator" title="CompleteOCLEObjectValidator">CompleteOCLEObjectValidator</a> may be used to install a Complete OCL document.
+				</p>
+<p>In many editors an 
+					<span class="bold"><strong>OCL-&gt;Load Document</strong></span> is available in the context menu to facilitate loading a complementary Complete OCL document.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/1600-load-document.png"></div>
+<p>
+				
+</p>
+<p>You may drag and drop one or more files from within Eclipse or outside Eclipse into the dialog, or use one of the browser buttons to locate a Complete OCL document.</p>
+<div class="section" title="Browse Registered OCL Files...">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="BrowseRegisteredOCLFiles..."></a>Browse Registered OCL Files...</h4>
+</div>
+</div>
+</div>
+<p>The org.eclipse.ocl.examples.xtext.completeocl.complete_ocl_registry may be used to register Complete OCL files against the nsURIs that they complement. These extension points may be defined in plugins or projects. In either case clicking 
+						<span class="bold"><strong>Browse Registered OCL Files...</strong></span> presents a list of registered Complete OCL documents applicable to the context from which the dialog was invoked.
+					</p>
+</div>
+<div class="section" title="Browse File System...">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="BrowseFileSystem..."></a>Browse File System...</h4>
+</div>
+</div>
+</div>
+<p>The 
+						<span class="bold"><strong>Browse File System...</strong></span> button present a file system explorer so that a Complete OCL document file can found anywhere.
+					</p>
+</div>
+<div class="section" title="Browse Workspace...">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="BrowseWorkspace..."></a>Browse Workspace...</h4>
+</div>
+</div>
+</div>
+<p>The 
+						<span class="bold"><strong>Browse Workspace...</strong></span> button present a workspace explorer so that a Complete OCL document file can found within the workspace.
+					</p>
+</div>
+</div>
+<div class="section" title="OCLinEcore for Xtext Validation">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="OCLinEcoreforXtextValidation"></a>OCLinEcore for Xtext Validation</h3>
+</div>
+</div>
+</div>
+<p>If you want to use OCLinEcore as a validation language for Xtext you must:</p>
+<p>Use a manually maintained Ecore model to define your parsed grammar model, otherwise your embedded OCL will be lost each time you regenerate the editor. For non-trivial models, switching from auto-generated to manual maintenance is a good idea, since you may need to control changes carefully to maintain upward compatibility for existing models.</p>
+<p>Modify the Validator class generated by genmodel to extend OCLinEcoreEObjectValidator rather than EObjectValidator. See 
+					<a class="link" href="PivotProgrammersGuide.html#OCLinEcoreEObjectValidator" title="OCLinEcoreEObjectValidator">OCLinEcoreEObjectValidator</a> for details.
+				</p>
+</div>
+<div class="section" title="Complete OCL for Xtext Validation">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="CompleteOCLforXtextValidation"></a>Complete OCL for Xtext Validation</h3>
+</div>
+</div>
+</div>
+<p>If you want to use Complete OCL as a validation language for Xtext, you may use the 
+					<a class="link" href="PivotProgrammersGuide.html#CompleteOCLEObjectValidator" title="CompleteOCLEObjectValidator">CompleteOCLEObjectValidator</a> to register the Complete OCL for EMF Validation. This may readily be achieved by reusing the empty example JavaValidator created by Xtext to install the Complete OCL. If your Xtext language is 
+					<span class="emphasis"><em>States</em></span>, and your Complete OCL is 
+					<span class="emphasis"><em>model/States.ocl</em></span> in 
+					<span class="emphasis"><em>StatesProject</em></span> you should change your StatesJavaValidator to:
+				</p>
+<div class="literallayout">
+<p>
+<code class="code">public&nbsp;class&nbsp;StatesJavaValidator&nbsp;extends&nbsp;AbstractStatesJavaValidator<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;@Override<br>
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;register(EValidatorRegistrar&nbsp;registrar)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super.register(registrar);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StatesPackage&nbsp;ePackage&nbsp;=&nbsp;StatesPackage.eINSTANCE;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;URI&nbsp;oclURI&nbsp;=&nbsp;URI.createPlatformResourceURI(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/StatesProject/model/States.ocl",&nbsp;true);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;registrar.register(ePackage,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;CompleteOCLEObjectValidator(ePackage,&nbsp;oclURI));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}<br>
+
+</code>
+</p>
+</div>
+<p></p>
+</div>
+</div>
+</body>
+</html>

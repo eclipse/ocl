@@ -1,0 +1,1360 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>The Essential OCL Language</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="UsersGuide.html" title="Users Guide">
+<link rel="prev" href="UsersGuide.html" title="Users Guide">
+<link rel="next" href="OCLinEcore.html" title="The OCLinEcore Language">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">The Essential OCL Language</h1>
+<div class="section" title="The Essential OCL Language">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="EssentialOCL"></a>The Essential OCL Language</h2>
+</div>
+</div>
+</div>
+<p>The core functionality of OCL that supports expressions over models is called the Essential OCL. This language is of very limited use by itself since there is no way in which the models can be provided.</p>
+<p>Essential OCL is extended in various ways to provide this missing context.</p>
+<p>The 
+				<a class="link" href="CompleteOCL.html" title="The Complete OCL Language">Complete OCL</a> provides a language for a document in which OCL complements an existing meta-model with invariants, and additional features. Complete OCL is part of the OMG OCL specification.
+			</p>
+<p>
+				
+<a class="link" href="OCLinEcore.html" title="The OCLinEcore Language">OCLinEcore</a> embeds OCL within the annotations of an Ecore model to enrich that model. OCLinEcore is defined an Eclipse OCL. It is not part of the OMG OCL specification.
+			</p>
+<p>UML supports the use of OCL constraints as a form of OpaqueExpression, and UML tools such as Papyrus support those constraints for UML models.</p>
+<div class="section" title="Syntax">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Syntax"></a>Syntax</h3>
+</div>
+</div>
+</div>
+<p>The Eclipse OCL realization of the Essential OCL grammar is provided in the following subsections, starting with the expression terms and then elaborating the operators.</p>
+<div class="section" title="Grammar Implementation">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="GrammarImplementation"></a>Grammar Implementation</h4>
+</div>
+</div>
+</div>
+<p>The grammar used by the Xtext editors may be found at:</p>
+<p>/src/org/eclipse/ocl/examples/xtext/essentialocl/EssentialOCL.xtext</p>
+<p>in the org.eclipse.ocl.examples.xtext.essentialocl plugin.</p>
+</div>
+<div class="section" title="Grammar Approach">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="GrammarApproach"></a>Grammar Approach</h4>
+</div>
+</div>
+</div>
+<p>The OCL 2.4 grammar is ambiguous and consequently has disambigating rules. How those disambiguating rules are applied is an implementation detail.</p>
+<p>The disambiguating approach taken in Eclipse OCL is to parse an unambiguous larger language that unifies all the ambiguities. Subsequent semantic validation distinguishes between the ambiguities and diagnoses expressions from the larger language that are not valid OCL expressions.</p>
+<p>From a technical point of view this makes the grammar simpler and more regular, and the implementation more modular and configurable by the library model.</p>
+<p>From a user&rsquo;s point of view, slightly wrong expressions may be syntactically valid and so semantic validation may produce a more helpful diagnostic. However completion assist may offer illegal expressions from the larger language.</p>
+</div>
+<div class="section" title="OCL Expression">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-Exp"></a>OCL Expression</h4>
+</div>
+</div>
+</div>
+<p>The Exp syntax defines an OCL expression.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-exp.png"></div>
+<p>
+					
+</p>
+<p>Expressions consist of a variety of operators and expression terms that are defined at the top level by an 
+						<a class="link" href="EssentialOCL.html#EssentialOCL-InfixedExp" title="InfixedExp">InfixedExp</a>. We will first define the terms of an expression and then define the various forms of operators that bind expression terms together.  
+					</p>
+</div>
+<div class="section" title="PrimaryExp">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-PrimaryExp"></a>PrimaryExp</h4>
+</div>
+</div>
+</div>
+<p>The PrimaryExp syntax identifies the basic building blocks of an OCL expression.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-primaryexp.png"></div>
+<p>
+					
+</p>
+<p>Literals such as</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+								
+<a class="link" href="EssentialOCL.html#EssentialOCL-PrimitiveLiteralExp" title="PrimitiveLiteralExp">PrimitiveLiteralExpCS</a> - 
+								<code class="code">true</code> or 
+								<code class="code">3.14159</code>
+							
+</p>
+</li>
+<li class="listitem">
+<p>
+								
+<a class="link" href="EssentialOCL.html#EssentialOCL-CollectionLiteralExp" title="CollectionLiteralExp">CollectionLiteralExpCS</a> - 
+								<code class="code">Set{1..5}</code>
+							
+</p>
+</li>
+<li class="listitem">
+<p>
+								
+<a class="link" href="EssentialOCL.html#EssentialOCL-TupleLiteralExp" title="TupleLiteralExp">TupleLiteralExpCS</a> - 
+								<code class="code">Tuple{name:String='me',at:String='here')</code>
+							
+</p>
+</li>
+<li class="listitem">
+<p>
+								
+<a class="link" href="EssentialOCL.html#EssentialOCL-TypeLiteralExp" title="TypeLiteralExp">TypeLiteralExpCS</a> - 
+								<code class="code">Integer</code> or 
+								<code class="code">Set&lt;Integer&gt;</code>
+							
+</p>
+</li>
+</ul>
+</div>
+<p>The context object</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+								
+<a class="link" href="EssentialOCL.html#EssentialOCL-SelfExp" title="SelfExp">SelfExpCS</a> - 
+								<code class="code">self</code>
+							
+</p>
+</li>
+</ul>
+</div>
+<p>Compound expressions such as</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+								
+<a class="link" href="EssentialOCL.html#EssentialOCL-NestedExp" title="NestedExp">NestedExpCS</a> - 
+								<code class="code">(x)</code>
+							
+</p>
+</li>
+<li class="listitem">
+<p>
+								
+<a class="link" href="EssentialOCL.html#EssentialOCL-IfExp" title="IfExp">IfExpCS</a> - 
+								<code class="code">if x then y else z endif</code>
+							
+</p>
+</li>
+<li class="listitem">
+<p>
+								
+<a class="link" href="EssentialOCL.html#EssentialOCL-LetExp" title="LetExp">LetExpCS</a> - 
+								<code class="code">let x : Integer in x + x</code>
+							
+</p>
+</li>
+</ul>
+</div>
+<p>Navigation expressions such as</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+								
+<a class="link" href="EssentialOCL.html#EssentialOCL-NavigatingExp" title="NavigatingExp">NavigatingExpCS</a> - 
+								<code class="code">x</code> or 
+								<code class="code">x.Y::z-&gt;iterate(a:Integer;acc:Integer|acc+a)</code>
+							
+</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="SelfExp">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-SelfExp"></a>SelfExp</h4>
+</div>
+</div>
+</div>
+<p>The SelfExp syntax supports the use of the prevailing context object in an expression.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-selfexp.png"></div>
+<p>
+					
+</p>
+</div>
+<div class="section" title="PrimitiveLiteralExp">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-PrimitiveLiteralExp"></a>PrimitiveLiteralExp</h4>
+</div>
+</div>
+</div>
+<p>The PrimitiveLiteralExp syntax supports the use of a known value in an expression.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-primitiveliteralexp.png"></div>
+<p>
+					
+</p>
+<p>The value may be </p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+								
+<a class="link" href="EssentialOCL.html#EssentialOCL-NumberLiteralExp" title="NumberLiteralExp">NumberLiteralExpCS</a> - 
+								<code class="code">4</code> or 
+								<code class="code">3.14159</code>
+							
+</p>
+</li>
+<li class="listitem">
+<p>
+								
+<a class="link" href="EssentialOCL.html#EssentialOCL-StringLiteralExp" title="StringLiteralExp">StringLiteralExpCS</a> - 
+								<code class="code">'a string'</code>
+							
+</p>
+</li>
+<li class="listitem">
+<p>
+								
+<a class="link" href="EssentialOCL.html#EssentialOCL-BooleanLiteralExp" title="BooleanLiteralExp">BooleanLiteralExpCS</a> - 
+								<code class="code">true</code> or 
+								<code class="code">false</code>
+							
+</p>
+</li>
+<li class="listitem">
+<p>
+								
+<a class="link" href="EssentialOCL.html#EssentialOCL-UnlimitedNaturalLiteralExp" title="UnlimitedNaturalLiteralExp">UnlimitedNaturalLiteralExpCS</a> - 
+								<code class="code">*</code>
+							
+</p>
+</li>
+<li class="listitem">
+<p>
+								
+<a class="link" href="EssentialOCL.html#EssentialOCL-InvalidLiteralExp" title="InvalidLiteralExp">InvalidLiteralExpCS</a> - 
+								<code class="code">invalid</code>
+							
+</p>
+</li>
+<li class="listitem">
+<p>
+								
+<a class="link" href="EssentialOCL.html#EssentialOCL-NullLiteralExp" title="NullLiteralExp">NullLiteralExpCS</a> - 
+								<code class="code">null</code>
+							
+</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="NumberLiteralExp">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-NumberLiteralExp"></a>NumberLiteralExp</h4>
+</div>
+</div>
+</div>
+<p>The NumberLiteralExp syntax supports the use of a numeric value in an expression.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-numberliteralexp.png"></div>
+<p>
+					
+</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-numberliteral.png"></div>
+<p>
+					
+</p>
+<p>A numeric value is</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>an integer such as 
+								<code class="code">4</code>
+							
+</p>
+</li>
+<li class="listitem">
+<p>fixed point number such as 
+								<code class="code">3.1</code>
+							
+</p>
+</li>
+<li class="listitem">
+<p>floating point number such as 
+								<code class="code">12.8e-5</code>. 
+							</p>
+</li>
+</ul>
+</div>
+<p>A numeric value does not have a leading 
+						<code class="code">-</code>; negative numbers are parsed as the application of a unary negate operator to a positive number.
+					</p>
+<p>A numeric value may not have a trailing decimal point.</p>
+<p>A numeric value may not have a redundant leading zero.</p>
+</div>
+<div class="section" title="StringLiteralExp">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-StringLiteralExp"></a>StringLiteralExp</h4>
+</div>
+</div>
+</div>
+<p>The StringLiteralExp syntax supports the use of a string value in an expression.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-stringliteralexp.png"></div>
+<p>
+					
+</p>
+<p>A string is specified as a character sequence between single quotes.</p>
+<p>e.g. 
+						<code class="code">'This is a string'</code>
+					
+</p>
+<p>The standard Java and C backslash escapes can be used for awkward characters such as a single quote.</p>
+<p>
+						
+<code class="code">\b</code> -- #x08: backspace BS
+					</p>
+<p>
+						
+<code class="code">\t</code> -- #x09: horizontal tab HT
+					</p>
+<p>
+						
+<code class="code">\n</code> -- #x0a: linefeed LF
+					</p>
+<p>
+						
+<code class="code">\f</code> -- #x0c: form feed FF
+					</p>
+<p>
+						
+<code class="code">\r</code> -- #x0d: carriage return CR
+					</p>
+<p>
+						
+<code class="code">\"</code> -- #x22: double quote "
+					</p>
+<p>
+						
+<code class="code">\'</code> -- #x27: single quote '
+					</p>
+<p>
+						
+<code class="code">\\</code> -- #x5c: backslash \
+					</p>
+<p>
+						
+<code class="code">\x</code> Hex Hex -- #x00 to #xFF
+					</p>
+<p>
+						
+<code class="code">\u</code> Hex Hex Hex Hex -- #x0000 to #xFFFF
+					</p>
+</div>
+<div class="section" title="BooleanLiteralExp">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-BooleanLiteralExp"></a>BooleanLiteralExp</h4>
+</div>
+</div>
+</div>
+<p>The BooleanLiteralExp syntax supports the use of boolean values in an expression.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-booleanliteralexp.png"></div>
+<p>
+					
+</p>
+<p>The Boolean values are 
+						<code class="code">true</code> and 
+						<code class="code">false</code>.
+					</p>
+</div>
+<div class="section" title="UnlimitedNaturalLiteralExp">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-UnlimitedNaturalLiteralExp"></a>UnlimitedNaturalLiteralExp</h4>
+</div>
+</div>
+</div>
+<p>The UnlimitedNaturalLiteralExp syntax supports the use of the non-numeric unlimited value in an expression.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-unlimitednaturalliteralexp.png"></div>
+<p>
+					
+</p>
+<p>The Non-numeric unlimited value is 
+						<code class="code">*</code>. Other UnlimitedNatural values are 
+						<a class="link" href="EssentialOCL.html#EssentialOCL-NumberLiteralExp" title="NumberLiteralExp">NumberLiteralExpCS</a>.
+					</p>
+</div>
+<div class="section" title="InvalidLiteralExp">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-InvalidLiteralExp"></a>InvalidLiteralExp</h4>
+</div>
+</div>
+</div>
+<p>The InvalidLiteralExp syntax supports the use of an invalid value in an expression.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-invalidliteralexp.png"></div>
+<p>
+					
+</p>
+<p>The invalid value is 
+						<code class="code">invalid</code>.
+					</p>
+</div>
+<div class="section" title="NullLiteralExp">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-NullLiteralExp"></a>NullLiteralExp</h4>
+</div>
+</div>
+</div>
+<p>The NullLiteralExp syntax supports the use of a null or unspecified value in an expression.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-nullliteralexp.png"></div>
+<p>
+					
+</p>
+<p>The null value is 
+						<code class="code">null</code>.
+					</p>
+</div>
+<div class="section" title="CollectionLiteralExp">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-CollectionLiteralExp"></a>CollectionLiteralExp</h4>
+</div>
+</div>
+</div>
+<p>The CollectionLiteralExp syntax supports the creation of a collection of values for use in an expression.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-collectionliteralexp.png"></div>
+<p>
+					
+</p>
+<p>A collection literal comprises the 
+						<a class="link" href="EssentialOCL.html#EssentialOCL-CollectionType" title="CollectionType">CollectionType</a> followed by braces enclosing a comma-separated list of zero or more 
+						<a class="link" href="EssentialOCL.html#EssentialOCL-CollectionLiteralPart" title="CollectionLiteralPart">CollectionLiteralParts</a>.
+					</p>
+<p>e.g. 
+						<code class="code">Sequence{1,2,4..6}</code>
+					
+</p>
+<p>Note that null, collection and tuple values are permitted in collections but that invalid values are not.
+						A collection &lsquo;containing&rsquo; an invalid value is flattened to the invalid value.</p>
+</div>
+<div class="section" title="CollectionLiteralPart">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-CollectionLiteralPart"></a>CollectionLiteralPart</h4>
+</div>
+</div>
+</div>
+<p>The CollectionLiteralPart syntax supports the use of a value or range of values in a collection of values.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-collectionliteralpart.png"></div>
+<p>
+					
+</p>
+<p>A single item collection literal part may be any expression (except invalid). e.g. 
+						<code class="code">1+2</code>
+					
+</p>
+<p>A multi-item collection literal part comprises the inclusive range of values between two integer limits.</p>
+<p>
+						
+<code class="code">1..3</code> is the three values 
+						<code class="code">1</code>, 
+						<code class="code">2</code>, 
+						<code class="code">3</code>.
+					</p>
+<p>
+						
+<code class="code">1..-1</code> is the three values 
+						<code class="code">1</code>, 
+						<code class="code">0</code>, 
+						<code class="code">-1</code>.
+					</p>
+</div>
+<div class="section" title="TupleLiteralExp">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-TupleLiteralExp"></a>TupleLiteralExp</h4>
+</div>
+</div>
+</div>
+<p>The TupleLiteralExp syntax supports the use of a tuple of named expression values in an expression.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-tupleliteralexp.png"></div>
+<p>
+					
+</p>
+<p>A tuple literal comprises the 
+						<code class="code">Tuple</code> keyword followed by braces enclosing
+						a comma-separated list of one or more 
+						<a class="link" href="EssentialOCL.html#EssentialOCL-TupleLiteralPart" title="TupleLiteralPart">TupleLiteralParts</a>.
+					</p>
+<p>
+						
+<code class="code">Tuple{year:Integer='2000',month:String='January',day:Integer='1'}</code>
+					
+</p>
+</div>
+<div class="section" title="TupleLiteralPart">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-TupleLiteralPart"></a>TupleLiteralPart</h4>
+</div>
+</div>
+</div>
+<p>The TupleLiteralPart syntax supports the use of a named expression value in a tuple of such values.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-tupleliteralpart.png"></div>
+<p>
+					
+</p>
+<p>The part comprises the name, an optional type and a value. If the type is omitted, it is inferred from the value.</p>
+<p>
+						
+<code class="code">leapyear : Boolean = true</code>
+					
+</p>
+</div>
+<div class="section" title="TypeLiteralExp">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-TypeLiteralExp"></a>TypeLiteralExp</h4>
+</div>
+</div>
+</div>
+<p>The TypeLiteralExp syntax supports the use of types as values in an expression. This is useful for expressions such as 
+						<code class="code">myCollection.oclAsType(Set&lt;MyType&gt;)</code>.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-typeliteralexp.png"></div>
+<p>
+					
+</p>
+<p>A TypeLiteralExp comprises a 
+						<a class="link" href="EssentialOCL.html#EssentialOCL-TypeLiteral" title="TypeLiteral">TypeLiteral</a>.
+					</p>
+</div>
+<div class="section" title="NestedExp">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-NestedExp"></a>NestedExp</h4>
+</div>
+</div>
+</div>
+<p>The NestedExp syntax supports the use of an inner expression as a term in an outer expression ensuring that
+						the operator precedence of the inner expression is not affected by the outer expression,</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-nestedexp.png"></div>
+<p>
+					
+</p>
+<p>A nested expression is just an expression surrounded by parentheses.</p>
+</div>
+<div class="section" title="IfExp">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-IfExp"></a>IfExp</h4>
+</div>
+</div>
+</div>
+<p>The IfExp syntax supports the use of a conditional choice of expression value in an expression.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-ifexp.png"></div>
+<p>
+					
+</p>
+<p>An if expression comprises a condition expression to be tested followed by a then-expression
+						to be evaluated if the condition is true and an else-expression for evaluation if the expression is false.</p>
+<p>
+						
+<code class="code">if this.size &gt; that.size then this else that endif</code>
+					
+</p>
+<p>Note that the else-expression is required and so there is no ambiguity when multiple if expressions are nested.</p>
+</div>
+<div class="section" title="LetExp">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-LetExp"></a>LetExp</h4>
+</div>
+</div>
+</div>
+<p>The LetExp syntax supports the introduction of local variables to facilitate re-use of intermediate results within an expression.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-letexp.png"></div>
+<p>
+					
+</p>
+<p>A let expression comprises the let keyword followed by one or more comma-separated let variables and then the in keyword and
+						the in-expression to be evaluated with the help of the extra variables.</p>
+<p>Each let variable comprises a name, an optional type and an expression to initialize the variable. If the type is omitted, it is inferred from the initializer.</p>
+<div class="literallayout">
+<p>
+<code class="code">let&nbsp;test&nbsp;:&nbsp;String&nbsp;=&nbsp;'prefix[contents]suffix',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;start&nbsp;:&nbsp;Integer&nbsp;=&nbsp;test.indexOf('['),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;finish&nbsp;:&nbsp;Integer&nbsp;=&nbsp;test.indexOf(']')<br>
+in&nbsp;test.substring(start,finish)<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>The let syntax has no terminating keyword such as endlet and so there is an ambiguity for for instance 
+						<code class="code">1 + let b : Integer = 2 in b + 4</code>. The ambiguity is resolved as 
+						<code class="code">1 + let b : Integer = 2 in (b + 4)</code> by selecting the longest possible in-expression.
+					</p>
+</div>
+<div class="section" title="NameExp">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-NameExp"></a>NameExp</h4>
+</div>
+</div>
+</div>
+<p>The NameExp syntax supports the use of the name of a model  element such as a property, operation or type in an expression.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-nameexp.png"></div>
+<p>
+					
+</p>
+<p>A name expression comprises a name optionally prefixed by double-colon separate path names.</p>
+<p>The first name is an 
+						<a class="link" href="EssentialOCL.html#EssentialOCL-UnrestrictedName" title="UnrestrictedName">UnrestrictedName</a>, that is a name that does not clash with any OCL reserved words such as 
+						<code class="code">else</code> or built-in types such as 
+						<code class="code">String</code>. Subsequent names are 
+						<a class="link" href="EssentialOCL.html#EssentialOCL-UnreservedName" title="UnreservedName">UnreservedName</a> allowing the re-use of built-in type names but not reserved words.  
+					</p>
+</div>
+<div class="section" title="IndexExp">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-IndexExp"></a>IndexExp</h4>
+</div>
+</div>
+</div>
+<p>The IndexExp syntax supports the application of qualifiers to a model property to distinguish the source or select a particular association.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-indexexp1.png"></div>
+<p>
+					
+</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-indexexp2.png"></div>
+<p>
+					
+</p>
+<p>A 
+						<a class="link" href="EssentialOCL.html#EssentialOCL-NameExp" title="NameExp">NameExp</a> identifying a model property is optionally qualified by a first list of qualifiers and a second list of qualifiers.
+					</p>
+<p>This syntax is experimental and the qualifiers are not yet supported for evaluation.</p>
+</div>
+<div class="section" title="NavigatingExp">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-NavigatingExp"></a>NavigatingExp</h4>
+</div>
+</div>
+</div>
+<p>The NavigatingExp syntax supports the navigation of models using model properties, operations and iterations.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-navigatingexp1.png"></div>
+<p>
+					
+</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-navigatingexp2.png"></div>
+<p>
+					
+</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-navigatingexp3.png"></div>
+<p>
+					
+</p>
+<p>An 
+						<a class="link" href="EssentialOCL.html#EssentialOCL-IndexExp" title="IndexExp">IndexExp</a> identifying a potentially qualified model feature is optionally followed by a parenthesized arguments. If the parenthesized arguments are omitted the model feature should be a Property. If the arguments are present the model feature should be an iteration or operation.
+					</p>
+<p>The diverse syntaxes specified by OCL 2.4 for OperationCallExpCS and IteratorExpCS create ambiguities that are difficult to parse. The merged grammar used by Eclipse OCL gathers argument
+						contributions without imposing premature validation.</p>
+<p>The parenthesized arguments may be empty, or may comprise one or more parameters, optional accumulators and optional bodies.</p>
+<p>The comma-separated list of parameters starts with a NavigatingArgCS, followed by any number of 
+						NavigatingCommaArgCS.</p>
+<p>
+						
+<code class="code">simpleCall(simpleArgument)</code>
+					
+</p>
+<p>The optional comma-separated list of accumulators are introduced by a semi-colon-prefixed NavigatingSemiArgCS, followed by any number of  NavigatingCommaArgCS. </p>
+<p>
+						
+<code class="code">some-&gt;iterate(p; anAccumulator : Integer = 0 | p.size())</code>
+					
+</p>
+<p>The optional comma-separated list of bodies are introduced by a vertical-bar-prefixed NavigatingBarArgCS, followed by any number of  NavigatingCommaArgCS. </p>
+<p>
+						
+<code class="code">some-&gt;exists(p | p.size())</code>
+					
+</p>
+</div>
+<div class="section" title="NavigatingArg">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-NavigatingArg"></a>NavigatingArg</h4>
+</div>
+</div>
+</div>
+<p>The NavigatingArg syntaxes supports the parsing of potential parameters, accumulators and bodies for use in NavigatingExps.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-navigatingarg.png"></div>
+<p>
+					
+</p>
+<p>Each syntax supports an optional type and an optional initializer for an expression.</p>
+</div>
+<div class="section" title="PrefixedExp">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-PrefixedExp"></a>PrefixedExp</h4>
+</div>
+</div>
+</div>
+<p>The PrefixedExp syntax supports the application of zero or more prefix unary operators to an expression.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-prefixedexp.png"></div>
+<p>
+					
+</p>
+<p>The prefix operator precedes an expression: 
+						<code class="code">-4</code> or 
+						<code class="code">not(this or that)</code>
+					
+</p>
+<p>The unary operators are</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+								
+<code class="code">-</code> negate
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">not</code> logical complement
+							</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="InfixedExp">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-InfixedExp"></a>InfixedExp</h4>
+</div>
+</div>
+</div>
+<p>The InfixedExp syntax supports the application of zero or more infix binary operators between expression terms.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-infixedexp.png"></div>
+<p>
+					
+</p>
+<p>The infix operators separate expression terms: 
+						<code class="code">1 + 2 / 3 * 4 / 5 + 6</code>.
+					</p>
+<p>The infix operators are</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>The 
+								<a class="link" href="EssentialOCL.html#EssentialOCL-NavigationOperators" title="NavigationOperators">NavigationOperators</a>
+							
+</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">*</code>, 
+								<code class="code">/</code> multiply and divide
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">+</code>, 
+								<code class="code">-</code> add and subtract
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">&lt;</code>, 
+								<code class="code">&lt;=</code>, 
+								<code class="code">&gt;=</code>, 
+								<code class="code">&gt;</code> relational comparisons
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">=</code>, 
+								<code class="code">&lt;&gt;</code> equality and inequality
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">and</code> logical and
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">or</code> inclusive or
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">xor</code> exclusive or
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">implies</code> logical implication
+							</p>
+</li>
+</ul>
+</div>
+<p>The precedence and associativity of the operators is defined by the OCL Standard Library model, not by the grammar. The OCL 2.4 library precedence is as presented above with all operators left associative. The example above is therefore interpreted as 
+						<code class="code">(1 + (((2 / 3) * 4) / 5)) + 6</code>.
+					</p>
+</div>
+<div class="section" title="NavigationOperators">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-NavigationOperators"></a>NavigationOperators</h4>
+</div>
+</div>
+</div>
+<p>The NavigationOperators operators are</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+								
+<code class="code">.</code> for object navigation
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">-&gt;</code> for collection navigation
+							</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="TypeExp">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-TypeExp"></a>TypeExp</h4>
+</div>
+</div>
+</div>
+<p>The TypeExp syntax supports the use of types as expressions.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-typeexp.png"></div>
+<p>
+					
+</p>
+<p>A type expression may be a</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+								
+<a class="link" href="EssentialOCL.html#EssentialOCL-TypeNameExp" title="TypeNameExp">TypeNameExpCS</a> - a user-defined type
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<a class="link" href="EssentialOCL.html#EssentialOCL-TypeLiteral" title="TypeLiteral">TypeLiteralCS</a> - a built-in or aggregate type
+							</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="TypeNameExp">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-TypeNameExp"></a>TypeNameExp</h4>
+</div>
+</div>
+</div>
+<p>The TypeNameExp syntax supports the use of a user-defined types as a declaration or expression.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-typenameexp.png"></div>
+<p>
+					
+</p>
+<p>A name expression comprises the name of a type optionally prefixed by double-colon separate path names.</p>
+<p>The first name is an 
+						<a class="link" href="EssentialOCL.html#EssentialOCL-UnrestrictedName" title="UnrestrictedName">UnrestrictedName</a>, that is a name that does not clash with any OCL reserved words such as 
+						<code class="code">else</code> or built-in types such as 
+						<code class="code">String</code>. Subsequent names are 
+						<a class="link" href="EssentialOCL.html#EssentialOCL-UnreservedName" title="UnreservedName">UnreservedName</a> allowing the re-use of built-in type names but not reserved words.  
+					</p>
+</div>
+<div class="section" title="TypeLiteral">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-TypeLiteral"></a>TypeLiteral</h4>
+</div>
+</div>
+</div>
+<p>The TypeLiteral syntax supports the use of built-in or aggregate types as declarations or expressions.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-typeliteral.png"></div>
+<p>
+					
+</p>
+<p>A Type literal may be a</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+								
+<a class="link" href="EssentialOCL.html#EssentialOCL-PrimitiveType" title="PrimitiveType">PrimitiveTypeCS</a>
+							
+</p>
+</li>
+<li class="listitem">
+<p>
+								
+<a class="link" href="EssentialOCL.html#EssentialOCL-CollectionType" title="CollectionType">CollectionTypeCS</a>
+							
+</p>
+</li>
+<li class="listitem">
+<p>
+								
+<a class="link" href="EssentialOCL.html#EssentialOCL-TupleType" title="TupleType">TupleTypeCS</a>
+							
+</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="PrimitiveType">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-PrimitiveType"></a>PrimitiveType</h4>
+</div>
+</div>
+</div>
+<p>The PrimitiveType syntax supports the definition of a built-in type for use in a declaration or expression.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-primitivetype.png"></div>
+<p>
+					
+</p>
+<p>The built-in types are</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Boolean</p>
+</li>
+<li class="listitem">
+<p>Integer</p>
+</li>
+<li class="listitem">
+<p>Real</p>
+</li>
+<li class="listitem">
+<p>String</p>
+</li>
+<li class="listitem">
+<p>UnlimitedNatural</p>
+</li>
+<li class="listitem">
+<p>OclAny</p>
+</li>
+<li class="listitem">
+<p>OclInvalid</p>
+</li>
+<li class="listitem">
+<p>OclVoid</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="CollectionType">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-CollectionType"></a>CollectionType</h4>
+</div>
+</div>
+</div>
+<p>The CollectionType syntax supports the definition of a collection type for use in a declaration or expression.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-collectiontype.png"></div>
+<p>
+					
+</p>
+<p>A collection type comprises the CollectionTypeIdentifier followed by a 
+						<a class="link" href="EssentialOCL.html#EssentialOCL-TypeExp" title="TypeExp">Type Expression</a> defining the type of the collection elements.
+					</p>
+<p>
+						
+<code class="code">Set(String)</code> or 
+						<code class="code">Sequence&lt;Bag&lt;Integer&gt;&gt;</code>
+					
+</p>
+<p>The built-in CollectionTypeIdentifiers are</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Collection</p>
+</li>
+<li class="listitem">
+<p>Bag</p>
+</li>
+<li class="listitem">
+<p>OrderedSet</p>
+</li>
+<li class="listitem">
+<p>Sequence</p>
+</li>
+<li class="listitem">
+<p>Set</p>
+</li>
+</ul>
+</div>
+<p>OCL 2.4 specifies the use of parentheses to surround the element type. Eclipse OCL additionally allows angle brackets as specified by UML and as may be required to support more general templated types.</p>
+</div>
+<div class="section" title="TupleType">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-TupleType"></a>TupleType</h4>
+</div>
+</div>
+</div>
+<p>The TupleType syntax supports the definition of a tuple type for use in a declaration or expression.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-tupletype.png"></div>
+<p>
+					
+</p>
+<p>A tuple type comprises the 
+						<code class="code">Tuple</code> keyword followed by
+						a comma-separated list of one or more 
+						<a class="link" href="EssentialOCL.html#EssentialOCL-TuplePart" title="TuplePart">TupleParts</a>.
+					</p>
+<p>OCL 2.4 specifies the use of parentheses to surround the parts. Eclipse OCL additionally allows angle brackets as specified by UML and as may be required to support more general templated types.</p>
+<p>
+						
+<code class="code">Tuple&lt;year:Integer,month:String,day:Integer&gt;</code>
+					
+</p>
+</div>
+<div class="section" title="TuplePart">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-TuplePart"></a>TuplePart</h4>
+</div>
+</div>
+</div>
+<p>The TuplePart syntax supports the definition of an element of a TupleType.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1100-tuplepart.png"></div>
+<p>
+					
+</p>
+<p>The part comprises the name and a type and a value. </p>
+<p>
+						
+<code class="code">leapyear : Boolean</code>
+					
+</p>
+</div>
+<div class="section" title="UnreservedName">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-UnreservedName"></a>UnreservedName</h4>
+</div>
+</div>
+</div>
+<p>The Essential OCL reserved words are 
+						<code class="code">and</code>, 
+						<code class="code">else</code>, 
+						<code class="code">endif</code>, 
+						<code class="code">false</code>, 
+						<code class="code">if</code>, 
+						<code class="code">implies</code>, 
+						<code class="code">in</code>, 
+						<code class="code">invalid</code>, 
+						<code class="code">let</code>, 
+						<code class="code">not</code>, 
+						<code class="code">null</code>, 
+						<code class="code">or</code>, 
+						<code class="code">self</code>, 
+						<code class="code">then</code>, 
+						<code class="code">true</code>, 
+						<code class="code">xor</code>. These
+						can only be used as names when escaped as in 
+						<code class="code">_'self'</code>.
+					</p>
+</div>
+<div class="section" title="UnrestrictedName">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="EssentialOCL-UnrestrictedName"></a>UnrestrictedName</h4>
+</div>
+</div>
+</div>
+<p>The Essential OCL restricted words are the reserved words above and the OCL reserved type names which are 
+						<code class="code">Bag</code>, 
+						<code class="code">Boolean</code>, 
+						<code class="code">Collection</code>, 
+						<code class="code">Integer</code>, 
+						<code class="code">Lambda</code>, 
+						<code class="code">OclAny</code>, 
+						<code class="code">OclInvalid</code>, 
+						<code class="code">OclMessage</code>, 
+						<code class="code">OclSelf</code>, 
+						<code class="code">OclVoid</code>, 
+						<code class="code">OrderedSet</code>, 
+						<code class="code">Real</code>, 
+						<code class="code">Sequence</code>, 
+						<code class="code">Set</code>, 
+						<code class="code">String</code>, 
+						<code class="code">Tuple</code>, 
+						<code class="code">UnlimitedNatural</code>. An UnrestrictedName can be used in any context. The reserved type names can be used following a 
+						<code class="code">::</code> qualification, Without qualification unrestricted names must be escaped as 
+						<code class="code">_'Boolean'</code>.
+					</p>
+<p>
+						
+<code class="code">Lambda</code> is used in experimental syntax that realizes iterator bodies as lambda-expressions.
+					</p>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,298 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Unified or Pivot Programmers Guide</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="index.html" title="OCL Documentation">
+<link rel="prev" href="Standalone.html" title="Ecore/UML Standalone Configuration">
+<link rel="next" href="PivotEvaluator.html" title="The Pivot Evaluator">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Unified or Pivot Programmers Guide</h1>
+<div class="chapter" title="Unified or Pivot Programmers Guide">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title">
+<a name="PivotProgrammersGuide"></a>Unified or Pivot Programmers Guide</h2>
+</div>
+</div>
+</div>
+<div class="toc">
+<dl>
+<dt>
+<span class="section"><a href="PivotProgrammersGuide.html#Validators">Validators</a></span>
+</dt>
+<dt>
+<span class="section"><a href="PivotEvaluator.html">The Pivot Evaluator</a></span>
+</dt>
+<dt>
+<span class="section"><a href="PivotStandalone.html">Pivot Standalone Configuration</a></span>
+</dt>
+<dt>
+<span class="section"><a href="PivotThreadSafety.html">Pivot Thread Safety</a></span>
+</dt>
+<dt>
+<span class="section"><a href="PivotParsingConstraints.html">Parsing Constraints and Queries</a></span>
+</dt>
+<dt>
+<span class="section"><a href="PivotEvaluatingConstraints.html">Evaluating Constraints and Queries</a></span>
+</dt>
+<dt>
+<span class="section"><a href="PivotParsingDocuments.html">Parsing OCL Documents</a></span>
+</dt>
+<dt>
+<span class="section"><a href="PivotMetamodels.html">OCL Relationship to Metamodels</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Pivot-Ids.html">Ids</a></span>
+</dt>
+</dl>
+</div>
+<p>The Unified or Pivot Programmers Guide describes the ways in which the Pivot binding Eclipse OCL can be used from Java programs.</p>
+<p>The Pivot binding was first available as an examples quality prototype in 3.1.0 (Indigo). The Pivot binding 
+			will become the preferred binding in 6.0.0 (Mars). The older Ecore and UML bindings are described in a separate 
+			<a class="link" href="ProgrammersGuide.html" title="Classic Ecore/UML Programmers Guide">Ecore/UML Programmers Guide</a>.
+		</p>
+<p>The OCL Parser/Interpreter provides an implementation of the 
+			<a class="ulink" href="http://www.omg.org/spec/OCL" target="_new">Object Constraint Language 2.4</a> specification for EMF-based metamodels and models.  It offers OCL
+			constraint and query parsing and evaluation, model-based validation, and
+			provides an infrastructure for content assist in textual editors.
+		</p>
+<p>The following features are supported in the current version:</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Classifier invariant constraints</p>
+</li>
+<li class="listitem">
+<p>Operation precondition and postcondition constraints and body conditions</p>
+</li>
+<li class="listitem">
+<p>Property constraints (initial-value and derivation)</p>
+</li>
+<li class="listitem">
+<p>Attribute and operation definitions (def: expressions)</p>
+</li>
+<li class="listitem">
+<p>Package context declaration</p>
+</li>
+<li class="listitem">
+<p>Basic values and types</p>
+</li>
+<li class="listitem">
+<p>Collection types</p>
+</li>
+<li class="listitem">
+<p>Navigation of attributes and association ends</p>
+</li>
+<li class="listitem">
+<p>Operation invocation</p>
+</li>
+<li class="listitem">
+<p>Iteration expressions (all standard iterators)</p>
+</li>
+<li class="listitem">
+<p>Let expressions</p>
+</li>
+<li class="listitem">
+<p>If expressions</p>
+</li>
+<li class="listitem">
+<p>Tuples</p>
+</li>
+<li class="listitem">
+<p>Message expressions, including unspecified values</p>
+</li>
+<li class="listitem">
+<p>Operations predefined by OCL:  allInstances(), oclIsKindOf(), oclIsTypeOf(), oclAsType(), oclIsNew()</p>
+</li>
+<li class="listitem">
+<p>Escape syntax for illegal names:  type, operation, attribute, etc. names that correspond to OCL reserved words can be escaped in the standard fashion using a leading underscore (&lsquo;_&rsquo;).  In addition, names that contain spaces or tabs can be escaped by enclosing them in double-quotes (&lsquo;"&rsquo;; this is non-standard).  e.g., 
+					<code class="code">self.ownedRule-&gt;forAll(c : Constraint | c._context = self)</code>
+				
+</p>
+</li>
+</ul>
+</div>
+<p>The above constructs are supported by the parser for parsing and
+			for evaluation, with the exception of the oclIsNew() operation and
+			message expressions.  All of the above are supported for both Ecore
+			and UML models.  The following are supported by default for UML
+			(both in parsing and evaluation):</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Navigation of non-navigable association ends (including those that are owned by the association)</p>
+</li>
+<li class="listitem">
+<p>Qualified association end navigation</p>
+</li>
+<li class="listitem">
+<p>Navigation to association classes, including source qualifiers</p>
+</li>
+<li class="listitem">
+<p>Operations predefined by OCL: oclIsInState()</p>
+</li>
+</ul>
+</div>
+<p>The following features are provided in addition to the OCL specification:</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>String case conversion operations:  toUpper(), toLower()</p>
+</li>
+<li class="listitem">
+<p>Support for comparison (&lt;, &lt;=, etc.) and sorting of any java 
+					<code class="code">Comparable</code> s of conformant types
+				</p>
+</li>
+<li class="listitem">
+<p>Transitive closure of associations:  closure(expr : OCLExpression) iterator</p>
+</li>
+<li class="listitem">
+<p>Navigation of &ldquo;hidden&rdquo; opposites of references specified in Ecore models using a 
+					<code class="code">Property.oppositeRoleName</code> annotation with source 
+					<code class="code">http://schema.omg.org/spec/MOF/2.0/emof.xml</code> on the forward reference, producing an 
+					<code class="code">OppositePropertyCallExp</code> expression
+				</p>
+</li>
+</ul>
+</div>
+<p>The OCL implementation is defined in plug-ins for convenient deployment in
+			Eclipse, but as is the case for EMF, it can also be used stand-alone.  The
+			plug-ins are partitioned thus:</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+					
+<code class="code">org.eclipse.ocl.examples.domain</code>:  the neutral Pivot model interfaces.
+				</p>
+</li>
+<li class="listitem">
+<p>
+					
+<code class="code">org.eclipse.ocl.examples.pivot</code>:  the neutral Pivot model and evaluator.
+				</p>
+</li>
+<li class="listitem">
+<p>
+					
+<code class="code">org.eclipse.ocl.examples.library</code>:  the extensible OCL Stndard Library.
+				</p>
+</li>
+<li class="listitem">
+<p>
+					
+<code class="code">org.eclipse.ocl.examples.codegen</code>:  the OCL to Java code generator.
+				</p>
+</li>
+<li class="listitem">
+<p>
+					
+<code class="code">org.eclipse.ocl.examples.debug...</code>:  the extensible debugger.
+				</p>
+</li>
+<li class="listitem">
+<p>
+					
+<code class="code">org.eclipse.ocl.examples.validity</code>:  the Validation View.
+				</p>
+</li>
+<li class="listitem">
+<p>
+					
+<code class="code">org.eclipse.ocl.examples.xtext...</code>:  Xtext editors.
+				</p>
+</li>
+</ul>
+</div>
+<div class="section" title="Validators">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="Validators"></a>Validators</h2>
+</div>
+</div>
+</div>
+<p>When using the Pivot metamodel, there are two specialized validators available to support integration of OCL in to a larger Ecore environment. </p>
+<div class="section" title="OCLinEcoreEObjectValidator">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="OCLinEcoreEObjectValidator"></a>OCLinEcoreEObjectValidator</h3>
+</div>
+</div>
+</div>
+<p>Unfortunately, in the Indigo release, EMF does not support this customization and so must be activated by explicitly using an EValidator that is aware of the ValidationDelegateExtension extended API. This is available by using the OCLinEcoreEObjectValidator, which you may install globally by:</p>
+<div class="literallayout">
+<p>
+<code class="code">EValidator.Registry.INSTANCE.put(null,&nbsp;new&nbsp;OCLinEcoreEObjectValidator());<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>or more selectively by adjusting the inheritance of the Validator class generated by EMF from (for a model of a Company):</p>
+<div class="literallayout">
+<p>
+<code class="code">import&nbsp;org.eclipse.emf.ecore.util.EObjectValidator;<br>
+
+<br>
+/**<br>
+&nbsp;*&nbsp;&lt;!--&nbsp;begin-user-doc&nbsp;--&gt;<br>
+&nbsp;*&nbsp;The&nbsp;&lt;b&gt;Validator&lt;/b&gt;&nbsp;for&nbsp;the&nbsp;model.<br>
+&nbsp;*&nbsp;&lt;!--&nbsp;end-user-doc&nbsp;--&gt;<br>
+&nbsp;*&nbsp;@see&nbsp;company.CompanyPackage<br>
+&nbsp;*/<br>
+public&nbsp;class&nbsp;CompanyValidator&nbsp;extends&nbsp;EObjectValidator&nbsp;{<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>to</p>
+<div class="literallayout">
+<p>
+<code class="code">import&nbsp;org.eclipse.ocl.examples.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;<br>
+
+<br>
+/**<br>
+&nbsp;*&nbsp;&lt;!--&nbsp;begin-user-doc&nbsp;--&gt;<br>
+&nbsp;*&nbsp;The&nbsp;&lt;b&gt;Validator&lt;/b&gt;&nbsp;for&nbsp;the&nbsp;model.<br>
+&nbsp;*&nbsp;&lt;!--&nbsp;end-user-doc&nbsp;--&gt;<br>
+&nbsp;*&nbsp;@see&nbsp;company.CompanyPackage<br>
+&nbsp;*&nbsp;@generated&nbsp;not<br>
+&nbsp;*/<br>
+public&nbsp;class&nbsp;CompanyValidator&nbsp;extends&nbsp;OCLinEcoreEObjectValidator&nbsp;{<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>Note the 
+					<span class="bold"><strong>@generated not</strong></span> that indicates that the class interface is manually defined. Do not use 
+					<span class="bold"><strong>@generated NOT</strong></span> since that indicates that the whole class is manually defined.
+				</p>
+</div>
+<div class="section" title="CompleteOCLEObjectValidator">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="CompleteOCLEObjectValidator"></a>CompleteOCLEObjectValidator</h3>
+</div>
+</div>
+</div>
+<p>The CompleteOCLEObjectValidator is used to enable Complete OCL documents to participate in the validation processing of an Xtext editor.</p>
+<p>The APIs for merging Complete OCL and Ecore as intermediate Pivots and then migrating the Pivot back to Ecore are experimental.</p>
+</div>
+</div>
+</div>
+</body>
+</html>

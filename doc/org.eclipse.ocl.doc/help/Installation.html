@@ -1,0 +1,125 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Installing the Eclipse OCL Examples and Editors</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="Tutorials.html" title="Tutorials">
+<link rel="prev" href="OCLInterpreterTutorial.html" title="Working with Classic OCL">
+<link rel="next" href="Examples.html" title="Examples">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Installing the Eclipse OCL Examples and Editors</h1>
+<div class="section" title="Installing the Eclipse OCL Examples and Editors">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="Installation"></a>Installing the Eclipse OCL Examples and Editors</h2>
+</div>
+</div>
+</div>
+<p>These instructions have been updated for Eclipse Luna; Eclipse 4.4, EMF 2.10, OCL 5.0.</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Some screenshots may be slightly out of date.</p>
+</li>
+</ul>
+</div>
+<p>The OCL User Interface (console, editors, debugger and validity view) 
+				is not part of the core OCL functionality included in the
+				Eclipse Modeling Tools Package, so although you may have OCL installed and be able
+				to read this tutorial via the 
+				<span class="bold"><strong>Help-&gt;Help Contents-&gt;OCL Documentation</strong></span>, you may
+				not have the OCL examples installed.
+			</p>
+<p>An easy way to test whether you have the OCL Examples installed is
+				to right click on a *.ecore file and see whether
+
+				<span class="bold"><strong>OCLinEcore Editor</strong></span> appears in the 
+				<span class="bold"><strong>Open With</strong></span> submenu.
+			</p>
+<p>If OCL is not installed at all, or if just the examples are not installed,
+				the following installation step will automatically install the OCL Examples
+				and all required projects such as 
+				<span class="bold"><strong>EMF</strong></span>, 
+				<span class="bold"><strong>UML2</strong></span>, 
+				<span class="bold"><strong>MWE2</strong></span>, 
+				<span class="bold"><strong>Xpand</strong></span>
+				and 
+				<span class="bold"><strong>Xtext</strong></span>.
+			</p>
+<p>Left-click on 
+				<span class="bold"><strong>Help</strong></span> in the Eclipse menu-bar then left-click on 
+				<span class="bold"><strong>Install New Software...</strong></span>
+				and select the 
+				<span class="bold"><strong>Luna &ndash; http://download.eclipse.org/releases/luna</strong></span> update site
+				from the pull-down menu to 
+				<span class="bold"><strong>Work with</strong></span> and be patient while the available updates
+				are identified. Then type 
+				<span class="bold"><strong>OCL</strong></span> in the filter text, click on the expand item preceding
+				the 
+				<span class="bold"><strong>Modeling</strong></span> category and then check 
+				<span class="bold"><strong>OCL Examples and Editors SDK</strong></span>.
+			</p>
+<p>
+				
+</p>
+<div class="mediaobject">
+<img src="images/4900-install_software.png"></div>
+<p>
+			
+</p>
+<p>Select 
+				<span class="bold"><strong>Next</strong></span>.
+			</p>
+<p>
+				
+</p>
+<div class="mediaobject">
+<img src="images/4900-install_details.png"></div>
+<p>
+			
+</p>
+<p>Select 
+				<span class="bold"><strong>Next</strong></span> again and read the license agreement. Set to accept it.
+			</p>
+<p>
+				
+</p>
+<div class="mediaobject">
+<img src="images/4900-install_license.png"></div>
+<p>
+			
+</p>
+<p>Select 
+				<span class="bold"><strong>Finish</strong></span> and be patient while the software is downloaded and installed.
+				Select 
+				<span class="bold"><strong>Restart Now</strong></span> when prompted to do so.
+			</p>
+<div class="section" title="Troubleshooting">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Troubleshooting2"></a>Troubleshooting</h3>
+</div>
+</div>
+</div>
+<p>Eclipse Modeling Projects have a large number of classes and so require a
+					large amount of PermGen space on a Sun JVM. If you are using default Eclipse
+					startup settings you are liable to encounter OutOfMemoryExceptions. Therefore
+					follow the advice in 
+					<a class="ulink" href="http://wiki.eclipse.org/IRC_FAQ#How_do_I_start_Eclipse.3F" target="_new">How do I start Eclipse</a>
+					and set XX:PermSize to at least 64M, either on your Eclipse command line, or your
+					Eclipse shortcut or in the 
+					<span class="bold"><strong>eclipse.ini</strong></span> adjacent to 
+					<span class="bold"><strong>eclipse.exe</strong></span>. If you are using a 64 bit machine
+					or plan to use graphical modeling tools such as Papyrus or Sirius, 128M is almost certainly necessary.
+				</p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+See Bug 448088 for a discussion of why this is disabled.
+
+<?xml version="1.0" encoding="UTF-8"?>
+<cspecExtension
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0"
+	xmlns="http://www.eclipse.org/buckminster/CSpec-1.0">
+	<dependencies>
+        <dependency name="org.apache.xalan" componentType="osgi.bundle"/>
+        <dependency name="org.apache.xml.serializer" componentType="osgi.bundle"/>
+		<dependency name="org.eclipse.mylyn.wikitext.core" componentType="osgi.bundle" />
+		<dependency name="org.eclipse.mylyn.wikitext.core.ant" componentType="osgi.bundle" />
+		<dependency name="org.eclipse.mylyn.wikitext.textile.core" componentType="osgi.bundle" />
+    </dependencies>
+	<actions>
+		<public name="buckminster.prebind" actor="ant">
+			<actorProperties>
+				<property key="buildFile" value="build.xml" />
+				<property key="targets" value="buckminster.build.textile.doc build.update.jar" />
+			</actorProperties>
+            <properties>
+                <property key="mustCreateDoc" value="${manage.doc}"/>
+            </properties>
+		</public>
+	</actions>
+</cspecExtension>

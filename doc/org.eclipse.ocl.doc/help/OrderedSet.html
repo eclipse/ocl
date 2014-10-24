@@ -1,0 +1,242 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>OrderedSet(T)</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="StandardLibrary.html" title="The OCL Standard Library">
+<link rel="prev" href="OrderedCollection.html" title="OrderedCollection(T)">
+<link rel="next" href="Real.html" title="Real">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">
+				
+					OrderedSet(T)
+				
+			</h1>
+<div class="section" title="OrderedSet(T)">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="OrderedSet"></a>
+				<span class="bold"><strong>
+					<code class="code">OrderedSet(T)</code>
+				</strong></span>
+			
+</h2>
+</div>
+</div>
+</div>
+<p>The OrderedSet is a Set, the elements of which are ordered.
+				It contains no duplicates. OrderedSet is itself an instance of the metatype OrderedSetType.
+				An OrderedSet is not a subtype of Set, neither a subtype of Sequence.
+				The common supertype of Sets and OrderedSets is Collection.</p>
+<p>conformsTo 
+				<a class="link" href="OrderedCollection.html" title="OrderedCollection(T)">
+					<code class="code">OrderedCollection(T)</code>
+				</a>, 
+				<a class="link" href="UniqueCollection.html" title="UniqueCollection(T)">
+					<code class="code">UniqueCollection(T)</code>
+				</a>
+			
+</p>
+<p>
+				
+<span class="bold"><strong>Operations</strong></span>
+			
+</p>
+<p>
+				
+<code class="code">=(object2 : OclSelf) : Boolean</code>
+				precedence: 
+				<code class="code">EQUALITY</code>
+			
+</p>
+<p>
+				
+<code class="code">&lt;&gt;(object2 : OclSelf) : Boolean</code>
+				precedence: 
+				<code class="code">EQUALITY</code>
+			
+</p>
+<p>
+				
+<code class="code">-(s : UniqueCollection(OclAny)) : OrderedSet(T)</code>
+				precedence: 
+				<code class="code">ADDITIVE</code>
+			
+</p>
+<p>The elements of 
+				<code class="code">self</code>, which are not in s.
+			</p>
+<p>
+				
+<code class="code">append(object : T[?]) : OrderedSet(T)</code>
+			
+</p>
+<p>The set of elements, consisting of all elements of 
+				<code class="code">self</code>, followed by object.
+			</p>
+<p>
+				
+<code class="code">appendAll(objects : OrderedCollection(T)) : OrderedSet(T)</code>
+			
+</p>
+<p>The set of elements, consisting of all elements of 
+				<code class="code">self</code>, followed by objects.
+			</p>
+<p>
+				
+<code class="code">excluding(object : OclAny[?]) : OrderedSet(T)</code>
+			
+</p>
+<p>The ordered set  containing all elements of 
+				<code class="code">self</code> apart from object.
+			</p>
+<p>The order of the remaining elements is not changed.</p>
+<p>
+				
+<code class="code">excludingAll(objects : Collection(OclAny)) : OrderedSet(T)</code>
+			
+</p>
+<p>The ordered set containing all elements of 
+				<code class="code">self</code> apart from all occurrences of all objects.
+			</p>
+<p>
+				
+<code class="code">flatten(T2)() : OrderedSet(T2)</code>
+			
+</p>
+<p>
+				
+<code class="code">including(object : T[?]) : OrderedSet(T)</code>
+			
+</p>
+<p>The ordered set containing all elements of 
+				<code class="code">self</code> plus object added as the last element if not already present.
+			</p>
+<p>
+				
+<code class="code">insertAt(index : Integer, object : T[?]) : OrderedSet(T) invalidating</code>
+			
+</p>
+<p>The ordered set consisting of 
+				<code class="code">self</code> with object present at position index.
+			</p>
+<p>
+				
+<code class="code">prepend(object : T[?]) : OrderedSet(T)</code>
+			
+</p>
+<p>The sequence consisting of object, followed by all elements in 
+				<code class="code">self</code>.
+			</p>
+<div class="literallayout">
+<p>
+<code class="code">post&nbsp;IsAtStart:&nbsp;result-&gt;at(1)&nbsp;=&nbsp;object<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<div class="literallayout">
+<p>
+<code class="code">post&nbsp;IsShiftedAlong:&nbsp;Sequence{1..self-&gt;size()}-&gt;forAll(index&nbsp;|&nbsp;self-&gt;at(index)&nbsp;=&nbsp;result-&gt;at(index&nbsp;+&nbsp;1))<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<div class="literallayout">
+<p>
+<code class="code">post&nbsp;IsSizePlusOne:&nbsp;result-&gt;size()&nbsp;=&nbsp;self-&gt;size()&nbsp;+&nbsp;1<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>
+				
+<code class="code">prependAll(objects : OrderedCollection(T)) : OrderedSet(T)</code>
+			
+</p>
+<p>The sequence consisting of objects, followed by all elements in 
+				<code class="code">self</code>.
+			</p>
+<p>
+				
+<code class="code">reverse() : OrderedSet(T)</code>
+			
+</p>
+<p>The ordered set of elements with same elements but with the opposite order.</p>
+<p>
+				
+<code class="code">selectByKind(TT)(type : Metaclass(TT)) : OrderedSet(TT)</code>
+			
+</p>
+<p>
+				
+<code class="code">selectByType(TT)(type : Metaclass(TT)) : OrderedSet(TT)</code>
+			
+</p>
+<p>
+				
+<code class="code">subOrderedSet(lower : Integer, upper : Integer) : OrderedSet(T) invalidating</code>
+			
+</p>
+<p>The sub-set of 
+				<code class="code">self</code> starting at number lower, up to and including element number upper.
+			</p>
+<p>
+				
+<span class="bold"><strong>Iterations</strong></span>
+			
+</p>
+<p>
+				
+<code class="code">closure(i : T | lambda : Lambda T() : OrderedSet(T)) : OrderedSet(T)</code>
+			
+</p>
+<p>The closure of applying body transitively to every distinct element of the source collection.</p>
+<p>
+				
+<code class="code">collect(V)(i : T[?] | lambda : Lambda T() : V[?]) : Sequence(V)</code>
+			
+</p>
+<p>
+				
+<code class="code">collectNested(V)(i : T[?] | lambda : Lambda T() : V[?]) : Sequence(V)</code>
+			
+</p>
+<p>The sequence of elements that results from applying body to every member of the source ordered collection.</p>
+<p>
+				
+<code class="code">reject(i : T[?] | lambda : Lambda T() : Boolean) : OrderedSet(T)</code>
+			
+</p>
+<p>The ordered set of the source ordered set for which body is 
+				<code class="code">false</code>.
+			</p>
+<p>
+				
+<code class="code">select(i : T[?] | lambda : Lambda T() : Boolean) : OrderedSet(T)</code>
+			
+</p>
+<p>The ordered set of the source ordered set for which body is 
+				<code class="code">true</code>
+			
+</p>
+<p>
+				
+<code class="code">sortedBy(i : T[?] | lambda : Lambda T() : OclAny) : OrderedSet(T)</code>
+			
+</p>
+<p>Results in the ordered set containing all elements of the source collection.
+				The element for which body has the lowest value comes first, and so on.
+				The type of the body expression must have the &lt; operation defined.
+				The &lt; operation must return a Boolean value and must be transitive (i.e., if a &lt; b and b &lt; c, then a &lt; c).</p>
+</div>
+</body>
+</html>

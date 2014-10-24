@@ -1,0 +1,214 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Sequence(T)</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="StandardLibrary.html" title="The OCL Standard Library">
+<link rel="prev" href="Real.html" title="Real">
+<link rel="next" href="Set.html" title="Set(T)">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">
+				
+					Sequence(T)
+				
+			</h1>
+<div class="section" title="Sequence(T)">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="Sequence"></a>
+				<span class="bold"><strong>
+					<code class="code">Sequence(T)</code>
+				</strong></span>
+			
+</h2>
+</div>
+</div>
+</div>
+<p>A sequence is a collection where the elements are ordered.
+				An element may be part of a sequence more than once.
+				Sequence is itself an instance of the metatype SequenceType.
+				A Sentence is not a subtype of Bag.
+				The common supertype of Sentence and Bags is Collection.</p>
+<p>conformsTo 
+				<a class="link" href="OrderedCollection.html" title="OrderedCollection(T)">
+					<code class="code">OrderedCollection(T)</code>
+				</a>
+			
+</p>
+<p>
+				
+<span class="bold"><strong>Operations</strong></span>
+			
+</p>
+<p>
+				
+<code class="code">=(object2 : OclSelf) : Boolean</code>
+				precedence: 
+				<code class="code">EQUALITY</code>
+			
+</p>
+<p>True if 
+				<code class="code">self</code> contains the same elements as s in the same order.
+			</p>
+<p>
+				
+<code class="code">&lt;&gt;(object2 : OclSelf) : Boolean</code>
+				precedence: 
+				<code class="code">EQUALITY</code>
+			
+</p>
+<p>
+				
+<code class="code">append(object : T[?]) : Sequence(T)</code>
+			
+</p>
+<p>The sequence of elements, consisting of all elements of 
+				<code class="code">self</code>, followed by object.
+			</p>
+<p>
+				
+<code class="code">appendAll(objects : OrderedCollection(T)) : Sequence(T)</code>
+			
+</p>
+<p>The sequence of elements, consisting of all elements of 
+				<code class="code">self</code>, followed by objects.
+			</p>
+<p>
+				
+<code class="code">excluding(object : OclAny[?]) : Sequence(T)</code>
+			
+</p>
+<p>The sequence containing all elements of 
+				<code class="code">self</code> apart from all occurrences of object.
+			</p>
+<p>The order of the remaining elements is not changed.</p>
+<p>
+				
+<code class="code">excludingAll(objects : Collection(OclAny)) : Sequence(T)</code>
+			
+</p>
+<p>The sequence containing all elements of 
+				<code class="code">self</code> apart from all occurrences of all objects.
+			</p>
+<p>
+				
+<code class="code">flatten(T2)() : Sequence(T2)</code>
+			
+</p>
+<p>Redefines the Collection operation. If the element type is not a collection type, this results in the same sequence as 
+				<code class="code">self</code>.
+				If the element type is a collection type, the result is the sequence containing all the elements
+				of all the recursively flattened elements of 
+				<code class="code">self</code>. The order of the elements is partial.
+			</p>
+<p>
+				
+<code class="code">including(object : T[?]) : Sequence(T)</code>
+			
+</p>
+<p>The sequence containing all elements of 
+				<code class="code">self</code> plus object added as the last element.
+			</p>
+<p>
+				
+<code class="code">insertAt(index : Integer, object : T[?]) : Sequence(T) invalidating</code>
+			
+</p>
+<p>The sequence consisting of 
+				<code class="code">self</code> with object inserted at position index.
+			</p>
+<p>
+				
+<code class="code">prepend(object : T[?]) : Sequence(T)</code>
+			
+</p>
+<p>The sequence consisting of object, followed by all elements in 
+				<code class="code">self</code>.
+			</p>
+<p>
+				
+<code class="code">prependAll(objects : OrderedCollection(T)) : Sequence(T)</code>
+			
+</p>
+<p>The sequence consisting of objects, followed by all elements in 
+				<code class="code">self</code>.
+			</p>
+<p>
+				
+<code class="code">reverse() : Sequence(T)</code>
+			
+</p>
+<p>The sequence containing the same elements but with the opposite order.</p>
+<p>
+				
+<code class="code">selectByKind(TT)(type : Metaclass(TT)) : Sequence(TT)</code>
+			
+</p>
+<p>
+				
+<code class="code">selectByType(TT)(type : Metaclass(TT)) : Sequence(TT)</code>
+			
+</p>
+<p>
+				
+<code class="code">subSequence(lower : Integer, upper : Integer) : Sequence(T) invalidating</code>
+			
+</p>
+<p>The sub-sequence of 
+				<code class="code">self</code> starting at number lower, up to and including element number upper.
+			</p>
+<p>
+				
+<span class="bold"><strong>Iterations</strong></span>
+			
+</p>
+<p>
+				
+<code class="code">closure(i : T | lambda : Lambda T() : OrderedSet(T)) : OrderedSet(T)</code>
+			
+</p>
+<p>The closure of applying body transitively to every distinct element of the source collection.</p>
+<p>
+				
+<code class="code">collect(V)(i : T[?] | lambda : Lambda T() : V[?]) : Sequence(V)</code>
+			
+</p>
+<p>
+				
+<code class="code">collectNested(V)(i : T[?] | lambda : Lambda T() : V[?]) : Sequence(V)</code>
+			
+</p>
+<p>The sequence of elements that results from applying body to every member of the source ordered collection.</p>
+<p>
+				
+<code class="code">reject(i : T[?] | lambda : Lambda T() : Boolean) : Sequence(T)</code>
+			
+</p>
+<p>The subsequence of the source sequence for which body is 
+				<code class="code">false</code>.
+			</p>
+<p>
+				
+<code class="code">select(i : T[?] | lambda : Lambda T() : Boolean) : Sequence(T)</code>
+			
+</p>
+<p>The subsequence of the source sequence for which body is 
+				<code class="code">true</code>.
+			</p>
+<p>
+				
+<code class="code">sortedBy(i : T[?] | lambda : Lambda T() : OclAny) : Sequence(T)</code>
+			
+</p>
+<p>Results in the Sequence containing all elements of the source collection.
+				The element for which body has the lowest value comes first, and so on.
+				The type of the body expression must have the &lt; operation defined.
+				The &lt; operation must return a Boolean value and must be transitive (i.e., if a &lt; b and b &lt; c then a &lt; c).</p>
+</div>
+</body>
+</html>

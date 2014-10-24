@@ -1,0 +1,135 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>OCL Persistence</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="ProgrammersGuide.html" title="Classic Ecore/UML Programmers Guide">
+<link rel="prev" href="CustomizingtheEnvironment.html" title="Customizing the Environment">
+<link rel="next" href="AdvancedMetamodelBindings.html" title="Creating Metamodel Bindings">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">OCL Persistence</h1>
+<div class="section" title="OCL Persistence">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="Persistence"></a>OCL Persistence</h2>
+</div>
+</div>
+</div>
+<p>The Eclipse OCL component implements the OCL Abstract Syntax model as an EMF-based metamodel.
+				Thus, parsed OCL expressions and constraints can be serialized, for example in XMI documents.
+				The OCL 2.4 specification is unclear about how the serialization of expressions should look (this will be solved in the next OCL 2.5 specification),
+				especially where references to demand-created types are concerned.  This topic discusses the
+				approach taken by the Eclipse OCL component to provide a practical solution to this problem.</p>
+<div class="section" title="The Type Resolver">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="TheTypeResolver"></a>The Type Resolver</h3>
+</div>
+</div>
+</div>
+<p>OCL defines a number of template metaclasses, including the 
+					<code class="code">CollectionType</code>
+					metaclass and its specializations, 
+					<code class="code">MessageType</code>, and
+
+					<code class="code">TupleType</code>.  In all of these cases, OCL specifies that these
+					templates are instantiated as needed in the OCL environment, and that only one instance
+					of a template exists for any given combination of template arguments.  For example, only one
+
+					<code class="code">OrderedSet(String)</code> exists and it is created on the occasion when
+					it is first needed.  Likewise, the 
+					<code class="code">OclMessage</code> type for invocations
+					of the 
+					<code class="code">EModelElement::getEAnnotation(EString)</code> operation and the
+
+					<code class="code">Tuple{a : String, b : EClass}</code> type.
+				</p>
+<p>The problem is, that the OCL Specification does not indicate how expressions that reference
+					such demand-created types can be persisted, because it does not define what should own these
+					types.    A similar problem exists for additional operations and attributes defined in OCL
+					via 
+					<code class="code">def:</code> expressions.  The
+
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/TypeResolver.html" target="_new">
+						<code class="code">TypeResolver</code>
+					</a> API is responsible for the demand-creation of these types and for their persistence.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/5170-persistence.png"></div>
+<p>
+				
+</p>
+<p>Every 
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/Environment.html" target="_new">
+						<code class="code">Environment</code>
+					</a> has a 
+					<code class="code">TypeResolver</code> that persists demand-created types and additional features.  For a client that doesn&rsquo;t require persistence, the 
+					<code class="code">TypeResolver</code> will create a 
+					<code class="code">Resource</code> with the dummy 
+					<code class="code">ocl://</code> scheme (no resource factory is provided for this scheme).
+				</p>
+<p>A client that does require persistence of OCL expressions and these demand-created elements
+					should provide a specific resource in which to store them, either via the
+
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/OCL.html" target="_new">
+						<code class="code">OCL</code>
+					</a> class&rsquo;s
+
+					<code class="code">newInstance(EnvironmentFactory, Resource)</code> factory method or via
+					the 
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/EnvironmentFactory.html" target="_new">
+						<code class="code">EnvironmentFactory</code>
+					</a> interface&rsquo;s 
+					<code class="code">load(Resource)</code> method.
+				</p>
+<div class="literallayout">
+<p>
+<code class="code">Resource&nbsp;modelResource&nbsp;=&nbsp;getResourceSet().getResource(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;URI.createPlatformResourceURI("/models/My.ecore",&nbsp;true),&nbsp;true);<br>
+
+<br>
+//&nbsp;persist&nbsp;demand-created&nbsp;types&nbsp;etc.&nbsp;in&nbsp;my&nbsp;model&nbsp;resource<br>
+OCL&lt;?,&nbsp;EClassifier,&nbsp;?,&nbsp;?,&nbsp;?,&nbsp;?,&nbsp;?,&nbsp;?,&nbsp;?,&nbsp;Constraint,&nbsp;EClass,&nbsp;EObject&gt;&nbsp;ocl;<br>
+ocl&nbsp;=&nbsp;OCL.newInstance(EcoreEnvironmentFactory.INSTANCE,&nbsp;myResource);<br>
+
+<br>
+//&nbsp;use&nbsp;the&nbsp;OCL&nbsp;to&nbsp;parse&nbsp;constraints,&nbsp;store&nbsp;them&nbsp;in&nbsp;the&nbsp;Ecore&nbsp;model,<br>
+//	&nbsp;&nbsp;and&nbsp;save&nbsp;everything&nbsp;together&nbsp;in&nbsp;one&nbsp;resource&nbsp;for&nbsp;a&nbsp;consistent,<br>
+//&nbsp;&nbsp;&nbsp;self-contained&nbsp;OCL&nbsp;environment<br>
+
+<br>
+...<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>The 
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/AbstractTypeResolver.html" target="_new">
+						<code class="code">AbstractTypeResolver</code>
+					</a> class creates packages in which to store the different elements that it creates: collection types, message types, tuple types, and additional operations and attributes.  These last are owned by classes that &ldquo;shadow&rdquo; the classifiers in which context they are defined, in
+					the manner by which the OCL specification&rsquo;s adaptation for EMOF indicates that operations
+					are to be &ldquo;owned&rdquo; by EMOF 
+					<code class="code">DataType</code> s.
+				</p>
+<p>An environment implementation can customize the way these demand-created elements are
+					stored, by choosing different packages or using some other strategy altogether.  Or, using
+					the default 
+					<code class="code">TypeResolver</code> implementation, a client of the OCL
+					parser can find the demand-created objects in the resolver&rsquo;s resource and relocate them
+					as needed.
+				</p>
+</div>
+</div>
+</body>
+</html>

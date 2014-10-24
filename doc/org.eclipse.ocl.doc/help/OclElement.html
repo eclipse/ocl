@@ -1,0 +1,65 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>OclElement</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="StandardLibrary.html" title="The OCL Standard Library">
+<link rel="prev" href="OclComparable.html" title="OclComparable">
+<link rel="next" href="OclInvalid.html" title="OclInvalid">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">
+				
+					OclElement
+				
+			</h1>
+<div class="section" title="OclElement">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="OclElement"></a>
+				<span class="bold"><strong>
+					<code class="code">OclElement</code>
+				</strong></span>
+			
+</h2>
+</div>
+</div>
+</div>
+<p>The type OclElement is the implicit supertype of any user-defined type that has no explicit supertypes. Operations defined
+				for OclElement are therefore applicable to all user-defined types.</p>
+<p>conformsTo 
+				<a class="link" href="OclAny.html" title="OclAny">
+					<code class="code">OclAny</code>
+				</a>
+			
+</p>
+<p>
+				
+<span class="bold"><strong>Operations</strong></span>
+			
+</p>
+<p>
+				
+<code class="code">allInstances() : Set(OclSelf)</code>
+			
+</p>
+<p>Return a set of all instances of the type and derived types of self.</p>
+<p>
+				
+<code class="code">oclContainer() : OclElement[?]</code>
+			
+</p>
+<p>Returns the object for which self is a composed content or null if there is no such object.</p>
+<p>
+				
+<code class="code">oclContents() : Set(OclElement)</code>
+			
+</p>
+<p>Returns the composed contents of self.</p>
+</div>
+</body>
+</html>

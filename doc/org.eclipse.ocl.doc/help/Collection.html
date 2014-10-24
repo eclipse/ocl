@@ -1,0 +1,454 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Collection(T)</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="StandardLibrary.html" title="The OCL Standard Library">
+<link rel="prev" href="Class.html" title="Class">
+<link rel="next" href="Enumeration.html" title="Enumeration">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">
+				
+					Collection(T)
+				
+			</h1>
+<div class="section" title="Collection(T)">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="Collection"></a>
+				<span class="bold"><strong>
+					<code class="code">Collection(T)</code>
+				</strong></span>
+			
+</h2>
+</div>
+</div>
+</div>
+<p>Collection is the abstract supertype of all collection types in the OCL Standard Library.
+				Each occurrence of an object in a collection is called an element.
+				If an object occurs twice in a collection, there are two elements.</p>
+<p>This sub clause defines the properties on Collections that have identical semantics for all collection subtypes.
+				Some operations may be defined within the subtype as well,
+				which means that there is an additional postcondition or a more specialized return value.
+				Collection is itself an instance of the metatype CollectionType.</p>
+<p>The definition of several common operations is different for each subtype.
+				These operations are not mentioned in this sub clause.</p>
+<p>The semantics of the collection operations is given in the form of a postcondition that uses the IterateExp of the IteratorExp construct.
+				The semantics of those constructs is defined in Clause 10 (&ldquo;Semantics Described using UML&rdquo;).
+				In several cases the postcondition refers to other collection operations,
+				which in turn are defined in terms of the IterateExp or IteratorExp constructs.</p>
+<p>Well-formedness rules</p>A collection cannot contain 
+			<code class="code">invalid</code> values.context Collection
+			 inv: self-&gt;forAll(not oclIsInvalid())
+			<p>conformsTo 
+				<a class="link" href="OclAny.html" title="OclAny">
+					<code class="code">OclAny</code>
+				</a>
+			
+</p>
+<p>
+				
+<span class="bold"><strong>Attributes</strong></span>
+			
+</p>
+<p>
+				
+<code class="code">elementType : T</code>
+			
+</p>
+<p>Evaluates to the type of the collection elements.</p>
+<p>
+				
+<code class="code">lower : Integer</code>
+			
+</p>
+<p>Evaluates to the lower bound on the number of collection elements.</p>
+<p>
+				
+<code class="code">upper : Integer</code>
+			
+</p>
+<p>Evaluates to the upper bound on the number of collection elements.</p>
+<p>
+				
+<span class="bold"><strong>Operations</strong></span>
+			
+</p>
+<p>
+				
+<code class="code">=(object2 : OclSelf) : Boolean</code>
+				precedence: 
+				<code class="code">EQUALITY</code>
+			
+</p>
+<p>True if c is a collection of the same kind as 
+				<code class="code">self</code> and contains the same elements in the same quantities and in the same order,
+				in the case of an ordered collection type.
+			</p>
+<p>
+				
+<code class="code">&lt;&gt;(object2 : OclSelf) : Boolean</code>
+				precedence: 
+				<code class="code">EQUALITY</code>
+			
+</p>
+<p>True if c is not equal to 
+				<code class="code">self</code>.
+			</p>
+<p>
+				
+<code class="code">asBag() : Bag(T)</code>
+			
+</p>
+<p>The Bag that contains all the elements from 
+				<code class="code">self</code>.
+			</p>
+<p>
+				
+<code class="code">asOrderedSet() : OrderedSet(T)</code>
+			
+</p>
+<p>An OrderedSet that contains all the elements from 
+				<code class="code">self</code>, with duplicates removed,
+				in an order dependent on the particular concrete collection type.
+			</p>
+<p>
+				
+<code class="code">asSequence() : Sequence(T)</code>
+			
+</p>
+<p>A Sequence that contains all the elements from 
+				<code class="code">self</code>, in an order dependent on the particular concrete collection type.
+			</p>
+<p>
+				
+<code class="code">asSet() : Set(T)</code>
+			
+</p>
+<p>The Set containing all the elements from 
+				<code class="code">self</code>, with duplicates removed.
+			</p>
+<p>
+				
+<code class="code">count(object : OclAny[?]) : Integer</code>
+			
+</p>
+<p>The number of times that object occurs in the collection 
+				<code class="code">self</code>.
+			</p>
+<p>
+				
+<code class="code">excludes(object : OclAny[?]) : Boolean</code>
+			
+</p>
+<p>True if object is not an element of 
+				<code class="code">self</code>, 
+				<code class="code">false</code> otherwise.
+			</p>
+<p>
+				
+<code class="code">excludesAll(T2)(c2 : Collection(T2)) : Boolean</code>
+			
+</p>
+<p>Does 
+				<code class="code">self</code> contain none of the elements of c2 ?
+			</p>
+<p>
+				
+<code class="code">excluding(object : OclAny[?]) : Collection(T)</code>
+			
+</p>
+<p>The collection containing all elements of 
+				<code class="code">self</code> apart from object.
+			</p>
+<p>
+				
+<code class="code">excludingAll(objects : Collection(OclAny)) : Collection(T)</code>
+			
+</p>
+<p>The collection containing all elements of 
+				<code class="code">self</code> apart from all occurrences of all objects.
+			</p>
+<p>
+				
+<code class="code">flatten(T2)() : Collection(T2)</code>
+			
+</p>
+<p>If the element type is not a collection type, this results in the same collection as 
+				<code class="code">self</code>.
+				If the element type is a collection type, the result is a collection containing all the elements of all the recursively flattened elements of 
+				<code class="code">self</code>.
+			</p>
+<p>
+				
+<code class="code">includes(object : OclAny[?]) : Boolean</code>
+			
+</p>
+<p>True if object is an element of 
+				<code class="code">self</code>, 
+				<code class="code">false</code> otherwise.
+			</p>
+<p>
+				
+<code class="code">includesAll(T2)(c2 : Collection(T2)) : Boolean</code>
+			
+</p>
+<p>Does 
+				<code class="code">self</code> contain all the elements of c2 ?
+			</p>
+<p>
+				
+<code class="code">including(object : T[?]) : Collection(T)</code>
+			
+</p>
+<p>The collection containing all elements of 
+				<code class="code">self</code> plus object.
+			</p>
+<p>
+				
+<code class="code">includingAll(objects : Collection(T)) : Collection(T)</code>
+			
+</p>
+<p>The collection containing all elements of 
+				<code class="code">self</code> and objects.
+			</p>
+<p>
+				
+<code class="code">intersection(c : Collection(T)) : Bag(T)</code>
+			
+</p>
+<p>The intersection of 
+				<code class="code">self</code> and bag; the bag of all elements that are in both 
+				<code class="code">self</code> and c.
+			</p>
+<p>
+				
+<code class="code">intersection(u : UniqueCollection(T)) : Set(T)</code>
+			
+</p>
+<p>The intersection of 
+				<code class="code">self</code> and a unique collection; the set of all elements that are in both 
+				<code class="code">self</code> and u.
+			</p>
+<p>
+				
+<code class="code">isEmpty() : Boolean</code>
+			
+</p>
+<p>Is 
+				<code class="code">self</code> the empty collection?
+			</p>
+<p>Note: 
+				<code class="code">null-&gt;isEmpty()</code> returns 
+				<code class="code">true</code> in virtue of the implicit casting from 
+				<code class="code">null</code> to 
+				<code class="code">Bag{}</code>.
+			</p>
+<p>
+				
+<code class="code">max() : T</code>
+			
+</p>
+<p>The element with the maximum value of all elements in 
+				<code class="code">self</code>.
+				Elements must be of a type supporting the max operation.
+				The max operation &ndash; supported by the elements &ndash; must take one parameter of type T and be both associative and commutative.
+				UnlimitedNatural, Integer and Real fulfill this condition.
+			</p>
+<p>
+				
+<code class="code">min() : T</code>
+			
+</p>
+<p>The element with the minimum value of all elements in 
+				<code class="code">self</code>.
+				Elements must be of a type supporting the min operation.
+				The min operation &ndash; supported by the elements &ndash; must take one parameter of type T and be both associative and commutative.
+				UnlimitedNatural, Integer and Real fulfill this condition.
+			</p>
+<p>
+				
+<code class="code">notEmpty() : Boolean</code>
+			
+</p>
+<p>Is 
+				<code class="code">self</code> not the empty collection?
+			</p>
+<p>
+				
+<code class="code">null-&gt;notEmpty()</code> returns 
+				<code class="code">false</code> in virtue of the implicit casting from 
+				<code class="code">null</code> to 
+				<code class="code">Bag{}</code>.
+			</p>
+<p>
+				
+<code class="code">product(T2)(c2 : Collection(T2)) : Set(Tuple(Tuple(first : T, second : T2)::first : T, Tuple(first : T, second : T2)::second : T2))</code>
+			
+</p>
+<p>The cartesian product operation of 
+				<code class="code">self</code> and c2.
+			</p>
+<p>
+				
+<code class="code">selectByKind(TT)(type : Metaclass(TT)) : Collection(TT)</code>
+			
+</p>
+<p>
+				
+<code class="code">selectByType(TT)(type : Metaclass(TT)) : Collection(TT)</code>
+			
+</p>
+<p>
+				
+<code class="code">size() : Integer</code>
+			
+</p>
+<p>The number of elements in the collection 
+				<code class="code">self</code>.
+			</p>
+<p>
+				
+<code class="code">sum() : T</code>
+			
+</p>
+<p>The addition of all elements in 
+				<code class="code">self</code>.
+				Elements must be of an 
+				<code class="code">OclSummable</code> type to provide the zero() and sum() operations.
+				The 
+				<span class="emphasis"><em>sum</em></span> operation must be both associative: a.sum(b).sum&copy; = a.sum(b.sum&copy;), and commutative: a.sum(b) = b.sum(a).
+				UnlimitedNatural, Integer and Real fulfill this condition.
+			</p>
+<p>If the 
+				<span class="emphasis"><em>sum</em></span> operation is not both associative and commutative, the 
+				<span class="emphasis"><em>sum</em></span> expression is not well-formed,
+				which may result in unpredictable results during evaluation.
+				If an implementation is able to detect a lack of associativity or commutativity,
+				the implementation may bypass the evaluation and return an 
+				<code class="code">invalid</code> result.
+			</p>
+<p>
+				
+<code class="code">union(c : Collection(T)) : Bag(T)</code>
+			
+</p>
+<p>The bag consisting of all elements in 
+				<code class="code">self</code> and all elements in c.
+			</p>
+<p>
+				
+<span class="bold"><strong>Iterations</strong></span>
+			
+</p>
+<p>
+				
+<code class="code">any(i : T[?] | lambda : Lambda T() : Boolean) : T[?]</code>
+			
+</p>
+<p>Returns any element in the source collection for which body evaluates to 
+				<code class="code">true</code>.
+				If there is more than one element for which body is 
+				<code class="code">true</code>, one of them is returned.
+				There must be at least one element fulfilling body, otherwise the result of this IteratorExp is 
+				<code class="code">null</code>.
+			</p>
+<p>
+				
+<code class="code">collect(V)(i : T[?] | lambda : Lambda T() : V[?]) : Collection(V)</code>
+			
+</p>
+<p>The Collection of elements that results from applying body to every member of the source set.
+				The result is flattened. Notice that this is based on collectNested, which can be of different type depending on the type of source.
+				collectNested is defined individually for each subclass of CollectionType.</p>
+<p>
+				
+<code class="code">collectNested(V)(i : T[?] | lambda : Lambda T() : V[?]) : Collection(V)</code>
+			
+</p>
+<p>The Collection of elements which results from applying body to every member of the source collection.</p>
+<p>
+				
+<code class="code">exists(i : T[?] | lambda : Lambda T() : Boolean[?]) : Boolean[?]</code>
+			
+</p>
+<p>Results in 
+				<code class="code">true</code> if body evaluates to 
+				<code class="code">true</code> for at least one element in the source collection.
+			</p>
+<p>
+				
+<code class="code">exists(i : T[?], j : T[?] | lambda : Lambda T() : Boolean[?]) : Boolean[?]</code>
+			
+</p>
+<p>
+				
+<code class="code">forAll(i : T[?] | lambda : Lambda T() : Boolean[?]) : Boolean[?]</code>
+			
+</p>
+<p>Results in 
+				<code class="code">true</code> if the body expression evaluates to 
+				<code class="code">true</code> for each element in the source collection; otherwise, result is 
+				<code class="code">false</code>.
+			</p>
+<p>
+				
+<code class="code">forAll(i : T[?], j : T[?] | lambda : Lambda T() : Boolean[?]) : Boolean[?]</code>
+			
+</p>
+<p>
+				
+<code class="code">isUnique(i : T[?] | lambda : Lambda T() : OclAny[?]) : Boolean</code>
+			
+</p>
+<p>Results in 
+				<code class="code">true</code> if body evaluates to a different value for each element in the source collection; otherwise, result is 
+				<code class="code">false</code>.
+			</p>
+<p>
+				
+<code class="code">iterate(Tacc)(i : T[?]acc : ; Tacc[?] | lambda : Lambda T() : Tacc[?]) : Tacc[?]</code>
+			
+</p>
+<p>
+				
+<code class="code">one(i : T[?] | lambda : Lambda T() : Boolean) : Boolean</code>
+			
+</p>
+<p>Results in 
+				<code class="code">true</code> if there is exactly one element in the source collection for which body is 
+				<code class="code">true</code>.
+			</p>
+<p>
+				
+<code class="code">reject(i : T[?] | lambda : Lambda T() : Boolean) : Collection(T)</code>
+			
+</p>
+<p>The sub-collection of the source collection for which body is 
+				<code class="code">false</code>.
+			</p>
+<p>
+				
+<code class="code">select(i : T[?] | lambda : Lambda T() : Boolean) : Collection(T)</code>
+			
+</p>
+<p>The sub-collection of the source collection for which body is 
+				<code class="code">true</code>.
+			</p>
+<p>
+				
+<code class="code">sortedBy(i : T[?] | lambda : Lambda T() : OclAny) : Sequence(T)</code>
+			
+</p>
+<p>Results in the Collection containing all elements of the source collection.
+				The element for which body has the lowest value comes first, and so on.
+				The type of the body expression must have the &lt; operation defined.
+				The &lt; operation must return a Boolean value and must be transitive (i.e., if a &lt; b and b &lt; c then a &lt; c).</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,944 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Complete OCL tutorial</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="Tutorials.html" title="Tutorials">
+<link rel="prev" href="Tutorials.html" title="Tutorials">
+<link rel="next" href="CodeGenerationTutorial.html" title="Code Generation tutorial">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Complete OCL tutorial</h1>
+<div class="section" title="Complete OCL tutorial">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="CompleteOCLTutorial"></a>Complete OCL tutorial</h2>
+</div>
+</div>
+</div>
+<p>This tutorial has been updated for Eclipse Luna: Eclipse 4.4, EMF 2.10, OCL 5.0.</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Some screenshots may be slightly out of date.</p>
+</li>
+</ul>
+</div>
+<div class="section" title="Overview">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Overview2"></a>Overview </h3>
+</div>
+</div>
+</div>
+<p>In this example you will</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Get an Overview of the Complete OCL language</p>
+</li>
+<li class="listitem">
+<p>Load a Complete OCL document into a third party application</p>
+</li>
+<li class="listitem">
+<p>Enhance Ecore validation for derived properties</p>
+</li>
+<li class="listitem">
+<p>Validate an Ecore model using additional Complete OCL validation</p>
+</li>
+<li class="listitem">
+<p>Enhance UML validation</p>
+</li>
+<li class="listitem">
+<p>Validate a UML model using additional Complete OCL validation</p>
+</li>
+<li class="listitem">
+<p>Enhance Xtext validation</p>
+</li>
+<li class="listitem">
+<p>Validate an Xtext grammar using additional Complete OCL validation</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="Complete OCL Utility">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="CompleteOCLUtility"></a>Complete OCL Utility</h3>
+</div>
+</div>
+</div>
+<p>By itself, OCL is almost useless, since without any models to operate on, the constraints cannot achieve a great deal.</p>
+<p>The simplest way to make OCL useful is to embed OCL expressions within a model to enrich the basic structural characteristics of a model with more complex behavior. OCLinEcore provides this capability for Ecore models. Papyrus provides comparable capabilities for UML models.</p>
+<p>This tutorial introduces the Complete OCL language which may be used to provide a self-standing document that complements a pre-existing meta-model.</p>
+</div>
+<div class="section" title="Load Complete OCL Tutorial Example Project">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="LoadCompleteOCLTutorialExampleProject"></a>Load Complete OCL Tutorial Example Project</h3>
+</div>
+</div>
+</div>
+<p>All the material for this tutorial is available as part of the CompleteOCLTutorial Example project that you
+					may load by selecting 
+					<span class="bold"><strong>New</strong></span> then 
+					<span class="bold"><strong>Example...</strong></span> using the right button context menu of the Project Explorer. This
+					should give the 
+					<span class="bold"><strong>New Example</strong></span> dialog in which you can select the 
+					<span class="bold"><strong>OCL (OCL Constraint Language) Plugins</strong></span> and the 
+					<span class="bold"><strong>Complete OCL Tutorial</strong></span>.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4300-new-complete-ocl-tutorial.png"></div>
+<p>
+				
+</p>
+<p>If you do not see these example projects, follow the 
+					<a class="link" href="Installation.html" title="Installing the Eclipse OCL Examples and Editors">Instructions for installing the OCL Editors</a>.
+				</p>
+<p>The resulting project has a few test files.</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4300-complete-ocl-tutorial-project.png"></div>
+<p>
+				
+</p>
+</div>
+<div class="section" title="Complete OCL Language Overview">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="CompleteOCLTutorial-language"></a>Complete OCL Language Overview</h3>
+</div>
+</div>
+</div>
+<p>The Complete OCL language is described in detail in the 
+					<a class="link" href="CompleteOCL.html" title="The Complete OCL Language">Complete OCL</a> section of this documentation.
+					In this tutorial we will provide just a brief overview of the language.
+					If not already open, double click on 
+					<span class="bold"><strong>ExtraEcoreValidation.ocl</strong></span> to show the following text that provides examples of many
+					important aspects of the Complete OCL syntax.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4300-extra-ecore-content.png"></div>
+<p>
+				
+</p>
+<div class="section" title="import declarations">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="importdeclarations"></a>import declarations</h4>
+</div>
+</div>
+</div>
+<p>The import statement is a serious omission from the OMG specification, since without it, any attempt to
+						align the Complete OCL constraints with external models relies on implementation-specific magic. The import
+						statement is therefore an Eclipse OCL extension that is likely to be part of a future OCL specification revision.</p>
+<p>Zero or more import statements may be present to specify the URIs of external model elements and optionally
+						alias names for those elements. In the example:</p>
+<div class="literallayout">
+<p>
+<code class="code">import&nbsp;ecore&nbsp;:&nbsp;'http://www.eclipse.org/emf/2002/Ecore#/'<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>
+						
+<code class="code">http://www.eclipse.org/emf/2002/Ecore</code> specifies the URI of the Ecore metamodel and 
+						<code class="code">#/</code> is the fragment URI
+						navigating to the root element which is the Ecore package. The 
+						<code class="code">ecore</code> specifies an alias for this package, which happens
+						to be the same as the name of the package. Within the Complete OCL document, the imported model element may be referred to by its
+						alias.
+					</p>
+<div class="blockquote">
+<blockquote class="blockquote">
+<p>
+							The Java API support for using Complete OCL documents with the Ecore and UML bindings requires implementation-specific magic;
+							the imported models must be loaded into the package registry by the invoking code. Import statements are not used.</p>
+<p>Prior to the Juno release, import statements were not understood and so there was a usage conflict. Preparation of a
+							Complete OCL document using the Xtext editor, or usage with Pivot model and Xtext parser required import statements.
+							But re-use with the Ecore and UML LPG parser required the import statements to be removed.</p>
+<p>In Juno, the LPG parser ignores the import statements, so they may be left in.</p>
+</blockquote>
+</div>
+<p></p>
+</div>
+<div class="section" title="package context declaration">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="packagecontextdeclaration"></a>package context declaration</h4>
+</div>
+</div>
+</div>
+<p>A package context declaration may bracket declarations that complement model elements within the
+						complemented package.</p>
+<div class="literallayout">
+<p>
+<code class="code">package&nbsp;ecore<br>
+
+<br>
+...<br>
+
+<br>
+endpackage<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>This specifies that additional Complete OCL declarations will complement the pre-existing declarations of
+						the 
+						<code class="code">ecore</code> package.
+					</p>
+<p>Multiple package context declarations may be used to complement multiple packages.</p>
+<p>The package context declaration may be omitted if subsequent classifier context declarations have a fully qualified
+						name identifying the package.</p>
+</div>
+<div class="section" title="classifier context declaration">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="classifiercontextdeclaration"></a>classifier context declaration</h4>
+</div>
+</div>
+</div>
+<p>A classifier context declaration introduces declarations that complement subsequent model elements within the
+						complemented classifier.</p>
+<div class="literallayout">
+<p>
+<code class="code">context&nbsp;EModelElement<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>The classifier context is terminated by a 
+						<code class="code">context</code> or an 
+						<code class="code">endpackage</code>.
+					</p>
+</div>
+<div class="section" title="feature definitions">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="featuredefinitions"></a>feature definitions</h4>
+</div>
+</div>
+</div>
+<p>Additional operations and properties may be defined for use within the Complete OCL document. These features
+						may be used as if they were part of the complemented meta-model.</p>
+<div class="literallayout">
+<p>
+<code class="code">def:&nbsp;asError(verdict&nbsp;:&nbsp;Boolean)&nbsp;:&nbsp;Boolean&nbsp;=<br>
+	if&nbsp;verdict&nbsp;then&nbsp;true&nbsp;else&nbsp;null&nbsp;endif<br>
+
+<br>
+def:&nbsp;hasDerivation&nbsp;:&nbsp;Boolean&nbsp;=&nbsp;eAnnotations-&gt;select(source.startsWith(<br>
+		'http://www.eclipse.org/emf/2002/Ecore/OCL'))-&gt;notEmpty()<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>A definition starts with the new feature name, then the parameters for operations and the feature type followed by an OCL expression that evaluates the operation or the property.</p>
+<p>For properties such as 
+						<code class="code">hasDerivation</code> there is very little difference between a property definition 
+						<code class="code">hasDerivation</code> and a parameter-less operation definition 
+						<code class="code">hasDerivation()</code>. The property definition
+						and usage is two characters shorter and may seem more natural. The operation definition has the advantage that
+						it can be overloaded in derived classes. 
+					</p>
+</div>
+<div class="section" title="class invariants">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="classinvariants"></a>class invariants</h4>
+</div>
+</div>
+</div>
+<p>Invariants may be imposed on a complemented meta-model. The invariant comprises the name of the invariant followed by an OCL expression that
+						evaluates true when the invariant is satisfied.</p>
+<div class="literallayout">
+<p>
+<code class="code">inv&nbsp;DerivationIsTransient:&nbsp;hasDerivation&nbsp;implies&nbsp;transient<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>These invariants are executed when a model is validated in an application that has loaded the complementing Complete OCL document. The significance of this is explained in 
+						<a class="link" href="CompleteOCLTutorial.html#LoadCompleteOCLResource" title="OCL->Load Document Menu Action">OCL-&gt;Load Document Menu Action</a>.
+					</p>
+<p>The readability of constraints can be significantly enhanced by the use of let-variables or the re-use, as above, of the 
+						<code class="code">hasDerivation</code> helper property.  
+					</p>
+</div>
+<div class="section" title="custom messages">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="custommessages"></a>custom messages</h4>
+</div>
+</div>
+</div>
+<p>Eclipse OCL supports two extensions to invariants that allow the validation failure messages and severities to be customized.</p>
+<div class="literallayout">
+<p>
+<code class="code">inv&nbsp;DerivationIsVolatile(<br>
+'"volatile"&nbsp;must&nbsp;be&nbsp;specified&nbsp;for&nbsp;derived&nbsp;feature&nbsp;'&nbsp;+&nbsp;self.toString()):<br>
+asError(hasDerivation&nbsp;implies&nbsp;volatile)<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>The invariant name may be followed by a parenthesized OCL expression that computes a String to be used as the validation failure message.</p>
+<p>The severity of a validation failure may be controlled by the non-true value evaluated by the invariant expression.</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>a 
+								<code class="code">false</code> return indicates a warning severity
+							</p>
+</li>
+<li class="listitem">
+<p>a 
+								<code class="code">null</code> return indicates an error severity
+							</p>
+</li>
+<li class="listitem">
+<p>an 
+								<code class="code">invalid</code> return indicates a fatal severity
+							</p>
+</li>
+</ul>
+</div>
+<p>See 
+						<a class="link" href="Integration.html#Integration-Messages" title="Custom Validation Messages">Custom Validation Messages</a> for more details.
+					</p>
+</div>
+<div class="section" title="operation and property context declarations">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="operationandpropertycontextdeclarations"></a>operation and property context declarations</h4>
+</div>
+</div>
+</div>
+<p>Complete OCL also allows an incomplete operation or property declaration in the complemented meta-model to be completed.</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>initial and derived values may be specified for properties.</p>
+</li>
+<li class="listitem">
+<p>preconditions, a body and postconditions may be specified for operations.</p>
+</li>
+</ul>
+</div>
+<p>These facilities are of limited use since OCLinEcore avoids the need for incomplete meta-models.</p>
+</div>
+</div>
+<div class="section" title="OCL->Load Document Menu Action">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="LoadCompleteOCLResource"></a>OCL-&gt;Load Document Menu Action </h3>
+</div>
+</div>
+</div>
+<p>The major disclaimer in the above is that the Complete OCL only complements the complemented meta-model in applications
+					that have loaded the Complete OCL.</p>
+<p>Prior to the Juno release, this meant that Complete OCL was only usable in custom Java applications since no standard
+					modeling applications would load the complementing document.</p>
+<p>The 
+					<span class="bold"><strong>OCL-&gt;Load Document</strong></span> menu action enables a Complete OCL document to be loaded into a wide variety of applications.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4300-load-complete-ocl-resource-menu.png"></div>
+<p>
+				
+</p>
+<p>The 
+					<span class="bold"><strong>OCL-&gt;Load Document</strong></span> menu action is added to the right button menu of applications with a ResourceSet accessible from the current selection.
+				</p>
+<div class="blockquote">
+<blockquote class="blockquote">
+<p>
+						It has been observed that the extra menu action is not always immediately available, so if you do not see it, hit 
+						<span class="bold"><strong>Esc</strong></span> to cancel the menu, select something corresponding to a model object and right click again.
+					</p>
+</blockquote>
+</div>
+<p></p>
+<p>In Luna, suitable applications are</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>an editor generated from an Ecore meta-model</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="circle">
+<li class="listitem">
+<p>the Sample Ecore Editor</p>
+</li>
+<li class="listitem">
+<p>the UML Model Editor</p>
+</li>
+<li class="listitem">
+<p>the Papyrus Model Editor</p>
+</li>
+<li class="listitem">
+<p>your model editor</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="listitem">
+<p>an editor generated by Xtext</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="circle">
+<li class="listitem">
+<p>the Xtext Editor</p>
+</li>
+<li class="listitem">
+<p>the MWE2 Editor</p>
+</li>
+<li class="listitem">
+<p>the OCLinEcore Editor</p>
+</li>
+<li class="listitem">
+<p>your DSL editor</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<p>The 
+					<span class="bold"><strong>OCL-&gt;Load Document</strong></span> menu action activates the 
+					<span class="bold"><strong>Load Complete OCL Document</strong></span> dialog in which you can browse Registered Complete OCL Documents, the File system or the Workspace for one or more Complete OCL documents to load, or often more conveniently you can just Drag and Drop them from an Operating System Explorer or an Eclipse Explorer.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4300-load-complete-ocl-resource-dialog.png"></div>
+<p>
+				
+</p>
+<p>After clicking 
+					<span class="bold"><strong>OK</strong></span> the documents load.
+				</p>
+<div class="blockquote">
+<blockquote class="blockquote">
+<p>
+						Behind the scenes, it is necessary to install global wrappers around all complemented packages. These wrappers are sensitive to the ResourceSet for which complementing has been requested and so although this incurs a small performance penalty for use of the complemented packages in other applications, it should not affect the functional behavior of other applications. </p>
+</blockquote>
+</div>
+<p></p>
+</div>
+<div class="section" title="Example Complete OCL complements for Ecore">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="CompleteOCLTutorial-EcoreComplements"></a>Example Complete OCL complements for Ecore</h3>
+</div>
+</div>
+</div>
+<p>The Sample Ecore Editor has acquired many useful validation rules, so that for many usages just invoking 
+					<span class="bold"><strong>Validate</strong></span> is quite sufficient. But what if it isn&rsquo;t? Perhaps you have some style conventions that you wish to apply. Perhaps the built-in rules are not sufficient.
+				</p>
+<p>Prior to Juno and the 
+					<span class="bold"><strong>OCL-&gt;Load Document</strong></span> capability, your only choice would be to check out the Ecore Editor and create a custom variant. Now you can use Complete OCL to extend the Sample Ecore Editor.
+				</p>
+<p>We will revisit the 
+					<span class="bold"><strong>ExtraEcoreValidation.ocl</strong></span> document that we have just examined and use it to rectify inadequate checking of derived properties by the Sample Ecore Editor. The document provides six invariants, at least three of which detect problems that were encountered by users during the Indigo release cycle.
+				</p>
+<div class="section" title="DerivationIsVolatile">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="DerivationIsVolatile"></a>DerivationIsVolatile</h4>
+</div>
+</div>
+</div>
+<p>The EMF code generation templates have a simple treatment of 
+						<code class="code">volatile</code>. Non-volatile variables have an associated field which is returned by the 
+						<code class="code">get</code> operation. This overrides any derivation that might be supplied.
+					</p>
+<div class="literallayout">
+<p>
+<code class="code">inv&nbsp;DerivationIsVolatile:&nbsp;asError(hasDerivation&nbsp;implies&nbsp;volatile)<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>We therefore want to diagnose that if an EStructuralFeature has a derivation then the volatile declaration is also present to avoid the derivation being ignored.</p>
+<p>This problem is so serious that the basic expression is wrapped in the 
+						<code class="code">asError</code> operation to convert the
+						default 
+						<code class="code">true</code> / 
+						<code class="code">false</code> okay/warning severity into the 
+						<code class="code">true</code> / 
+						<code class="code">null</code> okay/error severity.
+					</p>
+</div>
+<div class="section" title="DerivationIsTransient">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="DerivationIsTransient"></a>DerivationIsTransient</h4>
+</div>
+</div>
+</div>
+<p>The EMF code generation templates have a similarly simple treatment of 
+						<code class="code">transient</code>. Non-transient variables will be
+						serialized as part of a model save. This is not usually appropriate since the derived value is redundant and can be
+						recomputed when the model is loaded again.
+					</p>
+<div class="literallayout">
+<p>
+<code class="code">inv&nbsp;DerivationIsTransient:&nbsp;hasDerivation&nbsp;implies&nbsp;transient<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>We therefore want to diagnose that a derivation is not serialized because of a default non-transient declaration.</p>
+</div>
+<div class="section" title="DerivationIsNotComposed">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="DerivationIsNotComposed"></a>DerivationIsNotComposed</h4>
+</div>
+</div>
+</div>
+<p>Composition is handled directly by EMF and it is not clear that it is appropriate to define an alternate
+						meaning of composition. It is pretty certain that EMF will not permit an alternate semantics.</p>
+<div class="literallayout">
+<p>
+<code class="code">inv&nbsp;DerivationIsNotComposed:&nbsp;asError(hasDerivation&nbsp;implies&nbsp;not&nbsp;containment)<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>We therefore want to diagnose if a derivation is attempting to specify alternate composition semantics and
+						report an error if this occurs.</p>
+</div>
+<div class="section" title="DerivationWithOppositeHasOppositeDerivation">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="DerivationWithOppositeHasOppositeDerivation"></a>DerivationWithOppositeHasOppositeDerivation</h4>
+</div>
+</div>
+</div>
+<p>Opposites are also handled directly by EMF, but it is possible to replace this functionality. However if the
+						forward functionality is replaced, it is very unlikely that EMF&rsquo;s default reverse functionality will be appropriate.</p>
+<div class="literallayout">
+<p>
+<code class="code">inv&nbsp;DerivationWithOppositeHasOppositeDerivation:<br>
+	hasDerivation&nbsp;and&nbsp;eOpposite&nbsp;&lt;&gt;&nbsp;null&nbsp;implies&nbsp;eOpposite.hasDerivation<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>We therefore want to diagnose that a derivation that redefines the forward semantic of opposite also redefines
+						the corresponding reverse semantics.</p>
+</div>
+<div class="section" title="DerivationIsUninitialized">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="DerivationIsUninitialized"></a>DerivationIsUninitialized</h4>
+</div>
+</div>
+</div>
+<p>An initial value for a property may be specified as a simple default value or as a derived expression.</p>
+<div class="literallayout">
+<p>
+<code class="code">inv&nbsp;DerivationIsUninitialized:<br>
+	hasDerivation&nbsp;implies&nbsp;defaultValue.oclIsUndefined()<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>We want to diagnose the occlusion of the derived expression by a default value.</p>
+</div>
+<div class="section" title="DerivationDoesNotResolveProxies">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="DerivationDoesNotResolveProxies"></a>DerivationDoesNotResolveProxies</h4>
+</div>
+</div>
+</div>
+<p>Derived expressions are not references.</p>
+<div class="literallayout">
+<p>
+<code class="code">inv&nbsp;DerivationDoesNotResolveProxies:<br>
+	hasDerivation&nbsp;implies&nbsp;not&nbsp;resolveProxies<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>We can therefore diagnose whether the EMF proxy resolution logic is not suppressed. </p>
+</div>
+</div>
+<div class="section" title="Validating Ecore with additional Complete OCL">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="CompleteOCLTutorial-EcoreValidation"></a>Validating Ecore with additional Complete OCL</h3>
+</div>
+</div>
+</div>
+<p>In the 
+					<a class="link" href="CompleteOCLTutorial.html#CompleteOCLTutorial-EcoreComplements" title="Example Complete OCL complements for Ecore">previous section</a> we described additional Complete OCL validation constraints to detect problems with inadequate Sample Ecore diagnosis of derived properties. We will now apply those constraints to a test file.
+				</p>
+<p>Select 
+					<span class="bold"><strong>EcoreTestFile.ecore</strong></span> and use the right button menu to 
+					<span class="bold"><strong>Open With-&gt;Sample Ecore Model Editor</strong></span>. This is probably the default for double-clicking with the left button, but if you open with the OCLinEcore editor the required validation will not work (in Juno).
+				</p>
+<p>Now right click within the Sample Ecore Editor pane as described in 
+					<a class="link" href="CompleteOCLTutorial.html#LoadCompleteOCLResource" title="OCL->Load Document Menu Action">OCL-&gt;Load Document Menu Action</a> and load 
+					<span class="bold"><strong>ExtraEcoreValidation.ocl</strong></span>. An additional Resource is shown in the editor tree.
+				</p>
+<p>Select a model element such as the 
+					<span class="bold"><strong>Bad</strong></span> package and use the right button menu to invoke 
+					<span class="bold"><strong>Validate</strong></span>.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4300-extra-ecore-validation.png"></div>
+<p>
+				
+</p>
+<p>This shows an error. Depending on the order in which the constraints are evaluated, you may also see one or two warnings. You should use the 
+					<a class="link" href="ValidityView.html" title="Validity View (new in Luna)">Validity View</a> to see all failures.
+				</p>
+<p>If we now open 
+					<span class="bold"><strong>EcoreTestFile.ecore</strong></span> with the OCLinEcore editor we can see that the 
+					<span class="bold"><strong>transient</strong></span> and 
+					<span class="bold"><strong>volatile</strong></span> keywords are indeed missing.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4300-extra-ecore-oclinecore.png"></div>
+<p>
+				
+</p>
+</div>
+<div class="section" title="Editing the Complete OCL">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="CompleteOCLTutorial-Updating"></a>Editing the Complete OCL</h3>
+</div>
+</div>
+</div>
+<p>You may edit the Complete OCL to experiment with alternate constraints or messages.</p>
+<p>However the Complete OCL complements the meta-model and EMF does not support live modification of meta-models. It is therefore necessary to restart the Sample Ecore Editor
+					and Reload the modified Complete OCL document in order to exploit the changes.</p>
+<div class="blockquote">
+<blockquote class="blockquote">
+<p>
+						A solution for this may occur in a future release.</p>
+</blockquote>
+</div>
+<p></p>
+</div>
+<div class="section" title="Example Complete OCL complements for UML">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="CompleteOCLTutorial-UMLComplements"></a>Example Complete OCL complements for UML</h3>
+</div>
+</div>
+</div>
+<p>The extension of the Sample Ecore Editor validation described in 
+					<a class="link" href="CompleteOCLTutorial.html#CompleteOCLTutorial-EcoreValidation" title="Validating Ecore with additional Complete OCL">Validating Ecore with additional Complete OCL</a> is applicable to any tree editor generated by EMF tooling.
+				</p>
+<p>The 
+					<span class="bold"><strong>ExtraUMLValidation.ocl</strong></span> file provides a very simple style check that class names start with an upper case letter.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4300-extra-uml-content.png"></div>
+<p>
+				
+</p>
+<p>The UML meta-model is imported and an invariant is specified for the Class classifier which is fully qualified to avoid the need for a surrounding package context declaration.</p>
+<p>You may open the 
+					<span class="bold"><strong>PapyrusTestFile.uml</strong></span> with the UML Model Editor, load the 
+					<span class="bold"><strong>ExtraUMLValidation.ocl</strong></span>, select the 
+					<span class="bold"><strong>Model</strong></span> and then 
+					<span class="bold"><strong>Validate</strong></span> in the same way as for the Ecore example. 
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4300-extra-uml-validation.png"></div>
+<p>
+				
+</p>
+<p>Unfortunately, this failure is not shown directly in the Luna SR0 release; you can see the warning using the 
+					<a class="link" href="ValidityView.html" title="Validity View (new in Luna)">Validity View</a>. It is correctly shown using Luna SR1, but also accompanied by additional warnings where the OCL from UML 2.5 is defective or exposes limitations in Eclipse UML.
+				</p>
+<p>In Juno, The Papyrus UML editor does not use the EValidator framework and so loading Complete OCL documents into Papyrus fails to enhance validation capabilities.</p>
+<p>At the time of writing, just before Luna, the underlying Papyrus problem has been cured but a minor problem remains. It is not clear whether this will be fixed in Papyrus 1.0.0.</p>
+</div>
+<div class="section" title="Example Complete OCL complements for Xtext">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="CompleteOCLTutorial-XtextComplements"></a>Example Complete OCL complements for Xtext</h3>
+</div>
+</div>
+</div>
+<p>Xtext editors use EValidator and so a Complete OCL document may be loaded into an Xtext editor, including Xtext itself, to provide enhanced validation.</p>
+<p>The 
+					<span class="bold"><strong>ExtraXtextValidation.ocl</strong></span> file provides some demonstration style checks.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4300-extra-xtext-content.png"></div>
+<p>
+				
+</p>
+<p>The Xtext root package is imported and within the package declaration context for the 
+					<span class="bold"><strong>xtext</strong></span> package, invariants are supplied for four classes. These are all just examples of how constraints may use the Xtext model. It is not suggested that users should use all of these constraints for real grammars.
+				</p>
+<div class="section" title="NoAnonymousImports">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="NoAnonymousImports"></a>NoAnonymousImports</h4>
+</div>
+</div>
+</div>
+<div class="literallayout">
+<p>
+<code class="code">context&nbsp;ReferencedMetamodel<br>
+inv&nbsp;NoAnonymousImports:&nbsp;alias&nbsp;&lt;&gt;&nbsp;null<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>This invariant diagnoses whether any import statements omit the 
+						<code class="code">as xxxx</code> model name.  
+					</p>
+</div>
+<div class="section" title="NoActions">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="NoActions"></a>NoActions</h4>
+</div>
+</div>
+</div>
+<div class="literallayout">
+<p>
+<code class="code">context&nbsp;Action<br>
+inv&nbsp;NoActions&nbsp;:&nbsp;false<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>This invariant diagnoses whenever an 
+						<code class="code">{xxx}</code> action statement is used.  
+					</p>
+</div>
+<div class="section" title="CamelCaseName">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="CamelCaseName"></a>CamelCaseName</h4>
+</div>
+</div>
+</div>
+<div class="literallayout">
+<p>
+<code class="code">context&nbsp;ParserRule<br>
+inv&nbsp;CamelCaseName&nbsp;:&nbsp;name.matches('[A-Z][A-Za-z]*')<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>This invariant verifies that the name of a parser rule starts with an upper case letter and uses only letters.  </p>
+</div>
+<div class="section" title="UpperName">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="UpperName"></a>UpperName</h4>
+</div>
+</div>
+</div>
+<div class="literallayout">
+<p>
+<code class="code">context&nbsp;xtext::TerminalRule<br>
+inv&nbsp;UpperName&nbsp;:&nbsp;name&nbsp;=&nbsp;name.toUpperCase()<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>This invariant verifies that the name of a terminal rule is uppercase.  </p>
+<p>You may open the 
+						<span class="bold"><strong>XtextTestFile.xtext</strong></span> with the Xtext Editor, load the 
+						<span class="bold"><strong>ExtraXtextValidation.ocl</strong></span> and then 
+						<span class="bold"><strong>Validate</strong></span> in the same way as the Ecore example. 
+					</p>
+<p>The additional validations appear as warning markers in the editor. </p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/4300-extra-xtext-validation.png"></div>
+<p>
+					
+</p>
+<div class="blockquote">
+<blockquote class="blockquote">
+<p>
+							Unfortunately Xtext does not have a nice toString() method for its Concrete Syntax tree so the descriptions of erroneous elements are a little inelegant.</p>
+</blockquote>
+</div>
+<p></p>
+<p>You may edit the Xtext test file to delete the &ldquo;as ecore&rdquo; in the import statement and see that the additional Complete OCL constraints are contributing to the ongoing functionality of the editor. </p>
+</div>
+</div>
+<div class="section" title="Complete OCL Editor">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="CompleteOCLEditor"></a>Complete OCL Editor</h3>
+</div>
+</div>
+</div>
+<p>The Complete OCL editor is invoked automatically for an existing or new *.ocl file.
+					You can create an empty file using either 
+					<span class="bold"><strong>New-&gt;File</strong></span> or a partial content file using 
+					<span class="bold"><strong>New-&gt;Other...</strong></span> followed by 
+					<span class="bold"><strong>OCL</strong></span> and 
+					<span class="bold"><strong>Complete OCL File</strong></span>. The editor is Xtext-based and so has most of the facilities that you find in many other Eclipse editors.
+				</p>
+</div>
+<div class="section" title="Royal and Loyal Example">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="RoyalandLoyalExample"></a>Royal and Loyal Example</h3>
+</div>
+</div>
+</div>
+<p>The Royal and Loyal Example was first provided by Jos Warmer and Anneke Kleppe in 
+					<span class="emphasis"><em>The Object Constraint Language: Getting Your Models Ready for MDA</em></span> and has subsequently been used in many tutorials. The example provides substantial examples of Complete OCL and Essential OCL. The models are available by invoking 
+					<span class="bold"><strong>New-&gt;Example...-&gt;OCL (Object Constraint Language) Plugins</strong></span>.
+				</p>
+</div>
+<div class="section" title="Summary">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Summary2"></a>Summary</h3>
+</div>
+</div>
+</div>
+<p>To illustrate how to work with Complete OCL we have</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Examined the Complete OCL language</p>
+</li>
+<li class="listitem">
+<p>Examined constraints to rectify inadequate Ecore validation of derived features</p>
+</li>
+<li class="listitem">
+<p>Loaded Complete OCL constraints to enhance validation of an Ecore model</p>
+</li>
+<li class="listitem">
+<p>Loaded Complete OCL constraints to enhance validation of a UML model</p>
+</li>
+<li class="listitem">
+<p>Loaded Complete OCL constraints to enhance validation of an Xtext grammar</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</body>
+</html>
