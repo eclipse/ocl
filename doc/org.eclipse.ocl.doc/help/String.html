@@ -1,0 +1,341 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>String</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="StandardLibrary.html" title="The OCL Standard Library">
+<link rel="prev" href="State.html" title="State">
+<link rel="next" href="Type.html" title="Type">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">
+				
+					String
+				
+			</h1>
+<div class="section" title="String">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="String"></a>
+				<span class="bold"><strong>
+					<code class="code">String</code>
+				</strong></span>
+			
+</h2>
+</div>
+</div>
+</div>
+<p>The standard type String represents strings, which can be both ASCII or Unicode.
+				String is itself an instance of the metatype PrimitiveType (from UML).</p>
+<p>conformsTo 
+				<a class="link" href="OclComparable.html" title="OclComparable">
+					<code class="code">OclComparable</code>
+				</a>, 
+				<a class="link" href="OclSummable.html" title="OclSummable">
+					<code class="code">OclSummable</code>
+				</a>
+			
+</p>
+<p>
+				
+<span class="bold"><strong>Operations</strong></span>
+			
+</p>
+<p>
+				
+<code class="code">=(object2 : OclSelf) : Boolean</code>
+				precedence: 
+				<code class="code">EQUALITY</code>
+			
+</p>
+<p>
+				
+<code class="code">&lt;&gt;(object2 : OclSelf) : Boolean</code>
+				precedence: 
+				<code class="code">EQUALITY</code>
+			
+</p>
+<p>
+				
+<code class="code">+(s : String) : String</code>
+				precedence: 
+				<code class="code">ADDITIVE</code>
+			
+</p>
+<p>The concatenation of 
+				<code class="code">self</code> and s.
+			</p>
+<p>
+				
+<code class="code">at(i : Integer) : String invalidating</code>
+			
+</p>
+<p>Queries the character at position i in 
+				<code class="code">self</code>.
+			</p>
+<p>
+				
+<code class="code">characters() : Sequence(String)</code>
+			
+</p>
+<p>Obtains the characters of 
+				<code class="code">self</code> as a sequence.
+			</p>
+<p>
+				
+<code class="code">compareTo(that : OclSelf) : Integer</code>
+			
+</p>
+<p>The comparison of 
+				<code class="code">self</code> with 
+				<code class="code">that</code>. -ve if less than, 0 if equal, +ve if greater than.
+			</p>
+<p>
+				
+<code class="code">concat(s : String) : String</code>
+			
+</p>
+<p>The concatenation of 
+				<code class="code">self</code> and s.
+			</p>
+<p>
+				
+<code class="code">endsWith(s : String) : Boolean</code>
+			
+</p>
+<p>Returns true if 
+				<code class="code">self</code> ends with the string s.
+				Every string ends with the empty string.
+			</p>
+<p>
+				
+<code class="code">equalsIgnoreCase(s : String) : Boolean</code>
+			
+</p>
+<p>Queries whether s and 
+				<code class="code">self</code> are equivalent under case-insensitive collation.
+			</p>
+<p>
+				
+<code class="code">indexOf(s : String) : Integer</code>
+			
+</p>
+<p>Queries the first index in 
+				<code class="code">self</code> at which s is a substring of 
+				<code class="code">self</code>, or zero if s is not a substring of 
+				<code class="code">self</code>.
+				The empty string is a substring of every string at index 1 (and also at all other indexes).
+			</p>
+<p>
+				
+<code class="code">lastIndexOf(s : String) : Integer</code>
+			
+</p>
+<p>Queries the last in 
+				<code class="code">self</code> at which s is a substring of 
+				<code class="code">self</code>, or zero if s is not a substring of 
+				<code class="code">self</code>.
+				The empty string is a substring of every string at index 
+				<code class="code">self</code>-size()+1 (and also at all other indexes).
+			</p>
+<p>
+				
+<code class="code">matches(regex : String) : Boolean</code>
+			
+</p>
+<p>Use a regular expression match and return true if self matches regex, false otherwise.</p>
+<p>
+				
+<code class="code">replaceAll(regex : String, replacement : String) : String invalidating</code>
+			
+</p>
+<p>Return a string derived from self by replacing all matches of regex by replacement.</p>
+<p>
+				
+<code class="code">replaceFirst(regex : String, replacement : String) : String invalidating</code>
+			
+</p>
+<p>Return a string derived from self by replacing the first match of regex by replacement.</p>
+<p>
+				
+<code class="code">size() : Integer</code>
+			
+</p>
+<p>The number of characters in 
+				<code class="code">self</code>.
+			</p>
+<p>
+				
+<code class="code">startsWith(s : String) : Boolean</code>
+			
+</p>
+<p>Returns true if 
+				<code class="code">self</code> starts with the string s.
+				Every string starts with the empty string.
+			</p>
+<p>
+				
+<code class="code">substituteAll(oldSubstring : String, newSubstring : String) : String</code>
+			
+</p>
+<p>Return a string derived from self by replacing all occurrences of oldSubstring by newSubstring.</p>
+<p>
+				
+<code class="code">substituteFirst(oldSubstring : String, newSubstring : String) : String</code>
+			
+</p>
+<p>Return a string derived from self by replacing the first occurrence of oldSubstring by newSubstring.
+				Returns invalid if there is no first occurrence.</p>
+<p>
+				
+<code class="code">substring(lower : Integer, upper : Integer) : String invalidating</code>
+			
+</p>
+<p>The sub-string of 
+				<code class="code">self</code> starting at character number lower, up to and including character number upper. Character numbers run from 1 to self.size().
+			</p>
+<p>
+				
+<code class="code">toBoolean() : Boolean invalidating</code>
+			
+</p>
+<p>Converts 
+				<code class="code">self</code> to a boolean value.
+			</p>
+<p>
+				
+<code class="code">toInteger() : Integer invalidating</code>
+			
+</p>
+<p>Converts 
+				<code class="code">self</code> to an Integer value.
+			</p>
+<p>
+				
+<code class="code">toLower() : String</code>
+			
+</p>
+<p>This is a deprecated variant of toLowerCase() preserving compatibility with traditional Eclipse OCL behaviour.</p>
+<p>
+				
+<code class="code">toLowerCase() : String</code>
+			
+</p>
+<p>Converts 
+				<code class="code">self</code> to lower case, using the locale defined by looking up oclLocale in the current environment.
+				Otherwise, returns the same string as 
+				<code class="code">self</code>.
+			</p>
+<p>
+				
+<code class="code">toReal() : Real invalidating</code>
+			
+</p>
+<p>Converts 
+				<code class="code">self</code> to a Real value.
+			</p>
+<p>
+				
+<code class="code">toString() : String</code>
+			
+</p>
+<p>Returns 
+				<code class="code">self</code>.
+			</p>
+<p>
+				
+<code class="code">toUpper() : String</code>
+			
+</p>
+<p>This is a deprecated variant of toUpperCase() preserving compatibility with traditional Eclipse OCL behaviour.</p>
+<p>
+				
+<code class="code">toUpperCase() : String</code>
+			
+</p>
+<p>Converts 
+				<code class="code">self</code> to upper case, using the locale defined by looking up oclLocale in the current environment.
+				Otherwise, returns the same string as 
+				<code class="code">self</code>.
+			</p>
+<p>
+				
+<code class="code">tokenize() : Sequence(String)</code>
+			
+</p>
+<p>Partition 
+				<code class="code">self</code> into a sequence substrings separated by any of space, line-feed, carriage-return, form-feed and horizontal-tab delimiters.
+				The delimiters are omitted from the return.
+			</p>
+<p>
+				
+<code class="code">tokenize(delimiters : String) : Sequence(String)</code>
+			
+</p>
+<p>Partition 
+				<code class="code">self</code> into a sequence substrings separated by characters in the delimiters. The delimiters are omitted from the return.
+			</p>
+<p>
+				
+<code class="code">tokenize(delimiters : String, returnDelimiters : Boolean) : Sequence(String)</code>
+			
+</p>
+<p>Partition 
+				<code class="code">self</code> into a sequence substrings separated by characters in the delimiters. If returnDelimeters is
+				true the returned sequence includes the delimiters, otherwise the delimiters are omitted.
+			</p>
+<p>
+				
+<code class="code">trim() : String</code>
+			
+</p>
+<p>Return 
+				<code class="code">self</code> with leading and trailing whitespace removed.
+			</p>
+<p>
+				
+<code class="code">&gt;(s : OclSelf) : Boolean</code>
+				precedence: 
+				<code class="code">RELATIONAL</code>
+			
+</p>
+<p>True if 
+				<code class="code">self</code> is greater than s, using the locale defined by looking up oclLocale in the current environment.
+			</p>
+<p>
+				
+<code class="code">&lt;(s : OclSelf) : Boolean</code>
+				precedence: 
+				<code class="code">RELATIONAL</code>
+			
+</p>
+<p>True if 
+				<code class="code">self</code> is less than s, using the locale defined by looking up oclLocale in the current environment.
+			</p>
+<p>
+				
+<code class="code">&lt;=(s : OclSelf) : Boolean</code>
+				precedence: 
+				<code class="code">RELATIONAL</code>
+			
+</p>
+<p>True if 
+				<code class="code">self</code> is less than or equal to s, using the locale defined by looking up oclLocale in the current environment.
+			</p>
+<p>
+				
+<code class="code">&gt;=(s : OclSelf) : Boolean</code>
+				precedence: 
+				<code class="code">RELATIONAL</code>
+			
+</p>
+<p>True if 
+				<code class="code">self</code> is greater than or equal to s, using the locale defined by looking up oclLocale in the current environment.
+			</p>
+</div>
+</body>
+</html>

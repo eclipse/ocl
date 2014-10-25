@@ -1,0 +1,181 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Evaluating Constraints and Queries</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="PivotProgrammersGuide.html" title="Unified or Pivot Programmers Guide">
+<link rel="prev" href="PivotParsingConstraints.html" title="Parsing Constraints and Queries">
+<link rel="next" href="PivotParsingDocuments.html" title="Parsing OCL Documents">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Evaluating Constraints and Queries</h1>
+<div class="section" title="Evaluating Constraints and Queries">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="PivotEvaluatingConstraints"></a>Evaluating Constraints and Queries</h2>
+</div>
+</div>
+</div>
+<p>In 
+				<a class="link" href="PivotParsingConstraints.html" title="Parsing Constraints and Queries">Parsing Constraints</a>, we saw how to use
+				the 
+				<code class="code">OCLHelper</code> API for parsing OCL constraints and
+				query expressions.  Parsing constraints is very interesting in itself, but
+				we can also make OCL come alive in our applications by evaluating these
+				constraints.  For this, OCL provides a 
+				<code class="code">Query</code> API.
+			</p>
+<div class="section" title="The OCL Query">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="TheOCLQuery2"></a>The OCL Query</h3>
+</div>
+</div>
+</div>
+<p>Like the 
+					<code class="code">OCLHelper</code> for parsing constraints, the OCL
+					facade object provides
+
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/Query.html" target="_new">
+						<code class="code">Query</code>
+					</a>
+					objects for evaluating constraints and query expressions.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/6315-query.png"></div>
+<p>
+				
+</p>
+<p>The 
+					<code class="code">Query</code> encapsulates an
+
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/EvaluationEnvironment.html" target="_new">
+						<code class="code">EvaluationEnvironment</code>
+					</a>
+					providing the run-time values of context variables to the OCL interpreter.  These
+					context variables are set and retrieved using the following methods:
+				</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+							
+<code class="code">add(String, Object)</code>: adds a name-value binding for a variable
+						</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">replace(String, Object)</code>:  replaces an existing variable binding
+						</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">remove()</code>:  removes a variable binding
+						</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">getValueOf(String)</code>: obtains a variable value
+						</p>
+</li>
+</ul>
+</div>
+<p>The context variables of primary interest are 
+					<code class="code">self</code>
+					and, in operation constraints, the variables corresponding to its parameters.
+					The 
+					<code class="code">EvaluationEnvironment</code> API is also used to supply
+					values for &ldquo;global&rdquo; variables added to the parsing 
+					<code class="code">Environment</code>
+					by the client.
+				</p>
+<p>Another important consideration in the evaluation environment is the
+
+					<code class="code">allInstance()</code> operation, which obtains the entire
+					extent of a classifier.  For data types, this is a simple problem:  the extent
+					of an 
+					<code class="code">Enumeration</code> is well defined and the extents of
+					other kinds of 
+					<code class="code">DataType</code> s are undefined.  For
+
+					<code class="code">Class</code> extents, the 
+					<code class="code">EvaluationEnvironment</code>
+					provides support for an extent map, mapping classes to the sets of their
+					instances, as determined by the client.  A client sets the extent map using the
+
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/OCL.html#setExtentMap(java.util.Map)" target="_new">
+						<code class="code">OCL.setExtentMap()</code>
+					</a>
+					method.  The default extent map, if none is provided by the client, lazily
+					computes the extent of a class from the EMF 
+					<code class="code">ResourceSet</code>
+					containing the context element of the evaluation.
+				</p>
+<p>So, after optionally setting values of context variables (other than
+
+					<code class="code">self</code>; the 
+					<code class="code">Query</code> takes care
+					of this) and an extent map, simply construct a query and use it to evaluate
+					the expression or check the constraint:
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/6315-check-all.png"></div>
+<p>
+
+					
+<a class="ulink" href="../references/6315-check-all.txt" target="_new">[Text for cut and paste]</a>
+				
+</p>
+<p>One of the advantages of the 
+					<code class="code">Query</code> API is that a
+					query&rsquo;s evaluation environment can be reused for multiple evaluations, as
+					above.  The extent of any classifier is only computed once.  For convenience,
+					however, in situations where only a single evaluation is required, the
+
+					<code class="code">OCL</code> class provides shortcuts:
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/6315-check-one.png"></div>
+<p>
+
+					
+<a class="ulink" href="../references/6315-check-one.txt" target="_new">[Text for cut and paste]</a>
+				
+</p>
+<p>The 
+					<code class="code">Query</code> API also provides methods that work on
+					multiple elements.  The first example, above, could be written more succinctly as:
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/6315-check-quick.png"></div>
+<p>
+
+					
+<a class="ulink" href="../references/6315-check-quick.txt" target="_new">[Text for cut and paste]</a>
+				
+</p>
+</div>
+</div>
+</body>
+</html>

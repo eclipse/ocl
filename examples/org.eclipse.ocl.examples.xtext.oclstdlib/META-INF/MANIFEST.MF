@@ -25,5 +25,5 @@ Export-Package: org.eclipse.ocl.examples.xtext.oclstdlib,
  org.eclipse.ocl.examples.xtext.oclstdlib.services,
  org.eclipse.ocl.examples.xtext.oclstdlib.utilities,
  org.eclipse.ocl.examples.xtext.oclstdlib.validation
-Import-Package: org.apache.log4j
+Import-Package: org.apache.log4j;version="[1.2.15,2.0.0)"
 Bundle-Activator: org.eclipse.ocl.examples.xtext.oclstdlib.utilities.OCLstdlibPlugin$Implementation

@@ -1,0 +1,142 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>OclInvalid</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="StandardLibrary.html" title="The OCL Standard Library">
+<link rel="prev" href="OclElement.html" title="OclElement">
+<link rel="next" href="OclLambda.html" title="OclLambda">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">
+				
+					OclInvalid
+				
+			</h1>
+<div class="section" title="OclInvalid">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="OclInvalid"></a>
+				<span class="bold"><strong>
+					<code class="code">OclInvalid</code>
+				</strong></span>
+			
+</h2>
+</div>
+</div>
+</div>
+<p>The type OclInvalid is a type that conforms to all other types.
+				It has one single instance, identified as  
+				<code class="code">invalid</code>.
+				Any property call applied on invalid results in 
+				<code class="code">invalid</code>, except for the operations oclIsUndefined() and oclIsInvalid().
+				OclInvalid is itself an instance of the metatype InvalidType.
+			</p>
+<p>conformsTo 
+				<a class="link" href="OclVoid.html" title="OclVoid">
+					<code class="code">OclVoid</code>
+				</a>
+			
+</p>
+<p>
+				
+<span class="bold"><strong>Operations</strong></span>
+			
+</p>
+<p>
+				
+<code class="code">allInstances() : Set(OclSelf)</code>
+			
+</p>
+<p>Returns 
+				<code class="code">invalid</code>.
+			</p>
+<p>
+				
+<code class="code">=(object2 : OclSelf) : Boolean</code>
+				precedence: 
+				<code class="code">EQUALITY</code>
+			
+</p>
+<p>Returns 
+				<code class="code">invalid</code>.
+			</p>
+<p>
+				
+<code class="code">&lt;&gt;(object2 : OclSelf) : Boolean</code>
+				precedence: 
+				<code class="code">EQUALITY</code>
+			
+</p>
+<p>Returns 
+				<code class="code">invalid</code>.
+			</p>
+<p>
+				
+<code class="code">and(b : Boolean[?]) : Boolean[?] validating</code>
+				precedence: 
+				<code class="code">AND</code>
+			
+</p>
+<p>
+				
+<code class="code">implies(b : Boolean[?]) : Boolean[?] validating</code>
+				precedence: 
+				<code class="code">IMPLIES</code>
+			
+</p>
+<p>
+				
+<code class="code">or(b : Boolean[?]) : Boolean[?] validating</code>
+				precedence: 
+				<code class="code">OR</code>
+			
+</p>
+<p>
+				
+<code class="code">oclAsSet() : Set(OclSelf)</code>
+			
+</p>
+<p>
+				
+<code class="code">oclAsType(TT)(type : Metaclass(TT)) : TT</code>
+			
+</p>
+<p>
+				
+<code class="code">oclIsInvalid() : Boolean validating</code>
+			
+</p>
+<p>
+				
+<code class="code">oclIsKindOf(T)(type : Metaclass(T)) : Boolean</code>
+			
+</p>
+<p>
+				
+<code class="code">oclIsTypeOf(T)(type : Metaclass(T)) : Boolean</code>
+			
+</p>
+<p>
+				
+<code class="code">oclIsUndefined() : Boolean validating</code>
+			
+</p>
+<p>
+				
+<code class="code">oclType() : Metaclass(OclSelf)</code>
+			
+</p>
+<p>
+				
+<code class="code">toString() : String</code>
+			
+</p>
+<p>Returns &lsquo;invalid&rsquo;.</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Parsing Constraints and Queries</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="PivotProgrammersGuide.html" title="Unified or Pivot Programmers Guide">
+<link rel="prev" href="PivotThreadSafety.html" title="Pivot Thread Safety">
+<link rel="next" href="PivotEvaluatingConstraints.html" title="Evaluating Constraints and Queries">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Parsing Constraints and Queries</h1>
+<div class="section" title="Parsing Constraints and Queries">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="PivotParsingConstraints"></a>Parsing Constraints and Queries</h2>
+</div>
+</div>
+</div>
+<p>This section may be contrasted with the corresponding 
+				<a class="link" href="ProgrammersGuide.html#ParsingConstraints" title="Parsing Constraints and Queries">Parsing Constraints and Queries</a> for the Ecore binding to see examples of the small changes needed to migrate from the Ecore binding to the Pivot binding.
+			</p>
+<p>The OCL parser provides two APIs for parsing constraint and query expressions. The 
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/helper/OCLHelper.html" target="_new">
+					<code class="code">OCLHelper</code>
+				</a> interface is designed primarily for parsing constraints and query expressions
+				embedded in models, such as Ecore or UML models.  The 
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/OCL.html" target="_new">
+					<code class="code">OCL</code>
+				</a> class serves as the main entrypoint into the parsing API but also implements the
+				parsing of 
+				<a class="link" href="PivotParsingDocuments.html" title="Parsing OCL Documents">OCL documents</a>, for example from
+				text files.  In both cases, the concept of 
+				<code class="code">Environment</code>
+				is crucial.
+			</p>
+<div class="section" title="The OCL Environment">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="TheOCLEnvironment2"></a>The OCL Environment</h3>
+</div>
+</div>
+</div>
+<p>The 
+					<code class="code">OCL</code> API provides a Facade for the various objects that support different aspects of OCL parsing and evaluation activities in a that spans activities for which the meta-models remain unchanged. A new OCL Facade is required if the meta-models change.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/6310-environment.png"></div>
+<p>
+				
+</p>
+<p>The 
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/OCL.html" target="_new">
+						<code class="code">OCL</code>
+					</a> class is a simple type.
+				</p>
+<div class="blockquote">
+<blockquote class="blockquote">
+<p>
+						There is no need for the Ecore/UML template parameters that parameterize the equivalent Ecore/UML class.</p>
+</blockquote>
+</div>
+<p></p>
+<p>Behind the scenes, the unified Pivot variants of the primary UML, OCL and user and meta-models, complementing Complete OCL documents and Standard Libraries are maintained by a
+
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/manager/MetaModelManager.html" target="_new">
+						<code class="code">MetaModelManager</code>
+					</a>, which also maintains all the collection and tuple specialization singletons so that they can be shared by subsequent processing. A distinct 
+					<code class="code">MetaModelManager</code> is required for each combination of primary meta-models and complementing Complete OCL documents and so for safety a new 
+					<code class="code">MetaModelManager</code> is created for each OCL session. Increased metya-model sharing can be achieved by re-using 
+					<code class="code">MetaModelManager</code> s when constructing a
+
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/utilities/PivotEnvironmentFactory.html" target="_new">
+						<code class="code">PivotEnvironmentFactory</code>
+					</a>.
+				</p>
+<p>An OCL parsing activity maintains the root and nested parsing context in
+
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/Environment.html" target="_new">
+						<code class="code">Environment</code>
+					</a>
+					instances which are created by an
+
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/EnvironmentFactory.html" target="_new">
+						<code class="code">EnvironmentFactory</code>
+					</a>.
+				</p>
+<p>
+					
+<code class="code">Environment</code> s nest.  Usually the root environment has
+					no correlation to an element in the model, or it may correspond to some
+
+					<code class="code">Package</code> providing a default namespace (called a package
+					context).  Alternatively, it may contain one or more nested environments
+					defining package namespaces.  A package context contains one or more classifier
+					contexts, which in turn can contain operation and/or attribute contexts.  Whereas
+					the purpose of a package context is primarily to assist in the look-up of named
+					model elements, the classifier, operation, and attribute contexts have deeper
+					meaning.
+				</p>
+<p>A classifier context defines the type of the 
+					<code class="code">self</code>
+					variable in OCL constraints and queries.  By itself, it is the context for
+					invariant constraints for the context classifier.  Additionally, as the parent
+					context for operation and attribute constraints, it indicates the classifier
+					in which context an operation or attribute constraint applies; this may be the
+					classifier that defines these features, or it may inherit them from some more
+					general classifier.
+				</p>
+<p>An 
+					<code class="code">Environment</code> may contain named
+
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/Variable.html" target="_new">
+						<code class="code">Variable</code>
+					</a> s
+					to which OCL expressions can refer.  The most common of these is
+
+					<code class="code">self</code>.  Others include the parameters defined by an
+					operation (and its 
+					<code class="code">result</code>), in the case of an
+					operation context.  The OCL API even allows clients to add variables, in code,
+					to define &ldquo;global&rdquo; names.
+				</p>
+</div>
+<div class="section" title="Creating an OCL Environment">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="CreatinganOCLEnvironment2"></a>Creating an OCL Environment</h3>
+</div>
+</div>
+</div>
+<p>The static factory methods on the 
+					<code class="code">OCL</code> class are used
+					to create instances.  It is a good practice to re-use the same OCL instance for
+					all parsing and evaluation of constraints and queries on a model while that
+					model is loaded (usually in some 
+					<code class="code">ResourceSet</code> in an
+					editor). It is also good practice to invoke 
+					<code class="code">dispose()</code> to release all
+					OCL-related Resource references.
+				</p>
+<p>Using the shared Pivot environment factory , we can create an OCL
+					environment suitable for parsing OCL constraints on any Ecore model and
+					evaluating them on instances of the model:</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/6310-creating.png"></div>
+<p>
+
+					
+<a class="ulink" href="../references/6310-creating.txt" target="_new">[Text for cut and paste]</a>
+				
+</p>
+</div>
+<div class="section" title="The OCL Helper">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="TheOCLHelper2"></a>The OCL Helper</h3>
+</div>
+</div>
+</div>
+<p>From an OCL instance, we can create a helper object with which to parse constraints
+					and additional operation/attribute definitions.</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/6310-oclhelper.png"></div>
+<p> 
+				
+</p>
+<p>The 
+					<code class="code">OCLHelper</code> is primarily designed for parsing
+					constraints and query expressions embedded in models, providing the following
+					API for that purpose:
+				</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+							
+<code class="code">createQuery()</code>: parses a query expression
+						</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">createConstraint()</code>: parses a constraint of a given 
+							<code class="code">ConstraintKind</code>
+						
+</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">createInvariant()</code>: convenience for invariant constraints
+						</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">createPrecondition()</code>: convenience for pre-condition constraints
+						</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">createPostcondition()</code>: convenience for post-condition constraints
+						</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">createBodyCondition()</code>: convenience for body conditions
+						</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">createDerivedValueExpression()</code>: convenience for attribute derived values
+						</p>
+</li>
+</ul>
+</div>
+<p>Different kinds of constraints require different context environments.  The
+
+					<code class="code">setContext()</code>, 
+					<code class="code">setOperationContext()</code>,
+					and 
+					<code class="code">setAttributeContext()</code> methods create the appropriate
+					nested 
+					<code class="code">Environment</code> s in the host 
+					<code class="code">OCL</code>
+					instance&rsquo;s root environment.
+				</p>
+<p>The result of parsing a query expression or a constraint is an
+
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/expressions/ExpressionInOCL.html" target="_new">
+						<code class="code">ExpressionInOCL</code>
+					</a>,
+					an instance of the 
+					<a class="link" href="AbstractSyntax.html" title="OCL Abstract Syntax Model">Abstract Syntax Model</a>.
+				</p>
+<div class="blockquote">
+<blockquote class="blockquote">
+<p>
+						The Ecore/UML binding variously produces a Constraint or OCLEXpression result. A Constraint has too much context and an OCLExpression too little. An ExpressionInOCL is just right.</p>
+</blockquote>
+</div>
+<p></p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/6310-context.png"></div>
+<p>
+
+					
+<a class="ulink" href="../references/6310-context.txt" target="_new">[Text for cut and paste]</a>
+				
+</p>
+</div>
+<div class="section" title="Operation and Attribute Contexts">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="OperationandAttributeContexts2"></a>Operation and Attribute Contexts</h3>
+</div>
+</div>
+</div>
+<p>In the case of constraints on operations or attributes, the context consists
+					of two elements:  the constrained operation/attribute and a classifier in the
+					context of which the constraint is to apply.  This accounts for the possibility
+					that a classifier defines constraints on inherited features.  As an example,
+					consider the 
+					<code class="code">EModelElement::getEAnnotation(EString)</code>
+					operation and 
+					<code class="code">EReference::eReferenceType</code> property in the Ecore
+					metamodel.  These can be constrained as follows:
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/6310-define.png"></div>
+<p>
+
+					
+<a class="ulink" href="../references/6310-define.txt" target="_new">[Text for cut and paste]</a>
+				
+</p>
+</div>
+</div>
+</body>
+</html>

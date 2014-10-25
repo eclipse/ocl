@@ -1,0 +1,1297 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Tutorials</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="index.html" title="OCL Documentation">
+<link rel="prev" href="UnlimitedNatural.html" title="UnlimitedNatural">
+<link rel="next" href="CompleteOCLTutorial.html" title="Complete OCL tutorial">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Tutorials</h1>
+<div class="chapter" title="Tutorials">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title">
+<a name="Tutorials"></a>Tutorials</h2>
+</div>
+</div>
+</div>
+<div class="toc">
+<dl>
+<dt>
+<span class="section"><a href="Tutorials.html#OCLinEcoreTutorial">OCLinEcore tutorial</a></span>
+</dt>
+<dt>
+<span class="section"><a href="CompleteOCLTutorial.html">Complete OCL tutorial</a></span>
+</dt>
+<dt>
+<span class="section"><a href="CodeGenerationTutorial.html">Code Generation tutorial</a></span>
+</dt>
+<dt>
+<span class="section"><a href="DebuggerTutorial.html">Debugger tutorial</a></span>
+</dt>
+<dt>
+<span class="section"><a href="ValidationTutorial.html">Validation tutorial</a></span>
+</dt>
+<dt>
+<span class="section"><a href="OCLInterpreterTutorial.html">Working with Classic OCL</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Installation.html">Installing the Eclipse OCL Examples and Editors</a></span>
+</dt>
+</dl>
+</div>
+<p>The 
+			<a class="link" href="Tutorials.html#OCLinEcoreTutorial" title="OCLinEcore tutorial">OCLinEcore tutorial</a> shows how 
+		</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>to install OCL and the additional Editors and Examples</p>
+</li>
+<li class="listitem">
+<p>to use the OCLinEcore editor</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="circle">
+<li class="listitem">
+<p>to edit Ecore meta-models</p>
+</li>
+<li class="listitem">
+<p>to enrich Ecore meta-models with OCL invariants, bodies and values</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="listitem">
+<p>to use embedded OCL for validation of models</p>
+</li>
+<li class="listitem">
+<p>to use the OCL Console to practice evaluation of OCL</p>
+</li>
+<li class="listitem">
+<p>to generate Java code for Ecore that uses the embedded OCL</p>
+</li>
+</ul>
+</div>
+<p>The 
+			<a class="link" href="OCLInterpreterTutorial.html" title="Working with Classic OCL">Working with Classic OCL tutorial</a> shows how
+		</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>the OCL Parser may be invoked from Java</p>
+</li>
+<li class="listitem">
+<p>the OCL evaluator may be invoked from Java</p>
+</li>
+</ul>
+</div>
+<div class="section" title="OCLinEcore tutorial">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="OCLinEcoreTutorial"></a>OCLinEcore tutorial</h2>
+</div>
+</div>
+</div>
+<p>This tutorial has been updated for Eclipse Luna; Eclipse 4.4, EMF 2.10, OCL 5.0.</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Some screenshots may be slightly out of date.</p>
+</li>
+</ul>
+</div>
+<div class="section" title="Overview">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Overview"></a>Overview </h3>
+</div>
+</div>
+</div>
+<p>In this example you will</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Create an Ecore model using the OCLinEcore text editor</p>
+</li>
+<li class="listitem">
+<p>Create a dynamic instance of that Ecore model</p>
+</li>
+<li class="listitem">
+<p>Enrich the Ecore model with OCL using the OCLinEcore text editor</p>
+</li>
+<li class="listitem">
+<p>Validate the model and observe the OCL enrichments</p>
+</li>
+<li class="listitem">
+<p>Use the Interactive OCL Console to execute the OCL enrichments</p>
+</li>
+</ul>
+</div>
+<p>The above is all performed without generating any Java code;
+					the models exploit EMF&rsquo;s dynamic capabilities and the OCL integration.</p>
+<p>You may then</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Create an Ecore genmodel</p>
+</li>
+<li class="listitem">
+<p>Generate Java code for the Ecore model that invokes the OCL expressions.</p>
+</li>
+</ul>
+</div>
+<p>See the 
+					<a class="link" href="DebuggerTutorial.html" title="Debugger tutorial">OCL Debugger tutorial</a> for debugging
+					See the 
+					<a class="link" href="CodeGenerationTutorial.html" title="Code Generation tutorial">Code Generator tutorial</a> for Java code generation
+				</p>
+</div>
+<div class="section" title="References">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="References"></a>References</h3>
+</div>
+</div>
+</div>
+<p>This tutorial assumes that the reader is familiar with generating models using EMF.
+					The reader is referred to 
+					<a class="ulink" href="/help/topic/org.eclipse.emf.doc/tutorials/clibmod/clibmod.html" target="_new">Generating an EMF Model</a>.
+				</p>
+<p>Other references:</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>The Object Constraint Language: Getting Your Models Ready for MDA. Jos Warmer and Anneke Kleppe. (Addison-Wesley Object Technology) </p>
+</li>
+<li class="listitem">
+<p>
+							
+<a class="ulink" href="http://www.omg.org/spec/OCL" target="_new">OCL specification</a>.
+						</p>
+</li>
+<li class="listitem">
+<p>
+							
+<a class="ulink" href="http://wiki.eclipse.org/MDT/OCLinEcore" target="_new">OCLinEcore wiki page</a>.
+						</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="Installing the Eclipse OCL Examples">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="OCLinEcoreTutorial-Installation"></a>Installing the Eclipse OCL Examples</h3>
+</div>
+</div>
+</div>
+<p>Please see the 
+					<a class="link" href="Installation.html" title="Installing the Eclipse OCL Examples and Editors">Instructions for installing the OCL Editors</a>.
+				</p>
+</div>
+<div class="section" title="Troubleshooting">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Troubleshooting"></a>Troubleshooting</h3>
+</div>
+</div>
+</div>
+<p>The editor currently provides syntax and semantic validation. It does not yet apply all the 
+					well-formedness validation rules, so some problems may be unreported. This is work in progress.
+					Sometimes spurious errors are displayed, which may go away with a 
+					<span class="bold"><strong>Save</strong></span>,
+					but may require an editor close and reopen. 
+				</p>
+</div>
+<div class="section" title="Using the OCLinEcore text editor for Ecore">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="UsingtheOCLinEcoretexteditorforEcore"></a>Using the OCLinEcore text editor for Ecore</h3>
+</div>
+</div>
+</div>
+<p>There are many different (compatible) ways to create and edit Ecore models.</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>An Ecore Model may be created from an XSD schema file</p>
+</li>
+<li class="listitem">
+<p>An Ecore Model may be created from a Rose model file</p>
+</li>
+<li class="listitem">
+<p>An Ecore Model may be created from annotated Java file</p>
+</li>
+<li class="listitem">
+<p>The Sample Ecore Editor provides tree editing</p>
+</li>
+<li class="listitem">
+<p>The Ecore Tools project provides graphical editing</p>
+</li>
+<li class="listitem">
+<p>Papyrus provides UML editing that may be converted to Ecore</p>
+</li>
+</ul>
+</div>
+<p>Here we introduce the OCLinEcore editor that provides text editing, which is
+					appropriate when a non-trivial amount of OCL enrichment is required.</p>
+<p>All the above approaches update a *.ecore file, so the user is free to choose
+					whichever editing approach is best suited for the planned changes.</p>
+<div class="section" title="Create a New EMF Project">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="CreateaNewEMFProject"></a>Create a New EMF Project</h4>
+</div>
+</div>
+</div>
+<p>We will first create a new project for this example; so invoke 
+						<span class="bold"><strong>File-&gt;New-&gt;Project...</strong></span>
+						(left-click the 
+						<span class="bold"><strong>File</strong></span> menu, then left-click 
+						<span class="bold"><strong>New</strong></span>, then left-click 
+						<span class="bold"><strong>Project...</strong></span>).
+					</p>
+<p>In the 
+						<span class="bold"><strong>New Project</strong></span> dialog left-click to expand 
+						<span class="bold"><strong>Eclipse Modeling Framework</strong></span>, then left-click to select
+
+						<span class="bold"><strong>Empty EMF Project</strong></span>.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/4100-new_project.png"></div>
+<p>
+					
+</p>
+<p>Left-click on 
+						<span class="bold"><strong>Next</strong></span> and in the 
+						<span class="bold"><strong>New Empty EMF Project</strong></span> dialog type 
+						<span class="bold"><strong>Tutorial</strong></span> as the project name.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/4100-new_empty_emf_project.png"></div>
+<p>
+					
+</p>
+<p>Left-click on 
+						<span class="bold"><strong>Finish</strong></span>.
+					</p>
+</div>
+<div class="section" title="Create a New Ecore Model">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="CreateaNewEcoreModel"></a>Create a New Ecore Model</h4>
+</div>
+</div>
+</div>
+<p>We will now create a new model for this example.</p>
+<p>First right-click on the 
+						<span class="bold"><strong>model</strong></span> folder in the 
+						<span class="bold"><strong>Tutorial</strong></span> project to define the target folder and pop-up the context-sensitive menu.
+						Select 
+						<span class="bold"><strong>New-&gt;Other...</strong></span> then select the 
+						<span class="bold"><strong>OCLinEcore Ecore File</strong></span> from the 
+						<span class="bold"><strong>OCL</strong></span> category. 
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/4100-new_oclinecore-ecore.png"></div>
+<p>
+					
+</p>
+<div class="blockquote">
+<blockquote class="blockquote">
+<p>
+							The alternative 
+							<span class="bold"><strong>OCLinEcore Text File</strong></span> creates a *.oclinecore text file which preserves whitespace and comments more faithfully but which must be converted to a *.ecore file for many modeling purposes. 
+						</p>
+</blockquote>
+</div>
+<p></p>
+<p>Left-click 
+						<span class="bold"><strong>Next</strong></span> and enter 
+						<span class="bold"><strong>Tutorial.ecore</strong></span> as the file name. 
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/4100-new_ecore_model_dialog.png"></div>
+<p>
+					
+</p>
+<p>Left-click 
+						<span class="bold"><strong>Finish</strong></span> to open up an editor with some minimal example content demonstrating
+					</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>the nesting of attributes or operations or invariants within classes within packages</p>
+</li>
+<li class="listitem">
+<p>use of OCL to define the body of an operation</p>
+</li>
+<li class="listitem">
+<p>the syntax for mutually opposite properties</p>
+</li>
+<li class="listitem">
+<p>use of OCL to define an invariant and a custom error message</p>
+</li>
+</ul>
+</div>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/4100-empty_oclinecore.png"></div>
+<p>
+					
+</p>
+<p>Close the editor by left-clicking the cross on the editor tab.</p>
+<p>You can see the normal Ecore view of the file by right-clicking on the 
+						<span class="bold"><strong>Tutorial.ecore</strong></span> file to pop-up the context-sensitive menu
+						and select 
+						<span class="bold"><strong>Open With-&gt;Sample Ecore Model Editor</strong></span>.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/4100-empty_ecore.png"></div>
+<p>
+					
+</p>
+<p>Close the editor by left-clicking the cross on the editor tab.</p>
+</div>
+<div class="section" title="Edit Ecore Model as OCLinEcore">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="OCLinEcoreMetamodel"></a>Edit Ecore Model as OCLinEcore</h4>
+</div>
+</div>
+</div>
+<p>We will now open the Ecore model using the OCLinEcore text editor and provide some
+						initial content.</p>
+<p>Right-click on the 
+						<span class="bold"><strong>Tutorial.ecore</strong></span> file to pop-up the context-sensitive menu
+						and select 
+						<span class="bold"><strong>Open With-&gt;OCLinEcore Editor</strong></span>.
+					</p>
+<p>Now follow the following procedure to cut and paste the following text into the editor.</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>select all existing content (e.g. Ctrl-A)</p>
+</li>
+<li class="listitem">
+<p>delete all (e.g. Ctrl-X)</p>
+</li>
+<li class="listitem">
+<p>open 
+								<a class="ulink" href="../references/4100-metamodel.oclinecore" target="_new">[Text for cut and paste]</a>
+							
+</p>
+</li>
+<li class="listitem">
+<p>select and copy the text (e.g Ctrl-A and Ctrl-C) from the browser</p>
+</li>
+<li class="listitem">
+<p>paste (e.g Ctrl-V) in the original editor</p>
+</li>
+<li class="listitem">
+<p>save the contents (e.g. Ctrl-S)</p>
+</li>
+</ul>
+</div>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/4100-metamodel.png"></div>
+<p>
+					
+</p>
+<p>The syntax is defined in 
+						<a class="link" href="OCLinEcore.html" title="The OCLinEcore Language">OCLinEcore</a>. It emulates OMG specifications with
+						&lsquo;name : type[multiplicity] { properties }&rsquo;.
+					</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+								
+<code class="code">import</code> associates an alias with  an external EPackage.
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">package</code> introduces an EPackage with name, nsPrefix and nsURI.
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">class</code> introduces an EClass with name and optional superclasses.
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">attribute</code> introduces a property with a datatype type (an EAttribute).
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">property</code> introduces a property with a class type (an EReference).
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">#</code> introduces an opposite role name.
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">_'xxx'</code> escapes an awkward or reserved word identifier.
+							</p>
+</li>
+</ul>
+</div>
+<p>The import URI is the URI of a Package, so in the example the 
+						<code class="code">http://www.eclipse.org/emf/2002/Ecore</code>
+						is the URI of the model, 
+						<code class="code">#</code> is the fragment separator and 
+						<code class="code">/</code> is the path to
+						the Package at the root of the XMI document.
+					</p>
+<p>Completion assist (Ctrl Space) may be used for syntax assistance.</p>
+<p>Format (Ctrl-Shift F) may be used to auto-format a selected range.</p>
+<p>In order to discover a syntax for which completion assist is insufficient,
+						you may use the Sample Ecore Editor on a test file to create the kind of Ecore element
+						that you require, and then open the test file with the OCLinEcore editor to see the
+						corresponding textual syntax.</p>
+</div>
+<div class="section" title="The Tutorial Meta-Model">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="TheTutorialMetaModel"></a>The Tutorial Meta-Model</h4>
+</div>
+</div>
+</div>
+<p>The example meta-model models a library with members and books
+						and loans of books to members. It may be viewed graphically using the Ecore Tools
+						(not part of this tutorial).</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/4100-ecore_diagram.png"></div>
+<p>
+					
+</p>
+<p>Note that this diagram is an Ecore Diagram rather than a UML Diagram and so the default multiplicities for attributes is Ecore&rsquo;s [0..1] rather than OCLinEcore&rsquo;s and UML&rsquo;s [1..1].</p>
+<p>Note also that the OCL types 
+						<code class="code">String</code> and 
+						<code class="code">Integer</code> map
+						to 
+						<code class="code">EString</code> and 
+						<code class="code">EBigInteger</code> in Ecore.
+					</p>
+</div>
+</div>
+<div class="section" title="Create a Dynamic Model Instance">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="CreateaDynamicModelInstance"></a>Create a Dynamic Model Instance</h3>
+</div>
+</div>
+</div>
+<p>At this point a corresponding EMF tutorial would show how to generate Java code for
+					the meta-model and an editor for the meta-model. Here we are concerned with modeling, so we will 
+					continue with the models alone.</p>
+<p>In the editor view, double-click on 
+					<span class="bold"><strong>Library</strong></span> to select it and then right-click to show the context-sensitive menu
+					and then left-click on 
+					<span class="bold"><strong>Create Dynamic Instance...</strong></span> to start to create a
+					new Dynamic Model with 
+					<code class="code">Library</code> at its root.
+				</p>
+<div class="blockquote">
+<blockquote class="blockquote">
+<p>
+						Creating a Dynamic Instance requires a valid *.ecore file to exist. It does not work
+						when editing *.oclinecore files.</p>
+</blockquote>
+</div>
+<p></p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4100-create_dynamic_instance.png"></div>
+<p>
+				
+</p>
+<p>In the 
+					<span class="bold"><strong>Create Dynamic Instance</strong></span> dialog select 
+					<span class="bold"><strong>Tutorial/model</strong></span> as
+					the parent folder and enter 
+					<span class="bold"><strong>Tutorial.xmi</strong></span> as the file name for the 
+					dynamic model instance and left-click 
+					<span class="bold"><strong>Finish</strong></span>.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4100-create_dynamic_instance_dialog.png"></div>
+<p>
+				
+</p>
+<p>The model is automatically opened for editing. 
+					If it is does open with the Sample Reflective Ecore Model Editor,
+					close the editor and open explicitly using *Open With-&gt;Sample Reflective Ecore Model Editor).
+					This gives a tree-like presentation of the model. The properties of each node can
+					be seen in the Properties View.</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4100-initial_model.png"></div>
+<p>
+				
+</p>
+<p>(If the Properties View is not visible, right-click within the editor and left-click on
+
+					<span class="bold"><strong>Show Properties View</strong></span>.)
+				</p>
+<p>Select the Library and use give it a name such as 
+					<code class="code">lib</code>.
+				</p>
+<p>From the right-button menu for 
+					<code class="code">Library</code> use 
+					<span class="bold"><strong>New Child-&gt;Books Book</strong></span> twice,
+					use 
+					<span class="bold"><strong>New Child-&gt;Loans Loan</strong></span> once and 
+					<span class="bold"><strong>New Child-&gt;Members Member</strong></span> three times
+					to populate the model with two books, one loan and three members. 
+				</p>
+<p>Left-click to select each of the Books and Members in turn and enter a name
+					such as 
+					<code class="code">b1</code> or 
+					<code class="code">m2</code> using the Properties View. Specify that b1
+					has one copy and that b2 has 2 copies.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4100-model_copies.png"></div>
+<p>
+				
+</p>
+<p>The books and members now have distinct titles in the outline. 
+					When you left-click to select the Loan and edit its Book and Member attributes,
+					the associated pull-down has meaningful entries. Specify that the Loan is for
+
+					<code class="code">b2</code> by 
+					<code class="code">m3</code>.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4100-model_pull_down.png"></div>
+<p>
+				
+</p>
+<p>The configuration so far is simple, three members, two books and one loan. We can
+					validate that this by right-clicking on the 
+					<code class="code">Library</code> node, and left-clicking
+					to 
+					<span class="bold"><strong>Validate</strong></span> 
+					<code class="code">Library</code> and all its children.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4100-validate_menu.png"></div>
+<p>
+				
+</p>
+<p>Since the model is so simple, it is difficult to have anything wrong; most of
+					the illegal modeling options such as a Loan composing rather than referencing a
+					Book are prevented by the Editor&rsquo;s enforcement of the meta-model.</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4100-validation_successful.png"></div>
+<p>
+				
+</p>
+<p>(If you have an error at this point, a 
+					<span class="bold"><strong>Details</strong></span> button will lead you to some
+					diagnostics that may clarify the problem. Pasting the following XMI 
+					into 
+					<span class="bold"><strong>Tutorial.xmi</strong></span> should also
+					resolve an entry problem.)
+				</p>
+<div class="literallayout">
+<p>
+<code class="code">&lt;?xml&nbsp;version="1.0"&nbsp;encoding="ASCII"?&gt;<br>
+&lt;tut:Library&nbsp;xmi:version="2.0"&nbsp;xmlns:xmi="http://www.omg.org/XMI"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;xmlns:tut="http://www.eclipse.org/mdt/ocl/oclinecore/tutorial"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;xsi:schemaLocation="http://www.eclipse.org/mdt/ocl/oclinecore/tutorial&nbsp;Tutorial.ecore"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name="lib"&gt;<br>
+&nbsp;&nbsp;&lt;books&nbsp;name="b1"&nbsp;copies="1"/&gt;<br>
+&nbsp;&nbsp;&lt;books&nbsp;name="b2"&nbsp;copies="2"/&gt;<br>
+&nbsp;&nbsp;&lt;loans&nbsp;book="//@books.1"&nbsp;member="//@members.2"/&gt;<br>
+&nbsp;&nbsp;&lt;members&nbsp;name="m1"/&gt;<br>
+&nbsp;&nbsp;&lt;members&nbsp;name="m2"/&gt;<br>
+&nbsp;&nbsp;&lt;members&nbsp;name="m3"/&gt;<br>
+&lt;/tut:Library&gt;<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>We will now create two further identical loans of 
+					<code class="code">b2</code> by 
+					<code class="code">m3</code>. This
+					may conveniently be performed by left-clicking to select the existing loan,
+					typing Ctrl-C to copy it, left-clicking to select the 
+					<code class="code">Library</code> as the new parent,
+					then typing Ctrl-V to paste it on the library. Repeat so that there are three
+					identical loans.
+				</p>
+<p>Validating the library should still be successful, although it is clearly wrong for
+					the two copies of 
+					<code class="code">b2</code> to participate in three loans.
+				</p>
+</div>
+<div class="section" title="Enrich the meta-model with OCL">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="EnrichthemetamodelwithOCL"></a>Enrich the meta-model with OCL</h3>
+</div>
+</div>
+</div>
+<p>The semantic constraint that a book cannot be borrowed more times than there are books
+					is a simple example of a constraint that cannot be expressed by simple multiplicities; 
+					a more powerful capability is required that may potentially require evaluation
+					of functions of almost arbitrary complexity. The Object Constraint Language
+					provides this capability.</p>
+<p>The constraint can be realized as an invariant on a book that specifies that
+					that (the size of the (selection of loans involving the book)) is less than or equal
+					to (the number of copies of the book).</p>
+<div class="literallayout">
+<p>
+<code class="code">&nbsp;&nbsp;&nbsp;&nbsp;invariant&nbsp;SufficientCopies:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;library.loans-&gt;select(book=self)-&gt;size()&nbsp;&lt;=&nbsp;copies;<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>In more detail:</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>an invariant is defined whose name is 
+							<code class="code">SufficientCopies</code>
+						
+</p>
+</li>
+<li class="listitem">
+<p>within the invariant on a Book, 
+							<code class="code">self</code> is the instance of 
+							<code class="code">Book</code> being validated.
+						</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">library.loans</code>, which is short for 
+							<code class="code">self.library.loans</code>, navigates to the library and then to all loans in the library.
+						</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">-&gt;select(...)</code> is a collection iteration over the loans. It selects each loan for which its argument expression is true
+						</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">book=self</code>, which is short for 
+							<code class="code">aLoan : Loan | aLoan.book = self</code>, uses the 
+							<code class="code">aLoan</code> iterator over each loan to select those for which the book is the book being validated
+						</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">-&gt;size()</code> is a collection operation that just counts the number of selected loans
+						</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">&lt;= copies</code>, which is short for 
+							<code class="code">&lt;= self.copies</code> converts the count to 
+							<code class="code">true</code> if it is consistent, or 
+							<code class="code">false</code> if inconsistent.
+						</p>
+</li>
+</ul>
+</div>
+<p>Close the 
+					<span class="bold"><strong>Tutorial.xmi</strong></span> editor before modifying its meta-model. (Beware that
+					a wide variety of unpleasant errors can occur if the meta-model is changed after
+					the model is loaded.)
+				</p>
+<p>Add the invariant shown below to the meta-model.</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4100-metamodel2.png"></div>
+<p>
+
+					
+<a class="ulink" href="../references/4100-metamodel2.oclinecore" target="_new">[Text for cut and paste]</a>
+				
+</p>
+<p>The required semantic is expressed by the 
+					<code class="code">SufficientCopies</code> invariant constraint for a Book.
+					For a valid model the SufficientCopies invariant must always be true.
+				</p>
+<p>If you reopen the 
+					<span class="bold"><strong>Tutorial.xmi</strong></span> editor and invoke 
+					<span class="bold"><strong>Validate</strong></span> for the 
+					<code class="code">Library</code>,
+					you will now get a validation error. Left click 
+					<span class="bold"><strong>Details</strong></span> for details.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4100-validation_unsuccessful.png"></div>
+<p>
+				
+</p>
+<p>The 
+					<span class="bold"><strong>Details</strong></span> identifies that the 
+					<code class="code">SufficientCopies</code> invariant is not
+					satisfied for the 
+					<code class="code">b2</code> book. 
+				</p>
+<p>If you now change the first loan so that 
+					<code class="code">b1</code> is borrowed and then validate
+					again, the problem is resolved. It is alright for 
+					<code class="code">m3</code> to borrow
+					the one copy of 
+					<code class="code">b1</code> and the two copies of 
+					<code class="code">b2</code>.
+				</p>
+<p>Before introducing a further constraint of no duplicate loans, we will show
+					how OCL expressions can be exercised. OCL is a very powerful compact language;
+					the example hides a loop over all the loans. More complex examples may easily
+					involve three or four levels of hidden loops on a single line, but may equally
+					easily have simple errors. It is therefore helpful to simplify expressions
+					and use helper operations and properties to modularise them. These may then be
+					exercised using the OCL Console or debugged using the 
+					<a class="link" href="Debugger.html" title="Debugger (new in Luna)">OCL Debugger</a>.
+				</p>
+</div>
+<div class="section" title="The OCL Console">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="OCLinEcoreTutorial-Console"></a>The OCL Console</h3>
+</div>
+</div>
+</div>
+<p>The OCL Console supports interactive execution of an OCL expression in the
+					context of a model instance.</p>
+<p>To make the OCL Console visible, first make the 
+					<span class="bold"><strong>Console</strong></span> view visible by
+
+					<span class="bold"><strong>Window-&gt;Show View-&gt;Console</strong></span>. Then right click on the 
+					<span class="bold"><strong>Open Console</strong></span> and
+					left click on 
+					<span class="bold"><strong>Interactive Xtext OCL</strong></span>.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4100-ocl_console_menu.png"></div>
+<p>
+				
+</p>
+<p>Alternatively, you can just invoke 
+					<span class="bold"><strong>OCL-&gt;Show Xtext OCL Console</strong></span> from the right button menu
+					within the 
+					<span class="bold"><strong>Sample Ecore Editor</strong></span> or 
+					<span class="bold"><strong>Sample Reflective Ecore Editor</strong></span>.
+				</p>
+<div class="blockquote">
+<blockquote class="blockquote">
+<p>
+						The 
+						<span class="bold"><strong>Xtext OCL</strong></span> console is new Xtext-based functionality that uses the Pivot binding. It is
+						faster, and more compliant with the OCL specification, than the 
+						<span class="bold"><strong>OCL</strong></span> console that uses the
+						LPG parser and Ecore binding.
+					</p>
+</blockquote>
+</div>
+<p></p>
+<p>The 
+					<span class="bold"><strong>Interactive Xtext OCL</strong></span> console comprises two main text panes. The upper pane
+					displays results. The lower pane supports entry of queries.
+				</p>
+<p>Left-click to select the 
+					<code class="code">Library</code> in the 
+					<span class="bold"><strong>Tutorial.xmi</strong></span> as the context
+					for a query, and then type 
+					<code class="code">books</code> followed by a new line into the lower
+					pane of the console. 
+				</p>
+<p>The result of evaluating this query for the Library is shown.</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4100-books_query.png"></div>
+<p>
+				
+</p>
+<p>Substantial OCL queries spanning many lines may be entered and so the cursor up
+					and cursor down keys move across lines. If you want to access an earlier query,
+					you may use the 
+					<span class="bold"><strong>Page Up</strong></span> or 
+					<span class="bold"><strong>Page Down</strong></span> keys to save typing them again.
+				</p>
+<p>You can examine the execution of the earlier query by selecting each of the books
+					in turn and executing 
+					<code class="code">library.loans-&gt;select(book=self)</code>, to see that 
+					<code class="code">b1</code>
+					has one Loan and 
+					<code class="code">b2</code> two.
+				</p>
+</div>
+<div class="section" title="Helper Features and Operations">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="OCLinEcoreTutorialHelpers"></a>Helper Features and Operations</h3>
+</div>
+</div>
+</div>
+<p>We will now introduce some helper attributes and operations to make
+					the OCL clearer and provide a richer meta-model API.
+					Close the 
+					<span class="bold"><strong>Tutorial.xmi</strong></span> editor and modify the meta-model to include
+					the derived 
+					<code class="code">loans</code> property and the helper operation 
+					<code class="code">isAvailable()</code>.
+					Simplify the invariant to use the derived property.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4100-metamodel3.png"></div>
+<p>
+
+					
+<a class="ulink" href="../references/4100-metamodel3.oclinecore" target="_new">[Text for cut and paste]</a>
+				
+</p>
+<p>Note that the derived property must also be volatile to avoid problems when
+					a model is loaded but has no content.</p>
+<p>Reopen 
+					<span class="bold"><strong>Tutorial.xmi</strong></span> and select 
+					<span class="bold"><strong>Book b2</strong></span> so that the derived property is visible in the 
+					<span class="bold"><strong>Properties</strong></span> view.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4100-derived_property.png"></div>
+<p>
+				
+</p>
+<p>The helper operation can be evaluated in the 
+					<span class="bold"><strong>Console</strong></span> view by selecting book 
+					<code class="code">b2</code> and typing 
+					<code class="code">isAvailable()</code> for execution.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4100-helper_operation.png"></div>
+<p>
+				
+</p>
+<p>We will now add further helpers and constraints to enforce an
+					at most two loans per member policy and to require loans to be unique.</p>
+<p>(Don&rsquo;t forget to close 
+					<span class="bold"><strong>Tutorial.xmi</strong></span> while changing its meta-model.)
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4100-metamodel4.png"></div>
+<p>
+
+					
+<a class="ulink" href="../references/4100-metamodel4.oclinecore" target="_new">[Text for cut and paste]</a>
+				
+</p>
+<p>The additional 
+					<code class="code">books</code> property may be evaluated in the OCL
+					Console to show which books each member has on loan. The property may also be seen in the 
+					<span class="bold"><strong>Properties</strong></span> view. 
+				</p>
+<p>Select the library again and invoke 
+					<span class="bold"><strong>Validate</strong></span> from the right button menu.
+					There are now two validation failures. 
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4100-two_validation_errors.png"></div>
+<p>
+				
+</p>
+</div>
+<div class="section" title="Generating Java Code">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="OCLinEcoreTutorial-genmodel"></a>Generating Java Code</h3>
+</div>
+</div>
+</div>
+<p>We have shown how OCL may be used to enrich Ecore meta-models, how model instances can be created
+					and validated and how expressions can be evaluated, all without generating any Java code.</p>
+<p>Exactly the same facilities are available if you do generate Java code and as a result you gain some speed benefits. By default, in the Eclipse OCL 5.0.0 (Luna) release the generated Java code for OCL is interpreted and so the speed gains occur only for the EMF models.
+					In the 
+					<a class="link" href="CodeGenerationTutorial.html" title="Code Generation tutorial">Code Generation Tutorial</a>, a preliminary release of 
+					the OCL to Java code generator is described, giving an approximately five-fold speed improvement
+					and eliminating the need for run-time compilation.
+				</p>
+<p>Generating Java code is exactly the same as for any other EMF project. (Prior to EMF 2.8, there was one important difference; you must explicitly set 
+					<span class="bold"><strong>Operation Reflection</strong></span> to true. The default for this changed to true in EMF 2.8.)
+				</p>
+<p>Select the 
+					<span class="bold"><strong>Tutorial.ecore</strong></span> file and invoke 
+					<span class="bold"><strong>New-&gt;Other...</strong></span> from the right button menu
+					and select 
+					<span class="bold"><strong>Eclipse Modeling Framework</strong></span> and 
+					<span class="bold"><strong>EMF Generator Model</strong></span>.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4100-new_emf_generator.png"></div>
+<p>
+				
+</p>
+<p>Select 
+					<span class="bold"><strong>Next</strong></span>.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4100-new_emf_generator_model.png"></div>
+<p>
+				
+</p>
+<p>Select 
+					<span class="bold"><strong>Next</strong></span>.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4100-new_emf_generator_model_ecore.png"></div>
+<p>
+				
+</p>
+<p>Select 
+					<span class="bold"><strong>Next</strong></span>.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4100-new_emf_generator_model_load.png"></div>
+<p>
+				
+</p>
+<p>Select 
+					<span class="bold"><strong>Load</strong></span> and 
+					<span class="bold"><strong>Next</strong></span>.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4100-new_emf_generator_model_packages.png"></div>
+<p>
+				
+</p>
+<p>Select 
+					<span class="bold"><strong>Finish</strong></span>.
+				</p>
+<p>The 
+					<span class="bold"><strong>Tutorial.genmodel</strong></span> editor opens.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4100-gen_model.png"></div>
+<p>
+				
+</p>
+<p>Most of the default settings are suitable. The one that may not be is highlighted. Select the
+					root 
+					<span class="bold"><strong>Tutorial</strong></span> and scroll down the 
+					<span class="bold"><strong>Properties</strong></span> view and set 
+					<span class="bold"><strong>Operation Reflection</strong></span>
+					to true if it is not already true. (As from EMF 2.8 the default is true.)
+				</p>
+<p>You may now invoke 
+					<span class="bold"><strong>Generate Model Code</strong></span> from the right button menu of either 
+					<span class="bold"><strong>Tutorial</strong></span>
+					to generate Java models that invoke OCL.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4100-gen_model_menu.png"></div>
+<p>
+				
+</p>
+<div class="section" title="Java Details">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="JavaDetails"></a>Java Details</h4>
+</div>
+</div>
+</div>
+<p>You can check that the OCL appears in your Java by looking at 
+						<span class="bold"><strong>tutorial.util.TutorialValidator.java</strong></span>
+						where you&rsquo;ll find the OCL expression as a String awaiting compilation at run-time, and
+						the validate invocation that triggers that compilation and execution.
+					</p>
+<div class="literallayout">
+<p>
+<code class="code">protected&nbsp;static&nbsp;final&nbsp;String&nbsp;MEMBER__AT_MOST_TWO_LOANS__EEXPRESSION&nbsp;=&nbsp;"\n"&nbsp;+<br>
+&nbsp;&nbsp;"\t\t\tloans-&gt;size()&nbsp;&lt;=&nbsp;2";<br>
+
+<br>
+public&nbsp;boolean&nbsp;validateMember_AtMostTwoLoans(Member&nbsp;member,&nbsp;DiagnosticChain<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;diagnostics,&nbsp;Map&lt;Object,&nbsp;Object&gt;&nbsp;context)&nbsp;{<br>
+&nbsp;&nbsp;return<br>
+&nbsp;&nbsp;&nbsp;&nbsp;validate<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(TutorialPackage.Literals.MEMBER,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;member,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;diagnostics,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;context,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"http://www.eclipse.org/emf/2002/Ecore/OCL",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"AtMostTwoLoans",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MEMBER__AT_MOST_TWO_LOANS__EEXPRESSION,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Diagnostic.ERROR,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DIAGNOSTIC_SOURCE,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0);<br>
+}<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>Similarly in 
+						<span class="bold"><strong>BookImpl</strong></span> you will find the declaration of a cached delegate and
+						the dynamic invocation that provokes the first time compilation.
+					</p>
+<div class="literallayout">
+<p>
+<code class="code">protected&nbsp;static&nbsp;final&nbsp;EOperation.Internal.InvocationDelegate<br>
+&nbsp;&nbsp;IS_AVAILABLE__EINVOCATION_DELEGATE&nbsp;=&nbsp;((EOperation.Internal)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;TutorialPackage.Literals.BOOK___IS_AVAILABLE).getInvocationDelegate();<br>
+
+<br>
+public&nbsp;boolean&nbsp;isAvailable()&nbsp;{<br>
+&nbsp;&nbsp;try&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;(Boolean)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IS_AVAILABLE__EINVOCATION_DELEGATE.dynamicInvoke(this,&nbsp;null);<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;catch&nbsp;(InvocationTargetException&nbsp;ite)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;throw&nbsp;new&nbsp;WrappedException(ite);<br>
+&nbsp;&nbsp;}<br>
+}<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>The OCL expression for the invocation delegate may be found in 
+						<span class="bold"><strong>TutorialPackageImpl.createOCLAnnotations()</strong></span>.
+					</p>
+<div class="literallayout">
+<p>
+<code class="code">addAnnotation<br>
+&nbsp;&nbsp;(getBook__IsAvailable(),&nbsp;<br>
+&nbsp;&nbsp;&nbsp;source,&nbsp;<br>
+&nbsp;&nbsp;&nbsp;new&nbsp;String[]&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;"body",&nbsp;"loans-&gt;size()&nbsp;&lt;&nbsp;copies"<br>
+&nbsp;&nbsp;&nbsp;});&nbsp;&nbsp;&nbsp;&nbsp;<br>
+
+</code>
+</p>
+</div>
+<p></p>
+</div>
+<div class="section" title="API Invariants">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="APIInvariants"></a>API Invariants</h4>
+</div>
+</div>
+</div>
+<p>The invariants we have used so far do not contribute to the class API.</p>
+<p>If you want to have fine grain control of which validations are performed,
+						perhaps because in some incremental context not all are appropriate, you
+						may use the operation form of an invariant. </p>
+<div class="literallayout">
+<p>
+<code class="code">&nbsp;&nbsp;class&nbsp;Book<br>
+&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;operation&nbsp;sufficientCopies(diagnostics&nbsp;:&nbsp;ecore::EDiagnosticChain,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;context&nbsp;:&nbsp;ecore::EMap&lt;ecore::EJavaObject,ecore::EJavaObject&gt;)&nbsp;:&nbsp;Boolean<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;body:&nbsp;library.loans-&gt;select(book=self)-&gt;size()&nbsp;&lt;=&nbsp;copies;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;attribute&nbsp;name&nbsp;:&nbsp;String;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;attribute&nbsp;copies&nbsp;:&nbsp;Integer;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;property&nbsp;library#books&nbsp;:&nbsp;Library;<br>
+&nbsp;&nbsp;}<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>Note that the operation must have a Boolean return (true for valid) and
+						diagnostics and context arguments. </p>
+</div>
+</div>
+<div class="section" title="Summary">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Summary"></a>Summary</h3>
+</div>
+</div>
+</div>
+<p>To illustrate how to work with the OCL and Ecore as models we have</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Created an Ecore meta-model using the OCLinEcore text editor</p>
+</li>
+<li class="listitem">
+<p>Created a dynamic model instance from that meta-model</p>
+</li>
+<li class="listitem">
+<p>Enriched the meta-model with embedded OCL</p>
+</li>
+<li class="listitem">
+<p>Used the embedded OCL while validating the model</p>
+</li>
+<li class="listitem">
+<p>Queried the model usng the Interactive OCL Console.</p>
+</li>
+<li class="listitem">
+<p>Evaluated OCL embedded in the meta-model in the Console.</p>
+</li>
+</ul>
+</div>
+<p>To use OCL and Ecore as generated Java models we have</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Generated Java that exploits the embedded OCL.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

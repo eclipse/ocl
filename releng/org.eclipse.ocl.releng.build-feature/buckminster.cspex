@@ -8,6 +8,10 @@
 		<cs:dependency name="org.eclipse.rcp" componentType="eclipse.feature" />		
 		<cs:dependency name="org.eclipse.pde.core" componentType="osgi.bundle"/>
 		<cs:dependency name="org.eclipse.team.core" componentType="osgi.bundle" />
+		<cs:dependency name="org.apache.log4j" componentType="osgi.bundle" />
+		<!-- Tests Dependencies -->
+		<cs:dependency name="org.eclipse.test" componentType="osgi.bundle" />
+		<cs:dependency name="org.eclipse.ant.optional.junit" componentType="osgi.bundle" />
 		<!-- We explicitly need to specify this to add the lpg sources into the target platform -->
 		<cs:dependency name="lpg.runtime.java.source" componentType="osgi.bundle" />
 		<!--
@@ -91,6 +95,23 @@
 			<cs:products alias="output" base="${buckminster.output}/zips/" />
 		</cs:public>
 
+		<!--cs:public name="package.mdt-ocl-Automated-tests" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFile" value="packaging.ant" />
+				<cs:property key="targets" value="package.ius" />
+			</cs:actorProperties>
+			<cs:properties>
+				<cs:property key="content.ius" value="org.eclipse.ocl.all.tests.feature.group"/>
+				<cs:property key="target.platform.ius" value="lpg.runtime.java" />
+				<cs:property key="package.name" value="mdt-ocl-Automated-tests" />
+			</cs:properties>
+			<cs:prerequisites>
+				<cs:attribute name="site.p2" alias="repository" />
+				<cs:attribute name="site.tp" alias="target.platform.repository" />
+			</cs:prerequisites>
+			<cs:products alias="output" base="${buckminster.output}/zips/" />
+		</cs:public-->
+
 		<cs:public name="tag" actor="buckminster.tag">
 			<cs:actorProperties>
 				<cs:property key="tag" value="build_${build.id}" />
@@ -102,9 +123,10 @@
 
 	<cs:groups>
 		<cs:public name="build">
-			<cs:attribute name="package.mdt-ocl-Update" />		
+			<cs:attribute name="package.mdt-ocl-Update" />
 			<cs:attribute name="package.mdt-ocl-CoreSDK" />
-			<cs:attribute name="package.mdt-ocl-runtime" />				
+			<cs:attribute name="package.mdt-ocl-runtime" />
+			<!--cs:attribute name="package.mdt-ocl-Automated-tests" /-->
 		</cs:public>
 		
 	</cs:groups>

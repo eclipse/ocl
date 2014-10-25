@@ -1,0 +1,29 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Eclipse OCL is Extensible</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="OverviewandGettingStarted.html" title="Overview and Getting Started">
+<link rel="prev" href="HowDoesItWork.html" title="How Does It Work?">
+<link rel="next" href="WhoUsesOCLandEclipseOCL.html" title="Who Uses OCL and Eclipse OCL?">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Eclipse OCL is Extensible</h1>
+<div class="section" title="Eclipse OCL is Extensible">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="EclipseOCLisExtensible"></a>Eclipse OCL is Extensible</h2>
+</div>
+</div>
+</div>
+<p>The Classic Eclipse OCL is used as a component in a variety of other Eclipse projects such as Acceleo, BIRT, GMF, Modisco, QVTo. Ecore models are used directly, which leads to some internal difficulties.</p>
+<p>A new Unified Eclipse OCL is evolving that exploits Xtext and uses Ecore models indirectly via a UML-aligned Pivot models. This provides a choice between the classic APIs that offer limited forward functionality, and the experimental new APIs that will be promoted to non-experimental form in the Mars release.</p>
+<p>The new code already offers a fully modeled Standard Library that can be extended or replaced. The new OCL grammars are extended internally from Essential OCL to OCLinEcore or Complete OCL, and externally to QVT Core and QVT Relational. The associated Concrete Syntax to Abstract Syntax mapping is not yet model-driven and so harder to extend.</p>
+<p>Full model-driven extensibility is planned for the Mars release.</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>OCL Interpreter Example</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="Examples.html" title="Examples">
+<link rel="prev" href="CompleteOCLTutorialExampleProject.html" title="Complete OCL Tutorial Example Project">
+<link rel="next" href="ProgrammersGuide.html" title="Classic Ecore/UML Programmers Guide">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">OCL Interpreter Example</h1>
+<div class="section" title="OCL Interpreter Example">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="OCLInterpreterExample"></a>OCL Interpreter Example</h2>
+</div>
+</div>
+</div>
+<div class="section" title="Introduction">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Introduction"></a>Introduction</h3>
+</div>
+</div>
+</div>
+<p>This example illustrates the usage of the generic OCL Parser API to parse and evaluate OCL query expressions and constraints within the SDK. It demonstrates how to author OCL expressions and evaluate them against elements of library model instances, or against Ecore and UML elements.  For Ecore and UML models, a further option of parsing (not evaluating) model-level (M1 in the OMG modeling stack) constraints is available.</p>
+</div>
+<div class="section" title="References">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="References3"></a>References</h3>
+</div>
+</div>
+</div>
+<p>Please refer to the document 
+					<a class="ulink" href="ExamplesOverview" target="_new">Object Constraint Language Examples Overview</a> for reviewing the library meta-model used as the basis for demonstrating the capabilities in this example.
+				</p>
+</div>
+<div class="section" title="Description">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Description"></a>Description</h3>
+</div>
+</div>
+</div>
+<p>This example plug-in is named 
+					<code class="code">org.eclipse.emf.ocl.examples.interpreter</code>. This plug-in contributes the 
+					<code class="code">OCL Interpreter</code> menu to the library editor&rsquo;s main menu and context menu. The menu has one item:
+				</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+							
+<code class="code">Show Console</code>: Opens the interactive OCL console.
+						</p>
+</li>
+</ul>
+</div>
+<p>Please refer to the tutorial 
+					<a class="link" href="OCLInterpreterTutorial.html" title="Working with Classic OCL">OCL Interpreter Tutorial</a> for reviewing the code samples within this example.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/3200-lib_editor_contrib.png"></div>
+<p>
+				
+</p>
+<p>The bottom field in the console accepts OCL expressions (comments supported). You can press 
+					<span class="bold"><strong>Enter</strong></span> to evaluate on the currently selected element. You can press 
+					<span class="bold"><strong>Ctrl+Enter</strong></span> or 
+					<span class="bold"><strong>Shift+Enter</strong></span> to insert a newline. The top field shows the output and errors. The console can be cleared by the 
+					<span class="bold"><strong>Eraser</strong></span> button and closed by the 
+					<span class="bold"><strong>X</strong></span> button.
+				</p>
+<p>Because the 
+					<code class="code">EXTLibrary</code> model is based on the Ecore metamodel, ensure that the 
+					<code class="code">Ecore</code> metamodel is selected in the console&rsquo;s tool bar.  Also ensure that the 
+					<code class="code">M2</code> modeling level is selected, as 
+					<code class="code">EXTLibrary</code> is not a metamodel, so instances of it are not models.  Thus, the OCL expressions that
+					we create will target the Ecore meta-model, as the model of the EXTLibrary model.
+				</p>
+<p>Content-assist is automatically activated on typing any of "
+					<code class="code">.</code>", "
+					<code class="code">-&gt;</code>", "
+					<code class="code">::</code>", and "
+					<code class="code">^</code>".  Also, 
+					<code class="code">Ctrl+Space</code> can be used to invoke content-assist at any time.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/3200-lib_console.png"></div>
+<p>
+				
+</p>
+</div>
+<div class="section" title="Support for Ecore and UML Models">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="SupportforEcoreandUMLModels"></a>Support for Ecore and UML Models</h3>
+</div>
+</div>
+</div>
+<p>The OCL Console contributes an 
+					<span class="bold"><strong>OCL-&gt;Show OCL Console</strong></span> menu action to the Ecore and UML editors (for 
+					<code class="code">*.ecore</code> and 
+					<code class="code">*.uml</code> models).  These actions automatically select the appropriate metamodel in the console.
+				</p>
+<p>For both Ecore and UML, parsing constraints at the 
+					<code class="code">M1</code> (model) level is supported.  This implements a scratch pad for developing OCL constraints in the context of:
+				</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>classifiers, for invariant constraints</p>
+</li>
+<li class="listitem">
+<p>operations, for pre/post condition constraints and body expressions</p>
+</li>
+<li class="listitem">
+<p>attributes, for initial-value and derivation constraints</p>
+</li>
+</ul>
+</div>
+<p>The console infers the kind of constraint from the selected element; in the case of an operation, it assumes a post-condition constraint as these constraints support a superset of the syntax for pre-conditions and body expressions.</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/3200-ecore_console.png"></div>
+<p>
+				
+</p>
+<p>The figure above shows the parsing of a derivation constraint on an Ecore property (an 
+					<code class="code">EStructuralFeature</code>).
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/3200-uml_console.png"></div>
+<p>
+				
+</p>
+<p>The figure above shows the parsing of an invariant constraint on a UML classifier (a 
+					<code class="code">Class</code>).  Note that UML can model the 
+					<code class="code">Job</code> as an association class; a roughly equivalent Ecore model is more verbose.
+				</p>
+</div>
+<div class="section" title="Example Code">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="ExampleCode"></a>Example Code</h3>
+</div>
+</div>
+</div>
+<p>Refer to the code in this example if you need to:</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>parse, validate and evaluate OCL queries and constraints on EMF model elements</p>
+</li>
+<li class="listitem">
+<p>implement content-assist for OCL constraints in your model editor</p>
+</li>
+</ul>
+</div>
+<p>
+					
+<a class="ulink" href="http://www.eclipse.org/legal/epl-v10.html" target="_new">Copyright &copy; 2000, 2007 IBM Corporation and others. All Rights Reserved.</a>
+				
+</p>
+</div>
+</div>
+</body>
+</html>

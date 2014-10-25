@@ -73,7 +73,6 @@
 			<include name="features/org.eclipse.ocl.all_*/**" />
 			<include name="features/org.eclipse.ocl.all.source*/**" />
 			<include name="features/org.eclipse.ocl.core*/**" />
-			<include name="features/org.eclipse.ocl.license*/**" />
 			<include name="features/org.eclipse.ocl.source*/**" />
 			<include name="features/org.eclipse.ocl.uml*/**" />
 			<include name="plugins/lpg.runtime*/**" />
@@ -85,6 +84,43 @@
 			<include name="plugins/org.eclipse.ocl.ecore.source*/**" />
 			<include name="plugins/org.eclipse.ocl.uml_*/**" />
 			<include name="plugins/org.eclipse.ocl.uml.source*/**" />
+		</zip>
+
+		<echo>Packaging site: ${package.name}-tests</echo>
+
+		<!-- create the tests ZIP file -->
+		<zip basedir="${sp:repository}" destfile="${sp:output}/${package.name}-tests${package.qualifier}.zip">
+			<include name="artifacts.jar" />
+			<include name="content.jar" />
+			<include name="p2.index" />
+			<include name="features/org.eclipse.ocl.examples.tests*/**" />
+			<include name="features/org.eclipse.ocl.tests*/**" />
+			<include name="plugins/org.eclipse.ocl.ecore.tests_*/**" />
+			<include name="plugins/org.eclipse.ocl.ecore.tests.source*/**" />
+			<include name="plugins/org.eclipse.ocl.examples.eventmanager.tests_*/**" />
+			<include name="plugins/org.eclipse.ocl.examples.eventmanager.tests.source*/**" />
+			<include name="plugins/org.eclipse.ocl.examples.impactanalyzer.testmodel.company_*/**" />
+			<include name="plugins/org.eclipse.ocl.examples.impactanalyzer.testmodel.company.source*/**" />
+			<include name="plugins/org.eclipse.ocl.examples.impactanalyzer.testmodel.ngpm_*/**" />
+			<include name="plugins/org.eclipse.ocl.examples.impactanalyzer.testmodel.ngpm.source*/**" />
+			<include name="plugins/org.eclipse.ocl.examples.impactanalyzer.tests_*/**" />
+			<include name="plugins/org.eclipse.ocl.examples.impactanalyzer.tests.source*/**" />
+			<include name="plugins/org.eclipse.ocl.examples.impactanalyzer.testutils_*/**" />
+			<include name="plugins/org.eclipse.ocl.examples.impactanalyzer.testutils.source*/**" />
+			<include name="plugins/org.eclipse.ocl.examples.tests_*/**" />
+			<include name="plugins/org.eclipse.ocl.examples.tests.source*/**" />
+			<include name="plugins/org.eclipse.ocl.examples.ui.tests_*/**" />
+			<include name="plugins/org.eclipse.ocl.examples.ui.tests.source*/**" />
+			<include name="plugins/org.eclipse.ocl.examples.uml25_*/**" />
+			<include name="plugins/org.eclipse.ocl.examples.uml25.source*/**" />
+			<include name="plugins/org.eclipse.ocl.examples.validity.test_*/**" />
+			<include name="plugins/org.eclipse.ocl.examples.validity.test.source*/**" />
+			<include name="plugins/org.eclipse.ocl.examples.xtext.tests_*/**" />
+			<include name="plugins/org.eclipse.ocl.examples.xtext.tests.source*/**" />
+			<include name="plugins/org.eclipse.ocl.tests_*/**" />
+			<include name="plugins/org.eclipse.ocl.tests.source*/**" />
+			<include name="plugins/org.eclipse.ocl.uml.tests_*/**" />
+			<include name="plugins/org.eclipse.ocl.uml.tests.source*/**" />
 		</zip>
 	</target>
 

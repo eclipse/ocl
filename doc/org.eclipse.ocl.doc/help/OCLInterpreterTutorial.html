@@ -1,0 +1,664 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Working with Classic OCL</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="Tutorials.html" title="Tutorials">
+<link rel="prev" href="ValidationTutorial.html" title="Validation tutorial">
+<link rel="next" href="Installation.html" title="Installing the Eclipse OCL Examples and Editors">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Working with Classic OCL</h1>
+<div class="section" title="Working with Classic OCL">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="OCLInterpreterTutorial"></a>Working with Classic OCL</h2>
+</div>
+</div>
+</div>
+<div class="section" title="Overview">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Overview3"></a>Overview</h3>
+</div>
+</div>
+</div>
+<p>This tutorial illustrates the various services provided by the Classic Eclipse OCL
+					implementation.</p>
+</div>
+<div class="section" title="References">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="References2"></a>References</h3>
+</div>
+</div>
+</div>
+<p>This tutorial assumes that the reader is familiar with the Eclipse extension point
+					architecture.  There is an abundance of on-line help in Eclipse for those
+					unfamiliar with extension points.</p>
+<p>To see the complete source code for the examples shown in this tutorial, install
+					the 
+					<a class="link" href="OCLInterpreterExample.html" title="OCL Interpreter Example">OCL Interpreter Example</a> 
+					plug-in into your workspace.
+				</p>
+<p>Other references:</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>For an environment in which to test the OCL expressions that you will create in this tutorial, install the 
+							<a class="ulink" href="../references/examples/exampleOverview.html" target="_new">Library Metamodel</a> example.
+						</p>
+</li>
+<li class="listitem">
+<p>
+							
+<a class="ulink" href="http://www.omg.org/spec/OCL" target="_new">OCL 2.0</a> specification.
+						</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="Parsing OCL Expressions">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="ParsingOCLExpressions"></a>Parsing OCL Expressions</h3>
+</div>
+</div>
+</div>
+<p>The first responsibility of the OCL interpreter is to parse OCL expressions.
+					One of the purposes of parsing an expression is to validate it:  if it can be
+					parsed, it is well-formed (the parser automatically validates the expression
+					against the semantic well-formedness rules).</p>
+<p>The main entrypoint into the OCL API is the 
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/OCL.html" target="_new">OCL</a> class. An 
+					<code class="code">OCL</code> provides an autonomous OCL parsing environment.  It tracks all constraints that are parsed in this environment, including the definitions of additional operations and attributes. The 
+					<code class="code">OCL.newInstance()</code> factory method is used to create a new OCL with an 
+					<code class="code">EnvironmentFactory</code> that provides the binding to a particular metamodel (Ecore or UML).  In this tutorial, we will use the Ecore binding.
+				</p>
+<p>To parse a query expression, we will use the 
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/helper/OCLHelper.html" target="_new">
+						<code class="code">OCLHelper</code>
+					</a> object, which provides convenient operations for parsing queries and constraints
+					(intended for processing constraints embedded in models).
+				</p>
+<div class="literallayout">
+<p>
+<code class="code">boolean&nbsp;valid;<br>
+OCLExpression&lt;EClassifier&gt;&nbsp;query&nbsp;=&nbsp;null;<br>
+
+<br>
+try&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;create&nbsp;an&nbsp;OCL&nbsp;instance&nbsp;for&nbsp;Ecore<br>
+&nbsp;&nbsp;&nbsp;&nbsp;OCL&lt;?,&nbsp;EClassifier,&nbsp;?,&nbsp;?,&nbsp;?,&nbsp;?,&nbsp;?,&nbsp;?,&nbsp;?,&nbsp;Constraint,&nbsp;EClass,&nbsp;EObject&gt;&nbsp;ocl;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ocl&nbsp;=&nbsp;OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;create&nbsp;an&nbsp;OCL&nbsp;helper&nbsp;object<br>
+&nbsp;&nbsp;&nbsp;&nbsp;OCLHelper&lt;EClassifier,&nbsp;?,&nbsp;?,&nbsp;Constraint&gt;&nbsp;helper&nbsp;=&nbsp;ocl.createOCLHelper();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;set&nbsp;the&nbsp;OCL&nbsp;context&nbsp;classifier<br>
+&nbsp;&nbsp;&nbsp;&nbsp;helper.setContext(EXTLibraryPackage.Literals.WRITER);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;query&nbsp;=&nbsp;helper.createQuery("self.books-&gt;collect(b&nbsp;:&nbsp;Book&nbsp;|&nbsp;b.category)-&gt;asSet()");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;record&nbsp;success<br>
+&nbsp;&nbsp;&nbsp;&nbsp;valid&nbsp;=&nbsp;true;<br>
+}&nbsp;catch&nbsp;(ParserException&nbsp;e)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;record&nbsp;failure&nbsp;to&nbsp;parse<br>
+&nbsp;&nbsp;&nbsp;&nbsp;valid&nbsp;=&nbsp;false;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;System.err.println(e.getLocalizedMessage());<br>
+}<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>The example above parses an expression that computes the distinct categories
+					of 
+					<code class="code">Book</code> s associated with a 
+					<code class="code">Writer</code>.  The possible
+					reasons why it would fail to parse (in which case a
+
+					<code class="code">ParserException</code> is thrown) include:
+				</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>syntactical problems:  misplaced or missing constructs such as closing</p>
+</li>
+</ul>
+</div>
+<p>		parentheses, variable declarations, type expressions, etc.</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>semantic problems:  unknown attributes or operations of the context</p>
+</li>
+</ul>
+</div>
+<p>		type or referenced types, unknown packages, classes, etc.</p>
+</div>
+<div class="section" title="Parsing OCL Constraints">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="ParsingOCLConstraints"></a>Parsing OCL Constraints</h3>
+</div>
+</div>
+</div>
+<p>OCL is primarily intended for the specification of 
+					<span class="emphasis"><em>constraint</em></span> s.  Unlike
+					queries, there are a variety of different kinds of constraints used in different
+					places in a model.  These include classifier invariants, operation constraints,
+					and attribute derivation constraints.  The 
+					<code class="code">OCLHelper</code>
+					can parse these for us.
+				</p>
+<p>Let&rsquo;s imagine the confusion that arises from a library that has more than
+					one book of the same title (we are not intending to model copies).  We will
+					create an invariant constraint for @Book@s stipulating
+					that this is not permitted:</p>
+<div class="literallayout">
+<p>
+<code class="code">Constraint&nbsp;invariant&nbsp;=&nbsp;null;<br>
+
+<br>
+try&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;set&nbsp;the&nbsp;OCL&nbsp;context&nbsp;classifier<br>
+&nbsp;&nbsp;&nbsp;&nbsp;helper.setContext(EXTLibraryPackage.Literals.LIBRARY);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;invariant&nbsp;=&nbsp;helper.createInvariant(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Library.allInstances()-&gt;forAll(b1,&nbsp;b2&nbsp;|&nbsp;b1&nbsp;&lt;&gt;&nbsp;b2&nbsp;implies&nbsp;b1.title&nbsp;&lt;&gt;&nbsp;b2.title)");<br>
+}&nbsp;catch&nbsp;(ParserException&nbsp;e)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;record&nbsp;failure&nbsp;to&nbsp;parse<br>
+&nbsp;&nbsp;&nbsp;&nbsp;System.err.println(e.getLocalizedMessage());<br>
+}<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>Parsing constraints differs from parsing query expressions because they have
+					additional well-formedness rules that the parser checks.  For example, an
+					invariant constraint must be boolean-valued, an attribute derivation constraint
+					must conform to the type of the attribute, and such constructs as @pre 
+					and 
+					<code class="code">oclIsNew()</code> may only be used in operation post-condition constraints.
+				</p>
+</div>
+<div class="section" title="Evaluating OCL Expressions and Constraints">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="EvaluatingOCLExpressionsandConstraints"></a>Evaluating OCL Expressions and Constraints</h3>
+</div>
+</div>
+</div>
+<p>More interesting than parsing an OCL expression or constraint is evaluating it
+					on some object.  The 
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/Query.html" target="_new">
+						<code class="code">Query</code>
+					</a> 
+					interface provides two methods for evaluating expressions. Queries are
+					constructed by factory methods on the 
+					<code class="code">OCL</code> class.
+				</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+							
+<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/Query.html#evaluate(org.eclipse.emf.ecore.EObject)" target="_new">
+								<code class="code">Object evaluate(Object)</code>
+							</a> 
+						
+</p>
+</li>
+</ul>
+</div>
+<p>		evaluates the expression on the specified object, returning the result.
+							The caller is expected to know the result type, which could be a
+							primitive, 
+					<code class="code">EObject</code>, or a collection.  There
+							are variants of this method for evaluation of the query on multiple
+							objects and on no object at all (for queries that require no "self"
+							context).
+				</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+							
+<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/Query.html#check(org.eclipse.emf.ecore.EObject)" target="_new">
+								<code class="code">boolean evaluate(Object)</code>
+							</a> 
+						
+</p>
+</li>
+</ul>
+</div>
+<p>		This method evaluates a special kind of OCL expression called a
+							
+					<span class="emphasis"><em>constraint</em></span>.  Constraints are distinguished from other OCL queries
+							by having a boolean value; thus, they can be used to implement invariant
+							or pre/post-condition constraints.  There are variants for checking
+							multiple objects and for selecting/rejecting elements of a list that
+							satisfy the constraint.
+				</p>
+<p>In order to support the 
+					<code class="code">allInstances()</code> operation on OCL types,
+					the 
+					<code class="code">OCL</code> API provides the
+				</p>
+<p>
+					
+<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/OCL.html#setExtentMap(java.util.Map)" target="_new">
+						<code class="code">setExtentMap(Map&lt;CLS, ? extends Set&lt;? extends E&gt;&gt; extentMap)</code>
+					</a> 
+					method.  This assigns a mapping of classes (in the Ecore binding,
+
+					<code class="code">EClass</code> es) to the sets of their instances.  By default,
+					the 
+					<code class="code">OCL</code> provides a dynamic map that computes the
+					extents on demand from the contents of a 
+					<code class="code">Resource</code>.
+					An alternative extent map can be
+					found in 
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/ecore/opposites/ExtentMap.html" target="_new">
+						<code class="code">org.eclipse.ocl.ecore.opposites.ExtentMap</code>
+					</a> .
+					We will use a custom extent map in evaluating a query expression that finds
+					books that have the same title as a designated book:
+				</p>
+<div class="literallayout">
+<p>
+<code class="code">//&nbsp;create&nbsp;an&nbsp;extent&nbsp;map<br>
+Map&lt;EClass,&nbsp;Set&lt;?&nbsp;extends&nbsp;EObject&gt;&gt;&nbsp;extents&nbsp;=&nbsp;new&nbsp;HashMap&lt;EClass,&nbsp;Set&lt;?&nbsp;extends&nbsp;EObject&gt;&gt;();<br>
+Set&lt;Book&gt;&nbsp;books&nbsp;=&nbsp;new&nbsp;HashSet&lt;Book&gt;();<br>
+extents.put(EXTLibraryPackage.Literals.BOOK,&nbsp;books);<br>
+
+<br>
+//&nbsp;tell&nbsp;the&nbsp;OCL&nbsp;environment&nbsp;what&nbsp;our&nbsp;classifier&nbsp;extents&nbsp;are<br>
+ocl.setExtentMap(extents);<br>
+
+<br>
+Library&nbsp;library&nbsp;=&nbsp;EXTLibraryFactory.eINSTANCE.createLibrary();<br>
+
+<br>
+Book&nbsp;myBook&nbsp;=&nbsp;EXTLibraryFactory.eINSTANCE.createBook();<br>
+myBook.setTitle("David&nbsp;Copperfield");<br>
+books.add(myBook);<br>
+
+<br>
+//&nbsp;this&nbsp;book&nbsp;is&nbsp;in&nbsp;our&nbsp;library<br>
+library.add(myBook);<br>
+
+<br>
+Writer&nbsp;dickens&nbsp;=&nbsp;EXTLibraryFactory.eINSTANCE.createWriter();<br>
+dickens.setName("Charles&nbsp;Dickens");<br>
+
+<br>
+Book&nbsp;aBook&nbsp;=&nbsp;EXTLibraryFactory.eINSTANCE.createBook();<br>
+aBook.setTitle("The&nbsp;Pickwick&nbsp;Papers");<br>
+aBook.setCategory(BookCategory.MYSTERY_LITERAL);<br>
+books.add(aBook);<br>
+aBook&nbsp;=&nbsp;EXTLibraryFactory.eINSTANCE.createBook();<br>
+aBook.setTitle("David&nbsp;Copperfield");<br>
+aBook.setCategory(BookCategory.BIOGRAPHY_LITERAL);&nbsp;&nbsp;//&nbsp;not&nbsp;actually,&nbsp;of&nbsp;course!<br>
+books.add(aBook);<br>
+aBook&nbsp;=&nbsp;EXTLibraryFactory.eINSTANCE.createBook();<br>
+aBook.setTitle("Nicholas&nbsp;Nickleby");<br>
+aBook.setCategory(BookCategory.BIOGRAPHY_LITERAL);&nbsp;&nbsp;//&nbsp;not&nbsp;really<br>
+books.add(aBook);<br>
+
+<br>
+dickens.addAll(books);&nbsp;&nbsp;//&nbsp;Dickens&nbsp;wrote&nbsp;these&nbsp;books<br>
+library.addAll(books);&nbsp;&nbsp;//&nbsp;and&nbsp;they&nbsp;are&nbsp;all&nbsp;in&nbsp;our&nbsp;library<br>
+
+<br>
+//&nbsp;use&nbsp;the&nbsp;query&nbsp;expression&nbsp;parsed&nbsp;before&nbsp;to&nbsp;create&nbsp;a&nbsp;Query<br>
+Query&lt;EClassifier,&nbsp;EClass,&nbsp;EObject&gt;&nbsp;eval&nbsp;=&nbsp;ocl.createQuery(query);<br>
+
+<br>
+Collection&lt;?&gt;&nbsp;result&nbsp;=&nbsp;(Collection&lt;?&gt;)&nbsp;eval.evaluate(dickens);<br>
+System.out.println(result);<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>The same 
+					<code class="code">Query</code> API is used to check constraints.
+					Using the 
+					<code class="code">library</code> and 
+					<code class="code">extents</code> map from above and the
+					constraint parsed previously:
+				</p>
+<div class="literallayout">
+<p>
+<code class="code">eval&nbsp;=&nbsp;ocl.createQuery(constraint);<br>
+
+<br>
+boolean&nbsp;ok&nbsp;=&nbsp;eval.check(library);<br>
+
+<br>
+System.out.println(ok);<br>
+
+</code>
+</p>
+</div>
+<p></p>
+</div>
+<div class="section" title="Implementing Content Assist">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="ImplementingContentAssist"></a>Implementing Content Assist</h3>
+</div>
+</div>
+</div>
+<p>The 
+					<code class="code">OCLHelper</code> interface provides an operation that
+					computes content-assist proposals in an abstract form, as
+
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/helper/Choice.html" target="_new">
+						<code class="code">Choice</code>
+					</a> s.
+					An application&rsquo;s UI can then convert these to JFace&rsquo;s
+
+					<code class="code">ICompletionProposal</code> type.
+				</p>
+<p>Obtaining completion choices consists of supplying a partial OCL expression
+					(up to the cursor location in the UI editor) to the
+
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/helper/OCLHelper.html#getSyntaxHelp(org.eclipse.ocl.helper.ConstraintKind" target="_new">
+						<code class="code">OCLHelper::getSyntaxHelp(ConstraintKind, String)</code>
+					</a>, java.lang.String) 
+					method.  This method requires a 
+					<code class="code">ConstraintKind</code>
+					enumeration indicating the type of constraint that is to be parsed (some OCL
+					constructs are restricted in the kinds of constraints in which they may be used).
+				</p>
+<div class="literallayout">
+<p>
+<code class="code">helper.setContext(EXTLibraryPackage.Literals.BOOK);<br>
+
+<br>
+List&lt;Choice&gt;&nbsp;choices&nbsp;=&nbsp;helper.getSyntaxHelp(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ConstraintKind.INVARIANT,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"Book.allInstances()-&gt;excluding(self).");<br>
+
+<br>
+for&nbsp;(Choice&nbsp;next&nbsp;:&nbsp;choices)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;switch&nbsp;(next.getKind())&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;OPERATION:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;SIGNAL:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;the&nbsp;description&nbsp;is&nbsp;already&nbsp;complete<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(next.getDescription());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;PROPERTY:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;ENUMERATION_LITERAL:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;VARIABLE:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(next.getName()&nbsp;+&nbsp;"&nbsp;:&nbsp;"&nbsp;+&nbsp;next.getDescription();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;default:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(next.getName());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>A sample of the output looks like:</p>
+<div class="literallayout">
+<p>
+<code class="code">author&nbsp;:&nbsp;Writer<br>
+title&nbsp;:&nbsp;String<br>
+oclIsKindOf(typespec&nbsp;:&nbsp;OclType)<br>
+oclAsType(typespec&nbsp;:&nbsp;OclType)&nbsp;:&nbsp;T<br>
+...<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>The choices also provide the model element that they represent, from which a
+					more sophisticated application can construct appropriate JFace completions,
+					including context information, documentation, etc.</p>
+</div>
+<div class="section" title="Working with the AST">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="WorkingwiththeAST"></a>Working with the AST</h3>
+</div>
+</div>
+</div>
+<p>The OCL Interpreter models the OCL language using EMF&rsquo;s Ecore with support for
+					Java-style generic types.  The bindings of this generic Abstract Syntax Model
+					for Ecore and for UML substitutes these metamodels' constructs for the generic
+					type parameters, plugging in the definitions of the &ldquo;classifier&rdquo;, &ldquo;operation&rdquo;,
+					&ldquo;constraint&rdquo;, etc. constructs of the OCL vocabulary.  These bindings, then,
+					support persistence in or as an adjunct to Ecore and UML models.</p>
+<p>For processing the abstract syntax tree (AST) parsed from OCL text, the API
+					supplies a 
+
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/utilities/Visitor.html" target="_new">
+						<code class="code">Visitor</code>
+					</a> 
+					interface.  By implementing this interface (or extending the
+
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/utilities/AbstractVisitor.html" target="_new">
+						<code class="code">AbstractVisitor</code>
+					</a> 
+					class, which is recommended), we can walk the AST of an OCL expression to
+					transform it in some way.
+					This is exactly what the interpreter, itself, does to evaluate an
+					expression:  it just walks the expression using an evaluation visitor.  For
+					example, we can count the number times that a specific attribute is
+					referenced in an expression:
+				</p>
+<div class="literallayout">
+<p>
+<code class="code">helper.setContext(EXTLibraryPackage.Literals.BOOK);<br>
+
+<br>
+OCLExpression&lt;EClassifier&gt;&nbsp;query&nbsp;=&nbsp;helper.parseQuery(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"Book.allInstances()-&gt;select(b&nbsp;:&nbsp;Book&nbsp;|&nbsp;b&nbsp;&lt;&gt;&nbsp;self&nbsp;and&nbsp;b.title&nbsp;=&nbsp;self.title)");<br>
+
+<br>
+AttributeCounter&nbsp;visitor&nbsp;=&nbsp;new&nbsp;AttributeCounter(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;EXTLibraryPackage.Literals.BOOK__TITLE);<br>
+
+<br>
+System.out.println(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"Number&nbsp;of&nbsp;accesses&nbsp;to&nbsp;the&nbsp;'Book::title'&nbsp;attribute:&nbsp;"&nbsp;+&nbsp;query.accept(visitor));<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>where the visitor is defined thus:</p>
+<div class="literallayout">
+<p>
+<code class="code">class&nbsp;AttributeCounter&nbsp;extends&nbsp;AbstractVisitor&lt;Integer,<br>
+		EClassifier,&nbsp;EOperation,&nbsp;EStructuralFeature,&nbsp;EEnumLiteral,<br>
+		EParameter,&nbsp;EObject,&nbsp;EObject,&nbsp;EObject,&nbsp;Constraint&gt;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;final&nbsp;EAttribute&nbsp;attribute;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;AttributeCounter(EAttribute&nbsp;attribute)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super(0);&nbsp;&nbsp;//&nbsp;initialize&nbsp;the&nbsp;result&nbsp;of&nbsp;the&nbsp;AST&nbsp;visitiation&nbsp;to&nbsp;zero<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.attribute&nbsp;=&nbsp;attribute;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;Integer&nbsp;handlePropertyCallExp(PropertyCallExp&lt;EClassifier,&nbsp;EStructuralFeature&gt;&nbsp;callExp,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;		Integer&nbsp;sourceResult,&nbsp;List&lt;Integer&gt;&nbsp;sourceResults)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(callExp.getReferredProperty()&nbsp;==&nbsp;attribute)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;count&nbsp;one<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result++;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;result;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}<br>
+
+</code>
+</p>
+</div>
+<p></p>
+</div>
+<div class="section" title="Serialization">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Serialization"></a>Serialization</h3>
+</div>
+</div>
+</div>
+<p>Because the OCL expression AST is a graph of EMF objects, we can serialize it
+					to an XMI file and deserialize it again later.  To save our example expression,
+					we start over by initializing our 
+					<code class="code">OCL</code> instance with
+					a resource in which it will persist the environment and in which we will
+					persist the parsed expression.  The key is in the persistence of the
+					environment:  OCL defines a variety of classes on the fly by template
+					instantiation.  These include collection types, tuple types, and message types.
+					Other elements needing to be persisted are additional operations and attributes
+					that may be defined in the local environment.
+				</p>
+<div class="literallayout">
+<p>
+<code class="code">//&nbsp;create&nbsp;a&nbsp;resource&nbsp;in&nbsp;which&nbsp;to&nbsp;store&nbsp;our&nbsp;parsed&nbsp;OCL&nbsp;expressions&nbsp;and&nbsp;constraints<br>
+Resource&nbsp;res&nbsp;=&nbsp;resourceSet.createResource(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;URI.createPlatformResourceURI("/MyProject/myOcl.xmi",&nbsp;true);<br>
+
+<br>
+//&nbsp;initialize&nbsp;a&nbsp;new&nbsp;OCL&nbsp;environment,&nbsp;persisted&nbsp;in&nbsp;this&nbsp;resource<br>
+ocl&nbsp;=&nbsp;OCL.newInstance(EcoreEnvironmentFactory.INSTANCE,&nbsp;res);<br>
+
+<br>
+//&nbsp;for&nbsp;the&nbsp;new&nbsp;OCL&nbsp;environment,&nbsp;create&nbsp;a&nbsp;new&nbsp;helper<br>
+helper&nbsp;=&nbsp;OCL.createOCLHelper();<br>
+
+<br>
+helper.setContext(EXTLibraryPackage.Literals.BOOK);<br>
+
+<br>
+//&nbsp;try&nbsp;a&nbsp;very&nbsp;simple&nbsp;expression<br>
+OCLExpression&lt;EClassifier&gt;&nbsp;query&nbsp;=&nbsp;helper.createQuery("self.title");<br>
+
+<br>
+//&nbsp;store&nbsp;our&nbsp;query&nbsp;in&nbsp;this&nbsp;resource.&nbsp;&nbsp;All&nbsp;of&nbsp;its&nbsp;necessary&nbsp;environment&nbsp;has<br>
+//&nbsp;already&nbsp;been&nbsp;stored,&nbsp;so&nbsp;we&nbsp;insert&nbsp;the&nbsp;query&nbsp;as&nbsp;the&nbsp;first&nbsp;resource&nbsp;root<br>
+res.getContents().add(0,&nbsp;query);<br>
+
+<br>
+res.save(Collections.emptyMap());<br>
+res.unload();<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>To load a saved OCL expression is just as easy:</p>
+<div class="literallayout">
+<p>
+<code class="code">Resource&nbsp;res&nbsp;=&nbsp;resourceSet.getResource(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;URI.createPlatformResourceURI("/MyProject/myOcl.xmi",&nbsp;true),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;true;<br>
+
+<br>
+@SuppressWarnings("unchecked")<br>
+OCLExpression&lt;EClassifier&gt;&nbsp;query&nbsp;=&nbsp;(OCLExpression&lt;EClassifier&gt;)&nbsp;res.getContents().get(0);<br>
+
+<br>
+System.out.println(ocl.evaluate(myBook,&nbsp;query));<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>In the snippet above, we used the 
+					<code class="code">OCL</code>'s convenience
+					method for a one-shot evaluation of a query.  Looking at the contents of the
+					XMI document that we saved, we see that the 
+					<code class="code">self</code>
+					variable declaration is not owned by the query expression, but is, rather,
+					free-standing.  The 
+					<code class="code">ExpressionInOCL</code> metaclass solves
+					this problem by providing properties that contain context variable declarations,
+					including 
+					<code class="code">self</code> and (in the context of operations)
+					operation parameters. 
+				</p>
+<div class="literallayout">
+<p>
+<code class="code">&lt;?xml&nbsp;version="1.0"&nbsp;encoding="ASCII"?&gt;<br>
+&lt;xmi:XMI&nbsp;xmi:version="2.0"&nbsp;xmlns:xmi="http://www.omg.org/XMI"&nbsp;xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&nbsp;xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"&nbsp;xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore"&gt;<br>
+&nbsp;&nbsp;&lt;ocl.ecore:PropertyCallExp&nbsp;xmi:id="_897fVPfmEduCQ48h829a5g"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;eType&nbsp;xsi:type="ocl.ecore:PrimitiveType"&nbsp;href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;source&nbsp;xsi:type="ocl.ecore:VariableExp"&nbsp;xmi:id="_897fVvfmEduCQ48h829a5g"&nbsp;name="self"&nbsp;referredVariable="_897fUvfmEduCQ48h829a5g"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;eType&nbsp;xsi:type="ecore:EClass"&nbsp;href="http:///org/eclipse/emf/examples/library/extlibrary.ecore/1.0.0#//Book"/&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/source&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;referredProperty&nbsp;xsi:type="ecore:EAttribute"&nbsp;href="http:///org/eclipse/emf/examples/library/extlibrary.ecore/1.0.0#//Book/title"/&gt;<br>
+&nbsp;&nbsp;&lt;/ocl.ecore:PropertyCallExp&gt;<br>
+&nbsp;&nbsp;&lt;ocl.ecore:Variable&nbsp;xmi:id="_897fUvfmEduCQ48h829a5g"&nbsp;name="self"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;eType&nbsp;xsi:type="ecore:EClass"&nbsp;href="http:///org/eclipse/emf/examples/library/extlibrary.ecore/1.0.0#//Book"/&gt;<br>
+&nbsp;&nbsp;&lt;/ocl.ecore:Variable&gt;<br>
+&lt;/xmi:XMI&gt;<br>
+
+</code>
+</p>
+</div>
+<p></p>
+</div>
+<div class="section" title="Summary">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Summary3"></a>Summary</h3>
+</div>
+</div>
+</div>
+<p>To illustrate how to work with the OCL API, we</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Parsed and validated OCL expressions and constraints.</p>
+</li>
+<li class="listitem">
+<p>Evaluated OCL query expressions and constraints.</p>
+</li>
+<li class="listitem">
+<p>Obtained content-assist suggestions for the completion of OCL expressions.</p>
+</li>
+<li class="listitem">
+<p>Transformed an OCL expression AST using the 
+							<span class="emphasis"><em>Visitor</em></span> pattern.
+						</p>
+</li>
+<li class="listitem">
+<p>Saved and loaded OCL expressions to/from XMI resources.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</body>
+</html>

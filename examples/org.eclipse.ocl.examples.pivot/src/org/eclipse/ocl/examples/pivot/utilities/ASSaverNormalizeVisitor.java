@@ -17,11 +17,12 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.manager.Orphanage;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 
 /**
- * ASSaverNormalizeVisitor normalizes contents by alphabeticzing 
+ * ASSaverNormalizeVisitor normalizes contents by alphabeticizing 
  * - lists of Property.
  */
 public class ASSaverNormalizeVisitor extends AbstractExtendingVisitor<Object, ASSaver>
@@ -79,8 +80,10 @@ public class ASSaverNormalizeVisitor extends AbstractExtendingVisitor<Object, AS
 
 	@Override
 	public Object visitPackage(@NonNull org.eclipse.ocl.examples.pivot.Package object) {
-		@NonNull List<org.eclipse.ocl.examples.pivot.Class> ownedTypes = object.getOwnedClasses();
-		sort(ownedTypes, TypeComparator.INSTANCE);
+		if (!(object instanceof Orphanage)) {			// The Orphanage is not assignable/sortable
+			@NonNull List<org.eclipse.ocl.examples.pivot.Class> ownedTypes = object.getOwnedClasses();
+			sort(ownedTypes, TypeComparator.INSTANCE);
+		}
 		return null;
 	}
 

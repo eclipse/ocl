@@ -1,0 +1,193 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Getting Started</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="OverviewandGettingStarted.html" title="Overview and Getting Started">
+<link rel="prev" href="WhoisBehindEclipseOCL.html" title="Who is Behind Eclipse OCL?">
+<link rel="next" href="UsersGuide.html" title="Users Guide">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Getting Started</h1>
+<div class="section" title="Getting Started">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="GettingStarted"></a>Getting Started</h2>
+</div>
+</div>
+</div>
+<p>For a very quick demonstration of OCL, you may follow this very abbreviated version of the 
+				<a class="link" href="Tutorials.html#OCLinEcoreTutorial" title="OCLinEcore tutorial">OCLinEcore tutorial</a>, where you can find 
+				<a class="link" href="Installation.html" title="Installing the Eclipse OCL Examples and Editors">Installation</a> instructions. Once you have the OCL Examples and Editors feature installed you may follow these instructions to get an insight into the capabilities of OCL and the Eclipse OCL tooling.
+			</p>
+<p>Invoke 
+				<span class="bold"><strong>File-&gt;New-&gt;Project...</strong></span> then select 
+				<span class="bold"><strong>Examples</strong></span> then 
+				<span class="bold"><strong>OCL (Object Constraint Language) Plugins</strong></span> then 
+				<span class="bold"><strong>OCLinEcore Tutorial</strong></span> and 
+				<span class="bold"><strong>Finish</strong></span> to create a small example project called 
+				<span class="bold"><strong>org.eclipse.ocl.examples.project.oclinecoretutorial</strong></span>. It contains
+			</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+						
+<span class="bold"><strong>model/Tutorial.ecore</strong></span> - a small Library meta-model
+					</p>
+</li>
+<li class="listitem">
+<p>
+						
+<span class="bold"><strong>model/Tutorial.xmi</strong></span> - an even smaller Library model
+					</p>
+</li>
+<li class="listitem">
+<p>
+						
+<span class="bold"><strong>model/Tutorial.genmodel</strong></span> - a gebnerator for Java code
+					</p>
+</li>
+</ul>
+</div>
+<p>Select 
+				<span class="bold"><strong>model/Tutorial.ecore</strong></span> and use the right button to invoke 
+				<span class="bold"><strong>Open With-&gt;OCLinEcore Editor</strong></span>. This gives you a textual view of the Ecore file with embedded OCL invariants such as the Book constraint
+			</p>
+<div class="literallayout">
+<p>
+<code class="code">invariant&nbsp;SufficientCopies:<br>
+&nbsp;&nbsp;library.loans-&gt;select((book&nbsp;=&nbsp;self))-&gt;size()&nbsp;&lt;=&nbsp;copies;<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>This invariant is named SufficientCopies. It </p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>navigates from the implicit self (a Book)</p>
+</li>
+<li class="listitem">
+<p>via the library </p>
+</li>
+<li class="listitem">
+<p>to its loans which it searches</p>
+</li>
+<li class="listitem">
+<p>to select those loans that satisfy the predicate</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="circle">
+<li class="listitem">
+<p>loaned book is equal to the self Book</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="listitem">
+<p>the size (number) of loans is computed</p>
+</li>
+<li class="listitem">
+<p>and compared to the number of copies of the self Book</p>
+</li>
+</ul>
+</div>
+<p>The invariant is satisfied if it evaluates true; i.e. if the number of loans is less than or equal to the number of copies.</p>
+<p>You can see this invariant at work, by selecting 
+				<span class="bold"><strong>model/Tutorial.xmi</strong></span> and using the right button to invoke 
+				<span class="bold"><strong>Open With-&gt;Sample Reflective Ecore Model Editor</strong></span>. This gives you a tree view of a small library model.
+			</p>
+<p>Expand the root element and then select the 
+				<span class="bold"><strong>Library lib</strong></span> element and use the right button menu to invoke 
+				<span class="bold"><strong>Validate</strong></span>. You should get a pop-up reporting problems during Validation. Click 
+				<span class="bold"><strong>Details</strong></span> and you will see that one of the problems is with the 
+				<span class="bold"><strong>SufficientCopies</strong></span> invariant we have just looked at. If you browse the Properties View for 
+				<span class="bold"><strong>model/Tutorial.xmi</strong></span>, you can verify that there are three loans but only two copies for the offending Book.
+			</p>
+<p>You may evaluate custom OCL queries interactively. From the editor for 
+				<span class="bold"><strong>Tutorial.xmi</strong></span>, invoke 
+				<span class="bold"><strong>OCL-&gt;Show Xtext OCL Console</strong></span> from the context menu. Select 
+				<span class="bold"><strong>Book b2</strong></span> in the editor, then in the bottom line of the console enter the OCL expression 
+				<span class="bold"><strong>loans.member</strong></span> and then Enter. The results are shown in the panel and identify that all three loans are by 
+				<span class="bold"><strong>Member m3</strong></span>.
+			</p>
+<p>The expression 
+				<span class="bold"><strong>loans.member</strong></span> is an abbreviated form of 
+				<span class="bold"><strong>self.loans-&gt;collect(aLoan : Loan | aLoan.member)</strong></span> and demonstrates OCL&rsquo;s ability to perform many useful navigations over multi-element properties. The expression
+			</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>navigates from self, the Book b2 selection</p>
+</li>
+<li class="listitem">
+<p>to its loans, using Book::loans which is a derived property defined in OCL</p>
+</li>
+<li class="listitem">
+<p>for each of the loans, the iterator variable, aLoan, is assigned to the loan and</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="circle">
+<li class="listitem">
+<p>the body, aLoan.member is evaluated to return the member making the loan</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="listitem">
+<p>the resulting members are collected to return a collection result</p>
+</li>
+<li class="listitem">
+<p>the result is displayed on three lines in the results panel</p>
+</li>
+</ul>
+</div>
+<p>You can step through execution using the OCL debugger. In the Console View type PageUp to restore the earlier text entry, then with 
+				<span class="bold"><strong>Book b2</strong></span> still selected in the editor, click the debug icon in the Console tool bar. The debugger should open automatically, but if it doesn&rsquo;t, use 
+				<span class="bold"><strong>Window-&gt;Show View-&gt;Debug</strong></span> from the Eclipse menu bar. The Variables View shows model elemnt values. Click F5 or Step Into a few times to progress execution.
+			</p>
+<p>You have now seen</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>an Xtext editor that embeds OCL directly in Ecore models to provide programmed enrichment</p>
+</li>
+<li class="listitem">
+<p>execution of OCL while validating a model using conventional Ecore tooling</p>
+</li>
+<li class="listitem">
+<p>an interactive Console for custom OCL evaluations</p>
+</li>
+<li class="listitem">
+<p>execution of a derived property defined in OCL</p>
+</li>
+<li class="listitem">
+<p>the ability of OCL to express operations on multi-elements compactly</p>
+</li>
+<li class="listitem">
+<p>the ability to debug OCL execution and browse data</p>
+</li>
+</ul>
+</div>
+<p>You have not</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>written any Java code</p>
+</li>
+<li class="listitem">
+<p>generated any plugins</p>
+</li>
+<li class="listitem">
+<p>needed to start an additional Eclipse session</p>
+</li>
+</ul>
+</div>
+<p>Please follow the tutorials, examples and reference material for further information.</p>
+</div>
+</body>
+</html>

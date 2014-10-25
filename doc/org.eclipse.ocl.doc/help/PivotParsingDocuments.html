@@ -1,0 +1,256 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Parsing OCL Documents</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="PivotProgrammersGuide.html" title="Unified or Pivot Programmers Guide">
+<link rel="prev" href="PivotEvaluatingConstraints.html" title="Evaluating Constraints and Queries">
+<link rel="next" href="PivotMetamodels.html" title="OCL Relationship to Metamodels">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Parsing OCL Documents</h1>
+<div class="section" title="Parsing OCL Documents">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="PivotParsingDocuments"></a>Parsing OCL Documents</h2>
+</div>
+</div>
+</div>
+<p>As we saw in the 
+				<a class="link" href="PivotParsingConstraints.html" title="Parsing Constraints and Queries">Parsing Constraints and Queries</a> topic, the OCL parser provides an 
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/helper/OCLHelper.html" target="_new">
+					<code class="code">OCLHelper</code>
+				</a> API for parsing constraints embedded in models.  OCL also permits constraints
+				to be specified in a text document, as an adjunct to the model.  In this case,
+				the concrete syntax for context declarations indicates the context of
+				constraints, equivalent to their placement in models.
+			</p>
+<p>As an example, consider the following Complete OCL document:</p>
+<p>
+				
+</p>
+<div class="mediaobject">
+<img src="images/6320-extlibrary.png"></div>
+<p>
+
+				
+<a class="ulink" href="../references/6320-extlibrary.ocl" target="_new">[Text for cut and paste]</a>
+			
+</p>
+<div class="section" title="The OCL Input">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="TheOCLInput2"></a>The OCL Input</h3>
+</div>
+</div>
+</div>
+<p>The Ecore binding provided an 
+					<code class="code">OCLInput</code> class to supervise the OCL source text, and the result of parsing the document was a 
+					<code class="code">List&lt;Constraint&gt;</code>. The Pivot binding uses an Xtext parser with a UML-aligned output. The input text is therefore specified by
+					a URI and loaded by the Xtext parser to create a Concrete Syntax Resource. This may then be converted to the Pivot Abstract Syntax Resource. The Abstract Syntax Resource has a conventional Model, Package, Class, Operation hierarchy in order to provide a coherent composition context for the Constraints.
+				</p>
+<p>The Concrete Syntax Resource created by the Xtext parser</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>comprises a CompleteOCLDocumentCS</p>
+</li>
+<li class="listitem">
+<p>containing a PackageDeclarationCS for 
+							<code class="code">extlibrary</code>
+						
+</p>
+</li>
+<li class="listitem">
+<p>containing a ClassifierContextDeclCS for 
+							<code class="code">Library</code>
+						
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="circle">
+<li class="listitem">
+<p>containing a DefCS</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="square">
+<li class="listitem">
+<p>containing a DefOperationCS for 
+											<code class="code">getBooks</code>
+										
+</p>
+</li>
+<li class="listitem">
+<p>and a SpecificationCS</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li class="listitem">
+<p>and a ClassifierContextDeclCS for 
+							<code class="code">Book</code>
+						
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="circle">
+<li class="listitem">
+<p>containing an InvCS for 
+									<code class="code">unique_title</code>
+								
+</p>
+</li>
+<li class="listitem">
+<p>containing a SpecificationCS</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<p>each SpecificationCS contains the parsed OCL Expression tree.</p>
+<p>The complementing Abstract Syntax Resource</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>comprises a Model with a 
+							<code class="code">pivot:/..../extlibrary.ocl</code> URI
+						</p>
+</li>
+<li class="listitem">
+<p>containing a Package named 
+							<code class="code">extlibrary</code>
+						
+</p>
+</li>
+<li class="listitem">
+<p>containing a Class named 
+							<code class="code">Library</code>
+						
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="circle">
+<li class="listitem">
+<p>containing an Operation named 
+									<code class="code">getBooks</code>
+								
+</p>
+</li>
+<li class="listitem">
+<p>containing a body Constraint</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="listitem">
+<p>and a Class named 
+							<code class="code">Book</code>
+						
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="circle">
+<li class="listitem">
+<p>containing an invariant Constraint for 
+									<code class="code">unique_title</code>
+								
+</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<p>The complementing Abstract Syntax Resource has the same structure as the complemented Resource</p>
+<p>The complemented Abstract Syntax Resource</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>comprises a Model with a 
+							<code class="code">pivot:/..../extlibrary.ecore</code> URI
+						</p>
+</li>
+<li class="listitem">
+<p>containing a Package named 
+							<code class="code">extlibrary</code>
+						
+</p>
+</li>
+<li class="listitem">
+<p>containing a Class named 
+							<code class="code">Library</code>
+						
+</p>
+</li>
+<li class="listitem">
+<p>and a Class named 
+							<code class="code">Book</code>
+						
+</p>
+</li>
+</ul>
+</div>
+<p>There are therefore two Class objects named 
+					<code class="code">Library</code>, one for each Resource. The objects are distinct in so far as they belong to different resources, which can be separately serialized, and in so far as they may appear distinct to OCL expressions that use reflective access. However they are logically merged and the 
+					<code class="code">MetaModelManager</code> provides utility methods that allow the multiple objects to be accessed as a merged object.
+				</p>
+<p>Given the 
+					<code class="code">URI</code> of an OCL document, simply ask an 
+					<code class="code">OCL</code> to parse it:
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/6320-parsing.png"></div>
+<p>
+
+					
+<a class="ulink" href="../references/6320-parsing.txt" target="_new">[Text for cut and paste]</a>
+				
+</p>
+</div>
+<div class="section" title="Accessing the Constraints">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="AccessingtheConstraints2"></a>Accessing the Constraints</h3>
+</div>
+</div>
+</div>
+<p>The 
+					<code class="code">OCL</code> returns the list of constraints if they were
+					successfully parsed.  They are retained by the OCL (available via the
+
+					<code class="code">getConstraints()</code> method at any time), and in particular,
+					any definitions of additional operations or attributes are available for
+					subsequent constraint parsing.  Any number of OCL documents may be parsed by
+					the same 
+					<code class="code">OCL</code> instance, combined also with constraints
+					parsed by 
+					<code class="code">OCLHelpers</code>.  All of these constraints are
+					retained by the 
+					<code class="code">OCL</code> environment.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/6320-accessing.png"></div>
+<p>
+
+					
+<a class="ulink" href="../references/6320-accessing.txt" target="_new">[Text for cut and paste]</a>
+				
+</p>
+<p>The source for these examples may be found in the org.eclipse.ocl.examples.xtext.tests plugin in model/parsingDocumentsExample.ocl and in src/org/eclipse/ocl/examples/test/xtext/PivotDocumentationExamples.java.</p>
+</div>
+</div>
+</body>
+</html>

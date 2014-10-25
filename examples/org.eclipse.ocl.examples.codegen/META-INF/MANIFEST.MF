@@ -33,4 +33,4 @@ Export-Package: org.eclipse.ocl.examples.codegen,
  org.eclipse.ocl.examples.codegen.utilities
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Import-Package: org.apache.log4j;version="1.2.15"
+Import-Package: org.apache.log4j;version="[1.2.15,2.0.0)"

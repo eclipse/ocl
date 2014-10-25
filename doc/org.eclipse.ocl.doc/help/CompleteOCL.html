@@ -1,0 +1,723 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>The Complete OCL Language</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="UsersGuide.html" title="Users Guide">
+<link rel="prev" href="OCLinEcore.html" title="The OCLinEcore Language">
+<link rel="next" href="OCLstdlib.html" title="The OCL Standard Library Language">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">The Complete OCL Language</h1>
+<div class="section" title="The Complete OCL Language">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="CompleteOCL"></a>The Complete OCL Language</h2>
+</div>
+</div>
+</div>
+<p>The Complete OCL provides a language for a document in which OCL complements an existing meta-model with invariants, and additional features.</p>
+<div class="section" title="Syntax">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Syntax3"></a>Syntax</h3>
+</div>
+</div>
+</div>
+<p>The Complete OCL syntax is defined by the OMG OCL 2.4 specification.</p>
+<p>The syntax comprises keywords such as 
+					<code class="code">context</code> followed by appropriate names and punctuation and OCL expressions.
+				</p>
+<p>With the exception of 
+					<code class="code">endpackage</code> there is no terminating punctuation and so the consequences of a syntax error can be quite far-reaching while editing a document. Concentrate on the first error.
+				</p>
+<p>A substantial example of Complete OCL may be found by installing the 
+					<a class="link" href="Examples.html#RoyalAndLoyalExample" title="Royal and Loyal Example Project">RoyalAndLoyal Example Project</a>.
+				</p>
+<div class="section" title="Grammar Implementation">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="GrammarImplementation3"></a>Grammar Implementation</h4>
+</div>
+</div>
+</div>
+<p>The grammar used by the Xtext editors may be found at:</p>
+<p>/src/org/eclipse/ocl/examples/xtext/completeocl/CompleteOCL.xtext</p>
+<p>in the org.eclipse.ocl.examples.xtext.completeocl plugin. The Complete OCL grammar extends the Essential OCL grammar.</p>
+</div>
+<div class="section" title="Complete OCL Document">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="CompleteOCL-Document"></a>Complete OCL Document</h4>
+</div>
+</div>
+</div>
+<p>The Document syntax defines a Complete OCL document, for which *.ocl is the default extension.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1300-document.png"></div>
+<p>
+					
+</p>
+<p>A Complete OCL document may</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>import meta-models to be complemented</p>
+</li>
+<li class="listitem">
+<p>include additional Complute OCL documents</p>
+</li>
+<li class="listitem">
+<p>specify one or more Standard Library documents</p>
+</li>
+</ul>
+</div>
+<p>and then provide complements for one of more Packages, Classifiers or Features.</p>
+<p>The import, include and library declarations are Eclipse OCL extensions. The OCL 2.4 specification provides no mechanism for a Complete OCL document to reference external material.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1300-import.png"></div>
+<p>
+					
+</p>
+<p>The primary definitions of each meta-model may be imported by specifying the URI of a Package and optionally an alias for that Package.</p>
+<p>The import may be from a *.ecore, *.uml or *.oclinecore file.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1300-include.png"></div>
+<p>
+					
+</p>
+<p>Additional documents complementing meta-model may be included by specifying the URI of the Complete OCL document.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1300-library.png"></div>
+<p>
+					
+</p>
+<p>Zero or more external libraries may be imported so that their definitions are merged to form a composite library of basic and extended evaluation capability.</p>
+<p>The implicit import of the default OCL Standard Library is suppressed, if any library is imported. The default library may be extended by specifying it as the first library import.</p>
+<div class="literallayout">
+<p>
+<code class="code">library&nbsp;ocl&nbsp;:&nbsp;'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib'<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>The namespace URI of the first library package defines the namespace URI of the composite library. The namespace URI of subsequent library imports may not conflict, but may be null.</p>
+</div>
+<div class="section" title="PackageDeclaration">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="CompleteOCL-PackageDeclaration"></a>PackageDeclaration</h4>
+</div>
+</div>
+</div>
+<p>The PackageDeclaration syntax identifies a Package to be complemented.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1300-packagedeclaration1.png"></div>
+<p>
+					
+</p>
+<p>The package keyword is followed by the optionally qualified name of the package to be complemented.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1300-packagedeclaration2.png"></div>
+<p>
+					
+</p>
+<p>The name is followed by the 
+						<a class="link" href="CompleteOCL.html#CompleteOCL-ContextDecl" title="ContextDecl">declaration contexts</a> to be complemented and finally an endpackage keyword.
+					</p>
+</div>
+<div class="section" title="ContextDecl">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="CompleteOCL-ContextDecl"></a>ContextDecl</h4>
+</div>
+</div>
+</div>
+<p>The ContextDecl syntax identifies a model element to be complemented.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1300-contextdecl.png"></div>
+<p>
+					
+</p>
+<p>A complemented context may be a</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+								
+<a class="link" href="CompleteOCL.html#CompleteOCL-ClassifierContextDecl" title="ClassifierContextDecl">Classifier Context</a>
+							
+</p>
+</li>
+<li class="listitem">
+<p>
+								
+<a class="link" href="CompleteOCL.html#CompleteOCL-OperationContextDecl" title="OperationContextDecl">Operation Context</a>
+							
+</p>
+</li>
+<li class="listitem">
+<p>
+								
+<a class="link" href="CompleteOCL.html#CompleteOCL-PropertyContextDecl" title="PropertyContextDecl">Property Context</a>
+							
+</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="ClassifierContextDecl">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="CompleteOCL-ClassifierContextDecl"></a>ClassifierContextDecl</h4>
+</div>
+</div>
+</div>
+<p>The ClassifierContextDecl syntax identifies a Classifier to be complemented.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1300-classifiercontextdecl1.png"></div>
+<p>
+					
+</p>
+<p>The context keyword is followed by an optional declaration of the name of the context variable. If omitted the context variable is named 
+						<code class="code">self</code>.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1300-classifiercontextdecl2.png"></div>
+<p>
+					
+</p>
+<p>Then the optionally qualified name of the classifier to be complemented is defined. Qualification is required if the classifier context is specified directly as part of the document. Qualification may be omitted when the classifier context is specified as part of a package declaration.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1300-classifiercontextdecl3.png"></div>
+<p>
+					
+</p>
+<p>Finally the content of the classifier context may comprise</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+								
+<a class="link" href="CompleteOCL.html#CompleteOCL-Def" title="Def">Def</a> to define an additional feature
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<a class="link" href="CompleteOCL.html#CompleteOCL-Inv" title="Inv">Inv</a> to define an invariant
+							</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="Def">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="CompleteOCL-Def"></a>Def</h4>
+</div>
+</div>
+</div>
+<p>The Def syntax defines an additional Feature for a Classifier.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1300-def1.png"></div>
+<p>
+					
+</p>
+<p>The definition may define a static feature with a feature name.</p>
+<p>A further name may be specified for no very obvious purpose other than symmetry with an invariant. The optional name is not used.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1300-def2.png"></div>
+<p>
+					
+</p>
+<p>A parenthesized 
+						<a class="link" href="CompleteOCL.html#CompleteOCL-Parameter" title="Parameter">parameter</a> list must be specified to define an operation and omitted for a property definition.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1300-def3.png"></div>
+<p>
+					
+</p>
+<p>Then the property or optional operation return 
+						<a class="link" href="EssentialOCL.html#EssentialOCL-TypeExp" title="TypeExp">type</a> is specified followed by the 
+						<a class="link" href="CompleteOCL.html#CompleteOCL-Specification" title="Specification">specification</a> of the property initializer or operation body.
+					</p>
+<p>An additional definition is usable within an OCL expression as if it was defined in the complemented meta-model. For the purposes of reflection the additional appear as part of the complemented meta-model, however they remain complements and are not persisted with that meta-model.</p>
+</div>
+<div class="section" title="Inv">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="CompleteOCL-Inv"></a>Inv</h4>
+</div>
+</div>
+</div>
+<p>The Inv syntax defines an invariant for a Classifier.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1300-inv.png"></div>
+<p>
+					
+</p>
+<p>The inv keyword is followed by an optional invariant name an optional violation message and the 
+						<a class="link" href="CompleteOCL.html#CompleteOCL-Specification" title="Specification">specification</a> of the invariant.
+					</p>
+<p>The optional name may be used by validation environments to identify the invariant in a control panel and in diagnostic messages.</p>
+<p>The optional violation message provides an OCL expression that may be used by a validation environment to provide a custom message to explain a broken invariant. The severity of the invariant violationm may be controlled by the value of the invariant expression.</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>true indicates that the invariant was satisfied</p>
+</li>
+<li class="listitem">
+<p>false indicates that the invariant was violated with warning severity</p>
+</li>
+<li class="listitem">
+<p>null indicates that the invariant was violated with error severity</p>
+</li>
+<li class="listitem">
+<p>invalid indicates that the invariant failed to evaluate</p>
+</li>
+</ul>
+</div>
+<p>In the Indigo release, the local variables of the invariant are not accessible to the violation message expression. This will be changed in a future release.</p>
+<p>In the Indigo release, custom messages are available when a CompleteOCLEObjectValidator is used as the EValidator. This is not the case for validation in the Sample Ecore Editor and so a default message using the invariant name and the failing object is provided. </p>
+</div>
+<div class="section" title="OperationContextDecl">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="CompleteOCL-OperationContextDecl"></a>OperationContextDecl</h4>
+</div>
+</div>
+</div>
+<p>The OperationContextDecl syntax identifies an Operation to be complemented.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1300-operationcontextdecl1.png"></div>
+<p>
+					
+</p>
+<p>The context keyword is followed by the optionally qualified name of the operation to be complemented. Qualification is always required since the operation context may be specified as part of the document or a package declaration but not a classifier.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1300-operationcontextdecl2.png"></div>
+<p>
+					
+</p>
+<p>The name is followed by a parenthesized 
+						<a class="link" href="CompleteOCL.html#CompleteOCL-Parameter" title="Parameter">parameter</a> list.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1300-operationcontextdecl3.png"></div>
+<p>
+					
+</p>
+<p>Finally an optional return 
+						<a class="link" href="EssentialOCL.html#EssentialOCL-TypeExp" title="TypeExp">type</a> and the operation constraints are specified. The operation constraints may comprise 
+					</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>a 
+								<a class="link" href="CompleteOCL.html#CompleteOCL-Body" title="Body">Body</a> to define operation body
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<a class="link" href="CompleteOCL.html#CompleteOCL-Inv" title="Inv">Pre</a> to define a precondition on the operation
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<a class="link" href="CompleteOCL.html#CompleteOCL-Inv" title="Inv">Post</a> to define a postcondition on the operation
+							</p>
+</li>
+</ul>
+</div>
+<p>Any number of preconditions and postconditions can be specified. Only one body is permitted.</p>
+</div>
+<div class="section" title="Parameter">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="CompleteOCL-Parameter"></a>Parameter</h4>
+</div>
+</div>
+</div>
+<p>The Parameter syntax identifies a Parameter of an Operation to be complemented.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1300-parameter.png"></div>
+<p>
+					
+</p>
+<p>A parameter comprises an optional name and Essential OCL 
+						<a class="link" href="EssentialOCL.html#EssentialOCL-TypeExp" title="TypeExp">type</a> declaration.
+					</p>
+<p>The parameter name may be omitted for 
+						<a class="link" href="CompleteOCL.html#CompleteOCL-OperationContextDecl" title="OperationContextDecl">Operation Contexts</a> if the parameter name is not used by any of the constraints.
+					</p>
+<p>The parameter name is required for 
+						<a class="link" href="CompleteOCL.html#CompleteOCL-Def" title="Def">Operation Definitions</a>.
+					</p>
+<p>Note that the type declarations are Essential OCL types such as 
+						<code class="code">Sequence&lt;String&gt;</code> rather than UML&rsquo;s and OCLinEcore&rsquo;s 
+						<code class="code">String[*] {ordered !unique}</code>. There are plans to unify these syntaxes.
+					</p>
+</div>
+<div class="section" title="Body">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="CompleteOCL-Body"></a>Body</h4>
+</div>
+</div>
+</div>
+<p>The Body syntax defines the body for a complemented Operation.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1300-body.png"></div>
+<p>
+					
+</p>
+<p>The body keyword is followed by an optional name and the body 
+						<a class="link" href="CompleteOCL.html#CompleteOCL-Specification" title="Specification">specification</a>.
+					</p>
+<p>The optional name is not used.</p>
+</div>
+<div class="section" title="Post">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="CompleteOCL-Post"></a>Post</h4>
+</div>
+</div>
+</div>
+<p>The Post syntax defines a postcondition for a complemented Operation.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1300-post.png"></div>
+<p>
+					
+</p>
+<p>The post keyword is followed by an optional name and the postcondition 
+						<a class="link" href="CompleteOCL.html#CompleteOCL-Specification" title="Specification">specification</a>.
+					</p>
+<p>The optional name may be used by a validation environment to identify a failing postcondition.</p>
+<p>The Indigo release parses and persists postconditions but does not evaluate them.</p>
+</div>
+<div class="section" title="Pre">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="CompleteOCL-Pre"></a>Pre</h4>
+</div>
+</div>
+</div>
+<p>The Pre syntax defines a precondition for a complemented Operation.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1300-pre.png"></div>
+<p>
+					
+</p>
+<p>The pre keyword is followed by an optional name and the precondition 
+						<a class="link" href="CompleteOCL.html#CompleteOCL-Specification" title="Specification">specification</a>.
+					</p>
+<p>The optional name may be used by a validation environment to identify a failing precondition.</p>
+<p>The Indigo release parses and persists preconditions but does not evaluate them.</p>
+</div>
+<div class="section" title="PropertyContextDecl">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="CompleteOCL-PropertyContextDecl"></a>PropertyContextDecl</h4>
+</div>
+</div>
+</div>
+<p>The PropertyContextDecl syntax identifies a Property to be complemented.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1300-propertycontextdecl1.png"></div>
+<p>
+					
+</p>
+<p>The context keyword is followed by the optionally qualified name of the property to be complemented. Qualification is always required since the property context may be specified as part of the document or a package declaration but not a classifier.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1300-propertycontextdecl2.png"></div>
+<p>
+					
+</p>
+<p>Finally the property 
+						<a class="link" href="EssentialOCL.html#EssentialOCL-TypeExp" title="TypeExp">type</a> and the property constraints are specified. The property constraints may comprise 
+					</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>an 
+								<a class="link" href="CompleteOCL.html#CompleteOCL-Init" title="Init">Init</a> to specify an initialization
+							</p>
+</li>
+<li class="listitem">
+<p>a 
+								<a class="link" href="CompleteOCL.html#CompleteOCL-Der" title="Der">Der</a> to specify a derivation
+							</p>
+</li>
+</ul>
+</div>
+<p>An initialization is specified to define the property value when the property is created.</p>
+<p>A derivation is specified to define the property value at all times.</p>
+<p>It does not therefore make sense to specify both an an initial and an all-time value. If both are specified the derivation is used.</p>
+</div>
+<div class="section" title="Init">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="CompleteOCL-Init"></a>Init</h4>
+</div>
+</div>
+</div>
+<p>The Init syntax defines an initial value for a complemented Property.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1300-init.png"></div>
+<p>
+					
+</p>
+<p>The init keyword and colon are followed by the initial value 
+						<a class="link" href="CompleteOCL.html#CompleteOCL-Specification" title="Specification">specification</a>.
+					</p>
+</div>
+<div class="section" title="Der">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="CompleteOCL-Der"></a>Der</h4>
+</div>
+</div>
+</div>
+<p>The Der syntax defines a derived value for a complemented Property.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1300-der.png"></div>
+<p>
+					
+</p>
+<p>The der keyword and colon are followed by the derived value 
+						<a class="link" href="CompleteOCL.html#CompleteOCL-Specification" title="Specification">specification</a>.
+					</p>
+</div>
+<div class="section" title="Specification">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="CompleteOCL-Specification"></a>Specification</h4>
+</div>
+</div>
+</div>
+<p>The Specification syntax provides an OCL expression to specify some aspect of a complemented model.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1300-specification.png"></div>
+<p>
+					
+</p>
+<p>The specification comprises and 
+						<a class="link" href="EssentialOCL.html#EssentialOCL-Exp" title="OCL Expression">Essential OCL Expression</a>.
+					</p>
+</div>
+<div class="section" title="NavigatingExp">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="CompleteOCL-NavigatingExp"></a>NavigatingExp</h4>
+</div>
+</div>
+</div>
+<p>The NavigatingExp syntax defines enhancements to the 
+						<a class="link" href="EssentialOCL.html#EssentialOCL-NavigatingExp" title="NavigatingExp">Essential OCL NavigatingExp</a> syntax.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1300-navigatingexp.png"></div>
+<p>
+					
+</p>
+<p>The name of a model element may have a further @pre qualification for use within an operation postcondition. It allows the postcondition to access the value on entry to an operation.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1300-navigatingarg.png"></div>
+<p>
+					
+</p>
+<p>
+						
+<code class="code">?</code> may be specified as the argument in a navigating expression to indicate unknown values when testing sent messages.
+					</p>
+</div>
+<div class="section" title="NavigationOperators">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="CompleteOCL-NavigationOperators"></a>NavigationOperators</h4>
+</div>
+</div>
+</div>
+<p>The 
+						<a class="link" href="EssentialOCL.html#EssentialOCL-NavigationOperators" title="NavigationOperators">Essential OCL NavigationOperators</a> are extended to support
+					</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+								
+<code class="code">^</code> to test whether a message has been sent message
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">^^</code> to reference the content of a message
+							</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="UnreservedName">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="CompleteOCL-UnreservedName"></a>UnreservedName</h4>
+</div>
+</div>
+</div>
+<p>The Complete OCL reserved words are unchanged from Essential OCL, consequently a Complete OCL Unreserved name is the same as an 
+						<a class="link" href="EssentialOCL.html#EssentialOCL-UnreservedName" title="UnreservedName">Essential OCL UnreservedName</a>.
+					</p>
+</div>
+<div class="section" title="UnrestrictedName">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="CompleteOCL-UnrestrictedName"></a>UnrestrictedName</h4>
+</div>
+</div>
+</div>
+<p>The Complete OCL has two additional built-in types: 
+						<code class="code">OclMessage</code> and 
+						<code class="code">OclState</code>. These names and the 
+						<a class="link" href="EssentialOCL.html#EssentialOCL-UnrestrictedName" title="UnrestrictedName">Essential OCL RestrictedNames</a> are not available without qualification or escaping. 
+					</p>
+</div>
+</div>
+</div>
+</body>
+</html>

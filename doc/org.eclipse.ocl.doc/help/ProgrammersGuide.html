@@ -1,0 +1,532 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Classic Ecore/UML Programmers Guide</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="index.html" title="OCL Documentation">
+<link rel="prev" href="OCLInterpreterExample.html" title="OCL Interpreter Example">
+<link rel="next" href="EvaluatingConstraints.html" title="Evaluating Constraints and Queries">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Classic Ecore/UML Programmers Guide</h1>
+<div class="chapter" title="Classic Ecore/UML Programmers Guide">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title">
+<a name="ProgrammersGuide"></a>Classic Ecore/UML Programmers Guide</h2>
+</div>
+</div>
+</div>
+<div class="toc">
+<dl>
+<dt>
+<span class="section"><a href="ProgrammersGuide.html#ParsingConstraints">Parsing Constraints and Queries</a></span>
+</dt>
+<dt>
+<span class="section"><a href="EvaluatingConstraints.html">Evaluating Constraints and Queries</a></span>
+</dt>
+<dt>
+<span class="section"><a href="ParsingDocuments.html">Parsing OCL Documents</a></span>
+</dt>
+<dt>
+<span class="section"><a href="TargetMetamodels.html">OCL Relationship to Metamodels</a></span>
+</dt>
+<dt>
+<span class="section"><a href="ContentAssistSupport.html">Content Assist Support</a></span>
+</dt>
+<dt>
+<span class="section"><a href="AbstractSyntax.html">OCL Abstract Syntax Model</a></span>
+</dt>
+<dt>
+<span class="section"><a href="CustomizingtheEnvironment.html">Customizing the Environment</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Persistence.html">OCL Persistence</a></span>
+</dt>
+<dt>
+<span class="section"><a href="AdvancedMetamodelBindings.html">Creating Metamodel Bindings</a></span>
+</dt>
+<dt>
+<span class="section"><a href="ImpactAnalyzer.html">Incrementally Re-Evaluating OCL Expressions Using the Impact Analyzer</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Delegates.html">Delegates</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Standalone.html">Ecore/UML Standalone Configuration</a></span>
+</dt>
+</dl>
+</div>
+<p>The Ecore/UML Programmers Guide describes the ways in which the Ecore or UML bindings of Eclipse OCL can be used from Java programs.</p>
+<p>The Ecore binding has been available since Eclipse OCL 1.0.0 (Callisto). The UML binding was added in 1.1.0 (Europa). Both will remain for as long as necessary. Examples quality prototypes of the new UML-aligned Pivot binding were first available in 3.1.0 (Indigo). The Pivot binding 
+			will become the preferred binding in 6.0.0 (Mars). The Pivot binding is described in a separate 
+			<a class="link" href="PivotProgrammersGuide.html" title="Unified or Pivot Programmers Guide">Pivot Programmers Guide</a>.
+		</p>
+<p>The OCL Parser/Interpreter provides an implementation of the 
+			<a class="ulink" href="http://www.omg.org/spec/OCL" target="_new">Object Constraint Language 2.4</a> specification for EMF-based metamodels and models.  It offers OCL
+			constraint and query parsing and evaluation, model-based validation, and
+			provides an infrastructure for content assist in textual editors.
+		</p>
+<p>The following features are supported in the current version:</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Classifier invariant constraints</p>
+</li>
+<li class="listitem">
+<p>Operation precondition and postcondition constraints and body conditions</p>
+</li>
+<li class="listitem">
+<p>Property constraints (initial-value and derivation)</p>
+</li>
+<li class="listitem">
+<p>Attribute and operation definitions (def: expressions)</p>
+</li>
+<li class="listitem">
+<p>Package context declaration</p>
+</li>
+<li class="listitem">
+<p>Basic values and types</p>
+</li>
+<li class="listitem">
+<p>Collection types</p>
+</li>
+<li class="listitem">
+<p>Navigation of attributes and association ends</p>
+</li>
+<li class="listitem">
+<p>Operation invocation</p>
+</li>
+<li class="listitem">
+<p>Iteration expressions (all standard iterators)</p>
+</li>
+<li class="listitem">
+<p>Let expressions</p>
+</li>
+<li class="listitem">
+<p>If expressions</p>
+</li>
+<li class="listitem">
+<p>Tuples</p>
+</li>
+<li class="listitem">
+<p>Message expressions, including unspecified values</p>
+</li>
+<li class="listitem">
+<p>Operations predefined by OCL:  allInstances(), oclIsKindOf(), oclIsTypeOf(), oclAsType(), oclIsNew()</p>
+</li>
+<li class="listitem">
+<p>Escape syntax for illegal names:  type, operation, attribute, etc. names that correspond to OCL reserved words can be escaped in the standard fashion using a leading underscore (&lsquo;_&rsquo;).  In addition, names that contain spaces or tabs can be escaped by enclosing them in double-quotes (&lsquo;"&rsquo;; this is non-standard).  e.g., 
+					<code class="code">self.ownedRule-&gt;forAll(c : Constraint | c._context = self)</code>
+				
+</p>
+</li>
+</ul>
+</div>
+<p>The above constructs are supported by the parser for parsing and
+			for evaluation, with the exception of the oclIsNew() operation and
+			message expressions.  All of the above are supported for both Ecore
+			and UML models.  The following are supported by default for UML
+			(both in parsing and evaluation):</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Navigation of non-navigable association ends (including those that are owned by the association)</p>
+</li>
+<li class="listitem">
+<p>Qualified association end navigation</p>
+</li>
+<li class="listitem">
+<p>Navigation to association classes, including source qualifiers</p>
+</li>
+<li class="listitem">
+<p>Operations predefined by OCL: oclIsInState()</p>
+</li>
+</ul>
+</div>
+<p>The following features are provided in addition to the OCL specification:</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>String case conversion operations:  toUpper(), toLower()</p>
+</li>
+<li class="listitem">
+<p>Support for comparison (&lt;, &lt;=, etc.) and sorting of any java 
+					<code class="code">Comparable</code> s of conformant types
+				</p>
+</li>
+<li class="listitem">
+<p>Transitive closure of associations:  closure(expr : OCLExpression) iterator</p>
+</li>
+<li class="listitem">
+<p>Navigation of &ldquo;hidden&rdquo; opposites of references specified in Ecore models using a 
+					<code class="code">Property.oppositeRoleName</code> annotation with source 
+					<code class="code">http://schema.omg.org/spec/MOF/2.0/emof.xml</code> on the forward reference, producing an 
+					<code class="code">OppositePropertyCallExp</code> expression
+				</p>
+</li>
+</ul>
+</div>
+<p>The OCL implementation is defined in plug-ins for convenient deployment in
+			Eclipse, but as is the case for EMF, it can also be used stand-alone.  The
+			plug-ins are partitioned thus:</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+					
+<code class="code">org.eclipse.ocl</code>:  the core parsing, evaluation, and content assist services.  Definition of the OCL Abstract Syntax Model and Environment API.  These APIs are generic, independent of any particular metamodel (though using Ecore/EMF as the meta-meta-model).
+				</p>
+</li>
+<li class="listitem">
+<p>
+					
+<code class="code">org.eclipse.ocl.ecore</code>:  implementation of the Ecore metamodel environment, binding the generic Environment and AST APIs to the Ecore language.  Provides support for working with OCL constraints and queries targeting Ecore models.
+				</p>
+</li>
+<li class="listitem">
+<p>
+					
+<code class="code">org.eclipse.ocl.uml</code>:  implementation of the UML metamodel environment, binding the generic Environment and AST APIs to the UML language.  Provides support for working with OCL targeting UML models.
+				</p>
+</li>
+</ul>
+</div>
+<p>Please refer to the 
+			<a class="link" href="OCLInterpreterTutorial.html" title="Working with Classic OCL">OCL Interpreter Tutorial</a> for review of the code samples.
+		</p>
+<div class="section" title="Parsing Constraints and Queries">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="ParsingConstraints"></a>Parsing Constraints and Queries</h2>
+</div>
+</div>
+</div>
+<p>The OCL parser provides two APIs for parsing constraint and query expressions. The 
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/helper/OCLHelper.html" target="_new">
+					<code class="code">OCLHelper</code>
+				</a> interface is designed primarily for parsing constraints and query expressions
+				embedded in models, such as Ecore or UML models.  The 
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/OCL.html" target="_new">
+					<code class="code">OCL</code>
+				</a> class serves as the main entrypoint into the parsing API but also implements the
+				parsing of 
+				<a class="link" href="ParsingDocuments.html" title="Parsing OCL Documents">OCL documents</a>, for example from
+				text files.  In both cases, the concept of 
+				<code class="code">Environment</code>
+				is crucial.
+			</p>
+<div class="section" title="The OCL Environment">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="TheOCLEnvironment"></a>The OCL Environment</h3>
+</div>
+</div>
+</div>
+<p>The following diagram shows the core of the 
+					<code class="code">Environment</code>
+					API, that clients of the OCL parser interact with:
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/5110-environment.png"></div>
+<p>
+				
+</p>
+<p>The 
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/OCL.html" target="_new">
+						<code class="code">OCL</code>
+					</a> class is a generic type; its type parameters represent the various metaclasses
+					of the metamodels that OCL works with in the UML/MOF family of OMG specifications.
+					For example, 
+					<code class="code">&lt;C&gt;</code> represents the Classifier
+					concept, 
+					<code class="code">&lt;O&gt;</code> the Operation concept, etc.  See
+					the discussion of 
+					<a class="link" href="TargetMetamodels.html" title="OCL Relationship to Metamodels">metamodels supported by OCL</a> 
+					for details of the mappings.  The same type parameter names are used consistently
+					throughout the OCL APIs to represent the same metaclasses.
+				</p>
+<p>The 
+					<code class="code">OCL</code> class defines instances of autonomous OCL
+					parsing and evaluation environments.  It has a single root
+
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/Environment.html" target="_new">
+						<code class="code">Environment</code>
+					</a> created by an
+
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/EnvironmentFactory.html" target="_new">
+						<code class="code">EnvironmentFactory</code>
+					</a> 
+					implementation for a particular EMF-based metamodel.  The OCL environment
+					consists, conceptually, of the model that is to be constrained together with
+					all of the constraints and additional operations and attributes defined (via
+					OCL) for the purpose of formulating constraints.
+				</p>
+<p>
+					
+<code class="code">Environment</code> s nest.  Usually the root environment has
+					no correlation to an element in the model, or it may correspond to some
+
+					<code class="code">Package</code> providing a default namespace (called a package
+					context).  Alternatively, it may contain one or more nested environments
+					defining package namespaces.  A package context contains one or more classifier
+					contexts, which in turn can contain operation and/or attribute contexts.  Whereas
+					the purpose of a package context is primarily to assist in the look-up of named
+					model elements, the classifier, operation, and attribute contexts have deeper
+					meaning.
+				</p>
+<p>A classifier context defines the type of the 
+					<code class="code">self</code>
+					variable in OCL constraints and queries.  By itself, it is the context for
+					invariant constraints for the context classifier.  Additionally, as the parent
+					context for operation and attribute constraints, it indicates the classifier
+					in which context an operation or attribute constraint applies; this may be the
+					classifier that defines these features, or it may inherit them from some more
+					general classifier.
+				</p>
+<p>An 
+					<code class="code">Environment</code> may contain named
+
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/expressions/Variable.html" target="_new">
+						<code class="code">Variable</code>
+					</a> s
+					to which OCL expressions can refer.  The most common of these is
+
+					<code class="code">self</code>.  Others include the parameters defined by an
+					operation (and its 
+					<code class="code">result</code>), in the case of an
+					operation context.  The OCL API even allows clients to add variables, in code,
+					to define &ldquo;global&rdquo; names.
+				</p>
+</div>
+<div class="section" title="Creating an OCL Environment">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="CreatinganOCLEnvironment"></a>Creating an OCL Environment</h3>
+</div>
+</div>
+</div>
+<p>The static factory methods on the 
+					<code class="code">OCL</code> class are used
+					to create instances.  It is a good practice to re-use the same OCL instance for
+					all parsing and evaluation of constraints and queries on a model while that
+					model is loaded (usually in some 
+					<code class="code">ResourceSet</code> in an
+					editor).  Using the shared environment factory for the Ecore
+
+					<a class="link" href="TargetMetamodels.html" title="OCL Relationship to Metamodels">metamodel</a>, we can create an OCL
+					environment suitable for parsing OCL constraints on any Ecore model and
+					evaluating them on instances of the model:
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/5110-creating.png"></div>
+<p>
+
+					
+<a class="ulink" href="../references/5110-creating.txt" target="_new">[Text for cut and paste]</a>
+				
+</p>
+<p>Several of the type parameters in the 
+					<code class="code">OCL</code> generic type
+					signature are useful mostly within the OCL API.  We leave them, here, as wildcards.
+				</p>
+</div>
+<div class="section" title="The OCL Helper">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="TheOCLHelper"></a>The OCL Helper</h3>
+</div>
+</div>
+</div>
+<p>From an OCL instance, we can create a helper object with which to parse constraints
+					and additional operation/attribute definitions.  This
+
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/helper/OCLHelper.html" target="_new">
+						<code class="code">OCLHelper</code>
+					</a> 
+					stores all of the instantiations of OCL template metaclasses (such as
+
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/types/CollectionType.html" target="_new">
+						<code class="code">CollectionType(T)</code>
+					</a> 
+					and 
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/types/TupleType.html" target="_new">
+						<code class="code">TupleType</code>
+					</a> 
+					and additional operation/attribute definitions in the root environment of the
+
+					<code class="code">OCL</code> that created it.  This ensures that all of these
+					constructs are available for reuse in subsequent parsing.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/5110-oclhelper.png"></div>
+<p> 
+				
+</p>
+<p>The 
+					<code class="code">OCLHelper</code> is primarily designed for parsing
+					constraints and query expressions embedded in models, providing the following
+					API for that purpose:
+				</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+							
+<code class="code">createQuery()</code>: parses a query expression
+						</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">createConstraint()</code>: parses a constraint of a given 
+							<code class="code">ConstraintKind</code>
+						
+</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">createInvariant()</code>: convenience for invariant constraints
+						</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">createPrecondition()</code>: convenience for pre-condition constraints
+						</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">createPostcondition()</code>: convenience for post-condition constraints
+						</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">createBodyCondition()</code>: convenience for body conditions
+						</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">createInitialValueExpression()</code>: convenience for attribute initial values
+						</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">createDerivedValueExpression()</code>: convenience for attribute derived values
+						</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">defineOperation()</code>: convenience for additional operation definitions
+						</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">defineAttribute()</code>: convenience for additional attribute definitions
+						</p>
+</li>
+</ul>
+</div>
+<p>Different kinds of constraints require different context environments.  The
+
+					<code class="code">setContext()</code>, 
+					<code class="code">setOperationContext()</code>,
+					and 
+					<code class="code">setAttributeContext()</code> methods create the appropriate
+					nested 
+					<code class="code">Environment@s in the host @OCL</code>
+					instance&rsquo;s root environment.
+				</p>
+<p>The result of parsing a query expression is an
+
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/expressions/OCLExpression.html" target="_new">
+						<code class="code">OCLExpression</code>
+					</a>,
+					an instance of the 
+					<a class="link" href="AbstractSyntax.html" title="OCL Abstract Syntax Model">Abstract Syntax Model</a> .  The
+					result of parsing a constraint is an instance of the
+
+					<code class="code">Constraint</code> metaclass defined by the
+
+					<code class="code">OCL</code>'s 
+					<a class="link" href="TargetMetamodels.html" title="OCL Relationship to Metamodels">target metamodel</a> .
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/5110-context.png"></div>
+<p>
+
+					
+<a class="ulink" href="../references/5110-context.txt" target="_new">[Text for cut and paste]</a>
+				
+</p>
+<p>Ecore does not define a 
+					<code class="code">Constraint</code> metaclass, so the
+					OCL 
+					<a class="link" href="TargetMetamodels.html" title="OCL Relationship to Metamodels">binding</a> for Ecore supplies one.
+				</p>
+</div>
+<div class="section" title="Operation and Attribute Contexts">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="OperationandAttributeContexts"></a>Operation and Attribute Contexts</h3>
+</div>
+</div>
+</div>
+<p>In the case of constraints on operations or attributes, the context consists
+					of two elements:  the constrained operation/attribute and a classifier in the
+					context of which the constraint is to apply.  This accounts for the possibility
+					that a classifier defines constraints on inherited features.  As an example,
+					consider the 
+					<code class="code">EModelElement::getEAnnotation(EString)</code>
+					operation and 
+					<code class="code">EReference::eReferenceType</code> property in the Ecore
+					metamodel.  These can be constrained as follows:
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/5110-define.png"></div>
+<p>
+
+					
+<a class="ulink" href="../references/5110-define.txt" target="_new">[Text for cut and paste]</a>
+				
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Incrementally Re-Evaluating OCL Expressions Using the Impact Analyzer</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="ProgrammersGuide.html" title="Classic Ecore/UML Programmers Guide">
+<link rel="prev" href="AdvancedMetamodelBindings.html" title="Creating Metamodel Bindings">
+<link rel="next" href="Delegates.html" title="Delegates">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Incrementally Re-Evaluating OCL Expressions Using the Impact Analyzer</h1>
+<div class="section" title="Incrementally Re-Evaluating OCL Expressions Using the Impact Analyzer">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="ImpactAnalyzer"></a>Incrementally Re-Evaluating OCL Expressions Using the Impact Analyzer</h2>
+</div>
+</div>
+</div>
+<p>When Ecore metamodels use many OCL invariants and the models constrained by these invariants
+				grow large, re-evaluating the invariants becomes a performance challenge. As OCL expressions
+				can navigate freely across resource boundaries, changes to a model element in one resource
+				can easily affect invariants for model elements in other resources. To reliably catch all
+				invalidated constraints after a change it would be necessary to re-evaluate all invariants
+				on all their context objects regardless their resource. This does not scale sufficiently well.</p>
+<p>The 
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/impactanalyzer/ImpactAnalyzerFactory.html" target="_new">
+					<code class="code">ImpactAnalyzerFactory</code>
+				</a> interface allows tool builders to efficiently determine a much smaller set of model elements on which re-evaluation of expressions is necessary after a change.
+			</p>
+<p>Given an 
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/ecore/OCLExpression.html" target="_new">OCL expression</a>, the factory can be used to create an impact analyzer for a single expression as follows:
+			</p>
+<div class="literallayout">
+<p>
+<code class="code">final&nbsp;OCLExpression&nbsp;e&nbsp;=&nbsp;...;<br>
+final&nbsp;ImpactAnalyzer&nbsp;impactAnalyzer&nbsp;=<br>
+		ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;			e,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;the&nbsp;expression&nbsp;to&nbsp;re-evaluate&nbsp;incrementally<br>
+&nbsp;&nbsp;&nbsp;&nbsp;			false,&nbsp;&nbsp;//&nbsp;whether&nbsp;to&nbsp;re-evaluate&nbsp;when&nbsp;new&nbsp;context&nbsp;objects&nbsp;appear<br>
+&nbsp;&nbsp;&nbsp;&nbsp;			OCLFactory.INSTANCE);<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>The impact analyzer obtained this way can create a change notification filter which
+				can then be used to register for notifications that indicate a change which may affect
+				the value of the expression. Consider the following example:</p>
+<div class="literallayout">
+<p>
+<code class="code">ResourceSet&nbsp;myResourceSet&nbsp;=&nbsp;...;<br>
+EventFilter&nbsp;filter&nbsp;=&nbsp;impactAnalyzer.createFilterForExpression();<br>
+EventManager&nbsp;eventManager&nbsp;=<br>
+	EventManagerFactory.eINSTANCE.getEventManagerFor(myResourceSet);<br>
+eventManager.subscribe(filter,&nbsp;new&nbsp;AdapterImpl()&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;notifyChanged(Notification&nbsp;notification)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Collection&lt;EObject&gt;&nbsp;valueMayHaveChangedOn&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;impactAnalyzer.getContextObjects(notification);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(EObject&nbsp;eo&nbsp;:&nbsp;valueMayHaveChangedOn)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	//&nbsp;...&nbsp;perform&nbsp;some&nbsp;re-evaluation&nbsp;action&nbsp;of&nbsp;e&nbsp;for&nbsp;context&nbsp;eo&nbsp;here<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+});<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>The event manager can be used to register the event filters of several OCL expressions with their respective
+				adapters. The adapters for different expressions do not have to be distinct but may optionally be shared. The
+				following figure shows how the classes relate, as a UML class diagram:</p>
+<p>
+				
+</p>
+<div class="mediaobject">
+<img src="images/5190-impact-analyzer-classes.png"></div>
+<p>
+			
+</p>
+<p>For each OCL expression a new impact analyzer is used. The event filters produced by them can be registered
+				with the same event manager. The following figure shows a typical instance collaboration diagram in UML
+				notation.</p>
+<p>
+				
+</p>
+<div class="mediaobject">
+<img src="images/5190-impact-analyzer-instances.png"></div>
+<p>
+			
+</p>
+<p>The 
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/eventmanager/EventManagerFactory.html" target="_new">event manager factory</a> and the 
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/eventmanager/EventManager.html" target="_new">event managers</a> it produces lay the scalable foundation for the re-evaluation process. Even if it has to manage many subscriptions, its performance does not degrade as it would if the change notification filters were evaluated one after the other. With this it becomes possible to register many OCL expressions for change impact analysis as shown above. The figure below shows a typical default configuration of an event manager, as a UML instance collaboration diagram.
+			</p>
+<p>
+				
+</p>
+<div class="mediaobject">
+<img src="images/5190-event-manager-default-config.png"></div>
+<p>
+			
+</p>
+<p>The event manager in the figure is configured to listen to the change events coming
+				from anything inside the resource set. In this example it is shown with three different
+				event filters, each coming with its own adapter handling those change notifications
+				matches by the respective filter.</p>
+<p>As described in more detail in the Javadoc, event managers may be re-used,
+				temporarily deactivated and new ones may be created specifically upon request. This way
+				it is possible to have several event managers, e.g., listening for changes during different
+				phases of a model&rsquo;s life cycle without having to create and initialize the event managers
+				again and again. Also, an event manager is not restricted to listen to the changes of
+				exactly one resource set. The following figure shows a not so typical configuration, again as a
+				UML instance collaboration diagram.</p>
+<p>
+				
+</p>
+<div class="mediaobject">
+<img src="images/5190-event-manager-instances.png"></div>
+<p>
+			
+</p>
+<div class="section" title="Using the Impact Analyzer in EMF Editors">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="UsingtheImpactAnalyzerinEMFEditors"></a>Using the Impact Analyzer in EMF Editors</h3>
+</div>
+</div>
+</div>
+<p>The 
+					<code class="code">org.eclipse.ocl.examples.impactanalyzer.ui</code> package provides experimental support
+					for embedding the impact analyzer in EMF editors. Adding the lines
+				</p>
+<div class="literallayout">
+<p>
+<code class="code">@SuppressWarnings("unused")&nbsp;			//&nbsp;not&nbsp;read;&nbsp;just&nbsp;used&nbsp;to&nbsp;avoid&nbsp;GC&nbsp;&nbsp;<br>
+private&nbsp;Revalidator&nbsp;revalidator;		//&nbsp;&nbsp;from&nbsp;collecting&nbsp;re-validator<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>to the field declarations of an editor class, and adding the lines</p>
+<div class="literallayout">
+<p>
+<code class="code">revalidator&nbsp;=&nbsp;new&nbsp;Revalidator(editingDomain,&nbsp;OCLFactory.INSTANCE,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DefaultOppositeEndFinder.getInstance(),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MyMetamodelEcorePackage.eINSTANCE);<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>at the end of the editor class&rsquo;s 
+					<code class="code">createModel()</code> method turns on this experimental
+					support for the respective editors. Consequently, changes in the editor&rsquo;s 
+					<code class="code">ResourceSet</code>
+					will trigger the re-evaluation of the affected invariants on the set of context objects
+					determined by the impact analyzer. Error markers of successfully validated constraints will
+					be removed, markers for invalid constraints are produced. As is obvious also from the
+
+					<code class="code">examples</code> part of the package name, this is not yet production-ready code. It
+					may change or disappear without notice.
+				</p>
+</div>
+<div class="section" title="Algorithm Outline">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="AlgorithmOutline"></a>Algorithm Outline</h3>
+</div>
+</div>
+</div>
+<p>The basic idea on which the impact analyzer&rsquo;s algorithm is based is this: take the EMF
+					change notification and see which elementary subexpressions, such as property call expressions,
+					are immediately affected by the change. From these pairs of 
+					<code class="code">(subexpression, model element)</code>
+					it is possible to walk the expression tree and navigate &ldquo;backwards&rdquo; from the model element
+					to the candidates for the 
+					<code class="code">self</code> variable for which the subexpression
+					may evaluate to the model element indicated by the notification.
+					Recursive operation calls and general 
+					<code class="code">-&gt;iterate(...)</code> expressions complicate
+					matters and lead to a recursive algorithm for the impact analysis.
+				</p>
+<p>It is permissible to use calls to OCL-specified operations. The impact analyzer will trace
+					changes considering the called operation&rsquo;s body expression.</p>
+<p>The use of 
+					<code class="code">allInstances</code> inside an expression may be nasty for analyzing the
+					impact of a change because then it may no longer be possible to trace the change back to
+					the possible values for 
+					<code class="code">self</code>. In those cases the impact analyzer will simply
+					&ldquo;give up&rdquo; and return a collection of all instances of the expression&rsquo;s context type and
+					its subtypes. 
+				</p>
+</div>
+<div class="section" title="Impact Analyzer Configuration, Scopes">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="ImpactAnalyzerConfigurationScopes"></a>Impact Analyzer Configuration, Scopes</h3>
+</div>
+</div>
+</div>
+<p>The impact analyzer can be created in several different configurations as explained in
+					detail in the 
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/impactanalyzer/ImpactAnalyzerFactory.html" target="_new">Javadocs</a> . Particularly noteworthy is the relationship between the 
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/ecore/opposites/OppositeEndFinder.html" target="_new">
+						<code class="code">OppositeEndFinder</code>
+					</a> and the way an 
+					<code class="code">allInstance</code> expression is evaluated. Both depend on a notion of lookup 
+					<code class="code">scope</code>. EMF does not provide any particular rules or conventions in this regard other than assuming that what has been loaded into a 
+					<code class="code">ResourceSet</code> is what tools can see. While this is a working procedure for forward navigation, it doesn&rsquo;t help in defining a scope for 
+					<code class="code">allInstances</code> and reverse navigation when there is no explicit opposite property.
+				</p>
+<p>For this purpose, Eclipse OCL has introduced the 
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/ecore/opposites/OppositeEndFinder.html" target="_new">
+						<code class="code">OppositeEndFinder</code>
+					</a> interface through which reverse navigations
+					of references and 
+					<code class="code">allInstances</code> lookups can be performed. Its default implementation
+					is based on the EMF default which is to consider the contents of a 
+					<code class="code">ResourceSet</code> the
+					universe. Other implementations are possible, however, such as one that uses
+					EMF Query2 to perform the necessary lookups.
+				</p>
+<p>A default OCL evaluator will always use the current 
+					<code class="code">ResourceSet</code> to determine
+					the set of all instances of a type. If a client has used an opposite end finder that implements
+					a certain lookup strategy then the default 
+					<code class="code">allInstances</code> evaluation is most likely
+					inconsistent with the scope definitions of that opposite end finder. To avoid such problems,
+					a 
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/impactanalyzer/util/OCL.html" target="_new">specific OCL factory</a> can create OCL instances that ensure consistency between opposite navigation and 
+					<code class="code">allInstances</code> evaluation.
+				</p>
+<p>Other configuration options (see 
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/impactanalyzer/configuration/ActivationOption.html)" target="_new">
+						<code class="code">ActivationOption</code>
+					</a> concern the specific algorithm used for tracing back from a change notification to the set of context objects for which the expression
+					may have changed its value. The default selection has proven to be the fastest for a set
+					of benchmarks. However, mileage may vary, and we&rsquo;d like to encourage users to experiment
+					also with the non-default configurations.
+				</p>
+</div>
+</div>
+</body>
+</html>

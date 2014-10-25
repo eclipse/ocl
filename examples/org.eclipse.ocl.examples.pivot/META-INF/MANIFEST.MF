@@ -47,4 +47,4 @@ Bundle-ActivationPolicy: lazy
 Import-Package: com.google.common.base,
  com.google.common.collect,
  com.google.inject,
- org.apache.log4j
+ org.apache.log4j;version="[1.2.15,2.0.0)"
