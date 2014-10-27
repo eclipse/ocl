@@ -1,0 +1,1218 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>The OCLinEcore Language</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="UsersGuide.html" title="Users Guide">
+<link rel="prev" href="EssentialOCL.html" title="The Essential OCL Language">
+<link rel="next" href="CompleteOCL.html" title="The Complete OCL Language">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">The OCLinEcore Language</h1>
+<div class="section" title="The OCLinEcore Language">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="OCLinEcore"></a>The OCLinEcore Language</h2>
+</div>
+</div>
+</div>
+<p>Ecore Abstract Syntax supports the use of OCL embedded within EAnnotations.</p>
+<p>The OCLinEcore language provides a textual Concrete Syntax that makes both Ecore and OCL accessible to users. Examples may be found in  
+				<a class="link" href="Tutorials.html#OCLinEcoreMetamodel" title="Edit Ecore Model as OCLinEcore">OCLinEcore Library Metamodel</a> and
+
+				<a class="link" href="Tutorials.html#OCLinEcoreTutorialHelpers" title="Helper Features and Operations">OCLinEcore Helpers</a>.
+			</p>
+<p>The OCLinEcore tooling provides a rich editing environment based on Xtext with strong semantic checking.</p>
+<p>OCLinEcore is more than just an editor for OCL in Ecore, it is useful for</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>providing a coherent textual view of an Ecore meta-model</p>
+</li>
+<li class="listitem">
+<p>providing syntax sugar for some Ecore conventions</p>
+</li>
+<li class="listitem">
+<p>editing and validating OCL</p>
+</li>
+<li class="listitem">
+<p>integrating OCL into Ecore</p>
+</li>
+</ul>
+</div>
+<p>It is planned to take the syntactic sugar further and provide full support for all class-related UML concepts. The language therefore uses UML as its point of reference wherever possible.</p>
+<p>The OCLinEcore tooling may be used directly on *.ecore files, or on their *.oclinecore textual counterparts.</p>
+<p>Please follow the 
+				<a class="link" href="Tutorials.html#OCLinEcoreTutorial" title="OCLinEcore tutorial">OCLinEcore tutorial</a> for an introduction to the language and its tooling.
+			</p>
+<div class="section" title="Syntax">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Syntax2"></a>Syntax</h3>
+</div>
+</div>
+</div>
+<p>The OCLinEcore syntax has a consistent structure influenced by the informal definitions in OMG specifications and by the Ecore hierarchy. Most Ecore concepts are represented by a syntax of the form:</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>optional primary adjectives</p>
+</li>
+<li class="listitem">
+<p>mandatory keyword</p>
+</li>
+<li class="listitem">
+<p>mandatory name facet</p>
+</li>
+<li class="listitem">
+<p>further facets</p>
+</li>
+<li class="listitem">
+<p>an optional braced clause of secondary adjectives</p>
+</li>
+<li class="listitem">
+<p>an optional braced clause of elements</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="circle">
+<li class="listitem">
+<p>composed elements</p>
+</li>
+<li class="listitem">
+<p>annotations</p>
+</li>
+<li class="listitem">
+<p>constraints</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<p>Thus in:</p>
+<div class="literallayout">
+<p>
+<code class="code">abstract&nbsp;class&nbsp;Example&nbsp;extends&nbsp;Base&nbsp;{&nbsp;interface&nbsp;}&nbsp;{&nbsp;...&nbsp;}<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+							
+<code class="code">abstract</code> is a primary adjective
+						</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">class</code> is a keyword
+						</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">Example</code> is the name facet
+						</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">extends Base</code> is a further facet
+						</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">{ interface }</code> supports the secondary interface adjective.
+						</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">{ ... }</code> provides a nested context for class content.
+						</p>
+</li>
+</ul>
+</div>
+<div class="section" title="Grammar Implementation">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="GrammarImplementation2"></a>Grammar Implementation</h4>
+</div>
+</div>
+</div>
+<p>The grammar used by the Xtext editors may be found at:</p>
+<p>/src/org/eclipse/ocl/examples/xtext/oclinecore/OCLinEcore.xtext</p>
+<p>in the org.eclipse.ocl.examples.xtext.oclinecore plugin. The OCLinEcore grammar extends the Essential OCL grammar.</p>
+</div>
+<div class="section" title="Module">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Module"></a>Module</h4>
+</div>
+</div>
+</div>
+<p>The Module syntax supports the overall structure of an Ecore file</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-rootpackage.png"></div>
+<p>
+					
+</p>
+<p>The definition of the module comprises</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>optional module declaration</p>
+</li>
+<li class="listitem">
+<p>optional specification of the OCL Standard libraries</p>
+</li>
+<li class="listitem">
+<p>optional import of referenced Ecore or UML or OCLinEcore resources</p>
+</li>
+<li class="listitem">
+<p>a hierarchy of 
+								<a class="link" href="OCLinEcore.html#OCLinEcore-Package" title="Package">Packages</a>
+							
+</p>
+</li>
+</ul>
+</div>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-library.png"></div>
+<p>
+					
+</p>
+<p>Zero or more external libraries may be imported so that their definitions are merged to form a composite library of basic and extended evaluation capability.</p>
+<p>The implicit import of the default OCL Standard Library is suppressed, if any library is imported. The default library may be extended by specifying it as the first library import.</p>
+<div class="literallayout">
+<p>
+<code class="code">library&nbsp;ocl&nbsp;:&nbsp;'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib'<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>The namespace URI of the first library package defines the namespace URI of the composite library. The namespace URI of subsequent library imports may not conflict, but may be null.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-import.png"></div>
+<p>
+					
+</p>
+<p>Zero or more external metamodels may be imported.</p>
+</div>
+<div class="section" title="Package">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="OCLinEcore-Package"></a>Package</h4>
+</div>
+</div>
+</div>
+<p>The Package syntax supports a nested hierarchy of packages and classifiers </p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-package1.png"></div>
+<p>
+					
+</p>
+<p>A Package has a name and optionally a namespace prefix and namespace URI.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-package2.png"></div>
+<p>
+					
+</p>
+<p>The content of a Package may comprise 
+						<a class="link" href="OCLinEcore.html#OCLinEcore-Package" title="Package">Packages</a>, 
+						<a class="link" href="OCLinEcore.html#OCLinEcore-Classifier" title="Classifier">Classifiers</a> and 
+						<a class="link" href="OCLinEcore.html#OCLinEcore-Annotation" title="Annotation">Annotations</a>.
+					</p>
+</div>
+<div class="section" title="Classifier">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="OCLinEcore-Classifier"></a>Classifier</h4>
+</div>
+</div>
+</div>
+<p>The Classifier syntax supports the definition of types within a 
+						<a class="link" href="OCLinEcore.html#OCLinEcore-Package" title="Package">Package</a>.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-classifiers.png"></div>
+<p>
+					
+</p>
+<p>A Classifier may be</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>a 
+								<a class="link" href="OCLinEcore.html#OCLinEcore-Class" title="Class">Class</a>
+							
+</p>
+</li>
+<li class="listitem">
+<p>a 
+								<a class="link" href="OCLinEcore.html#OCLinEcore-DataType" title="DataType">DataType</a>
+							
+</p>
+</li>
+<li class="listitem">
+<p>an 
+								<a class="link" href="OCLinEcore.html#OCLinEcore-Enumeration" title="Enumeration">Enumeration</a> with associated 
+								<a class="link" href="OCLinEcore.html#OCLinEcore-EnumerationLiteral" title="EnumerationLiteral">EnumerationLiterals</a>
+							
+</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="DataType">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="OCLinEcore-DataType"></a>DataType</h4>
+</div>
+</div>
+</div>
+<p>The DataType syntax supports the definition of an EDataType.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-datatype1.png"></div>
+<p>
+					
+</p>
+<p>A DataType has a name and optionally template parameters and an instance class name.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-datatype2.png"></div>
+<p>
+					
+</p>
+<p>A DataType may be serializable; by default it is not.</p>
+<p>The content of a DataType may comprise 
+						<a class="link" href="OCLinEcore.html#OCLinEcore-Constraint" title="Constraints">invariants</a> and 
+						<a class="link" href="OCLinEcore.html#OCLinEcore-Annotation" title="Annotation">Annotations</a>.
+					</p>
+</div>
+<div class="section" title="Enumeration">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="OCLinEcore-Enumeration"></a>Enumeration</h4>
+</div>
+</div>
+</div>
+<p>The Enumeration syntax supports the definition of an EEnum.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-enumeration1.png"></div>
+<p>
+					
+</p>
+<p>An Enumeration has a name and optionally template parameters and an instance class name.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-enumeration2.png"></div>
+<p>
+					
+</p>
+<p>An Enumeration may be serializable; by default it is not.</p>
+<p>The content of an Enumeration may comprise enumeration literals, 
+						<a class="link" href="OCLinEcore.html#OCLinEcore-Constraint" title="Constraints">invariants</a> and 
+						<a class="link" href="OCLinEcore.html#OCLinEcore-Annotation" title="Annotation">Annotations</a>.
+					</p>
+</div>
+<div class="section" title="EnumerationLiteral">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="OCLinEcore-EnumerationLiteral"></a>EnumerationLiteral</h4>
+</div>
+</div>
+</div>
+<p>The EnumerationLiteral syntax supports the definition of an EEnumLiteral.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-enumerationliteral.png"></div>
+<p>
+					
+</p>
+<p>An EnumerationLiteral has a name and optionally a value.</p>
+<p>The content of an EnumerationLiteral may comprise 
+						<a class="link" href="OCLinEcore.html#OCLinEcore-Annotation" title="Annotation">Annotations</a>.
+					</p>
+</div>
+<div class="section" title="Class">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="OCLinEcore-Class"></a>Class</h4>
+</div>
+</div>
+</div>
+<p>The Class syntax supports the definition of an EClass.</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>optional abstract prefix</p>
+</li>
+<li class="listitem">
+<p>optional extension of other classifiers</p>
+</li>
+<li class="listitem">
+<p>optional invariants, annotations, features and operations</p>
+</li>
+</ul>
+</div>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-class1.png"></div>
+<p>
+					
+</p>
+<p>A Class may be abstract has a name and optionally template parameters.</p>
+<p>(NB, the &lsquo;abstract&rsquo; prefix is optional, even though the figure indicates that it is mandatory.)</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-class2.png"></div>
+<p>
+					
+</p>
+<p>A Class may extend one or more other 
+						<a class="link" href="OCLinEcore.html#OCLinEcore-TypeRef" title="Types">Classes</a> that may be specialized using the template parameters.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-class3.png"></div>
+<p>
+					
+</p>
+<p>A Class may have an instance class name, and may also be declared to be an interface.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-class4.png"></div>
+<p>
+					
+</p>
+<p>The content of a Class may comprise 
+						<a class="link" href="OCLinEcore.html#OCLinEcore-Annotation" title="Annotation">Annotations</a>, 
+						<a class="link" href="OCLinEcore.html#OCLinEcore-Operation" title="Operation">Operations</a>, 
+						<a class="link" href="OCLinEcore.html#OCLinEcore-StructuralFeature" title="StructuralFeature">StructuralFeatures</a> and 
+						<a class="link" href="OCLinEcore.html#OCLinEcore-Constraint" title="Constraints">invariants</a>.
+					</p>
+</div>
+<div class="section" title="StructuralFeature">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="OCLinEcore-StructuralFeature"></a>StructuralFeature</h4>
+</div>
+</div>
+</div>
+<p>The StructuralFeature syntax supports the definition of the StructuralFeatures.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-features.png"></div>
+<p>
+					
+</p>
+<p>A StructuralFeature may be</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>an 
+								<a class="link" href="OCLinEcore.html#OCLinEcore-Attribute" title="Attribute">Attribute</a>
+							
+</p>
+</li>
+<li class="listitem">
+<p>a 
+								<a class="link" href="OCLinEcore.html#OCLinEcore-Reference" title="Reference">Reference</a>
+							
+</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="Attribute">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="OCLinEcore-Attribute"></a>Attribute</h4>
+</div>
+</div>
+</div>
+<p>The Attribute syntax supports the definition of an EAttribute; a Property with a DataType value.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-attribute1.png"></div>
+<p>
+					
+</p>
+<p>An Attribute may be static and has a name.</p>
+<p>The 
+						<code class="code">static</code> qualifier supports declaration of static properties which are supported by UML and OCL. Note that Ecore does not support static properties.
+					</p>
+<p>The 
+						<code class="code">definition</code> qualifier is an obsolete experimental syntax for Complete OCL definitions.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-attribute2.png"></div>
+<p>
+					
+</p>
+<p>An Attribute may may have a 
+						<a class="link" href="OCLinEcore.html#OCLinEcore-TypeRef" title="Types">Type</a> and multiplicity.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-attribute3.png"></div>
+<p>
+					
+</p>
+<p>An Attribute may a simple initializer and a variety of qualifiers:</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+								
+<code class="code">derived</code> specifies a derived attribute (default 
+								<code class="code">!derived</code>)
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">id</code> specifies that the attribute provides the identifier if its class (default 
+								<code class="code">!id</code>)
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">ordered</code> specifies that the attribute elements are ordered (default 
+								<code class="code">!ordered</code>)
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">readonly</code> specifies that the attribute elements are readonly (not changeable) (default 
+								<code class="code">!readonly</code>)
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">transient</code> specifies that the attribute elements are computed on the fly (default 
+								<code class="code">!transient</code>)
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">unique</code> specifies that there are no duplicate attribute elements (default 
+								<code class="code">unique</code>)
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">unsettable</code> specifies that attribute element may have no value (default 
+								<code class="code">!unsettable</code>)
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">volatile</code> specifies that the attribute elements are not persisted (default 
+								<code class="code">!volatile</code>)
+							</p>
+</li>
+</ul>
+</div>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-attribute4.png"></div>
+<p>
+					
+</p>
+<p>The content of an Attribute may comprise 
+						<a class="link" href="OCLinEcore.html#OCLinEcore-Annotation" title="Annotation">Annotations</a>, initial and derived 
+						<a class="link" href="OCLinEcore.html#OCLinEcore-Constraint" title="Constraints">constraints</a>.
+					</p>
+<p>A simple constant value may be defined using the initializer. A computed value requires the use of a constraint. If both initial and derived constraints are present, the initial constraint is ignored.</p>
+<p>The defaults for multiplicity lower and upper bound and for 
+						<code class="code">ordered</code> and 
+						<code class="code">unique</code> follow the UML specification and so corresponds to a single element Set that is 
+						<code class="code">[1] {unique,!ordered}</code>.
+						Note that UML defaults differ from the Ecore defaults which correspond to an optional element OrderedSet, that is 
+						<code class="code">[?] {ordered,unique}</code>.
+					</p>
+</div>
+<div class="section" title="Reference">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="OCLinEcore-Reference"></a>Reference</h4>
+</div>
+</div>
+</div>
+<p>The Reference syntax supports the definition of an EReference; a Property with a Class value.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-reference1.png"></div>
+<p>
+					
+</p>
+<p>An Reference may be static and has a name and optionally an opposite name.</p>
+<p>The 
+						<code class="code">static</code> qualifier supports declaration of static properties which are supported by UML and OCL. Note that Ecore does not support static properties.
+					</p>
+<p>The 
+						<code class="code">definition</code> qualifier is an obsolete experimental syntax for Complete OCL definitions.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-reference2.png"></div>
+<p>
+					
+</p>
+<p>A Reference may may have a 
+						<a class="link" href="OCLinEcore.html#OCLinEcore-TypeRef" title="Types">Type</a> and multiplicity.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-reference3.png"></div>
+<p>
+					
+</p>
+<p>A Reference may a simple initializer and a variety of qualifiers:</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+								
+<code class="code">composes</code> specifies a composed (containing) reference (default 
+								<code class="code">!composes</code>)
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">derived</code> specifies a derived reference (default 
+								<code class="code">!derived</code>)
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">ordered</code> specifies that the reference elements are ordered (default 
+								<code class="code">!ordered</code>)
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">readonly</code> specifies that the reference elements are readonly (not changeable) (default 
+								<code class="code">!readonly</code>)
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">resolve</code> specifies that the reference elements proxies may need resolution (default 
+								<code class="code">!resolve</code>)
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">transient</code> specifies that the reference elements are computed on the fly (default 
+								<code class="code">!transient</code>)
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">unique</code> specifies that there are no duplicate reference elements (default 
+								<code class="code">unique</code>)
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">unsettable</code> specifies that reference element may have no value (default 
+								<code class="code">!unsettable</code>)
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">volatile</code> specifies that the reference elements are not persisted (default 
+								<code class="code">!volatile</code>)
+							</p>
+</li>
+</ul>
+</div>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-reference4.png"></div>
+<p>
+					
+</p>
+<p>The content of a Reference may comprise keys, 
+						<a class="link" href="OCLinEcore.html#OCLinEcore-Annotation" title="Annotation">Annotations</a>, initial and derived 
+						<a class="link" href="OCLinEcore.html#OCLinEcore-Constraint" title="Constraints">constraints</a>.
+					</p>
+<p>A simple constant value may be defined using the initializer. A computed value requires the use of a constraint. If both initial and derived constraints are present, the initial constraint is ignored.</p>
+<p>The defaults for multiplicity lower and upper bound and for 
+						<code class="code">ordered</code> and 
+						<code class="code">unique</code> follow the UML specification and so corresponds to a single element Set that is 
+						<code class="code">[1] {unique,!ordered}</code>.
+						Note that UML defaults differ from the Ecore defaults which correspond to an optional element OrderedSet, that is 
+						<code class="code">[?] {ordered,unique}</code>.
+					</p>
+</div>
+<div class="section" title="Operation">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="OCLinEcore-Operation"></a>Operation</h4>
+</div>
+</div>
+</div>
+<p>The Operation syntax supports the definition of an EOperation.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-operation1.png"></div>
+<p>
+					
+</p>
+<p>An Operation may be static and has a name and optionally template parameters.</p>
+<p>The 
+						<code class="code">static</code> qualifier supports declaration of static operations which are supported by UML and OCL. Note that Ecore does not support static operations.
+					</p>
+<p>The 
+						<code class="code">definition</code> qualifier is an obsolete experimental syntax for Complete OCL definitions.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-operation2.png"></div>
+<p>
+					
+</p>
+<p>An Operation has zero of more 
+						<a class="link" href="OCLinEcore.html#OCLinEcore-Parameter" title="Parameter">Parameters</a>.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-operation3.png"></div>
+<p>
+					
+</p>
+<p>An Operation may have a return 
+						<a class="link" href="OCLinEcore.html#OCLinEcore-TypeRef" title="Types">Type</a> and multiplicity.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-operation4.png"></div>
+<p>
+					
+</p>
+<p>An Operation may declare zero or more throw 
+						<a class="link" href="OCLinEcore.html#OCLinEcore-TypeRef" title="Types">Exceptions</a>.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-operation5.png"></div>
+<p>
+					
+</p>
+<p>An Operation may have a variety of qualifiers:</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+								
+<code class="code">derived</code> specifies a derived operation (default 
+								<code class="code">!derived</code>)
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">ordered</code> specifies that the returned elements are ordered (default 
+								<code class="code">!ordered</code>)
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">unique</code> specifies that there are no duplicate returned elements (default 
+								<code class="code">unique</code>)
+							</p>
+</li>
+</ul>
+</div>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-operation6.png"></div>
+<p>
+					
+</p>
+<p>The content of an Operation may comprise 
+						<a class="link" href="OCLinEcore.html#OCLinEcore-Annotation" title="Annotation">Annotations</a>, precondition, postcondition and body 
+						<a class="link" href="OCLinEcore.html#OCLinEcore-Constraint" title="Constraints">constraints</a>.
+					</p>
+<p>The 
+						<code class="code">static</code> qualifier supports declaration of static operations which are supported by UML and OCL. Note that Ecore does not support static operations.
+					</p>
+<p>The 
+						<code class="code">definition</code> qualifier is an obsolete experimental syntax for Complete OCL definitions.
+					</p>
+<p>The defaults for multiplicity lower and upper bound and for 
+						<code class="code">ordered</code> and 
+						<code class="code">unique</code> follow the UML specification and so corresponds to a single element Set that is 
+						<code class="code">[1] {unique,!ordered}</code>.
+						Note that UML defaults differ from the Ecore defaults which correspond to an optional element OrderedSet, that is 
+						<code class="code">[?] {ordered,unique}</code>.
+					</p>
+</div>
+<div class="section" title="Parameter">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="OCLinEcore-Parameter"></a>Parameter</h4>
+</div>
+</div>
+</div>
+<p>The Parameter syntax supports the definition of an EParameter.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-parameter1.png"></div>
+<p>
+					
+</p>
+<p>A Parameter has a name, optional "Type:#OCLinEcore-TypeRef and multiplicity</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-parameter2.png"></div>
+<p>
+					
+</p>
+<p>A Parameter may have a variety of qualifiers:</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+								
+<code class="code">ordered</code> specifies that the returned elements are ordered (default 
+								<code class="code">!ordered</code>)
+							</p>
+</li>
+<li class="listitem">
+<p>
+								
+<code class="code">unique</code> specifies that there are no duplicate returned elements (default 
+								<code class="code">unique</code>)
+							</p>
+</li>
+</ul>
+</div>
+<p>The content of a Parameter may comprise 
+						<a class="link" href="OCLinEcore.html#OCLinEcore-Annotation" title="Annotation">Annotations</a>.
+					</p>
+<p>The defaults for multiplicity lower and upper bound and for 
+						<code class="code">ordered</code> and 
+						<code class="code">unique</code> follow the UML specification and so corresponds to a single element Set that is 
+						<code class="code">[1] {unique,!ordered}</code>.
+						Note that UML defaults differ from the Ecore defaults which correspond to an optional element OrderedSet, that is 
+						<code class="code">[?] {ordered,unique}</code>.
+					</p>
+</div>
+<div class="section" title="Types">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="OCLinEcore-TypeRef"></a>Types</h4>
+</div>
+</div>
+</div>
+<p>The Type syntax supports the definition of EType and EGenericType in conjunction with an ETypedElement. The syntax is very similar to Java.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-types.png"></div>
+<p>
+					
+</p>
+<p>
+						
+<span class="emphasis"><em>PrimitiveTypeRefCS</em></span> provides access to the built-in OCL types and their corrersponding Ecore counterparts
+					</p>
+<table id="N10C77">
+<tr>
+							
+<th>OCL type</th>
+							<th>Ecore type</th>
+						
+</tr>
+<tr>
+							
+<td>Boolean</td>
+							<td>EBoolean</td>
+						
+</tr>
+<tr>
+							
+<td>Integer</td>
+							<td>EBigInteger</td>
+						
+</tr>
+<tr>
+							
+<td>Real</td>
+							<td>EBigDecimal</td>
+						
+</tr>
+<tr>
+							
+<td>String</td>
+							<td>EString</td>
+						
+</tr>
+<tr>
+							
+<td>UnlimitedNatural</td>
+							<td>EBigInteger</td>
+						
+</tr>
+</table>
+<p>
+						
+<span class="emphasis"><em>TypedTypeRefCS</em></span> provides for user defined types and their template parameterisation.
+					</p>
+</div>
+<div class="section" title="AnnotationElement">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="OCLinEcore-Annotations"></a>AnnotationElement</h4>
+</div>
+</div>
+</div>
+<p>The AnnotationElement syntax supports the definition of an EAnnotation hierarchy with details, references and contents.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-annotations.png"></div>
+<p>
+					
+</p>
+<p>An AnnotationElement may be 
+						<a class="link" href="OCLinEcore.html#OCLinEcore-Annotation" title="Annotation">Annotation</a> or 
+						<a class="link" href="OCLinEcore.html#OCLinEcore-Documentation" title="Documentation">Documentation</a>.  
+					</p>
+</div>
+<div class="section" title="Annotation">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="OCLinEcore-Annotation"></a>Annotation</h4>
+</div>
+</div>
+</div>
+<p>The Annotation syntax supports the definition of an EAnnotation hierarchy with details, references and contents.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-annotation1.png"></div>
+<p>
+					
+</p>
+<p>An Annotation has a source URI, which may be specified without quotes if the URI is just a name.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-annotation2.png"></div>
+<p>
+					
+</p>
+<p>An Annotation may have 
+						<a class="link" href="OCLinEcore.html#OCLinEcore-Detail" title="Detail">Details</a>.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-annotation3.png"></div>
+<p>
+					
+</p>
+<p>The content of an Annotation may comprise</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+								
+<a class="link" href="OCLinEcore.html#OCLinEcore-Annotation" title="Annotation">Annotations</a>
+							
+</p>
+</li>
+<li class="listitem">
+<p>content elements</p>
+</li>
+<li class="listitem">
+<p>names that reference other elements</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="Detail">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="OCLinEcore-Detail"></a>Detail</h4>
+</div>
+</div>
+</div>
+<p>The Detail syntax supports the definition of a detail of an EAnnotation.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-detail.png"></div>
+<p>
+					
+</p>
+<p>A detail comprises a detail key and optional value.</p>
+</div>
+<div class="section" title="Documentation">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="OCLinEcore-Documentation"></a>Documentation</h4>
+</div>
+</div>
+</div>
+<p>The Documentation syntax is an experimental syntactic sugar for a genmodel annotation.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-annotations.png"></div>
+<p>
+					
+</p>
+<p>It is likely to be replaced by a Javadoc-style comment that will be persisted in Ecore.</p>
+</div>
+<div class="section" title="Constraints">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="OCLinEcore-Constraint"></a>Constraints</h4>
+</div>
+</div>
+</div>
+<p>The Constraints syntax supports the embedding of OCL expressions as invariants for classes, as preconditions, postconditions or bodies for operations and initial or derived values for properties.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-constraints.png"></div>
+<p>
+					
+</p>
+<p>The integration occurs through the 
+						<span class="emphasis"><em>SpecificationCS</em></span> rule that invokes an 
+						<a class="link" href="EssentialOCL.html#EssentialOCL-Exp" title="OCL Expression">ExpCS</a>. (The alternative 
+						<span class="emphasis"><em>UnquotedString</em></span> is an implementation detail that supports the import from Ecore where the OCL is in unparsed textual form rather than an analyzed syntax tree.)
+					</p>
+<p>A class invariant may be 
+						<code class="code">callable</code> to specify that the Ecore representation is to use the EOperation rather than EAnnotation representation.
+					</p>
+<p>A class invariant optionally supports a second OCL expression as a parenthesis on the invariant name. This parenthesized expression is invoked when an invariant fails in order to provide a user-defined failure message. Whether this message is an error or a warning is determined by the evaluation of the invariant:</p>
+</div>
+<div class="section" title="Terminals">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Terminals"></a>Terminals</h4>
+</div>
+</div>
+</div>
+<p>The OCLinEcore grammar extens the Esstial OCL grammar which should be consulted for definition of INT, and ExpCS.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1200-terminals.png"></div>
+<p>
+					
+</p>
+</div>
+<div class="section" title="Names">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Names"></a>Names </h4>
+</div>
+</div>
+</div>
+<p>An Unrestricted name is any name other than the OCL reserved keywords. See 
+						<a class="link" href="EssentialOCL.html#EssentialOCL-UnrestrictedName" title="UnrestrictedName">UnrestrictedName</a>.
+					</p>
+<p>An Unreserved name is any name other than the OCL reserved keywords above or the OCL reserved types. See 
+						<a class="link" href="EssentialOCL.html#EssentialOCL-UnreservedName" title="UnreservedName">UnreservedName</a>.
+					</p>
+<p>If you need to use any of these names or non-alphanumeric names, you must use the escaped string syntax for a name: e.g. 
+						<code class="code">_'true'</code>. The usual Java backslash escapes, with the exception of octal are supported: 
+						<code class="code">_'new-lines\n\x0a\u000a'</code>
+					
+</p>
+</div>
+<div class="section" title="Comments">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Comments"></a>Comments</h4>
+</div>
+</div>
+</div>
+<p>Single line comments are supported by ignoring all text following 
+						<code class="code">--</code>.
+					</p>
+<p>Multi line comments are supported by ignoring all text within 
+						<code class="code">/* ... */</code>.
+					</p>
+<p>Documentation comments are supported for all text within 
+						<code class="code">/** ... */</code>. Unfortunately no documentation EAnnotation is currently created.
+					</p>
+</div>
+</div>
+<div class="section" title="Limitations">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Limitations"></a>Limitations</h3>
+</div>
+</div>
+</div>
+<p>OCLinEcore supports the full capabilities of Ecore, however the support for upper and lower bounds on generic types has not been adequately tested.</p>
+<p>OCLinEcore provides primary syntaxes for some Ecore conventions such as genmodel annotations and constraints; much more support is needed for feature maps.</p>
+</div>
+</div>
+</body>
+</html>

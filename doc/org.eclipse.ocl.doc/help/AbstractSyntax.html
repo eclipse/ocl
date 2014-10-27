@@ -1,0 +1,294 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>OCL Abstract Syntax Model</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="ProgrammersGuide.html" title="Classic Ecore/UML Programmers Guide">
+<link rel="prev" href="ContentAssistSupport.html" title="Content Assist Support">
+<link rel="next" href="CustomizingtheEnvironment.html" title="Customizing the Environment">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">OCL Abstract Syntax Model</h1>
+<div class="section" title="OCL Abstract Syntax Model">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="AbstractSyntax"></a>OCL Abstract Syntax Model</h2>
+</div>
+</div>
+</div>
+<p>The OCL Abstract Syntax Model is defined by the
+
+				<a class="ulink" href="http://www.omg.org/spec/OCL" target="_new">OCL Language 2.4 specification</a> .
+				We will not attempt to describe this model, here.  However, the Eclipse
+				implementation of OCL defines some extensions to this model that provide
+				additional services.  The most important of these is support for the
+
+				<span class="emphasis"><em>Visitor</em></span> design pattern.
+			</p>
+<p>
+				
+</p>
+<div class="mediaobject">
+<img src="images/5150-ast.png"></div>
+<p>
+			
+</p>
+<div class="section" title="The Visitable and Visitor Interfaces">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="TheVisitableandVisitorInterfaces"></a>The Visitable and Visitor Interfaces</h3>
+</div>
+</div>
+</div>
+<p>All of the metaclasses in the Abstract Syntax Model (nodes in the AST) that can be visited implement the 
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/utilities/Visitable.html" target="_new">
+						<code class="code">Visitable</code>
+					</a> interface.  It define a single operation 
+					<code class="code">accept(Visitor)</code>. This method delegates to the appropriate 
+					<code class="code">visitXyz(Xyz)</code> method of the 
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/utilities/Visitor.html" target="_new">
+						<code class="code">Visitor</code>
+					</a> . The direct implementors of the 
+					<code class="code">Visitable</code> interface are the 
+					<code class="code">OCLExpression</code> and those metaclasses of the 
+					<code class="code">Expressions</code> package that do not conform to 
+					<code class="code">OCLExpression</code>:
+				</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+							
+<code class="code">Variable</code>
+						
+</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">CollectionLiteralPart</code>
+						
+</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">TupleLiteralPart</code>
+						
+</p>
+</li>
+<li class="listitem">
+<p>
+							
+<code class="code">ExpressionInOCL</code>
+						
+</p>
+</li>
+</ul>
+</div>
+<p>This last is not defined in the 
+					<code class="code">Expressions</code> package
+					because it pertains to the placement of OCL in 
+					<code class="code">Constraint</code>
+					elements in models.
+				</p>
+<p>The OCL parser, internally, defines a few implementations of visitors, including
+					a 
+					<code class="code">ValidationVisitor</code> for validating OCL expressions and an
+
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/EvaluationVisitor.html" target="_new">
+						<code class="code">EvaluationVisitor</code>
+					</a> for evaluating OCL expressions.
+				</p>
+</div>
+<div class="section" title="Implementing a Visitor">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="ImplementingaVisitor"></a>Implementing a Visitor</h3>
+</div>
+</div>
+</div>
+<p>The best way to implement a visitor is to extend the
+
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/utilities/AbstractVisitor.html" target="_new">
+						<code class="code">AbstractVisitor</code>
+					</a> class.  It provides a 
+					<code class="code">result</code> variable of the generic
+					type parameter type 
+					<code class="code">T</code> to store the result computed
+					by the visitor (optional) and a convenient pattern of selective method overrides
+					to process only those nodes of interest for the task at hand.
+				</p>
+<p>The 
+					<code class="code">AbstractVisitor</code> provides implementations of all
+					of the 
+					<code class="code">visitXyz()</code> interface methods that simply
+					return the current 
+					<code class="code">result</code> value.  Furthermore, for
+					any internal nodes of the syntax tree (such as
+
+					<code class="code">OperationCallExp</code> and 
+					<code class="code">IfExp</code>),
+					the 
+					<code class="code">visitXyz()</code> methods recursively visit the child
+					nodes, feeding the results of those descents into a 
+					<code class="code">handleXyz()</code>
+					method that the subclass can override to compute some result from the child
+					results.
+				</p>
+<p>Thus, a subclass needs only to selectively override the default implementations
+					of 
+					<code class="code">visitXyz()</code> methods for leaf tree nodes and
+
+					<code class="code">handleXyz()</code> methods for non-leaves.  For example, to
+					find all variables that are declared but never used:
+				</p>
+<div class="literallayout">
+<p>
+<code class="code">OCLExpression&lt;Classifier&gt;&nbsp;expr&nbsp;=&nbsp;getExpression();&nbsp;&nbsp;//&nbsp;hypothetical&nbsp;source&nbsp;of&nbsp;an&nbsp;expression<br>
+
+<br>
+Set&lt;Variable&lt;Classifier,&nbsp;Parameter&gt;&gt;&nbsp;variables&nbsp;=&nbsp;expr.accept(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;AbstractVisitor&lt;Set&lt;Variable&lt;Classifier,&nbsp;Parameter&gt;&gt;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Classifier,&nbsp;Operation,&nbsp;Property,&nbsp;EnumerationLiteral,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Parameter,&nbsp;State,&nbsp;CallOperationAction,&nbsp;SendSignalAction,&nbsp;Constraint&gt;(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;HashSet&lt;Variable&lt;Classifier,&nbsp;Parameter&gt;&gt;())&nbsp;{&nbsp;&nbsp;//&nbsp;initialize&nbsp;the&nbsp;result<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Override<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;Set&lt;Variable&lt;Classifier,&nbsp;Parameter&gt;&gt;&nbsp;handleVariable(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Variable&lt;Classifier,&nbsp;Parameter&gt;&nbsp;variable,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set&lt;Variable&lt;Classifier,&nbsp;Parameter&gt;&gt;&nbsp;initResult)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result.add(variable);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;result;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Override<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;Set&lt;Variable&lt;Classifier,&nbsp;Parameter&gt;&gt;&nbsp;visitVariableExp(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VariableExp&lt;Classifier,&nbsp;Parameter&gt;&nbsp;v)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result.remove(v.getReferredVariable());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;result;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}});<br>
+
+<br>
+Set&lt;String&gt;&nbsp;varNames&nbsp;=&nbsp;new&nbsp;HashSet&lt;String&gt;();<br>
+for&nbsp;(Variable&lt;?,&nbsp;?&gt;&nbsp;next&nbsp;:&nbsp;variables)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;varNames.add(next.getName());<br>
+}<br>
+
+<br>
+System.out.println("Unused&nbsp;variables:&nbsp;+&nbsp;"&nbsp;varNames);<br>
+
+</code>
+</p>
+</div>
+<p></p>
+</div>
+<div class="section" title="The OppositePropertyCallExp Extension">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="HiddenOpposites"></a>The OppositePropertyCallExp Extension</h3>
+</div>
+</div>
+</div>
+<p>In Ecore models, a reference may have defined an 
+					<code class="code">opposite</code> reference, usually owned by the class that is
+					the type of the forward reference. An opposite reference has several, often undesirable or even
+					prohibitive, implications on the class owning it:
+				</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>A getter and, for settable features with upper multiplicity 1, a setter will be added, requiring the class to know the class owning the forward reference. This would create cyclic component references if the two classes lived in different components and would therefore not be possible.</p>
+</li>
+<li class="listitem">
+<p>The default serialization format and usually the storage format for non-default model stores changes to include the opposite reference.</p>
+</li>
+</ul>
+</div>
+<p>Yet, particularly for expressing constraints over the instance models it is often instrumental
+					to be able to navigate such forward references also in reverse. The 
+					<code class="code">OppositePropertyCallExp</code>
+					class which inherits from 
+					<code class="code">NavigationCallExp</code> and is sibling of
+
+					<code class="code">PropertyCallExp</code> allows for this reverse navigation in OCL. It
+					points to the forward reference, and its semantics are to navigate this reference in reverse.
+				</p>
+<p>To allow for convenient creation of such expressions in the OCL concrete syntax, the standard
+					property call syntax, such as 
+					<code class="code">self.x</code> can be used, where 
+					<code class="code">x</code>
+					is not the name of a forward reference on 
+					<code class="code">self</code>'s class but rather
+					an annotated name on a reference using 
+					<code class="code">self</code>'s class or any of its
+					base classes as its type. To enable this feature, use the special environment factory class
+
+					<code class="code">EcoreEnvironmentFactoryWithHiddenOpposites</code> when initializing the
+					OCL environment, e.g., by passing such an object to the 
+					<code class="code">OCL.newInstance(...)</code>
+					method.
+				</p>
+<p>The name for the reverse navigation can be specified by an
+
+					<a class="ulink" href="http://download.eclipse.org/modeling/emf/emf/javadoc/2.6.0/org/eclipse/emf/ecore/EAnnotation.html" target="_new">
+						<code class="code">EAnnotation</code>
+					</a> with
+					source 
+					<code class="code">http://schema.omg.org/spec/MOF/2.0/emof.xml</code> and with
+					details key 
+					<code class="code">Property.oppositeRoleName</code>. The details value
+					contains the name by which the &ldquo;hidden&rdquo; opposite can be referred to in OCL
+					expressions.
+				</p>
+<p>If OCL delegates are to be used, the standard EPackage annotations with 
+					<code class="code">invocationDelegate</code>, 
+					<code class="code">settingDelegate</code> and 
+					<code class="code">validationDelegate</code> details for the 
+					<code class="code">http://www.eclipse.org/emf/2002/Ecore</code> source must be augmented as shown by a further 
+					<code class="code">hiddenOpposites</code> detail for the 
+					<code class="code">http://www.eclipse.org/emf/2002/Ecore/OCL</code> source.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/5155-hidden-opposites.png"></div>
+<p>
+				
+</p>
+<p>This additional annotation causes the 
+					<code class="code">EnvironmentFactory</code>
+					functionality for the EPackage to be provided by an instance of the
+
+					<code class="code">EcoreEnvironmentFactoryWithHiddenOpposites</code> class
+					which uses the 
+					<code class="code">DefaultOppositeEndFinder</code> class will be used for finding
+					and navigating the hidden opposites. More substantial customisation is possible by specifying
+					an 
+					<code class="code">environmentFactoryClass</code> detail with the fully qualified
+					name of a derived 
+					<code class="code">EcoreEnvironmentFactory</code> that
+					provides a constructor taking an 
+					<code class="code">EPackage.Registry</code> argument.
+					Note, that the class specified must be visible by your Ecore model&rsquo;s bundle.
+				</p>
+</div>
+</div>
+</body>
+</html>

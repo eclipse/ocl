@@ -1,0 +1,320 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Users Guide</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="index.html" title="OCL Documentation">
+<link rel="prev" href="GettingStarted.html" title="Getting Started">
+<link rel="next" href="EssentialOCL.html" title="The Essential OCL Language">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Users Guide</h1>
+<div class="chapter" title="Users Guide">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title">
+<a name="UsersGuide"></a>Users Guide</h2>
+</div>
+</div>
+</div>
+<div class="toc">
+<dl>
+<dt>
+<span class="section"><a href="UsersGuide.html#EclipseOCLs">The two Eclipse OCLs</a></span>
+</dt>
+<dt>
+<span class="section"><a href="EssentialOCL.html">The Essential OCL Language</a></span>
+</dt>
+<dt>
+<span class="section"><a href="OCLinEcore.html">The OCLinEcore Language</a></span>
+</dt>
+<dt>
+<span class="section"><a href="CompleteOCL.html">The Complete OCL Language</a></span>
+</dt>
+<dt>
+<span class="section"><a href="OCLstdlib.html">The OCL Standard Library Language</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Editors.html">Editors</a></span>
+</dt>
+<dt>
+<span class="section"><a href="InteractiveOCL.html">Console</a></span>
+</dt>
+<dt>
+<span class="section"><a href="ValidityView.html">Validity View (new in Luna)</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Debugger.html">Debugger (new in Luna)</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Integration.html">OCL Integration</a></span>
+</dt>
+<dt>
+<span class="section"><a href="OCLinPapyrus.html">OCL in UML (using Papyrus)</a></span>
+</dt>
+<dt>
+<span class="section"><a href="UserInterface.html">User Interface</a></span>
+</dt>
+</dl>
+</div>
+<p>The core functionality of OCL that supports expressions over models is called the Essential OCL. This language is of very limited use by itself since there is no way in which the models can be provided.
+			Essential OCL is therefore extended in various ways to provide this missing context.</p>
+<p>The 
+			<a class="link" href="CompleteOCL.html" title="The Complete OCL Language">Complete OCL</a> provides a language for a document in which OCL complements an existing meta-model with invariants, and additional features.
+		</p>
+<p>
+			
+<a class="link" href="OCLinEcore.html" title="The OCLinEcore Language">OCLinEcore</a> embeds OCL within the annotations of an Ecore model to enrich that model.
+		</p>
+<p>UML supports the use of OCL constraints as a form of OpaqueExpression, and UML tools such as Papyrus support those constraints for UML models.</p>
+<p>The Eclipse OCL project provides four OCL languages to support these usages.</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+					
+<a class="link" href="EssentialOCL.html" title="The Essential OCL Language">Essential OCL</a> provides the core extensible capability of specifying expressions for models.
+				</p>
+</li>
+</ul>
+</div>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+					
+<a class="link" href="CompleteOCL.html" title="The Complete OCL Language">Complete OCL</a> provides the ability to use OCL in a self-standing document to complement an existing meta-model with invariants, and additional features.
+				</p>
+</li>
+</ul>
+</div>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+					
+<a class="link" href="OCLinEcore.html" title="The OCLinEcore Language">OCLinEcore</a> enables OCL to be embedded within an Ecore meta-model to add invariants for classifiers, bodies for operations and computed values for properties.
+				</p>
+</li>
+</ul>
+</div>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+					
+<a class="link" href="OCLstdlib.html" title="The OCL Standard Library Language">OCLstdlib</a> supports the definition of the standard and custom OCL Standard Libraries.
+				</p>
+</li>
+</ul>
+</div>
+<div class="section" title="The two Eclipse OCLs">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="EclipseOCLs"></a>The two Eclipse OCLs</h2>
+</div>
+</div>
+</div>
+<p>The Eclipse OCL project is making a transition to a new underlying infrastructure.</p>
+<div class="section" title="The Classic Eclipse OCL metamodels">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="TheClassicEclipseOCLmetamodels"></a>The Classic Eclipse OCL metamodels</h3>
+</div>
+</div>
+</div>
+<p>The Classic code base emphasized utility for Java programmers. It originally supported Ecore meta-models and evolved to support UML as well. An OCL Console was added to support interactive experimentation with OCL expressions.</p>
+<p>Interactions with the QVTd project resulted in a refactoring of the grammars so that they could be extended for use by QVT. At the same time the grammars were migrated to use LPG 2. </p>
+<p>The dual support for Ecore and UML was achieved by a shared generic meta-model in which the distinctions between Ecore and UML meta-models were accommodated by substantial (often ten parameter) template parameters lists. Sometimes these lists are hidden by derived bindings, but sometimes the full lists are exposed. This gives rather cumbersome Java code for the OCL developers and OCL consumers alike.</p>
+<p>The classic evaluator is tightly coupled to Ecore which might appear efficient, but the lack of separation of OCL-specification semantics from Java-implementation semantics makes accurate implementation of equality in nested collections hard to achieve.</p>
+<p>The classic code endeavored to comply with OCL specification despite significant ambiguities in the specification, but since the classic code evolved from an OCL 1.x compliance and Ecore utility there are a number of areas where accurate OMG compliance is hard to achieve.</p>
+<p>The classic code is provided primarily by the following plugins</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>org.eclipse.ocl</p>
+</li>
+<li class="listitem">
+<p>org.eclipse.ocl.ecore</p>
+</li>
+<li class="listitem">
+<p>org.eclipse.ocl.uml</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="The Unified or Pivot Eclipse OCL metamodel">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="TheUnifiedorPivotEclipseOCLmetamodel"></a>The Unified or Pivot Eclipse OCL metamodel</h3>
+</div>
+</div>
+</div>
+<p>The Unified or Pivot metamodel is a prototype for a resolution of a number of fundamental problems with the OCL 2.4 specification. The Pivot metamodel is derived from the UML metamodels for UML and OCL to provide a unified metamodel for UML with executable semantics.</p>
+<p>In practice, when using the Pivot metamodel for Ecore or UML metamodels, a Pivot metamodel instance is created on the fly to provide the unified merged OCL functionality for the Ecore or UML metamodel instances. </p>
+<p>From the specification perspective, the Pivot metamodel</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>is UML-aligned</p>
+</li>
+<li class="listitem">
+<p>supports modeling of the OCL standard library</p>
+</li>
+<li class="listitem">
+<p>supports &lsquo;merging&rsquo; of additional Complete OCL definitions</p>
+</li>
+<li class="listitem">
+<p>supports an interchangeable XMI representation</p>
+</li>
+<li class="listitem">
+<p>supports a fully reflective oclType()</p>
+</li>
+</ul>
+</div>
+<p>From the Eclipse perspective, the Pivot metamodel</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>hides Ecore differences with respect to EMOF</p>
+</li>
+<li class="listitem">
+<p>hides MDT/UML2 differences with respect to UML</p>
+</li>
+<li class="listitem">
+<p>allows much of the semantics to be defined by a single library model</p>
+</li>
+<li class="listitem">
+<p>allows user extension and replacement of the library model</p>
+</li>
+<li class="listitem">
+<p>allows for exact OMG compliance</p>
+</li>
+</ul>
+</div>
+<p>At the same time, the Values package that forms part of the specification has been implemented. This allows a clear separation of OCL-semantics, and although the extra object apparently wrapping each value might appear to incur overheads, we expect to streamline this so that the new structure is accurate and faster.</p>
+<p>The unified code is provided primarily by plugins that share the prefix</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>org.eclipse.ocl.examples</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="The transition">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Thetransition"></a>The transition</h3>
+</div>
+</div>
+</div>
+<p>This transition started in the Helios (3.0) release for which Xtext editors were provided for OCLinEcore, Complete OCL and the OCL Standard Library. There was then no Pivot meta-model and so the editors offered only syntactic validation. It was not possible to persist an AST as XMI or to evaluate code that had been parsed by the Xtext parsers. It was necessary to re-parse with the LPG parsers. </p>
+<p>In the Indigo (3.1) release, the Pivot metamodel prototype was introduced and used to support semantic validation within the Xtext editors. The OCL Standard Library was realised using the Pivot metamodel and a new highly extensible evaluator was implemented. These facilities are used by the new OCL Xtext Console. </p>
+<p>Therefore when using the OCL Xtext Console the contributing tools are</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Essential OCL Xtext editor</p>
+</li>
+<li class="listitem">
+<p>Pivot MetaModel</p>
+</li>
+<li class="listitem">
+<p>OCL-2.5.oclstdlib library</p>
+</li>
+<li class="listitem">
+<p>Pivot Evaluator</p>
+</li>
+<li class="listitem">
+<p>Pivot Debugger</p>
+</li>
+</ul>
+</div>
+<p>When using the classic OCL Console the contributing tools are</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>LPG parser and hand-coded Syntax Helper</p>
+</li>
+<li class="listitem">
+<p>Ecore (or UML) metamodel bindings</p>
+</li>
+<li class="listitem">
+<p>Hand coded library implementation</p>
+</li>
+<li class="listitem">
+<p>Classic evaluator</p>
+</li>
+</ul>
+</div>
+<p>Since these tools are different there may be occasions where the increased OMG compliance of the Pivot metamodel gives different behavior to the classic metamodels.</p>
+<p>In the Juno (3.2/4.0) release, there is a preliminary Java code generator for the Pivot metamodel so that all the parsing overheads and significant parts of the execution overheads of OCL embedded in Ecore models occurs at genmodel time rather than during execution.</p>
+<p>In the Kepler (3.3/4.1) release, the code generator was substantially improved and a number of internal APIs have evolved accordingly. UML support was improved to facilitate usage within Papyrus, and extensibility was improved for use by QVTd.</p>
+<p>In the Luna (3.4/5.0) release, further code generation improvements have been made and major new User Interface capabilities added. There is at last an OCL debugger and a Constraint Validity View.</p>
+<p>In the Mars (1.0/6.0) release, the transition should be complete and many org.eclipse.ocl.examples.* plugins will be renamed to org.eclipse.ocl.*. All functionality should use the new Pivot metamodel by default. However the classic Ecore and UML support will remain for compatibility.</p>
+</div>
+<div class="section" title="APIs">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="APIs"></a>APIs</h3>
+</div>
+</div>
+</div>
+<p>Eclipse OCL has two different styles of APIs</p>
+<div class="section" title="Tool APIs">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="ToolAPIs"></a>Tool APIs</h4>
+</div>
+</div>
+</div>
+<p>The major tool APIs originally provided by the org.eclipse.ocl.OCL class have evolved only slightly to org.eclipse.ocl.ecore.OCL and org.eclipse.ocl.uml.OCL for the classic metamodels and org.eclipse.ocl.examples.pivot.OCL for the Pivot metamodel.</p>
+<p>These APIs support the use of OCL as a tool to parse and evaluate constraints and queries.</p>
+<p>These APIs will change very little; just the package changes according to the chosen metamodel representation.</p>
+</div>
+<div class="section" title="Internal APIs">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="InternalAPIs"></a>Internal APIs</h4>
+</div>
+</div>
+</div>
+<p>The internal parsing APIs were made public in 1.3.0 to support parser extension by QVT. These APIs are very tightly coupled to a particular LPG implementation of a particular OCL grammar formulation. It is extremely difficult to replicate these APIs for the ANTLR grammar that underlies the Xtext editors. It is also doubtful whether these APIs can be preserved as the OCL specification is clarified to more clearly specify what words are reserved and what is extensible. </p>
+<p>It is therefore unlikely that the internal APIs for the classic metamodels will be replicated for the Pivot metamodel. However since an LPG grammar is significantly (ten-times) smaller and perhaps a bit faster (two-times) it is planned to provide an automated Xtext to LPG translation so that a smaller LPG grammar can populate the same auto-generated Concrete Syntax structures as the ANTLR grammar.</p>
+<p>This functionality is intended to form part of a new grammar extension API that will enable OCL-extending languages such as QVT to re-use and extend not only the grammar but also all the semantic scope resolution and concrete to abstract syntax mappings.</p>
+</div>
+<div class="section" title="Versions">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Versions"></a>Versions</h4>
+</div>
+</div>
+</div>
+<p>Eclipse version numbering policy requires that a major version change occurs when any re-exported component has a major version number change. Consequently when Eclipse UML moved from to UML 2.4 support (4.0.0) and again to UML 2.5 (5.0.0) a corresponding chnage was forced on the Classic UML support and this is the number that then applies to the whole of Eclipse OCL. However the Ecore dependencies are unchanged and so Ecore dependent releases have advanced more slowly; 3.2 accompanying 4.0 and now 3.4 accompanying 5.0.</p>
+<p>This is probably just as confusing for the developers as for consumers. It is however necessary to ensure that the minor changes in the Classic Ecore functionality are not presented as major changes to consumers. </p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Bag(T)</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="StandardLibrary.html" title="The OCL Standard Library">
+<link rel="prev" href="StandardLibrary.html" title="The OCL Standard Library">
+<link rel="next" href="Boolean.html" title="Boolean">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">
+				
+					Bag(T)
+				
+			</h1>
+<div class="section" title="Bag(T)">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="Bag"></a>
+				<span class="bold"><strong>
+					<code class="code">Bag(T)</code>
+				</strong></span>
+			
+</h2>
+</div>
+</div>
+</div>
+<p>A bag is a collection with duplicates allowed. That is, one object can be an element of a bag many times.
+				There is no ordering defined on the elements in a bag.
+				Bag is itself an instance of the metatype BagType.</p>
+<p>conformsTo 
+				<a class="link" href="Collection.html" title="Collection(T)">
+					<code class="code">Collection(T)</code>
+				</a>
+			
+</p>
+<p>
+				
+<span class="bold"><strong>Operations</strong></span>
+			
+</p>
+<p>
+				
+<code class="code">=(object2 : OclSelf) : Boolean</code>
+				precedence: 
+				<code class="code">EQUALITY</code>
+			
+</p>
+<p>True if 
+				<code class="code">self</code> and bag contain the same elements, the same number of times.
+			</p>
+<p>
+				
+<code class="code">&lt;&gt;(object2 : OclSelf) : Boolean</code>
+				precedence: 
+				<code class="code">EQUALITY</code>
+			
+</p>
+<p>
+				
+<code class="code">excluding(object : OclAny[?]) : Bag(T)</code>
+			
+</p>
+<p>The bag containing all elements of 
+				<code class="code">self</code> apart from all occurrences of object.
+			</p>
+<p>
+				
+<code class="code">excludingAll(objects : Collection(OclAny)) : Bag(T)</code>
+			
+</p>
+<p>The bag containing all elements of 
+				<code class="code">self</code> apart from all occurrences of all objects.
+			</p>
+<p>
+				
+<code class="code">flatten(T2)() : Bag(T2)</code>
+			
+</p>
+<p>Redefines the Collection operation. If the element type is not a collection type, this results in the same bag as 
+				<code class="code">self</code>.
+				If the element type is a collection type, the result is the bag containing all the elements of all the recursively flattened elements of 
+				<code class="code">self</code>.
+			</p>
+<p>
+				
+<code class="code">including(object : T[?]) : Bag(T)</code>
+			
+</p>
+<p>The bag containing all elements of 
+				<code class="code">self</code> plus object.
+			</p>
+<p>
+				
+<code class="code">includingAll(objects : Collection(T)) : Bag(T)</code>
+			
+</p>
+<p>The bag containing all elements of 
+				<code class="code">self</code> and objects.
+			</p>
+<p>
+				
+<code class="code">selectByKind(TT)(type : Metaclass(TT)) : Bag(TT)</code>
+			
+</p>
+<p>
+				
+<code class="code">selectByType(TT)(type : Metaclass(TT)) : Bag(TT)</code>
+			
+</p>
+<p>
+				
+<span class="bold"><strong>Iterations</strong></span>
+			
+</p>
+<p>
+				
+<code class="code">closure(i : T | lambda : Lambda T() : Set(T)) : Set(T)</code>
+			
+</p>
+<p>The closure of applying body transitively to every distinct element of the source collection.</p>
+<p>
+				
+<code class="code">collect(V)(i : T[?] | lambda : Lambda T() : V[?]) : Bag(V)</code>
+			
+</p>
+<p>
+				
+<code class="code">collectNested(V)(i : T[?] | lambda : Lambda T() : V[?]) : Bag(V)</code>
+			
+</p>
+<p>The Bag of elements which results from applying body to every member of the source nonordered collection.</p>
+<p>
+				
+<code class="code">reject(i : T[?] | lambda : Lambda T() : Boolean) : Bag(T)</code>
+			
+</p>
+<p>The sub-bag of the source bag for which body is 
+				<code class="code">false</code>.
+			</p>
+<div class="literallayout">
+<p>
+<code class="code">self-&gt;reject(iterator&nbsp;|&nbsp;body)&nbsp;=&nbsp;self-&gt;select(iterator&nbsp;|&nbsp;not&nbsp;body)<br>
+
+</code>
+</p>
+</div>
+<p>
+				.</p>
+<p>
+				
+<code class="code">select(i : T[?] | lambda : Lambda T() : Boolean) : Bag(T)</code>
+			
+</p>
+<p>The sub-bag of the source bag for which body is 
+				<code class="code">true</code>.
+			</p>
+<div class="literallayout">
+<p>
+<code class="code">self-&gt;select(iterator&nbsp;|&nbsp;body)&nbsp;=<br>
+self-&gt;iterate(iterator;&nbsp;result&nbsp;:&nbsp;Bag(T)&nbsp;=&nbsp;Bag{}&nbsp;|<br>
+if&nbsp;body&nbsp;then&nbsp;result-&gt;including(iterator)<br>
+else&nbsp;result<br>
+endif)<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>
+				
+<code class="code">sortedBy(i : T[?] | lambda : Lambda T() : OclAny) : Sequence(T)</code>
+			
+</p>
+<p>Results in the Sequence containing all elements of the source collection.
+				The element for which body has the lowest value comes first, and so on.
+				The type of the body expression must have the &lt; operation defined.
+				The &lt; operation must return a Boolean value and must be transitive (i.e., if a &lt; b and b &lt; c then a &lt; c).</p>
+</div>
+</body>
+</html>

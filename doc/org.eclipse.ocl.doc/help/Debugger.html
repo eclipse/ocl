@@ -1,0 +1,255 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Debugger (new in Luna)</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="UsersGuide.html" title="Users Guide">
+<link rel="prev" href="ValidityView.html" title="Validity View (new in Luna)">
+<link rel="next" href="Integration.html" title="OCL Integration">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Debugger (new in Luna)</h1>
+<div class="section" title="Debugger (new in Luna)">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="Debugger"></a>Debugger (new in Luna)</h2>
+</div>
+</div>
+</div>
+<p>The OCL debugger supports debugging OCL constraints. It is a customization of the standard Eclipse debugger and so most of the facilities should be familiar to users of the Eclipse Java debugger.</p>
+<p>
+				
+</p>
+<div class="mediaobject">
+<img src="images/1540-debugger-image.png"></div>
+<p>
+			
+</p>
+<p>The screenshot shows</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Debug Stack Trace showing the context of nested evaluation environments </p>
+</li>
+<li class="listitem">
+<p>Variables View showing intermediate and local variables</p>
+</li>
+<li class="listitem">
+<p>Editor showing input and context after a couple of steps</p>
+</li>
+<li class="listitem">
+<p>Outline showing the Concrete Syntax Tree context</p>
+</li>
+</ul>
+</div>
+<p>
+				
+<span class="italic">The OCL Debugger is very new, there are no doubt many opportunities for ergonomic improvements and bug fixes. Please raise a 
+					<a class="ulink" href="http://bugs.eclipse.org/bugs/enter_bug.cgi?product=MDT.OCL" target="_new">Bugzilla</a> .
+				</span>
+			
+</p>
+<div class="section" title="Launching">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Launching"></a>Launching</h3>
+</div>
+</div>
+</div>
+<p>Launching the debugger for an OCL constraint requires the user to provide two pieces of information</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>the expression or constraint to evaluate</p>
+</li>
+<li class="listitem">
+<p>the self object upon which to operate</p>
+</li>
+</ul>
+</div>
+<p>These may be provided in a variety of ways</p>
+<div class="section" title="Selected model object and manually entered expression">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Selectedmodelobjectandmanuallyenteredexpression"></a>Selected model object and manually entered expression</h4>
+</div>
+</div>
+</div>
+<p>An arbitrary OCL expression may be entered in the Xtext OCL Console and evaluated on a model object selected using a mouse selection. The Debugger is invoked from the debug icon on the Console Tool Bar.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1540-debugger-console-launch.png"></div>
+<p>
+					
+</p>
+<p>Clicking the debug icon creates a dummy Complete OCL file and then launches the debugger. The expression is encapsulated as an oclDebugExpression operation extension to the type of the selected object. The file provides the source for source level debugging. The console may be re-used while debugging.</p>
+</div>
+<div class="section" title="Selected model object/constraint combination">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Selectedmodelobjectconstraintcombination"></a>Selected model object/constraint combination</h4>
+</div>
+</div>
+</div>
+<p>The Validity View provides fine-grained display of the evaluation of each constraint applicable to a model element and vice-versa. One of these model element/constraint combinations may be selected and the debugger launched using 
+						<span class="bold"><strong>Debug Single Enabled Selection</strong></span> to investigate why validation is producing unexpected results.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1540-debugger-validity-view-launch.png"></div>
+<p>
+					
+</p>
+</div>
+<div class="section" title="Selected model object and selected constraint">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Selectedmodelobjectandselectedconstraint"></a>Selected model object and selected constraint</h4>
+</div>
+</div>
+</div>
+<p>An OCL Expression launch configuration may be created to select a model element and a constraint for execution or debugging.</p>
+<p>The launch configuration may be created using 
+						<span class="bold"><strong>Run-&gt;Run Configurations...</strong></span> or 
+						<span class="bold"><strong>Debug-&gt;Debug Configurations...</strong></span> from the Eclipse Menu Bar. This requires both Model Element and Constraint to be selected separately.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1540-debugger-run-configuration-launch.png"></div>
+<p>
+					
+</p>
+<p>Alternatively the context menu in model editors offers an 
+						<span class="bold"><strong>OCL-&gt;Debug...</strong></span> option that creates a Debug Configuration in which the Model Element is pre-selected from the invoking context.
+					</p>
+</div>
+</div>
+<div class="section" title="Stepping">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Stepping"></a>Stepping</h3>
+</div>
+</div>
+</div>
+<p>OCL expressions can be very compact and generally occur embedded in a larger application. The debugger is therefore optimized for this usage.</p>
+<p>Rather than the line-based stepping typical of the Java debugger, the OCL debugger supports term by term stepping, highlighting the next term to be evaluated and showing the intermediate results as $-prefixed names in the Variables View. </p>
+<p>The OCL debugger interpretation of the Step functionalities is adjusted to facilitate stepping to many points in a complex expression without needing to reformat the source with line breaks..</p>
+<p>The 
+					<a class="link" href="Debugger.html" title="Debugger (new in Luna)">Example Debugger View</a> shows the imminent execution of &ldquo;.size()&rdquo; after stepping into &ldquo;self&rdquo; and &ldquo;.name&rdquo;.
+				</p>
+<div class="section" title="Step Into">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="StepInto"></a>Step Into</h4>
+</div>
+</div>
+</div>
+<p>A single OCL AST node is executed. The results can be inspected as inputs of a subsequent AST node.</p>
+</div>
+<div class="section" title="Step Over">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="StepOver"></a>Step Over</h4>
+</div>
+</div>
+</div>
+<p>Execution proceeds until the next OCL AST node is associated with a new source line number.</p>
+</div>
+<div class="section" title="Step Return">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="StepReturn"></a>Step Return</h4>
+</div>
+</div>
+</div>
+<p>Execution proceeds until the next OCL AST node is associated with a reduced stack depth. Iterations introduce nested stack entries so step return can step out of an iteration. let expressions and nested OCL calls also introduce additional stack nesting.</p>
+</div>
+<div class="section" title="Resume">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Resume"></a>Resume</h4>
+</div>
+</div>
+</div>
+<p>Execution proceeds until the next breakpoint.</p>
+</div>
+</div>
+<div class="section" title="Variables View">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="VariablesView"></a>Variables View</h3>
+</div>
+</div>
+</div>
+<p>The Variables View enables the local variables and intermediate results to be examined using OCL syntaxes such as single quotes for Strings.</p>
+<p>The 
+					<a class="link" href="Debugger.html" title="Debugger (new in Luna)">Example Debugger View</a> shows the &ldquo;self&rdquo; variable, which is an &ldquo;ecore::Package&rdquo; instance, opened to show its fields, amongst which the name is &lsquo;tutorial&rsquo;.
+				</p>
+<p>Intermediate variables are named using the property name of the subsequent AST node&rsquo;s input. Thus &ldquo;$source&rdquo; shows the OperationCallExp.source input already computed as &ldquo;self.name&rdquo;. Multiple inputs are diasmbiguated by suffixing as in &ldquo;$argument[0]&rdquo;.</p>
+<p>&ldquo;$pc&rdquo; identifies the next instruction, which can be examined in just the same way as any other variable.</p>
+</div>
+<div class="section" title="Breakpoints View">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="BreakpointsView"></a>Breakpoints View</h3>
+</div>
+</div>
+</div>
+<p>Line breakpoints can be set in the Complete OCL editor and examined in the Breakpoints View. Execution stops when an OCL AST node has been executed that is associated with the line of a breakpoint.</p>
+<p>
+					
+<span class="italic">No filtering facilities are yet available.</span>
+				
+</p>
+</div>
+<div class="section" title="Outline View">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="OutlineView"></a>Outline View</h3>
+</div>
+</div>
+</div>
+<p>The Outline currently shows the OCL Concrete Syntax Tree which is structurally similar to the Abstract Syntax Tree that is executed. .</p>
+<p>
+					
+<span class="italic">It would be more useful to show the AST and support Node breakpoints on it.</span>
+				
+</p>
+</div>
+</div>
+</body>
+</html>

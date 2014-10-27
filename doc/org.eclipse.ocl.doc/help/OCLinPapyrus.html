@@ -1,0 +1,515 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>OCL in UML (using Papyrus)</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="UsersGuide.html" title="Users Guide">
+<link rel="prev" href="Integration.html" title="OCL Integration">
+<link rel="next" href="UserInterface.html" title="User Interface">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">OCL in UML (using Papyrus)</h1>
+<div class="section" title="OCL in UML (using Papyrus)">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="OCLinPapyrus"></a>OCL in UML (using Papyrus)</h2>
+</div>
+</div>
+</div>
+<p>(This documentation applies to Papyrus 1.0.0.)</p>
+<p>The behaviour of a UML model may be elaborated using OCL to define</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>operation bodies</p>
+</li>
+<li class="listitem">
+<p>property derivations/initializers</p>
+</li>
+<li class="listitem">
+<p>class invariants to be observed by user model instances</p>
+</li>
+<li class="listitem">
+<p>stereotype invariants to be observed by user model elements</p>
+</li>
+<li class="listitem">
+<p>guards for state machines </p>
+</li>
+</ul>
+</div>
+<div class="section" title="UML Integration">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="OCLinPapyrus-UML-integration"></a>UML Integration</h3>
+</div>
+</div>
+</div>
+<p>Although the UML metamodel makes extensive use of OCL to specify its own well-formedness, there is no explicit ability to use OCL within UML. Usage of OCL, or any other language, is enabled by the flexibility of the ValueSpecification class and the OpaqueExpression extension.</p>
+<p>The metamodel specifies the usage of a ValueSpecification wherever a value can sensibly be provided by a variety of technologies. Simple values can be provided by, for instance, a LiteralString or LiteralInteger. More interesting values
+					by an OpaqueExpression that has two interesting list features, one of language names and the other of string bodies in the corresponding language. The lists provide an ability to provide implementations in a variety of languages. In practice only
+					one is used and if the language name is omitted, an implementation default of OCL is assumed.</p>
+<p>Specification of a behaviour such as &ldquo;name.toUpper()&rdquo; can be achieved by an OpaqueExpression in which the language is Sequence(&lsquo;OCL&rsquo;) and the body is Sequence(&lsquo;name.toUpper()&rsquo;). The OCL is therefore embedded in a textual form that has no knowledge of the classes in the OCL metamodel.</p>
+<p>Users of the OCL Java API may avoid the need to incur OCL parsing costs by exploiting OCL&rsquo;s ExpressionInOCL class that extends ValueSpecification and delegates functionality to an OCLExpression.</p>
+</div>
+<div class="section" title="Class Diagram">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="OCLinPapyrus-Class-Diagram"></a>Class Diagram</h3>
+</div>
+</div>
+</div>
+<div class="section" title="Class Invariant">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="OCLinPapyrus-Class-Invariant"></a>Class Invariant</h4>
+</div>
+</div>
+</div>
+<p>A class invariant specifies a constraint that must be true for all well-formed instances of the class. It is specified in Papyrus, by:</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>create a Constraint Node on a Class Diagram</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="circle">
+<li class="listitem">
+<p>select Constraint on palette</p>
+</li>
+<li class="listitem">
+<p>click on diagram where you want it</p>
+</li>
+<li class="listitem">
+<p>click on the Class you want as the Constraint context</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="listitem">
+<p>optionally replace the auto-generated Constraint name</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="circle">
+<li class="listitem">
+<p>select the Constraint</p>
+</li>
+<li class="listitem">
+<p>type a new name in the Properties View</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="listitem">
+<p>define the Specification of the Constraint with OCL text</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="circle">
+<li class="listitem">
+<p>select the Constraint</p>
+</li>
+<li class="listitem">
+<p>type F2 (or click again) to open the Essential OCL editor</p>
+</li>
+<li class="listitem">
+<p>enter the required constraint text</p>
+</li>
+<li class="listitem">
+<p>click outside the editor to close</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1710-class-invariant.png"></div>
+<p>
+					
+</p>
+<p>The &laquo;Context&raquo; link provides a graphical view of the Context selection in the Properties View. It is the context that defines the type of OCL&rsquo;s 
+						<code class="code">self</code> and so defines what is constrained.
+					</p>
+<p>You may edit the OCL text using direct edit as described above or from The Properties View. (Note that the editor has a significant start up time on the first usage, so be patient).</p>
+<p>Your OCL text entry is validated automatically; an error or warning marker will be shown on the Constraint if it is not satisfactory. Once you have corrected the errors you may need to invoke 
+						<span class="bold"><strong>Validate-&gt;Model Tree</strong></span> to make the marker go away.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1710-class-invariant-error.png"></div>
+<p>
+					
+</p>
+</div>
+<div class="section" title="Operation Precondition, Postcondition and Body">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="OCLinPapyrus-Operation-Constraints"></a>Operation Precondition, Postcondition and Body</h4>
+</div>
+</div>
+</div>
+<p>Preconditions specify constraints that must be satisfied before operation execution starts. </p>
+<p>Postconditions specify constraints that must be satisfied after operation execution finishes. Postconditions may use the reserved parameter name 
+						<code class="code">result</code> to refer to the one result permitted by OCL. The @pre suffix may be used to refer to the state of variables prior to execution of the operation.
+					</p>
+<p>In OCL, a body-expression defines the functionality of a query operation as a result-type-valued expression such as 
+						<code class="code">some-computation</code>. In contrast in UML, a body-condition defines the functionality of the operation as a Boolean-valued constraint on the result such as 
+						<code class="code">result = (some-computation)</code>. Papyrus supports the OCL interpretation and so the 
+						<code class="code">result = (...)</code> wrapper may be omitted.
+					</p>
+<p>In Papyrus, once the operation has been defined, preconditions, postconditions and a body-condition are all drawn by</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>create a Constraint Node on a Class Diagram</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="circle">
+<li class="listitem">
+<p>select Constraint on palette</p>
+</li>
+<li class="listitem">
+<p>click on diagram where you want it</p>
+</li>
+<li class="listitem">
+<p>type Esc since context links cannot be drawn to operations</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="listitem">
+<p>optionally replace the auto-generated Constraint name</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="circle">
+<li class="listitem">
+<p>select the Constraint</p>
+</li>
+<li class="listitem">
+<p>type a new name in the Properties View</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="listitem">
+<p>define the Constraint Context</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="circle">
+<li class="listitem">
+<p>select the Operation</p>
+</li>
+<li class="listitem">
+<p>use the appropriate Add Elements (+ icon) for Precondition or Postcondition, or the Body condition 
+										<span class="bold"><strong>...</strong></span> browser to locate the constraint
+									</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="listitem">
+<p>define the Specification of the Constraint with OCL text</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="circle">
+<li class="listitem">
+<p>select the Constraint</p>
+</li>
+<li class="listitem">
+<p>type F2 (or click again) to open the Essential OCL editor</p>
+</li>
+<li class="listitem">
+<p>enter the required constraint text</p>
+</li>
+<li class="listitem">
+<p>click outside the editor to close</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<p>Note that the context of Operation Constraints must be specified by assigning a Constraint to one of the precondition/postcondition/bodycondition roles. Assignment of the context of the constraint directly fails to allocate the constraint to its role.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1710-operation-constraints.png"></div>
+<p>
+					
+</p>
+<p>Note that in Papyrus 1.0, there is no stereotype display to indicate the precondition/postcondition/body-condition role.</p>
+<p>Note that the OCL expressions for preconditions and postconditions should be Boolean-valued. The result-valued body-expression form should be used for a body-condition.</p>
+<p>The owning type of the Operation is used as OCL&rsquo;s 
+						<code class="code">self</code> context.
+					</p>
+<p>The Operation should be a query if a body-condition is provided.</p>
+<p>
+						
+<span class="italic">In Luna, use of 
+							<code class="code">result</code> within postconditions incorrectly reports an unknown property. The error can be ignored.
+						</span>
+					
+</p>
+</div>
+<div class="section" title="Property Initializers">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="OCLinPapyrus-Property-Initializers"></a>Property Initializers</h4>
+</div>
+</div>
+</div>
+<p>An OpaqueExpression whose value is an OCL expression string can be used to define the default or derived value of a Property initializer.</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>select the Property to make the Properties View relevant</p>
+</li>
+<li class="listitem">
+<p>click the Create a new Object (+ icon) for the Default value</p>
+</li>
+<li class="listitem">
+<p>Select OpaqueExpression from the menu</p>
+</li>
+<li class="listitem">
+<p>click the Add elements (+ icon) for the Language</p>
+</li>
+<li class="listitem">
+<p>select OCL in the left pane and click the right arrow to move to the right pane</p>
+</li>
+<li class="listitem">
+<p>click OK</p>
+</li>
+<li class="listitem">
+<p>enter the OCL text in the large pane</p>
+</li>
+<li class="listitem">
+<p>click OK</p>
+</li>
+</ul>
+</div>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1710-property-constraint.png"></div>
+<p>
+					
+</p>
+<p>
+						
+<span class="italic">Unfortunately, in Luna, the context does not appear to be correctly set for editor, so there is an error on 
+							<code class="code">self</code> and no syntax help.
+						</span>
+					
+</p>
+</div>
+<div class="section" title="Profile Constraint">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="OCLinPapyrus-Profile-Constraint"></a>Profile Constraint</h4>
+</div>
+</div>
+</div>
+<p>A Profile Constraint is very similar to a Class Invariant. However since the Profile is Constraint is drawn at M2, it may be evaluated at M1 to check a UML Class Diagram for consistency. In contrast a Class Invariant drawn at M1, may be evaluated by user tooling at M0 to validate user models. It is specified in Papyrus, by:</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>create a Constraint Node on a Profile Diagram</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="circle">
+<li class="listitem">
+<p>select Constraint on palette</p>
+</li>
+<li class="listitem">
+<p>click on diagram where you want it</p>
+</li>
+<li class="listitem">
+<p>click on the Stereotype you want as the Constraint context</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="listitem">
+<p>optionally replace the auto-generated Constraint name</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="circle">
+<li class="listitem">
+<p>select the Constraint</p>
+</li>
+<li class="listitem">
+<p>type a new name in the Properties View</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="listitem">
+<p>define the Specification of the Constraint with OCL text</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="circle">
+<li class="listitem">
+<p>select the Constraint</p>
+</li>
+<li class="listitem">
+<p>type F2 (or click again) to open the Essential OCL editor</p>
+</li>
+<li class="listitem">
+<p>enter the required constraint text</p>
+</li>
+<li class="listitem">
+<p>click outside the editor to close</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1710-profile-constraint.png"></div>
+<p>
+					
+</p>
+<p>The OCL text can also be edited within the Properties View.</p>
+</div>
+</div>
+<div class="section" title="State Machine Diagram">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="OCLinPapyrus-StateMachine-Diagram"></a>State Machine Diagram</h3>
+</div>
+</div>
+</div>
+<p>The primary element of a StateMachine diagram is the StateMachine, which is a Type, but does not normally have Properties.
+					A StateMachine should therefore be defined as a nested type of a containing type. This may be achieved within Papyrus Model Explorer
+					by dragging the StateMachine to be a child of a Class.</p>
+<div class="section" title="Statemachine Constraint">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="OCLinPapyrus-State-Constraint"></a>Statemachine Constraint</h4>
+</div>
+</div>
+</div>
+<p>A Constraint may be applied to a Statemachine in the same way as for a Class to specify an invariant of the Statemachine.</p>
+</div>
+<div class="section" title="Statemachine Transition Guard">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="OCLinPapyrus-Transition-Guard"></a>Statemachine Transition Guard</h4>
+</div>
+</div>
+</div>
+<p>The guard condition of a Statemachine Transition may be specified by associating a Constraint with a Transition. The Transition should already exist and the Statemachine should be a nested type of a suitable type for OCL&rsquo;s 
+						<code class="code">self</code>. 
+						The guard condition is drawn in Papyrus by
+					</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>create a Constraint Node on a StateMachine Diagram</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="circle">
+<li class="listitem">
+<p>select Constraint on palette</p>
+</li>
+<li class="listitem">
+<p>click on diagram where you want it</p>
+</li>
+<li class="listitem">
+<p>optionally enter the required constraint text</p>
+</li>
+<li class="listitem">
+<p>type Esc to close editor</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="listitem">
+<p>optionally replace the auto-generated Constraint name</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="circle">
+<li class="listitem">
+<p>select the Constraint, if not already selected</p>
+</li>
+<li class="listitem">
+<p>type a new name in the Properties View</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="listitem">
+<p>define the Constraint Context</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="circle">
+<li class="listitem">
+<p>select the Constraint, if not already selected</p>
+</li>
+<li class="listitem">
+<p>use the Context 
+										<span class="bold"><strong>...</strong></span> browser in the Properties View to locate the transition
+									</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="listitem">
+<p>define the Specification of the Constraint with OCL text</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="circle">
+<li class="listitem">
+<p>select the Constraint, if not already selected</p>
+</li>
+<li class="listitem">
+<p>type F2 (or click again) to open the Essential OCL editor</p>
+</li>
+<li class="listitem">
+<p>enter the required constraint text</p>
+</li>
+<li class="listitem">
+<p>click outside the editor to close</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/1710-transition-guard.png"></div>
+<p>
+					
+</p>
+<p>The required Transition is specified as the Guard of the Transition.</p>
+<p>The owning type of the Statemachine defines OCL&rsquo;s 
+						<code class="code">self</code>. In the absence of an owning type 
+						<code class="code">self</code> will be undefined and OCL constraint validation will fail. You must therefore ensure that the StateMachine has a Class parent and that the Class has the required properties; 
+						<code class="code">name</code> for this example. Once Class and properties are defined using a Class diagram. The 
+					</p>
+</div>
+</div>
+</div>
+</body>
+</html>
