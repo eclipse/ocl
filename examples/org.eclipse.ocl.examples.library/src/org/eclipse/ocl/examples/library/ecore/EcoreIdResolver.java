@@ -283,9 +283,6 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 		if (id == IdManager.METAMODEL) {
 			return DomainUtil.nonNullState(getStandardLibrary().getOclAnyType().getPackage());
 		}
-		if (id.getName().equals(DomainConstants.UML_METAMODEL_NAME)) {
-//			return nsURI2package.get(UMLP);
-		}
 		String name = id.getName();
 		DomainPackage knownPackage = roots2package.get(name);
 		if (knownPackage != null) {
