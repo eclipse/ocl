@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.ocl.examples.unified"
       label="%featureName"
-      version="3.4.2.qualifier"
+      version="3.4.3.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.ocl.examples.unified"
       license-feature="org.eclipse.license"

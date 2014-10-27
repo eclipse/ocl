@@ -62,7 +62,15 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 {
 	protected final @NonNull Collection<? extends EObject> directRoots;
 //	protected @NonNull Map<ElementId, DomainElement> id2element = new HashMap<ElementId, DomainElement>();
+
+	/**
+	 * Mapping from package URI to corresponding Pivot Package. (used to resolve NsURIPackageId).
+	 */
 	private Map<String, DomainPackage> nsURI2package = new HashMap<String, DomainPackage>();
+
+	/**
+	 * Mapping from root package name to corresponding Pivot Package. (used to resolve RootPackageId).
+	 */
 	private Map<String, DomainPackage> roots2package = new HashMap<String, DomainPackage>();
 	private boolean directRootsProcessed = false;
 	private boolean crossReferencedRootsProcessed = false;
@@ -218,6 +226,9 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 				PackageId packageId = IdManager.getPackageId(ePackage);
 				DomainPackage domainPackage = new EcoreReflectivePackage(ePackage, this, packageId);
 				nsURI2package.put(nsURI, domainPackage);
+				if (packageId instanceof RootPackageId) {
+					roots2package.put(((RootPackageId)packageId).getName(), domainPackage);
+				}
 			}
 		}
 	}
@@ -271,6 +282,9 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 	public @NonNull DomainPackage visitRootPackageId(@NonNull RootPackageId id) {
 		if (id == IdManager.METAMODEL) {
 			return DomainUtil.nonNullState(getStandardLibrary().getOclAnyType().getPackage());
+		}
+		if (id.getName().equals(DomainConstants.UML_METAMODEL_NAME)) {
+//			return nsURI2package.get(UMLP);
 		}
 		String name = id.getName();
 		DomainPackage knownPackage = roots2package.get(name);
