@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:profile="http:///schemas/profile/_SbK3YFXdEeSDQ7wQdsiEWg/9" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/profile/_SbK3YFXdEeSDQ7wQdsiEWg/9 Bug447557.profile.uml#_SbMskFXdEeSDQ7wQdsiEWg">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:profile="http:///schemas/profile/_SbK3YFXdEeSDQ7wQdsiEWg/9" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/profile/_SbK3YFXdEeSDQ7wQdsiEWg/9 Bug448470.profile.uml#_SbMskFXdEeSDQ7wQdsiEWg">
   <uml:Model xmi:id="_i6oyMFUnEeSNxd7Mk34y4Q" name="model">
     <packagedElement xmi:type="uml:Enumeration" xmi:id="_mR7eIFUnEeSNxd7Mk34y4Q" name="Xx">
       <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_nKZXMFUnEeSNxd7Mk34y4Q" name="EnumerationLiteral">
@@ -39,9 +39,9 @@
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_utHLpVUwEeSNGojDyOIl-g" key="Author" value=""/>
       </eAnnotations>
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_utGkkFUwEeSNGojDyOIl-g" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="Bug447557.profile.uml#_SbMskFXdEeSDQ7wQdsiEWg"/>
+        <references xmi:type="ecore:EPackage" href="Bug448470.profile.uml#_SbMskFXdEeSDQ7wQdsiEWg"/>
       </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="Bug447557.profile.uml#_KQUNgFUnEeSNxd7Mk34y4Q"/>
+      <appliedProfile xmi:type="uml:Profile" href="Bug448470.profile.uml#_KQUNgFUnEeSNxd7Mk34y4Q"/>
     </profileApplication>
   </uml:Model>
   <profile:MyEnum xmi:id="_bgTFUFXcEeS2sMqH2_4d6Q" base_Enumeration="_mR7eIFUnEeSNxd7Mk34y4Q"/>
