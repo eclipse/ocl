@@ -312,9 +312,9 @@ public class StereotypesTest extends PivotTestSuite
 		assertQueryTrue(mm.umlEnglishClass, "self.extension_Internationalized.face = InternationalizedProfile::Face::NORMAL");
 		assertQueryFalse(mm.asFrenchClass, "self.extension_Internationalized.isFace(InternationalizedProfile::Face::BOLD)");
 		assertQueryFalse(mm.umlFrenchClass, "self.extension_Internationalized.isFace(InternationalizedProfile::Face::BOLD)");
-		assertQueryEquals(mm.asGermanClass, umlBold, "self.extension_Internationalized.face");
+		assertQueryEquals(mm.asGermanClass, asBold/*umlBold*/, "self.extension_Internationalized.face");
 		assertQueryEquals(mm.umlGermanClass, umlBold, "self.extension_Internationalized.face");
-		assertQueryEquals(mm.asGermanClass, umlBold, "self.extension_Internationalized.face()");
+		assertQueryEquals(mm.asGermanClass, asBold/*umlBold*/, "self.extension_Internationalized.face()");
 		assertQueryEquals(mm.umlGermanClass, umlBold, "self.extension_Internationalized.face()");
     }
 }

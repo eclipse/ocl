@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:profile="http:///schemas/profile/_SbK3YFXdEeSDQ7wQdsiEWg/9" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/profile/_SbK3YFXdEeSDQ7wQdsiEWg/9 Bug448470.profile.uml#_SbMskFXdEeSDQ7wQdsiEWg">
+  <uml:Model xmi:id="_i6oyMFUnEeSNxd7Mk34y4Q" name="model">
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_mR7eIFUnEeSNxd7Mk34y4Q" name="Xx">
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_nKZXMFUnEeSNxd7Mk34y4Q" name="EnumerationLiteral">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_oG0jMFUnEeSNxd7Mk34y4Q" name="LiteralInteger" value="1"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_vxxjEFUvEeSkx915M8MK5A" name="CopyOf_EnumerationLiteral_1">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_vxxjEVUvEeSkx915M8MK5A" name="LiteralInteger" value="1"/>
+      </ownedLiteral>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_utF9gFUwEeSNGojDyOIl-g">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_6vZ88FXtEeSDQ7wQdsiEWg" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_6vZ88VXtEeSDQ7wQdsiEWg" key="Version" value="0.0.10"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_6vZ88lXtEeSDQ7wQdsiEWg" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_6vZ881XtEeSDQ7wQdsiEWg" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_6vZ89FXtEeSDQ7wQdsiEWg" key="Date" value="2014-10-17"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_6vZ89VXtEeSDQ7wQdsiEWg" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ocrS4FUxEeSYMs6GAt3PXA" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ocrS4VUxEeSYMs6GAt3PXA" key="Version" value="0.0.7"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ocrS4lUxEeSYMs6GAt3PXA" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ocrS41UxEeSYMs6GAt3PXA" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ocrS5FUxEeSYMs6GAt3PXA" key="Date" value="2014-10-16"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ocrS5VUxEeSYMs6GAt3PXA" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Fl-ZwFUxEeSYMs6GAt3PXA" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Fl-ZwVUxEeSYMs6GAt3PXA" key="Version" value="0.0.5"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Fl-ZwlUxEeSYMs6GAt3PXA" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Fl-Zw1UxEeSYMs6GAt3PXA" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Fl-ZxFUxEeSYMs6GAt3PXA" key="Date" value="2014-10-16"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Fl-ZxVUxEeSYMs6GAt3PXA" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_utHLoFUwEeSNGojDyOIl-g" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_utHLoVUwEeSNGojDyOIl-g" key="Version" value="0.0.4"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_utHLolUwEeSNGojDyOIl-g" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_utHLo1UwEeSNGojDyOIl-g" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_utHLpFUwEeSNGojDyOIl-g" key="Date" value="2014-10-16"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_utHLpVUwEeSNGojDyOIl-g" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_utGkkFUwEeSNGojDyOIl-g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="Bug448470.profile.uml#_SbMskFXdEeSDQ7wQdsiEWg"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="Bug448470.profile.uml#_KQUNgFUnEeSNxd7Mk34y4Q"/>
+    </profileApplication>
+  </uml:Model>
+  <profile:MyEnum xmi:id="_bgTFUFXcEeS2sMqH2_4d6Q" base_Enumeration="_mR7eIFUnEeSNxd7Mk34y4Q"/>
+</xmi:XMI>
