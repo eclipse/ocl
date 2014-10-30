@@ -31,6 +31,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
+import org.eclipse.ocl.common.internal.preferences.CommonPreferenceInitializer;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
@@ -45,6 +46,8 @@ import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLLoader;
 import org.eclipse.ocl.examples.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
+import org.eclipse.uml2.uml.Enumeration;
+import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
 
 /**
@@ -371,5 +374,30 @@ public class UMLValidateTest extends AbstractValidateTests
 //			DomainUtil.bind(OCLMessages.ParsingError, DomainUtil.getLabel(opaqueExpression), "No containing namespace for 3 + 0.4"));
 //		ocl.dispose();
 		ocl = null;		// UMLOCLEValidator.WeakOCLReference will dispose.
+	}
+	
+	public void test_umlValidation_Bug448470() throws IOException { // formerly Bug 447557
+		resetRegistries();
+		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		new CommonPreferenceInitializer().initializeDefaultPreferences();
+		ResourceSet resourceSet = createResourceSet();
+		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
+		OCLDelegateDomain.initializePivotOnlyDiagnosticianResourceSet(resourceSet);
+		OCL ocl = OCL.newInstance();
+		@SuppressWarnings("null")@NonNull Resource umlResource = doLoadUML(ocl, "Bug448470");
+		assertNoResourceErrors("Loading", umlResource);
+		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
+		OCLDelegateDomain.initializePivotOnlyDiagnosticianContext(validationContext);
+		Model model = (Model) umlResource.getContents().get(0);
+		Enumeration xx = (Enumeration) model.getOwnedType("Xx");
+		assertValidationDiagnostics("Loading", umlResource, validationContext,
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "MyEnum", "Constraint1", "«MyEnum»" + DomainUtil.getLabel(xx)),
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "MyEnum", "Constraint2", "«MyEnum»" + DomainUtil.getLabel(xx)));
+		assertUMLOCLValidationDiagnostics(ocl, "UML Load", umlResource,
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "MyEnum", "Constraint1", "«MyEnum»" + DomainUtil.getLabel(xx)),
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "MyEnum", "Constraint2", "«MyEnum»" + DomainUtil.getLabel(xx)),
+			EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "Constraint1", "«MyEnum»" + DomainUtil.getLabel(xx) }),
+			EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "Constraint2", "«MyEnum»" + DomainUtil.getLabel(xx) }));
+		ocl.dispose();
 	}
 }
