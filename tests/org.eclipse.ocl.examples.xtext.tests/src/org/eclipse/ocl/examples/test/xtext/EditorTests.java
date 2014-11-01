@@ -39,9 +39,9 @@ import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.PivotDiagnosticConverter;
 import org.eclipse.ocl.examples.xtext.base.utilities.PivotResourceValidator;
 import org.eclipse.ocl.examples.xtext.completeocl.ui.CompleteOCLUiModule;
@@ -185,9 +185,9 @@ public class EditorTests extends XtextTestCase
 			@Override
 			public Object exec(@Nullable XtextResource resource) throws Exception {
 				assertNoResourceErrors("Loaded CS", resource);
-				CS2Pivot cs2Pivot = PivotUtil.getAdapter(CS2Pivot.class, resource);		// FIXME Wrong class
-				if (cs2Pivot != null) {
-					Resource asResource = cs2Pivot.getPivotResource((BaseCSResource) resource);
+				CS2AS cs2as = PivotUtil.getAdapter(CS2AS.class, resource);		// FIXME Wrong class
+				if (cs2as != null) {
+					Resource asResource = cs2as.getPivotResource((BaseCSResource) resource);
 					assertNoResourceErrors("Loaded pivot", asResource);
 				}
 				return null;
@@ -214,9 +214,9 @@ public class EditorTests extends XtextTestCase
 			@Override
 			public Object exec(@Nullable XtextResource resource) throws Exception {
 //				assertNoResourceErrors("Loaded CS", resource);
-				CS2PivotResourceAdapter cs2Pivot = PivotUtil.getAdapter(CS2PivotResourceAdapter.class, resource);
-				if (cs2Pivot != null) {
-					Resource asResource = cs2Pivot.getASResource((BaseCSResource) resource);
+				CS2ASResourceAdapter cs2as = PivotUtil.getAdapter(CS2ASResourceAdapter.class, resource);
+				if (cs2as != null) {
+					Resource asResource = cs2as.getASResource((BaseCSResource) resource);
 					assertNoResourceErrors(prefix, asResource);
 					for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {
 						EObject eObject = tit.next();

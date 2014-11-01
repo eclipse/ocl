@@ -17,39 +17,39 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
-import org.eclipse.ocl.examples.xtext.base.cs2as.BaseCS2Pivot;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
+import org.eclipse.ocl.examples.xtext.base.cs2as.BaseCS2AS;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.EssentialOCLCSVisitor;
 
-public class EssentialOCLCS2Pivot extends BaseCS2Pivot
+public class EssentialOCLCS2AS extends BaseCS2AS
 {		
-	public EssentialOCLCS2Pivot(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull MetaModelManager metaModelManager) {
+	public EssentialOCLCS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull MetaModelManager metaModelManager) {
 		super(cs2asResourceMap, metaModelManager);
 	}
 	
-	public EssentialOCLCS2Pivot(@NonNull EssentialOCLCS2Pivot cs2pivot) {
-		super(cs2pivot);
+	public EssentialOCLCS2AS(@NonNull EssentialOCLCS2AS cs2as) {
+		super(cs2as);
 	}
 
 	@Override
-	protected @NonNull EssentialOCLCSVisitor<Continuation<?>> createContainmentVisitor(@NonNull CS2PivotConversion converter) {
+	protected @NonNull EssentialOCLCSVisitor<Continuation<?>> createContainmentVisitor(@NonNull CS2ASConversion converter) {
 		return new EssentialOCLCSContainmentVisitor(converter);
 	}
 
 	@Override
-	protected @NonNull EssentialOCLCSVisitor<Element> createLeft2RightVisitor(@NonNull CS2PivotConversion converter) {
+	protected @NonNull EssentialOCLCSVisitor<Element> createLeft2RightVisitor(@NonNull CS2ASConversion converter) {
 		return new EssentialOCLCSLeft2RightVisitor(converter);
 	}
 
 	@Override
-	protected @NonNull EssentialOCLCSVisitor<Continuation<?>> createPostOrderVisitor(@NonNull CS2PivotConversion converter) {
+	protected @NonNull EssentialOCLCSVisitor<Continuation<?>> createPostOrderVisitor(@NonNull CS2ASConversion converter) {
 		return new EssentialOCLCSPostOrderVisitor(converter);
 	}
 
 	@Override
-	protected @NonNull EssentialOCLCSVisitor<Continuation<?>> createPreOrderVisitor(@NonNull CS2PivotConversion converter) {
+	protected @NonNull EssentialOCLCSVisitor<Continuation<?>> createPreOrderVisitor(@NonNull CS2ASConversion converter) {
 		return new EssentialOCLCSPreOrderVisitor(converter);
 	}
 }

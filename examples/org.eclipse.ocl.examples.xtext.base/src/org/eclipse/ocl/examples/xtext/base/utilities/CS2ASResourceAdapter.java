@@ -20,21 +20,21 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.manager.AbstractMetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
 import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
 
 /**
- * A CS2PivotResourceAdapter enhances the Resource for a Concrete Syntax model
+ * A CS2ASResourceAdapter enhances the Resource for a Concrete Syntax model
  * to support synchronization with a Pivot model representation.
  */
-public class CS2PivotResourceAdapter extends AbstractMetaModelManagerResourceAdapter<BaseCSResource>
+public class CS2ASResourceAdapter extends AbstractMetaModelManagerResourceAdapter<BaseCSResource>
 {
-	private final @NonNull CS2Pivot converter;
+	private final @NonNull CS2AS converter;
 	
-	public CS2PivotResourceAdapter(@NonNull BaseCSResource csResource, @NonNull MetaModelManager metaModelManager) {
+	public CS2ASResourceAdapter(@NonNull BaseCSResource csResource, @NonNull MetaModelManager metaModelManager) {
 		super(csResource, metaModelManager);
 		Map<BaseCSResource, ASResource> cs2asResourceMap = computeCS2ASResourceMap(csResource, metaModelManager);
-		converter = csResource.createCS2Pivot(cs2asResourceMap, metaModelManager);
+		converter = csResource.createCS2AS(cs2asResourceMap, metaModelManager);
 	}
 
 	public @NonNull Map<BaseCSResource, ASResource> computeCS2ASResourceMap(@NonNull BaseCSResource csResource, @NonNull MetaModelManager metaModelManager) {
@@ -63,13 +63,13 @@ public class CS2PivotResourceAdapter extends AbstractMetaModelManagerResourceAda
 		return converter.getPivotResource(csResource);
 	}
 	
-	public CS2Pivot getConverter() {
+	public CS2AS getConverter() {
 		return converter;
 	}
 
 	@Override
 	public boolean isAdapterForType(Object type) {
-		return super.isAdapterForType(type) || (type == CS2PivotResourceAdapter.class);
+		return super.isAdapterForType(type) || (type == CS2ASResourceAdapter.class);
 	}	
 	
 	public void refreshPivotMappings(@NonNull IDiagnosticConsumer diagnosticsConsumer) throws Exception {

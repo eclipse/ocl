@@ -11,12 +11,12 @@
 package org.eclipse.ocl.examples.xtext.oclinecore.cs2as;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.util.AbstractOCLinEcoreCSPreOrderVisitor;
 
 public class OCLinEcoreCSPreOrderVisitor extends AbstractOCLinEcoreCSPreOrderVisitor
 {
-	public OCLinEcoreCSPreOrderVisitor(@NonNull CS2PivotConversion context) {
+	public OCLinEcoreCSPreOrderVisitor(@NonNull CS2ASConversion context) {
 		super(context);
 	}
 }

@@ -11,12 +11,12 @@
 package org.eclipse.ocl.examples.xtext.oclinecore.cs2as;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.util.AbstractOCLinEcoreCSLeft2RightVisitor;
 
 public class OCLinEcoreCSLeft2RightVisitor extends AbstractOCLinEcoreCSLeft2RightVisitor
 {
-	public OCLinEcoreCSLeft2RightVisitor(@NonNull CS2PivotConversion context) {
+	public OCLinEcoreCSLeft2RightVisitor(@NonNull CS2ASConversion context) {
 		super(context);
 	}
 }

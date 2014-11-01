@@ -45,8 +45,8 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.SpecificationCS;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS;
@@ -148,7 +148,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 	private Map<Property, List<Constraint>> property2invariants = new HashMap<Property, List<Constraint>>();
 	private Map<Type, List<Constraint>> type2invariants = new HashMap<Type, List<Constraint>>();
 
-	public CompleteOCLCSContainmentVisitor(@NonNull CS2PivotConversion context) {
+	public CompleteOCLCSContainmentVisitor(@NonNull CS2ASConversion context) {
 		super(context);
 	}
 
@@ -461,7 +461,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		assert csParameters != null;
 		PathNameCS pathName = csElement.getOwnedPathName();
 		assert pathName != null;
-		CS2Pivot.setElementType(pathName, PivotPackage.Literals.OPERATION, csElement,
+		CS2AS.setElementType(pathName, PivotPackage.Literals.OPERATION, csElement,
 			new OperationDeclScopeFilter(null, csParameters));
 		/*
 		 * Types have not yet been resolved so operation overloads are not resolveable.

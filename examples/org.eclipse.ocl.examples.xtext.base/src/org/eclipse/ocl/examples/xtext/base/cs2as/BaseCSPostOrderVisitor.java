@@ -66,14 +66,14 @@ import org.eclipse.ocl.examples.xtext.base.basecs.WildcardTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.AbstractExtendingBaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.VisitableCS;
 
-public class BaseCSPostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continuation<?>, CS2PivotConversion>
+public class BaseCSPostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continuation<?>, CS2ASConversion>
 {
 	public static class ListCompletion<CST extends ModelElementCS, P extends NamedElement> extends MultipleContinuation<CST>
 	{
 		protected final @NonNull Class<P> pivotClass;
 		protected final List<P> pivotElements;
 
-		protected ListCompletion(@NonNull CS2PivotConversion context, NamedElement pivotParent, EStructuralFeature pivotFeature,
+		protected ListCompletion(@NonNull CS2ASConversion context, NamedElement pivotParent, EStructuralFeature pivotFeature,
 				@NonNull List<? extends CST> csElements, Dependency[] dependencies, @NonNull Class<P> pivotClass, List<P> pivotElements) {
 			super(context, pivotParent, pivotFeature, csElements, dependencies);
 			this.pivotClass = pivotClass;
@@ -89,7 +89,7 @@ public class BaseCSPostOrderVisitor extends AbstractExtendingBaseCSVisitor<Conti
 	
 	protected final @NonNull MetaModelManager metaModelManager;
 	
-	public BaseCSPostOrderVisitor(@NonNull CS2PivotConversion context) {
+	public BaseCSPostOrderVisitor(@NonNull CS2ASConversion context) {
 		super(context);
 		this.metaModelManager= context.getMetaModelManager();
 	}
@@ -115,7 +115,7 @@ public class BaseCSPostOrderVisitor extends AbstractExtendingBaseCSVisitor<Conti
 	}
 
 	public Continuation<?> visiting(@NonNull VisitableCS visitable) {
-		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for CS2Pivot PostOrder pass");
+		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for CS2AS PostOrder pass");
 	}
 
 	@Override

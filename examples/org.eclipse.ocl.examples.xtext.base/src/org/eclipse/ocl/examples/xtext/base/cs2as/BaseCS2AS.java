@@ -21,36 +21,36 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 
 /**
- * BaseCS2Pivot provides an extensible conversion from CS models to the pivot model.
+ * BaseCS2AS provides an extensible conversion from CS models to the pivot model.
  */
-public class BaseCS2Pivot extends CS2Pivot
+public class BaseCS2AS extends CS2AS
 {	
-	public BaseCS2Pivot(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap,
+	public BaseCS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap,
 			@NonNull MetaModelManager metaModelManager) {
 		super(cs2asResourceMap, metaModelManager);
 	}
 
-	public BaseCS2Pivot(@NonNull BaseCS2Pivot cs2pivot) {
-		super(cs2pivot);
+	public BaseCS2AS(@NonNull BaseCS2AS cs2as) {
+		super(cs2as);
 	}
 
 	@Override
-	protected @NonNull BaseCSVisitor<Continuation<?>> createContainmentVisitor(@NonNull CS2PivotConversion converter) {
+	protected @NonNull BaseCSVisitor<Continuation<?>> createContainmentVisitor(@NonNull CS2ASConversion converter) {
 		return new BaseCSContainmentVisitor(converter);
 	}
 
 	@Override
-	protected @NonNull BaseCSVisitor<Element> createLeft2RightVisitor(@NonNull CS2PivotConversion converter) {
+	protected @NonNull BaseCSVisitor<Element> createLeft2RightVisitor(@NonNull CS2ASConversion converter) {
 		return new BaseCSLeft2RightVisitor(converter);
 	}
 
 	@Override
-	protected @NonNull BaseCSVisitor<Continuation<?>> createPostOrderVisitor(@NonNull CS2PivotConversion converter) {
+	protected @NonNull BaseCSVisitor<Continuation<?>> createPostOrderVisitor(@NonNull CS2ASConversion converter) {
 		return new BaseCSPostOrderVisitor(converter);
 	}
 
 	@Override
-	protected @NonNull BaseCSVisitor<Continuation<?>> createPreOrderVisitor(@NonNull CS2PivotConversion converter) {
+	protected @NonNull BaseCSVisitor<Continuation<?>> createPreOrderVisitor(@NonNull CS2ASConversion converter) {
 		return new BaseCSPreOrderVisitor(converter);
 	}
 }

@@ -33,13 +33,13 @@ public abstract class BasicContinuation<T> implements Continuation<T>
 {
 	static final Logger logger = Logger.getLogger(BasicContinuation.class);
 
-	protected final @NonNull CS2PivotConversion context;
+	protected final @NonNull CS2ASConversion context;
 	protected final Element pivotParent;
 	protected final EStructuralFeature pivotFeature;	
 	protected final @NonNull T csElement;
 	protected final Dependency[] dependencies;
 	
-	public BasicContinuation(@NonNull CS2PivotConversion context,
+	public BasicContinuation(@NonNull CS2ASConversion context,
 			Element pivotParent, EStructuralFeature pivotFeature,
 			@NonNull T csElement, Dependency... dependencies) {
 		this.context = context;

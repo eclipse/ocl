@@ -15,7 +15,7 @@ import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLDocumentCS;
@@ -30,7 +30,7 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.util.AbstractCom
 
 public class CompleteOCLCSPostOrderVisitor extends AbstractCompleteOCLCSPostOrderVisitor
 {
-	public CompleteOCLCSPostOrderVisitor(@NonNull CS2PivotConversion context) {
+	public CompleteOCLCSPostOrderVisitor(@NonNull CS2ASConversion context) {
 		super(context);
 	}
 

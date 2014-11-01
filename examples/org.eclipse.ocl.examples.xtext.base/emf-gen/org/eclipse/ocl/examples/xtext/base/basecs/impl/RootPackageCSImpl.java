@@ -27,7 +27,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.RootCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
 
 /**
  * <!-- begin-user-doc -->
@@ -270,7 +270,7 @@ public class RootPackageCSImpl extends PackageOwnerCSImpl implements RootPackage
 	public EList<EObject> eContents() {
 		EList<EObject> result = eProperties().getEContents();
 		if (result == null) {
-			result = CS2Pivot.computeRootContainmentFeatures(this);
+			result = CS2AS.computeRootContainmentFeatures(this);
 			eBasicProperties().setEContents(result);
 		}
 		return result;

@@ -29,7 +29,7 @@ import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.cs2as.ValidationDiagnostic;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot.UnresolvedProxyMessageProvider;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS.UnresolvedProxyMessageProvider;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.IncludeCS;

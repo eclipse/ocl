@@ -28,10 +28,10 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCS2Pivot;
+import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCS2AS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaclassNameCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSFactory;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.util.OCLstdlibCSVisitor;
@@ -39,7 +39,7 @@ import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
-public class OCLstdlibCS2Pivot extends EssentialOCLCS2Pivot
+public class OCLstdlibCS2AS extends EssentialOCLCS2AS
 {	
 	private static @Nullable Map<String, MetaclassNameCS> metaTypeNames = null;
 
@@ -71,31 +71,31 @@ public class OCLstdlibCS2Pivot extends EssentialOCLCS2Pivot
 		return null;
 	}
 
-	public OCLstdlibCS2Pivot(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull MetaModelManager metaModelManager) {
+	public OCLstdlibCS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull MetaModelManager metaModelManager) {
 		super(cs2asResourceMap, metaModelManager);
 	}
 	
-	public OCLstdlibCS2Pivot(@NonNull OCLstdlibCS2Pivot cs2pivot) {
-		super(cs2pivot);
+	public OCLstdlibCS2AS(@NonNull OCLstdlibCS2AS cs2as) {
+		super(cs2as);
 	}
 
 	@Override
-	protected @NonNull OCLstdlibCSVisitor<Continuation<?>> createContainmentVisitor(@NonNull CS2PivotConversion converter) {
+	protected @NonNull OCLstdlibCSVisitor<Continuation<?>> createContainmentVisitor(@NonNull CS2ASConversion converter) {
 		return new OCLstdlibCSContainmentVisitor(converter);
 	}
 
 	@Override
-	protected @NonNull OCLstdlibCSVisitor<Element> createLeft2RightVisitor(@NonNull CS2PivotConversion converter) {
+	protected @NonNull OCLstdlibCSVisitor<Element> createLeft2RightVisitor(@NonNull CS2ASConversion converter) {
 		return new OCLstdlibCSLeft2RightVisitor(converter);
 	}
 
 	@Override
-	protected @NonNull OCLstdlibCSVisitor<Continuation<?>> createPostOrderVisitor(@NonNull CS2PivotConversion converter) {
+	protected @NonNull OCLstdlibCSVisitor<Continuation<?>> createPostOrderVisitor(@NonNull CS2ASConversion converter) {
 		return new OCLstdlibCSPostOrderVisitor(converter);
 	}
 
 	@Override
-	protected @NonNull OCLstdlibCSVisitor<Continuation<?>> createPreOrderVisitor(@NonNull CS2PivotConversion converter) {
+	protected @NonNull OCLstdlibCSVisitor<Continuation<?>> createPreOrderVisitor(@NonNull CS2ASConversion converter) {
 		return new OCLstdlibCSPreOrderVisitor(converter);
 	}
 

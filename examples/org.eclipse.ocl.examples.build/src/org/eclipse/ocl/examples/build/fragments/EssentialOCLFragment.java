@@ -26,7 +26,7 @@ import org.eclipse.ocl.examples.xtext.base.ui.model.BaseDocument;
 import org.eclipse.ocl.examples.xtext.base.ui.model.BaseTerminalsTokenTypeToPartitionMapper;
 import org.eclipse.ocl.examples.xtext.base.ui.model.BaseURIEditorOpener;
 import org.eclipse.ocl.examples.xtext.base.ui.syntaxcoloring.BaseAntlrTokenToAttributeIdMapper;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotLinker;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASLinker;
 import org.eclipse.ocl.examples.xtext.base.utilities.PivotDiagnosticConverter;
 import org.eclipse.ocl.examples.xtext.base.utilities.PivotResourceValidator;
 import org.eclipse.ocl.examples.xtext.essentialocl.pivot2cs.EssentialOCLLocationInFileProvider;
@@ -83,7 +83,7 @@ public class EssentialOCLFragment extends DefaultGeneratorFragment implements Na
 		bindFactory.addTypeToType(IDiagnosticConverter.class.getName(), PivotDiagnosticConverter.class.getName());
 		bindFactory.addTypeToType(IFragmentProvider.class.getName(), BaseFragmentProvider.class.getName());
 		bindFactory.addTypeToType(org.eclipse.xtext.serializer.sequencer.IHiddenTokenSequencer.class.getName(), BaseHiddenTokenSequencer.class.getName());
-		bindFactory.addTypeToType(ILinker.class.getName(), CS2PivotLinker.class.getName());
+		bindFactory.addTypeToType(ILinker.class.getName(), CS2ASLinker.class.getName());
 		bindFactory.addTypeToType(ILinkingDiagnosticMessageProvider.class.getName(), BaseLinkingDiagnosticMessageProvider.class.getName());
 		// External reference loading and resolution.
 		bindFactory.addTypeToType(ILinkingService.class.getName(), BaseLinkingService.class.getName());

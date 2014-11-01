@@ -23,7 +23,7 @@ import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Moniker;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.JavaClassScope;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 
@@ -178,7 +178,7 @@ public class MonikerTests extends XtextTestCase
 		//
 		//	Get the pivot resource and check for load failures
 		//
-		CS2PivotResourceAdapter adapter = csResource.getCS2ASAdapter(null);
+		CS2ASResourceAdapter adapter = csResource.getCS2ASAdapter(null);
 		Resource asResource = adapter.getASResource(csResource);		
 		assertNoValidationErrors("Pivot validation problems", asResource);
 		asResource.setURI(pivotURI);

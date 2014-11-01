@@ -80,16 +80,16 @@ Workflow {
     
     component = QVToTransformationExecutor { resourceSet = resourceSet skipOnErrors = true validate = false
     	uri = "platform:/resource/${projectName}/src/org/eclipse/ocl/examples/build/qvto/UML2EcoreAnalyzer.qvto"
-    	in = "platform:/resource/${projectName}/model/CS2PivotinEcore.xmi" 
-    	out = "platform:/resource/${projectName}/model-gen/CS2PivotAnalysis.xmi" 
+    	in = "platform:/resource/${projectName}/model/CS2ASinEcore.xmi" 
+    	out = "platform:/resource/${projectName}/model-gen/CS2ASAnalysis.xmi" 
 	}
     component = QVToTransformationExecutor { resourceSet = resourceSet skipOnErrors = true validate = false
     	uri = "platform:/resource/${projectName}/src/org/eclipse/ocl/examples/build/qvto/UML2EcoreSynthesizer.qvto"
-    	in = "platform:/resource/${projectName}/model-gen/CS2PivotAnalysis.xmi" 
-    	out = "platform:/resource/${projectName}/model-gen/CS2Pivot.ecore" 
+    	in = "platform:/resource/${projectName}/model-gen/CS2ASAnalysis.xmi" 
+    	out = "platform:/resource/${projectName}/model-gen/CS2AS.ecore" 
 	}
     component = CSSplitter { resourceSet = resourceSet skipOnErrors = true
-    	in = "platform:/resource/${projectName}/model-gen/CS2Pivot.ecore" 
+    	in = "platform:/resource/${projectName}/model-gen/CS2AS.ecore" 
      	exclude = Mapping {
     		from = "cspivot"
     		to = "platform:/resource/org.eclipse.ocl.examples.pivot/model/Pivot.ecore"

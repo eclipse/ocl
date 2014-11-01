@@ -57,7 +57,7 @@ import org.eclipse.ocl.examples.pivot.resource.OCLASResourceFactory;
 import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
 import org.eclipse.ocl.examples.xtext.base.ui.BaseUiPluginHelper;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.xtext.parsetree.reconstr.XtextSerializationException;
@@ -370,7 +370,7 @@ public abstract class BaseDocumentProvider extends XtextDocumentProvider impleme
 					diagnoseErrors((XtextResource) csResource, e);
 				}
 				csResource.unload();
-				CS2PivotResourceAdapter resourceAdapter = ((BaseCSResource)csResource).getCS2ASAdapter(null);
+				CS2ASResourceAdapter resourceAdapter = ((BaseCSResource)csResource).getCS2ASAdapter(null);
 				resourceAdapter.dispose();
 				resourceSet.getResources().remove(csResource);
 				inputStream = new ByteArrayInputStream(outputStream.toByteArray());

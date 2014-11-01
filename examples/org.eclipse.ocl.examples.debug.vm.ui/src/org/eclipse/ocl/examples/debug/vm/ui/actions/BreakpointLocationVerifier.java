@@ -32,7 +32,7 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.texteditor.IDocumentProvider;
@@ -124,7 +124,7 @@ class BreakpointLocationVerifier {
 			public Model exec(@Nullable XtextResource state) throws Exception {
 				if (state instanceof BaseCSResource) {
 					BaseCSResource csResource = (BaseCSResource)state;
-					CS2PivotResourceAdapter cs2asAdapter = csResource.findCS2ASAdapter();
+					CS2ASResourceAdapter cs2asAdapter = csResource.findCS2ASAdapter();
 					if (cs2asAdapter != null) {
 						ASResource asResource = cs2asAdapter.getASResource(csResource);
 						if ((asResource != null) && (asResource.getContents().size() > 0)) {

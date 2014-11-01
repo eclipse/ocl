@@ -63,8 +63,8 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ContextLessElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.SpecificationCS;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteralExpCS;
@@ -106,7 +106,7 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 {
 	private static final Logger logger = Logger.getLogger(EssentialOCLCSContainmentVisitor.class);
 
-	public EssentialOCLCSContainmentVisitor(@NonNull CS2PivotConversion context) {
+	public EssentialOCLCSContainmentVisitor(@NonNull CS2ASConversion context) {
 		super(context);
 	}
 
@@ -314,7 +314,7 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 	public Continuation<?> visitNameExpCS(@NonNull NameExpCS csElement) {
 //		PathNameCS pathName = csElement.getPathName();
 //		assert pathName != null;
-//		CS2Pivot.setElementType(pathName, PivotPackage.Literals.ELEMENT, csElement, NotOperationNotPackageFilter.INSTANCE);
+//		CS2AS.setElementType(pathName, PivotPackage.Literals.ELEMENT, csElement, NotOperationNotPackageFilter.INSTANCE);
 		return null;
 	}
 
@@ -499,7 +499,7 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 	public Continuation<?> visitTypeNameExpCS(@NonNull TypeNameExpCS csElement) {
 		PathNameCS pathName = csElement.getOwnedPathName();
 		assert pathName != null;
-		CS2Pivot.setElementType(pathName, PivotPackage.Literals.TYPE, csElement, null);
+		CS2AS.setElementType(pathName, PivotPackage.Literals.TYPE, csElement, null);
 		return null;
 	}
 

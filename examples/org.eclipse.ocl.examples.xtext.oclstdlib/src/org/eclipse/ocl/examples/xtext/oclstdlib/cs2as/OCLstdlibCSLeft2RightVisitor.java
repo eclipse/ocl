@@ -13,13 +13,13 @@ package org.eclipse.ocl.examples.xtext.oclstdlib.cs2as;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.PrecedenceCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.util.AbstractOCLstdlibCSLeft2RightVisitor;
 
 public class OCLstdlibCSLeft2RightVisitor extends AbstractOCLstdlibCSLeft2RightVisitor
 {
-	public OCLstdlibCSLeft2RightVisitor(@NonNull CS2PivotConversion context) {
+	public OCLstdlibCSLeft2RightVisitor(@NonNull CS2ASConversion context) {
 		super(context);
 	}
 

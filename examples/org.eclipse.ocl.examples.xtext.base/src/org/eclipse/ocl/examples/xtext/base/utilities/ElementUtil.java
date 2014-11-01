@@ -65,7 +65,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.WildcardTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.examples.xtext.base.cs2as.ImportDiagnostic;
 import org.eclipse.ocl.examples.xtext.base.cs2as.LibraryDiagnostic;
 import org.eclipse.xtext.nodemodel.BidiIterator;
@@ -144,11 +144,11 @@ public class ElementUtil
 		if (resourceSet == null) {
 			return null;
 		}
-		CS2Pivot cs2Pivot = CS2Pivot.findAdapter(resourceSet);
-		if (cs2Pivot == null) {
+		CS2AS cs2as = CS2AS.findAdapter(resourceSet);
+		if (cs2as == null) {
 			return null;
 		}
-		return cs2Pivot.getCSElement(obj);
+		return cs2as.getCSElement(obj);
 	}
 
 	// FIXME share with common.ui once promoted from examples
@@ -233,7 +233,7 @@ public class ElementUtil
 	 * @throws ParserException 
 	 */
 	public static @Nullable ExpressionInOCL getFirstQuery(@NonNull MetaModelManager metaModelManager, BaseCSResource csResource) throws ParserException {
-		CS2PivotResourceAdapter cs2asAdapter = csResource.findCS2ASAdapter();
+		CS2ASResourceAdapter cs2asAdapter = csResource.findCS2ASAdapter();
 		if (cs2asAdapter != null) {
 			ASResource asResource = cs2asAdapter.getASResource(csResource);
 			for (EObject eRoot: asResource.getContents()) {

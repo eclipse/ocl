@@ -106,9 +106,9 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 import com.google.common.collect.Iterables;
 
-public class CS2PivotConversion extends AbstractBase2PivotConversion
+public class CS2ASConversion extends AbstractBase2PivotConversion
 {	
-	private static final Logger logger = Logger.getLogger(CS2PivotConversion.class);
+	private static final Logger logger = Logger.getLogger(CS2ASConversion.class);
 	public static final @NonNull TracingOption CONTINUATION = new TracingOption("org.eclipse.ocl.examples.xtext.base", "continuation");  //$NON-NLS-1$//$NON-NLS-2$
 
 	public static class CacheKey<T>
@@ -123,7 +123,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 		public String toString() { return name; }
 	}
 	
-	protected final @NonNull CS2Pivot converter;
+	protected final @NonNull CS2AS converter;
 	protected final @NonNull Collection<? extends BaseCSResource> csResources;
 	
 	/**
@@ -151,7 +151,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 	@SuppressWarnings("unused")
 	private final IDiagnosticConsumer diagnosticsConsumer;
 	
-	public CS2PivotConversion(@NonNull CS2Pivot converter, @NonNull IDiagnosticConsumer diagnosticsConsumer, @NonNull Collection<? extends BaseCSResource> csResources) {
+	public CS2ASConversion(@NonNull CS2AS converter, @NonNull IDiagnosticConsumer diagnosticsConsumer, @NonNull Collection<? extends BaseCSResource> csResources) {
 		super(converter.getMetaModelManager());
 		this.converter = converter;
 		this.diagnosticsConsumer = diagnosticsConsumer;
@@ -190,7 +190,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.ocl.examples.xtext.base.cs2pivot.DiagnosticHandler#addWarning(org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS, java.lang.String, java.lang.Object)
+	 * @see org.eclipse.ocl.examples.xtext.base.cs2as.DiagnosticHandler#addWarning(org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS, java.lang.String, java.lang.Object)
 	 */
 	public void addWarning(@NonNull ModelElementCS csElement, /*@NonNull*/ String message, Object... bindings) {
 		String boundMessage = NLS.bind(message, bindings);
@@ -284,7 +284,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 	} */
 
 /*	protected List<String> getDocumentationStrings1(CompositeNode node) {
-		List<LeafNode> documentationNodes = CS2Pivot.getDocumentationNodes(node);
+		List<LeafNode> documentationNodes = CS2AS.getDocumentationNodes(node);
 		if (documentationNodes == null) {
 			return null;
 		}
@@ -557,7 +557,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 		}
 	}
 	
-	public final @NonNull CS2Pivot getConverter() {
+	public final @NonNull CS2AS getConverter() {
 		return converter;
 	}
 
@@ -854,7 +854,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 	public void refreshComments(Element pivotElement, ElementCS csElement) {
 		ICompositeNode node = NodeModelUtils.getNode(csElement);
 		if (node != null) {
-			List<ILeafNode> documentationNodes = CS2Pivot.getDocumentationNodes(node);
+			List<ILeafNode> documentationNodes = CS2AS.getDocumentationNodes(node);
 			List<Comment> ownedComments = pivotElement.getOwnedComment();
 			if (documentationNodes != null) {
 				List<String> documentationStrings = new ArrayList<String>();
@@ -1246,7 +1246,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 		oldPackagesByName = new HashMap<String, org.eclipse.ocl.examples.pivot.Package>();
 		oldPackagesByQualifiedName = new HashMap<String, org.eclipse.ocl.examples.pivot.Package>();
 		for (BaseCSResource csResource : converter.csResources) {
-			ASResource asResource = converter.cs2PivotMapping.getASResource(csResource);
+			ASResource asResource = converter.csi2asMapping.getASResource(csResource);
 			if (asResource != null) {
 				for (EObject eObject : asResource.getContents()) {
 					if (eObject instanceof Model) {

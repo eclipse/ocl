@@ -33,21 +33,21 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
 /**
  * The CSI2PivotMapping maintains the mapping between CS elements or rather their CSIs
  * that remain stable after recreation and the Pivot elements. This mapping may be used
- * repeatedly while editing (CS2Pivot conversions) to associate changing CS elements with
+ * repeatedly while editing (CS2AS conversions) to associate changing CS elements with
  * stable Pivot elements.
- * The mapping is also created during a Pivot2CS conversion to allow subsequent CS2Pivot
+ * The mapping is also created during a Pivot2CS conversion to allow subsequent CS2AS
  * conversions to reuse the original Pivot elements.  
  */
-public class CSI2PivotMapping extends AdapterImpl implements MetaModelManagerListener
+public class CSI2ASMapping extends AdapterImpl implements MetaModelManagerListener
 {
-	public static @NonNull CSI2PivotMapping getAdapter(@NonNull MetaModelManager metaModelManager) {
+	public static @NonNull CSI2ASMapping getAdapter(@NonNull MetaModelManager metaModelManager) {
 		List<Adapter> eAdapters = metaModelManager.getASResourceSet().eAdapters();
 		for (Adapter adapter : eAdapters) {
-			if (adapter instanceof CSI2PivotMapping) {
-				return (CSI2PivotMapping) adapter;
+			if (adapter instanceof CSI2ASMapping) {
+				return (CSI2ASMapping) adapter;
 			}
 		}
-		CSI2PivotMapping adapter = new CSI2PivotMapping();
+		CSI2ASMapping adapter = new CSI2ASMapping();
 		eAdapters.add(adapter);
 		return adapter;
 	}
@@ -76,7 +76,7 @@ public class CSI2PivotMapping extends AdapterImpl implements MetaModelManagerLis
 	
 	private int nextAlias = 0;
 	
-	private CSI2PivotMapping() {}
+	private CSI2ASMapping() {}
 
 	public void add(Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap) {
 		pivot2cs = null;
@@ -180,7 +180,7 @@ public class CSI2PivotMapping extends AdapterImpl implements MetaModelManagerLis
 
 	@Override
 	public boolean isAdapterForType(Object type) {
-		return type == CSI2PivotMapping.class;
+		return type == CSI2ASMapping.class;
 	}
 
 	public void metaModelManagerDisposed(@NonNull MetaModelManager metaModelManager) {

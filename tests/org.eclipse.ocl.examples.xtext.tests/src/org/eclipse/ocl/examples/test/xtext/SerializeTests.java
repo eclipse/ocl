@@ -135,7 +135,7 @@ public class SerializeTests extends XtextTestCase
 			//	
 			String pivotName2 = stem + "2.ecore.oclas";
 			URI pivotURI2 = getProjectFileURI(pivotName2);
-			Resource pivotResource2 = cs2pivot(ocl2, xtextResource2, pivotURI2);
+			Resource pivotResource2 = cs2as(ocl2, xtextResource2, pivotURI2);
 			//
 			//	Pivot to Ecore
 			//		
@@ -197,7 +197,7 @@ public class SerializeTests extends XtextTestCase
 		//	
 		String pivotName2 = stem + "2.ecore.oclas";
 		URI pivotURI2 = getProjectFileURI(pivotName2);
-		Resource pivotResource2 = cs2pivot(ocl, xtextResource2, pivotURI2);
+		Resource pivotResource2 = cs2as(ocl, xtextResource2, pivotURI2);
 		//
 		//	Pivot to Ecore
 		//
@@ -385,7 +385,7 @@ public class SerializeTests extends XtextTestCase
 //		logger.addAppender(new ConsoleAppender(new SimpleLayout()));
 //		BaseScopeProvider.LOOKUP.setState(true);
 //		DocumentAttribution.WORK.setState(true);
-//		CS2PivotConversion.CONTINUATION.setState(true);
+//		CS2ASConversion.CONTINUATION.setState(true);
 //		Abstract2Moniker.TRACE_MONIKERS.setState(true);
 		doSerialize("Company", "Company.reference", null, true, true);
 	}

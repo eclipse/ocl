@@ -30,7 +30,7 @@ import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.pivot.uml.Pivot2UML;
 import org.eclipse.ocl.examples.xtext.base.ui.model.BaseDocument;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.model.DocumentTokenSource;
@@ -61,7 +61,7 @@ public class OCLinEcoreDocument extends BaseDocument
 					if (resource != null) {
 						XMLResource asResource = getPivotResouce();
 						if (asResource != null) {
-							CS2PivotResourceAdapter adapter = ((BaseCSResource)resource).findCS2ASAdapter();
+							CS2ASResourceAdapter adapter = ((BaseCSResource)resource).findCS2ASAdapter();
 							if (adapter != null) {
 								Resource csResource = adapter.getTarget();
 								checkForErrors(csResource);
@@ -91,7 +91,7 @@ public class OCLinEcoreDocument extends BaseDocument
 					if (resource != null) {
 						XMLResource asResource = getPivotResouce();
 						if (asResource != null) {
-							CS2PivotResourceAdapter adapter = ((BaseCSResource)resource).findCS2ASAdapter();
+							CS2ASResourceAdapter adapter = ((BaseCSResource)resource).findCS2ASAdapter();
 							if (adapter != null) {
 								List<EObject> umlContents = Pivot2UML.createResource(adapter.getMetaModelManager(), asResource);
 								ResourceSetImpl resourceSet = new ResourceSetImpl();
@@ -118,7 +118,7 @@ public class OCLinEcoreDocument extends BaseDocument
 					if (resource != null) {
 						XMLResource asResource = getPivotResouce();
 						if (asResource != null) {
-							CS2PivotResourceAdapter adapter = ((BaseCSResource)resource).findCS2ASAdapter();
+							CS2ASResourceAdapter adapter = ((BaseCSResource)resource).findCS2ASAdapter();
 							if (adapter != null) {
 								Map<String,Object> options = new HashMap<String,Object>();
 								options.put(PivotConstants.PRIMITIVE_TYPES_URI_PREFIX, "primitives.ecore#//");

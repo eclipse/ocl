@@ -21,7 +21,7 @@ import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.util.Triple;
@@ -40,7 +40,7 @@ public interface BaseCSResource extends BaseResource
 	 * Create the CS2AS converter for the cs2asResourceMap conversions using metaModelManager.
 	 */
 	// FIXME Pivot2AS Narrow to BaseCSResource
-	@NonNull CS2Pivot createCS2Pivot(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull MetaModelManager metaModelManager);
+	@NonNull CS2AS createCS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull MetaModelManager metaModelManager);
 
 	/**
 	 * Create the AS2CS converter for the cs2asResourceMap conversions using metaModelManager.
@@ -57,7 +57,7 @@ public interface BaseCSResource extends BaseResource
 	/**
 	 * Return the CS2AS adapter for this resource, or null if none installed.
 	 */
-	@Nullable CS2PivotResourceAdapter findCS2ASAdapter();
+	@Nullable CS2ASResourceAdapter findCS2ASAdapter();
 
 	/**
 	 * Return the eContentType to be used when creating an AS resource.
@@ -74,7 +74,7 @@ public interface BaseCSResource extends BaseResource
 	 * If no CS2AS adapter installed, one is created and installed using the provided metaModelManager,
 	 * which if null is also created. 
 	 */
-	@NonNull CS2PivotResourceAdapter getCS2ASAdapter(@Nullable MetaModelManager metaModelManager);
+	@NonNull CS2ASResourceAdapter getCS2ASAdapter(@Nullable MetaModelManager metaModelManager);
 	
 	/**
 	 * Return the name of the editor for use in diagnostics.

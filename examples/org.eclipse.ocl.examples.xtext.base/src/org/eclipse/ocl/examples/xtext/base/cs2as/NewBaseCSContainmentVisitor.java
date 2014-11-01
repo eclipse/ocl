@@ -15,7 +15,7 @@ import org.eclipse.jdt.annotation.NonNull;
 
 public class NewBaseCSContainmentVisitor extends AutoBaseCSContainmentVisitor{
 
-	public NewBaseCSContainmentVisitor(@NonNull CS2PivotConversion context) {
+	public NewBaseCSContainmentVisitor(@NonNull CS2ASConversion context) {
 		super(context);
 	}
 }

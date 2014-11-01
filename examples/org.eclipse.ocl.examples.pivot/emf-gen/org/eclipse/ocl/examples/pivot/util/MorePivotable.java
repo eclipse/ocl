@@ -16,7 +16,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotObject;
 
 /**
  * A MorePivotable object has references to additional pivot objects that should be
- * treated as in use at the end of a CS2Pivot conversion. 
+ * treated as in use at the end of a CS2AS conversion. 
  */
 public interface MorePivotable extends PivotObject
 {

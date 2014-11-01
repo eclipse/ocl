@@ -94,7 +94,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.AbstractBaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.VisitableCS;
 
 public class AutoBaseCSContainmentVisitor
-	extends AbstractBaseCSVisitor<Continuation<?>, CS2PivotConversion>
+	extends AbstractBaseCSVisitor<Continuation<?>, CS2ASConversion>
 {
     public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_$metamodel$ = IdManager.getRootPackageId("$metamodel$");
     public static final @NonNull /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_3_1_0_s_BaseCST = IdManager.getNsURIPackageId("http://www.eclipse.org/ocl/3.1.0/BaseCST", null, BaseCSPackage.eINSTANCE);
@@ -119,7 +119,7 @@ public class AutoBaseCSContainmentVisitor
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_Package = TypeId.SEQUENCE.getSpecializedId(CLSSid_Package);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Package = TypeId.SET.getSpecializedId(CLSSid_Package);
     
-    protected final @NonNull CS2Pivot converter;
+    protected final @NonNull CS2AS converter;
     protected final @NonNull IdResolver idResolver;
     
     /**
@@ -127,7 +127,7 @@ public class AutoBaseCSContainmentVisitor
      * 
      * @param context my initial result value
      */
-    public AutoBaseCSContainmentVisitor(@NonNull CS2PivotConversion context) {
+    public AutoBaseCSContainmentVisitor(@NonNull CS2ASConversion context) {
         super(context);
         this.converter = context.getConverter();
         this.idResolver = converter.getMetaModelManager().getIdResolver();

@@ -23,8 +23,8 @@ import org.eclipse.ocl.examples.xtext.base.basecs.MultiplicityCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.cs2as.BasicContinuation;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.examples.xtext.base.cs2as.SingleContinuation;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionTypeCS;
@@ -41,7 +41,7 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 {
 	protected static class CollectionTypeContinuation extends SingleContinuation<CollectionTypeCS>
 	{
-		public CollectionTypeContinuation(@NonNull CS2PivotConversion context, @NonNull CollectionTypeCS csElement) {
+		public CollectionTypeContinuation(@NonNull CS2ASConversion context, @NonNull CollectionTypeCS csElement) {
 			super(context, null, null, csElement);
 		}
 
@@ -55,7 +55,7 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 				return true;
 			}
 			if (csTypedRef instanceof TypedTypeRefCS) {
-				Element unspecializedPivotElement = CS2Pivot.basicGetType((TypedTypeRefCS)csTypedRef);
+				Element unspecializedPivotElement = CS2AS.basicGetType((TypedTypeRefCS)csTypedRef);
 				if (unspecializedPivotElement == null) {
 					return false;
 				}
@@ -104,7 +104,7 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 
 	protected static class TypeNameExpContinuation extends SingleContinuation<TypeNameExpCS>
 	{
-		public TypeNameExpContinuation(@NonNull CS2PivotConversion context, @NonNull TypeNameExpCS csElement) {
+		public TypeNameExpContinuation(@NonNull CS2ASConversion context, @NonNull TypeNameExpCS csElement) {
 			super(context, null, null, csElement);
 		}
 
@@ -121,7 +121,7 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 		}
 	}
 
-	public EssentialOCLCSPreOrderVisitor(@NonNull CS2PivotConversion context) {
+	public EssentialOCLCSPreOrderVisitor(@NonNull CS2ASConversion context) {
 		super(context);
 	}
 

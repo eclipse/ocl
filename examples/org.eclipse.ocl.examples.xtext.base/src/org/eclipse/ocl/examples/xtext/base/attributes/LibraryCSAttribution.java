@@ -41,7 +41,7 @@ import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
 import org.eclipse.ocl.examples.xtext.base.basecs.LibraryCS;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot.UnresolvedProxyMessageProvider;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS.UnresolvedProxyMessageProvider;
 import org.eclipse.ocl.examples.xtext.base.cs2as.ValidationDiagnostic;
 import org.eclipse.ocl.examples.xtext.base.scoping.AbstractJavaClassScope;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;

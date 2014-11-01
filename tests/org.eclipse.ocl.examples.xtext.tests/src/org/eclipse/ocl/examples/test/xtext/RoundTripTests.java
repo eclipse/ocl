@@ -48,10 +48,10 @@ import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.uml.Pivot2UML;
 import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot.MessageBinder;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS.MessageBinder;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.pivot2cs.CompleteOCLSplitter;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.OCLinEcoreCSPackage;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
@@ -83,7 +83,7 @@ public class RoundTripTests extends XtextTestCase
 		return asResource;
 	}
 	public ASResource createPivotFromXtext(MetaModelManager metaModelManager, BaseCSResource xtextResource, int expectedContentCount) throws IOException {
-		CS2PivotResourceAdapter adapter = null;
+		CS2ASResourceAdapter adapter = null;
 		try {
 			adapter = xtextResource.getCS2ASAdapter(null);
 			ASResource asResource = adapter.getASResource(xtextResource);
@@ -128,7 +128,7 @@ public class RoundTripTests extends XtextTestCase
 	}
 	
 	public void doRoundTripFromCompleteOCL(URI inputURI) throws IOException, InterruptedException {
-		MessageBinder savedMessageBinder = CS2Pivot.setMessageBinder(CS2Pivot.MessageBinderWithLineContext.INSTANCE);
+		MessageBinder savedMessageBinder = CS2AS.setMessageBinder(CS2AS.MessageBinderWithLineContext.INSTANCE);
 		StandaloneProjectMap projectMap = ProjectMap.getAdapter(resourceSet);
 		try {
 			projectMap.initializeResourceSet(resourceSet);			
@@ -167,7 +167,7 @@ public class RoundTripTests extends XtextTestCase
 		}
 		finally {
 			projectMap.dispose();
-			CS2Pivot.setMessageBinder(savedMessageBinder);
+			CS2AS.setMessageBinder(savedMessageBinder);
 		}
 	}
 	

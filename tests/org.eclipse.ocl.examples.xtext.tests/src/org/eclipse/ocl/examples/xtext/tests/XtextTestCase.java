@@ -77,7 +77,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TuplePartCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
@@ -339,7 +339,7 @@ public class XtextTestCase extends PivotTestCase
 		InputStream inputStream = new URIConverter.ReadableInputStream(testFile, "UTF-8");
 		xtextResource.load(inputStream, null);
 		assertNoResourceErrors("Load failed", xtextResource);
-		CS2PivotResourceAdapter adapter = xtextResource.getCS2ASAdapter(metaModelManager);
+		CS2ASResourceAdapter adapter = xtextResource.getCS2ASAdapter(metaModelManager);
 		Resource asResource = adapter.getASResource(xtextResource);
 		assert asResource != null;
 		assertNoResourceErrors("File Model", asResource);
@@ -366,7 +366,7 @@ public class XtextTestCase extends PivotTestCase
 		ModelContext modelContext = new ModelContext(metaModelManager, libraryURI);
 		BaseCSResource xtextResource = (BaseCSResource) modelContext.createBaseResource(testFile);
 		assertNoResourceErrors("Load failed", xtextResource);
-		CS2PivotResourceAdapter adapter = xtextResource.getCS2ASAdapter(null);
+		CS2ASResourceAdapter adapter = xtextResource.getCS2ASAdapter(null);
 		ASResource asResource = adapter.getASResource(xtextResource);
 		assert asResource != null;
 		assertNoResourceErrors("File Model", asResource);
@@ -563,7 +563,7 @@ public class XtextTestCase extends PivotTestCase
 		createOCLinEcoreFile(inputName, fileContent);
 		URI inputURI = getProjectFileURI(inputName);
 		URI ecoreURI = getProjectFileURI(fileName + ".ecore");
-		CS2PivotResourceAdapter adapter = null;
+		CS2ASResourceAdapter adapter = null;
 		try {
 			ResourceSet resourceSet2 = metaModelManager.getExternalResourceSet();
 			BaseCSResource xtextResource = DomainUtil.nonNullState((BaseCSResource) resourceSet2.getResource(inputURI, true));

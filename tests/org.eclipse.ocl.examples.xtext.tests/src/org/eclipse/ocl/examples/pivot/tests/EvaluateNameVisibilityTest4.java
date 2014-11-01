@@ -234,7 +234,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 				"    invariant True : true;\n" +
 				"  }\n" +
 				"}\n";
-		Resource metaModel = cs2pivot(getOCL(), metaModelText);
+		Resource metaModel = cs2as(getOCL(), metaModelText);
 		Model pivotModel = (Model) metaModel.getContents().get(0);
 		org.eclipse.ocl.examples.pivot.Package pivotPackage = pivotModel.getOwnedPackages().get(0);
 		org.eclipse.ocl.examples.pivot.Class pivotType = pivotPackage.getOwnedClasses().get(0);
@@ -256,7 +256,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 				"    operation derivedDerivedOperation(p : Integer) : Integer { body: 2 * derivedOperation(p);}\n" +
 				"  }\n" +
 				"}\n";
-		Resource metaModel = cs2pivot(getOCL(), metaModelText);
+		Resource metaModel = cs2as(getOCL(), metaModelText);
 		Root pivotModel = (Root) metaModel.getContents().get(0);
 		org.eclipse.ocl.examples.pivot.Package pivotPackage = pivotModel.getNestedPackage().get(0);
 		Type pivotType = pivotPackage.getOwnedType().get(0);
@@ -279,7 +279,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 				"    property derivedDerivedInteger : Integer { derivation: 2 * derivedInteger;}\n" +
 				"  }\n" +
 				"}\n";
-		Resource metaModel = cs2pivot(getOCL(), metaModelText);
+		Resource metaModel = cs2as(getOCL(), metaModelText);
 		Model pivotModel = (Model) metaModel.getContents().get(0);
 		org.eclipse.ocl.examples.pivot.Package pivotPackage = pivotModel.getOwnedPackages().get(0);
 		org.eclipse.ocl.examples.pivot.Class pivotType = pivotPackage.getOwnedClasses().get(0);
@@ -312,7 +312,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 				"		property as : A[*] { ordered composes };\n" + 
 				"	}\n" + 
 				"}\n";
-		Resource metaModel = cs2pivot(getOCL(), metaModelText);
+		Resource metaModel = cs2as(getOCL(), metaModelText);
 		Model pivotModel = (Model) metaModel.getContents().get(0);
 		org.eclipse.ocl.examples.pivot.Package pivotPackage = pivotModel.getOwnedPackages().get(0);
 		org.eclipse.ocl.examples.pivot.Class pivotTypeA = DomainUtil.getNamedElement(pivotPackage.getOwnedClasses(), "A");
@@ -523,7 +523,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 				"		operation op7() : String { body: 'T4::op7'; }\n" +
 				"	}\n" +
 				"}\n";
-		Resource metaModel = cs2pivot(getOCL(), metaModelText);
+		Resource metaModel = cs2as(getOCL(), metaModelText);
 		Model pivotModel = (Model) metaModel.getContents().get(0);
 		org.eclipse.ocl.examples.pivot.Package pivotPackage = pivotModel.getOwnedPackages().get(0);
 		org.eclipse.ocl.examples.pivot.Class pivotTypeDomain = DomainUtil.getNamedElement(pivotPackage.getOwnedClasses(), "Domain");

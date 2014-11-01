@@ -27,10 +27,10 @@ import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
 import org.eclipse.xtext.linking.lazy.LazyLinker;
 
 /**
- * CS2PivotLinker ensures that the CS 2 Pivot mappings are refreshed after
+ * CS2ASLinker ensures that the CS 2 Pivot mappings are refreshed after
  * and CS Resource modification is committed.
  */
-public class CS2PivotLinker extends LazyLinker
+public class CS2ASLinker extends LazyLinker
 {
     public static class DiagnosticWrappedException extends WrappedException implements Resource.Diagnostic
     {
@@ -68,7 +68,7 @@ public class CS2PivotLinker extends LazyLinker
 //				System.out.println("Starting to refreshPivotMappings for " + eResource.getURI());
 				BaseCSResource csResource = (BaseCSResource) eResource;
 				try {
-					CS2PivotResourceAdapter resourceAdapter = csResource.getCS2ASAdapter(null);
+					CS2ASResourceAdapter resourceAdapter = csResource.getCS2ASAdapter(null);
 					ParserContext parserContext = csResource.getParserContext();
 					if (parserContext != null) {
 						Element rootElement = parserContext.getRootElement();

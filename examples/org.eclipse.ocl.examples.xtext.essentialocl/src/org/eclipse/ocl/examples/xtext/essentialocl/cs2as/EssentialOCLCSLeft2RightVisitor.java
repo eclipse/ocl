@@ -87,8 +87,8 @@ import org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.cs2as.AmbiguitiesAdapter;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.attributes.AbstractOperationMatcher;
 import org.eclipse.ocl.examples.xtext.essentialocl.attributes.BinaryOperationMatcher;
@@ -186,7 +186,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	protected final @NonNull MetaModelManager metaModelManager;
 	protected final @NonNull PivotStandardLibrary2 standardLibrary;
 	
-	public EssentialOCLCSLeft2RightVisitor(@NonNull CS2PivotConversion context) {
+	public EssentialOCLCSLeft2RightVisitor(@NonNull CS2ASConversion context) {
 		super(context);
 		this.metaModelManager = context.getMetaModelManager();
 		this.standardLibrary = metaModelManager.getStandardLibrary();
@@ -463,7 +463,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			return context.addBadExpressionError(csNameExp, "AssociationClassCallExp must have no round-brackets-clause");
 		}
 //		SquareBracketedClauseCS csSquareBracketedClause = csSquareBracketedClauses.get(0);
-//		CS2Pivot.setElementType(pathName, PivotPackage.Literals.ASSOCIATION_CLASS, csNameExp, null);
+//		CS2AS.setElementType(pathName, PivotPackage.Literals.ASSOCIATION_CLASS, csNameExp, null);
 //			Element element = pathName.getElement();
 //			return resolveConstructorExp((Type)element, csNameExp);
 		return null;
@@ -495,7 +495,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				sourceExp = createImplicitSourceVariableExp(csNameExp, iteration.getOwningClass());
 			}
 			LoopExp iterationCallExp = resolveIterationCallExp(csNameExp, sourceExp, iteration);
-			CS2Pivot.setPathElement(csPathName, iteration, null);
+			CS2AS.setPathElement(csPathName, iteration, null);
 			resolveIterationContent(csRoundBracketedClause, iterationCallExp);
 			return iterationCallExp;
 		}
@@ -528,7 +528,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			}
 			OperationMatcher matcher = new OperationMatcher(metaModelManager, explicitSourceType, csNameExp.getSourceTypeValue(), csRoundBracketedClause);
 			Operation asOperation = matcher.getBestOperation(invocations);
-			CS2Pivot.setPathElement(csPathName, asOperation, matcher.getAmbiguities());
+			CS2AS.setPathElement(csPathName, asOperation, matcher.getAmbiguities());
 			if (asOperation != null) {
 				return resolveOperationCallExp(csRoundBracketedClause, operationCallExp, asOperation);
 			}
@@ -656,7 +656,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	}
 		else {
 			checkForInvalidImplicitSourceType(csNameExp);
-			CS2Pivot.setPathElement(DomainUtil.nonNullState(csPathName), null, null);
+			CS2AS.setPathElement(DomainUtil.nonNullState(csPathName), null, null);
 		}
 		if (sourceExp == null) {
 			sourceExp = createImplicitSourceVariableExp(csNameExp, standardLibrary.getOclAnyType());
@@ -860,7 +860,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 								isType = true;
 								NameExpCS csNameExp = (NameExpCS)csName;
 								PathNameCS csPathName = csNameExp.getOwnedPathName();
-//								CS2Pivot.setElementType(csPathName, PivotPackage.Literals.TYPE, csName, null);
+//								CS2AS.setElementType(csPathName, PivotPackage.Literals.TYPE, csName, null);
 								Type type = context.getConverter().lookupType(csNameExp, csPathName);
 								if (type != null) {
 									arg = resolveTypeExp(csNameExp, type);
@@ -1433,7 +1433,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 //	public Continuation<?> visitInvocationExpCS(@NonNull InvocationExpCS csElement) {
 //		PathNameCS pathName = csElement.getPathName();
 //		assert pathName != null;
-//		CS2Pivot.setElementType(pathName, PivotPackage.Literals.OPERATION, csElement, null);
+//		CS2AS.setElementType(pathName, PivotPackage.Literals.OPERATION, csElement, null);
 //		return null;
 //	}
 
@@ -1491,7 +1491,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 					if ((csExp instanceof NameExpCS) && !(csExp instanceof InvocationExpCS)) {
 						PathNameCS pathName = ((NameExpCS) csExp).getPathName();
 						assert pathName != null;
-						CS2Pivot.setElementType(pathName, PivotPackage.Literals.PROPERTY, csExp, null);
+						CS2AS.setElementType(pathName, PivotPackage.Literals.PROPERTY, csExp, null);
 					}
 				}
 			}

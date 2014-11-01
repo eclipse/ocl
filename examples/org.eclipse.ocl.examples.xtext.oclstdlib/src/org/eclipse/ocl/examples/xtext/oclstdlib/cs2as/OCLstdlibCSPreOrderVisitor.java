@@ -24,7 +24,7 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.cs2as.BasicContinuation;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuations;
 import org.eclipse.ocl.examples.xtext.base.cs2as.SingleContinuation;
@@ -41,7 +41,7 @@ public class OCLstdlibCSPreOrderVisitor extends AbstractOCLstdlibCSPreOrderVisit
 {
 	protected static class CollectionElementTypeContinuation extends SingleContinuation<LibClassCS>
 	{
-		public CollectionElementTypeContinuation(@NonNull CS2PivotConversion context, @NonNull LibClassCS csElement) {
+		public CollectionElementTypeContinuation(@NonNull CS2ASConversion context, @NonNull LibClassCS csElement) {
 			super(context, null, null, csElement);
 		}
 
@@ -61,7 +61,7 @@ public class OCLstdlibCSPreOrderVisitor extends AbstractOCLstdlibCSPreOrderVisit
 	
 	protected static class LibIterationContinuation extends SingleContinuation<LibIterationCS>
 	{
-		public LibIterationContinuation(@NonNull CS2PivotConversion context, @NonNull LibIterationCS csElement) {
+		public LibIterationContinuation(@NonNull CS2ASConversion context, @NonNull LibIterationCS csElement) {
 			super(context, null, null, csElement);
 		}
 
@@ -82,7 +82,7 @@ public class OCLstdlibCSPreOrderVisitor extends AbstractOCLstdlibCSPreOrderVisit
 	
 	protected static class LibOperationContinuation extends SingleContinuation<LibOperationCS>
 	{
-		public LibOperationContinuation(@NonNull CS2PivotConversion context, @NonNull LibOperationCS csElement) {
+		public LibOperationContinuation(@NonNull CS2ASConversion context, @NonNull LibOperationCS csElement) {
 			super(context, null, null, csElement);
 		}
 
@@ -107,7 +107,7 @@ public class OCLstdlibCSPreOrderVisitor extends AbstractOCLstdlibCSPreOrderVisit
 	
 	protected static class LibPropertyContinuation extends SingleContinuation<LibPropertyCS>
 	{
-		public LibPropertyContinuation(@NonNull CS2PivotConversion context, @NonNull LibPropertyCS csElement) {
+		public LibPropertyContinuation(@NonNull CS2ASConversion context, @NonNull LibPropertyCS csElement) {
 			super(context, null, null, csElement);
 		}
 
@@ -127,7 +127,7 @@ public class OCLstdlibCSPreOrderVisitor extends AbstractOCLstdlibCSPreOrderVisit
 
 	protected static class LibraryPrecedenceContinuation extends SingleContinuation<LibPackageCS>
 	{
-		private LibraryPrecedenceContinuation(@NonNull CS2PivotConversion context, @NonNull LibPackageCS csElement) {
+		private LibraryPrecedenceContinuation(@NonNull CS2ASConversion context, @NonNull LibPackageCS csElement) {
 			super(context, null, null, csElement);
 		}
 
@@ -141,7 +141,7 @@ public class OCLstdlibCSPreOrderVisitor extends AbstractOCLstdlibCSPreOrderVisit
 		}
 	}
 
-	public OCLstdlibCSPreOrderVisitor(@NonNull CS2PivotConversion context) {
+	public OCLstdlibCSPreOrderVisitor(@NonNull CS2ASConversion context) {
 		super(context);
 	}
 

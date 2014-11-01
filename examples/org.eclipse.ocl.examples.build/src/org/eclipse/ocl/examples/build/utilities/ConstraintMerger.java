@@ -111,8 +111,8 @@ public class ConstraintMerger extends AbstractProjectComponent
 			MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
 			xtextResource.load(null);
 			ResourceUtils.checkResourceSet(resourceSet);
-//			CS2PivotResourceAdapter cs2pivot = CS2PivotResourceAdapter.getAdapter(xtextResource, metaModelManager);
-//			Resource oclResource = cs2pivot.getPivotResource(xtextResource);
+//			CS2ASResourceAdapter cs2as = CS2ASResourceAdapter.getAdapter(xtextResource, metaModelManager);
+//			Resource oclResource = cs2as.getPivotResource(xtextResource);
 //			Set<Resource> primaryPivotResources = new HashSet<Resource>();
 //			Set<Resource> libraryPivotResources = new HashSet<Resource>();
 //			Iterable<org.eclipse.ocl.examples.pivot.Package> somePackages = metaModelManager.getPackageManager().getAllPackages();

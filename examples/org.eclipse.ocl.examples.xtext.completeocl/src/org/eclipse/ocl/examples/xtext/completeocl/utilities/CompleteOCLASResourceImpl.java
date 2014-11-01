@@ -24,7 +24,7 @@ import org.eclipse.ocl.examples.pivot.resource.ASResourceImpl;
 import org.eclipse.ocl.examples.pivot.utilities.AS2XMIid;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
 
 public class CompleteOCLASResourceImpl extends ASResourceImpl
 {
@@ -55,7 +55,7 @@ public class CompleteOCLASResourceImpl extends ASResourceImpl
 		@SuppressWarnings("null")@NonNull URI oclURI = uri.trimFileExtension();
 		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(this);
 		BaseCSResource csResource = (BaseCSResource) metaModelManager.getExternalResourceSet().getResource(oclURI, true);
-		CS2PivotResourceAdapter adapter = null;
+		CS2ASResourceAdapter adapter = null;
 //		try {
 			adapter = csResource.getCS2ASAdapter(metaModelManager);
 			ASResource asResource = adapter.getASResource(csResource);
@@ -69,7 +69,7 @@ public class CompleteOCLASResourceImpl extends ASResourceImpl
 //			}
 //		}
 //		Resource csResource = metaModelManager.getExternalResourceSet().getResource(oclURI, true);
-//		CS2Pivot.loadFromEcore(this, ecoreURI);
+//		CS2AS.loadFromEcore(this, ecoreURI);
 		super.load(options);
 	}
 }

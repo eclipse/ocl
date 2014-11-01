@@ -63,7 +63,7 @@ import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.OCLinEcoreCSPackage;
 import org.eclipse.ocl.examples.xtext.oclinecore.ui.OCLinEcoreUiPluginHelper;
 import org.eclipse.ui.IEditorInput;
@@ -402,7 +402,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 					diagnoseErrors((XtextResource) csResource, e);
 				}
 				csResource.unload();
-				CS2PivotResourceAdapter resourceAdapter = ((BaseCSResource)csResource).getCS2ASAdapter(null);
+				CS2ASResourceAdapter resourceAdapter = ((BaseCSResource)csResource).getCS2ASAdapter(null);
 				resourceAdapter.dispose();
 				resourceSet.getResources().remove(csResource);
 				inputStream = new ByteArrayInputStream(outputStream.toByteArray());

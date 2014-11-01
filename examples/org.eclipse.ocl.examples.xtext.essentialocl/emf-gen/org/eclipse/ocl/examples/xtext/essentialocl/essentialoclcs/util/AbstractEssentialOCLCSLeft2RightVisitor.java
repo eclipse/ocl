@@ -19,7 +19,7 @@ package	org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.BaseCSLeft2RightVisitor;
 import org.eclipse.ocl.examples.pivot.Element;
 
@@ -39,7 +39,7 @@ public abstract class AbstractEssentialOCLCSLeft2RightVisitor
 	 * 
 	 * @param context my initial result value
 	 */
-	protected AbstractEssentialOCLCSLeft2RightVisitor(@NonNull CS2PivotConversion context) {
+	protected AbstractEssentialOCLCSLeft2RightVisitor(@NonNull CS2ASConversion context) {
 		super(context);
 	}
 

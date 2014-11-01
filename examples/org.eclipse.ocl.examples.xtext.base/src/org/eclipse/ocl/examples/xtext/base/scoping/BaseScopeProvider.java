@@ -19,7 +19,7 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 
@@ -53,7 +53,7 @@ public class BaseScopeProvider extends AbstractDeclarativeScopeProvider
 		}
 		ElementCS csElement = (ElementCS) context;
 		@SuppressWarnings("unused")
-		CS2PivotResourceAdapter resourceAdapter = ((BaseCSResource)csResource).getCS2ASAdapter(null);
+		CS2ASResourceAdapter resourceAdapter = ((BaseCSResource)csResource).getCS2ASAdapter(null);
 		return BaseScopeView.getScopeView(metaModelManager, csElement, reference);
 	}
 }

@@ -66,7 +66,7 @@ import org.eclipse.ocl.examples.pivot.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.pivot2cs.CompleteOCLSplitter;
 import org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLStandaloneSetup;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.OCLinEcoreCSPackage;
@@ -83,7 +83,7 @@ import org.eclipse.xtext.resource.impl.ListBasedDiagnosticConsumer;
 public class LoadTests extends XtextTestCase
 {	
 	protected MetaModelManager metaModelManager = null;
-//	CS2PivotResourceAdapter cs2PivotAdapter = null;
+//	CS2ASResourceAdapter cs2asAdapter = null;
 	protected BaseCSResource xtextResource = null;
 
 /*	public void checkMonikers(Resource resource) {
@@ -162,7 +162,7 @@ public class LoadTests extends XtextTestCase
 //		}
 		finally {
 			if (xtextResource instanceof BaseCSResource) {
-				CS2PivotResourceAdapter adapter = ((BaseCSResource)xtextResource).getCS2ASAdapter(null);
+				CS2ASResourceAdapter adapter = ((BaseCSResource)xtextResource).getCS2ASAdapter(null);
 				adapter.dispose();
 			}
 			metaModelManager.dispose();
@@ -211,7 +211,7 @@ public class LoadTests extends XtextTestCase
 		}
 		finally {
 			if (xtextResource instanceof BaseCSResource) {
-				CS2PivotResourceAdapter adapter = ((BaseCSResource)xtextResource).getCS2ASAdapter(null);
+				CS2ASResourceAdapter adapter = ((BaseCSResource)xtextResource).getCS2ASAdapter(null);
 				adapter.dispose();
 			}
 			metaModelManager.dispose();
@@ -554,7 +554,7 @@ public class LoadTests extends XtextTestCase
 		finally {
 //			unloadCS(resourceSet);
 //			if (xtextResource instanceof BaseCSResource) {
-//				CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter((BaseCSResource)xtextResource, null);
+//				CS2ASResourceAdapter adapter = CS2ASResourceAdapter.getAdapter((BaseCSResource)xtextResource, null);
 //				adapter.dispose();
 //			}
 //			unloadPivot(metaModelManager);
@@ -584,11 +584,11 @@ public class LoadTests extends XtextTestCase
 	@Override
 	protected void tearDown() throws Exception {
 		if (xtextResource != null) {
-			CS2PivotResourceAdapter cs2PivotAdapter = xtextResource.findCS2ASAdapter();
-			if (cs2PivotAdapter != null) {
-				cs2PivotAdapter.dispose();
-				cs2PivotAdapter.getMetaModelManager().dispose();
-				cs2PivotAdapter = null;
+			CS2ASResourceAdapter cs2asAdapter = xtextResource.findCS2ASAdapter();
+			if (cs2asAdapter != null) {
+				cs2asAdapter.dispose();
+				cs2asAdapter.getMetaModelManager().dispose();
+				cs2asAdapter = null;
 			}
 			xtextResource = null;
 		}
@@ -673,7 +673,7 @@ public class LoadTests extends XtextTestCase
 		createOCLinEcoreFile("Refresh.oclinecore", testFile);
 		Resource asResource = doLoad_Concrete("Refresh", "oclinecore");
 		assertNoValidationErrors("First validation", asResource);
-		CS2PivotResourceAdapter resourceAdapter = xtextResource.getCS2ASAdapter(null);
+		CS2ASResourceAdapter resourceAdapter = xtextResource.getCS2ASAdapter(null);
 		try {
 			resourceAdapter.refreshPivotMappings(new ListBasedDiagnosticConsumer());
 		} catch (Exception e) {
@@ -728,7 +728,7 @@ public class LoadTests extends XtextTestCase
 		createOCLinEcoreFile("Refresh2.oclinecore", testFile);
 		Resource asResource = doLoad_Concrete("Refresh2", "oclinecore");
 		assertNoValidationErrors("First validation", asResource);
-		CS2PivotResourceAdapter resourceAdapter = xtextResource.getCS2ASAdapter(null);
+		CS2ASResourceAdapter resourceAdapter = xtextResource.getCS2ASAdapter(null);
 		try {
 			resourceAdapter.refreshPivotMappings(new ListBasedDiagnosticConsumer());
 		} catch (Exception e) {
@@ -929,7 +929,7 @@ public class LoadTests extends XtextTestCase
 		if ((end-start) > 5000) {		// Takes minutes when grammar bad, miniscule when grammar good but isolated test may have substantial JVM costs
 			fail("Took " + 0.001*(end - start) + " seconds");
 		}
-		CS2PivotResourceAdapter resourceAdapter = ((BaseCSResource)csResource).getCS2ASAdapter(null);
+		CS2ASResourceAdapter resourceAdapter = ((BaseCSResource)csResource).getCS2ASAdapter(null);
 		resourceAdapter.getMetaModelManager().dispose();
 	}
 	

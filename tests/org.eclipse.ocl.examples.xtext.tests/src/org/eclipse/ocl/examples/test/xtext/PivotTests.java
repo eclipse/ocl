@@ -27,14 +27,14 @@ import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
-import org.eclipse.ocl.examples.xtext.base.cs2as.BaseCS2Pivot;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
+import org.eclipse.ocl.examples.xtext.base.cs2as.BaseCS2AS;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
 import org.eclipse.ocl.examples.xtext.base.services.BaseLinkingService;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.examples.xtext.oclinecore.pivot2cs.OCLinEcorePivot2CS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.cs2as.OCLstdlibCS2Pivot;
+import org.eclipse.ocl.examples.xtext.oclstdlib.cs2as.OCLstdlibCS2AS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.JavaClassScope;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.xtext.resource.impl.ListBasedDiagnosticConsumer;
@@ -44,13 +44,13 @@ import org.eclipse.xtext.resource.impl.ListBasedDiagnosticConsumer;
  */
 public class PivotTests extends XtextTestCase
 {
-	public static class Checker extends BaseCS2Pivot
+	public static class Checker extends BaseCS2AS
 	{
-		private Checker(@NonNull BaseCS2Pivot aConverter) {
+		private Checker(@NonNull BaseCS2AS aConverter) {
 			super(aConverter);
 		}
 
-		public void assertContainedBy(@NonNull CS2Pivot thatConverter) {
+		public void assertContainedBy(@NonNull CS2AS thatConverter) {
 /*			Map<String, MonikeredElement> thisMoniker2PivotMap = metaModelManager.computeMoniker2PivotMap(getPivotResources());
 			Map<String, MonikeredElement> thatMoniker2PivotMap = metaModelManager.computeMoniker2PivotMap(thatConverter.getPivotResources());
 			List<String> theseMonikers = new ArrayList<String>(thisMoniker2PivotMap.keySet());
@@ -128,7 +128,7 @@ public class PivotTests extends XtextTestCase
 
 /*	public static class Damager extends Checker
 	{
-		private Damager(CS2Pivot aConverter) {
+		private Damager(CS2AS aConverter) {
 			super(aConverter);
 		}
 		
@@ -177,7 +177,7 @@ public class PivotTests extends XtextTestCase
 	public BaseCSResource doLoadOCLstdlib(@NonNull String stem, @NonNull String extension) throws IOException {
 		resourceSet = new ResourceSetImpl();
 		MetaModelManager metaModelManager =  new MetaModelManager();
-//		CS2PivotResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
+//		CS2ASResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
 //		long startTime = System.currentTimeMillis();
 //		System.out.println("Start at " + startTime);
 		String inputName = stem + "." + extension;
@@ -195,7 +195,7 @@ public class PivotTests extends XtextTestCase
 		assertNoResourceErrors("Load failed", xtextResource);
 //		assertNoCSErrors("Load failed", xtextResource);
 //		CSAliasCreator.refreshPackageAliases(xtextResource);
-//		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource);
+//		CS2ASResourceAdapter adapter = CS2ASResourceAdapter.getAdapter(xtextResource);
 //		Resource asResource = adapter.getPivotResource(xtextResource);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " resolveProxies()");
 		assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
@@ -225,9 +225,9 @@ public class PivotTests extends XtextTestCase
 		//
 		//	Create Pivot model from CS
 		//
-		CS2PivotResourceAdapter adapter = csResource.findCS2ASAdapter();
+		CS2ASResourceAdapter adapter = csResource.findCS2ASAdapter();
 		Resource asResource = adapter.getASResource(csResource);
-		OCLstdlibCS2Pivot creator = (OCLstdlibCS2Pivot) adapter.getConverter();
+		OCLstdlibCS2AS creator = (OCLstdlibCS2AS) adapter.getConverter();
 		//
 		//	Check that Pivot model is ready for damage
 		//
@@ -247,7 +247,7 @@ public class PivotTests extends XtextTestCase
 		//
 		//	Update Pivot model from unchanged CS
 		//
-		OCLstdlibCS2Pivot updater = new OCLstdlibCS2Pivot(creator);
+		OCLstdlibCS2AS updater = new OCLstdlibCS2AS(creator);
 		updater.update(new ListBasedDiagnosticConsumer());
 		new Checker(creator).assertSameContents();
 		//
@@ -274,7 +274,7 @@ public class PivotTests extends XtextTestCase
 //		String libraryName = "oclstdlib.oclstdlib";
 //		URI libraryURI = getProjectFileURI(libraryName);
 //		BaseCSResource xtextLibraryResource = (BaseCSResource) resourceSet.getResource(libraryURI, true);
-//		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.refreshPivotMappings(xtextLibraryResource, null);
+//		CS2ASResourceAdapter adapter = CS2ASResourceAdapter.refreshPivotMappings(xtextLibraryResource, null);
 //		Resource asResource = adapter.getPivotResource(xtextLibraryResource);
 //		asResourceSet.getResource(libraryURI, true);
 		String inputName = stem + ".ecore";
@@ -304,7 +304,7 @@ public class PivotTests extends XtextTestCase
 //		assertNoResourceErrors("Save failed", xtextResource.getErrors());
 		@SuppressWarnings("unused")
 		ASResource asResource = (ASResource) pivotModel.eResource();
-//		CS2PivotAliasCreator.createPackageAliases(asResource);
+//		CS2ASAliasCreator.createPackageAliases(asResource);
 //		Resource asResource = resourceSet.createResource(outputURI);
 //		asResource.getContents().add(pivotModel);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " save()");
@@ -321,15 +321,15 @@ public class PivotTests extends XtextTestCase
 		csResourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("cs", new EcoreResourceFactoryImpl());
 		csResourceSet.getPackageRegistry().put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
 		Resource csResource = csResourceSet.createResource(csURI);
-		Map<BaseCSResource, ASResource> cs2PivotResourceMap = new HashMap<BaseCSResource, ASResource>();
-//		cs2PivotResourceMap.put(csResource, asResource);
-		Pivot2CS pivot2cs = new OCLinEcorePivot2CS(cs2PivotResourceMap, metaModelManager);
+		Map<BaseCSResource, ASResource> cs2asResourceMap = new HashMap<BaseCSResource, ASResource>();
+//		cs2asResourceMap.put(csResource, asResource);
+		Pivot2CS pivot2cs = new OCLinEcorePivot2CS(cs2asResourceMap, metaModelManager);
 		pivot2cs.update();
 		csResource.save(null);
 //		adapter.dispose();
 	}
 	
-//	public Damager damagePivot(CS2Pivot aConverter) {
+//	public Damager damagePivot(CS2AS aConverter) {
 //		Damager damager = new Damager(aConverter);
 //		List<MonikeredElement> pivotElements = damager.chooseVictims();
 //		damager.removeAll(pivotElements);

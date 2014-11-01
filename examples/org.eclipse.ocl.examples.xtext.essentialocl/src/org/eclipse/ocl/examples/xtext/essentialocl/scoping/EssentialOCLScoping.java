@@ -35,9 +35,9 @@ import org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot.AbstractUnresolvedProxyMessageProvider;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot.MessageBinder;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS.AbstractUnresolvedProxyMessageProvider;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS.MessageBinder;
 import org.eclipse.ocl.examples.xtext.essentialocl.attributes.ConstructorPartCSAttribution;
 import org.eclipse.ocl.examples.xtext.essentialocl.attributes.LetExpCSAttribution;
 import org.eclipse.ocl.examples.xtext.essentialocl.attributes.LetVariableCSAttribution;
@@ -65,7 +65,7 @@ public class EssentialOCLScoping
 		registry.put(EssentialOCLCSPackage.Literals.LET_VARIABLE_CS, LetVariableCSAttribution.INSTANCE);  // Needed for let deeply nested in Iterator/CollectionLiteral
 		registry.put(EssentialOCLCSPackage.Literals.NAVIGATING_ARG_CS, NavigatingArgCSAttribution.INSTANCE);
 		registry.put(EssentialOCLCSPackage.Literals.NAVIGATION_OPERATOR_CS, NavigationOperatorCSAttribution.INSTANCE);
-		CS2Pivot.addUnresolvedProxyMessageProvider(new PathElementCSUnresolvedProxyMessageProvider());
+		CS2AS.addUnresolvedProxyMessageProvider(new PathElementCSUnresolvedProxyMessageProvider());
 	}
 	
 	private static final class PathElementCSUnresolvedProxyMessageProvider extends AbstractUnresolvedProxyMessageProvider
@@ -191,7 +191,7 @@ public class EssentialOCLScoping
 					}
 				}
 			}
-			MessageBinder messageBinder = CS2Pivot.getMessageBinder();
+			MessageBinder messageBinder = CS2AS.getMessageBinder();
 			String messageText;
 			if (argumentText == null) {
 				messageText = messageBinder.bind(csContext, messageTemplate, typeText, linkText);

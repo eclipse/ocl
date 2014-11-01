@@ -37,7 +37,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.attributes.RootCSAttribution;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.XtextSyntaxDiagnostic;
@@ -138,7 +138,7 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 						return null;
 					}
 					BaseCSResource csResource = (BaseCSResource)resource;
-					CS2PivotResourceAdapter adapter = csResource.findCS2ASAdapter();
+					CS2ASResourceAdapter adapter = csResource.findCS2ASAdapter();
 					if (adapter == null) {
 						return null;
 					}
@@ -174,7 +174,7 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 			public Object exec(@Nullable XtextResource resource) throws Exception {
 				if (resource instanceof BaseCSResource) {
 					BaseCSResource csResource = (BaseCSResource)resource;
-					CS2PivotResourceAdapter csAdapter = csResource.getCS2ASAdapter(null);
+					CS2ASResourceAdapter csAdapter = csResource.getCS2ASAdapter(null);
 					MetaModelManager metaModelManager = csAdapter.getMetaModelManager();
 					csResource.setParserContext(new EInvocationContext(metaModelManager, resource.getURI(), ecoreContext, ecoreParameters));
 				}
@@ -187,7 +187,7 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
     }
 
 	public @Nullable Object setContext(@NonNull BaseCSResource resource, @Nullable EObject eObject) {
-		CS2PivotResourceAdapter csAdapter = resource.getCS2ASAdapter(null);
+		CS2ASResourceAdapter csAdapter = resource.getCS2ASAdapter(null);
 		MetaModelManager metaModelManager = csAdapter.getMetaModelManager();
 		resource.setParserContext(new EObjectContext(metaModelManager, resource.getURI(), eObject));
 		return null;

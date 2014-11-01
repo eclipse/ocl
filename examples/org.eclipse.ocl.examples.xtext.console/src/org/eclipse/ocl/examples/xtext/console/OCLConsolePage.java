@@ -77,7 +77,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.ui.model.BaseDocument;
 import org.eclipse.ocl.examples.xtext.base.ui.utilities.BaseUIUtil;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.examples.xtext.console.actions.CloseAction;
 import org.eclipse.ocl.examples.xtext.console.actions.DebugAction;
 import org.eclipse.ocl.examples.xtext.console.actions.LoadExpressionAction;
@@ -192,7 +192,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 			monitor.beginTask(NLS.bind(ConsoleMessages.Progress_Title, expression), 10);
 			monitor.subTask(ConsoleMessages.Progress_Synchronising);
 			monitor.worked(1);
-//			CS2PivotResourceAdapter csAdapter = CS2PivotResourceAdapter.getAdapter((BaseCSResource)resource, metaModelManager);
+//			CS2ASResourceAdapter csAdapter = CS2ASResourceAdapter.getAdapter((BaseCSResource)resource, metaModelManager);
 		    MetaModelManager metaModelManager = getMetaModelManager(contextObject);
 //			monitor.subTask(ConsoleMessages.Progress_CST);
 //			try {
@@ -873,9 +873,9 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 	            	contextObject = null;
 	            }
 		    	if (resource instanceof BaseCSResource) {
-		    		CS2PivotResourceAdapter cs2PivotAdapter = ((BaseCSResource)resource).findCS2ASAdapter();
-		    		if (cs2PivotAdapter != null) {
-		    			cs2PivotAdapter.dispose();
+		    		CS2ASResourceAdapter cs2asAdapter = ((BaseCSResource)resource).findCS2ASAdapter();
+		    		if (cs2asAdapter != null) {
+		    			cs2asAdapter.dispose();
 		    		}
 		    	}
 		    	

@@ -11,12 +11,12 @@
 package org.eclipse.ocl.examples.xtext.completeocl.cs2as;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 
 
 public class NewCompleteOCLCSContainmentVisitor extends AutoCompleteOCLCSContainmentVisitor {
 
-	public NewCompleteOCLCSContainmentVisitor(@NonNull CS2PivotConversion context) {
+	public NewCompleteOCLCSContainmentVisitor(@NonNull CS2ASConversion context) {
 		super(context);
 	}
 

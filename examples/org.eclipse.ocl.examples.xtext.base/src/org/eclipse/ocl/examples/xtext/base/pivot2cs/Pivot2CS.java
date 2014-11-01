@@ -24,12 +24,11 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.base.utilities.CSI2PivotMapping;
+import org.eclipse.ocl.examples.xtext.base.utilities.CSI2ASMapping;
 
 /**
- * CS2Pivot manages the equivalence between a Concrete Syntax Resources
- * and their corresponding Pivot Resources creating a CS2PivotConversion
- * to update.
+ * Pivot2CS manages the equivalence between an Abstract Syntax Resources
+ * and the corresponding Concrete Syntax Resources.
  */
 public class Pivot2CS extends AbstractConversion
 {	
@@ -99,8 +98,8 @@ public class Pivot2CS extends AbstractConversion
 				conversion.update(csResource);
 			}
 		}
-		CSI2PivotMapping cs2PivotMapping = CSI2PivotMapping.getAdapter(metaModelManager);
-		cs2PivotMapping.add(cs2asResourceMap);
-		cs2PivotMapping.update(/*csResources*/);
+		CSI2ASMapping csi2asMapping = CSI2ASMapping.getAdapter(metaModelManager);
+		csi2asMapping.add(cs2asResourceMap);
+		csi2asMapping.update(/*csResources*/);
 	}
 }

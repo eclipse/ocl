@@ -29,8 +29,8 @@ import org.eclipse.ocl.examples.xtext.base.attributes.RootPackageCSAttribution;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot.AbstractUnresolvedProxyMessageProvider;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS.AbstractUnresolvedProxyMessageProvider;
 
 public class BaseScoping
 {	
@@ -42,10 +42,10 @@ public class BaseScoping
 		registry.put(BaseCSPackage.Literals.PATH_ELEMENT_CS, PathElementCSAttribution.INSTANCE);
 		registry.put(BaseCSPackage.Literals.PIVOTABLE_ELEMENT_CS, PivotableElementCSAttribution.INSTANCE);
 		registry.put(BaseCSPackage.Literals.ROOT_PACKAGE_CS, RootPackageCSAttribution.INSTANCE);
-		CS2Pivot.addUnresolvedProxyMessageProvider(ImportCSAttribution.INSTANCE);
-		CS2Pivot.addUnresolvedProxyMessageProvider(LibraryCSAttribution.INSTANCE);
-		CS2Pivot.addUnresolvedProxyMessageProvider(new SimpleNamedElementRefCSTypeUnresolvedProxyMessageProvider());
-		CS2Pivot.addUnresolvedProxyMessageProvider(new TypedTypeRefCSTypeUnresolvedProxyMessageProvider());
+		CS2AS.addUnresolvedProxyMessageProvider(ImportCSAttribution.INSTANCE);
+		CS2AS.addUnresolvedProxyMessageProvider(LibraryCSAttribution.INSTANCE);
+		CS2AS.addUnresolvedProxyMessageProvider(new SimpleNamedElementRefCSTypeUnresolvedProxyMessageProvider());
+		CS2AS.addUnresolvedProxyMessageProvider(new TypedTypeRefCSTypeUnresolvedProxyMessageProvider());
 	}
 	
 	private static final class SimpleNamedElementRefCSTypeUnresolvedProxyMessageProvider extends AbstractUnresolvedProxyMessageProvider
@@ -69,7 +69,7 @@ public class BaseScoping
 			}
 			String element = elementType != null ? elementType.getName() : "unknown";
 			@SuppressWarnings("null") @NonNull String messageTemplate = OCLMessages.Unresolved_ERROR_;
-			return CS2Pivot.getMessageBinder().bind(context, messageTemplate, element, linkText);
+			return CS2AS.getMessageBinder().bind(context, messageTemplate, element, linkText);
 		}
 	}
 	
@@ -82,7 +82,7 @@ public class BaseScoping
 		@Override
 		public @Nullable String getMessage(@NonNull EObject context, @NonNull String linkText) {
 			@SuppressWarnings("null") @NonNull String messageTemplate = OCLMessages.UnresolvedType_ERROR_;
-			return CS2Pivot.getMessageBinder().bind(context, messageTemplate, "", linkText);
+			return CS2AS.getMessageBinder().bind(context, messageTemplate, "", linkText);
 		}
 	}
 }

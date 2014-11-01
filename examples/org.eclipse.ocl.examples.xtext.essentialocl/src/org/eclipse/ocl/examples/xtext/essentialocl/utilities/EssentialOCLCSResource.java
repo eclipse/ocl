@@ -46,14 +46,14 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathElementWithURICS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.examples.xtext.base.cs2as.ImportDiagnostic;
 import org.eclipse.ocl.examples.xtext.base.cs2as.LibraryDiagnostic;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
-import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCS2Pivot;
+import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCS2AS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
@@ -197,9 +197,9 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 		}
 	}
 
-	public @NonNull CS2Pivot createCS2Pivot(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap,
+	public @NonNull CS2AS createCS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap,
 			@NonNull MetaModelManager metaModelManager) {
-		return new EssentialOCLCS2Pivot(cs2asResourceMap, metaModelManager);
+		return new EssentialOCLCS2AS(cs2asResourceMap, metaModelManager);
 	}
 
 	@Override			// FIXME Bug 380232 workaround
@@ -237,7 +237,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 
 	@Override
 	protected void doLinking() {
-//		CS2Pivot.printDiagnostic(getClass().getSimpleName() + ".doLinking start", false, +1);
+//		CS2AS.printDiagnostic(getClass().getSimpleName() + ".doLinking start", false, +1);
 		List<Diagnostic> errors = getErrors();
 		if (errors.size() > 0) {
 			for (int i = errors.size(); --i >= 0; ) {
@@ -248,30 +248,30 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 			}
 		}
 		super.doLinking();
-//		CS2Pivot.printDiagnostic(getClass().getSimpleName() + ".doLinking end", false, -1);
+//		CS2AS.printDiagnostic(getClass().getSimpleName() + ".doLinking end", false, -1);
 	}
 
 	@Override
 	protected void doLoad(InputStream inputStream, Map<?, ?> options) throws IOException {
-//		CS2Pivot.printDiagnostic(getClass().getSimpleName() + ".doLoad start", false, +1);
+//		CS2AS.printDiagnostic(getClass().getSimpleName() + ".doLoad start", false, +1);
 		try {
 			super.doLoad(inputStream, options);
 		}
 		finally {
-//			CS2Pivot.printDiagnostic(getClass().getSimpleName() + ".doLoad end", true, -1);
+//			CS2AS.printDiagnostic(getClass().getSimpleName() + ".doLoad end", true, -1);
 		}
 	}
 	
-	public final @Nullable CS2PivotResourceAdapter findCS2ASAdapter() {
-		return PivotUtil.getAdapter(CS2PivotResourceAdapter.class, this);
+	public final @Nullable CS2ASResourceAdapter findCS2ASAdapter() {
+		return PivotUtil.getAdapter(CS2ASResourceAdapter.class, this);
 	}
 	
 	public @NonNull String getASContentType() {
 		return ASResource.ESSENTIALOCL_CONTENT_TYPE;
 	}
 	
-	public final @NonNull CS2PivotResourceAdapter getCS2ASAdapter(@Nullable MetaModelManager metaModelManager) {
-		CS2PivotResourceAdapter adapter = PivotUtil.getAdapter(CS2PivotResourceAdapter.class, this);
+	public final @NonNull CS2ASResourceAdapter getCS2ASAdapter(@Nullable MetaModelManager metaModelManager) {
+		CS2ASResourceAdapter adapter = PivotUtil.getAdapter(CS2ASResourceAdapter.class, this);
 		if (adapter == null) {
 			if (metaModelManager == null) {
 				metaModelManager = PivotUtil.findMetaModelManager(this);					
@@ -289,7 +289,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 			}
 			@SuppressWarnings("null")@NonNull Registry resourceFactoryRegistry = metaModelManager.getASResourceSet().getResourceFactoryRegistry();
 			initializeResourceFactory(resourceFactoryRegistry);
-			adapter = new CS2PivotResourceAdapter(this, metaModelManager);
+			adapter = new CS2ASResourceAdapter(this, metaModelManager);
 			eAdapters().add(adapter);
 		}
 		return adapter;
@@ -304,7 +304,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	}
 
 	public final @NonNull ASResource getASResource(@Nullable MetaModelManager metaModelManager) {
-		CS2PivotResourceAdapter adapter = getCS2ASAdapter(metaModelManager);
+		CS2ASResourceAdapter adapter = getCS2ASAdapter(metaModelManager);
 		ASResource asResource = adapter.getASResource(this);
 		if (asResource == null) {
 			throw new IllegalStateException("No Pivot Resource created");
@@ -511,9 +511,9 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	}
 
 	public void updateFrom(@NonNull ASResource asResource, @NonNull MetaModelManager metaModelManager) {		
-		Map<BaseCSResource, ASResource> cs2PivotResourceMap = new HashMap<BaseCSResource, ASResource>();
-		cs2PivotResourceMap.put(this, asResource);
-		Pivot2CS pivot2cs = createPivot2CS(cs2PivotResourceMap, metaModelManager);
+		Map<BaseCSResource, ASResource> cs2asResourceMap = new HashMap<BaseCSResource, ASResource>();
+		cs2asResourceMap.put(this, asResource);
+		Pivot2CS pivot2cs = createPivot2CS(cs2asResourceMap, metaModelManager);
 		pivot2cs.update();
 	}
 }

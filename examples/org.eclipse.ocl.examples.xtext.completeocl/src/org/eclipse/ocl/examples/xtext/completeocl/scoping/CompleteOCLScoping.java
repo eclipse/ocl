@@ -14,7 +14,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.ocl.examples.pivot.scoping.Attribution;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.examples.xtext.completeocl.attributes.ClassifierContextCSAttribution;
 import org.eclipse.ocl.examples.xtext.completeocl.attributes.CompleteOCLDocumentCSAttribution;
 import org.eclipse.ocl.examples.xtext.completeocl.attributes.IncludeCSAttribution;
@@ -33,6 +33,6 @@ public class CompleteOCLScoping
 		registry.put(CompleteOCLCSPackage.Literals.OPERATION_CONTEXT_DECL_CS, OperationContextCSAttribution.INSTANCE);
 		registry.put(CompleteOCLCSPackage.Literals.PACKAGE_DECLARATION_CS, PackageDeclarationCSAttribution.INSTANCE);
 		registry.put(CompleteOCLCSPackage.Literals.PROPERTY_CONTEXT_DECL_CS, PropertyContextCSAttribution.INSTANCE);
-		CS2Pivot.addUnresolvedProxyMessageProvider(IncludeCSAttribution.INSTANCE);			
+		CS2AS.addUnresolvedProxyMessageProvider(IncludeCSAttribution.INSTANCE);			
 	}
 }

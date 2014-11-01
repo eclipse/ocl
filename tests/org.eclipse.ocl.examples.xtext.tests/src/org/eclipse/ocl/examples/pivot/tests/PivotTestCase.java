@@ -79,7 +79,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.BaseStandaloneSetup;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
 import org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLStandaloneSetup;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource;
@@ -340,12 +340,12 @@ public class PivotTestCase extends TestCase
 		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
 		xtextResource.load(inputStream, null);
 		assertNoResourceErrors("Loading Xtext", xtextResource);
-		Resource asResource = cs2pivot(ocl, xtextResource, null);
+		Resource asResource = cs2as(ocl, xtextResource, null);
 		Resource ecoreResource = pivot2ecore(ocl, asResource, ecoreURI, true);
 		return ecoreResource;
 	}
 	
-	public static @NonNull Resource cs2pivot(@NonNull OCL ocl, @NonNull String testDocument) throws IOException {
+	public static @NonNull Resource cs2as(@NonNull OCL ocl, @NonNull String testDocument) throws IOException {
 		MetaModelManager metaModelManager = ocl.getMetaModelManager();
 		InputStream inputStream = new URIConverter.ReadableInputStream(testDocument, "UTF-8");
 		URI xtextURI = URI.createURI("test.oclinecore");
@@ -354,12 +354,12 @@ public class PivotTestCase extends TestCase
 		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
 		xtextResource.load(inputStream, null);
 		assertNoResourceErrors("Loading Xtext", xtextResource);
-		Resource asResource = cs2pivot(ocl, xtextResource, null);
+		Resource asResource = cs2as(ocl, xtextResource, null);
 		return asResource;
 	}
 	
-	public static @NonNull Resource cs2pivot(@NonNull OCL ocl, @NonNull BaseResource xtextResource, @Nullable URI pivotURI) throws IOException {
-		Resource asResource = ocl.cs2pivot(xtextResource);
+	public static @NonNull Resource cs2as(@NonNull OCL ocl, @NonNull BaseResource xtextResource, @Nullable URI pivotURI) throws IOException {
+		Resource asResource = ocl.cs2as(xtextResource);
 		assertNoUnresolvedProxies("Unresolved proxies", asResource);
 		if (pivotURI != null) {
 			asResource.setURI(pivotURI);
@@ -567,7 +567,7 @@ public class PivotTestCase extends TestCase
 		createOCLinEcoreFile(inputName, fileContent);
 		URI inputURI = getProjectFileURI(inputName);
 		URI ecoreURI = getProjectFileURI(fileName + ".ecore");
-		CS2PivotResourceAdapter adapter = null;
+		CS2ASResourceAdapter adapter = null;
 		try {
 			ResourceSet resourceSet2 = metaModelManager.getExternalResourceSet();
 			BaseCSResource xtextResource = DomainUtil.nonNullState((BaseCSResource) resourceSet2.getResource(inputURI, true));

@@ -50,7 +50,7 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.OCLinEcoreCSPackage;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
@@ -97,7 +97,7 @@ public class EditTests extends XtextTestCase
 		xtextResource.load(inputStream, null);
 		assertNoResourceErrors("Loading Xtext", xtextResource);
 		MetaModelManagerResourceAdapter adapter = MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager1);
-		Resource asResource = cs2pivot(ocl1, xtextResource, null);
+		Resource asResource = cs2as(ocl1, xtextResource, null);
 		Resource ecoreResource = pivot2ecore(ocl1, asResource, ecoreURI, true);
 		adapter.dispose();
 		return ecoreResource;
@@ -156,7 +156,7 @@ public class EditTests extends XtextTestCase
 			xtextResource = (EssentialOCLCSResource) resourceSet.createResource(outputURI, null);
 			MetaModelManagerResourceAdapter.getAdapter(xtextResource, ocl.getMetaModelManager());
 			xtextResource.load(inputStream, null);
-			asResource = cs2pivot(ocl, xtextResource, null);
+			asResource = cs2as(ocl, xtextResource, null);
 			@SuppressWarnings("unused") Resource ecoreResource1 = pivot2ecore(ocl, asResource, ecoreURI1, true);
 		}
 		//
@@ -211,7 +211,7 @@ public class EditTests extends XtextTestCase
 			xtextResource = (EssentialOCLCSResource) resourceSet.createResource(outputURI, null);
 			MetaModelManagerResourceAdapter.getAdapter(xtextResource, ocl.getMetaModelManager());
 			xtextResource.load(inputStream, null);
-			asResource = cs2pivot(ocl, xtextResource, null);
+			asResource = cs2as(ocl, xtextResource, null);
 			Resource ecoreResource1 = pivot2ecore(ocl, asResource, ecoreURI1, true);
 			assertSameModel(ecoreResource_class, ecoreResource1);
 		}
@@ -282,7 +282,7 @@ public class EditTests extends XtextTestCase
 			xtextResource = (EssentialOCLCSResource) resourceSet.createResource(outputURI, null);
 			MetaModelManagerResourceAdapter.getAdapter(xtextResource, ocl.getMetaModelManager());
 			xtextResource.load(inputStream, null);
-			asResource = cs2pivot(ocl, xtextResource, null);
+			asResource = cs2as(ocl, xtextResource, null);
 			Resource ecoreResource1 = pivot2ecore(ocl, asResource, ecoreURI1, true);
 			assertSameModel(ecoreResource_uncommented, ecoreResource1);
 		}
@@ -391,9 +391,9 @@ public class EditTests extends XtextTestCase
 			ocl1.pivot2cs(asResource, xtextResource1);
 			assertNoResourceErrors("Xtext load", xtextResource1);
 			assertNoValidationErrors("Xtext load", xtextResource1);
-			CS2PivotResourceAdapter cs2pivotAdapter1 = xtextResource1.getCS2ASAdapter(null);
+			CS2ASResourceAdapter cs2asAdapter1 = xtextResource1.getCS2ASAdapter(null);
 			ListBasedDiagnosticConsumer diagnosticsConsumer1 = new ListBasedDiagnosticConsumer();
-			cs2pivotAdapter1.refreshPivotMappings(diagnosticsConsumer1);
+			cs2asAdapter1.refreshPivotMappings(diagnosticsConsumer1);
 			Set<EObject> parsePivotContent = new HashSet<EObject>();
 			for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {
 				EObject eObject = tit.next();
@@ -434,9 +434,9 @@ public class EditTests extends XtextTestCase
 			ocl1.pivot2cs(asResource, xtextResource2);
 			assertNoResourceErrors("Xtext load", xtextResource2);
 			assertNoValidationErrors("Xtext load", xtextResource2);
-			CS2PivotResourceAdapter cs2pivotAdapter2 = xtextResource2.getCS2ASAdapter(null);
+			CS2ASResourceAdapter cs2asAdapter2 = xtextResource2.getCS2ASAdapter(null);
 			ListBasedDiagnosticConsumer diagnosticsConsumer2 = new ListBasedDiagnosticConsumer();
-			cs2pivotAdapter2.refreshPivotMappings(diagnosticsConsumer2);
+			cs2asAdapter2.refreshPivotMappings(diagnosticsConsumer2);
 			Set<EObject> reparsePivotContent = new HashSet<EObject>();
 			for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {
 				EObject eObject = tit.next();
@@ -467,7 +467,7 @@ public class EditTests extends XtextTestCase
 			xtextResource = (EssentialOCLCSResource) resourceSet.createResource(outputURI, null);
 			MetaModelManagerResourceAdapter.getAdapter(xtextResource, ocl.getMetaModelManager());
 			xtextResource.load(inputStream, null);
-			asResource = cs2pivot(ocl, xtextResource, null);
+			asResource = cs2as(ocl, xtextResource, null);
 			Resource ecoreResource1 = pivot2ecore(ocl, asResource, ecoreURI1, true);
 			assertSameModel(ecoreResource0, ecoreResource1);
 		}
@@ -530,7 +530,7 @@ public class EditTests extends XtextTestCase
 		EssentialOCLCSResource xtextResource = (EssentialOCLCSResource) resourceSet.createResource(outputURI, null);
 		MetaModelManagerResourceAdapter adapter = MetaModelManagerResourceAdapter.getAdapter(xtextResource, ocl.getMetaModelManager());
 		xtextResource.load(inputStream, null);
-		Resource asResource = cs2pivot(ocl, xtextResource, null);
+		Resource asResource = cs2as(ocl, xtextResource, null);
 		{
 			Resource ecoreResource1 = pivot2ecore(ocl, asResource, ecoreURI1, true);
 			assertSameModel(ecoreResource0, ecoreResource1);
@@ -616,7 +616,7 @@ public class EditTests extends XtextTestCase
 		MetaModelManagerResourceAdapter adapter = MetaModelManagerResourceAdapter.getAdapter(xtextResource, ocl.getMetaModelManager());
 //		System.out.println("*************load*********************************************************");
 		xtextResource.load(inputStream, null);
-		Resource asResource = cs2pivot(ocl, xtextResource, null);
+		Resource asResource = cs2as(ocl, xtextResource, null);
 		{
 			Resource ecoreResource1 = pivot2ecore(ocl, asResource, ecoreURI1, true);
 			assertSameModel(ecoreResource0, ecoreResource1);
@@ -660,7 +660,7 @@ public class EditTests extends XtextTestCase
 		CompleteModel.Internal completeModel = metaModelManager.getCompleteModel();
 		ModelContext modelContext = new ModelContext(metaModelManager, outputURI);
 		EssentialOCLCSResource xtextResource = (EssentialOCLCSResource) modelContext.createBaseResource(testDocument);
-		Resource asResource = cs2pivot(ocl, xtextResource, null);
+		Resource asResource = cs2as(ocl, xtextResource, null);
 		assertResourceErrors("Loading input", xtextResource);
 		assertNoResourceErrors("Loading input", asResource);
 		//
@@ -713,7 +713,7 @@ public class EditTests extends XtextTestCase
 			xtextResource = (EssentialOCLCSResource) resourceSet.createResource(outputURI, null);
 			MetaModelManagerResourceAdapter.getAdapter(xtextResource, ocl.getMetaModelManager());
 			xtextResource.load(inputStream, null);
-			asResource = cs2pivot(ocl, xtextResource, null);
+			asResource = cs2as(ocl, xtextResource, null);
 			assertNoResourceErrors("Loading", xtextResource);
 			assertNoValidationErrors("Loading", xtextResource);
 			assertNoResourceErrors("Loading", asResource);

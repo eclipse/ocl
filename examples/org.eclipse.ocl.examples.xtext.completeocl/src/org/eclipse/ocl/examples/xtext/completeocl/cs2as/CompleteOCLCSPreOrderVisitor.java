@@ -11,7 +11,7 @@
 package org.eclipse.ocl.examples.xtext.completeocl.cs2as;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS;
@@ -22,7 +22,7 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.util.AbstractCom
 
 public class CompleteOCLCSPreOrderVisitor extends AbstractCompleteOCLCSPreOrderVisitor
 {	
-	public CompleteOCLCSPreOrderVisitor(@NonNull CS2PivotConversion context) {
+	public CompleteOCLCSPreOrderVisitor(@NonNull CS2ASConversion context) {
 		super(context);
 	}
 

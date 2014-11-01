@@ -36,7 +36,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ContextLessElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.cs2as.BasicContinuation;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.examples.xtext.base.cs2as.SingleContinuation;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
@@ -59,7 +59,7 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 
 	public static class ConstraintCSCompletion extends SingleContinuation<ConstraintCS>
 	{
-		public ConstraintCSCompletion(@NonNull CS2PivotConversion context, @NonNull ConstraintCS csElement) {
+		public ConstraintCSCompletion(@NonNull CS2ASConversion context, @NonNull ConstraintCS csElement) {
 			super(context, null, null, csElement);
 		}
 
@@ -111,7 +111,7 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 
 	protected static class ContextCSCompletion extends SingleContinuation<ContextCS>
 	{
-		public ContextCSCompletion(@NonNull CS2PivotConversion context, @NonNull ContextCS csElement) {
+		public ContextCSCompletion(@NonNull CS2ASConversion context, @NonNull ContextCS csElement) {
 			super(context, null, null, csElement);
 		}
 
@@ -124,7 +124,7 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 
 	public static class ExpSpecificationCSCompletion extends SingleContinuation<ExpSpecificationCS>
 	{
-		public ExpSpecificationCSCompletion(@NonNull CS2PivotConversion context, @NonNull ExpSpecificationCS csElement) {
+		public ExpSpecificationCSCompletion(@NonNull CS2ASConversion context, @NonNull ExpSpecificationCS csElement) {
 			super(context, null, null, csElement);
 		}
 
@@ -146,7 +146,7 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 
 	protected final @NonNull MetaModelManager metaModelManager;
 	
-	public EssentialOCLCSPostOrderVisitor(@NonNull CS2PivotConversion context) {
+	public EssentialOCLCSPostOrderVisitor(@NonNull CS2ASConversion context) {
 		super(context);
 		this.metaModelManager = context.getMetaModelManager();
 	}

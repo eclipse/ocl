@@ -46,7 +46,7 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.VisitableCS;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 
 /**
@@ -162,7 +162,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 			String superClassName = "Abstract" + visitorClass; // The default Abstract Visitor generated for the language
 			CGClass superClass = getExternalClass(visitorPackage, superClassName, false);
 			superClass.getTemplateParameters().add(getExternalClass(Continuation.class, (CGClass)null));
-			superClass.getTemplateParameters().add(getExternalClass(CS2PivotConversion.class));
+			superClass.getTemplateParameters().add(getExternalClass(CS2ASConversion.class));
 			cgClass.getSuperTypes().add(superClass);
 		}
 		cgPackage.getClasses().add(cgClass);

@@ -12,8 +12,8 @@ package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.util;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCSContainmentVisitor;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaClassCS;
@@ -34,7 +34,7 @@ public class AutoOCLstdlibContainmentVisitor
 	implements OCLstdlibCSVisitor<Continuation<?>>
 {
     
-    protected final @NonNull CS2Pivot converter;
+    protected final @NonNull CS2AS converter;
     protected final @NonNull IdResolver idResolver;
     
     /**
@@ -42,7 +42,7 @@ public class AutoOCLstdlibContainmentVisitor
      * 
      * @param context my initial result value
      */
-    public AutoOCLstdlibContainmentVisitor(@NonNull CS2PivotConversion context) {
+    public AutoOCLstdlibContainmentVisitor(@NonNull CS2ASConversion context) {
         super(context);
         this.converter = context.getConverter();
         this.idResolver = converter.getMetaModelManager().getIdResolver();

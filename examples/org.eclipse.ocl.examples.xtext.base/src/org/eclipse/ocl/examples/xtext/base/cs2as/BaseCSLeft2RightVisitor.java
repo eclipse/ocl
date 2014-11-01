@@ -31,9 +31,9 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.AbstractExtendingBaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.VisitableCS;
 
-public class BaseCSLeft2RightVisitor extends AbstractExtendingBaseCSVisitor<Element, CS2PivotConversion>
+public class BaseCSLeft2RightVisitor extends AbstractExtendingBaseCSVisitor<Element, CS2ASConversion>
 {
-	public BaseCSLeft2RightVisitor(@NonNull CS2PivotConversion context) {
+	public BaseCSLeft2RightVisitor(@NonNull CS2ASConversion context) {
 		super(context);
 	}
 
@@ -113,6 +113,6 @@ public class BaseCSLeft2RightVisitor extends AbstractExtendingBaseCSVisitor<Elem
 	}
 
 	public Element visiting(@NonNull VisitableCS visitable) {
-		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for CS2Pivot Left2Right pass");
+		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for CS2AS Left2Right pass");
 	}
 }

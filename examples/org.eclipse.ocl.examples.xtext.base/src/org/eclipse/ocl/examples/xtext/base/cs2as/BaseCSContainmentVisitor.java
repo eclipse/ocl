@@ -86,12 +86,12 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.VisitableCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 
-public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Continuation<?>, CS2PivotConversion>
+public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Continuation<?>, CS2ASConversion>
 {
 	protected final @NonNull MetaModelManager metaModelManager;
 	protected final @NonNull PivotStandardLibrary2 standardLibrary;
 
-	public BaseCSContainmentVisitor(@NonNull CS2PivotConversion context) {
+	public BaseCSContainmentVisitor(@NonNull CS2ASConversion context) {
 		super(context);
 		this.metaModelManager = context.getMetaModelManager();
 		this.standardLibrary = metaModelManager.getStandardLibrary();
@@ -101,7 +101,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		return null;
 	}
 
-	protected void importPackages(@NonNull RootPackageCS csElement) { // FIXME: CS2Pivot.computeRootContainmentFeatures may make this redundant
+	protected void importPackages(@NonNull RootPackageCS csElement) { // FIXME: CS2AS.computeRootContainmentFeatures may make this redundant
 		for (LibraryCS csLibrary : csElement.getOwnedLibraries()) {
 			csLibrary.getReferredPackage();						// Resolve the proxy to perform the import.
 		}
@@ -308,7 +308,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 	@Override
 	public Continuation<?> visitElementCS(@NonNull ElementCS csElement) {
 // FIXME		return visiting(csElement);
-		System.out.println("Unsupported " + csElement.eClass().getName() + " for CS2Pivot Containment pass");
+		System.out.println("Unsupported " + csElement.eClass().getName() + " for CS2AS Containment pass");
 		return null;
 	}
 
@@ -341,12 +341,12 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		Import pivotElement = refreshNamedElement(Import.class, PivotPackage.Literals.IMPORT, csElement);
 		PathNameCS pathName = csElement.getOwnedPathName();
 		if (pathName != null) {
-			CS2Pivot.setElementType(pathName, PivotPackage.Literals.NAMESPACE, csElement, null);
+			CS2AS.setElementType(pathName, PivotPackage.Literals.NAMESPACE, csElement, null);
 		}
 		if (csElement.isIsAll() && (csElement.getName() != null)) {
 			context.addDiagnostic(csElement, "An all-package import cannot have an associated alias name");
 		}
-		return null;								// FIXME: CS2Pivot.computeRootContainmentFeatures may allow the above now
+		return null;								// FIXME: CS2AS.computeRootContainmentFeatures may allow the above now
 	}
 
 	@Override
@@ -357,14 +357,14 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 	@Override
 	public Continuation<?> visitLibraryCS(@NonNull LibraryCS csElement) {
 //		csElement.getPackage();						// Resolve the proxy to perform the import.
-		return null;								// FIXME: CS2Pivot.computeRootContainmentFeatures may allow the above now
+		return null;								// FIXME: CS2AS.computeRootContainmentFeatures may allow the above now
 	}
 
 	@Override
 	public Continuation<?> visitModelElementRefCS(@NonNull ModelElementRefCS csElement) {
 		PathNameCS pathName = csElement.getOwnedPathName();
 		if (pathName != null) {
-			CS2Pivot.setElementType(pathName, PivotPackage.Literals.ELEMENT, csElement, null);
+			CS2AS.setElementType(pathName, PivotPackage.Literals.ELEMENT, csElement, null);
 		}
 		return null;
 	}
@@ -545,7 +545,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 	public Continuation<?> visitTypedTypeRefCS(@NonNull TypedTypeRefCS csElement) {
 		PathNameCS pathName = csElement.getOwnedPathName();
 		if (pathName != null) {
-			CS2Pivot.setElementType(pathName, PivotPackage.Literals.TYPE, csElement, null);
+			CS2AS.setElementType(pathName, PivotPackage.Literals.TYPE, csElement, null);
 		}
 		return null;
 	}
@@ -559,6 +559,6 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 	}
 
 	public Continuation<?> visiting(@NonNull VisitableCS visitable) {
-		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for CS2Pivot Containment pass");
+		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for CS2AS Containment pass");
 	}
 }

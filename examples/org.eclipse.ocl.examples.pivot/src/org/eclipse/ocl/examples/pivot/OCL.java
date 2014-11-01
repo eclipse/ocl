@@ -365,7 +365,7 @@ public class OCL {
 	/**
 	 * Return the Pivot resource counterpart of an Xtext csResource.
 	 */
-	public @NonNull Resource cs2pivot(@NonNull BaseResource csResource) {
+	public @NonNull Resource cs2as(@NonNull BaseResource csResource) {
 		MetaModelManager metaModelManager = getMetaModelManager();
 		Resource asResource = csResource.getASResource(metaModelManager);
 		return asResource;
@@ -599,7 +599,7 @@ public class OCL {
 	 */
 	public @Nullable Resource parse(@NonNull URI uri) {
 		BaseResource csResource = load(uri);
-		return csResource != null ? cs2pivot(csResource) : null;
+		return csResource != null ? cs2as(csResource) : null;
 	}
 
 	/**

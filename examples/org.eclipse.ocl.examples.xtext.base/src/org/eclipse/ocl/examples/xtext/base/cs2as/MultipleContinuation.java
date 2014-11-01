@@ -19,7 +19,7 @@ import org.eclipse.ocl.examples.pivot.NamedElement;
 
 public abstract class MultipleContinuation<T extends EObject> extends BasicContinuation<List<? extends T>>
 {
-	public MultipleContinuation(@NonNull CS2PivotConversion context,
+	public MultipleContinuation(@NonNull CS2ASConversion context,
 			NamedElement pivotParent, EStructuralFeature pivotFeature,
 			@NonNull List<? extends T> csElements, Dependency... dependencies) {
 		super(context, pivotParent, pivotFeature, csElements, dependencies);

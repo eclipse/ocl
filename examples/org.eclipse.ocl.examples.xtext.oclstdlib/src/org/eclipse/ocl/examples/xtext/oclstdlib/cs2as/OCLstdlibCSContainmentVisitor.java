@@ -27,7 +27,7 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.xtext.base.basecs.PackageCS;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaClassCS;
@@ -43,7 +43,7 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.util.AbstractOCLstdl
 
 public class OCLstdlibCSContainmentVisitor extends AbstractOCLstdlibCSContainmentVisitor
 {
-	public OCLstdlibCSContainmentVisitor(@NonNull CS2PivotConversion context) {
+	public OCLstdlibCSContainmentVisitor(@NonNull CS2ASConversion context) {
 		super(context);
 	}
 
@@ -63,7 +63,7 @@ public class OCLstdlibCSContainmentVisitor extends AbstractOCLstdlibCSContainmen
 	@Override
 	public Continuation<?> visitLibClassCS(@NonNull LibClassCS csElement) {
 		EClass eClass = null;
-		MetaclassNameCS metaType = OCLstdlibCS2Pivot.lookUpMetaTypeName(csElement, OCLstdlibCSPackage.Literals.LIB_CLASS_CS__METACLASS_NAME);
+		MetaclassNameCS metaType = OCLstdlibCS2AS.lookUpMetaTypeName(csElement, OCLstdlibCSPackage.Literals.LIB_CLASS_CS__METACLASS_NAME);
 		if ((metaType != null) && !metaType.eIsProxy()) {
 			String metaTypeName = metaType.getName();
 			eClass = (EClass) EcoreUtils.getNamedElement(PivotPackage.eINSTANCE.getEClassifiers(), metaTypeName);

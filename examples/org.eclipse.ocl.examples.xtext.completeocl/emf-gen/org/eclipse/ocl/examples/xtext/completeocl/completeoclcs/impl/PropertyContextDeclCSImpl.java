@@ -25,7 +25,7 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PropertyContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.util.CompleteOCLCSVisitor;
@@ -188,7 +188,7 @@ public class PropertyContextDeclCSImpl
 		if (ownedPathName2 == null) {
 			return null;
 		}
-		CS2Pivot.setElementType(ownedPathName2, PivotPackage.Literals.PROPERTY,
+		CS2AS.setElementType(ownedPathName2, PivotPackage.Literals.PROPERTY,
 			this, null);
 		return (Property) ownedPathName2.getReferredElement();
 	}

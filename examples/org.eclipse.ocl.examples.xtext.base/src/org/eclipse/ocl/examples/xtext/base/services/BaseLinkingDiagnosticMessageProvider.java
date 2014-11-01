@@ -12,7 +12,7 @@ package org.eclipse.ocl.examples.xtext.base.services;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
 import org.eclipse.xtext.diagnostics.DiagnosticMessage;
 import org.eclipse.xtext.linking.impl.LinkingDiagnosticMessageProvider;
 
@@ -24,6 +24,6 @@ public class BaseLinkingDiagnosticMessageProvider extends LinkingDiagnosticMessa
 		String linkText = context.getLinkText();
 		EReference eReference = context.getReference();
 		assert (eReference != null) && (csContext != null) && (linkText != null);
-		return CS2Pivot.getUnresolvedProxyMessage(eReference, csContext, linkText);
+		return CS2AS.getUnresolvedProxyMessage(eReference, csContext, linkText);
 	}
 }

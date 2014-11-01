@@ -101,7 +101,7 @@ public class GenerateCS2ASVisitors extends GenerateCSVisitors
 			
 			import org.eclipse.jdt.annotation.NonNull;
 			import org.eclipse.jdt.annotation.Nullable;
-			import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
+			import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 			import «superProjectName».cs2as.«extendedClassName»;
 			«FOR addtionalImport : additionalImports»
 			import «addtionalImport.getName()»;
@@ -123,7 +123,7 @@ public class GenerateCS2ASVisitors extends GenerateCSVisitors
 				 * 
 				 * @param context my initial result value
 				 */
-				protected «className»(@NonNull CS2PivotConversion context) {
+				protected «className»(@NonNull CS2ASConversion context) {
 					super(context);
 				}
 				«FOR eClass : getSortedEClasses(ePackage)»

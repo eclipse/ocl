@@ -12,8 +12,8 @@ package org.eclipse.ocl.examples.xtext.completeocl.cs2as;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLDocumentCS;
@@ -35,7 +35,7 @@ public class AutoCompleteOCLCSContainmentVisitor
 	extends NewEssentialOCLCSContainmentVisitor
 	implements CompleteOCLCSVisitor<Continuation<?>>
 {
-    protected final @NonNull CS2Pivot converter;
+    protected final @NonNull CS2AS converter;
     protected final @NonNull IdResolver idResolver;
     
     /**
@@ -43,7 +43,7 @@ public class AutoCompleteOCLCSContainmentVisitor
      * 
      * @param context my initial result value
      */
-    public AutoCompleteOCLCSContainmentVisitor(@NonNull CS2PivotConversion context) {
+    public AutoCompleteOCLCSContainmentVisitor(@NonNull CS2ASConversion context) {
         super(context);
         this.converter = context.getConverter();
         this.idResolver = converter.getMetaModelManager().getIdResolver();

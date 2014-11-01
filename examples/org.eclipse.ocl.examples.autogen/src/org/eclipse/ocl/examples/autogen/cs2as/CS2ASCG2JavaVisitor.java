@@ -34,8 +34,8 @@ import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 
 /**
@@ -54,7 +54,7 @@ public class CS2ASCG2JavaVisitor extends AutoCG2JavaVisitor<CS2ASCodeGenerator>
 		js.append("protected final ");
 	    js.appendIsRequired(true);
 	    js.append(" ");
-	    js.appendClassReference(CS2Pivot.class);
+	    js.appendClassReference(CS2AS.class);
 	    js.append(" converter;\n");
 	    js.append("protected final ");
 	    js.appendIsRequired(true);
@@ -74,7 +74,7 @@ public class CS2ASCG2JavaVisitor extends AutoCG2JavaVisitor<CS2ASCodeGenerator>
 		js.append("public " + cgClass.getName() + "(");
 		js.appendIsRequired(true);
 		js.append(" ");
-		js.appendClassReference(CS2PivotConversion.class);
+		js.appendClassReference(CS2ASConversion.class);
 		js.append(" context) {\n");
 		js.pushIndentation(null);
 		js.append("super(context);\n");

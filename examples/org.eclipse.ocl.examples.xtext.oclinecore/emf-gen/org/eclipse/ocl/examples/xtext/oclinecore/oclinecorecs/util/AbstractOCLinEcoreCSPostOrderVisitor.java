@@ -19,7 +19,7 @@ package	org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.util;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCSPostOrderVisitor;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 
@@ -39,7 +39,7 @@ public abstract class AbstractOCLinEcoreCSPostOrderVisitor
 	 * 
 	 * @param context my initial result value
 	 */
-	protected AbstractOCLinEcoreCSPostOrderVisitor(@NonNull CS2PivotConversion context) {
+	protected AbstractOCLinEcoreCSPostOrderVisitor(@NonNull CS2ASConversion context) {
 		super(context);
 	}
 

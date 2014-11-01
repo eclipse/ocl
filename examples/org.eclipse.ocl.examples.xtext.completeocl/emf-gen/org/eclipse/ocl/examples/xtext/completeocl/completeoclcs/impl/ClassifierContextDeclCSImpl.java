@@ -30,7 +30,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS;
@@ -352,7 +352,7 @@ public class ClassifierContextDeclCSImpl
 		if (ownedPathName2 == null) {
 			return null;
 		}
-		CS2Pivot.setElementType(ownedPathName2, PivotPackage.Literals.TYPE, this, null);
+		CS2AS.setElementType(ownedPathName2, PivotPackage.Literals.TYPE, this, null);
 		return (org.eclipse.ocl.examples.pivot.Class) ownedPathName2.getReferredElement();
 	}
 

@@ -17,35 +17,35 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCS2Pivot;
+import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCS2AS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.util.OCLinEcoreCSVisitor;
 
-public class OCLinEcoreCS2Pivot extends EssentialOCLCS2Pivot 
+public class OCLinEcoreCS2AS extends EssentialOCLCS2AS 
 {	
-	public OCLinEcoreCS2Pivot(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull MetaModelManager metaModelManager) {
+	public OCLinEcoreCS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull MetaModelManager metaModelManager) {
 		super(cs2asResourceMap, metaModelManager);
 	}
 
 	@Override
-	protected @NonNull OCLinEcoreCSVisitor<Continuation<?>> createContainmentVisitor(@NonNull CS2PivotConversion converter) {
+	protected @NonNull OCLinEcoreCSVisitor<Continuation<?>> createContainmentVisitor(@NonNull CS2ASConversion converter) {
 		return new OCLinEcoreCSContainmentVisitor(converter);
 	}
 
 	@Override
-	protected @NonNull OCLinEcoreCSVisitor<Element> createLeft2RightVisitor(@NonNull CS2PivotConversion converter) {
+	protected @NonNull OCLinEcoreCSVisitor<Element> createLeft2RightVisitor(@NonNull CS2ASConversion converter) {
 		return new OCLinEcoreCSLeft2RightVisitor(converter);
 	}
 
 	@Override
-	protected @NonNull OCLinEcoreCSVisitor<Continuation<?>> createPostOrderVisitor(@NonNull CS2PivotConversion converter) {
+	protected @NonNull OCLinEcoreCSVisitor<Continuation<?>> createPostOrderVisitor(@NonNull CS2ASConversion converter) {
 		return new OCLinEcoreCSPostOrderVisitor(converter);
 	}
 
 	@Override
-	protected @NonNull OCLinEcoreCSVisitor<Continuation<?>> createPreOrderVisitor(@NonNull CS2PivotConversion converter) {
+	protected @NonNull OCLinEcoreCSVisitor<Continuation<?>> createPreOrderVisitor(@NonNull CS2ASConversion converter) {
 		return new OCLinEcoreCSPreOrderVisitor(converter);
 	}
 }

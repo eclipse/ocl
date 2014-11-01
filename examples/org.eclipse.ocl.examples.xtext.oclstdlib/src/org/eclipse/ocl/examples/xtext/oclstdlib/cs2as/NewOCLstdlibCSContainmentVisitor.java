@@ -11,12 +11,12 @@
 package org.eclipse.ocl.examples.xtext.oclstdlib.cs2as;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 
 
 public class NewOCLstdlibCSContainmentVisitor extends AutoOCLstdlibCSContainmentVisitor {
 
-	public NewOCLstdlibCSContainmentVisitor(@NonNull CS2PivotConversion context) {
+	public NewOCLstdlibCSContainmentVisitor(@NonNull CS2ASConversion context) {
 		super(context);
 	}
 }

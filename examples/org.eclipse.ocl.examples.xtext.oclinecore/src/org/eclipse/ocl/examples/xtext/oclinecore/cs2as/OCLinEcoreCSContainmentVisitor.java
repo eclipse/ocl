@@ -14,14 +14,14 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.SysMLCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.util.AbstractOCLinEcoreCSContainmentVisitor;
 
 public class OCLinEcoreCSContainmentVisitor extends AbstractOCLinEcoreCSContainmentVisitor
 {
-	public OCLinEcoreCSContainmentVisitor(@NonNull CS2PivotConversion context) {
+	public OCLinEcoreCSContainmentVisitor(@NonNull CS2ASConversion context) {
 		super(context);
 	}
 

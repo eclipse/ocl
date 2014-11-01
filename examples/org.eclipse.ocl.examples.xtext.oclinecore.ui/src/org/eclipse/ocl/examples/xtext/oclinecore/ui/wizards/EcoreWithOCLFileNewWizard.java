@@ -56,7 +56,7 @@ public class EcoreWithOCLFileNewWizard extends AbstractOCLinEcoreFileNewWizard
 		try {
 			ByteArrayInputStream inputStream = new ByteArrayInputStream(initialContentsAsString.getBytes());
 			csResource.load(inputStream, null);
-			Resource asResource = ocl.cs2pivot(csResource);
+			Resource asResource = ocl.cs2as(csResource);
 			Resource eResource = ocl.pivot2ecore(asResource, ecoreURI);
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 			eResource.save(outputStream, null);

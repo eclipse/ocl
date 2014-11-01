@@ -13,7 +13,7 @@ package org.eclipse.ocl.examples.xtext.base.cs2as;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.xtext.resource.DefaultFragmentProvider;
 
 public class BaseFragmentProvider extends DefaultFragmentProvider
@@ -32,7 +32,7 @@ public class BaseFragmentProvider extends DefaultFragmentProvider
 			return eObject;
 		}
 		BaseCSResource csResource = (BaseCSResource)resource;
-		CS2PivotResourceAdapter converter = csResource.findCS2ASAdapter();
+		CS2ASResourceAdapter converter = csResource.findCS2ASAdapter();
 		if (converter != null) {
 			Resource asResource = converter.getASResource(csResource);
 			if (asResource != null) {

@@ -51,7 +51,7 @@ import org.eclipse.ocl.examples.pivot.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.examples.pivot.utilities.AS2Moniker;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.JavaClassScope;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 
@@ -263,7 +263,7 @@ public class OCLstdlibTests extends XtextTestCase
 		JavaClassScope.getAdapter(xtextResource, getClass().getClassLoader());
 		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
 		xtextResource.load(null);
-		CS2PivotResourceAdapter adapter = xtextResource.findCS2ASAdapter();
+		CS2ASResourceAdapter adapter = xtextResource.findCS2ASAdapter();
 		assertNoResourceErrors("Load failed", xtextResource);
 		Resource fileResource = adapter.getASResource(xtextResource);
 		assertNoResourceErrors("File Model", fileResource);

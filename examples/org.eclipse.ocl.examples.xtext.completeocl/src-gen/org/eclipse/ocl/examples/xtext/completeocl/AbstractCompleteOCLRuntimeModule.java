@@ -166,7 +166,7 @@ public abstract class AbstractCompleteOCLRuntimeModule extends DefaultRuntimeMod
 
 	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
 	public Class<? extends org.eclipse.xtext.linking.ILinker> bindILinker() {
-		return org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotLinker.class;
+		return org.eclipse.ocl.examples.xtext.base.utilities.CS2ASLinker.class;
 	}
 
 	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment

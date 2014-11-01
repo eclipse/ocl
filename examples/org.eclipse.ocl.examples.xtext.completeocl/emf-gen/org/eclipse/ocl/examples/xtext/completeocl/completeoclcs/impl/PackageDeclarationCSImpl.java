@@ -24,7 +24,7 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PackageDeclarationCS;
@@ -230,7 +230,7 @@ public class PackageDeclarationCSImpl
 		if (ownedPathName2 == null) {
 			return null;
 		}
-		CS2Pivot.setElementType(ownedPathName2, PivotPackage.Literals.PACKAGE, this,
+		CS2AS.setElementType(ownedPathName2, PivotPackage.Literals.PACKAGE, this,
 			null);
 		return (org.eclipse.ocl.examples.pivot.Package) ownedPathName2.getReferredElement();
 	}

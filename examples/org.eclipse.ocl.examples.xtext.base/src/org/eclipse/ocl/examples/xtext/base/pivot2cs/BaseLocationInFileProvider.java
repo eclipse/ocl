@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.ILeafNode;
@@ -42,7 +42,7 @@ public class BaseLocationInFileProvider extends DefaultLocationInFileProvider
 				if (csModelElement != null) {
 					ICompositeNode node = NodeModelUtils.getNode(csModelElement);
 					if (node != null) {
-						List<ILeafNode> documentationNodes = CS2Pivot.getDocumentationNodes(node);
+						List<ILeafNode> documentationNodes = CS2AS.getDocumentationNodes(node);
 						ILeafNode first = documentationNodes.get(0);
 						ILeafNode last = documentationNodes.get(documentationNodes.size()-1);
 						int start = first.getOffset();

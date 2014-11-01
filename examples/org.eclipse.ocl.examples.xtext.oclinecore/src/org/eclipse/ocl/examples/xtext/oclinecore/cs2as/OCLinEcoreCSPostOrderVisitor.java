@@ -15,7 +15,7 @@ import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Detail;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
+import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.OCLinEcoreConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.SysMLCS;
@@ -23,7 +23,7 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.util.AbstractOCLin
 
 public class OCLinEcoreCSPostOrderVisitor extends AbstractOCLinEcoreCSPostOrderVisitor
 {
-	public OCLinEcoreCSPostOrderVisitor(@NonNull CS2PivotConversion context) {
+	public OCLinEcoreCSPostOrderVisitor(@NonNull CS2ASConversion context) {
 		super(context);
 	}
 
