@@ -150,6 +150,8 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	{
 		switch (eDataType.getClassifierID())
 		{
+			case BaseCSPackage.BIG_NUMBER:
+				return createBigNumberFromString(eDataType, initialValue);
 			case BaseCSPackage.SCOPE_FILTER:
 				return createScopeFilterFromString(eDataType, initialValue);
 			default:
@@ -167,6 +169,8 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	{
 		switch (eDataType.getClassifierID())
 		{
+			case BaseCSPackage.BIG_NUMBER:
+				return convertBigNumberToString(eDataType, instanceValue);
 			case BaseCSPackage.SCOPE_FILTER:
 				return convertScopeFilterToString(eDataType, instanceValue);
 			default:
@@ -523,6 +527,26 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	public WildcardTypeRefCS createWildcardTypeRefCS() {
 		WildcardTypeRefCSImpl wildcardTypeRefCS = new WildcardTypeRefCSImpl();
 		return wildcardTypeRefCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Number createBigNumberFromString(EDataType eDataType, String initialValue)
+	{
+		return (Number)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertBigNumberToString(EDataType eDataType, Object instanceValue)
+	{
+		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

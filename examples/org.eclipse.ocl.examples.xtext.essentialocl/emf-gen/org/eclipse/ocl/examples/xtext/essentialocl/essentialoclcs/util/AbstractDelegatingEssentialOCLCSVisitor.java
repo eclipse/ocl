@@ -36,12 +36,20 @@ public abstract class AbstractDelegatingEssentialOCLCSVisitor<R, C, D extends Es
 		return delegate.visiting(visitable);
 	}
 
+	public @Nullable R visitAssociationClassCallExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AssociationClassCallExpCS object) {
+		return delegate.visitAssociationClassCallExpCS(object);
+	}
+
 	public @Nullable R visitBinaryOperatorCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS object) {
 		return delegate.visitBinaryOperatorCS(object);
 	}
 
 	public @Nullable R visitBooleanLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteralExpCS object) {
 		return delegate.visitBooleanLiteralExpCS(object);
+	}
+
+	public @Nullable R visitCallExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CallExpCS object) {
+		return delegate.visitCallExpCS(object);
 	}
 
 	public @Nullable R visitCollectionLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralExpCS object) {
@@ -58,6 +66,10 @@ public abstract class AbstractDelegatingEssentialOCLCSVisitor<R, C, D extends Es
 
 	public @Nullable R visitCollectionTypeCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionTypeCS object) {
 		return delegate.visitCollectionTypeCS(object);
+	}
+
+	public @Nullable R visitConstructorExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS object) {
+		return delegate.visitConstructorExpCS(object);
 	}
 
 	public @Nullable R visitConstructorPartCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS object) {
@@ -94,6 +106,14 @@ public abstract class AbstractDelegatingEssentialOCLCSVisitor<R, C, D extends Es
 
 	public @Nullable R visitInvalidLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvalidLiteralExpCS object) {
 		return delegate.visitInvalidLiteralExpCS(object);
+	}
+
+	public @Nullable R visitIterateCallExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IterateCallExpCS object) {
+		return delegate.visitIterateCallExpCS(object);
+	}
+
+	public @Nullable R visitIterationCallExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IterationCallExpCS object) {
+		return delegate.visitIterationCallExpCS(object);
 	}
 
 	public @Nullable R visitLambdaLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LambdaLiteralExpCS object) {
@@ -136,6 +156,10 @@ public abstract class AbstractDelegatingEssentialOCLCSVisitor<R, C, D extends Es
 		return delegate.visitNumberLiteralExpCS(object);
 	}
 
+	public @Nullable R visitOperationCallExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperationCallExpCS object) {
+		return delegate.visitOperationCallExpCS(object);
+	}
+
 	public @Nullable R visitOperatorCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS object) {
 		return delegate.visitOperatorCS(object);
 	}
@@ -150,6 +174,10 @@ public abstract class AbstractDelegatingEssentialOCLCSVisitor<R, C, D extends Es
 
 	public @Nullable R visitPrimitiveLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrimitiveLiteralExpCS object) {
 		return delegate.visitPrimitiveLiteralExpCS(object);
+	}
+
+	public @Nullable R visitPropertyCallExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PropertyCallExpCS object) {
+		return delegate.visitPropertyCallExpCS(object);
 	}
 
 	public @Nullable R visitRoundBracketedClauseCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS object) {
@@ -194,5 +222,9 @@ public abstract class AbstractDelegatingEssentialOCLCSVisitor<R, C, D extends Es
 
 	public @Nullable R visitVariableCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS object) {
 		return delegate.visitVariableCS(object);
+	}
+
+	public @Nullable R visitVariableExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableExpCS object) {
+		return delegate.visitVariableExpCS(object);
 	}
 }

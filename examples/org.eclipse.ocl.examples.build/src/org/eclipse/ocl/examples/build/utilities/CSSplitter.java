@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -28,17 +27,17 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
-import org.eclipse.emf.mwe.core.lib.WorkflowComponentWithModelSlot;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.utils.Mapping;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 
 /**
- * Splits the composite 'in' Ecore file into a distinct URI per selecyed EPackage.
+ * Splits the composite 'in' Ecore file into a distinct URI per selected EPackage.
  * <p>
  * Included packages are emitted to the mapped URI.
  * <p>
- * Excluded packages are adjusted to be referemced by the mapped URI, bur are noit emitted..
+ * Excluded packages are adjusted to be referemced by the mapped URI, but are not emitted.
  */
 public class CSSplitter extends AbstractWorkflowComponent
 {
@@ -90,7 +89,7 @@ public class CSSplitter extends AbstractWorkflowComponent
 		ResourceUtils.checkResourceSet(resourceSet);
 		Map<EPackage, URI> inclusions = new HashMap<EPackage, URI>();
 		Map<EPackage, URI> exclusions = new HashMap<EPackage, URI>();
-		gatherEPackages(resource.getContents(), inclusions, exclusions);
+		gatherEPackages(DomainUtil.nonNullEMF(resource.getContents()), inclusions, exclusions);
 		List<Resource> resources = new ArrayList<Resource>();
 		for (EPackage ePackage : inclusions.keySet()) {
 			URI uri = inclusions.get(ePackage);
@@ -138,7 +137,7 @@ public class CSSplitter extends AbstractWorkflowComponent
 						continue;
 					}
 				}
-				gatherEPackages(ePackage.getESubpackages(), inclusions, exclusions);
+				gatherEPackages(DomainUtil.nonNullEMF(ePackage.getESubpackages()), inclusions, exclusions);
 			}
 		}
 	}

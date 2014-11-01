@@ -4344,6 +4344,16 @@ public interface BaseCSPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '<em>Big Number</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.lang.Number
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getBigNumber()
+	 * @generated
+	 */
+	int BIG_NUMBER = 54;
+
+	/**
 	 * The meta object id for the '<em>Scope Filter</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4351,7 +4361,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getScopeFilter()
 	 * @generated
 	 */
-	int SCOPE_FILTER = 54;
+	int SCOPE_FILTER = 55;
 
 
 	/**
@@ -5853,6 +5863,17 @@ public interface BaseCSPackage extends EPackage {
 	EReference getWildcardTypeRefCS_OwnedSuper();
 
 	/**
+	 * Returns the meta object for data type '{@link java.lang.Number <em>Big Number</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Big Number</em>'.
+	 * @see java.lang.Number
+	 * @model instanceClass="java.lang.Number"
+	 * @generated
+	 */
+	EDataType getBigNumber();
+
+	/**
 	 * Returns the meta object for data type '{@link org.eclipse.ocl.examples.pivot.scoping.ScopeFilter <em>Scope Filter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7120,6 +7141,16 @@ public interface BaseCSPackage extends EPackage {
 		 * @generated
 		 */
 		EReference WILDCARD_TYPE_REF_CS__OWNED_SUPER = eINSTANCE.getWildcardTypeRefCS_OwnedSuper();
+
+		/**
+		 * The meta object literal for the '<em>Big Number</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.lang.Number
+		 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getBigNumber()
+		 * @generated
+		 */
+		EDataType BIG_NUMBER = eINSTANCE.getBigNumber();
 
 		/**
 		 * The meta object literal for the '<em>Scope Filter</em>' data type.

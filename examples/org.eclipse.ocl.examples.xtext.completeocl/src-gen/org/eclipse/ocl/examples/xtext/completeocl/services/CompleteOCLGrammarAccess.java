@@ -13,6 +13,7 @@ import org.eclipse.xtext.service.GrammarProvider;
 import org.eclipse.xtext.service.AbstractElementFinder.*;
 
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess;
+import org.eclipse.ocl.examples.xtext.base.services.BaseGrammarAccess;
 
 @Singleton
 public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
@@ -1867,142 +1868,6 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getModelAccess().getRule();
 	}
 
-	//terminal fragment ESCAPED_CHARACTER:
-	//	"\\" ("b" | "t" | "n" | "f" | "r" | "u" | "\"" | "\'" | "\\");
-	public TerminalRule getESCAPED_CHARACTERRule() {
-		return gaEssentialOCL.getESCAPED_CHARACTERRule();
-	} 
-
-	//terminal fragment LETTER_CHARACTER:
-	//	"a".."z" | "A".."Z" | "_";
-	public TerminalRule getLETTER_CHARACTERRule() {
-		return gaEssentialOCL.getLETTER_CHARACTERRule();
-	} 
-
-	//terminal DOUBLE_QUOTED_STRING:
-	//	"\"" (ESCAPED_CHARACTER | !("\\" | "\""))* "\"";
-	public TerminalRule getDOUBLE_QUOTED_STRINGRule() {
-		return gaEssentialOCL.getDOUBLE_QUOTED_STRINGRule();
-	} 
-
-	//terminal SINGLE_QUOTED_STRING:
-	//	"\'" (ESCAPED_CHARACTER | !("\\" | "\'"))* "\'";
-	public TerminalRule getSINGLE_QUOTED_STRINGRule() {
-		return gaEssentialOCL.getSINGLE_QUOTED_STRINGRule();
-	} 
-
-	//terminal ML_SINGLE_QUOTED_STRING:
-	//	"/\'"->"\'/";
-	public TerminalRule getML_SINGLE_QUOTED_STRINGRule() {
-		return gaEssentialOCL.getML_SINGLE_QUOTED_STRINGRule();
-	} 
-
-	//terminal SIMPLE_ID:
-	//	LETTER_CHARACTER (LETTER_CHARACTER | "0".."9")*;
-	public TerminalRule getSIMPLE_IDRule() {
-		return gaEssentialOCL.getSIMPLE_IDRule();
-	} 
-
-	//terminal ESCAPED_ID:
-	//	"_" SINGLE_QUOTED_STRING;
-	public TerminalRule getESCAPED_IDRule() {
-		return gaEssentialOCL.getESCAPED_IDRule();
-	} 
-
-	//ID:
-	//	SIMPLE_ID | ESCAPED_ID;
-	public EssentialOCLGrammarAccess.IDElements getIDAccess() {
-		return gaEssentialOCL.getIDAccess();
-	}
-	
-	public ParserRule getIDRule() {
-		return getIDAccess().getRule();
-	}
-
-	//// String to allow diverse re-use
-	// // multiple leading zeroes occur as floating point fractional part
-	// terminal INT:
-	//	"0".."9"+;
-	public TerminalRule getINTRule() {
-		return gaEssentialOCL.getINTRule();
-	} 
-
-	/// * A lowerbounded integer is used to define the lowerbound of a collection multiplicity. The value may not be the unlimited value. * /
-	//LOWER returns ecore::EInt:
-	//	INT;
-	public EssentialOCLGrammarAccess.LOWERElements getLOWERAccess() {
-		return gaEssentialOCL.getLOWERAccess();
-	}
-	
-	public ParserRule getLOWERRule() {
-		return getLOWERAccess().getRule();
-	}
-
-	/// * An upperbounded integer is used to define the upperbound of a collection multiplicity. The value may be the unlimited value. * /
-	//UPPER returns ecore::EInt:
-	//	INT | "*";
-	public EssentialOCLGrammarAccess.UPPERElements getUPPERAccess() {
-		return gaEssentialOCL.getUPPERAccess();
-	}
-	
-	public ParserRule getUPPERRule() {
-		return getUPPERAccess().getRule();
-	}
-
-	/// * A number may be an integer or floating point value. The declaration here appears to be that for just an integer. This is to avoid
-	// * lookahead conflicts in simple lexers between a dot within a floating point number and the dot-dot in a CollectionLiteralPartCS. A
-	// * practical implementation should give high priority to a successful parse of INT ('.' INT)? (('e' | 'E') ('+' | '-')? INT)? than
-	// * to the unsuccessful partial parse of INT '..'. The type of the INT terminal is String to allow the floating point syntax to be used.
-	// * /
-	//// Not terminal to allow parser backtracking to sort out "5..7"
-	//
-	//// EssentialOCLTokenSource pieces this together ('.' INT)? (('e' | 'E') ('+' | '-')? INT)?;
-	// NUMBER_LITERAL returns
-	//BigNumber:
-	//	INT;
-	public EssentialOCLGrammarAccess.NUMBER_LITERALElements getNUMBER_LITERALAccess() {
-		return gaEssentialOCL.getNUMBER_LITERALAccess();
-	}
-	
-	public ParserRule getNUMBER_LITERALRule() {
-		return getNUMBER_LITERALAccess().getRule();
-	}
-
-	/// * A multi-line comment supports a comment that may span more than one line using familiar slash-star...star-slash comment delimiters * /
-	//terminal ML_COMMENT:
-	//	"/ *"->"* /";
-	public TerminalRule getML_COMMENTRule() {
-		return gaEssentialOCL.getML_COMMENTRule();
-	} 
-
-	/// * A single-line comment supports a comment that terminates at the end of the line * / terminal SL_COMMENT:
-	//	"--" !("\n" | "\r")* ("\r"? "\n")?;
-	public TerminalRule getSL_COMMENTRule() {
-		return gaEssentialOCL.getSL_COMMENTRule();
-	} 
-
-	/// * Whitespace may occur between any pair of tokens * / terminal WS:
-	//	(" " | "\t" | "\r" | "\n")+;
-	public TerminalRule getWSRule() {
-		return gaEssentialOCL.getWSRule();
-	} 
-
-	//terminal ANY_OTHER:
-	//	.;
-	public TerminalRule getANY_OTHERRule() {
-		return gaEssentialOCL.getANY_OTHERRule();
-	} 
-
-	//URI:
-	//	SINGLE_QUOTED_STRING;
-	public EssentialOCLGrammarAccess.URIElements getURIAccess() {
-		return gaEssentialOCL.getURIAccess();
-	}
-	
-	public ParserRule getURIRule() {
-		return getURIAccess().getRule();
-	}
-
 	/// ** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> * /
 	//EssentialOCLReservedKeyword:
 	//	"and" | "else" | "endif" | "if" | "implies" | "in" | "let" | "not" | "or" | "then" | "xor";
@@ -2045,26 +1910,6 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getEssentialOCLNavigationOperatorCSRule() {
 		return getEssentialOCLNavigationOperatorCSAccess().getRule();
-	}
-
-	//Identifier:
-	//	ID;
-	public EssentialOCLGrammarAccess.IdentifierElements getIdentifierAccess() {
-		return gaEssentialOCL.getIdentifierAccess();
-	}
-	
-	public ParserRule getIdentifierRule() {
-		return getIdentifierAccess().getRule();
-	}
-
-	//StringLiteral:
-	//	SINGLE_QUOTED_STRING;
-	public EssentialOCLGrammarAccess.StringLiteralElements getStringLiteralAccess() {
-		return gaEssentialOCL.getStringLiteralAccess();
-	}
-	
-	public ParserRule getStringLiteralRule() {
-		return getStringLiteralAccess().getRule();
 	}
 
 	//BinaryOperatorCS:
@@ -2216,36 +2061,6 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getCollectionTypeCSRule() {
 		return getCollectionTypeCSAccess().getRule();
-	}
-
-	//MultiplicityBoundsCS returns base::MultiplicityBoundsCS:
-	//	lowerBound=LOWER (".." upperBound=UPPER)?;
-	public EssentialOCLGrammarAccess.MultiplicityBoundsCSElements getMultiplicityBoundsCSAccess() {
-		return gaEssentialOCL.getMultiplicityBoundsCSAccess();
-	}
-	
-	public ParserRule getMultiplicityBoundsCSRule() {
-		return getMultiplicityBoundsCSAccess().getRule();
-	}
-
-	//MultiplicityCS returns base::MultiplicityCS:
-	//	"[" (MultiplicityBoundsCS | MultiplicityStringCS) "]";
-	public EssentialOCLGrammarAccess.MultiplicityCSElements getMultiplicityCSAccess() {
-		return gaEssentialOCL.getMultiplicityCSAccess();
-	}
-	
-	public ParserRule getMultiplicityCSRule() {
-		return getMultiplicityCSAccess().getRule();
-	}
-
-	//MultiplicityStringCS returns base::MultiplicityStringCS:
-	//	stringBounds=("*" | "+" | "?");
-	public EssentialOCLGrammarAccess.MultiplicityStringCSElements getMultiplicityStringCSAccess() {
-		return gaEssentialOCL.getMultiplicityStringCSAccess();
-	}
-	
-	public ParserRule getMultiplicityStringCSRule() {
-		return getMultiplicityStringCSAccess().getRule();
 	}
 
 	//TupleTypeCS returns base::TupleTypeCS:
@@ -2692,4 +2507,190 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	public ParserRule getSelfExpCSRule() {
 		return getSelfExpCSAccess().getRule();
 	}
+
+	//MultiplicityBoundsCS:
+	//	lowerBound=LOWER (".." upperBound=UPPER)?;
+	public BaseGrammarAccess.MultiplicityBoundsCSElements getMultiplicityBoundsCSAccess() {
+		return gaEssentialOCL.getMultiplicityBoundsCSAccess();
+	}
+	
+	public ParserRule getMultiplicityBoundsCSRule() {
+		return getMultiplicityBoundsCSAccess().getRule();
+	}
+
+	//MultiplicityCS:
+	//	"[" (MultiplicityBoundsCS | MultiplicityStringCS) "]";
+	public BaseGrammarAccess.MultiplicityCSElements getMultiplicityCSAccess() {
+		return gaEssentialOCL.getMultiplicityCSAccess();
+	}
+	
+	public ParserRule getMultiplicityCSRule() {
+		return getMultiplicityCSAccess().getRule();
+	}
+
+	//MultiplicityStringCS:
+	//	stringBounds=("*" | "+" | "?");
+	public BaseGrammarAccess.MultiplicityStringCSElements getMultiplicityStringCSAccess() {
+		return gaEssentialOCL.getMultiplicityStringCSAccess();
+	}
+	
+	public ParserRule getMultiplicityStringCSRule() {
+		return getMultiplicityStringCSAccess().getRule();
+	}
+
+	//ID:
+	//	SIMPLE_ID | ESCAPED_ID;
+	public BaseGrammarAccess.IDElements getIDAccess() {
+		return gaEssentialOCL.getIDAccess();
+	}
+	
+	public ParserRule getIDRule() {
+		return getIDAccess().getRule();
+	}
+
+	//Identifier:
+	//	ID;
+	public BaseGrammarAccess.IdentifierElements getIdentifierAccess() {
+		return gaEssentialOCL.getIdentifierAccess();
+	}
+	
+	public ParserRule getIdentifierRule() {
+		return getIdentifierAccess().getRule();
+	}
+
+	/// * A lowerbounded integer is used to define the lowerbound of a collection multiplicity. The value may not be the unlimited value. * /
+	//LOWER returns ecore::EInt:
+	//	INT;
+	public BaseGrammarAccess.LOWERElements getLOWERAccess() {
+		return gaEssentialOCL.getLOWERAccess();
+	}
+	
+	public ParserRule getLOWERRule() {
+		return getLOWERAccess().getRule();
+	}
+
+	/// * A number may be an integer or floating point value. The declaration here appears to be that for just an integer. This is to avoid
+	// * lookahead conflicts in simple lexers between a dot within a floating point number and the dot-dot in a CollectionLiteralPartCS. A
+	// * practical implementation should give high priority to a successful parse of INT ('.' INT)? (('e' | 'E') ('+' | '-')? INT)? than
+	// * to the unsuccessful partial parse of INT '..'. The type of the INT terminal is String to allow the floating point syntax to be used.
+	// * /
+	//// Not terminal to allow parser backtracking to sort out "5..7"
+	//
+	//// EssentialOCLTokenSource pieces this together ('.' INT)? (('e' | 'E') ('+' | '-')? INT)?;
+	// NUMBER_LITERAL returns
+	//BigNumber:
+	//	INT;
+	public BaseGrammarAccess.NUMBER_LITERALElements getNUMBER_LITERALAccess() {
+		return gaEssentialOCL.getNUMBER_LITERALAccess();
+	}
+	
+	public ParserRule getNUMBER_LITERALRule() {
+		return getNUMBER_LITERALAccess().getRule();
+	}
+
+	//StringLiteral:
+	//	SINGLE_QUOTED_STRING;
+	public BaseGrammarAccess.StringLiteralElements getStringLiteralAccess() {
+		return gaEssentialOCL.getStringLiteralAccess();
+	}
+	
+	public ParserRule getStringLiteralRule() {
+		return getStringLiteralAccess().getRule();
+	}
+
+	/// * An upperbounded integer is used to define the upperbound of a collection multiplicity. The value may be the unlimited value. * /
+	//UPPER returns ecore::EInt:
+	//	INT | "*";
+	public BaseGrammarAccess.UPPERElements getUPPERAccess() {
+		return gaEssentialOCL.getUPPERAccess();
+	}
+	
+	public ParserRule getUPPERRule() {
+		return getUPPERAccess().getRule();
+	}
+
+	//URI:
+	//	SINGLE_QUOTED_STRING;
+	public BaseGrammarAccess.URIElements getURIAccess() {
+		return gaEssentialOCL.getURIAccess();
+	}
+	
+	public ParserRule getURIRule() {
+		return getURIAccess().getRule();
+	}
+
+	//terminal fragment ESCAPED_CHARACTER:
+	//	"\\" ("b" | "t" | "n" | "f" | "r" | "u" | "\"" | "\'" | "\\");
+	public TerminalRule getESCAPED_CHARACTERRule() {
+		return gaEssentialOCL.getESCAPED_CHARACTERRule();
+	} 
+
+	//terminal fragment LETTER_CHARACTER:
+	//	"a".."z" | "A".."Z" | "_";
+	public TerminalRule getLETTER_CHARACTERRule() {
+		return gaEssentialOCL.getLETTER_CHARACTERRule();
+	} 
+
+	//terminal DOUBLE_QUOTED_STRING:
+	//	"\"" (ESCAPED_CHARACTER | !("\\" | "\""))* "\"";
+	public TerminalRule getDOUBLE_QUOTED_STRINGRule() {
+		return gaEssentialOCL.getDOUBLE_QUOTED_STRINGRule();
+	} 
+
+	//terminal SINGLE_QUOTED_STRING:
+	//	"\'" (ESCAPED_CHARACTER | !("\\" | "\'"))* "\'";
+	public TerminalRule getSINGLE_QUOTED_STRINGRule() {
+		return gaEssentialOCL.getSINGLE_QUOTED_STRINGRule();
+	} 
+
+	//terminal ML_SINGLE_QUOTED_STRING:
+	//	"/\'"->"\'/";
+	public TerminalRule getML_SINGLE_QUOTED_STRINGRule() {
+		return gaEssentialOCL.getML_SINGLE_QUOTED_STRINGRule();
+	} 
+
+	//terminal SIMPLE_ID:
+	//	LETTER_CHARACTER (LETTER_CHARACTER | "0".."9")*;
+	public TerminalRule getSIMPLE_IDRule() {
+		return gaEssentialOCL.getSIMPLE_IDRule();
+	} 
+
+	//terminal ESCAPED_ID:
+	//	"_" SINGLE_QUOTED_STRING;
+	public TerminalRule getESCAPED_IDRule() {
+		return gaEssentialOCL.getESCAPED_IDRule();
+	} 
+
+	//// String to allow diverse re-use
+	// // multiple leading zeroes occur as floating point fractional part
+	// terminal INT:
+	//	"0".."9"+;
+	public TerminalRule getINTRule() {
+		return gaEssentialOCL.getINTRule();
+	} 
+
+	/// * A multi-line comment supports a comment that may span more than one line using familiar slash-star...star-slash comment delimiters * /
+	//terminal ML_COMMENT:
+	//	"/ *"->"* /";
+	public TerminalRule getML_COMMENTRule() {
+		return gaEssentialOCL.getML_COMMENTRule();
+	} 
+
+	/// * A single-line comment supports a comment that terminates at the end of the line * / terminal SL_COMMENT:
+	//	"--" !("\n" | "\r")* ("\r"? "\n")?;
+	public TerminalRule getSL_COMMENTRule() {
+		return gaEssentialOCL.getSL_COMMENTRule();
+	} 
+
+	/// * Whitespace may occur between any pair of tokens * / terminal WS:
+	//	(" " | "\t" | "\r" | "\n")+;
+	public TerminalRule getWSRule() {
+		return gaEssentialOCL.getWSRule();
+	} 
+
+	//terminal ANY_OTHER:
+	//	.;
+	public TerminalRule getANY_OTHERRule() {
+		return gaEssentialOCL.getANY_OTHERRule();
+	} 
 }

@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.base.formatting;
 
+import org.eclipse.ocl.examples.xtext.base.services.BaseGrammarAccess.MultiplicityBoundsCSElements;
+import org.eclipse.ocl.examples.xtext.base.services.BaseGrammarAccess.MultiplicityCSElements;
+import org.eclipse.ocl.examples.xtext.base.services.BaseGrammarAccess.MultiplicityStringCSElements;
 import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.formatting.impl.AbstractDeclarativeFormatter;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
@@ -17,8 +20,24 @@ import org.eclipse.xtext.formatting.impl.FormattingConfig;
 /**
  * This class contains custom formatting description.
  */
-public abstract class AbstractBaseFormatter extends AbstractDeclarativeFormatter {
+public abstract class AbstractBaseFormatter extends AbstractDeclarativeFormatter
+{
+	protected void configureMultiplicityBoundsCS(FormattingConfig c, MultiplicityBoundsCSElements a) {
+		c.setNoSpace().around(a.getFullStopFullStopKeyword_1_0());
+    }
 
+	protected void configureMultiplicityCS(FormattingConfig c, MultiplicityCSElements a) {
+		c.setNoSpace().around(a.getLeftSquareBracketKeyword_0());	
+		c.setNoSpace().before(a.getRightSquareBracketKeyword_2());	
+	    c.setIndentation(a.getLeftSquareBracketKeyword_0(), a.getRightSquareBracketKeyword_2());
+    }
+
+	protected void configureMultiplicityStringCS(FormattingConfig c, MultiplicityStringCSElements a) {
+		c.setNoSpace().around(a.getStringBoundsAsteriskKeyword_0_0());
+		c.setNoSpace().around(a.getStringBoundsPlusSignKeyword_0_1());
+		c.setNoSpace().around(a.getStringBoundsQuestionMarkKeyword_0_2());
+    }
+	
 	public void setBraces(FormattingConfig c, Keyword leftBrace, Keyword rightBrace) {
 		c.setIndentation(leftBrace, rightBrace);
 	    c.setLinewrap().before(leftBrace);

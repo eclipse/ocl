@@ -91,6 +91,11 @@ public class EssentialOCLCSAdapterFactory
 	protected EssentialOCLCSSwitch<Adapter> modelSwitch = new EssentialOCLCSSwitch<Adapter>()
 		{
 			@Override
+			public Adapter caseAssociationClassCallExpCS(AssociationClassCallExpCS object)
+			{
+				return createAssociationClassCallExpCSAdapter();
+			}
+			@Override
 			public Adapter caseBinaryOperatorCS(BinaryOperatorCS object)
 			{
 				return createBinaryOperatorCSAdapter();
@@ -99,6 +104,11 @@ public class EssentialOCLCSAdapterFactory
 			public Adapter caseBooleanLiteralExpCS(BooleanLiteralExpCS object)
 			{
 				return createBooleanLiteralExpCSAdapter();
+			}
+			@Override
+			public Adapter caseCallExpCS(CallExpCS object)
+			{
+				return createCallExpCSAdapter();
 			}
 			@Override
 			public Adapter caseCollectionLiteralExpCS(CollectionLiteralExpCS object)
@@ -119,6 +129,11 @@ public class EssentialOCLCSAdapterFactory
 			public Adapter caseCollectionTypeCS(CollectionTypeCS object)
 			{
 				return createCollectionTypeCSAdapter();
+			}
+			@Override
+			public Adapter caseConstructorExpCS(ConstructorExpCS object)
+			{
+				return createConstructorExpCSAdapter();
 			}
 			@Override
 			public Adapter caseConstructorPartCS(ConstructorPartCS object)
@@ -164,6 +179,16 @@ public class EssentialOCLCSAdapterFactory
 			public Adapter caseInvalidLiteralExpCS(InvalidLiteralExpCS object)
 			{
 				return createInvalidLiteralExpCSAdapter();
+			}
+			@Override
+			public Adapter caseIterateCallExpCS(IterateCallExpCS object)
+			{
+				return createIterateCallExpCSAdapter();
+			}
+			@Override
+			public Adapter caseIterationCallExpCS(IterationCallExpCS object)
+			{
+				return createIterationCallExpCSAdapter();
 			}
 			@Override
 			public Adapter caseLambdaLiteralExpCS(LambdaLiteralExpCS object)
@@ -216,6 +241,11 @@ public class EssentialOCLCSAdapterFactory
 				return createNumberLiteralExpCSAdapter();
 			}
 			@Override
+			public Adapter caseOperationCallExpCS(OperationCallExpCS object)
+			{
+				return createOperationCallExpCSAdapter();
+			}
+			@Override
 			public Adapter caseOperatorCS(OperatorCS object)
 			{
 				return createOperatorCSAdapter();
@@ -234,6 +264,11 @@ public class EssentialOCLCSAdapterFactory
 			public Adapter casePrimitiveLiteralExpCS(PrimitiveLiteralExpCS object)
 			{
 				return createPrimitiveLiteralExpCSAdapter();
+			}
+			@Override
+			public Adapter casePropertyCallExpCS(PropertyCallExpCS object)
+			{
+				return createPropertyCallExpCSAdapter();
 			}
 			@Override
 			public Adapter caseRoundBracketedClauseCS(RoundBracketedClauseCS object)
@@ -289,6 +324,11 @@ public class EssentialOCLCSAdapterFactory
 			public Adapter caseVariableCS(VariableCS object)
 			{
 				return createVariableCSAdapter();
+			}
+			@Override
+			public Adapter caseVariableExpCS(VariableExpCS object)
+			{
+				return createVariableExpCSAdapter();
 			}
 			@Override
 			public Adapter caseVisitableCS(VisitableCS object)
@@ -376,6 +416,21 @@ public class EssentialOCLCSAdapterFactory
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AssociationClassCallExpCS <em>Association Class Call Exp CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AssociationClassCallExpCS
+	 * @generated
+	 */
+	public Adapter createAssociationClassCallExpCSAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS <em>Binary Operator CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -400,6 +455,21 @@ public class EssentialOCLCSAdapterFactory
 	 * @generated
 	 */
 	public Adapter createBooleanLiteralExpCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CallExpCS <em>Call Exp CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CallExpCS
+	 * @generated
+	 */
+	public Adapter createCallExpCSAdapter()
+	{
 		return null;
 	}
 
@@ -457,6 +527,21 @@ public class EssentialOCLCSAdapterFactory
 	 * @generated
 	 */
 	public Adapter createCollectionTypeCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS <em>Constructor Exp CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS
+	 * @generated
+	 */
+	public Adapter createConstructorExpCSAdapter()
+	{
 		return null;
 	}
 
@@ -585,6 +670,36 @@ public class EssentialOCLCSAdapterFactory
 	 * @generated
 	 */
 	public Adapter createInvalidLiteralExpCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IterateCallExpCS <em>Iterate Call Exp CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IterateCallExpCS
+	 * @generated
+	 */
+	public Adapter createIterateCallExpCSAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IterationCallExpCS <em>Iteration Call Exp CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IterationCallExpCS
+	 * @generated
+	 */
+	public Adapter createIterationCallExpCSAdapter()
+	{
 		return null;
 	}
 
@@ -730,6 +845,21 @@ public class EssentialOCLCSAdapterFactory
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperationCallExpCS <em>Operation Call Exp CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperationCallExpCS
+	 * @generated
+	 */
+	public Adapter createOperationCallExpCSAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS <em>Operator CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -783,6 +913,21 @@ public class EssentialOCLCSAdapterFactory
 	 * @generated
 	 */
 	public Adapter createPrimitiveLiteralExpCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PropertyCallExpCS <em>Property Call Exp CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PropertyCallExpCS
+	 * @generated
+	 */
+	public Adapter createPropertyCallExpCSAdapter()
+	{
 		return null;
 	}
 
@@ -939,6 +1084,21 @@ public class EssentialOCLCSAdapterFactory
 	 * @generated
 	 */
 	public Adapter createVariableCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableExpCS <em>Variable Exp CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableExpCS
+	 * @generated
+	 */
+	public Adapter createVariableExpCSAdapter()
+	{
 		return null;
 	}
 

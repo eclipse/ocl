@@ -69,7 +69,7 @@ public class EssentialOCLCSSwitch<T>
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param ePackage the package in question.
+	 * @parameter ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
@@ -89,6 +89,20 @@ public class EssentialOCLCSSwitch<T>
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID)
 		{
+			case EssentialOCLCSPackage.ASSOCIATION_CLASS_CALL_EXP_CS:
+			{
+				AssociationClassCallExpCS associationClassCallExpCS = (AssociationClassCallExpCS)theEObject;
+				T result = caseAssociationClassCallExpCS(associationClassCallExpCS);
+				if (result == null) result = caseCallExpCS(associationClassCallExpCS);
+				if (result == null) result = caseExpCS(associationClassCallExpCS);
+				if (result == null) result = caseModelElementCS(associationClassCallExpCS);
+				if (result == null) result = casePivotableElementCS(associationClassCallExpCS);
+				if (result == null) result = caseElementCS(associationClassCallExpCS);
+				if (result == null) result = casePivotable(associationClassCallExpCS);
+				if (result == null) result = caseVisitableCS(associationClassCallExpCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case EssentialOCLCSPackage.BINARY_OPERATOR_CS:
 			{
 				BinaryOperatorCS binaryOperatorCS = (BinaryOperatorCS)theEObject;
@@ -117,6 +131,19 @@ public class EssentialOCLCSSwitch<T>
 				if (result == null) result = caseElementCS(booleanLiteralExpCS);
 				if (result == null) result = casePivotable(booleanLiteralExpCS);
 				if (result == null) result = caseVisitableCS(booleanLiteralExpCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EssentialOCLCSPackage.CALL_EXP_CS:
+			{
+				CallExpCS callExpCS = (CallExpCS)theEObject;
+				T result = caseCallExpCS(callExpCS);
+				if (result == null) result = caseExpCS(callExpCS);
+				if (result == null) result = caseModelElementCS(callExpCS);
+				if (result == null) result = casePivotableElementCS(callExpCS);
+				if (result == null) result = caseElementCS(callExpCS);
+				if (result == null) result = casePivotable(callExpCS);
+				if (result == null) result = caseVisitableCS(callExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -172,6 +199,20 @@ public class EssentialOCLCSSwitch<T>
 				if (result == null) result = caseElementCS(collectionTypeCS);
 				if (result == null) result = casePivotable(collectionTypeCS);
 				if (result == null) result = caseVisitableCS(collectionTypeCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS:
+			{
+				ConstructorExpCS constructorExpCS = (ConstructorExpCS)theEObject;
+				T result = caseConstructorExpCS(constructorExpCS);
+				if (result == null) result = caseLiteralExpCS(constructorExpCS);
+				if (result == null) result = caseExpCS(constructorExpCS);
+				if (result == null) result = caseModelElementCS(constructorExpCS);
+				if (result == null) result = casePivotableElementCS(constructorExpCS);
+				if (result == null) result = caseElementCS(constructorExpCS);
+				if (result == null) result = casePivotable(constructorExpCS);
+				if (result == null) result = caseVisitableCS(constructorExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -289,6 +330,35 @@ public class EssentialOCLCSSwitch<T>
 				if (result == null) result = caseElementCS(invalidLiteralExpCS);
 				if (result == null) result = casePivotable(invalidLiteralExpCS);
 				if (result == null) result = caseVisitableCS(invalidLiteralExpCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EssentialOCLCSPackage.ITERATE_CALL_EXP_CS:
+			{
+				IterateCallExpCS iterateCallExpCS = (IterateCallExpCS)theEObject;
+				T result = caseIterateCallExpCS(iterateCallExpCS);
+				if (result == null) result = caseIterationCallExpCS(iterateCallExpCS);
+				if (result == null) result = caseCallExpCS(iterateCallExpCS);
+				if (result == null) result = caseExpCS(iterateCallExpCS);
+				if (result == null) result = caseModelElementCS(iterateCallExpCS);
+				if (result == null) result = casePivotableElementCS(iterateCallExpCS);
+				if (result == null) result = caseElementCS(iterateCallExpCS);
+				if (result == null) result = casePivotable(iterateCallExpCS);
+				if (result == null) result = caseVisitableCS(iterateCallExpCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS:
+			{
+				IterationCallExpCS iterationCallExpCS = (IterationCallExpCS)theEObject;
+				T result = caseIterationCallExpCS(iterationCallExpCS);
+				if (result == null) result = caseCallExpCS(iterationCallExpCS);
+				if (result == null) result = caseExpCS(iterationCallExpCS);
+				if (result == null) result = caseModelElementCS(iterationCallExpCS);
+				if (result == null) result = casePivotableElementCS(iterationCallExpCS);
+				if (result == null) result = caseElementCS(iterationCallExpCS);
+				if (result == null) result = casePivotable(iterationCallExpCS);
+				if (result == null) result = caseVisitableCS(iterationCallExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -433,6 +503,20 @@ public class EssentialOCLCSSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case EssentialOCLCSPackage.OPERATION_CALL_EXP_CS:
+			{
+				OperationCallExpCS operationCallExpCS = (OperationCallExpCS)theEObject;
+				T result = caseOperationCallExpCS(operationCallExpCS);
+				if (result == null) result = caseCallExpCS(operationCallExpCS);
+				if (result == null) result = caseExpCS(operationCallExpCS);
+				if (result == null) result = caseModelElementCS(operationCallExpCS);
+				if (result == null) result = casePivotableElementCS(operationCallExpCS);
+				if (result == null) result = caseElementCS(operationCallExpCS);
+				if (result == null) result = casePivotable(operationCallExpCS);
+				if (result == null) result = caseVisitableCS(operationCallExpCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case EssentialOCLCSPackage.OPERATOR_CS:
 			{
 				OperatorCS operatorCS = (OperatorCS)theEObject;
@@ -485,6 +569,20 @@ public class EssentialOCLCSSwitch<T>
 				if (result == null) result = caseElementCS(primitiveLiteralExpCS);
 				if (result == null) result = casePivotable(primitiveLiteralExpCS);
 				if (result == null) result = caseVisitableCS(primitiveLiteralExpCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EssentialOCLCSPackage.PROPERTY_CALL_EXP_CS:
+			{
+				PropertyCallExpCS propertyCallExpCS = (PropertyCallExpCS)theEObject;
+				T result = casePropertyCallExpCS(propertyCallExpCS);
+				if (result == null) result = caseCallExpCS(propertyCallExpCS);
+				if (result == null) result = caseExpCS(propertyCallExpCS);
+				if (result == null) result = caseModelElementCS(propertyCallExpCS);
+				if (result == null) result = casePivotableElementCS(propertyCallExpCS);
+				if (result == null) result = caseElementCS(propertyCallExpCS);
+				if (result == null) result = casePivotable(propertyCallExpCS);
+				if (result == null) result = caseVisitableCS(propertyCallExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -638,8 +736,37 @@ public class EssentialOCLCSSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case EssentialOCLCSPackage.VARIABLE_EXP_CS:
+			{
+				VariableExpCS variableExpCS = (VariableExpCS)theEObject;
+				T result = caseVariableExpCS(variableExpCS);
+				if (result == null) result = caseExpCS(variableExpCS);
+				if (result == null) result = caseModelElementCS(variableExpCS);
+				if (result == null) result = casePivotableElementCS(variableExpCS);
+				if (result == null) result = caseElementCS(variableExpCS);
+				if (result == null) result = casePivotable(variableExpCS);
+				if (result == null) result = caseVisitableCS(variableExpCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Association Class Call Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Association Class Call Exp CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAssociationClassCallExpCS(AssociationClassCallExpCS object)
+	{
+		return null;
 	}
 
 	/**
@@ -669,6 +796,22 @@ public class EssentialOCLCSSwitch<T>
 	 * @generated
 	 */
 	public T caseBooleanLiteralExpCS(BooleanLiteralExpCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Call Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Call Exp CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCallExpCS(CallExpCS object)
+	{
 		return null;
 	}
 
@@ -730,6 +873,22 @@ public class EssentialOCLCSSwitch<T>
 	 * @generated
 	 */
 	public T caseCollectionTypeCS(CollectionTypeCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Constructor Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Constructor Exp CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConstructorExpCS(ConstructorExpCS object)
+	{
 		return null;
 	}
 
@@ -867,6 +1026,38 @@ public class EssentialOCLCSSwitch<T>
 	 * @generated
 	 */
 	public T caseInvalidLiteralExpCS(InvalidLiteralExpCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Iterate Call Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Iterate Call Exp CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIterateCallExpCS(IterateCallExpCS object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Iteration Call Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Iteration Call Exp CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIterationCallExpCS(IterationCallExpCS object)
+	{
 		return null;
 	}
 
@@ -1022,6 +1213,22 @@ public class EssentialOCLCSSwitch<T>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Operation Call Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Operation Call Exp CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOperationCallExpCS(OperationCallExpCS object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Operator CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1079,6 +1286,22 @@ public class EssentialOCLCSSwitch<T>
 	 * @generated
 	 */
 	public T casePrimitiveLiteralExpCS(PrimitiveLiteralExpCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Property Call Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Property Call Exp CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePropertyCallExpCS(PropertyCallExpCS object)
+	{
 		return null;
 	}
 
@@ -1247,6 +1470,22 @@ public class EssentialOCLCSSwitch<T>
 	 * @generated
 	 */
 	public T caseVariableCS(VariableCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Variable Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Variable Exp CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVariableExpCS(VariableExpCS object)
+	{
 		return null;
 	}
 

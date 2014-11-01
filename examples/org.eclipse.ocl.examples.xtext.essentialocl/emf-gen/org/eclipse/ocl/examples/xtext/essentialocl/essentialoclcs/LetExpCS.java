@@ -22,6 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS#getOwnedVariables <em>Owned Variables</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS#getOwnedInExpression <em>Owned In Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS#isIsImplicit <em>Is Implicit</em>}</li>
  * </ul>
  * </p>
  *
@@ -75,5 +76,32 @@ public interface LetExpCS
 	 * @generated
 	 */
 	void setOwnedInExpression(ExpCS value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Implicit</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Implicit</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Implicit</em>' attribute.
+	 * @see #setIsImplicit(boolean)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getLetExpCS_IsImplicit()
+	 * @model default="false"
+	 * @generated
+	 */
+	boolean isIsImplicit();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS#isIsImplicit <em>Is Implicit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Implicit</em>' attribute.
+	 * @see #isIsImplicit()
+	 * @generated
+	 */
+	void setIsImplicit(boolean value);
 
 } // LetExpCS

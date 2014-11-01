@@ -259,6 +259,8 @@ public class BaseCSValidator extends EObjectValidator
 				return validateVisitableCS((VisitableCS)value, diagnostics, context);
 			case BaseCSPackage.WILDCARD_TYPE_REF_CS:
 				return validateWildcardTypeRefCS((WildcardTypeRefCS)value, diagnostics, context);
+			case BaseCSPackage.BIG_NUMBER:
+				return validateBigNumber((Number)value, diagnostics, context);
 			case BaseCSPackage.SCOPE_FILTER:
 				return validateScopeFilter((ScopeFilter)value, diagnostics, context);
 			default:
@@ -854,6 +856,16 @@ public class BaseCSValidator extends EObjectValidator
 	public boolean validateWildcardTypeRefCS(WildcardTypeRefCS wildcardTypeRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(wildcardTypeRefCS, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateBigNumber(Number bigNumber, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return true;
 	}
 
 	/**

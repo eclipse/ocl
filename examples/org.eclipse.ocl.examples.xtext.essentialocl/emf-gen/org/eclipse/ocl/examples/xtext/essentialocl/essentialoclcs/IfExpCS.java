@@ -24,6 +24,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS#getOwnedThenExpression <em>Owned Then Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS#getOwnedIfThenExpressions <em>Owned If Then Expressions</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS#getOwnedElseExpression <em>Owned Else Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS#isIsImplicit <em>Is Implicit</em>}</li>
  * </ul>
  * </p>
  *
@@ -127,5 +128,32 @@ public interface IfExpCS
 	 * @generated
 	 */
 	void setOwnedElseExpression(ExpCS value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Implicit</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Implicit</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Implicit</em>' attribute.
+	 * @see #setIsImplicit(boolean)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getIfExpCS_IsImplicit()
+	 * @model default="false"
+	 * @generated
+	 */
+	boolean isIsImplicit();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS#isIsImplicit <em>Is Implicit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Implicit</em>' attribute.
+	 * @see #isIsImplicit()
+	 * @generated
+	 */
+	void setIsImplicit(boolean value);
 
 } // IfExpCS

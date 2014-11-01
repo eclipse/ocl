@@ -38,6 +38,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetExpCSImpl#getOwnedVariables <em>Owned Variables</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetExpCSImpl#getOwnedInExpression <em>Owned In Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetExpCSImpl#isIsImplicit <em>Is Implicit</em>}</li>
  * </ul>
  * </p>
  *
@@ -66,6 +67,26 @@ public class LetExpCSImpl
 	 * @ordered
 	 */
 	protected ExpCS ownedInExpression;
+
+	/**
+	 * The default value of the '{@link #isIsImplicit() <em>Is Implicit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsImplicit()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_IMPLICIT_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIsImplicit() <em>Is Implicit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsImplicit()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isImplicit = IS_IMPLICIT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -150,6 +171,39 @@ public class LetExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isIsImplicit()
+	{
+		return isImplicit;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsImplicit(boolean newIsImplicit)
+	{
+		boolean oldIsImplicit = isImplicit;
+		isImplicit = newIsImplicit;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.LET_EXP_CS__IS_IMPLICIT, oldIsImplicit, isImplicit));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String toString()
+	{
+		return super.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
@@ -193,6 +247,8 @@ public class LetExpCSImpl
 				return getOwnedVariables();
 			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_IN_EXPRESSION:
 				return getOwnedInExpression();
+			case EssentialOCLCSPackage.LET_EXP_CS__IS_IMPLICIT:
+				return isIsImplicit();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -214,6 +270,9 @@ public class LetExpCSImpl
 			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_IN_EXPRESSION:
 				setOwnedInExpression((ExpCS)newValue);
 				return;
+			case EssentialOCLCSPackage.LET_EXP_CS__IS_IMPLICIT:
+				setIsImplicit((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -233,6 +292,9 @@ public class LetExpCSImpl
 			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_IN_EXPRESSION:
 				setOwnedInExpression((ExpCS)null);
 				return;
+			case EssentialOCLCSPackage.LET_EXP_CS__IS_IMPLICIT:
+				setIsImplicit(IS_IMPLICIT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -250,6 +312,8 @@ public class LetExpCSImpl
 				return ownedVariables != null && !ownedVariables.isEmpty();
 			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_IN_EXPRESSION:
 				return ownedInExpression != null;
+			case EssentialOCLCSPackage.LET_EXP_CS__IS_IMPLICIT:
+				return isImplicit != IS_IMPLICIT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

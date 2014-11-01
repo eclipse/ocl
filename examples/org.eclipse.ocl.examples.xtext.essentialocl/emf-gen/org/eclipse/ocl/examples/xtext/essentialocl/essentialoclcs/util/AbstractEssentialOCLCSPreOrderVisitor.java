@@ -43,12 +43,20 @@ public abstract class AbstractEssentialOCLCSPreOrderVisitor
 		super(context);
 	}
 
+	public @Nullable Continuation<?> visitAssociationClassCallExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AssociationClassCallExpCS csElement) {
+		return visitCallExpCS(csElement);
+	}
+
 	public @Nullable Continuation<?> visitBinaryOperatorCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS csElement) {
 		return visitOperatorCS(csElement);
 	}
 
 	public @Nullable Continuation<?> visitBooleanLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteralExpCS csElement) {
 		return visitPrimitiveLiteralExpCS(csElement);
+	}
+
+	public @Nullable Continuation<?> visitCallExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CallExpCS csElement) {
+		return visitExpCS(csElement);
 	}
 
 	public @Nullable Continuation<?> visitCollectionLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralExpCS csElement) {
@@ -65,6 +73,10 @@ public abstract class AbstractEssentialOCLCSPreOrderVisitor
 
 	public @Nullable Continuation<?> visitCollectionTypeCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionTypeCS csElement) {
 		return visitTypedRefCS(csElement);
+	}
+
+	public @Nullable Continuation<?> visitConstructorExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS csElement) {
+		return visitLiteralExpCS(csElement);
 	}
 
 	public @Nullable Continuation<?> visitConstructorPartCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS csElement) {
@@ -101,6 +113,14 @@ public abstract class AbstractEssentialOCLCSPreOrderVisitor
 
 	public @Nullable Continuation<?> visitInvalidLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvalidLiteralExpCS csElement) {
 		return visitPrimitiveLiteralExpCS(csElement);
+	}
+
+	public @Nullable Continuation<?> visitIterateCallExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IterateCallExpCS csElement) {
+		return visitIterationCallExpCS(csElement);
+	}
+
+	public @Nullable Continuation<?> visitIterationCallExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IterationCallExpCS csElement) {
+		return visitCallExpCS(csElement);
 	}
 
 	public @Nullable Continuation<?> visitLambdaLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LambdaLiteralExpCS csElement) {
@@ -143,6 +163,10 @@ public abstract class AbstractEssentialOCLCSPreOrderVisitor
 		return visitPrimitiveLiteralExpCS(csElement);
 	}
 
+	public @Nullable Continuation<?> visitOperationCallExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperationCallExpCS csElement) {
+		return visitCallExpCS(csElement);
+	}
+
 	public @Nullable Continuation<?> visitOperatorCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS csElement) {
 		return visitExpCS(csElement);
 	}
@@ -157,6 +181,10 @@ public abstract class AbstractEssentialOCLCSPreOrderVisitor
 
 	public @Nullable Continuation<?> visitPrimitiveLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrimitiveLiteralExpCS csElement) {
 		return visitLiteralExpCS(csElement);
+	}
+
+	public @Nullable Continuation<?> visitPropertyCallExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PropertyCallExpCS csElement) {
+		return visitCallExpCS(csElement);
 	}
 
 	public @Nullable Continuation<?> visitRoundBracketedClauseCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS csElement) {
@@ -201,5 +229,9 @@ public abstract class AbstractEssentialOCLCSPreOrderVisitor
 
 	public @Nullable Continuation<?> visitVariableCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS csElement) {
 		return visitNamedElementCS(csElement);
+	}
+
+	public @Nullable Continuation<?> visitVariableExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableExpCS csElement) {
+		return visitExpCS(csElement);
 	}
 }

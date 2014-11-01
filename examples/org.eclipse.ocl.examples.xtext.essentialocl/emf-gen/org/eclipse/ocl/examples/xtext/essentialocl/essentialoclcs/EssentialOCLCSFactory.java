@@ -32,6 +32,15 @@ public interface EssentialOCLCSFactory
 	EssentialOCLCSFactory eINSTANCE = org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSFactoryImpl.init();
 
 	/**
+	 * Returns a new object of class '<em>Association Class Call Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Association Class Call Exp CS</em>'.
+	 * @generated
+	 */
+	AssociationClassCallExpCS createAssociationClassCallExpCS();
+
+	/**
 	 * Returns a new object of class '<em>Binary Operator CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -57,6 +66,15 @@ public interface EssentialOCLCSFactory
 	 * @generated
 	 */
 	CollectionTypeCS createCollectionTypeCS();
+
+	/**
+	 * Returns a new object of class '<em>Constructor Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Constructor Exp CS</em>'.
+	 * @generated
+	 */
+	ConstructorExpCS createConstructorExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Constructor Part CS</em>'.
@@ -149,6 +167,15 @@ public interface EssentialOCLCSFactory
 	VariableCS createVariableCS();
 
 	/**
+	 * Returns a new object of class '<em>Variable Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Variable Exp CS</em>'.
+	 * @generated
+	 */
+	VariableExpCS createVariableExpCS();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -239,6 +266,15 @@ public interface EssentialOCLCSFactory
 	PrimitiveLiteralExpCS createPrimitiveLiteralExpCS();
 
 	/**
+	 * Returns a new object of class '<em>Property Call Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Property Call Exp CS</em>'.
+	 * @generated
+	 */
+	PropertyCallExpCS createPropertyCallExpCS();
+
+	/**
 	 * Returns a new object of class '<em>Round Bracketed Clause CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -311,6 +347,24 @@ public interface EssentialOCLCSFactory
 	InvalidLiteralExpCS createInvalidLiteralExpCS();
 
 	/**
+	 * Returns a new object of class '<em>Iterate Call Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Iterate Call Exp CS</em>'.
+	 * @generated
+	 */
+	IterateCallExpCS createIterateCallExpCS();
+
+	/**
+	 * Returns a new object of class '<em>Iteration Call Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Iteration Call Exp CS</em>'.
+	 * @generated
+	 */
+	IterationCallExpCS createIterationCallExpCS();
+
+	/**
 	 * Returns a new object of class '<em>Lambda Literal Exp CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -336,6 +390,15 @@ public interface EssentialOCLCSFactory
 	 * @generated
 	 */
 	NumberLiteralExpCS createNumberLiteralExpCS();
+
+	/**
+	 * Returns a new object of class '<em>Operation Call Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Operation Call Exp CS</em>'.
+	 * @generated
+	 */
+	OperationCallExpCS createOperationCallExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Pattern Exp CS</em>'.

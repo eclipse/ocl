@@ -23,7 +23,6 @@ import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Model;
@@ -91,14 +90,14 @@ public abstract class GenerateLaTeXForModel extends GenerateLaTeXUtils
 			org.eclipse.ocl.examples.pivot.Package cs2csPackage = null;
 			if ((cs2asFile != null) && (cs2asFile.length() > 0)) {
 				String cs2asSourceFile = "/" + projectName + "/" + cs2asFile;
-				URI cs2asURI = URI.createPlatformResourceURI(cs2asSourceFile, true);
+				URI cs2asURI = DomainUtil.nonNullState(URI.createPlatformResourceURI(cs2asSourceFile, true));
 				log.info("Loading Model '" + cs2asURI);
 				Resource oclResource = ocl.load(cs2asURI);
 				cs2asPackage = getSecondaryPackage(metaModelManager, oclResource);
 			}
 			if ((cs2csFile != null) && (cs2csFile.length() > 0)) {
 				String cs2csSourceFile = "/" + projectName + "/" + cs2csFile;
-				URI cs2csURI = URI.createPlatformResourceURI(cs2csSourceFile, true);
+				URI cs2csURI = DomainUtil.nonNullState(URI.createPlatformResourceURI(cs2csSourceFile, true));
 				log.info("Loading Model '" + cs2csURI);
 				Resource oclResource = ocl.load(cs2csURI);
 				cs2csPackage = getSecondaryPackage(metaModelManager, oclResource);
@@ -114,6 +113,10 @@ public abstract class GenerateLaTeXForModel extends GenerateLaTeXUtils
 				URI fileURI = URI.createPlatformResourceURI(sourceFile, true);
 				log.info("Loading Model '" + fileURI);
 				Resource eResource = resourceSet.getResource(fileURI, true);
+				if (eResource == null) {
+					issues.addError(this, "No eResource for + ;" + fileURI + "'", null, null, null);
+					return;
+				}
 				Ecore2Pivot adapter = Ecore2Pivot.getAdapter(eResource, metaModelManager);
 				Model asModel = adapter.getPivotModel();
 				asPackage = asModel.getOwnedPackages().get(0);

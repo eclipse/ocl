@@ -190,7 +190,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NullLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="NumberLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" eType="#//BigNumber"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" eType="ecore:EDataType ../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#//BigNumber"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OperationCallExpCS" eSuperTypes="#//CallExpCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredOperation" lowerBound="1"
@@ -278,7 +278,6 @@
         eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Variable"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="BigNumber" instanceClassName="java.lang.Number"/>
   <eClassifiers xsi:type="ecore:EEnum" name="NavigationRole">
     <eLiterals name="ITERATOR"/>
     <eLiterals name="ACCUMULATOR"/>

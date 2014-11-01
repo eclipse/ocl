@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.xtext.validation.ComposedChecks;
 
 @ComposedChecks(validators= {org.eclipse.xtext.validation.ImportUriValidator.class})
-public class AbstractEssentialOCLJavaValidator extends org.eclipse.xtext.validation.AbstractDeclarativeValidator {
+public class AbstractEssentialOCLJavaValidator extends org.eclipse.ocl.examples.xtext.base.validation.BaseJavaValidator {
 
 	@Override
 	protected List<EPackage> getEPackages() {

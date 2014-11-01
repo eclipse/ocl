@@ -19,9 +19,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarA
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.IfExpCSElements;
 //import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.IndexExpCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.LetExpCSElements;
-import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.MultiplicityBoundsCSElements;
-import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.MultiplicityCSElements;
-import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.MultiplicityStringCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.NameExpCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.NavigatingCommaArgCSElements;
 //import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.NavigatingExpCSElements;
@@ -75,22 +72,6 @@ public abstract class AbstractEssentialOCLFormatter extends AbstractBaseFormatte
 		c.setLinewrap().before(a.getInKeyword_3());
 		c.setIndentation(a.getInKeyword_3(), a.getGroup());
 	}
-
-	protected void configureMultiplicityBoundsCS(FormattingConfig c, MultiplicityBoundsCSElements a) {
-		c.setNoSpace().around(a.getFullStopFullStopKeyword_1_0());
-    }
-
-	protected void configureMultiplicityCS(FormattingConfig c, MultiplicityCSElements a) {
-		c.setNoSpace().around(a.getLeftSquareBracketKeyword_0());	
-		c.setNoSpace().before(a.getRightSquareBracketKeyword_2());	
-	    c.setIndentation(a.getLeftSquareBracketKeyword_0(), a.getRightSquareBracketKeyword_2());
-    }
-
-	protected void configureMultiplicityStringCS(FormattingConfig c, MultiplicityStringCSElements a) {
-		c.setNoSpace().around(a.getStringBoundsAsteriskKeyword_0_0());
-		c.setNoSpace().around(a.getStringBoundsPlusSignKeyword_0_1());
-		c.setNoSpace().around(a.getStringBoundsQuestionMarkKeyword_0_2());
-    }
 
 	protected void configureNameExpCS(FormattingConfig c, NameExpCSElements a) {
 		c.setNoSpace().after(a.getAtPreCommercialAtKeyword_4_0_0());

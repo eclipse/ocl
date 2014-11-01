@@ -1,0 +1,149 @@
+/*******************************************************************************
+ * Copyright (c) 2014 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *
+ * Run As->MWE2 Workflow to regenerate the editor.
+ * If it fails with a stack dump, open the Xtext file and do
+ * a dummy edit. Generally there is an error in the source file.
+ *******************************************************************************/
+module GenerateBaseEditor
+
+import org.eclipse.emf.mwe.utils.*
+import org.eclipse.ocl.examples.build.*
+import org.eclipse.xtext.generator.*
+import org.eclipse.xtext.ui.generator.*
+
+var base.file.extensions = "base"
+var baseProjectName = "org.eclipse.ocl.examples.xtext.base"
+var baseRuntimeProject = "../${baseProjectName}"
+
+/**
+ *	Generate the EssentialOCL Editor.
+ */
+Workflow {
+    bean = StandaloneSetup {
+		scanClassPath = true
+		platformUri = ".."
+		registerGeneratedEPackage = "org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage"
+		registerGenModelFile = "platform:/resource/org.eclipse.ocl.examples.xtext.base/model/BaseCS.genmodel"
+	}
+	
+	component = DirectoryCleaner {
+		directory = "${baseRuntimeProject}/src-gen"
+	}
+	
+	component = DirectoryCleaner {
+		directory = "${baseRuntimeProject}.ui/src-gen"
+	}
+	
+	component = Generator {
+		pathRtProject = baseRuntimeProject
+		pathUiProject = "${baseRuntimeProject}.ui"
+		projectNameRt = baseProjectName
+		projectNameUi = "${baseProjectName}.ui"
+		mergeManifest = false
+
+		language = {
+			uri = "classpath:/org/eclipse/ocl/examples/xtext/base/Base.xtext"
+			fileExtensions = base.file.extensions
+			
+			// Java API to access grammar elements (required by several other fragments)
+			fragment = grammarAccess.GrammarAccessFragment {}
+			
+			// generates Java API for the generated EPackages 
+			fragment = ecore.EcoreGeneratorFragment {
+//				referencedGenModels = "platform:/resource/org.eclipse.emf.ecore/model/Ecore.genmodel"
+			}
+			
+			// the serialization component
+			fragment = serializer.SerializerFragment {}
+			
+			// a custom ResourceFactory for use with EMF 
+			fragment = resourceFactory.ResourceFactoryFragment {
+				fileExtensions = base.file.extensions
+			}
+				
+			// the following fragment tries to use the Antlr Generator fragment which can be installed via update manager from http://download.itemis.com/updates/
+//			fragment = de.itemis.xtext.antlr.XtextAntlrGeneratorFragment {
+//				options = { backtrack = true classSplitting = true }
+//			}
+			fragment = parser.antlr.XtextAntlrGeneratorFragment {
+				options = { backtrack = true classSplitting = true }			
+				antlrParam = "-Xconversiontimeout" antlrParam = "10000"
+			}
+			
+			// check-based API for validation
+			/*
+			fragment = validation.CheckFragment {}
+			*/
+			 
+			// java-based API for validation 
+			fragment = validation.JavaValidatorFragment {
+                composedCheck = "org.eclipse.xtext.validation.ImportUriValidator"
+//                composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
+            }
+            
+			// scoping and exporting API
+			/*
+			fragment = scoping.ImportURIScopingFragment {}
+			fragment = exporting.SimpleNamesFragment {}
+			*/
+			
+			// scoping and exporting API 
+			fragment = scoping.ImportNamespacesScopingFragment {}
+			fragment = exporting.QualifiedNamesFragment {}
+			
+			// formatter API 
+			fragment = formatting.FormatterFragment {}
+
+			// labeling API 
+			fragment = labeling.LabelProviderFragment {}
+
+			// outline API 
+//			fragment = outline.TransformerFragment {}
+//			fragment = outline.OutlineNodeAdapterFactoryFragment {}
+			fragment = outline.OutlineTreeProviderFragment {}
+			fragment = outline.QuickOutlineFragment {}
+
+			// java-based API for content assistance 
+			fragment = contentAssist.JavaBasedContentAssistFragment {}
+			
+			// the following fragment tries to use the Antlr based content assist 
+			//     fragment which can be downloaded from http://www.itemis.com 
+			//     and will be ignored if it's not available. 
+//			fragment = de.itemis.xtext.antlr.XtextAntlrGeneratorFragment {
+//				options = { backtrack = true classSplitting = true}
+//			}
+			fragment = parser.antlr.XtextAntlrUiGeneratorFragment {
+				options = { backtrack = true classSplitting = true}			
+				antlrParam = "-Xconversiontimeout" antlrParam = "10000"
+			}
+
+			fragment = builder.BuilderIntegrationFragment {}
+
+			// project wizard (optional) 
+			/*
+			fragment = projectWizard.SimpleProjectWizardFragment {
+				generatoressentialOCLprojectName = "${baseProjectName}.generator" 
+				modelFileExtension = base.file.extensions
+			}
+			*/
+			
+			// quickfix API 
+			fragment = quickfix.QuickfixProviderFragment {}			
+				
+			// EssentialOCL bindings 
+//			fragment = fragments.EssentialOCLFragment {}			
+			// Support Markup and Hover text 
+//			fragment = fragments.MarkupHoverFragment {}
+			// *.xtextbin support on Xtext 2.3		
+			fragment = fragments.CompatibilityFragment {}			
+		}
+	}
+}

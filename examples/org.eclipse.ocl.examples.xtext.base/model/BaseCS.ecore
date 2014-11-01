@@ -329,5 +329,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSuper" eType="#//TypedRefCS"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="BigNumber" instanceClassName="java.lang.Number"/>
   <eClassifiers xsi:type="ecore:EDataType" name="ScopeFilter" instanceClassName="org.eclipse.ocl.examples.pivot.scoping.ScopeFilter"/>
 </ecore:EPackage>

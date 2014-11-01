@@ -12,6 +12,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TuplePartCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TupleTypeCS;
+import org.eclipse.ocl.examples.xtext.base.serializer.BaseSemanticSequencer;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralExpCS;
@@ -51,13 +52,12 @@ import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarA
 import org.eclipse.xtext.serializer.acceptor.ISemanticSequenceAcceptor;
 import org.eclipse.xtext.serializer.diagnostic.ISemanticSequencerDiagnosticProvider;
 import org.eclipse.xtext.serializer.diagnostic.ISerializationDiagnostic.Acceptor;
-import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.GenericSequencer;
 import org.eclipse.xtext.serializer.sequencer.ISemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService;
 
 @SuppressWarnings("all")
-public abstract class AbstractEssentialOCLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
+public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemanticSequencer {
 
 	@Inject
 	private EssentialOCLGrammarAccess grammarAccess;
@@ -707,24 +707,6 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends AbstractDele
 	 *     ownedExpression=ExpCS
 	 */
 	protected void sequence_Model(EObject context, ContextCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (lowerBound=LOWER upperBound=UPPER?)
-	 */
-	protected void sequence_MultiplicityBoundsCS(EObject context, MultiplicityBoundsCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (stringBounds='*' | stringBounds='+' | stringBounds='?')
-	 */
-	protected void sequence_MultiplicityStringCS(EObject context, MultiplicityStringCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

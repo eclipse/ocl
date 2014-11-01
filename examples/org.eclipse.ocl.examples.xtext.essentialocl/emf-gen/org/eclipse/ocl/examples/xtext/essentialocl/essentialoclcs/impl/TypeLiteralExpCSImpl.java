@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
@@ -30,6 +31,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.TypeLiteralExpCSImpl#getOwnedPathName <em>Owned Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.TypeLiteralExpCSImpl#getOwnedType <em>Owned Type</em>}</li>
  * </ul>
  * </p>
@@ -40,6 +42,15 @@ public class TypeLiteralExpCSImpl
 		extends LiteralExpCSImpl
 		implements TypeLiteralExpCS {
 
+	/**
+	 * The cached value of the '{@link #getOwnedPathName() <em>Owned Path Name</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedPathName()
+	 * @generated
+	 * @ordered
+	 */
+	protected PathNameCS ownedPathName;
 	/**
 	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -67,6 +78,54 @@ public class TypeLiteralExpCSImpl
 	@Override
 	protected EClass eStaticClass() {
 		return EssentialOCLCSPackage.Literals.TYPE_LITERAL_EXP_CS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PathNameCS getOwnedPathName()
+	{
+		return ownedPathName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwnedPathName(PathNameCS newOwnedPathName, NotificationChain msgs)
+	{
+		PathNameCS oldOwnedPathName = ownedPathName;
+		ownedPathName = newOwnedPathName;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.TYPE_LITERAL_EXP_CS__OWNED_PATH_NAME, oldOwnedPathName, newOwnedPathName);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnedPathName(PathNameCS newOwnedPathName)
+	{
+		if (newOwnedPathName != ownedPathName)
+		{
+			NotificationChain msgs = null;
+			if (ownedPathName != null)
+				msgs = ((InternalEObject)ownedPathName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.TYPE_LITERAL_EXP_CS__OWNED_PATH_NAME, null, msgs);
+			if (newOwnedPathName != null)
+				msgs = ((InternalEObject)newOwnedPathName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.TYPE_LITERAL_EXP_CS__OWNED_PATH_NAME, null, msgs);
+			msgs = basicSetOwnedPathName(newOwnedPathName, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.TYPE_LITERAL_EXP_CS__OWNED_PATH_NAME, newOwnedPathName, newOwnedPathName));
 	}
 
 	/**
@@ -125,6 +184,8 @@ public class TypeLiteralExpCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case EssentialOCLCSPackage.TYPE_LITERAL_EXP_CS__OWNED_PATH_NAME:
+				return basicSetOwnedPathName(null, msgs);
 			case EssentialOCLCSPackage.TYPE_LITERAL_EXP_CS__OWNED_TYPE:
 				return basicSetOwnedType(null, msgs);
 		}
@@ -140,6 +201,8 @@ public class TypeLiteralExpCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case EssentialOCLCSPackage.TYPE_LITERAL_EXP_CS__OWNED_PATH_NAME:
+				return getOwnedPathName();
 			case EssentialOCLCSPackage.TYPE_LITERAL_EXP_CS__OWNED_TYPE:
 				return getOwnedType();
 		}
@@ -155,6 +218,9 @@ public class TypeLiteralExpCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case EssentialOCLCSPackage.TYPE_LITERAL_EXP_CS__OWNED_PATH_NAME:
+				setOwnedPathName((PathNameCS)newValue);
+				return;
 			case EssentialOCLCSPackage.TYPE_LITERAL_EXP_CS__OWNED_TYPE:
 				setOwnedType((TypedRefCS)newValue);
 				return;
@@ -171,6 +237,9 @@ public class TypeLiteralExpCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case EssentialOCLCSPackage.TYPE_LITERAL_EXP_CS__OWNED_PATH_NAME:
+				setOwnedPathName((PathNameCS)null);
+				return;
 			case EssentialOCLCSPackage.TYPE_LITERAL_EXP_CS__OWNED_TYPE:
 				setOwnedType((TypedRefCS)null);
 				return;
@@ -187,6 +256,8 @@ public class TypeLiteralExpCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case EssentialOCLCSPackage.TYPE_LITERAL_EXP_CS__OWNED_PATH_NAME:
+				return ownedPathName != null;
 			case EssentialOCLCSPackage.TYPE_LITERAL_EXP_CS__OWNED_TYPE:
 				return ownedType != null;
 		}

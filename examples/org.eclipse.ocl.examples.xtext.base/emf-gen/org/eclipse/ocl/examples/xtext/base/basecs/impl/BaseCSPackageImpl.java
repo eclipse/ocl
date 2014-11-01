@@ -469,6 +469,13 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EDataType bigNumberEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EDataType scopeFilterEDataType = null;
 
 	/**
@@ -1927,6 +1934,16 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EDataType getBigNumber()
+	{
+		return bigNumberEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getScopeFilter()
 	{
 		return scopeFilterEDataType;
@@ -2157,6 +2174,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		createEReference(wildcardTypeRefCSEClass, WILDCARD_TYPE_REF_CS__OWNED_SUPER);
 
 		// Create data types
+		bigNumberEDataType = createEDataType(BIG_NUMBER);
 		scopeFilterEDataType = createEDataType(SCOPE_FILTER);
 	}
 
@@ -2480,6 +2498,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		initEReference(getWildcardTypeRefCS_OwnedSuper(), this.getTypedRefCS(), null, "ownedSuper", null, 0, 1, WildcardTypeRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize data types
+		initEDataType(bigNumberEDataType, Number.class, "BigNumber", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEDataType(scopeFilterEDataType, ScopeFilter.class, "ScopeFilter", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Create resource

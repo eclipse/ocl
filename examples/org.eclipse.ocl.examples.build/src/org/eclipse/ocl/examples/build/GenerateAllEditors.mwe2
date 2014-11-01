@@ -18,6 +18,7 @@ module GenerateAllEditors
  *	Generate all Xtext editors (but not their Concrete Syntax Models).
  */
 Workflow {
+  component = @GenerateBaseEditor {}
   component = @GenerateEssentialOCLEditor {}
   component = @GenerateMarkupEditor {}
   component = @GenerateOCLinEcoreEditor {}

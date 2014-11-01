@@ -40,7 +40,6 @@ import org.eclipse.ocl.examples.xtext.base.basecs.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
-import org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ContextLessElementCS;
@@ -76,6 +75,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.RootCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS;
@@ -546,6 +546,10 @@ public class AutoBaseCSContainmentVisitor
     
     public @Nullable Continuation<?> visitWildcardTypeRefCS(@NonNull WildcardTypeRefCS self) {
         throw new UnsupportedOperationException("visitWildcardTypeRefCS is not supported by " + getClass().getName());
+    }
+    
+    public @Nullable Continuation<?> visitBigNumber(@NonNull Number self) {
+        throw new UnsupportedOperationException("visitBigNumber is not supported by " + getClass().getName());
     }
     
     public @Nullable Continuation<?> visitScopeFilter(@NonNull ScopeFilter self) {
