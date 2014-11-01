@@ -1134,8 +1134,8 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		LibraryFeature implementation = operation.getImplementation();
 		if (implementation == null) {
 			for (Operation redefinedOperation : operation.getRedefinedOperation()) {
-				implementation = redefinedOperation.getImplementation();
-				if (implementation != null) {
+				if (redefinedOperation != null) {
+					implementation = getImplementation(redefinedOperation);
 					break;
 				}
 			}
