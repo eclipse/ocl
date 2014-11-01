@@ -21,7 +21,6 @@ import org.eclipse.ocl.examples.pivot.AssociationClass;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AssociationClassCallExpCS#getReferredAssociation <em>Referred Association</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AssociationClassCallExpCS#isIsPre <em>Is Pre</em>}</li>
  * </ul>
  * </p>
  *
@@ -56,31 +55,5 @@ public interface AssociationClassCallExpCS extends CallExpCS
 	 * @generated
 	 */
 	void setReferredAssociation(AssociationClass value);
-
-	/**
-	 * Returns the value of the '<em><b>Is Pre</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Is Pre</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Pre</em>' attribute.
-	 * @see #setIsPre(boolean)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getAssociationClassCallExpCS_IsPre()
-	 * @model
-	 * @generated
-	 */
-	boolean isIsPre();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AssociationClassCallExpCS#isIsPre <em>Is Pre</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Pre</em>' attribute.
-	 * @see #isIsPre()
-	 * @generated
-	 */
-	void setIsPre(boolean value);
 
 } // AssociationClassCallExpCS

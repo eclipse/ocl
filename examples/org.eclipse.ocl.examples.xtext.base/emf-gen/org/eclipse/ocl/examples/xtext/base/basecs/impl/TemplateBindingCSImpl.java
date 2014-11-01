@@ -108,7 +108,7 @@ public class TemplateBindingCSImpl extends ElementRefCSImpl implements TemplateB
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newOwningElement != null)
-				msgs = ((InternalEObject)newOwningElement).eInverseAdd(this, BaseCSPackage.TYPED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING, TypedTypeRefCS.class, msgs);
+				msgs = ((InternalEObject)newOwningElement).eInverseAdd(this, BaseCSPackage.TYPED_TYPE_REF_CS__OWNED_BINDING, TypedTypeRefCS.class, msgs);
 			msgs = basicSetOwningElement(newOwningElement, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -176,7 +176,7 @@ public class TemplateBindingCSImpl extends ElementRefCSImpl implements TemplateB
 		switch (eContainerFeatureID())
 		{
 			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNING_ELEMENT:
-				return eInternalContainer().eInverseRemove(this, BaseCSPackage.TYPED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING, TypedTypeRefCS.class, msgs);
+				return eInternalContainer().eInverseRemove(this, BaseCSPackage.TYPED_TYPE_REF_CS__OWNED_BINDING, TypedTypeRefCS.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}

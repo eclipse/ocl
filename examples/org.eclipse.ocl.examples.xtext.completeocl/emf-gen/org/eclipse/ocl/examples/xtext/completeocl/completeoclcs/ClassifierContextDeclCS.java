@@ -23,7 +23,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getSelfName <em>Self Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getReferredClassifier <em>Referred Classifier</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getReferredClass <em>Referred Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getOwnedInvariants <em>Owned Invariants</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getOwnedDefinitions <em>Owned Definitions</em>}</li>
  * </ul>
@@ -63,19 +63,19 @@ public interface ClassifierContextDeclCS
 	void setSelfName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Referred Classifier</b></em>' reference.
+	 * Returns the value of the '<em><b>Referred Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Classifier</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Referred Classifier</em>' reference.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getClassifierContextDeclCS_ReferredClassifier()
+	 * @return the value of the '<em>Referred Class</em>' reference.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getClassifierContextDeclCS_ReferredClass()
 	 * @model resolveProxies="false" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
-	org.eclipse.ocl.examples.pivot.Class getReferredClassifier();
+	org.eclipse.ocl.examples.pivot.Class getReferredClass();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Invariants</b></em>' containment reference list.

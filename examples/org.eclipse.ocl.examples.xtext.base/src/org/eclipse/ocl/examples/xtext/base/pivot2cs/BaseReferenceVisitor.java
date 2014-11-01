@@ -66,10 +66,10 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, Pi
 		if (templateBindings.isEmpty()) {
 		}
 		else {
-			TemplateBindingCS csTemplateBinding = csRef.getOwnedTemplateBinding();
+			TemplateBindingCS csTemplateBinding = csRef.getOwnedBinding();
 			if (csTemplateBinding == null) {
 				csTemplateBinding = BaseCSFactory.eINSTANCE.createTemplateBindingCS();
-				csRef.setOwnedTemplateBinding(csTemplateBinding);
+				csRef.setOwnedBinding(csTemplateBinding);
 			}
 			List<TemplateParameterSubstitutionCS> csParameterSubstitutions = new ArrayList<TemplateParameterSubstitutionCS>();
 			for (TemplateBinding templateBinding : templateBindings) {

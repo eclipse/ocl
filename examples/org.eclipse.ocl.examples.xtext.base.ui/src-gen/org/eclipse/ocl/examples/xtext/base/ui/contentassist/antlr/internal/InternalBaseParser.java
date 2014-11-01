@@ -4255,22 +4255,22 @@ public class InternalBaseParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypedTypeRefCS__Group__1__Impl"
-    // ../org.eclipse.ocl.examples.xtext.base.ui/src-gen/org/eclipse/ocl/examples/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1486:1: rule__TypedTypeRefCS__Group__1__Impl : ( ( rule__TypedTypeRefCS__OwnedTemplateBindingAssignment_1 )? ) ;
+    // ../org.eclipse.ocl.examples.xtext.base.ui/src-gen/org/eclipse/ocl/examples/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1486:1: rule__TypedTypeRefCS__Group__1__Impl : ( ( rule__TypedTypeRefCS__OwnedBindingAssignment_1 )? ) ;
     public final void rule__TypedTypeRefCS__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.base.ui/src-gen/org/eclipse/ocl/examples/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1490:1: ( ( ( rule__TypedTypeRefCS__OwnedTemplateBindingAssignment_1 )? ) )
-            // ../org.eclipse.ocl.examples.xtext.base.ui/src-gen/org/eclipse/ocl/examples/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1491:1: ( ( rule__TypedTypeRefCS__OwnedTemplateBindingAssignment_1 )? )
+            // ../org.eclipse.ocl.examples.xtext.base.ui/src-gen/org/eclipse/ocl/examples/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1490:1: ( ( ( rule__TypedTypeRefCS__OwnedBindingAssignment_1 )? ) )
+            // ../org.eclipse.ocl.examples.xtext.base.ui/src-gen/org/eclipse/ocl/examples/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1491:1: ( ( rule__TypedTypeRefCS__OwnedBindingAssignment_1 )? )
             {
-            // ../org.eclipse.ocl.examples.xtext.base.ui/src-gen/org/eclipse/ocl/examples/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1491:1: ( ( rule__TypedTypeRefCS__OwnedTemplateBindingAssignment_1 )? )
-            // ../org.eclipse.ocl.examples.xtext.base.ui/src-gen/org/eclipse/ocl/examples/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1492:1: ( rule__TypedTypeRefCS__OwnedTemplateBindingAssignment_1 )?
+            // ../org.eclipse.ocl.examples.xtext.base.ui/src-gen/org/eclipse/ocl/examples/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1491:1: ( ( rule__TypedTypeRefCS__OwnedBindingAssignment_1 )? )
+            // ../org.eclipse.ocl.examples.xtext.base.ui/src-gen/org/eclipse/ocl/examples/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1492:1: ( rule__TypedTypeRefCS__OwnedBindingAssignment_1 )?
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTypedTypeRefCSAccess().getOwnedTemplateBindingAssignment_1()); 
+               before(grammarAccess.getTypedTypeRefCSAccess().getOwnedBindingAssignment_1()); 
             }
-            // ../org.eclipse.ocl.examples.xtext.base.ui/src-gen/org/eclipse/ocl/examples/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1493:1: ( rule__TypedTypeRefCS__OwnedTemplateBindingAssignment_1 )?
+            // ../org.eclipse.ocl.examples.xtext.base.ui/src-gen/org/eclipse/ocl/examples/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1493:1: ( rule__TypedTypeRefCS__OwnedBindingAssignment_1 )?
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -4279,10 +4279,10 @@ public class InternalBaseParser extends AbstractInternalContentAssistParser {
             }
             switch (alt12) {
                 case 1 :
-                    // ../org.eclipse.ocl.examples.xtext.base.ui/src-gen/org/eclipse/ocl/examples/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1493:2: rule__TypedTypeRefCS__OwnedTemplateBindingAssignment_1
+                    // ../org.eclipse.ocl.examples.xtext.base.ui/src-gen/org/eclipse/ocl/examples/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1493:2: rule__TypedTypeRefCS__OwnedBindingAssignment_1
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__TypedTypeRefCS__OwnedTemplateBindingAssignment_1_in_rule__TypedTypeRefCS__Group__1__Impl2994);
-                    rule__TypedTypeRefCS__OwnedTemplateBindingAssignment_1();
+                    pushFollow(FollowSets000.FOLLOW_rule__TypedTypeRefCS__OwnedBindingAssignment_1_in_rule__TypedTypeRefCS__Group__1__Impl2994);
+                    rule__TypedTypeRefCS__OwnedBindingAssignment_1();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -4293,7 +4293,7 @@ public class InternalBaseParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTypedTypeRefCSAccess().getOwnedTemplateBindingAssignment_1()); 
+               after(grammarAccess.getTypedTypeRefCSAccess().getOwnedBindingAssignment_1()); 
             }
 
             }
@@ -5600,9 +5600,9 @@ public class InternalBaseParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__TypedTypeRefCS__OwnedPathNameAssignment_0"
 
 
-    // $ANTLR start "rule__TypedTypeRefCS__OwnedTemplateBindingAssignment_1"
-    // ../org.eclipse.ocl.examples.xtext.base.ui/src-gen/org/eclipse/ocl/examples/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1966:1: rule__TypedTypeRefCS__OwnedTemplateBindingAssignment_1 : ( ruleTemplateBindingCS ) ;
-    public final void rule__TypedTypeRefCS__OwnedTemplateBindingAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__TypedTypeRefCS__OwnedBindingAssignment_1"
+    // ../org.eclipse.ocl.examples.xtext.base.ui/src-gen/org/eclipse/ocl/examples/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1966:1: rule__TypedTypeRefCS__OwnedBindingAssignment_1 : ( ruleTemplateBindingCS ) ;
+    public final void rule__TypedTypeRefCS__OwnedBindingAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -5614,15 +5614,15 @@ public class InternalBaseParser extends AbstractInternalContentAssistParser {
             // ../org.eclipse.ocl.examples.xtext.base.ui/src-gen/org/eclipse/ocl/examples/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1972:1: ruleTemplateBindingCS
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTypedTypeRefCSAccess().getOwnedTemplateBindingTemplateBindingCSParserRuleCall_1_0()); 
+               before(grammarAccess.getTypedTypeRefCSAccess().getOwnedBindingTemplateBindingCSParserRuleCall_1_0()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleTemplateBindingCS_in_rule__TypedTypeRefCS__OwnedTemplateBindingAssignment_13952);
+            pushFollow(FollowSets000.FOLLOW_ruleTemplateBindingCS_in_rule__TypedTypeRefCS__OwnedBindingAssignment_13952);
             ruleTemplateBindingCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTypedTypeRefCSAccess().getOwnedTemplateBindingTemplateBindingCSParserRuleCall_1_0()); 
+               after(grammarAccess.getTypedTypeRefCSAccess().getOwnedBindingTemplateBindingCSParserRuleCall_1_0()); 
             }
 
             }
@@ -5642,7 +5642,7 @@ public class InternalBaseParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__TypedTypeRefCS__OwnedTemplateBindingAssignment_1"
+    // $ANTLR end "rule__TypedTypeRefCS__OwnedBindingAssignment_1"
 
 
     // $ANTLR start "rule__WildcardTypeRefCS__OwnedExtendsAssignment_2_0_1"
@@ -5871,7 +5871,7 @@ public class InternalBaseParser extends AbstractInternalContentAssistParser {
         public static final BitSet FOLLOW_rule__TypedTypeRefCS__Group__1_in_rule__TypedTypeRefCS__Group__02910 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__TypedTypeRefCS__OwnedPathNameAssignment_0_in_rule__TypedTypeRefCS__Group__0__Impl2937 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__TypedTypeRefCS__Group__1__Impl_in_rule__TypedTypeRefCS__Group__12967 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TypedTypeRefCS__OwnedTemplateBindingAssignment_1_in_rule__TypedTypeRefCS__Group__1__Impl2994 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TypedTypeRefCS__OwnedBindingAssignment_1_in_rule__TypedTypeRefCS__Group__1__Impl2994 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__WildcardTypeRefCS__Group__0__Impl_in_rule__WildcardTypeRefCS__Group__03029 = new BitSet(new long[]{0x0000000000040060L});
         public static final BitSet FOLLOW_rule__WildcardTypeRefCS__Group__1_in_rule__WildcardTypeRefCS__Group__03032 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__WildcardTypeRefCS__Group__1__Impl_in_rule__WildcardTypeRefCS__Group__13090 = new BitSet(new long[]{0x0000000005000000L});
@@ -5904,7 +5904,7 @@ public class InternalBaseParser extends AbstractInternalContentAssistParser {
         public static final BitSet FOLLOW_ruleTypedRefCS_in_rule__TypeParameterCS__OwnedExtendsAssignment_1_0_2_13859 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleTypedRefCS_in_rule__TypeParameterCS__OwnedSuperAssignment_1_1_13890 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rulePathNameCS_in_rule__TypedTypeRefCS__OwnedPathNameAssignment_03921 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleTemplateBindingCS_in_rule__TypedTypeRefCS__OwnedTemplateBindingAssignment_13952 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleTemplateBindingCS_in_rule__TypedTypeRefCS__OwnedBindingAssignment_13952 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleTypedRefCS_in_rule__WildcardTypeRefCS__OwnedExtendsAssignment_2_0_13983 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleTypedRefCS_in_rule__WildcardTypeRefCS__OwnedSuperAssignment_2_1_14014 = new BitSet(new long[]{0x0000000000000002L});
     }

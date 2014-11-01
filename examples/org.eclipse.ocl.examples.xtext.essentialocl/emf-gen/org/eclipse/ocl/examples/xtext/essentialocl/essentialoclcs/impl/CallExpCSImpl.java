@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CallExpCSImpl#getOwnedSource <em>Owned Source</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CallExpCSImpl#getOwnedPathName <em>Owned Path Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CallExpCSImpl#isIsPre <em>Is Pre</em>}</li>
  * </ul>
  * </p>
  *
@@ -55,6 +56,26 @@ public abstract class CallExpCSImpl extends ExpCSImpl implements CallExpCS
 	 * @ordered
 	 */
 	protected PathNameCS ownedPathName;
+
+	/**
+	 * The default value of the '{@link #isIsPre() <em>Is Pre</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsPre()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_PRE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIsPre() <em>Is Pre</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsPre()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isPre = IS_PRE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -178,6 +199,39 @@ public abstract class CallExpCSImpl extends ExpCSImpl implements CallExpCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isIsPre()
+	{
+		return isPre;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsPre(boolean newIsPre)
+	{
+		boolean oldIsPre = isPre;
+		isPre = newIsPre;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.CALL_EXP_CS__IS_PRE, oldIsPre, isPre));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String toString()
+	{
+		return super.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
@@ -205,6 +259,8 @@ public abstract class CallExpCSImpl extends ExpCSImpl implements CallExpCS
 				return getOwnedSource();
 			case EssentialOCLCSPackage.CALL_EXP_CS__OWNED_PATH_NAME:
 				return getOwnedPathName();
+			case EssentialOCLCSPackage.CALL_EXP_CS__IS_PRE:
+				return isIsPre();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -224,6 +280,9 @@ public abstract class CallExpCSImpl extends ExpCSImpl implements CallExpCS
 				return;
 			case EssentialOCLCSPackage.CALL_EXP_CS__OWNED_PATH_NAME:
 				setOwnedPathName((PathNameCS)newValue);
+				return;
+			case EssentialOCLCSPackage.CALL_EXP_CS__IS_PRE:
+				setIsPre((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -245,6 +304,9 @@ public abstract class CallExpCSImpl extends ExpCSImpl implements CallExpCS
 			case EssentialOCLCSPackage.CALL_EXP_CS__OWNED_PATH_NAME:
 				setOwnedPathName((PathNameCS)null);
 				return;
+			case EssentialOCLCSPackage.CALL_EXP_CS__IS_PRE:
+				setIsPre(IS_PRE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -263,6 +325,8 @@ public abstract class CallExpCSImpl extends ExpCSImpl implements CallExpCS
 				return ownedSource != null;
 			case EssentialOCLCSPackage.CALL_EXP_CS__OWNED_PATH_NAME:
 				return ownedPathName != null;
+			case EssentialOCLCSPackage.CALL_EXP_CS__IS_PRE:
+				return isPre != IS_PRE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

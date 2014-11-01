@@ -754,7 +754,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	 *         ownedSquareBracketedClauses+=SquareBracketedClauseCS* 
 	 *         ownedRoundBracketedClause=RoundBracketedClauseCS? 
 	 *         ownedCurlyBracketedClause=CurlyBracketedClauseCS? 
-	 *         atPre?='@'?
+	 *         isPre?='@'?
 	 *     )
 	 */
 	protected void sequence_NameExpCS(EObject context, NameExpCS semanticObject) {

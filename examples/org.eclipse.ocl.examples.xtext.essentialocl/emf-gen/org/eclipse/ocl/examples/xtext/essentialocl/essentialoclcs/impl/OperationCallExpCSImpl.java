@@ -38,7 +38,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperationCallExpCSImpl#getReferredOperation <em>Referred Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperationCallExpCSImpl#getOwnedArguments <em>Owned Arguments</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperationCallExpCSImpl#isIsPre <em>Is Pre</em>}</li>
  * </ul>
  * </p>
  *
@@ -65,26 +64,6 @@ public class OperationCallExpCSImpl extends CallExpCSImpl implements OperationCa
 	 * @ordered
 	 */
 	protected EList<ExpCS> ownedArguments;
-
-	/**
-	 * The default value of the '{@link #isIsPre() <em>Is Pre</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsPre()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean IS_PRE_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isIsPre() <em>Is Pre</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsPre()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean isPre = IS_PRE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -174,40 +153,6 @@ public class OperationCallExpCSImpl extends CallExpCSImpl implements OperationCa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isIsPre()
-	{
-		return isPre;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setIsPre(boolean newIsPre)
-	{
-		boolean oldIsPre = isPre;
-		isPre = newIsPre;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.OPERATION_CALL_EXP_CS__IS_PRE, oldIsPre, isPre));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString()
-	{
-		return super.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
@@ -235,8 +180,6 @@ public class OperationCallExpCSImpl extends CallExpCSImpl implements OperationCa
 				return getReferredOperation();
 			case EssentialOCLCSPackage.OPERATION_CALL_EXP_CS__OWNED_ARGUMENTS:
 				return getOwnedArguments();
-			case EssentialOCLCSPackage.OPERATION_CALL_EXP_CS__IS_PRE:
-				return isIsPre();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -259,9 +202,6 @@ public class OperationCallExpCSImpl extends CallExpCSImpl implements OperationCa
 				getOwnedArguments().clear();
 				getOwnedArguments().addAll((Collection<? extends ExpCS>)newValue);
 				return;
-			case EssentialOCLCSPackage.OPERATION_CALL_EXP_CS__IS_PRE:
-				setIsPre((Boolean)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -282,9 +222,6 @@ public class OperationCallExpCSImpl extends CallExpCSImpl implements OperationCa
 			case EssentialOCLCSPackage.OPERATION_CALL_EXP_CS__OWNED_ARGUMENTS:
 				getOwnedArguments().clear();
 				return;
-			case EssentialOCLCSPackage.OPERATION_CALL_EXP_CS__IS_PRE:
-				setIsPre(IS_PRE_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -303,8 +240,6 @@ public class OperationCallExpCSImpl extends CallExpCSImpl implements OperationCa
 				return referredOperation != null;
 			case EssentialOCLCSPackage.OPERATION_CALL_EXP_CS__OWNED_ARGUMENTS:
 				return ownedArguments != null && !ownedArguments.isEmpty();
-			case EssentialOCLCSPackage.OPERATION_CALL_EXP_CS__IS_PRE:
-				return isPre != IS_PRE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

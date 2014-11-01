@@ -442,13 +442,22 @@ public interface EssentialOCLCSPackage
 	int CALL_EXP_CS__OWNED_PATH_NAME = EXP_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_EXP_CS__IS_PRE = EXP_CS_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Call Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CALL_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 2;
+	int CALL_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.AssociationClassCallExpCSImpl <em>Association Class Call Exp CS</em>}' class.
@@ -542,6 +551,15 @@ public interface EssentialOCLCSPackage
 	int ASSOCIATION_CLASS_CALL_EXP_CS__OWNED_PATH_NAME = CALL_EXP_CS__OWNED_PATH_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS_CALL_EXP_CS__IS_PRE = CALL_EXP_CS__IS_PRE;
+
+	/**
 	 * The feature id for the '<em><b>Referred Association</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -551,22 +569,13 @@ public interface EssentialOCLCSPackage
 	int ASSOCIATION_CLASS_CALL_EXP_CS__REFERRED_ASSOCIATION = CALL_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS_CALL_EXP_CS__IS_PRE = CALL_EXP_CS_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Association Class Call Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_CLASS_CALL_EXP_CS_FEATURE_COUNT = CALL_EXP_CS_FEATURE_COUNT + 2;
+	int ASSOCIATION_CLASS_CALL_EXP_CS_FEATURE_COUNT = CALL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -2208,6 +2217,15 @@ public interface EssentialOCLCSPackage
 	int ITERATION_CALL_EXP_CS__OWNED_PATH_NAME = CALL_EXP_CS__OWNED_PATH_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION_CALL_EXP_CS__IS_PRE = CALL_EXP_CS__IS_PRE;
+
+	/**
 	 * The feature id for the '<em><b>Referred Iteration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2235,22 +2253,13 @@ public interface EssentialOCLCSPackage
 	int ITERATION_CALL_EXP_CS__OWNED_ARGUMENTS = CALL_EXP_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION_CALL_EXP_CS__IS_PRE = CALL_EXP_CS_FEATURE_COUNT + 3;
-
-	/**
 	 * The number of structural features of the '<em>Iteration Call Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATION_CALL_EXP_CS_FEATURE_COUNT = CALL_EXP_CS_FEATURE_COUNT + 4;
+	int ITERATION_CALL_EXP_CS_FEATURE_COUNT = CALL_EXP_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IterateCallExpCSImpl <em>Iterate Call Exp CS</em>}' class.
@@ -2344,6 +2353,15 @@ public interface EssentialOCLCSPackage
 	int ITERATE_CALL_EXP_CS__OWNED_PATH_NAME = ITERATION_CALL_EXP_CS__OWNED_PATH_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_CALL_EXP_CS__IS_PRE = ITERATION_CALL_EXP_CS__IS_PRE;
+
+	/**
 	 * The feature id for the '<em><b>Referred Iteration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2369,15 +2387,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int ITERATE_CALL_EXP_CS__OWNED_ARGUMENTS = ITERATION_CALL_EXP_CS__OWNED_ARGUMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATE_CALL_EXP_CS__IS_PRE = ITERATION_CALL_EXP_CS__IS_PRE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Accumulators</b></em>' containment reference list.
@@ -2858,13 +2867,13 @@ public interface EssentialOCLCSPackage
 	int NAME_EXP_CS__OWNED_PATH_NAME = EXP_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>At Pre</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_EXP_CS__AT_PRE = EXP_CS_FEATURE_COUNT + 1;
+	int NAME_EXP_CS__IS_PRE = EXP_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owned Curly Bracketed Clause</b></em>' containment reference.
@@ -3463,6 +3472,15 @@ public interface EssentialOCLCSPackage
 	int OPERATION_CALL_EXP_CS__OWNED_PATH_NAME = CALL_EXP_CS__OWNED_PATH_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CALL_EXP_CS__IS_PRE = CALL_EXP_CS__IS_PRE;
+
+	/**
 	 * The feature id for the '<em><b>Referred Operation</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3481,22 +3499,13 @@ public interface EssentialOCLCSPackage
 	int OPERATION_CALL_EXP_CS__OWNED_ARGUMENTS = CALL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_CALL_EXP_CS__IS_PRE = CALL_EXP_CS_FEATURE_COUNT + 2;
-
-	/**
 	 * The number of structural features of the '<em>Operation Call Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CALL_EXP_CS_FEATURE_COUNT = CALL_EXP_CS_FEATURE_COUNT + 3;
+	int OPERATION_CALL_EXP_CS_FEATURE_COUNT = CALL_EXP_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.PatternExpCSImpl <em>Pattern Exp CS</em>}' class.
@@ -3790,6 +3799,15 @@ public interface EssentialOCLCSPackage
 	int PROPERTY_CALL_EXP_CS__OWNED_PATH_NAME = CALL_EXP_CS__OWNED_PATH_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP_CS__IS_PRE = CALL_EXP_CS__IS_PRE;
+
+	/**
 	 * The feature id for the '<em><b>Referred Property</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3799,22 +3817,13 @@ public interface EssentialOCLCSPackage
 	int PROPERTY_CALL_EXP_CS__REFERRED_PROPERTY = CALL_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_CALL_EXP_CS__IS_PRE = CALL_EXP_CS_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Property Call Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CALL_EXP_CS_FEATURE_COUNT = CALL_EXP_CS_FEATURE_COUNT + 2;
+	int PROPERTY_CALL_EXP_CS_FEATURE_COUNT = CALL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.RoundBracketedClauseCSImpl <em>Round Bracketed Clause CS</em>}' class.
@@ -4738,17 +4747,6 @@ public interface EssentialOCLCSPackage
 	EReference getAssociationClassCallExpCS_ReferredAssociation();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AssociationClassCallExpCS#isIsPre <em>Is Pre</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Pre</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AssociationClassCallExpCS#isIsPre()
-	 * @see #getAssociationClassCallExpCS()
-	 * @generated
-	 */
-	EAttribute getAssociationClassCallExpCS_IsPre();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS <em>Binary Operator CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5248,15 +5246,15 @@ public interface EssentialOCLCSPackage
 	EReference getNameExpCS_OwnedPathName();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#isAtPre <em>At Pre</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#isIsPre <em>Is Pre</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>At Pre</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#isAtPre()
+	 * @return the meta object for the attribute '<em>Is Pre</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#isIsPre()
 	 * @see #getNameExpCS()
 	 * @generated
 	 */
-	EAttribute getNameExpCS_AtPre();
+	EAttribute getNameExpCS_IsPre();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getOwnedCurlyBracketedClause <em>Owned Curly Bracketed Clause</em>}'.
@@ -5570,17 +5568,6 @@ public interface EssentialOCLCSPackage
 	EReference getPropertyCallExpCS_ReferredProperty();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PropertyCallExpCS#isIsPre <em>Is Pre</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Pre</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PropertyCallExpCS#isIsPre()
-	 * @see #getPropertyCallExpCS()
-	 * @generated
-	 */
-	EAttribute getPropertyCallExpCS_IsPre();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS <em>Round Bracketed Clause CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5771,6 +5758,17 @@ public interface EssentialOCLCSPackage
 	EReference getCallExpCS_OwnedPathName();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CallExpCS#isIsPre <em>Is Pre</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Pre</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CallExpCS#isIsPre()
+	 * @see #getCallExpCS()
+	 * @generated
+	 */
+	EAttribute getCallExpCS_IsPre();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvalidLiteralExpCS <em>Invalid Literal Exp CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5843,17 +5841,6 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 */
 	EReference getIterationCallExpCS_OwnedArguments();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IterationCallExpCS#isIsPre <em>Is Pre</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Pre</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IterationCallExpCS#isIsPre()
-	 * @see #getIterationCallExpCS()
-	 * @generated
-	 */
-	EAttribute getIterationCallExpCS_IsPre();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LambdaLiteralExpCS <em>Lambda Literal Exp CS</em>}'.
@@ -5938,17 +5925,6 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 */
 	EReference getOperationCallExpCS_OwnedArguments();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperationCallExpCS#isIsPre <em>Is Pre</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Pre</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperationCallExpCS#isIsPre()
-	 * @see #getOperationCallExpCS()
-	 * @generated
-	 */
-	EAttribute getOperationCallExpCS_IsPre();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS <em>Operator CS</em>}'.
@@ -6247,14 +6223,6 @@ public interface EssentialOCLCSPackage
 		 * @generated
 		 */
 		EReference ASSOCIATION_CLASS_CALL_EXP_CS__REFERRED_ASSOCIATION = eINSTANCE.getAssociationClassCallExpCS_ReferredAssociation();
-
-		/**
-		 * The meta object literal for the '<em><b>Is Pre</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ASSOCIATION_CLASS_CALL_EXP_CS__IS_PRE = eINSTANCE.getAssociationClassCallExpCS_IsPre();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.BinaryOperatorCSImpl <em>Binary Operator CS</em>}' class.
@@ -6669,12 +6637,12 @@ public interface EssentialOCLCSPackage
 		EReference NAME_EXP_CS__OWNED_PATH_NAME = eINSTANCE.getNameExpCS_OwnedPathName();
 
 		/**
-		 * The meta object literal for the '<em><b>At Pre</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Is Pre</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute NAME_EXP_CS__AT_PRE = eINSTANCE.getNameExpCS_AtPre();
+		EAttribute NAME_EXP_CS__IS_PRE = eINSTANCE.getNameExpCS_IsPre();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Curly Bracketed Clause</b></em>' containment reference feature.
@@ -6925,14 +6893,6 @@ public interface EssentialOCLCSPackage
 		EReference PROPERTY_CALL_EXP_CS__REFERRED_PROPERTY = eINSTANCE.getPropertyCallExpCS_ReferredProperty();
 
 		/**
-		 * The meta object literal for the '<em><b>Is Pre</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PROPERTY_CALL_EXP_CS__IS_PRE = eINSTANCE.getPropertyCallExpCS_IsPre();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.RoundBracketedClauseCSImpl <em>Round Bracketed Clause CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7093,6 +7053,14 @@ public interface EssentialOCLCSPackage
 		EReference CALL_EXP_CS__OWNED_PATH_NAME = eINSTANCE.getCallExpCS_OwnedPathName();
 
 		/**
+		 * The meta object literal for the '<em><b>Is Pre</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CALL_EXP_CS__IS_PRE = eINSTANCE.getCallExpCS_IsPre();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.InvalidLiteralExpCSImpl <em>Invalid Literal Exp CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7153,14 +7121,6 @@ public interface EssentialOCLCSPackage
 		 * @generated
 		 */
 		EReference ITERATION_CALL_EXP_CS__OWNED_ARGUMENTS = eINSTANCE.getIterationCallExpCS_OwnedArguments();
-
-		/**
-		 * The meta object literal for the '<em><b>Is Pre</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ITERATION_CALL_EXP_CS__IS_PRE = eINSTANCE.getIterationCallExpCS_IsPre();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LambdaLiteralExpCSImpl <em>Lambda Literal Exp CS</em>}' class.
@@ -7233,14 +7193,6 @@ public interface EssentialOCLCSPackage
 		 * @generated
 		 */
 		EReference OPERATION_CALL_EXP_CS__OWNED_ARGUMENTS = eINSTANCE.getOperationCallExpCS_OwnedArguments();
-
-		/**
-		 * The meta object literal for the '<em><b>Is Pre</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute OPERATION_CALL_EXP_CS__IS_PRE = eINSTANCE.getOperationCallExpCS_IsPre();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperatorCSImpl <em>Operator CS</em>}' class.

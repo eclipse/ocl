@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
@@ -102,7 +103,8 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 	}
 
 	protected void addBooleanQualifier(@NonNull List<String> qualifiers, @NonNull DetailCS csDetail, @NonNull String csString) {
-		if ((csDetail.getValue().size() == 1) && Boolean.valueOf(csDetail.getValue().get(0))) {
+		EList<String> values = csDetail.getValues();
+		if ((values.size() == 1) && Boolean.valueOf(values.get(0))) {
 			qualifiers.add(csString);
 		}
 		else {
@@ -281,7 +283,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 //		}
 		if (csElement instanceof TypedTypeRefCS) {
 			TypedTypeRefCS csTemplateableElement = (TypedTypeRefCS)csElement;
-			TemplateBindingCS csTemplateBinding = csTemplateableElement.getOwnedTemplateBinding();
+			TemplateBindingCS csTemplateBinding = csTemplateableElement.getOwnedBinding();
 			if (csTemplateBinding != null) {
 				csTemplateBindings.add(csTemplateBinding);
 			}

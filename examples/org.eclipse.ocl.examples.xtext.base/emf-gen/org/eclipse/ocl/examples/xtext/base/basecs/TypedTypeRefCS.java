@@ -22,7 +22,7 @@ import org.eclipse.ocl.examples.pivot.Type;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getOwnedPathName <em>Owned Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getReferredType <em>Referred Type</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getOwnedTemplateBinding <em>Owned Template Binding</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getOwnedBinding <em>Owned Binding</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#isIsTypeof <em>Is Typeof</em>}</li>
  * </ul>
  * </p>
@@ -74,7 +74,7 @@ public interface TypedTypeRefCS extends TypedRefCS {
 	Type getReferredType();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Template Binding</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Binding</b></em>' containment reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS#getOwningElement <em>Owning Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -82,24 +82,24 @@ public interface TypedTypeRefCS extends TypedRefCS {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Template Binding</em>' containment reference.
-	 * @see #setOwnedTemplateBinding(TemplateBindingCS)
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTypedTypeRefCS_OwnedTemplateBinding()
+	 * @return the value of the '<em>Owned Binding</em>' containment reference.
+	 * @see #setOwnedBinding(TemplateBindingCS)
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTypedTypeRefCS_OwnedBinding()
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS#getOwningElement
 	 * @model opposite="owningElement" containment="true"
 	 * @generated
 	 */
-	TemplateBindingCS getOwnedTemplateBinding();
+	TemplateBindingCS getOwnedBinding();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getOwnedTemplateBinding <em>Owned Template Binding</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getOwnedBinding <em>Owned Binding</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owned Template Binding</em>' containment reference.
-	 * @see #getOwnedTemplateBinding()
+	 * @param value the new value of the '<em>Owned Binding</em>' containment reference.
+	 * @see #getOwnedBinding()
 	 * @generated
 	 */
-	void setOwnedTemplateBinding(TemplateBindingCS value);
+	void setOwnedBinding(TemplateBindingCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Is Typeof</b></em>' attribute.

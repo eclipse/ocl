@@ -625,7 +625,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 //		}
 		if (csElement instanceof TypedTypeRefCS) {
 			TypedTypeRefCS csTemplateableElement = (TypedTypeRefCS)csElement;
-			TemplateBindingCS csTemplateBinding = csTemplateableElement.getOwnedTemplateBinding();
+			TemplateBindingCS csTemplateBinding = csTemplateableElement.getOwnedBinding();
 			if (csTemplateBinding != null) {
 				csTemplateBindings.add(csTemplateBinding);
 			}
@@ -1197,7 +1197,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 	}
 
 	protected @Nullable TemplateableElement specializeTemplates(@NonNull TypedTypeRefCS csElement) {
-		TemplateBindingCS ownedTemplateBinding = csElement.getOwnedTemplateBinding();
+		TemplateBindingCS ownedTemplateBinding = csElement.getOwnedBinding();
 		assert ownedTemplateBinding != null;
 		org.eclipse.ocl.examples.pivot.Class unspecializedPivotElement = (org.eclipse.ocl.examples.pivot.Class)csElement.getReferredType();	// FIXME cast
 //		logger.trace("Specializing " + moniker); //$NON-NLS-1$

@@ -213,17 +213,8 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFeatureContextDeclCS_Class() {
-		return (EReference)featureContextDeclCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getFeatureContextDeclCS_OwnedType() {
-		return (EReference)featureContextDeclCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)featureContextDeclCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -383,7 +374,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClassifierContextDeclCS_ReferredClassifier()
+	public EReference getClassifierContextDeclCS_ReferredClass()
 	{
 		return (EReference)classifierContextDeclCSEClass.getEStructuralFeatures().get(1);
 	}
@@ -499,7 +490,8 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDefCS_Static() {
+	public EAttribute getDefCS_IsStatic()
+	{
 		return (EAttribute)defCSEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -621,7 +613,7 @@ public class CompleteOCLCSPackageImpl
 		// Create classes and their features
 		classifierContextDeclCSEClass = createEClass(CLASSIFIER_CONTEXT_DECL_CS);
 		createEAttribute(classifierContextDeclCSEClass, CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME);
-		createEReference(classifierContextDeclCSEClass, CLASSIFIER_CONTEXT_DECL_CS__REFERRED_CLASSIFIER);
+		createEReference(classifierContextDeclCSEClass, CLASSIFIER_CONTEXT_DECL_CS__REFERRED_CLASS);
 		createEReference(classifierContextDeclCSEClass, CLASSIFIER_CONTEXT_DECL_CS__OWNED_INVARIANTS);
 		createEReference(classifierContextDeclCSEClass, CLASSIFIER_CONTEXT_DECL_CS__OWNED_DEFINITIONS);
 
@@ -635,7 +627,7 @@ public class CompleteOCLCSPackageImpl
 		defCSEClass = createEClass(DEF_CS);
 		createEReference(defCSEClass, DEF_CS__OWNING_CLASSIFIER_CONTEXT_DECL);
 		createEReference(defCSEClass, DEF_CS__OWNED_SPECIFICATION);
-		createEAttribute(defCSEClass, DEF_CS__STATIC);
+		createEAttribute(defCSEClass, DEF_CS__IS_STATIC);
 
 		defOperationCSEClass = createEClass(DEF_OPERATION_CS);
 		createEReference(defOperationCSEClass, DEF_OPERATION_CS__OWNED_PARAMETERS);
@@ -643,7 +635,6 @@ public class CompleteOCLCSPackageImpl
 		defPropertyCSEClass = createEClass(DEF_PROPERTY_CS);
 
 		featureContextDeclCSEClass = createEClass(FEATURE_CONTEXT_DECL_CS);
-		createEReference(featureContextDeclCSEClass, FEATURE_CONTEXT_DECL_CS__CLASS);
 		createEReference(featureContextDeclCSEClass, FEATURE_CONTEXT_DECL_CS__OWNED_TYPE);
 
 		includeCSEClass = createEClass(INCLUDE_CS);
@@ -729,7 +720,7 @@ public class CompleteOCLCSPackageImpl
 		// Initialize classes and features; add operations and parameters
 		initEClass(classifierContextDeclCSEClass, ClassifierContextDeclCS.class, "ClassifierContextDeclCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getClassifierContextDeclCS_SelfName(), ecorePackage.getEString(), "selfName", null, 0, 1, ClassifierContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getClassifierContextDeclCS_ReferredClassifier(), thePivotPackage.getClass_(), null, "referredClassifier", null, 0, 1, ClassifierContextDeclCS.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getClassifierContextDeclCS_ReferredClass(), thePivotPackage.getClass_(), null, "referredClass", null, 0, 1, ClassifierContextDeclCS.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getClassifierContextDeclCS_OwnedInvariants(), theBaseCSPackage.getConstraintCS(), null, "ownedInvariants", null, 0, -1, ClassifierContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getClassifierContextDeclCS_OwnedDefinitions(), this.getDefCS(), this.getDefCS_OwningClassifierContextDecl(), "ownedDefinitions", null, 0, -1, ClassifierContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -743,7 +734,7 @@ public class CompleteOCLCSPackageImpl
 		initEClass(defCSEClass, DefCS.class, "DefCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDefCS_OwningClassifierContextDecl(), this.getClassifierContextDeclCS(), this.getClassifierContextDeclCS_OwnedDefinitions(), "owningClassifierContextDecl", null, 0, 1, DefCS.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDefCS_OwnedSpecification(), theEssentialOCLCSPackage.getExpSpecificationCS(), null, "ownedSpecification", null, 0, 1, DefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDefCS_Static(), ecorePackage.getEBoolean(), "static", null, 0, 1, DefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDefCS_IsStatic(), ecorePackage.getEBoolean(), "isStatic", null, 0, 1, DefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(defOperationCSEClass, DefOperationCS.class, "DefOperationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDefOperationCS_OwnedParameters(), theBaseCSPackage.getParameterCS(), null, "ownedParameters", null, 0, -1, DefOperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -751,7 +742,6 @@ public class CompleteOCLCSPackageImpl
 		initEClass(defPropertyCSEClass, DefPropertyCS.class, "DefPropertyCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(featureContextDeclCSEClass, FeatureContextDeclCS.class, "FeatureContextDeclCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFeatureContextDeclCS_Class(), theBaseCSPackage.getStructuredClassCS(), null, "class", null, 0, 1, FeatureContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFeatureContextDeclCS_OwnedType(), theBaseCSPackage.getTypedRefCS(), null, "ownedType", null, 0, 1, FeatureContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(includeCSEClass, IncludeCS.class, "IncludeCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

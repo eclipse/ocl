@@ -47,7 +47,7 @@ DefCS returns DefCS:
 	DefOperationCS|DefPropertyCS;
 
 DefOperationCS returns DefOperationCS:
-	(static?='static')? 'def' UnrestrictedName? ':' (ownedSignature=TemplateSignatureCS)?
+	(isStatic?='static')? 'def' UnrestrictedName? ':' (ownedSignature=TemplateSignatureCS)?
 		name=UnrestrictedName '(' (ownedParameters+=DefParameterCS (',' ownedParameters+=DefParameterCS)*)? ')' ':' (ownedType=TypeExpCS)?
 		 '=' ownedSpecification=SpecificationCS;
 
@@ -55,7 +55,7 @@ DefParameterCS returns base::ParameterCS:
 	name=UnrestrictedName ':' ownedType=TypeExpCS;
 
 DefPropertyCS returns DefPropertyCS:
-	(static?='static')? 'def' UnrestrictedName? ':' name=UnrestrictedName ':' ownedType=TypeExpCS
+	(isStatic?='static')? 'def' UnrestrictedName? ':' name=UnrestrictedName ':' ownedType=TypeExpCS
 		'=' ownedSpecification=SpecificationCS;
 
 ImportCS returns base::ImportCS:

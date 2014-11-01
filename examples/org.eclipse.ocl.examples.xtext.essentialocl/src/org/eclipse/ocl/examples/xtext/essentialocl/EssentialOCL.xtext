@@ -235,7 +235,7 @@ PrimaryExpCS returns ExpCS:
  * curly bracket clauses and optionally an @pre as well.*/
 NameExpCS returns NameExpCS:
 	ownedPathName=PathNameCS ownedSquareBracketedClauses+=SquareBracketedClauseCS*
-	ownedRoundBracketedClause=RoundBracketedClauseCS? ownedCurlyBracketedClause=CurlyBracketedClauseCS? (atPre?='@' 'pre')?;
+	ownedRoundBracketedClause=RoundBracketedClauseCS? ownedCurlyBracketedClause=CurlyBracketedClauseCS? (isPre?='@' 'pre')?;
 
 /* A curly bracket clause is a generalized rule for the literal arguments of collections, maps, tuples and type constructors.*/
 CurlyBracketedClauseCS:

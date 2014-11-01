@@ -31,7 +31,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.AssociationClassCallExpCSImpl#getReferredAssociation <em>Referred Association</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.AssociationClassCallExpCSImpl#isIsPre <em>Is Pre</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,26 +47,6 @@ public class AssociationClassCallExpCSImpl extends CallExpCSImpl implements Asso
 	 * @ordered
 	 */
 	protected AssociationClass referredAssociation;
-
-	/**
-	 * The default value of the '{@link #isIsPre() <em>Is Pre</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsPre()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean IS_PRE_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isIsPre() <em>Is Pre</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsPre()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean isPre = IS_PRE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -143,40 +122,6 @@ public class AssociationClassCallExpCSImpl extends CallExpCSImpl implements Asso
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isIsPre()
-	{
-		return isPre;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setIsPre(boolean newIsPre)
-	{
-		boolean oldIsPre = isPre;
-		isPre = newIsPre;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.ASSOCIATION_CLASS_CALL_EXP_CS__IS_PRE, oldIsPre, isPre));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString()
-	{
-		return super.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
@@ -200,8 +145,6 @@ public class AssociationClassCallExpCSImpl extends CallExpCSImpl implements Asso
 		{
 			case EssentialOCLCSPackage.ASSOCIATION_CLASS_CALL_EXP_CS__REFERRED_ASSOCIATION:
 				return getReferredAssociation();
-			case EssentialOCLCSPackage.ASSOCIATION_CLASS_CALL_EXP_CS__IS_PRE:
-				return isIsPre();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -218,9 +161,6 @@ public class AssociationClassCallExpCSImpl extends CallExpCSImpl implements Asso
 		{
 			case EssentialOCLCSPackage.ASSOCIATION_CLASS_CALL_EXP_CS__REFERRED_ASSOCIATION:
 				setReferredAssociation((AssociationClass)newValue);
-				return;
-			case EssentialOCLCSPackage.ASSOCIATION_CLASS_CALL_EXP_CS__IS_PRE:
-				setIsPre((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -239,9 +179,6 @@ public class AssociationClassCallExpCSImpl extends CallExpCSImpl implements Asso
 			case EssentialOCLCSPackage.ASSOCIATION_CLASS_CALL_EXP_CS__REFERRED_ASSOCIATION:
 				setReferredAssociation((AssociationClass)null);
 				return;
-			case EssentialOCLCSPackage.ASSOCIATION_CLASS_CALL_EXP_CS__IS_PRE:
-				setIsPre(IS_PRE_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -258,8 +195,6 @@ public class AssociationClassCallExpCSImpl extends CallExpCSImpl implements Asso
 		{
 			case EssentialOCLCSPackage.ASSOCIATION_CLASS_CALL_EXP_CS__REFERRED_ASSOCIATION:
 				return referredAssociation != null;
-			case EssentialOCLCSPackage.ASSOCIATION_CLASS_CALL_EXP_CS__IS_PRE:
-				return isPre != IS_PRE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

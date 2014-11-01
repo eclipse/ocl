@@ -11,15 +11,11 @@
 
 package org.eclipse.ocl.examples.xtext.base.basecs.impl;
 
-import java.lang.reflect.InvocationTargetException;
-
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
@@ -216,33 +212,6 @@ public class PackageCSImpl extends PackageOwnerCSImpl implements PackageCS {
 		nsURI = newNsURI;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.PACKAGE_CS__NS_URI, oldNsURI, nsURI));
-	}
-
-	/**
-	 * The cached invocation delegate for the '{@link #ast() <em>Ast</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ast()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final EOperation.Internal.InvocationDelegate AST__EINVOCATION_DELEGATE = ((EOperation.Internal)BaseCSPackage.Literals.PACKAGE_CS.getEOperations().get(0)).getInvocationDelegate();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public org.eclipse.ocl.examples.pivot.Package ast()
-	{
-		try
-		{
-			return (org.eclipse.ocl.examples.pivot.Package)AST__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		}
-		catch (InvocationTargetException ite)
-		{
-			throw new WrappedException(ite);
-		}
 	}
 
 	/**

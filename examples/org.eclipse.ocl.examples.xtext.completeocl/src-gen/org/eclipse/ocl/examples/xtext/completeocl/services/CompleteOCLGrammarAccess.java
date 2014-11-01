@@ -279,8 +279,8 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	public class DefOperationCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DefOperationCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cStaticAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final Keyword cStaticStaticKeyword_0_0 = (Keyword)cStaticAssignment_0.eContents().get(0);
+		private final Assignment cIsStaticAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cIsStaticStaticKeyword_0_0 = (Keyword)cIsStaticAssignment_0.eContents().get(0);
 		private final Keyword cDefKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final RuleCall cUnrestrictedNameParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		private final Keyword cColonKeyword_3 = (Keyword)cGroup.eContents().get(3);
@@ -305,21 +305,21 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOwnedSpecificationSpecificationCSParserRuleCall_12_0 = (RuleCall)cOwnedSpecificationAssignment_12.eContents().get(0);
 		
 		//DefOperationCS:
-		//	static?="static"? "def" UnrestrictedName? ":" ownedSignature=TemplateSignatureCS? name=UnrestrictedName "("
+		//	isStatic?="static"? "def" UnrestrictedName? ":" ownedSignature=TemplateSignatureCS? name=UnrestrictedName "("
 		//	(ownedParameters+=DefParameterCS ("," ownedParameters+=DefParameterCS)*)? ")" ":" ownedType=TypeExpCS? "="
 		//	ownedSpecification=SpecificationCS;
 		public ParserRule getRule() { return rule; }
 
-		//static?="static"? "def" UnrestrictedName? ":" ownedSignature=TemplateSignatureCS? name=UnrestrictedName "("
+		//isStatic?="static"? "def" UnrestrictedName? ":" ownedSignature=TemplateSignatureCS? name=UnrestrictedName "("
 		//(ownedParameters+=DefParameterCS ("," ownedParameters+=DefParameterCS)*)? ")" ":" ownedType=TypeExpCS? "="
 		//ownedSpecification=SpecificationCS
 		public Group getGroup() { return cGroup; }
 
-		//static?="static"?
-		public Assignment getStaticAssignment_0() { return cStaticAssignment_0; }
+		//isStatic?="static"?
+		public Assignment getIsStaticAssignment_0() { return cIsStaticAssignment_0; }
 
 		//"static"
-		public Keyword getStaticStaticKeyword_0_0() { return cStaticStaticKeyword_0_0; }
+		public Keyword getIsStaticStaticKeyword_0_0() { return cIsStaticStaticKeyword_0_0; }
 
 		//"def"
 		public Keyword getDefKeyword_1() { return cDefKeyword_1; }
@@ -423,8 +423,8 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	public class DefPropertyCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DefPropertyCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cStaticAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final Keyword cStaticStaticKeyword_0_0 = (Keyword)cStaticAssignment_0.eContents().get(0);
+		private final Assignment cIsStaticAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cIsStaticStaticKeyword_0_0 = (Keyword)cIsStaticAssignment_0.eContents().get(0);
 		private final Keyword cDefKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final RuleCall cUnrestrictedNameParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		private final Keyword cColonKeyword_3 = (Keyword)cGroup.eContents().get(3);
@@ -438,19 +438,19 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOwnedSpecificationSpecificationCSParserRuleCall_8_0 = (RuleCall)cOwnedSpecificationAssignment_8.eContents().get(0);
 		
 		//DefPropertyCS:
-		//	static?="static"? "def" UnrestrictedName? ":" name=UnrestrictedName ":" ownedType=TypeExpCS "="
+		//	isStatic?="static"? "def" UnrestrictedName? ":" name=UnrestrictedName ":" ownedType=TypeExpCS "="
 		//	ownedSpecification=SpecificationCS;
 		public ParserRule getRule() { return rule; }
 
-		//static?="static"? "def" UnrestrictedName? ":" name=UnrestrictedName ":" ownedType=TypeExpCS "="
+		//isStatic?="static"? "def" UnrestrictedName? ":" name=UnrestrictedName ":" ownedType=TypeExpCS "="
 		//ownedSpecification=SpecificationCS
 		public Group getGroup() { return cGroup; }
 
-		//static?="static"?
-		public Assignment getStaticAssignment_0() { return cStaticAssignment_0; }
+		//isStatic?="static"?
+		public Assignment getIsStaticAssignment_0() { return cIsStaticAssignment_0; }
 
 		//"static"
-		public Keyword getStaticStaticKeyword_0_0() { return cStaticStaticKeyword_0_0; }
+		public Keyword getIsStaticStaticKeyword_0_0() { return cIsStaticStaticKeyword_0_0; }
 
 		//"def"
 		public Keyword getDefKeyword_1() { return cDefKeyword_1; }
@@ -1355,7 +1355,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DefOperationCS:
-	//	static?="static"? "def" UnrestrictedName? ":" ownedSignature=TemplateSignatureCS? name=UnrestrictedName "("
+	//	isStatic?="static"? "def" UnrestrictedName? ":" ownedSignature=TemplateSignatureCS? name=UnrestrictedName "("
 	//	(ownedParameters+=DefParameterCS ("," ownedParameters+=DefParameterCS)*)? ")" ":" ownedType=TypeExpCS? "="
 	//	ownedSpecification=SpecificationCS;
 	public DefOperationCSElements getDefOperationCSAccess() {
@@ -1377,7 +1377,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DefPropertyCS:
-	//	static?="static"? "def" UnrestrictedName? ":" name=UnrestrictedName ":" ownedType=TypeExpCS "="
+	//	isStatic?="static"? "def" UnrestrictedName? ":" name=UnrestrictedName ":" ownedType=TypeExpCS "="
 	//	ownedSpecification=SpecificationCS;
 	public DefPropertyCSElements getDefPropertyCSAccess() {
 		return pDefPropertyCS;
@@ -2010,7 +2010,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	// * curly bracket clauses and optionally an @pre as well.* /
 	//NameExpCS:
 	//	ownedPathName=PathNameCS ownedSquareBracketedClauses+=SquareBracketedClauseCS*
-	//	ownedRoundBracketedClause=RoundBracketedClauseCS? ownedCurlyBracketedClause=CurlyBracketedClauseCS? (atPre?="@"
+	//	ownedRoundBracketedClause=RoundBracketedClauseCS? ownedCurlyBracketedClause=CurlyBracketedClauseCS? (isPre?="@"
 	//	"pre")?;
 	public EssentialOCLGrammarAccess.NameExpCSElements getNameExpCSAccess() {
 		return gaEssentialOCL.getNameExpCSAccess();
@@ -2278,7 +2278,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypedTypeRefCS:
-	//	ownedPathName=PathNameCS ownedTemplateBinding=TemplateBindingCS?;
+	//	ownedPathName=PathNameCS ownedBinding=TemplateBindingCS?;
 	public BaseGrammarAccess.TypedTypeRefCSElements getTypedTypeRefCSAccess() {
 		return gaEssentialOCL.getTypedTypeRefCSAccess();
 	}

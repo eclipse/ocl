@@ -772,7 +772,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	
 	/**
 	 * Constraint:
-	 *     ((name=UnrestrictedName | name=SINGLE_QUOTED_STRING) (value+=SINGLE_QUOTED_STRING | value+=ML_SINGLE_QUOTED_STRING)*)
+	 *     ((name=UnrestrictedName | name=SINGLE_QUOTED_STRING) (values+=SINGLE_QUOTED_STRING | values+=ML_SINGLE_QUOTED_STRING)*)
 	 */
 	protected void sequence_DetailCS(EObject context, DetailCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1055,7 +1055,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	
 	/**
 	 * Constraint:
-	 *     (ownedPathName=PathNameCS ownedTemplateBinding=TemplateBindingCS? ownedMultiplicity=MultiplicityCS?)
+	 *     (ownedPathName=PathNameCS ownedBinding=TemplateBindingCS? ownedMultiplicity=MultiplicityCS?)
 	 */
 	protected void sequence_TypedMultiplicityRefCS_TypedTypeRefCS(EObject context, TypedTypeRefCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

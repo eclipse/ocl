@@ -2978,16 +2978,16 @@ ruleNameExpCS returns [EObject current=null]
 )
 )?((
 (
-		lv_atPre_4_0=	'@' 
+		lv_isPre_4_0=	'@' 
     {
-        newLeafNode(lv_atPre_4_0, grammarAccess.getNameExpCSAccess().getAtPreCommercialAtKeyword_4_0_0());
+        newLeafNode(lv_isPre_4_0, grammarAccess.getNameExpCSAccess().getIsPreCommercialAtKeyword_4_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getNameExpCSRule());
 	        }
-       		setWithLastConsumed($current, "atPre", true, "@");
+       		setWithLastConsumed($current, "isPre", true, "@");
 	    }
 
 )
@@ -4901,16 +4901,16 @@ ruleTypedTypeRefCS returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getTypedTypeRefCSAccess().getOwnedTemplateBindingTemplateBindingCSParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getTypedTypeRefCSAccess().getOwnedBindingTemplateBindingCSParserRuleCall_1_0()); 
 	    }
-		lv_ownedTemplateBinding_1_0=ruleTemplateBindingCS		{
+		lv_ownedBinding_1_0=ruleTemplateBindingCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getTypedTypeRefCSRule());
 	        }
        		set(
        			$current, 
-       			"ownedTemplateBinding",
-        		lv_ownedTemplateBinding_1_0, 
+       			"ownedBinding",
+        		lv_ownedBinding_1_0, 
         		"TemplateBindingCS");
 	        afterParserOrEnumRuleCall();
 	    }

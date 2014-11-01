@@ -1603,13 +1603,13 @@ public interface BaseCSPackage extends EPackage {
 	int DETAIL_CS__NAME = NAMED_ELEMENT_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute list.
+	 * The feature id for the '<em><b>Values</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DETAIL_CS__VALUE = NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
+	int DETAIL_CS__VALUES = NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Detail CS</em>' class.
@@ -4271,13 +4271,13 @@ public interface BaseCSPackage extends EPackage {
 	int TYPED_TYPE_REF_CS__REFERRED_TYPE = TYPED_REF_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Owned Template Binding</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Binding</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING = TYPED_REF_CS_FEATURE_COUNT + 2;
+	int TYPED_TYPE_REF_CS__OWNED_BINDING = TYPED_REF_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
@@ -4555,15 +4555,15 @@ public interface BaseCSPackage extends EPackage {
 	EClass getDetailCS();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.ocl.examples.xtext.base.basecs.DetailCS#getValue <em>Value</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.eclipse.ocl.examples.xtext.base.basecs.DetailCS#getValues <em>Values</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Value</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.DetailCS#getValue()
+	 * @return the meta object for the attribute list '<em>Values</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.DetailCS#getValues()
 	 * @see #getDetailCS()
 	 * @generated
 	 */
-	EAttribute getDetailCS_Value();
+	EAttribute getDetailCS_Values();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.basecs.DocumentationCS <em>Documentation CS</em>}'.
@@ -5798,15 +5798,15 @@ public interface BaseCSPackage extends EPackage {
 	EReference getTypedTypeRefCS_ReferredType();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getOwnedTemplateBinding <em>Owned Template Binding</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getOwnedBinding <em>Owned Binding</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Template Binding</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getOwnedTemplateBinding()
+	 * @return the meta object for the containment reference '<em>Owned Binding</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getOwnedBinding()
 	 * @see #getTypedTypeRefCS()
 	 * @generated
 	 */
-	EReference getTypedTypeRefCS_OwnedTemplateBinding();
+	EReference getTypedTypeRefCS_OwnedBinding();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#isIsTypeof <em>Is Typeof</em>}'.
@@ -6067,12 +6067,12 @@ public interface BaseCSPackage extends EPackage {
 		EClass DETAIL_CS = eINSTANCE.getDetailCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>Values</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DETAIL_CS__VALUE = eINSTANCE.getDetailCS_Value();
+		EAttribute DETAIL_CS__VALUES = eINSTANCE.getDetailCS_Values();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.DocumentationCSImpl <em>Documentation CS</em>}' class.
@@ -7091,12 +7091,12 @@ public interface BaseCSPackage extends EPackage {
 		EReference TYPED_TYPE_REF_CS__REFERRED_TYPE = eINSTANCE.getTypedTypeRefCS_ReferredType();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Template Binding</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Owned Binding</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TYPED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING = eINSTANCE.getTypedTypeRefCS_OwnedTemplateBinding();
+		EReference TYPED_TYPE_REF_CS__OWNED_BINDING = eINSTANCE.getTypedTypeRefCS_OwnedBinding();
 
 		/**
 		 * The meta object literal for the '<em><b>Is Typeof</b></em>' attribute feature.

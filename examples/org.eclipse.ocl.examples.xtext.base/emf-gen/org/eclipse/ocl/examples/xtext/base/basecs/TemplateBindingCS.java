@@ -32,7 +32,7 @@ import org.eclipse.emf.common.util.EList;
 public interface TemplateBindingCS extends ElementRefCS {
 	/**
 	 * Returns the value of the '<em><b>Owning Element</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getOwnedTemplateBinding <em>Owned Template Binding</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getOwnedBinding <em>Owned Binding</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Template Bindable Element</em>' container reference isn't clear,
@@ -42,8 +42,8 @@ public interface TemplateBindingCS extends ElementRefCS {
 	 * @return the value of the '<em>Owning Element</em>' container reference.
 	 * @see #setOwningElement(TypedTypeRefCS)
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTemplateBindingCS_OwningElement()
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getOwnedTemplateBinding
-	 * @model opposite="ownedTemplateBinding" transient="false"
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getOwnedBinding
+	 * @model opposite="ownedBinding" transient="false"
 	 * @generated
 	 */
 	TypedTypeRefCS getOwningElement();

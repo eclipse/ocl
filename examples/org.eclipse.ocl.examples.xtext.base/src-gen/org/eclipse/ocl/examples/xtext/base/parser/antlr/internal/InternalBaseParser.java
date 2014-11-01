@@ -1740,23 +1740,23 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTypedTypeRefCS"
-    // ../org.eclipse.ocl.examples.xtext.base/src-gen/org/eclipse/ocl/examples/xtext/base/parser/antlr/internal/InternalBase.g:642:1: ruleTypedTypeRefCS returns [EObject current=null] : ( ( (lv_ownedPathName_0_0= rulePathNameCS ) ) ( (lv_ownedTemplateBinding_1_0= ruleTemplateBindingCS ) )? ) ;
+    // ../org.eclipse.ocl.examples.xtext.base/src-gen/org/eclipse/ocl/examples/xtext/base/parser/antlr/internal/InternalBase.g:642:1: ruleTypedTypeRefCS returns [EObject current=null] : ( ( (lv_ownedPathName_0_0= rulePathNameCS ) ) ( (lv_ownedBinding_1_0= ruleTemplateBindingCS ) )? ) ;
     public final EObject ruleTypedTypeRefCS() throws RecognitionException {
         EObject current = null;
 
         EObject lv_ownedPathName_0_0 = null;
 
-        EObject lv_ownedTemplateBinding_1_0 = null;
+        EObject lv_ownedBinding_1_0 = null;
 
 
          enterRule(); 
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.base/src-gen/org/eclipse/ocl/examples/xtext/base/parser/antlr/internal/InternalBase.g:645:28: ( ( ( (lv_ownedPathName_0_0= rulePathNameCS ) ) ( (lv_ownedTemplateBinding_1_0= ruleTemplateBindingCS ) )? ) )
-            // ../org.eclipse.ocl.examples.xtext.base/src-gen/org/eclipse/ocl/examples/xtext/base/parser/antlr/internal/InternalBase.g:646:1: ( ( (lv_ownedPathName_0_0= rulePathNameCS ) ) ( (lv_ownedTemplateBinding_1_0= ruleTemplateBindingCS ) )? )
+            // ../org.eclipse.ocl.examples.xtext.base/src-gen/org/eclipse/ocl/examples/xtext/base/parser/antlr/internal/InternalBase.g:645:28: ( ( ( (lv_ownedPathName_0_0= rulePathNameCS ) ) ( (lv_ownedBinding_1_0= ruleTemplateBindingCS ) )? ) )
+            // ../org.eclipse.ocl.examples.xtext.base/src-gen/org/eclipse/ocl/examples/xtext/base/parser/antlr/internal/InternalBase.g:646:1: ( ( (lv_ownedPathName_0_0= rulePathNameCS ) ) ( (lv_ownedBinding_1_0= ruleTemplateBindingCS ) )? )
             {
-            // ../org.eclipse.ocl.examples.xtext.base/src-gen/org/eclipse/ocl/examples/xtext/base/parser/antlr/internal/InternalBase.g:646:1: ( ( (lv_ownedPathName_0_0= rulePathNameCS ) ) ( (lv_ownedTemplateBinding_1_0= ruleTemplateBindingCS ) )? )
-            // ../org.eclipse.ocl.examples.xtext.base/src-gen/org/eclipse/ocl/examples/xtext/base/parser/antlr/internal/InternalBase.g:646:2: ( (lv_ownedPathName_0_0= rulePathNameCS ) ) ( (lv_ownedTemplateBinding_1_0= ruleTemplateBindingCS ) )?
+            // ../org.eclipse.ocl.examples.xtext.base/src-gen/org/eclipse/ocl/examples/xtext/base/parser/antlr/internal/InternalBase.g:646:1: ( ( (lv_ownedPathName_0_0= rulePathNameCS ) ) ( (lv_ownedBinding_1_0= ruleTemplateBindingCS ) )? )
+            // ../org.eclipse.ocl.examples.xtext.base/src-gen/org/eclipse/ocl/examples/xtext/base/parser/antlr/internal/InternalBase.g:646:2: ( (lv_ownedPathName_0_0= rulePathNameCS ) ) ( (lv_ownedBinding_1_0= ruleTemplateBindingCS ) )?
             {
             // ../org.eclipse.ocl.examples.xtext.base/src-gen/org/eclipse/ocl/examples/xtext/base/parser/antlr/internal/InternalBase.g:646:2: ( (lv_ownedPathName_0_0= rulePathNameCS ) )
             // ../org.eclipse.ocl.examples.xtext.base/src-gen/org/eclipse/ocl/examples/xtext/base/parser/antlr/internal/InternalBase.g:647:1: (lv_ownedPathName_0_0= rulePathNameCS )
@@ -1793,7 +1793,7 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.ocl.examples.xtext.base/src-gen/org/eclipse/ocl/examples/xtext/base/parser/antlr/internal/InternalBase.g:664:2: ( (lv_ownedTemplateBinding_1_0= ruleTemplateBindingCS ) )?
+            // ../org.eclipse.ocl.examples.xtext.base/src-gen/org/eclipse/ocl/examples/xtext/base/parser/antlr/internal/InternalBase.g:664:2: ( (lv_ownedBinding_1_0= ruleTemplateBindingCS ) )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -1802,18 +1802,18 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
             }
             switch (alt8) {
                 case 1 :
-                    // ../org.eclipse.ocl.examples.xtext.base/src-gen/org/eclipse/ocl/examples/xtext/base/parser/antlr/internal/InternalBase.g:665:1: (lv_ownedTemplateBinding_1_0= ruleTemplateBindingCS )
+                    // ../org.eclipse.ocl.examples.xtext.base/src-gen/org/eclipse/ocl/examples/xtext/base/parser/antlr/internal/InternalBase.g:665:1: (lv_ownedBinding_1_0= ruleTemplateBindingCS )
                     {
-                    // ../org.eclipse.ocl.examples.xtext.base/src-gen/org/eclipse/ocl/examples/xtext/base/parser/antlr/internal/InternalBase.g:665:1: (lv_ownedTemplateBinding_1_0= ruleTemplateBindingCS )
-                    // ../org.eclipse.ocl.examples.xtext.base/src-gen/org/eclipse/ocl/examples/xtext/base/parser/antlr/internal/InternalBase.g:666:3: lv_ownedTemplateBinding_1_0= ruleTemplateBindingCS
+                    // ../org.eclipse.ocl.examples.xtext.base/src-gen/org/eclipse/ocl/examples/xtext/base/parser/antlr/internal/InternalBase.g:665:1: (lv_ownedBinding_1_0= ruleTemplateBindingCS )
+                    // ../org.eclipse.ocl.examples.xtext.base/src-gen/org/eclipse/ocl/examples/xtext/base/parser/antlr/internal/InternalBase.g:666:3: lv_ownedBinding_1_0= ruleTemplateBindingCS
                     {
                     if ( state.backtracking==0 ) {
                        
-                      	        newCompositeNode(grammarAccess.getTypedTypeRefCSAccess().getOwnedTemplateBindingTemplateBindingCSParserRuleCall_1_0()); 
+                      	        newCompositeNode(grammarAccess.getTypedTypeRefCSAccess().getOwnedBindingTemplateBindingCSParserRuleCall_1_0()); 
                       	    
                     }
                     pushFollow(FollowSets000.FOLLOW_ruleTemplateBindingCS_in_ruleTypedTypeRefCS1440);
-                    lv_ownedTemplateBinding_1_0=ruleTemplateBindingCS();
+                    lv_ownedBinding_1_0=ruleTemplateBindingCS();
 
                     state._fsp--;
                     if (state.failed) return current;
@@ -1824,8 +1824,8 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
                       	        }
                              		set(
                              			current, 
-                             			"ownedTemplateBinding",
-                              		lv_ownedTemplateBinding_1_0, 
+                             			"ownedBinding",
+                              		lv_ownedBinding_1_0, 
                               		"TemplateBindingCS");
                       	        afterParserOrEnumRuleCall();
                       	    

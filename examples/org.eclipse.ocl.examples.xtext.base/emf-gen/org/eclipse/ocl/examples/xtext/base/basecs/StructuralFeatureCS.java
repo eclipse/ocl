@@ -12,7 +12,6 @@
 package org.eclipse.ocl.examples.xtext.base.basecs;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.ocl.examples.pivot.Property;
 
 
 /**
@@ -104,13 +103,4 @@ public interface StructuralFeatureCS extends FeatureCS {
 	 * @generated
 	 */
 	EList<SpecificationCS> getOwnedDefaultExpressions();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='ocl::Property{\n\t\t\t\t-- TODO\n\t\t\t\tname = name\n\t\t\t}'"
-	 * @generated
-	 */
-	Property ast();
 } // StructuralFeatureCS

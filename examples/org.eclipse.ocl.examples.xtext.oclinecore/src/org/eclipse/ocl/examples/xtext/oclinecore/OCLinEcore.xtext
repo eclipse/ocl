@@ -142,7 +142,7 @@ DataTypeCS returns base::DataTypeCS:
 ;
 
 DetailCS returns base::DetailCS:
-	name=(UnrestrictedName|SINGLE_QUOTED_STRING) '=' value+=(SINGLE_QUOTED_STRING|ML_SINGLE_QUOTED_STRING)*
+	name=(UnrestrictedName|SINGLE_QUOTED_STRING) '=' values+=(SINGLE_QUOTED_STRING|ML_SINGLE_QUOTED_STRING)*
 ;
 
 DocumentationCS returns base::DocumentationCS:

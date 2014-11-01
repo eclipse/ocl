@@ -59,7 +59,7 @@ TypedRefCS returns TypedRefCS:
 ;
 
 TypedTypeRefCS returns TypedTypeRefCS:
-	ownedPathName=PathNameCS (ownedTemplateBinding=TemplateBindingCS)?
+	ownedPathName=PathNameCS (ownedBinding=TemplateBindingCS)?
 ;
 
 UnreservedName returns ecore::EString: // Intended to be overridden

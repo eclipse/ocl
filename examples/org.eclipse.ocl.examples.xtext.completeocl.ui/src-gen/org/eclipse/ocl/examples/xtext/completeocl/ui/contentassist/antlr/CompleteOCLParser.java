@@ -219,7 +219,7 @@ public class CompleteOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getConstraintCSAccess().getNameAssignment_0_0(), "rule__ConstraintCS__NameAssignment_0_0");
 					put(grammarAccess.getConstraintCSAccess().getOwnedMessageSpecificationAssignment_0_1_1(), "rule__ConstraintCS__OwnedMessageSpecificationAssignment_0_1_1");
 					put(grammarAccess.getConstraintCSAccess().getOwnedSpecificationAssignment_2(), "rule__ConstraintCS__OwnedSpecificationAssignment_2");
-					put(grammarAccess.getDefOperationCSAccess().getStaticAssignment_0(), "rule__DefOperationCS__StaticAssignment_0");
+					put(grammarAccess.getDefOperationCSAccess().getIsStaticAssignment_0(), "rule__DefOperationCS__IsStaticAssignment_0");
 					put(grammarAccess.getDefOperationCSAccess().getOwnedSignatureAssignment_4(), "rule__DefOperationCS__OwnedSignatureAssignment_4");
 					put(grammarAccess.getDefOperationCSAccess().getNameAssignment_5(), "rule__DefOperationCS__NameAssignment_5");
 					put(grammarAccess.getDefOperationCSAccess().getOwnedParametersAssignment_7_0(), "rule__DefOperationCS__OwnedParametersAssignment_7_0");
@@ -228,7 +228,7 @@ public class CompleteOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDefOperationCSAccess().getOwnedSpecificationAssignment_12(), "rule__DefOperationCS__OwnedSpecificationAssignment_12");
 					put(grammarAccess.getDefParameterCSAccess().getNameAssignment_0(), "rule__DefParameterCS__NameAssignment_0");
 					put(grammarAccess.getDefParameterCSAccess().getOwnedTypeAssignment_2(), "rule__DefParameterCS__OwnedTypeAssignment_2");
-					put(grammarAccess.getDefPropertyCSAccess().getStaticAssignment_0(), "rule__DefPropertyCS__StaticAssignment_0");
+					put(grammarAccess.getDefPropertyCSAccess().getIsStaticAssignment_0(), "rule__DefPropertyCS__IsStaticAssignment_0");
 					put(grammarAccess.getDefPropertyCSAccess().getNameAssignment_4(), "rule__DefPropertyCS__NameAssignment_4");
 					put(grammarAccess.getDefPropertyCSAccess().getOwnedTypeAssignment_6(), "rule__DefPropertyCS__OwnedTypeAssignment_6");
 					put(grammarAccess.getDefPropertyCSAccess().getOwnedSpecificationAssignment_8(), "rule__DefPropertyCS__OwnedSpecificationAssignment_8");
@@ -321,7 +321,7 @@ public class CompleteOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNameExpCSAccess().getOwnedSquareBracketedClausesAssignment_1(), "rule__NameExpCS__OwnedSquareBracketedClausesAssignment_1");
 					put(grammarAccess.getNameExpCSAccess().getOwnedRoundBracketedClauseAssignment_2(), "rule__NameExpCS__OwnedRoundBracketedClauseAssignment_2");
 					put(grammarAccess.getNameExpCSAccess().getOwnedCurlyBracketedClauseAssignment_3(), "rule__NameExpCS__OwnedCurlyBracketedClauseAssignment_3");
-					put(grammarAccess.getNameExpCSAccess().getAtPreAssignment_4_0(), "rule__NameExpCS__AtPreAssignment_4_0");
+					put(grammarAccess.getNameExpCSAccess().getIsPreAssignment_4_0(), "rule__NameExpCS__IsPreAssignment_4_0");
 					put(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsAssignment_2_0_0(), "rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_0");
 					put(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsAssignment_2_0_1_1(), "rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_1_1");
 					put(grammarAccess.getCurlyBracketedClauseCSAccess().getValueAssignment_2_1(), "rule__CurlyBracketedClauseCS__ValueAssignment_2_1");
@@ -380,7 +380,7 @@ public class CompleteOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsAssignment_1_0_2_1(), "rule__TypeParameterCS__OwnedExtendsAssignment_1_0_2_1");
 					put(grammarAccess.getTypeParameterCSAccess().getOwnedSuperAssignment_1_1_1(), "rule__TypeParameterCS__OwnedSuperAssignment_1_1_1");
 					put(grammarAccess.getTypedTypeRefCSAccess().getOwnedPathNameAssignment_0(), "rule__TypedTypeRefCS__OwnedPathNameAssignment_0");
-					put(grammarAccess.getTypedTypeRefCSAccess().getOwnedTemplateBindingAssignment_1(), "rule__TypedTypeRefCS__OwnedTemplateBindingAssignment_1");
+					put(grammarAccess.getTypedTypeRefCSAccess().getOwnedBindingAssignment_1(), "rule__TypedTypeRefCS__OwnedBindingAssignment_1");
 					put(grammarAccess.getWildcardTypeRefCSAccess().getOwnedExtendsAssignment_2_0_1(), "rule__WildcardTypeRefCS__OwnedExtendsAssignment_2_0_1");
 					put(grammarAccess.getWildcardTypeRefCSAccess().getOwnedSuperAssignment_2_1_1(), "rule__WildcardTypeRefCS__OwnedSuperAssignment_2_1_1");
 				}

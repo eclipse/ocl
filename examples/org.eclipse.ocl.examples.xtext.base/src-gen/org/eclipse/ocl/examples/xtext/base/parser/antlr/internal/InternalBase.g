@@ -664,16 +664,16 @@ ruleTypedTypeRefCS returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getTypedTypeRefCSAccess().getOwnedTemplateBindingTemplateBindingCSParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getTypedTypeRefCSAccess().getOwnedBindingTemplateBindingCSParserRuleCall_1_0()); 
 	    }
-		lv_ownedTemplateBinding_1_0=ruleTemplateBindingCS		{
+		lv_ownedBinding_1_0=ruleTemplateBindingCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getTypedTypeRefCSRule());
 	        }
        		set(
        			$current, 
-       			"ownedTemplateBinding",
-        		lv_ownedTemplateBinding_1_0, 
+       			"ownedBinding",
+        		lv_ownedBinding_1_0, 
         		"TemplateBindingCS");
 	        afterParserOrEnumRuleCall();
 	    }

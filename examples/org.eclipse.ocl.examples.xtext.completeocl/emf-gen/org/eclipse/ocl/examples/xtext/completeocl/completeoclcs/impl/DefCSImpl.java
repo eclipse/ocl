@@ -30,7 +30,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpSpecificati
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.DefCSImpl#getOwningClassifierContextDecl <em>Owning Classifier Context Decl</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.DefCSImpl#getOwnedSpecification <em>Owned Specification</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.DefCSImpl#isStatic <em>Static</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.DefCSImpl#isIsStatic <em>Is Static</em>}</li>
  * </ul>
  * </p>
  *
@@ -51,24 +51,24 @@ public abstract class DefCSImpl
 	protected ExpSpecificationCS ownedSpecification;
 
 	/**
-	 * The default value of the '{@link #isStatic() <em>Static</em>}' attribute.
+	 * The default value of the '{@link #isIsStatic() <em>Is Static</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isStatic()
+	 * @see #isIsStatic()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean STATIC_EDEFAULT = false;
+	protected static final boolean IS_STATIC_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isStatic() <em>Static</em>}' attribute.
+	 * The cached value of the '{@link #isIsStatic() <em>Is Static</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isStatic()
+	 * @see #isIsStatic()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean static_ = STATIC_EDEFAULT;
+	protected boolean isStatic = IS_STATIC_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -150,8 +150,9 @@ public abstract class DefCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isStatic() {
-		return static_;
+	public boolean isIsStatic()
+	{
+		return isStatic;
 	}
 
 	/**
@@ -159,11 +160,12 @@ public abstract class DefCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStatic(boolean newStatic) {
-		boolean oldStatic = static_;
-		static_ = newStatic;
+	public void setIsStatic(boolean newIsStatic)
+	{
+		boolean oldIsStatic = isStatic;
+		isStatic = newIsStatic;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSPackage.DEF_CS__STATIC, oldStatic, static_));
+			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSPackage.DEF_CS__IS_STATIC, oldIsStatic, isStatic));
 	}
 
 	/**
@@ -241,8 +243,8 @@ public abstract class DefCSImpl
 				return getOwningClassifierContextDecl();
 			case CompleteOCLCSPackage.DEF_CS__OWNED_SPECIFICATION:
 				return getOwnedSpecification();
-			case CompleteOCLCSPackage.DEF_CS__STATIC:
-				return isStatic();
+			case CompleteOCLCSPackage.DEF_CS__IS_STATIC:
+				return isIsStatic();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -259,8 +261,8 @@ public abstract class DefCSImpl
 			case CompleteOCLCSPackage.DEF_CS__OWNED_SPECIFICATION:
 				setOwnedSpecification((ExpSpecificationCS)newValue);
 				return;
-			case CompleteOCLCSPackage.DEF_CS__STATIC:
-				setStatic((Boolean)newValue);
+			case CompleteOCLCSPackage.DEF_CS__IS_STATIC:
+				setIsStatic((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -278,8 +280,8 @@ public abstract class DefCSImpl
 			case CompleteOCLCSPackage.DEF_CS__OWNED_SPECIFICATION:
 				setOwnedSpecification((ExpSpecificationCS)null);
 				return;
-			case CompleteOCLCSPackage.DEF_CS__STATIC:
-				setStatic(STATIC_EDEFAULT);
+			case CompleteOCLCSPackage.DEF_CS__IS_STATIC:
+				setIsStatic(IS_STATIC_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -298,8 +300,8 @@ public abstract class DefCSImpl
 				return getOwningClassifierContextDecl() != null;
 			case CompleteOCLCSPackage.DEF_CS__OWNED_SPECIFICATION:
 				return ownedSpecification != null;
-			case CompleteOCLCSPackage.DEF_CS__STATIC:
-				return static_ != STATIC_EDEFAULT;
+			case CompleteOCLCSPackage.DEF_CS__IS_STATIC:
+				return isStatic != IS_STATIC_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

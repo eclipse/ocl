@@ -12,7 +12,6 @@
 package org.eclipse.ocl.examples.xtext.base.basecs;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.ocl.examples.pivot.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -119,14 +118,5 @@ public interface ClassCS extends NamedElementCS, TypeCS, TemplateableElementCS {
 	 * @generated
 	 */
 	EList<String> getQualifiers();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='pivot'"
-	 * @generated
-	 */
-	Type ast();
 
 } // ClassifierCS

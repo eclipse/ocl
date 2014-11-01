@@ -11,7 +11,6 @@
 
 package org.eclipse.ocl.examples.xtext.completeocl.completeoclcs;
 
-import org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
 
 /**
@@ -22,7 +21,6 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.FeatureContextDeclCS#getClass_ <em>Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.FeatureContextDeclCS#getOwnedType <em>Owned Type</em>}</li>
  * </ul>
  * </p>
@@ -33,32 +31,6 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
  */
 public interface FeatureContextDeclCS
 		extends ContextDeclCS {
-
-	/**
-	 * Returns the value of the '<em><b>Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Class</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Class</em>' reference.
-	 * @see #setClass(StructuredClassCS)
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage#getFeatureContextDeclCS_Class()
-	 * @model
-	 * @generated
-	 */
-	StructuredClassCS getClass_();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.FeatureContextDeclCS#getClass_ <em>Class</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Class</em>' reference.
-	 * @see #getClass_()
-	 * @generated
-	 */
-	void setClass(StructuredClassCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Type</b></em>' containment reference.

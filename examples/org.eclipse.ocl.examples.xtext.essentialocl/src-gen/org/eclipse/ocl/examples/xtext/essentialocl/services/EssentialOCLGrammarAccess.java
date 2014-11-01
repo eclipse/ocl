@@ -1619,20 +1619,20 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedCurlyBracketedClauseAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cOwnedCurlyBracketedClauseCurlyBracketedClauseCSParserRuleCall_3_0 = (RuleCall)cOwnedCurlyBracketedClauseAssignment_3.eContents().get(0);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Assignment cAtPreAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
-		private final Keyword cAtPreCommercialAtKeyword_4_0_0 = (Keyword)cAtPreAssignment_4_0.eContents().get(0);
+		private final Assignment cIsPreAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
+		private final Keyword cIsPreCommercialAtKeyword_4_0_0 = (Keyword)cIsPreAssignment_4_0.eContents().get(0);
 		private final Keyword cPreKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
 		
 		/// * A name expression is a generalised rule for expressions that start with a name and which may be followed by square, round or
 		// * curly bracket clauses and optionally an @pre as well.* /
 		//NameExpCS:
 		//	ownedPathName=PathNameCS ownedSquareBracketedClauses+=SquareBracketedClauseCS*
-		//	ownedRoundBracketedClause=RoundBracketedClauseCS? ownedCurlyBracketedClause=CurlyBracketedClauseCS? (atPre?="@"
+		//	ownedRoundBracketedClause=RoundBracketedClauseCS? ownedCurlyBracketedClause=CurlyBracketedClauseCS? (isPre?="@"
 		//	"pre")?;
 		public ParserRule getRule() { return rule; }
 
 		//ownedPathName=PathNameCS ownedSquareBracketedClauses+=SquareBracketedClauseCS*
-		//ownedRoundBracketedClause=RoundBracketedClauseCS? ownedCurlyBracketedClause=CurlyBracketedClauseCS? (atPre?="@"
+		//ownedRoundBracketedClause=RoundBracketedClauseCS? ownedCurlyBracketedClause=CurlyBracketedClauseCS? (isPre?="@"
 		//"pre")?
 		public Group getGroup() { return cGroup; }
 
@@ -1660,14 +1660,14 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//CurlyBracketedClauseCS
 		public RuleCall getOwnedCurlyBracketedClauseCurlyBracketedClauseCSParserRuleCall_3_0() { return cOwnedCurlyBracketedClauseCurlyBracketedClauseCSParserRuleCall_3_0; }
 
-		//(atPre?="@" "pre")?
+		//(isPre?="@" "pre")?
 		public Group getGroup_4() { return cGroup_4; }
 
-		//atPre?="@"
-		public Assignment getAtPreAssignment_4_0() { return cAtPreAssignment_4_0; }
+		//isPre?="@"
+		public Assignment getIsPreAssignment_4_0() { return cIsPreAssignment_4_0; }
 
 		//"@"
-		public Keyword getAtPreCommercialAtKeyword_4_0_0() { return cAtPreCommercialAtKeyword_4_0_0; }
+		public Keyword getIsPreCommercialAtKeyword_4_0_0() { return cIsPreCommercialAtKeyword_4_0_0; }
 
 		//"pre"
 		public Keyword getPreKeyword_4_1() { return cPreKeyword_4_1; }
@@ -3116,7 +3116,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	// * curly bracket clauses and optionally an @pre as well.* /
 	//NameExpCS:
 	//	ownedPathName=PathNameCS ownedSquareBracketedClauses+=SquareBracketedClauseCS*
-	//	ownedRoundBracketedClause=RoundBracketedClauseCS? ownedCurlyBracketedClause=CurlyBracketedClauseCS? (atPre?="@"
+	//	ownedRoundBracketedClause=RoundBracketedClauseCS? ownedCurlyBracketedClause=CurlyBracketedClauseCS? (isPre?="@"
 	//	"pre")?;
 	public NameExpCSElements getNameExpCSAccess() {
 		return pNameExpCS;
@@ -3416,7 +3416,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypedTypeRefCS:
-	//	ownedPathName=PathNameCS ownedTemplateBinding=TemplateBindingCS?;
+	//	ownedPathName=PathNameCS ownedBinding=TemplateBindingCS?;
 	public BaseGrammarAccess.TypedTypeRefCSElements getTypedTypeRefCSAccess() {
 		return gaBase.getTypedTypeRefCSAccess();
 	}

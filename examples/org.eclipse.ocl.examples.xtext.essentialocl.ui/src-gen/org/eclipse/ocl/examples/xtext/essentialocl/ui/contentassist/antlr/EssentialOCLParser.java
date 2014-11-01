@@ -221,7 +221,7 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNameExpCSAccess().getOwnedSquareBracketedClausesAssignment_1(), "rule__NameExpCS__OwnedSquareBracketedClausesAssignment_1");
 					put(grammarAccess.getNameExpCSAccess().getOwnedRoundBracketedClauseAssignment_2(), "rule__NameExpCS__OwnedRoundBracketedClauseAssignment_2");
 					put(grammarAccess.getNameExpCSAccess().getOwnedCurlyBracketedClauseAssignment_3(), "rule__NameExpCS__OwnedCurlyBracketedClauseAssignment_3");
-					put(grammarAccess.getNameExpCSAccess().getAtPreAssignment_4_0(), "rule__NameExpCS__AtPreAssignment_4_0");
+					put(grammarAccess.getNameExpCSAccess().getIsPreAssignment_4_0(), "rule__NameExpCS__IsPreAssignment_4_0");
 					put(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsAssignment_2_0_0(), "rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_0");
 					put(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsAssignment_2_0_1_1(), "rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_1_1");
 					put(grammarAccess.getCurlyBracketedClauseCSAccess().getValueAssignment_2_1(), "rule__CurlyBracketedClauseCS__ValueAssignment_2_1");
@@ -282,7 +282,7 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsAssignment_1_0_2_1(), "rule__TypeParameterCS__OwnedExtendsAssignment_1_0_2_1");
 					put(grammarAccess.getTypeParameterCSAccess().getOwnedSuperAssignment_1_1_1(), "rule__TypeParameterCS__OwnedSuperAssignment_1_1_1");
 					put(grammarAccess.getTypedTypeRefCSAccess().getOwnedPathNameAssignment_0(), "rule__TypedTypeRefCS__OwnedPathNameAssignment_0");
-					put(grammarAccess.getTypedTypeRefCSAccess().getOwnedTemplateBindingAssignment_1(), "rule__TypedTypeRefCS__OwnedTemplateBindingAssignment_1");
+					put(grammarAccess.getTypedTypeRefCSAccess().getOwnedBindingAssignment_1(), "rule__TypedTypeRefCS__OwnedBindingAssignment_1");
 					put(grammarAccess.getWildcardTypeRefCSAccess().getOwnedExtendsAssignment_2_0_1(), "rule__WildcardTypeRefCS__OwnedExtendsAssignment_2_0_1");
 					put(grammarAccess.getWildcardTypeRefCSAccess().getOwnedSuperAssignment_2_1_1(), "rule__WildcardTypeRefCS__OwnedSuperAssignment_2_1_1");
 				}

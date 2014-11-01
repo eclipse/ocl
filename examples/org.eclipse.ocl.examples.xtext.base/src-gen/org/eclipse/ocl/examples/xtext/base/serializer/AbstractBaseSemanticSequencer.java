@@ -187,7 +187,7 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 	
 	/**
 	 * Constraint:
-	 *     (ownedPathName=PathNameCS ownedTemplateBinding=TemplateBindingCS?)
+	 *     (ownedPathName=PathNameCS ownedBinding=TemplateBindingCS?)
 	 */
 	protected void sequence_TypedTypeRefCS(EObject context, TypedTypeRefCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

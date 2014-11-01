@@ -29,7 +29,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.DetailCSImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.DetailCSImpl#getValues <em>Values</em>}</li>
  * </ul>
  * </p>
  *
@@ -37,15 +37,14 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  */
 public class DetailCSImpl extends NamedElementCSImpl implements DetailCS {
 	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute list.
+	 * The cached value of the '{@link #getValues() <em>Values</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getValue()
+	 * @see #getValues()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<String> value;
-
+	protected EList<String> values;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,12 +69,13 @@ public class DetailCSImpl extends NamedElementCSImpl implements DetailCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<String> getValue() {
-		if (value == null)
+	public EList<String> getValues()
+	{
+		if (values == null)
 		{
-			value = new EDataTypeUniqueEList<String>(String.class, this, BaseCSPackage.DETAIL_CS__VALUE);
+			values = new EDataTypeUniqueEList<String>(String.class, this, BaseCSPackage.DETAIL_CS__VALUES);
 		}
-		return value;
+		return values;
 	}
 
 	/**
@@ -98,8 +98,8 @@ public class DetailCSImpl extends NamedElementCSImpl implements DetailCS {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case BaseCSPackage.DETAIL_CS__VALUE:
-				return getValue();
+			case BaseCSPackage.DETAIL_CS__VALUES:
+				return getValues();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -114,9 +114,9 @@ public class DetailCSImpl extends NamedElementCSImpl implements DetailCS {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case BaseCSPackage.DETAIL_CS__VALUE:
-				getValue().clear();
-				getValue().addAll((Collection<? extends String>)newValue);
+			case BaseCSPackage.DETAIL_CS__VALUES:
+				getValues().clear();
+				getValues().addAll((Collection<? extends String>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -131,8 +131,8 @@ public class DetailCSImpl extends NamedElementCSImpl implements DetailCS {
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.DETAIL_CS__VALUE:
-				getValue().clear();
+			case BaseCSPackage.DETAIL_CS__VALUES:
+				getValues().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -147,8 +147,8 @@ public class DetailCSImpl extends NamedElementCSImpl implements DetailCS {
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.DETAIL_CS__VALUE:
-				return value != null && !value.isEmpty();
+			case BaseCSPackage.DETAIL_CS__VALUES:
+				return values != null && !values.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

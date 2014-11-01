@@ -12,7 +12,6 @@
 package org.eclipse.ocl.examples.xtext.base.basecs;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.ocl.examples.pivot.Operation;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,15 +35,6 @@ import org.eclipse.ocl.examples.pivot.Operation;
  * @generated
  */
 public interface OperationCS extends FeatureCS, TemplateableElementCS {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='ocl::Operation {\n\t\t\t\t-- TODO\n\t\t\t\tname = name\n\t\t\t}'"
-	 * @generated
-	 */
-	Operation ast();
-
 	/**
 	 * Returns the value of the '<em><b>Owning Class</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS#getOwnedOperations <em>Owned Operations</em>}'.

@@ -704,7 +704,7 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	/**
 	 * Constraint:
 	 *     (
-	 *         static?='static'? 
+	 *         isStatic?='static'? 
 	 *         ownedSignature=TemplateSignatureCS? 
 	 *         name=UnrestrictedName 
 	 *         (ownedParameters+=DefParameterCS ownedParameters+=DefParameterCS*)? 
@@ -728,7 +728,7 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	
 	/**
 	 * Constraint:
-	 *     (static?='static'? name=UnrestrictedName ownedType=TypeExpCS ownedSpecification=SpecificationCS)
+	 *     (isStatic?='static'? name=UnrestrictedName ownedType=TypeExpCS ownedSpecification=SpecificationCS)
 	 */
 	protected void sequence_DefPropertyCS(EObject context, DefPropertyCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

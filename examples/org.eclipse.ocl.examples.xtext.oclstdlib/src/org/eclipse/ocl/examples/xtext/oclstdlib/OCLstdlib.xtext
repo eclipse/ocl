@@ -107,7 +107,7 @@ ClassCS returns base::ClassCS:
 ;
 
 DetailCS returns base::DetailCS:
-	name=(Name|SINGLE_QUOTED_STRING) '=' value+=(SINGLE_QUOTED_STRING|ML_SINGLE_QUOTED_STRING)*
+	name=(Name|SINGLE_QUOTED_STRING) '=' values+=(SINGLE_QUOTED_STRING|ML_SINGLE_QUOTED_STRING)*
 ;
 
 DocumentationCS returns base::DocumentationCS:
@@ -238,7 +238,7 @@ TypedRefCS returns base::TypedRefCS:
 
 TypedTypeRefCS returns base::TypedTypeRefCS:
     (isTypeof?='typeof' '(' ownedPathName=LibPathNameCS ')')
-  | (ownedPathName=LibPathNameCS (ownedTemplateBinding=TemplateBindingCS)?)
+  | (ownedPathName=LibPathNameCS (ownedBinding=TemplateBindingCS)?)
 ;
 
 //---------------------------------------------------------------------------------

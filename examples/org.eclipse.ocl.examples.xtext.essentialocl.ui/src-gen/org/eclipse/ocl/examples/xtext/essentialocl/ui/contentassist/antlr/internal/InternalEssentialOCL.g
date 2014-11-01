@@ -6529,9 +6529,9 @@ rule__NameExpCS__Group_4__0__Impl
     }
 :
 (
-{ before(grammarAccess.getNameExpCSAccess().getAtPreAssignment_4_0()); }
-(rule__NameExpCS__AtPreAssignment_4_0)
-{ after(grammarAccess.getNameExpCSAccess().getAtPreAssignment_4_0()); }
+{ before(grammarAccess.getNameExpCSAccess().getIsPreAssignment_4_0()); }
+(rule__NameExpCS__IsPreAssignment_4_0)
+{ after(grammarAccess.getNameExpCSAccess().getIsPreAssignment_4_0()); }
 )
 
 ;
@@ -10391,9 +10391,9 @@ rule__TypedTypeRefCS__Group__1__Impl
     }
 :
 (
-{ before(grammarAccess.getTypedTypeRefCSAccess().getOwnedTemplateBindingAssignment_1()); }
-(rule__TypedTypeRefCS__OwnedTemplateBindingAssignment_1)?
-{ after(grammarAccess.getTypedTypeRefCSAccess().getOwnedTemplateBindingAssignment_1()); }
+{ before(grammarAccess.getTypedTypeRefCSAccess().getOwnedBindingAssignment_1()); }
+(rule__TypedTypeRefCS__OwnedBindingAssignment_1)?
+{ after(grammarAccess.getTypedTypeRefCSAccess().getOwnedBindingAssignment_1()); }
 )
 
 ;
@@ -11556,22 +11556,22 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__NameExpCS__AtPreAssignment_4_0
+rule__NameExpCS__IsPreAssignment_4_0
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getNameExpCSAccess().getAtPreCommercialAtKeyword_4_0_0()); }
+{ before(grammarAccess.getNameExpCSAccess().getIsPreCommercialAtKeyword_4_0_0()); }
 (
-{ before(grammarAccess.getNameExpCSAccess().getAtPreCommercialAtKeyword_4_0_0()); }
+{ before(grammarAccess.getNameExpCSAccess().getIsPreCommercialAtKeyword_4_0_0()); }
 
 	'@' 
 
-{ after(grammarAccess.getNameExpCSAccess().getAtPreCommercialAtKeyword_4_0_0()); }
+{ after(grammarAccess.getNameExpCSAccess().getIsPreCommercialAtKeyword_4_0_0()); }
 )
 
-{ after(grammarAccess.getNameExpCSAccess().getAtPreCommercialAtKeyword_4_0_0()); }
+{ after(grammarAccess.getNameExpCSAccess().getIsPreCommercialAtKeyword_4_0_0()); }
 )
 
 ;
@@ -12485,14 +12485,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__TypedTypeRefCS__OwnedTemplateBindingAssignment_1
+rule__TypedTypeRefCS__OwnedBindingAssignment_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getTypedTypeRefCSAccess().getOwnedTemplateBindingTemplateBindingCSParserRuleCall_1_0()); }
-	ruleTemplateBindingCS{ after(grammarAccess.getTypedTypeRefCSAccess().getOwnedTemplateBindingTemplateBindingCSParserRuleCall_1_0()); }
+{ before(grammarAccess.getTypedTypeRefCSAccess().getOwnedBindingTemplateBindingCSParserRuleCall_1_0()); }
+	ruleTemplateBindingCS{ after(grammarAccess.getTypedTypeRefCSAccess().getOwnedBindingTemplateBindingCSParserRuleCall_1_0()); }
 )
 
 ;

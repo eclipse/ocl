@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.base.basecs;
 
-import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
-
 
 
 /**
@@ -56,14 +54,5 @@ public interface EnumerationLiteralCS extends NamedElementCS {
 	 * @generated
 	 */
 	void setValue(int value);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='ocl::EnumerationLiteral {\n\t\t\t\tname = name\n\t\t\t}'"
-	 * @generated
-	 */
-	EnumerationLiteral ast();
 
 } // EnumLiteralCS

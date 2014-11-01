@@ -102,13 +102,4 @@ public interface PackageCS extends PackageOwnerCS, NamespaceCS {
 	 */
 	void setNsURI(String value);
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='ocl::Package{\r\n\t\t\t\t-- TODO\r\n\t\t\t\tname = name,\r\n\t\t\t\townedPackages = ownedPackages.ast()\r\n\t\t\t}'"
-	 * @generated
-	 */
-	org.eclipse.ocl.examples.pivot.Package ast();
-
 } // PackageCS

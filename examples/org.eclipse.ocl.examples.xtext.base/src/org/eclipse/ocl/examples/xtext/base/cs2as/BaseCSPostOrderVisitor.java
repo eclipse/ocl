@@ -164,7 +164,7 @@ public class BaseCSPostOrderVisitor extends AbstractExtendingBaseCSVisitor<Conti
 		if (pivotElement != null) {
 			context.handleVisitNamedElement(csDetail, pivotElement);
 //			refreshPivotList(Detail.class, pivotElement.getOwnedDetail(), csDocumentation.getOwnedDetail());
-			List<String> newValues = csDetail.getValue();
+			List<String> newValues = csDetail.getValues();
 			List<String> pivotValues = pivotElement.getValue();
 			pivotValues.clear();
 			pivotValues.addAll(newValues);

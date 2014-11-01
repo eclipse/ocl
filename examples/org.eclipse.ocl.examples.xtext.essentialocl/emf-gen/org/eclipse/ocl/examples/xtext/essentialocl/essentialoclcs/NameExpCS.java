@@ -25,7 +25,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getOwnedPathName <em>Owned Path Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#isAtPre <em>At Pre</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#isIsPre <em>Is Pre</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getOwnedCurlyBracketedClause <em>Owned Curly Bracketed Clause</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getOwnedRoundBracketedClause <em>Owned Round Bracketed Clause</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getOwnedSquareBracketedClauses <em>Owned Square Bracketed Clauses</em>}</li>
@@ -68,31 +68,31 @@ public interface NameExpCS
 	void setOwnedPathName(PathNameCS value);
 
 	/**
-	 * Returns the value of the '<em><b>At Pre</b></em>' attribute.
+	 * Returns the value of the '<em><b>Is Pre</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>At Pre</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Is Pre</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>At Pre</em>' attribute.
-	 * @see #setAtPre(boolean)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getNameExpCS_AtPre()
+	 * @return the value of the '<em>Is Pre</em>' attribute.
+	 * @see #setIsPre(boolean)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getNameExpCS_IsPre()
 	 * @model default="false"
 	 * @generated
 	 */
-	boolean isAtPre();
+	boolean isIsPre();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#isAtPre <em>At Pre</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#isIsPre <em>Is Pre</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>At Pre</em>' attribute.
-	 * @see #isAtPre()
+	 * @param value the new value of the '<em>Is Pre</em>' attribute.
+	 * @see #isIsPre()
 	 * @generated
 	 */
-	void setAtPre(boolean value);
+	void setIsPre(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Curly Bracketed Clause</b></em>' containment reference.

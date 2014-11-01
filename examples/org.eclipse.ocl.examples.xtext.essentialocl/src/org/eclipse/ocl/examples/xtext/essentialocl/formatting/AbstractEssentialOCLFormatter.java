@@ -73,7 +73,7 @@ public abstract class AbstractEssentialOCLFormatter extends AbstractBaseFormatte
 	}
 
 	protected void configureNameExpCS(FormattingConfig c, NameExpCSElements a) {
-		c.setNoSpace().after(a.getAtPreCommercialAtKeyword_4_0_0());
+		c.setNoSpace().after(a.getIsPreCommercialAtKeyword_4_0_0());
 	}
 
 	protected void configureNavigatingCommaArgCS(FormattingConfig c, NavigatingCommaArgCSElements a) {

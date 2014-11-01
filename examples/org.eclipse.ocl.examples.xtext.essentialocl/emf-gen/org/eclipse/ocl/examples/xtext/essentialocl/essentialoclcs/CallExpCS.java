@@ -22,6 +22,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CallExpCS#getOwnedSource <em>Owned Source</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CallExpCS#getOwnedPathName <em>Owned Path Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CallExpCS#isIsPre <em>Is Pre</em>}</li>
  * </ul>
  * </p>
  *
@@ -82,5 +83,31 @@ public interface CallExpCS extends ExpCS
 	 * @generated
 	 */
 	void setOwnedPathName(PathNameCS value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Pre</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Pre</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Pre</em>' attribute.
+	 * @see #setIsPre(boolean)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getCallExpCS_IsPre()
+	 * @model
+	 * @generated
+	 */
+	boolean isIsPre();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CallExpCS#isIsPre <em>Is Pre</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Pre</em>' attribute.
+	 * @see #isIsPre()
+	 * @generated
+	 */
+	void setIsPre(boolean value);
 
 } // CallExpCS

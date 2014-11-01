@@ -10,20 +10,16 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.base.basecs.impl;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
 import org.eclipse.ocl.examples.xtext.base.basecs.EnumerationCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.EnumerationLiteralCS;
@@ -86,33 +82,6 @@ public class EnumerationCSImpl extends ClassCSImpl implements EnumerationCS
 			ownedLiterals = new EObjectContainmentEList<EnumerationLiteralCS>(EnumerationLiteralCS.class, this, BaseCSPackage.ENUMERATION_CS__OWNED_LITERALS);
 		}
 		return ownedLiterals;
-	}
-
-	/**
-	 * The cached invocation delegate for the '{@link #ast() <em>Ast</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ast()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final EOperation.Internal.InvocationDelegate AST__EINVOCATION_DELEGATE = ((EOperation.Internal)BaseCSPackage.Literals.ENUMERATION_CS.getEOperations().get(0)).getInvocationDelegate();
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Enumeration ast()
-	{
-		try
-		{
-			return (Enumeration)AST__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		}
-		catch (InvocationTargetException ite)
-		{
-			throw new WrappedException(ite);
-		}
 	}
 
 	/**

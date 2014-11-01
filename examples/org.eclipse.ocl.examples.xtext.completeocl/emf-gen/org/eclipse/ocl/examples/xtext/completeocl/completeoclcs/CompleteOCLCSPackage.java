@@ -337,13 +337,13 @@ public interface CompleteOCLCSPackage
 	int CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME = CONTEXT_DECL_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Referred Classifier</b></em>' reference.
+	 * The feature id for the '<em><b>Referred Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER_CONTEXT_DECL_CS__REFERRED_CLASSIFIER = CONTEXT_DECL_CS_FEATURE_COUNT + 2;
+	int CLASSIFIER_CONTEXT_DECL_CS__REFERRED_CLASS = CONTEXT_DECL_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
@@ -590,13 +590,13 @@ public interface CompleteOCLCSPackage
 	int DEF_CS__OWNED_SPECIFICATION = BaseCSPackage.TYPED_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Static</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS__STATIC = BaseCSPackage.TYPED_ELEMENT_CS_FEATURE_COUNT + 2;
+	int DEF_CS__IS_STATIC = BaseCSPackage.TYPED_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Def CS</em>' class.
@@ -717,13 +717,13 @@ public interface CompleteOCLCSPackage
 	int DEF_OPERATION_CS__OWNED_SPECIFICATION = DEF_CS__OWNED_SPECIFICATION;
 
 	/**
-	 * The feature id for the '<em><b>Static</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_OPERATION_CS__STATIC = DEF_CS__STATIC;
+	int DEF_OPERATION_CS__IS_STATIC = DEF_CS__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Owned Signature</b></em>' containment reference.
@@ -862,13 +862,13 @@ public interface CompleteOCLCSPackage
 	int DEF_PROPERTY_CS__OWNED_SPECIFICATION = DEF_CS__OWNED_SPECIFICATION;
 
 	/**
-	 * The feature id for the '<em><b>Static</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_PROPERTY_CS__STATIC = DEF_CS__STATIC;
+	int DEF_PROPERTY_CS__IS_STATIC = DEF_CS__IS_STATIC;
 
 	/**
 	 * The number of structural features of the '<em>Def Property CS</em>' class.
@@ -944,22 +944,13 @@ public interface CompleteOCLCSPackage
 	int FEATURE_CONTEXT_DECL_CS__OWNED_PATH_NAME = CONTEXT_DECL_CS__OWNED_PATH_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_CONTEXT_DECL_CS__CLASS = CONTEXT_DECL_CS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CONTEXT_DECL_CS__OWNED_TYPE = CONTEXT_DECL_CS_FEATURE_COUNT + 1;
+	int FEATURE_CONTEXT_DECL_CS__OWNED_TYPE = CONTEXT_DECL_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Feature Context Decl CS</em>' class.
@@ -968,7 +959,7 @@ public interface CompleteOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT = CONTEXT_DECL_CS_FEATURE_COUNT + 2;
+	int FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT = CONTEXT_DECL_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.IncludeCSImpl <em>Include CS</em>}' class.
@@ -1198,15 +1189,6 @@ public interface CompleteOCLCSPackage
 	int OPERATION_CONTEXT_DECL_CS__OWNED_PATH_NAME = FEATURE_CONTEXT_DECL_CS__OWNED_PATH_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_CONTEXT_DECL_CS__CLASS = FEATURE_CONTEXT_DECL_CS__CLASS;
-
-	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1432,15 +1414,6 @@ public interface CompleteOCLCSPackage
 	int PROPERTY_CONTEXT_DECL_CS__OWNED_PATH_NAME = FEATURE_CONTEXT_DECL_CS__OWNED_PATH_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_CONTEXT_DECL_CS__CLASS = FEATURE_CONTEXT_DECL_CS__CLASS;
-
-	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1494,17 +1467,6 @@ public interface CompleteOCLCSPackage
 	 * @generated
 	 */
 	EClass getFeatureContextDeclCS();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.FeatureContextDeclCS#getClass_ <em>Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Class</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.FeatureContextDeclCS#getClass_()
-	 * @see #getFeatureContextDeclCS()
-	 * @generated
-	 */
-	EReference getFeatureContextDeclCS_Class();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.FeatureContextDeclCS#getOwnedType <em>Owned Type</em>}'.
@@ -1686,15 +1648,15 @@ public interface CompleteOCLCSPackage
 	EAttribute getClassifierContextDeclCS_SelfName();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getReferredClassifier <em>Referred Classifier</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getReferredClass <em>Referred Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Referred Classifier</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getReferredClassifier()
+	 * @return the meta object for the reference '<em>Referred Class</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getReferredClass()
 	 * @see #getClassifierContextDeclCS()
 	 * @generated
 	 */
-	EReference getClassifierContextDeclCS_ReferredClassifier();
+	EReference getClassifierContextDeclCS_ReferredClass();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS#getOwnedInvariants <em>Owned Invariants</em>}'.
@@ -1815,15 +1777,15 @@ public interface CompleteOCLCSPackage
 	EReference getDefCS_OwnedSpecification();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS#isStatic <em>Static</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS#isIsStatic <em>Is Static</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Static</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS#isStatic()
+	 * @return the meta object for the attribute '<em>Is Static</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS#isIsStatic()
 	 * @see #getDefCS()
 	 * @generated
 	 */
-	EAttribute getDefCS_Static();
+	EAttribute getDefCS_IsStatic();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefOperationCS <em>Def Operation CS</em>}'.
@@ -1955,14 +1917,6 @@ public interface CompleteOCLCSPackage
 		 * @generated
 		 */
 		EClass FEATURE_CONTEXT_DECL_CS = eINSTANCE.getFeatureContextDeclCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Class</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FEATURE_CONTEXT_DECL_CS__CLASS = eINSTANCE.getFeatureContextDeclCS_Class();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Type</b></em>' containment reference feature.
@@ -2105,12 +2059,12 @@ public interface CompleteOCLCSPackage
 		EAttribute CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME = eINSTANCE.getClassifierContextDeclCS_SelfName();
 
 		/**
-		 * The meta object literal for the '<em><b>Referred Classifier</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Referred Class</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CLASSIFIER_CONTEXT_DECL_CS__REFERRED_CLASSIFIER = eINSTANCE.getClassifierContextDeclCS_ReferredClassifier();
+		EReference CLASSIFIER_CONTEXT_DECL_CS__REFERRED_CLASS = eINSTANCE.getClassifierContextDeclCS_ReferredClass();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Invariants</b></em>' containment reference list feature.
@@ -2189,12 +2143,12 @@ public interface CompleteOCLCSPackage
 		EReference DEF_CS__OWNED_SPECIFICATION = eINSTANCE.getDefCS_OwnedSpecification();
 
 		/**
-		 * The meta object literal for the '<em><b>Static</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Is Static</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DEF_CS__STATIC = eINSTANCE.getDefCS_Static();
+		EAttribute DEF_CS__IS_STATIC = eINSTANCE.getDefCS_IsStatic();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.DefOperationCSImpl <em>Def Operation CS</em>}' class.

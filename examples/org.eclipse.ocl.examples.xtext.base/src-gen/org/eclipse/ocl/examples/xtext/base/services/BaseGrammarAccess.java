@@ -405,14 +405,14 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cOwnedPathNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cOwnedPathNamePathNameCSParserRuleCall_0_0 = (RuleCall)cOwnedPathNameAssignment_0.eContents().get(0);
-		private final Assignment cOwnedTemplateBindingAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOwnedTemplateBindingTemplateBindingCSParserRuleCall_1_0 = (RuleCall)cOwnedTemplateBindingAssignment_1.eContents().get(0);
+		private final Assignment cOwnedBindingAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOwnedBindingTemplateBindingCSParserRuleCall_1_0 = (RuleCall)cOwnedBindingAssignment_1.eContents().get(0);
 		
 		//TypedTypeRefCS:
-		//	ownedPathName=PathNameCS ownedTemplateBinding=TemplateBindingCS?;
+		//	ownedPathName=PathNameCS ownedBinding=TemplateBindingCS?;
 		public ParserRule getRule() { return rule; }
 
-		//ownedPathName=PathNameCS ownedTemplateBinding=TemplateBindingCS?
+		//ownedPathName=PathNameCS ownedBinding=TemplateBindingCS?
 		public Group getGroup() { return cGroup; }
 
 		//ownedPathName=PathNameCS
@@ -421,11 +421,11 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		//PathNameCS
 		public RuleCall getOwnedPathNamePathNameCSParserRuleCall_0_0() { return cOwnedPathNamePathNameCSParserRuleCall_0_0; }
 
-		//ownedTemplateBinding=TemplateBindingCS?
-		public Assignment getOwnedTemplateBindingAssignment_1() { return cOwnedTemplateBindingAssignment_1; }
+		//ownedBinding=TemplateBindingCS?
+		public Assignment getOwnedBindingAssignment_1() { return cOwnedBindingAssignment_1; }
 
 		//TemplateBindingCS
-		public RuleCall getOwnedTemplateBindingTemplateBindingCSParserRuleCall_1_0() { return cOwnedTemplateBindingTemplateBindingCSParserRuleCall_1_0; }
+		public RuleCall getOwnedBindingTemplateBindingCSParserRuleCall_1_0() { return cOwnedBindingTemplateBindingCSParserRuleCall_1_0; }
 	}
 
 	public class UnreservedNameElements extends AbstractParserRuleElementFinder {
@@ -846,7 +846,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypedTypeRefCS:
-	//	ownedPathName=PathNameCS ownedTemplateBinding=TemplateBindingCS?;
+	//	ownedPathName=PathNameCS ownedBinding=TemplateBindingCS?;
 	public TypedTypeRefCSElements getTypedTypeRefCSAccess() {
 		return pTypedTypeRefCS;
 	}

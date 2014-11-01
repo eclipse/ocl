@@ -25,7 +25,6 @@ import org.eclipse.ocl.examples.pivot.Iteration;
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IterationCallExpCS#getReferredIteration <em>Referred Iteration</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IterationCallExpCS#getOwnedIterators <em>Owned Iterators</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IterationCallExpCS#getOwnedArguments <em>Owned Arguments</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IterationCallExpCS#isIsPre <em>Is Pre</em>}</li>
  * </ul>
  * </p>
  *
@@ -92,31 +91,5 @@ public interface IterationCallExpCS extends CallExpCS
 	 * @generated
 	 */
 	EList<ExpCS> getOwnedArguments();
-
-	/**
-	 * Returns the value of the '<em><b>Is Pre</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Is Pre</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Pre</em>' attribute.
-	 * @see #setIsPre(boolean)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getIterationCallExpCS_IsPre()
-	 * @model
-	 * @generated
-	 */
-	boolean isIsPre();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IterationCallExpCS#isIsPre <em>Is Pre</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Pre</em>' attribute.
-	 * @see #isIsPre()
-	 * @generated
-	 */
-	void setIsPre(boolean value);
 
 } // IterationCallExpCS

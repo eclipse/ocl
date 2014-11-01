@@ -471,7 +471,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 
 	protected void resolveAtPre(@Nullable NameExpCS csNameExp, @NonNull FeatureCallExp featureCallExp) {
 		if (csNameExp != null) {
-			featureCallExp.setIsPre(csNameExp.isAtPre());
+			featureCallExp.setIsPre(csNameExp.isIsPre());
 		}
 	}
 

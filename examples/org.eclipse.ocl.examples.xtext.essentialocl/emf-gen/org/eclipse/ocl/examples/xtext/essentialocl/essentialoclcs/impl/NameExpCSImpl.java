@@ -43,7 +43,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getOwnedPathName <em>Owned Path Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#isAtPre <em>At Pre</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#isIsPre <em>Is Pre</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getOwnedCurlyBracketedClause <em>Owned Curly Bracketed Clause</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getOwnedRoundBracketedClause <em>Owned Round Bracketed Clause</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getOwnedSquareBracketedClauses <em>Owned Square Bracketed Clauses</em>}</li>
@@ -69,24 +69,24 @@ public class NameExpCSImpl
 	protected PathNameCS ownedPathName;
 
 	/**
-	 * The default value of the '{@link #isAtPre() <em>At Pre</em>}' attribute.
+	 * The default value of the '{@link #isIsPre() <em>Is Pre</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isAtPre()
+	 * @see #isIsPre()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean AT_PRE_EDEFAULT = false;
+	protected static final boolean IS_PRE_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isAtPre() <em>At Pre</em>}' attribute.
+	 * The cached value of the '{@link #isIsPre() <em>Is Pre</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isAtPre()
+	 * @see #isIsPre()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean atPre = AT_PRE_EDEFAULT;
+	protected boolean isPre = IS_PRE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getOwnedCurlyBracketedClause() <em>Owned Curly Bracketed Clause</em>}' containment reference.
@@ -210,6 +210,29 @@ public class NameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isIsPre()
+	{
+		return isPre;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsPre(boolean newIsPre)
+	{
+		boolean oldIsPre = isPre;
+		isPre = newIsPre;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAME_EXP_CS__IS_PRE, oldIsPre, isPre));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Type getSourceType()
 	{
 		return sourceType;
@@ -249,27 +272,6 @@ public class NameExpCSImpl
 		sourceTypeValue = newSourceTypeValue;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAME_EXP_CS__SOURCE_TYPE_VALUE, oldSourceTypeValue, sourceTypeValue));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isAtPre() {
-		return atPre;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAtPre(boolean newAtPre) {
-		boolean oldAtPre = atPre;
-		atPre = newAtPre;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAME_EXP_CS__AT_PRE, oldAtPre, atPre));
 	}
 
 	/**
@@ -472,8 +474,8 @@ public class NameExpCSImpl
 		{
 			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_PATH_NAME:
 				return getOwnedPathName();
-			case EssentialOCLCSPackage.NAME_EXP_CS__AT_PRE:
-				return isAtPre();
+			case EssentialOCLCSPackage.NAME_EXP_CS__IS_PRE:
+				return isIsPre();
 			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
 				return getOwnedCurlyBracketedClause();
 			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_ROUND_BRACKETED_CLAUSE:
@@ -501,8 +503,8 @@ public class NameExpCSImpl
 			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_PATH_NAME:
 				setOwnedPathName((PathNameCS)newValue);
 				return;
-			case EssentialOCLCSPackage.NAME_EXP_CS__AT_PRE:
-				setAtPre((Boolean)newValue);
+			case EssentialOCLCSPackage.NAME_EXP_CS__IS_PRE:
+				setIsPre((Boolean)newValue);
 				return;
 			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
 				setOwnedCurlyBracketedClause((CurlyBracketedClauseCS)newValue);
@@ -536,8 +538,8 @@ public class NameExpCSImpl
 			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_PATH_NAME:
 				setOwnedPathName((PathNameCS)null);
 				return;
-			case EssentialOCLCSPackage.NAME_EXP_CS__AT_PRE:
-				setAtPre(AT_PRE_EDEFAULT);
+			case EssentialOCLCSPackage.NAME_EXP_CS__IS_PRE:
+				setIsPre(IS_PRE_EDEFAULT);
 				return;
 			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
 				setOwnedCurlyBracketedClause((CurlyBracketedClauseCS)null);
@@ -569,8 +571,8 @@ public class NameExpCSImpl
 		{
 			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_PATH_NAME:
 				return ownedPathName != null;
-			case EssentialOCLCSPackage.NAME_EXP_CS__AT_PRE:
-				return atPre != AT_PRE_EDEFAULT;
+			case EssentialOCLCSPackage.NAME_EXP_CS__IS_PRE:
+				return isPre != IS_PRE_EDEFAULT;
 			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
 				return ownedCurlyBracketedClause != null;
 			case EssentialOCLCSPackage.NAME_EXP_CS__OWNED_ROUND_BRACKETED_CLAUSE:
