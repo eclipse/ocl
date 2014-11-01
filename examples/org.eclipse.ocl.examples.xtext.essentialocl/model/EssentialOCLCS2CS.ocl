@@ -84,7 +84,7 @@ def : cst() : ExpCS =
 	else if ownedSquareBracketedClauses->notEmpty() then
 		AssociationClassCallExpCS {
 			referredAssociation = null,
-			isPre = atPre
+			isPre = isPre
 		}
 	else if ownedRoundBracketedClause <> null then
 		let exampleOperation = null --lookupExampleOperation(ownedPathName, ownedRoundBracketedClause)
@@ -92,13 +92,13 @@ def : cst() : ExpCS =
 				IterationCallExpCS {
 					ownedPathName = ownedPathName,
 					ownedArguments = ownedRoundBracketedClause.ownedArguments,
-					isPre = atPre
+					isPre = isPre
 				}
 			else
 				OperationCallExpCS {
 					ownedPathName = ownedPathName,
 					ownedArguments = ownedRoundBracketedClause.ownedArguments,
-					isPre = atPre
+					isPre = isPre
 				}
 			endif
 	else

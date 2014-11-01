@@ -75,7 +75,7 @@ context DetailCS
 def: ast() : ocl::Detail = 
 	ocl::Detail {
 		name = name,
-		value = value
+		value = values
 	}
 	
 -- TODO: Obsolote. Remove from metamodel and/or grammar ?	
@@ -420,12 +420,12 @@ def : multiplicityType(type : ocl::Type ) : ocl::Type =
 context TypedTypeRefCS
 def : ast() : ocl::Class =	
 	let finalType : ocl::Type = 
-		if ownedTemplateBinding = null
+		if ownedBinding = null
 		then referredType  -- it should return proper type, hand-coded in TypedTypeRefCSImpl
 		else ocl::Class {
 				name = referredType.name,
 				unspecializedElement = referredType,
-				ownedTemplateBindings = Set{ownedTemplateBinding.ast()}
+				ownedTemplateBindings = Set{ownedBinding.ast()}
 			}
 		endif
 	in multiplicityType(finalType)
