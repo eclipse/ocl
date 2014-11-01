@@ -13,15 +13,15 @@ package org.eclipse.ocl.examples.build.latex
 import org.eclipse.jdt.annotation.NonNull
 import org.eclipse.ocl.examples.pivot.Namespace
 import org.eclipse.ocl.examples.pivot.Element
-import org.eclipse.ocl.examples.pivot.Model
+import org.eclipse.ocl.examples.pivot.Library
 
 public class GenerateLaTeXForLibraryXtend extends GenerateLaTeXForLibraryUtils
 {
-	@NonNull protected override String generateLaTeX(@NonNull Model model) {
+	@NonNull protected override String generateLaTeX(@NonNull Library asLibrary) {
 		'''
-		«emitPrecedences(model)»
+		«emitPrecedences(asLibrary)»
 		
-		«emitClasses(model)»
+		«emitClasses(asLibrary)»
 		'''
 	}
 
@@ -55,8 +55,8 @@ public class GenerateLaTeXForLibraryXtend extends GenerateLaTeXForLibraryUtils
 		}
 	}
 
-	protected def emitClasses(Model asRoot) {
-		var asClasses = getSortedClasses(asRoot);
+	protected def emitClasses(@NonNull org.eclipse.ocl.examples.pivot.Package asPackage) {
+		var asClasses = getSortedClasses(asPackage);
 		'''
 		«FOR asClass : asClasses»
 			
@@ -139,11 +139,11 @@ public class GenerateLaTeXForLibraryXtend extends GenerateLaTeXForLibraryUtils
 		}
 	}
 	
-	protected def emitPrecedences(Model asRoot) {
+	protected def emitPrecedences(@NonNull Library asLibrary) {
 		'''
 		«emitHeading3("Precedences", "Precedences")»
 
-		«FOR asPrecedence : getPrecedences(asRoot) SEPARATOR ' < '»«emitEmphasis(asPrecedence.name)»«ENDFOR»
+		«FOR asPrecedence : getPrecedences(asLibrary) SEPARATOR ' < '»«emitEmphasis(asPrecedence.name)»«ENDFOR»
 		'''
 	}
 }

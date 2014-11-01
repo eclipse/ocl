@@ -5,6 +5,8 @@ modeltype Ecore uses 'http://www.eclipse.org/emf/2002/Ecore';
 
 transformation PruneUML(in analysis : UML2Ecore, out Ecore);
 
+configuration property selectedPackage : String;
+	
 property debugProperties : Boolean = false;
 property debugCreateProperty : Boolean = false;
 property debugDerived : Boolean = false;
@@ -25,13 +27,13 @@ property deleteTypeMappings : Set(UML2Ecore::DeleteType) = analysis.objectsOfTyp
 property createTypeMappings : Set(UML2Ecore::CreateType) = analysis.objectsOfType(UML2Ecore::CreateType);
 
 property oldPackages : Set(UML::Package) = packageMappings.oldPackages->asSet();
-property nestingPackages : Set(UML::Package) = oldPackages->closure(nestingPackage);
+property nestingPackages : Set(UML::Package) = oldPackages->closure(nestingPackage)->union(oldPackages);
 property allPackages : Set(UML::Package) = nestingPackages->closure(nestedPackage)->union(nestingPackages);
 property deletePackages : Set(UML::Package) = deletePackageMappings.oldPackages->asSet();
 property renamePackages : Set(UML::Package) = renamePackageMappings.oldPackages->asSet();
 property copyPackages : Set(UML::Package) = allPackages - deletePackages - renamePackages;
 
-property allTypes : Set(UML::Type) = allPackages.ownedType->asSet();
+property allTypes : Set(UML::Type) = allPackages.ownedType->asSet()->select(name <> null);
 property allClasses : Set(UML::Class) = allPackages.ownedType->selectByKind(UML::Class)->asSet();
 
 property deletePackageTypes : Set(UML::Type) = deletePackages.ownedType->asSet();
@@ -124,11 +126,14 @@ main() {
 	-- Pass 0: Analyze the input model and select the required elements
 	--
 --	log('packageMappings', packageMappings);
---	log('deletePackages', deletePackages.name->asSet()->sortedBy(n | n));
+	log('selectedPackage', selectedPackage);
+--	log('oldPackages', oldPackages->display());
+--	log('deletePackages', deletePackages->display());
 --	log('renamePackages', renamePackages.name->asSet()->sortedBy(n | n));
 --	log('copyPackages', copyPackages.name->asSet()->sortedBy(n | n));
 --	log('nestingPackages', nestingPackages.name->asSet()->sortedBy(n | n));
---	log('allPackages', allPackages.name->asSet()->sortedBy(n | n));
+--	log('allPackages', allPackages->display());
+--	log('allTypes', allTypes->display());
 --	log('deleteTypes', deleteTypes.name->asSet());
 --	log('createPackages', createPackages.newName->asSet());
 --	log('createTypeMappings', createTypeMappings.newName->asSet());
@@ -174,8 +179,10 @@ mapping UML2Ecore::CreatePackage::createPackage() : Ecore::EPackage
 --		source := 'http://www.eclipse.org/ocl/2012/UML2EcoreMapping';
 --		_references := self.oldPackages->sortedBy(name).oclAsType(ecore::EObject);
 --	};
-	result.eAnnotations += object Ecore::EAnnotation {
-		source := 'http://www.eclipse.org/OCL/ASMetamodel';
+	if (self.isASMetamodel) {
+		result.eAnnotations += object Ecore::EAnnotation {
+			source := 'http://www.eclipse.org/OCL/ASMetamodel';
+		};
 	};
 }
 
@@ -205,6 +212,12 @@ inherits UML::Type::createAbstractType
 {
 --	log('  createClass', self.name);
 	createType.oldTypes->forEach(t) { umlType2eClass->put(t, result); };
+	if (createType.newInstanceTypeName <> null) {
+		result.instanceTypeName := createType.newInstanceTypeName;
+	}
+	else {
+		result.map installInstanceClassName(createType.oldTypes, 'Ecore::EClass');
+	};
 	var oldClasses : Set(UML::Class) := createType.oldTypes->selectByKind(UML::Class)->asSet();
 --	log('    oldClasses', oldClasses->display());
 	var oldSameNamedClasses : Set(UML::Class) := oldClasses->select(c | c.name = self.name);
@@ -226,7 +239,12 @@ inherits UML::Type::createAbstractType
 {
 --	log('  createInterface', self.name);
 	createType.oldTypes->forEach(t) { umlType2eClass->put(t, result); };
-	result.map installInstanceClassName(createType.oldTypes, 'Ecore::EClass');
+	if (createType.newInstanceTypeName <> null) {
+		result.instanceTypeName := createType.newInstanceTypeName;
+	}
+	else {
+		result.map installInstanceClassName(createType.oldTypes, 'Ecore::EClass');
+	};
 	result._'abstract' := true;
 	result.interface := true;
 }
@@ -234,7 +252,12 @@ inherits UML::Type::createAbstractType
 mapping UML::DataType::createDataType(createType : UML2Ecore::CreateType) : Ecore::EDataType
 inherits UML::Type::createAbstractType
 {
-	result.map installInstanceClassName(createType.oldTypes, 'Ecore::EDataType');
+	if (createType.newInstanceTypeName <> null) {
+		result.instanceTypeName := createType.newInstanceTypeName;
+	}
+	else {
+		result.map installInstanceClassName(createType.oldTypes, 'Ecore::EDataType');
+	};
 }
 mapping UML::Enumeration::createEnumeration(createType : UML2Ecore::CreateType) : Ecore::EEnum
 inherits UML::Type::createAbstractType
@@ -447,8 +470,10 @@ mapping inout Ecore::EClass::resolveEClass()
 {
 	if (debugType or debugProperties) log('resolveEClass', self.name);
 	var createType : UML2Ecore::CreateType := eClassifier2createType->get(self);
+	if (debugType) log('  preallOldTypes', createType.oldTypes->display());
 	var allOldTypes : Set(UML::Type) := getAllTypes(createType.oldTypes);
 	if (debugType) log('  allOldTypes', allOldTypes->display());
+	if (debugType) log('  allOldTypes2', getAllTypes2(createType.oldTypes)->display());
 	var oldProperSuperClassClosure : Set(UML::Type) :=
 		getProperSuperTypes(allOldTypes);
 	if (debugType) log('  oldProperSuperClassClosure', oldProperSuperClassClosure->display());
@@ -601,6 +626,10 @@ helper getAllClasses(classes : Set(UML::Class)) : Set(UML::Class) {
   
 helper getAllTypes(types : Set(UML::Type)) : Set(UML::Type) {
 	return getAllTypes(types.name->asSet()) - deletePackageTypes;
+}
+  
+helper getAllTypes2(types : Set(UML::Type)) : Set(UML::Type) {
+	return getAllTypes(types.name->asSet());
 }
   
 helper getAllTypes(names : Set(String)) : Set(UML::Type) {

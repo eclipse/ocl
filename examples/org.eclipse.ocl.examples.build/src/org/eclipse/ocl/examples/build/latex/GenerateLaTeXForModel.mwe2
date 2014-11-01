@@ -21,6 +21,8 @@ import org.eclipse.emf.ecore.resource.impl.*
 var sourceName
 var targetName = "org.eclipse.ocl.examples.build"
 var modelFile
+var cs2asFile = ""
+var cs2csFile = ""
 var latexFileName
 
 /**
@@ -35,6 +37,8 @@ Workflow {
     component = GenerateLaTeXForModelXtend { resourceSet = resourceSet
     	projectName = "${sourceName}"
     	modelFile = "${modelFile}"
+    	cs2asFile = "${cs2asFile}"
+    	cs2csFile = "${cs2csFile}"
     	latexFolder = "/${targetName}/latex-gen"
     	latexFileName = "${latexFileName}"
     }

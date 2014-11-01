@@ -30,6 +30,7 @@ import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
+import org.eclipse.emf.mwe.utils.Mapping;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.m2m.qvt.oml.BasicModelExtent;
 import org.eclipse.m2m.qvt.oml.ExecutionContextImpl;
@@ -48,10 +49,20 @@ public class QVToTransformationExecutor extends AbstractWorkflowComponent
 	private ResourceSet resourceSet = null;	
 	private String uri = null;	
 	private List<String> ins = new ArrayList<String>();
+	private Map<String, Object> configs = new HashMap<String, Object>();
 	private String out = null;	
 	private String trace = null;
 	private String encoding = "UTF-8"; //$NON-NLS-1$
 	private boolean validate = true;
+
+	/**
+	 * Define a mapping from a source UML/CMOF file to a UML file with resolved assignments.
+	 */
+	public void addConfig(final Mapping uriMap) {
+		final String key = uriMap.getFrom();
+		final Object value = uriMap.getTo();
+		configs.put(key, value);
+	}
 	
 	public void addIn(String fileName) {
 		ins.add(fileName);
@@ -98,7 +109,10 @@ public class QVToTransformationExecutor extends AbstractWorkflowComponent
 	 * @return creates a context to be used by the transformation
 	 */
 	protected void initializeConfigurationProperties(ExecutionContextImpl context) {
-		// do nothing
+		for (String key : configs.keySet()) {
+			Object value = configs.get(key);
+			context.setConfigProperty(key, value);
+		}
 	}
 
 	@Override

@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreSwitch;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Comment;
@@ -96,7 +97,7 @@ public class UMLXMIID extends UMLSwitch<String>
 		this.resource = resource;
 	}
 
-	protected void appendNameHierarchy(@NonNull StringBuilder s, @NonNull String prefix, @NonNull NamedElement object) {
+	protected void appendNameHierarchy(@NonNull StringBuilder s, @NonNull String prefix, @NonNull EObject object, @Nullable String name) {
 		EObject container = object.eContainer();
 		if (container instanceof NamedElement) {
 			String id = doSwitch(container);
@@ -104,7 +105,7 @@ public class UMLXMIID extends UMLSwitch<String>
 			s.append(".");
 		}
 		s.append(prefix);
-		s.append(String.valueOf(object.getName()));
+		s.append(String.valueOf(name));
 	}
 
 	protected void appendPositionHierarchy(@NonNull StringBuilder s, @NonNull EObject object) {
@@ -147,9 +148,23 @@ public class UMLXMIID extends UMLSwitch<String>
 	@Override
 	public String caseAssociation(Association object) {
 		assert object != null;
-		StringBuilder s = new StringBuilder();
 		String name = object.getName();
-		appendNameHierarchy(s, (name != null) && name.startsWith("A_") ? "" : "A", object);
+		if (name == null) {
+			StringBuilder s = new StringBuilder();
+			for (Property end : object.getMemberEnds()) {
+				s.append("_");
+				String endName = end.getName();
+				if (endName != null) {
+					s.append(endName);
+				}
+				else {
+					s.append(end.getType().getName());
+				}
+			}
+			name = s.toString();
+		}
+		StringBuilder s = new StringBuilder();
+		appendNameHierarchy(s, (name != null) && name.startsWith("A_") ? "" : "A", object, name);
 		return s.toString();
 	}
 
@@ -165,7 +180,7 @@ public class UMLXMIID extends UMLSwitch<String>
 	public String caseEnumerationLiteral(EnumerationLiteral object) {
 		assert object != null;
 		StringBuilder s = new StringBuilder();
-		appendNameHierarchy(s, "L", object);
+		appendNameHierarchy(s, "L", object, object.getName());
 		return s.toString();
 	}
 
@@ -177,7 +192,7 @@ public class UMLXMIID extends UMLSwitch<String>
 			appendPositionHierarchy(s, object);
 		}
 		else {
-			appendNameHierarchy(s, "O", object);
+			appendNameHierarchy(s, "O", object, object.getName());
 			int iThis = 0;
 			int iMax = 0;
 			Element owner = object.getOwner();
@@ -213,7 +228,7 @@ public class UMLXMIID extends UMLSwitch<String>
 	public String casePackage(Package object) {
 		assert object != null;
 		StringBuilder s = new StringBuilder();
-		appendNameHierarchy(s, "P", object);
+		appendNameHierarchy(s, "P", object, object.getName());
 		return s.toString();
 	}
 
@@ -221,7 +236,7 @@ public class UMLXMIID extends UMLSwitch<String>
 	public String caseParameter(Parameter object) {
 		assert object != null;
 		StringBuilder s = new StringBuilder();
-		appendNameHierarchy(s, "P", object);
+		appendNameHierarchy(s, "P", object, object.getName());
 		return s.toString();
 	}
 
@@ -229,7 +244,7 @@ public class UMLXMIID extends UMLSwitch<String>
 	public String caseProperty(Property object) {
 		assert object != null;
 		StringBuilder s = new StringBuilder();
-		appendNameHierarchy(s, "P", object);
+		appendNameHierarchy(s, "P", object, object.getName());
 		return s.toString();
 	}
 
@@ -265,7 +280,7 @@ public class UMLXMIID extends UMLSwitch<String>
 			appendPositionHierarchy(s, object);
 		}
 		else {
-			appendNameHierarchy(s, "T", object);
+			appendNameHierarchy(s, "T", object, object.getName());
 		}
 		return s.toString();
 	}

@@ -35,13 +35,8 @@ public abstract class GenerateLaTeXForLibraryUtils extends GenerateLaTeXForLibra
 		return null;
 	}
 	
-	protected Iterable<Precedence> getPrecedences(@NonNull Model asModel) {
-		List<Precedence> precedences = new ArrayList<Precedence>();
-		for (org.eclipse.ocl.examples.pivot.Package asPackage : asModel.getOwnedPackages()) {
-			if (asPackage instanceof Library) {
-				precedences.addAll(((Library)asPackage).getOwnedPrecedence());
-			}
-		}
+	protected Iterable<Precedence> getPrecedences(@NonNull Library asLibrary) {
+		List<Precedence> precedences = new ArrayList<Precedence>(asLibrary.getOwnedPrecedence());
 		return precedences;
 	}
 }

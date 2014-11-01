@@ -23,17 +23,17 @@ import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.XtextStandaloneSetup;
 
 public abstract class GenerateLaTeXForLibrary extends GenerateLaTeXUtils
 {
 
-	protected abstract @NonNull String generateLaTeX(@NonNull Model pivotModel);
+	protected abstract @NonNull String generateLaTeX(@NonNull Library asLibrary);
 
 	@Override
 	protected void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor, Issues issues) {
@@ -61,7 +61,7 @@ public abstract class GenerateLaTeXForLibrary extends GenerateLaTeXUtils
 //			saver.localizeSpecializations();
 			String fileName = folder + "/" + latexFileName + ".tex";
 			log.info("Generating '" + fileName + "'");
-			String latexContent = generateLaTeX((Model)pivotModel);
+			String latexContent = generateLaTeX((Library) ((Model)pivotModel).getOwnedPackages().get(0));
 			String encodedContent = encodeForLaTeX(latexContent);
 			FileWriter fw = new FileWriter(fileName);
 			fw.append(encodedContent);

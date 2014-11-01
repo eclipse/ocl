@@ -32,10 +32,11 @@ import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.utils.Mapping;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.uml.UMLXMIID;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Operation;
-import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.internal.resource.XMI2UMLHandler;
 import org.eclipse.uml2.uml.internal.resource.XMI2UMLLoadImpl;
 import org.eclipse.uml2.uml.internal.resource.XMI2UMLResourceFactoryImpl;
@@ -126,7 +127,12 @@ public class IdAssigner extends AbstractWorkflowComponent
 			computeId(s, (NamedElement) eContainer);
 			s.append("-");
 		}
-		s.append(namedElement.getName());
+		String name = namedElement.getName();
+		if (name == null) {
+			UMLXMIID umlXMIid = new UMLXMIID((XMLResource) namedElement.eResource());
+			name = umlXMIid.doSwitch(namedElement);
+		}
+		s.append(name);
 		return s.toString();
 	}
 	
@@ -165,43 +171,48 @@ public class IdAssigner extends AbstractWorkflowComponent
 		for (UMLResource fromResource : resourceMap.keySet()) {
 			UMLResource toResource = resourceMap.get(fromResource);
 			toResource.getContents().addAll(fromResource.getContents());
-				if (assignFlatIds) {
-					for (TreeIterator<EObject> tit = toResource.getAllContents(); tit.hasNext(); ) {
-						EObject eObject = tit.next();
-						if (eObject instanceof org.eclipse.uml2.uml.Package) {
-							NamedElement namedElement = (NamedElement) eObject;
-							toResource.setID(eObject, namedElement.getName());
-						}
-		/*				else if (eObject instanceof Property) {
-							Property property = (Property) eObject;
-							Type type = property.getClass_();
-							if (type != null) {
-								String id = toResource.getID(eObject);
-								if (assignIds || (id == null)) { // || !id.startsWith(type.getName())) {	// If it starts with type it may be a good name
-									toResource.setID(eObject, computeId(new StringBuilder(), property));
-								}
-							}
-						} */
+			if (assignFlatIds) {
+				for (TreeIterator<EObject> tit = toResource.getAllContents(); tit.hasNext(); ) {
+					EObject eObject = tit.next();
+					if (eObject instanceof org.eclipse.uml2.uml.Package) {
+						NamedElement namedElement = (NamedElement) eObject;
+						toResource.setID(eObject, namedElement.getName());
 					}
+	/*				else if (eObject instanceof Property) {
+						Property property = (Property) eObject;
+						Type type = property.getClass_();
+						if (type != null) {
+							String id = toResource.getID(eObject);
+							if (assignIds || (id == null)) { // || !id.startsWith(type.getName())) {	// If it starts with type it may be a good name
+								toResource.setID(eObject, computeId(new StringBuilder(), property));
+							}
+						}
+					} */
 				}
-				else {
-					for (TreeIterator<EObject> tit = toResource.getAllContents(); tit.hasNext(); ) {
-						EObject eObject = tit.next();
-						if ((eObject instanceof org.eclipse.uml2.uml.Package) || (eObject instanceof Type) || (eObject instanceof Property) || (eObject instanceof Operation)) {
-							@SuppressWarnings("null")@NonNull NamedElement namedElement = (NamedElement) eObject;
-							toResource.setID(eObject, computeId(new StringBuilder(), namedElement));
-						}
-		/*				else if (eObject instanceof Property) {
-							Property property = (Property) eObject;
-							Type type = property.getClass_();
-							if (type != null) {
-								String id = toResource.getID(eObject);
-								if (assignIds || (id == null)) { // || !id.startsWith(type.getName())) {	// If it starts with type it may be a good name
-									toResource.setID(eObject, computeId(new StringBuilder(), property));
-								}
-							}
-						} */
+			}
+			else {
+	//			new UMLXMIID(toResource).assign();
+				for (TreeIterator<EObject> tit = toResource.getAllContents(); tit.hasNext(); ) {
+					EObject eObject = tit.next();
+					if ((eObject instanceof org.eclipse.ocl.examples.pivot.Package) || (eObject instanceof Type) || (eObject instanceof Property) || (eObject instanceof Operation)) {
+						@SuppressWarnings("null")@NonNull NamedElement namedElement = (NamedElement) eObject;
+						toResource.setID(eObject, computeId(new StringBuilder(), namedElement));
 					}
+					else if ((eObject instanceof org.eclipse.uml2.uml.Package) || (eObject instanceof org.eclipse.uml2.uml.Type) || (eObject instanceof org.eclipse.uml2.uml.Property) || (eObject instanceof org.eclipse.uml2.uml.Operation)) {
+						@SuppressWarnings("null")@NonNull NamedElement namedElement = (NamedElement) eObject;
+						toResource.setID(eObject, computeId(new StringBuilder(), namedElement));
+					}
+	/*				else if (eObject instanceof Property) {
+						Property property = (Property) eObject;
+						Type type = property.getClass_();
+						if (type != null) {
+							String id = toResource.getID(eObject);
+							if (assignIds || (id == null)) { // || !id.startsWith(type.getName())) {	// If it starts with type it may be a good name
+								toResource.setID(eObject, computeId(new StringBuilder(), property));
+							}
+						}
+					} */
+				}
 			}
 		}
 		for (UMLResource toResource : resourceMap.values()) {

@@ -19,8 +19,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.Nameable;
@@ -29,7 +27,6 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Iteration;
-import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -380,15 +377,9 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		return sortedElements;
 	}
 
-	protected @NonNull List<org.eclipse.ocl.examples.pivot.Class> getSortedClasses(@NonNull Model model) {
+	protected @NonNull List<org.eclipse.ocl.examples.pivot.Class> getSortedClasses(@NonNull org.eclipse.ocl.examples.pivot.Package asPackage) {
 		Set<org.eclipse.ocl.examples.pivot.Class> allElements = new HashSet<org.eclipse.ocl.examples.pivot.Class>();
-		TreeIterator<EObject> tit = model.eAllContents();
-		while (tit.hasNext()) {
-			EObject eObject = tit.next();
-			if (eObject instanceof org.eclipse.ocl.examples.pivot.Class) {
-				allElements.add((org.eclipse.ocl.examples.pivot.Class)eObject);
-			}
-		}
+		allElements.addAll(asPackage.getOwnedClasses());
 		List<org.eclipse.ocl.examples.pivot.Class> sortedElements = new ArrayList<org.eclipse.ocl.examples.pivot.Class>(allElements);
 		Collections.sort(sortedElements, nameableComparator);
 		return sortedElements;

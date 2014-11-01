@@ -98,6 +98,7 @@ mapping UML2EcoreControl::CreatePackage::createRenamePackage() : UML2EcoreMappin
 	result.newName := self.newName;
 	result.nsPrefix := self.nsPrefix;
 	result.nsURI := self.nsURI;
+	result.isASMetamodel := self.isASMetamodel;
 	result.oldPackages := self.oldPackages;	
 	result.typeMappings += deleteTypes->sortedBy(oldName);	 
 	result.typeMappings += createTypes->union(copyTypes)->sortedBy(newName);
@@ -154,7 +155,7 @@ property allCreateTypeNames : Set(String) = explicitCreateTypesMappings.oldTypes
 property allAssociations : Set(UML::Association) = 
 	(allPackages-explicitDeletePackages).ownedType->selectByKind(UML::Association)->asSet();
 property allUnnavigableOpposites : Set(UML::Property) = 
-	allAssociations.ownedEnd->asSet();
+	allAssociations.ownedEnd->asSet()->select(name <> null);
 /**
  *	Identify opposites that would give duplicate name c onflicts if realized.
  */
@@ -195,6 +196,7 @@ mapping UML2EcoreControl::CreateType::createRenameType() : UML2EcoreMapping::Cre
 	var myTypes : Set(UML::Type) := getAllTypes(self.oldTypes->asSet()) - explicitDeleteTypes;
 --	log('  myTypes', myTypes->sortedBy(name)->iterate(n; acc : String = '' | acc + ' ' + n.name));
 	result.newName := self.newName;
+	result.newInstanceTypeName := self.newInstanceTypeName;
 	result.oldTypes := myTypes;
 	result.operationMappings := selectOperations(myTypes);	 
 	result.propertyMappings := selectProperties(myTypes);	 
