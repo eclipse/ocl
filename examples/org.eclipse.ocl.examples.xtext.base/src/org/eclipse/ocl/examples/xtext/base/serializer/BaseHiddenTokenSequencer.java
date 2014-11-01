@@ -8,7 +8,7 @@
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.xtext.essentialocl.serializer;
+package org.eclipse.ocl.examples.xtext.base.serializer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.RootCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess;
+import org.eclipse.ocl.examples.xtext.base.services.BaseGrammarAccess;
 import org.eclipse.xtext.Action;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.TerminalRule;
@@ -28,10 +28,10 @@ import org.eclipse.xtext.serializer.sequencer.HiddenTokenSequencer;
 import com.google.inject.Inject;
 
 @SuppressWarnings("restriction")
-public class EssentialOCLHiddenTokenSequencer extends HiddenTokenSequencer
+public class BaseHiddenTokenSequencer extends HiddenTokenSequencer
 {
 	@Inject
- 	private EssentialOCLGrammarAccess grammarAccess;
+ 	private BaseGrammarAccess grammarAccess;
 
 	protected void emitComments(EObject semanticChild) {
 		if (semanticChild instanceof ModelElementCS) {

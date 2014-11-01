@@ -8,7 +8,7 @@
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.xtext.essentialocl.ui.model;
+package org.eclipse.ocl.examples.xtext.base.ui.model;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -39,7 +39,6 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
-import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.XtextSyntaxDiagnostic;
 import org.eclipse.xtext.ui.editor.model.DocumentTokenSource;
@@ -173,8 +172,8 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 		modify(new IUnitOfWork<Object, XtextResource>()
 		{
 			public Object exec(@Nullable XtextResource resource) throws Exception {
-				if (resource instanceof EssentialOCLCSResource) {
-					EssentialOCLCSResource csResource = (EssentialOCLCSResource)resource;
+				if (resource instanceof BaseCSResource) {
+					BaseCSResource csResource = (BaseCSResource)resource;
 					CS2PivotResourceAdapter csAdapter = csResource.getCS2ASAdapter(null);
 					MetaModelManager metaModelManager = csAdapter.getMetaModelManager();
 					csResource.setParserContext(new EInvocationContext(metaModelManager, resource.getURI(), ecoreContext, ecoreParameters));
@@ -187,7 +186,7 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
         this.parameters = ecoreParameters;
     }
 
-	public @Nullable Object setContext(@NonNull EssentialOCLCSResource resource, @Nullable EObject eObject) {
+	public @Nullable Object setContext(@NonNull BaseCSResource resource, @Nullable EObject eObject) {
 		CS2PivotResourceAdapter csAdapter = resource.getCS2ASAdapter(null);
 		MetaModelManager metaModelManager = csAdapter.getMetaModelManager();
 		resource.setParserContext(new EObjectContext(metaModelManager, resource.getURI(), eObject));

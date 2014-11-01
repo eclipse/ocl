@@ -25,7 +25,7 @@ import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.ocl.examples.xtext.base.ui.Activator;
+import org.eclipse.ocl.examples.xtext.base.ui.BaseUiPluginHelper;
 import org.eclipse.ocl.examples.xtext.base.ui.messages.BaseUIMessages;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
@@ -122,7 +122,7 @@ public class AbstractFileNewWizardPage extends WizardPage implements Listener
 											// message
 											((CoreException) e.getCause()).getStatus());
 								} else {
-									Activator.log(getClass(), "createNewFile()", e.getCause()); //$NON-NLS-1$
+									BaseUiPluginHelper.log(getClass(), "createNewFile()", e.getCause()); //$NON-NLS-1$
 									MessageDialog.openError(getContainer().getShell(),
 										BaseUIMessages.NewWizardPage_internalErrorTitle,
 											NLS.bind(BaseUIMessages.NewWizardPage_internalErrorTitle,
@@ -140,7 +140,7 @@ public class AbstractFileNewWizardPage extends WizardPage implements Listener
 		} catch (InvocationTargetException e) {
 			// Execution Exceptions are handled above but we may still get
 			// unexpected runtime errors.
-			Activator.log(getClass(), "createNewFile()", e.getTargetException()); //$NON-NLS-1$
+			BaseUiPluginHelper.log(getClass(), "createNewFile()", e.getTargetException()); //$NON-NLS-1$
 			MessageDialog.open(MessageDialog.ERROR, getContainer().getShell(),
 					BaseUIMessages.NewWizardPage_internalErrorTitle,
 					NLS.bind(BaseUIMessages.NewWizardPage_internalErrorMessage,

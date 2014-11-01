@@ -12,7 +12,7 @@
 package org.eclipse.ocl.examples.xtext.oclstdlib;
 
 import org.antlr.runtime.TokenSource;
-import org.eclipse.ocl.examples.xtext.essentialocl.services.RetokenizingTokenSource;
+import org.eclipse.ocl.examples.xtext.base.services.RetokenizingTokenSource;
 import org.eclipse.ocl.examples.xtext.oclstdlib.parser.antlr.OCLstdlibParser;
 import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.OCLstdlibScopeProvider;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibValueConverterService;

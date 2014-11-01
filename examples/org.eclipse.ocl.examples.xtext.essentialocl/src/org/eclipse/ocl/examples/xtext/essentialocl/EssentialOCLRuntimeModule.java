@@ -11,8 +11,8 @@
 package org.eclipse.ocl.examples.xtext.essentialocl;
 
 import org.antlr.runtime.TokenSource;
+import org.eclipse.ocl.examples.xtext.base.services.RetokenizingTokenSource;
 import org.eclipse.ocl.examples.xtext.essentialocl.parser.antlr.EssentialOCLParser;
-import org.eclipse.ocl.examples.xtext.essentialocl.services.RetokenizingTokenSource;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 
 import com.google.inject.Binder;

@@ -24,7 +24,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.ripoffs.ResourceAndContainerGroup;
-import org.eclipse.ocl.examples.xtext.base.ui.Activator;
+import org.eclipse.ocl.examples.xtext.base.ui.BaseUiPluginHelper;
 import org.eclipse.ocl.examples.xtext.base.ui.messages.BaseUIMessages;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
@@ -38,7 +38,7 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 public abstract class AbstractFileDialog extends ExtendedLoadResourceDialog
 {
 	private static final int SIZING_CONTAINER_GROUP_HEIGHT = 120;
-	public static final String PREFIX = Activator.PLUGIN_ID + "."; //$NON-NLS-1$
+	public static final String PREFIX = BaseUiPluginHelper.PLUGIN_ID + "."; //$NON-NLS-1$
 
 	private static final String NEW_FILE_WIZARD_PAGE = PREFIX
 		+ BaseUIMessages.NewWizardPage_newFileWizardContextId; //$NON-NLS-1$
@@ -121,7 +121,7 @@ public abstract class AbstractFileDialog extends ExtendedLoadResourceDialog
 
 	public IFile getNewFile() {
 		IPath newFilePath = getNewFilePath();
-		return Activator.getPluginWorkspace().getRoot().getFile(newFilePath);
+		return ResourcesPlugin.getWorkspace().getRoot().getFile(newFilePath);
 	}
 
 	public IPath getNewFilePath() {

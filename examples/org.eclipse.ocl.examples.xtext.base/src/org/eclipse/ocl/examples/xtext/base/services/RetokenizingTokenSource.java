@@ -8,7 +8,7 @@
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.xtext.essentialocl.services;
+package org.eclipse.ocl.examples.xtext.base.services;
 
 import java.util.LinkedList;
 import java.util.Map;

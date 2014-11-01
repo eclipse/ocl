@@ -8,7 +8,7 @@
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.xtext.essentialocl.services;
+package org.eclipse.ocl.examples.xtext.base.services;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -34,7 +34,7 @@ import org.eclipse.xtext.conversion.impl.AbstractNullSafeConverter;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.util.Strings;
 
-public class EssentialOCLValueConverterService extends AbstractDeclarativeValueConverterService
+public class BaseValueConverterService extends AbstractDeclarativeValueConverterService
 {
 	//
 	//	The seemingly redundant Identifier as well as ID converters are needed. During serialization

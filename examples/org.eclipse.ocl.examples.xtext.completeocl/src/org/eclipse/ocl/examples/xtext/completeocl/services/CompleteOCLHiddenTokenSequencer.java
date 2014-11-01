@@ -11,9 +11,9 @@
 package org.eclipse.ocl.examples.xtext.completeocl.services;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.xtext.essentialocl.serializer.EssentialOCLHiddenTokenSequencer;
+import org.eclipse.ocl.examples.xtext.base.serializer.BaseHiddenTokenSequencer;
 
-public class CompleteOCLHiddenTokenSequencer extends EssentialOCLHiddenTokenSequencer
+public class CompleteOCLHiddenTokenSequencer extends BaseHiddenTokenSequencer
 {
 	@Override
 	protected String getCommentIndent(EObject semanticChild) {

@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLValueConverterService;
+import org.eclipse.ocl.examples.xtext.base.services.BaseValueConverterService;
 import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.GrammarUtil;
 import org.eclipse.xtext.conversion.IValueConverter;
@@ -24,7 +24,7 @@ import org.eclipse.xtext.conversion.impl.AbstractNullSafeConverter;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.util.Strings;
 
-public class OCLinEcoreValueConverterService extends EssentialOCLValueConverterService
+public class OCLinEcoreValueConverterService extends BaseValueConverterService
 {
 	protected static class EnumerationLiteralNameConverter extends AbstractIDConverter
 	{

@@ -12,7 +12,7 @@ package org.eclipse.ocl.examples.build.fragments;
 
 import java.util.Set;
 
-import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocumentationProvider;
+import org.eclipse.ocl.examples.xtext.base.ui.model.BaseDocumentationProvider;
 import org.eclipse.ocl.examples.xtext.markup.ui.hover.MarkupHover;
 import org.eclipse.ocl.examples.xtext.markup.ui.hover.MarkupHoverProvider;
 import org.eclipse.xtext.Grammar;

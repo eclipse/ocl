@@ -8,7 +8,7 @@
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.xtext.essentialocl.serializer;
+package org.eclipse.ocl.examples.xtext.base.serializer;
 
 import java.util.List;
 
@@ -43,7 +43,7 @@ import com.google.inject.Inject;
 
 // FIXME Temporary workaround for Bug 361577
 @SuppressWarnings("restriction")
-public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializer
+public class BaseCrossReferenceSerializer extends CrossReferenceSerializer
 {
 	protected class AcceptorHelper
 	{

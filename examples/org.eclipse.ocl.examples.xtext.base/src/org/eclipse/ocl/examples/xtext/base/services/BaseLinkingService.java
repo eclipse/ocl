@@ -8,7 +8,7 @@
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.xtext.essentialocl.services;
+package org.eclipse.ocl.examples.xtext.base.services;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,7 +38,7 @@ import org.eclipse.xtext.scoping.IScopeProvider;
 
 import com.google.inject.Inject;
 
-public class EssentialOCLLinkingService extends DefaultLinkingService
+public class BaseLinkingService extends DefaultLinkingService
 {
 	public static boolean DEBUG_RETRY = false;			// Set true to retry for debug tracing
 	

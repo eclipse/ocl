@@ -8,7 +8,7 @@ package org.eclipse.ocl.examples.xtext.base.ui.quickfix;
  *
  * see http://www.eclipse.org/Xtext/documentation.html#quickfixes
  */
-public class BaseQuickfixProvider extends org.eclipse.xtext.ui.editor.quickfix.DefaultQuickfixProvider {
+public class BaseQuickfixProvider extends ExtensibleQuickfixProvider {
 
 //	@Fix(MyJavaValidator.INVALID_NAME)
 //	public void capitalizeName(final Issue issue, IssueResolutionAcceptor acceptor) {

@@ -30,9 +30,9 @@ import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.xtext.base.cs2as.BaseCS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
+import org.eclipse.ocl.examples.xtext.base.services.BaseLinkingService;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
-import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingService;
 import org.eclipse.ocl.examples.xtext.oclinecore.pivot2cs.OCLinEcorePivot2CS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.cs2as.OCLstdlibCS2Pivot;
 import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.JavaClassScope;
@@ -360,7 +360,7 @@ public class PivotTests extends XtextTestCase
 	}
 
 	public void testPivot_oclstdlib_oclstdlib() throws IOException, InterruptedException {
-		EssentialOCLLinkingService.DEBUG_RETRY = true;
+		BaseLinkingService.DEBUG_RETRY = true;
 		doPivotTestOCLstdlib("oclstdlib");
 	}
 

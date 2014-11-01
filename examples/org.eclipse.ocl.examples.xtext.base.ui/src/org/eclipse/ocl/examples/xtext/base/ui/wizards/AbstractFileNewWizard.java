@@ -19,7 +19,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.ocl.examples.xtext.base.ui.Activator;
+import org.eclipse.ocl.examples.xtext.base.ui.BaseUiPluginHelper;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
@@ -40,7 +40,7 @@ public abstract class AbstractFileNewWizard extends Wizard implements INewWizard
 	 * Constructor
 	 */
 	protected AbstractFileNewWizard() {
-		setDefaultPageImageDescriptor(Activator.getImageDescriptor("icons/OCLModelFile.gif"));
+		setDefaultPageImageDescriptor(BaseUiPluginHelper.getImageDescriptor("icons/OCLModelFile.gif"));
 		setWindowTitle(getPageTitle());
 	}
 
@@ -144,7 +144,7 @@ public abstract class AbstractFileNewWizard extends Wizard implements INewWizard
 		try {
 			openCreatedFile(file);
 		} catch (PartInitException e) {
-			Activator.log(e);
+			BaseUiPluginHelper.log(e);
 			return false;
 		} 
 		return true;

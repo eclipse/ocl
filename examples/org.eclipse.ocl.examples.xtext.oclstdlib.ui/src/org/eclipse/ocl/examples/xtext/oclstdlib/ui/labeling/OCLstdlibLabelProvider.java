@@ -12,7 +12,7 @@ package org.eclipse.ocl.examples.xtext.oclstdlib.ui.labeling;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.xtext.essentialocl.ui.labeling.BaseLabelProvider;
+import org.eclipse.ocl.examples.xtext.base.ui.labeling.BaseLabelProvider;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaClassCS;
 
 import com.google.inject.Inject;

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010, 2011 E.D.Willink and others.
+ * Copyright (c) 2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,14 +8,14 @@
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.xtext.essentialocl.services;
+package org.eclipse.ocl.examples.xtext.base.services;
 
-import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.xtext.naming.DefaultDeclarativeQualifiedNameProvider;
+import org.eclipse.xtext.naming.IQualifiedNameConverter;
 
-public class EssentialOCLQualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvider
+public class BaseQualifiedNameConverter extends IQualifiedNameConverter.DefaultImpl
 {
-	protected String name(NamedElement namdElement) {
-		return namdElement.getName();
+	@Override
+	public String getDelimiter() {
+		return "::";
 	}
 }

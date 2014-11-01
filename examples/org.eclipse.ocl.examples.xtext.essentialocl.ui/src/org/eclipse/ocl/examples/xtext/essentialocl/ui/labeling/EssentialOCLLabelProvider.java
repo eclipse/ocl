@@ -16,6 +16,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TuplePartCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TupleTypeCS;
+import org.eclipse.ocl.examples.xtext.base.ui.labeling.BaseLabelProvider;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;

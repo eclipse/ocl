@@ -11,11 +11,11 @@
 package org.eclipse.ocl.examples.xtext.completeocl;
 
 import org.antlr.runtime.TokenSource;
+import org.eclipse.ocl.examples.xtext.base.services.RetokenizingTokenSource;
 import org.eclipse.ocl.examples.xtext.completeocl.parser.antlr.CompleteOCLParser;
 import org.eclipse.ocl.examples.xtext.completeocl.scoping.CompleteOCLScopeProvider;
 import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLHiddenTokenSequencer;
 import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLCSResource;
-import org.eclipse.ocl.examples.xtext.essentialocl.services.RetokenizingTokenSource;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IScopeProvider;

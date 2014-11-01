@@ -120,12 +120,12 @@ public abstract class AbstractCompleteOCLUiModule extends DefaultUiModule {
 
 	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
 	public Class<? extends org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper> bindAbstractAntlrTokenToAttributeIdMapper() {
-		return org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.BaseAntlrTokenToAttributeIdMapper.class;
+		return org.eclipse.ocl.examples.xtext.base.ui.syntaxcoloring.BaseAntlrTokenToAttributeIdMapper.class;
 	}
 
 	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
 	public Class<? extends org.eclipse.xtext.ui.editor.autoedit.AbstractEditStrategyProvider> bindAbstractEditStrategyProvider() {
-		return org.eclipse.ocl.examples.xtext.essentialocl.ui.autoedit.BaseAutoEditStrategyProvider.class;
+		return org.eclipse.ocl.examples.xtext.base.ui.autoedit.BaseAutoEditStrategyProvider.class;
 	}
 
 	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
@@ -145,12 +145,12 @@ public abstract class AbstractCompleteOCLUiModule extends DefaultUiModule {
 
 	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
 	public Class<? extends org.eclipse.xtext.ui.editor.model.ITokenTypeToPartitionTypeMapper> bindITokenTypeToPartitionTypeMapper() {
-		return org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseTerminalsTokenTypeToPartitionMapper.class;
+		return org.eclipse.ocl.examples.xtext.base.ui.model.BaseTerminalsTokenTypeToPartitionMapper.class;
 	}
 
 	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
 	public Class<? extends org.eclipse.xtext.ui.editor.IURIEditorOpener> bindIURIEditorOpener() {
-		return org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseURIEditorOpener.class;
+		return org.eclipse.ocl.examples.xtext.base.ui.model.BaseURIEditorOpener.class;
 	}
 
 	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
@@ -160,7 +160,7 @@ public abstract class AbstractCompleteOCLUiModule extends DefaultUiModule {
 
 	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
 	public Class<? extends org.eclipse.xtext.ui.editor.model.XtextDocument> bindXtextDocument() {
-		return org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument.class;
+		return org.eclipse.ocl.examples.xtext.base.ui.model.BaseDocument.class;
 	}
 
 	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
@@ -180,7 +180,7 @@ public abstract class AbstractCompleteOCLUiModule extends DefaultUiModule {
 
 	// contributed by org.eclipse.ocl.examples.build.fragments.MarkupHoverFragment
 	public Class<? extends org.eclipse.xtext.documentation.IEObjectDocumentationProvider> bindIEObjectDocumentationProvider() {
-		return org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocumentationProvider.class;
+		return org.eclipse.ocl.examples.xtext.base.ui.model.BaseDocumentationProvider.class;
 	}
 
 

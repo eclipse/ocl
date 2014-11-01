@@ -8,7 +8,7 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.xtext.essentialocl.ui.model;
+package org.eclipse.ocl.examples.xtext.base.ui.model;
 
 import java.util.Map;
 

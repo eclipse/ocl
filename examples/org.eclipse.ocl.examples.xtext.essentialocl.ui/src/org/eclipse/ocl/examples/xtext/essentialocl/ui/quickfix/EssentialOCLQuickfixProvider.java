@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.examples.xtext.base.ui.quickfix.BaseQuickfixProvider;
 import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
@@ -21,7 +22,7 @@ import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor;
 import org.eclipse.xtext.ui.editor.quickfix.ReplaceModification;
 import org.eclipse.xtext.validation.Issue;
 
-public class EssentialOCLQuickfixProvider extends ExtensibleQuickfixProvider
+public class EssentialOCLQuickfixProvider extends BaseQuickfixProvider
 {
 	private static final Logger logger = Logger.getLogger(EssentialOCLQuickfixProvider.class);
 

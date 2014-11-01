@@ -8,7 +8,7 @@
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.xtext.essentialocl.ui.quickfix;
+package org.eclipse.ocl.examples.xtext.base.ui.quickfix;
 
 import java.util.ArrayList;
 import java.util.List;

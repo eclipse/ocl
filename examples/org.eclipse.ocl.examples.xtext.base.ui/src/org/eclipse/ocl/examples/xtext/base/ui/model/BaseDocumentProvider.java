@@ -8,7 +8,7 @@
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.xtext.essentialocl.ui.model;
+package org.eclipse.ocl.examples.xtext.base.ui.model;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -55,9 +55,9 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.resource.OCLASResourceFactory;
 import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
+import org.eclipse.ocl.examples.xtext.base.ui.BaseUiPluginHelper;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
-import org.eclipse.ocl.examples.xtext.essentialocl.ui.EssentialOCLUiPluginHelper;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.xtext.parsetree.reconstr.XtextSerializationException;
@@ -155,7 +155,7 @@ public abstract class BaseDocumentProvider extends XtextDocumentProvider impleme
 				super.doSaveDocument(monitor, element, saveDocument, overwrite);
 				loadedAsMap.put(document, saveAs);
 			} catch (Exception e) {
-				EssentialOCLUiPluginHelper helper = EssentialOCLUiPluginHelper.INSTANCE;
+				BaseUiPluginHelper helper = BaseUiPluginHelper.INSTANCE;
 				String title = helper.getString("_UI_SaveFailure_title", true);
 				String message = helper.getString("_UI_SaveFailure_message", true);
 				ErrorDialog.openError(null, title, message, helper.createErrorStatus(e));

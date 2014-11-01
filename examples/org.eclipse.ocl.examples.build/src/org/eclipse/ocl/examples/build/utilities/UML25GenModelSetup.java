@@ -12,8 +12,8 @@ package org.eclipse.ocl.examples.build.utilities;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.resource.ASResourceFactoryRegistry;
+import org.eclipse.ocl.examples.xtext.base.services.BaseLinkingService;
 import org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLStandaloneSetup;
-import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingService;
 
 /**
  * Initializes UML 2.5 genmodel support.
@@ -21,7 +21,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingS
 public class UML25GenModelSetup extends UMLGenModelSetup
 {
 	public UML25GenModelSetup() {
-		EssentialOCLLinkingService.DEBUG_RETRY = true;
+		BaseLinkingService.DEBUG_RETRY = true;
 	}
 	
 	@Override

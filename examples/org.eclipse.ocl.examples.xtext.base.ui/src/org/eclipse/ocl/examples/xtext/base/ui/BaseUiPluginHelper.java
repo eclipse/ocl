@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2013, 2014 E.D.Willink and others.
+ * Copyright (c) 2014 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,82 +7,32 @@
  *
  * Contributors:
  *     E.D.Willink - initial API and implementation
- *     Obeo - add log and image descriptor facilities
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.base.ui;
 
 import java.text.MessageFormat;
 
-import org.eclipse.core.resources.IWorkspace;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.ocl.examples.xtext.base.ui.internal.BaseActivator;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.osgi.framework.BundleActivator;
-import org.osgi.framework.BundleContext;
 
-public class Activator extends AbstractUIPlugin implements BundleActivator {
-
+public class BaseUiPluginHelper extends EMFPlugin.InternalHelper
+{
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.eclipse.ocl.examples.xtext.base.ui"; //$NON-NLS-1$
 
-	@SuppressWarnings({"restriction", "unused"})
-	private static org.eclipse.equinox.internal.frameworkadmin.equinox.EquinoxConstants forceDependencyToBeResolvedForPdeCore;
+	public static final BaseUiPluginHelper INSTANCE = new BaseUiPluginHelper(BaseActivator.getInstance()); 
 	
-	// The shared instance
-	private static Activator plugin;
-
-	private static BundleContext context;
-
-	static BundleContext getContext() {
-		return context;
+	private BaseUiPluginHelper(Plugin plugin) {
+		super(plugin);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
-	 */
-	@Override
-	public void start(BundleContext bundleContext) throws Exception {
-		Activator.context = bundleContext;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
-	 */
-	@Override
-	public void stop(BundleContext bundleContext) throws Exception {
-		Activator.context = null;
-	}
-	
-	/**
-	 * Returns the shared instance
-	 * 
-	 * @return the shared instance
-	 */
-	public static Activator getDefault() {
-		return plugin;
-	}
-	
-	/**
-	 * Return the workspace used by the workbench
-	 * 
-	 * This method is internal to the workbench and must not be called by any
-	 * plugins.
-	 */
-	public static IWorkspace getPluginWorkspace() {
-		return ResourcesPlugin.getWorkspace();
-	}
-	
-	/**
-	 * Gets the Id of the Plugin
-	 * 
-	 * @return the Plugin Identifier
-	 */
-	private static String getId() {
-		return getDefault().getBundle().getSymbolicName();
+	public Status createErrorStatus(Exception e) {
+		return new Status(Status.ERROR, getSymbolicName(), e.getMessage(), e);
 	}
 	
 	/**
@@ -94,7 +44,7 @@ public class Activator extends AbstractUIPlugin implements BundleActivator {
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor getImageDescriptor(String path) {
-		return imageDescriptorFromPlugin(PLUGIN_ID, path);
+		return AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID, path);
 	}
 	
 	/**
@@ -113,6 +63,28 @@ public class Activator extends AbstractUIPlugin implements BundleActivator {
 	public static void log(String message, Throwable t) {
 		IStatus status = new Status(IStatus.ERROR, PLUGIN_ID, IStatus.OK, message, t);
 		log(message, status);
+	}
+
+	/**
+	 * Logs the given message and status to the platform log.
+	 * 
+	 * This convenience method is for internal use by the IDE Workbench only and
+	 * must not be called outside the IDE Workbench.
+	 * 
+	 * @param message
+	 *            A high level UI message describing when the problem happened.
+	 *            May be <code>null</code>.
+	 * @param status
+	 *            The status describing the problem. Must not be null.
+	 */
+	public static void log(String message, IStatus status) {
+		BaseActivator defaultPlugin = BaseActivator.getInstance();
+		if (message != null) {
+			defaultPlugin.getLog().log(
+					new Status(IStatus.ERROR, PLUGIN_ID, IStatus.OK, message, null));
+		}
+
+		defaultPlugin.getLog().log(status);
 	}
 
 	/**
@@ -137,29 +109,6 @@ public class Activator extends AbstractUIPlugin implements BundleActivator {
 	}
 
 	/**
-	 * Logs the given message and status to the platform log.
-	 * 
-	 * This convenience method is for internal use by the IDE Workbench only and
-	 * must not be called outside the IDE Workbench.
-	 * 
-	 * @param message
-	 *            A high level UI message describing when the problem happened.
-	 *            May be <code>null</code>.
-	 * @param status
-	 *            The status describing the problem. Must not be null.
-	 */
-	public static void log(String message, IStatus status) {
-
-		if (message != null) {
-			getDefault().getLog().log(
-					new Status(IStatus.ERROR, PLUGIN_ID, IStatus.OK, message, null));
-		}
-
-		getDefault().getLog().log(status);
-	}
-	
-
-	/**
 	 * Logs a message with given level into the Eclipse log file
 	 */
 	public static void log(Exception e) {
@@ -177,9 +126,8 @@ public class Activator extends AbstractUIPlugin implements BundleActivator {
 	 *            exception to log
 	 */
 	public static void log(String message, int severity, Exception e) {
-		IStatus status = new Status(severity, getId(), severity, message, e);
-		getDefault().getLog().log(status);
+		BaseActivator defaultPlugin = BaseActivator.getInstance();
+		IStatus status = new Status(severity, defaultPlugin.getBundle().getSymbolicName(), severity, message, e);
+		defaultPlugin.getLog().log(status);
 	}
-
-
 }

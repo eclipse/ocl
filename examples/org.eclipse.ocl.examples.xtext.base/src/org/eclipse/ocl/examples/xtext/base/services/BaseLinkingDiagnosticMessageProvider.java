@@ -8,7 +8,7 @@
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.xtext.essentialocl.services;
+package org.eclipse.ocl.examples.xtext.base.services;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -16,7 +16,7 @@ import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
 import org.eclipse.xtext.diagnostics.DiagnosticMessage;
 import org.eclipse.xtext.linking.impl.LinkingDiagnosticMessageProvider;
 
-public class EssentialOCLLinkingDiagnosticMessageProvider extends LinkingDiagnosticMessageProvider
+public class BaseLinkingDiagnosticMessageProvider extends LinkingDiagnosticMessageProvider
 {
 	@Override
 	public DiagnosticMessage getUnresolvedProxyMessage(ILinkingDiagnosticContext context) {

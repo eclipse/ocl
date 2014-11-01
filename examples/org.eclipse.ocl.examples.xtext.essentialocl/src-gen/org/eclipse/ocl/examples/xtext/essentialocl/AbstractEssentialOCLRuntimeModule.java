@@ -146,7 +146,7 @@ public abstract class AbstractEssentialOCLRuntimeModule extends DefaultRuntimeMo
 
 	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
 	public Class<? extends org.eclipse.xtext.serializer.tokens.ICrossReferenceSerializer> bindICrossReferenceSerializer() {
-		return org.eclipse.ocl.examples.xtext.essentialocl.serializer.EssentialOCLCrossReferenceSerializer.class;
+		return org.eclipse.ocl.examples.xtext.base.serializer.BaseCrossReferenceSerializer.class;
 	}
 
 	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
@@ -161,7 +161,7 @@ public abstract class AbstractEssentialOCLRuntimeModule extends DefaultRuntimeMo
 
 	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
 	public Class<? extends org.eclipse.xtext.serializer.sequencer.IHiddenTokenSequencer> bindIHiddenTokenSequencer() {
-		return org.eclipse.ocl.examples.xtext.essentialocl.serializer.EssentialOCLHiddenTokenSequencer.class;
+		return org.eclipse.ocl.examples.xtext.base.serializer.BaseHiddenTokenSequencer.class;
 	}
 
 	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
@@ -171,22 +171,22 @@ public abstract class AbstractEssentialOCLRuntimeModule extends DefaultRuntimeMo
 
 	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
 	public Class<? extends org.eclipse.xtext.linking.ILinkingDiagnosticMessageProvider> bindILinkingDiagnosticMessageProvider() {
-		return org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingDiagnosticMessageProvider.class;
+		return org.eclipse.ocl.examples.xtext.base.services.BaseLinkingDiagnosticMessageProvider.class;
 	}
 
 	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
 	public Class<? extends org.eclipse.xtext.linking.ILinkingService> bindILinkingService() {
-		return org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingService.class;
+		return org.eclipse.ocl.examples.xtext.base.services.BaseLinkingService.class;
 	}
 
 	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
 	public Class<? extends org.eclipse.xtext.naming.IQualifiedNameConverter> bindIQualifiedNameConverter() {
-		return org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLQualifiedNameConverter.class;
+		return org.eclipse.ocl.examples.xtext.base.services.BaseQualifiedNameConverter.class;
 	}
 
 	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
 	public Class<? extends org.eclipse.xtext.naming.IQualifiedNameProvider> bindIQualifiedNameProvider() {
-		return org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLQualifiedNameProvider.class;
+		return org.eclipse.ocl.examples.xtext.base.services.BaseQualifiedNameProvider.class;
 	}
 
 	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
@@ -201,7 +201,7 @@ public abstract class AbstractEssentialOCLRuntimeModule extends DefaultRuntimeMo
 
 	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
 	public Class<? extends org.eclipse.xtext.conversion.IValueConverterService> bindIValueConverterService() {
-		return org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLValueConverterService.class;
+		return org.eclipse.ocl.examples.xtext.base.services.BaseValueConverterService.class;
 	}
 
 	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment

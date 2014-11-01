@@ -17,7 +17,7 @@ import org.eclipse.ocl.examples.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingService;
+import org.eclipse.ocl.examples.xtext.base.services.BaseLinkingService;
 
 /**
  * Tests for OclAny operations.
@@ -31,7 +31,7 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
 
 	@Override
     protected void setUp() throws Exception {
-		EssentialOCLLinkingService.DEBUG_RETRY = true;
+		BaseLinkingService.DEBUG_RETRY = true;
         super.setUp();
         helper.setContext(metaModelManager.getStandardLibrary().getClassType());
     }

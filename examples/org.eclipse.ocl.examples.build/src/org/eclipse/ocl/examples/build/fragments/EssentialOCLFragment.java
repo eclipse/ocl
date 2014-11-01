@@ -13,23 +13,23 @@ package org.eclipse.ocl.examples.build.fragments;
 import java.util.Set;
 
 import org.eclipse.ocl.examples.xtext.base.cs2as.BaseFragmentProvider;
+import org.eclipse.ocl.examples.xtext.base.serializer.BaseCrossReferenceSerializer;
+import org.eclipse.ocl.examples.xtext.base.serializer.BaseHiddenTokenSequencer;
+import org.eclipse.ocl.examples.xtext.base.services.BaseQualifiedNameConverter;
+import org.eclipse.ocl.examples.xtext.base.services.BaseQualifiedNameProvider;
+import org.eclipse.ocl.examples.xtext.base.services.BaseLinkingDiagnosticMessageProvider;
+import org.eclipse.ocl.examples.xtext.base.services.BaseValueConverterService;
+import org.eclipse.ocl.examples.xtext.base.services.BaseLinkingService;
 import org.eclipse.ocl.examples.xtext.base.services.PivotResourceServiceProvider;
+import org.eclipse.ocl.examples.xtext.base.ui.autoedit.BaseAutoEditStrategyProvider;
+import org.eclipse.ocl.examples.xtext.base.ui.model.BaseDocument;
+import org.eclipse.ocl.examples.xtext.base.ui.model.BaseTerminalsTokenTypeToPartitionMapper;
+import org.eclipse.ocl.examples.xtext.base.ui.model.BaseURIEditorOpener;
+import org.eclipse.ocl.examples.xtext.base.ui.syntaxcoloring.BaseAntlrTokenToAttributeIdMapper;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotLinker;
 import org.eclipse.ocl.examples.xtext.base.utilities.PivotDiagnosticConverter;
 import org.eclipse.ocl.examples.xtext.base.utilities.PivotResourceValidator;
 import org.eclipse.ocl.examples.xtext.essentialocl.pivot2cs.EssentialOCLLocationInFileProvider;
-import org.eclipse.ocl.examples.xtext.essentialocl.serializer.EssentialOCLCrossReferenceSerializer;
-import org.eclipse.ocl.examples.xtext.essentialocl.serializer.EssentialOCLHiddenTokenSequencer;
-import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingDiagnosticMessageProvider;
-import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingService;
-import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLQualifiedNameConverter;
-import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLQualifiedNameProvider;
-import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLValueConverterService;
-import org.eclipse.ocl.examples.xtext.essentialocl.ui.autoedit.BaseAutoEditStrategyProvider;
-import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
-import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseTerminalsTokenTypeToPartitionMapper;
-import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseURIEditorOpener;
-import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.BaseAntlrTokenToAttributeIdMapper;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLHighlightingConfiguration;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLSemanticHighlightingCalculator;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource;
@@ -78,26 +78,26 @@ public class EssentialOCLFragment extends DefaultGeneratorFragment implements Na
 	@Override
 	public Set<Binding> getGuiceBindingsRt(Grammar grammar) {
 		BindFactory bindFactory = new BindFactory();
-		bindFactory.addTypeToType(org.eclipse.xtext.serializer.tokens.ICrossReferenceSerializer.class.getName(), EssentialOCLCrossReferenceSerializer.class.getName());
+		bindFactory.addTypeToType(org.eclipse.xtext.serializer.tokens.ICrossReferenceSerializer.class.getName(), BaseCrossReferenceSerializer.class.getName());
 		// Potential resolution of Pivot fragments for CS resource
 		bindFactory.addTypeToType(IDiagnosticConverter.class.getName(), PivotDiagnosticConverter.class.getName());
 		bindFactory.addTypeToType(IFragmentProvider.class.getName(), BaseFragmentProvider.class.getName());
-		bindFactory.addTypeToType(org.eclipse.xtext.serializer.sequencer.IHiddenTokenSequencer.class.getName(), EssentialOCLHiddenTokenSequencer.class.getName());
+		bindFactory.addTypeToType(org.eclipse.xtext.serializer.sequencer.IHiddenTokenSequencer.class.getName(), BaseHiddenTokenSequencer.class.getName());
 		bindFactory.addTypeToType(ILinker.class.getName(), CS2PivotLinker.class.getName());
-		bindFactory.addTypeToType(ILinkingDiagnosticMessageProvider.class.getName(), EssentialOCLLinkingDiagnosticMessageProvider.class.getName());
+		bindFactory.addTypeToType(ILinkingDiagnosticMessageProvider.class.getName(), BaseLinkingDiagnosticMessageProvider.class.getName());
 		// External reference loading and resolution.
-		bindFactory.addTypeToType(ILinkingService.class.getName(), EssentialOCLLinkingService.class.getName());
+		bindFactory.addTypeToType(ILinkingService.class.getName(), BaseLinkingService.class.getName());
 		// :: as scope separator
-		bindFactory.addTypeToType(IQualifiedNameConverter.class.getName(), EssentialOCLQualifiedNameConverter.class.getName());
+		bindFactory.addTypeToType(IQualifiedNameConverter.class.getName(), BaseQualifiedNameConverter.class.getName());
 		// Name value to text serialisation.
-		bindFactory.addTypeToType(IQualifiedNameProvider.class.getName(), EssentialOCLQualifiedNameProvider.class.getName());
+		bindFactory.addTypeToType(IQualifiedNameProvider.class.getName(), BaseQualifiedNameProvider.class.getName());
 		// pivot: scheme support
 		bindFactory.addTypeToType(IResourceServiceProvider.class.getName(), PivotResourceServiceProvider.class.getName());
 		// pivot AST validation support
 //		bindFactory.addTypeToType(Diagnostician.class.getName(), PivotCancelableDiagnostician.class.getName());
 		bindFactory.addTypeToType(IResourceValidator.class.getName(), PivotResourceValidator.class.getName());
 		// DataType text to value parsing.
-		bindFactory.addTypeToType(IValueConverterService.class.getName(), EssentialOCLValueConverterService.class.getName());
+		bindFactory.addTypeToType(IValueConverterService.class.getName(), BaseValueConverterService.class.getName());
 		bindFactory.addTypeToType(XtextResource.class.getName(), EssentialOCLCSResource.class.getName());
 		return bindFactory.getBindings();
 	}

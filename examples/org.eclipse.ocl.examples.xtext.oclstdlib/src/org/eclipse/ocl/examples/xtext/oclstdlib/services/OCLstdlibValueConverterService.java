@@ -10,8 +10,8 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.oclstdlib.services;
 
-import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLValueConverterService;
+import org.eclipse.ocl.examples.xtext.base.services.BaseValueConverterService;
 
-public class OCLstdlibValueConverterService extends EssentialOCLValueConverterService
+public class OCLstdlibValueConverterService extends BaseValueConverterService
 {
 }
