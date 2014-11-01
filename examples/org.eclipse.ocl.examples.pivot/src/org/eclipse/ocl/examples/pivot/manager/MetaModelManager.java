@@ -28,6 +28,7 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
@@ -723,10 +724,11 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		}
 //		System.out.println("dispose AS " + DomainUtil.debugSimpleName(asResourceSet));
 		asResourceSet.eAdapters().remove(this);
-		for (Resource resource : asResourceSet.getResources()) {
-			resource.unload();
+		List<Resource> asResources = asResourceSet.getResources();
+		for (int i = asResources.size(); --i >= 0; ) {
+			asResources.get(i).unload();
 		}
-		asResourceSet.getResources().clear();
+		asResources.clear();
 		asResourceSet.setPackageRegistry(null);
 		asResourceSet.setResourceFactoryRegistry(null);
 		asResourceSet.setURIConverter(null);
@@ -742,9 +744,8 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 			externalResourceSet2.setResourceFactoryRegistry(null);
 			externalResourceSet2.setURIConverter(null);
 			externalResourceSet2.setURIResourceMap(null);
-			List<Resource> resources = externalResourceSet2.getResources();
-			for (int i = resources.size(); --i >= 0; ) {
-				resources.get(i).unload();
+			for (Resource resource : new ArrayList<Resource>(externalResourceSet2.getResources())) {
+				resource.unload();
 			}
 			externalResourceSet = null;
 		}
