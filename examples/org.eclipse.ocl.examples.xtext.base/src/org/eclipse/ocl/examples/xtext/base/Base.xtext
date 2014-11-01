@@ -22,6 +22,59 @@ MultiplicityCS returns MultiplicityCS:
 MultiplicityStringCS returns MultiplicityStringCS:
 	stringBounds=('*'|'+'|'?');
 
+PathNameCS returns PathNameCS:
+	ownedPathElements+=FirstPathElementCS ('::' ownedPathElements+=NextPathElementCS)*;
+
+FirstPathElementCS returns PathElementCS:
+	referredElement=[pivot::NamedElement|UnrestrictedName];
+
+NextPathElementCS returns PathElementCS:
+	referredElement=[pivot::NamedElement|UnreservedName];
+
+TemplateBindingCS returns TemplateBindingCS:
+	'(' ownedSubstitutions+=TemplateParameterSubstitutionCS (',' ownedSubstitutions+=TemplateParameterSubstitutionCS)* ')'
+;
+
+TemplateParameterSubstitutionCS returns TemplateParameterSubstitutionCS:
+	ownedActualParameter=TypeRefCS	
+;
+
+TemplateSignatureCS returns TemplateSignatureCS:
+	'(' ownedParameters+=TypeParameterCS (',' ownedParameters+=TypeParameterCS)* ')'
+;
+
+TypeParameterCS returns TypeParameterCS:
+	name=UnrestrictedName
+	( ('extends' ownedExtends+=TypedRefCS ('&&' ownedExtends+=TypedRefCS)*)
+	| ('super' ownedSuper=TypedRefCS)
+	)?
+;
+
+TypeRefCS returns TypeRefCS:
+	TypedRefCS | WildcardTypeRefCS
+;
+
+TypedRefCS returns TypedRefCS:
+	TypedTypeRefCS
+;
+
+TypedTypeRefCS returns TypedTypeRefCS:
+	ownedPathName=PathNameCS (ownedTemplateBinding=TemplateBindingCS)?
+;
+
+UnreservedName returns ecore::EString: // Intended to be overridden
+	UnrestrictedName;
+
+UnrestrictedName returns ecore::EString: // Intended to be overridden
+	Identifier;
+
+WildcardTypeRefCS returns WildcardTypeRefCS:
+	{WildcardTypeRefCS} '?'
+	( ('extends' ownedExtends=TypedRefCS)
+	| ('super' ownedSuper=TypedRefCS)
+	)?
+;
+
 ID: SIMPLE_ID | ESCAPED_ID;
 
 Identifier:

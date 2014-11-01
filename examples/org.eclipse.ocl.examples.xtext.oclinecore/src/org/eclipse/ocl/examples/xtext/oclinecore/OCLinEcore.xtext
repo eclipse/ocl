@@ -76,16 +76,6 @@ EnumerationLiteralName returns ecore::EString:
 |	'volatile'
 ;
 
-UnrestrictedName returns ecore::EString:
-	EnumerationLiteralName
-|	'annotation'
-|	'documentation'
-|	'invariant'
-|	'literal'
-|	'serializable'
-|	'sysml'
-;
-
 InvariantConstraintCS returns OCLinEcoreConstraintCS:
 	(isCallable?='callable')? stereotype='invariant' (name=UnrestrictedName ('(' ownedMessageSpecification=SpecificationCS ')')?)?
 	((':' ownedSpecification=SpecificationCS? ';') | ';')
@@ -288,13 +278,21 @@ SysMLCS returns SysMLCS:
 	{SysMLCS} 'sysml' ((ownedDetails+=DetailCS ';') | ('{' (ownedDetails+=DetailCS ';')* '}'))
 ;
 
-TemplateBindingCS returns base::TemplateBindingCS:
-	('(' ownedSubstitutions+=TemplateParameterSubstitutionCS (',' ownedSubstitutions+=TemplateParameterSubstitutionCS)* ')')	
-|	('<' ownedSubstitutions+=TemplateParameterSubstitutionCS (',' ownedSubstitutions+=TemplateParameterSubstitutionCS)* '>')	
+TypeIdentifier:
+	UnrestrictedName
+|	PrimitiveTypeIdentifier
 ;
 
-TemplateParameterSubstitutionCS returns base::TemplateParameterSubstitutionCS:
-	ownedActualParameter=TypeRefCS	
+TypedMultiplicityRefCS returns base::TypedRefCS:
+	TypedRefCS (ownedMultiplicity=MultiplicityCS)?
+;
+
+//---------------------------------------------------------------------------------
+//	Base overrides
+//---------------------------------------------------------------------------------
+TemplateBindingCS returns base::TemplateBindingCS:
+	('(' ownedSubstitutions+=TemplateParameterSubstitutionCS (',' ownedSubstitutions+=TemplateParameterSubstitutionCS)* ')')
+|	('<' ownedSubstitutions+=TemplateParameterSubstitutionCS (',' ownedSubstitutions+=TemplateParameterSubstitutionCS)* '>')
 ;
 
 TemplateSignatureCS returns base::TemplateSignatureCS:
@@ -302,37 +300,16 @@ TemplateSignatureCS returns base::TemplateSignatureCS:
 |	('<' ownedParameters+=TypeParameterCS (',' ownedParameters+=TypeParameterCS)* '>')
 ;
 
-TypeIdentifier:
-	UnrestrictedName
-|	PrimitiveTypeIdentifier
-;
-
-TypeParameterCS returns base::TypeParameterCS:
-	name=UnrestrictedName
-	( ('extends' ownedExtends+=TypedRefCS ('&&' ownedExtends+=TypedRefCS)*)
-	| ('super' ownedSuper=TypedRefCS)
-	)?
-;
-
-TypeRefCS returns base::TypeRefCS:
-	TypedRefCS | WildcardTypeRefCS
-;
-
 TypedRefCS returns base::TypedRefCS:
 	TypeLiteralCS | TypedTypeRefCS
 ;
 
-TypedMultiplicityRefCS returns base::TypedRefCS:
-	TypedRefCS (ownedMultiplicity=MultiplicityCS)?
-;
-
-TypedTypeRefCS returns base::TypedTypeRefCS:
-	ownedPathName=PathNameCS (ownedTemplateBinding=TemplateBindingCS)?
-;
-
-WildcardTypeRefCS returns base::WildcardTypeRefCS:
-	{base::WildcardTypeRefCS} '?'
-	( ('extends' ownedExtends=TypedRefCS)
-	| ('super' ownedSuper=TypedRefCS)
-	)?
+UnrestrictedName returns ecore::EString:
+	EnumerationLiteralName
+|	'annotation'
+|	'documentation'
+|	'invariant'
+|	'literal'
+|	'serializable'
+|	'sysml'
 ;

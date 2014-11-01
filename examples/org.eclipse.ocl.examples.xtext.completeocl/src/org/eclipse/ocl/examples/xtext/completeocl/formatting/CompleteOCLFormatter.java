@@ -20,7 +20,6 @@ import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAcc
 import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAccess.OperationContextDeclCSElements;
 import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAccess.PackageDeclarationCSElements;
 import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAccess.PropertyContextDeclCSElements;
-import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAccess.TemplateBindingCSElements;
 import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAccess.TemplateSignatureCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.formatting.AbstractEssentialOCLFormatter;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
@@ -55,6 +54,8 @@ public class CompleteOCLFormatter extends AbstractEssentialOCLFormatter
 	    configurePrimaryExpCS(c, f.getPrimaryExpCSAccess());
 		configureRoundBracketedClauseCS(c, f.getRoundBracketedClauseCSAccess());
 		configureSquareBracketedClauseCS(c, f.getSquareBracketedClauseCSAccess());
+		configureTemplateBindingCS(c, f.getTemplateBindingCSAccess());
+//		configureTemplateSignatureCS(c, f.getTemplateSignatureCSAccess());
 	    configureTupleLiteralExpCS(c, f.getTupleLiteralExpCSAccess());
 	    configureTupleTypeCS(c, f.getTupleTypeCSAccess());
 	    configureURIPathNameCS(c, f.getURIPathNameCSAccess());
@@ -136,13 +137,6 @@ public class CompleteOCLFormatter extends AbstractEssentialOCLFormatter
 			setNoSpaceLineWrap(c, a.getColonKeyword_4_1_1());
 		    c.setLinewrap(2).after(a.getOwnedDefaultExpressionsAssignment_4_1_2());
 //		    c.setLinewrap(2).before(a.getDeriveKeyword_0());
-	    }
-	    {
-			TemplateBindingCSElements a = f.getTemplateBindingCSAccess();
-			c.setNoSpace().around(a.getLeftParenthesisKeyword_0());	
-			c.setNoSpace().before(a.getCommaKeyword_2_0());
-			c.setNoSpace().before(a.getRightParenthesisKeyword_3());	
-		    c.setIndentation(a.getLeftParenthesisKeyword_0(), a.getRightParenthesisKeyword_3());
 	    }
 	    {
 			TemplateSignatureCSElements a = f.getTemplateSignatureCSAccess();

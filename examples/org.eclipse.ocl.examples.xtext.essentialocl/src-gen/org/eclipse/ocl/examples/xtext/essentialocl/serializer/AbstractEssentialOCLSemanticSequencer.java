@@ -10,8 +10,14 @@ import org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathElementWithURICS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PrimitiveTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TuplePartCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TupleTypeCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.TypeParameterCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.WildcardTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.serializer.BaseSemanticSequencer;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteralExpCS;
@@ -123,6 +129,24 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 					return; 
 				}
 				else break;
+			case BaseCSPackage.TEMPLATE_BINDING_CS:
+				if(context == grammarAccess.getTemplateBindingCSRule()) {
+					sequence_TemplateBindingCS(context, (TemplateBindingCS) semanticObject); 
+					return; 
+				}
+				else break;
+			case BaseCSPackage.TEMPLATE_PARAMETER_SUBSTITUTION_CS:
+				if(context == grammarAccess.getTemplateParameterSubstitutionCSRule()) {
+					sequence_TemplateParameterSubstitutionCS(context, (TemplateParameterSubstitutionCS) semanticObject); 
+					return; 
+				}
+				else break;
+			case BaseCSPackage.TEMPLATE_SIGNATURE_CS:
+				if(context == grammarAccess.getTemplateSignatureCSRule()) {
+					sequence_TemplateSignatureCS(context, (TemplateSignatureCS) semanticObject); 
+					return; 
+				}
+				else break;
 			case BaseCSPackage.TUPLE_PART_CS:
 				if(context == grammarAccess.getTuplePartCSRule()) {
 					sequence_TuplePartCS(context, (TuplePartCS) semanticObject); 
@@ -141,6 +165,27 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 				}
 				else if(context == grammarAccess.getTypeLiteralWithMultiplicityCSRule()) {
 					sequence_TupleTypeCS_TypeLiteralWithMultiplicityCS(context, (TupleTypeCS) semanticObject); 
+					return; 
+				}
+				else break;
+			case BaseCSPackage.TYPE_PARAMETER_CS:
+				if(context == grammarAccess.getTypeParameterCSRule()) {
+					sequence_TypeParameterCS(context, (TypeParameterCS) semanticObject); 
+					return; 
+				}
+				else break;
+			case BaseCSPackage.TYPED_TYPE_REF_CS:
+				if(context == grammarAccess.getTypeRefCSRule() ||
+				   context == grammarAccess.getTypedRefCSRule() ||
+				   context == grammarAccess.getTypedTypeRefCSRule()) {
+					sequence_TypedTypeRefCS(context, (TypedTypeRefCS) semanticObject); 
+					return; 
+				}
+				else break;
+			case BaseCSPackage.WILDCARD_TYPE_REF_CS:
+				if(context == grammarAccess.getTypeRefCSRule() ||
+				   context == grammarAccess.getWildcardTypeRefCSRule()) {
+					sequence_WildcardTypeRefCS(context, (WildcardTypeRefCS) semanticObject); 
 					return; 
 				}
 				else break;
@@ -645,15 +690,6 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	
 	/**
 	 * Constraint:
-	 *     referredElement=[NamedElement|UnrestrictedName]
-	 */
-	protected void sequence_FirstPathElementCS(EObject context, PathElementCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     (
 	 *         (ownedCondition=ExpCS | ownedCondition=PatternExpCS) 
 	 *         ownedThenExpression=ExpCS 
@@ -773,15 +809,6 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	
 	/**
 	 * Constraint:
-	 *     referredElement=[NamedElement|UnreservedName]
-	 */
-	protected void sequence_NextPathElementCS(EObject context, PathElementCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     {NullLiteralExpCS}
 	 */
 	protected void sequence_NullLiteralExpCS(EObject context, NullLiteralExpCS semanticObject) {
@@ -794,15 +821,6 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	 *     symbol=NUMBER_LITERAL
 	 */
 	protected void sequence_NumberLiteralExpCS(EObject context, NumberLiteralExpCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (ownedPathElements+=FirstPathElementCS ownedPathElements+=NextPathElementCS*)
-	 */
-	protected void sequence_PathNameCS(EObject context, PathNameCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

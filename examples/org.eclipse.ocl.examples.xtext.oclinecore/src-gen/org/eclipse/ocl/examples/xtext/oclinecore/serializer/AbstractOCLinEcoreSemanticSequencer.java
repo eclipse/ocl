@@ -1028,15 +1028,6 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	
 	/**
 	 * Constraint:
-	 *     ownedActualParameter=TypeRefCS
-	 */
-	protected void sequence_TemplateParameterSubstitutionCS(EObject context, TemplateParameterSubstitutionCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     ((ownedParameters+=TypeParameterCS ownedParameters+=TypeParameterCS*) | (ownedParameters+=TypeParameterCS ownedParameters+=TypeParameterCS*))
 	 */
 	protected void sequence_TemplateSignatureCS(EObject context, TemplateSignatureCS semanticObject) {
@@ -1064,36 +1055,9 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	
 	/**
 	 * Constraint:
-	 *     (name=UnrestrictedName ((ownedExtends+=TypedRefCS ownedExtends+=TypedRefCS*) | ownedSuper=TypedRefCS)?)
-	 */
-	protected void sequence_TypeParameterCS(EObject context, TypeParameterCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     (ownedPathName=PathNameCS ownedTemplateBinding=TemplateBindingCS? ownedMultiplicity=MultiplicityCS?)
 	 */
 	protected void sequence_TypedMultiplicityRefCS_TypedTypeRefCS(EObject context, TypedTypeRefCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (ownedPathName=PathNameCS ownedTemplateBinding=TemplateBindingCS?)
-	 */
-	protected void sequence_TypedTypeRefCS(EObject context, TypedTypeRefCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     ((ownedExtends=TypedRefCS | ownedSuper=TypedRefCS)?)
-	 */
-	protected void sequence_WildcardTypeRefCS(EObject context, WildcardTypeRefCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 }

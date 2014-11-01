@@ -28,39 +28,6 @@ terminal UNQUOTED_STRING:	// Never forward parsed; just provides a placeholder
 CompleteOCLNavigationOperatorCS returns essentialocl::NavigationOperatorCS:
 	name=('^' | '^^');
 
-NavigationOperatorCS returns essentialocl::NavigationOperatorCS:
-	EssentialOCLNavigationOperatorCS | CompleteOCLNavigationOperatorCS;
-
-UnrestrictedName returns ecore::EString:
-	EssentialOCLUnrestrictedName
-	//| 'body'
-	//| 'context'
-	//| 'def'
-	//| 'derive'
-	//|	'endpackage'
-	| 'import'
-	| 'include'
-	//| 'init'
-	//| 'inv'
-	| 'library'
-	//|	'package'
-	//|	'post'
-	//|	'pre'
-	//|	'static'
-;
-
-PrimitiveTypeIdentifier:
-	'Boolean'
-	| 'Integer'
-	| 'Real'
-	| 'String'
-	| 'UnlimitedNatural'
-	| 'OclAny'
-	| 'OclInvalid'
-	| 'OclMessage'
-	| 'OclState'
-	| 'OclVoid';
-
 ClassifierContextDeclCS returns ClassifierContextDeclCS:
 	'context' (ownedSignature=TemplateSignatureCS)? (selfName=UnrestrictedName)?
 	ownedPathName=PathNameCS	
@@ -123,44 +90,36 @@ PropertyContextDeclCS returns PropertyContextDeclCS:
 SpecificationCS returns essentialocl::ExpSpecificationCS:
 	ownedExpression=ExpCS | exprString=UNQUOTED_STRING;
 
-TemplateBindingCS returns base::TemplateBindingCS:
-	('(' ownedSubstitutions+=TemplateParameterSubstitutionCS (',' ownedSubstitutions+=TemplateParameterSubstitutionCS)* ')')	
-;
-
-TemplateParameterSubstitutionCS returns base::TemplateParameterSubstitutionCS:
-	ownedActualParameter=TypeRefCS	
-;
-
+//---------------------------------------------------------------------------------
+//	Base overrides
+//---------------------------------------------------------------------------------
 TemplateSignatureCS returns base::TemplateSignatureCS:
 	('(' ownedParameters+=TypeParameterCS (',' ownedParameters+=TypeParameterCS)* ')')
 |	('<' ownedParameters+=TypeParameterCS (',' ownedParameters+=TypeParameterCS)* '>')
-;
-
-TypeParameterCS returns base::TypeParameterCS:
-	name=UnrestrictedName
-	( ('extends' ownedExtends+=TypedRefCS ('&&' ownedExtends+=TypedRefCS)*)
-	| ('super' ownedSuper=TypedRefCS)
-	)?
-;
-
-TypeRefCS returns base::TypeRefCS:
-	TypedRefCS | WildcardTypeRefCS
 ;
 
 TypedRefCS returns base::TypedRefCS:
 	TypeLiteralCS | TypedTypeRefCS
 ;
 
-TypedTypeRefCS returns base::TypedTypeRefCS:
-	ownedPathName=PathNameCS (ownedTemplateBinding=TemplateBindingCS)?
+UnrestrictedName returns ecore::EString:
+	EssentialOCLUnrestrictedName
+	//| 'body'
+	//| 'context'
+	//| 'def'
+	//| 'derive'
+	//|	'endpackage'
+	| 'import'
+	| 'include'
+	//| 'init'
+	//| 'inv'
+	| 'library'
+	//|	'package'
+	//|	'post'
+	//|	'pre'
+	//|	'static'
 ;
 
-WildcardTypeRefCS returns base::WildcardTypeRefCS:
-	{base::WildcardTypeRefCS} '?'
-	( ('extends' ownedExtends=TypedRefCS)
-	| ('super' ownedSuper=TypedRefCS)
-	)?
-;
 //---------------------------------------------------------------------------------
 //	EssentialOCL overrides
 //---------------------------------------------------------------------------------
@@ -168,3 +127,18 @@ NavigatingArgExpCS returns essentialocl::ExpCS:
 	({OCLMessageArgCS} '?')
 	| ExpCS
 ;
+
+NavigationOperatorCS returns essentialocl::NavigationOperatorCS:
+	EssentialOCLNavigationOperatorCS | CompleteOCLNavigationOperatorCS;
+
+PrimitiveTypeIdentifier:
+	'Boolean'
+	| 'Integer'
+	| 'Real'
+	| 'String'
+	| 'UnlimitedNatural'
+	| 'OclAny'
+	| 'OclInvalid'
+	| 'OclMessage'
+	| 'OclState'
+	| 'OclVoid';

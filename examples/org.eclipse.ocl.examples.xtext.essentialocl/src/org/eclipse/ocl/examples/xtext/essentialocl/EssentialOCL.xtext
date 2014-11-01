@@ -76,15 +76,6 @@ EssentialOCLUnreservedName returns ecore::EString:
 UnreservedName returns ecore::EString: // Intended to be overridden
 	EssentialOCLUnreservedName;
 
-PathNameCS returns base::PathNameCS:
-	ownedPathElements+=FirstPathElementCS ('::' ownedPathElements+=NextPathElementCS)*;
-
-FirstPathElementCS returns base::PathElementCS:
-	referredElement=[pivot::NamedElement|UnrestrictedName];
-
-NextPathElementCS returns base::PathElementCS:
-	referredElement=[pivot::NamedElement|UnreservedName];
-
 URIPathNameCS returns base::PathNameCS:
 	ownedPathElements+=URIFirstPathElementCS ('::' ownedPathElements+=NextPathElementCS)*;
 

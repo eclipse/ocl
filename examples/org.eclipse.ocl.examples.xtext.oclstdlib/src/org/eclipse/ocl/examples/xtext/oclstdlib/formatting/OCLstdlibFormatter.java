@@ -25,14 +25,11 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibPackageCSElements;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibPathNameCSElements;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibPropertyCSElements;
-import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibTupleCSElements;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibraryElements;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.PackageCSElements;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.PostCSElements;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.PreCSElements;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.PrecedenceCSElements;
-import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.TemplateBindingCSElements;
-import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.TemplateSignatureCSElements;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
 
 /**
@@ -66,6 +63,8 @@ public class OCLstdlibFormatter extends AbstractEssentialOCLFormatter {
 	    configurePrimaryExpCS(c, f.getPrimaryExpCSAccess());
 		configureRoundBracketedClauseCS(c, f.getRoundBracketedClauseCSAccess());
 		configureSquareBracketedClauseCS(c, f.getSquareBracketedClauseCSAccess());
+		configureTemplateBindingCS(c, f.getTemplateBindingCSAccess());
+		configureTemplateSignatureCS(c, f.getTemplateSignatureCSAccess());
 	    configureTupleLiteralExpCS(c, f.getTupleLiteralExpCSAccess());
 	    configureTupleTypeCS(c, f.getTupleTypeCSAccess());
 	    configureURIPathNameCS(c, f.getURIPathNameCSAccess());
@@ -175,27 +174,6 @@ public class OCLstdlibFormatter extends AbstractEssentialOCLFormatter {
 			c.setLinewrap().before(a.getEqualsSignGreaterThanSignKeyword_5_0());
 			setBraces(c, a.getLeftCurlyBracketKeyword_6_0_0(), a.getRightCurlyBracketKeyword_6_0_2());
 			setNoSpaceLineWrap(c, a.getSemicolonKeyword_6_1());
-	    }
-	    {
-			TemplateBindingCSElements a = f.getTemplateBindingCSAccess();
-			c.setNoSpace().around(a.getLeftParenthesisKeyword_0());	
-			c.setNoSpace().before(a.getCommaKeyword_2_0());
-			c.setNoSpace().before(a.getRightParenthesisKeyword_3());	
-		    c.setIndentation(a.getLeftParenthesisKeyword_0(), a.getRightParenthesisKeyword_3());
-	    }
-	    {
-			TemplateSignatureCSElements a = f.getTemplateSignatureCSAccess();
-			c.setNoSpace().around(a.getLeftParenthesisKeyword_0());	
-			c.setNoSpace().before(a.getCommaKeyword_2_0());
-			c.setNoSpace().before(a.getRightParenthesisKeyword_3());	
-		    c.setIndentation(a.getLeftParenthesisKeyword_0(), a.getRightParenthesisKeyword_3());
-	    }
-	    {
-			LibTupleCSElements a = f.getLibTupleCSAccess();
-			c.setNoSpace().around(a.getLeftParenthesisKeyword_1());	
-			c.setNoSpace().before(a.getCommaKeyword_2_1_0());
-			c.setNoSpace().before(a.getRightParenthesisKeyword_3());	
-		    c.setIndentation(a.getLeftParenthesisKeyword_1(), a.getRightParenthesisKeyword_3());
 	    }
 	    {	// comments
 	    	c.setNoLinewrap().before(f.getSL_COMMENTRule());

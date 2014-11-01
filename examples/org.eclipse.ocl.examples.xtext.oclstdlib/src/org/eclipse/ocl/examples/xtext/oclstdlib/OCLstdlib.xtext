@@ -225,43 +225,15 @@ PrecedenceCS returns PrecedenceCS:
 SpecificationCS returns essentialocl::ExpSpecificationCS:
 	ownedExpression=ExpCS;
 
-TemplateBindingCS returns base::TemplateBindingCS:
-	'(' ownedSubstitutions+=TemplateParameterSubstitutionCS (',' ownedSubstitutions+=TemplateParameterSubstitutionCS)* ')'	
-;
-
-TemplateParameterSubstitutionCS returns base::TemplateParameterSubstitutionCS:
-	ownedActualParameter=TypeRefCS	
-;
-
-TemplateSignatureCS returns base::TemplateSignatureCS:
-	'(' ownedParameters+=TypeParameterCS (',' ownedParameters+=TypeParameterCS)* ')'
-;
-
-LibTupleCS returns base::TupleTypeCS:
-	name='Tuple' '(' (ownedParts+=LibTuplePartCS (',' ownedParts+=LibTuplePartCS)*)? ')'
-;
-
-LibTuplePartCS returns base::TuplePartCS:
-	name=Identifier ':' ownedType=TypedMultiplicityRefCS
-;
-
-TypeParameterCS returns base::TypeParameterCS:
-	name=Identifier
-	( ('extends' ownedExtends+=TypedRefCS ('&&' ownedExtends+=TypedRefCS)*)
-	| ('super' ownedSuper=TypedRefCS)
-	)?
-;
-
-TypeRefCS returns base::TypeRefCS:
-	TypedRefCS | WildcardTypeRefCS
-;
-
 TypedMultiplicityRefCS returns base::TypedRefCS:
-	(LibTupleCS | TypedTypeRefCS | LambdaTypeCS) (ownedMultiplicity=MultiplicityCS)?
+	(TupleTypeCS | TypedTypeRefCS | LambdaTypeCS) (ownedMultiplicity=MultiplicityCS)?
 ;
 
+//---------------------------------------------------------------------------------
+//	Base overrides
+//---------------------------------------------------------------------------------
 TypedRefCS returns base::TypedRefCS:
-	LibTupleCS | TypedTypeRefCS | LambdaTypeCS
+	TupleTypeCS | TypedTypeRefCS | LambdaTypeCS
 ;
 
 TypedTypeRefCS returns base::TypedTypeRefCS:
@@ -269,9 +241,9 @@ TypedTypeRefCS returns base::TypedTypeRefCS:
   | (ownedPathName=LibPathNameCS (ownedTemplateBinding=TemplateBindingCS)?)
 ;
 
-WildcardTypeRefCS returns base::WildcardTypeRefCS:
-	{base::WildcardTypeRefCS} '?'
-	( ('extends' ownedExtends=TypedRefCS)
-	| ('super' ownedSuper=TypedRefCS)
-	)?
+//---------------------------------------------------------------------------------
+//	EssentialOCL overrides
+//---------------------------------------------------------------------------------
+TuplePartCS returns base::TuplePartCS:
+	name=Identifier ':' ownedType=TypedMultiplicityRefCS
 ;

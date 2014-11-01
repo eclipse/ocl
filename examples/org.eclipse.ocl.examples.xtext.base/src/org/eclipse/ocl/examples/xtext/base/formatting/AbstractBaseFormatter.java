@@ -13,6 +13,9 @@ package org.eclipse.ocl.examples.xtext.base.formatting;
 import org.eclipse.ocl.examples.xtext.base.services.BaseGrammarAccess.MultiplicityBoundsCSElements;
 import org.eclipse.ocl.examples.xtext.base.services.BaseGrammarAccess.MultiplicityCSElements;
 import org.eclipse.ocl.examples.xtext.base.services.BaseGrammarAccess.MultiplicityStringCSElements;
+import org.eclipse.ocl.examples.xtext.base.services.BaseGrammarAccess.PathNameCSElements;
+import org.eclipse.ocl.examples.xtext.base.services.BaseGrammarAccess.TemplateBindingCSElements;
+import org.eclipse.ocl.examples.xtext.base.services.BaseGrammarAccess.TemplateSignatureCSElements;
 import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.formatting.impl.AbstractDeclarativeFormatter;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
@@ -37,6 +40,24 @@ public abstract class AbstractBaseFormatter extends AbstractDeclarativeFormatter
 		c.setNoSpace().around(a.getStringBoundsPlusSignKeyword_0_1());
 		c.setNoSpace().around(a.getStringBoundsQuestionMarkKeyword_0_2());
     }
+
+	protected void configurePathNameCS(FormattingConfig c, PathNameCSElements a) {
+	    c.setNoSpace().around(a.getColonColonKeyword_1_0());
+	}
+
+	protected void configureTemplateBindingCS(FormattingConfig c, TemplateBindingCSElements a) {
+		c.setNoSpace().around(a.getLeftParenthesisKeyword_0());	
+		c.setNoSpace().before(a.getCommaKeyword_2_0());
+		c.setNoSpace().before(a.getRightParenthesisKeyword_3());	
+	    c.setIndentation(a.getLeftParenthesisKeyword_0(), a.getRightParenthesisKeyword_3());
+	}
+
+	protected void configureTemplateSignatureCS(FormattingConfig c, TemplateSignatureCSElements a) {
+		c.setNoSpace().around(a.getLeftParenthesisKeyword_0());	
+		c.setNoSpace().before(a.getCommaKeyword_2_0());
+		c.setNoSpace().before(a.getRightParenthesisKeyword_3());	
+	    c.setIndentation(a.getLeftParenthesisKeyword_0(), a.getRightParenthesisKeyword_3());
+	}
 	
 	public void setBraces(FormattingConfig c, Keyword leftBrace, Keyword rightBrace) {
 		c.setIndentation(leftBrace, rightBrace);

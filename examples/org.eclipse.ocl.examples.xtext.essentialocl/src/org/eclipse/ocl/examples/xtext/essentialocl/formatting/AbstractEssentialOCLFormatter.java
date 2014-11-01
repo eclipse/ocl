@@ -24,7 +24,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarA
 //import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.NavigatingExpCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.NavigatingSemiArgCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.NestedExpCSElements;
-import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.PathNameCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.PrimaryExpCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.RoundBracketedClauseCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.SquareBracketedClauseCSElements;
@@ -102,10 +101,6 @@ public abstract class AbstractEssentialOCLFormatter extends AbstractBaseFormatte
 	protected void configureNestedExpCS(FormattingConfig c, NestedExpCSElements a) {
 		c.setNoSpace().after(a.getLeftParenthesisKeyword_0());
 		c.setNoSpace().before(a.getRightParenthesisKeyword_2());
-	}
-
-	protected void configurePathNameCS(FormattingConfig c, PathNameCSElements a) {
-	    c.setNoSpace().around(a.getColonColonKeyword_1_0());
 	}
 
 	protected void configurePrimaryExpCS(FormattingConfig c, PrimaryExpCSElements a) {
