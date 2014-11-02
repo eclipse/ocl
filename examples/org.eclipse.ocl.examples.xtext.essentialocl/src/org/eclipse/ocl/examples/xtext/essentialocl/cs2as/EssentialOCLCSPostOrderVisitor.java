@@ -66,7 +66,7 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 		@Override
 		public BasicContinuation<?> execute() {
 			// NB Three cases for the Constraint content
-			// a) refreshing an OpaqueExpression that originated from Ecore2Pivot 
+			// a) refreshing an OpaqueExpression that originated from Ecore2AS 
 			// b) refreshing an ExpressionInOCL for a simple statusExpression 
 			// c) refreshing an ExpressionInOCL+PropertyCallExp of a TupleLiteralExp for statusExpression+messageExpression
 			Constraint asConstraint = PivotUtil.getPivot(Constraint.class, csElement);

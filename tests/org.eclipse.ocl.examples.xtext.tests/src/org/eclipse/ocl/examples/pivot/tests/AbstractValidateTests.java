@@ -119,7 +119,7 @@ public abstract class AbstractValidateTests extends PivotTestCase
 		Resource asResource = ocl.cs2as(xtextResource);
 		assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
 		assertNoValidationErrors("Pivot validation errors", asResource.getContents().get(0));
-		Resource ecoreResource = pivot2ecore(ocl, asResource, ecoreURI, true);
+		Resource ecoreResource = as2ecore(ocl, asResource, ecoreURI, true);
 		return ecoreResource;
 	}
 

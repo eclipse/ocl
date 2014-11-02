@@ -35,11 +35,11 @@ import org.eclipse.ocl.examples.pivot.CompleteClass;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.Library;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
-import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
+import org.eclipse.ocl.examples.pivot.ecore.AS2Ecore;
+import org.eclipse.ocl.examples.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
@@ -99,8 +99,8 @@ public class ConstraintMerger extends AbstractProjectComponent
 				DomainUtil.getMetamodelAnnotation(ePackage); // Install EAnnotation
 			}
 		}
-		Ecore2Pivot ecore2pivot = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
-		Model pivotModel = ecore2pivot.getPivotModel();
+		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metaModelManager);
+		Model pivotModel = ecore2as.getPivotModel();
 //		metaModelManager.setPivotMetaModel(pivotModel.getNestedPackage().get(0));
 //		metaModelManager.setLibraryLoadInProgress(false);
 		Resource asResource = DomainUtil.nonNullState(pivotModel.eResource());
@@ -153,10 +153,10 @@ public class ConstraintMerger extends AbstractProjectComponent
 //					resources.remove(resource);
 //				}
 //			}
-//				System.out.println("Pivot2Ecore " + asResource.getURI());
+//				System.out.println("AS2Ecore " + asResource.getURI());
 			Map<String,Object> options = new HashMap<String,Object>();
-			options.put(Pivot2Ecore.OPTION_SUPPRESS_DUPLICATES,  true);
-			Resource ecoreResource2 = Pivot2Ecore.createResource(metaModelManager, asResource, ecoreURI, options);
+			options.put(AS2Ecore.OPTION_SUPPRESS_DUPLICATES,  true);
+			Resource ecoreResource2 = AS2Ecore.createResource(metaModelManager, asResource, ecoreURI, options);
 			ctx.set(getModelSlot(), ecoreResource2);
 			projectDescriptor.configure(ecoreResource2.getResourceSet(), StandaloneProjectMap.LoadBothStrategy.INSTANCE, null);
 			

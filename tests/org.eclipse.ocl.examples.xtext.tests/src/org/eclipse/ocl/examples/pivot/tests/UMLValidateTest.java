@@ -42,7 +42,7 @@ import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
+import org.eclipse.ocl.examples.pivot.uml.UML2AS;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLLoader;
 import org.eclipse.ocl.examples.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
@@ -127,7 +127,7 @@ public class UMLValidateTest extends AbstractValidateTests
 		ResourceSet resourceSet = createResourceSet();
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
 		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
-			assertNull(UML2Pivot.initialize(resourceSet));
+			assertNull(UML2AS.initialize(resourceSet));
 		}
 		URI uri = getProjectFileURI("Bug408990.uml");
 		Resource umlResource = DomainUtil.nonNullState(resourceSet.getResource(uri, true));
@@ -143,7 +143,7 @@ public class UMLValidateTest extends AbstractValidateTests
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
 		OCLDelegateDomain.initialize(resourceSet, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);			
 		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
-			assertNull(UML2Pivot.initialize(resourceSet));
+			assertNull(UML2AS.initialize(resourceSet));
 		}
 		URI uri = getProjectFileURI("Bug408990.uml");
 		Resource umlResource = DomainUtil.nonNullState(resourceSet.getResource(uri, true));
@@ -161,7 +161,7 @@ public class UMLValidateTest extends AbstractValidateTests
 	public void test_tutorial_umlValidation_436903() {
 		ResourceSet resourceSet = createResourceSet();
 		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
-			assertNull(UML2Pivot.initialize(resourceSet));
+			assertNull(UML2AS.initialize(resourceSet));
 		}
 		else {
 			UMLResourcesUtil.init(resourceSet);
@@ -209,7 +209,7 @@ public class UMLValidateTest extends AbstractValidateTests
 	public void test_umlValidation_404882() {
 		ResourceSet resourceSet = createResourceSet();
 		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
-			assertNull(UML2Pivot.initialize(resourceSet));
+			assertNull(UML2AS.initialize(resourceSet));
 		}
 		else {
 			UMLResourcesUtil.init(resourceSet);
@@ -252,7 +252,7 @@ public class UMLValidateTest extends AbstractValidateTests
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
 		OCLDelegateDomain.initialize(resourceSet, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);			
 		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
-			assertNull(UML2Pivot.initialize(resourceSet));
+			assertNull(UML2AS.initialize(resourceSet));
 		}
 		OCLDelegateDomain.initializePivotOnlyDiagnosticianResourceSet(resourceSet);
 		URI uri = getProjectFileURI("bug432920.uml");
@@ -296,7 +296,7 @@ public class UMLValidateTest extends AbstractValidateTests
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
 		OCLDelegateDomain.initialize(resourceSet, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);			
 		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
-			assertNull(UML2Pivot.initialize(resourceSet));
+			assertNull(UML2AS.initialize(resourceSet));
 		}
 		OCLDelegateDomain.initializePivotOnlyDiagnosticianResourceSet(resourceSet);
 		URI uri = getProjectFileURI("Bug434433.uml");
@@ -317,14 +317,14 @@ public class UMLValidateTest extends AbstractValidateTests
 	
 	public void test_umlValidation_Bug434356() {
 //		EssentialOCLLinkingService.DEBUG_RETRY = true;
-//		UML2Pivot.TYPE_EXTENSIONS.setState(true);
+//		UML2AS.TYPE_EXTENSIONS.setState(true);
 		resetRegistries();
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
 		ResourceSet resourceSet = createResourceSet();
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
 		OCLDelegateDomain.initialize(resourceSet, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);			
 		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
-			assertNull(UML2Pivot.initialize(resourceSet));
+			assertNull(UML2AS.initialize(resourceSet));
 		}
 		OCLDelegateDomain.initializePivotOnlyDiagnosticianResourceSet(resourceSet);
 		URI uri = getProjectFileURI("Bug434356.uml");
@@ -344,14 +344,14 @@ public class UMLValidateTest extends AbstractValidateTests
 	}
 	
 	public void test_umlValidation_Bug436945() throws IOException {   // This is org.eclipse.ocl.doc/doc/models/1710-m1.uml
-//		UML2Pivot.TYPE_EXTENSIONS.setState(true);
+//		UML2AS.TYPE_EXTENSIONS.setState(true);
 //		resetRegistries();
 //		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
 //		ResourceSet resourceSet = createResourceSet();
 //		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
 //		OCLDelegateDomain.initialize(resourceSet, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);			
 //		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
-//			assertNull(UML2Pivot.initialize(resourceSet));
+//			assertNull(UML2AS.initialize(resourceSet));
 //		}
 //		OCLDelegateDomain.initializePivotOnlyDiagnosticianResourceSet(resourceSet);
 //		URI uri = getProjectFileURI("Bug436945.uml");

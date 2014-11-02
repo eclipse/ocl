@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.essentialocl.formatting;
 
-import org.eclipse.ocl.examples.xtext.base.formatting.AbstractBaseFormatter;
+import org.eclipse.ocl.examples.xtext.base.formatting.BaseFormatter;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.CollectionLiteralExpCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.CollectionTypeCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.CurlyBracketedClauseCSElements;
@@ -35,7 +35,7 @@ import org.eclipse.xtext.formatting.impl.FormattingConfig;
 /**
  * This class contains custom formatting description.
  */
-public abstract class AbstractEssentialOCLFormatter extends AbstractBaseFormatter
+public abstract class AbstractEssentialOCLFormatter extends BaseFormatter
 {
 	protected void configureCollectionLiteralExpCS(FormattingConfig c, CollectionLiteralExpCSElements a) {
 		c.setNoSpace().around(a.getLeftCurlyBracketKeyword_1());

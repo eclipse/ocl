@@ -9,6 +9,7 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Import-Package: org.apache.log4j;version="[1.2.15,2.0.0)"
 Export-Package: org.eclipse.ocl.examples.xtext.essentialocl,
+ org.eclipse.ocl.examples.xtext.essentialocl.as2cs,
  org.eclipse.ocl.examples.xtext.essentialocl.attributes,
  org.eclipse.ocl.examples.xtext.essentialocl.cs2as,
  org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs,
@@ -17,7 +18,6 @@ Export-Package: org.eclipse.ocl.examples.xtext.essentialocl,
  org.eclipse.ocl.examples.xtext.essentialocl.formatting,
  org.eclipse.ocl.examples.xtext.essentialocl.parser.antlr,
  org.eclipse.ocl.examples.xtext.essentialocl.parser.antlr.internal;x-friends:="org.eclipse.ocl.examples.xtext.essentialocl.ui",
- org.eclipse.ocl.examples.xtext.essentialocl.pivot2cs,
  org.eclipse.ocl.examples.xtext.essentialocl.scoping,
  org.eclipse.ocl.examples.xtext.essentialocl.serializer,
  org.eclipse.ocl.examples.xtext.essentialocl.services,

@@ -120,8 +120,8 @@ public class OCLinEcoreCodeGenerator extends JavaCodeGenerator
 		EPackage ecorePackage = genPackage.getEcorePackage();
 		org.eclipse.ocl.examples.pivot.Package asPackage = metaModelManager.getPivotOfEcore(org.eclipse.ocl.examples.pivot.Package.class, ecorePackage);
 		assert asPackage != null;
-		AS2CGVisitor pivot2CGVisitor = new OCLinEcoreAS2CGVisitor(cgAnalyzer, globalContext);
-		CGPackage cgPackage = (CGPackage) DomainUtil.nonNullState(asPackage.accept(pivot2CGVisitor));
+		AS2CGVisitor as2cgVisitor = new OCLinEcoreAS2CGVisitor(cgAnalyzer, globalContext);
+		CGPackage cgPackage = (CGPackage) DomainUtil.nonNullState(asPackage.accept(as2cgVisitor));
 		optimize(cgPackage);
 		OCLinEcoreCG2JavaVisitor cg2java = new OCLinEcoreCG2JavaVisitor(this, genPackage, cgPackage);
 		Map<String, String> results = cg2java.generateBodies();

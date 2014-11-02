@@ -71,7 +71,7 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VoidType;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
@@ -908,8 +908,8 @@ public class OCLinEcoreTablesUtils
 		if (ecoreResource == null) {
 			return null;
 		}
-		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
-		org.eclipse.ocl.examples.pivot.Package asPackage = ecore2Pivot.getCreated(org.eclipse.ocl.examples.pivot.Package.class, ePackage);
+		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metaModelManager);
+		org.eclipse.ocl.examples.pivot.Package asPackage = ecore2as.getCreated(org.eclipse.ocl.examples.pivot.Package.class, ePackage);
 		if (asPackage == null) {
 			return null;
 		}

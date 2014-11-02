@@ -97,7 +97,7 @@ public class NameQueries
 	}
 	
 /*	public static String getMoniker(@NonNull Element element) {
-		return Pivot2Moniker.toString(element);
+		return AS2Moniker.toString(element);
 	}
 	
 	/**

@@ -37,13 +37,13 @@ org.eclipse.ocl.examples.pivot/validate/instance=false
 org.eclipse.ocl.examples.pivot/validate/opaqueElement=false
 
 # Trace validation of ElementExtension creations 
-org.eclipse.ocl.examples.pivot/uml2pivot/addElementExtension=false
+org.eclipse.ocl.examples.pivot/uml2as/addElementExtension=false
 
 # Trace validation of Import discoveries 
-org.eclipse.ocl.examples.pivot/uml2pivot/addImportedResource=false
+org.eclipse.ocl.examples.pivot/uml2as/addImportedResource=false
 
 # Trace validation of Profile Application discoveries 
-org.eclipse.ocl.examples.pivot/uml2pivot/addProfileApplication=false
+org.eclipse.ocl.examples.pivot/uml2as/addProfileApplication=false
 
 # Trace validation of Stereotype Application discoveries 
-org.eclipse.ocl.examples.pivot/uml2pivot/addStereotypeApplication=false
+org.eclipse.ocl.examples.pivot/uml2as/addStereotypeApplication=false

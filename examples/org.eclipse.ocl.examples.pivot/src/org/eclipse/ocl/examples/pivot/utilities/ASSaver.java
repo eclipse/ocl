@@ -308,7 +308,7 @@ public class ASSaver
 				orphanage.getOwnedClasses().add(resolvedType);
 			}
 		}
-/*			String moniker = Pivot2Moniker.toString(referredType);
+/*			String moniker = AS2Moniker.toString(referredType);
 		Type type = types.get(moniker);
 		if (type != null) {
 			@SuppressWarnings("unchecked") 
@@ -318,11 +318,11 @@ public class ASSaver
 		T resolvedType = EcoreUtil.copy(referredType);
 		orphanage.getOwnedType().add(resolvedType);
 		types.put(moniker, resolvedType);
-		String newMoniker = Pivot2Moniker.toString(resolvedType);
+		String newMoniker = AS2Moniker.toString(resolvedType);
 //		assert moniker.equals(newMoniker) : newMoniker + " is not equal to " + moniker;
 		if (!moniker.equals(newMoniker)) {
-			String moniker2 = Pivot2Moniker.toString(referredType);
-			String newMoniker2 = Pivot2Moniker.toString(resolvedType);
+			String moniker2 = AS2Moniker.toString(referredType);
+			String newMoniker2 = AS2Moniker.toString(resolvedType);
 			assert moniker.equals(newMoniker) : newMoniker + " is not equal to " + moniker;
 		} */
 		locateSpecializations(Collections.singletonList(resolvedType));

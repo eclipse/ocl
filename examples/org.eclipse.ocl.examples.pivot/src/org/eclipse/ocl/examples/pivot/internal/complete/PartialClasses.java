@@ -71,7 +71,7 @@ import org.eclipse.ocl.examples.pivot.manager.CompleteInheritance;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.Orphanage;
 import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
-import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
+import org.eclipse.ocl.examples.pivot.uml.UML2AS;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
@@ -192,7 +192,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 		Stereotype stereotype = stereotypeInstance.getStereotype();
 		Map<String, PartialProperties> name2partialProperties2 = name2partialProperties;
 		assert name2partialProperties2 != null;
-		String extensionPropertyName = UML2Pivot.STEREOTYPE_EXTENSION_PREFIX + stereotype.getName();
+		String extensionPropertyName = UML2AS.STEREOTYPE_EXTENSION_PREFIX + stereotype.getName();
 		Property extensionProperty = null;
 		PartialProperties partialProperties = name2partialProperties2.get(extensionPropertyName);
 		if (partialProperties == null) {

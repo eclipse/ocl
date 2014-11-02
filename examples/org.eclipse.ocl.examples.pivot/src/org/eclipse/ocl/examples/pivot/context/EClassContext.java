@@ -41,7 +41,7 @@ public class EClassContext extends AbstractParserContext
 	}
 
 	@Override
-	public void initialize(@NonNull Base2PivotConversion conversion, @NonNull ExpressionInOCL expression) {
+	public void initialize(@NonNull Base2ASConversion conversion, @NonNull ExpressionInOCL expression) {
 		super.initialize(conversion, expression);
 		Type classContext = getClassContext();
 		if (classContext != null) {

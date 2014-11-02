@@ -3,10 +3,7 @@
  */
 package org.eclipse.ocl.examples.xtext.base.formatting;
 
-import com.google.inject.Inject;
-import org.eclipse.xtext.formatting.impl.AbstractDeclarativeFormatter;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
-import org.eclipse.ocl.examples.xtext.base.services.BaseGrammarAccess;
 
 /**
  * This class contains custom formatting description.
@@ -16,10 +13,10 @@ import org.eclipse.ocl.examples.xtext.base.services.BaseGrammarAccess;
  * 
  * Also see {@link org.eclipse.xtext.xtext.XtextFormattingTokenSerializer} as an example
  */
-public class BaseFormatter extends AbstractDeclarativeFormatter {
-	
-	@Inject
-	private BaseGrammarAccess grammarAccess; 
+public class BaseFormatter extends AbstractBaseFormatter
+{
+//	@Inject
+//	private BaseGrammarAccess grammarAccess; 
 	
 	@Override
 	protected void configureFormatting(FormattingConfig c) {

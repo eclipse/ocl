@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
@@ -52,7 +52,7 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 	protected final @NonNull MetaModelManager metaModelManager;
 	protected final @NonNull EPackage ePackage;
 	protected final @NonNull URI oclURI;
-	private Ecore2Pivot ecore2Pivot = null;
+	private Ecore2AS ecore2as = null;
 	
 	/**
 	 * Construct a validator to apply the CompleteOCL invariants from oclURI to ePackage
@@ -91,7 +91,7 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 		if (ecoreResource == null) {
 			return false;
 		}
-		ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
+		ecore2as = Ecore2AS.getAdapter(ecoreResource, metaModelManager);
 		ResourceSet resourceSet = new ResourceSetImpl();
 		MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
 		List<Diagnostic> errors = ecoreResource.getErrors();
@@ -101,7 +101,7 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 			logger.error("Failed to load Ecore '" + ecoreResource.getURI() + message);
 			return false;
 		}
-		Model pivotModel = ecore2Pivot.getPivotModel();
+		Model pivotModel = ecore2as.getPivotModel();
 		errors = pivotModel.eResource().getErrors();
 		assert errors != null;
 		message = PivotUtil.formatResourceDiagnostics(errors, "", "\n");
@@ -152,7 +152,7 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 	@Override
 	protected boolean validatePivot(@NonNull EClassifier eClassifier, @Nullable Object object,
 			@Nullable DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if ((ecore2Pivot == null) && (object instanceof EObject)) {
+		if ((ecore2as == null) && (object instanceof EObject)) {
 			initialize();	
 			Resource eResource = ((EObject)object).eResource();
 			if (eResource != null) {

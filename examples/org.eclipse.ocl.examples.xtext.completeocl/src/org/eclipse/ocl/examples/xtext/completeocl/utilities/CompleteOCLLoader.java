@@ -33,7 +33,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
@@ -63,8 +63,8 @@ public abstract class CompleteOCLLoader
 	public boolean loadMetaModels() {
 		for (Resource resource : resourceSet.getResources()) {
 			assert resource != null;
-			Ecore2Pivot ecore2Pivot = Ecore2Pivot.findAdapter(resource, metaModelManager);
-			if (ecore2Pivot == null) {			// Pivot has its own validation
+			Ecore2AS ecore2as = Ecore2AS.findAdapter(resource, metaModelManager);
+			if (ecore2as == null) {			// Pivot has its own validation
 				for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
 					EObject eObject = tit.next();
 					EClass eClass = eObject.eClass();

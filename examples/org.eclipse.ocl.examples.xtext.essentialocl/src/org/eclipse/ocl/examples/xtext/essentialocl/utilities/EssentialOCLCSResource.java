@@ -42,6 +42,7 @@ import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.base.as2cs.AS2CS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathElementWithURICS;
@@ -49,15 +50,14 @@ import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.examples.xtext.base.cs2as.ImportDiagnostic;
 import org.eclipse.ocl.examples.xtext.base.cs2as.LibraryDiagnostic;
-import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
+import org.eclipse.ocl.examples.xtext.essentialocl.as2cs.EssentialOCLAS2CS;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCS2AS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.pivot2cs.EssentialOCLPivot2CS;
 import org.eclipse.xtext.diagnostics.AbstractDiagnostic;
 import org.eclipse.xtext.diagnostics.DiagnosticMessage;
 import org.eclipse.xtext.linking.impl.XtextLinkingDiagnostic;
@@ -219,9 +219,9 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 		}
 	}
 
-	public @NonNull Pivot2CS createPivot2CS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap,
+	public @NonNull AS2CS createAS2CS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap,
 			@NonNull MetaModelManager metaModelManager) {
-		return new EssentialOCLPivot2CS(cs2asResourceMap, metaModelManager);
+		return new EssentialOCLAS2CS(cs2asResourceMap, metaModelManager);
 	}
 
 	public @NonNull MetaModelManager createMetaModelManager() {
@@ -513,7 +513,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	public void updateFrom(@NonNull ASResource asResource, @NonNull MetaModelManager metaModelManager) {		
 		Map<BaseCSResource, ASResource> cs2asResourceMap = new HashMap<BaseCSResource, ASResource>();
 		cs2asResourceMap.put(this, asResource);
-		Pivot2CS pivot2cs = createPivot2CS(cs2asResourceMap, metaModelManager);
-		pivot2cs.update();
+		AS2CS as2cs = createAS2CS(cs2asResourceMap, metaModelManager);
+		as2cs.update();
 	}
 }

@@ -27,7 +27,7 @@ import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
+import org.eclipse.ocl.examples.pivot.uml.UML2AS;
 import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.UML2EcoreConverter;
 
@@ -50,10 +50,10 @@ public abstract class PivotStateMachineTestSuite extends PivotTestSuite
 
 	@SuppressWarnings("null")
 	protected Resource getPivotFromUML(MetaModelManager metaModelManager, Resource umlResource) throws ParserException {
-//		String problem = UML2Pivot.initialize(metaModelManager.getExternalResourceSet());
+//		String problem = UML2AS.initialize(metaModelManager.getExternalResourceSet());
 //		assertNull(problem);
-		UML2Pivot uml2Pivot = UML2Pivot.getAdapter(umlResource, metaModelManager);
-		Model pivotModel = uml2Pivot.getPivotModel();
+		UML2AS uml2as = UML2AS.getAdapter(umlResource, metaModelManager);
+		Model pivotModel = uml2as.getPivotModel();
 		Resource asResource = pivotModel.eResource();
 		assertNoResourceErrors("Normalisation failed", asResource);
 		assertNoValidationErrors("Normalisation invalid", asResource);
@@ -63,7 +63,7 @@ public abstract class PivotStateMachineTestSuite extends PivotTestSuite
 	protected Resource initStateMachinePackage() throws ParserException {
 		ResourceSet resourceSet2 = resourceSet;
 		assert resourceSet2 != null;
-		UML2Pivot.initialize(resourceSet2);
+		UML2AS.initialize(resourceSet2);
 		URI uri = getTestModelURI("model/StateMachines.uml");
 		Resource umlResource = resourceSet2.getResource(uri, true);
 		List<EObject> contents = umlResource.getContents();

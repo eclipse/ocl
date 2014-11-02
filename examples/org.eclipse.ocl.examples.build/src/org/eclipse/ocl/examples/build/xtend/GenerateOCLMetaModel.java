@@ -50,7 +50,7 @@ import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
@@ -216,8 +216,8 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 				issues.addError(this, ecoreErrorsString, null, null, null);
 				return;
 			}
-			Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
-			Model pivotModel = ecore2Pivot.getPivotModel();
+			Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metaModelManager);
+			Model pivotModel = ecore2as.getPivotModel();
 			Resource asResource = pivotModel.eResource();
 			String pivotErrorsString = PivotUtil.formatResourceDiagnostics(DomainUtil.nonNullEMF(asResource.getErrors()), "Converting " + inputURI, "\n");
 				if (pivotErrorsString != null) {

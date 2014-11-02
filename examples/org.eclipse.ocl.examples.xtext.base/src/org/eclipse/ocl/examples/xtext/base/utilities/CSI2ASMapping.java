@@ -31,11 +31,11 @@ import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
 
 /**
- * The CSI2PivotMapping maintains the mapping between CS elements or rather their CSIs
+ * The CSI2ASMapping maintains the mapping between CS elements or rather their CSIs
  * that remain stable after recreation and the Pivot elements. This mapping may be used
  * repeatedly while editing (CS2AS conversions) to associate changing CS elements with
  * stable Pivot elements.
- * The mapping is also created during a Pivot2CS conversion to allow subsequent CS2AS
+ * The mapping is also created during a AS2CS conversion to allow subsequent CS2AS
  * conversions to reuse the original Pivot elements.  
  */
 public class CSI2ASMapping extends AdapterImpl implements MetaModelManagerListener
@@ -67,26 +67,26 @@ public class CSI2ASMapping extends AdapterImpl implements MetaModelManagerListen
 	 * the next update from a potentially different CS Resource and elements but the same URIs to re-use the pivot elements
 	 * and to kill off the obsolete elements. 
 	 */
-	private Map<String, Element> csi2pivot = new HashMap<String, Element>();
+	private Map<String, Element> csi2as = new HashMap<String, Element>();
 
 	/**
 	 * A lazily created inverse map that may be required for navigation from an outline.
 	 */
-	private Map<Element, ModelElementCS> pivot2cs = null;
+	private Map<Element, ModelElementCS> as2cs = null;
 	
 	private int nextAlias = 0;
 	
 	private CSI2ASMapping() {}
 
 	public void add(Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap) {
-		pivot2cs = null;
+		as2cs = null;
 		this.cs2asResourceMap.putAll(cs2asResourceMap); 
 	}
 
 	public void clear() {
 		csURI2aliasMap.clear();
-		csi2pivot.clear();
-		pivot2cs = null;
+		csi2as.clear();
+		as2cs = null;
 	}
 	
 	public Set<String> computeCSIs(Collection<? extends Resource> csResources) {
@@ -104,7 +104,7 @@ public class CSI2ASMapping extends AdapterImpl implements MetaModelManagerListen
 		return map;
 	}
 
-	protected @NonNull Map<Element, ModelElementCS> computePivot2CSMap() {
+	protected @NonNull Map<Element, ModelElementCS> computeAS2CSMap() {
 		Map<Element, ModelElementCS> map = new HashMap<Element, ModelElementCS>();
 		for (Resource csResource : cs2asResourceMap.keySet()) {
 			for (Iterator<EObject> it = csResource.getAllContents(); it.hasNext(); ) {
@@ -127,7 +127,7 @@ public class CSI2ASMapping extends AdapterImpl implements MetaModelManagerListen
 	 */
 	public @Nullable Element get(@NonNull ModelElementCS csElement) {
 		String csi = getCSI(csElement);
-		return csi2pivot.get(csi);
+		return csi2as.get(csi);
 	}
 
 	/**
@@ -168,14 +168,14 @@ public class CSI2ASMapping extends AdapterImpl implements MetaModelManagerListen
 	}
 
 	public @Nullable ModelElementCS getCSElement(@NonNull Element pivotElement) {
-		if (pivot2cs == null) {
-			pivot2cs = computePivot2CSMap();
+		if (as2cs == null) {
+			as2cs = computeAS2CSMap();
 		}
-		return pivot2cs.get(pivotElement);
+		return as2cs.get(pivotElement);
 	}
 
 	public Map<String, Element> getMapping() {
-		return csi2pivot;
+		return csi2as;
 	}
 
 	@Override
@@ -192,14 +192,14 @@ public class CSI2ASMapping extends AdapterImpl implements MetaModelManagerListen
 	 */
 	public void put(@NonNull ModelElementCS csElement, @Nullable Element pivotElement) {
 		String csi = getCSI(csElement);
-		csi2pivot.put(csi, pivotElement);
+		csi2as.put(csi, pivotElement);
 	}
 
 	/**
 	 * Remove the Resource mappings for all csResources. The CSI mappings persist until update() is called.
 	 */
 	public void removeCSResources(@NonNull Set<? extends BaseCSResource> csResources) {
-		pivot2cs = null;
+		as2cs = null;
 		for (Resource csResource : csResources) {
 			cs2asResourceMap.remove(csResource); 
 		}
@@ -209,8 +209,8 @@ public class CSI2ASMapping extends AdapterImpl implements MetaModelManagerListen
 	 * Update the mapping to cache the Pivot elements with respect to the CSIs for all CS elements in csResources.
 	 */
 	public void update() {
-		pivot2cs = null;
-		csi2pivot.clear();
+		as2cs = null;
+		csi2as.clear();
 		Set<String> deadURIs = new HashSet<String>(csURI2aliasMap.keySet());
 		for (Resource csResource : cs2asResourceMap.keySet()) {
 			deadURIs.remove(csResource.getURI().toString());

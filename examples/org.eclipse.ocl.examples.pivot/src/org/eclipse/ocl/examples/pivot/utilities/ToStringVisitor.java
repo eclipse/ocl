@@ -150,9 +150,9 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 		return s.toString();
 	}
 
-	protected static class Pivot2StringFactory implements ToStringVisitor.Factory
+	protected static class AS2StringFactory implements ToStringVisitor.Factory
 	{
-		protected Pivot2StringFactory() {
+		protected AS2StringFactory() {
 			ToStringVisitor.addFactory(this);
 //			FACTORY.getClass();				// This is redundant for this class but needed by derived classes
 		}
@@ -168,7 +168,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 		}
 	}
 
-	public static @NonNull ToStringVisitor.Factory FACTORY = new Pivot2StringFactory();
+	public static @NonNull ToStringVisitor.Factory FACTORY = new AS2StringFactory();
 	
 	/**
 	 * Indicates where a required element in the AST was <code>null</code>, so

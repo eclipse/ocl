@@ -77,7 +77,7 @@ public class UMLASResourceImpl extends ASResourceImpl
 	@Override
 	public void load(Map<?, ?> options) throws IOException {
 		@SuppressWarnings("null")@NonNull URI umlURI = uri.trimFileExtension();
-		UML2Pivot.loadFromUML(this, umlURI);
+		UML2AS.loadFromUML(this, umlURI);
 		super.load(options);
 	}
 }

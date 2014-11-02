@@ -33,15 +33,15 @@ import org.eclipse.ocl.examples.domain.evaluation.EvaluationHaltedException;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
-import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
+import org.eclipse.ocl.examples.pivot.ecore.Ecore2AS;
+import org.eclipse.ocl.examples.pivot.ecore.AS2Ecore;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelperImpl;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
-import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
+import org.eclipse.ocl.examples.pivot.uml.UML2AS;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
@@ -175,6 +175,28 @@ public class OCL {
 
 			abstractFactory.setEvaluationTracingEnabled(traceEvaluation);
 		}
+	}
+
+	/**
+	 * Update the CS resource from a asResource.
+	 * 
+	 * For a first update, the csResource may be created by something like
+	 * <p><tt>
+	 * (BaseResource) resourceSet.createResource(outputURI, OCLinEcoreCSPackage.eCONTENT_TYPE);
+	 * </tt>
+	 */
+	public void as2cs(@NonNull ASResource asResource, @NonNull BaseResource csResource) {
+		MetaModelManager metaModelManager = getMetaModelManager();
+		csResource.updateFrom(asResource, metaModelManager);
+	}
+
+	/**
+	 * Return the Ecore resource counterpart of a asResource, specifying the uri of the resulting Ecore resource.
+	 */
+	public @NonNull Resource as2ecore(@NonNull Resource asResource, @NonNull URI uri) throws IOException {
+		MetaModelManager metaModelManager = getMetaModelManager();
+		Resource ecoreResource = AS2Ecore.createResource(metaModelManager, asResource, uri, null);
+		return ecoreResource;
 	}
 
 	/**
@@ -398,10 +420,10 @@ public class OCL {
 	/**
 	 * Return the Pivot resource counterpart of an ecoreResource.
 	 */
-	public @NonNull ASResource ecore2pivot(@NonNull Resource ecoreResource) throws ParserException {
+	public @NonNull ASResource ecore2as(@NonNull Resource ecoreResource) throws ParserException {
 		MetaModelManager metaModelManager = getMetaModelManager();
-		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
-		Model pivotModel = ecore2Pivot.getPivotModel();
+		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metaModelManager);
+		Model pivotModel = ecore2as.getPivotModel();
 		ASResource asResource = (ASResource) pivotModel.eResource();
 		return DomainUtil.nonNullModel(asResource);
 	}
@@ -603,28 +625,6 @@ public class OCL {
 	}
 
 	/**
-	 * Update the CS resource from a asResource.
-	 * 
-	 * For a first update, the csResource may be created by something like
-	 * <p><tt>
-	 * (BaseResource) resourceSet.createResource(outputURI, OCLinEcoreCSPackage.eCONTENT_TYPE);
-	 * </tt>
-	 */
-	public void pivot2cs(@NonNull ASResource asResource, @NonNull BaseResource csResource) {
-		MetaModelManager metaModelManager = getMetaModelManager();
-		csResource.updateFrom(asResource, metaModelManager);
-	}
-
-	/**
-	 * Return the Ecore resource counterpart of a asResource, specifying the uri of the resulting Ecore resource.
-	 */
-	public @NonNull Resource pivot2ecore(@NonNull Resource asResource, @NonNull URI uri) throws IOException {
-		MetaModelManager metaModelManager = getMetaModelManager();
-		Resource ecoreResource = Pivot2Ecore.createResource(metaModelManager, asResource, uri, null);
-		return ecoreResource;
-	}
-
-	/**
 	 * Sets whether tracing of evaluation is enabled. Tracing logs the progress
 	 * of parsing to the console, which may be of use in diagnosing problems.
 	 * <p>
@@ -709,10 +709,10 @@ public class OCL {
 	 * Return the Pivot resource counterpart of a umlResource.
 	 * @throws ParserException 
 	 */
-	public @NonNull ASResource uml2pivot(@NonNull Resource umlResource) throws ParserException {
+	public @NonNull ASResource uml2as(@NonNull Resource umlResource) throws ParserException {
 		MetaModelManager metaModelManager = getMetaModelManager();
-		UML2Pivot uml2Pivot = UML2Pivot.getAdapter(umlResource, metaModelManager);
-		Model pivotModel = uml2Pivot.getPivotModel();
+		UML2AS uml2as = UML2AS.getAdapter(umlResource, metaModelManager);
+		Model pivotModel = uml2as.getPivotModel();
 		ASResource asResource = (ASResource) pivotModel.eResource();
 		return DomainUtil.nonNullModel(asResource);
 	}

@@ -56,18 +56,18 @@ import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
-import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
+import org.eclipse.ocl.examples.pivot.ecore.Ecore2AS;
+import org.eclipse.ocl.examples.pivot.ecore.AS2Ecore;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.resource.ASResourceFactoryRegistry;
-import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
+import org.eclipse.ocl.examples.pivot.uml.UML2AS;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
-import org.eclipse.ocl.examples.xtext.completeocl.pivot2cs.CompleteOCLSplitter;
+import org.eclipse.ocl.examples.xtext.completeocl.as2cs.CompleteOCLSplitter;
 import org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLStandaloneSetup;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.OCLinEcoreCSPackage;
 import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.JavaClassScope;
@@ -360,15 +360,15 @@ public class LoadTests extends XtextTestCase
 //			System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
 			assertNoResourceErrors("Save failed", umlResource);
 			umlResource.setURI(inputURI);
-			UML2Pivot adapter = UML2Pivot.getAdapter(umlResource, metaModelManager);
-			UML2Pivot.Outer rootAdapter = adapter.getRoot();
+			UML2AS adapter = UML2AS.getAdapter(umlResource, metaModelManager);
+			UML2AS.Outer rootAdapter = adapter.getRoot();
 			Model pivotModel = rootAdapter.getPivotModel();
 			List<Resource> allResources = new ArrayList<Resource>();
 			allResources.add(pivotModel.eResource());
 			List<Resource> importedResources = rootAdapter.getImportedResources();
 			if (importedResources != null) {
 				for (Resource uResource : importedResources) {
-					UML2Pivot anAdapter = UML2Pivot.getAdapter(uResource, metaModelManager);
+					UML2AS anAdapter = UML2AS.getAdapter(uResource, metaModelManager);
 					Model asModel = anAdapter.getPivotModel();
 					Resource asResource = asModel.eResource();
 					allResources.add(asResource);
@@ -630,7 +630,7 @@ public class LoadTests extends XtextTestCase
 		URI ecoreURI = getProjectFileURI(ecoreName);
 		Map<String,Object> options = new HashMap<String,Object>();
 		options.put(PivotConstants.PRIMITIVE_TYPES_URI_PREFIX, "primitives.ecore#//");
-		XMLResource ecoreResource = Pivot2Ecore.createResource(metaModelManager, asResource, ecoreURI, options);
+		XMLResource ecoreResource = AS2Ecore.createResource(metaModelManager, asResource, ecoreURI, options);
 		ecoreResource.save(null);
 	}	
 
@@ -752,7 +752,7 @@ public class LoadTests extends XtextTestCase
 		URI ecoreURI = getProjectFileURI(ecoreName);
 		Map<String,Object> options = new HashMap<String,Object>();
 		options.put(PivotConstants.PRIMITIVE_TYPES_URI_PREFIX, "primitives.ecore#//");
-		XMLResource ecoreResource = Pivot2Ecore.createResource(metaModelManager, asResource, ecoreURI, options);
+		XMLResource ecoreResource = AS2Ecore.createResource(metaModelManager, asResource, ecoreURI, options);
 		ecoreResource.save(null);
 	}
 
@@ -1028,7 +1028,7 @@ public class LoadTests extends XtextTestCase
 		URI ecoreURI = URI.createURI(ecoreFileName);
 		XMLResource ecoreResource = (XMLResource) metaModelManager2.getExternalResourceSet().createResource(ecoreURI, null);
 		ecoreResource.load(new URIConverter.ReadableInputStream(ecoreFileA), null);
-		Ecore2Pivot conversion = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager2);
+		Ecore2AS conversion = Ecore2AS.getAdapter(ecoreResource, metaModelManager2);
 		Resource asResource = conversion.getPivotModel().eResource();
 		assertEquals(1, asResource.getContents().size());
 		Model pivotModel1 = (Model) asResource.getContents().get(0);
@@ -1094,7 +1094,7 @@ public class LoadTests extends XtextTestCase
 		URI ecoreURI = URI.createURI(ecoreFileName);
 		XMLResource ecoreResource = (XMLResource) metaModelManager2.getExternalResourceSet().createResource(ecoreURI, null);
 		ecoreResource.load(new URIConverter.ReadableInputStream(ecoreFileXXX), null);
-		Ecore2Pivot conversion = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager2);
+		Ecore2AS conversion = Ecore2AS.getAdapter(ecoreResource, metaModelManager2);
 		Resource asResource = conversion.getPivotModel().eResource();
 		assertEquals(1, asResource.getContents().size());
 		Model pivotModelXXX = (Model) asResource.getContents().get(0);
@@ -1174,7 +1174,7 @@ public class LoadTests extends XtextTestCase
 		URI ecoreURI = URI.createURI(ecoreFileName);
 		XMLResource ecoreResource = (XMLResource) metaModelManager2.getExternalResourceSet().createResource(ecoreURI, null);
 		ecoreResource.load(new URIConverter.ReadableInputStream(ecoreFileXXX), null);
-		Ecore2Pivot conversion = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager2);
+		Ecore2AS conversion = Ecore2AS.getAdapter(ecoreResource, metaModelManager2);
 		ASResource asResource = (ASResource) conversion.getPivotModel().eResource();
 		//
 		//	Save the *.oclas and cache that the xmi:ids

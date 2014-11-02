@@ -34,7 +34,7 @@ import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Profile;
 import org.eclipse.ocl.examples.pivot.Stereotype;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
+import org.eclipse.ocl.examples.pivot.uml.UML2AS;
 import org.eclipse.ocl.examples.pivot.uml.UMLElementExtension;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.uml2.uml.util.UMLUtil;
@@ -93,7 +93,7 @@ public class StereotypesTest extends PivotTestSuite
 	    public InternationalizedMetamodel(@NonNull InternationalizedProfile mmm, org.eclipse.uml2.uml.Package umlPackage) throws ParserException {
 	    	this.umlPackage = umlPackage;
 //	        umlMMM = metaModelManager.getPivotOf(Element.class, umlRoot.eClass());
-//	        asResource = ocl.uml2pivot(umlResource);
+//	        asResource = ocl.uml2as(umlResource);
 //	        umlMMM = metaModelManager.getPivotOf(Element.class, umlPackage.eClass());
 //	        Root root = (Root) asResource.getContents().get(0);
 //	        assertNoResourceErrors("Loading model/InternationalizedClasses.uml", asResource);
@@ -157,13 +157,13 @@ public class StereotypesTest extends PivotTestSuite
 	
     @Override
     protected void setUp() throws Exception {
-//		UML2Pivot.ADD_ELEMENT_EXTENSION.setState(true);
-//		UML2Pivot.ADD_IMPORTED_RESOURCE.setState(true);
-//		UML2Pivot.ADD_PROFILE_APPLICATION.setState(true);
-//		UML2Pivot.ADD_TYPE_EXTENSION.setState(true);
-//		UML2Pivot.APPLICABLE_STEREOTYPES.setState(true);
-//		UML2Pivot.CONVERT_RESOURCE.setState(true);
-//		UML2Pivot.TYPE_EXTENSIONS.setState(true);
+//		UML2AS.ADD_ELEMENT_EXTENSION.setState(true);
+//		UML2AS.ADD_IMPORTED_RESOURCE.setState(true);
+//		UML2AS.ADD_PROFILE_APPLICATION.setState(true);
+//		UML2AS.ADD_TYPE_EXTENSION.setState(true);
+//		UML2AS.APPLICABLE_STEREOTYPES.setState(true);
+//		UML2AS.CONVERT_RESOURCE.setState(true);
+//		UML2AS.TYPE_EXTENSIONS.setState(true);
 //		AbstractTypeServer.ADD_BASE_PROPERTY.setState(true);
 //		AbstractTypeServer.ADD_EXTENSION_PROPERTY.setState(true);
 //		AbstractTypeServer.INIT_MEMBER_PROPERTIES.setState(true);
@@ -171,14 +171,14 @@ public class StereotypesTest extends PivotTestSuite
         super.setUp();
 		ProjectMap.getAdapter(resourceSet);
 		OCL.initialize(resourceSet);
-		String problem = UML2Pivot.initialize(resourceSet);
+		String problem = UML2AS.initialize(resourceSet);
 		assertNull(problem);
 		URI testModelURI = getTestModelURI("model/InternationalizedClasses.uml");
         Resource umlResource = resourceSet.getResource(testModelURI, true);
         org.eclipse.uml2.uml.Package umlPackage = (org.eclipse.uml2.uml.Package) umlResource.getContents().get(0);
 		URI testProfileURI = getTestModelURI("model/Internationalized.profile.uml");
 		org.eclipse.uml2.uml.Profile umlProfile = (org.eclipse.uml2.uml.Profile) resourceSet.getResource(testProfileURI, true).getContents().get(0);
-		ocl.uml2pivot(umlResource);				// FIXME BUG 437826 must do full model conversion
+		ocl.uml2as(umlResource);				// FIXME BUG 437826 must do full model conversion
 		mmm = new InternationalizedProfile(umlProfile);
 		mm = new InternationalizedMetamodel(mmm, umlPackage);
 		URI ecoreURI = getTestModelURI("Languages.ecore");

@@ -468,7 +468,7 @@ public class ElementUtil
 	 * For example if there is also an A::B::C::X::D::E, the caller must shorten the scope
 	 * reference to A::B to avoid the ambiguity.
 	 * 
-	 * @Depreacted. Functionality moved to sole caller in Pivot2CSConversion.refreshPathName()
+	 * @Depreacted. Functionality moved to sole caller in AS2CSConversion.refreshPathName()
 	 */
 	public static void setPathName(@NonNull PathNameCS csPathName, @NonNull Element element, Namespace scope) {
 		List<PathElementCS> csPath = csPathName.getOwnedPathElements();

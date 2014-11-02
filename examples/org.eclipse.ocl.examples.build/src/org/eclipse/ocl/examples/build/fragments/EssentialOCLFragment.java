@@ -29,7 +29,7 @@ import org.eclipse.ocl.examples.xtext.base.ui.syntaxcoloring.BaseAntlrTokenToAtt
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASLinker;
 import org.eclipse.ocl.examples.xtext.base.utilities.PivotDiagnosticConverter;
 import org.eclipse.ocl.examples.xtext.base.utilities.PivotResourceValidator;
-import org.eclipse.ocl.examples.xtext.essentialocl.pivot2cs.EssentialOCLLocationInFileProvider;
+import org.eclipse.ocl.examples.xtext.essentialocl.as2cs.EssentialOCLLocationInFileProvider;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLHighlightingConfiguration;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLSemanticHighlightingCalculator;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource;

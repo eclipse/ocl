@@ -23,7 +23,7 @@ import org.eclipse.ocl.examples.pivot.Stereotype;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.uml.UML2Pivot.Outer;
+import org.eclipse.ocl.examples.pivot.uml.UML2AS.Outer;
 
 /**
  * The ProfileAnalysis captures the overall analysis of the UML M2 Profiles and Stereotypes.
@@ -130,7 +130,7 @@ public class ProfileAnalysis
 		computeStereotypeClosure();
 //		computeMetatype2StereotypeClosure();
 //		computeMetatype2StereotypeClosureClosure();
-/*		if (UML2Pivot.APPLICABLE_STEREOTYPES.isActive()) {
+/*		if (UML2AS.APPLICABLE_STEREOTYPES.isActive()) {
 			StringBuffer s = new StringBuffer();
 			List<Type> asMetatypes = new ArrayList<Type>(metatype2stereotypeClosureClosure.keySet());
 			Collections.sort(asMetatypes, PivotUtil.NAMEABLE_COMPARATOR);
@@ -149,7 +149,7 @@ public class ProfileAnalysis
 //						s.append(" " + DomainUtil.debugSimpleName(asStereotype));
 				}
 			}
-			UML2Pivot.APPLICABLE_STEREOTYPES.println("Stereotypes per Metatype" + s.toString());
+			UML2AS.APPLICABLE_STEREOTYPES.println("Stereotypes per Metatype" + s.toString());
 		} */
 /*				for (Type asMetatype1 : metatypeClosure.keySet()) {
 					for (Type asMetatype2 : metatypeClosure.get(asMetatype1)) {
@@ -213,7 +213,7 @@ public class ProfileAnalysis
 				}
 			}
 		}
-		if (UML2Pivot.ADD_PROFILE_APPLICATION.isActive()) {
+		if (UML2AS.ADD_PROFILE_APPLICATION.isActive()) {
 			StringBuffer s = new StringBuffer();
 			for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.examples.pivot.Package asPackage : package2metatype2applicableStereotypes.keySet()) {
 				s.append("\n\t" + EcoreUtils.qualifiedNameFor(asPackage) + " : " + asPackage.getNsURI());
@@ -230,7 +230,7 @@ public class ProfileAnalysis
 					}
 				}
 			}
-			UML2Pivot.ADD_PROFILE_APPLICATION.println("Applicable Stereotypes per Metatype per Package" + s.toString());
+			UML2AS.ADD_PROFILE_APPLICATION.println("Applicable Stereotypes per Metatype per Package" + s.toString());
 		}
 		return package2metatype2applicableStereotypes;
 	} */

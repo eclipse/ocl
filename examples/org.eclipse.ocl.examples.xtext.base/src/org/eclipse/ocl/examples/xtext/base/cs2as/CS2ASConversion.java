@@ -65,7 +65,7 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.context.AbstractBase2PivotConversion;
+import org.eclipse.ocl.examples.pivot.context.AbstractBase2ASConversion;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
 import org.eclipse.ocl.examples.pivot.util.MorePivotable;
@@ -106,7 +106,7 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 import com.google.common.collect.Iterables;
 
-public class CS2ASConversion extends AbstractBase2PivotConversion
+public class CS2ASConversion extends AbstractBase2ASConversion
 {	
 	private static final Logger logger = Logger.getLogger(CS2ASConversion.class);
 	public static final @NonNull TracingOption CONTINUATION = new TracingOption("org.eclipse.ocl.examples.xtext.base", "continuation");  //$NON-NLS-1$//$NON-NLS-2$
@@ -456,14 +456,14 @@ public class CS2ASConversion extends AbstractBase2PivotConversion
 //WIP			metaModelManager.kill(referencedOrphan);
 			}
 		}
-//		for (MonikeredElement element : oldMoniker2PivotMap.values()) {
+//		for (MonikeredElement element : oldMoniker2asMap.values()) {
 //			if (element.eResource() == null) {
 //				PivotUtil.debugObjectUsage("Final Old residue ", element);
 				// This is a bit late: a notification of non-containment would be sharper.
 //				metaModelManager.kill(element);
 //			}
 //		}
-//		for (MonikeredElement element : newMoniker2PivotMap.values()) {
+//		for (MonikeredElement element : newMoniker2asMap.values()) {
 //			if (element.eResource() == null) {
 //				PivotUtil.debugObjectUsage("Final New residue ", element);
 //			}

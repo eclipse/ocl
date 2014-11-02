@@ -93,10 +93,10 @@ public class EvaluateUMLTest4 extends PivotStateMachineTestSuite
 	 * @throws ParserException 
 	 */
 	@Test public void test_stereotypes_Bug431638() throws Exception {
-//		UML2Pivot.ADD_ELEMENT_EXTENSION.setState(true);
-//		UML2Pivot.ADD_IMPORTED_RESOURCE.setState(true);
-//		UML2Pivot.ADD_PROFILE_APPLICATION.setState(true);
-//		UML2Pivot.CONVERT_RESOURCE.setState(true);
+//		UML2AS.ADD_ELEMENT_EXTENSION.setState(true);
+//		UML2AS.ADD_IMPORTED_RESOURCE.setState(true);
+//		UML2AS.ADD_PROFILE_APPLICATION.setState(true);
+//		UML2AS.CONVERT_RESOURCE.setState(true);
 //		AbstractTypeServer.ADD_BASE_PROPERTY.setState(true);
 //		AbstractTypeServer.ADD_EXTENSION_PROPERTY.setState(true);
 		EObject context = doLoadUML(ocl, "Bug431638", "Bug431638Model.Class1.Attribute1");

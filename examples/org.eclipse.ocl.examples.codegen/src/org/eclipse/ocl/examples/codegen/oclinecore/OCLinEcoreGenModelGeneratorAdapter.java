@@ -69,8 +69,8 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
-import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
+import org.eclipse.ocl.examples.pivot.ecore.Ecore2AS;
+import org.eclipse.ocl.examples.pivot.ecore.AS2Ecore;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
@@ -131,8 +131,8 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		super(generatorAdapterFactory);
 	}
 
-	protected void convertConstraintToOperation(@NonNull Ecore2Pivot ecore2pivot, @NonNull GenModel genModel, @NonNull EClassifier eClassifier, @NonNull String key, @NonNull String body, @Nullable String message) {
-		org.eclipse.ocl.examples.pivot.Class pType = ecore2pivot.getCreated(org.eclipse.ocl.examples.pivot.Class.class, eClassifier);
+	protected void convertConstraintToOperation(@NonNull Ecore2AS ecore2as, @NonNull GenModel genModel, @NonNull EClassifier eClassifier, @NonNull String key, @NonNull String body, @Nullable String message) {
+		org.eclipse.ocl.examples.pivot.Class pType = ecore2as.getCreated(org.eclipse.ocl.examples.pivot.Class.class, eClassifier);
 		if (pType != null) {
 			List<Constraint> ownedInvariants = pType.getOwnedInvariants();
 			for (Constraint rule : ownedInvariants) {
@@ -145,9 +145,9 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 					if (prefix == null) {
 						prefix = "";
 					}
-					EOperation eOperation = Pivot2Ecore.createConstraintEOperation(rule, prefix + ruleName, null);
+					EOperation eOperation = AS2Ecore.createConstraintEOperation(rule, prefix + ruleName, null);
 					((EClass)eClassifier).getEOperations().add(eOperation);
-					ecore2pivot.addMapping(eOperation, rule);
+					ecore2as.addMapping(eOperation, rule);
 					if (message != null) {
 						body = PivotUtil.createTupleValuedConstraint(body, null, message);
 					}
@@ -163,8 +163,8 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 			EPackage ecorePackage = genPackage.getEcorePackage();
 			Resource ecoreResource = ecorePackage.eResource();
 			if (ecoreResource != null) {
-				Ecore2Pivot ecore2pivot = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
-				if (ecore2pivot != null) {
+				Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metaModelManager);
+				if (ecore2as != null) {
 					for (GenClass genClass : genPackage.getGenClasses()) {
 						EClass eClass = genClass.getEcoreClass();
 						if (eClass != null) {
@@ -181,7 +181,7 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 											String expression = details.get(key);
 											String messageExpression = details.get(key + messageAnnotationDetailSuffix);
 											if (expression != null) {
-												convertConstraintToOperation(ecore2pivot, genModel, eClassifier, key, expression, messageExpression);
+												convertConstraintToOperation(ecore2as, genModel, eClassifier, key, expression, messageExpression);
 											}
 										}
 									}
@@ -424,16 +424,16 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 			EPackage ecorePackage = genPackage.getEcorePackage();
 			Resource ecoreResource = ecorePackage.eResource();
 			if (ecoreResource != null) {
-				Ecore2Pivot ecore2pivot = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
-				if (ecore2pivot != null) {
+				Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metaModelManager);
+				if (ecore2as != null) {
 					for (GenClass genClass : genPackage.getGenClasses()) {
 						EClass eClass = genClass.getEcoreClass();
 						if (eClass != null) {
 							for (@SuppressWarnings("null")@NonNull EOperation eOperation : eClass.getEOperations()) {
-								installOperation(ecore2pivot, eOperation, results);
+								installOperation(ecore2as, eOperation, results);
 							}
 							for (@SuppressWarnings("null")@NonNull EStructuralFeature eFeature : eClass.getEStructuralFeatures()) {
-								installProperty(ecore2pivot, eFeature, results);
+								installProperty(ecore2as, eFeature, results);
 							}
 						}
 					}
@@ -442,8 +442,8 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		}
 	}
 
-	protected void installOperation(@NonNull Ecore2Pivot ecore2pivot, @NonNull EOperation eOperation, @NonNull Map<String, String> results) {
-		Element pOperation = ecore2pivot.getCreated(Element.class, eOperation);
+	protected void installOperation(@NonNull Ecore2AS ecore2as, @NonNull EOperation eOperation, @NonNull Map<String, String> results) {
+		Element pOperation = ecore2as.getCreated(Element.class, eOperation);
 		String fragmentURI = null;
 		if (pOperation instanceof Operation) {
 			fragmentURI = EcoreUtil.getURI(pOperation).fragment().toString();
@@ -476,8 +476,8 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		}
 	}
 
-	protected void installProperty(@NonNull Ecore2Pivot ecore2pivot, @NonNull EStructuralFeature eFeature, @NonNull Map<String, String> results) {
-		Property pProperty = ecore2pivot.getCreated(Property.class, eFeature);
+	protected void installProperty(@NonNull Ecore2AS ecore2as, @NonNull EStructuralFeature eFeature, @NonNull Map<String, String> results) {
+		Property pProperty = ecore2as.getCreated(Property.class, eFeature);
 		String fragmentURI = EcoreUtil.getURI(pProperty).fragment().toString();
 		String body = results.get(fragmentURI);
 		if (body == null) {

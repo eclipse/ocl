@@ -15,25 +15,25 @@ import java.util.Map;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
+import org.eclipse.ocl.examples.xtext.base.as2cs.AS2CS;
 import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
-import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.examples.xtext.completeocl.as2cs.CompleteOCLAS2CS;
 import org.eclipse.ocl.examples.xtext.completeocl.cs2as.CompleteOCLCS2AS;
-import org.eclipse.ocl.examples.xtext.completeocl.pivot2cs.CompleteOCLPivot2CS;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource;
 
 public class CompleteOCLCSResource extends EssentialOCLCSResource
 {
 	@Override
-	public @NonNull CS2AS createCS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap,
+	public @NonNull AS2CS createAS2CS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap,
 			@NonNull MetaModelManager metaModelManager) {
-		return new CompleteOCLCS2AS(cs2asResourceMap, metaModelManager);
+		return new CompleteOCLAS2CS(cs2asResourceMap, metaModelManager);
 	}
 
 	@Override
-	public @NonNull Pivot2CS createPivot2CS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap,
+	public @NonNull CS2AS createCS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap,
 			@NonNull MetaModelManager metaModelManager) {
-		return new CompleteOCLPivot2CS(cs2asResourceMap, metaModelManager);
+		return new CompleteOCLCS2AS(cs2asResourceMap, metaModelManager);
 	}
 
 	@Override

@@ -27,7 +27,7 @@ import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.basecs.RootCS;
@@ -117,7 +117,7 @@ public abstract class GenerateLaTeXForModel extends GenerateLaTeXUtils
 					issues.addError(this, "No eResource for + ;" + fileURI + "'", null, null, null);
 					return;
 				}
-				Ecore2Pivot adapter = Ecore2Pivot.getAdapter(eResource, metaModelManager);
+				Ecore2AS adapter = Ecore2AS.getAdapter(eResource, metaModelManager);
 				Model asModel = adapter.getPivotModel();
 				asPackage = asModel.getOwnedPackages().get(0);
 			}

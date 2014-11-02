@@ -31,7 +31,7 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.ecore.AbstractEcore2Pivot;
+import org.eclipse.ocl.examples.pivot.ecore.AbstractEcore2AS;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.resource.AbstractASResourceFactory;
@@ -71,8 +71,8 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 		if (metaModel == null) {
 			return null;
 		}
-		UML2Pivot uml2pivot = UML2Pivot.getAdapter(metaModel, metaModelManager);
-		uml2pivot.getPivotModel();
+		UML2AS uml2as = UML2AS.getAdapter(metaModel, metaModelManager);
+		uml2as.getPivotModel();
 		EClass eClass = eObject.eClass();
 		EPackage ePackage = eClass.getEPackage();
 		if (ePackage == EcorePackage.eINSTANCE) {
@@ -84,7 +84,7 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 				}
 			}
 		}
-		return uml2pivot.getCreated(pivotClass, eObject);
+		return uml2as.getCreated(pivotClass, eObject);
 	}
 
 	protected org.eclipse.uml2.uml.Constraint getConstraintForEOperation(EOperation eOperation) {
@@ -96,7 +96,7 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 				if ((eReferences != null) && (eReferences.size() > 0)) {
 					EObject eReference = eReferences.get(0);
 					if (eReference instanceof org.eclipse.uml2.uml.Type) {
-						String operationName = AbstractEcore2Pivot.getOriginalName(eOperation);
+						String operationName = AbstractEcore2AS.getOriginalName(eOperation);
 						org.eclipse.uml2.uml.Constraint umlConstraint = ((org.eclipse.uml2.uml.Classifier)eReference).getOwnedRule(operationName);
 						if (umlConstraint != null) {
 							return umlConstraint;
@@ -221,7 +221,7 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 
 	@Override
 	public int getHandlerPriority(@NonNull Resource resource) {
-		return UML2Pivot.isUML(resource) ? CAN_HANDLE : CANNOT_HANDLE;
+		return UML2AS.isUML(resource) ? CAN_HANDLE : CANNOT_HANDLE;
 	}
 
 	@Override
@@ -253,7 +253,7 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 
 	@Override
 	public @Nullable Element importFromResource(@NonNull MetaModelManager metaModelManager, @NonNull Resource umlResource, @Nullable URI uri) throws ParserException {
-		UML2Pivot conversion = UML2Pivot.getAdapter(umlResource, metaModelManager);
+		UML2AS conversion = UML2AS.getAdapter(umlResource, metaModelManager);
 		conversion.setUMLURI(uri);
 		Model pivotModel = conversion.getPivotModel();
 		String uriFragment = uri != null ? uri.fragment() : null;

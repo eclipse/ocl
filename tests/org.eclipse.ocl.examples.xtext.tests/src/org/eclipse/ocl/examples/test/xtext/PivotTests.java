@@ -23,17 +23,17 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
+import org.eclipse.ocl.examples.xtext.base.as2cs.AS2CS;
 import org.eclipse.ocl.examples.xtext.base.cs2as.BaseCS2AS;
 import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
-import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
 import org.eclipse.ocl.examples.xtext.base.services.BaseLinkingService;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
-import org.eclipse.ocl.examples.xtext.oclinecore.pivot2cs.OCLinEcorePivot2CS;
+import org.eclipse.ocl.examples.xtext.oclinecore.as2cs.OCLinEcoreAS2CS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.cs2as.OCLstdlibCS2AS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.JavaClassScope;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
@@ -51,15 +51,15 @@ public class PivotTests extends XtextTestCase
 		}
 
 		public void assertContainedBy(@NonNull CS2AS thatConverter) {
-/*			Map<String, MonikeredElement> thisMoniker2PivotMap = metaModelManager.computeMoniker2PivotMap(getPivotResources());
-			Map<String, MonikeredElement> thatMoniker2PivotMap = metaModelManager.computeMoniker2PivotMap(thatConverter.getPivotResources());
-			List<String> theseMonikers = new ArrayList<String>(thisMoniker2PivotMap.keySet());
-			List<String> thoseMonikers = new ArrayList<String>(thatMoniker2PivotMap.keySet());
+/*			Map<String, MonikeredElement> thisMoniker2asMap = metaModelManager.computeMoniker2asMap(getPivotResources());
+			Map<String, MonikeredElement> thatMoniker2asMap = metaModelManager.computeMoniker2asMap(thatConverter.getPivotResources());
+			List<String> theseMonikers = new ArrayList<String>(thisMoniker2asMap.keySet());
+			List<String> thoseMonikers = new ArrayList<String>(thatMoniker2asMap.keySet());
 			Collections.sort(theseMonikers);
 			Collections.sort(thoseMonikers);
-			for (String moniker : thisMoniker2PivotMap.keySet()) {
-				MonikeredElement thisPivotElement = thisMoniker2PivotMap.get(moniker);
-				MonikeredElement thatPivotElement = thatMoniker2PivotMap.get(moniker);
+			for (String moniker : thisMoniker2asMap.keySet()) {
+				MonikeredElement thisPivotElement = thisMoniker2asMap.get(moniker);
+				MonikeredElement thatPivotElement = thatMoniker2asMap.get(moniker);
 				if (isValidPivot(thisPivotElement) && isValidPivot(thatPivotElement)) {
 					assertEquals("Preserved pivot", thisPivotElement, thatPivotElement);
 				}
@@ -67,7 +67,7 @@ public class PivotTests extends XtextTestCase
 		}
 
 		public void assertSameContents() { // WIP
-/*			Map<String, MonikeredElement> moniker2PivotMap = metaModelManager.computeMoniker2PivotMap(getPivotResources());
+/*			Map<String, MonikeredElement> moniker2asMap = metaModelManager.computeMoniker2asMap(getPivotResources());
 			Collection<? extends Resource> csResources = cs2asResourceMap.keySet();
 			for (Resource csResource : csResources) {
 				for (TreeIterator<EObject> tit = csResource.getAllContents(); tit.hasNext(); ) {
@@ -79,13 +79,13 @@ public class PivotTests extends XtextTestCase
 							MonikeredElement actualPivotElement = (MonikeredElement) csMonikeredElement.getPivot();
 							if (actualPivotElement == null) {
 								@SuppressWarnings("unused")
-								MonikeredElement pivotElement = moniker2PivotMap.get(csMoniker);
+								MonikeredElement pivotElement = moniker2asMap.get(csMoniker);
 								fail("Missing pivot for '" + csMoniker + "'");
 							}
 							else {
 								String actualPivotMoniker = actualPivotElement.getMoniker();
 								assertEquals("Moniker mismatch", csMoniker, actualPivotMoniker);
-								MonikeredElement expectedPivotElement = moniker2PivotMap.get(csMoniker);
+								MonikeredElement expectedPivotElement = moniker2asMap.get(csMoniker);
 								assertEquals("Element mismatch", expectedPivotElement, actualPivotElement);
 							}
 						}
@@ -133,7 +133,7 @@ public class PivotTests extends XtextTestCase
 		}
 		
 		public List<MonikeredElement> chooseVictims() {
-			List<String> pivotKeys = new ArrayList<String>(moniker2PivotMap.keySet());
+			List<String> pivotKeys = new ArrayList<String>(moniker2asMap.keySet());
 			List<MonikeredElement> pivotElements = new ArrayList<MonikeredElement>();
 			Collections.sort(pivotKeys);
 			int iMax = pivotKeys.size();
@@ -141,7 +141,7 @@ public class PivotTests extends XtextTestCase
 			for (int i = iMax-1; i > 0; i -= stepSize) {
 //				String moniker = pivotKeys.remove(i);
 				String moniker = pivotKeys.get(i);
-				MonikeredElement pivotElement = moniker2PivotMap.get(moniker);
+				MonikeredElement pivotElement = moniker2asMap.get(moniker);
 				pivotElements.add(pivotElement);
 			}
 			return pivotElements;
@@ -153,7 +153,7 @@ public class PivotTests extends XtextTestCase
 			for (MonikeredElement pivotElement : pivotElements) {
 				String moniker = pivotElement.getMoniker();
 				logger.trace("Damage " + pivotElement.eClass().getName() + " : " + moniker); //$NON-NLS-1$
-				moniker2PivotMap.remove(moniker);
+				moniker2asMap.remove(moniker);
 				EObject eContainer = pivotElement.eContainer();
 				if (eContainer != null) {
 					EStructuralFeature eContainingFeature = pivotElement.eContainingFeature();
@@ -289,8 +289,8 @@ public class PivotTests extends XtextTestCase
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " resolveProxies()");
 		assertNoUnresolvedProxies("Unresolved proxies", ecoreResource);
 //		EcoreAliasCreator.createPackageAliases(ecoreResource);
-		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
-		Model pivotModel = ecore2Pivot.getPivotModel();
+		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metaModelManager);
+		Model pivotModel = ecore2as.getPivotModel();
 		
 		
 //		checkPivotMonikers(pivotModel);
@@ -323,8 +323,8 @@ public class PivotTests extends XtextTestCase
 		Resource csResource = csResourceSet.createResource(csURI);
 		Map<BaseCSResource, ASResource> cs2asResourceMap = new HashMap<BaseCSResource, ASResource>();
 //		cs2asResourceMap.put(csResource, asResource);
-		Pivot2CS pivot2cs = new OCLinEcorePivot2CS(cs2asResourceMap, metaModelManager);
-		pivot2cs.update();
+		AS2CS as2cs = new OCLinEcoreAS2CS(cs2asResourceMap, metaModelManager);
+		as2cs.update();
 		csResource.save(null);
 //		adapter.dispose();
 	}

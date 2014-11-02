@@ -290,12 +290,12 @@ public class UMLOCLEValidator implements EValidator
 					if (umlResource != null) {
 						OCL ocl = getOCL(context);
 						MetaModelManager metaModelManager = ocl.getMetaModelManager();
-						UML2Pivot uml2pivot = UML2Pivot.getAdapter(umlResource, metaModelManager);
-						uml2pivot.getPivotModel();
-						Map<EObject, List<org.eclipse.uml2.uml.Element>> umlStereotypeApplication2umlStereotypedElements = UML2PivotUtil.computeAppliedStereotypes(umlStereotypeApplications);
+						UML2AS uml2as = UML2AS.getAdapter(umlResource, metaModelManager);
+						uml2as.getPivotModel();
+						Map<EObject, List<org.eclipse.uml2.uml.Element>> umlStereotypeApplication2umlStereotypedElements = UML2ASUtil.computeAppliedStereotypes(umlStereotypeApplications);
 						for (@SuppressWarnings("null")@NonNull EObject umlStereotypeApplication : umlStereotypeApplications) {
 							@SuppressWarnings("null")@NonNull List<Element> umlStereotypedElements = umlStereotypeApplication2umlStereotypedElements.get(umlStereotypeApplication);
-							Stereotype stereotype = uml2pivot.resolveStereotype(umlStereotypeApplication, umlStereotypedElements);
+							Stereotype stereotype = uml2as.resolveStereotype(umlStereotypeApplication, umlStereotypedElements);
 							if (stereotype != null) {
 								HashSet<Type> allClassifiers = new HashSet<Type>();
 								HashSet<DomainConstraint> allConstraints = new HashSet<DomainConstraint>();

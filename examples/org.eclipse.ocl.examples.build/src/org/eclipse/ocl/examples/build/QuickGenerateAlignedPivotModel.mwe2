@@ -55,17 +55,17 @@ Workflow {
     
     component = QVToTransformationExecutor { resourceSet = resourceSet skipOnErrors = true
     	uri = "platform:/resource/${projectName}/src/org/eclipse/ocl/examples/build/qvto/UML2EcoreAnalyzer.qvto"
-    	in = "platform:/resource/${projectName}/model/UML2PivotinEcore.xmi" 
-    	out = "platform:/resource/${projectName}/model-gen/UML2PivotAnalysis.xmi" 
+    	in = "platform:/resource/${projectName}/model/UML2ASinEcore.xmi" 
+    	out = "platform:/resource/${projectName}/model-gen/UML2ASAnalysis.xmi" 
 	}
     component = QVToTransformationExecutor { resourceSet = resourceSet skipOnErrors = true
     	uri = "platform:/resource/${projectName}/src/org/eclipse/ocl/examples/build/qvto/UML2EcoreSynthesizer.qvto"
-    	in = "platform:/resource/${projectName}/model-gen/UML2PivotAnalysis.xmi" 
-    	out = "platform:/resource/${projectName}/model-gen/UML2Pivot.ecore" 
+    	in = "platform:/resource/${projectName}/model-gen/UML2ASAnalysis.xmi" 
+    	out = "platform:/resource/${projectName}/model-gen/UML2AS.ecore" 
 	}
     component = ResourceReader { resourceSet = resourceSet skipOnErrors = true
     	modelSlot = "${ecoreSlot}"
-    	uri = "/${projectName}/model-gen/UML2Pivot.ecore"
+    	uri = "/${projectName}/model-gen/UML2AS.ecore"
     }
 /*    component = ConstraintMerger { resourceSet = resourceSet skipOnErrors = true
     	projectName = "${projectName}"

@@ -21,8 +21,8 @@ import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
+import org.eclipse.ocl.examples.xtext.base.as2cs.AS2CS;
 import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
-import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.util.Triple;
 
@@ -36,17 +36,15 @@ public interface BaseCSResource extends BaseResource
 	 */
 	void createAndAddDiagnostic(Triple<EObject, EReference, INode> triple);
 
-		/**
-	 * Create the CS2AS converter for the cs2asResourceMap conversions using metaModelManager.
-	 */
-	// FIXME Pivot2AS Narrow to BaseCSResource
-	@NonNull CS2AS createCS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull MetaModelManager metaModelManager);
-
 	/**
 	 * Create the AS2CS converter for the cs2asResourceMap conversions using metaModelManager.
 	 */
-	// FIXME Pivot2AS Narrow to BaseCSResource
-	@NonNull Pivot2CS createPivot2CS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull MetaModelManager metaModelManager);
+	@NonNull AS2CS createAS2CS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull MetaModelManager metaModelManager);
+
+	/**
+	 * Create the CS2AS converter for the cs2asResourceMap conversions using metaModelManager.
+	 */
+	@NonNull CS2AS createCS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull MetaModelManager metaModelManager);
 
 	/**
 	 * Return a MetaModelManager for use with this CS resource, unless one can be located

@@ -22,7 +22,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
@@ -251,8 +251,8 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 			if (pivotType == null) {
 				Resource resource = eClass.eResource();
 				if (resource != null) {
-					Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(resource, metaModelManager);
-					pivotType = ecore2Pivot.getCreated(org.eclipse.ocl.examples.pivot.Class.class, eClass);
+					Ecore2AS ecore2as = Ecore2AS.getAdapter(resource, metaModelManager);
+					pivotType = ecore2as.getCreated(org.eclipse.ocl.examples.pivot.Class.class, eClass);
 				}
 			}
 			if (pivotType != null) {

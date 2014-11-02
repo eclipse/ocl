@@ -9,6 +9,7 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Import-Package: org.apache.log4j;version="[1.2.15,2.0.0)"
 Export-Package: org.eclipse.ocl.examples.xtext.base,
+ org.eclipse.ocl.examples.xtext.base.as2cs,
  org.eclipse.ocl.examples.xtext.base.attributes,
  org.eclipse.ocl.examples.xtext.base.basecs,
  org.eclipse.ocl.examples.xtext.base.basecs.impl,
@@ -17,7 +18,6 @@ Export-Package: org.eclipse.ocl.examples.xtext.base,
  org.eclipse.ocl.examples.xtext.base.formatting,
  org.eclipse.ocl.examples.xtext.base.parser.antlr,
  org.eclipse.ocl.examples.xtext.base.parser.antlr.internal;x-friends:="org.eclipse.ocl.examples.xtext.base.ui",
- org.eclipse.ocl.examples.xtext.base.pivot2cs,
  org.eclipse.ocl.examples.xtext.base.scoping,
  org.eclipse.ocl.examples.xtext.base.serializer,
  org.eclipse.ocl.examples.xtext.base.services,

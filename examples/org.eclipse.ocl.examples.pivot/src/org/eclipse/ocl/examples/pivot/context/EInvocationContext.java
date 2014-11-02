@@ -51,7 +51,7 @@ public class EInvocationContext extends EClassContext
 	}
 
 	@Override
-	public void initialize(@NonNull Base2PivotConversion conversion, @NonNull ExpressionInOCL expression) {
+	public void initialize(@NonNull Base2ASConversion conversion, @NonNull ExpressionInOCL expression) {
 		super.initialize(conversion, expression);
 		conversion.setParameterVariables(expression, getParameters());
 	}

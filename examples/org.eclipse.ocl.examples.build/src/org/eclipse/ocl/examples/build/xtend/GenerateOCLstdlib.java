@@ -45,7 +45,7 @@ import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
+import org.eclipse.ocl.examples.pivot.ecore.AS2Ecore;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.utilities.ASSaver;
@@ -114,7 +114,7 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 			MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(asResource);
 			String ecoreFile = "/" + projectName + "/model-gen/oclstdlib.ecore";
 			@SuppressWarnings("null")@NonNull URI ecoreURI = URI.createPlatformResourceURI(ecoreFile, true);
-			Pivot2Ecore converter = new Pivot2Ecore(metaModelManager, ecoreURI, null);
+			AS2Ecore converter = new AS2Ecore(metaModelManager, ecoreURI, null);
 			XMLResource eResource = converter.convertResource(asResource, ecoreURI);
 			EPackage ePackage = (EPackage) DomainUtil.nonNullState(eResource.getContents().get(0));
 			ePackage.setName("oclstdlib");

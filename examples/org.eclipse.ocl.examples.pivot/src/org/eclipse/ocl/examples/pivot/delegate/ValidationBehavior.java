@@ -26,7 +26,7 @@ import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.SemanticException;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 
@@ -39,8 +39,8 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 	
 	public Constraint getConstraint(@NonNull MetaModelManager metaModelManager, @NonNull EClassifier eClassifier, @NonNull String constraintName) throws OCLDelegateException {
 		Resource ecoreMetaModel = DomainUtil.nonNullEMF(eClassifier.eResource());
-		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreMetaModel, metaModelManager);
-		Type type = ecore2Pivot.getCreated(Type.class, eClassifier);
+		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreMetaModel, metaModelManager);
+		Type type = ecore2as.getCreated(Type.class, eClassifier);
 		if (type != null) {
 			Constraint constraint = DomainUtil.getNamedElement(metaModelManager.getAllInvariants(type), constraintName);
 			if (constraint != null) {
@@ -64,8 +64,8 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 	
 /*	public ExpressionInOCL getExpressionInOCL(MetaModelManager metaModelManager, EClassifier eClassifier, String constraintName) throws OCLDelegateException {
 		Resource ecoreMetaModel = eClassifier.eResource();
-		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreMetaModel, metaModelManager);
-		Type type = ecore2Pivot.getCreated(Type.class, eClassifier);
+		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreMetaModel, metaModelManager);
+		Type type = ecore2as.getCreated(Type.class, eClassifier);
 		Constraint constraint = PivotUtil.getNamedElement(type.getOwnedRule(), constraintName);
 		if (constraint != null) {
 			ExpressionInOCL expressionInOCL = getExpressionInOCL(metaModelManager, type, constraint);

@@ -643,7 +643,7 @@ public abstract class CS2AS extends AbstractConversion implements MetaModelManag
 	
 	public synchronized void update(@NonNull IDiagnosticConsumer diagnosticsConsumer) {
 //		printDiagnostic("CS2AS.update start", false, 0);
-		@SuppressWarnings("unused") Map<String, Element> oldCSI2Pivot = csi2asMapping.getMapping();
+		@SuppressWarnings("unused") Map<String, Element> oldCSI2AS = csi2asMapping.getMapping();
 		@SuppressWarnings("unused") Set<String> newCSIs = csi2asMapping.computeCSIs(csResources);
 //		System.out.println("==========================================================================");
 		Collection<? extends BaseCSResource> csResources = getCSResources();
@@ -659,10 +659,10 @@ public abstract class CS2AS extends AbstractConversion implements MetaModelManag
 //			Resource asResource = entry.getValue();
 //			System.out.println("CS " + csResource.getClass().getName() + "@" + csResource.hashCode() + " => " + asResource.getClass().getName() + "@" + asResource.hashCode());
 //		}
-/*		Set<String> deadCSIs = new HashSet<String>(oldCSI2Pivot.keySet());
+/*		Set<String> deadCSIs = new HashSet<String>(oldCSI2AS.keySet());
 		deadCSIs.removeAll(newCSIs);
 		for (String deadCSI : deadCSIs) {
-			Element deadPivot = oldCSI2Pivot.get(deadCSI);	// WIP
+			Element deadPivot = oldCSI2AS.get(deadCSI);	// WIP
 //			metaModelManager.kill(deadPivot);
 		} */
 		Map<BaseCSResource, ASResource> cs2asResourceMap = new HashMap<BaseCSResource, ASResource>();

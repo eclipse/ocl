@@ -38,7 +38,7 @@ import org.eclipse.ocl.examples.pivot.Stereotype;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.uml.UML2Pivot.Outer;
+import org.eclipse.ocl.examples.pivot.uml.UML2AS.Outer;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
@@ -131,12 +131,12 @@ public class ModelAnalysis
 
 	public void addStereotypeApplication(@NonNull EObject umlStereotypeApplication) {
 		@SuppressWarnings("null")@NonNull EClass eClass = umlStereotypeApplication.eClass();
-		if (UML2Pivot.ADD_STEREOTYPE_APPLICATION.isActive()) {
+		if (UML2AS.ADD_STEREOTYPE_APPLICATION.isActive()) {
 			if (umlStereotypeApplication instanceof DynamicEObjectImpl) {
-				UML2Pivot.ADD_STEREOTYPE_APPLICATION.println(EcoreUtils.qualifiedNameFor(eClass));
+				UML2AS.ADD_STEREOTYPE_APPLICATION.println(EcoreUtils.qualifiedNameFor(eClass));
 			}
 			else {
-				UML2Pivot.ADD_STEREOTYPE_APPLICATION.println(EcoreUtils.qualifiedNameFor(eClass));
+				UML2AS.ADD_STEREOTYPE_APPLICATION.println(EcoreUtils.qualifiedNameFor(eClass));
 //					ADD_STEREOTYPE_APPLICATION.println(umlStereotypeApplication.toString());
 			}
 		}
@@ -189,8 +189,8 @@ public class ModelAnalysis
 					converter.setOriginalMapping(elementExtension, umlStereotypeApplication);
 					elementExtension.setIsApplied(true);
 					stereotype2extension.put(asStereotype, elementExtension);
-					if (UML2Pivot.ADD_ELEMENT_EXTENSION.isActive()) {
-						UML2Pivot.ADD_ELEMENT_EXTENSION.println(elementExtension.toString());
+					if (UML2AS.ADD_ELEMENT_EXTENSION.isActive()) {
+						UML2AS.ADD_ELEMENT_EXTENSION.println(elementExtension.toString());
 					}
 				}
 			}
@@ -233,8 +233,8 @@ public class ModelAnalysis
 														element2elementExtension.put(asStereotypedElement, asElementExtensions);
 													}
 													asElementExtensions.add(asElementExtension);
-													if (UML2Pivot.ADD_ELEMENT_EXTENSION.isActive()) {
-														UML2Pivot.ADD_ELEMENT_EXTENSION.println(asElementExtension.toString());
+													if (UML2AS.ADD_ELEMENT_EXTENSION.isActive()) {
+														UML2AS.ADD_ELEMENT_EXTENSION.println(asElementExtension.toString());
 													}
 												}
 											} catch (ParserException e) {
@@ -322,7 +322,7 @@ public class ModelAnalysis
 			List<ElementExtension> oldElementExtensions = asElement.getExtension();
 			converter.refreshList(oldElementExtensions, newElementExtensions);
 		}
-/*		if (UML2Pivot.ADD_ELEMENT_EXTENSION.isActive()) {
+/*		if (UML2AS.ADD_ELEMENT_EXTENSION.isActive()) {
 			StringBuffer s = new StringBuffer();
 			List<Element> asElements = new ArrayList<Element>(element2elementExtension.keySet());
 			Collections.sort(asElements, ElementComparator.INSTANCE);
@@ -338,7 +338,7 @@ public class ModelAnalysis
 					s.append(" " + DomainUtil.debugSimpleName(asElementExtension));
 				}
 			}
-			UML2Pivot.ADD_ELEMENT_EXTENSION.println("Extensions per Type" + s.toString());
+			UML2AS.ADD_ELEMENT_EXTENSION.println("Extensions per Type" + s.toString());
 		} */
 	}
 
@@ -385,7 +385,7 @@ public class ModelAnalysis
 		}
 		List<EObject> umlStereotypeApplications2 = umlStereotypeApplications;
 		if (umlStereotypeApplications2 != null) {
-			Map<EObject, List<org.eclipse.uml2.uml.Element>> umlStereotypeApplication2umlStereotypedElements = UML2PivotUtil.computeAppliedStereotypes(umlStereotypeApplications2);
+			Map<EObject, List<org.eclipse.uml2.uml.Element>> umlStereotypeApplication2umlStereotypedElements = UML2ASUtil.computeAppliedStereotypes(umlStereotypeApplications2);
 			installElementExtensionPropertyValues(element2stereotype2extension, umlStereotypeApplication2umlStereotypedElements);
 		}
 //			Map<Metaclass<?>, List<Property>> metaclass2properties = new HashMap<Metaclass<?>, List<Property>>();
@@ -408,8 +408,8 @@ public class ModelAnalysis
 				ElementExtension elementExtension = metaModelManager.getElementExtension(asElement, stereotype);
 				elementExtension.setIsRequired(true);
 				stereotype2extension.put(stereotype, elementExtension);
-				if (UML2Pivot.ADD_ELEMENT_EXTENSION.isActive()) {
-					UML2Pivot.ADD_ELEMENT_EXTENSION.println(asElement.toString() + " + " + elementExtension.toString());
+				if (UML2AS.ADD_ELEMENT_EXTENSION.isActive()) {
+					UML2AS.ADD_ELEMENT_EXTENSION.println(asElement.toString() + " + " + elementExtension.toString());
 				}
 			}
 		}
@@ -418,7 +418,7 @@ public class ModelAnalysis
 
 	protected void printMetatypes2StereotypeExtensions(@NonNull org.eclipse.ocl.examples.pivot.Package asPackage,
 			@NonNull Map<Type, Set<TypeExtension>> metatype2typeExtensions) {
-		if (UML2Pivot.TYPE_EXTENSIONS.isActive()) {
+		if (UML2AS.TYPE_EXTENSIONS.isActive()) {
 			StringBuffer s = new StringBuffer();
 			s.append(EcoreUtils.qualifiedNameFor(asPackage) + " : " + asPackage.getURI());
 			List<Type> metatypes = new ArrayList<Type>(metatype2typeExtensions.keySet());
@@ -439,7 +439,7 @@ public class ModelAnalysis
 					}
 				}
 			}
-			UML2Pivot.TYPE_EXTENSIONS.println(s.toString());
+			UML2AS.TYPE_EXTENSIONS.println(s.toString());
 		}
 	}
 

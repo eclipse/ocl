@@ -36,7 +36,7 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Query;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
@@ -180,8 +180,8 @@ public class DocumentationExamples extends PivotTestCase
 			MetaModelManager metaModelManager = ocl.getMetaModelManager();
 			OCLHelper helper = ocl.createOCLHelper();
 	
-			Ecore2Pivot ecore2pivot = Ecore2Pivot.getAdapter(b2Book.eClass().eResource(), metaModelManager);
-			org.eclipse.ocl.examples.pivot.Class bookType = ecore2pivot.getCreated(org.eclipse.ocl.examples.pivot.Class.class, b2Book.eClass());
+			Ecore2AS ecore2as = Ecore2AS.getAdapter(b2Book.eClass().eResource(), metaModelManager);
+			org.eclipse.ocl.examples.pivot.Class bookType = ecore2as.getCreated(org.eclipse.ocl.examples.pivot.Class.class, b2Book.eClass());
 
 		    Object b2Copies = b2Book.eGet(bookCopies);			// Static eGet
 			assertEquals(2, ((Number)b2Copies).intValue());

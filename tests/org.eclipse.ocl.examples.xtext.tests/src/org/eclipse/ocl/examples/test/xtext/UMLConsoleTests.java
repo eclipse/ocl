@@ -73,7 +73,7 @@ public class UMLConsoleTests extends AbstractConsoleTests
 
         Resource umlResource = resourceSet.getResource(getTestModelURI("model/InternationalizedClasses.uml"), true);
         Resource umlProfileResource = resourceSet.getResource(getTestModelURI("model/Internationalized.profile.uml"), true);
-//        ASResource asResource = ocl.uml2pivot(umlResource);
+//        ASResource asResource = ocl.uml2as(umlResource);
 //        Root root = (Root) asResource.getContents().get(0);
 //        org.eclipse.ocl.examples.pivot.Package modelPackage = DomainUtil.getNamedElement(root.getNestedPackage(), "Model");
         org.eclipse.uml2.uml.Package umlPackage = (org.eclipse.uml2.uml.Package) umlResource.getContents().get(0);

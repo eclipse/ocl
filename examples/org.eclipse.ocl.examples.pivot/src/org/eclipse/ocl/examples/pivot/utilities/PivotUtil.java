@@ -101,7 +101,7 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.context.ParserContext;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl;
 import org.eclipse.ocl.examples.pivot.manager.AbstractMetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -793,7 +793,7 @@ public class PivotUtil extends DomainUtil
 	public static Type findTypeOf(@NonNull MetaModelManager metaModelManager, @NonNull EClassifier eClass) {
 		Resource resource = eClass.eResource();
 		if (resource != null) {
-			Ecore2Pivot adapter = Ecore2Pivot.findAdapter(resource, metaModelManager);
+			Ecore2AS adapter = Ecore2AS.findAdapter(resource, metaModelManager);
 			if (adapter != null) {
 				Type type = adapter.getCreated(Type.class, eClass);
 				if (type != null) {

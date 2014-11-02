@@ -53,13 +53,13 @@ import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.delegate.DelegateInstaller;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerListener;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.resource.OCLASResourceFactory;
-import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
+import org.eclipse.ocl.examples.pivot.uml.UML2AS;
 import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
@@ -349,12 +349,12 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 				if (contents.size() > 0) {
 					EObject xmiRoot = contents.get(0);
 					if (xmiRoot instanceof EPackage) {
-						Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(xmiResource, getMetaModelManager());
-						Model pivotModel = ecore2Pivot.getPivotModel();
+						Ecore2AS ecore2as = Ecore2AS.getAdapter(xmiResource, getMetaModelManager());
+						Model pivotModel = ecore2as.getPivotModel();
 						asResource = (ASResource) pivotModel.eResource();
 						if (asResource != null) {
 							if (reload) {
-								ecore2Pivot.update(asResource, contents);
+								ecore2as.update(asResource, contents);
 							}
 							diagnoseErrors(asResource);		// FIXME On reload, this throws a CoreException which loses the user's source text
 						}
@@ -366,8 +366,8 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 						persistAs = PERSIST_AS_PIVOT;
 					}
 					else if (xmiRoot instanceof org.eclipse.uml2.uml.Package) {
-						UML2Pivot uml2Pivot = UML2Pivot.getAdapter(xmiResource, getMetaModelManager());
-						Model pivotModel = uml2Pivot.getPivotModel();
+						UML2AS uml2as = UML2AS.getAdapter(xmiResource, getMetaModelManager());
+						Model pivotModel = uml2as.getPivotModel();
 						asResource = (ASResource) pivotModel.eResource();
 						persistAs = PERSIST_AS_OCLINECORE;		// FIXME
 					}

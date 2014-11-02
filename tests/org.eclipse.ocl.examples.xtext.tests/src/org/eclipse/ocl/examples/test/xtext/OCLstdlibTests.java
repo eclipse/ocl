@@ -77,7 +77,7 @@ public class OCLstdlibTests extends XtextTestCase
 
 	protected MetaModelManager metaModelManager = null;
 
-	public Map<String, Element> computeMoniker2PivotMap(Collection<? extends Resource> pivotResources) {
+	public Map<String, Element> computeMoniker2ASMap(Collection<? extends Resource> pivotResources) {
 		Map<String, Element> map = new HashMap<String, Element>();
 		for (Resource asResource : pivotResources) {
 			for (Iterator<EObject> it = asResource.getAllContents(); it.hasNext();) {
@@ -115,18 +115,18 @@ public class OCLstdlibTests extends XtextTestCase
 		//
 		//	Check similar content
 		//
-		Map<String,Element> fileMoniker2PivotMap = computeMoniker2PivotMap(Collections.singletonList(asResource));
-//		for (String moniker : fileMoniker2PivotMap.keySet()) {
+		Map<String,Element> fileMoniker2asMap = computeMoniker2ASMap(Collections.singletonList(asResource));
+//		for (String moniker : fileMoniker2asMap.keySet()) {
 //			System.out.println("File : " + moniker);
 //		}
-		Map<String,Element> javaMoniker2PivotMap = computeMoniker2PivotMap(Collections.singletonList(javaResource));
-//		for (String moniker : javaMoniker2PivotMap.keySet()) {
+		Map<String,Element> javaMoniker2asMap = computeMoniker2ASMap(Collections.singletonList(javaResource));
+//		for (String moniker : javaMoniker2asMap.keySet()) {
 //			System.out.println("Java : " + moniker);
 //		}
-//		assertEquals(fileMoniker2PivotMap.size(), javaMoniker2PivotMap.size());
-		for (String moniker : fileMoniker2PivotMap.keySet()) {
-			Element fileElement = fileMoniker2PivotMap.get(moniker);
-			Element javaElement = javaMoniker2PivotMap.get(moniker);
+//		assertEquals(fileMoniker2asMap.size(), javaMoniker2asMap.size());
+		for (String moniker : fileMoniker2asMap.keySet()) {
+			Element fileElement = fileMoniker2asMap.get(moniker);
+			Element javaElement = javaMoniker2asMap.get(moniker);
 			if (javaElement == null) {
 				boolean isExpression = false;
 				for (EObject eObject = fileElement; eObject != null; eObject = eObject.eContainer()) {
@@ -280,18 +280,18 @@ public class OCLstdlibTests extends XtextTestCase
 		//
 		//	Check similar content
 		//
-		Map<String,Element> fileMoniker2PivotMap = computeMoniker2PivotMap(Collections.singletonList(fileResource));
-//		for (String moniker : fileMoniker2PivotMap.keySet()) {
+		Map<String,Element> fileMoniker2asMap = computeMoniker2ASMap(Collections.singletonList(fileResource));
+//		for (String moniker : fileMoniker2asMap.keySet()) {
 //			System.out.println("File : " + moniker);
 //		}
-		Map<String,Element> javaMoniker2PivotMap = computeMoniker2PivotMap(Collections.singletonList(javaResource));
-//		for (String moniker : javaMoniker2PivotMap.keySet()) {
+		Map<String,Element> javaMoniker2asMap = computeMoniker2ASMap(Collections.singletonList(javaResource));
+//		for (String moniker : javaMoniker2asMap.keySet()) {
 //			System.out.println("Java : " + moniker);
 //		}
-//		assertEquals(fileMoniker2PivotMap.size(), javaMoniker2PivotMap.size());
-		for (String moniker : fileMoniker2PivotMap.keySet()) {
-			Element fileElement = fileMoniker2PivotMap.get(moniker);
-			Element javaElement = javaMoniker2PivotMap.get(moniker);
+//		assertEquals(fileMoniker2asMap.size(), javaMoniker2asMap.size());
+		for (String moniker : fileMoniker2asMap.keySet()) {
+			Element fileElement = fileMoniker2asMap.get(moniker);
+			Element javaElement = javaMoniker2asMap.get(moniker);
 			if (javaElement == null) {
 				boolean isExpression = false;
 				for (EObject eObject = fileElement; eObject != null; eObject = eObject.eContainer()) {

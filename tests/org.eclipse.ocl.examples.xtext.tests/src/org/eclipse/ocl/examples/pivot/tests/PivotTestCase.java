@@ -68,7 +68,7 @@ import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotStandaloneSetup;
 import org.eclipse.ocl.examples.pivot.delegate.ValidationDelegate;
-import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
+import org.eclipse.ocl.examples.pivot.ecore.AS2Ecore;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
@@ -116,6 +116,51 @@ public class PivotTestCase extends TestCase
 //		StandaloneProjectMap.liveStandaloneProjectMaps = new WeakHashMap<StandaloneProjectMap,Object>();	// Prints the create/finalize of each StandaloneProjectMap
 //		ResourceSetImpl.liveResourceSets = new WeakHashMap<ResourceSet,Object>();				// Requires edw-debug privater EMF branch
 	}	
+
+	public static @NonNull XtextResource as2cs(@NonNull OCL ocl, @NonNull ResourceSet resourceSet, @NonNull ASResource asResource, @NonNull URI outputURI) throws IOException {
+		XtextResource xtextResource = DomainUtil.nonNullState((XtextResource) resourceSet.createResource(outputURI, OCLinEcoreCSPackage.eCONTENT_TYPE));
+//		ResourceSet csResourceSet = resourceSet; //new ResourceSetImpl();
+//		csResourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("cs", new EcoreResourceFactoryImpl());
+//		csResourceSet.getPackageRegistry().put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
+//		Resource csResource = csResourceSet.createResource(uri);
+//		URI oclinecoreURI = ecoreResource.getURI().appendFileExtension("oclinecore");
+		ocl.as2cs(asResource, (BaseResource) xtextResource);
+		assertNoResourceErrors("Conversion failed", xtextResource);
+//		csResource.save(null);
+		//
+		//	CS save and reload
+		//		
+		URI savedURI = DomainUtil.nonNullState(asResource.getURI());
+//		asResource.setURI(PivotUtil.getNonPivotURI(savedURI).appendFileExtension(PivotConstants.OCL_AS_FILE_EXTENSION));
+		asResource.setURI(outputURI.trimFileExtension().trimFileExtension().appendFileExtension(PivotConstants.OCL_AS_FILE_EXTENSION));
+		asResource.save(null);
+		asResource.setURI(savedURI);
+		
+		assertNoDiagnosticErrors("Concrete Syntax validation failed", xtextResource);
+		try {
+			xtextResource.save(null);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			URI xmiURI = outputURI.appendFileExtension(".xmi");
+			Resource xmiResource = resourceSet.createResource(xmiURI);
+			xmiResource.getContents().addAll(xtextResource.getContents());
+			xmiResource.save(null);
+			fail(e.toString());
+		}
+		return xtextResource;
+	}
+
+	public static @NonNull Resource as2ecore(@NonNull OCL ocl, @NonNull Resource asResource, @Nullable URI ecoreURI, boolean validateSaved) throws IOException {
+		Resource ecoreResource = ocl.as2ecore(asResource, ecoreURI != null ? ecoreURI : DomainUtil.nonNullEMF(URI.createURI("test.ecore")));
+		if (ecoreURI != null) {
+			ecoreResource.save(null);
+		}
+		if (validateSaved) {
+			assertNoValidationErrors("AS2Ecore invalid", ecoreResource);
+		}
+		return ecoreResource;
+	}
 	
 	public static @NonNull List<Diagnostic> assertDiagnostics(@NonNull String prefix, @NonNull List<Diagnostic> diagnostics, String... messages) {
 		Map<String, Integer> expected = new HashMap<String, Integer>();
@@ -341,7 +386,7 @@ public class PivotTestCase extends TestCase
 		xtextResource.load(inputStream, null);
 		assertNoResourceErrors("Loading Xtext", xtextResource);
 		Resource asResource = cs2as(ocl, xtextResource, null);
-		Resource ecoreResource = pivot2ecore(ocl, asResource, ecoreURI, true);
+		Resource ecoreResource = as2ecore(ocl, asResource, ecoreURI, true);
 		return ecoreResource;
 	}
 	
@@ -472,51 +517,6 @@ public class PivotTestCase extends TestCase
 		return (os != null) && os.startsWith("Windows");
 	}
 
-	public static @NonNull XtextResource pivot2cs(@NonNull OCL ocl, @NonNull ResourceSet resourceSet, @NonNull ASResource asResource, @NonNull URI outputURI) throws IOException {
-		XtextResource xtextResource = DomainUtil.nonNullState((XtextResource) resourceSet.createResource(outputURI, OCLinEcoreCSPackage.eCONTENT_TYPE));
-//		ResourceSet csResourceSet = resourceSet; //new ResourceSetImpl();
-//		csResourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("cs", new EcoreResourceFactoryImpl());
-//		csResourceSet.getPackageRegistry().put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
-//		Resource csResource = csResourceSet.createResource(uri);
-//		URI oclinecoreURI = ecoreResource.getURI().appendFileExtension("oclinecore");
-		ocl.pivot2cs(asResource, (BaseResource) xtextResource);
-		assertNoResourceErrors("Conversion failed", xtextResource);
-//		csResource.save(null);
-		//
-		//	CS save and reload
-		//		
-		URI savedURI = DomainUtil.nonNullState(asResource.getURI());
-//		asResource.setURI(PivotUtil.getNonPivotURI(savedURI).appendFileExtension(PivotConstants.OCL_AS_FILE_EXTENSION));
-		asResource.setURI(outputURI.trimFileExtension().trimFileExtension().appendFileExtension(PivotConstants.OCL_AS_FILE_EXTENSION));
-		asResource.save(null);
-		asResource.setURI(savedURI);
-		
-		assertNoDiagnosticErrors("Concrete Syntax validation failed", xtextResource);
-		try {
-			xtextResource.save(null);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			URI xmiURI = outputURI.appendFileExtension(".xmi");
-			Resource xmiResource = resourceSet.createResource(xmiURI);
-			xmiResource.getContents().addAll(xtextResource.getContents());
-			xmiResource.save(null);
-			fail(e.toString());
-		}
-		return xtextResource;
-	}
-
-	public static @NonNull Resource pivot2ecore(@NonNull OCL ocl, @NonNull Resource asResource, @Nullable URI ecoreURI, boolean validateSaved) throws IOException {
-		Resource ecoreResource = ocl.pivot2ecore(asResource, ecoreURI != null ? ecoreURI : DomainUtil.nonNullEMF(URI.createURI("test.ecore")));
-		if (ecoreURI != null) {
-			ecoreResource.save(null);
-		}
-		if (validateSaved) {
-			assertNoValidationErrors("Pivot2Ecore invalid", ecoreResource);
-		}
-		return ecoreResource;
-	}
-
 	private static boolean testedEgitUiBundle = false;
 	
 	/**
@@ -576,7 +576,7 @@ public class PivotTestCase extends TestCase
 			Resource asResource = adapter.getASResource(xtextResource);
 			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
 			assertNoValidationErrors("Pivot validation errors", asResource.getContents().get(0));
-			XMLResource ecoreResource = Pivot2Ecore.createResource(metaModelManager, asResource, ecoreURI, null);
+			XMLResource ecoreResource = AS2Ecore.createResource(metaModelManager, asResource, ecoreURI, null);
 			assertNoResourceErrors("To Ecore errors", ecoreResource);
 			if (assignIds) {
 				for (TreeIterator<EObject> tit = ecoreResource.getAllContents(); tit.hasNext(); ) {

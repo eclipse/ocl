@@ -29,7 +29,7 @@ import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotTables;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManageable;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
@@ -136,8 +136,8 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 	}
 
 	public @NonNull DomainType getType(@NonNull EClassifier eClassifier) {
-		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(DomainUtil.nonNullEMF(eClassifier.eResource()), metaModelManager);
-		Type pivotType = ecore2Pivot.getCreated(Type.class, eClassifier);
+		Ecore2AS ecore2as = Ecore2AS.getAdapter(DomainUtil.nonNullEMF(eClassifier.eResource()), metaModelManager);
+		Type pivotType = ecore2as.getCreated(Type.class, eClassifier);
 		return DomainUtil.nonNullState(pivotType);
 	}
 }

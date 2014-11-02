@@ -378,7 +378,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		void setConflictHandler(@Nullable IConflictHandler conflictHandler);
 
 		/**
-		 * Set true by Pivot2Ecore to inhibit auto-loading of newly added EPackages.
+		 * Set true by AS2Ecore to inhibit auto-loading of newly added EPackages.
 		 */
 		void setGenerationInProgress(boolean isGenerating);
 
@@ -1077,7 +1077,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		protected @Nullable Resource eModel = null;
 
 		/**
-		 * Re-entrancy inhibitor for for generation from Pivot2Ecore.
+		 * Re-entrancy inhibitor for for generation from AS2Ecore.
 		 */
 		protected boolean generativeLoadInProgress = false;
 
@@ -1318,7 +1318,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		}
 
 		/**
-		 * Set true by Pivot2Ecore to inhibit auto-loading of newly added EPackages.
+		 * Set true by AS2Ecore to inhibit auto-loading of newly added EPackages.
 		 */
 		public void setGenerationInProgress(boolean isGenerating) {
 			assert !recursiveLoadInProgress;

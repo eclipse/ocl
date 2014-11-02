@@ -33,7 +33,7 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
-import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
+import org.eclipse.ocl.examples.pivot.uml.UML2AS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
@@ -100,13 +100,13 @@ public class SerializeTests extends XtextTestCase
 			if (resourceSetInitializer != null) {
 				resourceSetInitializer.initializeResourceSet(metaModelManager1.getExternalResourceSet());
 			}
-			ASResource asResource = ocl1.ecore2pivot(ecoreResource);
+			ASResource asResource = ocl1.ecore2as(ecoreResource);
 			assertNoResourceErrors("Normalisation failed", asResource);
 			assertNoValidationErrors("Normalisation invalid", asResource);
 			//
 			//	Pivot to CS
 			//		
-			xtextResource1 = pivot2cs(ocl1, resourceSet, asResource, outputURI);
+			xtextResource1 = as2cs(ocl1, resourceSet, asResource, outputURI);
 			resourceSet.getResources().clear();
 		}
 		finally {
@@ -141,7 +141,7 @@ public class SerializeTests extends XtextTestCase
 			//		
 			String inputName2 = stem + "2.ecore";
 			URI ecoreURI2 = getProjectFileURI(inputName2);
-			Resource ecoreResource2 = pivot2ecore(ocl2, pivotResource2, ecoreURI2, validateSaved);
+			Resource ecoreResource2 = as2ecore(ocl2, pivotResource2, ecoreURI2, validateSaved);
 			//
 			//
 			//
@@ -160,7 +160,7 @@ public class SerializeTests extends XtextTestCase
 	
 	@SuppressWarnings("null")
 	public XtextResource doSerializeUML(String stem) throws Exception {
-		UML2Pivot.initialize(resourceSet);
+		UML2AS.initialize(resourceSet);
 		UMLPackage.eINSTANCE.getClass();
 		//
 		//	Load as Ecore
@@ -182,7 +182,7 @@ public class SerializeTests extends XtextTestCase
 			/*		
 			String outputName = stem + ".serialized.oclinecore";
 			URI outputURI = getProjectFileURI(outputName);
-			xtextResource = pivot2cs(ocl1, resourceSet, asResource, outputURI);
+			xtextResource = as2cs(ocl1, resourceSet, asResource, outputURI);
 			resourceSet.getResources().clear();
 			BaseCSResource xtextResource2 = (BaseCSResource) resourceSet.getResource(outputURI, true);
 			assertNoResourceErrors("Reload failed", xtextResource2);
@@ -205,24 +205,24 @@ public class SerializeTests extends XtextTestCase
 		{
 			String inputName2 = stem + "2.ecore";
 			URI ecoreURI2 = getProjectFileURI(inputName2);
-			ecoreResource2 = pivot2ecore(ocl, pivotResource2, ecoreURI2, true);
+			ecoreResource2 = as2ecore(ocl, pivotResource2, ecoreURI2, true);
 		}
 		//
 		//
 		//
 		assertSameModel(asResource, pivotResource2);
-		UML2Ecore2Pivot uml2Ecore2Pivot = UML2Ecore2Pivot.getAdapter(umlResource, metaModelManager);	// FIXME Use UML2Pivot
-		Resource ecoreResource = uml2Ecore2Pivot.getEcoreResource();
+		UML2Ecore2AS uml2ecore2as = UML2Ecore2Pivot.getAdapter(umlResource, metaModelManager);	// FIXME Use UML2AS
+		Resource ecoreResource = uml2ecore2as.getEcoreResource();
 		assertSameModel(ecoreResource, ecoreResource2);		*/
 		return xtextResource;
 	}
 
 	@SuppressWarnings("null")
 	protected Resource getPivotFromUML(MetaModelManager metaModelManager, Resource umlResource) throws ParserException {
-//		String problem = UML2Pivot.initialize(metaModelManager.getExternalResourceSet());
+//		String problem = UML2AS.initialize(metaModelManager.getExternalResourceSet());
 //		assertNull(problem);
-		UML2Pivot uml2Pivot = UML2Pivot.getAdapter(umlResource, metaModelManager);
-		Model pivotModel = uml2Pivot.getPivotModel();
+		UML2AS uml2as = UML2AS.getAdapter(umlResource, metaModelManager);
+		Model pivotModel = uml2as.getPivotModel();
 		Resource asResource = pivotModel.eResource();
 		assertNoResourceErrors("Normalisation failed", asResource);
 		assertNoValidationErrors("Normalisation invalid", asResource);
@@ -239,7 +239,7 @@ public class SerializeTests extends XtextTestCase
 //		RootPackageCS documentCS = Ecore2OCLinEcore.importFromEcore(resourceSet, null, ecoreResource);
 //		Resource eResource = documentCS.eResource();
 		assertNoResourceErrors("Load failed", umlResource);
-//		Resource xtextResource = resourceSet.createResource(outputURI, OCLinEcoreCSTPackage.eCONTENT_TYPE);
+//		Resource xtextResource = resourceSet.createResource(outputURI, OCLinEcoreCSPackage.eCONTENT_TYPE);
 //		XtextResource xtextResource = (XtextResource) resourceSet.createResource(outputURI);
 //		xtextResource.getContents().add(documentCS);
 		return umlResource;

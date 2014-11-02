@@ -112,7 +112,7 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 		return rootElement;
 	}
 
-	public void initialize(@NonNull Base2PivotConversion conversion, @NonNull ExpressionInOCL expression) {
+	public void initialize(@NonNull Base2ASConversion conversion, @NonNull ExpressionInOCL expression) {
 //		List<String> language = expression.getLanguage();
 //		language.clear();
 //		language.add(PivotConstants.OCL_LANGUAGE);

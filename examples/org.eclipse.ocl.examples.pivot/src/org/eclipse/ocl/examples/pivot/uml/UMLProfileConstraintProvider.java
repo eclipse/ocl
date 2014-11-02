@@ -70,7 +70,7 @@ public class UMLProfileConstraintProvider extends LoadableConstraintProvider
 		
 		Resource asResource;
 		try {
-			asResource = getOCL().uml2pivot(umlResource);
+			asResource = getOCL().uml2as(umlResource);
 		} catch (ParserException e) {
 			logger.error("Failed to load Pivot from '" + uri + "': ", e);
 			return false;

@@ -7,7 +7,7 @@ However if you use Eclipse OCL outside Eclipse, for instance in JUnit tests, you
 
 bc.. 
 org.eclipse.ocl.examples.pivot.OCL.initialize(resourceSet);
-org.eclipse.ocl.examples.pivot.uml.UML2Pivot.initialize(resourceSet);
+org.eclipse.ocl.examples.pivot.uml.UML2AS.initialize(resourceSet);
 org.eclipse.ocl.examples.pivot.model.OCLstdlib.install();
 org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain.initialize(resourceSet);
 org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup.doSetup();
@@ -25,7 +25,7 @@ For the Pivot metamodel, the required registrations should be provided by invoki
 @org.eclipse.ocl.examples.pivot.OCL.initialize(ResourceSet)@. This initialization ensures that *.ecore is understood.
 
 If *.uml support is also required, invoke
-@org.eclipse.ocl.examples.pivot.uml.UML2Pivot.initialize(ResourceSet)@ as well. 
+@org.eclipse.ocl.examples.pivot.uml.UML2AS.initialize(ResourceSet)@ as well. 
 This initialization ensures that *.uml is understood and that standard pathmap: locations are resolvable. It also invokes @org.eclipse.uml2.uml.resources.util.UMLResourcesUtil.init(ResourceSet)@ to ensure that all Eclipse and OMG UML namespaces and extensions are registered.
 
 h3. OCL Standard Library

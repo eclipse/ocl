@@ -135,7 +135,7 @@ public abstract class AbstractOCLstdlibUiModule extends DefaultUiModule {
 
 	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
 	public Class<? extends org.eclipse.xtext.resource.ILocationInFileProvider> bindILocationInFileProvider() {
-		return org.eclipse.ocl.examples.xtext.essentialocl.pivot2cs.EssentialOCLLocationInFileProvider.class;
+		return org.eclipse.ocl.examples.xtext.essentialocl.as2cs.EssentialOCLLocationInFileProvider.class;
 	}
 
 	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment

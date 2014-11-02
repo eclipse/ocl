@@ -47,7 +47,7 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
+import org.eclipse.ocl.examples.pivot.ecore.AS2Ecore;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.options.OCLinEcoreOptions;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
@@ -326,7 +326,7 @@ public class DelegateInstaller
 						}
 					}
 					if (eContext == null) {
-						@NonNull EOperation eOperation = Pivot2Ecore.createConstraintEOperation(constraint, name, null);
+						@NonNull EOperation eOperation = AS2Ecore.createConstraintEOperation(constraint, name, null);
 						((EClass) eClassifier).getEOperations().add(eOperation);
 						eContext = eOperation;
 					}

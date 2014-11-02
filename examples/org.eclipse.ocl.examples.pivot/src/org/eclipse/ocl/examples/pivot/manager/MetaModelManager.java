@@ -122,8 +122,8 @@ import org.eclipse.ocl.examples.pivot.context.ClassContext;
 import org.eclipse.ocl.examples.pivot.context.OperationContext;
 import org.eclipse.ocl.examples.pivot.context.ParserContext;
 import org.eclipse.ocl.examples.pivot.context.PropertyContext;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
-import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
+import org.eclipse.ocl.examples.pivot.ecore.Ecore2AS;
+import org.eclipse.ocl.examples.pivot.ecore.AS2Ecore;
 import org.eclipse.ocl.examples.pivot.internal.complete.CompleteEnvironmentImpl;
 import org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl;
 import org.eclipse.ocl.examples.pivot.library.ConstrainedOperation;
@@ -139,7 +139,7 @@ import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.AS2XMIid;
 import org.eclipse.ocl.examples.pivot.utilities.CompleteElementIterable;
-import org.eclipse.ocl.examples.pivot.utilities.External2Pivot;
+import org.eclipse.ocl.examples.pivot.utilities.External2AS;
 import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -315,7 +315,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 	/**
 	 * Map of URI to external resource converter.
 	 */
-	private final @NonNull Map<URI, External2Pivot> external2PivotMap = new HashMap<URI, External2Pivot>();
+	private final @NonNull Map<URI, External2AS> external2asMap = new HashMap<URI, External2AS>();
 
 	/**
 	 * The resolver for Ids and EObjects
@@ -381,14 +381,14 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		implementationManager.addClassLoader(classLoader);
 	}
 
-	public void addExternalResource(@NonNull External2Pivot external2Pivot) {
-		URI uri = external2Pivot.getURI();
-		Resource resource = external2Pivot.getResource();
+	public void addExternalResource(@NonNull External2AS external2as) {
+		URI uri = external2as.getURI();
+		Resource resource = external2as.getResource();
 		if ((resource != null) && DomainUtil.isRegistered(resource)) {
 			ResourceSet externalResourceSet2 = getExternalResourceSet();
 			getProjectMap().useGeneratedResource(resource, externalResourceSet2);
 		}
-		external2PivotMap.put(uri, external2Pivot);
+		external2asMap.put(uri, external2as);
 	}
 
 	/**
@@ -751,7 +751,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		}
 		globalNamespaces.clear();
 		globalTypes.clear();
-		external2PivotMap.clear();
+		external2asMap.clear();
 		lockingAnnotation = null;
 		idResolver.dispose();
 		completeModel.dispose();
@@ -1037,7 +1037,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 			return null;
 		}
 		URI ecoreURI = DomainUtil.nonNullEMF(URI.createURI(root.getExternalURI()).appendFileExtension("ecore"));
-		Pivot2Ecore converter = new Pivot2Ecore(this, ecoreURI, null);
+		AS2Ecore converter = new AS2Ecore(this, ecoreURI, null);
 		converter.convertResource(metaModel, ecoreURI);					// FIXME install ETargets
 		return converter.getCreated(ecoreClass, element);
 	}
@@ -1567,11 +1567,11 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		if (metaModel == null) {
 			return null;
 		}
-		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(metaModel, this);
-		if (ecore2Pivot == null) {
+		Ecore2AS ecore2as = Ecore2AS.getAdapter(metaModel, this);
+		if (ecore2as == null) {
 			return null;
 		}
-		return ecore2Pivot.getCreated(pivotClass, eObject);
+		return ecore2as.getCreated(pivotClass, eObject);
 	}
 
 	/**
@@ -2174,9 +2174,9 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 			}
 		}
 		if (resource == null) {
-			External2Pivot external2Pivot = external2PivotMap.get(uri);
-			if (external2Pivot != null) {
-				resource = external2Pivot.getResource();
+			External2AS external2as = external2asMap.get(uri);
+			if (external2as != null) {
+				resource = external2as.getResource();
 			}
 			else {
 				try {
@@ -2210,9 +2210,9 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 							for (ASResourceFactory resourceFactory : ASResourceFactoryRegistry.INSTANCE.getResourceFactories()) {
 								URI packageURI = resourceFactory.getPackageURI(firstContent);
 								if (packageURI != null) {
-									External2Pivot external2Pivot2 = external2PivotMap.get(packageURI);
-									if (external2Pivot2 != null) {
-										Resource knownResource = external2Pivot2.getResource();
+									External2AS external2as2 = external2asMap.get(packageURI);
+									if (external2as2 != null) {
+										Resource knownResource = external2as2.getResource();
 										if ((knownResource != null) && (knownResource != resource)) {
 											for (EObject eContent : resource.getContents()) {
 												if (eContent instanceof Pivotable) {
@@ -2278,8 +2278,8 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 
 	public void notifyChanged(Notification notification) {}
 
-	public void removeExternalResource(@NonNull External2Pivot external2Pivot) {
-		external2PivotMap.remove(external2Pivot.getURI());
+	public void removeExternalResource(@NonNull External2AS external2as) {
+		external2asMap.remove(external2as.getURI());
 	}
 
 	public void removeListener(@NonNull MetaModelManagerListener listener) {

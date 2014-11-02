@@ -70,7 +70,7 @@ public interface ParserContext // extends Adapter
 	 * Callback to initialize the ExpressionInOCL with the derived context such as
 	 * a contextvariable for the self type, parameter and result variables.
 	 */
-	void initialize(@NonNull Base2PivotConversion conversion, @NonNull ExpressionInOCL expression);
+	void initialize(@NonNull Base2ASConversion conversion, @NonNull ExpressionInOCL expression);
 	
 	/**
 	 * Create an Abstract Syntax ExpressionInOCL containing the parsed expression on behalf of a potential owner.

@@ -38,7 +38,7 @@ public class EcoreASResourceImpl extends ASResourceImpl
 	@Override
 	public void load(Map<?, ?> options) throws IOException {
 		@SuppressWarnings("null")@NonNull URI ecoreURI = uri.trimFileExtension();
-		Ecore2Pivot.loadFromEcore(this, ecoreURI);
+		Ecore2AS.loadFromEcore(this, ecoreURI);
 		super.load(options);
 	}
 }

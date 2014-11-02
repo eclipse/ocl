@@ -40,7 +40,7 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Stereotype;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.uml.UML2PivotUtil;
+import org.eclipse.ocl.examples.pivot.uml.UML2ASUtil;
 import org.eclipse.ocl.examples.pivot.uml.UMLElementExtension;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -82,7 +82,7 @@ public class PivotIdResolver extends AbstractIdResolver
 	@Override
 	public @NonNull DomainClass getDynamicTypeOf(@Nullable Object value) {
 		if (value instanceof org.eclipse.uml2.uml.Element) {
-			DomainClass metaType = UML2PivotUtil.getMetaType(metaModelManager, (org.eclipse.uml2.uml.Element)value);
+			DomainClass metaType = UML2ASUtil.getMetaType(metaModelManager, (org.eclipse.uml2.uml.Element)value);
 			if (metaType != null) {
 				return metaType;
 			}
@@ -134,7 +134,7 @@ public class PivotIdResolver extends AbstractIdResolver
 				// TODO Auto-generated catch block
 //				e.printStackTrace();
 			}
-			DomainClass metaType = UML2PivotUtil.getMetaType(metaModelManager, (org.eclipse.uml2.uml.Element)value);
+			DomainClass metaType = UML2ASUtil.getMetaType(metaModelManager, (org.eclipse.uml2.uml.Element)value);
 			if (metaType != null) {
 				return metaType;
 			}
@@ -224,7 +224,7 @@ public class PivotIdResolver extends AbstractIdResolver
 		} catch (ParserException e) {
 			logger.error("Failed to convert '" + eType + "'", e);
 		}
-//		return new DomainInvalidTypeImpl(standardLibrary, "No object created by Ecore2Pivot");
+//		return new DomainInvalidTypeImpl(standardLibrary, "No object created by Ecore2AS");
 		return metaModelManager.getStandardLibrary().getOclInvalidType();
 	}
 

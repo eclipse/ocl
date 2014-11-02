@@ -26,8 +26,8 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
-import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
-import org.eclipse.ocl.examples.pivot.uml.Pivot2UML;
+import org.eclipse.ocl.examples.pivot.ecore.AS2Ecore;
+import org.eclipse.ocl.examples.pivot.uml.AS2UML;
 import org.eclipse.ocl.examples.xtext.base.ui.model.BaseDocument;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
@@ -67,7 +67,7 @@ public class OCLinEcoreDocument extends BaseDocument
 								checkForErrors(csResource);
 								Map<String,Object> options = new HashMap<String,Object>();
 								options.put(OCLConstants.OCL_DELEGATE_URI, exportDelegateURI);
-								XMLResource ecoreResource = Pivot2Ecore.createResource(adapter.getMetaModelManager(), asResource, ecoreURI, options);
+								XMLResource ecoreResource = AS2Ecore.createResource(adapter.getMetaModelManager(), asResource, ecoreURI, options);
 			//					ResourceSetImpl resourceSet = new ResourceSetImpl();
 			//					XMLResource ecoreResource = (XMLResource) resourceSet.createResource(ecoreURI);
 			//					ecoreResource.getContents().addAll(ecoreContents);
@@ -93,7 +93,7 @@ public class OCLinEcoreDocument extends BaseDocument
 						if (asResource != null) {
 							CS2ASResourceAdapter adapter = ((BaseCSResource)resource).findCS2ASAdapter();
 							if (adapter != null) {
-								List<EObject> umlContents = Pivot2UML.createResource(adapter.getMetaModelManager(), asResource);
+								List<EObject> umlContents = AS2UML.createResource(adapter.getMetaModelManager(), asResource);
 								ResourceSetImpl resourceSet = new ResourceSetImpl();
 				//				URI umlURI = URI.createURI("internal.uml");
 								UMLResource umlResource = (UMLResource) resourceSet.createResource(umlURI);
@@ -123,7 +123,7 @@ public class OCLinEcoreDocument extends BaseDocument
 								Map<String,Object> options = new HashMap<String,Object>();
 								options.put(PivotConstants.PRIMITIVE_TYPES_URI_PREFIX, "primitives.ecore#//");
 								options.put(OCLConstants.OCL_DELEGATE_URI, exportDelegateURI);
-								XMLResource ecoreResource = Pivot2Ecore.createResource(adapter.getMetaModelManager(), asResource, ecoreURI, options);
+								XMLResource ecoreResource = AS2Ecore.createResource(adapter.getMetaModelManager(), asResource, ecoreURI, options);
 								ecoreResource.save(writer, null);
 								checkForErrors(ecoreResource);
 							}

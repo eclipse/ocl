@@ -33,7 +33,7 @@ public class OperationContext extends ClassContext
 	}
 
 	@Override
-	public void initialize(@NonNull Base2PivotConversion conversion, @NonNull ExpressionInOCL expression) {
+	public void initialize(@NonNull Base2ASConversion conversion, @NonNull ExpressionInOCL expression) {
 		super.initialize(conversion, expression);
 		conversion.setParameterVariables(expression, DomainUtil.nonNullEMF(operationContext.getOwnedParameter()));
 		String resultVariableName2 = resultVariableName;

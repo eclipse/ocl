@@ -60,7 +60,7 @@ public final class EcoreASResourceFactory extends AbstractASResourceFactory
 
 	@Override
 	public int getHandlerPriority(@NonNull Resource resource) {
-		return Ecore2Pivot.isEcore(resource) ? MAY_HANDLE : CANNOT_HANDLE;
+		return Ecore2AS.isEcore(resource) ? MAY_HANDLE : CANNOT_HANDLE;
 	}
 
 	@Override
@@ -80,7 +80,7 @@ public final class EcoreASResourceFactory extends AbstractASResourceFactory
 	}
 	@Override
 	public @Nullable Element importFromResource(@NonNull MetaModelManager metaModelManager, @NonNull Resource ecoreResource, @Nullable URI uri) {
-		Ecore2Pivot conversion = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
+		Ecore2AS conversion = Ecore2AS.getAdapter(ecoreResource, metaModelManager);
 		conversion.setEcoreURI(uri);
 		Model pivotModel = conversion.getPivotModel();
 		String uriFragment = uri != null ? uri.fragment() : null;

@@ -68,8 +68,8 @@ public class JUnitCodeGenerator extends JavaCodeGenerator
 		if (contextVariable != null) {
 			contextVariable.setIsRequired(false); // May be null for test
 		}
-		AS2CGVisitor pivot2CGVisitor = new JUnitAS2CGVisitor(cgAnalyzer);
-		CGValuedElement cgBody = (CGValuedElement) DomainUtil.nonNullState(expInOcl.accept(pivot2CGVisitor));
+		AS2CGVisitor as2cgVisitor = new JUnitAS2CGVisitor(cgAnalyzer);
+		CGValuedElement cgBody = (CGValuedElement) DomainUtil.nonNullState(expInOcl.accept(as2cgVisitor));
 		CGOperation cgOperation = CGModelFactory.eINSTANCE.createCGLibraryOperation();
 		List<CGParameter> cgParameters = cgOperation.getParameters();
 		JavaLocalContext<?> localContext = globalContext.getLocalContext(cgOperation);
@@ -84,11 +84,11 @@ public class JUnitCodeGenerator extends JavaCodeGenerator
 			}
 		}
 		if (contextVariable != null) {
-			CGParameter cgContext = pivot2CGVisitor.getParameter(contextVariable);
+			CGParameter cgContext = as2cgVisitor.getParameter(contextVariable);
 			cgParameters.add(cgContext);
 		}
 		for (@SuppressWarnings("null")@NonNull Variable parameterVariable : expInOcl.getParameterVariable()) {
-			CGParameter cgParameter = pivot2CGVisitor.getParameter(parameterVariable);
+			CGParameter cgParameter = as2cgVisitor.getParameter(parameterVariable);
 			cgParameters.add(cgParameter);
 		}
 		cgOperation.setAst(expInOcl);
