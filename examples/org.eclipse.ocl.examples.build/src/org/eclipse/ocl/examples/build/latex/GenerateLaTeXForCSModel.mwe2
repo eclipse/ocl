@@ -10,7 +10,7 @@
  *
  * Run As->MWE2 Workflow to regenerate the pivot model.
  *******************************************************************************/
-module GenerateLaTeXForModel
+module GenerateLaTeXForCSModel
 
 import org.eclipse.ocl.examples.build.latex.*
 import org.eclipse.ocl.examples.build.utilities.*
@@ -21,9 +21,11 @@ import org.eclipse.emf.ecore.resource.impl.*
 var sourceName
 var targetName = "org.eclipse.ocl.examples.build"
 var modelFile
+var grammarFile
 var cs2asFile = ""
 var cs2csFile = ""
 var latexFileName
+var labelPrefix = ""
 
 /**
  *	Generate the LaTeX documentation for the OCLstdlib Model, by converting oclstdlib.oclstdlib to ocl-standard-library.tex.
@@ -34,13 +36,15 @@ Workflow {
     	platformUri = ".."
     }
     bean = GenModelSetup { resourceSet = resourceSet }
-    component = GenerateLaTeXForModelXtend { resourceSet = resourceSet
+    component = GenerateLaTeXForCSModelXtend { resourceSet = resourceSet
     	projectName = "${sourceName}"
     	modelFile = "${modelFile}"
+    	grammarFile = "${grammarFile}"
     	cs2asFile = "${cs2asFile}"
     	cs2csFile = "${cs2csFile}"
     	latexFolder = "/${targetName}/latex-gen"
     	latexFileName = "${latexFileName}"
+    	labelPrefix = "${labelPrefix}"
     }
 }
 

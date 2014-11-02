@@ -25,8 +25,8 @@ public abstract class GenerateLaTeX extends AbstractWorkflowComponent
 	protected String latexFileName;
 	protected String projectName;
 	protected String modelFile;
-
-	protected String sourceFile;
+	protected String grammarFile;
+	protected String labelPrefix = "";
 
 	protected GenerateLaTeX() {
 		OCLstdlibStandaloneSetup.doSetup();
@@ -56,6 +56,34 @@ public abstract class GenerateLaTeX extends AbstractWorkflowComponent
 	}
 
 	/**
+	 * The projectName relative path to the grammar definition. (e.g. "org.eclipse.ocl.examples.base/Base.xtext")
+	 */
+	public void setGrammarFile(String grammarFile) {
+		this.grammarFile = grammarFile;
+	}
+
+	/**
+	 * The prefix to apply to all Latex labels (e.g. "ocl:EssentialOCL:")
+	 */
+	public void setLabelPrefix(String labelPrefix) {
+		this.labelPrefix = labelPrefix;
+	}
+
+	/**
+	 * The platform relative path to the generated doc folder (e.g. "../doc/org.eclipse.ocl.doc")
+	 */
+	public void setLatexFileName(String latexFileName) {
+		this.latexFileName = latexFileName;
+	}
+
+	/**
+	 * The platform relative path to the generated doc folder (e.g. "../doc/org.eclipse.ocl.doc")
+	 */
+	public void setLatexFolder(String latexFolder) {
+		this.latexFolder = latexFolder;
+	}
+
+	/**
 	 * The projectName relative path to the metamodel definition. (e.g. "model/Pivot.ecore")
 	 */
 	public void setModelFile(String modelFile) {
@@ -74,19 +102,5 @@ public abstract class GenerateLaTeX extends AbstractWorkflowComponent
 	 */
 	public void setResourceSet(ResourceSet resourceSet) {
 		this.resourceSet = resourceSet;
-	}
-
-	/**
-	 * The platform relative path to the generated doc folder (e.g. "../doc/org.eclipse.ocl.doc")
-	 */
-	public void setLatexFileName(String latexFileName) {
-		this.latexFileName = latexFileName;
-	}
-
-	/**
-	 * The platform relative path to the generated doc folder (e.g. "../doc/org.eclipse.ocl.doc")
-	 */
-	public void setLatexFolder(String latexFolder) {
-		this.latexFolder = latexFolder;
 	}
 }

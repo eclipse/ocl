@@ -42,7 +42,7 @@ public abstract class GenerateLaTeXForLibrary extends GenerateLaTeXUtils
 		File folder = new File(rootPath + latexFolder);
 		folder.mkdirs();
 		try {
-			sourceFile = "/" + projectName + "/" + modelFile;
+			String sourceFile = "/" + projectName + "/" + modelFile;
 			URI fileURI = URI.createPlatformResourceURI(sourceFile, true);
 			log.info("Loading OCL library '" + fileURI);
 			ResourceSet resourceSet = getResourceSet();
@@ -61,7 +61,7 @@ public abstract class GenerateLaTeXForLibrary extends GenerateLaTeXUtils
 //			saver.localizeSpecializations();
 			String fileName = folder + "/" + latexFileName + ".tex";
 			log.info("Generating '" + fileName + "'");
-			String latexContent = generateLaTeX((Library) ((Model)pivotModel).getOwnedPackages().get(0));
+			String latexContent = generateLaTeX(DomainUtil.nonNullState((Library) ((Model)pivotModel).getOwnedPackages().get(0)));
 			String encodedContent = encodeForLaTeX(latexContent);
 			FileWriter fw = new FileWriter(fileName);
 			fw.append(encodedContent);

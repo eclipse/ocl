@@ -19,47 +19,40 @@ import org.eclipse.emf.mwe2.runtime.workflow.*
  *	Generate all the OCL LaTeX dpcuments.
  */
 Workflow {
-	component = @GenerateLaTeXForGrammar {
-		sourceName="org.eclipse.ocl.examples.xtext.essentialocl"
-		modelFile="src/org/eclipse/ocl/examples/xtext/essentialocl/EssentialOCL.xtext"
-		latexFileName="essential-ocl-grammar"
-		labelPrefix="ocl:EssentialOCL:"
-	}
-	component = @GenerateLaTeXForGrammar {
-		sourceName="org.eclipse.ocl.examples.xtext.completeocl"
-		modelFile="src/org/eclipse/ocl/examples/xtext/completeocl/CompleteOCL.xtext"
-		latexFileName="completeocl-ocl-grammar"
-		labelPrefix="ocl:CompleteOCL:"
-	}
 	component = @GenerateLaTeXForLibrary {
 		sourceName="org.eclipse.ocl.examples.library"
 		modelFile="model/OCL-2.5.oclstdlib"
 		latexFileName="ocl-standard-library"
 //		labelPrefix="ocl:StandardLibrary:"
 	}
-	component = @GenerateLaTeXForModel {
+	component = @GenerateLaTeXForASModel {
 		sourceName="org.eclipse.ocl.examples.pivot"
 		modelFile="model/Pivot.ecore"
 		latexFileName="abstract-syntax"
 //		labelPrefix="ocl:AbstractSyntax:"
 	}
-	component = @GenerateLaTeXForModel {
+	component = @GenerateLaTeXForCSModel {
 		sourceName="org.eclipse.ocl.examples.xtext.base"
+		grammarFile="src/org/eclipse/ocl/examples/xtext/base/Base.xtext"
 		modelFile="model/BaseCS.ecore"
+		cs2asFile="model/BaseCS2AS.ocl"
 		latexFileName="base-cs"
-//		labelPrefix="ocl:BaseCS:"
+		labelPrefix="ocl:BaseCS:"
 	}
-	component = @GenerateLaTeXForModel {
+	component = @GenerateLaTeXForCSModel {
 		sourceName="org.eclipse.ocl.examples.xtext.essentialocl"
+		grammarFile="src/org/eclipse/ocl/examples/xtext/essentialocl/EssentialOCL.xtext"
 		modelFile="model/EssentialOCLCS.ecore"
+		cs2asFile="model/EssentialOCLCS2AS.ocl"
+		cs2csFile="model/EssentialOCLCS2CS.ocl"
 		latexFileName="essentialocl-cs"
-//		labelPrefix="ocl:EssentialOCLCS:"
+		labelPrefix="ocl:EssentialOCLCS:"
 	}
-	component = @GenerateLaTeXForModel {
+	component = @GenerateLaTeXForCSModel {
 		sourceName="org.eclipse.ocl.examples.xtext.completeocl"
+		grammarFile="src/org/eclipse/ocl/examples/xtext/completeocl/CompleteOCL.xtext"
 		modelFile="model/CompleteOCLCS.ecore"
 		latexFileName="completeocl-cs"
-//		labelPrefix="ocl:CompleteOCLCS:"
+		labelPrefix="ocl:CompleteOCLCS:"
 	}
 }
-

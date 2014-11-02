@@ -11,19 +11,16 @@
 package org.eclipse.ocl.examples.build.latex
 
 import org.eclipse.jdt.annotation.NonNull
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil
 import org.eclipse.ocl.examples.pivot.Class
 import org.eclipse.ocl.examples.pivot.Element
 import org.eclipse.ocl.examples.pivot.Namespace
-import org.eclipse.jdt.annotation.Nullable
+import org.eclipse.ocl.examples.pivot.Package
 
-public class GenerateLaTeXForModelXtend extends GenerateLaTeXForModelUtils
+public class GenerateLaTeXForASModelXtend extends GenerateLaTeXForASModel
 {
-	@NonNull protected override String generateLaTeX(@NonNull org.eclipse.ocl.examples.pivot.Package asPackage,
-		@Nullable org.eclipse.ocl.examples.pivot.Package cs2asPackage,
-		@Nullable org.eclipse.ocl.examples.pivot.Package cs2csPackage) {
+	@NonNull protected override String generateLaTeX(@NonNull Package asPackage) {
 		'''
-		«emitClasses(asPackage, cs2asPackage, cs2csPackage)»
+		«emitClasses(asPackage)»
 		'''
 	}
 
@@ -57,7 +54,7 @@ public class GenerateLaTeXForModelXtend extends GenerateLaTeXForModelUtils
 		}
 	}
 
-	protected def emitClasses(@NonNull org.eclipse.ocl.examples.pivot.Package asPackage, @Nullable org.eclipse.ocl.examples.pivot.Package cs2asPackage, @Nullable org.eclipse.ocl.examples.pivot.Package cs2csPackage) {
+	protected def emitClasses(@NonNull Package asPackage) {
 		var asClasses = getSortedClasses(asPackage);
 		'''
 		«FOR asClass : asClasses»
@@ -71,12 +68,6 @@ public class GenerateLaTeXForModelXtend extends GenerateLaTeXForModelUtils
 			«emitAttributes(asClass)»
 			«emitAssociations(asClass)»
 			«emitOperations(asClass)»
-			«IF cs2csPackage != null»
-			«emitCS2CS(asClass, DomainUtil.nonNullState(cs2csPackage))»
-			«ENDIF»
-			«IF cs2asPackage != null»
-			«emitCS2AS(asClass, DomainUtil.nonNullState(cs2asPackage))»
-			«ENDIF»
 		«ENDFOR»
 		'''
 	}
@@ -88,48 +79,6 @@ public class GenerateLaTeXForModelXtend extends GenerateLaTeXForModelUtils
 			
 			«prettyPrint(asComment, asNamespace)»
 			«ENDFOR»
-		'''
-		}
-	}
-
-	protected def emitCS2AS(@NonNull org.eclipse.ocl.examples.pivot.Class asClass, @NonNull org.eclipse.ocl.examples.pivot.Package cs2asPackage) {
-		var cs2asClass = DomainUtil.getNamedElement(cs2asPackage.getOwnedClasses(), asClass.getName());
-		if (cs2asClass != null)  {
-		'''
-
-		«emitHeading0a("Abstract Syntax Synthesis")»
-		«FOR asOperation : cs2asClass.getOwnedOperations()»
-
-			«emitHeading0b(prettyPrint(asOperation, asClass))»
-			«emitComment(asOperation, asClass)»
-			«IF asOperation.bodyExpression != null»
-				«emitBeginDefinition»
-				body:
-					«asOperation.bodyExpression.getBody()»
-				«emitEndDefinition»
-			«ENDIF»
-		«ENDFOR»
-		'''
-		}
-	}
-
-	protected def emitCS2CS(@NonNull org.eclipse.ocl.examples.pivot.Class asClass, @NonNull org.eclipse.ocl.examples.pivot.Package cs2asPackage) {
-		var cs2csClass = DomainUtil.getNamedElement(cs2asPackage.getOwnedClasses(), asClass.getName());
-		if (cs2csClass != null)  {
-		'''
-
-		«emitHeading0a("Concrete Syntax Disambiguation")»
-		«FOR asOperation : cs2csClass.getOwnedOperations()»
-
-			«emitHeading0b(prettyPrint(asOperation, asClass))»
-			«emitComment(asOperation, asClass)»
-			«IF asOperation.bodyExpression != null»
-				«emitBeginDefinition»
-				body:
-					«asOperation.bodyExpression.getBody()»
-				«emitEndDefinition»
-			«ENDIF»
-		«ENDFOR»
 		'''
 		}
 	}

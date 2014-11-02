@@ -15,7 +15,7 @@ import org.eclipse.ocl.examples.pivot.Namespace
 import org.eclipse.ocl.examples.pivot.Element
 import org.eclipse.ocl.examples.pivot.Library
 
-public class GenerateLaTeXForLibraryXtend extends GenerateLaTeXForLibraryUtils
+public class GenerateLaTeXForLibraryXtend extends GenerateLaTeXForLibrary
 {
 	@NonNull protected override String generateLaTeX(@NonNull Library asLibrary) {
 		'''

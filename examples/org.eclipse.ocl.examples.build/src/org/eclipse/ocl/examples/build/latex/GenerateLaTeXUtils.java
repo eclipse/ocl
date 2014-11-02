@@ -19,6 +19,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.ENamedElement;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.Nameable;
@@ -27,11 +34,17 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Iteration;
+import org.eclipse.ocl.examples.pivot.Library;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
+import org.eclipse.ocl.examples.xtext.base.basecs.RootCS;
 import org.eclipse.ocl.examples.xtext.markup.FontElement;
 import org.eclipse.ocl.examples.xtext.markup.Markup;
 import org.eclipse.ocl.examples.xtext.markup.MarkupElement;
@@ -42,22 +55,21 @@ import org.eclipse.ocl.examples.xtext.markup.OCLCodeElement;
 import org.eclipse.ocl.examples.xtext.markup.OCLTextElement;
 import org.eclipse.ocl.examples.xtext.markup.TextElement;
 import org.eclipse.ocl.examples.xtext.markup.util.MarkupSwitch;
+import org.eclipse.xtext.AbstractMetamodelDeclaration;
+import org.eclipse.xtext.AbstractRule;
+import org.eclipse.xtext.Grammar;
+import org.eclipse.xtext.ParserRule;
+import org.eclipse.xtext.ReferencedMetamodel;
+import org.eclipse.xtext.TerminalRule;
+import org.eclipse.xtext.TypeRef;
+import org.eclipse.xtext.nodemodel.ICompositeNode;
+import org.eclipse.xtext.nodemodel.ILeafNode;
 import org.eclipse.xtext.nodemodel.INode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.parser.IParseResult;
 
 public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 {
-	protected final @NonNull Comparator<Nameable> nameableComparator = new Comparator<Nameable>()
-	{
-		public int compare(Nameable o1, Nameable o2) {
-			String m1 = o1.getName(); 
-			String m2 = o2.getName();
-			if (m1 == null) m1 = "";
-			if (m2 == null) m2 = "";
-			return m1.compareTo(m2);
-		}
-	};
-
 	protected final @NonNull Comparator<Iteration> iterationComparator = new Comparator<Iteration>()
 	{
 		public int compare(Iteration o1, Iteration o2) {
@@ -70,6 +82,50 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 			int s1 = o1.getOwnedIterator().size();
 			int s2 = o2.getOwnedIterator().size();
 			return s1 - s2;
+		}
+	};
+
+	protected final @NonNull Comparator<AbstractMetamodelDeclaration> metamodelComparator = new Comparator<AbstractMetamodelDeclaration>()
+	{
+		public int compare(AbstractMetamodelDeclaration o1, AbstractMetamodelDeclaration o2) {
+			String m1 = o1.getAlias(); 
+			String m2 = o2.getAlias();
+			if (m1 == null) m1 = "";
+			if (m2 == null) m2 = "";
+			return m1.compareTo(m2);
+		}
+	};
+
+	protected final @NonNull Comparator<Nameable> nameableComparator = new Comparator<Nameable>()
+	{
+		public int compare(Nameable o1, Nameable o2) {
+			String m1 = o1.getName(); 
+			String m2 = o2.getName();
+			if (m1 == null) m1 = "";
+			if (m2 == null) m2 = "";
+			return m1.compareTo(m2);
+		}
+	};
+	
+	protected final @NonNull Comparator<ENamedElement> namedComparator = new Comparator<ENamedElement>()
+	{
+		public int compare(ENamedElement o1, ENamedElement o2) {
+			String m1 = o1.getName(); 
+			String m2 = o2.getName();
+			if (m1 == null) m1 = "";
+			if (m2 == null) m2 = "";
+			return m1.compareTo(m2);
+		}
+	};
+	
+	protected final @NonNull Comparator<AbstractRule> ruleComparator = new Comparator<AbstractRule>()
+	{
+		public int compare(AbstractRule o1, AbstractRule o2) {
+			String m1 = o1.getName(); 
+			String m2 = o2.getName();
+			if (m1 == null) m1 = "";
+			if (m2 == null) m2 = "";
+			return m1.compareTo(m2);
 		}
 	};
 
@@ -207,10 +263,112 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		}
 		return markup;
 	}
+
+	protected String emitAllTT(String content) {
+		StringBuilder s = new StringBuilder();
+		s.append("#\\begin#{alltt#}");
+		int col = 0;
+		int lastSpace = s.length();
+		for (int i = 0; i < content.length(); i++) {
+			char c = content.charAt(i);
+			if (c == '\n') {
+				col = 0;
+				lastSpace = s.length();
+			}
+			else if (c == ' ') {
+				if (col > 70) {
+					s.setCharAt(lastSpace, '\n');
+					col = s.length() - lastSpace;
+				}
+				lastSpace = s.length();
+			}
+			s.append(c);
+			col++;
+		}
+		s.append("#\\end#{alltt#}");
+		return s.toString();
+	}
 	
 	protected String emitBeginDefinition() {
 //		return "#\\begin#{oclDefinition#}";
 		return "#\\begin#{verbatim#}";
+	}
+	
+	protected String emitCharacters(@NonNull String string) {
+		StringBuilder s = new StringBuilder();
+		for (int i = 0; i < string.length(); i++) {
+			char c = string.charAt(i);
+			if (c == '\b') {
+				s.append("\\b");
+			}
+			else if (c == '\n') {
+				s.append("\\n");
+			}
+			else if (c == '\r') {
+				s.append("\\r");
+			}
+			else if (c == '\t') {
+				s.append("\\t");
+			}
+			else if (c == '\\') {
+				s.append("\\\\");
+			}
+			else if (c == '\'') {
+				s.append("\\'");
+			}
+			else {
+				s.append(c);
+			}
+		}
+		return s.toString();
+	}
+	
+	protected String emitComment(@NonNull EObject eObject) {
+		ICompositeNode node = NodeModelUtils.getNode(eObject);
+		List<ILeafNode> documentationNodes = null;
+		for (ILeafNode leafNode : node.getLeafNodes()) {
+			EObject grammarElement = leafNode.getGrammarElement();
+			if (!(grammarElement instanceof TerminalRule)) {
+				break;
+			}
+			TerminalRule terminalRule = (TerminalRule) grammarElement;
+			String name = terminalRule.getName();
+			if ("WS".equals(name)) {
+			}
+			else if ("SL_COMMENT".equals(name)) {
+			}
+			else if ("ML_COMMENT".equals(name)) {
+				if (documentationNodes == null) {
+					documentationNodes = new ArrayList<ILeafNode>();
+				}
+				documentationNodes.add(leafNode);
+			}
+			else {
+				break;
+			}
+		}
+		if (documentationNodes == null) {
+			return "";
+		}
+		StringBuilder s = new StringBuilder();
+		for (ILeafNode documentationNode : documentationNodes) {
+			String text = documentationNode.getText().replace("\r", "");
+			if (text.startsWith("/*") && text.endsWith("*/")) {
+				String contentString = text.substring(2, text.length()-2).trim();
+				for (String string : contentString.split("\n")) {
+					String trimmedString = string.trim();
+					if (s.length() > 0) {
+						s.append("\n");
+					}
+					s.append(trimmedString.startsWith("*") ? trimmedString.substring(1).trim() : trimmedString);
+				}
+			}
+			else {
+				s.append(text.trim());
+			}
+		}
+		s.append("\n\n");
+		return s.toString();
 	}
 	
 	protected String emitEmphasis(@NonNull String name) {
@@ -227,7 +385,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 	}
 	
 	protected String emitHeading0b(String name) {
-		return name != null ? "#\\oclHeadingZero#{" + encodeSectionText(name) + "#}" : "";
+		return name != null ? "#\\oclHeadingZero#{\t" + encodeSectionText(name) + "#}" : "";
 	}
 	
 	protected String emitHeading1(String name, @Nullable String label) {
@@ -351,12 +509,60 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		}
 		return s.toString();
 	}
+	
+	protected @Nullable Library getLibrary(@NonNull Model root) {
+		TreeIterator<EObject> tit = root.eAllContents();
+		while (tit.hasNext()) {
+			EObject eObject = tit.next();
+			if (eObject instanceof Library) {
+				return (Library) eObject;
+			}
+		}
+		return null;
+	}
+	
+	protected Iterable<Precedence> getPrecedences(@NonNull Library asLibrary) {
+		List<Precedence> precedences = new ArrayList<Precedence>(asLibrary.getOwnedPrecedence());
+		return precedences;
+	}
+	
+	protected @Nullable org.eclipse.ocl.examples.pivot.Package getPrimaryPackage(@NonNull MetaModelManager metaModelManager, @Nullable Resource oclResource) {
+		if (oclResource != null) {
+			for (EObject eContent : oclResource.getContents()) {
+				if (eContent instanceof RootCS) {
+					Element asRoot = ((RootCS)eContent).getPivot();
+					if (asRoot instanceof Model) {
+						for (org.eclipse.ocl.examples.pivot.Package asPackage : ((Model)asRoot).getOwnedPackages()) {
+							return asPackage;
+						}
+					}
+				}
+			}
+		}
+		return null;
+	}
+	
+	protected @Nullable org.eclipse.ocl.examples.pivot.Package getSecondaryPackage(@NonNull MetaModelManager metaModelManager, @Nullable Resource oclResource) {
+		if (oclResource != null) {
+			for (EObject eContent : oclResource.getContents()) {
+				if (eContent instanceof RootCS) {
+					Element asRoot = ((RootCS)eContent).getPivot();
+					if (asRoot instanceof Model) {
+						for (org.eclipse.ocl.examples.pivot.Package asPackage : ((Model)asRoot).getOwnedPackages()) {
+							return asPackage;
+						}
+					}
+				}
+			}
+		}
+		return null;
+	}
 
 	protected @NonNull List<Property> getSortedAssociations(@NonNull org.eclipse.ocl.examples.pivot.Class asClass) {
 		Set<Property> allElements = new HashSet<Property>();
 		for (Property asProperty : asClass.getOwnedProperties()) {
 //			[let pAssociations : Sequence(Property) = pClass.ownedAttribute->select(e | not e.type.oclIsKindOf(DataType) and e.type.owningTemplateParameter->isEmpty())->asSequence()]
-			if (!(asProperty.getType() instanceof DataType)) {
+			if (!(asProperty.getType() instanceof DataType) && !asProperty.isImplicit()) {
 				allElements.add(asProperty);
 			}
 		}
@@ -394,6 +600,20 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		Collections.sort(sortedElements, nameableComparator);
 		return sortedElements;
 	}
+	
+	protected @NonNull List<EClass> getSortedEClasses(@NonNull EPackage ePackage) {
+		Set<EClass> allElements = new HashSet<EClass>();
+		TreeIterator<EObject> tit = ePackage.eAllContents();
+		while (tit.hasNext()) {
+			EObject eObject = tit.next();
+			if (eObject instanceof EClass) {
+				allElements.add((EClass)eObject);
+			}
+		}
+		List<EClass> sortedElements = new ArrayList<EClass>(allElements);
+		Collections.sort(sortedElements, namedComparator);
+		return sortedElements;
+	}
 
 	protected @NonNull List<Iteration> getSortedIterations(@NonNull org.eclipse.ocl.examples.pivot.Class asClass) {
 		Set<Iteration> allElements = new HashSet<Iteration>();
@@ -405,6 +625,18 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		List<Iteration> sortedElements = new ArrayList<Iteration>(allElements);
 		Collections.sort(sortedElements, iterationComparator);
 		return sortedElements;
+	}
+	
+	protected @NonNull List<ReferencedMetamodel> getSortedMetamodelDeclarations(@NonNull Grammar grammar) {
+		List<ReferencedMetamodel> sortedMetamodels = new ArrayList<ReferencedMetamodel>();
+		for (AbstractMetamodelDeclaration metamodelDeclaration : grammar.getMetamodelDeclarations()) {
+			String alias = metamodelDeclaration.getAlias();
+			if ((metamodelDeclaration instanceof ReferencedMetamodel) && (alias != null) && !alias.equals("ecore")) {
+				sortedMetamodels.add((ReferencedMetamodel) metamodelDeclaration);
+			}
+		}
+		Collections.sort(sortedMetamodels, metamodelComparator);
+		return sortedMetamodels;
 	}
 
 	protected @NonNull List<Operation> getSortedOperations(@NonNull org.eclipse.ocl.examples.pivot.Class asClass) {
@@ -419,6 +651,33 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		return sortedElements;
 	}
 
+	protected @NonNull List<ParserRule> getSortedParserRules(@NonNull Grammar grammar) {
+		List<ParserRule> sortedRules = new ArrayList<ParserRule>();
+		for (AbstractRule rule : grammar.getRules()) {
+			if (rule instanceof ParserRule) {
+				sortedRules.add((ParserRule) rule);
+			}
+		}
+		Collections.sort(sortedRules, ruleComparator);
+		return sortedRules;
+	}
+
+	protected @NonNull List<ParserRule> getSortedParserRules(@NonNull org.eclipse.ocl.examples.pivot.Class asClass, @NonNull Grammar grammar) {
+		EClassifier eClassifier = (EClassifier) ((PivotObjectImpl)asClass).getTarget();
+		List<ParserRule> sortedRules = new ArrayList<ParserRule>();
+		for (AbstractRule rule : grammar.getRules()) {
+			if (rule instanceof ParserRule) {
+				ParserRule parserRule = (ParserRule) rule;
+				TypeRef type = parserRule.getType();
+				if (type.getClassifier() == eClassifier) {
+					sortedRules.add(parserRule);
+				}
+			}
+		}
+		Collections.sort(sortedRules, ruleComparator);
+		return sortedRules;
+	}
+
 	protected @NonNull List<Constraint> getSortedPostconditions(@NonNull Operation asOperation) {
 		Set<Constraint> allElements = new HashSet<Constraint>(asOperation.getPostcondition());
 		List<Constraint> sortedElements = new ArrayList<Constraint>(allElements);
@@ -431,6 +690,17 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		List<Constraint> sortedElements = new ArrayList<Constraint>(allElements);
 		Collections.sort(sortedElements, nameableComparator);
 		return sortedElements;
+	}
+
+	protected @NonNull List<TerminalRule> getSortedTerminalRules(@NonNull Grammar grammar) {
+		List<TerminalRule> sortedRules = new ArrayList<TerminalRule>();
+		for (AbstractRule rule : grammar.getRules()) {
+			if (rule instanceof TerminalRule) {
+				sortedRules.add((TerminalRule) rule);
+			}
+		}
+		Collections.sort(sortedRules, ruleComparator);
+		return sortedRules;
 	}
 
 	protected String prettyPrint(@NonNull Comment comment, Namespace scope) {
