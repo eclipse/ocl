@@ -1372,7 +1372,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedOperatorAssignment_0_1_1 = (Assignment)cGroup_0_1.eContents().get(1);
 		private final RuleCall cOwnedOperatorBinaryOperatorCSParserRuleCall_0_1_1_0 = (RuleCall)cOwnedOperatorAssignment_0_1_1.eContents().get(0);
 		private final Assignment cOwnedSuffixAssignment_0_1_2 = (Assignment)cGroup_0_1.eContents().get(2);
-		private final RuleCall cOwnedSuffixSuffixExpCSParserRuleCall_0_1_2_0 = (RuleCall)cOwnedSuffixAssignment_0_1_2.eContents().get(0);
+		private final RuleCall cOwnedSuffixExpCSParserRuleCall_0_1_2_0 = (RuleCall)cOwnedSuffixAssignment_0_1_2.eContents().get(0);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
 		private final Action cPrefixExpCSAction_1_0 = (Action)cGroup_1.eContents().get(0);
 		private final Assignment cOwnedOperatorsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
@@ -1394,22 +1394,35 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		// // is
 		//
 		////   a = (64 / 16) / (let b : Integer in 8 / (let c : Integer in 4 ))
-		// ExpCS:
-		//	PrefixedExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=SuffixExpCS)? |
-		//	{PrefixExpCS} ownedOperators+=UnaryOperatorCS+ ownedExpression=LetExpCS | LetExpCS;
+		//
+		/// * An expression elaborates a prefixed expression with zero or more binary operator and expression suffixes.
+		// * An optionally prefixed let expression is permitted except when suffixed with further expressions.* /
+		//ExpCS:
+		//	PrefixedExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)?
+		//	//	({InfixExpCS} ownedExpression=PrefixedExpCS ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)
+		// //| 	PrefixedExpCS
+		//
+		//	// the above takes exponential or worse time for backtracking, below is fast
+		// | {PrefixExpCS}
+		//	ownedOperators+=UnaryOperatorCS+ ownedExpression=LetExpCS | LetExpCS;
 		public ParserRule getRule() { return rule; }
 
-		//PrefixedExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=SuffixExpCS)? |
-		//{PrefixExpCS} ownedOperators+=UnaryOperatorCS+ ownedExpression=LetExpCS | LetExpCS
+		//PrefixedExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)?
+		////	({InfixExpCS} ownedExpression=PrefixedExpCS ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)
+		// //| 	PrefixedExpCS
+		//
+		//// the above takes exponential or worse time for backtracking, below is fast
+		// | {PrefixExpCS}
+		//ownedOperators+=UnaryOperatorCS+ ownedExpression=LetExpCS | LetExpCS
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//PrefixedExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=SuffixExpCS)?
+		//PrefixedExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)?
 		public Group getGroup_0() { return cGroup_0; }
 
 		//PrefixedExpCS
 		public RuleCall getPrefixedExpCSParserRuleCall_0_0() { return cPrefixedExpCSParserRuleCall_0_0; }
 
-		//({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=SuffixExpCS)?
+		//({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)?
 		public Group getGroup_0_1() { return cGroup_0_1; }
 
 		//{InfixExpCS.ownedExpression=current}
@@ -1421,11 +1434,11 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//BinaryOperatorCS
 		public RuleCall getOwnedOperatorBinaryOperatorCSParserRuleCall_0_1_1_0() { return cOwnedOperatorBinaryOperatorCSParserRuleCall_0_1_1_0; }
 
-		//ownedSuffix=SuffixExpCS
+		//ownedSuffix=ExpCS
 		public Assignment getOwnedSuffixAssignment_0_1_2() { return cOwnedSuffixAssignment_0_1_2; }
 
-		//SuffixExpCS
-		public RuleCall getOwnedSuffixSuffixExpCSParserRuleCall_0_1_2_0() { return cOwnedSuffixSuffixExpCSParserRuleCall_0_1_2_0; }
+		//ExpCS
+		public RuleCall getOwnedSuffixExpCSParserRuleCall_0_1_2_0() { return cOwnedSuffixExpCSParserRuleCall_0_1_2_0; }
 
 		//{PrefixExpCS} ownedOperators+=UnaryOperatorCS+ ownedExpression=LetExpCS
 		public Group getGroup_1() { return cGroup_1; }
@@ -1449,68 +1462,6 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getLetExpCSParserRuleCall_2() { return cLetExpCSParserRuleCall_2; }
 	}
 
-	public class SuffixExpCSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SuffixExpCS");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final RuleCall cPrefixedExpCSParserRuleCall_0_0 = (RuleCall)cGroup_0.eContents().get(0);
-		private final Group cGroup_0_1 = (Group)cGroup_0.eContents().get(1);
-		private final Action cInfixExpCSOwnedExpressionAction_0_1_0 = (Action)cGroup_0_1.eContents().get(0);
-		private final Assignment cOwnedOperatorAssignment_0_1_1 = (Assignment)cGroup_0_1.eContents().get(1);
-		private final RuleCall cOwnedOperatorBinaryOperatorCSParserRuleCall_0_1_1_0 = (RuleCall)cOwnedOperatorAssignment_0_1_1.eContents().get(0);
-		private final Assignment cOwnedSuffixAssignment_0_1_2 = (Assignment)cGroup_0_1.eContents().get(2);
-		private final RuleCall cOwnedSuffixSuffixExpCSParserRuleCall_0_1_2_0 = (RuleCall)cOwnedSuffixAssignment_0_1_2.eContents().get(0);
-		private final RuleCall cLetExpCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		
-		/// *ExpCS returns ExpCS:
-		//	(PrefixedExpCS
-		//		({InfixExpCS.ownedExpressions+=current} ownedOperators+=BinaryOperatorCS
-		//			(	(ownedExpressions+=PrefixedExpCS
-		//					(ownedOperators+=BinaryOperatorCS ownedExpressions+=PrefixedExpCS)*
-		//					(ownedOperators+=BinaryOperatorCS ownedExpressions+=LetExpCS)?
-		//				)
-		//			|	(ownedExpressions+=LetExpCS)
-		//			)
-		//		)?
-		//	)
-		//| 	({PrefixExpCS} ownedOperators+=UnaryOperatorCS+ ownedExpression=LetExpCS)
-		//|	LetExpCS; * /
-		//SuffixExpCS returns ExpCS:
-		//	PrefixedExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=SuffixExpCS)? |
-		//	LetExpCS;
-		public ParserRule getRule() { return rule; }
-
-		//PrefixedExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=SuffixExpCS)? | LetExpCS
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//PrefixedExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=SuffixExpCS)?
-		public Group getGroup_0() { return cGroup_0; }
-
-		//PrefixedExpCS
-		public RuleCall getPrefixedExpCSParserRuleCall_0_0() { return cPrefixedExpCSParserRuleCall_0_0; }
-
-		//({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=SuffixExpCS)?
-		public Group getGroup_0_1() { return cGroup_0_1; }
-
-		//{InfixExpCS.ownedExpression=current}
-		public Action getInfixExpCSOwnedExpressionAction_0_1_0() { return cInfixExpCSOwnedExpressionAction_0_1_0; }
-
-		//ownedOperator=BinaryOperatorCS
-		public Assignment getOwnedOperatorAssignment_0_1_1() { return cOwnedOperatorAssignment_0_1_1; }
-
-		//BinaryOperatorCS
-		public RuleCall getOwnedOperatorBinaryOperatorCSParserRuleCall_0_1_1_0() { return cOwnedOperatorBinaryOperatorCSParserRuleCall_0_1_1_0; }
-
-		//ownedSuffix=SuffixExpCS
-		public Assignment getOwnedSuffixAssignment_0_1_2() { return cOwnedSuffixAssignment_0_1_2; }
-
-		//SuffixExpCS
-		public RuleCall getOwnedSuffixSuffixExpCSParserRuleCall_0_1_2_0() { return cOwnedSuffixSuffixExpCSParserRuleCall_0_1_2_0; }
-
-		//LetExpCS
-		public RuleCall getLetExpCSParserRuleCall_1() { return cLetExpCSParserRuleCall_1; }
-	}
-
 	public class PrefixedExpCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PrefixedExpCS");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -1522,7 +1473,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOwnedExpressionPrimaryExpCSParserRuleCall_0_2_0 = (RuleCall)cOwnedExpressionAssignment_0_2.eContents().get(0);
 		private final RuleCall cPrimaryExpCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		/// * A prefixed expression is elaborates a primary expression with zero or more unary prefix operators. * / PrefixedExpCS
+		/// * A prefixed expression elaborates a primary expression with zero or more unary prefix operators. * / PrefixedExpCS
 		//returns ExpCS:
 		//	{PrefixExpCS} ownedOperators+=UnaryOperatorCS+ ownedExpression=PrimaryExpCS | PrimaryExpCS;
 		public ParserRule getRule() { return rule; }
@@ -2505,7 +2456,6 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	private final TypeNameExpCSElements pTypeNameExpCS;
 	private final TypeExpCSElements pTypeExpCS;
 	private final ExpCSElements pExpCS;
-	private final SuffixExpCSElements pSuffixExpCS;
 	private final PrefixedExpCSElements pPrefixedExpCS;
 	private final PrimaryExpCSElements pPrimaryExpCS;
 	private final NameExpCSElements pNameExpCS;
@@ -2575,7 +2525,6 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pTypeNameExpCS = new TypeNameExpCSElements();
 		this.pTypeExpCS = new TypeExpCSElements();
 		this.pExpCS = new ExpCSElements();
-		this.pSuffixExpCS = new SuffixExpCSElements();
 		this.pPrefixedExpCS = new PrefixedExpCSElements();
 		this.pPrimaryExpCS = new PrimaryExpCSElements();
 		this.pNameExpCS = new NameExpCSElements();
@@ -3074,9 +3023,17 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	// // is
 	//
 	////   a = (64 / 16) / (let b : Integer in 8 / (let c : Integer in 4 ))
-	// ExpCS:
-	//	PrefixedExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=SuffixExpCS)? |
-	//	{PrefixExpCS} ownedOperators+=UnaryOperatorCS+ ownedExpression=LetExpCS | LetExpCS;
+	//
+	/// * An expression elaborates a prefixed expression with zero or more binary operator and expression suffixes.
+	// * An optionally prefixed let expression is permitted except when suffixed with further expressions.* /
+	//ExpCS:
+	//	PrefixedExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)?
+	//	//	({InfixExpCS} ownedExpression=PrefixedExpCS ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)
+	// //| 	PrefixedExpCS
+	//
+	//	// the above takes exponential or worse time for backtracking, below is fast
+	// | {PrefixExpCS}
+	//	ownedOperators+=UnaryOperatorCS+ ownedExpression=LetExpCS | LetExpCS;
 	public ExpCSElements getExpCSAccess() {
 		return pExpCS;
 	}
@@ -3085,31 +3042,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getExpCSAccess().getRule();
 	}
 
-	/// *ExpCS returns ExpCS:
-	//	(PrefixedExpCS
-	//		({InfixExpCS.ownedExpressions+=current} ownedOperators+=BinaryOperatorCS
-	//			(	(ownedExpressions+=PrefixedExpCS
-	//					(ownedOperators+=BinaryOperatorCS ownedExpressions+=PrefixedExpCS)*
-	//					(ownedOperators+=BinaryOperatorCS ownedExpressions+=LetExpCS)?
-	//				)
-	//			|	(ownedExpressions+=LetExpCS)
-	//			)
-	//		)?
-	//	)
-	//| 	({PrefixExpCS} ownedOperators+=UnaryOperatorCS+ ownedExpression=LetExpCS)
-	//|	LetExpCS; * /
-	//SuffixExpCS returns ExpCS:
-	//	PrefixedExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=SuffixExpCS)? |
-	//	LetExpCS;
-	public SuffixExpCSElements getSuffixExpCSAccess() {
-		return pSuffixExpCS;
-	}
-	
-	public ParserRule getSuffixExpCSRule() {
-		return getSuffixExpCSAccess().getRule();
-	}
-
-	/// * A prefixed expression is elaborates a primary expression with zero or more unary prefix operators. * / PrefixedExpCS
+	/// * A prefixed expression elaborates a primary expression with zero or more unary prefix operators. * / PrefixedExpCS
 	//returns ExpCS:
 	//	{PrefixExpCS} ownedOperators+=UnaryOperatorCS+ ownedExpression=PrimaryExpCS | PrimaryExpCS;
 	public PrefixedExpCSElements getPrefixedExpCSAccess() {

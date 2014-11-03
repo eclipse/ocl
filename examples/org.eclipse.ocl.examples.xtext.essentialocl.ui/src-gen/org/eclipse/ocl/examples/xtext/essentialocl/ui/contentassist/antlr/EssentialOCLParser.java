@@ -53,7 +53,6 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeLiteralCSAccess().getAlternatives(), "rule__TypeLiteralCS__Alternatives");
 					put(grammarAccess.getTypeExpCSAccess().getAlternatives_0(), "rule__TypeExpCS__Alternatives_0");
 					put(grammarAccess.getExpCSAccess().getAlternatives(), "rule__ExpCS__Alternatives");
-					put(grammarAccess.getSuffixExpCSAccess().getAlternatives(), "rule__SuffixExpCS__Alternatives");
 					put(grammarAccess.getPrefixedExpCSAccess().getAlternatives(), "rule__PrefixedExpCS__Alternatives");
 					put(grammarAccess.getPrimaryExpCSAccess().getAlternatives(), "rule__PrimaryExpCS__Alternatives");
 					put(grammarAccess.getCurlyBracketedClauseCSAccess().getAlternatives_2(), "rule__CurlyBracketedClauseCS__Alternatives_2");
@@ -105,8 +104,6 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExpCSAccess().getGroup_0(), "rule__ExpCS__Group_0__0");
 					put(grammarAccess.getExpCSAccess().getGroup_0_1(), "rule__ExpCS__Group_0_1__0");
 					put(grammarAccess.getExpCSAccess().getGroup_1(), "rule__ExpCS__Group_1__0");
-					put(grammarAccess.getSuffixExpCSAccess().getGroup_0(), "rule__SuffixExpCS__Group_0__0");
-					put(grammarAccess.getSuffixExpCSAccess().getGroup_0_1(), "rule__SuffixExpCS__Group_0_1__0");
 					put(grammarAccess.getPrefixedExpCSAccess().getGroup_0(), "rule__PrefixedExpCS__Group_0__0");
 					put(grammarAccess.getNameExpCSAccess().getGroup(), "rule__NameExpCS__Group__0");
 					put(grammarAccess.getNameExpCSAccess().getGroup_4(), "rule__NameExpCS__Group_4__0");
@@ -209,8 +206,6 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExpCSAccess().getOwnedSuffixAssignment_0_1_2(), "rule__ExpCS__OwnedSuffixAssignment_0_1_2");
 					put(grammarAccess.getExpCSAccess().getOwnedOperatorsAssignment_1_1(), "rule__ExpCS__OwnedOperatorsAssignment_1_1");
 					put(grammarAccess.getExpCSAccess().getOwnedExpressionAssignment_1_2(), "rule__ExpCS__OwnedExpressionAssignment_1_2");
-					put(grammarAccess.getSuffixExpCSAccess().getOwnedOperatorAssignment_0_1_1(), "rule__SuffixExpCS__OwnedOperatorAssignment_0_1_1");
-					put(grammarAccess.getSuffixExpCSAccess().getOwnedSuffixAssignment_0_1_2(), "rule__SuffixExpCS__OwnedSuffixAssignment_0_1_2");
 					put(grammarAccess.getPrefixedExpCSAccess().getOwnedOperatorsAssignment_0_1(), "rule__PrefixedExpCS__OwnedOperatorsAssignment_0_1");
 					put(grammarAccess.getPrefixedExpCSAccess().getOwnedExpressionAssignment_0_2(), "rule__PrefixedExpCS__OwnedExpressionAssignment_0_2");
 					put(grammarAccess.getNameExpCSAccess().getOwnedPathNameAssignment_0(), "rule__NameExpCS__OwnedPathNameAssignment_0");

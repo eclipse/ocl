@@ -1970,9 +1970,17 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	// // is
 	//
 	////   a = (64 / 16) / (let b : Integer in 8 / (let c : Integer in 4 ))
-	// ExpCS:
-	//	PrefixedExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=SuffixExpCS)? |
-	//	{PrefixExpCS} ownedOperators+=UnaryOperatorCS+ ownedExpression=LetExpCS | LetExpCS;
+	//
+	/// * An expression elaborates a prefixed expression with zero or more binary operator and expression suffixes.
+	// * An optionally prefixed let expression is permitted except when suffixed with further expressions.* /
+	//ExpCS:
+	//	PrefixedExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)?
+	//	//	({InfixExpCS} ownedExpression=PrefixedExpCS ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)
+	// //| 	PrefixedExpCS
+	//
+	//	// the above takes exponential or worse time for backtracking, below is fast
+	// | {PrefixExpCS}
+	//	ownedOperators+=UnaryOperatorCS+ ownedExpression=LetExpCS | LetExpCS;
 	public EssentialOCLGrammarAccess.ExpCSElements getExpCSAccess() {
 		return gaEssentialOCL.getExpCSAccess();
 	}
@@ -1981,31 +1989,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getExpCSAccess().getRule();
 	}
 
-	/// *ExpCS returns ExpCS:
-	//	(PrefixedExpCS
-	//		({InfixExpCS.ownedExpressions+=current} ownedOperators+=BinaryOperatorCS
-	//			(	(ownedExpressions+=PrefixedExpCS
-	//					(ownedOperators+=BinaryOperatorCS ownedExpressions+=PrefixedExpCS)*
-	//					(ownedOperators+=BinaryOperatorCS ownedExpressions+=LetExpCS)?
-	//				)
-	//			|	(ownedExpressions+=LetExpCS)
-	//			)
-	//		)?
-	//	)
-	//| 	({PrefixExpCS} ownedOperators+=UnaryOperatorCS+ ownedExpression=LetExpCS)
-	//|	LetExpCS; * /
-	//SuffixExpCS returns ExpCS:
-	//	PrefixedExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=SuffixExpCS)? |
-	//	LetExpCS;
-	public EssentialOCLGrammarAccess.SuffixExpCSElements getSuffixExpCSAccess() {
-		return gaEssentialOCL.getSuffixExpCSAccess();
-	}
-	
-	public ParserRule getSuffixExpCSRule() {
-		return getSuffixExpCSAccess().getRule();
-	}
-
-	/// * A prefixed expression is elaborates a primary expression with zero or more unary prefix operators. * / PrefixedExpCS
+	/// * A prefixed expression elaborates a primary expression with zero or more unary prefix operators. * / PrefixedExpCS
 	//returns ExpCS:
 	//	{PrefixExpCS} ownedOperators+=UnaryOperatorCS+ ownedExpression=PrimaryExpCS | PrimaryExpCS;
 	public EssentialOCLGrammarAccess.PrefixedExpCSElements getPrefixedExpCSAccess() {

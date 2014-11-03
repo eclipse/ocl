@@ -192,7 +192,7 @@ TypeNameExpCS returns TypeNameExpCS:
 TypeExpCS returns base::TypedRefCS:
 	(TypeNameExpCS | TypeLiteralCS | CollectionPatternCS) ownedMultiplicity=MultiplicityCS?;
 
-	//---------------------------------------------------------------------
+//---------------------------------------------------------------------
 //  Expressions
 //---------------------------------------------------------------------
 // An ExpCS permits a LetExpCS only in the final term to ensure
@@ -200,29 +200,17 @@ TypeExpCS returns base::TypedRefCS:
 //   a = 64 / 16 / let b : Integer in 8 / let c : Integer in 4 
 // is
 //   a = (64 / 16) / (let b : Integer in 8 / (let c : Integer in 4 ))
+/* An expression elaborates a prefixed expression with zero or more binary operator and expression suffixes.
+ * An optionally prefixed let expression is permitted except when suffixed with further expressions.*/
 ExpCS returns ExpCS:
-	(PrefixedExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=SuffixExpCS)?)
+//	({InfixExpCS} ownedExpression=PrefixedExpCS ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)
+//| 	PrefixedExpCS
+// the above takes exponential or worse time for backtracking, below is fast
+	(PrefixedExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)?)
 | 	({PrefixExpCS} ownedOperators+=UnaryOperatorCS+ ownedExpression=LetExpCS)
 |	LetExpCS;
-/*ExpCS returns ExpCS:
-	(PrefixedExpCS
-		({InfixExpCS.ownedExpressions+=current} ownedOperators+=BinaryOperatorCS
-			(	(ownedExpressions+=PrefixedExpCS
-					(ownedOperators+=BinaryOperatorCS ownedExpressions+=PrefixedExpCS)*
-					(ownedOperators+=BinaryOperatorCS ownedExpressions+=LetExpCS)?
-				)
-			|	(ownedExpressions+=LetExpCS)
-			)
-		)?
-	)
-| 	({PrefixExpCS} ownedOperators+=UnaryOperatorCS+ ownedExpression=LetExpCS)
-|	LetExpCS; */
 
-SuffixExpCS returns ExpCS:
-	(PrefixedExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=SuffixExpCS)?)
-|	LetExpCS;
-
-/* A prefixed expression is elaborates a primary expression with zero or more unary prefix operators. */
+/* A prefixed expression elaborates a primary expression with zero or more unary prefix operators. */
 PrefixedExpCS returns ExpCS:
 	({PrefixExpCS} ownedOperators+=UnaryOperatorCS+ ownedExpression=PrimaryExpCS)
 | 	PrimaryExpCS;
