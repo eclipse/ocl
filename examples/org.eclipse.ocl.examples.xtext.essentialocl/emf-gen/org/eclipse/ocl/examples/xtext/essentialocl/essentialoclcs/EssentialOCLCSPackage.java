@@ -2027,22 +2027,31 @@ public interface EssentialOCLCSPackage
 	int INFIX_EXP_CS__HAS_ERROR = EXP_CS__HAS_ERROR;
 
 	/**
-	 * The feature id for the '<em><b>Owned Expressions</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_EXP_CS__OWNED_EXPRESSIONS = EXP_CS_FEATURE_COUNT + 0;
+	int INFIX_EXP_CS__OWNED_EXPRESSION = EXP_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Owned Operators</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Operator</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_EXP_CS__OWNED_OPERATORS = EXP_CS_FEATURE_COUNT + 1;
+	int INFIX_EXP_CS__OWNED_OPERATOR = EXP_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Owned Suffix</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX_EXP_CS__OWNED_SUFFIX = EXP_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Infix Exp CS</em>' class.
@@ -2051,7 +2060,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 2;
+	int INFIX_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -6096,26 +6105,37 @@ public interface EssentialOCLCSPackage
 	EClass getInfixExpCS();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedExpressions <em>Owned Expressions</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedExpression <em>Owned Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Expressions</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedExpressions()
+	 * @return the meta object for the containment reference '<em>Owned Expression</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedExpression()
 	 * @see #getInfixExpCS()
 	 * @generated
 	 */
-	EReference getInfixExpCS_OwnedExpressions();
+	EReference getInfixExpCS_OwnedExpression();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedOperators <em>Owned Operators</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedOperator <em>Owned Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Operators</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedOperators()
+	 * @return the meta object for the containment reference '<em>Owned Operator</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedOperator()
 	 * @see #getInfixExpCS()
 	 * @generated
 	 */
-	EReference getInfixExpCS_OwnedOperators();
+	EReference getInfixExpCS_OwnedOperator();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedSuffix <em>Owned Suffix</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Owned Suffix</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedSuffix()
+	 * @see #getInfixExpCS()
+	 * @generated
+	 */
+	EReference getInfixExpCS_OwnedSuffix();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS <em>Let Exp CS</em>}'.
@@ -7325,20 +7345,28 @@ public interface EssentialOCLCSPackage
 		EClass INFIX_EXP_CS = eINSTANCE.getInfixExpCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Expressions</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Expression</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference INFIX_EXP_CS__OWNED_EXPRESSIONS = eINSTANCE.getInfixExpCS_OwnedExpressions();
+		EReference INFIX_EXP_CS__OWNED_EXPRESSION = eINSTANCE.getInfixExpCS_OwnedExpression();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Operators</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Operator</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference INFIX_EXP_CS__OWNED_OPERATORS = eINSTANCE.getInfixExpCS_OwnedOperators();
+		EReference INFIX_EXP_CS__OWNED_OPERATOR = eINSTANCE.getInfixExpCS_OwnedOperator();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Suffix</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INFIX_EXP_CS__OWNED_SUFFIX = eINSTANCE.getInfixExpCS_OwnedSuffix();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetExpCSImpl <em>Let Exp CS</em>}' class.

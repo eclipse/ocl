@@ -155,7 +155,7 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 	 * Establish the parent-{source,argument} relationships between all infix
 	 * operators in accordance with the precedence and associativity configuration.
 	 */
-	protected void createInfixOperatorTree(InfixExpCS csInfix) {
+	protected void createInfixOperatorTree(@NonNull InfixExpCS csInfix) {
 		//
 		//	Create the per-precedence list of operator indexes, and a
 		//	highest precedence first list of all used infix precedences.
@@ -166,8 +166,8 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 		//
 		//	Build the tree leaf-to root precedence at a time.
 		//
-		List<ExpCS> csExpressions = csInfix.getOwnedExpressions();
-		List<BinaryOperatorCS> csOperators = csInfix.getOwnedOperators();
+		List<ExpCS> csExpressions = getInfixExpressions(csInfix, new ArrayList<ExpCS>());
+		List<BinaryOperatorCS> csOperators = getInfixOperators(csInfix, new ArrayList<BinaryOperatorCS>());
 		for (Precedence precedence : sortedPrecedences) {
 			// null precedence arises when precedence or operation-to-precedence is wrong
 			boolean isLeft = precedence == null || (precedence.getAssociativity() == AssociativityKind.LEFT);
@@ -202,9 +202,10 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 	/**
 	 * Return a map of operator indexes for each used precedence.
 	 */
-	protected Map<Precedence, List<Integer>> createInfixPrecedenceToOperatorIndexesMap(InfixExpCS csInfix) {
-		List<BinaryOperatorCS> csOperators = csInfix.getOwnedOperators();
-		int operatorCount = csInfix.getOwnedExpressions().size()-1;	// Ignore a spurious trailing operator from a syntax error
+	protected Map<Precedence, List<Integer>> createInfixPrecedenceToOperatorIndexesMap(@NonNull InfixExpCS csInfix) {
+		List<ExpCS> csExpressions = getInfixExpressions(csInfix, new ArrayList<ExpCS>());
+		List<BinaryOperatorCS> csOperators = getInfixOperators(csInfix, new ArrayList<BinaryOperatorCS>());
+		int operatorCount = csExpressions.size()-1;	// Ignore a spurious trailing operator from a syntax error
 		Map<Precedence, List<Integer>> precedenceToOperatorIndex = new HashMap<Precedence, List<Integer>>();
 		for (int operatorIndex = 0; operatorIndex < operatorCount; operatorIndex++) {
 			BinaryOperatorCS csOperator = csOperators.get(operatorIndex);
@@ -219,6 +220,40 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 			indexesList.add(operatorIndex);
 		}
 		return precedenceToOperatorIndex;
+	}
+
+	/**
+	 * Return the list of non-null expressions within an infix expression.
+	 */
+	protected @NonNull List<ExpCS> getInfixExpressions(@NonNull InfixExpCS csInfix, @NonNull List<ExpCS> csExpressions) {
+		csExpressions.add(csInfix.getOwnedExpression());
+		ExpCS csSuffix = csInfix.getOwnedSuffix();
+		if (csSuffix instanceof InfixExpCS) {
+			return getInfixExpressions((InfixExpCS)csSuffix, csExpressions);
+		}
+		if (csSuffix != null) {
+			csExpressions.add(csSuffix);
+		}
+		return csExpressions;
+	}
+
+	/**
+	 * Return the list of operators within an infix expression that have non-null source and argument.
+	 * In the case of a parsing error leading to a trailing null expression, the trailing operator is suppressed.
+	 */
+	protected @NonNull List<BinaryOperatorCS> getInfixOperators(@NonNull InfixExpCS csInfix, @NonNull List<BinaryOperatorCS> csOperators) {
+		BinaryOperatorCS ownedOperator = csInfix.getOwnedOperator();
+		if (ownedOperator != null) {
+			ExpCS csSuffix = csInfix.getOwnedSuffix();
+			if (csSuffix != null) {
+				csOperators.add(ownedOperator);
+				if (csSuffix instanceof InfixExpCS) {
+					InfixExpCS csSuffix2 = (InfixExpCS)csSuffix;
+					return getInfixOperators(csSuffix2, csOperators);
+				}
+			}
+		}
+		return csOperators;
 	}
 
 	protected void initializePrefixOperators(PrefixExpCS prefixExpCS, OperatorCS csParent) {
@@ -241,8 +276,9 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 		}
 	}
 
-	protected void interleavePrefixes(InfixExpCS csElement) {
-		for (ExpCS csExp : csElement.getOwnedExpressions()) {
+	protected void interleavePrefixes(@NonNull InfixExpCS csInfix) {
+		List<ExpCS> csExpressions = getInfixExpressions(csInfix, new ArrayList<ExpCS>());
+		for (ExpCS csExp : csExpressions) {
 			if (csExp instanceof PrefixExpCS) {
 				PrefixExpCS prefixExpCS = (PrefixExpCS)csExp;
 				OperatorCS csExpressionParent = prefixExpCS.getParent();
@@ -393,14 +429,16 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 
 	@Override
 	public Continuation<?> visitInfixExpCS(@NonNull InfixExpCS csInfixExp) {
-		//
-		//	Establish the Infix tree and the per leaf expression parent operator.
-		//
-		createInfixOperatorTree(csInfixExp);
-		//
-		//	Interleave the Prefix Operators.
-		//
-		interleavePrefixes(csInfixExp);
+		if (!(csInfixExp.eContainer() instanceof InfixExpCS)) {
+			//
+			//	Establish the Infix tree and the per leaf expression parent operator.
+			//
+			createInfixOperatorTree(csInfixExp);
+			//
+			//	Interleave the Prefix Operators.
+			//
+			interleavePrefixes(csInfixExp);
+		}
 		return null;
 	}
 

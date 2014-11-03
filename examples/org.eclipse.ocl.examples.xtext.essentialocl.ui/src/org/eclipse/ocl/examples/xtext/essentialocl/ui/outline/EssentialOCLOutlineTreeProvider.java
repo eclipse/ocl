@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.outline;
 
-import java.util.List;
-
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypeRefCS;
@@ -81,14 +79,11 @@ public class EssentialOCLOutlineTreeProvider extends BaseOutlineTreeProvider
 		// Find the root.
 		//
 		if (csInfixExp != null) {
-			List<BinaryOperatorCS> ownedOperator = csInfixExp.getOwnedOperators();
-			if (ownedOperator.size() > 0) {
-				OperatorCS csRoot = ownedOperator.get(0);
-				for (OperatorCS csParent = csRoot.getParent(); csParent != null; csParent = csParent.getParent()) {
-					csRoot = csParent;
-				}
-				createNode(parentNode, csRoot);
+			OperatorCS csRoot = csInfixExp.getOwnedOperator();
+			for (OperatorCS csParent = csRoot.getParent(); csParent != null; csParent = csParent.getParent()) {
+				csRoot = csParent;
 			}
+			createNode(parentNode, csRoot);
 		}
 	}
 	

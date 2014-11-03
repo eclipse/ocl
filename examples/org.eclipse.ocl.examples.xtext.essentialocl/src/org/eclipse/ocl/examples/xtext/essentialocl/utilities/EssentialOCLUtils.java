@@ -34,7 +34,7 @@ public class EssentialOCLUtils	// FIXME Find some extensible instantiation echan
 	 */
 	public static ModelElementCS getPivotedCS(EObject csElement) {
 		if (csElement instanceof InfixExpCS) {
-			OperatorCS csOperator = ((InfixExpCS)csElement).getOwnedOperators().get(0);
+			OperatorCS csOperator = ((InfixExpCS)csElement).getOwnedOperator();
 			while (csOperator.getParent() != null) {
 				csOperator = csOperator.getParent();
 			}

@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
 
-import org.eclipse.emf.common.util.EList;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Binary Expression CS</b></em>'.
@@ -20,8 +18,9 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedExpressions <em>Owned Expressions</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedOperators <em>Owned Operators</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedExpression <em>Owned Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedOperator <em>Owned Operator</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedSuffix <em>Owned Suffix</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,35 +32,81 @@ public interface InfixExpCS
 		extends ExpCS {
 
 	/**
-	 * Returns the value of the '<em><b>Owned Expressions</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS}.
+	 * Returns the value of the '<em><b>Owned Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owned Expression</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Owned Expression</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Expressions</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getInfixExpCS_OwnedExpressions()
-	 * @model containment="true" lower="2"
-	 * @generated
-	 */
-	EList<ExpCS> getOwnedExpressions();
-
-	/**
-	 * Returns the value of the '<em><b>Owned Operators</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Operator</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Operators</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getInfixExpCS_OwnedOperators()
+	 * @return the value of the '<em>Owned Expression</em>' containment reference.
+	 * @see #setOwnedExpression(ExpCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getInfixExpCS_OwnedExpression()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<BinaryOperatorCS> getOwnedOperators();
+	ExpCS getOwnedExpression();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedExpression <em>Owned Expression</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Expression</em>' containment reference.
+	 * @see #getOwnedExpression()
+	 * @generated
+	 */
+	void setOwnedExpression(ExpCS value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Operator</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Operator</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Operator</em>' containment reference.
+	 * @see #setOwnedOperator(BinaryOperatorCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getInfixExpCS_OwnedOperator()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	BinaryOperatorCS getOwnedOperator();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedOperator <em>Owned Operator</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Operator</em>' containment reference.
+	 * @see #getOwnedOperator()
+	 * @generated
+	 */
+	void setOwnedOperator(BinaryOperatorCS value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Suffix</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Suffix</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Suffix</em>' containment reference.
+	 * @see #setOwnedSuffix(ExpCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getInfixExpCS_OwnedSuffix()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	ExpCS getOwnedSuffix();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedSuffix <em>Owned Suffix</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Suffix</em>' containment reference.
+	 * @see #getOwnedSuffix()
+	 * @generated
+	 */
+	void setOwnedSuffix(ExpCS value);
 
 } // BinaryExpressionCS

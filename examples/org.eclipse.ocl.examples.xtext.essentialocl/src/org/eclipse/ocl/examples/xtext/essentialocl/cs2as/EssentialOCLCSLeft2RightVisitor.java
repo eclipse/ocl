@@ -1340,7 +1340,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		//
 		//	Find the root.
 		//
-		OperatorCS csRoot = csInfixExp.getOwnedOperators().get(0);
+		OperatorCS csRoot = csInfixExp.getOwnedOperator();
 		for (OperatorCS csParent = csRoot.getParent(); csParent != null; csParent = csParent.getParent()) {
 			csRoot = csParent;
 		}

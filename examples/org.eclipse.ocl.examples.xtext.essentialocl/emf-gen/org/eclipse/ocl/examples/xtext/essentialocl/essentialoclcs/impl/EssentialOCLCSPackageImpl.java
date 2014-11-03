@@ -1731,7 +1731,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInfixExpCS_OwnedExpressions()
+	public EReference getInfixExpCS_OwnedExpression()
 	{
 		return (EReference)infixExpCSEClass.getEStructuralFeatures().get(0);
 	}
@@ -1741,9 +1741,19 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInfixExpCS_OwnedOperators()
+	public EReference getInfixExpCS_OwnedOperator()
 	{
 		return (EReference)infixExpCSEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getInfixExpCS_OwnedSuffix()
+	{
+		return (EReference)infixExpCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1902,8 +1912,9 @@ public class EssentialOCLCSPackageImpl
 		createEReference(ifThenExpCSEClass, IF_THEN_EXP_CS__OWNED_THEN_EXPRESSION);
 
 		infixExpCSEClass = createEClass(INFIX_EXP_CS);
-		createEReference(infixExpCSEClass, INFIX_EXP_CS__OWNED_EXPRESSIONS);
-		createEReference(infixExpCSEClass, INFIX_EXP_CS__OWNED_OPERATORS);
+		createEReference(infixExpCSEClass, INFIX_EXP_CS__OWNED_EXPRESSION);
+		createEReference(infixExpCSEClass, INFIX_EXP_CS__OWNED_OPERATOR);
+		createEReference(infixExpCSEClass, INFIX_EXP_CS__OWNED_SUFFIX);
 
 		invalidLiteralExpCSEClass = createEClass(INVALID_LITERAL_EXP_CS);
 
@@ -2178,8 +2189,9 @@ public class EssentialOCLCSPackageImpl
 		initEReference(getIfThenExpCS_OwnedThenExpression(), this.getExpCS(), null, "ownedThenExpression", null, 0, 1, IfThenExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(infixExpCSEClass, InfixExpCS.class, "InfixExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getInfixExpCS_OwnedExpressions(), this.getExpCS(), null, "ownedExpressions", null, 2, -1, InfixExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getInfixExpCS_OwnedOperators(), this.getBinaryOperatorCS(), null, "ownedOperators", null, 1, -1, InfixExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getInfixExpCS_OwnedExpression(), this.getExpCS(), null, "ownedExpression", null, 1, 1, InfixExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getInfixExpCS_OwnedOperator(), this.getBinaryOperatorCS(), null, "ownedOperator", null, 1, 1, InfixExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getInfixExpCS_OwnedSuffix(), this.getExpCS(), null, "ownedSuffix", null, 1, 1, InfixExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(invalidLiteralExpCSEClass, InvalidLiteralExpCS.class, "InvalidLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

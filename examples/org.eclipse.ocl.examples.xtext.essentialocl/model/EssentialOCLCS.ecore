@@ -107,10 +107,12 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InfixExpCS" eSuperTypes="#//ExpCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedExpressions" lowerBound="2"
-        upperBound="-1" eType="#//ExpCS" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedOperators" lowerBound="1"
-        upperBound="-1" eType="#//BinaryOperatorCS" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedExpression" lowerBound="1"
+        eType="#//ExpCS" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedOperator" lowerBound="1"
+        eType="#//BinaryOperatorCS" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSuffix" lowerBound="1"
+        eType="#//ExpCS" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InvalidLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="IterateCallExpCS" eSuperTypes="#//IterationCallExpCS">

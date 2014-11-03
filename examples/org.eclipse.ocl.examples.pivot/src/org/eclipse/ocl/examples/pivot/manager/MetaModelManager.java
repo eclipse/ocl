@@ -28,7 +28,6 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
@@ -90,6 +89,7 @@ import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.LoopExp;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
@@ -105,7 +105,6 @@ import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
-import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.Slot;
 import org.eclipse.ocl.examples.pivot.State;
 import org.eclipse.ocl.examples.pivot.Stereotype;
@@ -122,8 +121,8 @@ import org.eclipse.ocl.examples.pivot.context.ClassContext;
 import org.eclipse.ocl.examples.pivot.context.OperationContext;
 import org.eclipse.ocl.examples.pivot.context.ParserContext;
 import org.eclipse.ocl.examples.pivot.context.PropertyContext;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.examples.pivot.ecore.AS2Ecore;
+import org.eclipse.ocl.examples.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.examples.pivot.internal.complete.CompleteEnvironmentImpl;
 import org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl;
 import org.eclipse.ocl.examples.pivot.library.ConstrainedOperation;
@@ -725,8 +724,8 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 //		System.out.println("dispose AS " + DomainUtil.debugSimpleName(asResourceSet));
 		asResourceSet.eAdapters().remove(this);
 		List<Resource> asResources = asResourceSet.getResources();
-		for (int i = asResources.size(); --i >= 0; ) {
-			asResources.get(i).unload();
+		for (Resource asResource : new ArrayList<Resource>(asResources)) {
+			asResource.unload();
 		}
 		asResources.clear();
 		asResourceSet.setPackageRegistry(null);

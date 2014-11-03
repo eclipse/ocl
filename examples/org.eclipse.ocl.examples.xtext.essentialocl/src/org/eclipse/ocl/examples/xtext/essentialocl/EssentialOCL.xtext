@@ -201,6 +201,10 @@ TypeExpCS returns base::TypedRefCS:
 // is
 //   a = (64 / 16) / (let b : Integer in 8 / (let c : Integer in 4 ))
 ExpCS returns ExpCS:
+	(PrefixedExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=SuffixExpCS)?)
+| 	({PrefixExpCS} ownedOperators+=UnaryOperatorCS+ ownedExpression=LetExpCS)
+|	LetExpCS;
+/*ExpCS returns ExpCS:
 	(PrefixedExpCS
 		({InfixExpCS.ownedExpressions+=current} ownedOperators+=BinaryOperatorCS
 			(	(ownedExpressions+=PrefixedExpCS
@@ -212,6 +216,10 @@ ExpCS returns ExpCS:
 		)?
 	)
 | 	({PrefixExpCS} ownedOperators+=UnaryOperatorCS+ ownedExpression=LetExpCS)
+|	LetExpCS; */
+
+SuffixExpCS returns ExpCS:
+	(PrefixedExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=SuffixExpCS)?)
 |	LetExpCS;
 
 /* A prefixed expression is elaborates a primary expression with zero or more unary prefix operators. */

@@ -11,6 +11,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.essentialocl.as2cs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
@@ -114,39 +115,38 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		super(context);
 	}	
 
-	private void appendInfixChild(@NonNull InfixExpCS csInfixExp, @NonNull BinaryOperatorCS csOperator, @Nullable Precedence siblingPrecedence) {
+	private void appendInfixChild(@NonNull List<ExpCS> csExpressions, @NonNull List<BinaryOperatorCS> csOperators, @NonNull BinaryOperatorCS csOperator, @Nullable Precedence siblingPrecedence) {
 		MetaModelManager metaModelManager = context.getMetaModelManager();
 		String parentOperatorName = csOperator.getName();
 		Precedence precedence = parentOperatorName != null ? metaModelManager.getInfixPrecedence(parentOperatorName) : null;
 		if ((siblingPrecedence != null) && (precedence != null) && (precedence.getOrder().intValue() > siblingPrecedence.getOrder().intValue())) {
 			@SuppressWarnings("null")@NonNull NestedExpCS csNestedExp = EssentialOCLCSFactory.eINSTANCE.createNestedExpCS();
-			@SuppressWarnings("null")@NonNull InfixExpCS csNestedInfixExp = EssentialOCLCSFactory.eINSTANCE.createInfixExpCS();
-			appendInfixChild(csNestedInfixExp, csOperator, null);
+			ExpCS csNestedInfixExp = createInfixExpCS(csOperator);
 			csNestedExp.setSource(csNestedInfixExp);
-			csInfixExp.getOwnedExpressions().add(csNestedExp);
+			csExpressions.add(csNestedExp);
 		}
 		else {
 			{
 				ExpCS csSource = csOperator.getSource();
 				if (csSource instanceof BinaryOperatorCS) {
 					BinaryOperatorCS csSourceOperator = (BinaryOperatorCS) csSource;
-					appendInfixChild(csInfixExp, csSourceOperator, precedence);
+					appendInfixChild(csExpressions, csOperators, csSourceOperator, precedence);
 				}
 				else {
 					assert !(csSource instanceof InfixExpCS);
-					csInfixExp.getOwnedExpressions().add(csSource);
+					csExpressions.add(csSource);
 				}
 			}
-			csInfixExp.getOwnedOperators().add(csOperator);
+			csOperators.add(csOperator);
 			{
 				ExpCS csArgument = csOperator.getArgument();
 				if (csArgument instanceof BinaryOperatorCS) {
 					BinaryOperatorCS csArgumentOperator = (BinaryOperatorCS) csArgument;
-					appendInfixChild(csInfixExp, csArgumentOperator, precedence);
+					appendInfixChild(csExpressions, csOperators, csArgumentOperator, precedence);
 				}
 				else {
 					assert !(csArgument instanceof InfixExpCS);
-					csInfixExp.getOwnedExpressions().add(csArgument);
+					csExpressions.add(csArgument);
 				}
 			}
 		}
@@ -155,13 +155,27 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 	protected ExpCS createExpCS(OCLExpression oclExpression) {
 		ExpCS csExp = context.visitDeclaration(ExpCS.class, oclExpression);
 		if (csExp instanceof BinaryOperatorCS) {
-			@SuppressWarnings("null")@NonNull InfixExpCS csInfixExp = EssentialOCLCSFactory.eINSTANCE.createInfixExpCS();
-			appendInfixChild(csInfixExp, (BinaryOperatorCS)csExp, null);
-			return csInfixExp;
+			return createInfixExpCS((BinaryOperatorCS)csExp);
 		}
 		else {
 			return csExp;
 		}
+	}
+
+	protected ExpCS createInfixExpCS(@NonNull BinaryOperatorCS csOperator) {
+		List<ExpCS> csExpressions = new ArrayList<ExpCS>();
+		List<BinaryOperatorCS> csOperators = new ArrayList<BinaryOperatorCS>();
+		appendInfixChild(csExpressions, csOperators, csOperator, null);
+		int i = csOperators.size();
+		ExpCS csLastExp = csExpressions.get(i);
+		while (--i >= 0) {
+			@SuppressWarnings("null")@NonNull InfixExpCS csInfixExp = EssentialOCLCSFactory.eINSTANCE.createInfixExpCS();
+			csInfixExp.setOwnedSuffix(csLastExp);
+			csInfixExp.setOwnedOperator(csOperators.get(i));
+			csInfixExp.setOwnedExpression(csExpressions.get(i));
+			csLastExp = csInfixExp;
+		}
+		return csLastExp;
 	}
 
 	protected @NonNull NameExpCS createNameExpCS(NamedElement asNamedElement) {
