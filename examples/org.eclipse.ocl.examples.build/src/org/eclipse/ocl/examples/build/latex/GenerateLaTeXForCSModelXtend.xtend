@@ -57,7 +57,7 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 			Group: return emitGroup(abstractElement, atRoot)
 			Keyword: return emitKeyword(abstractElement)
 			NegatedToken: return '!' + emitAbstractElement(abstractElement.terminal, false) + emitCardinality(abstractElement)
-			RuleCall: return abstractElement.rule.name + emitCardinality(abstractElement)
+			RuleCall: return emitRuleRef(abstractElement.rule) + emitCardinality(abstractElement)
 			UntilToken: return '-> ' + emitAbstractElement(abstractElement.terminal, false)
 			Wildcard: return '.' + emitCardinality(abstractElement)
 			default: return "<<<" + abstractElement.eClass.name + ">>>"
@@ -177,13 +177,13 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 		'''
 		«FOR asClass : asClasses»
 			
-			«emitHeading3(prettyPrint(asClass, asClass), asClass.name)»
+			«emitHeading3(prettyPrint(asClass, asClass), null) + emitClassDef(asClass)»
 			«emitComment(asClass, asClass)»
-			«emitParserRules(asClass, grammar)»
 			«emitSuperclasses(asClass)»
 			«emitAttributes(asClass)»
 			«emitAssociations(asClass)»
 			«emitOperations(asClass)»
+			«emitParserRules(asClass, grammar)»
 			«IF cs2csPackage != null»
 			«emitCS2CS(asClass, DomainUtil.nonNullState(cs2csPackage))»
 			«ENDIF»
@@ -315,7 +315,7 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 		«emitHeading0b(parserRule.name)»
 		«ENDIF»
 		«emitComment(parserRule)»
-		«emitAllTT((parserRule.name + " ::=\n" + emitAbstractElement(parserRule.alternatives, true).trim()).replace("\n", "\n  "))»
+		«emitAllTT((emitRuleDef(parserRule) + " ::=\n" + emitAbstractElement(parserRule.alternatives, true).trim()).replace("\n", "\n  "))»
 		«ENDFOR»
 		'''
 		}
@@ -327,7 +327,7 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 		'''
 		«emitHeading0a("Superclasses")»
 			
-			«FOR asSuperClass : asSuperClasses SEPARATOR ', '»«prettyPrint(asSuperClass, asSuperClass)»«ENDFOR»
+			«FOR asSuperClass : asSuperClasses SEPARATOR ', '»«emitClassRef(asSuperClass)»«ENDFOR»
 		'''
 		}
 	}

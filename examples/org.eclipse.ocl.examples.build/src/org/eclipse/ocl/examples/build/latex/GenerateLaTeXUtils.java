@@ -322,6 +322,22 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		}
 		return s.toString();
 	}
+
+	protected String emitClassDef(@NonNull org.eclipse.ocl.examples.pivot.Class asClass) {
+		String className = asClass.getName();
+		String packageName = asClass.getOwningPackage().getName();
+		if (className == null) className = "<<anon>>";
+		if (packageName == null) packageName = "<<anon>>";
+		return  "#\\hypertarget#{" + encodeLabelText(packageName) + ":" + encodeLabelText(className) + "#}#{" /*+ encodeLabelText(className)*/ + "#}";
+	}
+
+	protected String emitClassRef(@NonNull org.eclipse.ocl.examples.pivot.Class asClass) {
+		String className = asClass.getName();
+		String packageName = asClass.getOwningPackage().getName();
+		if (className == null) className = "<<anon>>";
+		if (packageName == null) packageName = "<<anon>>";
+		return  "#\\hyperlink#{" + encodeLabelText(packageName) + ":" + encodeLabelText(className) + "#}#{" + encodeLabelText(className) + "#}";
+	}
 	
 	protected String emitComment(@NonNull EObject eObject) {
 		ICompositeNode node = NodeModelUtils.getNode(eObject);
@@ -406,6 +422,22 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 	
 	protected String emitLabel(@Nullable String label) {
 		return label != null ? "#\\label#{" + encodeLabelText(label) + "#}" : "";
+	}
+
+	protected String emitRuleDef(@NonNull AbstractRule gRule) {
+		String ruleName = gRule.getName();
+		String packageName = "Rule"; //asClass.getOwningPackage().getName();
+		if (ruleName == null) ruleName = "<<anon>>";
+//		if (packageName == null) packageName = "<<anon>>";
+		return  "#\\hypertarget#{" + encodeLabelText(packageName) + ":" + encodeLabelText(ruleName) + "#}#{" + encodeLabelText(ruleName) + "#}";
+	}
+
+	protected String emitRuleRef(@NonNull AbstractRule gRule) {
+		String ruleName = gRule.getName();
+		String packageName = "Rule"; //asClass.getOwningPackage().getName();
+		if (ruleName == null) ruleName = "<<anon>>";
+//		if (packageName == null) packageName = "<<anon>>";
+		return  "#\\hyperlink#{" + encodeLabelText(packageName) + ":" + encodeLabelText(ruleName) + "#}#{" + encodeLabelText(ruleName) + "#}";
 	}
 
 	/**
