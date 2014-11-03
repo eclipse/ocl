@@ -379,7 +379,9 @@ public class UMLValidateTest extends AbstractValidateTests
 	public void test_umlValidation_Bug448470() throws IOException { // formerly Bug 447557
 		resetRegistries();
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
-		new CommonPreferenceInitializer().initializeDefaultPreferences();
+		if (EcorePlugin.IS_ECLIPSE_RUNNING) {
+			new CommonPreferenceInitializer().initializeDefaultPreferences();
+		}
 		ResourceSet resourceSet = createResourceSet();
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
 		OCLDelegateDomain.initializePivotOnlyDiagnosticianResourceSet(resourceSet);
