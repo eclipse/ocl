@@ -52,7 +52,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TupleLiteralEx
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TupleLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.UnaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.UnlimitedNaturalLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess;
 import org.eclipse.xtext.serializer.acceptor.ISemanticSequenceAcceptor;
@@ -500,13 +499,6 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 					return; 
 				}
 				else break;
-			case EssentialOCLCSPackage.UNARY_OPERATOR_CS:
-				if(context == grammarAccess.getEssentialOCLUnaryOperatorCSRule() ||
-				   context == grammarAccess.getUnaryOperatorCSRule()) {
-					sequence_EssentialOCLUnaryOperatorCS(context, (UnaryOperatorCS) semanticObject); 
-					return; 
-				}
-				else break;
 			case EssentialOCLCSPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS:
 				if(context == grammarAccess.getExpCSRule() ||
 				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedExpressionAction_0_1_0() ||
@@ -651,15 +643,6 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	 *     (name='.' | name='->' | name='?.' | name='?->')
 	 */
 	protected void sequence_EssentialOCLNavigationOperatorCS(EObject context, NavigationOperatorCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (name='-' | name='not')
-	 */
-	protected void sequence_EssentialOCLUnaryOperatorCS(EObject context, UnaryOperatorCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -821,7 +804,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	
 	/**
 	 * Constraint:
-	 *     (ownedOperator=UnaryOperatorCS ownedExpression=PrefixedLetExpCS)
+	 *     (name=UnaryOperatorName ownedExpression=PrefixedLetExpCS)
 	 */
 	protected void sequence_PrefixedLetExpCS(EObject context, PrefixExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -830,7 +813,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	
 	/**
 	 * Constraint:
-	 *     ((ownedOperator=UnaryOperatorCS ownedExpression=PrefixedPrimaryExpCS) | (ownedOperator=UnaryOperatorCS ownedExpression=PrefixedLetExpCS))
+	 *     ((name=UnaryOperatorName ownedExpression=PrefixedPrimaryExpCS) | (name=UnaryOperatorName ownedExpression=PrefixedLetExpCS))
 	 */
 	protected void sequence_PrefixedLetExpCS_PrefixedPrimaryExpCS(EObject context, PrefixExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -839,7 +822,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	
 	/**
 	 * Constraint:
-	 *     (ownedOperator=UnaryOperatorCS ownedExpression=PrefixedPrimaryExpCS)
+	 *     (name=UnaryOperatorName ownedExpression=PrefixedPrimaryExpCS)
 	 */
 	protected void sequence_PrefixedPrimaryExpCS(EObject context, PrefixExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

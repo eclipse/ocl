@@ -122,15 +122,6 @@ public interface EssentialOCLCSFactory
 	TypeNameExpCS createTypeNameExpCS();
 
 	/**
-	 * Returns a new object of class '<em>Unary Operator CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Unary Operator CS</em>'.
-	 * @generated
-	 */
-	UnaryOperatorCS createUnaryOperatorCS();
-
-	/**
 	 * Returns a new object of class '<em>Unlimited Natural Literal Exp CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -1742,7 +1742,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getVariableCS()
 	 * @generated
 	 */
-	int VARIABLE_CS = 47;
+	int VARIABLE_CS = 46;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetVariableCSImpl <em>Let Variable CS</em>}' class.
@@ -4195,105 +4195,6 @@ public interface EssentialOCLCSPackage
 	int PREFIX_EXP_CS = 34;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREFIX_EXP_CS__LOGICAL_PARENT = EXP_CS__LOGICAL_PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Pivot</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREFIX_EXP_CS__PIVOT = EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREFIX_EXP_CS__OWNED_ANNOTATIONS = EXP_CS__OWNED_ANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREFIX_EXP_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREFIX_EXP_CS__CSI = EXP_CS__CSI;
-
-	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREFIX_EXP_CS__PARENT = EXP_CS__PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREFIX_EXP_CS__HAS_ERROR = EXP_CS__HAS_ERROR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Operator</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREFIX_EXP_CS__OWNED_OPERATOR = EXP_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owned Expression</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREFIX_EXP_CS__OWNED_EXPRESSION = EXP_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Derived Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREFIX_EXP_CS__DERIVED_SOURCE = EXP_CS_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Prefix Exp CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREFIX_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 3;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.PropertyCallExpCSImpl <em>Property Call Exp CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4302,6 +4203,164 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 */
 	int PROPERTY_CALL_EXP_CS = 36;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.RoundBracketedClauseCSImpl <em>Round Bracketed Clause CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.RoundBracketedClauseCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getRoundBracketedClauseCS()
+	 * @generated
+	 */
+	int ROUND_BRACKETED_CLAUSE_CS = 37;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.SelfExpCSImpl <em>Self Exp CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.SelfExpCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getSelfExpCS()
+	 * @generated
+	 */
+	int SELF_EXP_CS = 38;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.SquareBracketedClauseCSImpl <em>Square Bracketed Clause CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.SquareBracketedClauseCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getSquareBracketedClauseCS()
+	 * @generated
+	 */
+	int SQUARE_BRACKETED_CLAUSE_CS = 39;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.TupleLiteralPartCSImpl <em>Tuple Literal Part CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.TupleLiteralPartCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getTupleLiteralPartCS()
+	 * @generated
+	 */
+	int TUPLE_LITERAL_PART_CS = 42;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.TypeLiteralExpCSImpl <em>Type Literal Exp CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.TypeLiteralExpCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getTypeLiteralExpCS()
+	 * @generated
+	 */
+	int TYPE_LITERAL_EXP_CS = 43;
+
+	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_EXP_CS__LOGICAL_PARENT = OPERATOR_CS__LOGICAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Pivot</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_EXP_CS__PIVOT = OPERATOR_CS__PIVOT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_EXP_CS__OWNED_ANNOTATIONS = OPERATOR_CS__OWNED_ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_EXP_CS__ORIGINAL_XMI_ID = OPERATOR_CS__ORIGINAL_XMI_ID;
+
+	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_EXP_CS__CSI = OPERATOR_CS__CSI;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_EXP_CS__PARENT = OPERATOR_CS__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_EXP_CS__HAS_ERROR = OPERATOR_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_EXP_CS__NAME = OPERATOR_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_EXP_CS__SOURCE = OPERATOR_CS__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_EXP_CS__OWNED_EXPRESSION = OPERATOR_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Derived Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_EXP_CS__DERIVED_SOURCE = OPERATOR_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Prefix Exp CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_EXP_CS_FEATURE_COUNT = OPERATOR_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -4466,16 +4525,6 @@ public interface EssentialOCLCSPackage
 	int PROPERTY_CALL_EXP_CS_FEATURE_COUNT = CALL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.RoundBracketedClauseCSImpl <em>Round Bracketed Clause CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.RoundBracketedClauseCSImpl
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getRoundBracketedClauseCS()
-	 * @generated
-	 */
-	int ROUND_BRACKETED_CLAUSE_CS = 37;
-
-	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4510,16 +4559,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int ROUND_BRACKETED_CLAUSE_CS_FEATURE_COUNT = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS_FEATURE_COUNT + 2;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.SelfExpCSImpl <em>Self Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.SelfExpCSImpl
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getSelfExpCS()
-	 * @generated
-	 */
-	int SELF_EXP_CS = 38;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -4601,16 +4640,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int SELF_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.SquareBracketedClauseCSImpl <em>Square Bracketed Clause CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.SquareBracketedClauseCSImpl
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getSquareBracketedClauseCS()
-	 * @generated
-	 */
-	int SQUARE_BRACKETED_CLAUSE_CS = 39;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -4811,16 +4840,6 @@ public interface EssentialOCLCSPackage
 	int TUPLE_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.TupleLiteralPartCSImpl <em>Tuple Literal Part CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.TupleLiteralPartCSImpl
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getTupleLiteralPartCS()
-	 * @generated
-	 */
-	int TUPLE_LITERAL_PART_CS = 42;
-
-	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4900,16 +4919,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int TUPLE_LITERAL_PART_CS_FEATURE_COUNT = VARIABLE_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.TypeLiteralExpCSImpl <em>Type Literal Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.TypeLiteralExpCSImpl
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getTypeLiteralExpCS()
-	 * @generated
-	 */
-	int TYPE_LITERAL_EXP_CS = 43;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -5074,106 +5083,6 @@ public interface EssentialOCLCSPackage
 	int TYPE_NAME_EXP_CS_FEATURE_COUNT = BaseCSPackage.TYPED_REF_CS_FEATURE_COUNT + 4;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.UnaryOperatorCSImpl <em>Unary Operator CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.UnaryOperatorCSImpl
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getUnaryOperatorCS()
-	 * @generated
-	 */
-	int UNARY_OPERATOR_CS = 45;
-
-	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNARY_OPERATOR_CS__LOGICAL_PARENT = OPERATOR_CS__LOGICAL_PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Pivot</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNARY_OPERATOR_CS__PIVOT = OPERATOR_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNARY_OPERATOR_CS__OWNED_ANNOTATIONS = OPERATOR_CS__OWNED_ANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNARY_OPERATOR_CS__ORIGINAL_XMI_ID = OPERATOR_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNARY_OPERATOR_CS__CSI = OPERATOR_CS__CSI;
-
-	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNARY_OPERATOR_CS__PARENT = OPERATOR_CS__PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNARY_OPERATOR_CS__HAS_ERROR = OPERATOR_CS__HAS_ERROR;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNARY_OPERATOR_CS__NAME = OPERATOR_CS__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNARY_OPERATOR_CS__SOURCE = OPERATOR_CS__SOURCE;
-
-	/**
-	 * The number of structural features of the '<em>Unary Operator CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNARY_OPERATOR_CS_FEATURE_COUNT = OPERATOR_CS_FEATURE_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.UnlimitedNaturalLiteralExpCSImpl <em>Unlimited Natural Literal Exp CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5181,7 +5090,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getUnlimitedNaturalLiteralExpCS()
 	 * @generated
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP_CS = 46;
+	int UNLIMITED_NATURAL_LITERAL_EXP_CS = 45;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -5263,7 +5172,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getVariableExpCS()
 	 * @generated
 	 */
-	int VARIABLE_EXP_CS = 48;
+	int VARIABLE_EXP_CS = 47;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -5417,7 +5326,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNavigationRole()
 	 * @generated
 	 */
-	int NAVIGATION_ROLE = 49;
+	int NAVIGATION_ROLE = 48;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AbstractNameExpCS <em>Abstract Name Exp CS</em>}'.
@@ -5557,17 +5466,6 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 */
 	EClass getPrefixExpCS();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS#getOwnedOperator <em>Owned Operator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Operator</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS#getOwnedOperator()
-	 * @see #getPrefixExpCS()
-	 * @generated
-	 */
-	EReference getPrefixExpCS_OwnedOperator();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS#getOwnedExpression <em>Owned Expression</em>}'.
@@ -5911,16 +5809,6 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 */
 	EReference getTypeNameExpCS_OwnedPatternGuard();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.UnaryOperatorCS <em>Unary Operator CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Unary Operator CS</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.UnaryOperatorCS
-	 * @generated
-	 */
-	EClass getUnaryOperatorCS();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.UnlimitedNaturalLiteralExpCS <em>Unlimited Natural Literal Exp CS</em>}'.
@@ -7012,14 +6900,6 @@ public interface EssentialOCLCSPackage
 		EClass PREFIX_EXP_CS = eINSTANCE.getPrefixExpCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Operator</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PREFIX_EXP_CS__OWNED_OPERATOR = eINSTANCE.getPrefixExpCS_OwnedOperator();
-
-		/**
 		 * The meta object literal for the '<em><b>Owned Expression</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7292,16 +7172,6 @@ public interface EssentialOCLCSPackage
 		 * @generated
 		 */
 		EReference TYPE_NAME_EXP_CS__OWNED_PATTERN_GUARD = eINSTANCE.getTypeNameExpCS_OwnedPatternGuard();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.UnaryOperatorCSImpl <em>Unary Operator CS</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.UnaryOperatorCSImpl
-		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getUnaryOperatorCS()
-		 * @generated
-		 */
-		EClass UNARY_OPERATOR_CS = eINSTANCE.getUnaryOperatorCS();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.UnlimitedNaturalLiteralExpCSImpl <em>Unlimited Natural Literal Exp CS</em>}' class.

@@ -16,7 +16,7 @@ import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.UnaryOperatorCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.util.ITextRegion;
@@ -52,7 +52,7 @@ public class EssentialOCLLocationInFileProvider extends BaseLocationInFileProvid
 					}
 				}
 			}
-			else if (obj instanceof UnaryOperatorCS) {
+			else if (obj instanceof PrefixExpCS) {
 				lastCS = firstCS;
 				firstCS  = (OperatorCS)obj;
 			}

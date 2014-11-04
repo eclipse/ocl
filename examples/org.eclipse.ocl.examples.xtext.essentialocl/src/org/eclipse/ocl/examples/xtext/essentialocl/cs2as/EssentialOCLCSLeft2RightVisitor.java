@@ -126,7 +126,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.StringLiteralE
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TupleLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TupleLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeLiteralExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.UnaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.UnlimitedNaturalLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.AbstractEssentialOCLCSLeft2RightVisitor;
@@ -956,7 +955,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				boundMessage = DomainUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, sourceType, csOperator, s.toString());
 			}
 			else {
-				boundMessage = DomainUtil.bind(OCLMessages.UnresolvedOperation_ERROR_, sourceType, csOperator);
+				boundMessage = DomainUtil.bind(OCLMessages.UnresolvedOperation_ERROR_, sourceType, csOperator.getName());
 			}
 //			context.addBadExpressionError(csOperator, boundMessage); 
 			context.addDiagnostic(csOperator, boundMessage);
@@ -1686,22 +1685,20 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 
 	@Override
 	public Element visitPrefixExpCS(@NonNull PrefixExpCS csPrefixExp) {
-		UnaryOperatorCS csRoot = csPrefixExp.getOwnedOperator();
-		if (csRoot == null) {
-			return null;
+		OperationCallExp asCallExp = context.refreshModelElement(OperationCallExp.class, PivotPackage.Literals.OPERATION_CALL_EXP, csPrefixExp);
+		context.refreshName(asCallExp, csPrefixExp.getName());
+		ExpCS csSource = csPrefixExp.getSource();
+		if (csSource != null) {
+			OCLExpression source = context.visitLeft2Right(OCLExpression.class, csSource);
+			if (source != null) {
+				asCallExp.setSource(source);
+				Type sourceType = PivotUtil.getType(source);
+				if (sourceType != null) {
+					resolveOperationCall(asCallExp, csPrefixExp);
+				}
+			}
 		}
-		if (csPrefixExp.eContainer() instanceof InfixExpCS) {
-			// PrefixExpCS embedded in InfixExpCS is resolved as part of the Infix tree;		
-		}
-		else {
-//			initializePrefixOperators(csPrefixExp, null);
-			context.visitLeft2Right(OCLExpression.class, csRoot);		
-		}
-		OCLExpression pivotElement = PivotUtil.getPivot(OCLExpression.class, csRoot);
-		if (pivotElement != null) {
-			context.installPivotUsage(csPrefixExp, pivotElement);
-		}
-		return pivotElement;
+		return asCallExp;
 	}
 
 	@Override
@@ -1769,26 +1766,6 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 //		context.visitInOrder(csType, null);
 		Type type = PivotUtil.getPivot(Type.class, csType);
 		return type != null ? resolveTypeExp(csTypeLiteralExp, type) : null;
-	}
-
-	@Override
-	public Element visitUnaryOperatorCS(@NonNull UnaryOperatorCS csOperator) {
-		OperationCallExp expression = context.refreshModelElement(OperationCallExp.class, PivotPackage.Literals.OPERATION_CALL_EXP, csOperator);
-		String name = csOperator.getName();
-		assert name != null;
-		context.refreshName(expression, name);
-		ExpCS csSource = csOperator.getSource();
-		if (csSource != null) {
-			OCLExpression source = context.visitLeft2Right(OCLExpression.class, csSource);
-			if (source != null) {
-				expression.setSource(source);
-				Type sourceType = PivotUtil.getType(source);
-				if (sourceType != null) {
-					resolveOperationCall(expression, csOperator);
-				}
-			}
-		}
-		return expression;
 	}
 
 	@Override

@@ -1577,14 +1577,14 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// ** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> * /
-	//EssentialOCLUnaryOperatorCS returns UnaryOperatorCS:
-	//	name=("-" | "not");
-	public EssentialOCLGrammarAccess.EssentialOCLUnaryOperatorCSElements getEssentialOCLUnaryOperatorCSAccess() {
-		return gaEssentialOCL.getEssentialOCLUnaryOperatorCSAccess();
+	//EssentialOCLUnaryOperatorName:
+	//	"-" | "not";
+	public EssentialOCLGrammarAccess.EssentialOCLUnaryOperatorNameElements getEssentialOCLUnaryOperatorNameAccess() {
+		return gaEssentialOCL.getEssentialOCLUnaryOperatorNameAccess();
 	}
 	
-	public ParserRule getEssentialOCLUnaryOperatorCSRule() {
-		return getEssentialOCLUnaryOperatorCSAccess().getRule();
+	public ParserRule getEssentialOCLUnaryOperatorNameRule() {
+		return getEssentialOCLUnaryOperatorNameAccess().getRule();
 	}
 
 	/// ** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> * /
@@ -1631,14 +1631,14 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// Intended to be overrideable
-	// UnaryOperatorCS:
-	//	EssentialOCLUnaryOperatorCS;
-	public EssentialOCLGrammarAccess.UnaryOperatorCSElements getUnaryOperatorCSAccess() {
-		return gaEssentialOCL.getUnaryOperatorCSAccess();
+	// UnaryOperatorName:
+	//	EssentialOCLUnaryOperatorName;
+	public EssentialOCLGrammarAccess.UnaryOperatorNameElements getUnaryOperatorNameAccess() {
+		return gaEssentialOCL.getUnaryOperatorNameAccess();
 	}
 	
-	public ParserRule getUnaryOperatorCSRule() {
-		return getUnaryOperatorCSAccess().getRule();
+	public ParserRule getUnaryOperatorNameRule() {
+		return getUnaryOperatorNameAccess().getRule();
 	}
 
 	////---------------------------------------------------------------------
@@ -1990,7 +1990,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 	/// * A prefixed let expression elaborates a let expression with zero or more unary prefix operators. * / PrefixedLetExpCS
 	//returns ExpCS:
-	//	{PrefixExpCS} ownedOperator=UnaryOperatorCS ownedExpression=PrefixedLetExpCS | LetExpCS;
+	//	{PrefixExpCS} name=UnaryOperatorName ownedExpression=PrefixedLetExpCS | LetExpCS;
 	public EssentialOCLGrammarAccess.PrefixedLetExpCSElements getPrefixedLetExpCSAccess() {
 		return gaEssentialOCL.getPrefixedLetExpCSAccess();
 	}
@@ -2001,7 +2001,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 	/// * A prefixed primary expression elaborates a primary expression with zero or more unary prefix operators. * /
 	//PrefixedPrimaryExpCS returns ExpCS:
-	//	{PrefixExpCS} ownedOperator=UnaryOperatorCS ownedExpression=PrefixedPrimaryExpCS | PrimaryExpCS;
+	//	{PrefixExpCS} name=UnaryOperatorName ownedExpression=PrefixedPrimaryExpCS | PrimaryExpCS;
 	public EssentialOCLGrammarAccess.PrefixedPrimaryExpCSElements getPrefixedPrimaryExpCSAccess() {
 		return gaEssentialOCL.getPrefixedPrimaryExpCSAccess();
 	}

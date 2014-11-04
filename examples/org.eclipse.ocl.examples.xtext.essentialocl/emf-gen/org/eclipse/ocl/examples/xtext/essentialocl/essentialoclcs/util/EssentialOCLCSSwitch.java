@@ -576,8 +576,11 @@ public class EssentialOCLCSSwitch<T>
 			{
 				PrefixExpCS prefixExpCS = (PrefixExpCS)theEObject;
 				T result = casePrefixExpCS(prefixExpCS);
+				if (result == null) result = caseOperatorCS(prefixExpCS);
 				if (result == null) result = caseExpCS(prefixExpCS);
+				if (result == null) result = caseNamedElementCS(prefixExpCS);
 				if (result == null) result = caseModelElementCS(prefixExpCS);
+				if (result == null) result = caseNameable(prefixExpCS);
 				if (result == null) result = casePivotableElementCS(prefixExpCS);
 				if (result == null) result = caseElementCS(prefixExpCS);
 				if (result == null) result = casePivotable(prefixExpCS);
@@ -716,22 +719,6 @@ public class EssentialOCLCSSwitch<T>
 				if (result == null) result = caseElementCS(typeNameExpCS);
 				if (result == null) result = casePivotable(typeNameExpCS);
 				if (result == null) result = caseVisitableCS(typeNameExpCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EssentialOCLCSPackage.UNARY_OPERATOR_CS:
-			{
-				UnaryOperatorCS unaryOperatorCS = (UnaryOperatorCS)theEObject;
-				T result = caseUnaryOperatorCS(unaryOperatorCS);
-				if (result == null) result = caseOperatorCS(unaryOperatorCS);
-				if (result == null) result = caseExpCS(unaryOperatorCS);
-				if (result == null) result = caseNamedElementCS(unaryOperatorCS);
-				if (result == null) result = caseModelElementCS(unaryOperatorCS);
-				if (result == null) result = caseNameable(unaryOperatorCS);
-				if (result == null) result = casePivotableElementCS(unaryOperatorCS);
-				if (result == null) result = caseElementCS(unaryOperatorCS);
-				if (result == null) result = casePivotable(unaryOperatorCS);
-				if (result == null) result = caseVisitableCS(unaryOperatorCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1469,21 +1456,6 @@ public class EssentialOCLCSSwitch<T>
 	 * @generated
 	 */
 	public T caseTypeNameExpCS(TypeNameExpCS object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Unary Operator CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Unary Operator CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseUnaryOperatorCS(UnaryOperatorCS object) {
 		return null;
 	}
 

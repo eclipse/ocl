@@ -137,8 +137,8 @@
         eType="#//BinaryOperatorCS" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSuffix" lowerBound="1"
         eType="#//ExpCS" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="derivedSource" lowerBound="1"
-        eType="#//ExpCS" changeable="false" transient="true" derived="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="derivedSource" eType="#//ExpCS"
+        changeable="false" transient="true" derived="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InvalidLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="IterateCallExpCS" abstract="true" eSuperTypes="#//IterationCallExpCS">
@@ -208,13 +208,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPatternType" eType="ecore:EClass ../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#//TypeRefCS"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PrefixExpCS" eSuperTypes="#//ExpCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedOperator" lowerBound="1"
-        eType="#//UnaryOperatorCS" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PrefixExpCS" eSuperTypes="#//OperatorCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedExpression" eType="#//ExpCS"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="derivedSource" lowerBound="1"
-        eType="#//ExpCS" changeable="false" transient="true" derived="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="derivedSource" eType="#//ExpCS"
+        changeable="false" transient="true" derived="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveLiteralExpCS" eSuperTypes="#//LiteralExpCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyCallExpCS" abstract="true" eSuperTypes="#//CallExpCS">
@@ -262,7 +260,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPatternGuard" eType="#//ExpCS"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UnaryOperatorCS" eSuperTypes="#//OperatorCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="UnlimitedNaturalLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="VariableCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#//NamedElementCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" eType="ecore:EClass ../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#//TypedRefCS"

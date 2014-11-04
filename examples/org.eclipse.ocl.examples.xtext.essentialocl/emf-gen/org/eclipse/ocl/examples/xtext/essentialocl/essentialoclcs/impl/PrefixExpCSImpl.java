@@ -21,7 +21,6 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.UnaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.EssentialOCLCSVisitor;
 
 /**
@@ -31,7 +30,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.PrefixExpCSImpl#getOwnedOperator <em>Owned Operator</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.PrefixExpCSImpl#getOwnedExpression <em>Owned Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.PrefixExpCSImpl#getDerivedSource <em>Derived Source</em>}</li>
  * </ul>
@@ -40,18 +38,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * @generated
  */
 public class PrefixExpCSImpl
-		extends ExpCSImpl
+		extends OperatorCSImpl
 		implements PrefixExpCS {
-
-	/**
-	 * The cached value of the '{@link #getOwnedOperator() <em>Owned Operator</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedOperator()
-	 * @generated
-	 * @ordered
-	 */
-	protected UnaryOperatorCS ownedOperator;
 
 	/**
 	 * The cached value of the '{@link #getOwnedExpression() <em>Owned Expression</em>}' containment reference.
@@ -90,54 +78,6 @@ public class PrefixExpCSImpl
 	@Override
 	protected EClass eStaticClass() {
 		return EssentialOCLCSPackage.Literals.PREFIX_EXP_CS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public UnaryOperatorCS getOwnedOperator()
-	{
-		return ownedOperator;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwnedOperator(UnaryOperatorCS newOwnedOperator, NotificationChain msgs)
-	{
-		UnaryOperatorCS oldOwnedOperator = ownedOperator;
-		ownedOperator = newOwnedOperator;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_OPERATOR, oldOwnedOperator, newOwnedOperator);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwnedOperator(UnaryOperatorCS newOwnedOperator)
-	{
-		if (newOwnedOperator != ownedOperator)
-		{
-			NotificationChain msgs = null;
-			if (ownedOperator != null)
-				msgs = ((InternalEObject)ownedOperator).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_OPERATOR, null, msgs);
-			if (newOwnedOperator != null)
-				msgs = ((InternalEObject)newOwnedOperator).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_OPERATOR, null, msgs);
-			msgs = basicSetOwnedOperator(newOwnedOperator, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_OPERATOR, newOwnedOperator, newOwnedOperator));
 	}
 
 	/**
@@ -196,8 +136,6 @@ public class PrefixExpCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_OPERATOR:
-				return basicSetOwnedOperator(null, msgs);
 			case EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_EXPRESSION:
 				return basicSetOwnedExpression(null, msgs);
 		}
@@ -213,8 +151,6 @@ public class PrefixExpCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_OPERATOR:
-				return getOwnedOperator();
 			case EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_EXPRESSION:
 				return getOwnedExpression();
 			case EssentialOCLCSPackage.PREFIX_EXP_CS__DERIVED_SOURCE:
@@ -228,14 +164,10 @@ public class PrefixExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_OPERATOR:
-				setOwnedOperator((UnaryOperatorCS)newValue);
-				return;
 			case EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_EXPRESSION:
 				setOwnedExpression((ExpCS)newValue);
 				return;
@@ -252,9 +184,6 @@ public class PrefixExpCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_OPERATOR:
-				setOwnedOperator((UnaryOperatorCS)null);
-				return;
 			case EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_EXPRESSION:
 				setOwnedExpression((ExpCS)null);
 				return;
@@ -271,8 +200,6 @@ public class PrefixExpCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_OPERATOR:
-				return ownedOperator != null;
 			case EssentialOCLCSPackage.PREFIX_EXP_CS__OWNED_EXPRESSION:
 				return ownedExpression != null;
 			case EssentialOCLCSPackage.PREFIX_EXP_CS__DERIVED_SOURCE:

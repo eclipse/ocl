@@ -216,10 +216,6 @@ public abstract class AbstractNullEssentialOCLCSVisitor<R, C>
 		return null;
 	}
 
-	public @Nullable R visitUnaryOperatorCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.UnaryOperatorCS object) {
-		return null;
-	}
-
 	public @Nullable R visitUnlimitedNaturalLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.UnlimitedNaturalLiteralExpCS object) {
 		return null;
 	}

@@ -52,7 +52,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TupleLiteralEx
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TupleLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.UnaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.UnlimitedNaturalLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS;
 
@@ -143,7 +142,6 @@ public class EssentialOCLCSFactoryImpl
 			case EssentialOCLCSPackage.TUPLE_LITERAL_PART_CS: return createTupleLiteralPartCS();
 			case EssentialOCLCSPackage.TYPE_LITERAL_EXP_CS: return createTypeLiteralExpCS();
 			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS: return createTypeNameExpCS();
-			case EssentialOCLCSPackage.UNARY_OPERATOR_CS: return createUnaryOperatorCS();
 			case EssentialOCLCSPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS: return createUnlimitedNaturalLiteralExpCS();
 			case EssentialOCLCSPackage.VARIABLE_CS: return createVariableCS();
 			default:
@@ -282,16 +280,6 @@ public class EssentialOCLCSFactoryImpl
 	public TypeNameExpCS createTypeNameExpCS() {
 		TypeNameExpCSImpl typeNameExpCS = new TypeNameExpCSImpl();
 		return typeNameExpCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public UnaryOperatorCS createUnaryOperatorCS() {
-		UnaryOperatorCSImpl unaryOperatorCS = new UnaryOperatorCSImpl();
-		return unaryOperatorCS;
 	}
 
 	/**

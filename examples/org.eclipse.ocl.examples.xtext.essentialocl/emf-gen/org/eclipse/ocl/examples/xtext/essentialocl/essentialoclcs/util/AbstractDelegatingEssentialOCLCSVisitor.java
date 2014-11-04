@@ -216,10 +216,6 @@ public abstract class AbstractDelegatingEssentialOCLCSVisitor<R, C, D extends Es
 		return delegate.visitTypeNameExpCS(object);
 	}
 
-	public @Nullable R visitUnaryOperatorCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.UnaryOperatorCS object) {
-		return delegate.visitUnaryOperatorCS(object);
-	}
-
 	public @Nullable R visitUnlimitedNaturalLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.UnlimitedNaturalLiteralExpCS object) {
 		return delegate.visitUnlimitedNaturalLiteralExpCS(object);
 	}

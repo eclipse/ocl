@@ -62,7 +62,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TupleLiteralEx
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TupleLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.UnaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.UnlimitedNaturalLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableExpCS;
@@ -264,10 +263,6 @@ public class AutoEssentialOCLCSContainmentVisitor
     
     public @Nullable Continuation<?> visitTypeNameExpCS(@NonNull TypeNameExpCS self) {
         throw new UnsupportedOperationException("visitTypeNameExpCS is not supported by " + getClass().getName());
-    }
-    
-    public @Nullable Continuation<?> visitUnaryOperatorCS(@NonNull UnaryOperatorCS self) {
-        throw new UnsupportedOperationException("visitUnaryOperatorCS is not supported by " + getClass().getName());
     }
     
     public @Nullable Continuation<?> visitUnlimitedNaturalLiteralExpCS(@NonNull UnlimitedNaturalLiteralExpCS self) {

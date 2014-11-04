@@ -49,7 +49,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.UnaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.AbstractEssentialOCLCSPostOrderVisitor;
 
@@ -258,8 +257,8 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 
 	protected void initializePrefixOperators(PrefixExpCS prefixExpCS, OperatorCS csParent) {
 		prefixExpCS.setParent(null);		// FIXME asymmetric
-		UnaryOperatorCS csUnaryOperator = prefixExpCS.getOwnedOperator();
-		if (csParent instanceof UnaryOperatorCS) {
+		PrefixExpCS csUnaryOperator = prefixExpCS;
+		if (csParent instanceof PrefixExpCS) {
 			setSource(csParent, csUnaryOperator);
 		}
 		else if (csParent instanceof BinaryOperatorCS) {
@@ -288,14 +287,13 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 //				for (UnaryOperatorCS csUnaryOperator : prefixExpCS.getOwnedOperators()) {
 //					interleaveUnaryOperator(csUnaryOperator);
 //				}			
-				if (prefixExpCS.getOwnedExpression() instanceof PrefixExpCS) {
-					interleaveUnaryOperator(((PrefixExpCS)prefixExpCS.getOwnedExpression()).getOwnedOperator());
-				}
+				interleaveUnaryOperator(prefixExpCS);
 			}
 		}
 	}
 	
-	protected void interleaveUnaryOperator(UnaryOperatorCS csOperator) {
+	protected void interleaveUnaryOperator(PrefixExpCS prefixExpCS) {
+		PrefixExpCS csOperator = prefixExpCS;
 		while (true) {
 			OperatorCS csParent = csOperator.getParent();
 			if (!(csParent instanceof BinaryOperatorCS)) {
@@ -342,6 +340,9 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 			else {
 				break;
 			}
+		}
+		if (prefixExpCS.getOwnedExpression() instanceof PrefixExpCS) {
+			interleaveUnaryOperator((PrefixExpCS)prefixExpCS.getOwnedExpression());
 		}
 	}
 

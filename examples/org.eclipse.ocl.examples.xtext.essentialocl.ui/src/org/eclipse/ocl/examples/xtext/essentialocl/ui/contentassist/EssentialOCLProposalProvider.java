@@ -99,9 +99,9 @@ public class EssentialOCLProposalProvider extends AbstractEssentialOCLProposalPr
 	}
 
 	@Override
-	public void complete_UnaryOperatorCS(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	public void complete_UnaryOperatorName(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		proposeKeywordAlternatives(ruleCall, context, acceptor, null);
-		super.complete_UnaryOperatorCS(model, ruleCall, context, acceptor);
+		super.complete_UnaryOperatorName(model, ruleCall, context, acceptor);
 	}
 
 	@Override

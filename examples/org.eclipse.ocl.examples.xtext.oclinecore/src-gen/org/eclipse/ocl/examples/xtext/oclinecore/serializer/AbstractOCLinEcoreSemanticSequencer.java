@@ -67,7 +67,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TupleLiteralEx
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TupleLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.UnaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.UnlimitedNaturalLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.serializer.EssentialOCLSemanticSequencer;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.OCLinEcoreCSPackage;
@@ -650,13 +649,6 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 				}
 				else if(context == grammarAccess.getTypeNameExpCSRule()) {
 					sequence_TypeNameExpCS(context, (TypeNameExpCS) semanticObject); 
-					return; 
-				}
-				else break;
-			case EssentialOCLCSPackage.UNARY_OPERATOR_CS:
-				if(context == grammarAccess.getEssentialOCLUnaryOperatorCSRule() ||
-				   context == grammarAccess.getUnaryOperatorCSRule()) {
-					sequence_EssentialOCLUnaryOperatorCS(context, (UnaryOperatorCS) semanticObject); 
 					return; 
 				}
 				else break;

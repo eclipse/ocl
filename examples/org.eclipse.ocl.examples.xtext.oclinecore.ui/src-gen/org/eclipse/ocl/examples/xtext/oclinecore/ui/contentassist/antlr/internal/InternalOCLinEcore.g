@@ -961,25 +961,25 @@ finally {
 
 
 
-// Entry rule entryRuleEssentialOCLUnaryOperatorCS
-entryRuleEssentialOCLUnaryOperatorCS 
+// Entry rule entryRuleEssentialOCLUnaryOperatorName
+entryRuleEssentialOCLUnaryOperatorName 
 :
-{ before(grammarAccess.getEssentialOCLUnaryOperatorCSRule()); }
-	 ruleEssentialOCLUnaryOperatorCS
-{ after(grammarAccess.getEssentialOCLUnaryOperatorCSRule()); } 
+{ before(grammarAccess.getEssentialOCLUnaryOperatorNameRule()); }
+	 ruleEssentialOCLUnaryOperatorName
+{ after(grammarAccess.getEssentialOCLUnaryOperatorNameRule()); } 
 	 EOF 
 ;
 
-// Rule EssentialOCLUnaryOperatorCS
-ruleEssentialOCLUnaryOperatorCS
+// Rule EssentialOCLUnaryOperatorName
+ruleEssentialOCLUnaryOperatorName
     @init {
 		int stackSize = keepStackSize();
     }
 	:
 (
-{ before(grammarAccess.getEssentialOCLUnaryOperatorCSAccess().getNameAssignment()); }
-(rule__EssentialOCLUnaryOperatorCS__NameAssignment)
-{ after(grammarAccess.getEssentialOCLUnaryOperatorCSAccess().getNameAssignment()); }
+{ before(grammarAccess.getEssentialOCLUnaryOperatorNameAccess().getAlternatives()); }
+(rule__EssentialOCLUnaryOperatorName__Alternatives)
+{ after(grammarAccess.getEssentialOCLUnaryOperatorNameAccess().getAlternatives()); }
 )
 
 ;
@@ -1129,25 +1129,25 @@ finally {
 
 
 
-// Entry rule entryRuleUnaryOperatorCS
-entryRuleUnaryOperatorCS 
+// Entry rule entryRuleUnaryOperatorName
+entryRuleUnaryOperatorName 
 :
-{ before(grammarAccess.getUnaryOperatorCSRule()); }
-	 ruleUnaryOperatorCS
-{ after(grammarAccess.getUnaryOperatorCSRule()); } 
+{ before(grammarAccess.getUnaryOperatorNameRule()); }
+	 ruleUnaryOperatorName
+{ after(grammarAccess.getUnaryOperatorNameRule()); } 
 	 EOF 
 ;
 
-// Rule UnaryOperatorCS
-ruleUnaryOperatorCS
+// Rule UnaryOperatorName
+ruleUnaryOperatorName
     @init {
 		int stackSize = keepStackSize();
     }
 	:
 (
-{ before(grammarAccess.getUnaryOperatorCSAccess().getEssentialOCLUnaryOperatorCSParserRuleCall()); }
-	ruleEssentialOCLUnaryOperatorCS
-{ after(grammarAccess.getUnaryOperatorCSAccess().getEssentialOCLUnaryOperatorCSParserRuleCall()); }
+{ before(grammarAccess.getUnaryOperatorNameAccess().getEssentialOCLUnaryOperatorNameParserRuleCall()); }
+	ruleEssentialOCLUnaryOperatorName
+{ after(grammarAccess.getUnaryOperatorNameAccess().getEssentialOCLUnaryOperatorNameParserRuleCall()); }
 )
 
 ;
@@ -4637,25 +4637,25 @@ finally {
 }
 
 
-rule__EssentialOCLUnaryOperatorCS__NameAlternatives_0
+rule__EssentialOCLUnaryOperatorName__Alternatives
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getEssentialOCLUnaryOperatorCSAccess().getNameHyphenMinusKeyword_0_0()); }
+{ before(grammarAccess.getEssentialOCLUnaryOperatorNameAccess().getHyphenMinusKeyword_0()); }
 
 	'-' 
 
-{ after(grammarAccess.getEssentialOCLUnaryOperatorCSAccess().getNameHyphenMinusKeyword_0_0()); }
+{ after(grammarAccess.getEssentialOCLUnaryOperatorNameAccess().getHyphenMinusKeyword_0()); }
 )
 
     |(
-{ before(grammarAccess.getEssentialOCLUnaryOperatorCSAccess().getNameNotKeyword_0_1()); }
+{ before(grammarAccess.getEssentialOCLUnaryOperatorNameAccess().getNotKeyword_1()); }
 
 	'not' 
 
-{ after(grammarAccess.getEssentialOCLUnaryOperatorCSAccess().getNameNotKeyword_0_1()); }
+{ after(grammarAccess.getEssentialOCLUnaryOperatorNameAccess().getNotKeyword_1()); }
 )
 
 ;
@@ -18643,9 +18643,9 @@ rule__PrefixedLetExpCS__Group_0__1__Impl
     }
 :
 (
-{ before(grammarAccess.getPrefixedLetExpCSAccess().getOwnedOperatorAssignment_0_1()); }
-(rule__PrefixedLetExpCS__OwnedOperatorAssignment_0_1)
-{ after(grammarAccess.getPrefixedLetExpCSAccess().getOwnedOperatorAssignment_0_1()); }
+{ before(grammarAccess.getPrefixedLetExpCSAccess().getNameAssignment_0_1()); }
+(rule__PrefixedLetExpCS__NameAssignment_0_1)
+{ after(grammarAccess.getPrefixedLetExpCSAccess().getNameAssignment_0_1()); }
 )
 
 ;
@@ -18737,9 +18737,9 @@ rule__PrefixedPrimaryExpCS__Group_0__1__Impl
     }
 :
 (
-{ before(grammarAccess.getPrefixedPrimaryExpCSAccess().getOwnedOperatorAssignment_0_1()); }
-(rule__PrefixedPrimaryExpCS__OwnedOperatorAssignment_0_1)
-{ after(grammarAccess.getPrefixedPrimaryExpCSAccess().getOwnedOperatorAssignment_0_1()); }
+{ before(grammarAccess.getPrefixedPrimaryExpCSAccess().getNameAssignment_0_1()); }
+(rule__PrefixedPrimaryExpCS__NameAssignment_0_1)
+{ after(grammarAccess.getPrefixedPrimaryExpCSAccess().getNameAssignment_0_1()); }
 )
 
 ;
@@ -25923,22 +25923,6 @@ finally {
 }
 
 
-rule__EssentialOCLUnaryOperatorCS__NameAssignment
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getEssentialOCLUnaryOperatorCSAccess().getNameAlternatives_0()); }
-(rule__EssentialOCLUnaryOperatorCS__NameAlternatives_0)
-{ after(grammarAccess.getEssentialOCLUnaryOperatorCSAccess().getNameAlternatives_0()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
 rule__EssentialOCLInfixOperatorCS__NameAssignment
     @init {
 		int stackSize = keepStackSize();
@@ -26668,14 +26652,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__PrefixedLetExpCS__OwnedOperatorAssignment_0_1
+rule__PrefixedLetExpCS__NameAssignment_0_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getPrefixedLetExpCSAccess().getOwnedOperatorUnaryOperatorCSParserRuleCall_0_1_0()); }
-	ruleUnaryOperatorCS{ after(grammarAccess.getPrefixedLetExpCSAccess().getOwnedOperatorUnaryOperatorCSParserRuleCall_0_1_0()); }
+{ before(grammarAccess.getPrefixedLetExpCSAccess().getNameUnaryOperatorNameParserRuleCall_0_1_0()); }
+	ruleUnaryOperatorName{ after(grammarAccess.getPrefixedLetExpCSAccess().getNameUnaryOperatorNameParserRuleCall_0_1_0()); }
 )
 
 ;
@@ -26698,14 +26682,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__PrefixedPrimaryExpCS__OwnedOperatorAssignment_0_1
+rule__PrefixedPrimaryExpCS__NameAssignment_0_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getPrefixedPrimaryExpCSAccess().getOwnedOperatorUnaryOperatorCSParserRuleCall_0_1_0()); }
-	ruleUnaryOperatorCS{ after(grammarAccess.getPrefixedPrimaryExpCSAccess().getOwnedOperatorUnaryOperatorCSParserRuleCall_0_1_0()); }
+{ before(grammarAccess.getPrefixedPrimaryExpCSAccess().getNameUnaryOperatorNameParserRuleCall_0_1_0()); }
+	ruleUnaryOperatorName{ after(grammarAccess.getPrefixedPrimaryExpCSAccess().getNameUnaryOperatorNameParserRuleCall_0_1_0()); }
 )
 
 ;

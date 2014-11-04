@@ -177,7 +177,7 @@ public abstract class AbstractExtendingEssentialOCLCSVisitor<R, C>
 	}
 
 	public @Nullable R visitPrefixExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS object) {
-		return visitExpCS(object);
+		return visitOperatorCS(object);
 	}
 
 	public @Nullable R visitPrimitiveLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrimitiveLiteralExpCS object) {
@@ -218,10 +218,6 @@ public abstract class AbstractExtendingEssentialOCLCSVisitor<R, C>
 
 	public @Nullable R visitTypeNameExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS object) {
 		return visitTypedRefCS(object);
-	}
-
-	public @Nullable R visitUnaryOperatorCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.UnaryOperatorCS object) {
-		return visitOperatorCS(object);
 	}
 
 	public @Nullable R visitUnlimitedNaturalLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.UnlimitedNaturalLiteralExpCS object) {

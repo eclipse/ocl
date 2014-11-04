@@ -18,7 +18,6 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS#getOwnedOperator <em>Owned Operator</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS#getOwnedExpression <em>Owned Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS#getDerivedSource <em>Derived Source</em>}</li>
  * </ul>
@@ -29,33 +28,7 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
  * @generated
  */
 public interface PrefixExpCS
-		extends ExpCS {
-
-	/**
-	 * Returns the value of the '<em><b>Owned Operator</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Operator</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Operator</em>' containment reference.
-	 * @see #setOwnedOperator(UnaryOperatorCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getPrefixExpCS_OwnedOperator()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
-	UnaryOperatorCS getOwnedOperator();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS#getOwnedOperator <em>Owned Operator</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owned Operator</em>' containment reference.
-	 * @see #getOwnedOperator()
-	 * @generated
-	 */
-	void setOwnedOperator(UnaryOperatorCS value);
+		extends OperatorCS {
 
 	/**
 	 * Returns the value of the '<em><b>Owned Expression</b></em>' containment reference.
@@ -93,7 +66,7 @@ public interface PrefixExpCS
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Derived Source</em>' reference.
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getPrefixExpCS_DerivedSource()
-	 * @model resolveProxies="false" required="true" transient="true" changeable="false" derived="true"
+	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
 	 * @generated
 	 */
 	ExpCS getDerivedSource();

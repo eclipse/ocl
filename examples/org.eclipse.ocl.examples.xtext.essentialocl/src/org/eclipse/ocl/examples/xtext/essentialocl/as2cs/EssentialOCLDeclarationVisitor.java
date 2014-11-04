@@ -103,7 +103,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketed
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.StringLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TupleLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TupleLiteralPartCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.UnaryOperatorCS;
 
 public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 {
@@ -554,10 +553,8 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 					csPrefix = EssentialOCLCSFactory.eINSTANCE.createPrefixExpCS();
 					csPrefix.setOwnedExpression(csSource);
 				}
-				UnaryOperatorCS csUnaryOperator = EssentialOCLCSFactory.eINSTANCE.createUnaryOperatorCS();
-				csUnaryOperator.setName(asOperation.getName());
-				csUnaryOperator.setSource(csSource);
-				csPrefix.setOwnedOperator(csUnaryOperator);
+				csPrefix.setName(asOperation.getName());
+				csPrefix.setSource(csSource);
 				return csPrefix;
 			}
 		}

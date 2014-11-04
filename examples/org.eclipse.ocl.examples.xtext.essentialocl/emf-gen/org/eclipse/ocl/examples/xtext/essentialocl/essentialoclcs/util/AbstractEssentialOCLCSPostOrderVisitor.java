@@ -180,7 +180,7 @@ public abstract class AbstractEssentialOCLCSPostOrderVisitor
 	}
 
 	public @Nullable Continuation<?> visitPrefixExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS csElement) {
-		return visitExpCS(csElement);
+		return visitOperatorCS(csElement);
 	}
 
 	public @Nullable Continuation<?> visitPrimitiveLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrimitiveLiteralExpCS csElement) {
@@ -221,10 +221,6 @@ public abstract class AbstractEssentialOCLCSPostOrderVisitor
 
 	public @Nullable Continuation<?> visitTypeNameExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS csElement) {
 		return visitTypedRefCS(csElement);
-	}
-
-	public @Nullable Continuation<?> visitUnaryOperatorCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.UnaryOperatorCS csElement) {
-		return visitOperatorCS(csElement);
 	}
 
 	public @Nullable Continuation<?> visitUnlimitedNaturalLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.UnlimitedNaturalLiteralExpCS csElement) {

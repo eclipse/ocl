@@ -3592,52 +3592,35 @@ ruleEssentialOCLReservedKeyword returns [AntlrDatatypeRuleToken current=new Antl
 
 
 
-// Entry rule entryRuleEssentialOCLUnaryOperatorCS
-entryRuleEssentialOCLUnaryOperatorCS returns [EObject current=null] 
+// Entry rule entryRuleEssentialOCLUnaryOperatorName
+entryRuleEssentialOCLUnaryOperatorName returns [String current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getEssentialOCLUnaryOperatorCSRule()); }
-	 iv_ruleEssentialOCLUnaryOperatorCS=ruleEssentialOCLUnaryOperatorCS 
-	 { $current=$iv_ruleEssentialOCLUnaryOperatorCS.current; } 
+	{ newCompositeNode(grammarAccess.getEssentialOCLUnaryOperatorNameRule()); } 
+	 iv_ruleEssentialOCLUnaryOperatorName=ruleEssentialOCLUnaryOperatorName 
+	 { $current=$iv_ruleEssentialOCLUnaryOperatorName.current.getText(); }  
 	 EOF 
 ;
 
-// Rule EssentialOCLUnaryOperatorCS
-ruleEssentialOCLUnaryOperatorCS returns [EObject current=null] 
+// Rule EssentialOCLUnaryOperatorName
+ruleEssentialOCLUnaryOperatorName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
 (
-(
-(
-		lv_name_0_1=	'-' 
+	kw='-' 
     {
-        newLeafNode(lv_name_0_1, grammarAccess.getEssentialOCLUnaryOperatorCSAccess().getNameHyphenMinusKeyword_0_0());
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getEssentialOCLUnaryOperatorNameAccess().getHyphenMinusKeyword_0()); 
     }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getEssentialOCLUnaryOperatorCSRule());
-	        }
-       		setWithLastConsumed($current, "name", lv_name_0_1, null);
-	    }
 
-    |		lv_name_0_2=	'not' 
+    |
+	kw='not' 
     {
-        newLeafNode(lv_name_0_2, grammarAccess.getEssentialOCLUnaryOperatorCSAccess().getNameNotKeyword_0_1());
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getEssentialOCLUnaryOperatorNameAccess().getNotKeyword_1()); 
     }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getEssentialOCLUnaryOperatorCSRule());
-	        }
-       		setWithLastConsumed($current, "name", lv_name_0_2, null);
-	    }
-
 )
-
-)
-)
-;
+    ;
 
 
 
@@ -4025,34 +4008,33 @@ ruleNavigationOperatorCS returns [EObject current=null]
 
 
 
-// Entry rule entryRuleUnaryOperatorCS
-entryRuleUnaryOperatorCS returns [EObject current=null] 
+// Entry rule entryRuleUnaryOperatorName
+entryRuleUnaryOperatorName returns [String current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getUnaryOperatorCSRule()); }
-	 iv_ruleUnaryOperatorCS=ruleUnaryOperatorCS 
-	 { $current=$iv_ruleUnaryOperatorCS.current; } 
+	{ newCompositeNode(grammarAccess.getUnaryOperatorNameRule()); } 
+	 iv_ruleUnaryOperatorName=ruleUnaryOperatorName 
+	 { $current=$iv_ruleUnaryOperatorName.current.getText(); }  
 	 EOF 
 ;
 
-// Rule UnaryOperatorCS
-ruleUnaryOperatorCS returns [EObject current=null] 
+// Rule UnaryOperatorName
+ruleUnaryOperatorName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
 
-	{ 
-	  /* */ 
-	}
     { 
-        newCompositeNode(grammarAccess.getUnaryOperatorCSAccess().getEssentialOCLUnaryOperatorCSParserRuleCall()); 
+        newCompositeNode(grammarAccess.getUnaryOperatorNameAccess().getEssentialOCLUnaryOperatorNameParserRuleCall()); 
     }
-    this_EssentialOCLUnaryOperatorCS_0=ruleEssentialOCLUnaryOperatorCS
+    this_EssentialOCLUnaryOperatorName_0=ruleEssentialOCLUnaryOperatorName    {
+		$current.merge(this_EssentialOCLUnaryOperatorName_0);
+    }
+
     { 
-        $current = $this_EssentialOCLUnaryOperatorCS_0.current; 
         afterParserOrEnumRuleCall();
     }
 
-;
+    ;
 
 
 
@@ -5984,17 +5966,17 @@ rulePrefixedLetExpCS returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPrefixedLetExpCSAccess().getOwnedOperatorUnaryOperatorCSParserRuleCall_0_1_0()); 
+	        newCompositeNode(grammarAccess.getPrefixedLetExpCSAccess().getNameUnaryOperatorNameParserRuleCall_0_1_0()); 
 	    }
-		lv_ownedOperator_1_0=ruleUnaryOperatorCS		{
+		lv_name_1_0=ruleUnaryOperatorName		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getPrefixedLetExpCSRule());
 	        }
        		set(
        			$current, 
-       			"ownedOperator",
-        		lv_ownedOperator_1_0, 
-        		"UnaryOperatorCS");
+       			"name",
+        		lv_name_1_0, 
+        		"UnaryOperatorName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6063,17 +6045,17 @@ rulePrefixedPrimaryExpCS returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPrefixedPrimaryExpCSAccess().getOwnedOperatorUnaryOperatorCSParserRuleCall_0_1_0()); 
+	        newCompositeNode(grammarAccess.getPrefixedPrimaryExpCSAccess().getNameUnaryOperatorNameParserRuleCall_0_1_0()); 
 	    }
-		lv_ownedOperator_1_0=ruleUnaryOperatorCS		{
+		lv_name_1_0=ruleUnaryOperatorName		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getPrefixedPrimaryExpCSRule());
 	        }
        		set(
        			$current, 
-       			"ownedOperator",
-        		lv_ownedOperator_1_0, 
-        		"UnaryOperatorCS");
+       			"name",
+        		lv_name_1_0, 
+        		"UnaryOperatorName");
 	        afterParserOrEnumRuleCall();
 	    }
 

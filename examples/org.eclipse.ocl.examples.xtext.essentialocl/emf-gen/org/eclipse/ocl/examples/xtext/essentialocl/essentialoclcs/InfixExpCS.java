@@ -120,7 +120,7 @@ public interface InfixExpCS
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Derived Source</em>' reference.
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getInfixExpCS_DerivedSource()
-	 * @model resolveProxies="false" required="true" transient="true" changeable="false" derived="true"
+	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
 	 * @generated
 	 */
 	ExpCS getDerivedSource();
