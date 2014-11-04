@@ -37,7 +37,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationRole;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NullLiteralExpCS;
@@ -127,7 +126,6 @@ public class EssentialOCLCSFactoryImpl
 			case EssentialOCLCSPackage.LITERAL_EXP_CS: return createLiteralExpCS();
 			case EssentialOCLCSPackage.NAME_EXP_CS: return createNameExpCS();
 			case EssentialOCLCSPackage.NAVIGATING_ARG_CS: return createNavigatingArgCS();
-			case EssentialOCLCSPackage.NAVIGATION_OPERATOR_CS: return createNavigationOperatorCS();
 			case EssentialOCLCSPackage.NESTED_EXP_CS: return createNestedExpCS();
 			case EssentialOCLCSPackage.NULL_LITERAL_EXP_CS: return createNullLiteralExpCS();
 			case EssentialOCLCSPackage.NUMBER_LITERAL_EXP_CS: return createNumberLiteralExpCS();
@@ -352,16 +350,6 @@ public class EssentialOCLCSFactoryImpl
 	public NavigatingArgCS createNavigatingArgCS() {
 		NavigatingArgCSImpl navigatingArgCS = new NavigatingArgCSImpl();
 		return navigatingArgCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NavigationOperatorCS createNavigationOperatorCS() {
-		NavigationOperatorCSImpl navigationOperatorCS = new NavigationOperatorCSImpl();
-		return navigationOperatorCS;
 	}
 
 	/**

@@ -32,9 +32,10 @@ import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
+import org.eclipse.ocl.examples.xtext.essentialocl.attributes.NavigationUtil;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.xtext.AbstractElement;
 import org.eclipse.xtext.Alternatives;
@@ -225,8 +226,8 @@ public class EssentialOCLProposalProvider extends AbstractEssentialOCLProposalPr
 		EObject currentModel = contentAssistContext.getCurrentModel();
 		if (currentModel instanceof InfixExpCS) {
 			EObject previousModel = contentAssistContext.getPreviousModel();
-			if (previousModel instanceof NavigationOperatorCS) {
-				ExpCS argument = ((NavigationOperatorCS)previousModel).getArgument();
+			if (NavigationUtil.isNavigationOperator(previousModel)) {
+				ExpCS argument = ((BinaryOperatorCS)previousModel).getArgument();
 				if (argument != null) {
 					currentModel = argument;
 				}

@@ -54,10 +54,10 @@ import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.as2cs.EssentialOCLAS2CS;
+import org.eclipse.ocl.examples.xtext.essentialocl.attributes.NavigationUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCS2AS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
 import org.eclipse.xtext.diagnostics.AbstractDiagnostic;
 import org.eclipse.xtext.diagnostics.DiagnosticMessage;
 import org.eclipse.xtext.linking.impl.XtextLinkingDiagnostic;
@@ -326,7 +326,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 				return true;
 			}
 			csElement = csElement.getLogicalParent();
-			if (!(csElement instanceof NavigationOperatorCS) && !(csElement instanceof NameExpCS)) {
+			if (!NavigationUtil.isNavigationOperator(csElement) && !(csElement instanceof NameExpCS)) {
 				break;
 			}
 		}
@@ -500,7 +500,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 		while (csElement instanceof ExpCS) {
 			((ExpCS) csElement).setHasError(true);
 			csElement = csElement.getLogicalParent();
-			if (!(csElement instanceof NavigationOperatorCS)) {
+			if (!NavigationUtil.isNavigationOperator(csElement)) {
 				break;
 			}
 		}

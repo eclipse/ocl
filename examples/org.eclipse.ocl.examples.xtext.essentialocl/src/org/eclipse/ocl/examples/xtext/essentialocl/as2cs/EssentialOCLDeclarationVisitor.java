@@ -94,7 +94,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NullLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NumberLiteralExpCS;
@@ -210,7 +209,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		}
 		else {
 			Type asType = asSource.getType();
-			NavigationOperatorCS csNavigationOperator = EssentialOCLCSFactory.eINSTANCE.createNavigationOperatorCS();
+			BinaryOperatorCS csNavigationOperator = EssentialOCLCSFactory.eINSTANCE.createBinaryOperatorCS();
 			csNavigationOperator.setSource(context.visitDeclaration(ExpCS.class, asSource));
 			boolean isCollection = (asType instanceof CollectionType) ^ isConverted;
 			csNavigationOperator.setName(isCollection ? PivotConstants.COLLECTION_NAVIGATION_OPERATOR : PivotConstants.OBJECT_NAVIGATION_OPERATOR);

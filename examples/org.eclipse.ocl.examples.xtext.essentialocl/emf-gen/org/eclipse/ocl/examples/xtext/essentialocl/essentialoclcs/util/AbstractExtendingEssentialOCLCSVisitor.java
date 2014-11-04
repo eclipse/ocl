@@ -148,10 +148,6 @@ public abstract class AbstractExtendingEssentialOCLCSVisitor<R, C>
 		return visitModelElementCS(object);
 	}
 
-	public @Nullable R visitNavigationOperatorCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS object) {
-		return visitBinaryOperatorCS(object);
-	}
-
 	public @Nullable R visitNestedExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS object) {
 		return visitExpCS(object);
 	}

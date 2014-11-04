@@ -151,10 +151,6 @@ public abstract class AbstractEssentialOCLCSContainmentVisitor
 		return visitModelElementCS(csElement);
 	}
 
-	public @Nullable Continuation<?> visitNavigationOperatorCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS csElement) {
-		return visitBinaryOperatorCS(csElement);
-	}
-
 	public @Nullable Continuation<?> visitNestedExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS csElement) {
 		return visitExpCS(csElement);
 	}

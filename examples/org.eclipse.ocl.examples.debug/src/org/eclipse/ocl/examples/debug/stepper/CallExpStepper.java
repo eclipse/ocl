@@ -17,7 +17,8 @@ import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.attributes.NavigationUtil;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
@@ -27,8 +28,9 @@ public abstract class CallExpStepper extends PostStepper
 		INode startNode = null;
 		INode endNode = null;
 		ModelElementCS csStartElement = getCsElement(element);
-		if (csStartElement instanceof NavigationOperatorCS) {
-			ModelElementCS csEndElement = ((NavigationOperatorCS)csStartElement).getArgument();
+		if (NavigationUtil.isNavigationOperator(csStartElement)) {
+			assert csStartElement != null;
+			ModelElementCS csEndElement = ((BinaryOperatorCS)csStartElement).getArgument();
 			if (csEndElement != null) {
 				startNode = NodeModelUtils.getNode(csStartElement);
 				endNode = NodeModelUtils.getNode(csEndElement);

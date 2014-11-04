@@ -45,7 +45,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NullLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NumberLiteralExpCS;
@@ -288,10 +287,18 @@ public abstract class AbstractOCLstdlibSemanticSequencer extends EssentialOCLSem
 			}
 		else if(semanticObject.eClass().getEPackage() == EssentialOCLCSPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
 			case EssentialOCLCSPackage.BINARY_OPERATOR_CS:
-				if(context == grammarAccess.getBinaryOperatorCSRule() ||
-				   context == grammarAccess.getEssentialOCLInfixOperatorCSRule() ||
+				if(context == grammarAccess.getBinaryOperatorCSRule()) {
+					sequence_BinaryOperatorCS_EssentialOCLInfixOperatorCS_EssentialOCLNavigationOperatorCS(context, (BinaryOperatorCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getEssentialOCLInfixOperatorCSRule() ||
 				   context == grammarAccess.getInfixOperatorCSRule()) {
 					sequence_EssentialOCLInfixOperatorCS(context, (BinaryOperatorCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getEssentialOCLNavigationOperatorCSRule() ||
+				   context == grammarAccess.getNavigationOperatorCSRule()) {
+					sequence_EssentialOCLNavigationOperatorCS(context, (BinaryOperatorCS) semanticObject); 
 					return; 
 				}
 				else break;
@@ -461,14 +468,6 @@ public abstract class AbstractOCLstdlibSemanticSequencer extends EssentialOCLSem
 				}
 				else if(context == grammarAccess.getNavigatingSemiArgCSRule()) {
 					sequence_NavigatingSemiArgCS(context, (NavigatingArgCS) semanticObject); 
-					return; 
-				}
-				else break;
-			case EssentialOCLCSPackage.NAVIGATION_OPERATOR_CS:
-				if(context == grammarAccess.getBinaryOperatorCSRule() ||
-				   context == grammarAccess.getEssentialOCLNavigationOperatorCSRule() ||
-				   context == grammarAccess.getNavigationOperatorCSRule()) {
-					sequence_EssentialOCLNavigationOperatorCS(context, (NavigationOperatorCS) semanticObject); 
 					return; 
 				}
 				else break;

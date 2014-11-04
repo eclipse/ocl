@@ -48,7 +48,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationRole;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NullLiteralExpCS;
@@ -220,13 +219,6 @@ public class EssentialOCLCSPackageImpl
 	 * @generated
 	 */
 	private EClass navigatingArgCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass navigationOperatorCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1068,15 +1060,6 @@ public class EssentialOCLCSPackageImpl
 	public EReference getNavigatingArgCS_OwnedInitExpression()
 	{
 		return (EReference)navigatingArgCSEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getNavigationOperatorCS() {
-		return navigationOperatorCSEClass;
 	}
 
 	/**
@@ -1929,8 +1912,6 @@ public class EssentialOCLCSPackageImpl
 		createEReference(navigatingArgCSEClass, NAVIGATING_ARG_CS__OWNED_TYPE);
 		createEReference(navigatingArgCSEClass, NAVIGATING_ARG_CS__OWNED_INIT_EXPRESSION);
 
-		navigationOperatorCSEClass = createEClass(NAVIGATION_OPERATOR_CS);
-
 		nestedExpCSEClass = createEClass(NESTED_EXP_CS);
 		createEReference(nestedExpCSEClass, NESTED_EXP_CS__SOURCE);
 
@@ -2070,7 +2051,6 @@ public class EssentialOCLCSPackageImpl
 		nameExpCSEClass.getESuperTypes().add(this.getPropertyCallExpCS());
 		nameExpCSEClass.getESuperTypes().add(this.getVariableExpCS());
 		navigatingArgCSEClass.getESuperTypes().add(theBaseCSPackage.getModelElementCS());
-		navigationOperatorCSEClass.getESuperTypes().add(this.getBinaryOperatorCS());
 		nestedExpCSEClass.getESuperTypes().add(this.getExpCS());
 		nullLiteralExpCSEClass.getESuperTypes().add(this.getPrimitiveLiteralExpCS());
 		numberLiteralExpCSEClass.getESuperTypes().add(this.getPrimitiveLiteralExpCS());
@@ -2208,8 +2188,6 @@ public class EssentialOCLCSPackageImpl
 		initEReference(getNavigatingArgCS_OwnedNameExpression(), this.getExpCS(), null, "ownedNameExpression", null, 0, 1, NavigatingArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getNavigatingArgCS_OwnedType(), theBaseCSPackage.getTypedRefCS(), null, "ownedType", null, 0, 1, NavigatingArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getNavigatingArgCS_OwnedInitExpression(), this.getExpCS(), null, "ownedInitExpression", null, 0, 1, NavigatingArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(navigationOperatorCSEClass, NavigationOperatorCS.class, "NavigationOperatorCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(nestedExpCSEClass, NestedExpCS.class, "NestedExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getNestedExpCS_Source(), this.getExpCS(), null, "source", null, 0, 1, NestedExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

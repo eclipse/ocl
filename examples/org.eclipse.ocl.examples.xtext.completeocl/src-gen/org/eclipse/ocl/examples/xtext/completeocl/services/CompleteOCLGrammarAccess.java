@@ -89,7 +89,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cNameCircumflexAccentKeyword_0_0 = (Keyword)cNameAlternatives_0.eContents().get(0);
 		private final Keyword cNameCircumflexAccentCircumflexAccentKeyword_0_1 = (Keyword)cNameAlternatives_0.eContents().get(1);
 		
-		//CompleteOCLNavigationOperatorCS returns essentialocl::NavigationOperatorCS:
+		//CompleteOCLNavigationOperatorCS returns essentialocl::BinaryOperatorCS:
 		//	name=("^" | "^^");
 		public ParserRule getRule() { return rule; }
 
@@ -1127,7 +1127,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cEssentialOCLNavigationOperatorCSParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cCompleteOCLNavigationOperatorCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		//NavigationOperatorCS returns essentialocl::NavigationOperatorCS:
+		//NavigationOperatorCS returns essentialocl::BinaryOperatorCS:
 		//	EssentialOCLNavigationOperatorCS | CompleteOCLNavigationOperatorCS;
 		public ParserRule getRule() { return rule; }
 
@@ -1303,7 +1303,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return tUNQUOTED_STRING;
 	} 
 
-	//CompleteOCLNavigationOperatorCS returns essentialocl::NavigationOperatorCS:
+	//CompleteOCLNavigationOperatorCS returns essentialocl::BinaryOperatorCS:
 	//	name=("^" | "^^");
 	public CompleteOCLNavigationOperatorCSElements getCompleteOCLNavigationOperatorCSAccess() {
 		return pCompleteOCLNavigationOperatorCS;
@@ -1533,7 +1533,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getNavigatingArgExpCSAccess().getRule();
 	}
 
-	//NavigationOperatorCS returns essentialocl::NavigationOperatorCS:
+	//NavigationOperatorCS returns essentialocl::BinaryOperatorCS:
 	//	EssentialOCLNavigationOperatorCS | CompleteOCLNavigationOperatorCS;
 	public NavigationOperatorCSElements getNavigationOperatorCSAccess() {
 		return pNavigationOperatorCS;
@@ -1599,7 +1599,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// ** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> * /
-	//EssentialOCLNavigationOperatorCS returns NavigationOperatorCS:
+	//EssentialOCLNavigationOperatorCS returns BinaryOperatorCS:
 	//	name=("." | "->" | "?." | "?->");
 	public EssentialOCLGrammarAccess.EssentialOCLNavigationOperatorCSElements getEssentialOCLNavigationOperatorCSAccess() {
 		return gaEssentialOCL.getEssentialOCLNavigationOperatorCSAccess();

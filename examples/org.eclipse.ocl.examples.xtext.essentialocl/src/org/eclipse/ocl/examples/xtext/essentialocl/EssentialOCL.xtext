@@ -40,7 +40,7 @@ EssentialOCLInfixOperatorCS returns BinaryOperatorCS:
 	name=('*' | '/' | '+' | '-' | '>' | '<' | '>=' | '<=' | '=' | '<>' | 'and' | 'or' | 'xor' | 'implies');
 
 /** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> */
-EssentialOCLNavigationOperatorCS returns NavigationOperatorCS:
+EssentialOCLNavigationOperatorCS returns BinaryOperatorCS:
 	name=('.' | '->' | '?.' | '?->');
 
 BinaryOperatorCS returns BinaryOperatorCS:
@@ -49,7 +49,7 @@ BinaryOperatorCS returns BinaryOperatorCS:
 InfixOperatorCS returns BinaryOperatorCS: 			// Intended to be overrideable
 	EssentialOCLInfixOperatorCS;
 
-NavigationOperatorCS returns NavigationOperatorCS: 	// Intended to be overrideable
+NavigationOperatorCS returns BinaryOperatorCS: 	// Intended to be overrideable
 	EssentialOCLNavigationOperatorCS;
 
 UnaryOperatorName: 			// Intended to be overrideable

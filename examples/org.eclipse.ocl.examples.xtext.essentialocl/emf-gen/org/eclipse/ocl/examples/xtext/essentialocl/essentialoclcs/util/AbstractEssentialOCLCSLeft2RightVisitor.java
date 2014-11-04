@@ -151,10 +151,6 @@ public abstract class AbstractEssentialOCLCSLeft2RightVisitor
 		return visitModelElementCS(csElement);
 	}
 
-	public @Nullable Element visitNavigationOperatorCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS csElement) {
-		return visitBinaryOperatorCS(csElement);
-	}
-
 	public @Nullable Element visitNestedExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS csElement) {
 		return visitExpCS(csElement);
 	}

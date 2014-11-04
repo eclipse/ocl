@@ -196,7 +196,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cNameQuestionMarkHyphenMinusGreaterThanSignKeyword_0_3 = (Keyword)cNameAlternatives_0.eContents().get(3);
 		
 		/// ** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> * /
-		//EssentialOCLNavigationOperatorCS returns NavigationOperatorCS:
+		//EssentialOCLNavigationOperatorCS returns BinaryOperatorCS:
 		//	name=("." | "->" | "?." | "?->");
 		public ParserRule getRule() { return rule; }
 
@@ -257,7 +257,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cEssentialOCLNavigationOperatorCSParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
 		//// Intended to be overrideable
-		// NavigationOperatorCS:
+		// NavigationOperatorCS returns BinaryOperatorCS:
 		//	EssentialOCLNavigationOperatorCS;
 		public ParserRule getRule() { return rule; }
 
@@ -2629,7 +2629,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// ** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> * /
-	//EssentialOCLNavigationOperatorCS returns NavigationOperatorCS:
+	//EssentialOCLNavigationOperatorCS returns BinaryOperatorCS:
 	//	name=("." | "->" | "?." | "?->");
 	public EssentialOCLNavigationOperatorCSElements getEssentialOCLNavigationOperatorCSAccess() {
 		return pEssentialOCLNavigationOperatorCS;
@@ -2661,7 +2661,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// Intended to be overrideable
-	// NavigationOperatorCS:
+	// NavigationOperatorCS returns BinaryOperatorCS:
 	//	EssentialOCLNavigationOperatorCS;
 	public NavigationOperatorCSElements getNavigationOperatorCSAccess() {
 		return pNavigationOperatorCS;

@@ -2645,7 +2645,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// ** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> * /
-	//EssentialOCLNavigationOperatorCS returns NavigationOperatorCS:
+	//EssentialOCLNavigationOperatorCS returns BinaryOperatorCS:
 	//	name=("." | "->" | "?." | "?->");
 	public EssentialOCLGrammarAccess.EssentialOCLNavigationOperatorCSElements getEssentialOCLNavigationOperatorCSAccess() {
 		return gaEssentialOCL.getEssentialOCLNavigationOperatorCSAccess();
@@ -2677,7 +2677,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// Intended to be overrideable
-	// NavigationOperatorCS:
+	// NavigationOperatorCS returns BinaryOperatorCS:
 	//	EssentialOCLNavigationOperatorCS;
 	public EssentialOCLGrammarAccess.NavigationOperatorCSElements getNavigationOperatorCSAccess() {
 		return gaEssentialOCL.getNavigationOperatorCSAccess();

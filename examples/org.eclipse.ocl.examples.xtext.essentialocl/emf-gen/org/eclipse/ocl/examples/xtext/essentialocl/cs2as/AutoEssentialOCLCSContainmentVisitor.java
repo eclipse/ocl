@@ -44,7 +44,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NullLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NumberLiteralExpCS;
@@ -191,10 +190,6 @@ public class AutoEssentialOCLCSContainmentVisitor
     
     public @Nullable Continuation<?> visitNavigatingArgCS(@NonNull NavigatingArgCS self) {
         throw new UnsupportedOperationException("visitNavigatingArgCS is not supported by " + getClass().getName());
-    }
-    
-    public @Nullable Continuation<?> visitNavigationOperatorCS(@NonNull NavigationOperatorCS self) {
-        throw new UnsupportedOperationException("visitNavigationOperatorCS is not supported by " + getClass().getName());
     }
     
     public @Nullable Continuation<?> visitNestedExpCS(@NonNull NestedExpCS self) {

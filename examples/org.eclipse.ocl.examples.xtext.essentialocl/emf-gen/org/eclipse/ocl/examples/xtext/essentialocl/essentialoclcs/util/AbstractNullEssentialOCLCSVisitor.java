@@ -144,10 +144,6 @@ public abstract class AbstractNullEssentialOCLCSVisitor<R, C>
 		return null;
 	}
 
-	public @Nullable R visitNavigationOperatorCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS object) {
-		return null;
-	}
-
 	public @Nullable R visitNestedExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS object) {
 		return null;
 	}

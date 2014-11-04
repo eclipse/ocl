@@ -126,7 +126,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getPrimitiveLiteralExpCS()
 	 * @generated
 	 */
-	int PRIMITIVE_LITERAL_EXP_CS = 35;
+	int PRIMITIVE_LITERAL_EXP_CS = 34;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.TupleLiteralExpCSImpl <em>Tuple Literal Exp CS</em>}' class.
@@ -136,7 +136,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getTupleLiteralExpCS()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_EXP_CS = 41;
+	int TUPLE_LITERAL_EXP_CS = 40;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.StringLiteralExpCSImpl <em>String Literal Exp CS</em>}' class.
@@ -146,7 +146,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getStringLiteralExpCS()
 	 * @generated
 	 */
-	int STRING_LITERAL_EXP_CS = 40;
+	int STRING_LITERAL_EXP_CS = 39;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.BooleanLiteralExpCSImpl <em>Boolean Literal Exp CS</em>}' class.
@@ -176,7 +176,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNullLiteralExpCS()
 	 * @generated
 	 */
-	int NULL_LITERAL_EXP_CS = 29;
+	int NULL_LITERAL_EXP_CS = 28;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IfExpCSImpl <em>If Exp CS</em>}' class.
@@ -226,7 +226,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getTypeNameExpCS()
 	 * @generated
 	 */
-	int TYPE_NAME_EXP_CS = 44;
+	int TYPE_NAME_EXP_CS = 43;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NavigatingArgCSImpl <em>Navigating Arg CS</em>}' class.
@@ -246,7 +246,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNestedExpCS()
 	 * @generated
 	 */
-	int NESTED_EXP_CS = 28;
+	int NESTED_EXP_CS = 27;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NumberLiteralExpCSImpl <em>Number Literal Exp CS</em>}' class.
@@ -256,7 +256,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNumberLiteralExpCS()
 	 * @generated
 	 */
-	int NUMBER_LITERAL_EXP_CS = 30;
+	int NUMBER_LITERAL_EXP_CS = 29;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperatorCSImpl <em>Operator CS</em>}' class.
@@ -266,7 +266,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getOperatorCS()
 	 * @generated
 	 */
-	int OPERATOR_CS = 32;
+	int OPERATOR_CS = 31;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.BinaryOperatorCSImpl <em>Binary Operator CS</em>}' class.
@@ -1742,7 +1742,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getVariableCS()
 	 * @generated
 	 */
-	int VARIABLE_CS = 46;
+	int VARIABLE_CS = 45;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetVariableCSImpl <em>Let Variable CS</em>}' class.
@@ -3570,115 +3570,6 @@ public interface EssentialOCLCSPackage
 	int NAVIGATING_ARG_CS_FEATURE_COUNT = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 6;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NavigationOperatorCSImpl <em>Navigation Operator CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NavigationOperatorCSImpl
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNavigationOperatorCS()
-	 * @generated
-	 */
-	int NAVIGATION_OPERATOR_CS = 27;
-
-	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATION_OPERATOR_CS__LOGICAL_PARENT = BINARY_OPERATOR_CS__LOGICAL_PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Pivot</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATION_OPERATOR_CS__PIVOT = BINARY_OPERATOR_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATION_OPERATOR_CS__OWNED_ANNOTATIONS = BINARY_OPERATOR_CS__OWNED_ANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATION_OPERATOR_CS__ORIGINAL_XMI_ID = BINARY_OPERATOR_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATION_OPERATOR_CS__CSI = BINARY_OPERATOR_CS__CSI;
-
-	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATION_OPERATOR_CS__PARENT = BINARY_OPERATOR_CS__PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATION_OPERATOR_CS__HAS_ERROR = BINARY_OPERATOR_CS__HAS_ERROR;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATION_OPERATOR_CS__NAME = BINARY_OPERATOR_CS__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATION_OPERATOR_CS__SOURCE = BINARY_OPERATOR_CS__SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>Argument</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATION_OPERATOR_CS__ARGUMENT = BINARY_OPERATOR_CS__ARGUMENT;
-
-	/**
-	 * The number of structural features of the '<em>Navigation Operator CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATION_OPERATOR_CS_FEATURE_COUNT = BINARY_OPERATOR_CS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3920,7 +3811,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getOperationCallExpCS()
 	 * @generated
 	 */
-	int OPERATION_CALL_EXP_CS = 31;
+	int OPERATION_CALL_EXP_CS = 30;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -4092,7 +3983,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getPatternExpCS()
 	 * @generated
 	 */
-	int PATTERN_EXP_CS = 33;
+	int PATTERN_EXP_CS = 32;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -4192,7 +4083,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getPrefixExpCS()
 	 * @generated
 	 */
-	int PREFIX_EXP_CS = 34;
+	int PREFIX_EXP_CS = 33;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.PropertyCallExpCSImpl <em>Property Call Exp CS</em>}' class.
@@ -4202,7 +4093,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getPropertyCallExpCS()
 	 * @generated
 	 */
-	int PROPERTY_CALL_EXP_CS = 36;
+	int PROPERTY_CALL_EXP_CS = 35;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.RoundBracketedClauseCSImpl <em>Round Bracketed Clause CS</em>}' class.
@@ -4212,7 +4103,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getRoundBracketedClauseCS()
 	 * @generated
 	 */
-	int ROUND_BRACKETED_CLAUSE_CS = 37;
+	int ROUND_BRACKETED_CLAUSE_CS = 36;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.SelfExpCSImpl <em>Self Exp CS</em>}' class.
@@ -4222,7 +4113,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getSelfExpCS()
 	 * @generated
 	 */
-	int SELF_EXP_CS = 38;
+	int SELF_EXP_CS = 37;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.SquareBracketedClauseCSImpl <em>Square Bracketed Clause CS</em>}' class.
@@ -4232,7 +4123,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getSquareBracketedClauseCS()
 	 * @generated
 	 */
-	int SQUARE_BRACKETED_CLAUSE_CS = 39;
+	int SQUARE_BRACKETED_CLAUSE_CS = 38;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.TupleLiteralPartCSImpl <em>Tuple Literal Part CS</em>}' class.
@@ -4242,7 +4133,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getTupleLiteralPartCS()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_PART_CS = 42;
+	int TUPLE_LITERAL_PART_CS = 41;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.TypeLiteralExpCSImpl <em>Type Literal Exp CS</em>}' class.
@@ -4252,7 +4143,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getTypeLiteralExpCS()
 	 * @generated
 	 */
-	int TYPE_LITERAL_EXP_CS = 43;
+	int TYPE_LITERAL_EXP_CS = 42;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -5090,7 +4981,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getUnlimitedNaturalLiteralExpCS()
 	 * @generated
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP_CS = 45;
+	int UNLIMITED_NATURAL_LITERAL_EXP_CS = 44;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -5172,7 +5063,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getVariableExpCS()
 	 * @generated
 	 */
-	int VARIABLE_EXP_CS = 47;
+	int VARIABLE_EXP_CS = 46;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -5326,7 +5217,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNavigationRole()
 	 * @generated
 	 */
-	int NAVIGATION_ROLE = 48;
+	int NAVIGATION_ROLE = 47;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AbstractNameExpCS <em>Abstract Name Exp CS</em>}'.
@@ -5978,16 +5869,6 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 */
 	EReference getNavigatingArgCS_OwnedInitExpression();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS <em>Navigation Operator CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Navigation Operator CS</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS
-	 * @generated
-	 */
-	EClass getNavigationOperatorCS();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS <em>Nested Exp CS</em>}'.
@@ -7314,16 +7195,6 @@ public interface EssentialOCLCSPackage
 		 * @generated
 		 */
 		EReference NAVIGATING_ARG_CS__OWNED_INIT_EXPRESSION = eINSTANCE.getNavigatingArgCS_OwnedInitExpression();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NavigationOperatorCSImpl <em>Navigation Operator CS</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NavigationOperatorCSImpl
-		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNavigationOperatorCS()
-		 * @generated
-		 */
-		EClass NAVIGATION_OPERATOR_CS = eINSTANCE.getNavigationOperatorCS();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NestedExpCSImpl <em>Nested Exp CS</em>}' class.

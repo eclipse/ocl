@@ -17,9 +17,9 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
 
 public class NavigationOperatorCSAttribution extends AbstractAttribution
 {
@@ -31,22 +31,24 @@ public class NavigationOperatorCSAttribution extends AbstractAttribution
 			return scopeView.getParent();
 		}
 		assert scopeView.getContainmentFeature() != PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT;		// Arguments must leapfrog to parent.
-		NavigationOperatorCS targetElement = (NavigationOperatorCS)target;
-		EObject child = scopeView.getChild();
-		ExpCS argument = targetElement.getArgument();
-		if ((child == argument) && (child instanceof NameExpCS)) {
-			NameExpCS csNameExp = (NameExpCS)child;
-			Type sourceTypeValue = csNameExp.getSourceTypeValue();
-			if (sourceTypeValue != null) {
-				environmentView.addElementsOfScope(environmentView.getStandardLibrary().getClassType(), scopeView);
-			}
-			if (!environmentView.hasFinalResult()) {
-				Type type = sourceTypeValue != null ? sourceTypeValue : csNameExp.getSourceType();
-				if (type != null) {
-					environmentView.addElementsOfScope(type, scopeView);
+		if (NavigationUtil.isNavigationOperator(target)) {
+			BinaryOperatorCS targetElement = (BinaryOperatorCS)target;
+			EObject child = scopeView.getChild();
+			ExpCS argument = targetElement.getArgument();
+			if ((child == argument) && (child instanceof NameExpCS)) {
+				NameExpCS csNameExp = (NameExpCS)child;
+				Type sourceTypeValue = csNameExp.getSourceTypeValue();
+				if (sourceTypeValue != null) {
+					environmentView.addElementsOfScope(environmentView.getStandardLibrary().getClassType(), scopeView);
 				}
+				if (!environmentView.hasFinalResult()) {
+					Type type = sourceTypeValue != null ? sourceTypeValue : csNameExp.getSourceType();
+					if (type != null) {
+						environmentView.addElementsOfScope(type, scopeView);
+					}
+				}
+				return null;											// Explicit navigation must be resolved in source
 			}
-			return null;											// Explicit navigation must be resolved in source
 		}
 		return scopeView.getParent();
 	}

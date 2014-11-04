@@ -17,7 +17,6 @@ import org.eclipse.ocl.examples.xtext.base.ui.outline.BaseOutlineTreeProvider;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
@@ -45,10 +44,10 @@ public class EssentialOCLOutlineTreeProvider extends BaseOutlineTreeProvider
 		}
 	} */
 
-	protected void _createChildren(IOutlineNode parentNode, NavigationOperatorCS csOperator) {
-		createNode(parentNode, csOperator.getSource());
-		createNode(parentNode, csOperator.getArgument());
-	}
+//	protected void _createChildren(IOutlineNode parentNode, NavigationOperatorCS csOperator) {
+//		createNode(parentNode, csOperator.getSource());
+//		createNode(parentNode, csOperator.getArgument());
+//	}
 
 	protected void _createChildren(IOutlineNode parentNode, NestedExpCS csExp) {
 		createNode(parentNode, csExp.getSource());

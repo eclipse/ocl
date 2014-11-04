@@ -43,12 +43,13 @@ import org.eclipse.ocl.examples.xtext.essentialocl.attributes.LetExpCSAttributio
 import org.eclipse.ocl.examples.xtext.essentialocl.attributes.LetVariableCSAttribution;
 import org.eclipse.ocl.examples.xtext.essentialocl.attributes.NavigatingArgCSAttribution;
 import org.eclipse.ocl.examples.xtext.essentialocl.attributes.NavigationOperatorCSAttribution;
+import org.eclipse.ocl.examples.xtext.essentialocl.attributes.NavigationUtil;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationRole;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS;
@@ -64,7 +65,7 @@ public class EssentialOCLScoping
 		registry.put(EssentialOCLCSPackage.Literals.LET_EXP_CS, LetExpCSAttribution.INSTANCE);
 		registry.put(EssentialOCLCSPackage.Literals.LET_VARIABLE_CS, LetVariableCSAttribution.INSTANCE);  // Needed for let deeply nested in Iterator/CollectionLiteral
 		registry.put(EssentialOCLCSPackage.Literals.NAVIGATING_ARG_CS, NavigatingArgCSAttribution.INSTANCE);
-		registry.put(EssentialOCLCSPackage.Literals.NAVIGATION_OPERATOR_CS, NavigationOperatorCSAttribution.INSTANCE);
+		registry.put(EssentialOCLCSPackage.Literals.BINARY_OPERATOR_CS, NavigationOperatorCSAttribution.INSTANCE);
 		CS2AS.addUnresolvedProxyMessageProvider(new PathElementCSUnresolvedProxyMessageProvider());
 	}
 	
@@ -183,7 +184,7 @@ public class EssentialOCLScoping
 				}
 				if (sourceType != null) {
 					OperatorCS csParent = navigationArgument != null ? navigationArgument.getParent() : null;
-					if (!(sourceType instanceof CollectionType) && (csParent instanceof NavigationOperatorCS) && PivotConstants.COLLECTION_NAVIGATION_OPERATOR.equals(((NavigationOperatorCS)csParent).getName())) {
+					if (!(sourceType instanceof CollectionType) && NavigationUtil.isNavigationOperator(csParent) && (csParent != null) && PivotConstants.COLLECTION_NAVIGATION_OPERATOR.equals(((BinaryOperatorCS)csParent).getName())) {
 						typeText = "Set(" + sourceType.toString() + ")";
 					}
 					else {

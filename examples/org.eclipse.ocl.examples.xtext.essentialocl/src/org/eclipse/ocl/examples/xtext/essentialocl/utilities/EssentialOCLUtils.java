@@ -14,12 +14,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.attributes.NavigationUtil;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
@@ -43,8 +44,8 @@ public class EssentialOCLUtils	// FIXME Find some extensible instantiation echan
 		else if (csElement instanceof NavigatingArgCS) {
 			return getPivotedCS(((NavigatingArgCS)csElement).getOwnedNameExpression());
 		}
-		else if (csElement instanceof NavigationOperatorCS) {
-			return getPivotedCS(((NavigationOperatorCS)csElement).getArgument());
+		else if (NavigationUtil.isNavigationOperator(csElement)) {
+			return getPivotedCS(((BinaryOperatorCS)csElement).getArgument());
 		}
 		else if (csElement instanceof NestedExpCS) {
 			return getPivotedCS(((NestedExpCS)csElement).getSource());
@@ -75,7 +76,7 @@ public class EssentialOCLUtils	// FIXME Find some extensible instantiation echan
 		}
 		if (csElement instanceof ExpCS) {
 			OperatorCS operator = ((ExpCS) csElement).getParent();
-			if ((operator instanceof NavigationOperatorCS) && (csElement != operator.getSource())) {
+			if (NavigationUtil.isNavigationOperator(operator) && (csElement != operator.getSource())) {
 				return getPivotingChildCS(operator);
 			}
 			else if (operator != null) {

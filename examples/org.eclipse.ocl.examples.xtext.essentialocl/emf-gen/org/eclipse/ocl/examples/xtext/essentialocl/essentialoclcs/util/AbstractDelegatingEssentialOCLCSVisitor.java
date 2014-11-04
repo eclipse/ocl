@@ -144,10 +144,6 @@ public abstract class AbstractDelegatingEssentialOCLCSVisitor<R, C, D extends Es
 		return delegate.visitNavigatingArgCS(object);
 	}
 
-	public @Nullable R visitNavigationOperatorCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS object) {
-		return delegate.visitNavigationOperatorCS(object);
-	}
-
 	public @Nullable R visitNestedExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS object) {
 		return delegate.visitNestedExpCS(object);
 	}

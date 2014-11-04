@@ -53,7 +53,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NullLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NumberLiteralExpCS;
@@ -299,10 +298,25 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 			}
 		else if(semanticObject.eClass().getEPackage() == EssentialOCLCSPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
 			case EssentialOCLCSPackage.BINARY_OPERATOR_CS:
-				if(context == grammarAccess.getBinaryOperatorCSRule() ||
-				   context == grammarAccess.getEssentialOCLInfixOperatorCSRule() ||
+				if(context == grammarAccess.getBinaryOperatorCSRule()) {
+					sequence_BinaryOperatorCS_CompleteOCLNavigationOperatorCS_EssentialOCLInfixOperatorCS_EssentialOCLNavigationOperatorCS(context, (BinaryOperatorCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getCompleteOCLNavigationOperatorCSRule()) {
+					sequence_CompleteOCLNavigationOperatorCS(context, (BinaryOperatorCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getNavigationOperatorCSRule()) {
+					sequence_CompleteOCLNavigationOperatorCS_EssentialOCLNavigationOperatorCS_NavigationOperatorCS(context, (BinaryOperatorCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getEssentialOCLInfixOperatorCSRule() ||
 				   context == grammarAccess.getInfixOperatorCSRule()) {
 					sequence_EssentialOCLInfixOperatorCS(context, (BinaryOperatorCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getEssentialOCLNavigationOperatorCSRule()) {
+					sequence_EssentialOCLNavigationOperatorCS(context, (BinaryOperatorCS) semanticObject); 
 					return; 
 				}
 				else break;
@@ -477,21 +491,6 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 					return; 
 				}
 				else break;
-			case EssentialOCLCSPackage.NAVIGATION_OPERATOR_CS:
-				if(context == grammarAccess.getBinaryOperatorCSRule() ||
-				   context == grammarAccess.getNavigationOperatorCSRule()) {
-					sequence_CompleteOCLNavigationOperatorCS_EssentialOCLNavigationOperatorCS_NavigationOperatorCS(context, (NavigationOperatorCS) semanticObject); 
-					return; 
-				}
-				else if(context == grammarAccess.getCompleteOCLNavigationOperatorCSRule()) {
-					sequence_CompleteOCLNavigationOperatorCS(context, (NavigationOperatorCS) semanticObject); 
-					return; 
-				}
-				else if(context == grammarAccess.getEssentialOCLNavigationOperatorCSRule()) {
-					sequence_EssentialOCLNavigationOperatorCS(context, (NavigationOperatorCS) semanticObject); 
-					return; 
-				}
-				else break;
 			case EssentialOCLCSPackage.NESTED_EXP_CS:
 				if(context == grammarAccess.getExpCSRule() ||
 				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedExpressionAction_0_1_0() ||
@@ -641,6 +640,36 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	/**
 	 * Constraint:
 	 *     (
+	 *         name='*' | 
+	 *         name='/' | 
+	 *         name='+' | 
+	 *         name='-' | 
+	 *         name='>' | 
+	 *         name='<' | 
+	 *         name='>=' | 
+	 *         name='<=' | 
+	 *         name='=' | 
+	 *         name='<>' | 
+	 *         name='and' | 
+	 *         name='or' | 
+	 *         name='xor' | 
+	 *         name='implies' | 
+	 *         name='.' | 
+	 *         name='->' | 
+	 *         name='?.' | 
+	 *         name='?->' | 
+	 *         name='^' | 
+	 *         name='^^'
+	 *     )
+	 */
+	protected void sequence_BinaryOperatorCS_CompleteOCLNavigationOperatorCS_EssentialOCLInfixOperatorCS_EssentialOCLNavigationOperatorCS(EObject context, BinaryOperatorCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (
 	 *         ownedSignature=TemplateSignatureCS? 
 	 *         selfName=UnrestrictedName? 
 	 *         ownedPathName=PathNameCS 
@@ -666,6 +695,15 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	
 	/**
 	 * Constraint:
+	 *     (name='^' | name='^^')
+	 */
+	protected void sequence_CompleteOCLNavigationOperatorCS(EObject context, BinaryOperatorCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (
 	 *         name='.' | 
 	 *         name='->' | 
@@ -675,16 +713,7 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	 *         name='^^'
 	 *     )
 	 */
-	protected void sequence_CompleteOCLNavigationOperatorCS_EssentialOCLNavigationOperatorCS_NavigationOperatorCS(EObject context, NavigationOperatorCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (name='^' | name='^^')
-	 */
-	protected void sequence_CompleteOCLNavigationOperatorCS(EObject context, NavigationOperatorCS semanticObject) {
+	protected void sequence_CompleteOCLNavigationOperatorCS_EssentialOCLNavigationOperatorCS_NavigationOperatorCS(EObject context, BinaryOperatorCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

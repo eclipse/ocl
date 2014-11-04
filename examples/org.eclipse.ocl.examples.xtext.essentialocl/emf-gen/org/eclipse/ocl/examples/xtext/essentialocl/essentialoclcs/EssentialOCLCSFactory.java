@@ -176,15 +176,6 @@ public interface EssentialOCLCSFactory
 	NavigatingArgCS createNavigatingArgCS();
 
 	/**
-	 * Returns a new object of class '<em>Navigation Operator CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Navigation Operator CS</em>'.
-	 * @generated
-	 */
-	NavigationOperatorCS createNavigationOperatorCS();
-
-	/**
 	 * Returns a new object of class '<em>Nested Exp CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

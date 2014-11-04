@@ -185,7 +185,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedInitExpression" eType="#//ExpCS"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NavigationOperatorCS" eSuperTypes="#//BinaryOperatorCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="NestedExpCS" eSuperTypes="#//ExpCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//ExpCS"
         containment="true"/>

@@ -78,11 +78,11 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
+import org.eclipse.ocl.examples.xtext.essentialocl.attributes.NavigationUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS;
@@ -436,7 +436,7 @@ public class XtextTestCase extends PivotTestCase
 		if (csElement instanceof SquareBracketedClauseCS) {
 			return false;
 		}
-		if (csElement instanceof NavigationOperatorCS) {
+		if (NavigationUtil.isNavigationOperator(csElement)) {
 			return false;
 		}
 		if (csElement instanceof CollectionTypeCS) {
@@ -473,7 +473,7 @@ public class XtextTestCase extends PivotTestCase
 		if (csElement instanceof SquareBracketedClauseCS) {
 			return false;
 		}
-		if (csElement instanceof NavigationOperatorCS) {
+		if (NavigationUtil.isNavigationOperator(csElement)) {
 			return false;
 		}
 		if (csElement instanceof CollectionTypeCS) {
