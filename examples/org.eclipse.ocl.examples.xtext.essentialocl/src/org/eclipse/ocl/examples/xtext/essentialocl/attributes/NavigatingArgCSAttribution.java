@@ -28,8 +28,8 @@ import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AbstractNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationRole;
@@ -44,7 +44,7 @@ public class NavigatingArgCSAttribution extends AbstractAttribution
 		NavigatingArgCS fromArgument = (NavigatingArgCS)target;
 		NavigationRole role = fromArgument.getRole();
 		RoundBracketedClauseCS csRoundBracketedClause = fromArgument.getOwningRoundBracketedClause();
-		NameExpCS targetElement = csRoundBracketedClause.getOwningNameExp();
+		AbstractNameExpCS targetElement = csRoundBracketedClause.getOwningNameExp();
 		assert targetElement != null;
 		NavigationOperatorCS csNavigationOperator = NavigationUtil.getNavigationOperator(targetElement);
 		OCLExpression pivot = PivotUtil.getPivot(OCLExpression.class, targetElement);	// NB QVTr's RelationCallExp is not a CallExp

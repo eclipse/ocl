@@ -36,6 +36,10 @@ public abstract class AbstractNullEssentialOCLCSVisitor<R, C>
 		super(context);
 	}	
 
+	public @Nullable R visitAbstractNameExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AbstractNameExpCS object) {
+		return null;
+	}
+
 	public @Nullable R visitAssociationClassCallExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AssociationClassCallExpCS object) {
 		return null;
 	}

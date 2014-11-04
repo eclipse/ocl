@@ -11,17 +11,13 @@
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.AssociationClass;
-import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AssociationClassCallExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.EssentialOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,10 +32,10 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  *
  * @generated
  */
-public class AssociationClassCallExpCSImpl extends CallExpCSImpl implements AssociationClassCallExpCS
+public abstract class AssociationClassCallExpCSImpl extends CallExpCSImpl implements AssociationClassCallExpCS
 {
 	/**
-	 * The cached value of the '{@link #getReferredAssociation() <em>Referred Association</em>}' containment reference.
+	 * The cached value of the '{@link #getReferredAssociation() <em>Referred Association</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getReferredAssociation()
@@ -76,6 +72,16 @@ public class AssociationClassCallExpCSImpl extends CallExpCSImpl implements Asso
 	 */
 	public AssociationClass getReferredAssociation()
 	{
+		if (referredAssociation != null && ((EObject)referredAssociation).eIsProxy())
+		{
+			InternalEObject oldReferredAssociation = (InternalEObject)referredAssociation;
+			referredAssociation = (AssociationClass)eResolveProxy(oldReferredAssociation);
+			if (referredAssociation != oldReferredAssociation)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EssentialOCLCSPackage.ASSOCIATION_CLASS_CALL_EXP_CS__REFERRED_ASSOCIATION, oldReferredAssociation, referredAssociation));
+			}
+		}
 		return referredAssociation;
 	}
 
@@ -84,16 +90,9 @@ public class AssociationClassCallExpCSImpl extends CallExpCSImpl implements Asso
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetReferredAssociation(AssociationClass newReferredAssociation, NotificationChain msgs)
+	public AssociationClass basicGetReferredAssociation()
 	{
-		AssociationClass oldReferredAssociation = referredAssociation;
-		referredAssociation = newReferredAssociation;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.ASSOCIATION_CLASS_CALL_EXP_CS__REFERRED_ASSOCIATION, oldReferredAssociation, newReferredAssociation);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+		return referredAssociation;
 	}
 
 	/**
@@ -103,34 +102,10 @@ public class AssociationClassCallExpCSImpl extends CallExpCSImpl implements Asso
 	 */
 	public void setReferredAssociation(AssociationClass newReferredAssociation)
 	{
-		if (newReferredAssociation != referredAssociation)
-		{
-			NotificationChain msgs = null;
-			if (referredAssociation != null)
-				msgs = ((InternalEObject)referredAssociation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.ASSOCIATION_CLASS_CALL_EXP_CS__REFERRED_ASSOCIATION, null, msgs);
-			if (newReferredAssociation != null)
-				msgs = ((InternalEObject)newReferredAssociation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.ASSOCIATION_CLASS_CALL_EXP_CS__REFERRED_ASSOCIATION, null, msgs);
-			msgs = basicSetReferredAssociation(newReferredAssociation, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.ASSOCIATION_CLASS_CALL_EXP_CS__REFERRED_ASSOCIATION, newReferredAssociation, newReferredAssociation));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
-			case EssentialOCLCSPackage.ASSOCIATION_CLASS_CALL_EXP_CS__REFERRED_ASSOCIATION:
-				return basicSetReferredAssociation(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		AssociationClass oldReferredAssociation = referredAssociation;
+		referredAssociation = newReferredAssociation;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.ASSOCIATION_CLASS_CALL_EXP_CS__REFERRED_ASSOCIATION, oldReferredAssociation, referredAssociation));
 	}
 
 	/**
@@ -144,7 +119,8 @@ public class AssociationClassCallExpCSImpl extends CallExpCSImpl implements Asso
 		switch (featureID)
 		{
 			case EssentialOCLCSPackage.ASSOCIATION_CLASS_CALL_EXP_CS__REFERRED_ASSOCIATION:
-				return getReferredAssociation();
+				if (resolve) return getReferredAssociation();
+				return basicGetReferredAssociation();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -197,16 +173,6 @@ public class AssociationClassCallExpCSImpl extends CallExpCSImpl implements Asso
 				return referredAssociation != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public @Nullable <R> R accept(@NonNull BaseCSVisitor<R> visitor) {
-		return (R) ((EssentialOCLCSVisitor<?>)visitor).visitAssociationClassCallExpCS(this);
 	}
 
 } //AssociationClassCallExpCSImpl

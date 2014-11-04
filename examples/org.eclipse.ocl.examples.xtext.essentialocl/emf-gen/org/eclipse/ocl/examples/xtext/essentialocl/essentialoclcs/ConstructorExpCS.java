@@ -20,59 +20,59 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS#getOwnedType <em>Owned Type</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS#getOwnedParts <em>Owned Parts</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS#getTypeName <em>Type Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS#getParts <em>Parts</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getConstructorExpCS()
- * @model
+ * @model abstract="true"
  * @generated
  */
-public interface ConstructorExpCS extends LiteralExpCS
+public interface ConstructorExpCS extends AbstractNameExpCS
 {
 	/**
-	 * Returns the value of the '<em><b>Owned Type</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Type Name</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owned Type</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Type Name</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Type</em>' containment reference.
-	 * @see #setOwnedType(TypeNameExpCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getConstructorExpCS_OwnedType()
-	 * @model containment="true"
+	 * @return the value of the '<em>Type Name</em>' reference.
+	 * @see #setTypeName(TypeNameExpCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getConstructorExpCS_TypeName()
+	 * @model derived="true"
 	 * @generated
 	 */
-	TypeNameExpCS getOwnedType();
+	TypeNameExpCS getTypeName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS#getOwnedType <em>Owned Type</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS#getTypeName <em>Type Name</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owned Type</em>' containment reference.
-	 * @see #getOwnedType()
+	 * @param value the new value of the '<em>Type Name</em>' reference.
+	 * @see #getTypeName()
 	 * @generated
 	 */
-	void setOwnedType(TypeNameExpCS value);
+	void setTypeName(TypeNameExpCS value);
 
 	/**
-	 * Returns the value of the '<em><b>Owned Parts</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Parts</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owned Parts</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Parts</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Parts</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getConstructorExpCS_OwnedParts()
-	 * @model containment="true"
+	 * @return the value of the '<em>Parts</em>' reference list.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getConstructorExpCS_Parts()
+	 * @model derived="true"
 	 * @generated
 	 */
-	EList<ConstructorPartCS> getOwnedParts();
+	EList<ConstructorPartCS> getParts();
 
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.
@@ -85,7 +85,7 @@ public interface ConstructorExpCS extends LiteralExpCS
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(String)
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getConstructorExpCS_Value()
-	 * @model unique="false"
+	 * @model unique="false" derived="true"
 	 * @generated
 	 */
 	String getValue();

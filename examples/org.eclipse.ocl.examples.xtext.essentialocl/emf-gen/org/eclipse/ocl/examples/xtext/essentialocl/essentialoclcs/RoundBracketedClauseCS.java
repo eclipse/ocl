@@ -35,7 +35,7 @@ public interface RoundBracketedClauseCS extends ContextLessElementCS
 {
 	/**
 	 * Returns the value of the '<em><b>Owning Name Exp</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getOwnedRoundBracketedClause <em>Owned Round Bracketed Clause</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AbstractNameExpCS#getOwnedRoundBracketedClause <em>Owned Round Bracketed Clause</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name Exp</em>' container reference isn't clear,
@@ -43,13 +43,13 @@ public interface RoundBracketedClauseCS extends ContextLessElementCS
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owning Name Exp</em>' container reference.
-	 * @see #setOwningNameExp(NameExpCS)
+	 * @see #setOwningNameExp(AbstractNameExpCS)
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getRoundBracketedClauseCS_OwningNameExp()
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getOwnedRoundBracketedClause
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AbstractNameExpCS#getOwnedRoundBracketedClause
 	 * @model opposite="ownedRoundBracketedClause" transient="false"
 	 * @generated
 	 */
-	NameExpCS getOwningNameExp();
+	AbstractNameExpCS getOwningNameExp();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS#getOwningNameExp <em>Owning Name Exp</em>}' container reference.
@@ -59,7 +59,7 @@ public interface RoundBracketedClauseCS extends ContextLessElementCS
 	 * @see #getOwningNameExp()
 	 * @generated
 	 */
-	void setOwningNameExp(NameExpCS value);
+	void setOwningNameExp(AbstractNameExpCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Arguments</b></em>' containment reference list.

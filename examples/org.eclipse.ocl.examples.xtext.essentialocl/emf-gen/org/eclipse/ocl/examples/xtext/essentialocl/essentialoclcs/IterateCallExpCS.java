@@ -20,30 +20,30 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IterateCallExpCS#getOwnedAccumulators <em>Owned Accumulators</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IterateCallExpCS#getAccumulators <em>Accumulators</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getIterateCallExpCS()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface IterateCallExpCS extends IterationCallExpCS
 {
 	/**
-	 * Returns the value of the '<em><b>Owned Accumulators</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Accumulators</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owned Accumulators</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Accumulators</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Accumulators</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getIterateCallExpCS_OwnedAccumulators()
-	 * @model containment="true"
+	 * @return the value of the '<em>Accumulators</em>' reference list.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getIterateCallExpCS_Accumulators()
+	 * @model derived="true"
 	 * @generated
 	 */
-	EList<VariableCS> getOwnedAccumulators();
+	EList<VariableCS> getAccumulators();
 
 } // IterateCallExpCS

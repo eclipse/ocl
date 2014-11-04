@@ -91,6 +91,11 @@ public class EssentialOCLCSAdapterFactory
 	protected EssentialOCLCSSwitch<Adapter> modelSwitch = new EssentialOCLCSSwitch<Adapter>()
 		{
 			@Override
+			public Adapter caseAbstractNameExpCS(AbstractNameExpCS object)
+			{
+				return createAbstractNameExpCSAdapter();
+			}
+			@Override
 			public Adapter caseAssociationClassCallExpCS(AssociationClassCallExpCS object)
 			{
 				return createAssociationClassCallExpCSAdapter();
@@ -413,6 +418,21 @@ public class EssentialOCLCSAdapterFactory
 	@Override
 	public Adapter createAdapter(Notifier target) {
 		return modelSwitch.doSwitch((EObject)target);
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AbstractNameExpCS <em>Abstract Name Exp CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AbstractNameExpCS
+	 * @generated
+	 */
+	public Adapter createAbstractNameExpCSAdapter()
+	{
+		return null;
 	}
 
 	/**

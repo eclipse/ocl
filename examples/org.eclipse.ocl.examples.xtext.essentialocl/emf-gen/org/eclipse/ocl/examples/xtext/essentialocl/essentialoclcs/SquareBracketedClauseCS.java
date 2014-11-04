@@ -34,7 +34,7 @@ public interface SquareBracketedClauseCS extends ContextLessElementCS
 {
 	/**
 	 * Returns the value of the '<em><b>Owning Name Exp</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getOwnedSquareBracketedClauses <em>Owned Square Bracketed Clauses</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AbstractNameExpCS#getOwnedSquareBracketedClauses <em>Owned Square Bracketed Clauses</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name Exp</em>' container reference isn't clear,
@@ -42,13 +42,13 @@ public interface SquareBracketedClauseCS extends ContextLessElementCS
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owning Name Exp</em>' container reference.
-	 * @see #setOwningNameExp(NameExpCS)
+	 * @see #setOwningNameExp(AbstractNameExpCS)
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getSquareBracketedClauseCS_OwningNameExp()
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS#getOwnedSquareBracketedClauses
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AbstractNameExpCS#getOwnedSquareBracketedClauses
 	 * @model opposite="ownedSquareBracketedClauses" transient="false"
 	 * @generated
 	 */
-	NameExpCS getOwningNameExp();
+	AbstractNameExpCS getOwningNameExp();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SquareBracketedClauseCS#getOwningNameExp <em>Owning Name Exp</em>}' container reference.
@@ -58,7 +58,7 @@ public interface SquareBracketedClauseCS extends ContextLessElementCS
 	 * @see #getOwningNameExp()
 	 * @generated
 	 */
-	void setOwningNameExp(NameExpCS value);
+	void setOwningNameExp(AbstractNameExpCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Terms</b></em>' containment reference list.

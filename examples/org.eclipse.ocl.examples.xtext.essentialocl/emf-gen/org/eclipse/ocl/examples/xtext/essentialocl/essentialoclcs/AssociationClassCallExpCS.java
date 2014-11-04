@@ -25,32 +25,32 @@ import org.eclipse.ocl.examples.pivot.AssociationClass;
  * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getAssociationClassCallExpCS()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface AssociationClassCallExpCS extends CallExpCS
 {
 	/**
-	 * Returns the value of the '<em><b>Referred Association</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Referred Association</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Referred Association</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Referred Association</em>' containment reference.
+	 * @return the value of the '<em>Referred Association</em>' reference.
 	 * @see #setReferredAssociation(AssociationClass)
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getAssociationClassCallExpCS_ReferredAssociation()
-	 * @model containment="true" required="true"
+	 * @model derived="true"
 	 * @generated
 	 */
 	AssociationClass getReferredAssociation();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AssociationClassCallExpCS#getReferredAssociation <em>Referred Association</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AssociationClassCallExpCS#getReferredAssociation <em>Referred Association</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Referred Association</em>' containment reference.
+	 * @param value the new value of the '<em>Referred Association</em>' reference.
 	 * @see #getReferredAssociation()
 	 * @generated
 	 */

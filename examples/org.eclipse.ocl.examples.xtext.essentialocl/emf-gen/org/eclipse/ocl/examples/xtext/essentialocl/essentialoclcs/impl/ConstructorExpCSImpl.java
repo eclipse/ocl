@@ -13,21 +13,15 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.EssentialOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,35 +30,35 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ConstructorExpCSImpl#getOwnedType <em>Owned Type</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ConstructorExpCSImpl#getOwnedParts <em>Owned Parts</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ConstructorExpCSImpl#getTypeName <em>Type Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ConstructorExpCSImpl#getParts <em>Parts</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ConstructorExpCSImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ConstructorExpCSImpl extends LiteralExpCSImpl implements ConstructorExpCS
+public abstract class ConstructorExpCSImpl extends AbstractNameExpCSImpl implements ConstructorExpCS
 {
 	/**
-	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' containment reference.
+	 * The cached value of the '{@link #getTypeName() <em>Type Name</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedType()
+	 * @see #getTypeName()
 	 * @generated
 	 * @ordered
 	 */
-	protected TypeNameExpCS ownedType;
+	protected TypeNameExpCS typeName;
 
 	/**
-	 * The cached value of the '{@link #getOwnedParts() <em>Owned Parts</em>}' containment reference list.
+	 * The cached value of the '{@link #getParts() <em>Parts</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedParts()
+	 * @see #getParts()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ConstructorPartCS> ownedParts;
+	protected EList<ConstructorPartCS> parts;
 
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -112,9 +106,19 @@ public class ConstructorExpCSImpl extends LiteralExpCSImpl implements Constructo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeNameExpCS getOwnedType()
+	public TypeNameExpCS getTypeName()
 	{
-		return ownedType;
+		if (typeName != null && typeName.eIsProxy())
+		{
+			InternalEObject oldTypeName = (InternalEObject)typeName;
+			typeName = (TypeNameExpCS)eResolveProxy(oldTypeName);
+			if (typeName != oldTypeName)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__TYPE_NAME, oldTypeName, typeName));
+			}
+		}
+		return typeName;
 	}
 
 	/**
@@ -122,16 +126,22 @@ public class ConstructorExpCSImpl extends LiteralExpCSImpl implements Constructo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwnedType(TypeNameExpCS newOwnedType, NotificationChain msgs)
+	public TypeNameExpCS basicGetTypeName()
 	{
-		TypeNameExpCS oldOwnedType = ownedType;
-		ownedType = newOwnedType;
+		return typeName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTypeName(TypeNameExpCS newTypeName)
+	{
+		TypeNameExpCS oldTypeName = typeName;
+		typeName = newTypeName;
 		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__OWNED_TYPE, oldOwnedType, newOwnedType);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__TYPE_NAME, oldTypeName, typeName));
 	}
 
 	/**
@@ -139,34 +149,13 @@ public class ConstructorExpCSImpl extends LiteralExpCSImpl implements Constructo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwnedType(TypeNameExpCS newOwnedType)
+	public EList<ConstructorPartCS> getParts()
 	{
-		if (newOwnedType != ownedType)
+		if (parts == null)
 		{
-			NotificationChain msgs = null;
-			if (ownedType != null)
-				msgs = ((InternalEObject)ownedType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__OWNED_TYPE, null, msgs);
-			if (newOwnedType != null)
-				msgs = ((InternalEObject)newOwnedType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__OWNED_TYPE, null, msgs);
-			msgs = basicSetOwnedType(newOwnedType, msgs);
-			if (msgs != null) msgs.dispatch();
+			parts = new EObjectResolvingEList<ConstructorPartCS>(ConstructorPartCS.class, this, EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__PARTS);
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__OWNED_TYPE, newOwnedType, newOwnedType));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<ConstructorPartCS> getOwnedParts()
-	{
-		if (ownedParts == null)
-		{
-			ownedParts = new EObjectContainmentEList<ConstructorPartCS>(ConstructorPartCS.class, this, EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__OWNED_PARTS);
-		}
-		return ownedParts;
+		return parts;
 	}
 
 	/**
@@ -209,32 +198,15 @@ public class ConstructorExpCSImpl extends LiteralExpCSImpl implements Constructo
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
-			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__OWNED_TYPE:
-				return basicSetOwnedType(null, msgs);
-			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__OWNED_PARTS:
-				return ((InternalEList<?>)getOwnedParts()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__OWNED_TYPE:
-				return getOwnedType();
-			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__OWNED_PARTS:
-				return getOwnedParts();
+			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__TYPE_NAME:
+				if (resolve) return getTypeName();
+				return basicGetTypeName();
+			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__PARTS:
+				return getParts();
 			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__VALUE:
 				return getValue();
 		}
@@ -252,12 +224,12 @@ public class ConstructorExpCSImpl extends LiteralExpCSImpl implements Constructo
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__OWNED_TYPE:
-				setOwnedType((TypeNameExpCS)newValue);
+			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__TYPE_NAME:
+				setTypeName((TypeNameExpCS)newValue);
 				return;
-			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__OWNED_PARTS:
-				getOwnedParts().clear();
-				getOwnedParts().addAll((Collection<? extends ConstructorPartCS>)newValue);
+			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__PARTS:
+				getParts().clear();
+				getParts().addAll((Collection<? extends ConstructorPartCS>)newValue);
 				return;
 			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__VALUE:
 				setValue((String)newValue);
@@ -276,11 +248,11 @@ public class ConstructorExpCSImpl extends LiteralExpCSImpl implements Constructo
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__OWNED_TYPE:
-				setOwnedType((TypeNameExpCS)null);
+			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__TYPE_NAME:
+				setTypeName((TypeNameExpCS)null);
 				return;
-			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__OWNED_PARTS:
-				getOwnedParts().clear();
+			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__PARTS:
+				getParts().clear();
 				return;
 			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__VALUE:
 				setValue(VALUE_EDEFAULT);
@@ -299,24 +271,14 @@ public class ConstructorExpCSImpl extends LiteralExpCSImpl implements Constructo
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__OWNED_TYPE:
-				return ownedType != null;
-			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__OWNED_PARTS:
-				return ownedParts != null && !ownedParts.isEmpty();
+			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__TYPE_NAME:
+				return typeName != null;
+			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__PARTS:
+				return parts != null && !parts.isEmpty();
 			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__VALUE:
 				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public @Nullable <R> R accept(@NonNull BaseCSVisitor<R> visitor) {
-		return (R) ((EssentialOCLCSVisitor<?>)visitor).visitConstructorExpCS(this);
 	}
 
 } //ConstructorExpCSImpl

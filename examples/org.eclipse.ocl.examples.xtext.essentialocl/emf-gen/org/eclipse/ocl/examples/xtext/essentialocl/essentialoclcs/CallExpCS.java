@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
 
-import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,9 +20,8 @@ import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CallExpCS#getOwnedSource <em>Owned Source</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CallExpCS#getOwnedPathName <em>Owned Path Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CallExpCS#isIsPre <em>Is Pre</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CallExpCS#getSource <em>Source</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CallExpCS#getArguments <em>Arguments</em>}</li>
  * </ul>
  * </p>
  *
@@ -30,84 +29,48 @@ import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
  * @model abstract="true"
  * @generated
  */
-public interface CallExpCS extends ExpCS
+public interface CallExpCS extends AbstractNameExpCS
 {
 	/**
-	 * Returns the value of the '<em><b>Owned Source</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owned Source</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Source</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Source</em>' containment reference.
-	 * @see #setOwnedSource(ExpCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getCallExpCS_OwnedSource()
-	 * @model containment="true"
+	 * @return the value of the '<em>Source</em>' reference.
+	 * @see #setSource(ExpCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getCallExpCS_Source()
+	 * @model derived="true"
 	 * @generated
 	 */
-	ExpCS getOwnedSource();
+	ExpCS getSource();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CallExpCS#getOwnedSource <em>Owned Source</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CallExpCS#getSource <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owned Source</em>' containment reference.
-	 * @see #getOwnedSource()
+	 * @param value the new value of the '<em>Source</em>' reference.
+	 * @see #getSource()
 	 * @generated
 	 */
-	void setOwnedSource(ExpCS value);
+	void setSource(ExpCS value);
 
 	/**
-	 * Returns the value of the '<em><b>Owned Path Name</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Arguments</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owned Path Name</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Arguments</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Path Name</em>' containment reference.
-	 * @see #setOwnedPathName(PathNameCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getCallExpCS_OwnedPathName()
-	 * @model containment="true"
+	 * @return the value of the '<em>Arguments</em>' reference list.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getCallExpCS_Arguments()
+	 * @model derived="true"
 	 * @generated
 	 */
-	PathNameCS getOwnedPathName();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CallExpCS#getOwnedPathName <em>Owned Path Name</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owned Path Name</em>' containment reference.
-	 * @see #getOwnedPathName()
-	 * @generated
-	 */
-	void setOwnedPathName(PathNameCS value);
-
-	/**
-	 * Returns the value of the '<em><b>Is Pre</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Is Pre</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Pre</em>' attribute.
-	 * @see #setIsPre(boolean)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getCallExpCS_IsPre()
-	 * @model
-	 * @generated
-	 */
-	boolean isIsPre();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CallExpCS#isIsPre <em>Is Pre</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Pre</em>' attribute.
-	 * @see #isIsPre()
-	 * @generated
-	 */
-	void setIsPre(boolean value);
+	EList<ExpCS> getArguments();
 
 } // CallExpCS

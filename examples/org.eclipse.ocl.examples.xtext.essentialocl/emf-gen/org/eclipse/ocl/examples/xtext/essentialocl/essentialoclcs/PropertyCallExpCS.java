@@ -25,7 +25,7 @@ import org.eclipse.ocl.examples.pivot.Property;
  * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getPropertyCallExpCS()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface PropertyCallExpCS extends CallExpCS
@@ -41,7 +41,7 @@ public interface PropertyCallExpCS extends CallExpCS
 	 * @return the value of the '<em>Referred Property</em>' containment reference.
 	 * @see #setReferredProperty(Property)
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getPropertyCallExpCS_ReferredProperty()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	Property getReferredProperty();

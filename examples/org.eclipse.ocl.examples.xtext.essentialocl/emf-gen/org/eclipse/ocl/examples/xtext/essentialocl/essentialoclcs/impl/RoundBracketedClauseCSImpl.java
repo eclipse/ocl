@@ -25,8 +25,8 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.xtext.base.basecs.impl.ContextLessElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AbstractNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.EssentialOCLCSVisitor;
@@ -82,10 +82,10 @@ public class RoundBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NameExpCS getOwningNameExp()
+	public AbstractNameExpCS getOwningNameExp()
 	{
 		if (eContainerFeatureID() != EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP) return null;
-		return (NameExpCS)eInternalContainer();
+		return (AbstractNameExpCS)eInternalContainer();
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class RoundBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwningNameExp(NameExpCS newOwningNameExp, NotificationChain msgs)
+	public NotificationChain basicSetOwningNameExp(AbstractNameExpCS newOwningNameExp, NotificationChain msgs)
 	{
 		msgs = eBasicSetContainer((InternalEObject)newOwningNameExp, EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP, msgs);
 		return msgs;
@@ -104,7 +104,7 @@ public class RoundBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwningNameExp(NameExpCS newOwningNameExp)
+	public void setOwningNameExp(AbstractNameExpCS newOwningNameExp)
 	{
 		if (newOwningNameExp != eInternalContainer() || (eContainerFeatureID() != EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP && newOwningNameExp != null))
 		{
@@ -114,7 +114,7 @@ public class RoundBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newOwningNameExp != null)
-				msgs = ((InternalEObject)newOwningNameExp).eInverseAdd(this, EssentialOCLCSPackage.NAME_EXP_CS__OWNED_ROUND_BRACKETED_CLAUSE, NameExpCS.class, msgs);
+				msgs = ((InternalEObject)newOwningNameExp).eInverseAdd(this, EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS__OWNED_ROUND_BRACKETED_CLAUSE, AbstractNameExpCS.class, msgs);
 			msgs = basicSetOwningNameExp(newOwningNameExp, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -151,7 +151,7 @@ public class RoundBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwningNameExp((NameExpCS)otherEnd, msgs);
+				return basicSetOwningNameExp((AbstractNameExpCS)otherEnd, msgs);
 			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNED_ARGUMENTS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedArguments()).basicAdd(otherEnd, msgs);
 		}
@@ -187,7 +187,7 @@ public class RoundBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 		switch (eContainerFeatureID())
 		{
 			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
-				return eInternalContainer().eInverseRemove(this, EssentialOCLCSPackage.NAME_EXP_CS__OWNED_ROUND_BRACKETED_CLAUSE, NameExpCS.class, msgs);
+				return eInternalContainer().eInverseRemove(this, EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS__OWNED_ROUND_BRACKETED_CLAUSE, AbstractNameExpCS.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -222,7 +222,7 @@ public class RoundBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 		switch (featureID)
 		{
 			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
-				setOwningNameExp((NameExpCS)newValue);
+				setOwningNameExp((AbstractNameExpCS)newValue);
 				return;
 			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNED_ARGUMENTS:
 				getOwnedArguments().clear();
@@ -243,7 +243,7 @@ public class RoundBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 		switch (featureID)
 		{
 			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
-				setOwningNameExp((NameExpCS)null);
+				setOwningNameExp((AbstractNameExpCS)null);
 				return;
 			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNED_ARGUMENTS:
 				getOwnedArguments().clear();

@@ -12,8 +12,6 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
 
 import org.eclipse.ocl.examples.pivot.Variable;
 
-import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Variable Exp CS</b></em>'.
@@ -22,64 +20,37 @@ import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableExpCS#getOwnedPathName <em>Owned Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableExpCS#getReferredVariable <em>Referred Variable</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getVariableExpCS()
- * @model
+ * @model abstract="true"
  * @generated
  */
-public interface VariableExpCS extends ExpCS
+public interface VariableExpCS extends AbstractNameExpCS
 {
 	/**
-	 * Returns the value of the '<em><b>Owned Path Name</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Path Name</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Path Name</em>' containment reference.
-	 * @see #setOwnedPathName(PathNameCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getVariableExpCS_OwnedPathName()
-	 * @model containment="true"
-	 * @generated
-	 */
-	PathNameCS getOwnedPathName();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableExpCS#getOwnedPathName <em>Owned Path Name</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owned Path Name</em>' containment reference.
-	 * @see #getOwnedPathName()
-	 * @generated
-	 */
-	void setOwnedPathName(PathNameCS value);
-
-	/**
-	 * Returns the value of the '<em><b>Referred Variable</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Referred Variable</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Referred Variable</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Referred Variable</em>' containment reference.
+	 * @return the value of the '<em>Referred Variable</em>' reference.
 	 * @see #setReferredVariable(Variable)
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getVariableExpCS_ReferredVariable()
-	 * @model containment="true" required="true"
+	 * @model derived="true"
 	 * @generated
 	 */
 	Variable getReferredVariable();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableExpCS#getReferredVariable <em>Referred Variable</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableExpCS#getReferredVariable <em>Referred Variable</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Referred Variable</em>' containment reference.
+	 * @param value the new value of the '<em>Referred Variable</em>' reference.
 	 * @see #getReferredVariable()
 	 * @generated
 	 */

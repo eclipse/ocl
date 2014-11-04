@@ -23,6 +23,7 @@ import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AbstractNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
@@ -36,7 +37,7 @@ public class NavigationUtil
 	/**
 	 * Return the NavigationOperatorCS for which csExp is the left node of the navigation operator's argument tree.
 	 */
-	public static @Nullable NavigationOperatorCS getNavigationOperator(@NonNull NameExpCS csExp) {
+	public static @Nullable NavigationOperatorCS getNavigationOperator(@NonNull AbstractNameExpCS csExp) {
 		EObject eContainer = csExp.eContainer();
 		if (eContainer instanceof NameExpCS) {
 			csExp = (NameExpCS) eContainer;
@@ -65,7 +66,7 @@ public class NavigationUtil
 				return true;
 			}
 		}
-		NameExpCS csNameExp = csRoundBracketedClause.getOwningNameExp();
+		AbstractNameExpCS csNameExp = csRoundBracketedClause.getOwningNameExp();
 		PathNameCS pathName = csNameExp.getOwnedPathName();
 		List<PathElementCS> path = pathName.getOwnedPathElements();
 		if (path.size() != 1) {

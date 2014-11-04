@@ -36,6 +36,10 @@ public abstract class AbstractDelegatingEssentialOCLCSVisitor<R, C, D extends Es
 		return delegate.visiting(visitable);
 	}
 
+	public @Nullable R visitAbstractNameExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AbstractNameExpCS object) {
+		return delegate.visitAbstractNameExpCS(object);
+	}
+
 	public @Nullable R visitAssociationClassCallExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AssociationClassCallExpCS object) {
 		return delegate.visitAssociationClassCallExpCS(object);
 	}

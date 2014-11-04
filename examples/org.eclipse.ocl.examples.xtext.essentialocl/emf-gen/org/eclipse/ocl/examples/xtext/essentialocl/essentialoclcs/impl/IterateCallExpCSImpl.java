@@ -12,19 +12,12 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IterateCallExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.EssentialOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,24 +26,23 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IterateCallExpCSImpl#getOwnedAccumulators <em>Owned Accumulators</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IterateCallExpCSImpl#getAccumulators <em>Accumulators</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class IterateCallExpCSImpl extends IterationCallExpCSImpl implements IterateCallExpCS
+public abstract class IterateCallExpCSImpl extends IterationCallExpCSImpl implements IterateCallExpCS
 {
 	/**
-	 * The cached value of the '{@link #getOwnedAccumulators() <em>Owned Accumulators</em>}' containment reference list.
+	 * The cached value of the '{@link #getAccumulators() <em>Accumulators</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedAccumulators()
+	 * @see #getAccumulators()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<VariableCS> ownedAccumulators;
-
+	protected EList<VariableCS> accumulators;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -77,29 +69,13 @@ public class IterateCallExpCSImpl extends IterationCallExpCSImpl implements Iter
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<VariableCS> getOwnedAccumulators()
+	public EList<VariableCS> getAccumulators()
 	{
-		if (ownedAccumulators == null)
+		if (accumulators == null)
 		{
-			ownedAccumulators = new EObjectContainmentEList<VariableCS>(VariableCS.class, this, EssentialOCLCSPackage.ITERATE_CALL_EXP_CS__OWNED_ACCUMULATORS);
+			accumulators = new EObjectResolvingEList<VariableCS>(VariableCS.class, this, EssentialOCLCSPackage.ITERATE_CALL_EXP_CS__ACCUMULATORS);
 		}
-		return ownedAccumulators;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
-			case EssentialOCLCSPackage.ITERATE_CALL_EXP_CS__OWNED_ACCUMULATORS:
-				return ((InternalEList<?>)getOwnedAccumulators()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		return accumulators;
 	}
 
 	/**
@@ -112,8 +88,8 @@ public class IterateCallExpCSImpl extends IterationCallExpCSImpl implements Iter
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.ITERATE_CALL_EXP_CS__OWNED_ACCUMULATORS:
-				return getOwnedAccumulators();
+			case EssentialOCLCSPackage.ITERATE_CALL_EXP_CS__ACCUMULATORS:
+				return getAccumulators();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -129,9 +105,9 @@ public class IterateCallExpCSImpl extends IterationCallExpCSImpl implements Iter
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.ITERATE_CALL_EXP_CS__OWNED_ACCUMULATORS:
-				getOwnedAccumulators().clear();
-				getOwnedAccumulators().addAll((Collection<? extends VariableCS>)newValue);
+			case EssentialOCLCSPackage.ITERATE_CALL_EXP_CS__ACCUMULATORS:
+				getAccumulators().clear();
+				getAccumulators().addAll((Collection<? extends VariableCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -147,8 +123,8 @@ public class IterateCallExpCSImpl extends IterationCallExpCSImpl implements Iter
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.ITERATE_CALL_EXP_CS__OWNED_ACCUMULATORS:
-				getOwnedAccumulators().clear();
+			case EssentialOCLCSPackage.ITERATE_CALL_EXP_CS__ACCUMULATORS:
+				getAccumulators().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -164,20 +140,10 @@ public class IterateCallExpCSImpl extends IterationCallExpCSImpl implements Iter
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.ITERATE_CALL_EXP_CS__OWNED_ACCUMULATORS:
-				return ownedAccumulators != null && !ownedAccumulators.isEmpty();
+			case EssentialOCLCSPackage.ITERATE_CALL_EXP_CS__ACCUMULATORS:
+				return accumulators != null && !accumulators.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public @Nullable <R> R accept(@NonNull BaseCSVisitor<R> visitor) {
-		return (R) ((EssentialOCLCSVisitor<?>)visitor).visitIterateCallExpCS(this);
 	}
 
 } //IterateCallExpCSImpl

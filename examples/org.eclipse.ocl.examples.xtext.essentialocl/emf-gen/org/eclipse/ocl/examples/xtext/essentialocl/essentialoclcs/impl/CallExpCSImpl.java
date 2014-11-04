@@ -10,12 +10,13 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CallExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
@@ -27,55 +28,34 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CallExpCSImpl#getOwnedSource <em>Owned Source</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CallExpCSImpl#getOwnedPathName <em>Owned Path Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CallExpCSImpl#isIsPre <em>Is Pre</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CallExpCSImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CallExpCSImpl#getArguments <em>Arguments</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class CallExpCSImpl extends ExpCSImpl implements CallExpCS
+public abstract class CallExpCSImpl extends AbstractNameExpCSImpl implements CallExpCS
 {
 	/**
-	 * The cached value of the '{@link #getOwnedSource() <em>Owned Source</em>}' containment reference.
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedSource()
+	 * @see #getSource()
 	 * @generated
 	 * @ordered
 	 */
-	protected ExpCS ownedSource;
+	protected ExpCS source;
 
 	/**
-	 * The cached value of the '{@link #getOwnedPathName() <em>Owned Path Name</em>}' containment reference.
+	 * The cached value of the '{@link #getArguments() <em>Arguments</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedPathName()
+	 * @see #getArguments()
 	 * @generated
 	 * @ordered
 	 */
-	protected PathNameCS ownedPathName;
-
-	/**
-	 * The default value of the '{@link #isIsPre() <em>Is Pre</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsPre()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean IS_PRE_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isIsPre() <em>Is Pre</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsPre()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean isPre = IS_PRE_EDEFAULT;
+	protected EList<ExpCS> arguments;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -103,9 +83,19 @@ public abstract class CallExpCSImpl extends ExpCSImpl implements CallExpCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpCS getOwnedSource()
+	public ExpCS getSource()
 	{
-		return ownedSource;
+		if (source != null && source.eIsProxy())
+		{
+			InternalEObject oldSource = (InternalEObject)source;
+			source = (ExpCS)eResolveProxy(oldSource);
+			if (source != oldSource)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EssentialOCLCSPackage.CALL_EXP_CS__SOURCE, oldSource, source));
+			}
+		}
+		return source;
 	}
 
 	/**
@@ -113,136 +103,36 @@ public abstract class CallExpCSImpl extends ExpCSImpl implements CallExpCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwnedSource(ExpCS newOwnedSource, NotificationChain msgs)
+	public ExpCS basicGetSource()
 	{
-		ExpCS oldOwnedSource = ownedSource;
-		ownedSource = newOwnedSource;
+		return source;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSource(ExpCS newSource)
+	{
+		ExpCS oldSource = source;
+		source = newSource;
 		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.CALL_EXP_CS__SOURCE, oldSource, source));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ExpCS> getArguments()
+	{
+		if (arguments == null)
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.CALL_EXP_CS__OWNED_SOURCE, oldOwnedSource, newOwnedSource);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			arguments = new EObjectResolvingEList<ExpCS>(ExpCS.class, this, EssentialOCLCSPackage.CALL_EXP_CS__ARGUMENTS);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwnedSource(ExpCS newOwnedSource)
-	{
-		if (newOwnedSource != ownedSource)
-		{
-			NotificationChain msgs = null;
-			if (ownedSource != null)
-				msgs = ((InternalEObject)ownedSource).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.CALL_EXP_CS__OWNED_SOURCE, null, msgs);
-			if (newOwnedSource != null)
-				msgs = ((InternalEObject)newOwnedSource).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.CALL_EXP_CS__OWNED_SOURCE, null, msgs);
-			msgs = basicSetOwnedSource(newOwnedSource, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.CALL_EXP_CS__OWNED_SOURCE, newOwnedSource, newOwnedSource));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PathNameCS getOwnedPathName()
-	{
-		return ownedPathName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwnedPathName(PathNameCS newOwnedPathName, NotificationChain msgs)
-	{
-		PathNameCS oldOwnedPathName = ownedPathName;
-		ownedPathName = newOwnedPathName;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.CALL_EXP_CS__OWNED_PATH_NAME, oldOwnedPathName, newOwnedPathName);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwnedPathName(PathNameCS newOwnedPathName)
-	{
-		if (newOwnedPathName != ownedPathName)
-		{
-			NotificationChain msgs = null;
-			if (ownedPathName != null)
-				msgs = ((InternalEObject)ownedPathName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.CALL_EXP_CS__OWNED_PATH_NAME, null, msgs);
-			if (newOwnedPathName != null)
-				msgs = ((InternalEObject)newOwnedPathName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.CALL_EXP_CS__OWNED_PATH_NAME, null, msgs);
-			msgs = basicSetOwnedPathName(newOwnedPathName, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.CALL_EXP_CS__OWNED_PATH_NAME, newOwnedPathName, newOwnedPathName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isIsPre()
-	{
-		return isPre;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setIsPre(boolean newIsPre)
-	{
-		boolean oldIsPre = isPre;
-		isPre = newIsPre;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.CALL_EXP_CS__IS_PRE, oldIsPre, isPre));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String toString()
-	{
-		return super.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
-			case EssentialOCLCSPackage.CALL_EXP_CS__OWNED_SOURCE:
-				return basicSetOwnedSource(null, msgs);
-			case EssentialOCLCSPackage.CALL_EXP_CS__OWNED_PATH_NAME:
-				return basicSetOwnedPathName(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		return arguments;
 	}
 
 	/**
@@ -255,12 +145,11 @@ public abstract class CallExpCSImpl extends ExpCSImpl implements CallExpCS
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.CALL_EXP_CS__OWNED_SOURCE:
-				return getOwnedSource();
-			case EssentialOCLCSPackage.CALL_EXP_CS__OWNED_PATH_NAME:
-				return getOwnedPathName();
-			case EssentialOCLCSPackage.CALL_EXP_CS__IS_PRE:
-				return isIsPre();
+			case EssentialOCLCSPackage.CALL_EXP_CS__SOURCE:
+				if (resolve) return getSource();
+				return basicGetSource();
+			case EssentialOCLCSPackage.CALL_EXP_CS__ARGUMENTS:
+				return getArguments();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -270,19 +159,18 @@ public abstract class CallExpCSImpl extends ExpCSImpl implements CallExpCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.CALL_EXP_CS__OWNED_SOURCE:
-				setOwnedSource((ExpCS)newValue);
+			case EssentialOCLCSPackage.CALL_EXP_CS__SOURCE:
+				setSource((ExpCS)newValue);
 				return;
-			case EssentialOCLCSPackage.CALL_EXP_CS__OWNED_PATH_NAME:
-				setOwnedPathName((PathNameCS)newValue);
-				return;
-			case EssentialOCLCSPackage.CALL_EXP_CS__IS_PRE:
-				setIsPre((Boolean)newValue);
+			case EssentialOCLCSPackage.CALL_EXP_CS__ARGUMENTS:
+				getArguments().clear();
+				getArguments().addAll((Collection<? extends ExpCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -298,14 +186,11 @@ public abstract class CallExpCSImpl extends ExpCSImpl implements CallExpCS
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.CALL_EXP_CS__OWNED_SOURCE:
-				setOwnedSource((ExpCS)null);
+			case EssentialOCLCSPackage.CALL_EXP_CS__SOURCE:
+				setSource((ExpCS)null);
 				return;
-			case EssentialOCLCSPackage.CALL_EXP_CS__OWNED_PATH_NAME:
-				setOwnedPathName((PathNameCS)null);
-				return;
-			case EssentialOCLCSPackage.CALL_EXP_CS__IS_PRE:
-				setIsPre(IS_PRE_EDEFAULT);
+			case EssentialOCLCSPackage.CALL_EXP_CS__ARGUMENTS:
+				getArguments().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -321,12 +206,10 @@ public abstract class CallExpCSImpl extends ExpCSImpl implements CallExpCS
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.CALL_EXP_CS__OWNED_SOURCE:
-				return ownedSource != null;
-			case EssentialOCLCSPackage.CALL_EXP_CS__OWNED_PATH_NAME:
-				return ownedPathName != null;
-			case EssentialOCLCSPackage.CALL_EXP_CS__IS_PRE:
-				return isPre != IS_PRE_EDEFAULT;
+			case EssentialOCLCSPackage.CALL_EXP_CS__SOURCE:
+				return source != null;
+			case EssentialOCLCSPackage.CALL_EXP_CS__ARGUMENTS:
+				return arguments != null && !arguments.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -43,6 +43,10 @@ public abstract class AbstractEssentialOCLCSLeft2RightVisitor
 		super(context);
 	}
 
+	public @Nullable Element visitAbstractNameExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AbstractNameExpCS csElement) {
+		return visitExpCS(csElement);
+	}
+
 	public @Nullable Element visitAssociationClassCallExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AssociationClassCallExpCS csElement) {
 		return visitCallExpCS(csElement);
 	}
@@ -56,7 +60,7 @@ public abstract class AbstractEssentialOCLCSLeft2RightVisitor
 	}
 
 	public @Nullable Element visitCallExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CallExpCS csElement) {
-		return visitExpCS(csElement);
+		return visitAbstractNameExpCS(csElement);
 	}
 
 	public @Nullable Element visitCollectionLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralExpCS csElement) {
@@ -76,7 +80,7 @@ public abstract class AbstractEssentialOCLCSLeft2RightVisitor
 	}
 
 	public @Nullable Element visitConstructorExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS csElement) {
-		return visitLiteralExpCS(csElement);
+		return visitAbstractNameExpCS(csElement);
 	}
 
 	public @Nullable Element visitConstructorPartCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS csElement) {
@@ -140,7 +144,7 @@ public abstract class AbstractEssentialOCLCSLeft2RightVisitor
 	}
 
 	public @Nullable Element visitNameExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS csElement) {
-		return visitExpCS(csElement);
+		return visitAssociationClassCallExpCS(csElement);
 	}
 
 	public @Nullable Element visitNavigatingArgCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS csElement) {
@@ -232,6 +236,6 @@ public abstract class AbstractEssentialOCLCSLeft2RightVisitor
 	}
 
 	public @Nullable Element visitVariableExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableExpCS csElement) {
-		return visitExpCS(csElement);
+		return visitAbstractNameExpCS(csElement);
 	}
 }

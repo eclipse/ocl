@@ -14,7 +14,7 @@ package essentialoclcs
 --		 */
 --		property sourceType : ocl::Type[?] { derived transient !resolve };
 --	}
-
+/*
 context IfExpCS
 def : cst() : IfExpCS = 
 	if ownedIfThenExpressions->isEmpty()
@@ -32,7 +32,8 @@ def : cst() : IfExpCS =
 			isImplicit = false
 		}
 	endif
-
+*/
+/*
 context InfixExpCS
 def : ast() : ocl::OperationCallExp = 
 	let first : ExpCS = ownedExpressions->first(),
@@ -52,7 +53,8 @@ def : ast() : ocl::OperationCallExp =
 						-- TODO referredOperation = name resolution
 					}
 					endif)
-
+*/
+/*
 context LetExpCS
 def : cst() : LetExpCS = 
 	if ownedVariables->size() <= 1
@@ -70,7 +72,8 @@ def : cst() : LetExpCS =
 			isImplicit = false
 		}
 	endif
-
+*/
+/*
 context	NameExpCS
 def : cst() : ExpCS =
 	if ownedCurlyBracketedClause <> null then
@@ -131,7 +134,7 @@ def : cst() : ExpCS =
 				ownedPathName = ownedPathName,
 				referredState = exampleElement--,
 --				isImplicit = false
-			} */
+			} * /
 		else null
 		endif
 		endif
@@ -144,10 +147,10 @@ def : cst() : ExpCS =
 	endif
 	-- env().lookupPathName(pathName)
 --	ownedPathName.ast().oclAsType(ocl::NamedElement) -- FIXME PathNameCS should probably do the conversion
-
-inv PathNameExists: ownedPathName <> null
-inv ConstructorHasNoFurtherClauses: ownedCurlyBracketedClause <> null implies ownedRoundBracketedClause = null and ownedSquareBracketedClauses->isEmpty()
-inv AssociationClassCallHasNoFurtherClauses: ownedSquareBracketedClauses->notEmpty() implies ownedRoundBracketedClause = null
+*/
+--inv PathNameExists: ownedPathName <> null
+--inv ConstructorHasNoFurtherClauses: ownedCurlyBracketedClause <> null implies ownedRoundBracketedClause = null and ownedSquareBracketedClauses->isEmpty()
+--inv AssociationClassCallHasNoFurtherClauses: ownedSquareBracketedClauses->notEmpty() implies ownedRoundBracketedClause = null
 -- TODO	
 --context NavigatingArgCS
 --def : ast() : ocl::Element = -- FIXME
@@ -160,7 +163,7 @@ inv AssociationClassCallHasNoFurtherClauses: ownedSquareBracketedClauses->notEmp
 
 context NestedExpCS
 def : cst() : ExpCS = self.source
-	
+/*	
 context PrefixExpCS
 def : cst() : OperationCallExpCS = 
 	ownedOperators->reverse()->iterate(x : UnaryOperatorCS; result : ExpCS = ownedExpression |
@@ -168,5 +171,5 @@ def : cst() : OperationCallExpCS =
 							ownedPathName = x.name,
 							ownedSource = result
 						})
-
+*/
 endpackage

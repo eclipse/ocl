@@ -11,10 +11,12 @@ def : ast() : ocl::AssociationClassCallExp =
 	ocl::AssociationClassCallExp {
 		name = referredAssociation.name,
 --		type = specialized(referredAssociation.type),
-		source = ownedSource.ast(),
+		source = source.ast(),
 		referredAssociationClass = referredAssociation
 --		isPre = isPre
 	}
+def : isValid() : Boolean =
+	ownedCurlyBracketedClause->isEmpty() and ownedRoundBracketedClause->isEmpty() and ownedSquareBracketedClauses->isEmpty() and referredAssociation <> null
 
 context BooleanLiteralExpCS
 def : ast() : ocl::BooleanLiteralExp = 
@@ -89,12 +91,14 @@ context ConstructorExpCS
 def : ast() : ocl::ConstructorExp =
 	ocl::ConstructorExp {
 		value = value,
-		part = ownedParts.ast()
+		part = parts.ast()
 --		-- type = env().lookupType(nameExp.pathName)
 --		type = nameExp.ast().oclAsType(ocl::Type)
 	}
-inv : ownedParts->notEmpty() implies value = null
-		and not (value = null) implies ownedParts->isEmpty()
+def : isValid() : Boolean =
+	ownedCurlyBracketedClause->notEmpty() and ownedRoundBracketedClause->isEmpty() and ownedSquareBracketedClauses->isEmpty()
+inv : parts->notEmpty() implies value = null
+		and not (value = null) implies parts->isEmpty()
 	
 context ConstructorPartCS
 def : ast() :  ocl::ConstructorPart =
@@ -147,13 +151,15 @@ def : ast() : ocl::IterateExp =
 	ocl::IterateExp {
 		name = iteration.name,
 --		type = specialized(iteration.type),
-		source = ownedSource.ast(),
-		iterator = ownedIterators.ast(),
-		result = ownedAccumulators->at(1).ast(),
-		_'body' = ownedArguments->at(1).ast(),
+		source = source.ast(),
+		iterator = iterators.ast(),
+		result = accumulators->at(1).ast(),
+		_'body' = arguments->at(1).ast(),
 		referredIteration = iteration
 --		isPre = isPre
 	}
+def : isValid() : Boolean =
+	ownedCurlyBracketedClause->isEmpty() and ownedRoundBracketedClause->notEmpty() and ownedSquareBracketedClauses->isEmpty() and referredIteration <> null
 	
 context IterationCallExpCS
 def : ast() : ocl::IteratorExp =
@@ -161,12 +167,14 @@ def : ast() : ocl::IteratorExp =
 	ocl::IteratorExp {
 		name = iteration.name,
 --		type = specialized(iteration.type),
-		source = ownedSource.ast(),
-		iterator = ownedIterators.ast(),
-		_'body' = ownedArguments->at(1).ast(),
+		source = source.ast(),
+		iterator = iterators.ast(),
+		_'body' = arguments->at(1).ast(),
 		referredIteration = iteration
 --		isPre = isPre
 	}
+def : isValid() : Boolean =
+	ownedCurlyBracketedClause->isEmpty() and ownedRoundBracketedClause->notEmpty() and ownedSquareBracketedClauses->isEmpty() and referredIteration <> null
 
 context LetExpCS
 def : ast() : ocl::LetExp = 
@@ -177,6 +185,17 @@ def : ast() : ocl::LetExp =
 		type = ownedInExpression.ast().oclAsType(ocl::OCLExpression).type
 	}	
 inv LetHasBeenFlattened: ownedVariables->size() = 1
+
+context NameExpCS
+def : ast() : ocl::OCLExpression =
+	if oclAsType(AssociationClassCallExpCS).isValid() then oclAsType(AssociationClassCallExpCS).ast()
+	else if oclAsType(ConstructorExpCS).isValid() then oclAsType(ConstructorExpCS).ast()
+	else if oclAsType(IterateCallExpCS).isValid() then oclAsType(IterateCallExpCS).ast()
+	else if oclAsType(IterationCallExpCS).isValid() then oclAsType(IterationCallExpCS).ast()
+	else if oclAsType(OperationCallExpCS).isValid() then oclAsType(OperationCallExpCS).ast()
+	else if oclAsType(PropertyCallExpCS).isValid() then oclAsType(PropertyCallExpCS).ast()
+	else if oclAsType(VariableExpCS).isValid() then oclAsType(VariableExpCS).ast()
+	else null endif endif endif endif endif endif endif
 
 context NullLiteralExpCS
 def : ast() : ocl::NullLiteralExp = 
@@ -204,11 +223,13 @@ def : ast() : ocl::OperationCallExp =
 	ocl::OperationCallExp {
 		name = operation.name,
 --		type = specialized(referredOperation.type),
-		source = ownedSource.ast(),
-		argument = ownedArguments.ast(),
+		source = source.ast(),
+		argument = arguments.ast(),
 		referredOperation = operation,
 		isPre = isPre
 	}
+def : isValid() : Boolean =
+	ownedCurlyBracketedClause->isEmpty() and ownedRoundBracketedClause->notEmpty() and ownedSquareBracketedClauses->isEmpty() and referredOperation <> null
 	
 context PropertyCallExpCS
 def : ast() : ocl::PropertyCallExp =
@@ -216,10 +237,12 @@ def : ast() : ocl::PropertyCallExp =
 	ocl::PropertyCallExp {
 		name = property.name,
 --		type = specialized(property.type),
-		source = ownedSource.ast(),
+		source = source.ast(),
 		referredProperty = property
 --		isPre = isPre
 	}
+def : isValid() : Boolean =
+	ownedCurlyBracketedClause->isEmpty() and ownedRoundBracketedClause->isEmpty() and ownedSquareBracketedClauses->isEmpty() and referredProperty <> null
 
 context SelfExpCS
 def :  ast() : ocl::VariableExp = 
@@ -288,5 +311,7 @@ def : ast() : ocl::VariableExp =
 		type = variable.type,
 		referredVariable = variable
 	}
+def : isValid() : Boolean =
+	ownedCurlyBracketedClause->isEmpty() and ownedRoundBracketedClause->isEmpty() and ownedSquareBracketedClauses->isEmpty() and referredVariable <> null
 
 endpackage

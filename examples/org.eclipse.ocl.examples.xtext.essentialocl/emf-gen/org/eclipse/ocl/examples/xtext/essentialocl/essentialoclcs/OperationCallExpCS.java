@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.ocl.examples.pivot.Operation;
 
 /**
@@ -23,56 +21,39 @@ import org.eclipse.ocl.examples.pivot.Operation;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperationCallExpCS#getReferredOperation <em>Referred Operation</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperationCallExpCS#getOwnedArguments <em>Owned Arguments</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getOperationCallExpCS()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface OperationCallExpCS extends CallExpCS
 {
 	/**
-	 * Returns the value of the '<em><b>Referred Operation</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Referred Operation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Referred Operation</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Referred Operation</em>' containment reference.
+	 * @return the value of the '<em>Referred Operation</em>' reference.
 	 * @see #setReferredOperation(Operation)
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getOperationCallExpCS_ReferredOperation()
-	 * @model containment="true" required="true"
+	 * @model derived="true"
 	 * @generated
 	 */
 	Operation getReferredOperation();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperationCallExpCS#getReferredOperation <em>Referred Operation</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperationCallExpCS#getReferredOperation <em>Referred Operation</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Referred Operation</em>' containment reference.
+	 * @param value the new value of the '<em>Referred Operation</em>' reference.
 	 * @see #getReferredOperation()
 	 * @generated
 	 */
 	void setReferredOperation(Operation value);
-
-	/**
-	 * Returns the value of the '<em><b>Owned Arguments</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Arguments</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Arguments</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getOperationCallExpCS_OwnedArguments()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<ExpCS> getOwnedArguments();
 
 } // OperationCallExpCS

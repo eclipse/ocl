@@ -24,6 +24,7 @@ import org.eclipse.jdt.annotation.Nullable;
  */
 public interface EssentialOCLCSVisitor<R> extends org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor<R>
 {
+	@Nullable R visitAbstractNameExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AbstractNameExpCS object);
 	@Nullable R visitAssociationClassCallExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AssociationClassCallExpCS object);
 	@Nullable R visitBinaryOperatorCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS object);
 	@Nullable R visitBooleanLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteralExpCS object);

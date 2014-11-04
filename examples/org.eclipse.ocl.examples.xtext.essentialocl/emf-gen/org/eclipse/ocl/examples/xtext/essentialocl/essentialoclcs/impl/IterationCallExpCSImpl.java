@@ -13,22 +13,16 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.ocl.examples.pivot.Iteration;
-import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IterationCallExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.EssentialOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,17 +32,16 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IterationCallExpCSImpl#getReferredIteration <em>Referred Iteration</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IterationCallExpCSImpl#getOwnedIterators <em>Owned Iterators</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IterationCallExpCSImpl#getOwnedArguments <em>Owned Arguments</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IterationCallExpCSImpl#getIterators <em>Iterators</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class IterationCallExpCSImpl extends CallExpCSImpl implements IterationCallExpCS
+public abstract class IterationCallExpCSImpl extends CallExpCSImpl implements IterationCallExpCS
 {
 	/**
-	 * The cached value of the '{@link #getReferredIteration() <em>Referred Iteration</em>}' containment reference.
+	 * The cached value of the '{@link #getReferredIteration() <em>Referred Iteration</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getReferredIteration()
@@ -58,24 +51,14 @@ public class IterationCallExpCSImpl extends CallExpCSImpl implements IterationCa
 	protected Iteration referredIteration;
 
 	/**
-	 * The cached value of the '{@link #getOwnedIterators() <em>Owned Iterators</em>}' containment reference list.
+	 * The cached value of the '{@link #getIterators() <em>Iterators</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedIterators()
+	 * @see #getIterators()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<VariableCS> ownedIterators;
-
-	/**
-	 * The cached value of the '{@link #getOwnedArguments() <em>Owned Arguments</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedArguments()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ExpCS> ownedArguments;
+	protected EList<VariableCS> iterators;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -105,6 +88,16 @@ public class IterationCallExpCSImpl extends CallExpCSImpl implements IterationCa
 	 */
 	public Iteration getReferredIteration()
 	{
+		if (referredIteration != null && ((EObject)referredIteration).eIsProxy())
+		{
+			InternalEObject oldReferredIteration = (InternalEObject)referredIteration;
+			referredIteration = (Iteration)eResolveProxy(oldReferredIteration);
+			if (referredIteration != oldReferredIteration)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__REFERRED_ITERATION, oldReferredIteration, referredIteration));
+			}
+		}
 		return referredIteration;
 	}
 
@@ -113,16 +106,9 @@ public class IterationCallExpCSImpl extends CallExpCSImpl implements IterationCa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetReferredIteration(Iteration newReferredIteration, NotificationChain msgs)
+	public Iteration basicGetReferredIteration()
 	{
-		Iteration oldReferredIteration = referredIteration;
-		referredIteration = newReferredIteration;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__REFERRED_ITERATION, oldReferredIteration, newReferredIteration);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+		return referredIteration;
 	}
 
 	/**
@@ -132,18 +118,10 @@ public class IterationCallExpCSImpl extends CallExpCSImpl implements IterationCa
 	 */
 	public void setReferredIteration(Iteration newReferredIteration)
 	{
-		if (newReferredIteration != referredIteration)
-		{
-			NotificationChain msgs = null;
-			if (referredIteration != null)
-				msgs = ((InternalEObject)referredIteration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__REFERRED_ITERATION, null, msgs);
-			if (newReferredIteration != null)
-				msgs = ((InternalEObject)newReferredIteration).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__REFERRED_ITERATION, null, msgs);
-			msgs = basicSetReferredIteration(newReferredIteration, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__REFERRED_ITERATION, newReferredIteration, newReferredIteration));
+		Iteration oldReferredIteration = referredIteration;
+		referredIteration = newReferredIteration;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__REFERRED_ITERATION, oldReferredIteration, referredIteration));
 	}
 
 	/**
@@ -151,47 +129,13 @@ public class IterationCallExpCSImpl extends CallExpCSImpl implements IterationCa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<VariableCS> getOwnedIterators()
+	public EList<VariableCS> getIterators()
 	{
-		if (ownedIterators == null)
+		if (iterators == null)
 		{
-			ownedIterators = new EObjectContainmentEList<VariableCS>(VariableCS.class, this, EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__OWNED_ITERATORS);
+			iterators = new EObjectResolvingEList<VariableCS>(VariableCS.class, this, EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__ITERATORS);
 		}
-		return ownedIterators;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<ExpCS> getOwnedArguments()
-	{
-		if (ownedArguments == null)
-		{
-			ownedArguments = new EObjectContainmentEList<ExpCS>(ExpCS.class, this, EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__OWNED_ARGUMENTS);
-		}
-		return ownedArguments;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
-			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__REFERRED_ITERATION:
-				return basicSetReferredIteration(null, msgs);
-			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__OWNED_ITERATORS:
-				return ((InternalEList<?>)getOwnedIterators()).basicRemove(otherEnd, msgs);
-			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__OWNED_ARGUMENTS:
-				return ((InternalEList<?>)getOwnedArguments()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		return iterators;
 	}
 
 	/**
@@ -205,11 +149,10 @@ public class IterationCallExpCSImpl extends CallExpCSImpl implements IterationCa
 		switch (featureID)
 		{
 			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__REFERRED_ITERATION:
-				return getReferredIteration();
-			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__OWNED_ITERATORS:
-				return getOwnedIterators();
-			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__OWNED_ARGUMENTS:
-				return getOwnedArguments();
+				if (resolve) return getReferredIteration();
+				return basicGetReferredIteration();
+			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__ITERATORS:
+				return getIterators();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -228,13 +171,9 @@ public class IterationCallExpCSImpl extends CallExpCSImpl implements IterationCa
 			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__REFERRED_ITERATION:
 				setReferredIteration((Iteration)newValue);
 				return;
-			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__OWNED_ITERATORS:
-				getOwnedIterators().clear();
-				getOwnedIterators().addAll((Collection<? extends VariableCS>)newValue);
-				return;
-			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__OWNED_ARGUMENTS:
-				getOwnedArguments().clear();
-				getOwnedArguments().addAll((Collection<? extends ExpCS>)newValue);
+			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__ITERATORS:
+				getIterators().clear();
+				getIterators().addAll((Collection<? extends VariableCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -253,11 +192,8 @@ public class IterationCallExpCSImpl extends CallExpCSImpl implements IterationCa
 			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__REFERRED_ITERATION:
 				setReferredIteration((Iteration)null);
 				return;
-			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__OWNED_ITERATORS:
-				getOwnedIterators().clear();
-				return;
-			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__OWNED_ARGUMENTS:
-				getOwnedArguments().clear();
+			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__ITERATORS:
+				getIterators().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -275,22 +211,10 @@ public class IterationCallExpCSImpl extends CallExpCSImpl implements IterationCa
 		{
 			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__REFERRED_ITERATION:
 				return referredIteration != null;
-			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__OWNED_ITERATORS:
-				return ownedIterators != null && !ownedIterators.isEmpty();
-			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__OWNED_ARGUMENTS:
-				return ownedArguments != null && !ownedArguments.isEmpty();
+			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__ITERATORS:
+				return iterators != null && !iterators.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public @Nullable <R> R accept(@NonNull BaseCSVisitor<R> visitor) {
-		return (R) ((EssentialOCLCSVisitor<?>)visitor).visitIterationCallExpCS(this);
 	}
 
 } //IterationCallExpCSImpl

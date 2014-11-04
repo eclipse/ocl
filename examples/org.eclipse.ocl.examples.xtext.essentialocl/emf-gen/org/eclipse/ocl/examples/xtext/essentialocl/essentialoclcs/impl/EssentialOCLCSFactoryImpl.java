@@ -107,14 +107,12 @@ public class EssentialOCLCSFactoryImpl
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID())
 		{
-			case EssentialOCLCSPackage.ASSOCIATION_CLASS_CALL_EXP_CS: return createAssociationClassCallExpCS();
 			case EssentialOCLCSPackage.BINARY_OPERATOR_CS: return createBinaryOperatorCS();
 			case EssentialOCLCSPackage.BOOLEAN_LITERAL_EXP_CS: return createBooleanLiteralExpCS();
 			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS: return createCollectionLiteralExpCS();
 			case EssentialOCLCSPackage.COLLECTION_LITERAL_PART_CS: return createCollectionLiteralPartCS();
 			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS: return createCollectionPatternCS();
 			case EssentialOCLCSPackage.COLLECTION_TYPE_CS: return createCollectionTypeCS();
-			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS: return createConstructorExpCS();
 			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS: return createConstructorPartCS();
 			case EssentialOCLCSPackage.CONTEXT_CS: return createContextCS();
 			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS: return createCurlyBracketedClauseCS();
@@ -124,8 +122,6 @@ public class EssentialOCLCSFactoryImpl
 			case EssentialOCLCSPackage.IF_THEN_EXP_CS: return createIfThenExpCS();
 			case EssentialOCLCSPackage.INFIX_EXP_CS: return createInfixExpCS();
 			case EssentialOCLCSPackage.INVALID_LITERAL_EXP_CS: return createInvalidLiteralExpCS();
-			case EssentialOCLCSPackage.ITERATE_CALL_EXP_CS: return createIterateCallExpCS();
-			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS: return createIterationCallExpCS();
 			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS: return createLambdaLiteralExpCS();
 			case EssentialOCLCSPackage.LET_EXP_CS: return createLetExpCS();
 			case EssentialOCLCSPackage.LET_VARIABLE_CS: return createLetVariableCS();
@@ -136,11 +132,9 @@ public class EssentialOCLCSFactoryImpl
 			case EssentialOCLCSPackage.NESTED_EXP_CS: return createNestedExpCS();
 			case EssentialOCLCSPackage.NULL_LITERAL_EXP_CS: return createNullLiteralExpCS();
 			case EssentialOCLCSPackage.NUMBER_LITERAL_EXP_CS: return createNumberLiteralExpCS();
-			case EssentialOCLCSPackage.OPERATION_CALL_EXP_CS: return createOperationCallExpCS();
 			case EssentialOCLCSPackage.PATTERN_EXP_CS: return createPatternExpCS();
 			case EssentialOCLCSPackage.PREFIX_EXP_CS: return createPrefixExpCS();
 			case EssentialOCLCSPackage.PRIMITIVE_LITERAL_EXP_CS: return createPrimitiveLiteralExpCS();
-			case EssentialOCLCSPackage.PROPERTY_CALL_EXP_CS: return createPropertyCallExpCS();
 			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS: return createRoundBracketedClauseCS();
 			case EssentialOCLCSPackage.SELF_EXP_CS: return createSelfExpCS();
 			case EssentialOCLCSPackage.SQUARE_BRACKETED_CLAUSE_CS: return createSquareBracketedClauseCS();
@@ -152,7 +146,6 @@ public class EssentialOCLCSFactoryImpl
 			case EssentialOCLCSPackage.UNARY_OPERATOR_CS: return createUnaryOperatorCS();
 			case EssentialOCLCSPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS: return createUnlimitedNaturalLiteralExpCS();
 			case EssentialOCLCSPackage.VARIABLE_CS: return createVariableCS();
-			case EssentialOCLCSPackage.VARIABLE_EXP_CS: return createVariableExpCS();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -195,17 +188,6 @@ public class EssentialOCLCSFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AssociationClassCallExpCS createAssociationClassCallExpCS()
-	{
-		AssociationClassCallExpCSImpl associationClassCallExpCS = new AssociationClassCallExpCSImpl();
-		return associationClassCallExpCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public BinaryOperatorCS createBinaryOperatorCS() {
 		BinaryOperatorCSImpl binaryOperatorCS = new BinaryOperatorCSImpl();
 		return binaryOperatorCS;
@@ -229,17 +211,6 @@ public class EssentialOCLCSFactoryImpl
 	public CollectionTypeCS createCollectionTypeCS() {
 		CollectionTypeCSImpl collectionTypeCS = new CollectionTypeCSImpl();
 		return collectionTypeCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ConstructorExpCS createConstructorExpCS()
-	{
-		ConstructorExpCSImpl constructorExpCS = new ConstructorExpCSImpl();
-		return constructorExpCS;
 	}
 
 	/**
@@ -341,17 +312,6 @@ public class EssentialOCLCSFactoryImpl
 	public VariableCS createVariableCS() {
 		VariableCSImpl variableCS = new VariableCSImpl();
 		return variableCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public VariableExpCS createVariableExpCS()
-	{
-		VariableExpCSImpl variableExpCS = new VariableExpCSImpl();
-		return variableExpCS;
 	}
 
 	/**
@@ -472,17 +432,6 @@ public class EssentialOCLCSFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PropertyCallExpCS createPropertyCallExpCS()
-	{
-		PropertyCallExpCSImpl propertyCallExpCS = new PropertyCallExpCSImpl();
-		return propertyCallExpCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public RoundBracketedClauseCS createRoundBracketedClauseCS()
 	{
 		RoundBracketedClauseCSImpl roundBracketedClauseCS = new RoundBracketedClauseCSImpl();
@@ -565,28 +514,6 @@ public class EssentialOCLCSFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IterateCallExpCS createIterateCallExpCS()
-	{
-		IterateCallExpCSImpl iterateCallExpCS = new IterateCallExpCSImpl();
-		return iterateCallExpCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IterationCallExpCS createIterationCallExpCS()
-	{
-		IterationCallExpCSImpl iterationCallExpCS = new IterationCallExpCSImpl();
-		return iterationCallExpCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public LambdaLiteralExpCS createLambdaLiteralExpCS()
 	{
 		LambdaLiteralExpCSImpl lambdaLiteralExpCS = new LambdaLiteralExpCSImpl();
@@ -611,17 +538,6 @@ public class EssentialOCLCSFactoryImpl
 	public NumberLiteralExpCS createNumberLiteralExpCS() {
 		NumberLiteralExpCSImpl numberLiteralExpCS = new NumberLiteralExpCSImpl();
 		return numberLiteralExpCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OperationCallExpCS createOperationCallExpCS()
-	{
-		OperationCallExpCSImpl operationCallExpCS = new OperationCallExpCSImpl();
-		return operationCallExpCS;
 	}
 
 	/**

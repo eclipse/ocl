@@ -11,18 +11,13 @@
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
-import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.EssentialOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,27 +26,16 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.VariableExpCSImpl#getOwnedPathName <em>Owned Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.VariableExpCSImpl#getReferredVariable <em>Referred Variable</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class VariableExpCSImpl extends ExpCSImpl implements VariableExpCS
+public abstract class VariableExpCSImpl extends AbstractNameExpCSImpl implements VariableExpCS
 {
 	/**
-	 * The cached value of the '{@link #getOwnedPathName() <em>Owned Path Name</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedPathName()
-	 * @generated
-	 * @ordered
-	 */
-	protected PathNameCS ownedPathName;
-
-	/**
-	 * The cached value of the '{@link #getReferredVariable() <em>Referred Variable</em>}' containment reference.
+	 * The cached value of the '{@link #getReferredVariable() <em>Referred Variable</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getReferredVariable()
@@ -86,55 +70,27 @@ public class VariableExpCSImpl extends ExpCSImpl implements VariableExpCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PathNameCS getOwnedPathName()
-	{
-		return ownedPathName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwnedPathName(PathNameCS newOwnedPathName, NotificationChain msgs)
-	{
-		PathNameCS oldOwnedPathName = ownedPathName;
-		ownedPathName = newOwnedPathName;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.VARIABLE_EXP_CS__OWNED_PATH_NAME, oldOwnedPathName, newOwnedPathName);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwnedPathName(PathNameCS newOwnedPathName)
-	{
-		if (newOwnedPathName != ownedPathName)
-		{
-			NotificationChain msgs = null;
-			if (ownedPathName != null)
-				msgs = ((InternalEObject)ownedPathName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.VARIABLE_EXP_CS__OWNED_PATH_NAME, null, msgs);
-			if (newOwnedPathName != null)
-				msgs = ((InternalEObject)newOwnedPathName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.VARIABLE_EXP_CS__OWNED_PATH_NAME, null, msgs);
-			msgs = basicSetOwnedPathName(newOwnedPathName, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.VARIABLE_EXP_CS__OWNED_PATH_NAME, newOwnedPathName, newOwnedPathName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Variable getReferredVariable()
+	{
+		if (referredVariable != null && ((EObject)referredVariable).eIsProxy())
+		{
+			InternalEObject oldReferredVariable = (InternalEObject)referredVariable;
+			referredVariable = (Variable)eResolveProxy(oldReferredVariable);
+			if (referredVariable != oldReferredVariable)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EssentialOCLCSPackage.VARIABLE_EXP_CS__REFERRED_VARIABLE, oldReferredVariable, referredVariable));
+			}
+		}
+		return referredVariable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Variable basicGetReferredVariable()
 	{
 		return referredVariable;
 	}
@@ -144,55 +100,12 @@ public class VariableExpCSImpl extends ExpCSImpl implements VariableExpCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetReferredVariable(Variable newReferredVariable, NotificationChain msgs)
+	public void setReferredVariable(Variable newReferredVariable)
 	{
 		Variable oldReferredVariable = referredVariable;
 		referredVariable = newReferredVariable;
 		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.VARIABLE_EXP_CS__REFERRED_VARIABLE, oldReferredVariable, newReferredVariable);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setReferredVariable(Variable newReferredVariable)
-	{
-		if (newReferredVariable != referredVariable)
-		{
-			NotificationChain msgs = null;
-			if (referredVariable != null)
-				msgs = ((InternalEObject)referredVariable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.VARIABLE_EXP_CS__REFERRED_VARIABLE, null, msgs);
-			if (newReferredVariable != null)
-				msgs = ((InternalEObject)newReferredVariable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.VARIABLE_EXP_CS__REFERRED_VARIABLE, null, msgs);
-			msgs = basicSetReferredVariable(newReferredVariable, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.VARIABLE_EXP_CS__REFERRED_VARIABLE, newReferredVariable, newReferredVariable));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
-			case EssentialOCLCSPackage.VARIABLE_EXP_CS__OWNED_PATH_NAME:
-				return basicSetOwnedPathName(null, msgs);
-			case EssentialOCLCSPackage.VARIABLE_EXP_CS__REFERRED_VARIABLE:
-				return basicSetReferredVariable(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.VARIABLE_EXP_CS__REFERRED_VARIABLE, oldReferredVariable, referredVariable));
 	}
 
 	/**
@@ -205,10 +118,9 @@ public class VariableExpCSImpl extends ExpCSImpl implements VariableExpCS
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.VARIABLE_EXP_CS__OWNED_PATH_NAME:
-				return getOwnedPathName();
 			case EssentialOCLCSPackage.VARIABLE_EXP_CS__REFERRED_VARIABLE:
-				return getReferredVariable();
+				if (resolve) return getReferredVariable();
+				return basicGetReferredVariable();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -223,9 +135,6 @@ public class VariableExpCSImpl extends ExpCSImpl implements VariableExpCS
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.VARIABLE_EXP_CS__OWNED_PATH_NAME:
-				setOwnedPathName((PathNameCS)newValue);
-				return;
 			case EssentialOCLCSPackage.VARIABLE_EXP_CS__REFERRED_VARIABLE:
 				setReferredVariable((Variable)newValue);
 				return;
@@ -243,9 +152,6 @@ public class VariableExpCSImpl extends ExpCSImpl implements VariableExpCS
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.VARIABLE_EXP_CS__OWNED_PATH_NAME:
-				setOwnedPathName((PathNameCS)null);
-				return;
 			case EssentialOCLCSPackage.VARIABLE_EXP_CS__REFERRED_VARIABLE:
 				setReferredVariable((Variable)null);
 				return;
@@ -263,22 +169,10 @@ public class VariableExpCSImpl extends ExpCSImpl implements VariableExpCS
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.VARIABLE_EXP_CS__OWNED_PATH_NAME:
-				return ownedPathName != null;
 			case EssentialOCLCSPackage.VARIABLE_EXP_CS__REFERRED_VARIABLE:
 				return referredVariable != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public @Nullable <R> R accept(@NonNull BaseCSVisitor<R> visitor) {
-		return (R) ((EssentialOCLCSVisitor<?>)visitor).visitVariableExpCS(this);
 	}
 
 } //VariableExpCSImpl

@@ -15,13 +15,9 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PropertyCallExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.EssentialOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,7 +32,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  *
  * @generated
  */
-public class PropertyCallExpCSImpl extends CallExpCSImpl implements PropertyCallExpCS
+public abstract class PropertyCallExpCSImpl extends CallExpCSImpl implements PropertyCallExpCS
 {
 	/**
 	 * The cached value of the '{@link #getReferredProperty() <em>Referred Property</em>}' containment reference.
@@ -197,16 +193,6 @@ public class PropertyCallExpCSImpl extends CallExpCSImpl implements PropertyCall
 				return referredProperty != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public @Nullable <R> R accept(@NonNull BaseCSVisitor<R> visitor) {
-		return (R) ((EssentialOCLCSVisitor<?>)visitor).visitPropertyCallExpCS(this);
 	}
 
 } //PropertyCallExpCSImpl
