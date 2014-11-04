@@ -258,21 +258,23 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 
 	protected void initializePrefixOperators(PrefixExpCS prefixExpCS, OperatorCS csParent) {
 		prefixExpCS.setParent(null);		// FIXME asymmetric
-		for (UnaryOperatorCS csUnaryOperator : prefixExpCS.getOwnedOperators()) {
-			if (csParent instanceof UnaryOperatorCS) {
+		UnaryOperatorCS csUnaryOperator = prefixExpCS.getOwnedOperator();
+		if (csParent instanceof UnaryOperatorCS) {
+			setSource(csParent, csUnaryOperator);
+		}
+		else if (csParent instanceof BinaryOperatorCS) {
+			if (csParent.getSource() == prefixExpCS) {
 				setSource(csParent, csUnaryOperator);
 			}
-			else if (csParent instanceof BinaryOperatorCS) {
-				if (csParent.getSource() == prefixExpCS) {
-					setSource(csParent, csUnaryOperator);
-				}
-				else {
-					setArgument((BinaryOperatorCS) csParent, csUnaryOperator);
-				}
+			else {
+				setArgument((BinaryOperatorCS) csParent, csUnaryOperator);
 			}
-			ExpCS csChild = prefixExpCS.getOwnedExpression();
-			setSource(csUnaryOperator, csChild);
-			csParent = csUnaryOperator;
+		}
+		ExpCS csChild = prefixExpCS.getOwnedExpression();
+		setSource(csUnaryOperator, csChild);
+		csParent = csUnaryOperator;
+		if (csChild instanceof PrefixExpCS) {
+			initializePrefixOperators((PrefixExpCS)csChild, csUnaryOperator);
 		}
 	}
 
@@ -283,9 +285,12 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 				PrefixExpCS prefixExpCS = (PrefixExpCS)csExp;
 				OperatorCS csExpressionParent = prefixExpCS.getParent();
 				initializePrefixOperators(prefixExpCS, csExpressionParent);			
-				for (UnaryOperatorCS csUnaryOperator : prefixExpCS.getOwnedOperators()) {
-					interleaveUnaryOperator(csUnaryOperator);
-				}			
+//				for (UnaryOperatorCS csUnaryOperator : prefixExpCS.getOwnedOperators()) {
+//					interleaveUnaryOperator(csUnaryOperator);
+//				}			
+				if (prefixExpCS.getOwnedExpression() instanceof PrefixExpCS) {
+					interleaveUnaryOperator(((PrefixExpCS)prefixExpCS.getOwnedExpression()).getOwnedOperator());
+				}
 			}
 		}
 	}

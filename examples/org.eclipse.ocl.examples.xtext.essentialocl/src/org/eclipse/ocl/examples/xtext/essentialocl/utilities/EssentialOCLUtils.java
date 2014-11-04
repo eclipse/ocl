@@ -50,7 +50,7 @@ public class EssentialOCLUtils	// FIXME Find some extensible instantiation echan
 			return getPivotedCS(((NestedExpCS)csElement).getSource());
 		}
 		else if (csElement instanceof PrefixExpCS) {
-			return getPivotedCS(((PrefixExpCS)csElement).getOwnedOperators().get(0));
+			return getPivotedCS(((PrefixExpCS)csElement).getOwnedOperator());
 		}
 		else if (csElement instanceof ModelElementCS) {
 			return (ModelElementCS) csElement;

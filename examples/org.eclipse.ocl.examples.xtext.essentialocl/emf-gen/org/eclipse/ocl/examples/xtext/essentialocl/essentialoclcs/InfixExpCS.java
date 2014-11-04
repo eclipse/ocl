@@ -21,6 +21,7 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedExpression <em>Owned Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedOperator <em>Owned Operator</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedSuffix <em>Owned Suffix</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getDerivedSource <em>Derived Source</em>}</li>
  * </ul>
  * </p>
  *
@@ -108,5 +109,20 @@ public interface InfixExpCS
 	 * @generated
 	 */
 	void setOwnedSuffix(ExpCS value);
+
+	/**
+	 * Returns the value of the '<em><b>Derived Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Derived Source</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Derived Source</em>' reference.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getInfixExpCS_DerivedSource()
+	 * @model resolveProxies="false" required="true" transient="true" changeable="false" derived="true"
+	 * @generated
+	 */
+	ExpCS getDerivedSource();
 
 } // BinaryExpressionCS

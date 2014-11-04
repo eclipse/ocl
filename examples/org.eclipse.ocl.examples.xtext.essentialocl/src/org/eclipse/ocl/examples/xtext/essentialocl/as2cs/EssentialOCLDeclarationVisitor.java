@@ -557,7 +557,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 				UnaryOperatorCS csUnaryOperator = EssentialOCLCSFactory.eINSTANCE.createUnaryOperatorCS();
 				csUnaryOperator.setName(asOperation.getName());
 				csUnaryOperator.setSource(csSource);
-				csPrefix.getOwnedOperators().add(0, csUnaryOperator);
+				csPrefix.setOwnedOperator(csUnaryOperator);
 				return csPrefix;
 			}
 		}

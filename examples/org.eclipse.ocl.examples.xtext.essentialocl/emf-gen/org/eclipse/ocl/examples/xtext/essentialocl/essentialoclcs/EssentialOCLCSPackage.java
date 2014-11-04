@@ -2370,13 +2370,22 @@ public interface EssentialOCLCSPackage
 	int INFIX_EXP_CS__OWNED_SUFFIX = EXP_CS_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Derived Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX_EXP_CS__DERIVED_SOURCE = EXP_CS_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Infix Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 3;
+	int INFIX_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -4249,13 +4258,13 @@ public interface EssentialOCLCSPackage
 	int PREFIX_EXP_CS__HAS_ERROR = EXP_CS__HAS_ERROR;
 
 	/**
-	 * The feature id for the '<em><b>Owned Operators</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Operator</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREFIX_EXP_CS__OWNED_OPERATORS = EXP_CS_FEATURE_COUNT + 0;
+	int PREFIX_EXP_CS__OWNED_OPERATOR = EXP_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Expression</b></em>' containment reference.
@@ -4267,13 +4276,22 @@ public interface EssentialOCLCSPackage
 	int PREFIX_EXP_CS__OWNED_EXPRESSION = EXP_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Derived Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_EXP_CS__DERIVED_SOURCE = EXP_CS_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Prefix Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREFIX_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 2;
+	int PREFIX_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.PropertyCallExpCSImpl <em>Property Call Exp CS</em>}' class.
@@ -5541,15 +5559,15 @@ public interface EssentialOCLCSPackage
 	EClass getPrefixExpCS();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS#getOwnedOperators <em>Owned Operators</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS#getOwnedOperator <em>Owned Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Operators</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS#getOwnedOperators()
+	 * @return the meta object for the containment reference '<em>Owned Operator</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS#getOwnedOperator()
 	 * @see #getPrefixExpCS()
 	 * @generated
 	 */
-	EReference getPrefixExpCS_OwnedOperators();
+	EReference getPrefixExpCS_OwnedOperator();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS#getOwnedExpression <em>Owned Expression</em>}'.
@@ -5561,6 +5579,17 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 */
 	EReference getPrefixExpCS_OwnedExpression();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS#getDerivedSource <em>Derived Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Derived Source</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS#getDerivedSource()
+	 * @see #getPrefixExpCS()
+	 * @generated
+	 */
+	EReference getPrefixExpCS_DerivedSource();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionTypeCS <em>Collection Type CS</em>}'.
@@ -6771,6 +6800,17 @@ public interface EssentialOCLCSPackage
 	EReference getInfixExpCS_OwnedSuffix();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getDerivedSource <em>Derived Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Derived Source</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getDerivedSource()
+	 * @see #getInfixExpCS()
+	 * @generated
+	 */
+	EReference getInfixExpCS_DerivedSource();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS <em>Let Exp CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6972,12 +7012,12 @@ public interface EssentialOCLCSPackage
 		EClass PREFIX_EXP_CS = eINSTANCE.getPrefixExpCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Operators</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Operator</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PREFIX_EXP_CS__OWNED_OPERATORS = eINSTANCE.getPrefixExpCS_OwnedOperators();
+		EReference PREFIX_EXP_CS__OWNED_OPERATOR = eINSTANCE.getPrefixExpCS_OwnedOperator();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Expression</b></em>' containment reference feature.
@@ -6986,6 +7026,14 @@ public interface EssentialOCLCSPackage
 		 * @generated
 		 */
 		EReference PREFIX_EXP_CS__OWNED_EXPRESSION = eINSTANCE.getPrefixExpCS_OwnedExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Derived Source</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREFIX_EXP_CS__DERIVED_SOURCE = eINSTANCE.getPrefixExpCS_DerivedSource();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CollectionTypeCSImpl <em>Collection Type CS</em>}' class.
@@ -7978,6 +8026,14 @@ public interface EssentialOCLCSPackage
 		 * @generated
 		 */
 		EReference INFIX_EXP_CS__OWNED_SUFFIX = eINSTANCE.getInfixExpCS_OwnedSuffix();
+
+		/**
+		 * The meta object literal for the '<em><b>Derived Source</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INFIX_EXP_CS__DERIVED_SOURCE = eINSTANCE.getInfixExpCS_DerivedSource();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetExpCSImpl <em>Let Exp CS</em>}' class.

@@ -137,6 +137,8 @@
         eType="#//BinaryOperatorCS" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSuffix" lowerBound="1"
         eType="#//ExpCS" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="derivedSource" lowerBound="1"
+        eType="#//ExpCS" changeable="false" transient="true" derived="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InvalidLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="IterateCallExpCS" abstract="true" eSuperTypes="#//IterationCallExpCS">
@@ -207,10 +209,12 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrefixExpCS" eSuperTypes="#//ExpCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedOperators" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedOperator" lowerBound="1"
         eType="#//UnaryOperatorCS" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedExpression" eType="#//ExpCS"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="derivedSource" lowerBound="1"
+        eType="#//ExpCS" changeable="false" transient="true" derived="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveLiteralExpCS" eSuperTypes="#//LiteralExpCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyCallExpCS" abstract="true" eSuperTypes="#//CallExpCS">

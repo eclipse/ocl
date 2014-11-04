@@ -1366,20 +1366,14 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExpCS");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final RuleCall cPrefixedExpCSParserRuleCall_0_0 = (RuleCall)cGroup_0.eContents().get(0);
+		private final RuleCall cPrefixedPrimaryExpCSParserRuleCall_0_0 = (RuleCall)cGroup_0.eContents().get(0);
 		private final Group cGroup_0_1 = (Group)cGroup_0.eContents().get(1);
 		private final Action cInfixExpCSOwnedExpressionAction_0_1_0 = (Action)cGroup_0_1.eContents().get(0);
 		private final Assignment cOwnedOperatorAssignment_0_1_1 = (Assignment)cGroup_0_1.eContents().get(1);
 		private final RuleCall cOwnedOperatorBinaryOperatorCSParserRuleCall_0_1_1_0 = (RuleCall)cOwnedOperatorAssignment_0_1_1.eContents().get(0);
 		private final Assignment cOwnedSuffixAssignment_0_1_2 = (Assignment)cGroup_0_1.eContents().get(2);
 		private final RuleCall cOwnedSuffixExpCSParserRuleCall_0_1_2_0 = (RuleCall)cOwnedSuffixAssignment_0_1_2.eContents().get(0);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Action cPrefixExpCSAction_1_0 = (Action)cGroup_1.eContents().get(0);
-		private final Assignment cOwnedOperatorsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cOwnedOperatorsUnaryOperatorCSParserRuleCall_1_1_0 = (RuleCall)cOwnedOperatorsAssignment_1_1.eContents().get(0);
-		private final Assignment cOwnedExpressionAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cOwnedExpressionLetExpCSParserRuleCall_1_2_0 = (RuleCall)cOwnedExpressionAssignment_1_2.eContents().get(0);
-		private final RuleCall cLetExpCSParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cPrefixedLetExpCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		////---------------------------------------------------------------------
 		// //  Expressions
@@ -1398,29 +1392,27 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		/// * An expression elaborates a prefixed expression with zero or more binary operator and expression suffixes.
 		// * An optionally prefixed let expression is permitted except when suffixed with further expressions.* /
 		//ExpCS:
-		//	PrefixedExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)?
+		//	PrefixedPrimaryExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)?
 		//	//	({InfixExpCS} ownedExpression=PrefixedExpCS ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)
 		// //| 	PrefixedExpCS
 		//
 		//	// the above takes exponential or worse time for backtracking, below is fast
-		// | {PrefixExpCS}
-		//	ownedOperators+=UnaryOperatorCS+ ownedExpression=LetExpCS | LetExpCS;
+		// | PrefixedLetExpCS;
 		public ParserRule getRule() { return rule; }
 
-		//PrefixedExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)?
+		//PrefixedPrimaryExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)?
 		////	({InfixExpCS} ownedExpression=PrefixedExpCS ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)
 		// //| 	PrefixedExpCS
 		//
 		//// the above takes exponential or worse time for backtracking, below is fast
-		// | {PrefixExpCS}
-		//ownedOperators+=UnaryOperatorCS+ ownedExpression=LetExpCS | LetExpCS
+		// | PrefixedLetExpCS
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//PrefixedExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)?
+		//PrefixedPrimaryExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)?
 		public Group getGroup_0() { return cGroup_0; }
 
-		//PrefixedExpCS
-		public RuleCall getPrefixedExpCSParserRuleCall_0_0() { return cPrefixedExpCSParserRuleCall_0_0; }
+		//PrefixedPrimaryExpCS
+		public RuleCall getPrefixedPrimaryExpCSParserRuleCall_0_0() { return cPrefixedPrimaryExpCSParserRuleCall_0_0; }
 
 		//({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)?
 		public Group getGroup_0_1() { return cGroup_0_1; }
@@ -1440,64 +1432,87 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//ExpCS
 		public RuleCall getOwnedSuffixExpCSParserRuleCall_0_1_2_0() { return cOwnedSuffixExpCSParserRuleCall_0_1_2_0; }
 
-		//{PrefixExpCS} ownedOperators+=UnaryOperatorCS+ ownedExpression=LetExpCS
-		public Group getGroup_1() { return cGroup_1; }
-
-		//{PrefixExpCS}
-		public Action getPrefixExpCSAction_1_0() { return cPrefixExpCSAction_1_0; }
-
-		//ownedOperators+=UnaryOperatorCS+
-		public Assignment getOwnedOperatorsAssignment_1_1() { return cOwnedOperatorsAssignment_1_1; }
-
-		//UnaryOperatorCS
-		public RuleCall getOwnedOperatorsUnaryOperatorCSParserRuleCall_1_1_0() { return cOwnedOperatorsUnaryOperatorCSParserRuleCall_1_1_0; }
-
-		//ownedExpression=LetExpCS
-		public Assignment getOwnedExpressionAssignment_1_2() { return cOwnedExpressionAssignment_1_2; }
-
-		//LetExpCS
-		public RuleCall getOwnedExpressionLetExpCSParserRuleCall_1_2_0() { return cOwnedExpressionLetExpCSParserRuleCall_1_2_0; }
-
-		//LetExpCS
-		public RuleCall getLetExpCSParserRuleCall_2() { return cLetExpCSParserRuleCall_2; }
+		//PrefixedLetExpCS
+		public RuleCall getPrefixedLetExpCSParserRuleCall_1() { return cPrefixedLetExpCSParserRuleCall_1; }
 	}
 
-	public class PrefixedExpCSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PrefixedExpCS");
+	public class PrefixedLetExpCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PrefixedLetExpCS");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
 		private final Action cPrefixExpCSAction_0_0 = (Action)cGroup_0.eContents().get(0);
-		private final Assignment cOwnedOperatorsAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
-		private final RuleCall cOwnedOperatorsUnaryOperatorCSParserRuleCall_0_1_0 = (RuleCall)cOwnedOperatorsAssignment_0_1.eContents().get(0);
+		private final Assignment cOwnedOperatorAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
+		private final RuleCall cOwnedOperatorUnaryOperatorCSParserRuleCall_0_1_0 = (RuleCall)cOwnedOperatorAssignment_0_1.eContents().get(0);
 		private final Assignment cOwnedExpressionAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
-		private final RuleCall cOwnedExpressionPrimaryExpCSParserRuleCall_0_2_0 = (RuleCall)cOwnedExpressionAssignment_0_2.eContents().get(0);
-		private final RuleCall cPrimaryExpCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cOwnedExpressionPrefixedLetExpCSParserRuleCall_0_2_0 = (RuleCall)cOwnedExpressionAssignment_0_2.eContents().get(0);
+		private final RuleCall cLetExpCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		/// * A prefixed expression elaborates a primary expression with zero or more unary prefix operators. * / PrefixedExpCS
+		/// * A prefixed let expression elaborates a let expression with zero or more unary prefix operators. * / PrefixedLetExpCS
 		//returns ExpCS:
-		//	{PrefixExpCS} ownedOperators+=UnaryOperatorCS+ ownedExpression=PrimaryExpCS | PrimaryExpCS;
+		//	{PrefixExpCS} ownedOperator=UnaryOperatorCS ownedExpression=PrefixedLetExpCS | LetExpCS;
 		public ParserRule getRule() { return rule; }
 
-		//{PrefixExpCS} ownedOperators+=UnaryOperatorCS+ ownedExpression=PrimaryExpCS | PrimaryExpCS
+		//{PrefixExpCS} ownedOperator=UnaryOperatorCS ownedExpression=PrefixedLetExpCS | LetExpCS
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//{PrefixExpCS} ownedOperators+=UnaryOperatorCS+ ownedExpression=PrimaryExpCS
+		//{PrefixExpCS} ownedOperator=UnaryOperatorCS ownedExpression=PrefixedLetExpCS
 		public Group getGroup_0() { return cGroup_0; }
 
 		//{PrefixExpCS}
 		public Action getPrefixExpCSAction_0_0() { return cPrefixExpCSAction_0_0; }
 
-		//ownedOperators+=UnaryOperatorCS+
-		public Assignment getOwnedOperatorsAssignment_0_1() { return cOwnedOperatorsAssignment_0_1; }
+		//ownedOperator=UnaryOperatorCS
+		public Assignment getOwnedOperatorAssignment_0_1() { return cOwnedOperatorAssignment_0_1; }
 
 		//UnaryOperatorCS
-		public RuleCall getOwnedOperatorsUnaryOperatorCSParserRuleCall_0_1_0() { return cOwnedOperatorsUnaryOperatorCSParserRuleCall_0_1_0; }
+		public RuleCall getOwnedOperatorUnaryOperatorCSParserRuleCall_0_1_0() { return cOwnedOperatorUnaryOperatorCSParserRuleCall_0_1_0; }
 
-		//ownedExpression=PrimaryExpCS
+		//ownedExpression=PrefixedLetExpCS
 		public Assignment getOwnedExpressionAssignment_0_2() { return cOwnedExpressionAssignment_0_2; }
 
-		//PrimaryExpCS
-		public RuleCall getOwnedExpressionPrimaryExpCSParserRuleCall_0_2_0() { return cOwnedExpressionPrimaryExpCSParserRuleCall_0_2_0; }
+		//PrefixedLetExpCS
+		public RuleCall getOwnedExpressionPrefixedLetExpCSParserRuleCall_0_2_0() { return cOwnedExpressionPrefixedLetExpCSParserRuleCall_0_2_0; }
+
+		//LetExpCS
+		public RuleCall getLetExpCSParserRuleCall_1() { return cLetExpCSParserRuleCall_1; }
+	}
+
+	public class PrefixedPrimaryExpCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PrefixedPrimaryExpCS");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Action cPrefixExpCSAction_0_0 = (Action)cGroup_0.eContents().get(0);
+		private final Assignment cOwnedOperatorAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
+		private final RuleCall cOwnedOperatorUnaryOperatorCSParserRuleCall_0_1_0 = (RuleCall)cOwnedOperatorAssignment_0_1.eContents().get(0);
+		private final Assignment cOwnedExpressionAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
+		private final RuleCall cOwnedExpressionPrefixedPrimaryExpCSParserRuleCall_0_2_0 = (RuleCall)cOwnedExpressionAssignment_0_2.eContents().get(0);
+		private final RuleCall cPrimaryExpCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		/// * A prefixed primary expression elaborates a primary expression with zero or more unary prefix operators. * /
+		//PrefixedPrimaryExpCS returns ExpCS:
+		//	{PrefixExpCS} ownedOperator=UnaryOperatorCS ownedExpression=PrefixedPrimaryExpCS | PrimaryExpCS;
+		public ParserRule getRule() { return rule; }
+
+		//{PrefixExpCS} ownedOperator=UnaryOperatorCS ownedExpression=PrefixedPrimaryExpCS | PrimaryExpCS
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//{PrefixExpCS} ownedOperator=UnaryOperatorCS ownedExpression=PrefixedPrimaryExpCS
+		public Group getGroup_0() { return cGroup_0; }
+
+		//{PrefixExpCS}
+		public Action getPrefixExpCSAction_0_0() { return cPrefixExpCSAction_0_0; }
+
+		//ownedOperator=UnaryOperatorCS
+		public Assignment getOwnedOperatorAssignment_0_1() { return cOwnedOperatorAssignment_0_1; }
+
+		//UnaryOperatorCS
+		public RuleCall getOwnedOperatorUnaryOperatorCSParserRuleCall_0_1_0() { return cOwnedOperatorUnaryOperatorCSParserRuleCall_0_1_0; }
+
+		//ownedExpression=PrefixedPrimaryExpCS
+		public Assignment getOwnedExpressionAssignment_0_2() { return cOwnedExpressionAssignment_0_2; }
+
+		//PrefixedPrimaryExpCS
+		public RuleCall getOwnedExpressionPrefixedPrimaryExpCSParserRuleCall_0_2_0() { return cOwnedExpressionPrefixedPrimaryExpCSParserRuleCall_0_2_0; }
 
 		//PrimaryExpCS
 		public RuleCall getPrimaryExpCSParserRuleCall_1() { return cPrimaryExpCSParserRuleCall_1; }
@@ -2456,7 +2471,8 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	private final TypeNameExpCSElements pTypeNameExpCS;
 	private final TypeExpCSElements pTypeExpCS;
 	private final ExpCSElements pExpCS;
-	private final PrefixedExpCSElements pPrefixedExpCS;
+	private final PrefixedLetExpCSElements pPrefixedLetExpCS;
+	private final PrefixedPrimaryExpCSElements pPrefixedPrimaryExpCS;
 	private final PrimaryExpCSElements pPrimaryExpCS;
 	private final NameExpCSElements pNameExpCS;
 	private final CurlyBracketedClauseCSElements pCurlyBracketedClauseCS;
@@ -2525,7 +2541,8 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pTypeNameExpCS = new TypeNameExpCSElements();
 		this.pTypeExpCS = new TypeExpCSElements();
 		this.pExpCS = new ExpCSElements();
-		this.pPrefixedExpCS = new PrefixedExpCSElements();
+		this.pPrefixedLetExpCS = new PrefixedLetExpCSElements();
+		this.pPrefixedPrimaryExpCS = new PrefixedPrimaryExpCSElements();
 		this.pPrimaryExpCS = new PrimaryExpCSElements();
 		this.pNameExpCS = new NameExpCSElements();
 		this.pCurlyBracketedClauseCS = new CurlyBracketedClauseCSElements();
@@ -3027,13 +3044,12 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	/// * An expression elaborates a prefixed expression with zero or more binary operator and expression suffixes.
 	// * An optionally prefixed let expression is permitted except when suffixed with further expressions.* /
 	//ExpCS:
-	//	PrefixedExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)?
+	//	PrefixedPrimaryExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)?
 	//	//	({InfixExpCS} ownedExpression=PrefixedExpCS ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)
 	// //| 	PrefixedExpCS
 	//
 	//	// the above takes exponential or worse time for backtracking, below is fast
-	// | {PrefixExpCS}
-	//	ownedOperators+=UnaryOperatorCS+ ownedExpression=LetExpCS | LetExpCS;
+	// | PrefixedLetExpCS;
 	public ExpCSElements getExpCSAccess() {
 		return pExpCS;
 	}
@@ -3042,15 +3058,26 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getExpCSAccess().getRule();
 	}
 
-	/// * A prefixed expression elaborates a primary expression with zero or more unary prefix operators. * / PrefixedExpCS
+	/// * A prefixed let expression elaborates a let expression with zero or more unary prefix operators. * / PrefixedLetExpCS
 	//returns ExpCS:
-	//	{PrefixExpCS} ownedOperators+=UnaryOperatorCS+ ownedExpression=PrimaryExpCS | PrimaryExpCS;
-	public PrefixedExpCSElements getPrefixedExpCSAccess() {
-		return pPrefixedExpCS;
+	//	{PrefixExpCS} ownedOperator=UnaryOperatorCS ownedExpression=PrefixedLetExpCS | LetExpCS;
+	public PrefixedLetExpCSElements getPrefixedLetExpCSAccess() {
+		return pPrefixedLetExpCS;
 	}
 	
-	public ParserRule getPrefixedExpCSRule() {
-		return getPrefixedExpCSAccess().getRule();
+	public ParserRule getPrefixedLetExpCSRule() {
+		return getPrefixedLetExpCSAccess().getRule();
+	}
+
+	/// * A prefixed primary expression elaborates a primary expression with zero or more unary prefix operators. * /
+	//PrefixedPrimaryExpCS returns ExpCS:
+	//	{PrefixExpCS} ownedOperator=UnaryOperatorCS ownedExpression=PrefixedPrimaryExpCS | PrimaryExpCS;
+	public PrefixedPrimaryExpCSElements getPrefixedPrimaryExpCSAccess() {
+		return pPrefixedPrimaryExpCS;
+	}
+	
+	public ParserRule getPrefixedPrimaryExpCSRule() {
+		return getPrefixedPrimaryExpCSAccess().getRule();
 	}
 
 	/// * A primary expression identifies the basic expressions from which more complex expressions may be constructed. * /

@@ -34,6 +34,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.InfixExpCSImpl#getOwnedExpression <em>Owned Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.InfixExpCSImpl#getOwnedOperator <em>Owned Operator</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.InfixExpCSImpl#getOwnedSuffix <em>Owned Suffix</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.InfixExpCSImpl#getDerivedSource <em>Derived Source</em>}</li>
  * </ul>
  * </p>
  *
@@ -72,6 +73,16 @@ public class InfixExpCSImpl
 	 * @ordered
 	 */
 	protected ExpCS ownedSuffix;
+
+	/**
+	 * The cached value of the '{@link #getDerivedSource() <em>Derived Source</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDerivedSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected ExpCS derivedSource;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -271,6 +282,8 @@ public class InfixExpCSImpl
 				return getOwnedOperator();
 			case EssentialOCLCSPackage.INFIX_EXP_CS__OWNED_SUFFIX:
 				return getOwnedSuffix();
+			case EssentialOCLCSPackage.INFIX_EXP_CS__DERIVED_SOURCE:
+				return getDerivedSource();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -334,6 +347,8 @@ public class InfixExpCSImpl
 				return ownedOperator != null;
 			case EssentialOCLCSPackage.INFIX_EXP_CS__OWNED_SUFFIX:
 				return ownedSuffix != null;
+			case EssentialOCLCSPackage.INFIX_EXP_CS__DERIVED_SOURCE:
+				return derivedSource != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -346,5 +361,15 @@ public class InfixExpCSImpl
 	@Override
 	public @Nullable <R> R accept(@NonNull BaseCSVisitor<R> visitor) {
 		return (R) ((EssentialOCLCSVisitor<?>)visitor).visitInfixExpCS(this);
+	}
+
+	public ExpCS getDerivedSource() {
+		return derivedSource;
+	}
+
+	@Override
+	public void resetPivot() {
+		super.resetPivot();
+		derivedSource = null;
 	}
 } //BinaryExpressionCSImpl

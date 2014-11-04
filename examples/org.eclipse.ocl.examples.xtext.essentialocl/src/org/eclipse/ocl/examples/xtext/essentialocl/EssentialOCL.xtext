@@ -206,13 +206,17 @@ ExpCS returns ExpCS:
 //	({InfixExpCS} ownedExpression=PrefixedExpCS ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)
 //| 	PrefixedExpCS
 // the above takes exponential or worse time for backtracking, below is fast
-	(PrefixedExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)?)
-| 	({PrefixExpCS} ownedOperators+=UnaryOperatorCS+ ownedExpression=LetExpCS)
-|	LetExpCS;
+	(PrefixedPrimaryExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)?)
+| 	PrefixedLetExpCS;
 
-/* A prefixed expression elaborates a primary expression with zero or more unary prefix operators. */
-PrefixedExpCS returns ExpCS:
-	({PrefixExpCS} ownedOperators+=UnaryOperatorCS+ ownedExpression=PrimaryExpCS)
+/* A prefixed let expression elaborates a let expression with zero or more unary prefix operators. */
+PrefixedLetExpCS returns ExpCS:
+	({PrefixExpCS} ownedOperator=UnaryOperatorCS ownedExpression=PrefixedLetExpCS)
+| 	LetExpCS;
+
+/* A prefixed primary expression elaborates a primary expression with zero or more unary prefix operators. */
+PrefixedPrimaryExpCS returns ExpCS:
+	({PrefixExpCS} ownedOperator=UnaryOperatorCS ownedExpression=PrefixedPrimaryExpCS)
 | 	PrimaryExpCS;
 
 /* A primary expression identifies the basic expressions from which more complex expressions may be constructed. */

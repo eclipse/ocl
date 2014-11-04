@@ -1686,7 +1686,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 
 	@Override
 	public Element visitPrefixExpCS(@NonNull PrefixExpCS csPrefixExp) {
-		UnaryOperatorCS csRoot = csPrefixExp.getOwnedOperators().get(0);
+		UnaryOperatorCS csRoot = csPrefixExp.getOwnedOperator();
 		if (csRoot == null) {
 			return null;
 		}

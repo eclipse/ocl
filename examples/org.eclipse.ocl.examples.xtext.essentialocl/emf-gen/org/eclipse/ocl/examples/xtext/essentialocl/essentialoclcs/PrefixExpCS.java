@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
 
-import org.eclipse.emf.common.util.EList;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Unary Expression CS</b></em>'.
@@ -20,8 +18,9 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS#getOwnedOperators <em>Owned Operators</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS#getOwnedOperator <em>Owned Operator</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS#getOwnedExpression <em>Owned Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS#getDerivedSource <em>Derived Source</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,20 +32,30 @@ public interface PrefixExpCS
 		extends ExpCS {
 
 	/**
-	 * Returns the value of the '<em><b>Owned Operators</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.UnaryOperatorCS}.
+	 * Returns the value of the '<em><b>Owned Operator</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owned Operator</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Owned Operator</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Operators</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getPrefixExpCS_OwnedOperators()
-	 * @model containment="true"
+	 * @return the value of the '<em>Owned Operator</em>' containment reference.
+	 * @see #setOwnedOperator(UnaryOperatorCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getPrefixExpCS_OwnedOperator()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<UnaryOperatorCS> getOwnedOperators();
+	UnaryOperatorCS getOwnedOperator();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS#getOwnedOperator <em>Owned Operator</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Operator</em>' containment reference.
+	 * @see #getOwnedOperator()
+	 * @generated
+	 */
+	void setOwnedOperator(UnaryOperatorCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Expression</b></em>' containment reference.
@@ -73,5 +82,20 @@ public interface PrefixExpCS
 	 * @generated
 	 */
 	void setOwnedExpression(ExpCS value);
+
+	/**
+	 * Returns the value of the '<em><b>Derived Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Derived Source</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Derived Source</em>' reference.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getPrefixExpCS_DerivedSource()
+	 * @model resolveProxies="false" required="true" transient="true" changeable="false" derived="true"
+	 * @generated
+	 */
+	ExpCS getDerivedSource();
 
 } // UnaryExpressionCS

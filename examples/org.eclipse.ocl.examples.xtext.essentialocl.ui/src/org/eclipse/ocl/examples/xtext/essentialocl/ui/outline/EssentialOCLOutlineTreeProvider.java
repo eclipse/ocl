@@ -56,9 +56,9 @@ public class EssentialOCLOutlineTreeProvider extends BaseOutlineTreeProvider
 	}
 
 	protected void _createChildren(IOutlineNode parentNode, PrefixExpCS csPrefixExp) {
-		for (UnaryOperatorCS csOperator : csPrefixExp.getOwnedOperators()) {
-			createNode(parentNode, csOperator);
-		}
+//		for (UnaryOperatorCS csOperator : csPrefixExp.getOwnedOperators()) {
+			createNode(parentNode, csPrefixExp.getOwnedOperator());
+//		}
 		createNode(parentNode, csPrefixExp.getOwnedExpression());
 	}
 

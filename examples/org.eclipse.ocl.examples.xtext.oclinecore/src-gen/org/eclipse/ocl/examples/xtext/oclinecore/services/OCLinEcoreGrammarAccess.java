@@ -4196,13 +4196,12 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	/// * An expression elaborates a prefixed expression with zero or more binary operator and expression suffixes.
 	// * An optionally prefixed let expression is permitted except when suffixed with further expressions.* /
 	//ExpCS:
-	//	PrefixedExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)?
+	//	PrefixedPrimaryExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)?
 	//	//	({InfixExpCS} ownedExpression=PrefixedExpCS ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)
 	// //| 	PrefixedExpCS
 	//
 	//	// the above takes exponential or worse time for backtracking, below is fast
-	// | {PrefixExpCS}
-	//	ownedOperators+=UnaryOperatorCS+ ownedExpression=LetExpCS | LetExpCS;
+	// | PrefixedLetExpCS;
 	public EssentialOCLGrammarAccess.ExpCSElements getExpCSAccess() {
 		return gaEssentialOCL.getExpCSAccess();
 	}
@@ -4211,15 +4210,26 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		return getExpCSAccess().getRule();
 	}
 
-	/// * A prefixed expression elaborates a primary expression with zero or more unary prefix operators. * / PrefixedExpCS
+	/// * A prefixed let expression elaborates a let expression with zero or more unary prefix operators. * / PrefixedLetExpCS
 	//returns ExpCS:
-	//	{PrefixExpCS} ownedOperators+=UnaryOperatorCS+ ownedExpression=PrimaryExpCS | PrimaryExpCS;
-	public EssentialOCLGrammarAccess.PrefixedExpCSElements getPrefixedExpCSAccess() {
-		return gaEssentialOCL.getPrefixedExpCSAccess();
+	//	{PrefixExpCS} ownedOperator=UnaryOperatorCS ownedExpression=PrefixedLetExpCS | LetExpCS;
+	public EssentialOCLGrammarAccess.PrefixedLetExpCSElements getPrefixedLetExpCSAccess() {
+		return gaEssentialOCL.getPrefixedLetExpCSAccess();
 	}
 	
-	public ParserRule getPrefixedExpCSRule() {
-		return getPrefixedExpCSAccess().getRule();
+	public ParserRule getPrefixedLetExpCSRule() {
+		return getPrefixedLetExpCSAccess().getRule();
+	}
+
+	/// * A prefixed primary expression elaborates a primary expression with zero or more unary prefix operators. * /
+	//PrefixedPrimaryExpCS returns ExpCS:
+	//	{PrefixExpCS} ownedOperator=UnaryOperatorCS ownedExpression=PrefixedPrimaryExpCS | PrimaryExpCS;
+	public EssentialOCLGrammarAccess.PrefixedPrimaryExpCSElements getPrefixedPrimaryExpCSAccess() {
+		return gaEssentialOCL.getPrefixedPrimaryExpCSAccess();
+	}
+	
+	public ParserRule getPrefixedPrimaryExpCSRule() {
+		return getPrefixedPrimaryExpCSAccess().getRule();
 	}
 
 	/// * A primary expression identifies the basic expressions from which more complex expressions may be constructed. * /

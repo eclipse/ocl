@@ -7262,11 +7262,11 @@ ruleExpCS returns [EObject current=null]
 	  /* */ 
 	}
     { 
-        newCompositeNode(grammarAccess.getExpCSAccess().getPrefixedExpCSParserRuleCall_0_0()); 
+        newCompositeNode(grammarAccess.getExpCSAccess().getPrefixedPrimaryExpCSParserRuleCall_0_0()); 
     }
-    this_PrefixedExpCS_0=rulePrefixedExpCS
+    this_PrefixedPrimaryExpCS_0=rulePrefixedPrimaryExpCS
     { 
-        $current = $this_PrefixedExpCS_0.current; 
+        $current = $this_PrefixedPrimaryExpCS_0.current; 
         afterParserOrEnumRuleCall();
     }
 ((
@@ -7315,62 +7315,16 @@ ruleExpCS returns [EObject current=null]
 
 )
 ))?)
-    |((
-	{ 
-	  /* */ 
-	}
-    {
-        $current = forceCreateModelElement(
-            grammarAccess.getExpCSAccess().getPrefixExpCSAction_1_0(),
-            $current);
-    }
-)(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getExpCSAccess().getOwnedOperatorsUnaryOperatorCSParserRuleCall_1_1_0()); 
-	    }
-		lv_ownedOperators_5_0=ruleUnaryOperatorCS		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getExpCSRule());
-	        }
-       		add(
-       			$current, 
-       			"ownedOperators",
-        		lv_ownedOperators_5_0, 
-        		"UnaryOperatorCS");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)+(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getExpCSAccess().getOwnedExpressionLetExpCSParserRuleCall_1_2_0()); 
-	    }
-		lv_ownedExpression_6_0=ruleLetExpCS		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getExpCSRule());
-	        }
-       		set(
-       			$current, 
-       			"ownedExpression",
-        		lv_ownedExpression_6_0, 
-        		"LetExpCS");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))
     |
 	{ 
 	  /* */ 
 	}
     { 
-        newCompositeNode(grammarAccess.getExpCSAccess().getLetExpCSParserRuleCall_2()); 
+        newCompositeNode(grammarAccess.getExpCSAccess().getPrefixedLetExpCSParserRuleCall_1()); 
     }
-    this_LetExpCS_7=ruleLetExpCS
+    this_PrefixedLetExpCS_4=rulePrefixedLetExpCS
     { 
-        $current = $this_LetExpCS_7.current; 
+        $current = $this_PrefixedLetExpCS_4.current; 
         afterParserOrEnumRuleCall();
     }
 )
@@ -7380,17 +7334,17 @@ ruleExpCS returns [EObject current=null]
 
 
 
-// Entry rule entryRulePrefixedExpCS
-entryRulePrefixedExpCS returns [EObject current=null] 
+// Entry rule entryRulePrefixedLetExpCS
+entryRulePrefixedLetExpCS returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getPrefixedExpCSRule()); }
-	 iv_rulePrefixedExpCS=rulePrefixedExpCS 
-	 { $current=$iv_rulePrefixedExpCS.current; } 
+	{ newCompositeNode(grammarAccess.getPrefixedLetExpCSRule()); }
+	 iv_rulePrefixedLetExpCS=rulePrefixedLetExpCS 
+	 { $current=$iv_rulePrefixedLetExpCS.current; } 
 	 EOF 
 ;
 
-// Rule PrefixedExpCS
-rulePrefixedExpCS returns [EObject current=null] 
+// Rule PrefixedLetExpCS
+rulePrefixedLetExpCS returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
@@ -7400,41 +7354,41 @@ rulePrefixedExpCS returns [EObject current=null]
 	}
     {
         $current = forceCreateModelElement(
-            grammarAccess.getPrefixedExpCSAccess().getPrefixExpCSAction_0_0(),
+            grammarAccess.getPrefixedLetExpCSAccess().getPrefixExpCSAction_0_0(),
             $current);
     }
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPrefixedExpCSAccess().getOwnedOperatorsUnaryOperatorCSParserRuleCall_0_1_0()); 
+	        newCompositeNode(grammarAccess.getPrefixedLetExpCSAccess().getOwnedOperatorUnaryOperatorCSParserRuleCall_0_1_0()); 
 	    }
-		lv_ownedOperators_1_0=ruleUnaryOperatorCS		{
+		lv_ownedOperator_1_0=ruleUnaryOperatorCS		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getPrefixedExpCSRule());
+	            $current = createModelElementForParent(grammarAccess.getPrefixedLetExpCSRule());
 	        }
-       		add(
+       		set(
        			$current, 
-       			"ownedOperators",
-        		lv_ownedOperators_1_0, 
+       			"ownedOperator",
+        		lv_ownedOperator_1_0, 
         		"UnaryOperatorCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)+(
+)(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPrefixedExpCSAccess().getOwnedExpressionPrimaryExpCSParserRuleCall_0_2_0()); 
+	        newCompositeNode(grammarAccess.getPrefixedLetExpCSAccess().getOwnedExpressionPrefixedLetExpCSParserRuleCall_0_2_0()); 
 	    }
-		lv_ownedExpression_2_0=rulePrimaryExpCS		{
+		lv_ownedExpression_2_0=rulePrefixedLetExpCS		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getPrefixedExpCSRule());
+	            $current = createModelElementForParent(grammarAccess.getPrefixedLetExpCSRule());
 	        }
        		set(
        			$current, 
        			"ownedExpression",
         		lv_ownedExpression_2_0, 
-        		"PrimaryExpCS");
+        		"PrefixedLetExpCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7445,7 +7399,86 @@ rulePrefixedExpCS returns [EObject current=null]
 	  /* */ 
 	}
     { 
-        newCompositeNode(grammarAccess.getPrefixedExpCSAccess().getPrimaryExpCSParserRuleCall_1()); 
+        newCompositeNode(grammarAccess.getPrefixedLetExpCSAccess().getLetExpCSParserRuleCall_1()); 
+    }
+    this_LetExpCS_3=ruleLetExpCS
+    { 
+        $current = $this_LetExpCS_3.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRulePrefixedPrimaryExpCS
+entryRulePrefixedPrimaryExpCS returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getPrefixedPrimaryExpCSRule()); }
+	 iv_rulePrefixedPrimaryExpCS=rulePrefixedPrimaryExpCS 
+	 { $current=$iv_rulePrefixedPrimaryExpCS.current; } 
+	 EOF 
+;
+
+// Rule PrefixedPrimaryExpCS
+rulePrefixedPrimaryExpCS returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(((
+	{ 
+	  /* */ 
+	}
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getPrefixedPrimaryExpCSAccess().getPrefixExpCSAction_0_0(),
+            $current);
+    }
+)(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getPrefixedPrimaryExpCSAccess().getOwnedOperatorUnaryOperatorCSParserRuleCall_0_1_0()); 
+	    }
+		lv_ownedOperator_1_0=ruleUnaryOperatorCS		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getPrefixedPrimaryExpCSRule());
+	        }
+       		set(
+       			$current, 
+       			"ownedOperator",
+        		lv_ownedOperator_1_0, 
+        		"UnaryOperatorCS");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getPrefixedPrimaryExpCSAccess().getOwnedExpressionPrefixedPrimaryExpCSParserRuleCall_0_2_0()); 
+	    }
+		lv_ownedExpression_2_0=rulePrefixedPrimaryExpCS		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getPrefixedPrimaryExpCSRule());
+	        }
+       		set(
+       			$current, 
+       			"ownedExpression",
+        		lv_ownedExpression_2_0, 
+        		"PrefixedPrimaryExpCS");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+    |
+	{ 
+	  /* */ 
+	}
+    { 
+        newCompositeNode(grammarAccess.getPrefixedPrimaryExpCSAccess().getPrimaryExpCSParserRuleCall_1()); 
     }
     this_PrimaryExpCS_3=rulePrimaryExpCS
     { 

@@ -53,7 +53,8 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeLiteralCSAccess().getAlternatives(), "rule__TypeLiteralCS__Alternatives");
 					put(grammarAccess.getTypeExpCSAccess().getAlternatives_0(), "rule__TypeExpCS__Alternatives_0");
 					put(grammarAccess.getExpCSAccess().getAlternatives(), "rule__ExpCS__Alternatives");
-					put(grammarAccess.getPrefixedExpCSAccess().getAlternatives(), "rule__PrefixedExpCS__Alternatives");
+					put(grammarAccess.getPrefixedLetExpCSAccess().getAlternatives(), "rule__PrefixedLetExpCS__Alternatives");
+					put(grammarAccess.getPrefixedPrimaryExpCSAccess().getAlternatives(), "rule__PrefixedPrimaryExpCS__Alternatives");
 					put(grammarAccess.getPrimaryExpCSAccess().getAlternatives(), "rule__PrimaryExpCS__Alternatives");
 					put(grammarAccess.getCurlyBracketedClauseCSAccess().getAlternatives_2(), "rule__CurlyBracketedClauseCS__Alternatives_2");
 					put(grammarAccess.getNavigatingArgCSAccess().getAlternatives(), "rule__NavigatingArgCS__Alternatives");
@@ -103,8 +104,8 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeExpCSAccess().getGroup(), "rule__TypeExpCS__Group__0");
 					put(grammarAccess.getExpCSAccess().getGroup_0(), "rule__ExpCS__Group_0__0");
 					put(grammarAccess.getExpCSAccess().getGroup_0_1(), "rule__ExpCS__Group_0_1__0");
-					put(grammarAccess.getExpCSAccess().getGroup_1(), "rule__ExpCS__Group_1__0");
-					put(grammarAccess.getPrefixedExpCSAccess().getGroup_0(), "rule__PrefixedExpCS__Group_0__0");
+					put(grammarAccess.getPrefixedLetExpCSAccess().getGroup_0(), "rule__PrefixedLetExpCS__Group_0__0");
+					put(grammarAccess.getPrefixedPrimaryExpCSAccess().getGroup_0(), "rule__PrefixedPrimaryExpCS__Group_0__0");
 					put(grammarAccess.getNameExpCSAccess().getGroup(), "rule__NameExpCS__Group__0");
 					put(grammarAccess.getNameExpCSAccess().getGroup_4(), "rule__NameExpCS__Group_4__0");
 					put(grammarAccess.getCurlyBracketedClauseCSAccess().getGroup(), "rule__CurlyBracketedClauseCS__Group__0");
@@ -204,10 +205,10 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeExpCSAccess().getOwnedMultiplicityAssignment_1(), "rule__TypeExpCS__OwnedMultiplicityAssignment_1");
 					put(grammarAccess.getExpCSAccess().getOwnedOperatorAssignment_0_1_1(), "rule__ExpCS__OwnedOperatorAssignment_0_1_1");
 					put(grammarAccess.getExpCSAccess().getOwnedSuffixAssignment_0_1_2(), "rule__ExpCS__OwnedSuffixAssignment_0_1_2");
-					put(grammarAccess.getExpCSAccess().getOwnedOperatorsAssignment_1_1(), "rule__ExpCS__OwnedOperatorsAssignment_1_1");
-					put(grammarAccess.getExpCSAccess().getOwnedExpressionAssignment_1_2(), "rule__ExpCS__OwnedExpressionAssignment_1_2");
-					put(grammarAccess.getPrefixedExpCSAccess().getOwnedOperatorsAssignment_0_1(), "rule__PrefixedExpCS__OwnedOperatorsAssignment_0_1");
-					put(grammarAccess.getPrefixedExpCSAccess().getOwnedExpressionAssignment_0_2(), "rule__PrefixedExpCS__OwnedExpressionAssignment_0_2");
+					put(grammarAccess.getPrefixedLetExpCSAccess().getOwnedOperatorAssignment_0_1(), "rule__PrefixedLetExpCS__OwnedOperatorAssignment_0_1");
+					put(grammarAccess.getPrefixedLetExpCSAccess().getOwnedExpressionAssignment_0_2(), "rule__PrefixedLetExpCS__OwnedExpressionAssignment_0_2");
+					put(grammarAccess.getPrefixedPrimaryExpCSAccess().getOwnedOperatorAssignment_0_1(), "rule__PrefixedPrimaryExpCS__OwnedOperatorAssignment_0_1");
+					put(grammarAccess.getPrefixedPrimaryExpCSAccess().getOwnedExpressionAssignment_0_2(), "rule__PrefixedPrimaryExpCS__OwnedExpressionAssignment_0_2");
 					put(grammarAccess.getNameExpCSAccess().getOwnedPathNameAssignment_0(), "rule__NameExpCS__OwnedPathNameAssignment_0");
 					put(grammarAccess.getNameExpCSAccess().getOwnedSquareBracketedClausesAssignment_1(), "rule__NameExpCS__OwnedSquareBracketedClausesAssignment_1");
 					put(grammarAccess.getNameExpCSAccess().getOwnedRoundBracketedClauseAssignment_2(), "rule__NameExpCS__OwnedRoundBracketedClauseAssignment_2");
