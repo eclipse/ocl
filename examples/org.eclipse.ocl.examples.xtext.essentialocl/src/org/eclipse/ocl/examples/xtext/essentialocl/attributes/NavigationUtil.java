@@ -29,7 +29,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationRole;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS;
 
 public class NavigationUtil
@@ -43,7 +43,7 @@ public class NavigationUtil
 			csExp = (NameExpCS) eContainer;
 		}
 		for (ExpCS csChild = csExp; true; csChild = csChild.getParent()) {
-			OperatorCS csOperator = csChild.getParent();
+			OperatorExpCS csOperator = csChild.getParent();
 			if (csOperator == null) {
 				return null;
 			}

@@ -115,7 +115,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationRole
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NullLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NumberLiteralExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SelfExpCS;
@@ -188,7 +188,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	 * curretRoot identifies the current InfixExpCS/PrefixExpCS tree enabling the initial visit to the containment root to
 	 * be distinguished from the subsequent visit within the logical hierarchy.
 	 */
-	private @Nullable OperatorCS currentRoot = null;
+	private @Nullable OperatorExpCS currentRoot = null;
 	
 	public EssentialOCLCSLeft2RightVisitor(@NonNull CS2ASConversion context) {
 		super(context);
@@ -431,9 +431,9 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		return invocations;
 	}
 
-	protected @NonNull OperatorCS getRoot(@NonNull OperatorCS csOperator) {
-		OperatorCS csRoot = csOperator;
-		for (OperatorCS csParent = csRoot.getParent(); csParent != null; csParent = csParent.getParent()) {
+	protected @NonNull OperatorExpCS getRoot(@NonNull OperatorExpCS csOperator) {
+		OperatorExpCS csRoot = csOperator;
+		for (OperatorExpCS csParent = csRoot.getParent(); csParent != null; csParent = csParent.getParent()) {
 			csRoot = csParent;
 		}
 		return csRoot;
@@ -926,7 +926,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		context.refreshList(expression.getArgument(), pivotArguments);
 	}
 
-	protected void resolveOperationCall(@NonNull OperationCallExp expression, @NonNull OperatorCS csOperator) {
+	protected void resolveOperationCall(@NonNull OperationCallExp expression, @NonNull OperatorExpCS csOperator) {
 		String name = expression.getName();
 		Type sourceType = PivotUtil.getType(expression.getSource());
 		Invocations invocations = null;
@@ -1118,7 +1118,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	
 	protected Element resolveRoundBracketedTerm(@NonNull RoundBracketedClauseCS csRoundBracketedClause) {
 		AbstractNameExpCS csNameExp = csRoundBracketedClause.getOwningNameExp();
-		OperatorCS csParent = csNameExp.getParent();
+		OperatorExpCS csParent = csNameExp.getParent();
 		if (NavigationUtil.isNavigationInfixExp(csParent) && (csNameExp != csParent.getSource())) {
 			// source.name(), source->name() are resolved by the parent NavigationOperatorCS
 			return PivotUtil.getPivot(OCLExpression.class, csNameExp);
@@ -1324,9 +1324,9 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		//
 		//	If this is a new Operation tree start at its root.
 		//
-		OperatorCS csRoot = getRoot(csInfixExp);
+		OperatorExpCS csRoot = getRoot(csInfixExp);
 		if (csRoot != currentRoot) {
-			OperatorCS savedCurrentRoot = currentRoot;
+			OperatorExpCS savedCurrentRoot = currentRoot;
 			try {
 				currentRoot = csRoot;
 				OCLExpression pivot = context.visitLeft2Right(OCLExpression.class, csRoot);		
@@ -1699,18 +1699,13 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	}
 
 	@Override
-	public Element visitOperatorCS(@NonNull OperatorCS object) {
-		return null;
-	}
-
-	@Override
 	public Element visitPrefixExpCS(@NonNull PrefixExpCS csPrefixExp) {
 		//
 		//	If this is a new Operation tree start at its root.
 		//
-		OperatorCS csRoot = getRoot(csPrefixExp);
+		OperatorExpCS csRoot = getRoot(csPrefixExp);
 		if (csRoot != currentRoot) {
-			OperatorCS savedCurrentRoot = currentRoot;
+			OperatorExpCS savedCurrentRoot = currentRoot;
 			try {
 				currentRoot = csRoot;
 				OCLExpression pivot = context.visitLeft2Right(OCLExpression.class, csRoot);		

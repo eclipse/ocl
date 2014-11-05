@@ -241,9 +241,9 @@ public class EssentialOCLCSAdapterFactory
 				return createOperationCallExpCSAdapter();
 			}
 			@Override
-			public Adapter caseOperatorCS(OperatorCS object)
+			public Adapter caseOperatorExpCS(OperatorExpCS object)
 			{
-				return createOperatorCSAdapter();
+				return createOperatorExpCSAdapter();
 			}
 			@Override
 			public Adapter casePatternExpCS(PatternExpCS object)
@@ -837,16 +837,17 @@ public class EssentialOCLCSAdapterFactory
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS <em>Operator CS</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS <em>Operator Exp CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS
 	 * @generated
 	 */
-	public Adapter createOperatorCSAdapter() {
+	public Adapter createOperatorExpCSAdapter()
+	{
 		return null;
 	}
 

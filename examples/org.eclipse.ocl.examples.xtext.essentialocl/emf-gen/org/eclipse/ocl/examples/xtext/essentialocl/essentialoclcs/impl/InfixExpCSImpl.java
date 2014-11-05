@@ -30,9 +30,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.InfixExpCSImpl#getOwnedSource <em>Owned Source</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.InfixExpCSImpl#getOwnedArgument <em>Owned Argument</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.InfixExpCSImpl#getDerivedSource <em>Derived Source</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.InfixExpCSImpl#getDerivedArgument <em>Derived Argument</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.InfixExpCSImpl#getArgument <em>Argument</em>}</li>
  * </ul>
  * </p>
@@ -40,18 +39,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * @generated
  */
 public class InfixExpCSImpl
-		extends OperatorCSImpl
+		extends OperatorExpCSImpl
 		implements InfixExpCS {
-
-	/**
-	 * The cached value of the '{@link #getOwnedSource() <em>Owned Source</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedSource()
-	 * @generated
-	 * @ordered
-	 */
-	protected ExpCS ownedSource;
 
 	/**
 	 * The cached value of the '{@link #getOwnedArgument() <em>Owned Argument</em>}' containment reference.
@@ -64,14 +53,14 @@ public class InfixExpCSImpl
 	protected ExpCS ownedArgument;
 
 	/**
-	 * The cached value of the '{@link #getDerivedSource() <em>Derived Source</em>}' reference.
+	 * The cached value of the '{@link #getDerivedArgument() <em>Derived Argument</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDerivedSource()
+	 * @see #getDerivedArgument()
 	 * @generated
 	 * @ordered
 	 */
-	protected ExpCS derivedSource;
+	protected ExpCS derivedArgument;
 
 	/**
 	 * The cached value of the '{@link #getArgument() <em>Argument</em>}' reference.
@@ -100,54 +89,6 @@ public class InfixExpCSImpl
 	@Override
 	protected EClass eStaticClass() {
 		return EssentialOCLCSPackage.Literals.INFIX_EXP_CS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ExpCS getOwnedSource()
-	{
-		return ownedSource;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwnedSource(ExpCS newOwnedSource, NotificationChain msgs)
-	{
-		ExpCS oldOwnedSource = ownedSource;
-		ownedSource = newOwnedSource;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.INFIX_EXP_CS__OWNED_SOURCE, oldOwnedSource, newOwnedSource);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwnedSource(ExpCS newOwnedSource)
-	{
-		if (newOwnedSource != ownedSource)
-		{
-			NotificationChain msgs = null;
-			if (ownedSource != null)
-				msgs = ((InternalEObject)ownedSource).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.INFIX_EXP_CS__OWNED_SOURCE, null, msgs);
-			if (newOwnedSource != null)
-				msgs = ((InternalEObject)newOwnedSource).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.INFIX_EXP_CS__OWNED_SOURCE, null, msgs);
-			msgs = basicSetOwnedSource(newOwnedSource, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.INFIX_EXP_CS__OWNED_SOURCE, newOwnedSource, newOwnedSource));
 	}
 
 	/**
@@ -208,8 +149,6 @@ public class InfixExpCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.INFIX_EXP_CS__OWNED_SOURCE:
-				return basicSetOwnedSource(null, msgs);
 			case EssentialOCLCSPackage.INFIX_EXP_CS__OWNED_ARGUMENT:
 				return basicSetOwnedArgument(null, msgs);
 		}
@@ -225,12 +164,10 @@ public class InfixExpCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.INFIX_EXP_CS__OWNED_SOURCE:
-				return getOwnedSource();
 			case EssentialOCLCSPackage.INFIX_EXP_CS__OWNED_ARGUMENT:
 				return getOwnedArgument();
-			case EssentialOCLCSPackage.INFIX_EXP_CS__DERIVED_SOURCE:
-				return getDerivedSource();
+			case EssentialOCLCSPackage.INFIX_EXP_CS__DERIVED_ARGUMENT:
+				return getDerivedArgument();
 			case EssentialOCLCSPackage.INFIX_EXP_CS__ARGUMENT:
 				return getArgument();
 		}
@@ -246,9 +183,6 @@ public class InfixExpCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.INFIX_EXP_CS__OWNED_SOURCE:
-				setOwnedSource((ExpCS)newValue);
-				return;
 			case EssentialOCLCSPackage.INFIX_EXP_CS__OWNED_ARGUMENT:
 				setOwnedArgument((ExpCS)newValue);
 				return;
@@ -268,9 +202,6 @@ public class InfixExpCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.INFIX_EXP_CS__OWNED_SOURCE:
-				setOwnedSource((ExpCS)null);
-				return;
 			case EssentialOCLCSPackage.INFIX_EXP_CS__OWNED_ARGUMENT:
 				setOwnedArgument((ExpCS)null);
 				return;
@@ -290,30 +221,14 @@ public class InfixExpCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.INFIX_EXP_CS__OWNED_SOURCE:
-				return ownedSource != null;
 			case EssentialOCLCSPackage.INFIX_EXP_CS__OWNED_ARGUMENT:
 				return ownedArgument != null;
-			case EssentialOCLCSPackage.INFIX_EXP_CS__DERIVED_SOURCE:
-				return derivedSource != null;
+			case EssentialOCLCSPackage.INFIX_EXP_CS__DERIVED_ARGUMENT:
+				return derivedArgument != null;
 			case EssentialOCLCSPackage.INFIX_EXP_CS__ARGUMENT:
 				return argument != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public @Nullable <R> R accept(@NonNull BaseCSVisitor<R> visitor) {
-		return (R) ((EssentialOCLCSVisitor<?>)visitor).visitInfixExpCS(this);
-	}
-
-	public ExpCS getDerivedSource() {
-		return derivedSource;
 	}
 
 	/**
@@ -339,10 +254,24 @@ public class InfixExpCSImpl
 			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.INFIX_EXP_CS__ARGUMENT, oldArgument, argument));
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public @Nullable <R> R accept(@NonNull BaseCSVisitor<R> visitor) {
+		return (R) ((EssentialOCLCSVisitor<?>)visitor).visitInfixExpCS(this);
+	}
+
+	public ExpCS getDerivedArgument() {
+		return derivedArgument;
+	}
+
 	@Override
 	public void resetPivot() {
 		super.resetPivot();
 		setArgument(null);
-		derivedSource = null;
+		derivedArgument = null;
 	}
 } //BinaryExpressionCSImpl

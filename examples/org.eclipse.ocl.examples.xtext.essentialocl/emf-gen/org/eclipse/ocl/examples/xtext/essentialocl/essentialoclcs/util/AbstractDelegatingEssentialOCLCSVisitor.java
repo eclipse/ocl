@@ -156,8 +156,8 @@ public abstract class AbstractDelegatingEssentialOCLCSVisitor<R, C, D extends Es
 		return delegate.visitOperationCallExpCS(object);
 	}
 
-	public @Nullable R visitOperatorCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS object) {
-		return delegate.visitOperatorCS(object);
+	public @Nullable R visitOperatorExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS object) {
+		return delegate.visitOperatorExpCS(object);
 	}
 
 	public @Nullable R visitPatternExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PatternExpCS object) {

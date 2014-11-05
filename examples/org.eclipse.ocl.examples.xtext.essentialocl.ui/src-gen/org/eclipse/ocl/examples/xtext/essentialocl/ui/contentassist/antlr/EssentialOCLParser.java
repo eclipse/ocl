@@ -203,9 +203,9 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExpCSAccess().getNameAssignment_0_1_1(), "rule__ExpCS__NameAssignment_0_1_1");
 					put(grammarAccess.getExpCSAccess().getOwnedArgumentAssignment_0_1_2(), "rule__ExpCS__OwnedArgumentAssignment_0_1_2");
 					put(grammarAccess.getPrefixedLetExpCSAccess().getNameAssignment_0_1(), "rule__PrefixedLetExpCS__NameAssignment_0_1");
-					put(grammarAccess.getPrefixedLetExpCSAccess().getOwnedExpressionAssignment_0_2(), "rule__PrefixedLetExpCS__OwnedExpressionAssignment_0_2");
+					put(grammarAccess.getPrefixedLetExpCSAccess().getOwnedSourceAssignment_0_2(), "rule__PrefixedLetExpCS__OwnedSourceAssignment_0_2");
 					put(grammarAccess.getPrefixedPrimaryExpCSAccess().getNameAssignment_0_1(), "rule__PrefixedPrimaryExpCS__NameAssignment_0_1");
-					put(grammarAccess.getPrefixedPrimaryExpCSAccess().getOwnedExpressionAssignment_0_2(), "rule__PrefixedPrimaryExpCS__OwnedExpressionAssignment_0_2");
+					put(grammarAccess.getPrefixedPrimaryExpCSAccess().getOwnedSourceAssignment_0_2(), "rule__PrefixedPrimaryExpCS__OwnedSourceAssignment_0_2");
 					put(grammarAccess.getNameExpCSAccess().getOwnedPathNameAssignment_0(), "rule__NameExpCS__OwnedPathNameAssignment_0");
 					put(grammarAccess.getNameExpCSAccess().getOwnedSquareBracketedClausesAssignment_1(), "rule__NameExpCS__OwnedSquareBracketedClausesAssignment_1");
 					put(grammarAccess.getNameExpCSAccess().getOwnedRoundBracketedClauseAssignment_2(), "rule__NameExpCS__OwnedRoundBracketedClauseAssignment_2");

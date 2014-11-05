@@ -17,7 +17,7 @@ import org.eclipse.ocl.examples.xtext.base.ui.outline.BaseOutlineTreeProvider;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 
@@ -56,7 +56,7 @@ public class EssentialOCLOutlineTreeProvider extends BaseOutlineTreeProvider
 //		for (UnaryOperatorCS csOperator : csPrefixExp.getOwnedOperators()) {
 			createNode(parentNode, csPrefixExp.getSource());
 //		}
-		createNode(parentNode, csPrefixExp.getOwnedExpression());
+		createNode(parentNode, csPrefixExp.getOwnedSource());
 	}
 
 //	protected void _createChildren(IOutlineNode parentNode, UnaryOperatorCS csOperator) {
@@ -76,8 +76,8 @@ public class EssentialOCLOutlineTreeProvider extends BaseOutlineTreeProvider
 		// Find the root.
 		//
 		if (csInfixExp != null) {
-			OperatorCS csRoot = csInfixExp;
-			for (OperatorCS csParent = csRoot.getParent(); csParent != null; csParent = csParent.getParent()) {
+			OperatorExpCS csRoot = csInfixExp;
+			for (OperatorExpCS csParent = csRoot.getParent(); csParent != null; csParent = csParent.getParent()) {
 				csRoot = csParent;
 			}
 			createNode(parentNode, csRoot);
@@ -125,7 +125,7 @@ public class EssentialOCLOutlineTreeProvider extends BaseOutlineTreeProvider
 		return true;
 	}
 
-	protected boolean _isLeaf(OperatorCS csExp) {
+	protected boolean _isLeaf(OperatorExpCS csExp) {
 		return false;
 	}
 

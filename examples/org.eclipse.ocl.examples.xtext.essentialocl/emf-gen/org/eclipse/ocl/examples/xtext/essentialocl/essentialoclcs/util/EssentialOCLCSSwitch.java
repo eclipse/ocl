@@ -308,7 +308,7 @@ public class EssentialOCLCSSwitch<T>
 			{
 				InfixExpCS infixExpCS = (InfixExpCS)theEObject;
 				T result = caseInfixExpCS(infixExpCS);
-				if (result == null) result = caseOperatorCS(infixExpCS);
+				if (result == null) result = caseOperatorExpCS(infixExpCS);
 				if (result == null) result = caseExpCS(infixExpCS);
 				if (result == null) result = caseNamedElementCS(infixExpCS);
 				if (result == null) result = caseModelElementCS(infixExpCS);
@@ -514,18 +514,18 @@ public class EssentialOCLCSSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EssentialOCLCSPackage.OPERATOR_CS:
+			case EssentialOCLCSPackage.OPERATOR_EXP_CS:
 			{
-				OperatorCS operatorCS = (OperatorCS)theEObject;
-				T result = caseOperatorCS(operatorCS);
-				if (result == null) result = caseExpCS(operatorCS);
-				if (result == null) result = caseNamedElementCS(operatorCS);
-				if (result == null) result = caseModelElementCS(operatorCS);
-				if (result == null) result = caseNameable(operatorCS);
-				if (result == null) result = casePivotableElementCS(operatorCS);
-				if (result == null) result = caseElementCS(operatorCS);
-				if (result == null) result = casePivotable(operatorCS);
-				if (result == null) result = caseVisitableCS(operatorCS);
+				OperatorExpCS operatorExpCS = (OperatorExpCS)theEObject;
+				T result = caseOperatorExpCS(operatorExpCS);
+				if (result == null) result = caseExpCS(operatorExpCS);
+				if (result == null) result = caseNamedElementCS(operatorExpCS);
+				if (result == null) result = caseModelElementCS(operatorExpCS);
+				if (result == null) result = caseNameable(operatorExpCS);
+				if (result == null) result = casePivotableElementCS(operatorExpCS);
+				if (result == null) result = caseElementCS(operatorExpCS);
+				if (result == null) result = casePivotable(operatorExpCS);
+				if (result == null) result = caseVisitableCS(operatorExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -546,7 +546,7 @@ public class EssentialOCLCSSwitch<T>
 			{
 				PrefixExpCS prefixExpCS = (PrefixExpCS)theEObject;
 				T result = casePrefixExpCS(prefixExpCS);
-				if (result == null) result = caseOperatorCS(prefixExpCS);
+				if (result == null) result = caseOperatorExpCS(prefixExpCS);
 				if (result == null) result = caseExpCS(prefixExpCS);
 				if (result == null) result = caseNamedElementCS(prefixExpCS);
 				if (result == null) result = caseModelElementCS(prefixExpCS);
@@ -1201,17 +1201,18 @@ public class EssentialOCLCSSwitch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Operator CS</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Operator Exp CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Operator CS</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Operator Exp CS</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseOperatorCS(OperatorCS object) {
+	public T caseOperatorExpCS(OperatorExpCS object)
+	{
 		return null;
 	}
 

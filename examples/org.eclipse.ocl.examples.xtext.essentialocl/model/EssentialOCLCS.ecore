@@ -99,7 +99,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExpCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#//ModelElementCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//OperatorCS"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//OperatorExpCS"
         transient="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasError" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         transient="true" defaultValueLiteral="false"/>
@@ -126,12 +126,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedThenExpression" eType="#//ExpCS"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InfixExpCS" eSuperTypes="#//OperatorCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSource" lowerBound="1"
-        eType="#//ExpCS" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InfixExpCS" eSuperTypes="#//OperatorExpCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedArgument" lowerBound="1"
         eType="#//ExpCS" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="derivedSource" eType="#//ExpCS"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="derivedArgument" eType="#//ExpCS"
         changeable="false" transient="true" derived="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="argument" lowerBound="1"
         eType="#//ExpCS" transient="true" resolveProxies="false"/>
@@ -194,21 +192,22 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredOperation" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Operation"
         derived="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OperatorCS" abstract="true" eSuperTypes="#//ExpCS ../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#//NamedElementCS">
+  <eClassifiers xsi:type="ecore:EClass" name="OperatorExpCS" abstract="true" eSuperTypes="#//ExpCS ../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#//NamedElementCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSource" lowerBound="1"
+        eType="#//ExpCS" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
         eType="#//ExpCS" transient="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="derivedSource" eType="#//ExpCS"
+        changeable="false" transient="true" derived="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="derivedParent" eType="#//ExpCS"
+        changeable="false" transient="true" derived="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatternExpCS" eSuperTypes="#//ExpCS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="patternVariableName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPatternType" eType="ecore:EClass ../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#//TypeRefCS"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PrefixExpCS" eSuperTypes="#//OperatorCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedExpression" eType="#//ExpCS"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="derivedSource" eType="#//ExpCS"
-        changeable="false" transient="true" derived="true" resolveProxies="false"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrefixExpCS" eSuperTypes="#//OperatorExpCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveLiteralExpCS" eSuperTypes="#//LiteralExpCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyCallExpCS" abstract="true" eSuperTypes="#//CallExpCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredProperty" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Property"

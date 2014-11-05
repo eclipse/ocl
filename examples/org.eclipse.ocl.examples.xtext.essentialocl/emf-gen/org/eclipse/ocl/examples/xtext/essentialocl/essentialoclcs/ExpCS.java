@@ -41,12 +41,12 @@ public interface ExpCS
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parent</em>' reference.
-	 * @see #setParent(OperatorCS)
+	 * @see #setParent(OperatorExpCS)
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getExpCS_Parent()
 	 * @model resolveProxies="false" transient="true"
 	 * @generated
 	 */
-	OperatorCS getParent();
+	OperatorExpCS getParent();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#getParent <em>Parent</em>}' reference.
@@ -56,7 +56,7 @@ public interface ExpCS
 	 * @see #getParent()
 	 * @generated
 	 */
-	void setParent(OperatorCS value);
+	void setParent(OperatorExpCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Has Error</b></em>' attribute.

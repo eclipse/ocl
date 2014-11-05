@@ -85,7 +85,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationRole
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NullLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NumberLiteralExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrimitiveLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS;
@@ -392,11 +391,6 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 				pivotElement.setUnlimitedNaturalSymbol(number);
 			}
 		}
-		return null;
-	}
-
-	@Override
-	public Continuation<?> visitOperatorCS(@NonNull OperatorCS csElement) {
 		return null;
 	}
 

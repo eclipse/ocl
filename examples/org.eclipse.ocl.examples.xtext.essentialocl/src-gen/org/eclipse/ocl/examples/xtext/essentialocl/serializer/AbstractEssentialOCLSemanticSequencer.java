@@ -753,7 +753,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	
 	/**
 	 * Constraint:
-	 *     (name=UnaryOperatorName ownedExpression=PrefixedLetExpCS)
+	 *     (name=UnaryOperatorName ownedSource=PrefixedLetExpCS)
 	 */
 	protected void sequence_PrefixedLetExpCS(EObject context, PrefixExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -762,7 +762,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	
 	/**
 	 * Constraint:
-	 *     ((name=UnaryOperatorName ownedExpression=PrefixedPrimaryExpCS) | (name=UnaryOperatorName ownedExpression=PrefixedLetExpCS))
+	 *     ((name=UnaryOperatorName ownedSource=PrefixedPrimaryExpCS) | (name=UnaryOperatorName ownedSource=PrefixedLetExpCS))
 	 */
 	protected void sequence_PrefixedLetExpCS_PrefixedPrimaryExpCS(EObject context, PrefixExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -771,7 +771,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	
 	/**
 	 * Constraint:
-	 *     (name=UnaryOperatorName ownedExpression=PrefixedPrimaryExpCS)
+	 *     (name=UnaryOperatorName ownedSource=PrefixedPrimaryExpCS)
 	 */
 	protected void sequence_PrefixedPrimaryExpCS(EObject context, PrefixExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

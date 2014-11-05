@@ -47,7 +47,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NullLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NumberLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperationCallExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PatternExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrimitiveLiteralExpCS;
@@ -203,8 +203,8 @@ public class AutoEssentialOCLCSContainmentVisitor
         throw new UnsupportedOperationException("visitOperationCallExpCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitOperatorCS(@NonNull OperatorCS self) {
-        throw new UnsupportedOperationException("visitOperatorCS is not supported by " + getClass().getName());
+    public @Nullable Continuation<?> visitOperatorExpCS(@NonNull OperatorExpCS self) {
+        throw new UnsupportedOperationException("visitOperatorExpCS is not supported by " + getClass().getName());
     }
     
     public @Nullable Continuation<?> visitPatternExpCS(@NonNull PatternExpCS self) {

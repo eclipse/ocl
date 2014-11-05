@@ -51,7 +51,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationRole;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS;
@@ -143,7 +143,7 @@ public class EssentialOCLScoping
 			TypedElement source = null;
 			ExpCS csSource = navigationArgument;
 			for (ExpCS aSource = csSource; aSource != null; ) {										// FIXME rewrite me
-				OperatorCS csOperator = aSource.getParent();
+				OperatorExpCS csOperator = aSource.getParent();
 				if ((csOperator != null) && (csOperator.getSource() != aSource)) {
 					csSource = csOperator.getSource();
 					break;
@@ -182,7 +182,7 @@ public class EssentialOCLScoping
 					sourceType = source.getType();
 				}
 				if (sourceType != null) {
-					OperatorCS csParent = navigationArgument != null ? navigationArgument.getParent() : null;
+					OperatorExpCS csParent = navigationArgument != null ? navigationArgument.getParent() : null;
 					if (!(sourceType instanceof CollectionType) && NavigationUtil.isNavigationInfixExp(csParent) && (csParent != null) && PivotConstants.COLLECTION_NAVIGATION_OPERATOR.equals(((InfixExpCS)csParent).getName())) {
 						typeText = "Set(" + sourceType.toString() + ")";
 					}

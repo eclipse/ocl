@@ -18,9 +18,8 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedSource <em>Owned Source</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedArgument <em>Owned Argument</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getDerivedSource <em>Derived Source</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getDerivedArgument <em>Derived Argument</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getArgument <em>Argument</em>}</li>
  * </ul>
  * </p>
@@ -30,33 +29,7 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
  * @generated
  */
 public interface InfixExpCS
-		extends OperatorCS {
-
-	/**
-	 * Returns the value of the '<em><b>Owned Source</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Source</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Source</em>' containment reference.
-	 * @see #setOwnedSource(ExpCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getInfixExpCS_OwnedSource()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
-	ExpCS getOwnedSource();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedSource <em>Owned Source</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owned Source</em>' containment reference.
-	 * @see #getOwnedSource()
-	 * @generated
-	 */
-	void setOwnedSource(ExpCS value);
+		extends OperatorExpCS {
 
 	/**
 	 * Returns the value of the '<em><b>Owned Argument</b></em>' containment reference.
@@ -85,19 +58,19 @@ public interface InfixExpCS
 	void setOwnedArgument(ExpCS value);
 
 	/**
-	 * Returns the value of the '<em><b>Derived Source</b></em>' reference.
+	 * Returns the value of the '<em><b>Derived Argument</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Derived Source</em>' reference isn't clear,
+	 * If the meaning of the '<em>Derived Argument</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Derived Source</em>' reference.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getInfixExpCS_DerivedSource()
+	 * @return the value of the '<em>Derived Argument</em>' reference.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getInfixExpCS_DerivedArgument()
 	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
 	 * @generated
 	 */
-	ExpCS getDerivedSource();
+	ExpCS getDerivedArgument();
 
 	/**
 	 * Returns the value of the '<em><b>Argument</b></em>' reference.

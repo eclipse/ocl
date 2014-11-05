@@ -23,7 +23,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCS
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.EssentialOCLCSVisitor;
 
@@ -55,7 +55,7 @@ public class LetVariableCSImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected OperatorCS parent;
+	protected OperatorExpCS parent;
 
 	/**
 	 * The default value of the '{@link #isHasError() <em>Has Error</em>}' attribute.
@@ -110,7 +110,7 @@ public class LetVariableCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OperatorCS getParent() {
+	public OperatorExpCS getParent() {
 		return parent;
 	}
 
@@ -119,8 +119,8 @@ public class LetVariableCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setParent(OperatorCS newParent) {
-		OperatorCS oldParent = parent;
+	public void setParent(OperatorExpCS newParent) {
+		OperatorExpCS oldParent = parent;
 		parent = newParent;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.LET_VARIABLE_CS__PARENT, oldParent, parent));
@@ -323,7 +323,7 @@ public class LetVariableCSImpl
 		switch (featureID)
 		{
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__PARENT:
-				setParent((OperatorCS)newValue);
+				setParent((OperatorExpCS)newValue);
 				return;
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__HAS_ERROR:
 				setHasError((Boolean)newValue);
@@ -348,7 +348,7 @@ public class LetVariableCSImpl
 		switch (featureID)
 		{
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__PARENT:
-				setParent((OperatorCS)null);
+				setParent((OperatorExpCS)null);
 				return;
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__HAS_ERROR:
 				setHasError(HAS_ERROR_EDEFAULT);

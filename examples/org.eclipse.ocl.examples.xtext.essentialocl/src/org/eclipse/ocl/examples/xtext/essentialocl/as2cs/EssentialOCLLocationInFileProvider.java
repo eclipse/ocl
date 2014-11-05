@@ -15,7 +15,7 @@ import org.eclipse.ocl.examples.xtext.base.as2cs.BaseLocationInFileProvider;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
@@ -29,11 +29,11 @@ public class EssentialOCLLocationInFileProvider extends BaseLocationInFileProvid
 {
 	@Override		// FIXME Bug 434135 prevents outline selections working perfectly.
 	public ITextRegion getFullTextRegion(EObject obj) {
-		if (obj instanceof OperatorCS) {
-			ExpCS firstCS = (OperatorCS)obj;
-			ExpCS lastCS = (OperatorCS)obj;
-			while (firstCS instanceof OperatorCS) {
-				ExpCS expCS = ((OperatorCS)firstCS).getSource();
+		if (obj instanceof OperatorExpCS) {
+			ExpCS firstCS = (OperatorExpCS)obj;
+			ExpCS lastCS = (OperatorExpCS)obj;
+			while (firstCS instanceof OperatorExpCS) {
+				ExpCS expCS = ((OperatorExpCS)firstCS).getSource();
 				if (expCS != null) {
 					firstCS = expCS;
 				}
@@ -54,7 +54,7 @@ public class EssentialOCLLocationInFileProvider extends BaseLocationInFileProvid
 			}
 			else if (obj instanceof PrefixExpCS) {
 				lastCS = firstCS;
-				firstCS  = (OperatorCS)obj;
+				firstCS  = (OperatorExpCS)obj;
 			}
 			INode firstNode = NodeModelUtils.getNode(firstCS);
 			INode lastNode = NodeModelUtils.getNode(lastCS);

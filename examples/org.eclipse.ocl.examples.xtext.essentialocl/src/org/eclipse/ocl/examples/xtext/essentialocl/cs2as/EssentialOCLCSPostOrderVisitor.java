@@ -45,7 +45,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpSpecificationCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS;
@@ -240,21 +240,18 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 	 * In the case of a parsing error leading to a trailing null expression, the trailing operator is suppressed.
 	 */
 	protected @NonNull List<InfixExpCS> getInfixOperators(@NonNull InfixExpCS csInfix, @NonNull List<InfixExpCS> csOperators) {
-		InfixExpCS ownedOperator = csInfix;
-		if (ownedOperator != null) {
-			ExpCS csSuffix = csInfix.getOwnedArgument();
-			if (csSuffix != null) {
-				csOperators.add(ownedOperator);
-				if (csSuffix instanceof InfixExpCS) {
-					InfixExpCS csSuffix2 = (InfixExpCS)csSuffix;
-					return getInfixOperators(csSuffix2, csOperators);
-				}
+		ExpCS csSuffix = csInfix.getOwnedArgument();
+		if (csSuffix != null) {
+			csOperators.add(csInfix);
+			if (csSuffix instanceof InfixExpCS) {
+				InfixExpCS csSuffix2 = (InfixExpCS)csSuffix;
+				return getInfixOperators(csSuffix2, csOperators);
 			}
 		}
 		return csOperators;
 	}
 
-	protected void initializePrefixOperators(PrefixExpCS prefixExpCS, OperatorCS csParent) {
+	protected void initializePrefixOperators(PrefixExpCS prefixExpCS, OperatorExpCS csParent) {
 		prefixExpCS.setParent(null);		// FIXME asymmetric
 		PrefixExpCS csUnaryOperator = prefixExpCS;
 		if (csParent instanceof PrefixExpCS) {
@@ -268,7 +265,7 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 				setArgument((InfixExpCS) csParent, csUnaryOperator);
 			}
 		}
-		ExpCS csChild = prefixExpCS.getOwnedExpression();
+		ExpCS csChild = prefixExpCS.getOwnedSource();
 		setSource(csUnaryOperator, csChild);
 		csParent = csUnaryOperator;
 		if (csChild instanceof PrefixExpCS) {
@@ -281,7 +278,7 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 		for (ExpCS csExp : csExpressions) {
 			if (csExp instanceof PrefixExpCS) {
 				PrefixExpCS prefixExpCS = (PrefixExpCS)csExp;
-				OperatorCS csExpressionParent = prefixExpCS.getParent();
+				OperatorExpCS csExpressionParent = prefixExpCS.getParent();
 				initializePrefixOperators(prefixExpCS, csExpressionParent);			
 //				for (UnaryOperatorCS csUnaryOperator : prefixExpCS.getOwnedOperators()) {
 //					interleaveUnaryOperator(csUnaryOperator);
@@ -294,7 +291,7 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 	protected void interleaveUnaryOperator(PrefixExpCS prefixExpCS) {
 		PrefixExpCS csOperator = prefixExpCS;
 		while (true) {
-			OperatorCS csParent = csOperator.getParent();
+			OperatorExpCS csParent = csOperator.getParent();
 			if (!(csParent instanceof InfixExpCS)) {
 				break;
 			}
@@ -309,7 +306,7 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 			if (unaryOrder < parentOrder) {
 				break;
 			}
-			OperatorCS csGrandParent = csParent.getParent();
+			OperatorExpCS csGrandParent = csParent.getParent();
 			ExpCS csExp = csOperator.getSource();
 			if (csOperator == csParent.getSource()) {
 				setSource(csParent, null);			// Avoid a transient loop
@@ -340,8 +337,8 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 				break;
 			}
 		}
-		if (prefixExpCS.getOwnedExpression() instanceof PrefixExpCS) {
-			interleaveUnaryOperator((PrefixExpCS)prefixExpCS.getOwnedExpression());
+		if (prefixExpCS.getOwnedSource() instanceof PrefixExpCS) {
+			interleaveUnaryOperator((PrefixExpCS)prefixExpCS.getOwnedSource());
 		}
 	}
 
@@ -349,7 +346,7 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 		csArgument.setParent(csParent);
 		csParent.setArgument(csArgument);
 		int i = 0;
-		for (OperatorCS csOperator = csParent.getParent(); csOperator != null; csOperator = csOperator.getParent()) {
+		for (OperatorExpCS csOperator = csParent.getParent(); csOperator != null; csOperator = csOperator.getParent()) {
 			if (csOperator == csParent) {
 				logger.error("Operator loop established");
 			}
@@ -359,11 +356,11 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 		}
 	}
 
-	private void setSource(OperatorCS csParent, ExpCS csSource) {
+	private void setSource(OperatorExpCS csParent, ExpCS csSource) {
 		if (csSource != null) {
 			csSource.setParent(csParent);
 			int i = 0;
-			for (OperatorCS csOperator = csParent.getParent(); csOperator != null; csOperator = csOperator.getParent()) {
+			for (OperatorExpCS csOperator = csParent.getParent(); csOperator != null; csOperator = csOperator.getParent()) {
 				if (csOperator == csParent) {
 					logger.error("Operator loop established");
 				}
@@ -444,11 +441,6 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 			//
 			interleavePrefixes(csInfixExp);
 		}
-		return null;
-	}
-
-	@Override
-	public Continuation<?> visitOperatorCS(@NonNull OperatorCS csOperator) {
 		return null;
 	}
 

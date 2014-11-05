@@ -11,7 +11,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.essentialocl.as2cs;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
@@ -550,7 +549,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 				}
 				else {
 					csPrefix = EssentialOCLCSFactory.eINSTANCE.createPrefixExpCS();
-					csPrefix.setOwnedExpression(csSource);
+					csPrefix.setOwnedSource(csSource);
 				}
 				csPrefix.setName(asOperation.getName());
 				csPrefix.setSource(csSource);

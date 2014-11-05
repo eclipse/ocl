@@ -20,7 +20,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.impl.ModelElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.EssentialOCLCSVisitor;
 
 /**
@@ -49,7 +49,7 @@ public class ExpCSImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected OperatorCS parent;
+	protected OperatorExpCS parent;
 
 	/**
 	 * The default value of the '{@link #isHasError() <em>Has Error</em>}' attribute.
@@ -94,7 +94,7 @@ public class ExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OperatorCS getParent() {
+	public OperatorExpCS getParent() {
 		return parent;
 	}
 
@@ -103,8 +103,8 @@ public class ExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setParent(OperatorCS newParent) {
-		OperatorCS oldParent = parent;
+	public void setParent(OperatorExpCS newParent) {
+		OperatorExpCS oldParent = parent;
 		parent = newParent;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.EXP_CS__PARENT, oldParent, parent));
@@ -160,7 +160,7 @@ public class ExpCSImpl
 		switch (featureID)
 		{
 			case EssentialOCLCSPackage.EXP_CS__PARENT:
-				setParent((OperatorCS)newValue);
+				setParent((OperatorExpCS)newValue);
 				return;
 			case EssentialOCLCSPackage.EXP_CS__HAS_ERROR:
 				setHasError((Boolean)newValue);
@@ -179,7 +179,7 @@ public class ExpCSImpl
 		switch (featureID)
 		{
 			case EssentialOCLCSPackage.EXP_CS__PARENT:
-				setParent((OperatorCS)null);
+				setParent((OperatorExpCS)null);
 				return;
 			case EssentialOCLCSPackage.EXP_CS__HAS_ERROR:
 				setHasError(HAS_ERROR_EDEFAULT);

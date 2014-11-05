@@ -21,7 +21,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
 
 public class EssentialOCLUtils	// FIXME Find some extensible instantiation echanism
@@ -34,7 +34,7 @@ public class EssentialOCLUtils	// FIXME Find some extensible instantiation echan
 	 */
 	public static ModelElementCS getPivotedCS(EObject csElement) {
 		if (csElement instanceof InfixExpCS) {
-			OperatorCS csOperator = (InfixExpCS)csElement;
+			OperatorExpCS csOperator = (InfixExpCS)csElement;
 			while (csOperator.getParent() != null) {
 				csOperator = csOperator.getParent();
 			}
@@ -74,7 +74,7 @@ public class EssentialOCLUtils	// FIXME Find some extensible instantiation echan
 			return csElement;
 		}
 		if (csElement instanceof ExpCS) {
-			OperatorCS operator = ((ExpCS) csElement).getParent();
+			OperatorExpCS operator = ((ExpCS) csElement).getParent();
 			if (NavigationUtil.isNavigationInfixExp(operator) && (csElement != operator.getSource())) {
 				return getPivotingChildCS(operator);
 			}
@@ -113,7 +113,7 @@ public class EssentialOCLUtils	// FIXME Find some extensible instantiation echan
 		}
 		//		assert csElement == getPivotingChildCS(csElement);
 		if (csElement instanceof ExpCS) {
-			OperatorCS operator = ((ExpCS) csElement).getParent();
+			OperatorExpCS operator = ((ExpCS) csElement).getParent();
 			if (operator != null) {
 				return operator;
 			}
@@ -134,9 +134,9 @@ public class EssentialOCLUtils	// FIXME Find some extensible instantiation echan
 		}
 		assert csChildElement == getPivotingChildCS(csChildElement);
 		assert csParentElement == getPivotingParentCS(csChildElement);
-		if (csParentElement instanceof OperatorCS) {
-			if (((OperatorCS)csParentElement).getSource() == csChildElement) {
-				return EssentialOCLCSPackage.Literals.OPERATOR_CS__SOURCE;
+		if (csParentElement instanceof OperatorExpCS) {
+			if (((OperatorExpCS)csParentElement).getSource() == csChildElement) {
+				return EssentialOCLCSPackage.Literals.OPERATOR_EXP_CS__SOURCE;
 			}
 			else {
 				return EssentialOCLCSPackage.Literals.INFIX_EXP_CS__ARGUMENT;

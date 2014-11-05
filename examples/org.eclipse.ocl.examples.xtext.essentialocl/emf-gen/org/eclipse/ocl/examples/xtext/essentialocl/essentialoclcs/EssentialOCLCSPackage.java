@@ -259,16 +259,6 @@ public interface EssentialOCLCSPackage
 	int NUMBER_LITERAL_EXP_CS = 28;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperatorCSImpl <em>Operator CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperatorCSImpl
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getOperatorCS()
-	 * @generated
-	 */
-	int OPERATOR_CS = 30;
-
-	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2081,94 +2071,14 @@ public interface EssentialOCLCSPackage
 	int IF_THEN_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperatorExpCSImpl <em>Operator Exp CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperatorExpCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getOperatorExpCS()
 	 * @generated
-	 * @ordered
 	 */
-	int OPERATOR_CS__LOGICAL_PARENT = EXP_CS__LOGICAL_PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Pivot</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_CS__PIVOT = EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_CS__OWNED_ANNOTATIONS = EXP_CS__OWNED_ANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_CS__CSI = EXP_CS__CSI;
-
-	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_CS__PARENT = EXP_CS__PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_CS__HAS_ERROR = EXP_CS__HAS_ERROR;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_CS__NAME = EXP_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_CS__SOURCE = EXP_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Operator CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 2;
+	int OPERATOR_EXP_CS = 30;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -2177,7 +2087,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_EXP_CS__LOGICAL_PARENT = OPERATOR_CS__LOGICAL_PARENT;
+	int OPERATOR_EXP_CS__LOGICAL_PARENT = EXP_CS__LOGICAL_PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -2186,7 +2096,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_EXP_CS__PIVOT = OPERATOR_CS__PIVOT;
+	int OPERATOR_EXP_CS__PIVOT = EXP_CS__PIVOT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
@@ -2195,7 +2105,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_EXP_CS__OWNED_ANNOTATIONS = OPERATOR_CS__OWNED_ANNOTATIONS;
+	int OPERATOR_EXP_CS__OWNED_ANNOTATIONS = EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2204,7 +2114,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_EXP_CS__ORIGINAL_XMI_ID = OPERATOR_CS__ORIGINAL_XMI_ID;
+	int OPERATOR_EXP_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -2213,7 +2123,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_EXP_CS__CSI = OPERATOR_CS__CSI;
+	int OPERATOR_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -2222,7 +2132,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_EXP_CS__PARENT = OPERATOR_CS__PARENT;
+	int OPERATOR_EXP_CS__PARENT = EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -2231,7 +2141,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_EXP_CS__HAS_ERROR = OPERATOR_CS__HAS_ERROR;
+	int OPERATOR_EXP_CS__HAS_ERROR = EXP_CS__HAS_ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2240,16 +2150,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_EXP_CS__NAME = OPERATOR_CS__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INFIX_EXP_CS__SOURCE = OPERATOR_CS__SOURCE;
+	int OPERATOR_EXP_CS__NAME = EXP_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Source</b></em>' containment reference.
@@ -2258,16 +2159,16 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_EXP_CS__OWNED_SOURCE = OPERATOR_CS_FEATURE_COUNT + 0;
+	int OPERATOR_EXP_CS__OWNED_SOURCE = EXP_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Owned Argument</b></em>' containment reference.
+	 * The feature id for the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_EXP_CS__OWNED_ARGUMENT = OPERATOR_CS_FEATURE_COUNT + 1;
+	int OPERATOR_EXP_CS__SOURCE = EXP_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Derived Source</b></em>' reference.
@@ -2276,7 +2177,151 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_EXP_CS__DERIVED_SOURCE = OPERATOR_CS_FEATURE_COUNT + 2;
+	int OPERATOR_EXP_CS__DERIVED_SOURCE = EXP_CS_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Derived Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXP_CS__DERIVED_PARENT = EXP_CS_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of structural features of the '<em>Operator Exp CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX_EXP_CS__LOGICAL_PARENT = OPERATOR_EXP_CS__LOGICAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Pivot</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX_EXP_CS__PIVOT = OPERATOR_EXP_CS__PIVOT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX_EXP_CS__OWNED_ANNOTATIONS = OPERATOR_EXP_CS__OWNED_ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX_EXP_CS__ORIGINAL_XMI_ID = OPERATOR_EXP_CS__ORIGINAL_XMI_ID;
+
+	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX_EXP_CS__CSI = OPERATOR_EXP_CS__CSI;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX_EXP_CS__PARENT = OPERATOR_EXP_CS__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX_EXP_CS__HAS_ERROR = OPERATOR_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX_EXP_CS__NAME = OPERATOR_EXP_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Source</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX_EXP_CS__OWNED_SOURCE = OPERATOR_EXP_CS__OWNED_SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX_EXP_CS__SOURCE = OPERATOR_EXP_CS__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Derived Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX_EXP_CS__DERIVED_SOURCE = OPERATOR_EXP_CS__DERIVED_SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Derived Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX_EXP_CS__DERIVED_PARENT = OPERATOR_EXP_CS__DERIVED_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Argument</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX_EXP_CS__OWNED_ARGUMENT = OPERATOR_EXP_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Derived Argument</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX_EXP_CS__DERIVED_ARGUMENT = OPERATOR_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Argument</b></em>' reference.
@@ -2285,7 +2330,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_EXP_CS__ARGUMENT = OPERATOR_CS_FEATURE_COUNT + 3;
+	int INFIX_EXP_CS__ARGUMENT = OPERATOR_EXP_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Infix Exp CS</em>' class.
@@ -2294,7 +2339,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_EXP_CS_FEATURE_COUNT = OPERATOR_CS_FEATURE_COUNT + 4;
+	int INFIX_EXP_CS_FEATURE_COUNT = OPERATOR_EXP_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -4061,7 +4106,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PREFIX_EXP_CS__LOGICAL_PARENT = OPERATOR_CS__LOGICAL_PARENT;
+	int PREFIX_EXP_CS__LOGICAL_PARENT = OPERATOR_EXP_CS__LOGICAL_PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -4070,7 +4115,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PREFIX_EXP_CS__PIVOT = OPERATOR_CS__PIVOT;
+	int PREFIX_EXP_CS__PIVOT = OPERATOR_EXP_CS__PIVOT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
@@ -4079,7 +4124,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PREFIX_EXP_CS__OWNED_ANNOTATIONS = OPERATOR_CS__OWNED_ANNOTATIONS;
+	int PREFIX_EXP_CS__OWNED_ANNOTATIONS = OPERATOR_EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -4088,7 +4133,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PREFIX_EXP_CS__ORIGINAL_XMI_ID = OPERATOR_CS__ORIGINAL_XMI_ID;
+	int PREFIX_EXP_CS__ORIGINAL_XMI_ID = OPERATOR_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -4097,7 +4142,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PREFIX_EXP_CS__CSI = OPERATOR_CS__CSI;
+	int PREFIX_EXP_CS__CSI = OPERATOR_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -4106,7 +4151,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PREFIX_EXP_CS__PARENT = OPERATOR_CS__PARENT;
+	int PREFIX_EXP_CS__PARENT = OPERATOR_EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -4115,7 +4160,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PREFIX_EXP_CS__HAS_ERROR = OPERATOR_CS__HAS_ERROR;
+	int PREFIX_EXP_CS__HAS_ERROR = OPERATOR_EXP_CS__HAS_ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4124,7 +4169,16 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PREFIX_EXP_CS__NAME = OPERATOR_CS__NAME;
+	int PREFIX_EXP_CS__NAME = OPERATOR_EXP_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Source</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_EXP_CS__OWNED_SOURCE = OPERATOR_EXP_CS__OWNED_SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -4133,16 +4187,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PREFIX_EXP_CS__SOURCE = OPERATOR_CS__SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Expression</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREFIX_EXP_CS__OWNED_EXPRESSION = OPERATOR_CS_FEATURE_COUNT + 0;
+	int PREFIX_EXP_CS__SOURCE = OPERATOR_EXP_CS__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Derived Source</b></em>' reference.
@@ -4151,7 +4196,16 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PREFIX_EXP_CS__DERIVED_SOURCE = OPERATOR_CS_FEATURE_COUNT + 1;
+	int PREFIX_EXP_CS__DERIVED_SOURCE = OPERATOR_EXP_CS__DERIVED_SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Derived Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_EXP_CS__DERIVED_PARENT = OPERATOR_EXP_CS__DERIVED_PARENT;
 
 	/**
 	 * The number of structural features of the '<em>Prefix Exp CS</em>' class.
@@ -4160,7 +4214,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PREFIX_EXP_CS_FEATURE_COUNT = OPERATOR_CS_FEATURE_COUNT + 2;
+	int PREFIX_EXP_CS_FEATURE_COUNT = OPERATOR_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -5247,28 +5301,6 @@ public interface EssentialOCLCSPackage
 	EClass getPrefixExpCS();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS#getOwnedExpression <em>Owned Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Expression</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS#getOwnedExpression()
-	 * @see #getPrefixExpCS()
-	 * @generated
-	 */
-	EReference getPrefixExpCS_OwnedExpression();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS#getDerivedSource <em>Derived Source</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Derived Source</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS#getDerivedSource()
-	 * @see #getPrefixExpCS()
-	 * @generated
-	 */
-	EReference getPrefixExpCS_DerivedSource();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionTypeCS <em>Collection Type CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6255,25 +6287,58 @@ public interface EssentialOCLCSPackage
 	EReference getOperationCallExpCS_ReferredOperation();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS <em>Operator CS</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS <em>Operator Exp CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Operator CS</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS
+	 * @return the meta object for class '<em>Operator Exp CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS
 	 * @generated
 	 */
-	EClass getOperatorCS();
+	EClass getOperatorExpCS();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS#getSource <em>Source</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getOwnedSource <em>Owned Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Owned Source</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getOwnedSource()
+	 * @see #getOperatorExpCS()
+	 * @generated
+	 */
+	EReference getOperatorExpCS_OwnedSource();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getSource <em>Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Source</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS#getSource()
-	 * @see #getOperatorCS()
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getSource()
+	 * @see #getOperatorExpCS()
 	 * @generated
 	 */
-	EReference getOperatorCS_Source();
+	EReference getOperatorExpCS_Source();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getDerivedSource <em>Derived Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Derived Source</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getDerivedSource()
+	 * @see #getOperatorExpCS()
+	 * @generated
+	 */
+	EReference getOperatorExpCS_DerivedSource();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getDerivedParent <em>Derived Parent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Derived Parent</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getDerivedParent()
+	 * @see #getOperatorExpCS()
+	 * @generated
+	 */
+	EReference getOperatorExpCS_DerivedParent();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PatternExpCS <em>Pattern Exp CS</em>}'.
@@ -6424,17 +6489,6 @@ public interface EssentialOCLCSPackage
 	EClass getInfixExpCS();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedSource <em>Owned Source</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Source</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedSource()
-	 * @see #getInfixExpCS()
-	 * @generated
-	 */
-	EReference getInfixExpCS_OwnedSource();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedArgument <em>Owned Argument</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6446,15 +6500,15 @@ public interface EssentialOCLCSPackage
 	EReference getInfixExpCS_OwnedArgument();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getDerivedSource <em>Derived Source</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getDerivedArgument <em>Derived Argument</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Derived Source</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getDerivedSource()
+	 * @return the meta object for the reference '<em>Derived Argument</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getDerivedArgument()
 	 * @see #getInfixExpCS()
 	 * @generated
 	 */
-	EReference getInfixExpCS_DerivedSource();
+	EReference getInfixExpCS_DerivedArgument();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getArgument <em>Argument</em>}'.
@@ -6649,22 +6703,6 @@ public interface EssentialOCLCSPackage
 		 * @generated
 		 */
 		EClass PREFIX_EXP_CS = eINSTANCE.getPrefixExpCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Expression</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PREFIX_EXP_CS__OWNED_EXPRESSION = eINSTANCE.getPrefixExpCS_OwnedExpression();
-
-		/**
-		 * The meta object literal for the '<em><b>Derived Source</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PREFIX_EXP_CS__DERIVED_SOURCE = eINSTANCE.getPrefixExpCS_DerivedSource();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CollectionTypeCSImpl <em>Collection Type CS</em>}' class.
@@ -7485,14 +7523,22 @@ public interface EssentialOCLCSPackage
 		EReference OPERATION_CALL_EXP_CS__REFERRED_OPERATION = eINSTANCE.getOperationCallExpCS_ReferredOperation();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperatorCSImpl <em>Operator CS</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperatorExpCSImpl <em>Operator Exp CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperatorCSImpl
-		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getOperatorCS()
+		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperatorExpCSImpl
+		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getOperatorExpCS()
 		 * @generated
 		 */
-		EClass OPERATOR_CS = eINSTANCE.getOperatorCS();
+		EClass OPERATOR_EXP_CS = eINSTANCE.getOperatorExpCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Source</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATOR_EXP_CS__OWNED_SOURCE = eINSTANCE.getOperatorExpCS_OwnedSource();
 
 		/**
 		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
@@ -7500,7 +7546,23 @@ public interface EssentialOCLCSPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference OPERATOR_CS__SOURCE = eINSTANCE.getOperatorCS_Source();
+		EReference OPERATOR_EXP_CS__SOURCE = eINSTANCE.getOperatorExpCS_Source();
+
+		/**
+		 * The meta object literal for the '<em><b>Derived Source</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATOR_EXP_CS__DERIVED_SOURCE = eINSTANCE.getOperatorExpCS_DerivedSource();
+
+		/**
+		 * The meta object literal for the '<em><b>Derived Parent</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATOR_EXP_CS__DERIVED_PARENT = eINSTANCE.getOperatorExpCS_DerivedParent();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.PatternExpCSImpl <em>Pattern Exp CS</em>}' class.
@@ -7615,14 +7677,6 @@ public interface EssentialOCLCSPackage
 		EClass INFIX_EXP_CS = eINSTANCE.getInfixExpCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Source</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INFIX_EXP_CS__OWNED_SOURCE = eINSTANCE.getInfixExpCS_OwnedSource();
-
-		/**
 		 * The meta object literal for the '<em><b>Owned Argument</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7631,12 +7685,12 @@ public interface EssentialOCLCSPackage
 		EReference INFIX_EXP_CS__OWNED_ARGUMENT = eINSTANCE.getInfixExpCS_OwnedArgument();
 
 		/**
-		 * The meta object literal for the '<em><b>Derived Source</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Derived Argument</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference INFIX_EXP_CS__DERIVED_SOURCE = eINSTANCE.getInfixExpCS_DerivedSource();
+		EReference INFIX_EXP_CS__DERIVED_ARGUMENT = eINSTANCE.getInfixExpCS_DerivedArgument();
 
 		/**
 		 * The meta object literal for the '<em><b>Argument</b></em>' reference feature.

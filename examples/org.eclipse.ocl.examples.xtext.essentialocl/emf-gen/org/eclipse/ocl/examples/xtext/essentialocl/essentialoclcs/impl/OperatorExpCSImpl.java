@@ -1,0 +1,424 @@
+/*******************************************************************************
+ * Copyright (c) 2010, 2012 E.D.Willink and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   E.D.Willink - Initial API and implementation
+ *******************************************************************************/
+package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.examples.domain.elements.Nameable;
+import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
+import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Operator CS</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperatorExpCSImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperatorExpCSImpl#getOwnedSource <em>Owned Source</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperatorExpCSImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperatorExpCSImpl#getDerivedSource <em>Derived Source</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperatorExpCSImpl#getDerivedParent <em>Derived Parent</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @generated
+ */
+public abstract class OperatorExpCSImpl
+		extends ExpCSImpl
+		implements OperatorExpCS {
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getOwnedSource() <em>Owned Source</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected ExpCS ownedSource;
+
+	/**
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected ExpCS source;
+
+	/**
+	 * The cached value of the '{@link #getDerivedSource() <em>Derived Source</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDerivedSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected ExpCS derivedSource;
+
+	/**
+	 * The cached value of the '{@link #getDerivedParent() <em>Derived Parent</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDerivedParent()
+	 * @generated
+	 * @ordered
+	 */
+	protected ExpCS derivedParent;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OperatorExpCSImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return EssentialOCLCSPackage.Literals.OPERATOR_EXP_CS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName()
+	{
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName)
+	{
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.OPERATOR_EXP_CS__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExpCS getOwnedSource()
+	{
+		return ownedSource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwnedSource(ExpCS newOwnedSource, NotificationChain msgs)
+	{
+		ExpCS oldOwnedSource = ownedSource;
+		ownedSource = newOwnedSource;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.OPERATOR_EXP_CS__OWNED_SOURCE, oldOwnedSource, newOwnedSource);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnedSource(ExpCS newOwnedSource)
+	{
+		if (newOwnedSource != ownedSource)
+		{
+			NotificationChain msgs = null;
+			if (ownedSource != null)
+				msgs = ((InternalEObject)ownedSource).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.OPERATOR_EXP_CS__OWNED_SOURCE, null, msgs);
+			if (newOwnedSource != null)
+				msgs = ((InternalEObject)newOwnedSource).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.OPERATOR_EXP_CS__OWNED_SOURCE, null, msgs);
+			msgs = basicSetOwnedSource(newOwnedSource, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.OPERATOR_EXP_CS__OWNED_SOURCE, newOwnedSource, newOwnedSource));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExpCS getSource() {
+		return source;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSource(ExpCS newSource) {
+		ExpCS oldSource = source;
+		source = newSource;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.OPERATOR_EXP_CS__SOURCE, oldSource, source));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID)
+		{
+			case EssentialOCLCSPackage.OPERATOR_EXP_CS__NAME:
+				return getName();
+			case EssentialOCLCSPackage.OPERATOR_EXP_CS__OWNED_SOURCE:
+				return getOwnedSource();
+			case EssentialOCLCSPackage.OPERATOR_EXP_CS__SOURCE:
+				return getSource();
+			case EssentialOCLCSPackage.OPERATOR_EXP_CS__DERIVED_SOURCE:
+				return getDerivedSource();
+			case EssentialOCLCSPackage.OPERATOR_EXP_CS__DERIVED_PARENT:
+				return getDerivedParent();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID)
+		{
+			case EssentialOCLCSPackage.OPERATOR_EXP_CS__NAME:
+				setName((String)newValue);
+				return;
+			case EssentialOCLCSPackage.OPERATOR_EXP_CS__OWNED_SOURCE:
+				setOwnedSource((ExpCS)newValue);
+				return;
+			case EssentialOCLCSPackage.OPERATOR_EXP_CS__SOURCE:
+				setSource((ExpCS)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID)
+		{
+			case EssentialOCLCSPackage.OPERATOR_EXP_CS__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case EssentialOCLCSPackage.OPERATOR_EXP_CS__OWNED_SOURCE:
+				setOwnedSource((ExpCS)null);
+				return;
+			case EssentialOCLCSPackage.OPERATOR_EXP_CS__SOURCE:
+				setSource((ExpCS)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID)
+		{
+			case EssentialOCLCSPackage.OPERATOR_EXP_CS__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case EssentialOCLCSPackage.OPERATOR_EXP_CS__OWNED_SOURCE:
+				return ownedSource != null;
+			case EssentialOCLCSPackage.OPERATOR_EXP_CS__SOURCE:
+				return source != null;
+			case EssentialOCLCSPackage.OPERATOR_EXP_CS__DERIVED_SOURCE:
+				return derivedSource != null;
+			case EssentialOCLCSPackage.OPERATOR_EXP_CS__DERIVED_PARENT:
+				return derivedParent != null;
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == Nameable.class)
+		{
+			switch (derivedFeatureID)
+			{
+				default: return -1;
+			}
+		}
+		if (baseClass == NamedElementCS.class)
+		{
+			switch (derivedFeatureID)
+			{
+				case EssentialOCLCSPackage.OPERATOR_EXP_CS__NAME: return BaseCSPackage.NAMED_ELEMENT_CS__NAME;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == Nameable.class)
+		{
+			switch (baseFeatureID)
+			{
+				default: return -1;
+			}
+		}
+		if (baseClass == NamedElementCS.class)
+		{
+			switch (baseFeatureID)
+			{
+				case BaseCSPackage.NAMED_ELEMENT_CS__NAME: return EssentialOCLCSPackage.OPERATOR_EXP_CS__NAME;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case EssentialOCLCSPackage.OPERATOR_EXP_CS__OWNED_SOURCE:
+				return basicSetOwnedSource(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	public ExpCS getDerivedSource() {
+		return derivedSource;
+	}
+
+	public ExpCS getDerivedParent() {
+		return derivedParent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public ElementCS getLogicalParent()
+	{
+		if (parent != null) {
+			return parent;
+		}
+		EObject eContainer = eContainer();
+		while (eContainer instanceof OperatorExpCS) {
+			eContainer = eContainer.eContainer();
+		}
+		return eContainer instanceof ElementCS ? (ElementCS) eContainer : null;		// Avoid CCE for Bug 432749
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@SuppressWarnings("cast")
+	@Override
+	public void resetPivot() {
+		assert this instanceof ExpCSImpl;	// Enforce correct ordering of base classes
+		super.resetPivot();
+		setParent(null);
+		setSource(null);
+		derivedParent = null;
+		derivedSource = null;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public String toString() {
+		return super.toString();
+	}
+} //OperatorCSImpl

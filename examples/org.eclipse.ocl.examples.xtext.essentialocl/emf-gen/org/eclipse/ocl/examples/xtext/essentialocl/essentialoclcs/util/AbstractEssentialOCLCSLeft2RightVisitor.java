@@ -108,7 +108,7 @@ public abstract class AbstractEssentialOCLCSLeft2RightVisitor
 	}
 
 	public @Nullable Element visitInfixExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS csElement) {
-		return visitOperatorCS(csElement);
+		return visitOperatorExpCS(csElement);
 	}
 
 	public @Nullable Element visitInvalidLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvalidLiteralExpCS csElement) {
@@ -163,7 +163,7 @@ public abstract class AbstractEssentialOCLCSLeft2RightVisitor
 		return visitCallExpCS(csElement);
 	}
 
-	public @Nullable Element visitOperatorCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS csElement) {
+	public @Nullable Element visitOperatorExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS csElement) {
 		return visitExpCS(csElement);
 	}
 
@@ -172,7 +172,7 @@ public abstract class AbstractEssentialOCLCSLeft2RightVisitor
 	}
 
 	public @Nullable Element visitPrefixExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS csElement) {
-		return visitOperatorCS(csElement);
+		return visitOperatorExpCS(csElement);
 	}
 
 	public @Nullable Element visitPrimitiveLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrimitiveLiteralExpCS csElement) {

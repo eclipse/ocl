@@ -7252,16 +7252,16 @@ rulePrefixedLetExpCS returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPrefixedLetExpCSAccess().getOwnedExpressionPrefixedLetExpCSParserRuleCall_0_2_0()); 
+	        newCompositeNode(grammarAccess.getPrefixedLetExpCSAccess().getOwnedSourcePrefixedLetExpCSParserRuleCall_0_2_0()); 
 	    }
-		lv_ownedExpression_2_0=rulePrefixedLetExpCS		{
+		lv_ownedSource_2_0=rulePrefixedLetExpCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getPrefixedLetExpCSRule());
 	        }
        		set(
        			$current, 
-       			"ownedExpression",
-        		lv_ownedExpression_2_0, 
+       			"ownedSource",
+        		lv_ownedSource_2_0, 
         		"PrefixedLetExpCS");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -7331,16 +7331,16 @@ rulePrefixedPrimaryExpCS returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPrefixedPrimaryExpCSAccess().getOwnedExpressionPrefixedPrimaryExpCSParserRuleCall_0_2_0()); 
+	        newCompositeNode(grammarAccess.getPrefixedPrimaryExpCSAccess().getOwnedSourcePrefixedPrimaryExpCSParserRuleCall_0_2_0()); 
 	    }
-		lv_ownedExpression_2_0=rulePrefixedPrimaryExpCS		{
+		lv_ownedSource_2_0=rulePrefixedPrimaryExpCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getPrefixedPrimaryExpCSRule());
 	        }
        		set(
        			$current, 
-       			"ownedExpression",
-        		lv_ownedExpression_2_0, 
+       			"ownedSource",
+        		lv_ownedSource_2_0, 
         		"PrefixedPrimaryExpCS");
 	        afterParserOrEnumRuleCall();
 	    }

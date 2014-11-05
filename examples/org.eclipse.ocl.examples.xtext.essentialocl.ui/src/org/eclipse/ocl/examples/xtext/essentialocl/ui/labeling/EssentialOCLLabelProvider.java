@@ -26,7 +26,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgC
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NullLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NumberLiteralExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SelfExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.StringLiteralExpCS;
 
@@ -129,11 +129,11 @@ public class EssentialOCLLabelProvider extends BaseLabelProvider
 		return String.valueOf(ele.getSymbol());
 	}
 
-	protected String image(OperatorCS ele) {
+	protected String image(OperatorExpCS ele) {
 		return "/org.eclipse.ocl.edit/icons/full/obj16/OperationCallExp.gif";
 	}
 
-	protected String text(OperatorCS ele) {
+	protected String text(OperatorExpCS ele) {
 		return String.valueOf(ele.getName());
 	}
 
