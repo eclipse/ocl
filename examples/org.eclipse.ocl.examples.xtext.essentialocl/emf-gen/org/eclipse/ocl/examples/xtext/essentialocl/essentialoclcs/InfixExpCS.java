@@ -18,10 +18,10 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedExpression <em>Owned Expression</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedOperator <em>Owned Operator</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedSuffix <em>Owned Suffix</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedSource <em>Owned Source</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedArgument <em>Owned Argument</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getDerivedSource <em>Derived Source</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getArgument <em>Argument</em>}</li>
  * </ul>
  * </p>
  *
@@ -30,85 +30,59 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
  * @generated
  */
 public interface InfixExpCS
-		extends ExpCS {
+		extends OperatorCS {
 
 	/**
-	 * Returns the value of the '<em><b>Owned Expression</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owned Expression</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Owned Source</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Expression</em>' containment reference.
-	 * @see #setOwnedExpression(ExpCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getInfixExpCS_OwnedExpression()
+	 * @return the value of the '<em>Owned Source</em>' containment reference.
+	 * @see #setOwnedSource(ExpCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getInfixExpCS_OwnedSource()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	ExpCS getOwnedExpression();
+	ExpCS getOwnedSource();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedExpression <em>Owned Expression</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedSource <em>Owned Source</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owned Expression</em>' containment reference.
-	 * @see #getOwnedExpression()
+	 * @param value the new value of the '<em>Owned Source</em>' containment reference.
+	 * @see #getOwnedSource()
 	 * @generated
 	 */
-	void setOwnedExpression(ExpCS value);
+	void setOwnedSource(ExpCS value);
 
 	/**
-	 * Returns the value of the '<em><b>Owned Operator</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Argument</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owned Operator</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Owned Argument</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Operator</em>' containment reference.
-	 * @see #setOwnedOperator(BinaryOperatorCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getInfixExpCS_OwnedOperator()
+	 * @return the value of the '<em>Owned Argument</em>' containment reference.
+	 * @see #setOwnedArgument(ExpCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getInfixExpCS_OwnedArgument()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	BinaryOperatorCS getOwnedOperator();
+	ExpCS getOwnedArgument();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedOperator <em>Owned Operator</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedArgument <em>Owned Argument</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owned Operator</em>' containment reference.
-	 * @see #getOwnedOperator()
+	 * @param value the new value of the '<em>Owned Argument</em>' containment reference.
+	 * @see #getOwnedArgument()
 	 * @generated
 	 */
-	void setOwnedOperator(BinaryOperatorCS value);
-
-	/**
-	 * Returns the value of the '<em><b>Owned Suffix</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Suffix</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Suffix</em>' containment reference.
-	 * @see #setOwnedSuffix(ExpCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getInfixExpCS_OwnedSuffix()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
-	ExpCS getOwnedSuffix();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedSuffix <em>Owned Suffix</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owned Suffix</em>' containment reference.
-	 * @see #getOwnedSuffix()
-	 * @generated
-	 */
-	void setOwnedSuffix(ExpCS value);
+	void setOwnedArgument(ExpCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Derived Source</b></em>' reference.
@@ -124,5 +98,31 @@ public interface InfixExpCS
 	 * @generated
 	 */
 	ExpCS getDerivedSource();
+
+	/**
+	 * Returns the value of the '<em><b>Argument</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Argument</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Argument</em>' reference.
+	 * @see #setArgument(ExpCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getInfixExpCS_Argument()
+	 * @model resolveProxies="false" required="true" transient="true"
+	 * @generated
+	 */
+	ExpCS getArgument();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getArgument <em>Argument</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Argument</em>' reference.
+	 * @see #getArgument()
+	 * @generated
+	 */
+	void setArgument(ExpCS value);
 
 } // BinaryExpressionCS

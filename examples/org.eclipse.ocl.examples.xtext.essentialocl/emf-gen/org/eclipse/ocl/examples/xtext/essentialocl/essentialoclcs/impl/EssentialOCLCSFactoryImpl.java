@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.*;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralPartCS;
@@ -105,7 +104,6 @@ public class EssentialOCLCSFactoryImpl
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID())
 		{
-			case EssentialOCLCSPackage.BINARY_OPERATOR_CS: return createBinaryOperatorCS();
 			case EssentialOCLCSPackage.BOOLEAN_LITERAL_EXP_CS: return createBooleanLiteralExpCS();
 			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS: return createCollectionLiteralExpCS();
 			case EssentialOCLCSPackage.COLLECTION_LITERAL_PART_CS: return createCollectionLiteralPartCS();
@@ -177,16 +175,6 @@ public class EssentialOCLCSFactoryImpl
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BinaryOperatorCS createBinaryOperatorCS() {
-		BinaryOperatorCSImpl binaryOperatorCS = new BinaryOperatorCSImpl();
-		return binaryOperatorCS;
 	}
 
 	/**

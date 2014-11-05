@@ -3785,57 +3785,57 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// ** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> * /
-	//EssentialOCLInfixOperatorCS returns BinaryOperatorCS:
-	//	name=("*" | "/" | "+" | "-" | ">" | "<" | ">=" | "<=" | "=" | "<>" | "and" | "or" | "xor" | "implies");
-	public EssentialOCLGrammarAccess.EssentialOCLInfixOperatorCSElements getEssentialOCLInfixOperatorCSAccess() {
-		return gaEssentialOCL.getEssentialOCLInfixOperatorCSAccess();
+	//EssentialOCLInfixOperatorName:
+	//	"*" | "/" | "+" | "-" | ">" | "<" | ">=" | "<=" | "=" | "<>" | "and" | "or" | "xor" | "implies";
+	public EssentialOCLGrammarAccess.EssentialOCLInfixOperatorNameElements getEssentialOCLInfixOperatorNameAccess() {
+		return gaEssentialOCL.getEssentialOCLInfixOperatorNameAccess();
 	}
 	
-	public ParserRule getEssentialOCLInfixOperatorCSRule() {
-		return getEssentialOCLInfixOperatorCSAccess().getRule();
+	public ParserRule getEssentialOCLInfixOperatorNameRule() {
+		return getEssentialOCLInfixOperatorNameAccess().getRule();
 	}
 
 	/// ** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> * /
-	//EssentialOCLNavigationOperatorCS returns BinaryOperatorCS:
-	//	name=("." | "->" | "?." | "?->");
-	public EssentialOCLGrammarAccess.EssentialOCLNavigationOperatorCSElements getEssentialOCLNavigationOperatorCSAccess() {
-		return gaEssentialOCL.getEssentialOCLNavigationOperatorCSAccess();
+	//EssentialOCLNavigationOperatorName:
+	//	"." | "->" | "?." | "?->";
+	public EssentialOCLGrammarAccess.EssentialOCLNavigationOperatorNameElements getEssentialOCLNavigationOperatorNameAccess() {
+		return gaEssentialOCL.getEssentialOCLNavigationOperatorNameAccess();
 	}
 	
-	public ParserRule getEssentialOCLNavigationOperatorCSRule() {
-		return getEssentialOCLNavigationOperatorCSAccess().getRule();
+	public ParserRule getEssentialOCLNavigationOperatorNameRule() {
+		return getEssentialOCLNavigationOperatorNameAccess().getRule();
 	}
 
-	//BinaryOperatorCS:
-	//	InfixOperatorCS | NavigationOperatorCS;
-	public EssentialOCLGrammarAccess.BinaryOperatorCSElements getBinaryOperatorCSAccess() {
-		return gaEssentialOCL.getBinaryOperatorCSAccess();
+	//BinaryOperatorName:
+	//	InfixOperatorName | NavigationOperatorName;
+	public EssentialOCLGrammarAccess.BinaryOperatorNameElements getBinaryOperatorNameAccess() {
+		return gaEssentialOCL.getBinaryOperatorNameAccess();
 	}
 	
-	public ParserRule getBinaryOperatorCSRule() {
-		return getBinaryOperatorCSAccess().getRule();
-	}
-
-	//// Intended to be overrideable
-	// InfixOperatorCS returns BinaryOperatorCS:
-	//	EssentialOCLInfixOperatorCS;
-	public EssentialOCLGrammarAccess.InfixOperatorCSElements getInfixOperatorCSAccess() {
-		return gaEssentialOCL.getInfixOperatorCSAccess();
-	}
-	
-	public ParserRule getInfixOperatorCSRule() {
-		return getInfixOperatorCSAccess().getRule();
+	public ParserRule getBinaryOperatorNameRule() {
+		return getBinaryOperatorNameAccess().getRule();
 	}
 
 	//// Intended to be overrideable
-	// NavigationOperatorCS returns BinaryOperatorCS:
-	//	EssentialOCLNavigationOperatorCS;
-	public EssentialOCLGrammarAccess.NavigationOperatorCSElements getNavigationOperatorCSAccess() {
-		return gaEssentialOCL.getNavigationOperatorCSAccess();
+	// InfixOperatorName:
+	//	EssentialOCLInfixOperatorName;
+	public EssentialOCLGrammarAccess.InfixOperatorNameElements getInfixOperatorNameAccess() {
+		return gaEssentialOCL.getInfixOperatorNameAccess();
 	}
 	
-	public ParserRule getNavigationOperatorCSRule() {
-		return getNavigationOperatorCSAccess().getRule();
+	public ParserRule getInfixOperatorNameRule() {
+		return getInfixOperatorNameAccess().getRule();
+	}
+
+	//// Intended to be overrideable
+	// NavigationOperatorName:
+	//	EssentialOCLNavigationOperatorName;
+	public EssentialOCLGrammarAccess.NavigationOperatorNameElements getNavigationOperatorNameAccess() {
+		return gaEssentialOCL.getNavigationOperatorNameAccess();
+	}
+	
+	public ParserRule getNavigationOperatorNameRule() {
+		return getNavigationOperatorNameAccess().getRule();
 	}
 
 	//// Intended to be overrideable
@@ -4196,11 +4196,11 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	/// * An expression elaborates a prefixed expression with zero or more binary operator and expression suffixes.
 	// * An optionally prefixed let expression is permitted except when suffixed with further expressions.* /
 	//ExpCS:
-	//	PrefixedPrimaryExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)?
-	//	//	({InfixExpCS} ownedExpression=PrefixedExpCS ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)
-	// //| 	PrefixedExpCS
+	//	PrefixedPrimaryExpCS ({InfixExpCS.ownedSource=current} name=BinaryOperatorName ownedArgument=ExpCS)?
+	//	//	({InfixExpCS} ownedExpression=PrefixedExpCS ownedOperator=BinaryOperatorName ownedSuffix=ExpCS)
 	//
-	//	// the above takes exponential or worse time for backtracking, below is fast
+	//	//| 	PrefixedExpCS
+	// // the above takes exponential or worse time for backtracking, below is fast
 	// | PrefixedLetExpCS;
 	public EssentialOCLGrammarAccess.ExpCSElements getExpCSAccess() {
 		return gaEssentialOCL.getExpCSAccess();

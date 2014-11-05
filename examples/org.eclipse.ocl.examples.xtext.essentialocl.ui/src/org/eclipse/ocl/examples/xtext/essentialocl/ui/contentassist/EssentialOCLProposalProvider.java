@@ -33,7 +33,6 @@ import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.attributes.NavigationUtil;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
 import org.eclipse.swt.graphics.Image;
@@ -106,15 +105,15 @@ public class EssentialOCLProposalProvider extends AbstractEssentialOCLProposalPr
 	}
 
 	@Override
-	public void complete_InfixOperatorCS(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	public void complete_BinaryOperatorName(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		proposeKeywordAlternatives(ruleCall, context, acceptor, null);
-		super.complete_InfixOperatorCS(model, ruleCall, context, acceptor);
+		super.complete_BinaryOperatorName(model, ruleCall, context, acceptor);
 	}
 
 	@Override
-	public void complete_NavigationOperatorCS(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	public void complete_NavigationOperatorName(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		proposeKeywordAlternatives(ruleCall, context, acceptor, null);
-		super.complete_NavigationOperatorCS(model, ruleCall, context, acceptor);
+		super.complete_NavigationOperatorName(model, ruleCall, context, acceptor);
 	}
 
 	@Override
@@ -226,8 +225,8 @@ public class EssentialOCLProposalProvider extends AbstractEssentialOCLProposalPr
 		EObject currentModel = contentAssistContext.getCurrentModel();
 		if (currentModel instanceof InfixExpCS) {
 			EObject previousModel = contentAssistContext.getPreviousModel();
-			if (NavigationUtil.isNavigationOperator(previousModel)) {
-				ExpCS argument = ((BinaryOperatorCS)previousModel).getArgument();
+			if (NavigationUtil.isNavigationInfixExp(previousModel)) {
+				ExpCS argument = ((InfixExpCS)previousModel).getArgument();
 				if (argument != null) {
 					currentModel = argument;
 				}

@@ -25,8 +25,8 @@ terminal UNQUOTED_STRING:	// Never forward parsed; just provides a placeholder
 	'£$%^£$%^'				//  for reverse serialisation of embedded OCL 
 ;
 
-CompleteOCLNavigationOperatorCS returns essentialocl::BinaryOperatorCS:
-	name=('^' | '^^');
+CompleteOCLNavigationOperatorName:
+	'^' | '^^';
 
 ClassifierContextDeclCS returns ClassifierContextDeclCS:
 	'context' (ownedSignature=TemplateSignatureCS)? (selfName=UnrestrictedName)?
@@ -128,8 +128,8 @@ NavigatingArgExpCS returns essentialocl::ExpCS:
 	| ExpCS
 ;
 
-NavigationOperatorCS returns essentialocl::BinaryOperatorCS:
-	EssentialOCLNavigationOperatorCS | CompleteOCLNavigationOperatorCS;
+NavigationOperatorName:
+	EssentialOCLNavigationOperatorName | CompleteOCLNavigationOperatorName;
 
 PrimitiveTypeIdentifier:
 	'Boolean'

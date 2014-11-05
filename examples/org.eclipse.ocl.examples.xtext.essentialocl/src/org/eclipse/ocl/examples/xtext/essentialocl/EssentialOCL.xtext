@@ -36,21 +36,21 @@ EssentialOCLUnaryOperatorName:
 	'-' | 'not';
 
 /** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> */
-EssentialOCLInfixOperatorCS returns BinaryOperatorCS:
-	name=('*' | '/' | '+' | '-' | '>' | '<' | '>=' | '<=' | '=' | '<>' | 'and' | 'or' | 'xor' | 'implies');
+EssentialOCLInfixOperatorName:
+	'*' | '/' | '+' | '-' | '>' | '<' | '>=' | '<=' | '=' | '<>' | 'and' | 'or' | 'xor' | 'implies';
 
 /** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> */
-EssentialOCLNavigationOperatorCS returns BinaryOperatorCS:
-	name=('.' | '->' | '?.' | '?->');
+EssentialOCLNavigationOperatorName:
+	'.' | '->' | '?.' | '?->';
 
-BinaryOperatorCS returns BinaryOperatorCS:
-	InfixOperatorCS | NavigationOperatorCS;
+BinaryOperatorName:
+	InfixOperatorName | NavigationOperatorName;
 
-InfixOperatorCS returns BinaryOperatorCS: 			// Intended to be overrideable
-	EssentialOCLInfixOperatorCS;
+InfixOperatorName: 			// Intended to be overrideable
+	EssentialOCLInfixOperatorName;
 
-NavigationOperatorCS returns BinaryOperatorCS: 	// Intended to be overrideable
-	EssentialOCLNavigationOperatorCS;
+NavigationOperatorName: 	// Intended to be overrideable
+	EssentialOCLNavigationOperatorName;
 
 UnaryOperatorName: 			// Intended to be overrideable
 	EssentialOCLUnaryOperatorName;
@@ -203,10 +203,10 @@ TypeExpCS returns base::TypedRefCS:
 /* An expression elaborates a prefixed expression with zero or more binary operator and expression suffixes.
  * An optionally prefixed let expression is permitted except when suffixed with further expressions.*/
 ExpCS returns ExpCS:
-//	({InfixExpCS} ownedExpression=PrefixedExpCS ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)
+//	({InfixExpCS} ownedExpression=PrefixedExpCS ownedOperator=BinaryOperatorName ownedSuffix=ExpCS)
 //| 	PrefixedExpCS
 // the above takes exponential or worse time for backtracking, below is fast
-	(PrefixedPrimaryExpCS ({InfixExpCS.ownedExpression=current} ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)?)
+	(PrefixedPrimaryExpCS ({InfixExpCS.ownedSource=current} name=BinaryOperatorName ownedArgument=ExpCS)?)
 | 	PrefixedLetExpCS;
 
 /* A prefixed let expression elaborates a let expression with zero or more unary prefix operators. */

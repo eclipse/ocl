@@ -32,15 +32,6 @@ public interface EssentialOCLCSFactory
 	EssentialOCLCSFactory eINSTANCE = org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Binary Operator CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Binary Operator CS</em>'.
-	 * @generated
-	 */
-	BinaryOperatorCS createBinaryOperatorCS();
-
-	/**
 	 * Returns a new object of class '<em>Prefix Exp CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

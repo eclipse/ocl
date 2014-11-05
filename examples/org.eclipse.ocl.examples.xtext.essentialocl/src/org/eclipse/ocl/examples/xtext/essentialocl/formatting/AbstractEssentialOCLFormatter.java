@@ -15,7 +15,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarA
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.CollectionTypeCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.CurlyBracketedClauseCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.ElseIfThenExpCSElements;
-import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.EssentialOCLNavigationOperatorCSElements;
+import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.EssentialOCLNavigationOperatorNameElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.IfExpCSElements;
 //import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.IndexExpCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.LetExpCSElements;
@@ -91,11 +91,11 @@ public abstract class AbstractEssentialOCLFormatter extends BaseFormatter
 	    c.setIndentation(a.getLeftCurlyBracketKeyword_1(), a.getRightCurlyBracketKeyword_3());
 	}
 
-	protected void configureEssentialOCLNavigationOperatorCS(FormattingConfig c, EssentialOCLNavigationOperatorCSElements a) {
-		c.setNoSpace().before(a.getNameFullStopKeyword_0_0());
-		c.setNoSpace().after(a.getNameFullStopKeyword_0_0());
-		c.setLinewrap().before(a.getNameHyphenMinusGreaterThanSignKeyword_0_1());
-		c.setNoSpace().after(a.getNameHyphenMinusGreaterThanSignKeyword_0_1());
+	protected void configureEssentialOCLNavigationOperatorCS(FormattingConfig c, EssentialOCLNavigationOperatorNameElements a) {
+		c.setNoSpace().before(a.getFullStopKeyword_0());
+		c.setNoSpace().after(a.getFullStopKeyword_0());
+		c.setLinewrap().before(a.getHyphenMinusGreaterThanSignKeyword_1());
+		c.setNoSpace().after(a.getHyphenMinusGreaterThanSignKeyword_1());
 	}
 
 	protected void configureNestedExpCS(FormattingConfig c, NestedExpCSElements a) {

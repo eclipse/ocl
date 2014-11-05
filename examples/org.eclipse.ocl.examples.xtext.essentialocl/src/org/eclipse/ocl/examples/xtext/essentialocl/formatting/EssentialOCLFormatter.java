@@ -28,7 +28,7 @@ public class EssentialOCLFormatter extends AbstractEssentialOCLFormatter
 		configureCollectionTypeCS(c, f.getCollectionTypeCSAccess());
 		configureCurlyBracketedClauseCS(c, f.getCurlyBracketedClauseCSAccess());
 		configureElseIfThenExpCS(c, f.getElseIfThenExpCSAccess());
-	    configureEssentialOCLNavigationOperatorCS(c, f.getEssentialOCLNavigationOperatorCSAccess());
+	    configureEssentialOCLNavigationOperatorCS(c, f.getEssentialOCLNavigationOperatorNameAccess());
 		configureIfExpCS(c, f.getIfExpCSAccess());
 		configureLetExpCS(c, f.getLetExpCSAccess());
 		configureMultiplicityBoundsCS(c, f.getMultiplicityBoundsCSAccess());

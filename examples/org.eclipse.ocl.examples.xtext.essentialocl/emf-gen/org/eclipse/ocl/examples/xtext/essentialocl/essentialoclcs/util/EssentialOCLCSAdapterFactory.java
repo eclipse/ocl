@@ -101,11 +101,6 @@ public class EssentialOCLCSAdapterFactory
 				return createAssociationClassCallExpCSAdapter();
 			}
 			@Override
-			public Adapter caseBinaryOperatorCS(BinaryOperatorCS object)
-			{
-				return createBinaryOperatorCSAdapter();
-			}
-			@Override
 			public Adapter caseBooleanLiteralExpCS(BooleanLiteralExpCS object)
 			{
 				return createBooleanLiteralExpCSAdapter();
@@ -351,16 +346,6 @@ public class EssentialOCLCSAdapterFactory
 				return createModelElementCSAdapter();
 			}
 			@Override
-			public Adapter caseNameable(Nameable object)
-			{
-				return createNameableAdapter();
-			}
-			@Override
-			public Adapter caseNamedElementCS(NamedElementCS object)
-			{
-				return createNamedElementCSAdapter();
-			}
-			@Override
 			public Adapter caseElementRefCS(ElementRefCS object)
 			{
 				return createElementRefCSAdapter();
@@ -374,6 +359,16 @@ public class EssentialOCLCSAdapterFactory
 			public Adapter caseTypedRefCS(TypedRefCS object)
 			{
 				return createTypedRefCSAdapter();
+			}
+			@Override
+			public Adapter caseNameable(Nameable object)
+			{
+				return createNameableAdapter();
+			}
+			@Override
+			public Adapter caseNamedElementCS(NamedElementCS object)
+			{
+				return createNamedElementCSAdapter();
 			}
 			@Override
 			public Adapter caseRootCS(RootCS object)
@@ -437,20 +432,6 @@ public class EssentialOCLCSAdapterFactory
 	 */
 	public Adapter createAssociationClassCallExpCSAdapter()
 	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS <em>Binary Operator CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS
-	 * @generated
-	 */
-	public Adapter createBinaryOperatorCSAdapter() {
 		return null;
 	}
 

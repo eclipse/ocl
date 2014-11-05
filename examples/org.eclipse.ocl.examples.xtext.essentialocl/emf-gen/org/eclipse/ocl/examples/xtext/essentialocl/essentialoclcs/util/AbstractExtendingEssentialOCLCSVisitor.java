@@ -48,10 +48,6 @@ public abstract class AbstractExtendingEssentialOCLCSVisitor<R, C>
 		return visitCallExpCS(object);
 	}
 
-	public @Nullable R visitBinaryOperatorCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS object) {
-		return visitOperatorCS(object);
-	}
-
 	public @Nullable R visitBooleanLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteralExpCS object) {
 		return visitPrimitiveLiteralExpCS(object);
 	}
@@ -109,7 +105,7 @@ public abstract class AbstractExtendingEssentialOCLCSVisitor<R, C>
 	}
 
 	public @Nullable R visitInfixExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS object) {
-		return visitExpCS(object);
+		return visitOperatorCS(object);
 	}
 
 	public @Nullable R visitInvalidLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvalidLiteralExpCS object) {

@@ -40,7 +40,6 @@ import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.examples.xtext.base.cs2as.SingleContinuation;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
@@ -166,7 +165,7 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 		//	Build the tree leaf-to root precedence at a time.
 		//
 		List<ExpCS> csExpressions = getInfixExpressions(csInfix, new ArrayList<ExpCS>());
-		List<BinaryOperatorCS> csOperators = getInfixOperators(csInfix, new ArrayList<BinaryOperatorCS>());
+		List<InfixExpCS> csOperators = getInfixOperators(csInfix, new ArrayList<InfixExpCS>());
 		for (Precedence precedence : sortedPrecedences) {
 			// null precedence arises when precedence or operation-to-precedence is wrong
 			boolean isLeft = precedence == null || (precedence.getAssociativity() == AssociativityKind.LEFT);
@@ -177,7 +176,7 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 			int iLast = isLeft ? operatorCount : -1;
 			for (int i = iFirst; i != iLast; i += iIndex) {
 				int operatorIndex = operatorIndexes.get(i);
-				BinaryOperatorCS csOperator = csOperators.get(operatorIndex);
+				InfixExpCS csOperator = csOperators.get(operatorIndex);
 				//
 				//	Establish parent-child relationship of operator source
 				//
@@ -203,11 +202,11 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 	 */
 	protected Map<Precedence, List<Integer>> createInfixPrecedenceToOperatorIndexesMap(@NonNull InfixExpCS csInfix) {
 		List<ExpCS> csExpressions = getInfixExpressions(csInfix, new ArrayList<ExpCS>());
-		List<BinaryOperatorCS> csOperators = getInfixOperators(csInfix, new ArrayList<BinaryOperatorCS>());
+		List<InfixExpCS> csOperators = getInfixOperators(csInfix, new ArrayList<InfixExpCS>());
 		int operatorCount = csExpressions.size()-1;	// Ignore a spurious trailing operator from a syntax error
 		Map<Precedence, List<Integer>> precedenceToOperatorIndex = new HashMap<Precedence, List<Integer>>();
 		for (int operatorIndex = 0; operatorIndex < operatorCount; operatorIndex++) {
-			BinaryOperatorCS csOperator = csOperators.get(operatorIndex);
+			InfixExpCS csOperator = csOperators.get(operatorIndex);
 			String operatorName = csOperator.getName();
 			assert operatorName != null;
 			Precedence precedence = metaModelManager.getInfixPrecedence(operatorName);
@@ -225,8 +224,8 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 	 * Return the list of non-null expressions within an infix expression.
 	 */
 	protected @NonNull List<ExpCS> getInfixExpressions(@NonNull InfixExpCS csInfix, @NonNull List<ExpCS> csExpressions) {
-		csExpressions.add(csInfix.getOwnedExpression());
-		ExpCS csSuffix = csInfix.getOwnedSuffix();
+		csExpressions.add(csInfix.getOwnedSource());
+		ExpCS csSuffix = csInfix.getOwnedArgument();
 		if (csSuffix instanceof InfixExpCS) {
 			return getInfixExpressions((InfixExpCS)csSuffix, csExpressions);
 		}
@@ -240,10 +239,10 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 	 * Return the list of operators within an infix expression that have non-null source and argument.
 	 * In the case of a parsing error leading to a trailing null expression, the trailing operator is suppressed.
 	 */
-	protected @NonNull List<BinaryOperatorCS> getInfixOperators(@NonNull InfixExpCS csInfix, @NonNull List<BinaryOperatorCS> csOperators) {
-		BinaryOperatorCS ownedOperator = csInfix.getOwnedOperator();
+	protected @NonNull List<InfixExpCS> getInfixOperators(@NonNull InfixExpCS csInfix, @NonNull List<InfixExpCS> csOperators) {
+		InfixExpCS ownedOperator = csInfix;
 		if (ownedOperator != null) {
-			ExpCS csSuffix = csInfix.getOwnedSuffix();
+			ExpCS csSuffix = csInfix.getOwnedArgument();
 			if (csSuffix != null) {
 				csOperators.add(ownedOperator);
 				if (csSuffix instanceof InfixExpCS) {
@@ -261,12 +260,12 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 		if (csParent instanceof PrefixExpCS) {
 			setSource(csParent, csUnaryOperator);
 		}
-		else if (csParent instanceof BinaryOperatorCS) {
+		else if (csParent instanceof InfixExpCS) {
 			if (csParent.getSource() == prefixExpCS) {
 				setSource(csParent, csUnaryOperator);
 			}
 			else {
-				setArgument((BinaryOperatorCS) csParent, csUnaryOperator);
+				setArgument((InfixExpCS) csParent, csUnaryOperator);
 			}
 		}
 		ExpCS csChild = prefixExpCS.getOwnedExpression();
@@ -296,7 +295,7 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 		PrefixExpCS csOperator = prefixExpCS;
 		while (true) {
 			OperatorCS csParent = csOperator.getParent();
-			if (!(csParent instanceof BinaryOperatorCS)) {
+			if (!(csParent instanceof InfixExpCS)) {
 				break;
 			}
 			String parentOperatorName = csParent.getName();
@@ -314,12 +313,12 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 			ExpCS csExp = csOperator.getSource();
 			if (csOperator == csParent.getSource()) {
 				setSource(csParent, null);			// Avoid a transient loop
-				if (csGrandParent instanceof BinaryOperatorCS) {
+				if (csGrandParent instanceof InfixExpCS) {
 					if (csGrandParent.getSource() == csParent) {
 						setSource(csGrandParent, csOperator);
 					}
 					else {
-						setArgument((BinaryOperatorCS) csGrandParent, csOperator);
+						setArgument((InfixExpCS) csGrandParent, csOperator);
 					}
 				}
 //				else if (csGrandParent == null) {
@@ -346,7 +345,7 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 		}
 	}
 
-	private void setArgument(BinaryOperatorCS csParent, ExpCS csArgument) {
+	private void setArgument(InfixExpCS csParent, ExpCS csArgument) {
 		csArgument.setParent(csParent);
 		csParent.setArgument(csArgument);
 		int i = 0;

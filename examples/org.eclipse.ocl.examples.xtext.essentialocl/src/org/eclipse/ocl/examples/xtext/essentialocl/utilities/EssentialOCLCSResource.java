@@ -326,7 +326,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 				return true;
 			}
 			csElement = csElement.getLogicalParent();
-			if (!NavigationUtil.isNavigationOperator(csElement) && !(csElement instanceof NameExpCS)) {
+			if (!NavigationUtil.isNavigationInfixExp(csElement) && !(csElement instanceof NameExpCS)) {
 				break;
 			}
 		}
@@ -500,7 +500,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 		while (csElement instanceof ExpCS) {
 			((ExpCS) csElement).setHasError(true);
 			csElement = csElement.getLogicalParent();
-			if (!NavigationUtil.isNavigationOperator(csElement)) {
+			if (!NavigationUtil.isNavigationInfixExp(csElement)) {
 				break;
 			}
 		}

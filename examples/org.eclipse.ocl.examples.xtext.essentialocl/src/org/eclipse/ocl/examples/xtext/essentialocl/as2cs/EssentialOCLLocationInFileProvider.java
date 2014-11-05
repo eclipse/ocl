@@ -13,8 +13,8 @@ package org.eclipse.ocl.examples.xtext.essentialocl.as2cs;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.xtext.base.as2cs.BaseLocationInFileProvider;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
 import org.eclipse.xtext.nodemodel.INode;
@@ -41,9 +41,9 @@ public class EssentialOCLLocationInFileProvider extends BaseLocationInFileProvid
 					break;
 				}
 			}
-			if (obj instanceof BinaryOperatorCS) {
-				while (lastCS instanceof BinaryOperatorCS) {
-					ExpCS expCS = ((BinaryOperatorCS)lastCS).getArgument();
+			if (obj instanceof InfixExpCS) {
+				while (lastCS instanceof InfixExpCS) {
+					ExpCS expCS = ((InfixExpCS)lastCS).getArgument();
 					if (expCS != null) {
 						lastCS = expCS;
 					}

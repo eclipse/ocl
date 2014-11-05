@@ -24,8 +24,8 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AbstractNameExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationRole;
@@ -37,7 +37,7 @@ public class NavigationUtil
 	/**
 	 * Return the NavigationOperatorCS for which csExp is the left node of the navigation operator's argument tree.
 	 */
-	public static @Nullable BinaryOperatorCS getNavigationOperator(@NonNull AbstractNameExpCS csExp) {
+	public static @Nullable InfixExpCS getNavigationInfixExp(@NonNull AbstractNameExpCS csExp) {
 		EObject eContainer = csExp.eContainer();
 		if (eContainer instanceof NameExpCS) {
 			csExp = (NameExpCS) eContainer;
@@ -51,8 +51,8 @@ public class NavigationUtil
 			if (csSource == csChild) {									// e.g.    ... -> (X... -> ...)
 				;
 			}
-			else if (isNavigationOperator(csOperator)) {		// e.g 	   ... -> X
-				return (BinaryOperatorCS) csOperator;
+			else if (isNavigationInfixExp(csOperator)) {		// e.g 	   ... -> X
+				return (InfixExpCS) csOperator;
 			}
 			else {														// e.g.    ... and X
 				return null;
@@ -85,9 +85,9 @@ public class NavigationUtil
 		return false;
 	}
 
-	public static boolean isNavigationOperator(@Nullable EObject eObject) {
-		if (eObject instanceof BinaryOperatorCS) {
-			String name = ((BinaryOperatorCS)eObject).getName();
+	public static boolean isNavigationInfixExp(@Nullable EObject eObject) {
+		if (eObject instanceof InfixExpCS) {
+			String name = ((InfixExpCS)eObject).getName();
 			return ".".equals(name) || "->".equals(name) || "?.".equals(name) || "?->".equals(name) || "^".equals(name) || "^^".equals(name);
 		}
 		else {

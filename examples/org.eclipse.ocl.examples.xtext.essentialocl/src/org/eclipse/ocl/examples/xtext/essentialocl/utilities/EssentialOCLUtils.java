@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.attributes.NavigationUtil;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
@@ -35,7 +34,7 @@ public class EssentialOCLUtils	// FIXME Find some extensible instantiation echan
 	 */
 	public static ModelElementCS getPivotedCS(EObject csElement) {
 		if (csElement instanceof InfixExpCS) {
-			OperatorCS csOperator = ((InfixExpCS)csElement).getOwnedOperator();
+			OperatorCS csOperator = (InfixExpCS)csElement;
 			while (csOperator.getParent() != null) {
 				csOperator = csOperator.getParent();
 			}
@@ -44,8 +43,8 @@ public class EssentialOCLUtils	// FIXME Find some extensible instantiation echan
 		else if (csElement instanceof NavigatingArgCS) {
 			return getPivotedCS(((NavigatingArgCS)csElement).getOwnedNameExpression());
 		}
-		else if (NavigationUtil.isNavigationOperator(csElement)) {
-			return getPivotedCS(((BinaryOperatorCS)csElement).getArgument());
+		else if (NavigationUtil.isNavigationInfixExp(csElement)) {
+			return getPivotedCS(((InfixExpCS)csElement).getArgument());
 		}
 		else if (csElement instanceof NestedExpCS) {
 			return getPivotedCS(((NestedExpCS)csElement).getSource());
@@ -76,7 +75,7 @@ public class EssentialOCLUtils	// FIXME Find some extensible instantiation echan
 		}
 		if (csElement instanceof ExpCS) {
 			OperatorCS operator = ((ExpCS) csElement).getParent();
-			if (NavigationUtil.isNavigationOperator(operator) && (csElement != operator.getSource())) {
+			if (NavigationUtil.isNavigationInfixExp(operator) && (csElement != operator.getSource())) {
 				return getPivotingChildCS(operator);
 			}
 			else if (operator != null) {
@@ -140,7 +139,7 @@ public class EssentialOCLUtils	// FIXME Find some extensible instantiation echan
 				return EssentialOCLCSPackage.Literals.OPERATOR_CS__SOURCE;
 			}
 			else {
-				return EssentialOCLCSPackage.Literals.BINARY_OPERATOR_CS__ARGUMENT;
+				return EssentialOCLCSPackage.Literals.INFIX_EXP_CS__ARGUMENT;
 			}
 		}
 		return (EReference) csChildElement.eContainingFeature();

@@ -19,7 +19,6 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TypeParameterCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.WildcardTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.serializer.BaseSemanticSequencer;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralPartCS;
@@ -189,26 +188,10 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 				else break;
 			}
 		else if(semanticObject.eClass().getEPackage() == EssentialOCLCSPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
-			case EssentialOCLCSPackage.BINARY_OPERATOR_CS:
-				if(context == grammarAccess.getBinaryOperatorCSRule()) {
-					sequence_BinaryOperatorCS_EssentialOCLInfixOperatorCS_EssentialOCLNavigationOperatorCS(context, (BinaryOperatorCS) semanticObject); 
-					return; 
-				}
-				else if(context == grammarAccess.getEssentialOCLInfixOperatorCSRule() ||
-				   context == grammarAccess.getInfixOperatorCSRule()) {
-					sequence_EssentialOCLInfixOperatorCS(context, (BinaryOperatorCS) semanticObject); 
-					return; 
-				}
-				else if(context == grammarAccess.getEssentialOCLNavigationOperatorCSRule() ||
-				   context == grammarAccess.getNavigationOperatorCSRule()) {
-					sequence_EssentialOCLNavigationOperatorCS(context, (BinaryOperatorCS) semanticObject); 
-					return; 
-				}
-				else break;
 			case EssentialOCLCSPackage.BOOLEAN_LITERAL_EXP_CS:
 				if(context == grammarAccess.getBooleanLiteralExpCSRule() ||
 				   context == grammarAccess.getExpCSRule() ||
-				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedExpressionAction_0_1_0() ||
+				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedSourceAction_0_1_0() ||
 				   context == grammarAccess.getNavigatingArgExpCSRule() ||
 				   context == grammarAccess.getPrefixedPrimaryExpCSRule() ||
 				   context == grammarAccess.getPrimaryExpCSRule() ||
@@ -220,7 +203,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS:
 				if(context == grammarAccess.getCollectionLiteralExpCSRule() ||
 				   context == grammarAccess.getExpCSRule() ||
-				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedExpressionAction_0_1_0() ||
+				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedSourceAction_0_1_0() ||
 				   context == grammarAccess.getNavigatingArgExpCSRule() ||
 				   context == grammarAccess.getPrefixedPrimaryExpCSRule() ||
 				   context == grammarAccess.getPrimaryExpCSRule()) {
@@ -279,7 +262,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 				else break;
 			case EssentialOCLCSPackage.IF_EXP_CS:
 				if(context == grammarAccess.getExpCSRule() ||
-				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedExpressionAction_0_1_0() ||
+				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedSourceAction_0_1_0() ||
 				   context == grammarAccess.getIfExpCSRule() ||
 				   context == grammarAccess.getNavigatingArgExpCSRule() ||
 				   context == grammarAccess.getPrefixedPrimaryExpCSRule() ||
@@ -303,7 +286,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 				else break;
 			case EssentialOCLCSPackage.INVALID_LITERAL_EXP_CS:
 				if(context == grammarAccess.getExpCSRule() ||
-				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedExpressionAction_0_1_0() ||
+				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedSourceAction_0_1_0() ||
 				   context == grammarAccess.getInvalidLiteralExpCSRule() ||
 				   context == grammarAccess.getNavigatingArgExpCSRule() ||
 				   context == grammarAccess.getPrefixedPrimaryExpCSRule() ||
@@ -315,7 +298,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 				else break;
 			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS:
 				if(context == grammarAccess.getExpCSRule() ||
-				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedExpressionAction_0_1_0() ||
+				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedSourceAction_0_1_0() ||
 				   context == grammarAccess.getLambdaLiteralExpCSRule() ||
 				   context == grammarAccess.getNavigatingArgExpCSRule() ||
 				   context == grammarAccess.getPrefixedPrimaryExpCSRule() ||
@@ -341,7 +324,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 				else break;
 			case EssentialOCLCSPackage.NAME_EXP_CS:
 				if(context == grammarAccess.getExpCSRule() ||
-				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedExpressionAction_0_1_0() ||
+				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedSourceAction_0_1_0() ||
 				   context == grammarAccess.getNameExpCSRule() ||
 				   context == grammarAccess.getNavigatingArgExpCSRule() ||
 				   context == grammarAccess.getPrefixedPrimaryExpCSRule() ||
@@ -370,7 +353,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 				else break;
 			case EssentialOCLCSPackage.NESTED_EXP_CS:
 				if(context == grammarAccess.getExpCSRule() ||
-				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedExpressionAction_0_1_0() ||
+				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedSourceAction_0_1_0() ||
 				   context == grammarAccess.getNavigatingArgExpCSRule() ||
 				   context == grammarAccess.getNestedExpCSRule() ||
 				   context == grammarAccess.getPrefixedPrimaryExpCSRule() ||
@@ -381,7 +364,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 				else break;
 			case EssentialOCLCSPackage.NULL_LITERAL_EXP_CS:
 				if(context == grammarAccess.getExpCSRule() ||
-				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedExpressionAction_0_1_0() ||
+				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedSourceAction_0_1_0() ||
 				   context == grammarAccess.getNavigatingArgExpCSRule() ||
 				   context == grammarAccess.getNullLiteralExpCSRule() ||
 				   context == grammarAccess.getPrefixedPrimaryExpCSRule() ||
@@ -393,7 +376,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 				else break;
 			case EssentialOCLCSPackage.NUMBER_LITERAL_EXP_CS:
 				if(context == grammarAccess.getExpCSRule() ||
-				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedExpressionAction_0_1_0() ||
+				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedSourceAction_0_1_0() ||
 				   context == grammarAccess.getNavigatingArgExpCSRule() ||
 				   context == grammarAccess.getNumberLiteralExpCSRule() ||
 				   context == grammarAccess.getPrefixedPrimaryExpCSRule() ||
@@ -419,7 +402,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 					sequence_PrefixedLetExpCS_PrefixedPrimaryExpCS(context, (PrefixExpCS) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedExpressionAction_0_1_0() ||
+				else if(context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedSourceAction_0_1_0() ||
 				   context == grammarAccess.getPrefixedPrimaryExpCSRule()) {
 					sequence_PrefixedPrimaryExpCS(context, (PrefixExpCS) semanticObject); 
 					return; 
@@ -433,7 +416,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 				else break;
 			case EssentialOCLCSPackage.SELF_EXP_CS:
 				if(context == grammarAccess.getExpCSRule() ||
-				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedExpressionAction_0_1_0() ||
+				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedSourceAction_0_1_0() ||
 				   context == grammarAccess.getNavigatingArgExpCSRule() ||
 				   context == grammarAccess.getPrefixedPrimaryExpCSRule() ||
 				   context == grammarAccess.getPrimaryExpCSRule() ||
@@ -450,7 +433,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 				else break;
 			case EssentialOCLCSPackage.STRING_LITERAL_EXP_CS:
 				if(context == grammarAccess.getExpCSRule() ||
-				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedExpressionAction_0_1_0() ||
+				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedSourceAction_0_1_0() ||
 				   context == grammarAccess.getNavigatingArgExpCSRule() ||
 				   context == grammarAccess.getPrefixedPrimaryExpCSRule() ||
 				   context == grammarAccess.getPrimaryExpCSRule() ||
@@ -462,7 +445,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 				else break;
 			case EssentialOCLCSPackage.TUPLE_LITERAL_EXP_CS:
 				if(context == grammarAccess.getExpCSRule() ||
-				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedExpressionAction_0_1_0() ||
+				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedSourceAction_0_1_0() ||
 				   context == grammarAccess.getNavigatingArgExpCSRule() ||
 				   context == grammarAccess.getPrefixedPrimaryExpCSRule() ||
 				   context == grammarAccess.getPrimaryExpCSRule() ||
@@ -479,7 +462,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 				else break;
 			case EssentialOCLCSPackage.TYPE_LITERAL_EXP_CS:
 				if(context == grammarAccess.getExpCSRule() ||
-				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedExpressionAction_0_1_0() ||
+				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedSourceAction_0_1_0() ||
 				   context == grammarAccess.getNavigatingArgExpCSRule() ||
 				   context == grammarAccess.getPrefixedPrimaryExpCSRule() ||
 				   context == grammarAccess.getPrimaryExpCSRule() ||
@@ -500,7 +483,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 				else break;
 			case EssentialOCLCSPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS:
 				if(context == grammarAccess.getExpCSRule() ||
-				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedExpressionAction_0_1_0() ||
+				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedSourceAction_0_1_0() ||
 				   context == grammarAccess.getNavigatingArgExpCSRule() ||
 				   context == grammarAccess.getPrefixedPrimaryExpCSRule() ||
 				   context == grammarAccess.getPrimaryExpCSRule() ||
@@ -513,34 +496,6 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 			}
 		if (errorAcceptor != null) errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
-	
-	/**
-	 * Constraint:
-	 *     (
-	 *         name='*' | 
-	 *         name='/' | 
-	 *         name='+' | 
-	 *         name='-' | 
-	 *         name='>' | 
-	 *         name='<' | 
-	 *         name='>=' | 
-	 *         name='<=' | 
-	 *         name='=' | 
-	 *         name='<>' | 
-	 *         name='and' | 
-	 *         name='or' | 
-	 *         name='xor' | 
-	 *         name='implies' | 
-	 *         name='.' | 
-	 *         name='->' | 
-	 *         name='?.' | 
-	 *         name='?->'
-	 *     )
-	 */
-	protected void sequence_BinaryOperatorCS_EssentialOCLInfixOperatorCS_EssentialOCLNavigationOperatorCS(EObject context, BinaryOperatorCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
 	
 	/**
 	 * Constraint:
@@ -643,40 +598,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	
 	/**
 	 * Constraint:
-	 *     (
-	 *         name='*' | 
-	 *         name='/' | 
-	 *         name='+' | 
-	 *         name='-' | 
-	 *         name='>' | 
-	 *         name='<' | 
-	 *         name='>=' | 
-	 *         name='<=' | 
-	 *         name='=' | 
-	 *         name='<>' | 
-	 *         name='and' | 
-	 *         name='or' | 
-	 *         name='xor' | 
-	 *         name='implies'
-	 *     )
-	 */
-	protected void sequence_EssentialOCLInfixOperatorCS(EObject context, BinaryOperatorCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (name='.' | name='->' | name='?.' | name='?->')
-	 */
-	protected void sequence_EssentialOCLNavigationOperatorCS(EObject context, BinaryOperatorCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (ownedExpression=ExpCS_InfixExpCS_0_1_0 ownedOperator=BinaryOperatorCS ownedSuffix=ExpCS)
+	 *     (ownedSource=ExpCS_InfixExpCS_0_1_0 name=BinaryOperatorName ownedArgument=ExpCS)
 	 */
 	protected void sequence_ExpCS(EObject context, InfixExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

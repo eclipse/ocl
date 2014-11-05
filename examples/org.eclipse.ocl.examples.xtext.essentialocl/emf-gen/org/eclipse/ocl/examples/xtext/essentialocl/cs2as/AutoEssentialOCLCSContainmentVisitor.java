@@ -19,7 +19,6 @@ import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.examples.xtext.base.cs2as.NewBaseCSContainmentVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AbstractNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AssociationClassCallExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CallExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralExpCS;
@@ -90,10 +89,6 @@ public class AutoEssentialOCLCSContainmentVisitor
     
     public @Nullable Continuation<?> visitAssociationClassCallExpCS(@NonNull AssociationClassCallExpCS self) {
         throw new UnsupportedOperationException("visitAssociationClassCallExpCS is not supported by " + getClass().getName());
-    }
-    
-    public @Nullable Continuation<?> visitBinaryOperatorCS(@NonNull BinaryOperatorCS self) {
-        throw new UnsupportedOperationException("visitBinaryOperatorCS is not supported by " + getClass().getName());
     }
     
     public @Nullable Continuation<?> visitBooleanLiteralExpCS(@NonNull BooleanLiteralExpCS self) {

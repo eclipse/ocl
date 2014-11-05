@@ -436,7 +436,7 @@ public class XtextTestCase extends PivotTestCase
 		if (csElement instanceof SquareBracketedClauseCS) {
 			return false;
 		}
-		if (NavigationUtil.isNavigationOperator(csElement)) {
+		if (NavigationUtil.isNavigationInfixExp(csElement)) {
 			return false;
 		}
 		if (csElement instanceof CollectionTypeCS) {
@@ -473,7 +473,7 @@ public class XtextTestCase extends PivotTestCase
 		if (csElement instanceof SquareBracketedClauseCS) {
 			return false;
 		}
-		if (NavigationUtil.isNavigationOperator(csElement)) {
+		if (NavigationUtil.isNavigationInfixExp(csElement)) {
 			return false;
 		}
 		if (csElement instanceof CollectionTypeCS) {

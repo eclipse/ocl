@@ -44,7 +44,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.attributes.LetVariableCSAttri
 import org.eclipse.ocl.examples.xtext.essentialocl.attributes.NavigatingArgCSAttribution;
 import org.eclipse.ocl.examples.xtext.essentialocl.attributes.NavigationOperatorCSAttribution;
 import org.eclipse.ocl.examples.xtext.essentialocl.attributes.NavigationUtil;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
@@ -65,7 +64,7 @@ public class EssentialOCLScoping
 		registry.put(EssentialOCLCSPackage.Literals.LET_EXP_CS, LetExpCSAttribution.INSTANCE);
 		registry.put(EssentialOCLCSPackage.Literals.LET_VARIABLE_CS, LetVariableCSAttribution.INSTANCE);  // Needed for let deeply nested in Iterator/CollectionLiteral
 		registry.put(EssentialOCLCSPackage.Literals.NAVIGATING_ARG_CS, NavigatingArgCSAttribution.INSTANCE);
-		registry.put(EssentialOCLCSPackage.Literals.BINARY_OPERATOR_CS, NavigationOperatorCSAttribution.INSTANCE);
+		registry.put(EssentialOCLCSPackage.Literals.INFIX_EXP_CS, NavigationOperatorCSAttribution.INSTANCE);
 		CS2AS.addUnresolvedProxyMessageProvider(new PathElementCSUnresolvedProxyMessageProvider());
 	}
 	
@@ -184,7 +183,7 @@ public class EssentialOCLScoping
 				}
 				if (sourceType != null) {
 					OperatorCS csParent = navigationArgument != null ? navigationArgument.getParent() : null;
-					if (!(sourceType instanceof CollectionType) && NavigationUtil.isNavigationOperator(csParent) && (csParent != null) && PivotConstants.COLLECTION_NAVIGATION_OPERATOR.equals(((BinaryOperatorCS)csParent).getName())) {
+					if (!(sourceType instanceof CollectionType) && NavigationUtil.isNavigationInfixExp(csParent) && (csParent != null) && PivotConstants.COLLECTION_NAVIGATION_OPERATOR.equals(((InfixExpCS)csParent).getName())) {
 						typeText = "Set(" + sourceType.toString() + ")";
 					}
 					else {

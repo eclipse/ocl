@@ -76,7 +76,6 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralPartCS;
@@ -113,7 +112,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		super(context);
 	}	
 
-	private void appendInfixChild(@NonNull List<ExpCS> csExpressions, @NonNull List<BinaryOperatorCS> csOperators, @NonNull BinaryOperatorCS csOperator, @Nullable Precedence siblingPrecedence) {
+	private void appendInfixChild(@NonNull List<ExpCS> csExpressions, @NonNull List<InfixExpCS> csOperators, @NonNull InfixExpCS csOperator, @Nullable Precedence siblingPrecedence) {
 		MetaModelManager metaModelManager = context.getMetaModelManager();
 		String parentOperatorName = csOperator.getName();
 		Precedence precedence = parentOperatorName != null ? metaModelManager.getInfixPrecedence(parentOperatorName) : null;
@@ -126,8 +125,8 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		else {
 			{
 				ExpCS csSource = csOperator.getSource();
-				if (csSource instanceof BinaryOperatorCS) {
-					BinaryOperatorCS csSourceOperator = (BinaryOperatorCS) csSource;
+				if (csSource instanceof InfixExpCS) {
+					InfixExpCS csSourceOperator = (InfixExpCS) csSource;
 					appendInfixChild(csExpressions, csOperators, csSourceOperator, precedence);
 				}
 				else {
@@ -138,8 +137,8 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 			csOperators.add(csOperator);
 			{
 				ExpCS csArgument = csOperator.getArgument();
-				if (csArgument instanceof BinaryOperatorCS) {
-					BinaryOperatorCS csArgumentOperator = (BinaryOperatorCS) csArgument;
+				if (csArgument instanceof InfixExpCS) {
+					InfixExpCS csArgumentOperator = (InfixExpCS) csArgument;
 					appendInfixChild(csExpressions, csOperators, csArgumentOperator, precedence);
 				}
 				else {
@@ -152,28 +151,29 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 
 	protected ExpCS createExpCS(OCLExpression oclExpression) {
 		ExpCS csExp = context.visitDeclaration(ExpCS.class, oclExpression);
-		if (csExp instanceof BinaryOperatorCS) {
-			return createInfixExpCS((BinaryOperatorCS)csExp);
+		if (csExp instanceof InfixExpCS) {
+			return createInfixExpCS((InfixExpCS)csExp);
 		}
 		else {
 			return csExp;
 		}
 	}
 
-	protected ExpCS createInfixExpCS(@NonNull BinaryOperatorCS csOperator) {
-		List<ExpCS> csExpressions = new ArrayList<ExpCS>();
-		List<BinaryOperatorCS> csOperators = new ArrayList<BinaryOperatorCS>();
+	protected ExpCS createInfixExpCS(@NonNull InfixExpCS csOperator) {
+/*		List<ExpCS> csExpressions = new ArrayList<ExpCS>();
+		List<InfixExpCS> csOperators = new ArrayList<InfixExpCS>();
 		appendInfixChild(csExpressions, csOperators, csOperator, null);
 		int i = csOperators.size();
 		ExpCS csLastExp = csExpressions.get(i);
 		while (--i >= 0) {
 			@SuppressWarnings("null")@NonNull InfixExpCS csInfixExp = EssentialOCLCSFactory.eINSTANCE.createInfixExpCS();
-			csInfixExp.setOwnedSuffix(csLastExp);
+			csInfixExp.setOwnedArgument(csLastExp);
 			csInfixExp.setOwnedOperator(csOperators.get(i));
-			csInfixExp.setOwnedExpression(csExpressions.get(i));
+			csInfixExp.setOwnedSource(csExpressions.get(i));
 			csLastExp = csInfixExp;
 		}
-		return csLastExp;
+		return csLastExp; */
+		return csOperator;
 	}
 
 	protected @NonNull NameExpCS createNameExpCS(NamedElement asNamedElement) {
@@ -209,7 +209,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		}
 		else {
 			Type asType = asSource.getType();
-			BinaryOperatorCS csNavigationOperator = EssentialOCLCSFactory.eINSTANCE.createBinaryOperatorCS();
+			InfixExpCS csNavigationOperator = EssentialOCLCSFactory.eINSTANCE.createInfixExpCS();
 			csNavigationOperator.setSource(context.visitDeclaration(ExpCS.class, asSource));
 			boolean isCollection = (asType instanceof CollectionType) ^ isConverted;
 			csNavigationOperator.setName(isCollection ? PivotConstants.COLLECTION_NAVIGATION_OPERATOR : PivotConstants.OBJECT_NAVIGATION_OPERATOR);
@@ -537,7 +537,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		} else {
 			ExpCS csSource = context.visitDeclaration(ExpCS.class, asSource);
 			if (asArguments.size() == 1) {
-				BinaryOperatorCS csBinaryOperator = EssentialOCLCSFactory.eINSTANCE.createBinaryOperatorCS();
+				InfixExpCS csBinaryOperator = EssentialOCLCSFactory.eINSTANCE.createInfixExpCS();
 				csBinaryOperator.setSource(csSource);
 				csBinaryOperator.setName(asOperation.getName());
 				csBinaryOperator.setArgument(context.visitDeclaration(ExpCS.class, asArguments.get(0)));

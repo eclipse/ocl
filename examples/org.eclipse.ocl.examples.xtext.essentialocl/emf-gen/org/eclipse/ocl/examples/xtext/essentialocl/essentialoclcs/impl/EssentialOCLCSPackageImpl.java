@@ -21,7 +21,6 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AbstractNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AssociationClassCallExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CallExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralExpCS;
@@ -93,13 +92,6 @@ public class EssentialOCLCSPackageImpl
 	 * @generated
 	 */
 	private EClass associationClassCallExpCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass binaryOperatorCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -578,24 +570,6 @@ public class EssentialOCLCSPackageImpl
 	public EReference getAssociationClassCallExpCS_ReferredAssociation()
 	{
 		return (EReference)associationClassCallExpCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getBinaryOperatorCS() {
-		return binaryOperatorCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getBinaryOperatorCS_Argument() {
-		return (EReference)binaryOperatorCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1675,7 +1649,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInfixExpCS_OwnedExpression()
+	public EReference getInfixExpCS_OwnedSource()
 	{
 		return (EReference)infixExpCSEClass.getEStructuralFeatures().get(0);
 	}
@@ -1685,7 +1659,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInfixExpCS_OwnedOperator()
+	public EReference getInfixExpCS_OwnedArgument()
 	{
 		return (EReference)infixExpCSEClass.getEStructuralFeatures().get(1);
 	}
@@ -1695,7 +1669,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInfixExpCS_OwnedSuffix()
+	public EReference getInfixExpCS_DerivedSource()
 	{
 		return (EReference)infixExpCSEClass.getEStructuralFeatures().get(2);
 	}
@@ -1705,7 +1679,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInfixExpCS_DerivedSource()
+	public EReference getInfixExpCS_Argument()
 	{
 		return (EReference)infixExpCSEClass.getEStructuralFeatures().get(3);
 	}
@@ -1809,9 +1783,6 @@ public class EssentialOCLCSPackageImpl
 		associationClassCallExpCSEClass = createEClass(ASSOCIATION_CLASS_CALL_EXP_CS);
 		createEReference(associationClassCallExpCSEClass, ASSOCIATION_CLASS_CALL_EXP_CS__REFERRED_ASSOCIATION);
 
-		binaryOperatorCSEClass = createEClass(BINARY_OPERATOR_CS);
-		createEReference(binaryOperatorCSEClass, BINARY_OPERATOR_CS__ARGUMENT);
-
 		booleanLiteralExpCSEClass = createEClass(BOOLEAN_LITERAL_EXP_CS);
 		createEAttribute(booleanLiteralExpCSEClass, BOOLEAN_LITERAL_EXP_CS__SYMBOL);
 
@@ -1874,10 +1845,10 @@ public class EssentialOCLCSPackageImpl
 		createEReference(ifThenExpCSEClass, IF_THEN_EXP_CS__OWNED_THEN_EXPRESSION);
 
 		infixExpCSEClass = createEClass(INFIX_EXP_CS);
-		createEReference(infixExpCSEClass, INFIX_EXP_CS__OWNED_EXPRESSION);
-		createEReference(infixExpCSEClass, INFIX_EXP_CS__OWNED_OPERATOR);
-		createEReference(infixExpCSEClass, INFIX_EXP_CS__OWNED_SUFFIX);
+		createEReference(infixExpCSEClass, INFIX_EXP_CS__OWNED_SOURCE);
+		createEReference(infixExpCSEClass, INFIX_EXP_CS__OWNED_ARGUMENT);
 		createEReference(infixExpCSEClass, INFIX_EXP_CS__DERIVED_SOURCE);
+		createEReference(infixExpCSEClass, INFIX_EXP_CS__ARGUMENT);
 
 		invalidLiteralExpCSEClass = createEClass(INVALID_LITERAL_EXP_CS);
 
@@ -2016,7 +1987,6 @@ public class EssentialOCLCSPackageImpl
 		// Add supertypes to classes
 		abstractNameExpCSEClass.getESuperTypes().add(this.getExpCS());
 		associationClassCallExpCSEClass.getESuperTypes().add(this.getCallExpCS());
-		binaryOperatorCSEClass.getESuperTypes().add(this.getOperatorCS());
 		booleanLiteralExpCSEClass.getESuperTypes().add(this.getPrimitiveLiteralExpCS());
 		callExpCSEClass.getESuperTypes().add(this.getAbstractNameExpCS());
 		collectionLiteralExpCSEClass.getESuperTypes().add(this.getLiteralExpCS());
@@ -2034,7 +2004,7 @@ public class EssentialOCLCSPackageImpl
 		expSpecificationCSEClass.getESuperTypes().add(theBaseCSPackage.getSpecificationCS());
 		ifExpCSEClass.getESuperTypes().add(this.getExpCS());
 		ifThenExpCSEClass.getESuperTypes().add(this.getExpCS());
-		infixExpCSEClass.getESuperTypes().add(this.getExpCS());
+		infixExpCSEClass.getESuperTypes().add(this.getOperatorCS());
 		invalidLiteralExpCSEClass.getESuperTypes().add(this.getPrimitiveLiteralExpCS());
 		iterateCallExpCSEClass.getESuperTypes().add(this.getIterationCallExpCS());
 		iterationCallExpCSEClass.getESuperTypes().add(this.getCallExpCS());
@@ -2085,9 +2055,6 @@ public class EssentialOCLCSPackageImpl
 
 		initEClass(associationClassCallExpCSEClass, AssociationClassCallExpCS.class, "AssociationClassCallExpCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getAssociationClassCallExpCS_ReferredAssociation(), thePivotPackage.getAssociationClass(), null, "referredAssociation", null, 0, 1, AssociationClassCallExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(binaryOperatorCSEClass, BinaryOperatorCS.class, "BinaryOperatorCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getBinaryOperatorCS_Argument(), this.getExpCS(), null, "argument", null, 1, 1, BinaryOperatorCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(booleanLiteralExpCSEClass, BooleanLiteralExpCS.class, "BooleanLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getBooleanLiteralExpCS_Symbol(), ecorePackage.getEString(), "symbol", null, 0, 1, BooleanLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -2151,10 +2118,10 @@ public class EssentialOCLCSPackageImpl
 		initEReference(getIfThenExpCS_OwnedThenExpression(), this.getExpCS(), null, "ownedThenExpression", null, 0, 1, IfThenExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(infixExpCSEClass, InfixExpCS.class, "InfixExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getInfixExpCS_OwnedExpression(), this.getExpCS(), null, "ownedExpression", null, 1, 1, InfixExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getInfixExpCS_OwnedOperator(), this.getBinaryOperatorCS(), null, "ownedOperator", null, 1, 1, InfixExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getInfixExpCS_OwnedSuffix(), this.getExpCS(), null, "ownedSuffix", null, 1, 1, InfixExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getInfixExpCS_OwnedSource(), this.getExpCS(), null, "ownedSource", null, 1, 1, InfixExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getInfixExpCS_OwnedArgument(), this.getExpCS(), null, "ownedArgument", null, 1, 1, InfixExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getInfixExpCS_DerivedSource(), this.getExpCS(), null, "derivedSource", null, 0, 1, InfixExpCS.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getInfixExpCS_Argument(), this.getExpCS(), null, "argument", null, 1, 1, InfixExpCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(invalidLiteralExpCSEClass, InvalidLiteralExpCS.class, "InvalidLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

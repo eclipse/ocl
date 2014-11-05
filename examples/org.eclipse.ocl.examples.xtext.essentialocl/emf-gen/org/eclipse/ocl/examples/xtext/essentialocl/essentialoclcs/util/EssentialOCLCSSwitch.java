@@ -117,22 +117,6 @@ public class EssentialOCLCSSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EssentialOCLCSPackage.BINARY_OPERATOR_CS:
-			{
-				BinaryOperatorCS binaryOperatorCS = (BinaryOperatorCS)theEObject;
-				T result = caseBinaryOperatorCS(binaryOperatorCS);
-				if (result == null) result = caseOperatorCS(binaryOperatorCS);
-				if (result == null) result = caseExpCS(binaryOperatorCS);
-				if (result == null) result = caseNamedElementCS(binaryOperatorCS);
-				if (result == null) result = caseModelElementCS(binaryOperatorCS);
-				if (result == null) result = caseNameable(binaryOperatorCS);
-				if (result == null) result = casePivotableElementCS(binaryOperatorCS);
-				if (result == null) result = caseElementCS(binaryOperatorCS);
-				if (result == null) result = casePivotable(binaryOperatorCS);
-				if (result == null) result = caseVisitableCS(binaryOperatorCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case EssentialOCLCSPackage.BOOLEAN_LITERAL_EXP_CS:
 			{
 				BooleanLiteralExpCS booleanLiteralExpCS = (BooleanLiteralExpCS)theEObject;
@@ -324,8 +308,11 @@ public class EssentialOCLCSSwitch<T>
 			{
 				InfixExpCS infixExpCS = (InfixExpCS)theEObject;
 				T result = caseInfixExpCS(infixExpCS);
+				if (result == null) result = caseOperatorCS(infixExpCS);
 				if (result == null) result = caseExpCS(infixExpCS);
+				if (result == null) result = caseNamedElementCS(infixExpCS);
 				if (result == null) result = caseModelElementCS(infixExpCS);
+				if (result == null) result = caseNameable(infixExpCS);
 				if (result == null) result = casePivotableElementCS(infixExpCS);
 				if (result == null) result = caseElementCS(infixExpCS);
 				if (result == null) result = casePivotable(infixExpCS);
@@ -781,21 +768,6 @@ public class EssentialOCLCSSwitch<T>
 	 */
 	public T caseAssociationClassCallExpCS(AssociationClassCallExpCS object)
 	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Binary Operator CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Binary Operator CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBinaryOperatorCS(BinaryOperatorCS object) {
 		return null;
 	}
 

@@ -17,8 +17,8 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 
 public class NavigationOperatorCSAttribution extends AbstractAttribution
@@ -31,8 +31,8 @@ public class NavigationOperatorCSAttribution extends AbstractAttribution
 			return scopeView.getParent();
 		}
 		assert scopeView.getContainmentFeature() != PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT;		// Arguments must leapfrog to parent.
-		if (NavigationUtil.isNavigationOperator(target)) {
-			BinaryOperatorCS targetElement = (BinaryOperatorCS)target;
+		if (NavigationUtil.isNavigationInfixExp(target)) {
+			InfixExpCS targetElement = (InfixExpCS)target;
 			EObject child = scopeView.getChild();
 			ExpCS argument = targetElement.getArgument();
 			if ((child == argument) && (child instanceof NameExpCS)) {

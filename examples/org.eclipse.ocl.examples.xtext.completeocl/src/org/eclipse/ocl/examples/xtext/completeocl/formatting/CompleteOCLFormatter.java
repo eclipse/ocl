@@ -12,7 +12,7 @@ package org.eclipse.ocl.examples.xtext.completeocl.formatting;
 
 import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAccess;
 import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAccess.ClassifierContextDeclCSElements;
-import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAccess.CompleteOCLNavigationOperatorCSElements;
+import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAccess.CompleteOCLNavigationOperatorNameElements;
 import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAccess.ConstraintCSElements;
 import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAccess.DefOperationCSElements;
 import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAccess.DefPropertyCSElements;
@@ -40,7 +40,7 @@ public class CompleteOCLFormatter extends AbstractEssentialOCLFormatter
 		configureCollectionTypeCS(c, f.getCollectionTypeCSAccess());
 		configureCurlyBracketedClauseCS(c, f.getCurlyBracketedClauseCSAccess());
 		configureElseIfThenExpCS(c, f.getElseIfThenExpCSAccess());
-	    configureEssentialOCLNavigationOperatorCS(c, f.getEssentialOCLNavigationOperatorCSAccess());
+	    configureEssentialOCLNavigationOperatorCS(c, f.getEssentialOCLNavigationOperatorNameAccess());
 		configureIfExpCS(c, f.getIfExpCSAccess());
 		configureLetExpCS(c, f.getLetExpCSAccess());
 		configureMultiplicityBoundsCS(c, f.getMultiplicityBoundsCSAccess());
@@ -69,11 +69,11 @@ public class CompleteOCLFormatter extends AbstractEssentialOCLFormatter
 			c.setLinewrap(2).before(a.getInvKeyword_4_0_0());
 	    }
 	    {
-			CompleteOCLNavigationOperatorCSElements a = f.getCompleteOCLNavigationOperatorCSAccess();
-			c.setNoSpace().before(a.getNameCircumflexAccentKeyword_0_0());
-			c.setNoSpace().after(a.getNameCircumflexAccentKeyword_0_0());
-			c.setLinewrap().before(a.getNameCircumflexAccentCircumflexAccentKeyword_0_1());
-			c.setNoSpace().after(a.getNameCircumflexAccentCircumflexAccentKeyword_0_1());
+			CompleteOCLNavigationOperatorNameElements a = f.getCompleteOCLNavigationOperatorNameAccess();
+			c.setNoSpace().before(a.getCircumflexAccentKeyword_0());
+			c.setNoSpace().after(a.getCircumflexAccentKeyword_0());
+			c.setLinewrap().before(a.getCircumflexAccentCircumflexAccentKeyword_1());
+			c.setNoSpace().after(a.getCircumflexAccentCircumflexAccentKeyword_1());
 		}
 	    {
 			ConstraintCSElements a = f.getConstraintCSAccess();

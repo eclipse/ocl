@@ -36,10 +36,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredAssociation" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//AssociationClass"
         derived="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BinaryOperatorCS" eSuperTypes="#//OperatorCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="argument" lowerBound="1"
-        eType="#//ExpCS" transient="true" resolveProxies="false"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BooleanLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -130,15 +126,15 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedThenExpression" eType="#//ExpCS"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InfixExpCS" eSuperTypes="#//ExpCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedExpression" lowerBound="1"
+  <eClassifiers xsi:type="ecore:EClass" name="InfixExpCS" eSuperTypes="#//OperatorCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSource" lowerBound="1"
         eType="#//ExpCS" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedOperator" lowerBound="1"
-        eType="#//BinaryOperatorCS" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSuffix" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedArgument" lowerBound="1"
         eType="#//ExpCS" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="derivedSource" eType="#//ExpCS"
         changeable="false" transient="true" derived="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="argument" lowerBound="1"
+        eType="#//ExpCS" transient="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InvalidLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="IterateCallExpCS" abstract="true" eSuperTypes="#//IterationCallExpCS">

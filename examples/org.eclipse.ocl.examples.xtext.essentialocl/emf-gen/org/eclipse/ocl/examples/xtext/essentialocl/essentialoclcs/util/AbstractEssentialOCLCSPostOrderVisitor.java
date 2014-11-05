@@ -51,10 +51,6 @@ public abstract class AbstractEssentialOCLCSPostOrderVisitor
 		return visitCallExpCS(csElement);
 	}
 
-	public @Nullable Continuation<?> visitBinaryOperatorCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS csElement) {
-		return visitOperatorCS(csElement);
-	}
-
 	public @Nullable Continuation<?> visitBooleanLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteralExpCS csElement) {
 		return visitPrimitiveLiteralExpCS(csElement);
 	}
@@ -112,7 +108,7 @@ public abstract class AbstractEssentialOCLCSPostOrderVisitor
 	}
 
 	public @Nullable Continuation<?> visitInfixExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS csElement) {
-		return visitExpCS(csElement);
+		return visitOperatorCS(csElement);
 	}
 
 	public @Nullable Continuation<?> visitInvalidLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvalidLiteralExpCS csElement) {
