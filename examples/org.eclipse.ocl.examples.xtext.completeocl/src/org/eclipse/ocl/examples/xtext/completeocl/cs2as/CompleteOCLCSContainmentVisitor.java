@@ -25,6 +25,7 @@ import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.Import;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -385,6 +386,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 			csInclude.getNamespace();					// Resolve the proxy to perform the import.
 		}
 		@NonNull Root contextRoot = refreshRoot(Root.class, PivotPackage.Literals.ROOT, csElement);
+		context.refreshPivotList(Import.class, contextRoot.getImports(), csElement.getOwnedImport());
 		List<Root> modelRoots = new ArrayList<Root>();
 		for (org.eclipse.ocl.examples.pivot.Package modelPackage : modelPackage2contextPackage.keySet()) {
 			org.eclipse.ocl.examples.pivot.Package parentModelPackage = modelPackage.getNestingPackage();
@@ -434,7 +436,13 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		super.visitImportCS(csElement);
 		Namespace namespace = csElement.getNamespace();													// Resolve the proxy to perform the import.
 		if ((namespace != null) && !namespace.eIsProxy()) {
-			context.installPivotUsage(csElement, namespace);
+			Import pivotElement = PivotUtil.getPivot(Import.class, csElement);
+			if (pivotElement != null) {
+				Namespace oldNamespace = pivotElement.getImportedNamespace();
+				if (namespace != oldNamespace) {
+					pivotElement.setImportedNamespace(namespace);
+				}
+			}
 		}
 		return null;
 	}
