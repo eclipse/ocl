@@ -253,7 +253,7 @@ public class UsageTests
 		s.append("    complianceLevel=\"6.0\"\n");
 		s.append("    operationReflection=\"true\"\n");
 		s.append("    copyrightFields=\"false\"\n");
-		s.append("    bundleManifest=\"false\"\n");
+		s.append("    bundleManifest=\"true\"\n");
 		s.append("    usedGenPackages=\"");
 		if (usedGenPackages != null) {
 			s.append(usedGenPackages + " ");
