@@ -20,6 +20,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
@@ -28,6 +29,23 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
  */
 public class PrecedenceManager
 {	
+	
+	public static @SuppressWarnings("null")@NonNull Precedence NULL_PRECEDENCE = PivotFactory.eINSTANCE.createPrecedence();
+	public static @SuppressWarnings("null")@NonNull Precedence NAVIGATION_PRECEDENCE = PivotFactory.eINSTANCE.createPrecedence();
+	public static @SuppressWarnings("null")@NonNull Precedence LEAF_PRECEDENCE = PivotFactory.eINSTANCE.createPrecedence();
+//	public static @SuppressWarnings("null")@NonNull Precedence HIGHEST_PRECEDENCE = PivotFactory.eINSTANCE.createPrecedence();
+	static {
+		NULL_PRECEDENCE.setName("NULL");
+		NULL_PRECEDENCE.setOrder(Integer.MAX_VALUE);
+//		NULL_PRECEDENCE.setOrder(Integer.valueOf(-3));
+		NAVIGATION_PRECEDENCE.setName("NAVIGATION");
+		NAVIGATION_PRECEDENCE.setOrder(Integer.valueOf(-1));
+		LEAF_PRECEDENCE.setName("LEAF");
+		LEAF_PRECEDENCE.setOrder(Integer.valueOf(-2));
+//		HIGHEST_PRECEDENCE.setName("HIGHEST");
+//		HIGHEST_PRECEDENCE.setOrder(Integer.valueOf(-3));
+	}
+
 	/**
 	 * Map of precedence name to precedence objects. Multiple precedence objects
 	 * may be associated with a single name since alternate contributions

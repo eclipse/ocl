@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
 
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.xtext.base.basecs.NamedElementCS;
 
 /**
@@ -24,6 +26,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.NamedElementCS;
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getSource <em>Source</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getDerivedSource <em>Derived Source</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getDerivedParent <em>Derived Parent</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getDerivedPrecedence <em>Derived Precedence</em>}</li>
  * </ul>
  * </p>
  *
@@ -115,5 +118,61 @@ public interface OperatorExpCS
 	 * @generated
 	 */
 	ExpCS getDerivedParent();
+
+	/**
+	 * Returns the value of the '<em><b>Derived Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Derived Precedence</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Derived Precedence</em>' reference.
+	 * @see #setDerivedPrecedence(Precedence)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getOperatorExpCS_DerivedPrecedence()
+	 * @model resolveProxies="false" transient="true" derived="true"
+	 * @generated
+	 */
+	@NonNull Precedence getDerivedPrecedence();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getDerivedPrecedence <em>Derived Precedence</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Derived Precedence</em>' reference.
+	 * @see #getDerivedPrecedence()
+	 * @generated
+	 */
+	void setDerivedPrecedence(Precedence value);
+
+	/**
+	 * Returns the value of the '<em><b>Derived Right Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Derived Right Precedence</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Derived Right Precedence</em>' reference.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getOperatorExpCS_DerivedRightPrecedence()
+	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
+	 * @generated
+	 */
+//	Precedence getDerivedRightPrecedence();
+
+	/**
+	 * Returns the value of the '<em><b>Derived Left Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Derived Left Precedence</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Derived Left Precedence</em>' reference.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getOperatorExpCS_DerivedLeftPrecedence()
+	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
+	 * @generated
+	 */
+//	Precedence getDerivedLeftPrecedence();
 
 } // OperatorCS

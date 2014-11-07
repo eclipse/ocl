@@ -64,6 +64,7 @@ import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.LoopExp;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
@@ -82,7 +83,6 @@ import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
-import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.SemanticException;
 import org.eclipse.ocl.examples.pivot.SequenceType;
@@ -1430,6 +1430,18 @@ public class PivotUtil extends DomainUtil
 		@SuppressWarnings("unchecked")
 		T castUnspecializedElement = (T) unspecializedElement;
 		return castUnspecializedElement;
+	}
+
+	public static @NonNull Precedence highestPrecedence(@NonNull Precedence aPrecedence, @NonNull Precedence bPrecedence) {
+		int aOrder = aPrecedence.getOrder().intValue();
+		int bOrder = bPrecedence.getOrder().intValue();
+		return aOrder < bOrder ? aPrecedence : bPrecedence;
+	}
+
+	public static @NonNull Precedence lowestPrecedence(@NonNull Precedence aPrecedence, @NonNull Precedence bPrecedence) {
+		int aOrder = aPrecedence.getOrder().intValue();
+		int bOrder = bPrecedence.getOrder().intValue();
+		return aOrder > bOrder ? aPrecedence : bPrecedence;
 	}
 
 	/**

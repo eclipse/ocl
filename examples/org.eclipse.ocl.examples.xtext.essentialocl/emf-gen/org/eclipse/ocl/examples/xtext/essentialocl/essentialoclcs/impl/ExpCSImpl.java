@@ -15,9 +15,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.examples.pivot.manager.PrecedenceManager;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.impl.ModelElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
+import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCS2AS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS;
@@ -213,6 +216,34 @@ public class ExpCSImpl
 	@Override
 	public @Nullable <R> R accept(@NonNull BaseCSVisitor<R> visitor) {
 		return (R) ((EssentialOCLCSVisitor<?>)visitor).visitExpCS(this);
+	}
+	
+	public @NonNull Precedence getDerivedPrecedence() {
+		return PrecedenceManager.LEAF_PRECEDENCE;
+	}
+	
+	public @NonNull Precedence getDerivedHighestPrecedence() {
+		return PrecedenceManager.LEAF_PRECEDENCE;
+	}
+
+	public @NonNull ExpCS getDerivedHighestPrecedenceExpCS() {
+		return this;
+	}
+
+	public @Nullable ExpCS getDerivedLeftExpCS() {
+		return EssentialOCLCS2AS.getDerivedLeftExpCS(this);
+	}
+
+	public @NonNull ExpCS getDerivedLeftmostExpCS() {
+		return this;
+	}
+
+	public @Nullable ExpCS getDerivedRightExpCS() {
+		return EssentialOCLCS2AS.getDerivedRightExpCS(this);
+	}
+
+	public @NonNull ExpCS getDerivedRightmostExpCS() {
+		return this;
 	}
 
 	/**

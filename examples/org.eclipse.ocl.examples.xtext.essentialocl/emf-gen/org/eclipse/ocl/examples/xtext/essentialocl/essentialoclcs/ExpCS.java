@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
 
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
 
 /**
@@ -84,4 +87,18 @@ public interface ExpCS
 	 * @generated
 	 */
 	void setHasError(boolean value);
+	
+	@NonNull Precedence getDerivedPrecedence();
+	
+	@NonNull Precedence getDerivedHighestPrecedence();
+	
+	@NonNull ExpCS getDerivedHighestPrecedenceExpCS();
+
+	@Nullable ExpCS getDerivedLeftExpCS();
+
+	@NonNull ExpCS getDerivedLeftmostExpCS();
+
+	@Nullable ExpCS getDerivedRightExpCS();
+
+	@NonNull ExpCS getDerivedRightmostExpCS();
 } // ExpCS

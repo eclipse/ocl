@@ -2189,13 +2189,22 @@ public interface EssentialOCLCSPackage
 	int OPERATOR_EXP_CS__DERIVED_PARENT = EXP_CS_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Derived Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXP_CS__DERIVED_PRECEDENCE = EXP_CS_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Operator Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 5;
+	int OPERATOR_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -2304,6 +2313,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int INFIX_EXP_CS__DERIVED_PARENT = OPERATOR_EXP_CS__DERIVED_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Derived Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX_EXP_CS__DERIVED_PRECEDENCE = OPERATOR_EXP_CS__DERIVED_PRECEDENCE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Argument</b></em>' containment reference.
@@ -4206,6 +4224,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int PREFIX_EXP_CS__DERIVED_PARENT = OPERATOR_EXP_CS__DERIVED_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Derived Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_EXP_CS__DERIVED_PRECEDENCE = OPERATOR_EXP_CS__DERIVED_PRECEDENCE;
 
 	/**
 	 * The number of structural features of the '<em>Prefix Exp CS</em>' class.
@@ -6341,6 +6368,17 @@ public interface EssentialOCLCSPackage
 	EReference getOperatorExpCS_DerivedParent();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getDerivedPrecedence <em>Derived Precedence</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Derived Precedence</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getDerivedPrecedence()
+	 * @see #getOperatorExpCS()
+	 * @generated
+	 */
+	EReference getOperatorExpCS_DerivedPrecedence();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PatternExpCS <em>Pattern Exp CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7563,6 +7601,14 @@ public interface EssentialOCLCSPackage
 		 * @generated
 		 */
 		EReference OPERATOR_EXP_CS__DERIVED_PARENT = eINSTANCE.getOperatorExpCS_DerivedParent();
+
+		/**
+		 * The meta object literal for the '<em><b>Derived Precedence</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATOR_EXP_CS__DERIVED_PRECEDENCE = eINSTANCE.getOperatorExpCS_DerivedPrecedence();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.PatternExpCSImpl <em>Pattern Exp CS</em>}' class.

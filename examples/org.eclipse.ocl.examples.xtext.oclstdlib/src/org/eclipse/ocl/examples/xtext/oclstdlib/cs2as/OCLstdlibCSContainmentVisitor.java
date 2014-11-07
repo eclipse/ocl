@@ -103,8 +103,8 @@ public class OCLstdlibCSContainmentVisitor extends AbstractOCLstdlibCSContainmen
 
 	@Override
 	public Continuation<?> visitLibPackageCS(@NonNull LibPackageCS csElement) {
-		@SuppressWarnings("unused")
 		Library pivotElement = refreshPackage(Library.class, PivotPackage.Literals.LIBRARY, csElement);		
+		context.refreshPivotList(Precedence.class, pivotElement.getOwnedPrecedence(), csElement.getOwnedPrecedences());
 		return null;
 	}
 

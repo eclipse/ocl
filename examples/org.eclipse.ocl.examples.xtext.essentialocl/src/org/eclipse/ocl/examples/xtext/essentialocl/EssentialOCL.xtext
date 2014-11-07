@@ -203,7 +203,7 @@ TypeExpCS returns base::TypedRefCS:
 /* An expression elaborates a prefixed expression with zero or more binary operator and expression suffixes.
  * An optionally prefixed let expression is permitted except when suffixed with further expressions.*/
 ExpCS returns ExpCS:
-//	({InfixExpCS} ownedExpression=PrefixedExpCS ownedOperator=BinaryOperatorName ownedSuffix=ExpCS)
+//	({InfixExpCS} ownedSource=PrefixedExpCS name=BinaryOperatorName ownedArgument=ExpCS)
 //| 	PrefixedExpCS
 // the above takes exponential or worse time for backtracking, below is fast
 	(PrefixedPrimaryExpCS ({InfixExpCS.ownedSource=current} name=BinaryOperatorName ownedArgument=ExpCS)?)

@@ -1525,6 +1525,16 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getOperatorExpCS_DerivedPrecedence()
+	{
+		return (EReference)operatorExpCSEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getPatternExpCS()
 	{
 		return patternExpCSEClass;
@@ -1901,6 +1911,7 @@ public class EssentialOCLCSPackageImpl
 		createEReference(operatorExpCSEClass, OPERATOR_EXP_CS__SOURCE);
 		createEReference(operatorExpCSEClass, OPERATOR_EXP_CS__DERIVED_SOURCE);
 		createEReference(operatorExpCSEClass, OPERATOR_EXP_CS__DERIVED_PARENT);
+		createEReference(operatorExpCSEClass, OPERATOR_EXP_CS__DERIVED_PRECEDENCE);
 
 		patternExpCSEClass = createEClass(PATTERN_EXP_CS);
 		createEAttribute(patternExpCSEClass, PATTERN_EXP_CS__PATTERN_VARIABLE_NAME);
@@ -2174,6 +2185,7 @@ public class EssentialOCLCSPackageImpl
 		initEReference(getOperatorExpCS_Source(), this.getExpCS(), null, "source", null, 1, 1, OperatorExpCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getOperatorExpCS_DerivedSource(), this.getExpCS(), null, "derivedSource", null, 0, 1, OperatorExpCS.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getOperatorExpCS_DerivedParent(), this.getExpCS(), null, "derivedParent", null, 0, 1, OperatorExpCS.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getOperatorExpCS_DerivedPrecedence(), thePivotPackage.getPrecedence(), null, "derivedPrecedence", null, 0, 1, OperatorExpCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(patternExpCSEClass, PatternExpCS.class, "PatternExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getPatternExpCS_PatternVariableName(), ecorePackage.getEString(), "patternVariableName", null, 0, 1, PatternExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

@@ -13,8 +13,12 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
+import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCS2AS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.EssentialOCLCSVisitor;
 
@@ -58,5 +62,59 @@ public class PrefixExpCSImpl
 	@Override
 	public @Nullable <R> R accept(@NonNull BaseCSVisitor<R> visitor) {
 		return (R) ((EssentialOCLCSVisitor<?>)visitor).visitPrefixExpCS(this);
+	}
+
+/*	@Override
+	protected @NonNull Precedence computeLeftPrecedence() {
+		ExpCS csSource = getOwnedSource();
+		if (csSource instanceof OperatorExpCS) {
+			Precedence sourcePrecedence = ((OperatorExpCS)csSource).getDerivedPrecedence();
+			Precedence leftPrecedence = ((OperatorExpCS)csSource).getDerivedLeftPrecedence();
+			return PivotUtil.highestPrecedence(sourcePrecedence, leftPrecedence);
+		}
+		else {
+			return PrecedenceManager.NULL_PRECEDENCE;
+		}
+	} */
+
+/*	@Override
+	protected @NonNull Precedence computeRightPrecedence() {
+//		ExpCS csArgument = getOwnedArgument();
+//		if (csArgument instanceof OperatorExpCS) {
+//			Precedence argumentPrecedence = ((OperatorExpCS)csArgument).getDerivedPrecedence();
+//			Precedence rightPrecedence = ((OperatorExpCS)csArgument).getDerivedRightPrecedence();
+//			return PivotUtil.highestPrecedence(argumentPrecedence, rightPrecedence);
+//		}
+//		else {
+			return PrecedenceManager.NULL_PRECEDENCE;
+//		}
+	} */
+	
+	@Override
+	public @NonNull Precedence getDerivedHighestPrecedence() {
+		Precedence leftPrecedence = getOwnedSource().getDerivedHighestPrecedence();
+		return PivotUtil.highestPrecedence(getDerivedPrecedence(), leftPrecedence);
+	}
+
+	@Override
+	public @Nullable ExpCS getDerivedLeftExpCS() {
+		return EssentialOCLCS2AS.getDerivedLeftExpCS(this);
+	}
+
+	@Override
+	public @NonNull ExpCS getDerivedLeftmostExpCS() {
+		return this;
+	}
+
+	@Override
+	public @Nullable ExpCS getDerivedRightExpCS() {
+		ExpCS ownedSource = getOwnedSource();
+		return ownedSource != null ? ownedSource.getDerivedLeftmostExpCS() : null;
+	}
+
+	@Override
+	public @NonNull ExpCS getDerivedRightmostExpCS() {
+		ExpCS ownedSource = getOwnedSource();
+		return ownedSource != null ? ownedSource.getDerivedRightmostExpCS() : this;
 	}
 } //UnaryExpressionCSImpl

@@ -16,7 +16,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.Nameable;
+import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.examples.pivot.manager.PrecedenceManager;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.NamedElementCS;
@@ -36,6 +39,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS;
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperatorExpCSImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperatorExpCSImpl#getDerivedSource <em>Derived Source</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperatorExpCSImpl#getDerivedParent <em>Derived Parent</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperatorExpCSImpl#getDerivedPrecedence <em>Derived Precedence</em>}</li>
  * </ul>
  * </p>
  *
@@ -104,6 +108,36 @@ public abstract class OperatorExpCSImpl
 	 * @ordered
 	 */
 	protected ExpCS derivedParent;
+
+	/**
+	 * The cached value of the '{@link #getDerivedPrecedence() <em>Derived Precedence</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDerivedPrecedence()
+	 * @generated
+	 * @ordered
+	 */
+	protected Precedence derivedPrecedence;
+
+	/**
+	 * The cached value of the '{@link #getDerivedRightPrecedence() <em>Derived Right Precedence</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDerivedRightPrecedence()
+	 * @generated
+	 * @ordered
+	 */
+//	protected Precedence derivedRightPrecedence;
+
+	/**
+	 * The cached value of the '{@link #getDerivedLeftPrecedence() <em>Derived Left Precedence</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDerivedLeftPrecedence()
+	 * @generated
+	 * @ordered
+	 */
+//	protected Precedence derivedLeftPrecedence;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -235,6 +269,8 @@ public abstract class OperatorExpCSImpl
 				return getDerivedSource();
 			case EssentialOCLCSPackage.OPERATOR_EXP_CS__DERIVED_PARENT:
 				return getDerivedParent();
+			case EssentialOCLCSPackage.OPERATOR_EXP_CS__DERIVED_PRECEDENCE:
+				return getDerivedPrecedence();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -257,6 +293,9 @@ public abstract class OperatorExpCSImpl
 			case EssentialOCLCSPackage.OPERATOR_EXP_CS__SOURCE:
 				setSource((ExpCS)newValue);
 				return;
+			case EssentialOCLCSPackage.OPERATOR_EXP_CS__DERIVED_PRECEDENCE:
+				setDerivedPrecedence((Precedence)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -278,6 +317,9 @@ public abstract class OperatorExpCSImpl
 				return;
 			case EssentialOCLCSPackage.OPERATOR_EXP_CS__SOURCE:
 				setSource((ExpCS)null);
+				return;
+			case EssentialOCLCSPackage.OPERATOR_EXP_CS__DERIVED_PRECEDENCE:
+				setDerivedPrecedence((Precedence)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -302,6 +344,8 @@ public abstract class OperatorExpCSImpl
 				return derivedSource != null;
 			case EssentialOCLCSPackage.OPERATOR_EXP_CS__DERIVED_PARENT:
 				return derivedParent != null;
+			case EssentialOCLCSPackage.OPERATOR_EXP_CS__DERIVED_PRECEDENCE:
+				return derivedPrecedence != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -372,12 +416,28 @@ public abstract class OperatorExpCSImpl
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
-	public ExpCS getDerivedSource() {
-		return derivedSource;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public @NonNull Precedence getDerivedPrecedence()
+	{
+		return derivedPrecedence != null ? derivedPrecedence : PrecedenceManager.NULL_PRECEDENCE;
 	}
 
-	public ExpCS getDerivedParent() {
-		return derivedParent;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDerivedPrecedence(Precedence newDerivedPrecedence)
+	{
+		Precedence oldDerivedPrecedence = derivedPrecedence;
+		derivedPrecedence = newDerivedPrecedence;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.OPERATOR_EXP_CS__DERIVED_PRECEDENCE, oldDerivedPrecedence, derivedPrecedence));
 	}
 
 	/**
@@ -398,6 +458,34 @@ public abstract class OperatorExpCSImpl
 		return eContainer instanceof ElementCS ? (ElementCS) eContainer : null;		// Avoid CCE for Bug 432749
 	}
 
+//	public Precedence getDerivedRightPrecedence()
+//	{
+//		if (derivedRightPrecedence == null) {
+//			derivedRightPrecedence = computeRightPrecedence();
+//		}
+//		return derivedRightPrecedence;
+//	}
+
+//	protected abstract @NonNull Precedence computeLeftPrecedence();
+
+//	protected abstract @NonNull Precedence computeRightPrecedence();
+
+//	public Precedence getDerivedLeftPrecedence()
+//	{
+//		if (derivedLeftPrecedence == null) {
+//			derivedLeftPrecedence = computeLeftPrecedence();
+//		}
+//		return derivedLeftPrecedence;
+//	}
+
+	public ExpCS getDerivedParent() {
+		return derivedParent;
+	}
+
+	public ExpCS getDerivedSource() {
+		return derivedSource;
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -412,6 +500,9 @@ public abstract class OperatorExpCSImpl
 		setSource(null);
 		derivedParent = null;
 		derivedSource = null;
+		derivedPrecedence = null;
+//		derivedLeftPrecedence = null;
+//		derivedRightPrecedence = null;
 	}
 
 	/**

@@ -984,6 +984,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	@Override
 	public String visitPrecedence(@NonNull Precedence precedence) {
 		appendName(precedence);
+		append("(" + precedence.getOrder() + ")");
 		return null;
 	}
 

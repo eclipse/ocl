@@ -1201,6 +1201,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 	}
 
 	public @Nullable Precedence getInfixPrecedence(@NonNull String operatorName) {
+		getStandardLibrary();
 		PrecedenceManager precedenceManager = getPrecedenceManager();
 		return precedenceManager.getInfixPrecedence(operatorName);
 	}
@@ -1589,6 +1590,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 	@SuppressWarnings("null")
 	protected @NonNull PrecedenceManager getPrecedenceManager() {
 		if (precedenceManager == null) {
+			standardLibrary.getOclAnyType();		// Make sure OCL Standard Library has defined operations to be compiled with precedence
 			synchronized (this) {
 				if (precedenceManager == null) {
 					synchronized (this) {

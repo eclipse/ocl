@@ -14,8 +14,10 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.values.IntegerValue;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.PrecedenceManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.basecs.ContextLessElementCS;
@@ -27,12 +29,14 @@ import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.examples.xtext.base.cs2as.SingleContinuation;
+import org.eclipse.ocl.examples.xtext.essentialocl.attributes.NavigationUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.AbstractEssentialOCLCSPreOrderVisitor;
@@ -102,6 +106,36 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 		}
 	}
 
+	protected static class InfixExpContinuation extends SingleContinuation<InfixExpCS>
+	{
+		public InfixExpContinuation(@NonNull CS2ASConversion context, @NonNull InfixExpCS csElement) {
+			super(context, null, null, csElement);
+		}
+
+		@Override
+		public BasicContinuation<?> execute() {
+			String operatorName = csElement.getName();
+			Precedence precedence = operatorName != null ? context.getMetaModelManager().getInfixPrecedence(operatorName) : null;
+			csElement.setDerivedPrecedence(precedence);
+			return null;
+		}
+	}
+
+	protected static class PrefixExpContinuation extends SingleContinuation<PrefixExpCS>
+	{
+		public PrefixExpContinuation(@NonNull CS2ASConversion context, @NonNull PrefixExpCS csElement) {
+			super(context, null, null, csElement);
+		}
+
+		@Override
+		public BasicContinuation<?> execute() {
+			String operatorName = csElement.getName();
+			Precedence precedence = operatorName != null ? context.getMetaModelManager().getPrefixPrecedence(operatorName) : null;
+			csElement.setDerivedPrecedence(precedence);
+			return null;
+		}
+	}
+
 	protected static class TypeNameExpContinuation extends SingleContinuation<TypeNameExpCS>
 	{
 		public TypeNameExpContinuation(@NonNull CS2ASConversion context, @NonNull TypeNameExpCS csElement) {
@@ -147,6 +181,18 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 	}
 
 	@Override
+	public Continuation<?> visitInfixExpCS(@NonNull InfixExpCS csElement) {
+		if (NavigationUtil.isNavigationInfixExp(csElement)) {
+			csElement.setDerivedPrecedence(PrecedenceManager.NAVIGATION_PRECEDENCE);
+			return null;
+		}
+		else {
+			// Defer setting precedence until all OCLstdlib-defined operations using precedence are available
+			return new InfixExpContinuation(context, csElement);
+		}
+	}
+
+	@Override
 	public Continuation<?> visitNameExpCS(@NonNull NameExpCS csNameExp) {
 		return null;
 	}
@@ -157,8 +203,9 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 	}
 
 	@Override
-	public Continuation<?> visitOperatorExpCS(@NonNull OperatorExpCS object) {
-		return null;
+	public Continuation<?> visitPrefixExpCS(@NonNull PrefixExpCS csElement) {
+		// Defer setting precedence until all OCLstdlib-defined operations using precedence are available
+		return new PrefixExpContinuation(context, csElement);
 	}
 
 	@Override
