@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.ocl.jdt.annotation7
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Bundle-Vendor: %bundleVendor
+Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-Name: %bundleName
+Bundle-Name: %pluginName
 Export-Package: org.eclipse.jdt.annotation
