@@ -23,6 +23,7 @@ import org.eclipse.ocl.examples.pivot.manager.PrecedenceManager;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCSPostOrderVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS;
@@ -232,9 +233,15 @@ public abstract class OperatorExpCSImpl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public ExpCS getSource() {
+		ExpCS derivedSource2 = getDerivedSource();
+		if ((derivedSource2 != source) && !EssentialOCLCSPostOrderVisitor.interleaveInProgress) {
+			derivedSource = null;
+			derivedSource2 = getDerivedSource();
+		}
+		assert (derivedSource2 == source) || (source == null) || EssentialOCLCSPostOrderVisitor.interleaveInProgress || ((source instanceof OperatorExpCSImpl) && ((OperatorExpCSImpl)source).derivedPrecedence == null);
 		return source;
 	}
 
@@ -478,12 +485,40 @@ public abstract class OperatorExpCSImpl
 //		return derivedLeftPrecedence;
 //	}
 
-	public ExpCS getDerivedParent() {
-		return derivedParent;
-	}
+/*	@Override
+	public OperatorExpCS getParent() {
+		ExpCS derivedParent2 = getDerivedParent();
+		if (derivedParent2 != parent) {
+			derivedParent = null;
+			derivedParent2 = getDerivedParent();
+		}
+		assert (derivedParent2 == parent) || (parent == null) || (derivedPrecedence == null);
+		return parent;
+	} */
 
-	public ExpCS getDerivedSource() {
-		return derivedSource;
+	public ExpCS getDerivedParent() {
+/*		if (derivedParent == null) {
+			ExpCS csLeft = getDerivedLeftExpCS();
+			ExpCS csRight = getDerivedRightExpCS();
+			if (csLeft == null) {
+				if (csRight == null) {
+					EObject eContainer = eContainer();
+					derivedParent = eContainer instanceof OperatorExpCS ? (ExpCS) eContainer : null;
+				}
+				else {
+					derivedParent = csRight;
+				}
+			}
+			else {
+				if (csRight == null) {
+					derivedParent = csLeft;
+				}
+				else {
+					derivedParent = EssentialOCLCS2AS.lowestPrecedence(csLeft, csRight);
+				}
+			}
+		} */
+		return derivedParent;
 	}
 
 	/**

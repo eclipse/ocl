@@ -90,9 +90,9 @@ public interface ExpCS
 	
 	@NonNull Precedence getDerivedPrecedence();
 	
-	@NonNull Precedence getDerivedHighestPrecedence();
+//	@NonNull Precedence getDerivedHighestPrecedence();
 	
-	@NonNull ExpCS getDerivedHighestPrecedenceExpCS();
+//	@NonNull ExpCS getDerivedHighestPrecedenceExpCS();
 
 	@Nullable ExpCS getDerivedLeftExpCS();
 

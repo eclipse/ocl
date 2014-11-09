@@ -439,9 +439,9 @@ public class LetVariableCSImpl
 		return PrecedenceManager.LEAF_PRECEDENCE;
 	}
 	
-	public @NonNull Precedence getDerivedHighestPrecedence() {
-		return PrecedenceManager.LEAF_PRECEDENCE;
-	}
+//	public @NonNull Precedence getDerivedHighestPrecedence() {
+//		return PrecedenceManager.LEAF_PRECEDENCE;
+//	}
 
 	public @Nullable ExpCS getDerivedLeftExpCS() {
 		return EssentialOCLCS2AS.getDerivedLeftExpCS(this);

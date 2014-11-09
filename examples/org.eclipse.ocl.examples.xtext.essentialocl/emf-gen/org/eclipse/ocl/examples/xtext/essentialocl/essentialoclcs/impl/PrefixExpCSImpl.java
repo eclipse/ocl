@@ -13,8 +13,6 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.pivot.Precedence;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCS2AS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
@@ -90,11 +88,11 @@ public class PrefixExpCSImpl
 //		}
 	} */
 	
-	@Override
+/*	@Override
 	public @NonNull Precedence getDerivedHighestPrecedence() {
 		Precedence leftPrecedence = getOwnedSource().getDerivedHighestPrecedence();
 		return PivotUtil.highestPrecedence(getDerivedPrecedence(), leftPrecedence);
-	}
+	} */
 
 	@Override
 	public @Nullable ExpCS getDerivedLeftExpCS() {
@@ -116,5 +114,28 @@ public class PrefixExpCSImpl
 	public @NonNull ExpCS getDerivedRightmostExpCS() {
 		ExpCS ownedSource = getOwnedSource();
 		return ownedSource != null ? ownedSource.getDerivedRightmostExpCS() : this;
+	}
+
+	public ExpCS getDerivedSource() {
+		if (derivedSource == null) {
+			ExpCS csBestRight = null;
+			for (ExpCS csRight = this; (csRight = csRight.getDerivedRightExpCS()) != null; ) {
+				ExpCS csThisWrtRight = EssentialOCLCS2AS.lowestPrecedence(this, csRight);
+				if (csThisWrtRight != this) {
+					break;
+				}
+				if (csBestRight == null) {
+					csBestRight = csRight;
+				}
+				else {
+					ExpCS csBestWrtRight = EssentialOCLCS2AS.lowestPrecedence(csBestRight, csRight);
+					if (csBestWrtRight != csBestRight) {
+						csBestRight = csRight;
+					}
+				}
+			}
+			derivedSource = csBestRight;
+		}
+		return derivedSource;
 	}
 } //UnaryExpressionCSImpl

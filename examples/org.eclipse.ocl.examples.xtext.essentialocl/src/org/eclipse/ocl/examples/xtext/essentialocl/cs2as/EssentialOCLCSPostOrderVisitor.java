@@ -54,6 +54,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.AbstractE
 public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOrderVisitor
 {
 	static final Logger logger = Logger.getLogger(EssentialOCLCSPostOrderVisitor.class);
+	public static boolean interleaveInProgress = false;
 
 	public static class ConstraintCSCompletion extends SingleContinuation<ConstraintCS>
 	{
@@ -436,10 +437,16 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 			//	Establish the Infix tree and the per leaf expression parent operator.
 			//
 			createInfixOperatorTree(csInfixExp);
-			//
-			//	Interleave the Prefix Operators.
-			//
-			interleavePrefixes(csInfixExp);
+			interleaveInProgress  = true;
+			try {
+				//
+				//	Interleave the Prefix Operators.
+				//
+				interleavePrefixes(csInfixExp);
+			}
+			finally {
+				interleaveInProgress = false;
+			}
 		}
 		return null;
 	}

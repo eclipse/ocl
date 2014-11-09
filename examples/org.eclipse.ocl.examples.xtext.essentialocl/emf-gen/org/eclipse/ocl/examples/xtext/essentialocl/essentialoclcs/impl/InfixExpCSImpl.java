@@ -322,23 +322,46 @@ public class InfixExpCSImpl
 		}
 		return derivedArgument;
 	}
+
+	public ExpCS getDerivedSource() {
+		if (derivedSource == null) {
+			ExpCS csBestLeft = null;
+			for (ExpCS csLeft = this; (csLeft = csLeft.getDerivedLeftExpCS()) != null; ) {
+				ExpCS csThisWrtLeft = EssentialOCLCS2AS.lowestPrecedence(csLeft, this);
+				if (csThisWrtLeft != this) {
+					break;
+				}
+				if (csBestLeft == null) {
+					csBestLeft = csLeft;
+				}
+				else {
+					ExpCS csBestWrtLeft = EssentialOCLCS2AS.lowestPrecedence(csLeft, csBestLeft);
+					if (csBestWrtLeft != csBestLeft) {
+						csBestLeft = csLeft;
+					}
+				}
+			}
+			derivedSource = csBestLeft;
+		}
+		return derivedSource;
+	}
 	
-	@Override
+/*	@Override
 	public @NonNull Precedence getDerivedHighestPrecedence() {
 		Precedence leftPrecedence = getOwnedSource().getDerivedHighestPrecedence();
 		Precedence rightPrecedence = getOwnedArgument().getDerivedHighestPrecedence();
 		Precedence highestPrecedence = PivotUtil.highestPrecedence(leftPrecedence, rightPrecedence);
 		return PivotUtil.highestPrecedence(getDerivedPrecedence(), highestPrecedence);
-	}
+	} */
 
-	@Override
+/*	@Override
 	public @NonNull ExpCS getDerivedHighestPrecedenceExpCS() {
 		ExpCS leftExpCS = getOwnedSource().getDerivedHighestPrecedenceExpCS();
 		ExpCS rightExpCS = getOwnedArgument().getDerivedHighestPrecedenceExpCS();
 		ExpCS leftHighestExpCS = getHighestPrecedenceExpCS(leftExpCS, this);
 		ExpCS highestExpCS = getHighestPrecedenceExpCS(leftHighestExpCS, rightExpCS);
 		return highestExpCS;
-	}
+	} */
 
 	@Override
 	public @Nullable ExpCS getDerivedLeftExpCS() {

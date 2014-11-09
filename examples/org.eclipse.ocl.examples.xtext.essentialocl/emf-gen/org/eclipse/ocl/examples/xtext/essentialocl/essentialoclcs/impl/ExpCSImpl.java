@@ -222,13 +222,13 @@ public class ExpCSImpl
 		return PrecedenceManager.LEAF_PRECEDENCE;
 	}
 	
-	public @NonNull Precedence getDerivedHighestPrecedence() {
-		return PrecedenceManager.LEAF_PRECEDENCE;
-	}
+//	public @NonNull Precedence getDerivedHighestPrecedence() {
+//		return PrecedenceManager.LEAF_PRECEDENCE;
+//	}
 
-	public @NonNull ExpCS getDerivedHighestPrecedenceExpCS() {
-		return this;
-	}
+//	public @NonNull ExpCS getDerivedHighestPrecedenceExpCS() {
+//		return this;
+//	}
 
 	public @Nullable ExpCS getDerivedLeftExpCS() {
 		return EssentialOCLCS2AS.getDerivedLeftExpCS(this);

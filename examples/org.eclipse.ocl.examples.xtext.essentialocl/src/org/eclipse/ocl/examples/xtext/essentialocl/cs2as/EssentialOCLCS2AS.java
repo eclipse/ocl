@@ -56,12 +56,18 @@ public class EssentialOCLCS2AS extends BaseCS2AS
 
 	public static @Nullable ExpCS getDerivedRightExpCS(@NonNull ExpCS csExp) {
 		ExpCS csChild = csExp;
-		for (EObject eContainer; (eContainer = csChild.eContainer()) instanceof InfixExpCS; ) {
-			InfixExpCS csParent = (InfixExpCS)eContainer;
-			if (csParent.getOwnedSource() == csChild) {
-				return csParent;
+		for (EObject eContainer; (eContainer = csChild.eContainer()) instanceof OperatorExpCS; ) {
+			if (eContainer instanceof PrefixExpCS) {
+				PrefixExpCS csParent = (PrefixExpCS)eContainer;
+				csChild = csParent;
 			}
-			csChild = csParent;
+			else/*if (eContainer instanceof InfixExpCS)*/ {
+				InfixExpCS csParent = (InfixExpCS)eContainer;
+				if (csParent.getOwnedSource() == csChild) {
+					return csParent;
+				}
+				csChild = csParent;
+			}
 		}
 		return null;
 	}
