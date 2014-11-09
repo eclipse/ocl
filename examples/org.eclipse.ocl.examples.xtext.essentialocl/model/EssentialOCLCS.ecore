@@ -158,7 +158,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isImplicit" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
         defaultValueLiteral="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LetVariableCS" eSuperTypes="#//VariableCS #//ExpCS">
+  <eClassifiers xsi:type="ecore:EClass" name="LetVariableCS" eSuperTypes="#//ExpCS #//VariableCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningLetExpression" eType="#//LetExpCS"
         eOpposite="#//LetExpCS/ownedVariables"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRoundBracketedClause"

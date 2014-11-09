@@ -28,7 +28,7 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
  * @generated
  */
 public interface LetVariableCS
-		extends VariableCS, ExpCS {
+		extends ExpCS, VariableCS {
 
 	/**
 	 * Returns the value of the '<em><b>Owning Let Expression</b></em>' container reference.

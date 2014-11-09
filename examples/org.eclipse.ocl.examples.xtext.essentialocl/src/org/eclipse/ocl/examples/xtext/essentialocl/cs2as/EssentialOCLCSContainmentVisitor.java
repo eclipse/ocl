@@ -78,6 +78,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpSpecificati
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvalidLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
@@ -302,6 +303,11 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 	@Override
 	public Continuation<?> visitInvalidLiteralExpCS(@NonNull InvalidLiteralExpCS csElement) {
 		return null;
+	}
+
+	@Override
+	public Continuation<?> visitLetVariableCS(@NonNull LetVariableCS csElement) {
+		return visitVariableCS(csElement);	// Follow the second superclass
 	}
 
 	@Override

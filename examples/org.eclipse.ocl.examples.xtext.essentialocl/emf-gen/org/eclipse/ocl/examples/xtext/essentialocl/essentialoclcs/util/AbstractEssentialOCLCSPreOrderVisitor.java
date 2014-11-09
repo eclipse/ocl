@@ -132,7 +132,7 @@ public abstract class AbstractEssentialOCLCSPreOrderVisitor
 	}
 
 	public @Nullable Continuation<?> visitLetVariableCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS csElement) {
-		return visitVariableCS(csElement);
+		return visitExpCS(csElement);
 	}
 
 	public @Nullable Continuation<?> visitLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LiteralExpCS csElement) {

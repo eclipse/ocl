@@ -129,7 +129,7 @@ public abstract class AbstractExtendingEssentialOCLCSVisitor<R, C>
 	}
 
 	public @Nullable R visitLetVariableCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS object) {
-		return visitVariableCS(object);
+		return visitExpCS(object);
 	}
 
 	public @Nullable R visitLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LiteralExpCS object) {

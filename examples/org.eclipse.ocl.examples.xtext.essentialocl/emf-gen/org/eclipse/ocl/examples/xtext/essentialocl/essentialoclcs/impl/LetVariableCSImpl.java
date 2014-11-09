@@ -18,16 +18,17 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.pivot.Precedence;
-import org.eclipse.ocl.examples.pivot.manager.PrecedenceManager;
+import org.eclipse.ocl.examples.domain.elements.Nameable;
+import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
+import org.eclipse.ocl.examples.xtext.base.basecs.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
-import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCS2AS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.EssentialOCLCSVisitor;
 
 /**
@@ -37,9 +38,9 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetVariableCSImpl#getParent <em>Parent</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetVariableCSImpl#isHasError <em>Has Error</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetVariableCSImpl#getPrecedence <em>Precedence</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetVariableCSImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetVariableCSImpl#getOwnedType <em>Owned Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetVariableCSImpl#getOwnedInitExpression <em>Owned Init Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetVariableCSImpl#getOwningLetExpression <em>Owning Let Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetVariableCSImpl#getOwnedRoundBracketedClause <em>Owned Round Bracketed Clause</em>}</li>
  * </ul>
@@ -48,37 +49,45 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * @generated
  */
 public class LetVariableCSImpl
-		extends VariableCSImpl
+		extends ExpCSImpl
 		implements LetVariableCS {
 
 	/**
-	 * The cached value of the '{@link #getParent() <em>Parent</em>}' reference.
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getParent()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected OperatorExpCS parent;
+	protected static final String NAME_EDEFAULT = null;
 	/**
-	 * The default value of the '{@link #isHasError() <em>Has Error</em>}' attribute.
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isHasError()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean HAS_ERROR_EDEFAULT = false;
+	protected String name = NAME_EDEFAULT;
 	/**
-	 * The cached value of the '{@link #isHasError() <em>Has Error</em>}' attribute.
+	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isHasError()
+	 * @see #getOwnedType()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean hasError = HAS_ERROR_EDEFAULT;
-
+	protected TypedRefCS ownedType;
+	/**
+	 * The cached value of the '{@link #getOwnedInitExpression() <em>Owned Init Expression</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedInitExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected ExpCS ownedInitExpression;
 	/**
 	 * The cached value of the '{@link #getOwnedRoundBracketedClause() <em>Owned Round Bracketed Clause</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -108,72 +117,14 @@ public class LetVariableCSImpl
 		return EssentialOCLCSPackage.Literals.LET_VARIABLE_CS;
 	}
 
-	protected OperatorExpCS derivedParent;
-
-	public OperatorExpCS getParent() {
-		return getDerivedParent();
-	}
-
-	public OperatorExpCS getDerivedParent() {
-		if (!isInterleaved) {
-			return null;
-		}
-		if (derivedParent == null) {
-			OperatorExpCS csNearestLeft = null;
-			for (ExpCS csLeft = this; (csLeft = csLeft.getLocalLeft()) != null; ) {
-				OperatorExpCS csLeftOperator = csLeft instanceof OperatorExpCS ? (OperatorExpCS)csLeft : null;
-				if (csNearestLeft == null) {
-					if ((csLeftOperator != null) && csLeftOperator.isLocalLeftAncestorOf(this)) {
-						csNearestLeft = csLeftOperator;
-					}
-				}
-				else {
-					if ((csLeftOperator != null) && csNearestLeft.isLocalLeftAncestorOf(csLeft) && csLeftOperator.isLocalLeftAncestorOf(this)) {
-						csNearestLeft = csLeftOperator;
-					}
-					else {
-						break;
-					}
-				}
-			}
-			OperatorExpCS csNearestRight = null;
-			for (ExpCS csRight = this; (csRight = csRight.getLocalRight()) != null; ) {
-				OperatorExpCS csRightOperator = csRight instanceof OperatorExpCS ? (OperatorExpCS)csRight : null;
-				if (csNearestRight == null) {
-					if ((csRightOperator != null) && csRightOperator.isLocalRightAncestorOf(this)) {
-						csNearestRight = csRightOperator;
-					}
-				}
-				else {
-					if ((csRightOperator != null) && csRightOperator.isLocalRightAncestorOf(this) && csNearestRight.isLocalRightAncestorOf(csRight)) {
-						csNearestRight = csRightOperator;
-					}
-					else {
-						break;
-					}
-				}
-			}
-			if (csNearestLeft == null) {
-				if (csNearestRight == null) {
-					derivedParent = null;
-				}
-				else {
-					derivedParent = csNearestRight;
-				}
-			}
-			else {
-				if (csNearestRight == null) {
-					derivedParent = csNearestLeft;
-				}
-				else if (csNearestLeft.isLocalLeftAncestorOf(csNearestRight)) {
-					derivedParent = csNearestRight;
-				}
-				else {
-					derivedParent = csNearestLeft;
-				}
-			}
-		}
-		return derivedParent;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName()
+	{
+		return name;
 	}
 
 	/**
@@ -181,22 +132,108 @@ public class LetVariableCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isHasError()
+	public void setName(String newName)
 	{
-		return hasError;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setHasError(boolean newHasError)
-	{
-		boolean oldHasError = hasError;
-		hasError = newHasError;
+		String oldName = name;
+		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.LET_VARIABLE_CS__HAS_ERROR, oldHasError, hasError));
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.LET_VARIABLE_CS__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TypedRefCS getOwnedType()
+	{
+		return ownedType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwnedType(TypedRefCS newOwnedType, NotificationChain msgs)
+	{
+		TypedRefCS oldOwnedType = ownedType;
+		ownedType = newOwnedType;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_TYPE, oldOwnedType, newOwnedType);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnedType(TypedRefCS newOwnedType)
+	{
+		if (newOwnedType != ownedType)
+		{
+			NotificationChain msgs = null;
+			if (ownedType != null)
+				msgs = ((InternalEObject)ownedType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_TYPE, null, msgs);
+			if (newOwnedType != null)
+				msgs = ((InternalEObject)newOwnedType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_TYPE, null, msgs);
+			msgs = basicSetOwnedType(newOwnedType, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_TYPE, newOwnedType, newOwnedType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExpCS getOwnedInitExpression()
+	{
+		return ownedInitExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwnedInitExpression(ExpCS newOwnedInitExpression, NotificationChain msgs)
+	{
+		ExpCS oldOwnedInitExpression = ownedInitExpression;
+		ownedInitExpression = newOwnedInitExpression;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_INIT_EXPRESSION, oldOwnedInitExpression, newOwnedInitExpression);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnedInitExpression(ExpCS newOwnedInitExpression)
+	{
+		if (newOwnedInitExpression != ownedInitExpression)
+		{
+			NotificationChain msgs = null;
+			if (ownedInitExpression != null)
+				msgs = ((InternalEObject)ownedInitExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_INIT_EXPRESSION, null, msgs);
+			if (newOwnedInitExpression != null)
+				msgs = ((InternalEObject)newOwnedInitExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_INIT_EXPRESSION, null, msgs);
+			msgs = basicSetOwnedInitExpression(newOwnedInitExpression, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_INIT_EXPRESSION, newOwnedInitExpression, newOwnedInitExpression));
 	}
 
 	/**
@@ -318,6 +355,10 @@ public class LetVariableCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_TYPE:
+				return basicSetOwnedType(null, msgs);
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_INIT_EXPRESSION:
+				return basicSetOwnedInitExpression(null, msgs);
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNING_LET_EXPRESSION:
 				return basicSetOwningLetExpression(null, msgs);
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_ROUND_BRACKETED_CLAUSE:
@@ -351,12 +392,12 @@ public class LetVariableCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.LET_VARIABLE_CS__PARENT:
-				return getParent();
-			case EssentialOCLCSPackage.LET_VARIABLE_CS__HAS_ERROR:
-				return isHasError();
-			case EssentialOCLCSPackage.LET_VARIABLE_CS__PRECEDENCE:
-				return getPrecedence();
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__NAME:
+				return getName();
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_TYPE:
+				return getOwnedType();
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_INIT_EXPRESSION:
+				return getOwnedInitExpression();
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNING_LET_EXPRESSION:
 				return getOwningLetExpression();
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_ROUND_BRACKETED_CLAUSE:
@@ -374,11 +415,14 @@ public class LetVariableCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.LET_VARIABLE_CS__HAS_ERROR:
-				setHasError((Boolean)newValue);
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__NAME:
+				setName((String)newValue);
 				return;
-			case EssentialOCLCSPackage.LET_VARIABLE_CS__PRECEDENCE:
-				setPrecedence((Precedence)newValue);
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_TYPE:
+				setOwnedType((TypedRefCS)newValue);
+				return;
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_INIT_EXPRESSION:
+				setOwnedInitExpression((ExpCS)newValue);
 				return;
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNING_LET_EXPRESSION:
 				setOwningLetExpression((LetExpCS)newValue);
@@ -399,11 +443,14 @@ public class LetVariableCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.LET_VARIABLE_CS__HAS_ERROR:
-				setHasError(HAS_ERROR_EDEFAULT);
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__NAME:
+				setName(NAME_EDEFAULT);
 				return;
-			case EssentialOCLCSPackage.LET_VARIABLE_CS__PRECEDENCE:
-				setPrecedence((Precedence)null);
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_TYPE:
+				setOwnedType((TypedRefCS)null);
+				return;
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_INIT_EXPRESSION:
+				setOwnedInitExpression((ExpCS)null);
 				return;
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNING_LET_EXPRESSION:
 				setOwningLetExpression((LetExpCS)null);
@@ -424,12 +471,12 @@ public class LetVariableCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.LET_VARIABLE_CS__PARENT:
-				return parent != null;
-			case EssentialOCLCSPackage.LET_VARIABLE_CS__HAS_ERROR:
-				return hasError != HAS_ERROR_EDEFAULT;
-			case EssentialOCLCSPackage.LET_VARIABLE_CS__PRECEDENCE:
-				return getPrecedence() != null;
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_TYPE:
+				return ownedType != null;
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_INIT_EXPRESSION:
+				return ownedInitExpression != null;
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNING_LET_EXPRESSION:
 				return getOwningLetExpression() != null;
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_ROUND_BRACKETED_CLAUSE:
@@ -445,13 +492,27 @@ public class LetVariableCSImpl
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == ExpCS.class)
+		if (baseClass == Nameable.class)
 		{
 			switch (derivedFeatureID)
 			{
-				case EssentialOCLCSPackage.LET_VARIABLE_CS__PARENT: return EssentialOCLCSPackage.EXP_CS__PARENT;
-				case EssentialOCLCSPackage.LET_VARIABLE_CS__HAS_ERROR: return EssentialOCLCSPackage.EXP_CS__HAS_ERROR;
-				case EssentialOCLCSPackage.LET_VARIABLE_CS__PRECEDENCE: return EssentialOCLCSPackage.EXP_CS__PRECEDENCE;
+				default: return -1;
+			}
+		}
+		if (baseClass == NamedElementCS.class)
+		{
+			switch (derivedFeatureID)
+			{
+				case EssentialOCLCSPackage.LET_VARIABLE_CS__NAME: return BaseCSPackage.NAMED_ELEMENT_CS__NAME;
+				default: return -1;
+			}
+		}
+		if (baseClass == VariableCS.class)
+		{
+			switch (derivedFeatureID)
+			{
+				case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_TYPE: return EssentialOCLCSPackage.VARIABLE_CS__OWNED_TYPE;
+				case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_INIT_EXPRESSION: return EssentialOCLCSPackage.VARIABLE_CS__OWNED_INIT_EXPRESSION;
 				default: return -1;
 			}
 		}
@@ -465,13 +526,27 @@ public class LetVariableCSImpl
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == ExpCS.class)
+		if (baseClass == Nameable.class)
 		{
 			switch (baseFeatureID)
 			{
-				case EssentialOCLCSPackage.EXP_CS__PARENT: return EssentialOCLCSPackage.LET_VARIABLE_CS__PARENT;
-				case EssentialOCLCSPackage.EXP_CS__HAS_ERROR: return EssentialOCLCSPackage.LET_VARIABLE_CS__HAS_ERROR;
-				case EssentialOCLCSPackage.EXP_CS__PRECEDENCE: return EssentialOCLCSPackage.LET_VARIABLE_CS__PRECEDENCE;
+				default: return -1;
+			}
+		}
+		if (baseClass == NamedElementCS.class)
+		{
+			switch (baseFeatureID)
+			{
+				case BaseCSPackage.NAMED_ELEMENT_CS__NAME: return EssentialOCLCSPackage.LET_VARIABLE_CS__NAME;
+				default: return -1;
+			}
+		}
+		if (baseClass == VariableCS.class)
+		{
+			switch (baseFeatureID)
+			{
+				case EssentialOCLCSPackage.VARIABLE_CS__OWNED_TYPE: return EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_TYPE;
+				case EssentialOCLCSPackage.VARIABLE_CS__OWNED_INIT_EXPRESSION: return EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_INIT_EXPRESSION;
 				default: return -1;
 			}
 		}
@@ -487,49 +562,11 @@ public class LetVariableCSImpl
 	public @Nullable <R> R accept(@NonNull BaseCSVisitor<R> visitor) {
 		return (R) ((EssentialOCLCSVisitor<?>)visitor).visitLetVariableCS(this);
 	}
-
-	public @Nullable ExpCS getLocalLeft() {
-		return EssentialOCLCS2AS.getDerivedLeftExpCS(this);
-	}
-
-	public @NonNull ExpCS getLocalLeftmostDescendant() {
-		return this;
-	}
-
-	public @Nullable ExpCS getLocalRight() {
-		return EssentialOCLCS2AS.getDerivedRightExpCS(this);
-	}
-
-	public @NonNull ExpCS getLocalRightmostDescendant() {
-		return this;
-	}
-
-	public Precedence getPrecedence() {
-		return PrecedenceManager.LEAF_PRECEDENCE;
-	}
 	
+	@SuppressWarnings("cast")
 	@Override
 	public void resetPivot() {
+		assert this instanceof ExpCSImpl;	// Enforce correct ordering of base classes
 		super.resetPivot();
-		setHasError(false);
-		isInterleaved = false;
-	}
-
-	protected boolean isInterleaved = false;
-	
-	public void setInterleaved() {
-		isInterleaved = true;
-	}
-
-	public void setPrecedence(Precedence newPrecedence) {
-		throw new UnsupportedOperationException(); // Only OperatorExpCS is settable
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public String toString() {
-		return super.toString();
 	}
 } //VariableCSImpl

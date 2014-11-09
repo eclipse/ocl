@@ -397,12 +397,12 @@ public class EssentialOCLCSSwitch<T>
 			{
 				LetVariableCS letVariableCS = (LetVariableCS)theEObject;
 				T result = caseLetVariableCS(letVariableCS);
-				if (result == null) result = caseVariableCS(letVariableCS);
 				if (result == null) result = caseExpCS(letVariableCS);
+				if (result == null) result = caseVariableCS(letVariableCS);
 				if (result == null) result = caseNamedElementCS(letVariableCS);
 				if (result == null) result = caseModelElementCS(letVariableCS);
-				if (result == null) result = caseNameable(letVariableCS);
 				if (result == null) result = casePivotableElementCS(letVariableCS);
+				if (result == null) result = caseNameable(letVariableCS);
 				if (result == null) result = caseElementCS(letVariableCS);
 				if (result == null) result = casePivotable(letVariableCS);
 				if (result == null) result = caseVisitableCS(letVariableCS);

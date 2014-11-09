@@ -1991,8 +1991,8 @@ public class EssentialOCLCSPackageImpl
 		iterationCallExpCSEClass.getESuperTypes().add(this.getCallExpCS());
 		lambdaLiteralExpCSEClass.getESuperTypes().add(this.getLiteralExpCS());
 		letExpCSEClass.getESuperTypes().add(this.getExpCS());
-		letVariableCSEClass.getESuperTypes().add(this.getVariableCS());
 		letVariableCSEClass.getESuperTypes().add(this.getExpCS());
+		letVariableCSEClass.getESuperTypes().add(this.getVariableCS());
 		literalExpCSEClass.getESuperTypes().add(this.getExpCS());
 		nameExpCSEClass.getESuperTypes().add(this.getAssociationClassCallExpCS());
 		nameExpCSEClass.getESuperTypes().add(this.getConstructorExpCS());

@@ -381,6 +381,7 @@ public abstract class AbstractNameExpCSImpl extends ExpCSImpl implements Abstrac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString()
 	{
 		return super.toString();
