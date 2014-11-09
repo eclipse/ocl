@@ -88,10 +88,14 @@ public class NavigationUtil
 	public static boolean isNavigationInfixExp(@Nullable EObject eObject) {
 		if (eObject instanceof InfixExpCS) {
 			String name = ((InfixExpCS)eObject).getName();
-			return ".".equals(name) || "->".equals(name) || "?.".equals(name) || "?->".equals(name) || "^".equals(name) || "^^".equals(name);
+			return isNavigationOperator(name);
 		}
 		else {
 			return false;
 		}
+	}
+
+	public static boolean isNavigationOperator(String name) {		// FIXME Use the grammar production
+		return ".".equals(name) || "->".equals(name) || "?.".equals(name) || "?->".equals(name) || "^".equals(name) || "^^".equals(name);
 	}
 }

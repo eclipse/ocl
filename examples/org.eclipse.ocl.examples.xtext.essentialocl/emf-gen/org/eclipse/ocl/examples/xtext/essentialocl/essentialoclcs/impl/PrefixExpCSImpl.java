@@ -15,8 +15,10 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCS2AS;
+import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCSPostOrderVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.EssentialOCLCSVisitor;
 
@@ -63,40 +65,65 @@ public class PrefixExpCSImpl
 	}
 
 	@Override
-	public @Nullable ExpCS getDerivedLeftExpCS() {
+	public @Nullable ExpCS getLocalLeft() {
 		return EssentialOCLCS2AS.getDerivedLeftExpCS(this);
 	}
 
 	@Override
-	public @NonNull ExpCS getDerivedLeftmostExpCS() {
+	public @NonNull ExpCS getLocalLeftmostDescendant() {
 		return this;
 	}
 
 	@Override
-	public @Nullable ExpCS getDerivedRightExpCS() {
+	public @Nullable ExpCS getLocalRight() {
 		ExpCS ownedSource = getOwnedSource();
-		return ownedSource != null ? ownedSource.getDerivedLeftmostExpCS() : null;
+		return ownedSource != null ? ownedSource.getLocalLeftmostDescendant() : null;
 	}
 
 	@Override
-	public @NonNull ExpCS getDerivedRightmostExpCS() {
+	public @NonNull ExpCS getLocalRightmostDescendant() {
 		ExpCS ownedSource = getOwnedSource();
-		return ownedSource != null ? ownedSource.getDerivedRightmostExpCS() : this;
+		return ownedSource != null ? ownedSource.getLocalRightmostDescendant() : this;
 	}
 
 	public ExpCS getDerivedSource() {
+		if (EssentialOCLCSPostOrderVisitor.interleaveInProgress) {
+			assert !isInterleaved;
+			return source;
+		}
+		if (EssentialOCLCSPostOrderVisitor.doesInterleave && !derivedSourceIsSet) {
+			assert !isInterleaved || (source == null);
+			return null;
+		}
+		if (!EssentialOCLCSPostOrderVisitor.doesInterleave && !isInterleaved) {
+			return null;
+		}
+		assert isInterleaved || !(eContainer() instanceof OperatorExpCS);
 		if (derivedSource == null) {
 			ExpCS csLowestRight = null;
-			for (ExpCS csRight = this; (csRight = csRight.getDerivedRightExpCS()) != null; ) {
-				if (this.isLocalDescendantOf(csRight)) {
+			for (ExpCS csRight = this; (csRight = csRight.getLocalRight()) != null; ) {
+				if ((csRight instanceof OperatorExpCS) && ((OperatorExpCS) csRight).isLocalRightAncestorOf(this)) {
 					break;
 				}
-				if ((csLowestRight == null) || csLowestRight.isLocalDescendantOf(csRight)) {
+				if ((csLowestRight == null) || ((csRight instanceof OperatorExpCS) && ((OperatorExpCS) csRight).isLocalRightAncestorOf(csLowestRight))) {
 					csLowestRight = csRight;
 				}
 			}
 			derivedSource = csLowestRight;
 		}
 		return derivedSource;
+	}
+	
+	public boolean isLocalRightAncestorOf(@NonNull ExpCS csExp) {	// csExp should be to the right of this for associativity resolution
+		return false;
+	}
+	
+	@Override
+	public void setInterleaved() {
+		super.setInterleaved();
+		ExpCS ownedSource2 = getOwnedSource();
+		if (ownedSource2 != null) {
+			ownedSource2.setInterleaved();
+		}
 	}
 } //UnaryExpressionCSImpl

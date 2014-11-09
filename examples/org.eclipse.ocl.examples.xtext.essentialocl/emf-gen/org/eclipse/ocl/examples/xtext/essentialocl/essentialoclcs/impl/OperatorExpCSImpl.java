@@ -23,6 +23,7 @@ import org.eclipse.ocl.examples.pivot.manager.PrecedenceManager;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCS2AS;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCSPostOrderVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
@@ -99,16 +100,6 @@ public abstract class OperatorExpCSImpl
 	 * @ordered
 	 */
 	protected ExpCS derivedSource;
-
-	/**
-	 * The cached value of the '{@link #getDerivedParent() <em>Derived Parent</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDerivedParent()
-	 * @generated
-	 * @ordered
-	 */
-	protected ExpCS derivedParent;
 
 	/**
 	 * The cached value of the '{@link #getDerivedPrecedence() <em>Derived Precedence</em>}' reference.
@@ -236,14 +227,12 @@ public abstract class OperatorExpCSImpl
 	 * @generated NOT
 	 */
 	public ExpCS getSource() {
-		ExpCS derivedSource2 = getDerivedSource();
-		if ((derivedSource2 != source) && !EssentialOCLCSPostOrderVisitor.interleaveInProgress) {
-			derivedSource = null;
-			derivedSource2 = getDerivedSource();
-		}
-		assert (derivedSource2 == source) || (source == null) || EssentialOCLCSPostOrderVisitor.interleaveInProgress || ((source instanceof OperatorExpCSImpl) && ((OperatorExpCSImpl)source).derivedPrecedence == null);
-		return source;
+		ExpCS expCS = getDerivedSource();
+		assert !EssentialOCLCSPostOrderVisitor.doesInterleave || (expCS == source);
+		return expCS;
 	}
+	
+	protected boolean derivedSourceIsSet = false;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -251,10 +240,8 @@ public abstract class OperatorExpCSImpl
 	 * @generated
 	 */
 	public void setSource(ExpCS newSource) {
-		ExpCS oldSource = source;
 		source = newSource;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.OPERATOR_EXP_CS__SOURCE, oldSource, source));
+		derivedSourceIsSet = newSource != null;
 	}
 
 	/**
@@ -455,6 +442,7 @@ public abstract class OperatorExpCSImpl
 	@Override
 	public ElementCS getLogicalParent()
 	{
+		ExpCS parent = getParent();
 		if (parent != null) {
 			return parent;
 		}
@@ -464,85 +452,9 @@ public abstract class OperatorExpCSImpl
 		}
 		return eContainer instanceof ElementCS ? (ElementCS) eContainer : null;		// Avoid CCE for Bug 432749
 	}
-
-/*	@Override
-	public OperatorExpCS getParent() {
-		ExpCS derivedParent2 = getDerivedParent();
-		if (derivedParent2 != parent) {
-			derivedParent = null;
-			derivedParent2 = getDerivedParent();
-		}
-		assert (derivedParent2 == parent) || (parent == null) || (derivedPrecedence == null);
-		return parent;
-	} */
-
-	@Override
-	public OperatorExpCS getParent() {
-		ExpCS derivedParent2 = getDerivedParent();
-		if ((derivedParent2 != parent) && !EssentialOCLCSPostOrderVisitor.interleaveInProgress) {
-			derivedParent = null;
-			derivedParent2 = getDerivedParent();
-		}
-		assert (derivedParent2 == parent) || (parent == null) || (derivedPrecedence == null) || EssentialOCLCSPostOrderVisitor.interleaveInProgress;
-		return parent;
-	}
-
-
-	public ExpCS getDerivedParent() {
-		if (derivedParent == null) {
-			ExpCS csNearestLeft = null;
-			for (ExpCS csLeft = this; (csLeft = csLeft.getDerivedLeftExpCS()) != null; ) {
-				if (csNearestLeft == null) {
-					if (csLeft.isLocalAncestorOf(this)) {
-						csNearestLeft = csLeft;
-					}
-				}
-				else {
-					if (csNearestLeft.isLocalAncestorOf(csLeft) && csLeft.isLocalAncestorOf(this)) {
-						csNearestLeft = csLeft;
-					}
-					else {
-						break;
-					}
-				}
-			}
-			ExpCS csNearestRight = null;
-			for (ExpCS csRight = this; (csRight = csRight.getDerivedRightExpCS()) != null; ) {
-				if (csNearestRight == null) {
-					if (this.isLocalDescendantOf(csRight)) {
-						csNearestRight = csRight;
-					}
-				}
-				else {
-					if (this.isLocalDescendantOf(csRight) && csRight.isLocalDescendantOf(csNearestRight)) {
-						csNearestRight = csRight;
-					}
-					else {
-						break;
-					}
-				}
-			}
-			if (csNearestLeft == null) {
-				if (csNearestRight == null) {
-					derivedParent = null;
-				}
-				else {
-					derivedParent = csNearestRight;
-				}
-			}
-			else {
-				if (csNearestRight == null) {
-					derivedParent = csNearestLeft;
-				}
-				else if (csNearestLeft.isLocalAncestorOf(csNearestRight)) {
-					derivedParent = csNearestRight;
-				}
-				else {
-					derivedParent = csNearestLeft;
-				}
-			}
-		}
-		return derivedParent;
+	
+	public boolean isLocalLeftAncestorOf(@NonNull ExpCS csExp) {	// csExp should be to the right of this for associativity resolution
+		return EssentialOCLCS2AS.isLocalProperAncestorOf(this, csExp);
 	}
 
 	/**
@@ -560,6 +472,7 @@ public abstract class OperatorExpCSImpl
 		derivedParent = null;
 		derivedSource = null;
 		derivedPrecedence = null;
+		derivedSourceIsSet = false;
 	}
 
 	/**

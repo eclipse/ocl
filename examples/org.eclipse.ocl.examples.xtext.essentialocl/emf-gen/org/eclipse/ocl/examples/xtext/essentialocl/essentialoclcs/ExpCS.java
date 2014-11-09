@@ -90,23 +90,13 @@ public interface ExpCS
 	
 	@NonNull Precedence getDerivedPrecedence();
 
-	@Nullable ExpCS getDerivedLeftExpCS();
+	@Nullable ExpCS getLocalLeft();
 
-	@NonNull ExpCS getDerivedLeftmostExpCS();
+	@NonNull ExpCS getLocalLeftmostDescendant();
 
-	@Nullable ExpCS getDerivedRightExpCS();
+	@Nullable ExpCS getLocalRight();
 
-	@NonNull ExpCS getDerivedRightmostExpCS();
+	@NonNull ExpCS getLocalRightmostDescendant();
 	
-	/**
-	 * Return true if csExp is a transitive child of this in the logical expression tree containing this and csExp
-	 * and only OperatorExpCS nodes within the tree.
-	 */
-	boolean isLocalAncestorOf(@NonNull ExpCS csExp);	// csExp should be to the right of this for assocativity resolution
-	
-	/**
-	 * Return true if this is a transitive child of csExp in the logical expression tree containing this and csExp
-	 * and only OperatorExpCS nodes within the tree.
-	 */
-	boolean isLocalDescendantOf(@NonNull ExpCS csExp);	// csExp should be to the right of this for assocativity resolution
+	void setInterleaved();
 } // ExpCS

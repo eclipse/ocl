@@ -133,10 +133,10 @@ public class ImportTests extends XtextTestCase
 			"inv Bogus: r.toString() and s.toString()\n" +
 			"endpackage\n";
 		Bag<String> bag = new BagImpl<String>();
-		bag.add(DomainUtil.bind(OCLMessages.UnresolvedOperation_ERROR_, "OclInvalid", "toString"));
+		bag.add(DomainUtil.bind(OCLMessages.UnresolvedOperation_ERROR_, "String", "toString"));
 		bag.add(DomainUtil.bind(OCLMessages.UnresolvedOperation_ERROR_, "Real", "toString"));
 		// There are no precedences so =(s) rather than =(s.toString())
-		bag.add(DomainUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, "OclInvalid", "and", "String"));
+		bag.add(DomainUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, "OclInvalid", "and", "OclInvalid"));
 		doBadLoadFromString("string.ocl", testFile, bag);
 	}
 	

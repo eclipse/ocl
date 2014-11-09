@@ -72,7 +72,7 @@ public class EssentialOCLCS2AS extends BaseCS2AS
 		return null;
 	}
 
-	public static boolean isLocalAncestorOf(@NonNull ExpCS csLeft, @NonNull ExpCS csRight) {
+	public static boolean isLocalProperAncestorOf(@NonNull ExpCS csLeft, @NonNull ExpCS csRight) {
 		Precedence leftPrecedence = csLeft.getDerivedPrecedence();
 		Precedence rightPrecedence = csRight.getDerivedPrecedence();
 		int leftOrder = leftPrecedence.getOrder().intValue();

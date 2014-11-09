@@ -22,6 +22,7 @@ import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.manager.PrecedenceManager;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCS2AS;
+import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCSPostOrderVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS;
@@ -108,14 +109,87 @@ public class LetVariableCSImpl
 		return EssentialOCLCSPackage.Literals.LET_VARIABLE_CS;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+	protected OperatorExpCS derivedParent;
+
 	public OperatorExpCS getParent() {
-		return parent;
+		OperatorExpCS expCS = getDerivedParent();
+		assert !EssentialOCLCSPostOrderVisitor.doesInterleave || (expCS == parent);
+		return expCS;
 	}
+
+	public OperatorExpCS getDerivedParent() {
+		if (EssentialOCLCSPostOrderVisitor.interleaveInProgress) {
+			assert !isInterleaved;
+			return parent;
+		}
+		if (EssentialOCLCSPostOrderVisitor.doesInterleave && !derivedParentIsSet) {
+			assert !isInterleaved || (parent == null);
+			return null;
+		}
+		if (!EssentialOCLCSPostOrderVisitor.doesInterleave && !isInterleaved) {
+			return null;
+		}
+		assert isInterleaved || !(eContainer() instanceof OperatorExpCS);
+		if (derivedParent == null) {
+			OperatorExpCS csNearestLeft = null;
+			for (ExpCS csLeft = this; (csLeft = csLeft.getLocalLeft()) != null; ) {
+				OperatorExpCS csLeftOperator = csLeft instanceof OperatorExpCS ? (OperatorExpCS)csLeft : null;
+				if (csNearestLeft == null) {
+					if ((csLeftOperator != null) && csLeftOperator.isLocalLeftAncestorOf(this)) {
+						csNearestLeft = csLeftOperator;
+					}
+				}
+				else {
+					if ((csLeftOperator != null) && csNearestLeft.isLocalLeftAncestorOf(csLeft) && csLeftOperator.isLocalLeftAncestorOf(this)) {
+						csNearestLeft = csLeftOperator;
+					}
+					else {
+						break;
+					}
+				}
+			}
+			OperatorExpCS csNearestRight = null;
+			for (ExpCS csRight = this; (csRight = csRight.getLocalRight()) != null; ) {
+				OperatorExpCS csRightOperator = csRight instanceof OperatorExpCS ? (OperatorExpCS)csRight : null;
+				if (csNearestRight == null) {
+					if ((csRightOperator != null) && csRightOperator.isLocalRightAncestorOf(this)) {
+						csNearestRight = csRightOperator;
+					}
+				}
+				else {
+					if ((csRightOperator != null) && csRightOperator.isLocalRightAncestorOf(this) && csNearestRight.isLocalRightAncestorOf(csRight)) {
+						csNearestRight = csRightOperator;
+					}
+					else {
+						break;
+					}
+				}
+			}
+			if (csNearestLeft == null) {
+				if (csNearestRight == null) {
+					derivedParent = null;
+				}
+				else {
+					derivedParent = csNearestRight;
+				}
+			}
+			else {
+				if (csNearestRight == null) {
+					derivedParent = csNearestLeft;
+				}
+				else if (csNearestLeft.isLocalLeftAncestorOf(csNearestRight)) {
+					derivedParent = csNearestRight;
+				}
+				else {
+					derivedParent = csNearestLeft;
+				}
+			}
+		}
+		return derivedParent;
+	}
+
+
+	boolean derivedParentIsSet = false;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -123,10 +197,8 @@ public class LetVariableCSImpl
 	 * @generated
 	 */
 	public void setParent(OperatorExpCS newParent) {
-		OperatorExpCS oldParent = parent;
+		derivedParentIsSet = newParent != null;
 		parent = newParent;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.LET_VARIABLE_CS__PARENT, oldParent, parent));
 	}
 
 	/**
@@ -439,28 +511,35 @@ public class LetVariableCSImpl
 		return PrecedenceManager.LEAF_PRECEDENCE;
 	}
 
-	public @Nullable ExpCS getDerivedLeftExpCS() {
+	public @Nullable ExpCS getLocalLeft() {
 		return EssentialOCLCS2AS.getDerivedLeftExpCS(this);
 	}
 
-	public @NonNull ExpCS getDerivedLeftmostExpCS() {
+	public @NonNull ExpCS getLocalLeftmostDescendant() {
 		return this;
 	}
 
-	public @Nullable ExpCS getDerivedRightExpCS() {
+	public @Nullable ExpCS getLocalRight() {
 		return EssentialOCLCS2AS.getDerivedRightExpCS(this);
 	}
 
-	public @NonNull ExpCS getDerivedRightmostExpCS() {
+	public @NonNull ExpCS getLocalRightmostDescendant() {
 		return this;
 	}
 	
-	public boolean isLocalAncestorOf(@NonNull ExpCS csExp) {	// csExp should be to the right of this for associativity resolution
-		return EssentialOCLCS2AS.isLocalAncestorOf(this, csExp);
+	@Override
+	public void resetPivot() {
+		super.resetPivot();
+		setParent(null);
+		setHasError(false);
+		derivedParentIsSet = false;
+		isInterleaved = false;
 	}
+
+	protected boolean isInterleaved = false;
 	
-	public boolean isLocalDescendantOf(@NonNull ExpCS csExp) {	// csExp should be to the right of this for associativity resolution
-		return !EssentialOCLCS2AS.isLocalAncestorOf(this, csExp);
+	public void setInterleaved() {
+		isInterleaved = true;
 	}
 
 	/**

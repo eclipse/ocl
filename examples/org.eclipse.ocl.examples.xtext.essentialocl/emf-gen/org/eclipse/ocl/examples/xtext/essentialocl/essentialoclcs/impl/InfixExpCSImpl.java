@@ -18,9 +18,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
+import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCS2AS;
+import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCSPostOrderVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.EssentialOCLCSVisitor;
 
 /**
@@ -61,16 +64,6 @@ public class InfixExpCSImpl
 	 * @ordered
 	 */
 	protected ExpCS derivedArgument;
-
-	/**
-	 * The cached value of the '{@link #getArgument() <em>Argument</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getArgument()
-	 * @generated
-	 * @ordered
-	 */
-	protected ExpCS argument;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -226,7 +219,7 @@ public class InfixExpCSImpl
 			case EssentialOCLCSPackage.INFIX_EXP_CS__DERIVED_ARGUMENT:
 				return derivedArgument != null;
 			case EssentialOCLCSPackage.INFIX_EXP_CS__ARGUMENT:
-				return argument != null;
+				return false;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -238,15 +231,14 @@ public class InfixExpCSImpl
 	 */
 	public ExpCS getArgument()
 	{
-		ExpCS derivedArgument2 = getDerivedArgument();
-		if ((derivedArgument2 != argument) && (argument != null)) {
-			derivedArgument = null;
-			derivedArgument2 = getDerivedArgument();
-		}
-		assert (derivedArgument2 == argument) || (argument == null) || (derivedPrecedence == null);
-		return argument;
+		ExpCS expCS = getDerivedArgument();
+		assert !EssentialOCLCSPostOrderVisitor.doesInterleave || (expCS == argument);
+		return expCS;
 	}
 
+	private boolean derivedArgumentIsSet = false;
+	
+	private ExpCS argument = null;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -254,10 +246,8 @@ public class InfixExpCSImpl
 	 */
 	public void setArgument(ExpCS newArgument)
 	{
-		ExpCS oldArgument = argument;
+		derivedArgumentIsSet = newArgument != null;
 		argument = newArgument;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.INFIX_EXP_CS__ARGUMENT, oldArgument, argument));
 	}
 
 	/**
@@ -271,29 +261,54 @@ public class InfixExpCSImpl
 	}
 
 	public ExpCS getDerivedArgument() {
+		if (EssentialOCLCSPostOrderVisitor.interleaveInProgress) {
+			assert !isInterleaved;
+			return argument;
+		}
+		if (EssentialOCLCSPostOrderVisitor.doesInterleave && !derivedArgumentIsSet) {
+			assert !isInterleaved || (argument == null);
+			return null;
+		}
+		if (!EssentialOCLCSPostOrderVisitor.doesInterleave && !isInterleaved) {
+			return null;
+		}
+		assert isInterleaved || !(eContainer() instanceof OperatorExpCS);
 		if (derivedArgument == null) {
 			ExpCS csLowestRight = null;
-			for (ExpCS csRight = this; (csRight = csRight.getDerivedRightExpCS()) != null; ) {
-				if (this.isLocalDescendantOf(csRight)) {
+			for (ExpCS csRight = this; (csRight = csRight.getLocalRight()) != null; ) {
+				if ((csRight instanceof OperatorExpCS) && ((OperatorExpCS) csRight).isLocalRightAncestorOf(this)) {
 					break;
 				}
-				if ((csLowestRight == null) || csLowestRight.isLocalDescendantOf(csRight)) {
+				if ((csLowestRight == null) || ((csRight instanceof OperatorExpCS) && ((OperatorExpCS) csRight).isLocalRightAncestorOf(csLowestRight))) {
 					csLowestRight = csRight;
 				}
 			}
 			derivedArgument = csLowestRight;
 		}
+		assert !EssentialOCLCSPostOrderVisitor.doesInterleave || (derivedArgument == argument);
 		return derivedArgument;
 	}
 
 	public ExpCS getDerivedSource() {
+		if (EssentialOCLCSPostOrderVisitor.interleaveInProgress) {
+			assert !isInterleaved;
+			return source;
+		}
+		if (EssentialOCLCSPostOrderVisitor.doesInterleave && !derivedSourceIsSet) {
+			assert !isInterleaved || (source == null);
+			return null;
+		}
+		if (!EssentialOCLCSPostOrderVisitor.doesInterleave && !isInterleaved) {
+			return null;
+		}
+		assert isInterleaved || !(eContainer() instanceof OperatorExpCS);
 		if (derivedSource == null) {
 			ExpCS csLowestLeft = null;
-			for (ExpCS csLeft = this; (csLeft = csLeft.getDerivedLeftExpCS()) != null; ) {
-				if (csLeft.isLocalAncestorOf(this)) {
+			for (ExpCS csLeft = this; (csLeft = csLeft.getLocalLeft()) != null; ) {
+				if ((csLeft instanceof OperatorExpCS) && ((OperatorExpCS)csLeft).isLocalLeftAncestorOf(this)) {
 					break;
 				}
-				if ((csLowestLeft == null) || csLeft.isLocalAncestorOf(csLowestLeft)) {
+				if ((csLowestLeft == null) || ((csLeft instanceof OperatorExpCS) && ((OperatorExpCS)csLeft).isLocalLeftAncestorOf(csLowestLeft))) {
 					csLowestLeft = csLeft;
 				}
 			}
@@ -303,27 +318,31 @@ public class InfixExpCSImpl
 	}
 
 	@Override
-	public @Nullable ExpCS getDerivedLeftExpCS() {
+	public @Nullable ExpCS getLocalLeft() {
 		ExpCS ownedSource = getOwnedSource();
-		return ownedSource != null ? ownedSource.getDerivedRightmostExpCS() : null;
+		return ownedSource != null ? ownedSource.getLocalRightmostDescendant() : null;
 	}
 
 	@Override
-	public @NonNull ExpCS getDerivedLeftmostExpCS() {
+	public @NonNull ExpCS getLocalLeftmostDescendant() {
 		ExpCS ownedSource = getOwnedSource();
-		return ownedSource != null ? ownedSource.getDerivedLeftmostExpCS() : this;
+		return ownedSource != null ? ownedSource.getLocalLeftmostDescendant() : this;
 	}
 
 	@Override
-	public @Nullable ExpCS getDerivedRightExpCS() {
+	public @Nullable ExpCS getLocalRight() {
 		ExpCS ownedArgument = getOwnedArgument();
-		return ownedArgument != null ? ownedArgument.getDerivedLeftmostExpCS() : null;
+		return ownedArgument != null ? ownedArgument.getLocalLeftmostDescendant() : null;
 	}
 
 	@Override
-	public @NonNull ExpCS getDerivedRightmostExpCS() {
+	public @NonNull ExpCS getLocalRightmostDescendant() {
 		ExpCS ownedArgument = getOwnedArgument();
-		return ownedArgument != null ? ownedArgument.getDerivedRightmostExpCS() : this;
+		return ownedArgument != null ? ownedArgument.getLocalRightmostDescendant() : this;
+	}
+	
+	public boolean isLocalRightAncestorOf(@NonNull ExpCS csExp) {	// csExp should be to the right of this for associativity resolution
+		return !EssentialOCLCS2AS.isLocalProperAncestorOf(csExp, this);
 	}
 
 	@Override
@@ -331,5 +350,19 @@ public class InfixExpCSImpl
 		super.resetPivot();
 		setArgument(null);
 		derivedArgument = null;
+		derivedArgumentIsSet = false;
+	}
+	
+	@Override
+	public void setInterleaved() {
+		super.setInterleaved();
+		ExpCS ownedSource2 = getOwnedSource();
+		if (ownedSource2 != null) {
+			ownedSource2.setInterleaved();
+		}
+		ExpCS ownedArgument2 = getOwnedArgument();
+		if (ownedArgument2 != null) {
+			ownedArgument2.setInterleaved();
+		}
 	}
 } //BinaryExpressionCSImpl

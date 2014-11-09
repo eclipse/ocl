@@ -36,7 +36,7 @@ public class PrecedenceManager
 //	public static @SuppressWarnings("null")@NonNull Precedence HIGHEST_PRECEDENCE = PivotFactory.eINSTANCE.createPrecedence();
 	static {
 		NULL_PRECEDENCE.setName("NULL");
-		NULL_PRECEDENCE.setOrder(Integer.MAX_VALUE);
+		NULL_PRECEDENCE.setOrder(Integer.MAX_VALUE/2);
 //		NULL_PRECEDENCE.setOrder(Integer.valueOf(-3));
 		NAVIGATION_PRECEDENCE.setName("NAVIGATION");
 		NAVIGATION_PRECEDENCE.setOrder(Integer.valueOf(-1));

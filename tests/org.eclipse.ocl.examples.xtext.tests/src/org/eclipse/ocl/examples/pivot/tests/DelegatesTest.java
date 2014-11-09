@@ -542,8 +542,9 @@ public class DelegatesTest extends PivotTestSuite
 		//	Syntax error in expression
 		//
 		delegate = factory.createQueryDelegate(companyClass, null, "n=");
-		executeWithException2(delegate, amy, null, getErrorsInMessage("company", "Company", "n=") + 
-			DomainUtil.bind("1: no viable alternative following input ''{0}''", "="));
+		executeWithException2(delegate, amy, null, getErrorsInMessage("company", "Company", "n=") +
+			DomainUtil.bind("1: no viable alternative following input ''{0}''", "=") + "\n" + 
+			DomainUtil.bind("1: " + OCLMessages.UnresolvedProperty_ERROR_, "", "n"));
 		//
 		//	Undeclared variable
 		//

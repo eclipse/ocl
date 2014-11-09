@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.PrecedenceManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil.PrecedenceComparator;
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
@@ -40,6 +41,7 @@ import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.examples.xtext.base.cs2as.SingleContinuation;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
+import org.eclipse.ocl.examples.xtext.essentialocl.attributes.NavigationUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
@@ -55,6 +57,7 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 {
 	static final Logger logger = Logger.getLogger(EssentialOCLCSPostOrderVisitor.class);
 	public static boolean interleaveInProgress = false;
+	public static boolean doesInterleave = false;
 
 	public static class ConstraintCSCompletion extends SingleContinuation<ConstraintCS>
 	{
@@ -211,6 +214,9 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 			String operatorName = csOperator.getName();
 			assert operatorName != null;
 			Precedence precedence = metaModelManager.getInfixPrecedence(operatorName);
+			if (precedence == null) {
+				precedence = NavigationUtil.isNavigationOperator(operatorName) ? PrecedenceManager.NAVIGATION_PRECEDENCE : PrecedenceManager.NULL_PRECEDENCE;
+			}
 			List<Integer> indexesList = precedenceToOperatorIndex.get(precedence);
 			if (indexesList == null) {
 				indexesList = new ArrayList<Integer>();
@@ -433,19 +439,26 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 	@Override
 	public Continuation<?> visitInfixExpCS(@NonNull InfixExpCS csInfixExp) {
 		if (!(csInfixExp.eContainer() instanceof InfixExpCS)) {
-			//
-			//	Establish the Infix tree and the per leaf expression parent operator.
-			//
-			interleaveInProgress  = true;
-			createInfixOperatorTree(csInfixExp);
-			try {
+			if (doesInterleave) {
 				//
-				//	Interleave the Prefix Operators.
+				//	Establish the Infix tree and the per leaf expression parent operator.
 				//
-				interleavePrefixes(csInfixExp);
+				boolean savedInterleaveInProgress = interleaveInProgress;
+				try {
+					interleaveInProgress = true;
+					createInfixOperatorTree(csInfixExp);
+					//
+					//	Interleave the Prefix Operators.
+					//
+					interleavePrefixes(csInfixExp);
+					csInfixExp.setInterleaved();
+				}
+				finally {
+					interleaveInProgress = savedInterleaveInProgress;
+				}
 			}
-			finally {
-				interleaveInProgress = false;
+			else {
+				csInfixExp.setInterleaved();
 			}
 		}
 		return null;
@@ -460,7 +473,20 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 	@Override
 	public Continuation<?> visitPrefixExpCS(@NonNull PrefixExpCS csPrefixExp) {
 		if (!(csPrefixExp.eContainer() instanceof InfixExpCS)) {
-			initializePrefixOperators(csPrefixExp, null);
+			if (doesInterleave) {
+				boolean savedInterleaveInProgress = interleaveInProgress;
+				try {
+					interleaveInProgress = true;
+					initializePrefixOperators(csPrefixExp, null);
+					csPrefixExp.setInterleaved();
+				}
+				finally {
+					interleaveInProgress = savedInterleaveInProgress;
+				}
+			}
+			else {
+				csPrefixExp.setInterleaved();
+			}
 		}
 		return null;
 	}

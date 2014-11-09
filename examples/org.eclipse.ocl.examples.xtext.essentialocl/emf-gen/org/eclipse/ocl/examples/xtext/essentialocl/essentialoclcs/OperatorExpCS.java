@@ -174,5 +174,17 @@ public interface OperatorExpCS
 	 * @generated
 	 */
 //	Precedence getDerivedLeftPrecedence();
+	
+	/**
+	 * Return true if csExp is a transitive child of this in the logical expression tree containing this and csExp
+	 * and only OperatorExpCS nodes within the tree.
+	 */
+	boolean isLocalLeftAncestorOf(@NonNull ExpCS csExp);	// csExp should be to the right of this for assocativity resolution
+	
+	/**
+	 * Return true if this is a transitive child of csExp in the logical expression tree containing this and csExp
+	 * and only OperatorExpCS nodes within the tree.
+	 */
+	boolean isLocalRightAncestorOf(@NonNull ExpCS csExp);	// csExp should be to the left of this for assocativity resolution
 
 } // OperatorCS
