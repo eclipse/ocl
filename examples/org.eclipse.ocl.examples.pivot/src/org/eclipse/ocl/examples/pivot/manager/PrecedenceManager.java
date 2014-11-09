@@ -33,17 +33,13 @@ public class PrecedenceManager
 	public static @SuppressWarnings("null")@NonNull Precedence NULL_PRECEDENCE = PivotFactory.eINSTANCE.createPrecedence();
 	public static @SuppressWarnings("null")@NonNull Precedence NAVIGATION_PRECEDENCE = PivotFactory.eINSTANCE.createPrecedence();
 	public static @SuppressWarnings("null")@NonNull Precedence LEAF_PRECEDENCE = PivotFactory.eINSTANCE.createPrecedence();
-//	public static @SuppressWarnings("null")@NonNull Precedence HIGHEST_PRECEDENCE = PivotFactory.eINSTANCE.createPrecedence();
 	static {
 		NULL_PRECEDENCE.setName("NULL");
-		NULL_PRECEDENCE.setOrder(Integer.MAX_VALUE/2);
-//		NULL_PRECEDENCE.setOrder(Integer.valueOf(-3));
+		NULL_PRECEDENCE.setOrder(Integer.MAX_VALUE/2);			// Small enough to avoid wrap around during comparison
 		NAVIGATION_PRECEDENCE.setName("NAVIGATION");
 		NAVIGATION_PRECEDENCE.setOrder(Integer.valueOf(-1));
 		LEAF_PRECEDENCE.setName("LEAF");
 		LEAF_PRECEDENCE.setOrder(Integer.valueOf(-2));
-//		HIGHEST_PRECEDENCE.setName("HIGHEST");
-//		HIGHEST_PRECEDENCE.setOrder(Integer.valueOf(-3));
 	}
 
 	/**
