@@ -20,8 +20,10 @@ import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.impl.BagImpl;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.library.LibraryConstants;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 
@@ -411,5 +413,24 @@ public class ImportTests extends XtextTestCase
 		Bag<String> bag = new BagImpl<String>();
 		bag.add(DomainUtil.bind(OCLMessages.UnresolvedOperation_ERROR_, "UnlimitedNatural", "isNegative"));
 		doBadLoadFromString("string.ocl", testFile, bag);
+	}
+	
+	public void testImport_CompleteOCL_Bug450196() throws Exception {
+		String moreCompleteOCL =
+				"package ocl\n" +
+				"context _'Integer'\n" +
+				"def: isPositive() : Boolean = true\n" +
+				"endpackage\n";
+		createOCLinEcoreFile("imported.ocl", moreCompleteOCL);
+		String testFile =
+				"import 'imported.ocl'\n" +
+				"package ocl\n" +				
+				"endpackage\n";
+		
+		ASResource resource = doLoadASResourceFromString(new MetaModelManager(), "importer.ocl", testFile);
+		Model root = (Model) resource.getContents().get(0);
+		assertEquals(1, root.getImports().size());
+		assertNotNull(root.getImports().get(0));
+
 	}
 }

@@ -262,8 +262,8 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 				if (!modelPluginVariables.contains("org.eclipse.ocl.examples.codegen")) {	// FIXME delete me BUG 401862
 					modelPluginVariables.add("org.eclipse.ocl.examples.codegen");
 				}				
-				if (useNullAnnotations(genModel) && !modelPluginVariables.contains("org.eclipse.jdt.annotation")) {
-					modelPluginVariables.add("org.eclipse.jdt.annotation");
+				if (useNullAnnotations(genModel) && !modelPluginVariables.contains("org.eclipse.ocl.jdt.annotation7")) {
+					modelPluginVariables.add("org.eclipse.ocl.jdt.annotation7");
 				}
 				for (GenPackage genPackage : genModel.getAllGenPackagesWithClassifiers()) {
 					createImportManager(genPackage.getReflectionPackageName(), genPackage.getFactoryInterfaceName() + AbstractGenModelHelper.TABLES_CLASS_SUFFIX);	// Only used to suppress NPE

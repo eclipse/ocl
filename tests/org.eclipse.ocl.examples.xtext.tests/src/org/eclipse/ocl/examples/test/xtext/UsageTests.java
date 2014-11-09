@@ -214,26 +214,31 @@ public class UsageTests
 			}
 			if (projectPath == null) {
 				Bundle bundle = Platform.getBundle(projectName);
-				projectPath = bundle.getLocation();
+				if (bundle != null) {
+					projectPath = bundle.getLocation();
+				}
 			}
 			
-			if (projectPath.startsWith("reference:")) {
-				projectPath = projectPath.substring(10);
+			if (projectPath != null) {
+				if (projectPath.startsWith("reference:")) {
+					projectPath = projectPath.substring(10);
+				}
+				URI uri = URI.createURI(projectPath);
+				if (uri.isFile()) {
+					projectPath =  uri.toFileString().replace("\\", "/");
+				}
+				assert projectPath != null;
+				if (projectPath.endsWith("/")) {
+					projectPath = projectPath + "bin";
+				}
+				if (pathSeparator != null) {
+					s.append(pathSeparator);
+				}
+				else {
+					pathSeparator = System.getProperty("path.separator");
+				}
+				s.append(projectPath);
 			}
-			URI uri = URI.createURI(projectPath);
-			if (uri.isFile()) {
-				projectPath =  uri.toFileString().replace("\\", "/");
-			}
-			if (projectPath.endsWith("/")) {
-				projectPath = projectPath + "bin";
-			}
-			if (pathSeparator != null) {
-				s.append(pathSeparator);
-			}
-			else {
-				pathSeparator = System.getProperty("path.separator");
-			}
-			s.append(projectPath);
 		}
 		@SuppressWarnings("null")@NonNull String string = s.toString();
 		return string;
@@ -305,12 +310,12 @@ public class UsageTests
 
 	protected boolean doCompile(@NonNull String testProjectName, @NonNull String... extraClasspathProjects) throws Exception {
 		List<String> classpathProjects = new ArrayList<String>();
-		classpathProjects.add("org.eclipse.jdt.annotation");
 		classpathProjects.add("org.eclipse.emf.common");
 		classpathProjects.add("org.eclipse.emf.ecore");
 		classpathProjects.add("org.eclipse.ocl.examples.domain");
 		classpathProjects.add("org.eclipse.ocl.examples.library");
 		classpathProjects.add("org.eclipse.ocl.examples.pivot");
+		classpathProjects.add("org.eclipse.ocl.jdt.annotation7");
 		for (String extraClasspathProject : extraClasspathProjects) {
 			classpathProjects.add(extraClasspathProject);
 		}
