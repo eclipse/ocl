@@ -1432,18 +1432,6 @@ public class PivotUtil extends DomainUtil
 		return castUnspecializedElement;
 	}
 
-	public static @NonNull Precedence highestPrecedence(@NonNull Precedence aPrecedence, @NonNull Precedence bPrecedence) {
-		int aOrder = aPrecedence.getOrder().intValue();
-		int bOrder = bPrecedence.getOrder().intValue();
-		return aOrder < bOrder ? aPrecedence : bPrecedence;
-	}
-
-	public static @NonNull Precedence lowestPrecedence(@NonNull Precedence aPrecedence, @NonNull Precedence bPrecedence) {
-		int aOrder = aPrecedence.getOrder().intValue();
-		int bOrder = bPrecedence.getOrder().intValue();
-		return aOrder > bOrder ? aPrecedence : bPrecedence;
-	}
-
 	/**
 	 * @since 3.5
 	 */

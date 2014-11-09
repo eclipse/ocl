@@ -62,38 +62,6 @@ public class PrefixExpCSImpl
 		return (R) ((EssentialOCLCSVisitor<?>)visitor).visitPrefixExpCS(this);
 	}
 
-/*	@Override
-	protected @NonNull Precedence computeLeftPrecedence() {
-		ExpCS csSource = getOwnedSource();
-		if (csSource instanceof OperatorExpCS) {
-			Precedence sourcePrecedence = ((OperatorExpCS)csSource).getDerivedPrecedence();
-			Precedence leftPrecedence = ((OperatorExpCS)csSource).getDerivedLeftPrecedence();
-			return PivotUtil.highestPrecedence(sourcePrecedence, leftPrecedence);
-		}
-		else {
-			return PrecedenceManager.NULL_PRECEDENCE;
-		}
-	} */
-
-/*	@Override
-	protected @NonNull Precedence computeRightPrecedence() {
-//		ExpCS csArgument = getOwnedArgument();
-//		if (csArgument instanceof OperatorExpCS) {
-//			Precedence argumentPrecedence = ((OperatorExpCS)csArgument).getDerivedPrecedence();
-//			Precedence rightPrecedence = ((OperatorExpCS)csArgument).getDerivedRightPrecedence();
-//			return PivotUtil.highestPrecedence(argumentPrecedence, rightPrecedence);
-//		}
-//		else {
-			return PrecedenceManager.NULL_PRECEDENCE;
-//		}
-	} */
-	
-/*	@Override
-	public @NonNull Precedence getDerivedHighestPrecedence() {
-		Precedence leftPrecedence = getOwnedSource().getDerivedHighestPrecedence();
-		return PivotUtil.highestPrecedence(getDerivedPrecedence(), leftPrecedence);
-	} */
-
 	@Override
 	public @Nullable ExpCS getDerivedLeftExpCS() {
 		return EssentialOCLCS2AS.getDerivedLeftExpCS(this);
@@ -118,23 +86,16 @@ public class PrefixExpCSImpl
 
 	public ExpCS getDerivedSource() {
 		if (derivedSource == null) {
-			ExpCS csBestRight = null;
+			ExpCS csLowestRight = null;
 			for (ExpCS csRight = this; (csRight = csRight.getDerivedRightExpCS()) != null; ) {
-				ExpCS csThisWrtRight = EssentialOCLCS2AS.lowestPrecedence(this, csRight);
-				if (csThisWrtRight != this) {
+				if (this.isLocalDescendantOf(csRight)) {
 					break;
 				}
-				if (csBestRight == null) {
-					csBestRight = csRight;
-				}
-				else {
-					ExpCS csBestWrtRight = EssentialOCLCS2AS.lowestPrecedence(csBestRight, csRight);
-					if (csBestWrtRight != csBestRight) {
-						csBestRight = csRight;
-					}
+				if ((csLowestRight == null) || csLowestRight.isLocalDescendantOf(csRight)) {
+					csLowestRight = csRight;
 				}
 			}
-			derivedSource = csBestRight;
+			derivedSource = csLowestRight;
 		}
 		return derivedSource;
 	}

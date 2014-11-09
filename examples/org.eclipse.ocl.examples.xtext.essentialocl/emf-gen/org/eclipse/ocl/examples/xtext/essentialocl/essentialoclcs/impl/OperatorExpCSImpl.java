@@ -465,26 +465,6 @@ public abstract class OperatorExpCSImpl
 		return eContainer instanceof ElementCS ? (ElementCS) eContainer : null;		// Avoid CCE for Bug 432749
 	}
 
-//	public Precedence getDerivedRightPrecedence()
-//	{
-//		if (derivedRightPrecedence == null) {
-//			derivedRightPrecedence = computeRightPrecedence();
-//		}
-//		return derivedRightPrecedence;
-//	}
-
-//	protected abstract @NonNull Precedence computeLeftPrecedence();
-
-//	protected abstract @NonNull Precedence computeRightPrecedence();
-
-//	public Precedence getDerivedLeftPrecedence()
-//	{
-//		if (derivedLeftPrecedence == null) {
-//			derivedLeftPrecedence = computeLeftPrecedence();
-//		}
-//		return derivedLeftPrecedence;
-//	}
-
 /*	@Override
 	public OperatorExpCS getParent() {
 		ExpCS derivedParent2 = getDerivedParent();
@@ -496,28 +476,72 @@ public abstract class OperatorExpCSImpl
 		return parent;
 	} */
 
+	@Override
+	public OperatorExpCS getParent() {
+		ExpCS derivedParent2 = getDerivedParent();
+		if ((derivedParent2 != parent) && !EssentialOCLCSPostOrderVisitor.interleaveInProgress) {
+			derivedParent = null;
+			derivedParent2 = getDerivedParent();
+		}
+		assert (derivedParent2 == parent) || (parent == null) || (derivedPrecedence == null) || EssentialOCLCSPostOrderVisitor.interleaveInProgress;
+		return parent;
+	}
+
+
 	public ExpCS getDerivedParent() {
-/*		if (derivedParent == null) {
-			ExpCS csLeft = getDerivedLeftExpCS();
-			ExpCS csRight = getDerivedRightExpCS();
-			if (csLeft == null) {
-				if (csRight == null) {
-					EObject eContainer = eContainer();
-					derivedParent = eContainer instanceof OperatorExpCS ? (ExpCS) eContainer : null;
+		if (derivedParent == null) {
+			ExpCS csNearestLeft = null;
+			for (ExpCS csLeft = this; (csLeft = csLeft.getDerivedLeftExpCS()) != null; ) {
+				if (csNearestLeft == null) {
+					if (csLeft.isLocalAncestorOf(this)) {
+						csNearestLeft = csLeft;
+					}
 				}
 				else {
-					derivedParent = csRight;
+					if (csNearestLeft.isLocalAncestorOf(csLeft) && csLeft.isLocalAncestorOf(this)) {
+						csNearestLeft = csLeft;
+					}
+					else {
+						break;
+					}
+				}
+			}
+			ExpCS csNearestRight = null;
+			for (ExpCS csRight = this; (csRight = csRight.getDerivedRightExpCS()) != null; ) {
+				if (csNearestRight == null) {
+					if (this.isLocalDescendantOf(csRight)) {
+						csNearestRight = csRight;
+					}
+				}
+				else {
+					if (this.isLocalDescendantOf(csRight) && csRight.isLocalDescendantOf(csNearestRight)) {
+						csNearestRight = csRight;
+					}
+					else {
+						break;
+					}
+				}
+			}
+			if (csNearestLeft == null) {
+				if (csNearestRight == null) {
+					derivedParent = null;
+				}
+				else {
+					derivedParent = csNearestRight;
 				}
 			}
 			else {
-				if (csRight == null) {
-					derivedParent = csLeft;
+				if (csNearestRight == null) {
+					derivedParent = csNearestLeft;
+				}
+				else if (csNearestLeft.isLocalAncestorOf(csNearestRight)) {
+					derivedParent = csNearestRight;
 				}
 				else {
-					derivedParent = EssentialOCLCS2AS.lowestPrecedence(csLeft, csRight);
+					derivedParent = csNearestLeft;
 				}
 			}
-		} */
+		}
 		return derivedParent;
 	}
 
@@ -536,8 +560,6 @@ public abstract class OperatorExpCSImpl
 		derivedParent = null;
 		derivedSource = null;
 		derivedPrecedence = null;
-//		derivedLeftPrecedence = null;
-//		derivedRightPrecedence = null;
 	}
 
 	/**

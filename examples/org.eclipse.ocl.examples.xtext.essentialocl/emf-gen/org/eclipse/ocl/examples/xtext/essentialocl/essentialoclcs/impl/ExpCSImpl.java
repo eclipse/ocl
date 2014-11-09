@@ -24,6 +24,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCS2AS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.EssentialOCLCSVisitor;
 
 /**
@@ -221,14 +222,6 @@ public class ExpCSImpl
 	public @NonNull Precedence getDerivedPrecedence() {
 		return PrecedenceManager.LEAF_PRECEDENCE;
 	}
-	
-//	public @NonNull Precedence getDerivedHighestPrecedence() {
-//		return PrecedenceManager.LEAF_PRECEDENCE;
-//	}
-
-//	public @NonNull ExpCS getDerivedHighestPrecedenceExpCS() {
-//		return this;
-//	}
 
 	public @Nullable ExpCS getDerivedLeftExpCS() {
 		return EssentialOCLCS2AS.getDerivedLeftExpCS(this);
@@ -245,7 +238,15 @@ public class ExpCSImpl
 	public @NonNull ExpCS getDerivedRightmostExpCS() {
 		return this;
 	}
-
+	
+	public boolean isLocalAncestorOf(@NonNull ExpCS csExp) {	// csExp should be to the right of this for associativity resolution
+		return EssentialOCLCS2AS.isLocalAncestorOf(this, csExp);
+	}
+	
+	public boolean isLocalDescendantOf(@NonNull ExpCS csExp) {	// csExp should be to the right of this for associativity resolution
+		return !(csExp instanceof PrefixExpCS) && !EssentialOCLCS2AS.isLocalAncestorOf(this, csExp);
+	}
+		
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

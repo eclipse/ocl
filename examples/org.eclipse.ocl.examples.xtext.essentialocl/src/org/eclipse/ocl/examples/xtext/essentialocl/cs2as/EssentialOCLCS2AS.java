@@ -72,22 +72,22 @@ public class EssentialOCLCS2AS extends BaseCS2AS
 		return null;
 	}
 
-	public static @NonNull ExpCS lowestPrecedence(@NonNull ExpCS csLeft, @NonNull ExpCS csRight) {
+	public static boolean isLocalAncestorOf(@NonNull ExpCS csLeft, @NonNull ExpCS csRight) {
 		Precedence leftPrecedence = csLeft.getDerivedPrecedence();
 		Precedence rightPrecedence = csRight.getDerivedPrecedence();
 		int leftOrder = leftPrecedence.getOrder().intValue();
 		int rightOrder = rightPrecedence.getOrder().intValue();
 		if (leftOrder > rightOrder) {
-			return csLeft;
+			return true;
 		}
 		else if (leftOrder > rightOrder) {
-			return csRight;
+			return false;
 		}
 		else if (leftPrecedence.getAssociativity() == AssociativityKind.RIGHT) {
-			return csLeft;
+			return true;
 		}
 		else {
-			return csRight;
+			return false;
 		}
 	}
 

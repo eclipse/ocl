@@ -436,8 +436,8 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 			//
 			//	Establish the Infix tree and the per leaf expression parent operator.
 			//
-			createInfixOperatorTree(csInfixExp);
 			interleaveInProgress  = true;
+			createInfixOperatorTree(csInfixExp);
 			try {
 				//
 				//	Interleave the Prefix Operators.

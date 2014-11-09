@@ -438,10 +438,6 @@ public class LetVariableCSImpl
 	public @NonNull Precedence getDerivedPrecedence() {
 		return PrecedenceManager.LEAF_PRECEDENCE;
 	}
-	
-//	public @NonNull Precedence getDerivedHighestPrecedence() {
-//		return PrecedenceManager.LEAF_PRECEDENCE;
-//	}
 
 	public @Nullable ExpCS getDerivedLeftExpCS() {
 		return EssentialOCLCS2AS.getDerivedLeftExpCS(this);
@@ -458,9 +454,13 @@ public class LetVariableCSImpl
 	public @NonNull ExpCS getDerivedRightmostExpCS() {
 		return this;
 	}
-
-	public @NonNull ExpCS getDerivedHighestPrecedenceExpCS() {
-		return this;
+	
+	public boolean isLocalAncestorOf(@NonNull ExpCS csExp) {	// csExp should be to the right of this for associativity resolution
+		return EssentialOCLCS2AS.isLocalAncestorOf(this, csExp);
+	}
+	
+	public boolean isLocalDescendantOf(@NonNull ExpCS csExp) {	// csExp should be to the right of this for associativity resolution
+		return !EssentialOCLCS2AS.isLocalAncestorOf(this, csExp);
 	}
 
 	/**

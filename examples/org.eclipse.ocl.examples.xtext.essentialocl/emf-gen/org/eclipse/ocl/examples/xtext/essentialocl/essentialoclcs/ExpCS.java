@@ -89,10 +89,6 @@ public interface ExpCS
 	void setHasError(boolean value);
 	
 	@NonNull Precedence getDerivedPrecedence();
-	
-//	@NonNull Precedence getDerivedHighestPrecedence();
-	
-//	@NonNull ExpCS getDerivedHighestPrecedenceExpCS();
 
 	@Nullable ExpCS getDerivedLeftExpCS();
 
@@ -101,4 +97,16 @@ public interface ExpCS
 	@Nullable ExpCS getDerivedRightExpCS();
 
 	@NonNull ExpCS getDerivedRightmostExpCS();
+	
+	/**
+	 * Return true if csExp is a transitive child of this in the logical expression tree containing this and csExp
+	 * and only OperatorExpCS nodes within the tree.
+	 */
+	boolean isLocalAncestorOf(@NonNull ExpCS csExp);	// csExp should be to the right of this for assocativity resolution
+	
+	/**
+	 * Return true if this is a transitive child of csExp in the logical expression tree containing this and csExp
+	 * and only OperatorExpCS nodes within the tree.
+	 */
+	boolean isLocalDescendantOf(@NonNull ExpCS csExp);	// csExp should be to the right of this for assocativity resolution
 } // ExpCS
