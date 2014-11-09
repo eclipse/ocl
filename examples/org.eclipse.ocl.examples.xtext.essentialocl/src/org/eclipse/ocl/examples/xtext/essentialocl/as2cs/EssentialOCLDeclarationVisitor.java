@@ -209,10 +209,10 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		else {
 			Type asType = asSource.getType();
 			InfixExpCS csNavigationOperator = EssentialOCLCSFactory.eINSTANCE.createInfixExpCS();
-			csNavigationOperator.setSource(context.visitDeclaration(ExpCS.class, asSource));
+			csNavigationOperator.setOwnedLeft(context.visitDeclaration(ExpCS.class, asSource));
 			boolean isCollection = (asType instanceof CollectionType) ^ isConverted;
 			csNavigationOperator.setName(isCollection ? PivotConstants.COLLECTION_NAVIGATION_OPERATOR : PivotConstants.OBJECT_NAVIGATION_OPERATOR);
-			csNavigationOperator.setArgument(csArgument);
+			csNavigationOperator.setOwnedRight(csArgument);
 			return csNavigationOperator;
 		}
 	}
@@ -537,9 +537,9 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 			ExpCS csSource = context.visitDeclaration(ExpCS.class, asSource);
 			if (asArguments.size() == 1) {
 				InfixExpCS csBinaryOperator = EssentialOCLCSFactory.eINSTANCE.createInfixExpCS();
-				csBinaryOperator.setSource(csSource);
+				csBinaryOperator.setOwnedLeft(csSource);
 				csBinaryOperator.setName(asOperation.getName());
-				csBinaryOperator.setArgument(context.visitDeclaration(ExpCS.class, asArguments.get(0)));
+				csBinaryOperator.setOwnedRight(context.visitDeclaration(ExpCS.class, asArguments.get(0)));
 				return csBinaryOperator;
 			}
 			else {
@@ -549,10 +549,10 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 				}
 				else {
 					csPrefix = EssentialOCLCSFactory.eINSTANCE.createPrefixExpCS();
-					csPrefix.setOwnedSource(csSource);
+					csPrefix.setOwnedRight(csSource);
 				}
 				csPrefix.setName(asOperation.getName());
-				csPrefix.setSource(csSource);
+				csPrefix.setOwnedRight(csSource);
 				return csPrefix;
 			}
 		}

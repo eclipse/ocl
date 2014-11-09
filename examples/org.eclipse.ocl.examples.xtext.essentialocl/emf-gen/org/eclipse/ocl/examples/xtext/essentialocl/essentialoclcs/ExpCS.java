@@ -25,6 +25,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#getParent <em>Parent</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#isHasError <em>Has Error</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#getPrecedence <em>Precedence</em>}</li>
  * </ul>
  * </p>
  *
@@ -44,22 +45,11 @@ public interface ExpCS
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parent</em>' reference.
-	 * @see #setParent(OperatorExpCS)
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getExpCS_Parent()
-	 * @model resolveProxies="false" transient="true"
+	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
 	 * @generated
 	 */
 	OperatorExpCS getParent();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#getParent <em>Parent</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Parent</em>' reference.
-	 * @see #getParent()
-	 * @generated
-	 */
-	void setParent(OperatorExpCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Has Error</b></em>' attribute.
@@ -88,7 +78,31 @@ public interface ExpCS
 	 */
 	void setHasError(boolean value);
 	
-	@NonNull Precedence getDerivedPrecedence();
+	/**
+	 * Returns the value of the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Precedence</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Precedence</em>' reference.
+	 * @see #setPrecedence(Precedence)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getExpCS_Precedence()
+	 * @model resolveProxies="false" transient="true" volatile="true" derived="true"
+	 * @generated
+	 */
+	Precedence getPrecedence();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#getPrecedence <em>Precedence</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Precedence</em>' reference.
+	 * @see #getPrecedence()
+	 * @generated
+	 */
+	void setPrecedence(Precedence value);
 
 	@Nullable ExpCS getLocalLeft();
 

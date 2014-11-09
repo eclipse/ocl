@@ -322,13 +322,22 @@ public interface EssentialOCLCSPackage
 	int EXP_CS__HAS_ERROR = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXP_CS__PRECEDENCE = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXP_CS_FEATURE_COUNT = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 2;
+	int EXP_CS_FEATURE_COUNT = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.AbstractNameExpCSImpl <em>Abstract Name Exp CS</em>}' class.
@@ -402,6 +411,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int ABSTRACT_NAME_EXP_CS__HAS_ERROR = EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_NAME_EXP_CS__PRECEDENCE = EXP_CS__PRECEDENCE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
@@ -547,6 +565,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int CALL_EXP_CS__HAS_ERROR = ABSTRACT_NAME_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_EXP_CS__PRECEDENCE = ABSTRACT_NAME_EXP_CS__PRECEDENCE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
@@ -712,6 +739,15 @@ public interface EssentialOCLCSPackage
 	int ASSOCIATION_CLASS_CALL_EXP_CS__HAS_ERROR = CALL_EXP_CS__HAS_ERROR;
 
 	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS_CALL_EXP_CS__PRECEDENCE = CALL_EXP_CS__PRECEDENCE;
+
+	/**
 	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -874,6 +910,15 @@ public interface EssentialOCLCSPackage
 	int LITERAL_EXP_CS__HAS_ERROR = EXP_CS__HAS_ERROR;
 
 	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXP_CS__PRECEDENCE = EXP_CS__PRECEDENCE;
+
+	/**
 	 * The number of structural features of the '<em>Literal Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -946,6 +991,15 @@ public interface EssentialOCLCSPackage
 	int PRIMITIVE_LITERAL_EXP_CS__HAS_ERROR = LITERAL_EXP_CS__HAS_ERROR;
 
 	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_LITERAL_EXP_CS__PRECEDENCE = LITERAL_EXP_CS__PRECEDENCE;
+
+	/**
 	 * The number of structural features of the '<em>Primitive Literal Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1016,6 +1070,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int BOOLEAN_LITERAL_EXP_CS__HAS_ERROR = PRIMITIVE_LITERAL_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL_EXP_CS__PRECEDENCE = PRIMITIVE_LITERAL_EXP_CS__PRECEDENCE;
 
 	/**
 	 * The feature id for the '<em><b>Symbol</b></em>' attribute.
@@ -1097,6 +1160,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int COLLECTION_LITERAL_EXP_CS__HAS_ERROR = LITERAL_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_EXP_CS__PRECEDENCE = LITERAL_EXP_CS__PRECEDENCE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -1405,6 +1477,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int CONSTRUCTOR_EXP_CS__HAS_ERROR = ABSTRACT_NAME_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRUCTOR_EXP_CS__PRECEDENCE = ABSTRACT_NAME_EXP_CS__PRECEDENCE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
@@ -1917,6 +1998,15 @@ public interface EssentialOCLCSPackage
 	int IF_EXP_CS__HAS_ERROR = EXP_CS__HAS_ERROR;
 
 	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_EXP_CS__PRECEDENCE = EXP_CS__PRECEDENCE;
+
+	/**
 	 * The feature id for the '<em><b>Owned Condition</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2044,6 +2134,15 @@ public interface EssentialOCLCSPackage
 	int IF_THEN_EXP_CS__HAS_ERROR = EXP_CS__HAS_ERROR;
 
 	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_THEN_EXP_CS__PRECEDENCE = EXP_CS__PRECEDENCE;
+
+	/**
 	 * The feature id for the '<em><b>Owned Condition</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2144,6 +2243,15 @@ public interface EssentialOCLCSPackage
 	int OPERATOR_EXP_CS__HAS_ERROR = EXP_CS__HAS_ERROR;
 
 	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXP_CS__PRECEDENCE = EXP_CS__PRECEDENCE;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2153,13 +2261,13 @@ public interface EssentialOCLCSPackage
 	int OPERATOR_EXP_CS__NAME = EXP_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Owned Source</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Right</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXP_CS__OWNED_SOURCE = EXP_CS_FEATURE_COUNT + 1;
+	int OPERATOR_EXP_CS__OWNED_RIGHT = EXP_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -2171,40 +2279,13 @@ public interface EssentialOCLCSPackage
 	int OPERATOR_EXP_CS__SOURCE = EXP_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Derived Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_EXP_CS__DERIVED_SOURCE = EXP_CS_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Derived Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_EXP_CS__DERIVED_PARENT = EXP_CS_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Derived Precedence</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_EXP_CS__DERIVED_PRECEDENCE = EXP_CS_FEATURE_COUNT + 5;
-
-	/**
 	 * The number of structural features of the '<em>Operator Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 6;
+	int OPERATOR_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -2270,6 +2351,15 @@ public interface EssentialOCLCSPackage
 	int INFIX_EXP_CS__HAS_ERROR = OPERATOR_EXP_CS__HAS_ERROR;
 
 	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX_EXP_CS__PRECEDENCE = OPERATOR_EXP_CS__PRECEDENCE;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2279,13 +2369,13 @@ public interface EssentialOCLCSPackage
 	int INFIX_EXP_CS__NAME = OPERATOR_EXP_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Source</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Right</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_EXP_CS__OWNED_SOURCE = OPERATOR_EXP_CS__OWNED_SOURCE;
+	int INFIX_EXP_CS__OWNED_RIGHT = OPERATOR_EXP_CS__OWNED_RIGHT;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -2297,49 +2387,13 @@ public interface EssentialOCLCSPackage
 	int INFIX_EXP_CS__SOURCE = OPERATOR_EXP_CS__SOURCE;
 
 	/**
-	 * The feature id for the '<em><b>Derived Source</b></em>' reference.
+	 * The feature id for the '<em><b>Owned Left</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_EXP_CS__DERIVED_SOURCE = OPERATOR_EXP_CS__DERIVED_SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>Derived Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INFIX_EXP_CS__DERIVED_PARENT = OPERATOR_EXP_CS__DERIVED_PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Derived Precedence</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INFIX_EXP_CS__DERIVED_PRECEDENCE = OPERATOR_EXP_CS__DERIVED_PRECEDENCE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Argument</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INFIX_EXP_CS__OWNED_ARGUMENT = OPERATOR_EXP_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Derived Argument</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INFIX_EXP_CS__DERIVED_ARGUMENT = OPERATOR_EXP_CS_FEATURE_COUNT + 1;
+	int INFIX_EXP_CS__OWNED_LEFT = OPERATOR_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Argument</b></em>' reference.
@@ -2348,7 +2402,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_EXP_CS__ARGUMENT = OPERATOR_EXP_CS_FEATURE_COUNT + 2;
+	int INFIX_EXP_CS__ARGUMENT = OPERATOR_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Infix Exp CS</em>' class.
@@ -2357,7 +2411,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_EXP_CS_FEATURE_COUNT = OPERATOR_EXP_CS_FEATURE_COUNT + 3;
+	int INFIX_EXP_CS_FEATURE_COUNT = OPERATOR_EXP_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -2421,6 +2475,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int INVALID_LITERAL_EXP_CS__HAS_ERROR = PRIMITIVE_LITERAL_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_LITERAL_EXP_CS__PRECEDENCE = PRIMITIVE_LITERAL_EXP_CS__PRECEDENCE;
 
 	/**
 	 * The number of structural features of the '<em>Invalid Literal Exp CS</em>' class.
@@ -2503,6 +2566,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int ITERATION_CALL_EXP_CS__HAS_ERROR = CALL_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION_CALL_EXP_CS__PRECEDENCE = CALL_EXP_CS__PRECEDENCE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
@@ -2684,6 +2756,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int ITERATE_CALL_EXP_CS__HAS_ERROR = ITERATION_CALL_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_CALL_EXP_CS__PRECEDENCE = ITERATION_CALL_EXP_CS__PRECEDENCE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
@@ -2876,6 +2957,15 @@ public interface EssentialOCLCSPackage
 	int LAMBDA_LITERAL_EXP_CS__HAS_ERROR = LITERAL_EXP_CS__HAS_ERROR;
 
 	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_LITERAL_EXP_CS__PRECEDENCE = LITERAL_EXP_CS__PRECEDENCE;
+
+	/**
 	 * The feature id for the '<em><b>Owned Expression CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2955,6 +3045,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int LET_EXP_CS__HAS_ERROR = EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LET_EXP_CS__PRECEDENCE = EXP_CS__PRECEDENCE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Variables</b></em>' containment reference list.
@@ -3164,13 +3263,22 @@ public interface EssentialOCLCSPackage
 	int LET_VARIABLE_CS__HAS_ERROR = VARIABLE_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LET_VARIABLE_CS__PRECEDENCE = VARIABLE_CS_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Owning Let Expression</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LET_VARIABLE_CS__OWNING_LET_EXPRESSION = VARIABLE_CS_FEATURE_COUNT + 2;
+	int LET_VARIABLE_CS__OWNING_LET_EXPRESSION = VARIABLE_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Owned Round Bracketed Clause</b></em>' containment reference.
@@ -3179,7 +3287,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LET_VARIABLE_CS__OWNED_ROUND_BRACKETED_CLAUSE = VARIABLE_CS_FEATURE_COUNT + 3;
+	int LET_VARIABLE_CS__OWNED_ROUND_BRACKETED_CLAUSE = VARIABLE_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Let Variable CS</em>' class.
@@ -3188,7 +3296,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LET_VARIABLE_CS_FEATURE_COUNT = VARIABLE_CS_FEATURE_COUNT + 4;
+	int LET_VARIABLE_CS_FEATURE_COUNT = VARIABLE_CS_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3252,6 +3360,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int NAME_EXP_CS__HAS_ERROR = ASSOCIATION_CLASS_CALL_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAME_EXP_CS__PRECEDENCE = ASSOCIATION_CLASS_CALL_EXP_CS__PRECEDENCE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
@@ -3605,6 +3722,15 @@ public interface EssentialOCLCSPackage
 	int NESTED_EXP_CS__HAS_ERROR = EXP_CS__HAS_ERROR;
 
 	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NESTED_EXP_CS__PRECEDENCE = EXP_CS__PRECEDENCE;
+
+	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3686,6 +3812,15 @@ public interface EssentialOCLCSPackage
 	int NULL_LITERAL_EXP_CS__HAS_ERROR = PRIMITIVE_LITERAL_EXP_CS__HAS_ERROR;
 
 	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_LITERAL_EXP_CS__PRECEDENCE = PRIMITIVE_LITERAL_EXP_CS__PRECEDENCE;
+
+	/**
 	 * The number of structural features of the '<em>Null Literal Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3756,6 +3891,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int NUMBER_LITERAL_EXP_CS__HAS_ERROR = PRIMITIVE_LITERAL_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_LITERAL_EXP_CS__PRECEDENCE = PRIMITIVE_LITERAL_EXP_CS__PRECEDENCE;
 
 	/**
 	 * The feature id for the '<em><b>Symbol</b></em>' attribute.
@@ -3847,6 +3991,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int OPERATION_CALL_EXP_CS__HAS_ERROR = CALL_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CALL_EXP_CS__PRECEDENCE = CALL_EXP_CS__PRECEDENCE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
@@ -4021,6 +4174,15 @@ public interface EssentialOCLCSPackage
 	int PATTERN_EXP_CS__HAS_ERROR = EXP_CS__HAS_ERROR;
 
 	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATTERN_EXP_CS__PRECEDENCE = EXP_CS__PRECEDENCE;
+
+	/**
 	 * The feature id for the '<em><b>Pattern Variable Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4181,6 +4343,15 @@ public interface EssentialOCLCSPackage
 	int PREFIX_EXP_CS__HAS_ERROR = OPERATOR_EXP_CS__HAS_ERROR;
 
 	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_EXP_CS__PRECEDENCE = OPERATOR_EXP_CS__PRECEDENCE;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4190,13 +4361,13 @@ public interface EssentialOCLCSPackage
 	int PREFIX_EXP_CS__NAME = OPERATOR_EXP_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Source</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Right</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREFIX_EXP_CS__OWNED_SOURCE = OPERATOR_EXP_CS__OWNED_SOURCE;
+	int PREFIX_EXP_CS__OWNED_RIGHT = OPERATOR_EXP_CS__OWNED_RIGHT;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -4206,33 +4377,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int PREFIX_EXP_CS__SOURCE = OPERATOR_EXP_CS__SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>Derived Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREFIX_EXP_CS__DERIVED_SOURCE = OPERATOR_EXP_CS__DERIVED_SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>Derived Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREFIX_EXP_CS__DERIVED_PARENT = OPERATOR_EXP_CS__DERIVED_PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Derived Precedence</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREFIX_EXP_CS__DERIVED_PRECEDENCE = OPERATOR_EXP_CS__DERIVED_PRECEDENCE;
 
 	/**
 	 * The number of structural features of the '<em>Prefix Exp CS</em>' class.
@@ -4305,6 +4449,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int PROPERTY_CALL_EXP_CS__HAS_ERROR = CALL_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP_CS__PRECEDENCE = CALL_EXP_CS__PRECEDENCE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
@@ -4505,6 +4658,15 @@ public interface EssentialOCLCSPackage
 	int SELF_EXP_CS__HAS_ERROR = EXP_CS__HAS_ERROR;
 
 	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELF_EXP_CS__PRECEDENCE = EXP_CS__PRECEDENCE;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4622,6 +4784,15 @@ public interface EssentialOCLCSPackage
 	int STRING_LITERAL_EXP_CS__HAS_ERROR = PRIMITIVE_LITERAL_EXP_CS__HAS_ERROR;
 
 	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL_EXP_CS__PRECEDENCE = PRIMITIVE_LITERAL_EXP_CS__PRECEDENCE;
+
+	/**
 	 * The feature id for the '<em><b>Segments</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4701,6 +4872,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int TUPLE_LITERAL_EXP_CS__HAS_ERROR = LITERAL_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_EXP_CS__PRECEDENCE = LITERAL_EXP_CS__PRECEDENCE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Parts</b></em>' containment reference list.
@@ -4863,6 +5043,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int TYPE_LITERAL_EXP_CS__HAS_ERROR = LITERAL_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_LITERAL_EXP_CS__PRECEDENCE = LITERAL_EXP_CS__PRECEDENCE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
@@ -5037,6 +5226,15 @@ public interface EssentialOCLCSPackage
 	int UNLIMITED_NATURAL_LITERAL_EXP_CS__HAS_ERROR = PRIMITIVE_LITERAL_EXP_CS__HAS_ERROR;
 
 	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNLIMITED_NATURAL_LITERAL_EXP_CS__PRECEDENCE = PRIMITIVE_LITERAL_EXP_CS__PRECEDENCE;
+
+	/**
 	 * The number of structural features of the '<em>Unlimited Natural Literal Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5117,6 +5315,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int VARIABLE_EXP_CS__HAS_ERROR = ABSTRACT_NAME_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_EXP_CS__PRECEDENCE = ABSTRACT_NAME_EXP_CS__PRECEDENCE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
@@ -5540,6 +5747,17 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 */
 	EAttribute getExpCS_HasError();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#getPrecedence <em>Precedence</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Precedence</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#getPrecedence()
+	 * @see #getExpCS()
+	 * @generated
+	 */
+	EReference getExpCS_Precedence();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpSpecificationCS <em>Exp Specification CS</em>}'.
@@ -6324,15 +6542,15 @@ public interface EssentialOCLCSPackage
 	EClass getOperatorExpCS();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getOwnedSource <em>Owned Source</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getOwnedRight <em>Owned Right</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Source</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getOwnedSource()
+	 * @return the meta object for the containment reference '<em>Owned Right</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getOwnedRight()
 	 * @see #getOperatorExpCS()
 	 * @generated
 	 */
-	EReference getOperatorExpCS_OwnedSource();
+	EReference getOperatorExpCS_OwnedRight();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getSource <em>Source</em>}'.
@@ -6344,39 +6562,6 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 */
 	EReference getOperatorExpCS_Source();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getDerivedSource <em>Derived Source</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Derived Source</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getDerivedSource()
-	 * @see #getOperatorExpCS()
-	 * @generated
-	 */
-	EReference getOperatorExpCS_DerivedSource();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getDerivedParent <em>Derived Parent</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Derived Parent</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getDerivedParent()
-	 * @see #getOperatorExpCS()
-	 * @generated
-	 */
-	EReference getOperatorExpCS_DerivedParent();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getDerivedPrecedence <em>Derived Precedence</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Derived Precedence</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getDerivedPrecedence()
-	 * @see #getOperatorExpCS()
-	 * @generated
-	 */
-	EReference getOperatorExpCS_DerivedPrecedence();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PatternExpCS <em>Pattern Exp CS</em>}'.
@@ -6527,26 +6712,15 @@ public interface EssentialOCLCSPackage
 	EClass getInfixExpCS();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedArgument <em>Owned Argument</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedLeft <em>Owned Left</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Argument</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedArgument()
+	 * @return the meta object for the containment reference '<em>Owned Left</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedLeft()
 	 * @see #getInfixExpCS()
 	 * @generated
 	 */
-	EReference getInfixExpCS_OwnedArgument();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getDerivedArgument <em>Derived Argument</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Derived Argument</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getDerivedArgument()
-	 * @see #getInfixExpCS()
-	 * @generated
-	 */
-	EReference getInfixExpCS_DerivedArgument();
+	EReference getInfixExpCS_OwnedLeft();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getArgument <em>Argument</em>}'.
@@ -6913,6 +7087,14 @@ public interface EssentialOCLCSPackage
 		 * @generated
 		 */
 		EAttribute EXP_CS__HAS_ERROR = eINSTANCE.getExpCS_HasError();
+
+		/**
+		 * The meta object literal for the '<em><b>Precedence</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXP_CS__PRECEDENCE = eINSTANCE.getExpCS_Precedence();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ExpSpecificationCSImpl <em>Exp Specification CS</em>}' class.
@@ -7571,12 +7753,12 @@ public interface EssentialOCLCSPackage
 		EClass OPERATOR_EXP_CS = eINSTANCE.getOperatorExpCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Source</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Owned Right</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference OPERATOR_EXP_CS__OWNED_SOURCE = eINSTANCE.getOperatorExpCS_OwnedSource();
+		EReference OPERATOR_EXP_CS__OWNED_RIGHT = eINSTANCE.getOperatorExpCS_OwnedRight();
 
 		/**
 		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
@@ -7585,30 +7767,6 @@ public interface EssentialOCLCSPackage
 		 * @generated
 		 */
 		EReference OPERATOR_EXP_CS__SOURCE = eINSTANCE.getOperatorExpCS_Source();
-
-		/**
-		 * The meta object literal for the '<em><b>Derived Source</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OPERATOR_EXP_CS__DERIVED_SOURCE = eINSTANCE.getOperatorExpCS_DerivedSource();
-
-		/**
-		 * The meta object literal for the '<em><b>Derived Parent</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OPERATOR_EXP_CS__DERIVED_PARENT = eINSTANCE.getOperatorExpCS_DerivedParent();
-
-		/**
-		 * The meta object literal for the '<em><b>Derived Precedence</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OPERATOR_EXP_CS__DERIVED_PRECEDENCE = eINSTANCE.getOperatorExpCS_DerivedPrecedence();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.PatternExpCSImpl <em>Pattern Exp CS</em>}' class.
@@ -7723,20 +7881,12 @@ public interface EssentialOCLCSPackage
 		EClass INFIX_EXP_CS = eINSTANCE.getInfixExpCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Argument</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Owned Left</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference INFIX_EXP_CS__OWNED_ARGUMENT = eINSTANCE.getInfixExpCS_OwnedArgument();
-
-		/**
-		 * The meta object literal for the '<em><b>Derived Argument</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INFIX_EXP_CS__DERIVED_ARGUMENT = eINSTANCE.getInfixExpCS_DerivedArgument();
+		EReference INFIX_EXP_CS__OWNED_LEFT = eINSTANCE.getInfixExpCS_OwnedLeft();
 
 		/**
 		 * The meta object literal for the '<em><b>Argument</b></em>' reference feature.

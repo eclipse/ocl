@@ -11,7 +11,6 @@
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.xtext.base.basecs.NamedElementCS;
 
 /**
@@ -22,11 +21,8 @@ import org.eclipse.ocl.examples.xtext.base.basecs.NamedElementCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getOwnedSource <em>Owned Source</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getOwnedRight <em>Owned Right</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getSource <em>Source</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getDerivedSource <em>Derived Source</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getDerivedParent <em>Derived Parent</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getDerivedPrecedence <em>Derived Precedence</em>}</li>
  * </ul>
  * </p>
  *
@@ -36,145 +32,48 @@ import org.eclipse.ocl.examples.xtext.base.basecs.NamedElementCS;
  */
 public interface OperatorExpCS
 		extends ExpCS, NamedElementCS {
-
+	
 	/**
-	 * Returns the value of the '<em><b>Owned Source</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Right</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owned Source</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Owned Right</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Source</em>' containment reference.
-	 * @see #setOwnedSource(ExpCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getOperatorExpCS_OwnedSource()
+	 * @return the value of the '<em>Owned Right</em>' containment reference.
+	 * @see #setOwnedRight(ExpCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getOperatorExpCS_OwnedRight()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	ExpCS getOwnedSource();
+	ExpCS getOwnedRight();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getOwnedSource <em>Owned Source</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getOwnedRight <em>Owned Right</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owned Source</em>' containment reference.
-	 * @see #getOwnedSource()
+	 * @param value the new value of the '<em>Owned Right</em>' containment reference.
+	 * @see #getOwnedRight()
 	 * @generated
 	 */
-	void setOwnedSource(ExpCS value);
+	void setOwnedRight(ExpCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Child</em>' reference isn't clear,
+	 * If the meaning of the '<em>Source</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' reference.
-	 * @see #setSource(ExpCS)
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getOperatorExpCS_Source()
-	 * @model resolveProxies="false" required="true" transient="true"
+	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
 	 * @generated
 	 */
 	ExpCS getSource();
 
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getSource <em>Source</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Source</em>' reference.
-	 * @see #getSource()
-	 * @generated
-	 */
-	void setSource(ExpCS value);
-
-	/**
-	 * Returns the value of the '<em><b>Derived Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Derived Source</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Derived Source</em>' reference.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getOperatorExpCS_DerivedSource()
-	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
-	 * @generated
-	 */
-	ExpCS getDerivedSource();
-
-	/**
-	 * Returns the value of the '<em><b>Derived Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Derived Parent</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Derived Parent</em>' reference.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getOperatorExpCS_DerivedParent()
-	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
-	 * @generated
-	 */
-	ExpCS getDerivedParent();
-
-	/**
-	 * Returns the value of the '<em><b>Derived Precedence</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Derived Precedence</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Derived Precedence</em>' reference.
-	 * @see #setDerivedPrecedence(Precedence)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getOperatorExpCS_DerivedPrecedence()
-	 * @model resolveProxies="false" transient="true" derived="true"
-	 * @generated
-	 */
-	@NonNull Precedence getDerivedPrecedence();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS#getDerivedPrecedence <em>Derived Precedence</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Derived Precedence</em>' reference.
-	 * @see #getDerivedPrecedence()
-	 * @generated
-	 */
-	void setDerivedPrecedence(Precedence value);
-
-	/**
-	 * Returns the value of the '<em><b>Derived Right Precedence</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Derived Right Precedence</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Derived Right Precedence</em>' reference.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getOperatorExpCS_DerivedRightPrecedence()
-	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
-	 * @generated
-	 */
-//	Precedence getDerivedRightPrecedence();
-
-	/**
-	 * Returns the value of the '<em><b>Derived Left Precedence</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Derived Left Precedence</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Derived Left Precedence</em>' reference.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getOperatorExpCS_DerivedLeftPrecedence()
-	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
-	 * @generated
-	 */
-//	Precedence getDerivedLeftPrecedence();
-	
 	/**
 	 * Return true if csExp is a transitive child of this in the logical expression tree containing this and csExp
 	 * and only OperatorExpCS nodes within the tree.

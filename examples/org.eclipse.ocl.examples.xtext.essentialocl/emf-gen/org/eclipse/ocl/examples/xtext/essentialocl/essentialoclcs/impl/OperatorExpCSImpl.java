@@ -24,7 +24,6 @@ import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCS2AS;
-import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCSPostOrderVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS;
@@ -37,11 +36,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperatorExpCSImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperatorExpCSImpl#getOwnedSource <em>Owned Source</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperatorExpCSImpl#getOwnedRight <em>Owned Right</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperatorExpCSImpl#getSource <em>Source</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperatorExpCSImpl#getDerivedSource <em>Derived Source</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperatorExpCSImpl#getDerivedParent <em>Derived Parent</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperatorExpCSImpl#getDerivedPrecedence <em>Derived Precedence</em>}</li>
  * </ul>
  * </p>
  *
@@ -72,14 +68,14 @@ public abstract class OperatorExpCSImpl
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getOwnedSource() <em>Owned Source</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedRight() <em>Owned Right</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedSource()
+	 * @see #getOwnedRight()
 	 * @generated
 	 * @ordered
 	 */
-	protected ExpCS ownedSource;
+	protected ExpCS ownedRight;
 
 	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
@@ -90,46 +86,6 @@ public abstract class OperatorExpCSImpl
 	 * @ordered
 	 */
 	protected ExpCS source;
-
-	/**
-	 * The cached value of the '{@link #getDerivedSource() <em>Derived Source</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDerivedSource()
-	 * @generated
-	 * @ordered
-	 */
-	protected ExpCS derivedSource;
-
-	/**
-	 * The cached value of the '{@link #getDerivedPrecedence() <em>Derived Precedence</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDerivedPrecedence()
-	 * @generated
-	 * @ordered
-	 */
-	protected Precedence derivedPrecedence;
-
-	/**
-	 * The cached value of the '{@link #getDerivedRightPrecedence() <em>Derived Right Precedence</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDerivedRightPrecedence()
-	 * @generated
-	 * @ordered
-	 */
-//	protected Precedence derivedRightPrecedence;
-
-	/**
-	 * The cached value of the '{@link #getDerivedLeftPrecedence() <em>Derived Left Precedence</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDerivedLeftPrecedence()
-	 * @generated
-	 * @ordered
-	 */
-//	protected Precedence derivedLeftPrecedence;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -178,9 +134,9 @@ public abstract class OperatorExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpCS getOwnedSource()
+	public ExpCS getOwnedRight()
 	{
-		return ownedSource;
+		return ownedRight;
 	}
 
 	/**
@@ -188,13 +144,13 @@ public abstract class OperatorExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwnedSource(ExpCS newOwnedSource, NotificationChain msgs)
+	public NotificationChain basicSetOwnedRight(ExpCS newOwnedRight, NotificationChain msgs)
 	{
-		ExpCS oldOwnedSource = ownedSource;
-		ownedSource = newOwnedSource;
+		ExpCS oldOwnedRight = ownedRight;
+		ownedRight = newOwnedRight;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.OPERATOR_EXP_CS__OWNED_SOURCE, oldOwnedSource, newOwnedSource);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.OPERATOR_EXP_CS__OWNED_RIGHT, oldOwnedRight, newOwnedRight);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -205,43 +161,20 @@ public abstract class OperatorExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwnedSource(ExpCS newOwnedSource)
+	public void setOwnedRight(ExpCS newOwnedRight)
 	{
-		if (newOwnedSource != ownedSource)
+		if (newOwnedRight != ownedRight)
 		{
 			NotificationChain msgs = null;
-			if (ownedSource != null)
-				msgs = ((InternalEObject)ownedSource).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.OPERATOR_EXP_CS__OWNED_SOURCE, null, msgs);
-			if (newOwnedSource != null)
-				msgs = ((InternalEObject)newOwnedSource).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.OPERATOR_EXP_CS__OWNED_SOURCE, null, msgs);
-			msgs = basicSetOwnedSource(newOwnedSource, msgs);
+			if (ownedRight != null)
+				msgs = ((InternalEObject)ownedRight).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.OPERATOR_EXP_CS__OWNED_RIGHT, null, msgs);
+			if (newOwnedRight != null)
+				msgs = ((InternalEObject)newOwnedRight).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.OPERATOR_EXP_CS__OWNED_RIGHT, null, msgs);
+			msgs = basicSetOwnedRight(newOwnedRight, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.OPERATOR_EXP_CS__OWNED_SOURCE, newOwnedSource, newOwnedSource));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public ExpCS getSource() {
-		ExpCS expCS = getDerivedSource();
-		assert !EssentialOCLCSPostOrderVisitor.doesInterleave || (expCS == source);
-		return expCS;
-	}
-	
-	protected boolean derivedSourceIsSet = false;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSource(ExpCS newSource) {
-		source = newSource;
-		derivedSourceIsSet = newSource != null;
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.OPERATOR_EXP_CS__OWNED_RIGHT, newOwnedRight, newOwnedRight));
 	}
 
 	/**
@@ -255,16 +188,10 @@ public abstract class OperatorExpCSImpl
 		{
 			case EssentialOCLCSPackage.OPERATOR_EXP_CS__NAME:
 				return getName();
-			case EssentialOCLCSPackage.OPERATOR_EXP_CS__OWNED_SOURCE:
-				return getOwnedSource();
+			case EssentialOCLCSPackage.OPERATOR_EXP_CS__OWNED_RIGHT:
+				return getOwnedRight();
 			case EssentialOCLCSPackage.OPERATOR_EXP_CS__SOURCE:
 				return getSource();
-			case EssentialOCLCSPackage.OPERATOR_EXP_CS__DERIVED_SOURCE:
-				return getDerivedSource();
-			case EssentialOCLCSPackage.OPERATOR_EXP_CS__DERIVED_PARENT:
-				return getDerivedParent();
-			case EssentialOCLCSPackage.OPERATOR_EXP_CS__DERIVED_PRECEDENCE:
-				return getDerivedPrecedence();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -281,14 +208,8 @@ public abstract class OperatorExpCSImpl
 			case EssentialOCLCSPackage.OPERATOR_EXP_CS__NAME:
 				setName((String)newValue);
 				return;
-			case EssentialOCLCSPackage.OPERATOR_EXP_CS__OWNED_SOURCE:
-				setOwnedSource((ExpCS)newValue);
-				return;
-			case EssentialOCLCSPackage.OPERATOR_EXP_CS__SOURCE:
-				setSource((ExpCS)newValue);
-				return;
-			case EssentialOCLCSPackage.OPERATOR_EXP_CS__DERIVED_PRECEDENCE:
-				setDerivedPrecedence((Precedence)newValue);
+			case EssentialOCLCSPackage.OPERATOR_EXP_CS__OWNED_RIGHT:
+				setOwnedRight((ExpCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -306,14 +227,8 @@ public abstract class OperatorExpCSImpl
 			case EssentialOCLCSPackage.OPERATOR_EXP_CS__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case EssentialOCLCSPackage.OPERATOR_EXP_CS__OWNED_SOURCE:
-				setOwnedSource((ExpCS)null);
-				return;
-			case EssentialOCLCSPackage.OPERATOR_EXP_CS__SOURCE:
-				setSource((ExpCS)null);
-				return;
-			case EssentialOCLCSPackage.OPERATOR_EXP_CS__DERIVED_PRECEDENCE:
-				setDerivedPrecedence((Precedence)null);
+			case EssentialOCLCSPackage.OPERATOR_EXP_CS__OWNED_RIGHT:
+				setOwnedRight((ExpCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -330,16 +245,10 @@ public abstract class OperatorExpCSImpl
 		{
 			case EssentialOCLCSPackage.OPERATOR_EXP_CS__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case EssentialOCLCSPackage.OPERATOR_EXP_CS__OWNED_SOURCE:
-				return ownedSource != null;
+			case EssentialOCLCSPackage.OPERATOR_EXP_CS__OWNED_RIGHT:
+				return ownedRight != null;
 			case EssentialOCLCSPackage.OPERATOR_EXP_CS__SOURCE:
 				return source != null;
-			case EssentialOCLCSPackage.OPERATOR_EXP_CS__DERIVED_SOURCE:
-				return derivedSource != null;
-			case EssentialOCLCSPackage.OPERATOR_EXP_CS__DERIVED_PARENT:
-				return derivedParent != null;
-			case EssentialOCLCSPackage.OPERATOR_EXP_CS__DERIVED_PRECEDENCE:
-				return derivedPrecedence != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -397,46 +306,6 @@ public abstract class OperatorExpCSImpl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
-			case EssentialOCLCSPackage.OPERATOR_EXP_CS__OWNED_SOURCE:
-				return basicSetOwnedSource(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public @NonNull Precedence getDerivedPrecedence()
-	{
-		return derivedPrecedence != null ? derivedPrecedence : PrecedenceManager.NULL_PRECEDENCE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDerivedPrecedence(Precedence newDerivedPrecedence)
-	{
-		Precedence oldDerivedPrecedence = derivedPrecedence;
-		derivedPrecedence = newDerivedPrecedence;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.OPERATOR_EXP_CS__DERIVED_PRECEDENCE, oldDerivedPrecedence, derivedPrecedence));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
@@ -452,6 +321,15 @@ public abstract class OperatorExpCSImpl
 		}
 		return eContainer instanceof ElementCS ? (ElementCS) eContainer : null;		// Avoid CCE for Bug 432749
 	}
+
+	private Precedence precedence = null;
+	
+	@Override
+	public Precedence getPrecedence() {
+		return precedence != null ? precedence : PrecedenceManager.NULL_PRECEDENCE;
+	}
+
+	public abstract ExpCS getSource();
 	
 	public boolean isLocalLeftAncestorOf(@NonNull ExpCS csExp) {	// csExp should be to the right of this for associativity resolution
 		return EssentialOCLCS2AS.isLocalProperAncestorOf(this, csExp);
@@ -467,12 +345,12 @@ public abstract class OperatorExpCSImpl
 	public void resetPivot() {
 		assert this instanceof ExpCSImpl;	// Enforce correct ordering of base classes
 		super.resetPivot();
-		setParent(null);
-		setSource(null);
-		derivedParent = null;
-		derivedSource = null;
-		derivedPrecedence = null;
-		derivedSourceIsSet = false;
+		precedence = null;
+	}
+
+	@Override
+	public void setPrecedence(Precedence newPrecedence) {
+		precedence = newPrecedence;
 	}
 
 	/**
@@ -481,5 +359,21 @@ public abstract class OperatorExpCSImpl
 	@Override
 	public String toString() {
 		return super.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case EssentialOCLCSPackage.OPERATOR_EXP_CS__OWNED_RIGHT:
+				return basicSetOwnedRight(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 } //OperatorCSImpl

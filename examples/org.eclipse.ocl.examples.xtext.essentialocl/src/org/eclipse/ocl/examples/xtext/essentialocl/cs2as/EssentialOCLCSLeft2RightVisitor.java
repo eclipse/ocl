@@ -1119,7 +1119,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	protected Element resolveRoundBracketedTerm(@NonNull RoundBracketedClauseCS csRoundBracketedClause) {
 		AbstractNameExpCS csNameExp = csRoundBracketedClause.getOwningNameExp();
 		OperatorExpCS csParent = csNameExp.getParent();
-		if (NavigationUtil.isNavigationInfixExp(csParent) && (csNameExp != csParent.getSource())) {
+		if (NavigationUtil.isNavigationInfixExp(csParent) && (csNameExp != ((InfixExpCS)csParent).getSource())) {
 			// source.name(), source->name() are resolved by the parent NavigationOperatorCS
 			return PivotUtil.getPivot(OCLExpression.class, csNameExp);
 		}

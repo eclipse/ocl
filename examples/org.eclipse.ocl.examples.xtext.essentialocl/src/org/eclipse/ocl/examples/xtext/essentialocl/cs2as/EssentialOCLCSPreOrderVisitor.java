@@ -116,7 +116,7 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 		public BasicContinuation<?> execute() {
 			String operatorName = csElement.getName();
 			Precedence precedence = operatorName != null ? context.getMetaModelManager().getInfixPrecedence(operatorName) : null;
-			csElement.setDerivedPrecedence(precedence);
+			csElement.setPrecedence(precedence);
 			return null;
 		}
 	}
@@ -131,7 +131,7 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 		public BasicContinuation<?> execute() {
 			String operatorName = csElement.getName();
 			Precedence precedence = operatorName != null ? context.getMetaModelManager().getPrefixPrecedence(operatorName) : null;
-			csElement.setDerivedPrecedence(precedence);
+			csElement.setPrecedence(precedence);
 			return null;
 		}
 	}
@@ -183,7 +183,7 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 	@Override
 	public Continuation<?> visitInfixExpCS(@NonNull InfixExpCS csElement) {
 		if (NavigationUtil.isNavigationInfixExp(csElement)) {
-			csElement.setDerivedPrecedence(PrecedenceManager.NAVIGATION_PRECEDENCE);
+			csElement.setPrecedence(PrecedenceManager.NAVIGATION_PRECEDENCE);
 			return null;
 		}
 		else {

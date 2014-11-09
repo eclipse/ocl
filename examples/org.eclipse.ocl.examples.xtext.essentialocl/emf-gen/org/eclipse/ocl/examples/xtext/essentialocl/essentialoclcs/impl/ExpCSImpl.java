@@ -21,7 +21,6 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.impl.ModelElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCS2AS;
-import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCSPostOrderVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS;
@@ -36,6 +35,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ExpCSImpl#getParent <em>Parent</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ExpCSImpl#isHasError <em>Has Error</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ExpCSImpl#getPrecedence <em>Precedence</em>}</li>
  * </ul>
  * </p>
  *
@@ -54,7 +54,6 @@ public class ExpCSImpl
 	 * @ordered
 	 */
 	protected OperatorExpCS parent;
-
 	/**
 	 * The default value of the '{@link #isHasError() <em>Has Error</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -93,18 +92,6 @@ public class ExpCSImpl
 		return EssentialOCLCSPackage.Literals.EXP_CS;
 	}
 
-	boolean derivedParentIsSet = false;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setParent(OperatorExpCS newParent) {
-		derivedParentIsSet = newParent != null;
-		parent = newParent;
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -141,6 +128,8 @@ public class ExpCSImpl
 				return getParent();
 			case EssentialOCLCSPackage.EXP_CS__HAS_ERROR:
 				return isHasError();
+			case EssentialOCLCSPackage.EXP_CS__PRECEDENCE:
+				return getPrecedence();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -154,11 +143,11 @@ public class ExpCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.EXP_CS__PARENT:
-				setParent((OperatorExpCS)newValue);
-				return;
 			case EssentialOCLCSPackage.EXP_CS__HAS_ERROR:
 				setHasError((Boolean)newValue);
+				return;
+			case EssentialOCLCSPackage.EXP_CS__PRECEDENCE:
+				setPrecedence((Precedence)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -173,11 +162,11 @@ public class ExpCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.EXP_CS__PARENT:
-				setParent((OperatorExpCS)null);
-				return;
 			case EssentialOCLCSPackage.EXP_CS__HAS_ERROR:
 				setHasError(HAS_ERROR_EDEFAULT);
+				return;
+			case EssentialOCLCSPackage.EXP_CS__PRECEDENCE:
+				setPrecedence((Precedence)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -196,6 +185,8 @@ public class ExpCSImpl
 				return parent != null;
 			case EssentialOCLCSPackage.EXP_CS__HAS_ERROR:
 				return hasError != HAS_ERROR_EDEFAULT;
+			case EssentialOCLCSPackage.EXP_CS__PRECEDENCE:
+				return getPrecedence() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -210,36 +201,35 @@ public class ExpCSImpl
 		return (R) ((EssentialOCLCSVisitor<?>)visitor).visitExpCS(this);
 	}
 
-	/**
-	 * The cached value of the '{@link #getDerivedParent() <em>Derived Parent</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDerivedParent()
-	 * @generated
-	 * @ordered
-	 */
-	protected OperatorExpCS derivedParent;
-
-	public OperatorExpCS getParent() {
-		OperatorExpCS expCS = getDerivedParent();
-		assert !EssentialOCLCSPostOrderVisitor.doesInterleave || (expCS == parent);
-		return expCS;
+	public @Nullable ExpCS getLocalLeft() {
+		return EssentialOCLCS2AS.getDerivedLeftExpCS(this);
 	}
 
-	public OperatorExpCS getDerivedParent() {
-		if (EssentialOCLCSPostOrderVisitor.interleaveInProgress) {
-			assert !isInterleaved;
-			return parent;
-		}
-		if (EssentialOCLCSPostOrderVisitor.doesInterleave && !derivedParentIsSet) {
-			assert !isInterleaved || (parent == null);
+	public @NonNull ExpCS getLocalLeftmostDescendant() {
+		return this;
+	}
+
+	public @Nullable ExpCS getLocalRight() {
+		return EssentialOCLCS2AS.getDerivedRightExpCS(this);
+	}
+
+	public @NonNull ExpCS getLocalRightmostDescendant() {
+		return this;
+	}
+
+	@Override
+	public ElementCS getLogicalParent() {
+		ElementCS parent = getParent();
+		return parent != null
+			? parent
+			: super.getLogicalParent();
+	}
+
+	public OperatorExpCS getParent() {
+		if (!isInterleaved) {
 			return null;
 		}
-		if (!EssentialOCLCSPostOrderVisitor.doesInterleave && !isInterleaved) {
-			return null;
-		}
-		assert isInterleaved || !(eContainer() instanceof OperatorExpCS);
-		if (derivedParent == null) {
+		if (parent == null) {
 			OperatorExpCS csNearestLeft = null;
 			for (ExpCS csLeft = this; (csLeft = csLeft.getLocalLeft()) != null; ) {
 				OperatorExpCS csLeftOperator = csLeft instanceof OperatorExpCS ? (OperatorExpCS)csLeft : null;
@@ -276,78 +266,47 @@ public class ExpCSImpl
 			}
 			if (csNearestLeft == null) {
 				if (csNearestRight == null) {
-					derivedParent = null;
+					parent = null;
 				}
 				else {
-					derivedParent = csNearestRight;
+					parent = csNearestRight;
 				}
 			}
 			else {
 				if (csNearestRight == null) {
-					derivedParent = csNearestLeft;
+					parent = csNearestLeft;
 				}
 				else if (csNearestLeft.isLocalLeftAncestorOf(csNearestRight)) {
-					derivedParent = csNearestRight;
+					parent = csNearestRight;
 				}
 				else {
-					derivedParent = csNearestLeft;
+					parent = csNearestLeft;
 				}
 			}
 		}
-		return derivedParent;
+		return parent;
 	}
-	
-	public @NonNull Precedence getDerivedPrecedence() {
+
+	public Precedence getPrecedence() {
 		return PrecedenceManager.LEAF_PRECEDENCE;
 	}
 
-	public @Nullable ExpCS getLocalLeft() {
-		return EssentialOCLCS2AS.getDerivedLeftExpCS(this);
-	}
-
-	public @NonNull ExpCS getLocalLeftmostDescendant() {
-		return this;
-	}
-
-	public @Nullable ExpCS getLocalRight() {
-		return EssentialOCLCS2AS.getDerivedRightExpCS(this);
-	}
-
-	public @NonNull ExpCS getLocalRightmostDescendant() {
-		return this;
-	}
-		
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public ElementCS getLogicalParent() {
-		ElementCS parent = getParent();
-		return parent != null
-			? parent
-			: super.getLogicalParent();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
 	@Override
 	public void resetPivot() {
 		super.resetPivot();
-		setParent(null);
 		setHasError(false);
-		derivedParentIsSet = false;
 		isInterleaved = false;
+		parent = null;
 	}
 
 	protected boolean isInterleaved = false;
 	
 	public void setInterleaved() {
 		isInterleaved = true;
+	}
+
+	public void setPrecedence(Precedence newPrecedence) {
+		throw new UnsupportedOperationException(); // Only OperatorExpCS is settable
 	}
 	
 	/**

@@ -22,7 +22,6 @@ import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.manager.PrecedenceManager;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCS2AS;
-import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCSPostOrderVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS;
@@ -40,6 +39,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetVariableCSImpl#getParent <em>Parent</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetVariableCSImpl#isHasError <em>Has Error</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetVariableCSImpl#getPrecedence <em>Precedence</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetVariableCSImpl#getOwningLetExpression <em>Owning Let Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetVariableCSImpl#getOwnedRoundBracketedClause <em>Owned Round Bracketed Clause</em>}</li>
  * </ul>
@@ -60,7 +60,6 @@ public class LetVariableCSImpl
 	 * @ordered
 	 */
 	protected OperatorExpCS parent;
-
 	/**
 	 * The default value of the '{@link #isHasError() <em>Has Error</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -112,24 +111,13 @@ public class LetVariableCSImpl
 	protected OperatorExpCS derivedParent;
 
 	public OperatorExpCS getParent() {
-		OperatorExpCS expCS = getDerivedParent();
-		assert !EssentialOCLCSPostOrderVisitor.doesInterleave || (expCS == parent);
-		return expCS;
+		return getDerivedParent();
 	}
 
 	public OperatorExpCS getDerivedParent() {
-		if (EssentialOCLCSPostOrderVisitor.interleaveInProgress) {
-			assert !isInterleaved;
-			return parent;
-		}
-		if (EssentialOCLCSPostOrderVisitor.doesInterleave && !derivedParentIsSet) {
-			assert !isInterleaved || (parent == null);
+		if (!isInterleaved) {
 			return null;
 		}
-		if (!EssentialOCLCSPostOrderVisitor.doesInterleave && !isInterleaved) {
-			return null;
-		}
-		assert isInterleaved || !(eContainer() instanceof OperatorExpCS);
 		if (derivedParent == null) {
 			OperatorExpCS csNearestLeft = null;
 			for (ExpCS csLeft = this; (csLeft = csLeft.getLocalLeft()) != null; ) {
@@ -186,19 +174,6 @@ public class LetVariableCSImpl
 			}
 		}
 		return derivedParent;
-	}
-
-
-	boolean derivedParentIsSet = false;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setParent(OperatorExpCS newParent) {
-		derivedParentIsSet = newParent != null;
-		parent = newParent;
 	}
 
 	/**
@@ -380,6 +355,8 @@ public class LetVariableCSImpl
 				return getParent();
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__HAS_ERROR:
 				return isHasError();
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__PRECEDENCE:
+				return getPrecedence();
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNING_LET_EXPRESSION:
 				return getOwningLetExpression();
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_ROUND_BRACKETED_CLAUSE:
@@ -397,11 +374,11 @@ public class LetVariableCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.LET_VARIABLE_CS__PARENT:
-				setParent((OperatorExpCS)newValue);
-				return;
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__HAS_ERROR:
 				setHasError((Boolean)newValue);
+				return;
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__PRECEDENCE:
+				setPrecedence((Precedence)newValue);
 				return;
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNING_LET_EXPRESSION:
 				setOwningLetExpression((LetExpCS)newValue);
@@ -422,11 +399,11 @@ public class LetVariableCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.LET_VARIABLE_CS__PARENT:
-				setParent((OperatorExpCS)null);
-				return;
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__HAS_ERROR:
 				setHasError(HAS_ERROR_EDEFAULT);
+				return;
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__PRECEDENCE:
+				setPrecedence((Precedence)null);
 				return;
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNING_LET_EXPRESSION:
 				setOwningLetExpression((LetExpCS)null);
@@ -451,6 +428,8 @@ public class LetVariableCSImpl
 				return parent != null;
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__HAS_ERROR:
 				return hasError != HAS_ERROR_EDEFAULT;
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__PRECEDENCE:
+				return getPrecedence() != null;
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNING_LET_EXPRESSION:
 				return getOwningLetExpression() != null;
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_ROUND_BRACKETED_CLAUSE:
@@ -472,6 +451,7 @@ public class LetVariableCSImpl
 			{
 				case EssentialOCLCSPackage.LET_VARIABLE_CS__PARENT: return EssentialOCLCSPackage.EXP_CS__PARENT;
 				case EssentialOCLCSPackage.LET_VARIABLE_CS__HAS_ERROR: return EssentialOCLCSPackage.EXP_CS__HAS_ERROR;
+				case EssentialOCLCSPackage.LET_VARIABLE_CS__PRECEDENCE: return EssentialOCLCSPackage.EXP_CS__PRECEDENCE;
 				default: return -1;
 			}
 		}
@@ -491,6 +471,7 @@ public class LetVariableCSImpl
 			{
 				case EssentialOCLCSPackage.EXP_CS__PARENT: return EssentialOCLCSPackage.LET_VARIABLE_CS__PARENT;
 				case EssentialOCLCSPackage.EXP_CS__HAS_ERROR: return EssentialOCLCSPackage.LET_VARIABLE_CS__HAS_ERROR;
+				case EssentialOCLCSPackage.EXP_CS__PRECEDENCE: return EssentialOCLCSPackage.LET_VARIABLE_CS__PRECEDENCE;
 				default: return -1;
 			}
 		}
@@ -505,10 +486,6 @@ public class LetVariableCSImpl
 	@Override
 	public @Nullable <R> R accept(@NonNull BaseCSVisitor<R> visitor) {
 		return (R) ((EssentialOCLCSVisitor<?>)visitor).visitLetVariableCS(this);
-	}
-	
-	public @NonNull Precedence getDerivedPrecedence() {
-		return PrecedenceManager.LEAF_PRECEDENCE;
 	}
 
 	public @Nullable ExpCS getLocalLeft() {
@@ -526,13 +503,15 @@ public class LetVariableCSImpl
 	public @NonNull ExpCS getLocalRightmostDescendant() {
 		return this;
 	}
+
+	public Precedence getPrecedence() {
+		return PrecedenceManager.LEAF_PRECEDENCE;
+	}
 	
 	@Override
 	public void resetPivot() {
 		super.resetPivot();
-		setParent(null);
 		setHasError(false);
-		derivedParentIsSet = false;
 		isInterleaved = false;
 	}
 
@@ -540,6 +519,10 @@ public class LetVariableCSImpl
 	
 	public void setInterleaved() {
 		isInterleaved = true;
+	}
+
+	public void setPrecedence(Precedence newPrecedence) {
+		throw new UnsupportedOperationException(); // Only OperatorExpCS is settable
 	}
 
 	/**

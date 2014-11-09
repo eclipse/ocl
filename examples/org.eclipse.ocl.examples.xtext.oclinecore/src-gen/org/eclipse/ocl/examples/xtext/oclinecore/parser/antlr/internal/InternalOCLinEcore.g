@@ -7149,7 +7149,7 @@ ruleExpCS returns [EObject current=null]
 	}
     {
         $current = forceCreateModelElementAndSet(
-            grammarAccess.getExpCSAccess().getInfixExpCSOwnedSourceAction_0_1_0(),
+            grammarAccess.getExpCSAccess().getInfixExpCSOwnedLeftAction_0_1_0(),
             $current);
     }
 )(
@@ -7173,16 +7173,16 @@ ruleExpCS returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getExpCSAccess().getOwnedArgumentExpCSParserRuleCall_0_1_2_0()); 
+	        newCompositeNode(grammarAccess.getExpCSAccess().getOwnedRightExpCSParserRuleCall_0_1_2_0()); 
 	    }
-		lv_ownedArgument_3_0=ruleExpCS		{
+		lv_ownedRight_3_0=ruleExpCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getExpCSRule());
 	        }
        		set(
        			$current, 
-       			"ownedArgument",
-        		lv_ownedArgument_3_0, 
+       			"ownedRight",
+        		lv_ownedRight_3_0, 
         		"ExpCS");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -7252,16 +7252,16 @@ rulePrefixedLetExpCS returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPrefixedLetExpCSAccess().getOwnedSourcePrefixedLetExpCSParserRuleCall_0_2_0()); 
+	        newCompositeNode(grammarAccess.getPrefixedLetExpCSAccess().getOwnedRightPrefixedLetExpCSParserRuleCall_0_2_0()); 
 	    }
-		lv_ownedSource_2_0=rulePrefixedLetExpCS		{
+		lv_ownedRight_2_0=rulePrefixedLetExpCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getPrefixedLetExpCSRule());
 	        }
        		set(
        			$current, 
-       			"ownedSource",
-        		lv_ownedSource_2_0, 
+       			"ownedRight",
+        		lv_ownedRight_2_0, 
         		"PrefixedLetExpCS");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -7331,16 +7331,16 @@ rulePrefixedPrimaryExpCS returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPrefixedPrimaryExpCSAccess().getOwnedSourcePrefixedPrimaryExpCSParserRuleCall_0_2_0()); 
+	        newCompositeNode(grammarAccess.getPrefixedPrimaryExpCSAccess().getOwnedRightPrefixedPrimaryExpCSParserRuleCall_0_2_0()); 
 	    }
-		lv_ownedSource_2_0=rulePrefixedPrimaryExpCS		{
+		lv_ownedRight_2_0=rulePrefixedPrimaryExpCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getPrefixedPrimaryExpCSRule());
 	        }
        		set(
        			$current, 
-       			"ownedSource",
-        		lv_ownedSource_2_0, 
+       			"ownedRight",
+        		lv_ownedRight_2_0, 
         		"PrefixedPrimaryExpCS");
 	        afterParserOrEnumRuleCall();
 	    }

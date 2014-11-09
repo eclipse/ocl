@@ -134,13 +134,16 @@ public class EssentialOCLUtils	// FIXME Find some extensible instantiation echan
 		}
 		assert csChildElement == getPivotingChildCS(csChildElement);
 		assert csParentElement == getPivotingParentCS(csChildElement);
-		if (csParentElement instanceof OperatorExpCS) {
-			if (((OperatorExpCS)csParentElement).getSource() == csChildElement) {
+		if (csParentElement instanceof InfixExpCS) {
+			if (((InfixExpCS)csParentElement).getSource() == csChildElement) {
 				return EssentialOCLCSPackage.Literals.OPERATOR_EXP_CS__SOURCE;
 			}
 			else {
 				return EssentialOCLCSPackage.Literals.INFIX_EXP_CS__ARGUMENT;
 			}
+		}
+		if (csParentElement instanceof PrefixExpCS) {
+			return EssentialOCLCSPackage.Literals.OPERATOR_EXP_CS__SOURCE;
 		}
 		return (EReference) csChildElement.eContainingFeature();
 /*		EObject csParent = csChildElement.eContainer();

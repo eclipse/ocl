@@ -1117,6 +1117,15 @@ public interface CompleteOCLCSPackage
 	int OCL_MESSAGE_ARG_CS__HAS_ERROR = EssentialOCLCSPackage.EXP_CS__HAS_ERROR;
 
 	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_MESSAGE_ARG_CS__PRECEDENCE = EssentialOCLCSPackage.EXP_CS__PRECEDENCE;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -36,20 +36,11 @@ public class EssentialOCLCS2AS extends BaseCS2AS
 	public static @Nullable ExpCS getDerivedLeftExpCS(@NonNull ExpCS csExp) {
 		ExpCS csChild = csExp;
 		for (EObject eContainer; (eContainer = csChild.eContainer()) instanceof OperatorExpCS; ) {
-			if (eContainer instanceof PrefixExpCS) {
-				PrefixExpCS csParent = (PrefixExpCS)eContainer;
-				if (csParent.getOwnedSource() == csChild) {
-					return csParent;
-				}
-				csChild = csParent;
+			OperatorExpCS csParent = (OperatorExpCS)eContainer;
+			if (csParent.getOwnedRight() == csChild) {
+				return csParent;
 			}
-			else {
-				InfixExpCS csParent = (InfixExpCS)eContainer;
-				if (csParent.getOwnedArgument() == csChild) {
-					return csParent;
-				}
-				csChild = csParent;
-			}
+			csChild = csParent;
 		}
 		return null;
 	}
@@ -63,7 +54,7 @@ public class EssentialOCLCS2AS extends BaseCS2AS
 			}
 			else/*if (eContainer instanceof InfixExpCS)*/ {
 				InfixExpCS csParent = (InfixExpCS)eContainer;
-				if (csParent.getOwnedSource() == csChild) {
+				if (csParent.getOwnedLeft() == csChild) {
 					return csParent;
 				}
 				csChild = csParent;
@@ -73,8 +64,8 @@ public class EssentialOCLCS2AS extends BaseCS2AS
 	}
 
 	public static boolean isLocalProperAncestorOf(@NonNull ExpCS csLeft, @NonNull ExpCS csRight) {
-		Precedence leftPrecedence = csLeft.getDerivedPrecedence();
-		Precedence rightPrecedence = csRight.getDerivedPrecedence();
+		Precedence leftPrecedence = csLeft.getPrecedence();
+		Precedence rightPrecedence = csRight.getPrecedence();
 		int leftOrder = leftPrecedence.getOrder().intValue();
 		int rightOrder = rightPrecedence.getOrder().intValue();
 		if (leftOrder > rightOrder) {
