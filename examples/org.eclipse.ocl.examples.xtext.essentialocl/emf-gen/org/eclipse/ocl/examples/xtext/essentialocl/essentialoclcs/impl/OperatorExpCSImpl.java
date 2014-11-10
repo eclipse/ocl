@@ -346,6 +346,7 @@ public abstract class OperatorExpCSImpl
 		assert this instanceof ExpCSImpl;	// Enforce correct ordering of base classes
 		super.resetPivot();
 		precedence = null;
+		source = null;
 	}
 
 	@Override

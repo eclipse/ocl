@@ -273,10 +273,11 @@ public class InfixExpCSImpl
 		if (source == null) {
 			ExpCS csLowestLeft = null;
 			for (ExpCS csLeft = this; (csLeft = csLeft.getLocalLeft()) != null; ) {
-				if ((csLeft instanceof OperatorExpCS) && ((OperatorExpCS)csLeft).isLocalLeftAncestorOf(this)) {
+				OperatorExpCS csLeftOperator = csLeft instanceof OperatorExpCS ? (OperatorExpCS)csLeft : null;
+				if ((csLeftOperator != null) && csLeftOperator.isLocalLeftAncestorOf(this)) {
 					break;
 				}
-				if ((csLowestLeft == null) || ((csLeft instanceof OperatorExpCS) && ((OperatorExpCS)csLeft).isLocalLeftAncestorOf(csLowestLeft))) {
+				if ((csLowestLeft == null) || ((csLeftOperator != null) && csLeftOperator.isLocalLeftAncestorOf(csLowestLeft))) {
 					csLowestLeft = csLeft;
 				}
 			}
@@ -292,7 +293,6 @@ public class InfixExpCSImpl
 	@Override
 	public void resetPivot() {
 		super.resetPivot();
-		source = null;
 		argument = null;
 	}
 	

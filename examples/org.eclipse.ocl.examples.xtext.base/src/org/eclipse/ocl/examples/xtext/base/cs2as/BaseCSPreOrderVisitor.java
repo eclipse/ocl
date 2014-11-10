@@ -30,7 +30,6 @@ import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.basecs.AnnotationCS;
-import org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.DataTypeCS;
@@ -42,6 +41,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.MultiplicityBoundsCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.MultiplicityStringCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PackageOwnerCS;
@@ -50,6 +50,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS;
@@ -133,6 +134,20 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 				LambdaType lambdaType = context.getMetaModelManager().getCompleteModel().getLambdaType(name, contextType, parameterTypes, resultType, null);
 				context.installPivotTypeWithMultiplicity(lambdaType, csElement);
 			}
+			return null;
+		}
+	}
+
+	protected static abstract class OperatorExpContinuation<T extends NamedElementCS> extends SingleContinuation<T>
+	{
+		public OperatorExpContinuation(@NonNull CS2ASConversion context, @NonNull T csElement) {
+			super(context, null, null, csElement);
+			context.getOperatorsHavePrecedenceInterDependency().addDependency(this);
+		}
+
+		@Override
+		public BasicContinuation<?> execute() {
+			context.getOperatorsHavePrecedenceInterDependency().setSatisfied(this);
 			return null;
 		}
 	}

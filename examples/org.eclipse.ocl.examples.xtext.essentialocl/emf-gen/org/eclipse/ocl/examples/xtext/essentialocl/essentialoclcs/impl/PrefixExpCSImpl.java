@@ -94,10 +94,11 @@ public class PrefixExpCSImpl
 		if (source == null) {
 			ExpCS csLowestRight = null;
 			for (ExpCS csRight = this; (csRight = csRight.getLocalRight()) != null; ) {
-				if ((csRight instanceof OperatorExpCS) && ((OperatorExpCS) csRight).isLocalRightAncestorOf(this)) {
+				OperatorExpCS csRightOperator = csRight instanceof OperatorExpCS ? (OperatorExpCS) csRight : null;
+				if ((csRightOperator != null) && csRightOperator.isLocalRightAncestorOf(this)) {
 					break;
 				}
-				if ((csLowestRight == null) || ((csRight instanceof OperatorExpCS) && ((OperatorExpCS) csRight).isLocalRightAncestorOf(csLowestRight))) {
+				if ((csLowestRight == null) || ((csRightOperator != null) && csRightOperator.isLocalRightAncestorOf(csLowestRight))) {
 					csLowestRight = csRight;
 				}
 			}
@@ -108,12 +109,6 @@ public class PrefixExpCSImpl
 	
 	public boolean isLocalRightAncestorOf(@NonNull ExpCS csExp) {	// csExp should be to the right of this for associativity resolution
 		return false;
-	}
-
-	@Override
-	public void resetPivot() {
-		super.resetPivot();
-		source = null;
 	}
 	
 	@Override

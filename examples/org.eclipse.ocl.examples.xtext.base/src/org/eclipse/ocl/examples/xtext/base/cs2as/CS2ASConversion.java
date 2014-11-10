@@ -94,6 +94,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.WildcardTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
+import org.eclipse.ocl.examples.xtext.base.cs2as.BaseCSPreOrderVisitor.OperatorExpContinuation;
 import org.eclipse.ocl.examples.xtext.base.cs2as.BaseCSPreOrderVisitor.TemplateSignatureContinuation;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
@@ -135,6 +136,8 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 	private final @NonNull BaseCSVisitor<Continuation<?>> preOrderVisitor;
 
 	private @NonNull InterDependency<TemplateSignatureContinuation> typesHaveSignatures = new InterDependency<TemplateSignatureContinuation>("All unspecialized signatures defined", null);
+
+	private @NonNull InterDependency<OperatorExpContinuation<?>> operatorsHavePrecedence = new InterDependency<OperatorExpContinuation<?>>("All operator precedences defined", null);
 
 	/**
 	 * A typed cache for use by derived conversions.
@@ -573,6 +576,10 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 
 	public @Nullable org.eclipse.ocl.examples.pivot.Package getOldPackageBySimpleName(@NonNull String name) {
 		return oldPackagesByName.get(name);
+	}
+
+	public @NonNull InterDependency<OperatorExpContinuation<?>> getOperatorsHavePrecedenceInterDependency() {
+		return operatorsHavePrecedence;
 	}
 
 	protected @NonNull String getQualifiedName(@NonNull StringBuilder s, @NonNull org.eclipse.ocl.examples.pivot.Package pkg) {

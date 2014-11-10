@@ -106,40 +106,42 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 		}
 	}
 
-	protected static class InfixExpContinuation extends SingleContinuation<InfixExpCS>
+	protected static class InfixExpContinuation extends OperatorExpContinuation<InfixExpCS>
 	{
 		public InfixExpContinuation(@NonNull CS2ASConversion context, @NonNull InfixExpCS csElement) {
-			super(context, null, null, csElement);
+			super(context, csElement);
 		}
 
 		@Override
 		public BasicContinuation<?> execute() {
+			MetaModelManager metaModelManager = context.getMetaModelManager();
 			String operatorName = csElement.getName();
-			Precedence precedence = operatorName != null ? context.getMetaModelManager().getInfixPrecedence(operatorName) : null;
+			Precedence precedence = operatorName != null ? metaModelManager.getInfixPrecedence(operatorName) : null;
 			csElement.setPrecedence(precedence);
-			return null;
+			return super.execute();
 		}
 	}
 
-	protected static class PrefixExpContinuation extends SingleContinuation<PrefixExpCS>
+	protected static class PrefixExpContinuation extends OperatorExpContinuation<PrefixExpCS>
 	{
 		public PrefixExpContinuation(@NonNull CS2ASConversion context, @NonNull PrefixExpCS csElement) {
-			super(context, null, null, csElement);
+			super(context, csElement);
 		}
 
 		@Override
 		public BasicContinuation<?> execute() {
+			MetaModelManager metaModelManager = context.getMetaModelManager();
 			String operatorName = csElement.getName();
-			Precedence precedence = operatorName != null ? context.getMetaModelManager().getPrefixPrecedence(operatorName) : null;
+			Precedence precedence = operatorName != null ? metaModelManager.getPrefixPrecedence(operatorName) : null;
 			csElement.setPrecedence(precedence);
-			return null;
+			return super.execute();
 		}
 	}
 
 	protected static class TypeNameExpContinuation extends SingleContinuation<TypeNameExpCS>
 	{
 		public TypeNameExpContinuation(@NonNull CS2ASConversion context, @NonNull TypeNameExpCS csElement) {
-			super(context, null, null, csElement);
+			super(context, null, null, csElement, context.getOperatorsHavePrecedenceInterDependency());
 		}
 
 		@Override
