@@ -55,7 +55,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ElementCS" abstract="true" eSuperTypes="#//VisitableCS">
     <eOperations name="getDescription" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="logicalParent" eType="#//ElementCS"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//ElementCS"
         changeable="false" volatile="true" transient="true" derived="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ElementRefCS" abstract="true" eSuperTypes="#//PivotableElementCS"/>

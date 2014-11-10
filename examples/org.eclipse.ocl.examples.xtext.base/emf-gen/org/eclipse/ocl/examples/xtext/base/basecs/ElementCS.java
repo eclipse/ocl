@@ -25,7 +25,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.VisitableCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ElementCS#getLogicalParent <em>Logical Parent</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ElementCS#getParent <em>Parent</em>}</li>
  * </ul>
  * </p>
  *
@@ -36,19 +36,19 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.VisitableCS;
 public interface ElementCS extends EObject, VisitableCS {
 
 	/**
-	 * Returns the value of the '<em><b>Logical Parent</b></em>' reference.
+	 * Returns the value of the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Logical Parent</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Logical Parent</em>' reference.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getElementCS_LogicalParent()
+	 * @return the value of the '<em>Parent</em>' reference.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getElementCS_Parent()
 	 * @model resolveProxies="false" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
-	ElementCS getLogicalParent();
+	ElementCS getParent();
 
 	/**
 	 * <!-- begin-user-doc -->

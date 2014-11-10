@@ -77,7 +77,7 @@ public class EssentialOCLOutlineTreeProvider extends BaseOutlineTreeProvider
 		//
 		if (csInfixExp != null) {
 			OperatorExpCS csRoot = csInfixExp;
-			for (OperatorExpCS csParent = csRoot.getParent(); csParent != null; csParent = csParent.getParent()) {
+			for (OperatorExpCS csParent = csRoot.getLocalParent(); csParent != null; csParent = csParent.getLocalParent()) {
 				csRoot = csParent;
 			}
 			createNode(parentNode, csRoot);

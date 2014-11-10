@@ -280,6 +280,7 @@ public class InfixExpCSImpl
 		return source;
 	}
 	
+	@Override
 	public boolean isLocalRightAncestorOf(@NonNull ExpCS csExp) {	// csExp should be to the right of this for associativity resolution
 		return !EssentialOCLCS2AS.isLocalProperAncestorOf(csExp, this);
 	}

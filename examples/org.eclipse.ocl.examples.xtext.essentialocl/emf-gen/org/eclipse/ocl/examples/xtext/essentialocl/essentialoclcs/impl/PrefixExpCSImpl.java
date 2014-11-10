@@ -104,6 +104,7 @@ public class PrefixExpCSImpl
 		return source;
 	}
 	
+	@Override
 	public boolean isLocalRightAncestorOf(@NonNull ExpCS csExp) {	// csExp should be to the right of this for associativity resolution
 		return false;
 	}

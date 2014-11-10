@@ -35,8 +35,8 @@ public class EssentialOCLUtils	// FIXME Find some extensible instantiation echan
 	public static ModelElementCS getPivotedCS(EObject csElement) {
 		if (csElement instanceof InfixExpCS) {
 			OperatorExpCS csOperator = (InfixExpCS)csElement;
-			while (csOperator.getParent() != null) {
-				csOperator = csOperator.getParent();
+			for (OperatorExpCS csParent; (csParent = csOperator.getLocalParent()) != null; ) {
+				csOperator = csParent;
 			}
 			return getPivotedCS(csOperator);
 		}
@@ -74,8 +74,8 @@ public class EssentialOCLUtils	// FIXME Find some extensible instantiation echan
 			return csElement;
 		}
 		if (csElement instanceof ExpCS) {
-			OperatorExpCS operator = ((ExpCS) csElement).getParent();
-			if (NavigationUtil.isNavigationInfixExp(operator) && (csElement != operator.getSource())) {
+			OperatorExpCS operator = ((ExpCS) csElement).getLocalParent();
+			if (NavigationUtil.isNavigationInfixExp(operator) && (operator != null) && (csElement != operator.getSource())) {
 				return getPivotingChildCS(operator);
 			}
 			else if (operator != null) {
@@ -113,7 +113,7 @@ public class EssentialOCLUtils	// FIXME Find some extensible instantiation echan
 		}
 		//		assert csElement == getPivotingChildCS(csElement);
 		if (csElement instanceof ExpCS) {
-			OperatorExpCS operator = ((ExpCS) csElement).getParent();
+			OperatorExpCS operator = ((ExpCS) csElement).getLocalParent();
 			if (operator != null) {
 				return operator;
 			}

@@ -181,7 +181,7 @@ public class ElementUtil
 	}
 	
 	public static @Nullable RootCSAttribution getDocumentAttribution(@NonNull ElementCS context) {
-		for (ElementCS target = context, parent; (parent = target.getLogicalParent()) != null; target = parent) {
+		for (ElementCS target = context, parent; (parent = target.getParent()) != null; target = parent) {
 			Attribution attribution = PivotUtil.getAttribution(parent);
 			if (attribution instanceof RootCSAttribution) {
 				return (RootCSAttribution) attribution;

@@ -23,8 +23,12 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#getParent <em>Parent</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#isHasError <em>Has Error</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#getLocalLeft <em>Local Left</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#getLocalLeftmostDescendant <em>Local Leftmost Descendant</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#getLocalParent <em>Local Parent</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#getLocalRight <em>Local Right</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#getLocalRightmostDescendant <em>Local Rightmost Descendant</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#getPrecedence <em>Precedence</em>}</li>
  * </ul>
  * </p>
@@ -37,19 +41,49 @@ public interface ExpCS
 		extends ModelElementCS {
 
 	/**
-	 * Returns the value of the '<em><b>Parent</b></em>' reference.
+	 * Returns the value of the '<em><b>Local Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parent</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Parent</em>' reference.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getExpCS_Parent()
+	 * @return the value of the '<em>Local Parent</em>' reference.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getExpCS_LocalParent()
 	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
 	 * @generated
 	 */
-	OperatorExpCS getParent();
+	@Nullable OperatorExpCS getLocalParent();
+
+	/**
+	 * Returns the value of the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Local Right</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Local Right</em>' reference.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getExpCS_LocalRight()
+	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
+	 * @generated
+	 */
+	@Nullable ExpCS getLocalRight();
+
+	/**
+	 * Returns the value of the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Local Rightmost Descendant</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Local Rightmost Descendant</em>' reference.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getExpCS_LocalRightmostDescendant()
+	 * @model resolveProxies="false" required="true" transient="true" changeable="false" derived="true"
+	 * @generated
+	 */
+	@NonNull ExpCS getLocalRightmostDescendant();
 
 	/**
 	 * Returns the value of the '<em><b>Has Error</b></em>' attribute.
@@ -79,6 +113,36 @@ public interface ExpCS
 	void setHasError(boolean value);
 	
 	/**
+	 * Returns the value of the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Local Left</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Local Left</em>' reference.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getExpCS_LocalLeft()
+	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
+	 * @generated
+	 */
+	@Nullable ExpCS getLocalLeft();
+
+	/**
+	 * Returns the value of the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Local Leftmost Descendant</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Local Leftmost Descendant</em>' reference.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getExpCS_LocalLeftmostDescendant()
+	 * @model resolveProxies="false" required="true" transient="true" changeable="false" derived="true"
+	 * @generated
+	 */
+	@NonNull ExpCS getLocalLeftmostDescendant();
+
+	/**
 	 * Returns the value of the '<em><b>Precedence</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -103,12 +167,4 @@ public interface ExpCS
 	 * @generated
 	 */
 	void setPrecedence(Precedence value);
-
-	@Nullable ExpCS getLocalLeft();
-
-	@NonNull ExpCS getLocalLeftmostDescendant();
-
-	@Nullable ExpCS getLocalRight();
-
-	@NonNull ExpCS getLocalRightmostDescendant();
 } // ExpCS

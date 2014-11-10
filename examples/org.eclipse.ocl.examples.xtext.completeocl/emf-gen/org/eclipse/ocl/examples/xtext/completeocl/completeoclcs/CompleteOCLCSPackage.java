@@ -139,13 +139,13 @@ public interface CompleteOCLCSPackage
 	int PATH_NAME_DECL_CS = 11;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_NAME_DECL_CS__LOGICAL_PARENT = BaseCSPackage.MODEL_ELEMENT_CS__LOGICAL_PARENT;
+	int PATH_NAME_DECL_CS__PARENT = BaseCSPackage.MODEL_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -202,13 +202,13 @@ public interface CompleteOCLCSPackage
 	int PATH_NAME_DECL_CS_FEATURE_COUNT = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_DECL_CS__LOGICAL_PARENT = PATH_NAME_DECL_CS__LOGICAL_PARENT;
+	int CONTEXT_DECL_CS__PARENT = PATH_NAME_DECL_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -265,13 +265,13 @@ public interface CompleteOCLCSPackage
 	int CONTEXT_DECL_CS_FEATURE_COUNT = PATH_NAME_DECL_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER_CONTEXT_DECL_CS__LOGICAL_PARENT = CONTEXT_DECL_CS__LOGICAL_PARENT;
+	int CLASSIFIER_CONTEXT_DECL_CS__PARENT = CONTEXT_DECL_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -383,13 +383,13 @@ public interface CompleteOCLCSPackage
 	int COMPLETE_OCL_DOCUMENT_CS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_OCL_DOCUMENT_CS__LOGICAL_PARENT = BaseCSPackage.NAMESPACE_CS__LOGICAL_PARENT;
+	int COMPLETE_OCL_DOCUMENT_CS__PARENT = BaseCSPackage.NAMESPACE_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -491,13 +491,13 @@ public interface CompleteOCLCSPackage
 	int COMPLETE_OCL_DOCUMENT_CS_FEATURE_COUNT = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 5;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS__LOGICAL_PARENT = BaseCSPackage.TYPED_ELEMENT_CS__LOGICAL_PARENT;
+	int DEF_CS__PARENT = BaseCSPackage.TYPED_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -618,13 +618,13 @@ public interface CompleteOCLCSPackage
 	int DEF_OPERATION_CS = 4;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_OPERATION_CS__LOGICAL_PARENT = DEF_CS__LOGICAL_PARENT;
+	int DEF_OPERATION_CS__PARENT = DEF_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -763,13 +763,13 @@ public interface CompleteOCLCSPackage
 	int DEF_PROPERTY_CS = 5;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_PROPERTY_CS__LOGICAL_PARENT = DEF_CS__LOGICAL_PARENT;
+	int DEF_PROPERTY_CS__PARENT = DEF_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -890,13 +890,13 @@ public interface CompleteOCLCSPackage
 	int FEATURE_CONTEXT_DECL_CS = 6;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CONTEXT_DECL_CS__LOGICAL_PARENT = CONTEXT_DECL_CS__LOGICAL_PARENT;
+	int FEATURE_CONTEXT_DECL_CS__PARENT = CONTEXT_DECL_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -972,13 +972,13 @@ public interface CompleteOCLCSPackage
 	int INCLUDE_CS = 7;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INCLUDE_CS__LOGICAL_PARENT = BaseCSPackage.NAMESPACE_CS__LOGICAL_PARENT;
+	int INCLUDE_CS__PARENT = BaseCSPackage.NAMESPACE_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1054,13 +1054,13 @@ public interface CompleteOCLCSPackage
 	int OCL_MESSAGE_ARG_CS = 8;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_MESSAGE_ARG_CS__LOGICAL_PARENT = EssentialOCLCSPackage.EXP_CS__LOGICAL_PARENT;
+	int OCL_MESSAGE_ARG_CS__PARENT = EssentialOCLCSPackage.EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1099,15 +1099,6 @@ public interface CompleteOCLCSPackage
 	int OCL_MESSAGE_ARG_CS__CSI = EssentialOCLCSPackage.EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_MESSAGE_ARG_CS__PARENT = EssentialOCLCSPackage.EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1115,6 +1106,51 @@ public interface CompleteOCLCSPackage
 	 * @ordered
 	 */
 	int OCL_MESSAGE_ARG_CS__HAS_ERROR = EssentialOCLCSPackage.EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_MESSAGE_ARG_CS__LOCAL_LEFT = EssentialOCLCSPackage.EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_MESSAGE_ARG_CS__LOCAL_LEFTMOST_DESCENDANT = EssentialOCLCSPackage.EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_MESSAGE_ARG_CS__LOCAL_PARENT = EssentialOCLCSPackage.EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_MESSAGE_ARG_CS__LOCAL_RIGHT = EssentialOCLCSPackage.EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_MESSAGE_ARG_CS__LOCAL_RIGHTMOST_DESCENDANT = EssentialOCLCSPackage.EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -1144,13 +1180,13 @@ public interface CompleteOCLCSPackage
 	int OCL_MESSAGE_ARG_CS_FEATURE_COUNT = EssentialOCLCSPackage.EXP_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CONTEXT_DECL_CS__LOGICAL_PARENT = FEATURE_CONTEXT_DECL_CS__LOGICAL_PARENT;
+	int OPERATION_CONTEXT_DECL_CS__PARENT = FEATURE_CONTEXT_DECL_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1279,13 +1315,13 @@ public interface CompleteOCLCSPackage
 	int OPERATION_CONTEXT_DECL_CS_FEATURE_COUNT = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 7;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_DECLARATION_CS__LOGICAL_PARENT = PATH_NAME_DECL_CS__LOGICAL_PARENT;
+	int PACKAGE_DECLARATION_CS__PARENT = PATH_NAME_DECL_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1369,13 +1405,13 @@ public interface CompleteOCLCSPackage
 	int PACKAGE_DECLARATION_CS_FEATURE_COUNT = PATH_NAME_DECL_CS_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CONTEXT_DECL_CS__LOGICAL_PARENT = FEATURE_CONTEXT_DECL_CS__LOGICAL_PARENT;
+	int PROPERTY_CONTEXT_DECL_CS__PARENT = FEATURE_CONTEXT_DECL_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.

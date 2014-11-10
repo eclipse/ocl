@@ -569,4 +569,9 @@ public class LetVariableCSImpl
 		assert this instanceof ExpCSImpl;	// Enforce correct ordering of base classes
 		super.resetPivot();
 	}
+
+	@Override
+	public String toString() {
+		return super.toString();
+	}
 } //VariableCSImpl

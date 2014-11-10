@@ -97,13 +97,13 @@ public interface BaseCSPackage extends EPackage {
 	int ELEMENT_CS = 9;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_CS__LOGICAL_PARENT = VISITABLE_CS_FEATURE_COUNT + 0;
+	int ELEMENT_CS__PARENT = VISITABLE_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Element CS</em>' class.
@@ -125,13 +125,13 @@ public interface BaseCSPackage extends EPackage {
 	int PIVOTABLE_ELEMENT_CS = 31;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PIVOTABLE_ELEMENT_CS__LOGICAL_PARENT = ELEMENT_CS__LOGICAL_PARENT;
+	int PIVOTABLE_ELEMENT_CS__PARENT = ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -162,13 +162,13 @@ public interface BaseCSPackage extends EPackage {
 	int MODEL_ELEMENT_CS = 17;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_CS__LOGICAL_PARENT = PIVOTABLE_ELEMENT_CS__LOGICAL_PARENT;
+	int MODEL_ELEMENT_CS__PARENT = PIVOTABLE_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -256,13 +256,13 @@ public interface BaseCSPackage extends EPackage {
 	int NAMED_ELEMENT_CS = 22;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_CS__LOGICAL_PARENT = MODEL_ELEMENT_CS__LOGICAL_PARENT;
+	int NAMED_ELEMENT_CS__PARENT = MODEL_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -319,13 +319,13 @@ public interface BaseCSPackage extends EPackage {
 	int NAMED_ELEMENT_CS_FEATURE_COUNT = MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION_ELEMENT_CS__LOGICAL_PARENT = NAMED_ELEMENT_CS__LOGICAL_PARENT;
+	int ANNOTATION_ELEMENT_CS__PARENT = NAMED_ELEMENT_CS__PARENT;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TypedElementCSImpl <em>Typed Element CS</em>}' class.
@@ -671,13 +671,13 @@ public interface BaseCSPackage extends EPackage {
 	int ANNOTATION_ELEMENT_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION_CS__LOGICAL_PARENT = ANNOTATION_ELEMENT_CS__LOGICAL_PARENT;
+	int ANNOTATION_CS__PARENT = ANNOTATION_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -761,13 +761,13 @@ public interface BaseCSPackage extends EPackage {
 	int ANNOTATION_CS_FEATURE_COUNT = ANNOTATION_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_CS__LOGICAL_PARENT = NAMED_ELEMENT_CS__LOGICAL_PARENT;
+	int TYPED_ELEMENT_CS__PARENT = NAMED_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -851,13 +851,13 @@ public interface BaseCSPackage extends EPackage {
 	int TYPED_ELEMENT_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CS__LOGICAL_PARENT = TYPED_ELEMENT_CS__LOGICAL_PARENT;
+	int FEATURE_CS__PARENT = TYPED_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -941,13 +941,13 @@ public interface BaseCSPackage extends EPackage {
 	int FEATURE_CS_FEATURE_COUNT = TYPED_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURAL_FEATURE_CS__LOGICAL_PARENT = FEATURE_CS__LOGICAL_PARENT;
+	int STRUCTURAL_FEATURE_CS__PARENT = FEATURE_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1058,13 +1058,13 @@ public interface BaseCSPackage extends EPackage {
 	int STRUCTURAL_FEATURE_CS_FEATURE_COUNT = FEATURE_CS_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_CS__LOGICAL_PARENT = STRUCTURAL_FEATURE_CS__LOGICAL_PARENT;
+	int ATTRIBUTE_CS__PARENT = STRUCTURAL_FEATURE_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1185,13 +1185,13 @@ public interface BaseCSPackage extends EPackage {
 	int CLASS_CS = 3;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_CS__LOGICAL_PARENT = NAMED_ELEMENT_CS__LOGICAL_PARENT;
+	int CLASS_CS__PARENT = NAMED_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1293,6 +1293,15 @@ public interface BaseCSPackage extends EPackage {
 	int CLASS_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT_CS__PARENT = NAMED_ELEMENT_CS__PARENT;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ElementRefCSImpl <em>Element Ref CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1321,15 +1330,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 */
 	int MODEL_ELEMENT_REF_CS = 18;
-
-	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT_CS__LOGICAL_PARENT = NAMED_ELEMENT_CS__LOGICAL_PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1423,13 +1423,13 @@ public interface BaseCSPackage extends EPackage {
 	int CONTEXT_LESS_ELEMENT_CS = 5;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_LESS_ELEMENT_CS__LOGICAL_PARENT = ELEMENT_CS__LOGICAL_PARENT;
+	int CONTEXT_LESS_ELEMENT_CS__PARENT = ELEMENT_CS__PARENT;
 
 	/**
 	 * The number of structural features of the '<em>Context Less Element CS</em>' class.
@@ -1441,13 +1441,13 @@ public interface BaseCSPackage extends EPackage {
 	int CONTEXT_LESS_ELEMENT_CS_FEATURE_COUNT = ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE_CS__LOGICAL_PARENT = CLASS_CS__LOGICAL_PARENT;
+	int DATA_TYPE_CS__PARENT = CLASS_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1549,13 +1549,13 @@ public interface BaseCSPackage extends EPackage {
 	int DATA_TYPE_CS_FEATURE_COUNT = CLASS_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DETAIL_CS__LOGICAL_PARENT = NAMED_ELEMENT_CS__LOGICAL_PARENT;
+	int DETAIL_CS__PARENT = NAMED_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1621,13 +1621,13 @@ public interface BaseCSPackage extends EPackage {
 	int DETAIL_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENTATION_CS__LOGICAL_PARENT = ANNOTATION_ELEMENT_CS__LOGICAL_PARENT;
+	int DOCUMENTATION_CS__PARENT = ANNOTATION_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1702,13 +1702,13 @@ public interface BaseCSPackage extends EPackage {
 	int DOCUMENTATION_CS_FEATURE_COUNT = ANNOTATION_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_REF_CS__LOGICAL_PARENT = PIVOTABLE_ELEMENT_CS__LOGICAL_PARENT;
+	int ELEMENT_REF_CS__PARENT = PIVOTABLE_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1729,13 +1729,13 @@ public interface BaseCSPackage extends EPackage {
 	int ELEMENT_REF_CS_FEATURE_COUNT = PIVOTABLE_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_CS__LOGICAL_PARENT = CLASS_CS__LOGICAL_PARENT;
+	int ENUMERATION_CS__PARENT = CLASS_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1846,13 +1846,13 @@ public interface BaseCSPackage extends EPackage {
 	int ENUMERATION_CS_FEATURE_COUNT = CLASS_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_LITERAL_CS__LOGICAL_PARENT = NAMED_ELEMENT_CS__LOGICAL_PARENT;
+	int ENUMERATION_LITERAL_CS__PARENT = NAMED_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1918,13 +1918,13 @@ public interface BaseCSPackage extends EPackage {
 	int ENUMERATION_LITERAL_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMESPACE_CS__LOGICAL_PARENT = NAMED_ELEMENT_CS__LOGICAL_PARENT;
+	int NAMESPACE_CS__PARENT = NAMED_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1981,13 +1981,13 @@ public interface BaseCSPackage extends EPackage {
 	int NAMESPACE_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMPORT_CS__LOGICAL_PARENT = NAMESPACE_CS__LOGICAL_PARENT;
+	int IMPORT_CS__PARENT = NAMESPACE_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -2071,13 +2071,13 @@ public interface BaseCSPackage extends EPackage {
 	int IMPORT_CS_FEATURE_COUNT = NAMESPACE_CS_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_REF_CS__LOGICAL_PARENT = ELEMENT_REF_CS__LOGICAL_PARENT;
+	int TYPE_REF_CS__PARENT = ELEMENT_REF_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -2098,13 +2098,13 @@ public interface BaseCSPackage extends EPackage {
 	int TYPE_REF_CS_FEATURE_COUNT = ELEMENT_REF_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_REF_CS__LOGICAL_PARENT = TYPE_REF_CS__LOGICAL_PARENT;
+	int TYPED_REF_CS__PARENT = TYPE_REF_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -2132,6 +2132,15 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int TYPED_REF_CS_FEATURE_COUNT = TYPE_REF_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_TYPE_CS__PARENT = TYPED_REF_CS__PARENT;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.MultiplicityCS <em>Multiplicity CS</em>}' class.
@@ -2162,15 +2171,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 */
 	int MULTIPLICITY_STRING_CS = 21;
-
-	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAMBDA_TYPE_CS__LOGICAL_PARENT = TYPED_REF_CS__LOGICAL_PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -2245,13 +2245,13 @@ public interface BaseCSPackage extends EPackage {
 	int LAMBDA_TYPE_CS_FEATURE_COUNT = TYPED_REF_CS_FEATURE_COUNT + 5;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_CS__LOGICAL_PARENT = NAMESPACE_CS__LOGICAL_PARENT;
+	int LIBRARY_CS__PARENT = NAMESPACE_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -2317,13 +2317,13 @@ public interface BaseCSPackage extends EPackage {
 	int LIBRARY_CS_FEATURE_COUNT = NAMESPACE_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_REF_CS__LOGICAL_PARENT = ELEMENT_REF_CS__LOGICAL_PARENT;
+	int MODEL_ELEMENT_REF_CS__PARENT = ELEMENT_REF_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -2362,13 +2362,13 @@ public interface BaseCSPackage extends EPackage {
 	int MODEL_ELEMENT_REF_CS_FEATURE_COUNT = ELEMENT_REF_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICITY_CS__LOGICAL_PARENT = ELEMENT_CS__LOGICAL_PARENT;
+	int MULTIPLICITY_CS__PARENT = ELEMENT_CS__PARENT;
 
 	/**
 	 * The number of structural features of the '<em>Multiplicity CS</em>' class.
@@ -2380,13 +2380,13 @@ public interface BaseCSPackage extends EPackage {
 	int MULTIPLICITY_CS_FEATURE_COUNT = ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICITY_BOUNDS_CS__LOGICAL_PARENT = MULTIPLICITY_CS__LOGICAL_PARENT;
+	int MULTIPLICITY_BOUNDS_CS__PARENT = MULTIPLICITY_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
@@ -2416,13 +2416,13 @@ public interface BaseCSPackage extends EPackage {
 	int MULTIPLICITY_BOUNDS_CS_FEATURE_COUNT = MULTIPLICITY_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICITY_STRING_CS__LOGICAL_PARENT = MULTIPLICITY_CS__LOGICAL_PARENT;
+	int MULTIPLICITY_STRING_CS__PARENT = MULTIPLICITY_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>String Bounds</b></em>' attribute.
@@ -2443,13 +2443,13 @@ public interface BaseCSPackage extends EPackage {
 	int MULTIPLICITY_STRING_CS_FEATURE_COUNT = MULTIPLICITY_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CS__LOGICAL_PARENT = FEATURE_CS__LOGICAL_PARENT;
+	int OPERATION_CS__PARENT = FEATURE_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -2606,13 +2606,13 @@ public interface BaseCSPackage extends EPackage {
 	int PACKAGE_OWNER_CS = 26;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_OWNER_CS__LOGICAL_PARENT = MODEL_ELEMENT_CS__LOGICAL_PARENT;
+	int PACKAGE_OWNER_CS__PARENT = MODEL_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -2669,13 +2669,13 @@ public interface BaseCSPackage extends EPackage {
 	int PACKAGE_OWNER_CS_FEATURE_COUNT = MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_CS__LOGICAL_PARENT = PACKAGE_OWNER_CS__LOGICAL_PARENT;
+	int PACKAGE_CS__PARENT = PACKAGE_OWNER_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -2768,13 +2768,13 @@ public interface BaseCSPackage extends EPackage {
 	int PACKAGE_CS_FEATURE_COUNT = PACKAGE_OWNER_CS_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_CS__LOGICAL_PARENT = TYPED_ELEMENT_CS__LOGICAL_PARENT;
+	int PARAMETER_CS__PARENT = TYPED_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -2877,13 +2877,13 @@ public interface BaseCSPackage extends EPackage {
 	int PATH_ELEMENT_CS = 28;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_ELEMENT_CS__LOGICAL_PARENT = ELEMENT_CS__LOGICAL_PARENT;
+	int PATH_ELEMENT_CS__PARENT = ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Owning Path Name</b></em>' container reference.
@@ -2932,13 +2932,13 @@ public interface BaseCSPackage extends EPackage {
 	int PATH_ELEMENT_WITH_URICS = 29;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_ELEMENT_WITH_URICS__LOGICAL_PARENT = PATH_ELEMENT_CS__LOGICAL_PARENT;
+	int PATH_ELEMENT_WITH_URICS__PARENT = PATH_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Owning Path Name</b></em>' container reference.
@@ -2996,13 +2996,13 @@ public interface BaseCSPackage extends EPackage {
 	int PATH_NAME_CS = 30;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_NAME_CS__LOGICAL_PARENT = ELEMENT_CS__LOGICAL_PARENT;
+	int PATH_NAME_CS__PARENT = ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Path Elements</b></em>' containment reference list.
@@ -3050,13 +3050,13 @@ public interface BaseCSPackage extends EPackage {
 	int PATH_NAME_CS_FEATURE_COUNT = ELEMENT_CS_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_TYPE_REF_CS__LOGICAL_PARENT = TYPED_REF_CS__LOGICAL_PARENT;
+	int PRIMITIVE_TYPE_REF_CS__PARENT = TYPED_REF_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -3095,13 +3095,13 @@ public interface BaseCSPackage extends EPackage {
 	int PRIMITIVE_TYPE_REF_CS_FEATURE_COUNT = TYPED_REF_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_CS__LOGICAL_PARENT = STRUCTURAL_FEATURE_CS__LOGICAL_PARENT;
+	int REFERENCE_CS__PARENT = STRUCTURAL_FEATURE_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -3240,13 +3240,13 @@ public interface BaseCSPackage extends EPackage {
 	int ROOT_CS = 34;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_CS__LOGICAL_PARENT = MODEL_ELEMENT_CS__LOGICAL_PARENT;
+	int ROOT_CS__PARENT = MODEL_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -3322,13 +3322,13 @@ public interface BaseCSPackage extends EPackage {
 	int ROOT_PACKAGE_CS = 35;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_PACKAGE_CS__LOGICAL_PARENT = PACKAGE_OWNER_CS__LOGICAL_PARENT;
+	int ROOT_PACKAGE_CS__PARENT = PACKAGE_OWNER_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -3413,13 +3413,13 @@ public interface BaseCSPackage extends EPackage {
 	int SPECIFICATION_CS = 36;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIFICATION_CS__LOGICAL_PARENT = MODEL_ELEMENT_CS__LOGICAL_PARENT;
+	int SPECIFICATION_CS__PARENT = MODEL_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -3486,13 +3486,13 @@ public interface BaseCSPackage extends EPackage {
 	int STRUCTURED_CLASS_CS = 37;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURED_CLASS_CS__LOGICAL_PARENT = CLASS_CS__LOGICAL_PARENT;
+	int STRUCTURED_CLASS_CS__PARENT = CLASS_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -3630,13 +3630,13 @@ public interface BaseCSPackage extends EPackage {
 	int STRUCTURED_CLASS_CS_FEATURE_COUNT = CLASS_CS_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_BINDING_CS__LOGICAL_PARENT = ELEMENT_REF_CS__LOGICAL_PARENT;
+	int TEMPLATE_BINDING_CS__PARENT = ELEMENT_REF_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -3675,13 +3675,13 @@ public interface BaseCSPackage extends EPackage {
 	int TEMPLATE_BINDING_CS_FEATURE_COUNT = ELEMENT_REF_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_CS__LOGICAL_PARENT = NAMED_ELEMENT_CS__LOGICAL_PARENT;
+	int TEMPLATE_PARAMETER_CS__PARENT = NAMED_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -3747,13 +3747,13 @@ public interface BaseCSPackage extends EPackage {
 	int TEMPLATE_PARAMETER_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION_CS__LOGICAL_PARENT = MODEL_ELEMENT_CS__LOGICAL_PARENT;
+	int TEMPLATE_PARAMETER_SUBSTITUTION_CS__PARENT = MODEL_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -3819,13 +3819,13 @@ public interface BaseCSPackage extends EPackage {
 	int TEMPLATE_PARAMETER_SUBSTITUTION_CS_FEATURE_COUNT = MODEL_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_SIGNATURE_CS__LOGICAL_PARENT = MODEL_ELEMENT_CS__LOGICAL_PARENT;
+	int TEMPLATE_SIGNATURE_CS__PARENT = MODEL_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -3891,13 +3891,13 @@ public interface BaseCSPackage extends EPackage {
 	int TEMPLATE_SIGNATURE_CS_FEATURE_COUNT = MODEL_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATEABLE_ELEMENT_CS__LOGICAL_PARENT = ELEMENT_CS__LOGICAL_PARENT;
+	int TEMPLATEABLE_ELEMENT_CS__PARENT = ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Signature</b></em>' containment reference.
@@ -3928,13 +3928,13 @@ public interface BaseCSPackage extends EPackage {
 	int TUPLE_PART_CS = 44;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_PART_CS__LOGICAL_PARENT = TYPED_ELEMENT_CS__LOGICAL_PARENT;
+	int TUPLE_PART_CS__PARENT = TYPED_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -4028,13 +4028,13 @@ public interface BaseCSPackage extends EPackage {
 	int TUPLE_TYPE_CS = 45;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_TYPE_CS__LOGICAL_PARENT = TYPED_REF_CS__LOGICAL_PARENT;
+	int TUPLE_TYPE_CS__PARENT = TYPED_REF_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -4082,13 +4082,13 @@ public interface BaseCSPackage extends EPackage {
 	int TUPLE_TYPE_CS_FEATURE_COUNT = TYPED_REF_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_CS__LOGICAL_PARENT = MODEL_ELEMENT_CS__LOGICAL_PARENT;
+	int TYPE_CS__PARENT = MODEL_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -4136,13 +4136,13 @@ public interface BaseCSPackage extends EPackage {
 	int TYPE_CS_FEATURE_COUNT = MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_PARAMETER_CS__LOGICAL_PARENT = TEMPLATE_PARAMETER_CS__LOGICAL_PARENT;
+	int TYPE_PARAMETER_CS__PARENT = TEMPLATE_PARAMETER_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -4226,13 +4226,13 @@ public interface BaseCSPackage extends EPackage {
 	int TYPE_PARAMETER_CS_FEATURE_COUNT = TEMPLATE_PARAMETER_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_TYPE_REF_CS__LOGICAL_PARENT = TYPED_REF_CS__LOGICAL_PARENT;
+	int TYPED_TYPE_REF_CS__PARENT = TYPED_REF_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -4298,13 +4298,13 @@ public interface BaseCSPackage extends EPackage {
 	int TYPED_TYPE_REF_CS_FEATURE_COUNT = TYPED_REF_CS_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WILDCARD_TYPE_REF_CS__LOGICAL_PARENT = TYPE_REF_CS__LOGICAL_PARENT;
+	int WILDCARD_TYPE_REF_CS__PARENT = TYPE_REF_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -4597,15 +4597,15 @@ public interface BaseCSPackage extends EPackage {
 	EClass getElementCS();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.ElementCS#getLogicalParent <em>Logical Parent</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.ElementCS#getParent <em>Parent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Logical Parent</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ElementCS#getLogicalParent()
+	 * @return the meta object for the reference '<em>Parent</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ElementCS#getParent()
 	 * @see #getElementCS()
 	 * @generated
 	 */
-	EReference getElementCS_LogicalParent();
+	EReference getElementCS_Parent();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.basecs.ElementRefCS <em>Element Ref CS</em>}'.
@@ -6103,12 +6103,12 @@ public interface BaseCSPackage extends EPackage {
 		EClass ELEMENT_CS = eINSTANCE.getElementCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Logical Parent</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Parent</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ELEMENT_CS__LOGICAL_PARENT = eINSTANCE.getElementCS_LogicalParent();
+		EReference ELEMENT_CS__PARENT = eINSTANCE.getElementCS_Parent();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ElementRefCSImpl <em>Element Ref CS</em>}' class.

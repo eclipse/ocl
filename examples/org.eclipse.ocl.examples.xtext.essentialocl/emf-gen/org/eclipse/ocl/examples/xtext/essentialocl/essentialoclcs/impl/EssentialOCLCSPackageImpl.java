@@ -13,6 +13,7 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -759,8 +760,9 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExpCS_Parent() {
-		return (EReference)expCSEClass.getEStructuralFeatures().get(0);
+	public EAttribute getExpCS_HasError()
+	{
+		return (EAttribute)expCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -768,9 +770,49 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getExpCS_HasError()
+	public EReference getExpCS_LocalLeft()
 	{
-		return (EAttribute)expCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)expCSEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExpCS_LocalLeftmostDescendant()
+	{
+		return (EReference)expCSEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExpCS_LocalParent()
+	{
+		return (EReference)expCSEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExpCS_LocalRight()
+	{
+		return (EReference)expCSEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExpCS_LocalRightmostDescendant()
+	{
+		return (EReference)expCSEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -780,7 +822,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getExpCS_Precedence()
 	{
-		return (EReference)expCSEClass.getEStructuralFeatures().get(2);
+		return (EReference)expCSEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -1810,8 +1852,12 @@ public class EssentialOCLCSPackageImpl
 		createEAttribute(curlyBracketedClauseCSEClass, CURLY_BRACKETED_CLAUSE_CS__VALUE);
 
 		expCSEClass = createEClass(EXP_CS);
-		createEReference(expCSEClass, EXP_CS__PARENT);
 		createEAttribute(expCSEClass, EXP_CS__HAS_ERROR);
+		createEReference(expCSEClass, EXP_CS__LOCAL_LEFT);
+		createEReference(expCSEClass, EXP_CS__LOCAL_LEFTMOST_DESCENDANT);
+		createEReference(expCSEClass, EXP_CS__LOCAL_PARENT);
+		createEReference(expCSEClass, EXP_CS__LOCAL_RIGHT);
+		createEReference(expCSEClass, EXP_CS__LOCAL_RIGHTMOST_DESCENDANT);
 		createEReference(expCSEClass, EXP_CS__PRECEDENCE);
 
 		expSpecificationCSEClass = createEClass(EXP_SPECIFICATION_CS);
@@ -2081,8 +2127,12 @@ public class EssentialOCLCSPackageImpl
 		initEAttribute(getCurlyBracketedClauseCS_Value(), ecorePackage.getEString(), "value", null, 0, 1, CurlyBracketedClauseCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(expCSEClass, ExpCS.class, "ExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getExpCS_Parent(), this.getOperatorExpCS(), null, "parent", null, 0, 1, ExpCS.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getExpCS_HasError(), ecorePackage.getEBoolean(), "hasError", "false", 0, 1, ExpCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEReference(getExpCS_LocalLeft(), this.getExpCS(), null, "localLeft", null, 0, 1, ExpCS.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getExpCS_LocalLeftmostDescendant(), this.getExpCS(), null, "localLeftmostDescendant", null, 1, 1, ExpCS.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getExpCS_LocalParent(), this.getOperatorExpCS(), null, "localParent", null, 0, 1, ExpCS.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getExpCS_LocalRight(), this.getExpCS(), null, "localRight", null, 0, 1, ExpCS.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getExpCS_LocalRightmostDescendant(), this.getExpCS(), null, "localRightmostDescendant", null, 1, 1, ExpCS.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getExpCS_Precedence(), thePivotPackage.getPrecedence(), null, "precedence", null, 0, 1, ExpCS.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(expSpecificationCSEClass, ExpSpecificationCS.class, "ExpSpecificationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -2150,6 +2200,12 @@ public class EssentialOCLCSPackageImpl
 		initEClass(operatorExpCSEClass, OperatorExpCS.class, "OperatorExpCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getOperatorExpCS_OwnedRight(), this.getExpCS(), null, "ownedRight", null, 1, 1, OperatorExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getOperatorExpCS_Source(), this.getExpCS(), null, "source", null, 0, 1, OperatorExpCS.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		EOperation op = addEOperation(operatorExpCSEClass, theEcorePackage.getEBoolean(), "isLocalLeftAncestorOf", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, this.getExpCS(), "csExp", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		op = addEOperation(operatorExpCSEClass, theEcorePackage.getEBoolean(), "isLocalRightAncestorOf", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, this.getExpCS(), "csExp", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(patternExpCSEClass, PatternExpCS.class, "PatternExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getPatternExpCS_PatternVariableName(), ecorePackage.getEString(), "patternVariableName", null, 0, 1, PatternExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

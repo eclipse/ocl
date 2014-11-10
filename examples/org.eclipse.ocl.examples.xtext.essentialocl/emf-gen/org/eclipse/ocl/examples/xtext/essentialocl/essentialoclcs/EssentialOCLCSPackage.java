@@ -79,6 +79,15 @@ public interface EssentialOCLCSPackage
 	int EXP_CS = 12;
 
 	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXP_CS__PARENT = BaseCSPackage.MODEL_ELEMENT_CS__PARENT;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CollectionTypeCSImpl <em>Collection Type CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -259,15 +268,6 @@ public interface EssentialOCLCSPackage
 	int NUMBER_LITERAL_EXP_CS = 28;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXP_CS__LOGICAL_PARENT = BaseCSPackage.MODEL_ELEMENT_CS__LOGICAL_PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -304,22 +304,58 @@ public interface EssentialOCLCSPackage
 	int EXP_CS__CSI = BaseCSPackage.MODEL_ELEMENT_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXP_CS__PARENT = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXP_CS__HAS_ERROR = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
+	int EXP_CS__HAS_ERROR = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXP_CS__LOCAL_LEFT = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXP_CS__LOCAL_LEFTMOST_DESCENDANT = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXP_CS__LOCAL_PARENT = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXP_CS__LOCAL_RIGHT = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -328,7 +364,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int EXP_CS__PRECEDENCE = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 2;
+	int EXP_CS__PRECEDENCE = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Exp CS</em>' class.
@@ -337,7 +373,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int EXP_CS_FEATURE_COUNT = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 3;
+	int EXP_CS_FEATURE_COUNT = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.AbstractNameExpCSImpl <em>Abstract Name Exp CS</em>}' class.
@@ -350,13 +386,13 @@ public interface EssentialOCLCSPackage
 	int ABSTRACT_NAME_EXP_CS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_NAME_EXP_CS__LOGICAL_PARENT = EXP_CS__LOGICAL_PARENT;
+	int ABSTRACT_NAME_EXP_CS__PARENT = EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -395,15 +431,6 @@ public interface EssentialOCLCSPackage
 	int ABSTRACT_NAME_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_NAME_EXP_CS__PARENT = EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -411,6 +438,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int ABSTRACT_NAME_EXP_CS__HAS_ERROR = EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_NAME_EXP_CS__LOCAL_LEFT = EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_NAME_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_NAME_EXP_CS__LOCAL_PARENT = EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_NAME_EXP_CS__LOCAL_RIGHT = EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_NAME_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -504,13 +576,13 @@ public interface EssentialOCLCSPackage
 	int CALL_EXP_CS = 3;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CALL_EXP_CS__LOGICAL_PARENT = ABSTRACT_NAME_EXP_CS__LOGICAL_PARENT;
+	int CALL_EXP_CS__PARENT = ABSTRACT_NAME_EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -549,15 +621,6 @@ public interface EssentialOCLCSPackage
 	int CALL_EXP_CS__CSI = ABSTRACT_NAME_EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CALL_EXP_CS__PARENT = ABSTRACT_NAME_EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -565,6 +628,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int CALL_EXP_CS__HAS_ERROR = ABSTRACT_NAME_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_EXP_CS__LOCAL_LEFT = ABSTRACT_NAME_EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = ABSTRACT_NAME_EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_EXP_CS__LOCAL_PARENT = ABSTRACT_NAME_EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_EXP_CS__LOCAL_RIGHT = ABSTRACT_NAME_EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = ABSTRACT_NAME_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -676,13 +784,13 @@ public interface EssentialOCLCSPackage
 	int ASSOCIATION_CLASS_CALL_EXP_CS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_CLASS_CALL_EXP_CS__LOGICAL_PARENT = CALL_EXP_CS__LOGICAL_PARENT;
+	int ASSOCIATION_CLASS_CALL_EXP_CS__PARENT = CALL_EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -721,15 +829,6 @@ public interface EssentialOCLCSPackage
 	int ASSOCIATION_CLASS_CALL_EXP_CS__CSI = CALL_EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS_CALL_EXP_CS__PARENT = CALL_EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -737,6 +836,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int ASSOCIATION_CLASS_CALL_EXP_CS__HAS_ERROR = CALL_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS_CALL_EXP_CS__LOCAL_LEFT = CALL_EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS_CALL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = CALL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS_CALL_EXP_CS__LOCAL_PARENT = CALL_EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS_CALL_EXP_CS__LOCAL_RIGHT = CALL_EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS_CALL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = CALL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -847,13 +991,13 @@ public interface EssentialOCLCSPackage
 	int ASSOCIATION_CLASS_CALL_EXP_CS_FEATURE_COUNT = CALL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_EXP_CS__LOGICAL_PARENT = EXP_CS__LOGICAL_PARENT;
+	int LITERAL_EXP_CS__PARENT = EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -892,15 +1036,6 @@ public interface EssentialOCLCSPackage
 	int LITERAL_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXP_CS__PARENT = EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -908,6 +1043,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int LITERAL_EXP_CS__HAS_ERROR = EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXP_CS__LOCAL_LEFT = EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXP_CS__LOCAL_PARENT = EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXP_CS__LOCAL_RIGHT = EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -928,13 +1108,13 @@ public interface EssentialOCLCSPackage
 	int LITERAL_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_LITERAL_EXP_CS__LOGICAL_PARENT = LITERAL_EXP_CS__LOGICAL_PARENT;
+	int PRIMITIVE_LITERAL_EXP_CS__PARENT = LITERAL_EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -973,15 +1153,6 @@ public interface EssentialOCLCSPackage
 	int PRIMITIVE_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_LITERAL_EXP_CS__PARENT = LITERAL_EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -989,6 +1160,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int PRIMITIVE_LITERAL_EXP_CS__HAS_ERROR = LITERAL_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_LITERAL_EXP_CS__LOCAL_LEFT = LITERAL_EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_LITERAL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = LITERAL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_LITERAL_EXP_CS__LOCAL_PARENT = LITERAL_EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_LITERAL_EXP_CS__LOCAL_RIGHT = LITERAL_EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_LITERAL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = LITERAL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -1009,13 +1225,13 @@ public interface EssentialOCLCSPackage
 	int PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_LITERAL_EXP_CS__LOGICAL_PARENT = PRIMITIVE_LITERAL_EXP_CS__LOGICAL_PARENT;
+	int BOOLEAN_LITERAL_EXP_CS__PARENT = PRIMITIVE_LITERAL_EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1054,15 +1270,6 @@ public interface EssentialOCLCSPackage
 	int BOOLEAN_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOLEAN_LITERAL_EXP_CS__PARENT = PRIMITIVE_LITERAL_EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1070,6 +1277,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int BOOLEAN_LITERAL_EXP_CS__HAS_ERROR = PRIMITIVE_LITERAL_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL_EXP_CS__LOCAL_LEFT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL_EXP_CS__LOCAL_PARENT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL_EXP_CS__LOCAL_RIGHT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -1099,13 +1351,13 @@ public interface EssentialOCLCSPackage
 	int BOOLEAN_LITERAL_EXP_CS_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_LITERAL_EXP_CS__LOGICAL_PARENT = LITERAL_EXP_CS__LOGICAL_PARENT;
+	int COLLECTION_LITERAL_EXP_CS__PARENT = LITERAL_EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1144,15 +1396,6 @@ public interface EssentialOCLCSPackage
 	int COLLECTION_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_LITERAL_EXP_CS__PARENT = LITERAL_EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1160,6 +1403,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int COLLECTION_LITERAL_EXP_CS__HAS_ERROR = LITERAL_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_EXP_CS__LOCAL_LEFT = LITERAL_EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = LITERAL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_EXP_CS__LOCAL_PARENT = LITERAL_EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_EXP_CS__LOCAL_RIGHT = LITERAL_EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = LITERAL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -1198,13 +1486,13 @@ public interface EssentialOCLCSPackage
 	int COLLECTION_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_LITERAL_PART_CS__LOGICAL_PARENT = BaseCSPackage.MODEL_ELEMENT_CS__LOGICAL_PARENT;
+	int COLLECTION_LITERAL_PART_CS__PARENT = BaseCSPackage.MODEL_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1280,13 +1568,13 @@ public interface EssentialOCLCSPackage
 	int COLLECTION_PATTERN_CS = 6;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_PATTERN_CS__LOGICAL_PARENT = BaseCSPackage.TYPED_REF_CS__LOGICAL_PARENT;
+	int COLLECTION_PATTERN_CS__PARENT = BaseCSPackage.TYPED_REF_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1352,13 +1640,13 @@ public interface EssentialOCLCSPackage
 	int COLLECTION_PATTERN_CS_FEATURE_COUNT = BaseCSPackage.TYPED_REF_CS_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE_CS__LOGICAL_PARENT = BaseCSPackage.TYPED_REF_CS__LOGICAL_PARENT;
+	int COLLECTION_TYPE_CS__PARENT = BaseCSPackage.TYPED_REF_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1416,13 +1704,13 @@ public interface EssentialOCLCSPackage
 	int CONSTRUCTOR_EXP_CS = 8;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRUCTOR_EXP_CS__LOGICAL_PARENT = ABSTRACT_NAME_EXP_CS__LOGICAL_PARENT;
+	int CONSTRUCTOR_EXP_CS__PARENT = ABSTRACT_NAME_EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1461,15 +1749,6 @@ public interface EssentialOCLCSPackage
 	int CONSTRUCTOR_EXP_CS__CSI = ABSTRACT_NAME_EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__PARENT = ABSTRACT_NAME_EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1477,6 +1756,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int CONSTRUCTOR_EXP_CS__HAS_ERROR = ABSTRACT_NAME_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRUCTOR_EXP_CS__LOCAL_LEFT = ABSTRACT_NAME_EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRUCTOR_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = ABSTRACT_NAME_EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRUCTOR_EXP_CS__LOCAL_PARENT = ABSTRACT_NAME_EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRUCTOR_EXP_CS__LOCAL_RIGHT = ABSTRACT_NAME_EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRUCTOR_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = ABSTRACT_NAME_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -1637,13 +1961,13 @@ public interface EssentialOCLCSPackage
 	int CONSTRUCTOR_PART_CS = 9;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRUCTOR_PART_CS__LOGICAL_PARENT = BaseCSPackage.MODEL_ELEMENT_CS__LOGICAL_PARENT;
+	int CONSTRUCTOR_PART_CS__PARENT = BaseCSPackage.MODEL_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1718,13 +2042,13 @@ public interface EssentialOCLCSPackage
 	int CONSTRUCTOR_PART_CS_FEATURE_COUNT = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_CS__LOGICAL_PARENT = BaseCSPackage.NAMED_ELEMENT_CS__LOGICAL_PARENT;
+	int CONTEXT_CS__PARENT = BaseCSPackage.NAMED_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1818,13 +2142,13 @@ public interface EssentialOCLCSPackage
 	int CURLY_BRACKETED_CLAUSE_CS = 11;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CURLY_BRACKETED_CLAUSE_CS__LOGICAL_PARENT = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS__LOGICAL_PARENT;
+	int CURLY_BRACKETED_CLAUSE_CS__PARENT = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Owning Name Exp</b></em>' container reference.
@@ -1863,13 +2187,13 @@ public interface EssentialOCLCSPackage
 	int CURLY_BRACKETED_CLAUSE_CS_FEATURE_COUNT = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXP_SPECIFICATION_CS__LOGICAL_PARENT = BaseCSPackage.SPECIFICATION_CS__LOGICAL_PARENT;
+	int EXP_SPECIFICATION_CS__PARENT = BaseCSPackage.SPECIFICATION_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1935,13 +2259,13 @@ public interface EssentialOCLCSPackage
 	int EXP_SPECIFICATION_CS_FEATURE_COUNT = BaseCSPackage.SPECIFICATION_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IF_EXP_CS__LOGICAL_PARENT = EXP_CS__LOGICAL_PARENT;
+	int IF_EXP_CS__PARENT = EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1980,15 +2304,6 @@ public interface EssentialOCLCSPackage
 	int IF_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IF_EXP_CS__PARENT = EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1996,6 +2311,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int IF_EXP_CS__HAS_ERROR = EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_EXP_CS__LOCAL_LEFT = EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_EXP_CS__LOCAL_PARENT = EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_EXP_CS__LOCAL_RIGHT = EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -2071,13 +2431,13 @@ public interface EssentialOCLCSPackage
 	int IF_THEN_EXP_CS = 15;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IF_THEN_EXP_CS__LOGICAL_PARENT = EXP_CS__LOGICAL_PARENT;
+	int IF_THEN_EXP_CS__PARENT = EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -2116,15 +2476,6 @@ public interface EssentialOCLCSPackage
 	int IF_THEN_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IF_THEN_EXP_CS__PARENT = EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2132,6 +2483,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int IF_THEN_EXP_CS__HAS_ERROR = EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_THEN_EXP_CS__LOCAL_LEFT = EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_THEN_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_THEN_EXP_CS__LOCAL_PARENT = EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_THEN_EXP_CS__LOCAL_RIGHT = EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_THEN_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -2180,13 +2576,13 @@ public interface EssentialOCLCSPackage
 	int OPERATOR_EXP_CS = 30;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXP_CS__LOGICAL_PARENT = EXP_CS__LOGICAL_PARENT;
+	int OPERATOR_EXP_CS__PARENT = EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -2225,15 +2621,6 @@ public interface EssentialOCLCSPackage
 	int OPERATOR_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_EXP_CS__PARENT = EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2241,6 +2628,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int OPERATOR_EXP_CS__HAS_ERROR = EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXP_CS__LOCAL_LEFT = EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXP_CS__LOCAL_PARENT = EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXP_CS__LOCAL_RIGHT = EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -2288,13 +2720,13 @@ public interface EssentialOCLCSPackage
 	int OPERATOR_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_EXP_CS__LOGICAL_PARENT = OPERATOR_EXP_CS__LOGICAL_PARENT;
+	int INFIX_EXP_CS__PARENT = OPERATOR_EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -2333,15 +2765,6 @@ public interface EssentialOCLCSPackage
 	int INFIX_EXP_CS__CSI = OPERATOR_EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INFIX_EXP_CS__PARENT = OPERATOR_EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2349,6 +2772,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int INFIX_EXP_CS__HAS_ERROR = OPERATOR_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX_EXP_CS__LOCAL_LEFT = OPERATOR_EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = OPERATOR_EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX_EXP_CS__LOCAL_PARENT = OPERATOR_EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX_EXP_CS__LOCAL_RIGHT = OPERATOR_EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = OPERATOR_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -2414,13 +2882,13 @@ public interface EssentialOCLCSPackage
 	int INFIX_EXP_CS_FEATURE_COUNT = OPERATOR_EXP_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INVALID_LITERAL_EXP_CS__LOGICAL_PARENT = PRIMITIVE_LITERAL_EXP_CS__LOGICAL_PARENT;
+	int INVALID_LITERAL_EXP_CS__PARENT = PRIMITIVE_LITERAL_EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -2459,15 +2927,6 @@ public interface EssentialOCLCSPackage
 	int INVALID_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_LITERAL_EXP_CS__PARENT = PRIMITIVE_LITERAL_EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2475,6 +2934,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int INVALID_LITERAL_EXP_CS__HAS_ERROR = PRIMITIVE_LITERAL_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_LITERAL_EXP_CS__LOCAL_LEFT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_LITERAL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_LITERAL_EXP_CS__LOCAL_PARENT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_LITERAL_EXP_CS__LOCAL_RIGHT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_LITERAL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -2505,13 +3009,13 @@ public interface EssentialOCLCSPackage
 	int ITERATION_CALL_EXP_CS = 19;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATION_CALL_EXP_CS__LOGICAL_PARENT = CALL_EXP_CS__LOGICAL_PARENT;
+	int ITERATION_CALL_EXP_CS__PARENT = CALL_EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -2550,15 +3054,6 @@ public interface EssentialOCLCSPackage
 	int ITERATION_CALL_EXP_CS__CSI = CALL_EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION_CALL_EXP_CS__PARENT = CALL_EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2566,6 +3061,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int ITERATION_CALL_EXP_CS__HAS_ERROR = CALL_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION_CALL_EXP_CS__LOCAL_LEFT = CALL_EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION_CALL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = CALL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION_CALL_EXP_CS__LOCAL_PARENT = CALL_EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION_CALL_EXP_CS__LOCAL_RIGHT = CALL_EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION_CALL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = CALL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -2695,13 +3235,13 @@ public interface EssentialOCLCSPackage
 	int ITERATE_CALL_EXP_CS = 18;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATE_CALL_EXP_CS__LOGICAL_PARENT = ITERATION_CALL_EXP_CS__LOGICAL_PARENT;
+	int ITERATE_CALL_EXP_CS__PARENT = ITERATION_CALL_EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -2740,15 +3280,6 @@ public interface EssentialOCLCSPackage
 	int ITERATE_CALL_EXP_CS__CSI = ITERATION_CALL_EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATE_CALL_EXP_CS__PARENT = ITERATION_CALL_EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2756,6 +3287,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int ITERATE_CALL_EXP_CS__HAS_ERROR = ITERATION_CALL_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_CALL_EXP_CS__LOCAL_LEFT = ITERATION_CALL_EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_CALL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = ITERATION_CALL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_CALL_EXP_CS__LOCAL_PARENT = ITERATION_CALL_EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_CALL_EXP_CS__LOCAL_RIGHT = ITERATION_CALL_EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_CALL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = ITERATION_CALL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -2894,13 +3470,13 @@ public interface EssentialOCLCSPackage
 	int LAMBDA_LITERAL_EXP_CS = 20;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAMBDA_LITERAL_EXP_CS__LOGICAL_PARENT = LITERAL_EXP_CS__LOGICAL_PARENT;
+	int LAMBDA_LITERAL_EXP_CS__PARENT = LITERAL_EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -2939,15 +3515,6 @@ public interface EssentialOCLCSPackage
 	int LAMBDA_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAMBDA_LITERAL_EXP_CS__PARENT = LITERAL_EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2955,6 +3522,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int LAMBDA_LITERAL_EXP_CS__HAS_ERROR = LITERAL_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_LITERAL_EXP_CS__LOCAL_LEFT = LITERAL_EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_LITERAL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = LITERAL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_LITERAL_EXP_CS__LOCAL_PARENT = LITERAL_EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_LITERAL_EXP_CS__LOCAL_RIGHT = LITERAL_EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_LITERAL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = LITERAL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -2984,13 +3596,13 @@ public interface EssentialOCLCSPackage
 	int LAMBDA_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LET_EXP_CS__LOGICAL_PARENT = EXP_CS__LOGICAL_PARENT;
+	int LET_EXP_CS__PARENT = EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -3029,15 +3641,6 @@ public interface EssentialOCLCSPackage
 	int LET_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LET_EXP_CS__PARENT = EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3045,6 +3648,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int LET_EXP_CS__HAS_ERROR = EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LET_EXP_CS__LOCAL_LEFT = EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LET_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LET_EXP_CS__LOCAL_PARENT = EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LET_EXP_CS__LOCAL_RIGHT = EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LET_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -3092,13 +3740,13 @@ public interface EssentialOCLCSPackage
 	int LET_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LET_VARIABLE_CS__LOGICAL_PARENT = EXP_CS__LOGICAL_PARENT;
+	int LET_VARIABLE_CS__PARENT = EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -3137,15 +3785,6 @@ public interface EssentialOCLCSPackage
 	int LET_VARIABLE_CS__CSI = EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LET_VARIABLE_CS__PARENT = EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3153,6 +3792,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int LET_VARIABLE_CS__HAS_ERROR = EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LET_VARIABLE_CS__LOCAL_LEFT = EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LET_VARIABLE_CS__LOCAL_LEFTMOST_DESCENDANT = EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LET_VARIABLE_CS__LOCAL_PARENT = EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LET_VARIABLE_CS__LOCAL_RIGHT = EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LET_VARIABLE_CS__LOCAL_RIGHTMOST_DESCENDANT = EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -3218,13 +3902,13 @@ public interface EssentialOCLCSPackage
 	int LET_VARIABLE_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 5;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_EXP_CS__LOGICAL_PARENT = ASSOCIATION_CLASS_CALL_EXP_CS__LOGICAL_PARENT;
+	int NAME_EXP_CS__PARENT = ASSOCIATION_CLASS_CALL_EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -3263,15 +3947,6 @@ public interface EssentialOCLCSPackage
 	int NAME_EXP_CS__CSI = ASSOCIATION_CLASS_CALL_EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAME_EXP_CS__PARENT = ASSOCIATION_CLASS_CALL_EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3279,6 +3954,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int NAME_EXP_CS__HAS_ERROR = ASSOCIATION_CLASS_CALL_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAME_EXP_CS__LOCAL_LEFT = ASSOCIATION_CLASS_CALL_EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAME_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = ASSOCIATION_CLASS_CALL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAME_EXP_CS__LOCAL_PARENT = ASSOCIATION_CLASS_CALL_EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAME_EXP_CS__LOCAL_RIGHT = ASSOCIATION_CLASS_CALL_EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAME_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = ASSOCIATION_CLASS_CALL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -3470,13 +4190,13 @@ public interface EssentialOCLCSPackage
 	int NAME_EXP_CS_FEATURE_COUNT = ASSOCIATION_CLASS_CALL_EXP_CS_FEATURE_COUNT + 9;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAVIGATING_ARG_CS__LOGICAL_PARENT = BaseCSPackage.MODEL_ELEMENT_CS__LOGICAL_PARENT;
+	int NAVIGATING_ARG_CS__PARENT = BaseCSPackage.MODEL_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -3578,13 +4298,13 @@ public interface EssentialOCLCSPackage
 	int NAVIGATING_ARG_CS_FEATURE_COUNT = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 6;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_EXP_CS__LOGICAL_PARENT = EXP_CS__LOGICAL_PARENT;
+	int NESTED_EXP_CS__PARENT = EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -3623,15 +4343,6 @@ public interface EssentialOCLCSPackage
 	int NESTED_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NESTED_EXP_CS__PARENT = EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3639,6 +4350,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int NESTED_EXP_CS__HAS_ERROR = EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NESTED_EXP_CS__LOCAL_LEFT = EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NESTED_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NESTED_EXP_CS__LOCAL_PARENT = EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NESTED_EXP_CS__LOCAL_RIGHT = EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NESTED_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -3668,13 +4424,13 @@ public interface EssentialOCLCSPackage
 	int NESTED_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NULL_LITERAL_EXP_CS__LOGICAL_PARENT = PRIMITIVE_LITERAL_EXP_CS__LOGICAL_PARENT;
+	int NULL_LITERAL_EXP_CS__PARENT = PRIMITIVE_LITERAL_EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -3713,15 +4469,6 @@ public interface EssentialOCLCSPackage
 	int NULL_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_LITERAL_EXP_CS__PARENT = PRIMITIVE_LITERAL_EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3729,6 +4476,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int NULL_LITERAL_EXP_CS__HAS_ERROR = PRIMITIVE_LITERAL_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_LITERAL_EXP_CS__LOCAL_LEFT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_LITERAL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_LITERAL_EXP_CS__LOCAL_PARENT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_LITERAL_EXP_CS__LOCAL_RIGHT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_LITERAL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -3749,13 +4541,13 @@ public interface EssentialOCLCSPackage
 	int NULL_LITERAL_EXP_CS_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUMBER_LITERAL_EXP_CS__LOGICAL_PARENT = PRIMITIVE_LITERAL_EXP_CS__LOGICAL_PARENT;
+	int NUMBER_LITERAL_EXP_CS__PARENT = PRIMITIVE_LITERAL_EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -3794,15 +4586,6 @@ public interface EssentialOCLCSPackage
 	int NUMBER_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUMBER_LITERAL_EXP_CS__PARENT = PRIMITIVE_LITERAL_EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3810,6 +4593,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int NUMBER_LITERAL_EXP_CS__HAS_ERROR = PRIMITIVE_LITERAL_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_LITERAL_EXP_CS__LOCAL_LEFT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_LITERAL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_LITERAL_EXP_CS__LOCAL_PARENT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_LITERAL_EXP_CS__LOCAL_RIGHT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_LITERAL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -3849,13 +4677,13 @@ public interface EssentialOCLCSPackage
 	int OPERATION_CALL_EXP_CS = 29;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CALL_EXP_CS__LOGICAL_PARENT = CALL_EXP_CS__LOGICAL_PARENT;
+	int OPERATION_CALL_EXP_CS__PARENT = CALL_EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -3894,15 +4722,6 @@ public interface EssentialOCLCSPackage
 	int OPERATION_CALL_EXP_CS__CSI = CALL_EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_CALL_EXP_CS__PARENT = CALL_EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3910,6 +4729,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int OPERATION_CALL_EXP_CS__HAS_ERROR = CALL_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CALL_EXP_CS__LOCAL_LEFT = CALL_EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CALL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = CALL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CALL_EXP_CS__LOCAL_PARENT = CALL_EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CALL_EXP_CS__LOCAL_RIGHT = CALL_EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CALL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = CALL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -4030,13 +4894,13 @@ public interface EssentialOCLCSPackage
 	int PATTERN_EXP_CS = 31;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATTERN_EXP_CS__LOGICAL_PARENT = EXP_CS__LOGICAL_PARENT;
+	int PATTERN_EXP_CS__PARENT = EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -4075,15 +4939,6 @@ public interface EssentialOCLCSPackage
 	int PATTERN_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PATTERN_EXP_CS__PARENT = EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4091,6 +4946,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int PATTERN_EXP_CS__HAS_ERROR = EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATTERN_EXP_CS__LOCAL_LEFT = EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATTERN_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATTERN_EXP_CS__LOCAL_PARENT = EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATTERN_EXP_CS__LOCAL_RIGHT = EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATTERN_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -4137,6 +5037,15 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 */
 	int PREFIX_EXP_CS = 32;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_EXP_CS__PARENT = OPERATOR_EXP_CS__PARENT;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.PropertyCallExpCSImpl <em>Property Call Exp CS</em>}' class.
@@ -4199,15 +5108,6 @@ public interface EssentialOCLCSPackage
 	int TYPE_LITERAL_EXP_CS = 41;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREFIX_EXP_CS__LOGICAL_PARENT = OPERATOR_EXP_CS__LOGICAL_PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4244,15 +5144,6 @@ public interface EssentialOCLCSPackage
 	int PREFIX_EXP_CS__CSI = OPERATOR_EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREFIX_EXP_CS__PARENT = OPERATOR_EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4260,6 +5151,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int PREFIX_EXP_CS__HAS_ERROR = OPERATOR_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_EXP_CS__LOCAL_LEFT = OPERATOR_EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = OPERATOR_EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_EXP_CS__LOCAL_PARENT = OPERATOR_EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_EXP_CS__LOCAL_RIGHT = OPERATOR_EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = OPERATOR_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -4307,13 +5243,13 @@ public interface EssentialOCLCSPackage
 	int PREFIX_EXP_CS_FEATURE_COUNT = OPERATOR_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CALL_EXP_CS__LOGICAL_PARENT = CALL_EXP_CS__LOGICAL_PARENT;
+	int PROPERTY_CALL_EXP_CS__PARENT = CALL_EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -4352,15 +5288,6 @@ public interface EssentialOCLCSPackage
 	int PROPERTY_CALL_EXP_CS__CSI = CALL_EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_CALL_EXP_CS__PARENT = CALL_EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4368,6 +5295,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int PROPERTY_CALL_EXP_CS__HAS_ERROR = CALL_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP_CS__LOCAL_LEFT = CALL_EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = CALL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP_CS__LOCAL_PARENT = CALL_EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP_CS__LOCAL_RIGHT = CALL_EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = CALL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -4478,13 +5450,13 @@ public interface EssentialOCLCSPackage
 	int PROPERTY_CALL_EXP_CS_FEATURE_COUNT = CALL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROUND_BRACKETED_CLAUSE_CS__LOGICAL_PARENT = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS__LOGICAL_PARENT;
+	int ROUND_BRACKETED_CLAUSE_CS__PARENT = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Owning Name Exp</b></em>' container reference.
@@ -4514,13 +5486,13 @@ public interface EssentialOCLCSPackage
 	int ROUND_BRACKETED_CLAUSE_CS_FEATURE_COUNT = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SELF_EXP_CS__LOGICAL_PARENT = EXP_CS__LOGICAL_PARENT;
+	int SELF_EXP_CS__PARENT = EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -4559,15 +5531,6 @@ public interface EssentialOCLCSPackage
 	int SELF_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SELF_EXP_CS__PARENT = EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4575,6 +5538,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int SELF_EXP_CS__HAS_ERROR = EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELF_EXP_CS__LOCAL_LEFT = EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELF_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELF_EXP_CS__LOCAL_PARENT = EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELF_EXP_CS__LOCAL_RIGHT = EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELF_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -4604,13 +5612,13 @@ public interface EssentialOCLCSPackage
 	int SELF_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SQUARE_BRACKETED_CLAUSE_CS__LOGICAL_PARENT = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS__LOGICAL_PARENT;
+	int SQUARE_BRACKETED_CLAUSE_CS__PARENT = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Owning Name Exp</b></em>' container reference.
@@ -4640,13 +5648,13 @@ public interface EssentialOCLCSPackage
 	int SQUARE_BRACKETED_CLAUSE_CS_FEATURE_COUNT = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_LITERAL_EXP_CS__LOGICAL_PARENT = PRIMITIVE_LITERAL_EXP_CS__LOGICAL_PARENT;
+	int STRING_LITERAL_EXP_CS__PARENT = PRIMITIVE_LITERAL_EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -4685,15 +5693,6 @@ public interface EssentialOCLCSPackage
 	int STRING_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_LITERAL_EXP_CS__PARENT = PRIMITIVE_LITERAL_EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4701,6 +5700,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int STRING_LITERAL_EXP_CS__HAS_ERROR = PRIMITIVE_LITERAL_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL_EXP_CS__LOCAL_LEFT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL_EXP_CS__LOCAL_PARENT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL_EXP_CS__LOCAL_RIGHT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -4730,13 +5774,13 @@ public interface EssentialOCLCSPackage
 	int STRING_LITERAL_EXP_CS_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_EXP_CS__LOGICAL_PARENT = LITERAL_EXP_CS__LOGICAL_PARENT;
+	int TUPLE_LITERAL_EXP_CS__PARENT = LITERAL_EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -4775,15 +5819,6 @@ public interface EssentialOCLCSPackage
 	int TUPLE_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_LITERAL_EXP_CS__PARENT = LITERAL_EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4791,6 +5826,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int TUPLE_LITERAL_EXP_CS__HAS_ERROR = LITERAL_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_EXP_CS__LOCAL_LEFT = LITERAL_EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = LITERAL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_EXP_CS__LOCAL_PARENT = LITERAL_EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_EXP_CS__LOCAL_RIGHT = LITERAL_EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = LITERAL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -4820,13 +5900,13 @@ public interface EssentialOCLCSPackage
 	int TUPLE_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_CS__LOGICAL_PARENT = BaseCSPackage.NAMED_ELEMENT_CS__LOGICAL_PARENT;
+	int VARIABLE_CS__PARENT = BaseCSPackage.NAMED_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -4901,13 +5981,13 @@ public interface EssentialOCLCSPackage
 	int VARIABLE_CS_FEATURE_COUNT = BaseCSPackage.NAMED_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART_CS__LOGICAL_PARENT = VARIABLE_CS__LOGICAL_PARENT;
+	int TUPLE_LITERAL_PART_CS__PARENT = VARIABLE_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -4982,13 +6062,13 @@ public interface EssentialOCLCSPackage
 	int TUPLE_LITERAL_PART_CS_FEATURE_COUNT = VARIABLE_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_LITERAL_EXP_CS__LOGICAL_PARENT = LITERAL_EXP_CS__LOGICAL_PARENT;
+	int TYPE_LITERAL_EXP_CS__PARENT = LITERAL_EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -5027,15 +6107,6 @@ public interface EssentialOCLCSPackage
 	int TYPE_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_LITERAL_EXP_CS__PARENT = LITERAL_EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5043,6 +6114,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int TYPE_LITERAL_EXP_CS__HAS_ERROR = LITERAL_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_LITERAL_EXP_CS__LOCAL_LEFT = LITERAL_EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_LITERAL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = LITERAL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_LITERAL_EXP_CS__LOCAL_PARENT = LITERAL_EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_LITERAL_EXP_CS__LOCAL_RIGHT = LITERAL_EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_LITERAL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = LITERAL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -5081,13 +6197,13 @@ public interface EssentialOCLCSPackage
 	int TYPE_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_NAME_EXP_CS__LOGICAL_PARENT = BaseCSPackage.TYPED_REF_CS__LOGICAL_PARENT;
+	int TYPE_NAME_EXP_CS__PARENT = BaseCSPackage.TYPED_REF_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -5163,13 +6279,13 @@ public interface EssentialOCLCSPackage
 	int UNLIMITED_NATURAL_LITERAL_EXP_CS = 43;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP_CS__LOGICAL_PARENT = PRIMITIVE_LITERAL_EXP_CS__LOGICAL_PARENT;
+	int UNLIMITED_NATURAL_LITERAL_EXP_CS__PARENT = PRIMITIVE_LITERAL_EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -5208,15 +6324,6 @@ public interface EssentialOCLCSPackage
 	int UNLIMITED_NATURAL_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP_CS__PARENT = PRIMITIVE_LITERAL_EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5224,6 +6331,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int UNLIMITED_NATURAL_LITERAL_EXP_CS__HAS_ERROR = PRIMITIVE_LITERAL_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNLIMITED_NATURAL_LITERAL_EXP_CS__LOCAL_LEFT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNLIMITED_NATURAL_LITERAL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNLIMITED_NATURAL_LITERAL_EXP_CS__LOCAL_PARENT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNLIMITED_NATURAL_LITERAL_EXP_CS__LOCAL_RIGHT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNLIMITED_NATURAL_LITERAL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = PRIMITIVE_LITERAL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -5254,13 +6406,13 @@ public interface EssentialOCLCSPackage
 	int VARIABLE_EXP_CS = 45;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_EXP_CS__LOGICAL_PARENT = ABSTRACT_NAME_EXP_CS__LOGICAL_PARENT;
+	int VARIABLE_EXP_CS__PARENT = ABSTRACT_NAME_EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -5299,15 +6451,6 @@ public interface EssentialOCLCSPackage
 	int VARIABLE_EXP_CS__CSI = ABSTRACT_NAME_EXP_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_EXP_CS__PARENT = ABSTRACT_NAME_EXP_CS__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5315,6 +6458,51 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int VARIABLE_EXP_CS__HAS_ERROR = ABSTRACT_NAME_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_EXP_CS__LOCAL_LEFT = ABSTRACT_NAME_EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = ABSTRACT_NAME_EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_EXP_CS__LOCAL_PARENT = ABSTRACT_NAME_EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_EXP_CS__LOCAL_RIGHT = ABSTRACT_NAME_EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = ABSTRACT_NAME_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -5727,17 +6915,6 @@ public interface EssentialOCLCSPackage
 	EClass getExpCS();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#getParent <em>Parent</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Parent</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#getParent()
-	 * @see #getExpCS()
-	 * @generated
-	 */
-	EReference getExpCS_Parent();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#isHasError <em>Has Error</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5747,6 +6924,61 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 */
 	EAttribute getExpCS_HasError();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#getLocalLeft <em>Local Left</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Local Left</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#getLocalLeft()
+	 * @see #getExpCS()
+	 * @generated
+	 */
+	EReference getExpCS_LocalLeft();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#getLocalLeftmostDescendant <em>Local Leftmost Descendant</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Local Leftmost Descendant</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#getLocalLeftmostDescendant()
+	 * @see #getExpCS()
+	 * @generated
+	 */
+	EReference getExpCS_LocalLeftmostDescendant();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#getLocalParent <em>Local Parent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Local Parent</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#getLocalParent()
+	 * @see #getExpCS()
+	 * @generated
+	 */
+	EReference getExpCS_LocalParent();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#getLocalRight <em>Local Right</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Local Right</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#getLocalRight()
+	 * @see #getExpCS()
+	 * @generated
+	 */
+	EReference getExpCS_LocalRight();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#getLocalRightmostDescendant <em>Local Rightmost Descendant</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Local Rightmost Descendant</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#getLocalRightmostDescendant()
+	 * @see #getExpCS()
+	 * @generated
+	 */
+	EReference getExpCS_LocalRightmostDescendant();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#getPrecedence <em>Precedence</em>}'.
@@ -7073,20 +8305,52 @@ public interface EssentialOCLCSPackage
 		EClass EXP_CS = eINSTANCE.getExpCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Parent</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference EXP_CS__PARENT = eINSTANCE.getExpCS_Parent();
-
-		/**
 		 * The meta object literal for the '<em><b>Has Error</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute EXP_CS__HAS_ERROR = eINSTANCE.getExpCS_HasError();
+
+		/**
+		 * The meta object literal for the '<em><b>Local Left</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXP_CS__LOCAL_LEFT = eINSTANCE.getExpCS_LocalLeft();
+
+		/**
+		 * The meta object literal for the '<em><b>Local Leftmost Descendant</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXP_CS__LOCAL_LEFTMOST_DESCENDANT = eINSTANCE.getExpCS_LocalLeftmostDescendant();
+
+		/**
+		 * The meta object literal for the '<em><b>Local Parent</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXP_CS__LOCAL_PARENT = eINSTANCE.getExpCS_LocalParent();
+
+		/**
+		 * The meta object literal for the '<em><b>Local Right</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXP_CS__LOCAL_RIGHT = eINSTANCE.getExpCS_LocalRight();
+
+		/**
+		 * The meta object literal for the '<em><b>Local Rightmost Descendant</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = eINSTANCE.getExpCS_LocalRightmostDescendant();
 
 		/**
 		 * The meta object literal for the '<em><b>Precedence</b></em>' reference feature.

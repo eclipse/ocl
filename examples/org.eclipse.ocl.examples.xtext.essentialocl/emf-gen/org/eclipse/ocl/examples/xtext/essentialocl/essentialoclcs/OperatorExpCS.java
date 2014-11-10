@@ -75,15 +75,24 @@ public interface OperatorExpCS
 	ExpCS getSource();
 
 	/**
-	 * Return true if csExp is a transitive child of this in the logical expression tree containing this and csExp
-	 * and only OperatorExpCS nodes within the tree.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Return true if csExp is a transitive child of this in the logical expression tree containing this and csExp and only OperatorExpCS nodes within the tree.
+	 * <!-- end-model-doc -->
+	 * @model required="true" csExpRequired="true"
+	 * @generated NOT
 	 */
-	boolean isLocalLeftAncestorOf(@NonNull ExpCS csExp);	// csExp should be to the right of this for assocativity resolution
-	
-	/**
-	 * Return true if this is a transitive child of csExp in the logical expression tree containing this and csExp
-	 * and only OperatorExpCS nodes within the tree.
-	 */
-	boolean isLocalRightAncestorOf(@NonNull ExpCS csExp);	// csExp should be to the left of this for assocativity resolution
+	boolean isLocalLeftAncestorOf(@NonNull ExpCS csExp);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Return true if this is a transitive child of csExp in the logical expression tree containing this and csExp and only OperatorExpCS nodes within the tree.
+	 * <!-- end-model-doc -->
+	 * @model required="true" csExpRequired="true"
+	 * @generated NOT
+	 */
+	boolean isLocalRightAncestorOf(@NonNull ExpCS csExp);
 } // OperatorCS

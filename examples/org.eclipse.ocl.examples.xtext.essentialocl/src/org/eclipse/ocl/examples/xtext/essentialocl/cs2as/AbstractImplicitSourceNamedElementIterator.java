@@ -104,7 +104,7 @@ public abstract class AbstractImplicitSourceNamedElementIterator<T extends Named
 	public boolean hasNext() {
 		ElementCS csElement = cursor;
 		while ((next == null) && (csElement != null)) {
-			ElementCS csParent = csElement.getLogicalParent();
+			ElementCS csParent = csElement.getParent();
 			if (csParent != null) {
 				if (doNext(csParent, csElement) == DONE) {
 					csElement = null;

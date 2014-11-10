@@ -319,13 +319,13 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 
 	protected boolean hasError(ElementCS csElement) {
 		while ((csElement instanceof PathElementCS) || (csElement instanceof PathNameCS)) {
-			csElement = csElement.getLogicalParent();
+			csElement = csElement.getParent();
 		}
 		while (csElement instanceof ExpCS) {
 			if (((ExpCS) csElement).isHasError()) {
 				return true;
 			}
-			csElement = csElement.getLogicalParent();
+			csElement = csElement.getParent();
 			if (!NavigationUtil.isNavigationInfixExp(csElement) && !(csElement instanceof NameExpCS)) {
 				break;
 			}
@@ -495,11 +495,11 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 
 	protected void setHasError(ElementCS csElement) {
 		while ((csElement instanceof PathElementCS) || (csElement instanceof PathNameCS)) {
-			csElement = csElement.getLogicalParent();
+			csElement = csElement.getParent();
 		}
 		while (csElement instanceof ExpCS) {
 			((ExpCS) csElement).setHasError(true);
-			csElement = csElement.getLogicalParent();
+			csElement = csElement.getParent();
 			if (!NavigationUtil.isNavigationInfixExp(csElement)) {
 				break;
 			}

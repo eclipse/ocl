@@ -83,13 +83,13 @@ public interface OCLinEcoreCSPackage extends EPackage {
 	int OC_LIN_ECORE_CONSTRAINT_CS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__LOGICAL_PARENT = BaseCSPackage.CONSTRAINT_CS__LOGICAL_PARENT;
+	int OC_LIN_ECORE_CONSTRAINT_CS__PARENT = BaseCSPackage.CONSTRAINT_CS__PARENT;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.OCLinEcoreConstraintCS <em>OC Lin Ecore Constraint CS</em>}'.
@@ -253,13 +253,13 @@ public interface OCLinEcoreCSPackage extends EPackage {
 	int SYS_MLCS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SYS_MLCS__LOGICAL_PARENT = BaseCSPackage.ANNOTATION_ELEMENT_CS__LOGICAL_PARENT;
+	int SYS_MLCS__PARENT = BaseCSPackage.ANNOTATION_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -344,13 +344,13 @@ public interface OCLinEcoreCSPackage extends EPackage {
 	int TOP_LEVEL_CS = 2;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOP_LEVEL_CS__LOGICAL_PARENT = BaseCSPackage.ROOT_PACKAGE_CS__LOGICAL_PARENT;
+	int TOP_LEVEL_CS__PARENT = BaseCSPackage.ROOT_PACKAGE_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.

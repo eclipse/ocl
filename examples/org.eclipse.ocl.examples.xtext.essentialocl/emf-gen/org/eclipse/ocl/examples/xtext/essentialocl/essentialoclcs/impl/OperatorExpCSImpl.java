@@ -306,12 +306,28 @@ public abstract class OperatorExpCSImpl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case EssentialOCLCSPackage.OPERATOR_EXP_CS__OWNED_RIGHT:
+				return basicSetOwnedRight(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
-	public ElementCS getLogicalParent()
+	public ElementCS getParent()
 	{
-		ExpCS parent = getParent();
+		ExpCS parent = getLocalParent();
 		if (parent != null) {
 			return parent;
 		}
@@ -334,6 +350,8 @@ public abstract class OperatorExpCSImpl
 	public boolean isLocalLeftAncestorOf(@NonNull ExpCS csExp) {	// csExp should be to the right of this for associativity resolution
 		return EssentialOCLCS2AS.isLocalProperAncestorOf(this, csExp);
 	}
+
+	public abstract boolean isLocalRightAncestorOf(@NonNull ExpCS csExp);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -360,21 +378,5 @@ public abstract class OperatorExpCSImpl
 	@Override
 	public String toString() {
 		return super.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
-			case EssentialOCLCSPackage.OPERATOR_EXP_CS__OWNED_RIGHT:
-				return basicSetOwnedRight(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 } //OperatorCSImpl

@@ -42,8 +42,11 @@ public class NavigationUtil
 		if (eContainer instanceof NameExpCS) {
 			csExp = (NameExpCS) eContainer;
 		}
-		for (ExpCS csChild = csExp; true; csChild = csChild.getParent()) {
-			OperatorExpCS csOperator = csChild.getParent();
+		for (ExpCS csChild = csExp; true; csChild = csChild.getLocalParent()) {
+			if (csChild == null) {
+				return null;
+			}
+			OperatorExpCS csOperator = csChild.getLocalParent();
 			if (csOperator == null) {
 				return null;
 			}

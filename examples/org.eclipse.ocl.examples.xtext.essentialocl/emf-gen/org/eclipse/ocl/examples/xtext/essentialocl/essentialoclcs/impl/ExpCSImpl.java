@@ -33,8 +33,12 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ExpCSImpl#getParent <em>Parent</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ExpCSImpl#isHasError <em>Has Error</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ExpCSImpl#getLocalLeft <em>Local Left</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ExpCSImpl#getLocalLeftmostDescendant <em>Local Leftmost Descendant</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ExpCSImpl#getLocalParent <em>Local Parent</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ExpCSImpl#getLocalRight <em>Local Right</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ExpCSImpl#getLocalRightmostDescendant <em>Local Rightmost Descendant</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ExpCSImpl#getPrecedence <em>Precedence</em>}</li>
  * </ul>
  * </p>
@@ -45,15 +49,6 @@ public class ExpCSImpl
 		extends ModelElementCSImpl
 		implements ExpCS {
 
-	/**
-	 * The cached value of the '{@link #getParent() <em>Parent</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getParent()
-	 * @generated
-	 * @ordered
-	 */
-	protected OperatorExpCS parent;
 	/**
 	 * The default value of the '{@link #isHasError() <em>Has Error</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -72,6 +67,52 @@ public class ExpCSImpl
 	 * @ordered
 	 */
 	protected boolean hasError = HAS_ERROR_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getLocalLeft() <em>Local Left</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLocalLeft()
+	 * @generated
+	 * @ordered
+	 */
+	protected ExpCS localLeft;
+	/**
+	 * The cached value of the '{@link #getLocalLeftmostDescendant() <em>Local Leftmost Descendant</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLocalLeftmostDescendant()
+	 * @generated
+	 * @ordered
+	 */
+	protected ExpCS localLeftmostDescendant;
+	/**
+	 * The cached value of the '{@link #getLocalParent() <em>Local Parent</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLocalParent()
+	 * @generated
+	 * @ordered
+	 */
+	protected OperatorExpCS localParent;
+	/**
+	 * The cached value of the '{@link #getLocalRight() <em>Local Right</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLocalRight()
+	 * @generated
+	 * @ordered
+	 */
+	protected ExpCS localRight;
+	/**
+	 * The cached value of the '{@link #getLocalRightmostDescendant() <em>Local Rightmost Descendant</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLocalRightmostDescendant()
+	 * @generated
+	 * @ordered
+	 */
+	protected ExpCS localRightmostDescendant;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -124,10 +165,18 @@ public class ExpCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.EXP_CS__PARENT:
-				return getParent();
 			case EssentialOCLCSPackage.EXP_CS__HAS_ERROR:
 				return isHasError();
+			case EssentialOCLCSPackage.EXP_CS__LOCAL_LEFT:
+				return getLocalLeft();
+			case EssentialOCLCSPackage.EXP_CS__LOCAL_LEFTMOST_DESCENDANT:
+				return getLocalLeftmostDescendant();
+			case EssentialOCLCSPackage.EXP_CS__LOCAL_PARENT:
+				return getLocalParent();
+			case EssentialOCLCSPackage.EXP_CS__LOCAL_RIGHT:
+				return getLocalRight();
+			case EssentialOCLCSPackage.EXP_CS__LOCAL_RIGHTMOST_DESCENDANT:
+				return getLocalRightmostDescendant();
 			case EssentialOCLCSPackage.EXP_CS__PRECEDENCE:
 				return getPrecedence();
 		}
@@ -181,10 +230,18 @@ public class ExpCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.EXP_CS__PARENT:
-				return parent != null;
 			case EssentialOCLCSPackage.EXP_CS__HAS_ERROR:
 				return hasError != HAS_ERROR_EDEFAULT;
+			case EssentialOCLCSPackage.EXP_CS__LOCAL_LEFT:
+				return localLeft != null;
+			case EssentialOCLCSPackage.EXP_CS__LOCAL_LEFTMOST_DESCENDANT:
+				return localLeftmostDescendant != null;
+			case EssentialOCLCSPackage.EXP_CS__LOCAL_PARENT:
+				return localParent != null;
+			case EssentialOCLCSPackage.EXP_CS__LOCAL_RIGHT:
+				return localRight != null;
+			case EssentialOCLCSPackage.EXP_CS__LOCAL_RIGHTMOST_DESCENDANT:
+				return localRightmostDescendant != null;
 			case EssentialOCLCSPackage.EXP_CS__PRECEDENCE:
 				return getPrecedence() != null;
 		}
@@ -218,15 +275,13 @@ public class ExpCSImpl
 	}
 
 	@Override
-	public ElementCS getLogicalParent() {
-		ElementCS parent = getParent();
-		return parent != null
-			? parent
-			: super.getLogicalParent();
+	public ElementCS getParent() {
+		ElementCS parent = getLocalParent();
+		return parent != null ? parent : super.getParent();
 	}
 
-	public OperatorExpCS getParent() {
-		if (parent == null) {
+	public OperatorExpCS getLocalParent() {
+		if (localParent == null) {
 			OperatorExpCS csNearestLeft = null;
 			for (ExpCS csLeft = this; (csLeft = csLeft.getLocalLeft()) != null; ) {
 				OperatorExpCS csLeftOperator = csLeft instanceof OperatorExpCS ? (OperatorExpCS)csLeft : null;
@@ -263,25 +318,25 @@ public class ExpCSImpl
 			}
 			if (csNearestLeft == null) {
 				if (csNearestRight == null) {
-					parent = null;
+					localParent = null;
 				}
 				else {
-					parent = csNearestRight;
+					localParent = csNearestRight;
 				}
 			}
 			else {
 				if (csNearestRight == null) {
-					parent = csNearestLeft;
+					localParent = csNearestLeft;
 				}
 				else if (csNearestLeft.isLocalLeftAncestorOf(csNearestRight)) {
-					parent = csNearestRight;
+					localParent = csNearestRight;
 				}
 				else {
-					parent = csNearestLeft;
+					localParent = csNearestLeft;
 				}
 			}
 		}
-		return parent;
+		return localParent;
 	}
 
 	public Precedence getPrecedence() {
@@ -292,7 +347,7 @@ public class ExpCSImpl
 	public void resetPivot() {
 		super.resetPivot();
 		setHasError(false);
-		parent = null;
+		localParent = null;
 	}
 
 	public void setPrecedence(Precedence newPrecedence) {

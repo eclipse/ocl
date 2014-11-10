@@ -80,13 +80,13 @@ public interface OCLstdlibCSPackage
 	int JAVA_CLASS_CS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JAVA_CLASS_CS__LOGICAL_PARENT = BaseCSPackage.NAMED_ELEMENT_CS__LOGICAL_PARENT;
+	int JAVA_CLASS_CS__PARENT = BaseCSPackage.NAMED_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -221,13 +221,13 @@ public interface OCLstdlibCSPackage
 	int LIB_CLASS_CS = 2;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__LOGICAL_PARENT = BaseCSPackage.STRUCTURED_CLASS_CS__LOGICAL_PARENT;
+	int LIB_CLASS_CS__PARENT = BaseCSPackage.STRUCTURED_CLASS_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -374,13 +374,13 @@ public interface OCLstdlibCSPackage
 	int LIB_CLASS_CS_FEATURE_COUNT = BaseCSPackage.STRUCTURED_CLASS_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CONSTRAINT_CS__LOGICAL_PARENT = BaseCSPackage.CONSTRAINT_CS__LOGICAL_PARENT;
+	int LIB_CONSTRAINT_CS__PARENT = BaseCSPackage.CONSTRAINT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -464,13 +464,13 @@ public interface OCLstdlibCSPackage
 	int LIB_CONSTRAINT_CS_FEATURE_COUNT = BaseCSPackage.CONSTRAINT_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_ITERATION_CS__LOGICAL_PARENT = BaseCSPackage.OPERATION_CS__LOGICAL_PARENT;
+	int LIB_ITERATION_CS__PARENT = BaseCSPackage.OPERATION_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -662,13 +662,13 @@ public interface OCLstdlibCSPackage
 	int LIB_ITERATION_CS_FEATURE_COUNT = BaseCSPackage.OPERATION_CS_FEATURE_COUNT + 5;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_OPERATION_CS__LOGICAL_PARENT = BaseCSPackage.OPERATION_CS__LOGICAL_PARENT;
+	int LIB_OPERATION_CS__PARENT = BaseCSPackage.OPERATION_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -870,13 +870,13 @@ public interface OCLstdlibCSPackage
 	int LIB_PACKAGE_CS = 6;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_PACKAGE_CS__LOGICAL_PARENT = BaseCSPackage.PACKAGE_CS__LOGICAL_PARENT;
+	int LIB_PACKAGE_CS__PARENT = BaseCSPackage.PACKAGE_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -978,13 +978,13 @@ public interface OCLstdlibCSPackage
 	int LIB_PACKAGE_CS_FEATURE_COUNT = BaseCSPackage.PACKAGE_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_PROPERTY_CS__LOGICAL_PARENT = BaseCSPackage.ATTRIBUTE_CS__LOGICAL_PARENT;
+	int LIB_PROPERTY_CS__PARENT = BaseCSPackage.ATTRIBUTE_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1123,13 +1123,13 @@ public interface OCLstdlibCSPackage
 	int LIB_ROOT_PACKAGE_CS = 8;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_ROOT_PACKAGE_CS__LOGICAL_PARENT = BaseCSPackage.ROOT_PACKAGE_CS__LOGICAL_PARENT;
+	int LIB_ROOT_PACKAGE_CS__PARENT = BaseCSPackage.ROOT_PACKAGE_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1214,13 +1214,13 @@ public interface OCLstdlibCSPackage
 	int METACLASS_NAME_CS = 9;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METACLASS_NAME_CS__LOGICAL_PARENT = BaseCSPackage.ELEMENT_CS__LOGICAL_PARENT;
+	int METACLASS_NAME_CS__PARENT = BaseCSPackage.ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1251,13 +1251,13 @@ public interface OCLstdlibCSPackage
 	int PRECEDENCE_CS = 10;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRECEDENCE_CS__LOGICAL_PARENT = BaseCSPackage.NAMED_ELEMENT_CS__LOGICAL_PARENT;
+	int PRECEDENCE_CS__PARENT = BaseCSPackage.NAMED_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.

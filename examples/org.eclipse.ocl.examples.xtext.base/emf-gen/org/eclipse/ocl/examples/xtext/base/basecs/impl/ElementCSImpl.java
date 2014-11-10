@@ -30,7 +30,7 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ElementCSImpl#getLogicalParent <em>Logical Parent</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ElementCSImpl#getParent <em>Parent</em>}</li>
  * </ul>
  * </p>
  *
@@ -66,8 +66,8 @@ public abstract class ElementCSImpl extends EObjectImpl implements ElementCS {
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.ELEMENT_CS__LOGICAL_PARENT:
-				return getLogicalParent();
+			case BaseCSPackage.ELEMENT_CS__PARENT:
+				return getParent();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -82,8 +82,8 @@ public abstract class ElementCSImpl extends EObjectImpl implements ElementCS {
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.ELEMENT_CS__LOGICAL_PARENT:
-				return getLogicalParent() != null;
+			case BaseCSPackage.ELEMENT_CS__PARENT:
+				return getParent() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -126,7 +126,7 @@ public abstract class ElementCSImpl extends EObjectImpl implements ElementCS {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public ElementCS getLogicalParent()
+	public ElementCS getParent()
 	{
 		EObject eContainer = eContainer();
 		return eContainer instanceof ElementCS ? (ElementCS) eContainer : null;		// Avoid CCE for Bug 432749

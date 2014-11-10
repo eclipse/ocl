@@ -433,7 +433,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 
 	protected @NonNull OperatorExpCS getRoot(@NonNull OperatorExpCS csOperator) {
 		OperatorExpCS csRoot = csOperator;
-		for (OperatorExpCS csParent = csRoot.getParent(); csParent != null; csParent = csParent.getParent()) {
+		for (OperatorExpCS csParent = csRoot.getLocalParent(); csParent != null; csParent = csParent.getLocalParent()) {
 			csRoot = csParent;
 		}
 		return csRoot;
@@ -1118,8 +1118,8 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	
 	protected Element resolveRoundBracketedTerm(@NonNull RoundBracketedClauseCS csRoundBracketedClause) {
 		AbstractNameExpCS csNameExp = csRoundBracketedClause.getOwningNameExp();
-		OperatorExpCS csParent = csNameExp.getParent();
-		if (NavigationUtil.isNavigationInfixExp(csParent) && (csNameExp != ((InfixExpCS)csParent).getSource())) {
+		OperatorExpCS csParent = csNameExp.getLocalParent();
+		if (NavigationUtil.isNavigationInfixExp(csParent) && (csParent != null) && (csNameExp != ((InfixExpCS)csParent).getSource())) {
 			// source.name(), source->name() are resolved by the parent NavigationOperatorCS
 			return PivotUtil.getPivot(OCLExpression.class, csNameExp);
 		}
@@ -1737,7 +1737,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	public Element visitSelfExpCS(@NonNull SelfExpCS csSelfExp) {	// FIXME Just use VariableExpCS
 		VariableExp expression = PivotUtil.getPivot(VariableExp.class, csSelfExp);
 		if (expression != null) {
-			ElementCS parent = csSelfExp.getLogicalParent();
+			ElementCS parent = csSelfExp.getParent();
 			if (parent != null) {
 				VariableDeclaration variableDeclaration = context.getConverter().lookupSelf(parent);
 				if (variableDeclaration == null) {

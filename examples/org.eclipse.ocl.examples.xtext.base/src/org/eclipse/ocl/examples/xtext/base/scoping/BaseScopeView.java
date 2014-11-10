@@ -121,7 +121,7 @@ public class BaseScopeView extends AbstractScope implements IScopeView
 	}
 
 	private static @NonNull IScopeView getParent(@NonNull MetaModelManager metaModelManager, @NonNull ElementCS target, @NonNull EReference targetReference, boolean isQualified) {
-		ElementCS csParent = target.getLogicalParent();
+		ElementCS csParent = target.getParent();
 		if (csParent == null) {
 			return NULLSCOPEVIEW;
 		}
