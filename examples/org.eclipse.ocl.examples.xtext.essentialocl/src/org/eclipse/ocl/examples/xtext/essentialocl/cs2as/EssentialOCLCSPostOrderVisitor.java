@@ -24,7 +24,6 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ContextLessElementCS;
-import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.cs2as.BasicContinuation;
 import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
@@ -35,8 +34,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionType
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpSpecificationCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.AbstractEssentialOCLCSPostOrderVisitor;
@@ -190,28 +187,6 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 		else {
 			return null;
 		}
-	}
-
-	@Override
-	public Continuation<?> visitInfixExpCS(@NonNull InfixExpCS csInfixExp) {
-		if (!(csInfixExp.eContainer() instanceof InfixExpCS)) {
-				csInfixExp.setInterleaved();
-		}
-		return null;
-	}
-
-	@Override
-	public Continuation<?> visitPathNameCS(@NonNull PathNameCS object) {
-		// TODO Auto-generated method stub
-		return super.visitPathNameCS(object);
-	}
-
-	@Override
-	public Continuation<?> visitPrefixExpCS(@NonNull PrefixExpCS csPrefixExp) {
-		if (!(csPrefixExp.eContainer() instanceof InfixExpCS)) {
-			csPrefixExp.setInterleaved();
-		}
-		return null;
 	}
 
 	@Override

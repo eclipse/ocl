@@ -223,9 +223,6 @@ public class InfixExpCSImpl
 	}
 
 	public ExpCS getArgument() {
-		if (!isInterleaved) {
-			return null;
-		}
 		if (argument == null) {
 			ExpCS csLowestRight = null;
 			for (ExpCS csRight = this; (csRight = csRight.getLocalRight()) != null; ) {
@@ -267,9 +264,6 @@ public class InfixExpCSImpl
 
 	@Override
 	public ExpCS getSource() {
-		if (!isInterleaved) {
-			return null;
-		}
 		if (source == null) {
 			ExpCS csLowestLeft = null;
 			for (ExpCS csLeft = this; (csLeft = csLeft.getLocalLeft()) != null; ) {
@@ -294,18 +288,5 @@ public class InfixExpCSImpl
 	public void resetPivot() {
 		super.resetPivot();
 		argument = null;
-	}
-	
-	@Override
-	public void setInterleaved() {
-		super.setInterleaved();
-		ExpCS ownedLeft = getOwnedLeft();
-		if (ownedLeft != null) {
-			ownedLeft.setInterleaved();
-		}
-		ExpCS ownedRight = getOwnedRight();
-		if (ownedRight != null) {
-			ownedRight.setInterleaved();
-		}
 	}
 } //BinaryExpressionCSImpl

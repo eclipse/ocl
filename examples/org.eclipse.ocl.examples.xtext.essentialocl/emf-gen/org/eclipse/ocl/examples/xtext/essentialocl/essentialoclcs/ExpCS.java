@@ -111,6 +111,4 @@ public interface ExpCS
 	@Nullable ExpCS getLocalRight();
 
 	@NonNull ExpCS getLocalRightmostDescendant();
-	
-	void setInterleaved();
 } // ExpCS

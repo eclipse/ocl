@@ -226,9 +226,6 @@ public class ExpCSImpl
 	}
 
 	public OperatorExpCS getParent() {
-		if (!isInterleaved) {
-			return null;
-		}
 		if (parent == null) {
 			OperatorExpCS csNearestLeft = null;
 			for (ExpCS csLeft = this; (csLeft = csLeft.getLocalLeft()) != null; ) {
@@ -295,14 +292,7 @@ public class ExpCSImpl
 	public void resetPivot() {
 		super.resetPivot();
 		setHasError(false);
-		isInterleaved = false;
 		parent = null;
-	}
-
-	protected boolean isInterleaved = false;
-	
-	public void setInterleaved() {
-		isInterleaved = true;
 	}
 
 	public void setPrecedence(Precedence newPrecedence) {

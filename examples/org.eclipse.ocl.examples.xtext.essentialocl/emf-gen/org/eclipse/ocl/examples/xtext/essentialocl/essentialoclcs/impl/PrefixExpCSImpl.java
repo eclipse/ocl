@@ -88,9 +88,6 @@ public class PrefixExpCSImpl
 	@Override
 	public ExpCS getSource()
 	{
-		if (!isInterleaved) {
-			return null;
-		}
 		if (source == null) {
 			ExpCS csLowestRight = null;
 			for (ExpCS csRight = this; (csRight = csRight.getLocalRight()) != null; ) {
@@ -109,14 +106,5 @@ public class PrefixExpCSImpl
 	
 	public boolean isLocalRightAncestorOf(@NonNull ExpCS csExp) {	// csExp should be to the right of this for associativity resolution
 		return false;
-	}
-	
-	@Override
-	public void setInterleaved() {
-		super.setInterleaved();
-		ExpCS ownedRight = getOwnedRight();
-		if (ownedRight != null) {
-			ownedRight.setInterleaved();
-		}
 	}
 } //UnaryExpressionCSImpl
