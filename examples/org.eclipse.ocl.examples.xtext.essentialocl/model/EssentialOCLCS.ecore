@@ -99,20 +99,32 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExpCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#//ModelElementCS">
+    <eOperations name="isLocalLeftAncestorOf" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Return true if csExp is a transitive child of this in the logical expression tree containing this and csExp and only OperatorExpCS nodes within the tree."/>
+      </eAnnotations>
+      <eParameters name="csExp" lowerBound="1" eType="#//ExpCS"/>
+    </eOperations>
+    <eOperations name="isLocalRightAncestorOf" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Return true if this is a transitive child of csExp in the logical expression tree containing this and csExp and only OperatorExpCS nodes within the tree."/>
+      </eAnnotations>
+      <eParameters name="csExp" lowerBound="1" eType="#//ExpCS"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasError" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         transient="true" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="localLeft" eType="#//ExpCS"
-        changeable="false" transient="true" derived="true" resolveProxies="false"/>
+        changeable="false" volatile="true" transient="true" derived="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="localLeftmostDescendant"
-        lowerBound="1" eType="#//ExpCS" changeable="false" transient="true" derived="true"
-        resolveProxies="false"/>
+        lowerBound="1" eType="#//ExpCS" changeable="false" volatile="true" transient="true"
+        derived="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="localParent" eType="#//OperatorExpCS"
-        changeable="false" transient="true" derived="true" resolveProxies="false"/>
+        changeable="false" volatile="true" transient="true" derived="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="localRight" eType="#//ExpCS"
-        changeable="false" transient="true" derived="true" resolveProxies="false"/>
+        changeable="false" volatile="true" transient="true" derived="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="localRightmostDescendant"
-        lowerBound="1" eType="#//ExpCS" changeable="false" transient="true" derived="true"
-        resolveProxies="false"/>
+        lowerBound="1" eType="#//ExpCS" changeable="false" volatile="true" transient="true"
+        derived="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="precedence" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Precedence"
         volatile="true" transient="true" derived="true" resolveProxies="false"/>
   </eClassifiers>
@@ -203,18 +215,6 @@
         derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OperatorExpCS" abstract="true" eSuperTypes="#//ExpCS ../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#//NamedElementCS">
-    <eOperations name="isLocalLeftAncestorOf" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Return true if csExp is a transitive child of this in the logical expression tree containing this and csExp and only OperatorExpCS nodes within the tree."/>
-      </eAnnotations>
-      <eParameters name="csExp" lowerBound="1" eType="#//ExpCS"/>
-    </eOperations>
-    <eOperations name="isLocalRightAncestorOf" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Return true if this is a transitive child of csExp in the logical expression tree containing this and csExp and only OperatorExpCS nodes within the tree."/>
-      </eAnnotations>
-      <eParameters name="csExp" lowerBound="1" eType="#//ExpCS"/>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRight" lowerBound="1"
         eType="#//ExpCS" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//ExpCS"

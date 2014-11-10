@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
 
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.xtext.base.basecs.NamedElementCS;
 
 /**
@@ -73,26 +72,4 @@ public interface OperatorExpCS
 	 * @generated
 	 */
 	ExpCS getSource();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Return true if csExp is a transitive child of this in the logical expression tree containing this and csExp and only OperatorExpCS nodes within the tree.
-	 * <!-- end-model-doc -->
-	 * @model required="true" csExpRequired="true"
-	 * @generated NOT
-	 */
-	boolean isLocalLeftAncestorOf(@NonNull ExpCS csExp);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Return true if this is a transitive child of csExp in the logical expression tree containing this and csExp and only OperatorExpCS nodes within the tree.
-	 * <!-- end-model-doc -->
-	 * @model required="true" csExpRequired="true"
-	 * @generated NOT
-	 */
-	boolean isLocalRightAncestorOf(@NonNull ExpCS csExp);
 } // OperatorCS

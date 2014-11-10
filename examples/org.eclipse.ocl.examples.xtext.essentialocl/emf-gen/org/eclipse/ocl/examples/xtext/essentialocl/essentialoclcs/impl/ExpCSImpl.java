@@ -12,6 +12,7 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -20,10 +21,11 @@ import org.eclipse.ocl.examples.pivot.manager.PrecedenceManager;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.impl.ModelElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
-import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCS2AS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.EssentialOCLCSVisitor;
 
 /**
@@ -67,52 +69,6 @@ public class ExpCSImpl
 	 * @ordered
 	 */
 	protected boolean hasError = HAS_ERROR_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getLocalLeft() <em>Local Left</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLocalLeft()
-	 * @generated
-	 * @ordered
-	 */
-	protected ExpCS localLeft;
-	/**
-	 * The cached value of the '{@link #getLocalLeftmostDescendant() <em>Local Leftmost Descendant</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLocalLeftmostDescendant()
-	 * @generated
-	 * @ordered
-	 */
-	protected ExpCS localLeftmostDescendant;
-	/**
-	 * The cached value of the '{@link #getLocalParent() <em>Local Parent</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLocalParent()
-	 * @generated
-	 * @ordered
-	 */
-	protected OperatorExpCS localParent;
-	/**
-	 * The cached value of the '{@link #getLocalRight() <em>Local Right</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLocalRight()
-	 * @generated
-	 * @ordered
-	 */
-	protected ExpCS localRight;
-	/**
-	 * The cached value of the '{@link #getLocalRightmostDescendant() <em>Local Rightmost Descendant</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLocalRightmostDescendant()
-	 * @generated
-	 * @ordered
-	 */
-	protected ExpCS localRightmostDescendant;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -226,6 +182,7 @@ public class ExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("null")
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
@@ -233,15 +190,15 @@ public class ExpCSImpl
 			case EssentialOCLCSPackage.EXP_CS__HAS_ERROR:
 				return hasError != HAS_ERROR_EDEFAULT;
 			case EssentialOCLCSPackage.EXP_CS__LOCAL_LEFT:
-				return localLeft != null;
+				return getLocalLeft() != null;
 			case EssentialOCLCSPackage.EXP_CS__LOCAL_LEFTMOST_DESCENDANT:
-				return localLeftmostDescendant != null;
+				return getLocalLeftmostDescendant() != null;
 			case EssentialOCLCSPackage.EXP_CS__LOCAL_PARENT:
-				return localParent != null;
+				return getLocalParent() != null;
 			case EssentialOCLCSPackage.EXP_CS__LOCAL_RIGHT:
-				return localRight != null;
+				return getLocalRight() != null;
 			case EssentialOCLCSPackage.EXP_CS__LOCAL_RIGHTMOST_DESCENDANT:
-				return localRightmostDescendant != null;
+				return getLocalRightmostDescendant() != null;
 			case EssentialOCLCSPackage.EXP_CS__PRECEDENCE:
 				return getPrecedence() != null;
 		}
@@ -258,30 +215,35 @@ public class ExpCSImpl
 		return (R) ((EssentialOCLCSVisitor<?>)visitor).visitExpCS(this);
 	}
 
+	private @Nullable ExpCS localLeft = null;
+	private boolean hasLocalLeft = false;
+
 	public @Nullable ExpCS getLocalLeft() {
-		return EssentialOCLCS2AS.getDerivedLeftExpCS(this);
+		if ((localLeft == null) && !hasLocalLeft) {
+			hasLocalLeft = true;
+			ExpCS csChild = this;
+			for (EObject eContainer; (eContainer = csChild.eContainer()) instanceof OperatorExpCS; ) {
+				OperatorExpCS csParent = (OperatorExpCS)eContainer;
+				if (csParent.getOwnedRight() == csChild) {
+					localLeft = csParent;
+					break;
+				}
+				csChild = csParent;
+			}
+		}
+		return localLeft;
 	}
 
 	public @NonNull ExpCS getLocalLeftmostDescendant() {
 		return this;
 	}
 
-	public @Nullable ExpCS getLocalRight() {
-		return EssentialOCLCS2AS.getDerivedRightExpCS(this);
-	}
-
-	public @NonNull ExpCS getLocalRightmostDescendant() {
-		return this;
-	}
-
-	@Override
-	public ElementCS getParent() {
-		ElementCS parent = getLocalParent();
-		return parent != null ? parent : super.getParent();
-	}
+	private @Nullable OperatorExpCS localParent = null;
+	private boolean hasLocalParent = false;
 
 	public OperatorExpCS getLocalParent() {
-		if (localParent == null) {
+		if ((localParent == null) && !hasLocalParent) {
+			hasLocalParent = true;
 			OperatorExpCS csNearestLeft = null;
 			for (ExpCS csLeft = this; (csLeft = csLeft.getLocalLeft()) != null; ) {
 				OperatorExpCS csLeftOperator = csLeft instanceof OperatorExpCS ? (OperatorExpCS)csLeft : null;
@@ -339,15 +301,63 @@ public class ExpCSImpl
 		return localParent;
 	}
 
+	private @Nullable ExpCS localRight = null;
+	private boolean hasLocalRight = false;
+
+	public @Nullable ExpCS getLocalRight() {
+		if ((localRight == null) && !hasLocalRight) {
+			hasLocalRight = true;
+			ExpCS csChild = this;
+			for (EObject eContainer; (eContainer = csChild.eContainer()) instanceof OperatorExpCS; ) {
+				if (eContainer instanceof PrefixExpCS) {
+					PrefixExpCS csParent = (PrefixExpCS)eContainer;
+					csChild = csParent;
+				}
+				else/*if (eContainer instanceof InfixExpCS)*/ {
+					InfixExpCS csParent = (InfixExpCS)eContainer;
+					if (csParent.getOwnedLeft() == csChild) {
+						localRight = csParent;
+						break;
+					}
+					csChild = csParent;
+				}
+			}
+		}
+		return localRight;
+	}
+
+	public @NonNull ExpCS getLocalRightmostDescendant() {
+		return this;
+	}
+
+	@Override
+	public ElementCS getParent() {
+		ElementCS parent = getLocalParent();
+		return parent != null ? parent : super.getParent();
+	}
+
 	public Precedence getPrecedence() {
 		return PrecedenceManager.LEAF_PRECEDENCE;
+	}
+
+	public boolean isLocalLeftAncestorOf(@NonNull ExpCS csExp) {	// csExp should be to the right of this for associativity resolution
+		return false;
+	}
+
+	public boolean isLocalRightAncestorOf(@NonNull ExpCS csExp) {	// csExp should be to the left of this for associativity resolution
+		return false;
 	}
 
 	@Override
 	public void resetPivot() {
 		super.resetPivot();
 		setHasError(false);
+		localLeft = null;
 		localParent = null;
+		localRight = null;
+		hasLocalLeft = false;
+		hasLocalParent = false;
+		hasLocalRight = false;
 	}
 
 	public void setPrecedence(Precedence newPrecedence) {

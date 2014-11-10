@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
-import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCS2AS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS;
@@ -63,15 +62,15 @@ public class PrefixExpCSImpl
 		return (R) ((EssentialOCLCSVisitor<?>)visitor).visitPrefixExpCS(this);
 	}
 
-	@Override
-	public @Nullable ExpCS getLocalLeft() {
-		return EssentialOCLCS2AS.getDerivedLeftExpCS(this);
-	}
+//	@Override
+//	public @Nullable ExpCS getLocalLeft() {
+//		return EssentialOCLCS2AS.getDerivedLeftExpCS(this);
+//	}
 
-	@Override
-	public @NonNull ExpCS getLocalLeftmostDescendant() {
-		return this;
-	}
+//	@Override
+//	public @NonNull ExpCS getLocalLeftmostDescendant() {
+//		return this;
+//	}
 
 	@Override
 	public @Nullable ExpCS getLocalRight() {

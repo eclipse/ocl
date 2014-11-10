@@ -114,6 +114,13 @@ def : ast() : ocl::ExpressionInOCL =
 		bodyExpression = ownedExpression.ast()
 	}
 
+context ExpCS
+--def : precedence : Precedence = LEAF_PRECEDENCE
+def : localLeft : ExpCS = self
+def : localLeftmostDescendant : ExpCS = self
+def : localRight : ExpCS = self
+def : localRightmostDescendant : ExpCS = self
+
 -- TODO there is a tricky part with respect to the case of having a messageExpression
 context ExpSpecificationCS
 def : ast() : ocl::ExpressionInOCL =

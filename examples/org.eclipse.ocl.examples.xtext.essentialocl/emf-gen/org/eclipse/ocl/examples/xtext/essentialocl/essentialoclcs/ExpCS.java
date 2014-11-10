@@ -50,7 +50,7 @@ public interface ExpCS
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Local Parent</em>' reference.
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getExpCS_LocalParent()
-	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
+	 * @model resolveProxies="false" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
 	@Nullable OperatorExpCS getLocalParent();
@@ -65,7 +65,7 @@ public interface ExpCS
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Local Right</em>' reference.
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getExpCS_LocalRight()
-	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
+	 * @model resolveProxies="false" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
 	@Nullable ExpCS getLocalRight();
@@ -80,7 +80,7 @@ public interface ExpCS
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Local Rightmost Descendant</em>' reference.
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getExpCS_LocalRightmostDescendant()
-	 * @model resolveProxies="false" required="true" transient="true" changeable="false" derived="true"
+	 * @model resolveProxies="false" required="true" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
 	@NonNull ExpCS getLocalRightmostDescendant();
@@ -122,7 +122,7 @@ public interface ExpCS
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Local Left</em>' reference.
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getExpCS_LocalLeft()
-	 * @model resolveProxies="false" transient="true" changeable="false" derived="true"
+	 * @model resolveProxies="false" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
 	@Nullable ExpCS getLocalLeft();
@@ -137,7 +137,7 @@ public interface ExpCS
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Local Leftmost Descendant</em>' reference.
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getExpCS_LocalLeftmostDescendant()
-	 * @model resolveProxies="false" required="true" transient="true" changeable="false" derived="true"
+	 * @model resolveProxies="false" required="true" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
 	@NonNull ExpCS getLocalLeftmostDescendant();
@@ -157,6 +157,28 @@ public interface ExpCS
 	 * @generated
 	 */
 	Precedence getPrecedence();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Return true if csExp is a transitive child of this in the logical expression tree containing this and csExp and only OperatorExpCS nodes within the tree.
+	 * <!-- end-model-doc -->
+	 * @model required="true" csExpRequired="true"
+	 * @generated NOT
+	 */
+	boolean isLocalLeftAncestorOf(@NonNull ExpCS csExp);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Return true if this is a transitive child of csExp in the logical expression tree containing this and csExp and only OperatorExpCS nodes within the tree.
+	 * <!-- end-model-doc -->
+	 * @model required="true" csExpRequired="true"
+	 * @generated NOT
+	 */
+	boolean isLocalRightAncestorOf(@NonNull ExpCS csExp);
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS#getPrecedence <em>Precedence</em>}' reference.

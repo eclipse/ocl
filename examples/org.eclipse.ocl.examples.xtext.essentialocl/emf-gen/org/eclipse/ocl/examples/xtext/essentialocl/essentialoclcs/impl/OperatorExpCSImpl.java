@@ -18,12 +18,12 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.Nameable;
+import org.eclipse.ocl.examples.pivot.AssociativityKind;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.manager.PrecedenceManager;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.NamedElementCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCS2AS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS;
@@ -346,12 +346,26 @@ public abstract class OperatorExpCSImpl
 	}
 
 	public abstract ExpCS getSource();
-	
-	public boolean isLocalLeftAncestorOf(@NonNull ExpCS csExp) {	// csExp should be to the right of this for associativity resolution
-		return EssentialOCLCS2AS.isLocalProperAncestorOf(this, csExp);
-	}
 
-	public abstract boolean isLocalRightAncestorOf(@NonNull ExpCS csExp);
+	@Override
+	public boolean isLocalLeftAncestorOf(@NonNull ExpCS csExp) {	// csExp should be to the right of this for associativity resolution
+		Precedence leftPrecedence = getPrecedence();
+		Precedence rightPrecedence = csExp.getPrecedence();
+		int leftOrder = leftPrecedence.getOrder().intValue();
+		int rightOrder = rightPrecedence.getOrder().intValue();
+		if (leftOrder > rightOrder) {
+			return true;
+		}
+		else if (leftOrder > rightOrder) {
+			return false;
+		}
+		else if (leftPrecedence.getAssociativity() == AssociativityKind.RIGHT) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
