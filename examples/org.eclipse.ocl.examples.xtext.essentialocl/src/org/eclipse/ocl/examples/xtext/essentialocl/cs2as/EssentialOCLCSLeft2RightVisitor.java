@@ -1329,7 +1329,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			OperatorExpCS savedCurrentRoot = currentRoot;
 			try {
 				currentRoot = csRoot;
-				OCLExpression pivot = context.visitLeft2Right(OCLExpression.class, csRoot);		
+				OCLExpression pivot = context.visitLeft2Right(OCLExpression.class, csRoot);
 				assert csRoot.getPivot() == pivot;
 				return pivot;
 			}
