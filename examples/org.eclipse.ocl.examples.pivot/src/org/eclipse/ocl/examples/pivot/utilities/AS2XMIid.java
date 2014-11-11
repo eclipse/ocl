@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -33,6 +34,8 @@ import org.eclipse.ocl.examples.pivot.resource.ASResourceFactoryRegistry;
 
 public class AS2XMIid
 {
+	private static final Logger logger = Logger.getLogger(MetaModelManager.class);
+
 	/**
 	 * Create an AS2ID conversion primed with the xmi:id values obtained by loading uri. 
 	 */
@@ -82,7 +85,6 @@ public class AS2XMIid
 	 * values read when this AS2ID was constructed.
 	 */
 	public void assignIds(@NonNull ASResource asResource, @Nullable Map<?, ?> options) {
-		StringBuilder s = null;
 		Map<String, EObject> allIds = new HashMap<String, EObject>();
 		ASResourceFactory resourceFactory = asResource.getASResourceFactory();
 		Object optionInternalUUIDs = options != null ? options.get(ASResource.OPTION_INTERNAL_UUIDS) : null;
@@ -97,21 +99,17 @@ public class AS2XMIid
 					id = idVisitor.getID(element, internalUUIDs);
 				}
 				if (id != null) {
-					assert id.length() > 0 : "Zero length id for '" + element.eClass().getName() + "'";
-					EObject oldElement = allIds.put(id, element);
-					if (oldElement != null) {
-						if (s == null) {
-							s = new StringBuilder();
-							s.append("Duplicate xmi:id values generated for ");
-						}
-						s.append("\n '" + id + "' for '" + element.eClass().getName() + "'");
+					if (id.length() <= 0) {
+						logger.warn("Zero length id for '" + element.eClass().getName() + "'");
+						id = EcoreUtil.generateUUID();
 					}
+					else if (allIds.containsKey(id)) {
+						id = EcoreUtil.generateUUID();
+					}
+					allIds.put(id, element);
 					asResource.setID(element, id);
 				}
 			}
-		}
-		if (s != null) {
-			throw new IllegalStateException(s.toString());
 		}
 	}
 
