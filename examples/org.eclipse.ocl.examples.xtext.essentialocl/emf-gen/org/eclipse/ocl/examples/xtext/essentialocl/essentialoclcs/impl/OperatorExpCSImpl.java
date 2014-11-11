@@ -319,6 +319,56 @@ public abstract class OperatorExpCSImpl
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
+	
+	protected @Nullable ExpCS getExpressionForLeft(@NonNull ExpCS csLeft) {
+		if (csLeft instanceof OperatorExpCS) {
+			OperatorExpCS csLeftOperator = (OperatorExpCS) csLeft;
+			if (csLeftOperator.isLocalLeftAncestorOf(this)) {
+				return null;
+			}
+		}
+		return getExpressionForLefts(csLeft.getLocalLeft(), csLeft);
+	}
+	private @NonNull ExpCS getExpressionForLefts(@Nullable ExpCS csLeft, @NonNull ExpCS csLowestLeft) {
+		if (csLeft == null) {
+			return csLowestLeft;
+		}
+		if (csLeft instanceof OperatorExpCS) {
+			OperatorExpCS csLeftOperator = (OperatorExpCS) csLeft;
+			if (csLeftOperator.isLocalLeftAncestorOf(this)) {
+				return csLowestLeft;
+			}
+			if (csLeftOperator.isLocalLeftAncestorOf(csLowestLeft)) {
+				return getExpressionForLefts(csLeft.getLocalLeft(), csLeft);
+			}
+		}
+		return getExpressionForLefts(csLeft.getLocalLeft(), csLowestLeft);
+	}
+	
+	protected @Nullable ExpCS getExpressionForRight(@NonNull ExpCS csRight) {
+		if (csRight instanceof OperatorExpCS) {
+			OperatorExpCS csRightOperator = (OperatorExpCS) csRight;
+			if (csRightOperator.isLocalRightAncestorOf(this)) {
+				return null;
+			}
+		}
+		return getExpressionForRights(csRight.getLocalRight(), csRight);
+	}
+	private @NonNull ExpCS getExpressionForRights(@Nullable ExpCS csRight, @NonNull ExpCS csLowestRight) {
+		if (csRight == null) {
+			return csLowestRight;
+		}
+		if (csRight instanceof OperatorExpCS) {
+			OperatorExpCS csRightOperator = (OperatorExpCS) csRight;
+			if (csRightOperator.isLocalRightAncestorOf(this)) {
+				return csLowestRight;
+			}
+			if (csRightOperator.isLocalRightAncestorOf(csLowestRight)) {
+				return getExpressionForRights(csRight.getLocalRight(), csRight);
+			}
+		}
+		return getExpressionForRights(csRight.getLocalRight(), csLowestRight);
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -380,6 +430,8 @@ public abstract class OperatorExpCSImpl
 		}
 	}
 
+	protected boolean hasSource = false;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -392,6 +444,7 @@ public abstract class OperatorExpCSImpl
 		super.resetPivot();
 		precedence = null;
 		source = null;
+		hasSource = false;
 	}
 
 	@Override

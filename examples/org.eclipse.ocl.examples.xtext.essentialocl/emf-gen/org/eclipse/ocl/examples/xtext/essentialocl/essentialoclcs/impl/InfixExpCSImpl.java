@@ -21,7 +21,6 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.EssentialOCLCSVisitor;
 
 /**
@@ -220,19 +219,16 @@ public class InfixExpCSImpl
 	public @Nullable <R> R accept(@NonNull BaseCSVisitor<R> visitor) {
 		return (R) ((EssentialOCLCSVisitor<?>)visitor).visitInfixExpCS(this);
 	}
+	
+	private boolean hasArgument = false;
 
 	public ExpCS getArgument() {
-		if (argument == null) {
-			ExpCS csLowestRight = null;
-			for (ExpCS csRight = this; (csRight = csRight.getLocalRight()) != null; ) {
-				if ((csRight instanceof OperatorExpCS) && ((OperatorExpCS) csRight).isLocalRightAncestorOf(this)) {
-					break;
-				}
-				if ((csLowestRight == null) || ((csRight instanceof OperatorExpCS) && ((OperatorExpCS) csRight).isLocalRightAncestorOf(csLowestRight))) {
-					csLowestRight = csRight;
-				}
+		if ((argument == null) && !hasArgument) {
+			hasArgument = true;
+			ExpCS localRight = getLocalRight();
+			if (localRight != null) {
+				argument = getExpressionForRight(localRight);
 			}
-			argument = csLowestRight;
 		}
 		return argument;
 	}
@@ -257,18 +253,12 @@ public class InfixExpCSImpl
 
 	@Override
 	public ExpCS getSource() {
-		if (source == null) {
-			ExpCS csLowestLeft = null;
-			for (ExpCS csLeft = this; (csLeft = csLeft.getLocalLeft()) != null; ) {
-				OperatorExpCS csLeftOperator = csLeft instanceof OperatorExpCS ? (OperatorExpCS)csLeft : null;
-				if ((csLeftOperator != null) && csLeftOperator.isLocalLeftAncestorOf(this)) {
-					break;
-				}
-				if ((csLowestLeft == null) || ((csLeftOperator != null) && csLeftOperator.isLocalLeftAncestorOf(csLowestLeft))) {
-					csLowestLeft = csLeft;
-				}
+		if ((source == null) && !hasSource) {
+			hasSource = true;
+			ExpCS localLeft = getLocalLeft();
+			if (localLeft != null) {
+				source = getExpressionForLeft(localLeft);
 			}
-			source = csLowestLeft;
 		}
 		return source;
 	}
@@ -282,5 +272,6 @@ public class InfixExpCSImpl
 	public void resetPivot() {
 		super.resetPivot();
 		argument = null;
+		hasArgument = false;
 	}
 } //BinaryExpressionCSImpl

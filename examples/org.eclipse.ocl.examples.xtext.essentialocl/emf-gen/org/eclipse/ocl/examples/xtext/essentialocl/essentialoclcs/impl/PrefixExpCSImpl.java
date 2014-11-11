@@ -16,7 +16,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.EssentialOCLCSVisitor;
 
@@ -61,41 +60,18 @@ public class PrefixExpCSImpl
 	public @Nullable <R> R accept(@NonNull BaseCSVisitor<R> visitor) {
 		return (R) ((EssentialOCLCSVisitor<?>)visitor).visitPrefixExpCS(this);
 	}
-
+	
 	@Override
 	public ExpCS getSource()
 	{
-		if (source == null) {
-			source = getSourceForRight(getLocalRight());
+		if ((source == null) && !hasSource) {
+			hasSource = true;
+			ExpCS localRight = getLocalRight();
+			if (localRight != null) {
+				source = getExpressionForRight(localRight);
+			}
 		}
 		return source;
-	}
-	private @Nullable ExpCS getSourceForRight(@Nullable ExpCS csRight) {
-		if (csRight == null) {
-			return null;
-		}
-		if (csRight instanceof OperatorExpCS) {
-			OperatorExpCS csRightOperator = (OperatorExpCS) csRight;
-			if (csRightOperator.isLocalRightAncestorOf(this)) {
-				return null;
-			}
-		}
-		return getSourceForRights(csRight.getLocalRight(), csRight);
-	}
-	private @NonNull ExpCS getSourceForRights(@Nullable ExpCS csRight, @NonNull ExpCS csLowestRight) {
-		if (csRight == null) {
-			return csLowestRight;
-		}
-		if (csRight instanceof OperatorExpCS) {
-			OperatorExpCS csRightOperator = (OperatorExpCS) csRight;
-			if (csRightOperator.isLocalRightAncestorOf(this)) {
-				return csLowestRight;
-			}
-			if (csRightOperator.isLocalRightAncestorOf(csLowestRight)) {
-				return getSourceForRights(csRight.getLocalRight(), csRight);
-			}
-		}
-		return getSourceForRights(csRight.getLocalRight(), csLowestRight);
 	}
 	
 	@Override
