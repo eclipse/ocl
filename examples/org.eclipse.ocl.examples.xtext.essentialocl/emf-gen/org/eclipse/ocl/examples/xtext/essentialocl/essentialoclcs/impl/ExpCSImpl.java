@@ -221,21 +221,23 @@ public class ExpCSImpl
 	public @Nullable ExpCS getLocalLeft() {
 		if ((localLeft == null) && !hasLocalLeft) {
 			hasLocalLeft = true;
-			localLeft = getLocalLeftAncestor();
+			localLeft = getLocalLeftContainer();
 		}
 		return localLeft;
 	}
 
-	public @Nullable OperatorExpCS getLocalLeftAncestor() {
+	public @Nullable OperatorExpCS getLocalLeftContainer() {
 		EObject eContainer = eContainer();
-		if (!(eContainer instanceof OperatorExpCS)) {
-			return null;
+		if (eContainer instanceof OperatorExpCS) {
+			OperatorExpCS csContainer = (OperatorExpCS)eContainer;
+			if (csContainer.getOwnedRight() == this) {
+				return csContainer;
+			}
+			else {
+				return csContainer.getLocalLeftContainer();
+			}
 		}
-		OperatorExpCS csContainer = (OperatorExpCS)eContainer;
-		if (csContainer.getOwnedRight() == this) {
-			return csContainer;
-		}
-		return csContainer.getLocalLeftAncestor();
+		return null;
 	}
 
 	public @NonNull ExpCS getLocalLeftmostDescendant() {
@@ -311,32 +313,27 @@ public class ExpCSImpl
 	public @Nullable ExpCS getLocalRight() {
 		if ((localRight == null) && !hasLocalRight) {
 			hasLocalRight = true;
-			ExpCS csChild = this;
-			for (EObject eContainer; (eContainer = csChild.eContainer()) instanceof OperatorExpCS; ) {
-				if (eContainer instanceof PrefixExpCS) {
-					PrefixExpCS csParent = (PrefixExpCS)eContainer;
-					csChild = csParent;
-				}
-				else if (eContainer instanceof InfixExpCS) {
-					InfixExpCS csParent = (InfixExpCS)eContainer;
-					if (csParent.getOwnedLeft() == csChild) {
-						localRight = csParent;
-						break;
-					}
-					csChild = csParent;
-				}
-				else {
-					break;
-				}
-			}
-			EObject eContainer = eContainer();
-			if (eContainer instanceof OperatorExpCS) {		// NB must not climb through NestedExpCS
-				ExpCS localRight2 = ((OperatorExpCS) eContainer).getLocalRight();
-//				assert localRight2 == localRight;
-			}
-			
+			localRight = getLocalRightContainer();
 		}
 		return localRight;
+	}
+
+	public @Nullable OperatorExpCS getLocalRightContainer() {
+		EObject eContainer = eContainer();
+		if (eContainer instanceof InfixExpCS) {
+			InfixExpCS csContainer = (InfixExpCS)eContainer;
+			if (csContainer.getOwnedLeft() == this) {
+				return csContainer;
+			}
+			else {
+				return csContainer.getLocalRightContainer();
+			}
+		}
+		else if (eContainer instanceof PrefixExpCS) {
+			PrefixExpCS csContainer = (PrefixExpCS)eContainer;
+			return csContainer.getLocalRightContainer();
+		}
+		return null;
 	}
 
 	public @NonNull ExpCS getLocalRightmostDescendant() {
