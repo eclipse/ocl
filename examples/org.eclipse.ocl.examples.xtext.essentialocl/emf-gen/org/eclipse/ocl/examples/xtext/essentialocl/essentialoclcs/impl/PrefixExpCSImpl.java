@@ -66,19 +66,36 @@ public class PrefixExpCSImpl
 	public ExpCS getSource()
 	{
 		if (source == null) {
-			ExpCS csLowestRight = null;
-			for (ExpCS csRight = this; (csRight = csRight.getLocalRight()) != null; ) {
-				OperatorExpCS csRightOperator = csRight instanceof OperatorExpCS ? (OperatorExpCS) csRight : null;
-				if ((csRightOperator != null) && csRightOperator.isLocalRightAncestorOf(this)) {
-					break;
-				}
-				if ((csLowestRight == null) || ((csRightOperator != null) && csRightOperator.isLocalRightAncestorOf(csLowestRight))) {
-					csLowestRight = csRight;
-				}
-			}
-			source = csLowestRight;
+			source = getSourceForRight(getLocalRight());
 		}
 		return source;
+	}
+	private @Nullable ExpCS getSourceForRight(@Nullable ExpCS csRight) {
+		if (csRight == null) {
+			return null;
+		}
+		if (csRight instanceof OperatorExpCS) {
+			OperatorExpCS csRightOperator = (OperatorExpCS) csRight;
+			if (csRightOperator.isLocalRightAncestorOf(this)) {
+				return null;
+			}
+		}
+		return getSourceForRights(csRight.getLocalRight(), csRight);
+	}
+	private @NonNull ExpCS getSourceForRights(@Nullable ExpCS csRight, @NonNull ExpCS csLowestRight) {
+		if (csRight == null) {
+			return csLowestRight;
+		}
+		if (csRight instanceof OperatorExpCS) {
+			OperatorExpCS csRightOperator = (OperatorExpCS) csRight;
+			if (csRightOperator.isLocalRightAncestorOf(this)) {
+				return csLowestRight;
+			}
+			if (csRightOperator.isLocalRightAncestorOf(csLowestRight)) {
+				return getSourceForRights(csRight.getLocalRight(), csRight);
+			}
+		}
+		return getSourceForRights(csRight.getLocalRight(), csLowestRight);
 	}
 	
 	@Override
