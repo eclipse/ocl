@@ -215,23 +215,27 @@ public class ExpCSImpl
 		return (R) ((EssentialOCLCSVisitor<?>)visitor).visitExpCS(this);
 	}
 
-	private @Nullable ExpCS localLeft = null;
-	private boolean hasLocalLeft = false;
+	protected @Nullable ExpCS localLeft = null;
+	protected boolean hasLocalLeft = false;
 
 	public @Nullable ExpCS getLocalLeft() {
 		if ((localLeft == null) && !hasLocalLeft) {
 			hasLocalLeft = true;
-			ExpCS csChild = this;
-			for (EObject eContainer; (eContainer = csChild.eContainer()) instanceof OperatorExpCS; ) {
-				OperatorExpCS csParent = (OperatorExpCS)eContainer;
-				if (csParent.getOwnedRight() == csChild) {
-					localLeft = csParent;
-					break;
-				}
-				csChild = csParent;
-			}
+			localLeft = getLocalLeftAncestor();
 		}
 		return localLeft;
+	}
+
+	public @Nullable OperatorExpCS getLocalLeftAncestor() {
+		EObject eContainer = eContainer();
+		if (!(eContainer instanceof OperatorExpCS)) {
+			return null;
+		}
+		OperatorExpCS csContainer = (OperatorExpCS)eContainer;
+		if (csContainer.getOwnedRight() == this) {
+			return csContainer;
+		}
+		return csContainer.getLocalLeftAncestor();
 	}
 
 	public @NonNull ExpCS getLocalLeftmostDescendant() {
@@ -313,7 +317,7 @@ public class ExpCSImpl
 					PrefixExpCS csParent = (PrefixExpCS)eContainer;
 					csChild = csParent;
 				}
-				else/*if (eContainer instanceof InfixExpCS)*/ {
+				else if (eContainer instanceof InfixExpCS) {
 					InfixExpCS csParent = (InfixExpCS)eContainer;
 					if (csParent.getOwnedLeft() == csChild) {
 						localRight = csParent;
@@ -321,7 +325,16 @@ public class ExpCSImpl
 					}
 					csChild = csParent;
 				}
+				else {
+					break;
+				}
 			}
+			EObject eContainer = eContainer();
+			if (eContainer instanceof OperatorExpCS) {		// NB must not climb through NestedExpCS
+				ExpCS localRight2 = ((OperatorExpCS) eContainer).getLocalRight();
+//				assert localRight2 == localRight;
+			}
+			
 		}
 		return localRight;
 	}

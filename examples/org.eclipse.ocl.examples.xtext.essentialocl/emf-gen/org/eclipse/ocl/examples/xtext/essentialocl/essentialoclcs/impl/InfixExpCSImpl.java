@@ -239,26 +239,20 @@ public class InfixExpCSImpl
 
 	@Override
 	public @Nullable ExpCS getLocalLeft() {
-		ExpCS ownedSource = getOwnedLeft();
-		return ownedSource != null ? ownedSource.getLocalRightmostDescendant() : null;
+		if ((localLeft == null) && !hasLocalLeft) {
+			hasLocalLeft = true;
+			ExpCS ownedSource = getOwnedLeft();
+			if (ownedSource != null) {
+				localLeft = ownedSource.getLocalRightmostDescendant();
+			}
+		}
+		return localLeft;
 	}
 
 	@Override
 	public @NonNull ExpCS getLocalLeftmostDescendant() {
 		ExpCS ownedSource = getOwnedLeft();
 		return ownedSource != null ? ownedSource.getLocalLeftmostDescendant() : this;
-	}
-
-	@Override
-	public @Nullable ExpCS getLocalRight() {
-		ExpCS ownedArgument = getOwnedRight();
-		return ownedArgument != null ? ownedArgument.getLocalLeftmostDescendant() : null;
-	}
-
-	@Override
-	public @NonNull ExpCS getLocalRightmostDescendant() {
-		ExpCS ownedArgument = getOwnedRight();
-		return ownedArgument != null ? ownedArgument.getLocalRightmostDescendant() : this;
 	}
 
 	@Override

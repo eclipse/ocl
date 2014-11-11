@@ -62,28 +62,6 @@ public class PrefixExpCSImpl
 		return (R) ((EssentialOCLCSVisitor<?>)visitor).visitPrefixExpCS(this);
 	}
 
-//	@Override
-//	public @Nullable ExpCS getLocalLeft() {
-//		return EssentialOCLCS2AS.getDerivedLeftExpCS(this);
-//	}
-
-//	@Override
-//	public @NonNull ExpCS getLocalLeftmostDescendant() {
-//		return this;
-//	}
-
-	@Override
-	public @Nullable ExpCS getLocalRight() {
-		ExpCS ownedRight = getOwnedRight();
-		return ownedRight != null ? ownedRight.getLocalLeftmostDescendant() : null;
-	}
-
-	@Override
-	public @NonNull ExpCS getLocalRightmostDescendant() {
-		ExpCS ownedRight = getOwnedRight();
-		return ownedRight != null ? ownedRight.getLocalRightmostDescendant() : this;
-	}
-
 	@Override
 	public ExpCS getSource()
 	{

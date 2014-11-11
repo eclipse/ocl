@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.Nameable;
 import org.eclipse.ocl.examples.pivot.AssociativityKind;
 import org.eclipse.ocl.examples.pivot.Precedence;
@@ -343,6 +344,18 @@ public abstract class OperatorExpCSImpl
 	@Override
 	public Precedence getPrecedence() {
 		return precedence != null ? precedence : PrecedenceManager.NULL_PRECEDENCE;
+	}
+
+	@Override
+	public @Nullable ExpCS getLocalRight() {
+		ExpCS ownedRight = getOwnedRight();
+		return ownedRight != null ? ownedRight.getLocalLeftmostDescendant() : null;
+	}
+
+	@Override
+	public @NonNull ExpCS getLocalRightmostDescendant() {
+		ExpCS ownedRight = getOwnedRight();
+		return ownedRight != null ? ownedRight.getLocalRightmostDescendant() : this;
 	}
 
 	public abstract ExpCS getSource();

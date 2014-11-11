@@ -189,4 +189,6 @@ public interface ExpCS
 	 * @generated
 	 */
 	void setPrecedence(Precedence value);
+	
+	@Nullable OperatorExpCS getLocalLeftAncestor();
 } // ExpCS

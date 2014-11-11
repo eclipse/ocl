@@ -1,8 +1,21 @@
 import 'EssentialOCLCS.ecore'
+import '/resource/org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore'
 import '/resource/org.eclipse.ocl.examples.pivot/model/Pivot.ecore'
 import '/resource/org.eclipse.ocl.examples.pivot/model/PivotNameResolution.ocl'
 
 import '/resource/org.eclipse.ocl.examples.xtext.base/model/BaseCS2AS.ocl' -- To import other OCL definitions
+
+package basecs
+
+context ElementCS
+def : elementParent : ElementCS =
+	if oclContainer().oclIsKindOf(ElementCS)
+	then oclContainer().oclAsType(ElementCS)
+	else null
+	endif
+def : parent : basecs::ElementCS = elementParent
+
+endpackage
 
 package essentialoclcs
 	
@@ -116,10 +129,14 @@ def : ast() : ocl::ExpressionInOCL =
 
 context ExpCS
 --def : precedence : Precedence = LEAF_PRECEDENCE
+def : isLocalLeftAncestorOf(csExp : ExpCS) : Boolean = false
+def : isLocalRightAncestorOf(csExp : ExpCS) : Boolean = false
 def : localLeft : ExpCS = self
 def : localLeftmostDescendant : ExpCS = self
+def : localParent : ExpCS = null
 def : localRight : ExpCS = self
 def : localRightmostDescendant : ExpCS = self
+def : parent : basecs::ElementCS = if localParent <> null then localParent else elementParent endif
 
 -- TODO there is a tricky part with respect to the case of having a messageExpression
 context ExpSpecificationCS
