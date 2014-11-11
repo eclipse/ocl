@@ -250,40 +250,8 @@ public class ExpCSImpl
 	public OperatorExpCS getLocalParent() {
 		if ((localParent == null) && !hasLocalParent) {
 			hasLocalParent = true;
-			OperatorExpCS csNearestLeft = null;
-			for (ExpCS csLeft = this; (csLeft = csLeft.getLocalLeft()) != null; ) {
-				OperatorExpCS csLeftOperator = csLeft instanceof OperatorExpCS ? (OperatorExpCS)csLeft : null;
-				if (csNearestLeft == null) {
-					if ((csLeftOperator != null) && csLeftOperator.isLocalLeftAncestorOf(this)) {
-						csNearestLeft = csLeftOperator;
-					}
-				}
-				else {
-					if ((csLeftOperator != null) && csNearestLeft.isLocalLeftAncestorOf(csLeft) && csLeftOperator.isLocalLeftAncestorOf(this)) {
-						csNearestLeft = csLeftOperator;
-					}
-					else {
-						break;
-					}
-				}
-			}
-			OperatorExpCS csNearestRight = null;
-			for (ExpCS csRight = this; (csRight = csRight.getLocalRight()) != null; ) {
-				OperatorExpCS csRightOperator = csRight instanceof OperatorExpCS ? (OperatorExpCS)csRight : null;
-				if (csNearestRight == null) {
-					if ((csRightOperator != null) && csRightOperator.isLocalRightAncestorOf(this)) {
-						csNearestRight = csRightOperator;
-					}
-				}
-				else {
-					if ((csRightOperator != null) && csRightOperator.isLocalRightAncestorOf(this) && csNearestRight.isLocalRightAncestorOf(csRight)) {
-						csNearestRight = csRightOperator;
-					}
-					else {
-						break;
-					}
-				}
-			}
+			OperatorExpCS csNearestLeft = getLocalParentForLeft(getLocalLeft());
+			OperatorExpCS csNearestRight = getLocalParentForRight(getLocalRight());
 			if (csNearestLeft == null) {
 				if (csNearestRight == null) {
 					localParent = null;
@@ -307,6 +275,56 @@ public class ExpCSImpl
 		return localParent;
 	}
 
+	private @Nullable OperatorExpCS getLocalParentForLeft(@Nullable ExpCS csLeft) {
+		if (csLeft == null) {
+			return null;
+		}
+		OperatorExpCS csLeftOperator = csLeft instanceof OperatorExpCS ? (OperatorExpCS)csLeft : null;
+		if ((csLeftOperator != null) && csLeftOperator.isLocalLeftAncestorOf(this)) {
+			return getLocalParentForLefts(csLeft.getLocalLeft(), csLeftOperator);
+		}
+		else {
+			return getLocalParentForLeft(csLeft.getLocalLeft());
+		}
+	}
+	private @NonNull OperatorExpCS getLocalParentForLefts(@Nullable ExpCS csLeft, @NonNull OperatorExpCS csNearestLeft) {
+		if (csLeft == null) {
+			return csNearestLeft;
+		}
+		OperatorExpCS csLeftOperator = csLeft instanceof OperatorExpCS ? (OperatorExpCS)csLeft : null;
+		if ((csLeftOperator != null) && csNearestLeft.isLocalLeftAncestorOf(csLeft) && csLeftOperator.isLocalLeftAncestorOf(this)) {
+			return getLocalParentForLefts(csLeft.getLocalLeft(), csLeftOperator);
+		}
+		else {
+			return csNearestLeft;
+		}
+	}
+	
+	private @Nullable OperatorExpCS getLocalParentForRight(@Nullable ExpCS csRight) {
+		if (csRight == null) {
+			return null;
+		}
+		OperatorExpCS csRightOperator = csRight instanceof OperatorExpCS ? (OperatorExpCS)csRight : null;
+		if ((csRightOperator != null) && csRightOperator.isLocalRightAncestorOf(this)) {
+			return getLocalParentForRights(csRight.getLocalRight(), csRightOperator);
+		}
+		else {
+			return getLocalParentForRight(csRight.getLocalRight());
+		}
+	}
+	private @Nullable OperatorExpCS getLocalParentForRights(@Nullable ExpCS csRight, @NonNull OperatorExpCS csNearestRight) {
+		if (csRight == null) {
+			return csNearestRight;
+		}
+		OperatorExpCS csRightOperator = csRight instanceof OperatorExpCS ? (OperatorExpCS)csRight : null;
+		if ((csRightOperator != null) && csRightOperator.isLocalRightAncestorOf(this) && csNearestRight.isLocalRightAncestorOf(csRight)) {
+			return getLocalParentForRights(csRight.getLocalRight(), csRightOperator);
+		}
+		else {
+			return csNearestRight;
+		}
+	}
+	
 	private @Nullable ExpCS localRight = null;
 	private boolean hasLocalRight = false;
 
