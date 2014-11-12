@@ -64,6 +64,7 @@ import org.eclipse.ocl.examples.pivot.manager.PackageServer;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
+import org.eclipse.ocl.examples.pivot.utilities.AS2XMIid;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
@@ -877,6 +878,35 @@ public class LoadTests extends XtextTestCase
 		CS2PivotResourceAdapter resourceAdapter = ((BaseCSResource)csResource).getCS2ASAdapter(null);
 		resourceAdapter.getMetaModelManager().dispose();
 	}
+
+	public void testLoad_Bug450950_ocl() throws IOException, InterruptedException {
+		String bug450950A = 
+				"package bug450950 : bug450950A = 'http://www.eclipse.org/ocl/Bug450950A'\n" +
+				"{\n" +
+				"	abstract class Bug450950A;\n" +
+				"}\n";
+		createOCLinEcoreFile("Bug450950A.oclinecore", bug450950A);
+		String bug450950B = 
+				"package bug450950 : bug450950B = 'http://www.eclipse.org/ocl/Bug450950B'\n" +
+				"{\n" +
+				"	abstract class Bug450950B;\n" +
+				"}\n";
+		createOCLinEcoreFile("Bug450950B.oclinecore", bug450950B);
+		String bug450950 = 
+				"import bug450950a : 'Bug450950A.oclinecore'::bug450950\n" + 
+				"import bug450950b : 'Bug450950B.oclinecore'::bug450950\n" + 
+				"package bug450950a\n" + 
+				"context Bug450950A\n" + 
+				"def : isA() : Boolean = true\n" + 
+				"endpackage\n" + 
+				"package bug450950b\n" + 
+				"context Bug450950B\n" + 
+				"def : isB() : Boolean = true\n" + 
+				"endpackage\n";
+		createOCLinEcoreFile("Bug450950.ocl", bug450950);
+		Resource asResource = doLoad_Concrete("Bug450950", "ocl");
+		assert asResource.getErrors().get(0) instanceof AS2XMIid.UnstableXMIidDiagnostics;
+	}	
 	
 	private void checkMultiplicity(TypedElement typedElement, int lower, int upper) {
 		Type type = typedElement.getType();
