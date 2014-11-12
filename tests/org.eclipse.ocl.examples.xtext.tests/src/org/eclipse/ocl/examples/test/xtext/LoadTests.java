@@ -44,6 +44,7 @@ import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.Import;
 import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.Namespace;
@@ -967,14 +968,33 @@ public class LoadTests extends XtextTestCase
 	public void testLoad_Bug441620_completeocl() throws IOException {
 		BaseCSResource csResource = (BaseCSResource) doLoad_Pivot("Bug441620", "ocl");
 		Resource oclResource = csResource.getASResource(metaModelManager);
-		Root root = (Root) oclResource.getContents().get(0);
-		org.eclipse.ocl.examples.pivot.Package oclDocPackage = root.getNestedPackage().get(0);
+		Model root = (Model) oclResource.getContents().get(0);
+		org.eclipse.ocl.examples.pivot.Package oclDocPackage = root.getOwnedPackages().get(0);
 		assertEquals("pivot", oclDocPackage.getName());
-		assertEquals("http://www.eclipse.org/ocl/3.1.0/Pivot", oclDocPackage.getNsURI());
+		assertEquals("http://www.eclipse.org/ocl/3.1.0/Pivot", oclDocPackage.getURI());
 		
-		Namespace nSpace = root.getImports().get(0).getImportedNamespace();
+		Import _import = root.getImports().get(0);
+		assertEquals("pivot", _import.getName());
+		Namespace nSpace = _import.getImportedNamespace();
 		assertEquals("pivot", nSpace.getName());
+		assertEquals("http://www.eclipse.org/ocl/3.1.0/Pivot", ((org.eclipse.ocl.examples.pivot.Package)nSpace).getURI());
 		assertEquals(oclDocPackage, nSpace);
+	}
+	
+	public void testLoad_Bug441620b_completeocl() throws IOException {
+		BaseCSResource csResource = (BaseCSResource) doLoad_Pivot("Bug441620b", "ocl");
+		Resource oclResource = csResource.getASResource(metaModelManager);
+		Model root = (Model) oclResource.getContents().get(0);
+		org.eclipse.ocl.examples.pivot.Package oclDocPackage = root.getOwnedPackages().get(0);
+		assertEquals("ocl", oclDocPackage.getName());
+		assertEquals("http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib", oclDocPackage.getURI());
+
+		Import _import = root.getImports().get(0);
+		assertEquals("pivot", _import.getName());
+		Namespace nSpace = _import.getImportedNamespace();
+		assertEquals("pivot", nSpace.getName());
+		assertEquals("http://www.eclipse.org/ocl/3.1.0/Pivot", ((org.eclipse.ocl.examples.pivot.Package)nSpace).getURI());
+		assertNotSame(oclDocPackage, nSpace);
 	}
 	
 	private void checkMultiplicity(TypedElement typedElement, int lower, int upper) {
