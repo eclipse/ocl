@@ -1340,4 +1340,13 @@
             </message_arguments>
         </filter>
     </resource>
+    <resource path="src/org/eclipse/ocl/examples/pivot/utilities/AS2XMIidVisitor.java" type="org.eclipse.ocl.examples.pivot.utilities.AS2XMIidVisitor">
+        <filter id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.examples.pivot.utilities.AS2XMIidVisitor"/>
+                <message_argument value="NULL_MARKER"/>
+                <message_argument value="&lt;&lt;null-element&gt;&gt;"/>
+            </message_arguments>
+        </filter>
+    </resource>
 </component>

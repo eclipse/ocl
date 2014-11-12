@@ -38,6 +38,7 @@ public class AS2XMIid
 	/**
 	 * Aggregated Diagnostic added to ASResource.errors if xmi:id assignment has to allocate
 	 * an unstable random uuid to avoid a duplicate stable id.
+	 * @since 3.5
 	 */
 	public static final class UnstableXMIidDiagnostics implements Resource.Diagnostic
 	{
