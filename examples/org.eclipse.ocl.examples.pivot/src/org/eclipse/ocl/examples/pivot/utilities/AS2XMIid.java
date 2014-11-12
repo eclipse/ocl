@@ -28,6 +28,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.resource.ASResourceFactory;
 import org.eclipse.ocl.examples.pivot.resource.ASResourceFactoryRegistry;
@@ -122,26 +123,31 @@ public class AS2XMIid
 			if (eObject instanceof Element) {
 				Element element = (Element)eObject;
 				AS2XMIidVisitor idVisitor = resourceFactory.createAS2XMIidVisitor(this);
-				String id = asResource.getID(element);
-				if (id == null) {
-					id = idVisitor.getID(element, internalUUIDs);
-				}
-				if (id != null) {
-					if ((id.length() <= 0) || allIds.containsKey(id)) {
+				String idOld = asResource.getID(element);
+				String idAuto = idVisitor.getID(element, internalUUIDs);
+				String idNew = idOld != null ? idOld : idAuto;
+				if (idNew != null) {
+					boolean badId = (idNew.length() <= 0) || allIds.containsKey(idNew);
+					boolean changedId = (idAuto != null) && !idNew.equals(idAuto);
+					if (badId) {
+						idNew = EcoreUtil.generateUUID();
+					}
+					if (badId || changedId) {
 						if (s == null) {
 							s = new StringBuilder();
-							s.append("Unstable xmi:id values generated for");
 						}
-						s.append("\n " + element.eClass().getName() + " '" + id + "'");
-						id = EcoreUtil.generateUUID();
+						s.append("\n " + element.eClass().getName() + " '" + idAuto + "'");
 					}
-					allIds.put(id, element);
-					asResource.setID(element, id);
+					allIds.put(idNew, element);
+					if (idNew != idOld) {
+						asResource.setID(element, idNew);
+					}
 				}
 			}
 		}
 		if (s != null) {
-			asResource.getErrors().add(new UnstableXMIidDiagnostics(DomainUtil.nonNullState(s.toString())));
+			String message = DomainUtil.bind(OCLMessages.UnstableXMIid_ERROR_, s.toString());
+			asResource.getErrors().add(new UnstableXMIidDiagnostics(message));
 		}
 	}
 

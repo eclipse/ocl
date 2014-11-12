@@ -270,4 +270,5 @@ public class OCLMessages
 	public static String UnresolvedProperty_ERROR_;
 	public static String UnresolvedType_ERROR_;
 	public static String Unresolved_ERROR_;
+	public static String UnstableXMIid_ERROR_;
 }

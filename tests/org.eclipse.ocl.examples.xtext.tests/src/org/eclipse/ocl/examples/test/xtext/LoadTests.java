@@ -61,10 +61,10 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.manager.PackageServer;
+import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
-import org.eclipse.ocl.examples.pivot.utilities.AS2XMIid;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
@@ -905,7 +905,7 @@ public class LoadTests extends XtextTestCase
 				"endpackage\n";
 		createOCLinEcoreFile("Bug450950.ocl", bug450950);
 		Resource asResource = doLoad_Concrete("Bug450950", "ocl");
-		assert asResource.getErrors().get(0) instanceof AS2XMIid.UnstableXMIidDiagnostics;
+		assertResourceErrors("Save", asResource, DomainUtil.bind(OCLMessages.UnstableXMIid_ERROR_, "\n Package 'P.bug450950'"));
 	}	
 	
 	private void checkMultiplicity(TypedElement typedElement, int lower, int upper) {
