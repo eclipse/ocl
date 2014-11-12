@@ -14,7 +14,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -26,6 +25,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
@@ -34,7 +34,34 @@ import org.eclipse.ocl.examples.pivot.resource.ASResourceFactoryRegistry;
 
 public class AS2XMIid
 {
-	private static final Logger logger = Logger.getLogger(MetaModelManager.class);
+	/**
+	 * Aggregated Diagnostic added to ASResource.errors if xmi:id assignment has to allocate
+	 * an unstable random uuid to avoid a duplicate stable id.
+	 */
+	public static final class UnstableXMIidDiagnostics implements Resource.Diagnostic
+	{
+		protected final @NonNull String message;
+		
+		public UnstableXMIidDiagnostics(@NonNull String message) {
+			this.message = message;
+		}
+		
+		public String getMessage() {
+			return message;
+		}
+
+		public String getLocation() {
+			return null;
+		}
+
+		public int getLine() {
+			return 0;
+		}
+
+		public int getColumn() {
+			return 0;
+		}
+	}
 
 	/**
 	 * Create an AS2ID conversion primed with the xmi:id values obtained by loading uri. 
@@ -85,6 +112,7 @@ public class AS2XMIid
 	 * values read when this AS2ID was constructed.
 	 */
 	public void assignIds(@NonNull ASResource asResource, @Nullable Map<?, ?> options) {
+		StringBuilder s = null;
 		Map<String, EObject> allIds = new HashMap<String, EObject>();
 		ASResourceFactory resourceFactory = asResource.getASResourceFactory();
 		Object optionInternalUUIDs = options != null ? options.get(ASResource.OPTION_INTERNAL_UUIDS) : null;
@@ -99,17 +127,21 @@ public class AS2XMIid
 					id = idVisitor.getID(element, internalUUIDs);
 				}
 				if (id != null) {
-					if (id.length() <= 0) {
-						logger.warn("Zero length id for '" + element.eClass().getName() + "'");
-						id = EcoreUtil.generateUUID();
-					}
-					else if (allIds.containsKey(id)) {
+					if ((id.length() <= 0) || allIds.containsKey(id)) {
+						if (s == null) {
+							s = new StringBuilder();
+							s.append("Unstable xmi:id values generated for");
+						}
+						s.append("\n " + element.eClass().getName() + " '" + id + "'");
 						id = EcoreUtil.generateUUID();
 					}
 					allIds.put(id, element);
 					asResource.setID(element, id);
 				}
 			}
+		}
+		if (s != null) {
+			asResource.getErrors().add(new UnstableXMIidDiagnostics(DomainUtil.nonNullState(s.toString())));
 		}
 	}
 
