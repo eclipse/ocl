@@ -36,8 +36,11 @@
       <packagedElement xmi:type="uml:Class" xmi:id="_ila-MDxsEeCYibdAWnk0AQ" name="ExpressionInOCL"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_ow1gcD2REeC9A8BnhOyXOw" name="OCLExpression" isAbstract="true"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_iYCCcDxsEeCYibdAWnk0AQ" name="OpaqueExpression">
-        <ownedAttribute xmi:id="_a7GKgH7YEeOu79LxSz8Ylw" name="expressionInOCL" type="_ila-MDxsEeCYibdAWnk0AQ" aggregation="composite" isDerived="true">
+        <ownedAttribute xmi:id="_a7GKgH7YEeOu79LxSz8Ylw" name="expressionInOCL" type="_ila-MDxsEeCYibdAWnk0AQ" isDerived="true">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gIW5kH7YEeOu79LxSz8Ylw"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_TGsg4Gs3EeSaWZ1ry6Qudw" name="ownedExpressionInOCL" type="_ila-MDxsEeCYibdAWnk0AQ" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Y00hUGs3EeSaWZ1ry6Qudw"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_DXxi0D2SEeC9A8BnhOyXOw" name="String"/>

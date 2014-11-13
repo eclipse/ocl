@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.Comment;
@@ -45,6 +46,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OpaqueExpressionImpl#getBody <em>Body</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OpaqueExpressionImpl#getExpressionInOCL <em>Expression In OCL</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OpaqueExpressionImpl#getLanguage <em>Language</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OpaqueExpressionImpl#getOwnedExpressionInOCL <em>Owned Expression In OCL</em>}</li>
  * </ul>
  * </p>
  *
@@ -65,7 +67,7 @@ public class OpaqueExpressionImpl
 	protected EList<String> body;
 
 	/**
-	 * The cached value of the '{@link #getExpressionInOCL() <em>Expression In OCL</em>}' containment reference.
+	 * The cached value of the '{@link #getExpressionInOCL() <em>Expression In OCL</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getExpressionInOCL()
@@ -83,6 +85,16 @@ public class OpaqueExpressionImpl
 	 * @ordered
 	 */
 	protected EList<String> language;
+
+	/**
+	 * The cached value of the '{@link #getOwnedExpressionInOCL() <em>Owned Expression In OCL</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedExpressionInOCL()
+	 * @generated
+	 * @ordered
+	 */
+	protected ExpressionInOCL ownedExpressionInOCL;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -136,6 +148,70 @@ public class OpaqueExpressionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public NotificationChain basicSetOwnedExpressionInOCL(ExpressionInOCL newOwnedExpressionInOCL, NotificationChain msgs)
+	{
+		ExpressionInOCL oldOwnedExpressionInOCL = ownedExpressionInOCL;
+		ownedExpressionInOCL = newOwnedExpressionInOCL;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.OPAQUE_EXPRESSION__OWNED_EXPRESSION_IN_OCL, oldOwnedExpressionInOCL, newOwnedExpressionInOCL);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnedExpressionInOCL(ExpressionInOCL newOwnedExpressionInOCL)
+	{
+		if (newOwnedExpressionInOCL != ownedExpressionInOCL)
+		{
+			NotificationChain msgs = null;
+			if (ownedExpressionInOCL != null)
+				msgs = ((InternalEObject)ownedExpressionInOCL).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.OPAQUE_EXPRESSION__OWNED_EXPRESSION_IN_OCL, null, msgs);
+			if (newOwnedExpressionInOCL != null)
+				msgs = ((InternalEObject)newOwnedExpressionInOCL).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.OPAQUE_EXPRESSION__OWNED_EXPRESSION_IN_OCL, null, msgs);
+			msgs = basicSetOwnedExpressionInOCL(newOwnedExpressionInOCL, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.OPAQUE_EXPRESSION__OWNED_EXPRESSION_IN_OCL, newOwnedExpressionInOCL, newOwnedExpressionInOCL));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case PivotPackage.OPAQUE_EXPRESSION__EXTENSION:
+				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
+			case PivotPackage.OPAQUE_EXPRESSION__OWNED_ANNOTATION:
+				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
+			case PivotPackage.OPAQUE_EXPRESSION__OWNED_COMMENT:
+				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
+			case PivotPackage.OPAQUE_EXPRESSION__OWNING_TEMPLATE_PARAMETER:
+				return basicSetOwningTemplateParameter(null, msgs);
+			case PivotPackage.OPAQUE_EXPRESSION__TEMPLATE_PARAMETER:
+				return basicSetTemplateParameter(null, msgs);
+			case PivotPackage.OPAQUE_EXPRESSION__OWNED_EXPRESSION_IN_OCL:
+				return basicSetOwnedExpressionInOCL(null, msgs);
+		}
+		return eDynamicInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
@@ -166,6 +242,8 @@ public class OpaqueExpressionImpl
 				return getExpressionInOCL();
 			case PivotPackage.OPAQUE_EXPRESSION__LANGUAGE:
 				return getLanguage();
+			case PivotPackage.OPAQUE_EXPRESSION__OWNED_EXPRESSION_IN_OCL:
+				return getOwnedExpressionInOCL();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -221,6 +299,9 @@ public class OpaqueExpressionImpl
 				getLanguage().clear();
 				getLanguage().addAll((Collection<? extends String>)newValue);
 				return;
+			case PivotPackage.OPAQUE_EXPRESSION__OWNED_EXPRESSION_IN_OCL:
+				setOwnedExpressionInOCL((ExpressionInOCL)newValue);
+				return;
 		}
 		eDynamicSet(featureID, newValue);
 	}
@@ -270,6 +351,9 @@ public class OpaqueExpressionImpl
 			case PivotPackage.OPAQUE_EXPRESSION__LANGUAGE:
 				getLanguage().clear();
 				return;
+			case PivotPackage.OPAQUE_EXPRESSION__OWNED_EXPRESSION_IN_OCL:
+				setOwnedExpressionInOCL((ExpressionInOCL)null);
+				return;
 		}
 		eDynamicUnset(featureID);
 	}
@@ -307,46 +391,10 @@ public class OpaqueExpressionImpl
 				return expressionInOCL != null;
 			case PivotPackage.OPAQUE_EXPRESSION__LANGUAGE:
 				return language != null && !language.isEmpty();
+			case PivotPackage.OPAQUE_EXPRESSION__OWNED_EXPRESSION_IN_OCL:
+				return ownedExpressionInOCL != null;
 		}
 		return eDynamicIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetExpressionInOCL(ExpressionInOCL newExpressionInOCL, NotificationChain msgs)
-	{
-		ExpressionInOCL oldExpressionInOCL = expressionInOCL;
-		expressionInOCL = newExpressionInOCL;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.OPAQUE_EXPRESSION__EXPRESSION_IN_OCL, oldExpressionInOCL, newExpressionInOCL);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setExpressionInOCL(ExpressionInOCL newExpressionInOCL)
-	{
-		if (newExpressionInOCL != expressionInOCL)
-		{
-			NotificationChain msgs = null;
-			if (expressionInOCL != null)
-				msgs = ((InternalEObject)expressionInOCL).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.OPAQUE_EXPRESSION__EXPRESSION_IN_OCL, null, msgs);
-			if (newExpressionInOCL != null)
-				msgs = ((InternalEObject)newExpressionInOCL).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.OPAQUE_EXPRESSION__EXPRESSION_IN_OCL, null, msgs);
-			msgs = basicSetExpressionInOCL(newExpressionInOCL, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.OPAQUE_EXPRESSION__EXPRESSION_IN_OCL, newExpressionInOCL, newExpressionInOCL));
 	}
 
 	/**
@@ -371,10 +419,20 @@ public class OpaqueExpressionImpl
 	 */
 	public @Nullable ExpressionInOCL getExpressionInOCL()
 	{
-		if (expressionInOCL == null) {
-			setExpressionInOCL(PivotUtil.getExpressionInOCL(this));
+		return getOwnedExpressionInOCL();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public ExpressionInOCL getOwnedExpressionInOCL()
+	{
+		if (ownedExpressionInOCL == null) {
+			setOwnedExpressionInOCL(PivotUtil.getExpressionInOCL(this));
 		}
-		return expressionInOCL;
+		return ownedExpressionInOCL;
 	}
 
 	/**
@@ -385,7 +443,7 @@ public class OpaqueExpressionImpl
 	 */
 	public @NonNull ExpressionInOCL getValidExpressionInOCL() throws ParserException
 	{
-		ExpressionInOCL expressionInOCL2 = expressionInOCL;
+		ExpressionInOCL expressionInOCL2 = ownedExpressionInOCL;
 		if (expressionInOCL2 != null) {
 			return expressionInOCL2;
 		}
@@ -394,7 +452,12 @@ public class OpaqueExpressionImpl
 			throw new ParserException("No body expression for " + this);
 		}
 		expressionInOCL2 = PivotUtil.getValidExpressionInOCL(this, expression);
-		setExpressionInOCL(expressionInOCL2);
+		setOwnedExpressionInOCL(expressionInOCL2);
 		return expressionInOCL2;
+	}
+
+	public void setExpressionInOCL(ExpressionInOCL newExpressionInOCL)
+	{
+		throw new UnsupportedOperationException();			// Obsolete, use ownedExpressionInOCL
 	}
 } //OpaqueExpressionImpl

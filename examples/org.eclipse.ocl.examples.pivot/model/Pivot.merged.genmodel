@@ -360,6 +360,9 @@
       <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false" createChild="false">
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//OpaqueExpression/expressionInOCL"/>
       </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//OpaqueExpression/ownedExpressionInOCL"/>
+      </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false">
       <ecoreClass href="Pivot.ecore#//ValueSpecification"/>

@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
@@ -285,6 +286,8 @@ public class ExpressionInOCLImpl
 				return basicSetOwningTemplateParameter(null, msgs);
 			case PivotPackage.EXPRESSION_IN_OCL__TEMPLATE_PARAMETER:
 				return basicSetTemplateParameter(null, msgs);
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_EXPRESSION_IN_OCL:
+				return basicSetOwnedExpressionInOCL(null, msgs);
 			case PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
 				return basicSetBodyExpression(null, msgs);
 			case PivotPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE:
@@ -332,6 +335,8 @@ public class ExpressionInOCLImpl
 				return getExpressionInOCL();
 			case PivotPackage.EXPRESSION_IN_OCL__LANGUAGE:
 				return getLanguage();
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_EXPRESSION_IN_OCL:
+				return getOwnedExpressionInOCL();
 			case PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
 				return getBodyExpression();
 			case PivotPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE:
@@ -395,6 +400,9 @@ public class ExpressionInOCLImpl
 				getLanguage().clear();
 				getLanguage().addAll((Collection<? extends String>)newValue);
 				return;
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_EXPRESSION_IN_OCL:
+				setOwnedExpressionInOCL((ExpressionInOCL)newValue);
+				return;
 			case PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
 				setBodyExpression((OCLExpression)newValue);
 				return;
@@ -457,6 +465,9 @@ public class ExpressionInOCLImpl
 			case PivotPackage.EXPRESSION_IN_OCL__LANGUAGE:
 				getLanguage().clear();
 				return;
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_EXPRESSION_IN_OCL:
+				setOwnedExpressionInOCL((ExpressionInOCL)null);
+				return;
 			case PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
 				setBodyExpression((OCLExpression)null);
 				return;
@@ -506,6 +517,8 @@ public class ExpressionInOCLImpl
 				return expressionInOCL != null;
 			case PivotPackage.EXPRESSION_IN_OCL__LANGUAGE:
 				return language != null && !language.isEmpty();
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_EXPRESSION_IN_OCL:
+				return ownedExpressionInOCL != null;
 			case PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
 				return bodyExpression != null;
 			case PivotPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE:
@@ -524,8 +537,18 @@ public class ExpressionInOCLImpl
 	}
 
 	@Override
-	public @NonNull ExpressionInOCL getExpressionInOCL() {
+	public ExpressionInOCL getExpressionInOCL() {
 		return this;
+	}
+
+	@Override
+	public @Nullable ExpressionInOCL getOwnedExpressionInOCL() {
+		return null;
+	}
+
+	@Override
+	public void setOwnedExpressionInOCL(ExpressionInOCL newOwnedExpressionInOCL) {
+		throw new UnsupportedOperationException();			// No need for child ExpressionInOCL
 	}
 
 } //ExpressionInOCLImpl

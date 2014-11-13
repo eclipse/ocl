@@ -31,6 +31,7 @@ import org.eclipse.jdt.annotation.Nullable;
  *   <li>{@link org.eclipse.ocl.examples.pivot.OpaqueExpression#getBody <em>Body</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.OpaqueExpression#getExpressionInOCL <em>Expression In OCL</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.OpaqueExpression#getLanguage <em>Language</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.OpaqueExpression#getOwnedExpressionInOCL <em>Owned Expression In OCL</em>}</li>
  * </ul>
  * </p>
  *
@@ -55,14 +56,14 @@ public interface OpaqueExpression
 	List<String> getBody();
 
 	/**
-	 * Returns the value of the '<em><b>Expression In OCL</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Expression In OCL</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Expression In OCL</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Expression In OCL</em>' containment reference.
+	 * @return the value of the '<em>Expression In OCL</em>' reference.
 	 * @see #setExpressionInOCL(ExpressionInOCL)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getOpaqueExpression_ExpressionInOCL()
 	 * @generated
@@ -70,10 +71,10 @@ public interface OpaqueExpression
 	@Nullable ExpressionInOCL getExpressionInOCL();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.OpaqueExpression#getExpressionInOCL <em>Expression In OCL</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.OpaqueExpression#getExpressionInOCL <em>Expression In OCL</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Expression In OCL</em>' containment reference.
+	 * @param value the new value of the '<em>Expression In OCL</em>' reference.
 	 * @see #getExpressionInOCL()
 	 * @generated
 	 */
@@ -93,6 +94,31 @@ public interface OpaqueExpression
 	 */
 	List<String> getLanguage();
 	
+	/**
+	 * Returns the value of the '<em><b>Owned Expression In OCL</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Expression In OCL</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Expression In OCL</em>' containment reference.
+	 * @see #setOwnedExpressionInOCL(ExpressionInOCL)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getOpaqueExpression_OwnedExpressionInOCL()
+	 * @generated
+	 */
+	ExpressionInOCL getOwnedExpressionInOCL();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.OpaqueExpression#getOwnedExpressionInOCL <em>Owned Expression In OCL</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Expression In OCL</em>' containment reference.
+	 * @see #getOwnedExpressionInOCL()
+	 * @generated
+	 */
+	void setOwnedExpressionInOCL(ExpressionInOCL value);
+
 	/**
 	 * @generated NOT
 	 */

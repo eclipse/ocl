@@ -307,6 +307,7 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull BagType _Bag_MessageType = createBagType("Bag"/*MessageType*/, "0", "*");
 		protected final @NonNull BagType _Bag_Metaclass = createBagType("Bag"/*Metaclass*/, "0", "*");
 		protected final @NonNull BagType _Bag_NavigationCallExp = createBagType("Bag"/*NavigationCallExp*/, "0", "*");
+		protected final @NonNull BagType _Bag_OpaqueExpression = createBagType("Bag"/*OpaqueExpression*/, "0", "*");
 		protected final @NonNull BagType _Bag_Operation = createBagType("Bag"/*Operation*/, "0", "*");
 		protected final @NonNull BagType _Bag_OperationCallExp = createBagType("Bag"/*OperationCallExp*/, "0", "*");
 		protected final @NonNull BagType _Bag_OppositePropertyCallExp = createBagType("Bag"/*OppositePropertyCallExp*/, "0", "*");
@@ -350,6 +351,7 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull CollectionType _Collection_Metaclass = createCollectionType("Collection"/*Metaclass*/, "0", "*");
 		protected final @NonNull CollectionType _Collection_NavigationCallExp = createCollectionType("Collection"/*NavigationCallExp*/, "0", "*");
 		protected final @NonNull CollectionType _Collection_OCLExpression = createCollectionType("Collection"/*OCLExpression*/, "0", "*");
+		protected final @NonNull CollectionType _Collection_OpaqueExpression = createCollectionType("Collection"/*OpaqueExpression*/, "0", "*");
 		protected final @NonNull CollectionType _Collection_Operation = createCollectionType("Collection"/*Operation*/, "0", "*");
 		protected final @NonNull CollectionType _Collection_OperationCallExp = createCollectionType("Collection"/*OperationCallExp*/, "0", "*");
 		protected final @NonNull CollectionType _Collection_OppositePropertyCallExp = createCollectionType("Collection"/*OppositePropertyCallExp*/, "0", "*");
@@ -1015,6 +1017,11 @@ public class OCLMetaModel extends ASResourceImpl
 			type.setElementType(_NavigationCallExp);
 			superClasses = type.getSuperClass();
 			superClasses.add(_Collection_NavigationCallExp);
+			orphanTypes.add(type = _Bag_OpaqueExpression);
+			type.setUnspecializedElement(_Bag);
+			type.setElementType(_OpaqueExpression);
+			superClasses = type.getSuperClass();
+			superClasses.add(_Collection_OpaqueExpression);
 			orphanTypes.add(type = _Bag_Operation);
 			type.setUnspecializedElement(_Bag);
 			type.setElementType(_Operation);
@@ -1228,6 +1235,11 @@ public class OCLMetaModel extends ASResourceImpl
 			orphanTypes.add(type = _Collection_OCLExpression);
 			type.setUnspecializedElement(_Collection);
 			type.setElementType(_OCLExpression);
+			superClasses = type.getSuperClass();
+			superClasses.add(_OclAny);
+			orphanTypes.add(type = _Collection_OpaqueExpression);
+			type.setUnspecializedElement(_Collection);
+			type.setElementType(_OpaqueExpression);
 			superClasses = type.getSuperClass();
 			superClasses.add(_OclAny);
 			orphanTypes.add(type = _Collection_Operation);
@@ -2064,7 +2076,8 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_ExpressionInOCL_contextVariable = createProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__CONTEXT_VARIABLE, _Variable);
 		protected final @NonNull Property pr_ExpressionInOCL_parameterVariable = createProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__PARAMETER_VARIABLE, _OrderedSet_Variable);
 		protected final @NonNull Property pr_ExpressionInOCL_resultVariable = createProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__RESULT_VARIABLE, _Variable);
-		protected final @NonNull Property pr_ExpressionInOCL_OpaqueExpression_expressionInOCL = createProperty("OpaqueExpression", _OpaqueExpression);
+		protected final @NonNull Property pr_ExpressionInOCL_OpaqueExpression_expressionInOCL = createProperty("OpaqueExpression", _Bag_OpaqueExpression);
+		protected final @NonNull Property pr_ExpressionInOCL_OpaqueExpression_ownedExpressionInOCL = createProperty("OpaqueExpression", _OpaqueExpression);
 		protected final @NonNull Property pr_Feature_implementation = createProperty(PivotPackage.Literals.FEATURE__IMPLEMENTATION, _LibraryFeature);
 		protected final @NonNull Property pr_Feature_implementationClass = createProperty(PivotPackage.Literals.FEATURE__IMPLEMENTATION_CLASS, _String);
 		protected final @NonNull Property pr_FeatureCallExp_isPre = createProperty(PivotPackage.Literals.FEATURE_CALL_EXP__IS_PRE, _Boolean);
@@ -2121,6 +2134,7 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_OpaqueExpression_body = createProperty(PivotPackage.Literals.OPAQUE_EXPRESSION__BODY, _Sequence_String);
 		protected final @NonNull Property pr_OpaqueExpression_expressionInOCL = createProperty(PivotPackage.Literals.OPAQUE_EXPRESSION__EXPRESSION_IN_OCL, _ExpressionInOCL);
 		protected final @NonNull Property pr_OpaqueExpression_language = createProperty(PivotPackage.Literals.OPAQUE_EXPRESSION__LANGUAGE, _OrderedSet_String);
+		protected final @NonNull Property pr_OpaqueExpression_ownedExpressionInOCL = createProperty(PivotPackage.Literals.OPAQUE_EXPRESSION__OWNED_EXPRESSION_IN_OCL, _ExpressionInOCL);
 		protected final @NonNull Property pr_OpaqueExpression_Constraint_specification = createProperty("Constraint", _Constraint);
 		protected final @NonNull Property pr_OpaqueExpression_Operation_bodyExpression = createProperty("Operation", _Operation);
 		protected final @NonNull Property pr_OpaqueExpression_Property_defaultExpression = createProperty("Property", _Property);
@@ -2679,9 +2693,13 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setOpposite(pr_Variable_ExpressionInOCL_resultVariable);
 			ownedProperties.add(property = pr_ExpressionInOCL_OpaqueExpression_expressionInOCL);
 			property.setImplicit(true);
-			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_OpaqueExpression_expressionInOCL);
+			ownedProperties.add(property = pr_ExpressionInOCL_OpaqueExpression_ownedExpressionInOCL);
+			property.setImplicit(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_OpaqueExpression_ownedExpressionInOCL);
 			ownedProperties = _Feature.getOwnedAttribute();
 			ownedProperties.add(property = pr_Feature_implementation);
 			property.setIsRequired(false);
@@ -2922,13 +2940,17 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties.add(property = pr_OpaqueExpression_body);
 			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_OpaqueExpression_expressionInOCL);
-			property.setIsComposite(true);
 			property.setIsDerived(true);
 			property.setIsRequired(false);
 			property.setIsTransient(true);
 			property.setOpposite(pr_ExpressionInOCL_OpaqueExpression_expressionInOCL);
 			ownedProperties.add(property = pr_OpaqueExpression_language);
 			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_OpaqueExpression_ownedExpressionInOCL);
+			property.setIsComposite(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_ExpressionInOCL_OpaqueExpression_ownedExpressionInOCL);
 			ownedProperties.add(property = pr_OpaqueExpression_Constraint_specification);
 			property.setImplicit(true);
 			property.setIsRequired(false);
@@ -3799,6 +3821,8 @@ public class OCLMetaModel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Bag_T, _Metaclass)));
 			_Bag_NavigationCallExp.getTemplateBinding().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _NavigationCallExp)));
+			_Bag_OpaqueExpression.getTemplateBinding().add(createTemplateBinding(_Bag_,
+				createTemplateParameterSubstitution(_Bag_T, _OpaqueExpression)));
 			_Bag_OperationCallExp.getTemplateBinding().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _OperationCallExp)));
 			_Bag_Operation.getTemplateBinding().add(createTemplateBinding(_Bag_,
@@ -3887,6 +3911,8 @@ public class OCLMetaModel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Collection_T, _NavigationCallExp)));
 			_Collection_OCLExpression.getTemplateBinding().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _OCLExpression)));
+			_Collection_OpaqueExpression.getTemplateBinding().add(createTemplateBinding(_Collection_,
+				createTemplateParameterSubstitution(_Collection_T, _OpaqueExpression)));
 			_Collection_OperationCallExp.getTemplateBinding().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _OperationCallExp)));
 			_Collection_Operation.getTemplateBinding().add(createTemplateBinding(_Collection_,
