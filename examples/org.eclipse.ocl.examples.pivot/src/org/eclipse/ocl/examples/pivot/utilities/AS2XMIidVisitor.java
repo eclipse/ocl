@@ -64,7 +64,7 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 	public static final int OVERFLOW_LIMIT = 1024;
 	public static final @NonNull String OVERFLOW_MARKER = "##"; //$NON-NLS-1$
 
-	public static final @NonNull String NULL_MARKER = "<<null-element>>"; //$NON-NLS-1$
+	public static final @NonNull String NULL_MARKER = "-null-element-"; //$NON-NLS-1$
 
 	public static final @NonNull String FRAGMENT_SEPARATOR = "#"; //$NON-NLS-1$
 	

@@ -25,14 +25,46 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.resource.ASResourceFactory;
 import org.eclipse.ocl.examples.pivot.resource.ASResourceFactoryRegistry;
 
 public class AS2XMIid
 {
+	/**
+	 * Aggregated Diagnostic added to ASResource.errors if xmi:id assignment has to allocate
+	 * an unstable random uuid to avoid a duplicate stable id.
+	 * @since 3.5
+	 */
+	public static final class UnstableXMIidDiagnostics implements Resource.Diagnostic
+	{
+		protected final @NonNull String message;
+		
+		public UnstableXMIidDiagnostics(@NonNull String message) {
+			this.message = message;
+		}
+		
+		public String getMessage() {
+			return message;
+		}
+
+		public String getLocation() {
+			return null;
+		}
+
+		public int getLine() {
+			return 0;
+		}
+
+		public int getColumn() {
+			return 0;
+		}
+	}
+
 	/**
 	 * Create an AS2ID conversion primed with the xmi:id values obtained by loading uri. 
 	 */
@@ -92,26 +124,31 @@ public class AS2XMIid
 			if (eObject instanceof Element) {
 				Element element = (Element)eObject;
 				AS2XMIidVisitor idVisitor = resourceFactory.createAS2XMIidVisitor(this);
-				String id = asResource.getID(element);
-				if (id == null) {
-					id = idVisitor.getID(element, internalUUIDs);
-				}
-				if (id != null) {
-					assert id.length() > 0 : "Zero length id for '" + element.eClass().getName() + "'";
-					EObject oldElement = allIds.put(id, element);
-					if (oldElement != null) {
+				String idOld = asResource.getID(element);
+				String idAuto = idVisitor.getID(element, internalUUIDs);
+				String idNew = idOld != null ? idOld : idAuto;
+				if (idNew != null) {
+					boolean badId = (idNew.length() <= 0) || allIds.containsKey(idNew);
+					boolean changedId = (idAuto != null) && !idNew.equals(idAuto);
+					if (badId) {
+						idNew = EcoreUtil.generateUUID();
+					}
+					if (badId || changedId) {
 						if (s == null) {
 							s = new StringBuilder();
-							s.append("Duplicate xmi:id values generated for ");
 						}
-						s.append("\n '" + id + "' for '" + element.eClass().getName() + "'");
+						s.append("\n " + element.eClass().getName() + " '" + idAuto + "'");
 					}
-					asResource.setID(element, id);
+					allIds.put(idNew, element);
+					if (idNew != idOld) {
+						asResource.setID(element, idNew);
+					}
 				}
 			}
 		}
 		if (s != null) {
-			throw new IllegalStateException(s.toString());
+			String message = DomainUtil.bind(OCLMessages.UnstableXMIid_ERROR_, s.toString());
+			asResource.getErrors().add(new UnstableXMIidDiagnostics(message));
 		}
 	}
 
