@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.test.xtext;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -32,6 +33,7 @@ import javax.tools.ToolProvider;
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspace;
@@ -288,6 +290,20 @@ public class UsageTests
 		writer.close();
 	}
 
+	public void createManifest(@NonNull IProject project, @NonNull String projectName) throws CoreException {
+		IFolder folder = project.getFolder("META-INF");
+		folder.create(true, false, null);
+		IFile file = folder.getFile("MANIFEST.MF");
+		String manifestContents = 
+			"Manifest-Version: 1.0\n" + 
+			"Bundle-ManifestVersion: 2\n" + 
+			"Bundle-Name: " + projectName + "\n" + 
+			"Bundle-SymbolicName: " + projectName + ";singleton:=true\n" + 
+			"Bundle-Version: 0.0.0.qualifier\n" + 
+			"Bundle-Localization: plugin\n";
+		file.create(new ByteArrayInputStream(manifestContents.getBytes()), true, null);
+	}
+
 	protected @NonNull URI createModels(@NonNull String testProjectName, @NonNull String testFileStem,
 			@NonNull String oclinecoreFile, @NonNull String genmodelFile)
 			throws CoreException, IOException {
@@ -298,6 +314,8 @@ public class UsageTests
 			if (!project.exists()) {
 				project.create(null);
 			}
+			project.open(null);
+			createManifest(project, testProjectName);
 		}
 		MetaModelManager metaModelManager2 = new MetaModelManager(getProjectMap());
 		createEcoreFile(metaModelManager2, testFileStem, oclinecoreFile);

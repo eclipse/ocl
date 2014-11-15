@@ -272,7 +272,7 @@ public class CompletionProposalTests extends XtextTestCase
 			"");
 		createFile(project, ".classpath",
 			"<classpath>\n" + 
-			"			<classpathentry kind=\"con\" path=\"org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5\"/>\n" + 
+			"			<classpathentry kind=\"con\" path=\"org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6\"/>\n" + 
 			"			<classpathentry kind=\"con\" path=\"org.eclipse.pde.core.requiredPlugins\"/>\n" + 
 			"			<classpathentry kind=\"src\" path=\"src\"/>\n" + 
 			"			<classpathentry kind=\"output\" path=\"bin\"/>\n" + 
