@@ -26,6 +26,7 @@ import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.Model;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.basecs.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
@@ -95,9 +96,11 @@ public class OCLstdlibCSContainmentVisitor extends AbstractOCLstdlibCSContainmen
 	@Override
 	public Continuation<?> visitLibOperationCS(@NonNull LibOperationCS csElement) {
 		Continuation<?> cont = super.visitLibOperationCS(csElement);
-		@NonNull Operation pivotElement = refreshNamedElement(Operation.class, PivotPackage.Literals.OPERATION, csElement);
-		pivotElement.setIsInvalidating(csElement.isIsInvalidating());
-		pivotElement.setIsValidating(csElement.isIsValidating());
+		Operation pivotElement = PivotUtil.getPivot(Operation.class, csElement);
+		if (pivotElement != null) {
+			pivotElement.setIsInvalidating(csElement.isIsInvalidating());
+			pivotElement.setIsValidating(csElement.isIsValidating());
+		}
 		return cont;
 	}
 
