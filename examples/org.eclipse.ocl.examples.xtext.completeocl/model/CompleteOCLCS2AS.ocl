@@ -20,7 +20,7 @@ def : ast() : ocl::Model =
 		imports = ownedIncludes.ast(),
 		ownedPackages = modelPackages->sortedBy(name)->collect(p | contextPackage(p, ownedPackages->select(referredPackage = p), ownedContexts->select(referredPackage() = p)))
 	}
-def : contextClass(modelClass : ocl::Class, contextDecls : Collection(ContextDeclCS)) : ocl::Class =
+def : contextClass(modelClass : ocl::Class, contextDecls : OrderedSet(ContextDeclCS)) : ocl::Class =
 	let classifierContextDecls = contextDecls->selectByKind(ClassifierContextDeclCS) in
 	let classifierInvariants = classifierContextDecls.ownedInvariants in
 	let defOperations = classifierContextDecls.ownedDefinitions->selectByKind(DefOperationCS) in
@@ -48,7 +48,7 @@ def : contextOperation(operationContext : OperationContextDeclCS) : ocl::Operati
 	}
 def : contextPackage(modelPackage : ocl::Package, packageDecls : OrderedSet(PackageDeclarationCS), contextDecls : OrderedSet(ContextDeclCS)) : ocl::Package =
 	let packageInvariants = packageDecls.ownedInvariants in
-	let allContextDecls = contextDecls->union(packageDecls.ownedContexts)->asSet() in
+	let allContextDecls = contextDecls->appendAll(packageDecls.ownedContexts) in
 	let modelClasses = allContextDecls.referredClass()->asSet() in
 	ocl::Package {
 		name = modelPackage.name,

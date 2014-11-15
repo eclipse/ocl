@@ -106,12 +106,12 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 	} */
 	private @NonNull org.eclipse.ocl.examples.pivot.Class contextClass(@NonNull org.eclipse.ocl.examples.pivot.Class modelClass,
 			@NonNull List<ContextDeclCS> contextDecls) {
-		Set<ConstraintCS> allInvariants = new HashSet<ConstraintCS>();
+		List<ConstraintCS> allInvariants = new ArrayList<ConstraintCS>();
 		List<ClassifierContextDeclCS> classifierContextDecls = new ArrayList<ClassifierContextDeclCS>();
-		Set<OperationContextDeclCS> operationContextDecls = new HashSet<OperationContextDeclCS>();
-		Set<PropertyContextDeclCS> propertyContextDecls = new HashSet<PropertyContextDeclCS>();
-		Set<DefOperationCS> defOperations = new HashSet<DefOperationCS>();
-		Set<DefPropertyCS> defProperties = new HashSet<DefPropertyCS>();
+		List<OperationContextDeclCS> operationContextDecls = new ArrayList<OperationContextDeclCS>();
+		List<PropertyContextDeclCS> propertyContextDecls = new ArrayList<PropertyContextDeclCS>();
+		List<DefOperationCS> defOperations = new ArrayList<DefOperationCS>();
+		List<DefPropertyCS> defProperties = new ArrayList<DefPropertyCS>();
 		for (ContextDeclCS contextDecl : contextDecls) {
 			if (contextDecl instanceof ClassifierContextDeclCS) {
 				ClassifierContextDeclCS classifierContextDecl = (ClassifierContextDeclCS)contextDecl;
@@ -214,8 +214,8 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 	} */
 	private @NonNull org.eclipse.ocl.examples.pivot.Package contextPackage(@NonNull org.eclipse.ocl.examples.pivot.Package modelPackage,
 			@NonNull List<PackageDeclarationCS> packageDecls, @NonNull List<ContextDeclCS> contextDecls) {
-		Set<ConstraintCS> packageInvariants = new HashSet<ConstraintCS>();
-		Set<ContextDeclCS> allContextDecls = new HashSet<ContextDeclCS>(contextDecls);
+		List<ConstraintCS> packageInvariants = new ArrayList<ConstraintCS>();
+		List<ContextDeclCS> allContextDecls = new ArrayList<ContextDeclCS>(contextDecls);
 		for (PackageDeclarationCS packageDecl : packageDecls) {
 			packageInvariants.addAll(packageDecl.getOwnedInvariants());
 			allContextDecls.addAll(packageDecl.getOwnedContexts());
