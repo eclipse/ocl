@@ -145,11 +145,12 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 	}
 
 	public void didAddClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
-//FIXME		getCompletePackage().didAddClass(partialClass);
+		getCompletePackage().didAddClass(partialClass);
 	}
 
 	public void didRemoveClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
-//FIXME		getCompletePackage().didRemoveClass(partialClass);
+		name2inheritance.remove(partialClass.getName());
+		getCompletePackage().didRemoveClass(partialClass);
 	}
 
 	public @NonNull CompleteInheritance getCompleteInheritance(@NonNull CompleteClass.Internal completeClass) {
