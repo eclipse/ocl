@@ -40,7 +40,7 @@ import com.google.inject.Inject;
 
 public class BaseLinkingService extends DefaultLinkingService
 {
-	public static boolean DEBUG_RETRY = true;			// Set true to retry for debug tracing
+	public static boolean DEBUG_RETRY = false;			// Set true to retry for debug tracing
 	
 	private static int depth = -1;
 	
