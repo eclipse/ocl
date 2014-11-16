@@ -19,8 +19,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -430,7 +432,32 @@ public class OpaqueExpressionImpl
 	public ExpressionInOCL getOwnedExpressionInOCL()
 	{
 		if (ownedExpressionInOCL == null) {
-			setOwnedExpressionInOCL(PivotUtil.getExpressionInOCL(this));
+			final ExpressionInOCL expressionInOCL2 = PivotUtil.getExpressionInOCL(this);
+			if ((expressionInOCL2 != null) && (expressionInOCL2.getContextVariable() == null)) {		// an error ?
+				Resource resource = eResource();
+				if (resource != null) {
+					resource.getErrors().add(new Resource.Diagnostic()
+					{
+
+						public String getMessage() {
+							return expressionInOCL2.getBodyExpression().toString();
+						}
+
+						public String getLocation() {
+							return EcoreUtil.getURI(OpaqueExpressionImpl.this).toString();
+						}
+
+						public int getLine() {
+							return 0;
+						}
+
+						public int getColumn() {
+							return 0;
+						}
+					});
+				}
+			}
+			setOwnedExpressionInOCL(expressionInOCL2);
 		}
 		return ownedExpressionInOCL;
 	}
