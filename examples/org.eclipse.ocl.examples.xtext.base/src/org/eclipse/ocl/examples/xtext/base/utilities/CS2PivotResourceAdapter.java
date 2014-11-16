@@ -21,6 +21,8 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.manager.AbstractMetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
+import org.eclipse.ocl.examples.pivot.resource.ASResourceImpl;
+import org.eclipse.ocl.examples.pivot.resource.AbstractASResourceFactory;
 import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
 import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
 
@@ -30,6 +32,40 @@ import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
  */
 public class CS2PivotResourceAdapter extends AbstractMetaModelManagerResourceAdapter<BaseCSResource>
 {
+	/**
+	 * @since 3.5
+	 */
+	public static class TransientASResourceFactory extends AbstractASResourceFactory
+	{
+		public static @NonNull TransientASResourceFactory INSTANCE = new TransientASResourceFactory();
+		
+		public TransientASResourceFactory() {
+			super("xyzzy", "essentialocl");
+		}
+	}
+
+	/**
+	 * A TransientASResource acts as the ASResource while parsing the body of an ExpressionInOCL. It enables
+	 * the parsing to behave as if it has a Resource within a ResourceSet without disturbing the REsourceSet
+	 * which may provoke Bug 451268.
+	 * 
+	 * @since 3.5
+	 */
+	public static class TransientASResource extends ASResourceImpl
+	{
+		protected final @NonNull ResourceSet asResourceSet;
+
+		public TransientASResource(@NonNull ResourceSet asResourceSet, @NonNull URI asURI) {
+			super(asURI, TransientASResourceFactory.INSTANCE);
+			this.asResourceSet = asResourceSet;
+		}
+		
+		@Override
+		public @NonNull ResourceSet getResourceSet() {
+			return asResourceSet;
+		}
+	}
+
 	@Deprecated  // Use BaseCSResource.findCS2ASAdapter
 	public static @Nullable CS2PivotResourceAdapter findAdapter(@NonNull BaseCSResource csResource) {
 		return csResource.findCS2ASAdapter();
@@ -50,14 +86,20 @@ public class CS2PivotResourceAdapter extends AbstractMetaModelManagerResourceAda
 
 	public @NonNull Map<BaseCSResource, ASResource> computeCS2ASResourceMap(@NonNull BaseCSResource csResource, @NonNull MetaModelManager metaModelManager) {
 		metaModelManager.getProjectMap();					// Ensures ProjectMap is notified of loaded resources
-		ResourceSet asResourceSet = metaModelManager.getTarget();
+		final ResourceSet asResourceSet = metaModelManager.getTarget();
 		Map<BaseCSResource,ASResource> cs2asResourceMap = new HashMap<BaseCSResource,ASResource>();
 		URI uri = csResource.getURI();
-		if ((uri != null) && (csResource.getContents().size() > 0)) {
+		if ((uri != null) && (csResource.getContents().size() > 0) && (asResourceSet != null)) {
 			URI asURI = csResource.getASURI(uri);
-			Resource asResource = asResourceSet.getResource(asURI, false);
-			if (asResource == null) {
-				asResource = asResourceSet.createResource(asURI, csResource.getASContentType());
+			Resource asResource = null;
+			if (uri.fileExtension().equals("essentialocl")) {	// FIXME use csResource.getASResource(metaModelManager);
+				asResource = new TransientASResource(asResourceSet, asURI);
+			}
+			else {
+				asResource = asResourceSet.getResource(asURI, false);
+				if (asResource == null) {
+					asResource = asResourceSet.createResource(asURI, csResource.getASContentType());
+				}
 			}
 			cs2asResourceMap.put(csResource, (ASResource) asResource);
 		}

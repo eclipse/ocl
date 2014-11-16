@@ -1302,7 +1302,7 @@ public class PivotUtil extends DomainUtil
 				MetaModelManagerResourceAdapter adapter = MetaModelManagerResourceAdapter.getAdapter(resource, null);
 				metaModelManager = adapter.getMetaModelManager();
 			}
-			return getExpressionInOCL(metaModelManager, contextElement,expression);
+			return getExpressionInOCL(metaModelManager, contextElement, expression);
 	}
 
 	/**
