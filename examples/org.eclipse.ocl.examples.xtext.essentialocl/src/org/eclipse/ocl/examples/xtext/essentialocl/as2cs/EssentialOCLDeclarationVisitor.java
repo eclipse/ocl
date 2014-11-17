@@ -31,6 +31,7 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ConstructorExp;
 import org.eclipse.ocl.examples.pivot.ConstructorPart;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
+import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
@@ -50,6 +51,7 @@ import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.StateExp;
@@ -64,7 +66,6 @@ import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.examples.xtext.base.as2cs.AS2CSConversion;
 import org.eclipse.ocl.examples.xtext.base.as2cs.BaseDeclarationVisitor;
@@ -92,7 +93,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NullLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NumberLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
@@ -111,7 +111,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		super(context);
 	}	
 
-	private void appendInfixChild(@NonNull List<ExpCS> csExpressions, @NonNull List<InfixExpCS> csOperators, @NonNull InfixExpCS csOperator, @Nullable Precedence siblingPrecedence) {
+/*	private void appendInfixChild(@NonNull List<ExpCS> csExpressions, @NonNull List<InfixExpCS> csOperators, @NonNull InfixExpCS csOperator, @Nullable Precedence siblingPrecedence) {
 		MetaModelManager metaModelManager = context.getMetaModelManager();
 		String parentOperatorName = csOperator.getName();
 		Precedence precedence = parentOperatorName != null ? metaModelManager.getInfixPrecedence(parentOperatorName) : null;
@@ -146,7 +146,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 				}
 			}
 		}
-	}
+	} */
 
 	protected ExpCS createExpCS(OCLExpression oclExpression) {
 		ExpCS csExp = context.visitDeclaration(ExpCS.class, oclExpression);
@@ -231,6 +231,36 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 
 	protected @Nullable TypedRefCS createTypeRefCS(Type asType, @Nullable Namespace scope) {
 		return asType != null ? context.visitReference(TypedRefCS.class, asType, scope) : null;
+	}
+
+	/**
+	 * Return a non-null operation from asOPeration, replacing any null value by the oclInvalidOperation.
+	 */
+	protected @NonNull Operation getNonNullOperation(@Nullable Operation asOperation) {
+		if (asOperation == null) {
+			asOperation = context.getMetaModelManager().getStandardLibrary().getOclInvalidOperation();
+		}
+		return asOperation;
+	}
+
+	/**
+	 * Return a non-null property from asProperty, replacing any null value by the oclInvalidProperty.
+	 */
+	protected @NonNull Property getNonNullProperty(@Nullable Property asProperty) {
+		if (asProperty == null) {
+			asProperty = context.getMetaModelManager().getStandardLibrary().getOclInvalidProperty();
+		}
+		return asProperty;
+	}
+
+	/**
+	 * Return a non-null type from asType, replacing any null value by the OclInvalidType.
+	 */
+	protected @NonNull Type getNonNullType(@Nullable Type asType) {
+		if (asType == null) {
+			asType = context.getMetaModelManager().getStandardLibrary().getOclInvalidType();
+		}
+		return asType;
 	}
 
 	protected ElementCS refreshConstraint(@NonNull ConstraintCS csElement, @NonNull Constraint object) {
@@ -391,7 +421,15 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 
 	@Override
 	public @Nullable ElementCS visitEnumLiteralExp(@NonNull EnumLiteralExp asEnumLiteralExp) {
-		return createNameExpCS(asEnumLiteralExp.getReferredEnumLiteral());
+		EnumerationLiteral asEnumLiteral = asEnumLiteralExp.getReferredEnumLiteral();
+		if (asEnumLiteral != null) {
+			return createNameExpCS(asEnumLiteral);
+		}
+		else {
+			InvalidLiteralExpCS csInvalidLiteralExp = EssentialOCLCSFactory.eINSTANCE.createInvalidLiteralExpCS();
+			csInvalidLiteralExp.setPivot(asEnumLiteralExp);
+			return csInvalidLiteralExp;
+		}
 	}
 
 	@Override
@@ -439,7 +477,8 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 
 	@Override
 	public @Nullable ElementCS visitIterateExp(@NonNull IterateExp asIterateExp) {
-		NameExpCS csNameExp = createNameExpCS(asIterateExp.getReferredIteration());
+		Operation asIteration = getNonNullOperation(asIterateExp.getReferredIteration());
+		NameExpCS csNameExp = createNameExpCS(asIteration);
 		csNameExp.setPivot(asIterateExp);
 		RoundBracketedClauseCS csRoundBracketedClause = EssentialOCLCSFactory.eINSTANCE.createRoundBracketedClauseCS();
 		csNameExp.setOwnedRoundBracketedClause(csRoundBracketedClause);;
@@ -465,7 +504,8 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 				return createNavigationOperatorCS(asIteratorExp.getSource(), (ExpCS) csExp, true);
 			}
 		}
-		NameExpCS csNameExp = createNameExpCS(asIteratorExp.getReferredIteration());
+		Operation asIteration = getNonNullOperation(asIteratorExp.getReferredIteration());
+		NameExpCS csNameExp = createNameExpCS(asIteration);
 		csNameExp.setPivot(asIteratorExp);
 		RoundBracketedClauseCS csRoundBracketedClause = EssentialOCLCSFactory.eINSTANCE.createRoundBracketedClauseCS();
 		csNameExp.setOwnedRoundBracketedClause(csRoundBracketedClause);;
@@ -518,7 +558,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 
 	@Override
 	public ElementCS visitOperationCallExp(@NonNull OperationCallExp asOperationCallExp) {
-		Operation asOperation = asOperationCallExp.getReferredOperation();
+		Operation asOperation = getNonNullOperation(asOperationCallExp.getReferredOperation());
 		Precedence asPrecedence = asOperation.getPrecedence();
 		List<OCLExpression> asArguments = asOperationCallExp.getArgument();
 		OCLExpression asSource = asOperationCallExp.getSource();
@@ -560,14 +600,17 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 
 	@Override
 	public @Nullable ElementCS visitOppositePropertyCallExp(@NonNull OppositePropertyCallExp asOppositePropertyCallExp) {
-		NameExpCS csNameExp = createNameExpCS(asOppositePropertyCallExp.getReferredProperty().getOpposite());
+		Property reverseProperty = asOppositePropertyCallExp.getReferredProperty();
+		Property asProperty = getNonNullProperty(reverseProperty != null ? reverseProperty.getOpposite() : null);
+		NameExpCS csNameExp = createNameExpCS(asProperty);
 		return createNavigationOperatorCS(asOppositePropertyCallExp.getSource(), csNameExp, false);
 	}
 
 	@Override
 	public @Nullable ElementCS visitPropertyCallExp(@NonNull PropertyCallExp asPropertyCallExp) {
 		OCLExpression asSource = asPropertyCallExp.getSource();
-		NameExpCS csNameExp = createNameExpCS(asPropertyCallExp.getReferredProperty());
+		Property asProperty = getNonNullProperty(asPropertyCallExp.getReferredProperty());
+		NameExpCS csNameExp = createNameExpCS(asProperty);
 		if (asSource instanceof VariableExp) {
 			VariableDeclaration asVariable = ((VariableExp)asSource).getReferredVariable();
 			if ((asVariable instanceof Variable) && ((Variable)asVariable).isImplicit()) {				// Skip implicit iterator variables
@@ -624,10 +667,8 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		@SuppressWarnings("null")@NonNull NameExpCS csNameExp = EssentialOCLCSFactory.eINSTANCE.createNameExpCS();
 		@SuppressWarnings("null")@NonNull PathNameCS csPathName = BaseCSFactory.eINSTANCE.createPathNameCS();
 		csNameExp.setOwnedPathName(csPathName);
-		Type asType = asTypeExp.getReferredType();
-		if (asType != null) {
-			context.refreshPathName(csPathName, asType, null);
-		}
+		Type asType = getNonNullType(asTypeExp.getReferredType());
+		context.refreshPathName(csPathName, asType, null);
 		return csNameExp;
 	}
 
@@ -646,6 +687,14 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 
 	@Override
 	public @Nullable ElementCS visitVariableExp(@NonNull VariableExp asVariableExp) {
-		return createNameExpCS(asVariableExp.getReferredVariable());
+		VariableDeclaration asVariable = asVariableExp.getReferredVariable();
+		if (asVariable != null) {
+			return createNameExpCS(asVariable);
+		}
+		else {
+			InvalidLiteralExpCS csInvalidLiteralExp = EssentialOCLCSFactory.eINSTANCE.createInvalidLiteralExpCS();
+			csInvalidLiteralExp.setPivot(asVariableExp);
+			return csInvalidLiteralExp;
+		}
 	}
 }

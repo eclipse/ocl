@@ -11,6 +11,7 @@
 package org.eclipse.ocl.examples.test.xtext;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -53,6 +54,7 @@ import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -60,6 +62,7 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.presentation.EcoreEditor;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -68,13 +71,21 @@ import org.eclipse.emf.mwe.core.ConfigurationException;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreGeneratorAdapterFactory;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibPackage;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestSuite;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.ide.IDE;
+import org.eclipse.ui.intro.IIntroManager;
 import org.eclipse.xtext.diagnostics.ExceptionDiagnostic;
 import org.osgi.framework.Bundle;
 
@@ -818,7 +829,63 @@ public class UsageTests
 		assertTrue(ValuesUtil.initAllStatics());
 		assertFalse(ValuesUtil.initAllStatics());
 	}
+
+	/**
+	 * Verify that the Pivot metamodel can be loaded and validated as a *.oclas file by the
+	 * Sample Reflective Ecore Editor.
+	 */
+	public void testOpen_Pivot_oclas() throws Exception {
+		if (EMFPlugin.IS_ECLIPSE_RUNNING) {
+			TestCaseAppender.INSTANCE.uninstall();
+			suppressGitPrefixPopUp();
+			IWorkbench workbench = PlatformUI.getWorkbench();
+			IIntroManager introManager = workbench.getIntroManager();
+			introManager.closeIntro(introManager.getIntro());
+			flushEvents();
+			
+			String testProjectName = "Open_Pivot";
+			ResourceSet resourceSet1 = new ResourceSetImpl();
+			Resource resource = resourceSet1.getResource(URI.createURI(PivotPackage.eNS_URI, true), true);
+			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+			resource.setURI(URI.createPlatformResourceURI(testProjectName + "/" + "Pivot.oclas", true));
+			resource.save(outputStream, null);
+			
+			IWorkspace workspace = ResourcesPlugin.getWorkspace();
+			IProject project = workspace.getRoot().getProject(testProjectName);
+			if (!project.exists()) {
+				project.create(null);
+			}
+			project.open(null);
+			IFile file = project.getFile("Pivot.oclas");
+			file.create(new ByteArrayInputStream(outputStream.toByteArray()), true, null);
+			
+//			Bundle bundle = Platform.getBundle("org.eclipse.ocl.examples.pivot");
+//			String location = bundle.getLocation() + "/model-gen/Pivot.oclas";
+//			java.net.URI uri = new java.net.URI(location.substring(location.indexOf("file:")));
+			IWorkbenchPage activePage = workbench.getActiveWorkbenchWindow().getActivePage();
+			EcoreEditor openEditor = (EcoreEditor) IDE.openEditor(activePage, file, "org.eclipse.emf.ecore.presentation.ReflectiveEditorID", true);
+			flushEvents();
+			ResourceSet resourceSet = openEditor.getEditingDomain().getResourceSet();
+			EList<Resource> resources = resourceSet.getResources();
+			assertEquals(1, resources.size());
+			Resource resource2 = DomainUtil.nonNullState(resources.get(0));
+			assertNoResourceErrors("Load", resource2);
+			assertNoValidationErrors("Validate", resource2);
+//			for (int i = 0; i < 1000; i++){
+//				flushEvents();
+//				Thread.sleep(100);
+//			}
+			openEditor.dispose();
+		}
+	}
 	
+	private void flushEvents() {
+		for (int i = 0; i < 10; i++) {
+			IWorkbench workbench = PlatformUI.getWorkbench();
+			while (workbench.getDisplay().readAndDispatch());
+		}
+	}
+
 	public void testPivotMetamodelImport414855() throws Exception {
 		String testFileStem = "Bug414855";
 		String testProjectName = "bug414855";

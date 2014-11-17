@@ -17,6 +17,7 @@ import java.util.Map;
 
 import junit.framework.TestCase;
 
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -30,6 +31,7 @@ import org.eclipse.emf.ecore.impl.EValidatorRegistryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.jdt.annotation.NonNull;
@@ -48,6 +50,7 @@ import org.eclipse.ocl.examples.pivot.delegate.SettingBehavior;
 import org.eclipse.ocl.examples.pivot.delegate.ValidationBehavior;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.examples.pivot.resource.OCLASResourceFactory;
 import org.eclipse.ocl.examples.pivot.validation.EcoreOCLEValidator;
 import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
@@ -182,6 +185,25 @@ public class ValidateTests extends AbstractValidateTests
 			DomainUtil.bind(EcoreOCLEValidator.INCOMPATIBLE_TYPE_2, "Set(OclElement)", DomainUtil.getLabel(op), "body")); // FIXME BUG 437616 resolve Element/OclElement conflict
 		//
 		ocl.dispose();
+	}
+
+	public void testValidate_OCL_2_5_oclas() throws IOException, InterruptedException {
+		ResourceSet resourceSet = new ResourceSetImpl();
+		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {			
+			getProjectMap().initializeResourceSet(resourceSet);
+		}
+		Resource resource = resourceSet.getResource(URI.createPlatformResourceURI("org.eclipse.ocl.examples.library/model-gen/OCL-2.5.oclas", true), true);
+		assertNoValidationErrors("Validating", DomainUtil.nonNullState(resource));
+	}
+
+	public void testValidate_Pivot_oclas() throws IOException, InterruptedException {
+		ResourceSet resourceSet = new ResourceSetImpl();
+		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {			
+			getProjectMap().initializeResourceSet(resourceSet);
+			OCLASResourceFactory.INSTANCE.configure(resourceSet);
+		}
+		Resource resource = resourceSet.getResource(URI.createPlatformResourceURI("org.eclipse.ocl.examples.pivot/model-gen/Pivot.oclas", true), true);
+		assertNoValidationErrors("Validating", DomainUtil.nonNullState(resource));
 	}
 
 	public void testValidate_Validate_completeocl() throws IOException, InterruptedException {
