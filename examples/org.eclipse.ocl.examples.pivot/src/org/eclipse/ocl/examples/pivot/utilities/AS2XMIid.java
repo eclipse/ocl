@@ -165,6 +165,7 @@ public class AS2XMIid
 	 * values read when this AS2ID was constructed.
 	 */
 	public void assignIds(@NonNull ResourceSet asResourceSet, @Nullable Map<?, ?> options) {
+		EcoreUtil.resolveAll(asResourceSet);		// Pending a fix to BUG 451928 this may provoke  CME unless all resources already loaded
 		for (@SuppressWarnings("null")@NonNull Resource resource : asResourceSet.getResources()) {
 			if (resource instanceof ASResource) {
 				assignIds((ASResource)resource, options);
