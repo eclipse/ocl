@@ -137,10 +137,10 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 	/**
 	 * @since 3.5
 	 */
-	protected @Nullable XMLResource getPivotResouce() throws CoreException {
-		return readOnly(new IUnitOfWork<XMLResource, XtextResource>()
+	public @Nullable ASResource getPivotResource() throws CoreException {
+		return readOnly(new IUnitOfWork<ASResource, XtextResource>()
 			{
-				public XMLResource exec(@Nullable XtextResource resource) throws Exception {
+				public ASResource exec(@Nullable XtextResource resource) throws Exception {
 					if (!(resource instanceof BaseCSResource)) {
 						return null;
 					}
@@ -237,7 +237,7 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 	 * @since 3.5
 	 */
 	public void saveAsPivot(@NonNull StringWriter writer) throws CoreException, IOException {
-		XMLResource asResource = getPivotResouce();
+		XMLResource asResource = getPivotResource();
 		if (asResource != null) {
 			asResource.save(writer, null);
 		}
