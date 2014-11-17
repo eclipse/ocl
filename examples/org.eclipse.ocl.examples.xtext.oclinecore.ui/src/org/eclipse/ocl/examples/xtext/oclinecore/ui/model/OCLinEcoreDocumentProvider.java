@@ -365,7 +365,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 						persistAs = PERSIST_AS_ECORE;
 						exportDelegateURIMap.put(document, DelegateInstaller.getDelegateURI(contents));
 					}
-					else if (xmiRoot instanceof org.eclipse.ocl.examples.pivot.Package) {
+					else if (xmiRoot instanceof Root) {
 						asResource = (ASResource) xmiResource;
 						persistAs = PERSIST_AS_PIVOT;
 					}
