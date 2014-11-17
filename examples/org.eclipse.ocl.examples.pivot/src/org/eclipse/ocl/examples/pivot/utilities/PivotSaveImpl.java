@@ -59,7 +59,6 @@ public final class PivotSaveImpl extends XMISaveImpl
 	@Override
 	protected void init(XMLResource resource, Map<?, ?> options) {
 		XMLResource asResource = DomainUtil.nonNullState(resource);
-    	ResourceSet asResourceSet = DomainUtil.nonNullState(asResource.getResourceSet());
 		ASSaver asSaver = new ASSaver(asResource);
 		AS2XMIid as2xmIid = new AS2XMIid();
 		asSaver.localizeSpecializations();
@@ -84,7 +83,13 @@ public final class PivotSaveImpl extends XMISaveImpl
 			}
 			saveOptions.put(XMLResource.OPTION_USE_CACHED_LOOKUP_TABLE, lookupTable);
 		}
-		as2xmIid.assignIds(asResourceSet, saveOptions);
+    	ResourceSet asResourceSet = asResource.getResourceSet();
+		if (asResourceSet != null) {
+			as2xmIid.assignIds(asResourceSet, saveOptions);
+		}
+		else if (asResource instanceof ASResource){
+			as2xmIid.assignIds((ASResource) asResource, saveOptions);
+		}
 		super.init(asResource, saveOptions);
 	}
 }
