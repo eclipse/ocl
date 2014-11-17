@@ -527,7 +527,7 @@ public class EnvironmentView
 			element = ((CompletePackage)element).getPivotPackage();
 		}
 		else if (element instanceof DomainPackage) {
-			element = metaModelManager.getCompletePackage((DomainPackage) element).getPivotPackage();
+//			element = metaModelManager.getCompletePackage((DomainPackage) element).getPivotPackage();
 		}
 //		else if (element instanceof org.eclipse.ocl.examples.pivot.Package) {
 //			element = ((PackageServer) element).getPrimaryPackage();		// FIXME lose casts
@@ -537,6 +537,9 @@ public class EnvironmentView
 //		}
 		else if (element instanceof EObject) {
 			element = metaModelManager.getPrimaryElement((EObject) element);		// FIXME lose casts
+		}
+		if (element == null) {
+			return;
 		}
 		if ((name != null) && (matchers != null)) {
 			for (ScopeFilter filter : matchers) {
