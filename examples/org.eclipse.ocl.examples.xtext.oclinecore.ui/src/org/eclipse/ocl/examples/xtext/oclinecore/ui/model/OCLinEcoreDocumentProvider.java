@@ -149,24 +149,37 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 		if ((element instanceof IFileEditorInput) && (document instanceof OCLinEcoreDocument) && !PERSIST_AS_OCLINECORE.equals(saveAs)) {
 			StringWriter xmlWriter = new StringWriter();
 			try {
-				URI uri = EditUIUtil.getURI((IFileEditorInput)element);
-				if (uri == null) {
-					log.warn("No URI");
+				ASResource asResource = ((OCLinEcoreDocument) document).getPivotResource();
+				URI savedURI = asResource != null ? asResource.getURI() : null;
+				try {
+					URI uri = EditUIUtil.getURI((IFileEditorInput)element);
+					if (asResource != null) {
+						EcoreUtil.resolveAll(asResource);
+						asResource.setURI(uri);
+					}
+					if (uri == null) {
+						log.warn("No URI");
+					}
+					else if (PERSIST_AS_ECORE.equals(saveAs)) {
+						((OCLinEcoreDocument) document).saveAsEcore(xmlWriter, uri, exportDelegateURIMap.get(document));
+					}
+					else if (PERSIST_IN_ECORE.equals(saveAs)) {
+						((OCLinEcoreDocument) document).saveInEcore(xmlWriter, uri, exportDelegateURIMap.get(document));
+					}
+					else if (PERSIST_AS_PIVOT.equals(saveAs)) {
+						((OCLinEcoreDocument) document).saveAsPivot(xmlWriter);
+					}
+					else if (PERSIST_AS_UML.equals(saveAs)) {
+						((OCLinEcoreDocument) document).saveAsUML(xmlWriter, uri);
+					}
+					else {
+						log.warn("Unknown saveAs '" + saveAs + "'");
+					}
 				}
-				else if (PERSIST_AS_ECORE.equals(saveAs)) {
-					((OCLinEcoreDocument) document).saveAsEcore(xmlWriter, uri, exportDelegateURIMap.get(document));
-				}
-				else if (PERSIST_IN_ECORE.equals(saveAs)) {
-					((OCLinEcoreDocument) document).saveInEcore(xmlWriter, uri, exportDelegateURIMap.get(document));
-				}
-				else if (PERSIST_AS_PIVOT.equals(saveAs)) {
-					((OCLinEcoreDocument) document).saveAsPivot(xmlWriter);
-				}
-				else if (PERSIST_AS_UML.equals(saveAs)) {
-					((OCLinEcoreDocument) document).saveAsUML(xmlWriter, uri);
-				}
-				else {
-					log.warn("Unknown saveAs '" + saveAs + "'");
+				finally {
+					if ((asResource != null) && (savedURI != null)) {
+						asResource.setURI(savedURI);;
+					}
 				}
 				IDocument saveDocument = new Document();
 				saveDocument.set(xmlWriter.toString());
