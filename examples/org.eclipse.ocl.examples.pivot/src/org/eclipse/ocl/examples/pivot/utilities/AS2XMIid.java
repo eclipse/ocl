@@ -138,6 +138,9 @@ public class AS2XMIid
 					if (badId) {
 						idNew = EcoreUtil.generateUUID();
 					}
+					else if (changedId) {
+						idNew = idAuto;
+					}
 					if (badId || changedId) {
 						if (s == null) {
 							s = new StringBuilder();
