@@ -905,7 +905,7 @@ public class LoadTests extends XtextTestCase
 				"endpackage\n";
 		createOCLinEcoreFile("Bug450950.ocl", bug450950);
 		Resource asResource = doLoad_Concrete("Bug450950", "ocl");
-		assertResourceErrors("Save", asResource, DomainUtil.bind(OCLMessages.UnstableXMIid_ERROR_, "\n Package 'P.bug450950'"));
+		assertResourceErrors("Save", asResource, DomainUtil.bind(OCLMessages.UnstableXMIid_ERROR_, "\\n Package 'P.bug450950'"));
 	}	
 	
 	private void checkMultiplicity(TypedElement typedElement, int lower, int upper) {

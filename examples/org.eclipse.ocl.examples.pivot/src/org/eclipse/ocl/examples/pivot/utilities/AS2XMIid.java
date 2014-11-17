@@ -49,7 +49,7 @@ public class AS2XMIid
 		}
 		
 		public String getMessage() {
-			return message;
+			return message.replace("\n",  "\\n");
 		}
 
 		public String getLocation() {
@@ -62,6 +62,11 @@ public class AS2XMIid
 
 		public int getColumn() {
 			return 0;
+		}
+
+		@Override
+		public String toString() {
+			return message;
 		}
 	}
 
