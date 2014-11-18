@@ -122,8 +122,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 			if (root instanceof Model) {
 				org.eclipse.ocl.pivot.Package asPackage = ClassUtil.nonNullState(getPackage(genPackage, projectPrefix, environmentFactory));
 				for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Package oclDocPackage : ((Model)root).getOwnedPackages()) {
-					if (projectPrefix.equals("Pivot") ||  // FIXME Hack !! Why the oclDocPackage is the OCL library ????!!!!!!!! I want the PIVOT !!!!! 
-							environmentFactory.getMetamodelManager().getPrimaryPackage(oclDocPackage).getName().equals(asPackage.getName())) { // FIXME more robust check than name equality ?
+					if (oclDocPackage.getName().equals(asPackage.getName())) { // FIXME more robust check than name equality ?
 						org.eclipse.ocl.pivot.Package asSuperPackage = null;
 						if (superProjectPrefix != null) {
 							asSuperPackage = getPackage(genPackage, superProjectPrefix, environmentFactory);
