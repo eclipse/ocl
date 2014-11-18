@@ -976,9 +976,12 @@ public class LoadTests extends XtextTestCase
 		Import _import = root.getImports().get(0);
 		assertEquals("pivot", _import.getName());
 		Namespace nSpace = _import.getImportedNamespace();
+		assertTrue(nSpace instanceof org.eclipse.ocl.examples.pivot.Package);
+		org.eclipse.ocl.examples.pivot.Package refPackage = (org.eclipse.ocl.examples.pivot.Package)nSpace;
 		assertEquals("pivot", nSpace.getName());
-		assertEquals("http://www.eclipse.org/ocl/3.1.0/Pivot", ((org.eclipse.ocl.examples.pivot.Package)nSpace).getURI());
-//		assertEquals(oclDocPackage, nSpace);
+		assertEquals("http://www.eclipse.org/ocl/3.1.0/Pivot", refPackage.getURI());
+		assertNotSame(oclDocPackage, nSpace);
+		assertEquals(metaModelManager.getPrimaryPackage(oclDocPackage), metaModelManager.getPrimaryPackage(refPackage));
 	}
 	
 	public void testLoad_Bug441620b_completeocl() throws IOException {
@@ -992,9 +995,12 @@ public class LoadTests extends XtextTestCase
 		Import _import = root.getImports().get(0);
 		assertEquals("pivot", _import.getName());
 		Namespace nSpace = _import.getImportedNamespace();
+		assertTrue(nSpace instanceof org.eclipse.ocl.examples.pivot.Package);
+		org.eclipse.ocl.examples.pivot.Package refPackage = (org.eclipse.ocl.examples.pivot.Package)nSpace;
 		assertEquals("pivot", nSpace.getName());
 		assertEquals("http://www.eclipse.org/ocl/3.1.0/Pivot", ((org.eclipse.ocl.examples.pivot.Package)nSpace).getURI());
 		assertNotSame(oclDocPackage, nSpace);
+		assertEquals(metaModelManager.getPrimaryPackage(oclDocPackage), metaModelManager.getPrimaryPackage(refPackage));
 	}
 	
 	private void checkMultiplicity(TypedElement typedElement, int lower, int upper) {
