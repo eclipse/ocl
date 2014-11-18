@@ -42,12 +42,12 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.Library;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.RootCompletePackage;
 import org.eclipse.ocl.examples.pivot.State;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
@@ -155,6 +155,19 @@ public class EnvironmentView
 		}
 	}
 
+	private static final class MergedPackageDisambiguator extends Disambiguator<org.eclipse.ocl.examples.pivot.Package>
+	{
+		@Override
+		public int compare(@NonNull MetaModelManager metaModelManager, @NonNull org.eclipse.ocl.examples.pivot.Package match1, @NonNull org.eclipse.ocl.examples.pivot.Package match2) {
+			CompletePackage.Internal completePackage1 = metaModelManager.getCompleteModel().getCompletePackage(match1);
+			CompletePackage.Internal completePackage2 = metaModelManager.getCompleteModel().getCompletePackage(match2);
+			if (completePackage1 == completePackage2) {
+				return 1;				// match2 inferior			
+			}
+			return 0;
+		}
+	}
+
 	private static final class PropertyDisambiguator extends Disambiguator<Property>
 	{
 		@Override
@@ -196,6 +209,7 @@ public class EnvironmentView
 		addDisambiguator(Object.class, new ImplicitDisambiguator());
 		addDisambiguator(Feature.class, new MetamodelMergeDisambiguator());
 		addDisambiguator(Operation.class, new OperationDisambiguator());
+		addDisambiguator(org.eclipse.ocl.examples.pivot.Package.class, new MergedPackageDisambiguator());
 		addDisambiguator(Property.class, new PropertyDisambiguator());
 	}
 	
@@ -335,7 +349,7 @@ public class EnvironmentView
 			if (name2 != null) {
 				for (org.eclipse.ocl.examples.pivot.Package pkge : root.getOwnedPackages()) {
 					if ((pkge != null) && name2.equals(pkge.getName())) {
-						addElement(name2, metaModelManager.getPrimaryPackage(pkge));
+						addElement(name2, pkge);
 					}
 				}
 			}
