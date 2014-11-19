@@ -206,15 +206,19 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		if (asSource == null) {
 			return csArgument;
 		}
-		else {
-			Type asType = asSource.getType();
-			InfixExpCS csNavigationOperator = EssentialOCLCSFactory.eINSTANCE.createInfixExpCS();
-			csNavigationOperator.setOwnedLeft(context.visitDeclaration(ExpCS.class, asSource));
-			boolean isCollection = (asType instanceof CollectionType) ^ isConverted;
-			csNavigationOperator.setName(isCollection ? PivotConstants.COLLECTION_NAVIGATION_OPERATOR : PivotConstants.OBJECT_NAVIGATION_OPERATOR);
-			csNavigationOperator.setOwnedRight(csArgument);
-			return csNavigationOperator;
+		if (asSource instanceof VariableExp) {
+			VariableDeclaration asVariable = ((VariableExp)asSource).getReferredVariable();
+			if ((asVariable instanceof Variable) && ((Variable)asVariable).isImplicit()) { // Skip implicit iterator variables
+				return csArgument;
+			}
 		}
+		Type asType = asSource.getType();
+		InfixExpCS csNavigationOperator = EssentialOCLCSFactory.eINSTANCE.createInfixExpCS();
+		csNavigationOperator.setOwnedLeft(context.visitDeclaration(ExpCS.class, asSource));
+		boolean isCollection = (asType instanceof CollectionType) ^ isConverted;
+		csNavigationOperator.setName(isCollection ? PivotConstants.COLLECTION_NAVIGATION_OPERATOR : PivotConstants.OBJECT_NAVIGATION_OPERATOR);
+		csNavigationOperator.setOwnedRight(csArgument);
+		return csNavigationOperator;
 	}
 
 	protected @NonNull PathNameCS createPathNameCS(NamedElement asNamedElement) {
@@ -611,12 +615,6 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		OCLExpression asSource = asPropertyCallExp.getSource();
 		Property asProperty = getNonNullProperty(asPropertyCallExp.getReferredProperty());
 		NameExpCS csNameExp = createNameExpCS(asProperty);
-		if (asSource instanceof VariableExp) {
-			VariableDeclaration asVariable = ((VariableExp)asSource).getReferredVariable();
-			if ((asVariable instanceof Variable) && ((Variable)asVariable).isImplicit()) {				// Skip implicit iterator variables
-				return csNameExp;
-			}
-		}
 		return createNavigationOperatorCS(asSource, csNameExp, false);
 	}
 

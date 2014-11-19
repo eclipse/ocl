@@ -59,7 +59,7 @@ public class OCLinEcoreDocument extends BaseDocument
 			{
 				public Object exec(@Nullable XtextResource resource) throws Exception {
 					if (resource != null) {
-						XMLResource asResource = getPivotResouce();
+						XMLResource asResource = getPivotResource();
 						if (asResource != null) {
 							CS2ASResourceAdapter adapter = ((BaseCSResource)resource).findCS2ASAdapter();
 							if (adapter != null) {
@@ -89,7 +89,7 @@ public class OCLinEcoreDocument extends BaseDocument
 			{
 				public Object exec(@Nullable XtextResource resource) throws Exception {
 					if (resource != null) {
-						XMLResource asResource = getPivotResouce();
+						XMLResource asResource = getPivotResource();
 						if (asResource != null) {
 							CS2ASResourceAdapter adapter = ((BaseCSResource)resource).findCS2ASAdapter();
 							if (adapter != null) {
@@ -116,7 +116,7 @@ public class OCLinEcoreDocument extends BaseDocument
 			{
 				public Object exec(@Nullable XtextResource resource) throws Exception {
 					if (resource != null) {
-						XMLResource asResource = getPivotResouce();
+						XMLResource asResource = getPivotResource();
 						if (asResource != null) {
 							CS2ASResourceAdapter adapter = ((BaseCSResource)resource).findCS2ASAdapter();
 							if (adapter != null) {
