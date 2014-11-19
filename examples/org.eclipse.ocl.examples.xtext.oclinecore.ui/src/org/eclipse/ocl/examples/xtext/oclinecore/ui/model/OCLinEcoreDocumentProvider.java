@@ -70,6 +70,7 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.xtext.parsetree.reconstr.XtextSerializationException;
 import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.ui.ecore.EcoreEditorOpener;
 import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
 import org.eclipse.xtext.validation.IConcreteSyntaxValidator.InvalidConcreteSyntaxException;
 
@@ -80,6 +81,9 @@ import org.eclipse.xtext.validation.IConcreteSyntaxValidator.InvalidConcreteSynt
 public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements MetaModelManagerListener
 {
 	private static final Logger log = Logger.getLogger(OCLinEcoreDocumentProvider.class);
+	
+	@SuppressWarnings("unused")
+	private static final EcoreEditorOpener ensureThatEcoreIsRegisteredToWorkaroundBug452152 = null;
 	
 	public static final String PERSIST_AS_ECORE = "as-ecore";
 	public static final String PERSIST_IN_ECORE = "in-ecore";
