@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:christian="http:///schemas/christian/_9G63wHGVEeSLC9KKX06hTg/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/christian/_9G63wHGVEeSLC9KKX06hTg/0 Bug452621.profile.uml#_9G7e0HGVEeSLC9KKX06hTg">
+  <uml:Model xmi:id="_B2j2sHGWEeSLC9KKX06hTg" name="Model">
+    <packageImport xmi:id="_B2j2sXGWEeSLC9KKX06hTg">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Cab_0HGWEeSLC9KKX06hTg" name="Class1">
+      <ownedAttribute xmi:id="_EgtIwHGWEeSLC9KKX06hTg" name="Attribute1">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_L8pV4HGWEeSLC9KKX06hTg" value="foo"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_ExiaEHGWEeSLC9KKX06hTg" name="Attribute2">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_OhnNAHGWEeSLC9KKX06hTg" value="foo"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_CvBvwHGWEeSLC9KKX06hTg" name="Class2">
+      <ownedAttribute xmi:id="_E8tIQHGWEeSLC9KKX06hTg" name="Attribute1">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_QM97kHGWEeSLC9KKX06hTg" value="foo"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_FMWt0HGWEeSLC9KKX06hTg" name="Attribute2">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_Sd_jAHGWEeSLC9KKX06hTg" value="bar"/>
+      </ownedAttribute>
+    </packagedElement>
+    <profileApplication xmi:id="_Vt08EHGWEeSLC9KKX06hTg">
+      <eAnnotations xmi:id="_VuH3AHGWEeSLC9KKX06hTg" source="PapyrusVersion">
+        <details xmi:id="_VuH3AXGWEeSLC9KKX06hTg" key="Version" value="0.0.1"/>
+        <details xmi:id="_VuH3AnGWEeSLC9KKX06hTg" key="Comment" value=""/>
+        <details xmi:id="_VuH3A3GWEeSLC9KKX06hTg" key="Copyright" value=""/>
+        <details xmi:id="_VuH3BHGWEeSLC9KKX06hTg" key="Date" value="2014-11-21"/>
+        <details xmi:id="_VuH3BXGWEeSLC9KKX06hTg" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:id="_VuHP8HGWEeSLC9KKX06hTg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="Bug452621.profile.uml#_9G7e0HGVEeSLC9KKX06hTg"/>
+      </eAnnotations>
+      <appliedProfile href="Bug452621.profile.uml#_Wm35YHGVEeSLC9KKX06hTg"/>
+    </profileApplication>
+  </uml:Model>
+  <christian:Stereotype1 xmi:id="_dAQn4HGWEeSLC9KKX06hTg" base_Class="_Cab_0HGWEeSLC9KKX06hTg"/>
+  <christian:Stereotype1 xmi:id="_eaETcHGWEeSLC9KKX06hTg" base_Class="_CvBvwHGWEeSLC9KKX06hTg"/>
+</xmi:XMI>

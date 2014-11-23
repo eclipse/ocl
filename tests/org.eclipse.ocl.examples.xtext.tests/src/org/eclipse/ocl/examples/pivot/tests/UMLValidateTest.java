@@ -402,4 +402,28 @@ public class UMLValidateTest extends AbstractValidateTests
 			EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "Constraint2", "«MyEnum»" + DomainUtil.getLabel(xx) }));
 		ocl.dispose();
 	}
+	
+	public void test_umlValidation_Bug452621() throws IOException {
+		resetRegistries();
+		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		if (EcorePlugin.IS_ECLIPSE_RUNNING) {
+			new CommonPreferenceInitializer().initializeDefaultPreferences();
+		}
+		ResourceSet resourceSet = createResourceSet();
+		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
+		OCLDelegateDomain.initializePivotOnlyDiagnosticianResourceSet(resourceSet);
+		OCL ocl = OCL.newInstance();
+		@SuppressWarnings("null")@NonNull Resource umlResource = doLoadUML(ocl, "Bug452621");
+		assertNoResourceErrors("Loading", umlResource);
+		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
+		OCLDelegateDomain.initializePivotOnlyDiagnosticianContext(validationContext);
+		Model model = (Model) umlResource.getContents().get(0);
+		org.eclipse.uml2.uml.Type xx = model.getOwnedType("Class1");
+		assertValidationDiagnostics("Loading", umlResource, validationContext,
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Stereotype1", "unique_default_values", "«Stereotype1»" + DomainUtil.getLabel(xx)));
+		assertUMLOCLValidationDiagnostics(ocl, "UML Load", umlResource,
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Stereotype1", "unique_default_values", "«Stereotype1»" + DomainUtil.getLabel(xx)),
+			EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "unique_default_values", "«Stereotype1»" + DomainUtil.getLabel(xx) }));
+		ocl.dispose();
+	}
 }
