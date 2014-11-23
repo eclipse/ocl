@@ -22,6 +22,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
@@ -1772,6 +1773,18 @@ public class OperationImpl
 				EOperation eOperation = null;
 				if (eTarget instanceof EOperation) {
 					eOperation = (EOperation) eTarget;
+					while (eOperation.eContainer() instanceof EAnnotation) {
+						EAnnotation redefines = eOperation.getEAnnotation("redefines");
+						if (redefines != null) {
+							List<EObject> references = redefines.getReferences();
+							if (references.size() > 0) {
+								EObject eReference = references.get(0);
+								if (eReference instanceof EOperation) {
+									eOperation = (EOperation)eReference;
+								}
+							}
+						}
+					}
 				}
 				else {
 					Resource resource = eResource();
