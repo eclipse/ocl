@@ -1748,26 +1748,6 @@ public class OperationImpl
 		}
 		LibraryFeature bodyImplementation2 = bodyImplementation;
 		if (bodyImplementation2 == null) {
-			for (Operation redefinedOperation : getRedefinedOperation()) {
-				bodyImplementation2 = redefinedOperation.getImplementation();
-				if (bodyImplementation2 != null) {
-					break;
-				}
-			}
-		}
-		if (bodyImplementation2 == null) {
-			OpaqueExpression specification = getBodyExpression();
-			if (specification != null) {
-				Type owningType = getOwningType();
-				if (owningType != null) {
-					ExpressionInOCL expression = specification.getExpressionInOCL();
-					if (expression != null) {
-						bodyImplementation2 = new ConstrainedOperation(expression);
-					}
-				}
-			}
-		}
-		if (bodyImplementation2 == null) {
 			EObject eTarget = getETarget();
 			if (eTarget != null) {
 				EOperation eOperation = null;
@@ -1795,6 +1775,18 @@ public class OperationImpl
 				}
 				if ((eOperation != null) && (eOperation.getEType() != null)) {
 					bodyImplementation2 = new EInvokeOperation(eOperation);
+				}
+			}
+		}
+		if (bodyImplementation2 == null) {
+			OpaqueExpression specification = getBodyExpression();
+			if (specification != null) {
+				Type owningType = getOwningType();
+				if (owningType != null) {
+					ExpressionInOCL expression = specification.getExpressionInOCL();
+					if (expression != null) {
+						bodyImplementation2 = new ConstrainedOperation(expression);
+					}
 				}
 			}
 		}
