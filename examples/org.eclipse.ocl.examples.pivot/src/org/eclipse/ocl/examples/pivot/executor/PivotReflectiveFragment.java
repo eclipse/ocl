@@ -17,6 +17,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.ParametersId;
 import org.eclipse.ocl.examples.library.executor.ReflectiveFragment;
+import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.manager.TypeServer;
 
 public class PivotReflectiveFragment extends ReflectiveFragment
@@ -29,13 +30,22 @@ public class PivotReflectiveFragment extends ReflectiveFragment
 		TypeServer typeServer = (TypeServer) derivedInheritance;
 		String baseOperationName = baseOperation.getName();
 		ParametersId baseParametersId = baseOperation.getParametersId();
+		DomainOperation bestOperation = null;
 		for (DomainType partialType : typeServer.getPartialTypes()) {
 			for (DomainOperation localOperation : partialType.getOwnedOperation()) {
 				if (localOperation.getName().equals(baseOperationName) && (localOperation.getParametersId() == baseParametersId)) {
-					return localOperation;
+					if ((localOperation instanceof Operation) && (((Operation)localOperation).getETarget() != null)) {
+						return localOperation;
+					}					
+					if (bestOperation == null) {
+						bestOperation = localOperation;
+					}
+					else if ((localOperation.getBodyExpression() != null) && (bestOperation.getBodyExpression() == null)) {
+						bestOperation = localOperation;
+					}
 				}
 			}
 		}
-		return null;					// Not known locally, caller must try superfragments.
+		return bestOperation;					// null if not known locally, caller must try superfragments.
 	}
 }
