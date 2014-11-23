@@ -1133,10 +1133,33 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 	public @NonNull LibraryFeature getImplementation(@NonNull Operation operation) {
 		LibraryFeature implementation = operation.getImplementation();
 		if (implementation == null) {
-			for (Operation redefinedOperation : operation.getRedefinedOperation()) {
-				if (redefinedOperation != null) {
-					implementation = getImplementation(redefinedOperation);
-					break;
+			EObject eTarget = operation.getETarget();
+			if (eTarget != null) {
+				EOperation eOperation = null;
+				if (eTarget instanceof EOperation) {
+					eOperation = (EOperation) eTarget;
+					while (eOperation.eContainer() instanceof EAnnotation) {
+						EAnnotation redefines = eOperation.getEAnnotation("redefines");
+						if (redefines != null) {
+							List<EObject> references = redefines.getReferences();
+							if (references.size() > 0) {
+								EObject eReference = references.get(0);
+								if (eReference instanceof EOperation) {
+									eOperation = (EOperation)eReference;
+								}
+							}
+						}
+					}
+				}
+				else {
+					Resource resource = operation.eResource();
+					if (resource instanceof ASResource) {
+						ASResource asResource = (ASResource)resource;
+						eOperation = asResource.getASResourceFactory().getEOperation(asResource, eTarget);
+					}
+				}
+				if ((eOperation != null) && (eOperation.getEType() != null)) {
+					implementation = new EInvokeOperation(eOperation);
 				}
 			}
 			if (implementation == null) {
@@ -1152,25 +1175,6 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 //							e.printStackTrace();
 							implementation = UnsupportedOperation.INSTANCE;
 						}
-					}
-				}
-			}
-			if (implementation == null) {
-				EObject eTarget = operation.getETarget();
-				if (eTarget != null) {
-					EOperation eOperation = null;
-					if (eTarget instanceof EOperation) {
-						eOperation = (EOperation) eTarget;
-					}
-					else {
-						Resource resource = operation.eResource();
-						if (resource instanceof ASResource) {
-							ASResource asResource = (ASResource)resource;
-							eOperation = asResource.getASResourceFactory().getEOperation(asResource, eTarget);
-						}
-					}
-					if ((eOperation != null) && (eOperation.getEType() != null)) {
-						implementation = new EInvokeOperation(eOperation);
 					}
 				}
 			}
