@@ -1128,7 +1128,7 @@ public class TypeImpl
 //			TypeId typeId = IdManager.getTypeId(eClass);
 			return /*ValuesUtil.createObjectValue(typeId, */element;//);
 		}
-		throw new UnsupportedOperationException();
+		throw new UnsupportedOperationException();		// FIXME do a lazy Pivot2Ecore
 	}
 
 	public @Nullable Object createInstance(@NonNull String value) {
@@ -1140,7 +1140,7 @@ public class TypeImpl
 			return /*ValuesUtil.createObjectValue(typeId, */element;//);
 //			return ValuesUtil.valueOf(element);
 		}
-		throw new UnsupportedOperationException();
+		throw new UnsupportedOperationException();		// FIXME do a lazy Pivot2Ecore
 	}
 
 	public @NonNull DomainType getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
