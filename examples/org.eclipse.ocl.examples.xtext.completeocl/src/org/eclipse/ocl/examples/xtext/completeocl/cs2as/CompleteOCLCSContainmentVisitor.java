@@ -249,6 +249,12 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		contextPackage.setURI(modelPackage.getURI());
 		context.refreshList(contextPackage.getOwnedClasses(), contextClasses);
 		context.refreshComments(contextPackage, csElement);
+		for (int i = 1; i < packageDecls.size(); i++) {
+			csElement = packageDecls.get(i);
+			if (csElement != null) {
+				context.installPivotUsage(csElement, contextPackage);
+			}
+		}
 		return contextPackage;
 	}
 

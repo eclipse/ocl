@@ -12,6 +12,8 @@ package org.eclipse.ocl.examples.xtext.base.ui.outline;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 import org.eclipse.swt.graphics.Image;
@@ -21,20 +23,20 @@ import org.eclipse.xtext.ui.editor.outline.impl.EObjectNode;
 public class BaseOutlineNode extends EObjectNode
 {
 	protected final URI csURI;
-	
-	public BaseOutlineNode(Element asElement, ElementCS csElement, IOutlineNode parent, Image image, Object text, boolean isLeaf) {
+	protected final boolean isImplicit;
+
+	public BaseOutlineNode(@NonNull Element asElement, boolean isImplicit, @Nullable ElementCS csElement, IOutlineNode parent, Image image, Object text, boolean isLeaf) {
 		super(asElement, parent, image, text, isLeaf);
 		csURI = csElement != null ? EcoreUtil.getURI(csElement) : null;
+		this.isImplicit = isImplicit;
  	}
 
 	@Override
 	public URI getEObjectURI() {
 		return csURI;
 	}
-
-	@Override
-	protected void setParent(IOutlineNode newParent) {
-		assert newParent != this;
-		super.setParent(newParent);
+	
+	public boolean isImplicit() {
+		return isImplicit;
 	}
 }

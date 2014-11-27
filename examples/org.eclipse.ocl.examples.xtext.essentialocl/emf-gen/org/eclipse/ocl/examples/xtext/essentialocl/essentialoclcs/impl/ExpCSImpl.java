@@ -256,19 +256,25 @@ public class ExpCSImpl
 				if (csNearestRight == null) {
 					localParent = null;
 				}
-				else {
+				else if (csNearestRight == this) {
+					localParent = null;
+				}
+				else if (csNearestRight != this) {
 					localParent = csNearestRight;
 				}
 			}
 			else {
 				if (csNearestRight == null) {
 					localParent = csNearestLeft;
+					assert localParent != this;
 				}
 				else if (csNearestLeft.isLocalLeftAncestorOf(csNearestRight)) {
 					localParent = csNearestRight;
+					assert localParent != this;
 				}
 				else {
 					localParent = csNearestLeft;
+					assert localParent != this;
 				}
 			}
 		}

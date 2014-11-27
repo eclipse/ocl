@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.AssociationClassCallExp;
 import org.eclipse.ocl.examples.pivot.BagType;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
+import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.CollectionItem;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
@@ -68,6 +69,7 @@ import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.PrimitiveLiteralExp;
@@ -151,6 +153,24 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 
 	protected void appendName(@NonNull StringBuilder s, Nameable csElement) {
 		appendString(s, csElement.getName());
+	}
+
+	protected void appendNavigationOperator(@NonNull StringBuilder s, @NonNull CallExp ele) {
+		OCLExpression source = ele.getSource();
+		if (source == null) {
+			return;
+		}
+		Type sourceType = source.getType();
+		if (sourceType == null) {
+			return;
+		}
+		if (sourceType instanceof CollectionType) {
+			s.append(PivotConstants.COLLECTION_NAVIGATION_OPERATOR);
+		}
+		else {
+			s.append(PivotConstants.OBJECT_NAVIGATION_OPERATOR); 
+		}
+		s.append(" ");
 	}
 
 	protected void appendOptionalName(@NonNull StringBuilder s, Nameable csElement) {
@@ -571,8 +591,17 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 	}
 
 	protected String text(LoopExp ele) {
+		assert ele != null;
+		StringBuilder s = new StringBuilder();
+		appendNavigationOperator(s, ele);
 		Iteration referredIteration = ele.getReferredIteration();
-		return referredIteration != null ? text(referredIteration) : "<<null>>";
+		if (referredIteration != null) {
+			s.append(text(referredIteration));
+		}
+		else {
+			s.append("<<null>>");
+		}
+		return s.toString();
 	}
 
 	protected String image(MessageExp ele) {
@@ -635,8 +664,17 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 	}
 
 	protected String text(OperationCallExp ele) {
+		assert ele != null;
+		StringBuilder s = new StringBuilder();
+		appendNavigationOperator(s, ele);
 		Operation referredOperation = ele.getReferredOperation();
-		return referredOperation != null ? text(referredOperation) : "<<null>>";
+		if (referredOperation != null) {
+			s.append(text(referredOperation));
+		}
+		else {
+			s.append("<<null>>");
+		}
+		return s.toString();
 	}
 
 	protected String image(OppositePropertyCallExp ele) {
@@ -644,9 +682,18 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 	}
 
 	protected String text(OppositePropertyCallExp ele) {
+		assert ele != null;
+		StringBuilder s = new StringBuilder();
+		appendNavigationOperator(s, ele);
 		Property referredOppositeProperty = ele.getReferredProperty();
 		Property referredProperty = referredOppositeProperty != null ? referredOppositeProperty.getOpposite() : null;
-		return referredProperty != null ? text(referredProperty) : "<<null>>";
+		if (referredProperty != null) {
+			s.append(text(referredProperty));
+		}
+		else {
+			s.append("<<null>>");
+		}
+		return s.toString();
 	}
 
 	protected String image(OrderedSetType ele) {
@@ -731,8 +778,17 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 	}
 
 	protected String text(PropertyCallExp ele) {
+		assert ele != null;
+		StringBuilder s = new StringBuilder();
+		appendNavigationOperator(s, ele);
 		Property referredProperty = ele.getReferredProperty();
-		return referredProperty != null ? text(referredProperty) : "<<null>>";
+		if (referredProperty != null) {
+			s.append(text(referredProperty));
+		}
+		else {
+			s.append("<<null>>");
+		}
+		return s.toString();
 	}
 
 	protected String image(RealLiteralExp ele) {

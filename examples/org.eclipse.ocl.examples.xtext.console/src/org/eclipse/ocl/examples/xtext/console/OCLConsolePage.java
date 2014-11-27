@@ -540,11 +540,13 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 										if (selectedObject instanceof EObjectNode) {
 											EObjectNode eObjectNode = (EObjectNode)selectedObject;
 											URI uri = eObjectNode.getEObjectURI();
-											EObject csObject = state.getEObject(uri.fragment());
-											if (csObject instanceof Pivotable) {
-												Element pivotObject = ((Pivotable)csObject).getPivot();
-												if (pivotObject != null) {
-									                return pivotObject;													
+											if (uri != null) {
+												EObject csObject = state.getEObject(uri.fragment());
+												if (csObject instanceof Pivotable) {
+													Element pivotObject = ((Pivotable) csObject).getPivot();
+													if (pivotObject != null) {
+														return pivotObject;
+													}
 												}
 											}
 										}
@@ -762,7 +764,12 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
         		append(exception.getMessage(), ColorManager.OUTPUT_ERROR, true);
         		Throwable cause = exception.getCause();
         		if ((cause != null) && (cause != exception)) {
-        			append(cause.getMessage(), ColorManager.OUTPUT_ERROR, false);
+        			if (cause instanceof ParserException) {
+        				append(cause.getMessage(), ColorManager.OUTPUT_ERROR, false);
+        			}
+        			else {
+        				append(cause.toString(), ColorManager.OUTPUT_ERROR, false);
+        			}
         		}
         	}
         	else if (value != null) {

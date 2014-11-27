@@ -12,20 +12,16 @@ package org.eclipse.ocl.examples.xtext.completeocl.ui.labeling;
 
 import java.util.List;
 
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.base.as2cs.AliasAnalysis;
 import org.eclipse.ocl.examples.xtext.base.basecs.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
-import org.eclipse.ocl.examples.xtext.base.scoping.QualifiedPath;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLDocumentCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS;
@@ -204,23 +200,18 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 		return "/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif";
 	}
 
-	protected String text(PackageDeclarationCS ele) {
-		assert ele != null;
-		Resource eResource = ele.eResource();
-		if (eResource == null) {
+	protected String text(PackageDeclarationCS csElement) {
+		assert csElement != null;
+		Element asElement = csElement.getReferredPackage();
+		if (asElement == null) {
+			asElement = PivotUtil.getPivot(Element.class, csElement);
+		}
+		if (asElement != null) {
+			return String.valueOf(doGetText(asElement));
+		}
+		else {
 			return "<<null>>";
 		}
-		MetaModelManager metaModelManager = PivotUtil.findMetaModelManager(eResource);
-		if (metaModelManager == null) {
-			return "<<null>>";
-		}
-		AliasAnalysis aliasAnalysis = AliasAnalysis.getAdapter(eResource, metaModelManager);
-		Element pivot = ele.getReferredPackage();
-		if (pivot == null) {
-			return "<<null>>";
-		}
-		QualifiedPath contextPath = new QualifiedPath(aliasAnalysis.getPath(pivot));
-		return contextPath.toString();
 	}
 
 //	protected String image(PostCS ele) {

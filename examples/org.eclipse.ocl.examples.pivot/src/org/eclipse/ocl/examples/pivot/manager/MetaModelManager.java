@@ -75,6 +75,7 @@ import org.eclipse.ocl.examples.pivot.CompleteModel;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
+import org.eclipse.ocl.examples.pivot.DynamicElement;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.Environment;
@@ -1053,7 +1054,17 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		}
 		@SuppressWarnings("null")@NonNull ElementExtension asElementExtension = PivotFactory.eINSTANCE.createElementExtension();
 		asElementExtension.setStereotype(asStereotype);
-		asElementExtension.setName(((NamedElement)asStereotypedElement).getName() + "$" + asStereotype.getName());	// FIXME cast
+		String name = "????";
+		if (asStereotypedElement instanceof NamedElement) {
+			name = ((NamedElement)asStereotypedElement).getName();
+		}
+		else if (asStereotypedElement instanceof DynamicElement) {
+			EObject eObject = ((DynamicElement)asStereotypedElement).getETarget();
+			if (eObject instanceof org.eclipse.uml2.uml.NamedElement) {
+				name = ((org.eclipse.uml2.uml.NamedElement)eObject).getName();
+			}
+		}
+		asElementExtension.setName(name + "$" + asStereotype.getName());	// FIXME cast
 //		asElementExtension.getSuperClass().add(getOclAnyType());
 		extensions.add(asElementExtension);
 		return asElementExtension;

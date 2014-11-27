@@ -1,0 +1,7 @@
+# Debugging options for the org.eclipse.ocl.examples.xtext.base.ui plug-in
+
+# Turn on tracing of outline node creation
+org.eclipse.ocl.examples.xtext.base.ui/outline/create=false
+
+# Turn on tracing of outline node location
+org.eclipse.ocl.examples.xtext.base.ui/outline/locate=false

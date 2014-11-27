@@ -12,7 +12,9 @@ package org.eclipse.ocl.examples.xtext.base.as2cs;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
@@ -27,6 +29,18 @@ import org.eclipse.xtext.util.TextRegion;
 
 public class BaseLocationInFileProvider extends DefaultLocationInFileProvider
 {
+	@Override
+	protected EStructuralFeature getIdentifierFeature(EObject obj) {
+		final EClass eClass = obj.eClass();
+		EStructuralFeature result = eClass.getEStructuralFeature("ownedPathName");
+		if (result != null) {
+			return result;
+		}
+		else {
+			return super.getIdentifierFeature( obj);	// Never happens "name" or "id" used
+		}
+	}
+
 	@Override
 	protected ITextRegion getTextRegion(EObject obj, boolean isSignificant) {
 		if (obj instanceof Element) {

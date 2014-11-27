@@ -11,6 +11,9 @@
 package org.eclipse.ocl.examples.xtext.base.ui.outline;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -18,13 +21,14 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.ui.BaseUiPluginHelper;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
 import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode;
 import org.eclipse.xtext.ui.editor.outline.impl.EObjectNode;
-import org.eclipse.xtext.util.ITextRegion;
 
 /**
  * customization of the default outline structure
@@ -32,82 +36,66 @@ import org.eclipse.xtext.util.ITextRegion;
  */
 public class BaseOutlineTreeProvider extends DefaultOutlineTreeProvider
 {
-	/* This was used on Xtext 2.0
-	@Override
-	protected EObjectNode createEObjectNode(IOutlineNode parentNode,
-			EObject modelElement) {
-		if (!(modelElement instanceof Element)) {
-			return super.createEObjectNode(parentNode, modelElement);
-		}
-		Object text = textDispatcher.invoke(modelElement);
-		Image image = imageDispatcher.invoke(modelElement);
-		EObjectNode eObjectNode = new ElementNode(modelElement, parentNode,
-			image, text, isLeafDispatcher.invoke(modelElement));
-		ICompositeNode parserNode = NodeModelUtils.getNode(modelElement);
-		if (parserNode != null)
-			eObjectNode.setTextRegion(new TextRegion(parserNode.getOffset(),
-				parserNode.getLength()));
-		eObjectNode.setShortTextRegion(locationInFileProvider
-			.getSignificantTextRegion(modelElement));
-		return eObjectNode;
-	} */
-
-	// This is used on Xtext 2.1
+	public static final @NonNull TracingOption CREATE = new TracingOption(
+		BaseUiPluginHelper.PLUGIN_ID, "create"); //$NON-NLS-1$
+	
 	@Override
 	protected EObjectNode createEObjectNode(IOutlineNode parentNode, EObject modelElement, Image image, Object text, boolean isLeaf) {
-		EObject asElement = getPivoted(modelElement);
-		EObject csElement = modelElement;
+		EObject asElement = modelElement;
+		if (modelElement instanceof Pivotable) {
+			Pivotable pivotable = (Pivotable) modelElement;
+			Element pivot = pivotable.getPivot();
+			if (pivot != null) {
+				asElement = pivot;
+			}
+		}
 		EObjectNode eObjectNode;
 		if (asElement instanceof Element) {
-			csElement = ElementUtil.getCsElement((Element)asElement);
-			eObjectNode = new BaseOutlineNode((Element)asElement, (ElementCS)csElement, parentNode, image, text, isLeaf);
+			boolean isImplicit = false;
+			ElementCS csElement = ElementUtil.getCsElement((Element)asElement);
+			if (csElement == null) {
+				csElement = getImplicitCsElement((Element)asElement);
+				isImplicit = csElement != null;
+			}
+			eObjectNode = new BaseOutlineNode((Element)asElement, isImplicit, csElement, parentNode, image, text, isLeaf);
 		}
 		else {
 			eObjectNode = new EObjectNode(modelElement, parentNode, image, text, isLeaf);
 		}
-		if ((csElement != null) && isLocalElement(parentNode, csElement)) {
-			eObjectNode.setTextRegion(locationInFileProvider.getFullTextRegion(csElement));
-			eObjectNode.setShortTextRegion(locationInFileProvider.getSignificantTextRegion(csElement));
+		if ((asElement != null) /*&& isLocalElement(parentNode, asElement)*/) {
+			eObjectNode.setTextRegion(locationInFileProvider.getFullTextRegion(asElement));
+			eObjectNode.setShortTextRegion(locationInFileProvider.getSignificantTextRegion(asElement));
 		}
-		ITextRegion fullText = eObjectNode.getFullTextRegion();
-		ITextRegion shortText = eObjectNode.getSignificantTextRegion();
-		System.out.println("[" + fullText.getOffset() + "," + fullText.getLength() + "] [" + shortText.getOffset() + "," + shortText.getLength() + "] " + DomainUtil.debugSimpleName(eObjectNode) + " " + String.valueOf(eObjectNode.getText()).replace("\n", "\\n"));
+		if (CREATE.isActive()) {
+			StringBuilder s = new StringBuilder();
+			s.append(modelElement.eClass().getName());
+			s.append(" ");
+			ElementUtil.appendTextRegion(s, eObjectNode.getFullTextRegion(), false);
+			s.append(" ");
+			ElementUtil.appendTextRegion(s, eObjectNode.getSignificantTextRegion(), true);
+			s.append(" " + DomainUtil.debugSimpleName(eObjectNode) + " " + String.valueOf(eObjectNode.getText()).replace("\n", "\\n"));
+			CREATE.println(s.toString());
+		}
 		return eObjectNode;
 	}
-	
-	@Override
-	protected void _createNode(DocumentRootNode parentNode, EObject modelElement) {
-		EObject pivotedElement = getPivoted(modelElement);
-		Object text = textDispatcher.invoke(pivotedElement);
-		if (text == null) {
-			text = pivotedElement.eResource().getURI().trimFileExtension().lastSegment();
-		}
-		createEObjectNode(parentNode, modelElement, imageDispatcher.invoke(modelElement), text, isLeafDispatcher.invoke(modelElement));
-	}
-	
-	@Override
-	protected void _createNode(IOutlineNode parentNode, EObject modelElement) {
-		EObject pivotedElement = getPivoted(modelElement);
-		Object text = textDispatcher.invoke(pivotedElement);
-		boolean isLeaf = isLeafDispatcher.invoke(pivotedElement);
-		if (text == null && isLeaf)
-			return;
-		Image image = imageDispatcher.invoke(pivotedElement);
-		createEObjectNode(parentNode, modelElement, image, text, isLeaf);
-	}
 
+	/**
+	 * The default creation of outline children is refined to create a node for an implicit
+	 * element such as oclAsSet and to ignore null model elements. 
+	 */
 	@Override
 	public void createChildren(IOutlineNode parent, EObject modelElement) {
-		EObject pivotedElement = getPivoted(modelElement);
-		if (pivotedElement != null) {
-			superCreateChildren(parent, pivotedElement);
+		if ((parent instanceof BaseOutlineNode) && ((BaseOutlineNode)parent).isImplicit()) {
+			createNode(parent, modelElement);
+		}
+		else if (modelElement != null) {
+			super.createChildren(parent, modelElement);
 		}
 	}
 
-	protected void superCreateChildren(IOutlineNode parent, EObject modelElement) {
-		super.createChildren(parent, modelElement);
-	}
-
+	/**
+	 * The default creation of outline node is refined to ignore null model elements. 
+	 */
 	@Override
 	protected void createNode(IOutlineNode parent, EObject modelElement) {
 		if (modelElement != null) {
@@ -115,19 +103,36 @@ public class BaseOutlineTreeProvider extends DefaultOutlineTreeProvider
 		}
 	}
 	
-	protected EObject getPivoted(EObject modelElement) {
-		if (modelElement instanceof Pivotable) {
-			Pivotable pivotable = (Pivotable) modelElement;
-			Element pivot = pivotable.getPivot();
-			if (pivot != null) {
-				return pivot;
-			}
-		}
-		return modelElement;
+	protected @Nullable ElementCS getImplicitCsElement(@NonNull Element asElement) {
+		return null;
+	}
+
+	/**
+	 * In the absence of a declarative override, creation of the children an outline node for a CS element
+	 * is redirected to its AS counterpart. 
+	 */
+	protected void _createChildren(IOutlineNode parent, ModelElementCS csElement) {
+		createChildren(parent, csElement.getPivot());
+	}
+
+	/**
+	 * In the absence of a declarative override, creation of an outline node for a CS element
+	 * is redirected to its AS counterpart. 
+	 */
+	protected void _createNode(DocumentRootNode parentNode, ModelElementCS csElement) {
+		createNode(parentNode, csElement.getPivot());
+	}
+
+	/**
+	 * In the absence of a declarative override, creation of an outline node for a CS element
+	 * is redirected to its AS counterpart. 
+	 */
+	protected void _createNode(IOutlineNode parent, ModelElementCS csElement) {
+		createNode(parent, csElement.getPivot());
 	}
 
 	protected void _createChildren(IOutlineNode parentNode, Constraint constraint) {
-		createChildren(parentNode, constraint.getSpecification());
+		createNode(parentNode, constraint.getSpecification());
 	}
 
 	protected void _createChildren(IOutlineNode parentNode, Operation ele) {

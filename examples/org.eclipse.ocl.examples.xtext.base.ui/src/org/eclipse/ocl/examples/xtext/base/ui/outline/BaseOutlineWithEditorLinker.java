@@ -10,23 +10,49 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.base.ui.outline;
 
+import org.apache.log4j.Logger;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.xtext.base.ui.BaseUiPluginHelper;
+import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.actions.OutlineWithEditorLinker;
 import org.eclipse.xtext.util.ITextRegion;
 
 public class BaseOutlineWithEditorLinker extends OutlineWithEditorLinker
 {
+	public static final @NonNull TracingOption LOCATE = new TracingOption(
+		BaseUiPluginHelper.PLUGIN_ID, "locate"); //$NON-NLS-1$
+
+	private static final Logger logger = Logger.getLogger(BaseOutlineWithEditorLinker.class);
+
 	private int depth = 0;
+	
 	@Override
 	protected IOutlineNode findBestNode(IOutlineNode input, ITextRegion selectedTextRegion) {
 		int savedDepth = depth++;
 		try {
 			if (depth > 100) {
-				System.out.println("FindBest limit at [" + selectedTextRegion.getOffset() + "," + selectedTextRegion.getLength() + "] " + DomainUtil.debugSimpleName(input));
+				StringBuilder s = new StringBuilder();
+				s.append("FindBest limit at ");
+				ElementUtil.appendTextRegion(s, selectedTextRegion, true);
+				s.append(" " + DomainUtil.debugSimpleName(input));
+				logger.error(s.toString());
 				return null;
 			}
-			System.out.println("FindBest at [" + selectedTextRegion.getOffset() + "," + selectedTextRegion.getLength() + "] " + DomainUtil.debugSimpleName(input));
+			if (LOCATE.isActive()) {
+				StringBuilder s = new StringBuilder();
+				s.append("FindBest " + depth + " at "); // + DomainUtil.debugSimpleName(input));
+				ElementUtil.appendTextRegion(s, selectedTextRegion, true);
+				s.append(" for ");
+				ElementUtil.appendTextRegion(s, input.getFullTextRegion(), false);
+				s.append(" ");
+				ElementUtil.appendTextRegion(s, input.getSignificantTextRegion(), true);
+				s.append(" ");
+				s.append(input);
+				LOCATE.println(s.toString());
+			}
 			return super.findBestNode(input, selectedTextRegion);
 		}
 		finally {
