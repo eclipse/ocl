@@ -25,6 +25,8 @@ import org.eclipse.ocl.examples.xtext.base.ui.autoedit.BaseAutoEditStrategyProvi
 import org.eclipse.ocl.examples.xtext.base.ui.model.BaseDocument;
 import org.eclipse.ocl.examples.xtext.base.ui.model.BaseTerminalsTokenTypeToPartitionMapper;
 import org.eclipse.ocl.examples.xtext.base.ui.model.BaseURIEditorOpener;
+import org.eclipse.ocl.examples.xtext.base.ui.outline.BaseOutlineNodeElementOpener;
+import org.eclipse.ocl.examples.xtext.base.ui.outline.BaseOutlineWithEditorLinker;
 import org.eclipse.ocl.examples.xtext.base.ui.syntaxcoloring.BaseAntlrTokenToAttributeIdMapper;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASLinker;
 import org.eclipse.ocl.examples.xtext.base.utilities.PivotDiagnosticConverter;
@@ -56,6 +58,8 @@ import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.autoedit.AbstractEditStrategyProvider;
 import org.eclipse.xtext.ui.editor.model.ITokenTypeToPartitionTypeMapper;
 import org.eclipse.xtext.ui.editor.model.XtextDocument;
+import org.eclipse.xtext.ui.editor.outline.actions.OutlineWithEditorLinker;
+import org.eclipse.xtext.ui.editor.outline.impl.OutlineNodeElementOpener;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
@@ -115,6 +119,8 @@ public class EssentialOCLFragment extends DefaultGeneratorFragment implements Na
 		bindFactory.addTypeToType(ITokenTypeToPartitionTypeMapper.class.getName(), BaseTerminalsTokenTypeToPartitionMapper.class.getName());
 		bindFactory.addTypeToType(IURIEditorOpener.class.getName(), BaseURIEditorOpener.class.getName());
 		bindFactory.addTypeToType(IXtextEditorCallback.class.getName(), ValidatingEditorCallback.class.getName());
+		bindFactory.addTypeToType(OutlineWithEditorLinker.class.getName(), BaseOutlineWithEditorLinker.class.getName());
+		bindFactory.addTypeToType(OutlineNodeElementOpener.class.getName(), BaseOutlineNodeElementOpener.class.getName());
 		bindFactory.addTypeToType(XtextDocument.class.getName(), BaseDocument.class.getName());
 		bindFactory.addTypeToType(XtextEditor.class.getName(), getQualifiedName(grammar, getNaming()));
 		return bindFactory.getBindings();

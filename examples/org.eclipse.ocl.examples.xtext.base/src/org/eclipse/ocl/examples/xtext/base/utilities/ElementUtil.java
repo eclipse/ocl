@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010, 2013 E.D.Willink and others.
+ * Copyright (c) 2010, 2014 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -35,10 +35,10 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.LanguageExpression;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
@@ -50,7 +50,6 @@ import org.eclipse.ocl.examples.pivot.scoping.Attribution;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.attributes.RootCSAttribution;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSFactory;
-import org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.MultiplicityCS;
@@ -58,6 +57,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypeRefCS;
@@ -75,6 +75,7 @@ import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.impl.AbstractNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.resource.XtextSyntaxDiagnostic;
+import org.eclipse.xtext.util.ITextRegion;
 
 public class ElementUtil
 {
@@ -87,6 +88,17 @@ public class ElementUtil
 	};
 
 	private static String[][] delegationModes = null;
+
+	public static void appendTextRegion(@NonNull StringBuilder s, @Nullable ITextRegion textRegion, boolean isSignificant) {
+		s.append(isSignificant ? "[" : "(");
+		if (textRegion != null) {
+			s.append(textRegion.getOffset() + "," + textRegion.getLength());
+		}
+		else {
+			s.append("null");
+		}
+		s.append(isSignificant ? "]" : ")");
+	}
 
 	public static @Nullable String getCollectionTypeName(@NonNull TypedElementCS csTypedElement) {
 		TypedRefCS csTypeRef = csTypedElement.getOwnedType();

@@ -159,6 +159,16 @@ public abstract class AbstractCompleteOCLUiModule extends DefaultUiModule {
 	}
 
 	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
+	public Class<? extends org.eclipse.xtext.ui.editor.outline.actions.OutlineWithEditorLinker> bindOutlineWithEditorLinker() {
+		return org.eclipse.ocl.examples.xtext.base.ui.outline.BaseOutlineWithEditorLinker.class;
+	}
+
+	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
+	public Class<? extends org.eclipse.xtext.ui.editor.outline.impl.OutlineNodeElementOpener> bindOutlineNodeElementOpener() {
+		return org.eclipse.ocl.examples.xtext.base.ui.outline.BaseOutlineNodeElementOpener.class;
+	}
+
+	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
 	public Class<? extends org.eclipse.xtext.ui.editor.model.XtextDocument> bindXtextDocument() {
 		return org.eclipse.ocl.examples.xtext.base.ui.model.BaseDocument.class;
 	}
