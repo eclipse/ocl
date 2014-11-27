@@ -19,6 +19,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.OCLDebugPlugin;
 import org.eclipse.ocl.examples.debug.vm.core.VMDebugCore;
 import org.eclipse.ocl.examples.debug.vm.utils.Trace;
+import org.eclipse.ocl.examples.xtext.essentialocl.as2cs.EssentialOCLLocationInFileProvider;
 
 public class OCLDebugCore extends VMDebugCore
 {
@@ -36,6 +37,8 @@ public class OCLDebugCore extends VMDebugCore
 	private static final @NonNull String METHODS_ENTERING = PLUGIN_ID + "/methods/entering"; //$NON-NLS-1$
 	private static final @NonNull String METHODS_EXITING = PLUGIN_ID + "/methods/exiting"; //$NON-NLS-1$
 	
+	private static final @NonNull EssentialOCLLocationInFileProvider locationInFileProvider = new EssentialOCLLocationInFileProvider();
+	
 	public static @NonNull Trace TRACE = new Trace(EXCEPTIONS_CATCHING, EXCEPTIONS_THROWING, METHODS_ENTERING, METHODS_EXITING);
 
 	private OCLDebugCore() {}
@@ -52,6 +55,10 @@ public class OCLDebugCore extends VMDebugCore
 		return getOCLBreakpoints(OCLLineBreakpoint.class);
 	}
 
+	public @NonNull EssentialOCLLocationInFileProvider getLocationInFileProvider() {
+		return locationInFileProvider;
+	}
+	
     public @Nullable ILog getLog() {
     	OCLDebugPlugin debugPlugin = OCLDebugPlugin.getDefault();
 		return debugPlugin != null ? debugPlugin.getLog() : null;

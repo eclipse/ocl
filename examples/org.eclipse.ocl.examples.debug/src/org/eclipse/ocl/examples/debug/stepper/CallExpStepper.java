@@ -12,19 +12,12 @@ package org.eclipse.ocl.examples.debug.stepper;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.debug.vm.UnitLocation;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.attributes.NavigationUtil;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
-import org.eclipse.xtext.nodemodel.INode;
-import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 public abstract class CallExpStepper extends PostStepper
 {
-	public @NonNull UnitLocation createUnitLocation(@NonNull IVMEvaluationEnvironment<?> evalEnv, @NonNull Element element) {
+/*	public @NonNull UnitLocation createUnitLocation(@NonNull IVMEvaluationEnvironment<?> evalEnv, @NonNull Element element) {
 		INode startNode = null;
 		INode endNode = null;
 		ModelElementCS csStartElement = getCsElement(element);
@@ -41,7 +34,7 @@ public abstract class CallExpStepper extends PostStepper
 			endNode = startNode;
 		}
 		return createUnitLocation(evalEnv, element, startNode, endNode);
-	}
+	} */
 
 	@Override
 	public @Nullable Element getFirstElement(@NonNull Element element) {

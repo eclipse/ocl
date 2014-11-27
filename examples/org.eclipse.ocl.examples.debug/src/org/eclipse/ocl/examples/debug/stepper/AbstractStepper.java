@@ -19,13 +19,15 @@ import org.eclipse.ocl.examples.debug.vm.evaluator.IStepperVisitor;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMRootEvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.xtext.base.as2cs.BaseLocationInFileProvider;
 import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.nodemodel.INode;
-import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
+import org.eclipse.xtext.util.ITextRegion;
 
 public abstract class AbstractStepper implements IStepper
 {
+	@Deprecated		// use AS Elements and locationInFileProvider
 	public static @NonNull UnitLocation createUnitLocation(@NonNull IVMEvaluationEnvironment<?> evalEnv, @NonNull Element element, @Nullable INode startNode, @Nullable INode endNode) {
 		int startPosition = startNode != null ? startNode.getOffset() : 0;
 		int endPosition = endNode != null ? ElementUtil.getEndOffset(endNode) : 0;
@@ -33,12 +35,17 @@ public abstract class AbstractStepper implements IStepper
 	}
 
 	public @NonNull UnitLocation createUnitLocation(@NonNull IVMEvaluationEnvironment<?> evalEnv, @NonNull Element element) {
-		INode node = null;
-		ModelElementCS csElement = getCsElement(element);
-		if (csElement != null) {
-			node = NodeModelUtils.getNode(csElement);
-		}
-		return createUnitLocation(evalEnv, element, node, node);
+		BaseLocationInFileProvider locationInFileProvider = evalEnv.getDebugCore().getLocationInFileProvider();
+		ITextRegion significantTextRegion = locationInFileProvider.getSignificantTextRegion(element);
+		int startPosition = significantTextRegion.getOffset();
+		int endPosition = startPosition + significantTextRegion.getLength();
+		return new UnitLocation(startPosition, endPosition, evalEnv, element);
+//		INode node = null;
+//		ModelElementCS csElement = getCsElement(element);
+//		if (csElement != null) {
+//			node = NodeModelUtils.getNode(csElement);
+//		}
+//		return createUnitLocation(evalEnv, element, node, node);
 	}
 
 	/**

@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.utils.Trace;
+import org.eclipse.ocl.examples.xtext.base.as2cs.BaseLocationInFileProvider;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -163,6 +164,8 @@ public abstract class VMDebugCore
 	}
 	    
 	public abstract @NonNull List<? extends VMLineBreakpoint> getLineBreakpoints();
+
+	public abstract @NonNull BaseLocationInFileProvider getLocationInFileProvider();
 	
 	public @NonNull <T extends IBreakpoint> List<T> getOCLBreakpoints(@NonNull Class<T> breakpointType) {
 		IBreakpoint[] breakpoints = DebugPlugin.getDefault().getBreakpointManager().getBreakpoints(getModelId());

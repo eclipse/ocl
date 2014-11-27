@@ -22,7 +22,6 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
-import org.eclipse.ocl.examples.debug.vm.ui.actions.DebugVMImages;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -238,43 +237,4 @@ public class OCLDebugUIPlugin extends AbstractUIPlugin {
 	public static IStatus createErrorStatus(String message) {
 		return createStatus(IStatus.ERROR, message);
 	}
-	
-	@Override
-	protected ImageRegistry createImageRegistry() {
-		ImageRegistry imageRegistry = super.createImageRegistry();
-//		imageRegistry.put(DebugVMImages.LOCAL_VARIABLE, imageDescriptor("localvar_obj.gif")); //$NON-NLS-1$		
-//		imageRegistry.put(DebugVMImages.THIS_VARIABLE, imageDescriptor("thisvar_obj.gif")); //$NON-NLS-1$
-//		imageRegistry.put(DebugVMImages.PREDEFINED_VARIABLE, imageDescriptor("predefvar_obj.gif")); //$NON-NLS-1$
-//		imageRegistry.put(DebugVMImages.MODEL_PARAMETER, imageDescriptor("modelpar_obj.gif")); //$NON-NLS-1$
-//		imageRegistry.put(DebugVMImages.ATTRIBUTE, imageDescriptor("attribute_obj.gif")); //$NON-NLS-1$
-//		imageRegistry.put(DebugVMImages.REFERENCE, imageDescriptor("reference_obj.gif")); //$NON-NLS-1$
-//		imageRegistry.put(DebugVMImages.COLLECTION_ELEMENT, imageDescriptor("index_element_obj.gif")); //$NON-NLS-1$
-//		imageRegistry.put(DebugVMImages.EXPRESSION_IN_OCL, imageDescriptor("ExpressionInOCL.gif")); //$NON-NLS-1$
-		
-/*		imageRegistry.put(OCLDebugImages.INTERM_PROPERTY,				
-				overlayImage("intermprop_ovr.gif", //$NON-NLS-1$ 
-						imageRegistry.get(OCLDebugImages.ATTRIBUTE),
-						IDecoration.BOTTOM_RIGHT));		
-		
-		imageRegistry.put(OCLDebugImages.CONDITIONAL_BPNT_ENABLED,
-				overlayImage("conditional_ovr.gif", //$NON-NLS-1$ 
-						DebugUITools.getImage(IDebugUIConstants.IMG_OBJS_BREAKPOINT),
-						IDecoration.TOP_LEFT));
-		imageRegistry.put(OCLDebugImages.CONDITIONAL_BPNT_DISABLED,
-				overlayImage(
-						"conditional_ovr_disabled.gif", //$NON-NLS-1$
-						DebugUITools.getImage(IDebugUIConstants.IMG_OBJS_BREAKPOINT_DISABLED),
-						IDecoration.TOP_LEFT));
-*/
-		return imageRegistry;
-	}
-
-	private ImageDescriptor imageDescriptor(String imagePath) {
-		return imageDescriptorFromPlugin(PLUGIN_ID, "icons/" + imagePath); //$NON-NLS-1$
-	}
-	
-/*    private final ImageDescriptor overlayImage(String overImagePath, Image base, int quadrant) {
-        ImageDescriptor decorator = imageDescriptor(overImagePath);
-        return new DecorationOverlayIcon(base, decorator, quadrant);
-    } */
 }
