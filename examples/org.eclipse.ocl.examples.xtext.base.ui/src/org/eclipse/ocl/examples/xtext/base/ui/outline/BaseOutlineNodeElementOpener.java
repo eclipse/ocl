@@ -10,8 +10,22 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.base.ui.outline;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.ui.editor.outline.impl.OutlineNodeElementOpener;
 
 public class BaseOutlineNodeElementOpener extends OutlineNodeElementOpener
 {
+	@Override
+	protected void openEObject(EObject state) {
+		if (state instanceof Element) {
+			ElementCS csElement = ElementUtil.getCsElement((Element)state);
+			if (csElement != null) {
+				state = csElement;
+			}
+		}
+		super.openEObject(state);
+	}
 }

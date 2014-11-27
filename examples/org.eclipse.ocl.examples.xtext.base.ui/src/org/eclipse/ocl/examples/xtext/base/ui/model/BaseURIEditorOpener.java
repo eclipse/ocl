@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2011, 2012 E.D.Willink and others.
+ * Copyright (c) 2011, 2014 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,7 @@ package org.eclipse.ocl.examples.xtext.base.ui.model;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.xtext.ui.editor.GlobalURIEditorOpener;
@@ -21,8 +22,9 @@ public class BaseURIEditorOpener extends GlobalURIEditorOpener
 	@Override
 	public IEditorPart open(URI uri, boolean select) {
 		if (uri != null) {
-			if (PivotUtil.isASURI(uri)) {
-				uri = PivotUtil.getNonASURI(uri);		// FIXME map AST to CST URI too
+			URI trimFragment = DomainUtil.nonNullEMF(uri.trimFragment());
+			if (PivotUtil.isASURI(trimFragment)) {
+				uri = PivotUtil.getNonASURI(trimFragment);		// FIXME map AST to CST URI too
 			}
 		}
 		return super.open(uri, select);

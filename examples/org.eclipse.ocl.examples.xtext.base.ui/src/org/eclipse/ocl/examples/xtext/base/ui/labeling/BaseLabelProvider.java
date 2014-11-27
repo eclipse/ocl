@@ -43,6 +43,7 @@ import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.IfExp;
+import org.eclipse.ocl.examples.pivot.Import;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidType;
@@ -95,7 +96,6 @@ import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.examples.pivot.utilities.AS2Moniker;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.base.basecs.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PivotableElementCS;
@@ -505,15 +505,17 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 		return "if";
 	}
 
-	protected String image(ImportCS ele) {
+	protected String image(Import ele) {
 		return "/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageImport.gif";
 	}
 
-	protected String text(ImportCS ele) {
+	protected String text(Import ele) {
 		StringBuilder s = new StringBuilder();
-		appendOptionalName(s, ele);
-		s.append(" : ");
-		appendPathName(s, ele.getOwnedPathName());
+		if (ele.getName() != null) {
+			appendName(s, ele);
+			s.append(" : ");
+		}
+		appendName(s, ele.getImportedNamespace());
 		return s.toString();
 	}
 
@@ -579,6 +581,10 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 
 	protected String image(MessageType ele) {
 		return "/org.eclipse.ocl.edit/icons/full/obj16/MessageType.gif";
+	}
+
+	protected String image(Model ele) {
+		return "/org.eclipse.uml2.uml.editor/icons/full/obj16/UMLModelFile.gif";
 	}
 
 	protected String image(NavigationCallExp ele) {
@@ -652,7 +658,18 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 	}
 
 	protected String text(org.eclipse.ocl.examples.pivot.Package ele) {
-		return ele.getName();
+		String uri = ele.getURI();
+		if (uri != null) {
+			StringBuilder s = new StringBuilder();
+			appendName(s, ele);
+			s.append(" : '");
+			appendString(s, uri);
+			s.append("'");
+			return s.toString();
+		}
+		else {
+			return ele.getName();
+		}
 	}
 
 	protected String image(Parameter ele) {

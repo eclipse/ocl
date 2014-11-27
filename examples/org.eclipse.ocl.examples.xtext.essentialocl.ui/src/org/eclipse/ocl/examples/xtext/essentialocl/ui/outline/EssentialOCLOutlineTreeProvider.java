@@ -10,15 +10,17 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.outline;
 
-import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
-import org.eclipse.ocl.examples.xtext.base.basecs.ImportCS;
-import org.eclipse.ocl.examples.xtext.base.basecs.TypeRefCS;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.IfExp;
+import org.eclipse.ocl.examples.pivot.IterateExp;
+import org.eclipse.ocl.examples.pivot.IteratorExp;
+import org.eclipse.ocl.examples.pivot.LetExp;
+import org.eclipse.ocl.examples.pivot.OCLExpression;
+import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
+import org.eclipse.ocl.examples.pivot.PropertyCallExp;
+import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.xtext.base.ui.outline.BaseOutlineTreeProvider;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 
 /**
@@ -27,109 +29,50 @@ import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
  */
 public class EssentialOCLOutlineTreeProvider extends BaseOutlineTreeProvider
 {
-	protected void _createChildren(IOutlineNode parentNode, InfixExpCS csOperator) {
-		createNode(parentNode, csOperator.getSource());
-		createNode(parentNode, csOperator.getArgument());
+	protected void _createNode(IOutlineNode parentNode, ExpressionInOCL ele) {
+		createNode(parentNode, ele.getBodyExpression());
 	}
 
-	protected void _createChildren(IOutlineNode parentNode, ConstraintCS constraint) {
-		createChildren(parentNode, constraint.getOwnedSpecification());
+	protected void _createChildren(IOutlineNode parentNode, IfExp exp) {
+		createNode(parentNode, exp.getCondition());
+		createNode(parentNode, exp.getThenExpression());
+		createNode(parentNode, exp.getElseExpression());
 	}
 
-/*	protected void _createChildren(IOutlineNode parentNode, InvocationExpCS csExp) {
-		// createNode(parentNode, csExp.getNameExp());
-		for (NavigatingArgCS csArgument : csExp.getArgument()) {
-			createNode(parentNode, csArgument);
+	protected void _createChildren(IOutlineNode parentNode, IterateExp ele) {
+		createNode(parentNode, ele.getSource());
+		for (Variable iterator : ele.getIterator()) {
+			createNode(parentNode, iterator);
 		}
-	} */
-
-//	protected void _createChildren(IOutlineNode parentNode, NavigationOperatorCS csOperator) {
-//		createNode(parentNode, csOperator.getSource());
-//		createNode(parentNode, csOperator.getArgument());
-//	}
-
-	protected void _createChildren(IOutlineNode parentNode, NestedExpCS csExp) {
-		createNode(parentNode, csExp.getSource());
+		createNode(parentNode, ele.getResult());
+		createNode(parentNode, ele.getBody());
 	}
 
-	protected void _createChildren(IOutlineNode parentNode, PrefixExpCS csPrefixExp) {
-//		for (UnaryOperatorCS csOperator : csPrefixExp.getOwnedOperators()) {
-			createNode(parentNode, csPrefixExp.getSource());
-//		}
-		createNode(parentNode, csPrefixExp.getOwnedRight());
+	protected void _createChildren(IOutlineNode parentNode, IteratorExp ele) {
+		createNode(parentNode, ele.getSource());
+		for (Variable iterator : ele.getIterator()) {
+			createNode(parentNode, iterator);
+		}
+		createNode(parentNode, ele.getBody());
 	}
 
-//	protected void _createChildren(IOutlineNode parentNode, UnaryOperatorCS csOperator) {
-//		createNode(parentNode, csOperator.getSource());
-//	}
+	protected void _createChildren(IOutlineNode parentNode, LetExp exp) {
+		createNode(parentNode, exp.getVariable());
+		createNode(parentNode, exp.getIn());
+	}
 
-	/*
-	 * protected void _createNode(IOutlineNode parentNode,
-	 * CollectionLiteralPartCS collectionLiteralPart) { if
-	 * (collectionLiteralPart.getLastExpressionCS() == null) {
-	 * createNode(parentNode, collectionLiteralPart.getExpressionCS()); } else {
-	 * createChildren(parentNode, collectionLiteralPart); } }
-	 */
-	
-	protected void _createNode(IOutlineNode parentNode, InfixExpCS csInfixExp) {
-		//
-		// Find the root.
-		//
-		if (csInfixExp != null) {
-			OperatorExpCS csRoot = csInfixExp;
-			for (OperatorExpCS csParent = csRoot.getLocalParent(); csParent != null; csParent = csParent.getLocalParent()) {
-				csRoot = csParent;
-			}
-			createNode(parentNode, csRoot);
+	protected void _createChildren(IOutlineNode parentNode, OperationCallExp ele) {
+		createNode(parentNode, ele.getSource());
+		for (OCLExpression argument : ele.getArgument()) {
+			createNode(parentNode, argument);
 		}
 	}
-	
-/*	protected void _createNode(IOutlineNode parentNode, InfixExpCS csInfixExp) {
-		List<BinaryOperatorCS> csOperators = csInfixExp.getOwnedOperator();
-		if (csOperators.size() > 0) {
-			ExpCS csExp = csOperators.get(0);
-			for (; csExp.getParent() != null; csExp = csExp.getParent()) {
-			}
-			createNode(parentNode, csExp);
-		} //
-		createChildren(parentNode, templateSignature);
-	} */
 
-	// protected void _createNode(IOutlineNode parentNode, TemplateParameterCS
-	// templateParameter) {
-	// createNode(parentNode, templateParameter.getParameteredElement());
-	// }
-
-	// protected void _createNode(IOutlineNode parentNode, TemplateSignatureCS
-	// templateSignature) {
-	// createChildren(parentNode, templateSignature);
-	// }
-
-//	protected boolean _isLeaf(ConstructorExpCS csExp) {
-//		return false;
-//	}
-	
-	protected boolean _isLeaf(ImportCS csExp) {
-		return true;
+	protected void _createChildren(IOutlineNode parentNode, OppositePropertyCallExp ele) {
+		createNode(parentNode, ele.getSource());
 	}
 
-//	protected boolean _isLeaf(IndexExpCS csExp) {
-//		return false;
-//	}
-
-//	protected boolean _isLeaf(InvocationExpCS csExp) {
-//		return false;
-//	}
-
-	protected boolean _isLeaf(NameExpCS csExp) {
-		return true;
-	}
-
-	protected boolean _isLeaf(OperatorExpCS csExp) {
-		return false;
-	}
-
-	protected boolean _isLeaf(TypeRefCS csExp) {
-		return true;
+	protected void _createChildren(IOutlineNode parentNode, PropertyCallExp ele) {
+		createNode(parentNode, ele.getSource());
 	}
 }

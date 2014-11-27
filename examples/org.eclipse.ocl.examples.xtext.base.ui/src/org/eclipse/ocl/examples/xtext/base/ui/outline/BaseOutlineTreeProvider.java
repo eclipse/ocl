@@ -11,17 +11,20 @@
 package org.eclipse.ocl.examples.xtext.base.ui.outline;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.IfExp;
-import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
-import org.eclipse.ocl.examples.pivot.PropertyCallExp;
+import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
+import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
 import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode;
 import org.eclipse.xtext.ui.editor.outline.impl.EObjectNode;
+import org.eclipse.xtext.util.ITextRegion;
 
 /**
  * customization of the default outline structure
@@ -52,18 +55,23 @@ public class BaseOutlineTreeProvider extends DefaultOutlineTreeProvider
 	// This is used on Xtext 2.1
 	@Override
 	protected EObjectNode createEObjectNode(IOutlineNode parentNode, EObject modelElement, Image image, Object text, boolean isLeaf) {
-		EObject pivotedElement = getPivoted(modelElement);
+		EObject asElement = getPivoted(modelElement);
+		EObject csElement = modelElement;
 		EObjectNode eObjectNode;
-		if (pivotedElement instanceof Element) {
-			eObjectNode = new EObjectNode(modelElement, /*pivotedElement,*/ parentNode, image, text, isLeaf);
+		if (asElement instanceof Element) {
+			csElement = ElementUtil.getCsElement((Element)asElement);
+			eObjectNode = new BaseOutlineNode((Element)asElement, (ElementCS)csElement, parentNode, image, text, isLeaf);
 		}
 		else {
 			eObjectNode = new EObjectNode(modelElement, parentNode, image, text, isLeaf);
 		}
-		if (isLocalElement(parentNode, modelElement)) {
-			eObjectNode.setTextRegion(locationInFileProvider.getFullTextRegion(modelElement));
-			eObjectNode.setShortTextRegion(locationInFileProvider.getSignificantTextRegion(modelElement));
+		if ((csElement != null) && isLocalElement(parentNode, csElement)) {
+			eObjectNode.setTextRegion(locationInFileProvider.getFullTextRegion(csElement));
+			eObjectNode.setShortTextRegion(locationInFileProvider.getSignificantTextRegion(csElement));
 		}
+		ITextRegion fullText = eObjectNode.getFullTextRegion();
+		ITextRegion shortText = eObjectNode.getSignificantTextRegion();
+		System.out.println("[" + fullText.getOffset() + "," + fullText.getLength() + "] [" + shortText.getOffset() + "," + shortText.getLength() + "] " + DomainUtil.debugSimpleName(eObjectNode) + " " + String.valueOf(eObjectNode.getText()).replace("\n", "\\n"));
 		return eObjectNode;
 	}
 	
@@ -87,6 +95,25 @@ public class BaseOutlineTreeProvider extends DefaultOutlineTreeProvider
 		Image image = imageDispatcher.invoke(pivotedElement);
 		createEObjectNode(parentNode, modelElement, image, text, isLeaf);
 	}
+
+	@Override
+	public void createChildren(IOutlineNode parent, EObject modelElement) {
+		EObject pivotedElement = getPivoted(modelElement);
+		if (pivotedElement != null) {
+			superCreateChildren(parent, pivotedElement);
+		}
+	}
+
+	protected void superCreateChildren(IOutlineNode parent, EObject modelElement) {
+		super.createChildren(parent, modelElement);
+	}
+
+	@Override
+	protected void createNode(IOutlineNode parent, EObject modelElement) {
+		if (modelElement != null) {
+			super.createNode(parent, modelElement);
+		}
+	}
 	
 	protected EObject getPivoted(EObject modelElement) {
 		if (modelElement instanceof Pivotable) {
@@ -98,7 +125,17 @@ public class BaseOutlineTreeProvider extends DefaultOutlineTreeProvider
 		}
 		return modelElement;
 	}
-	
+
+	protected void _createChildren(IOutlineNode parentNode, Constraint constraint) {
+		createChildren(parentNode, constraint.getSpecification());
+	}
+
+	protected void _createChildren(IOutlineNode parentNode, Operation ele) {
+		for (Parameter parameter : ele.getOwnedParameter()) {
+			createNode(parentNode, parameter);
+		}
+		createNode(parentNode, ele.getBodyExpression());
+	}
 
 	// protected void _createNode(IOutlineNode parentNode, TemplateParameter
 	// templateParameter) {
@@ -110,21 +147,7 @@ public class BaseOutlineTreeProvider extends DefaultOutlineTreeProvider
 	// createChildren(parentNode, templateSignature);
 	// }
 
-	protected void _createChildren(IOutlineNode parentNode, Constraint constraint) {
-		createChildren(parentNode, constraint.getSpecification());
-	}
-
-	protected void _createChildren(IOutlineNode parentNode, IfExp exp) {
-		createNode(parentNode, exp.getCondition());
-		createNode(parentNode, exp.getThenExpression());
-		createNode(parentNode, exp.getElseExpression());
-	}
-
-	protected void _createChildren(IOutlineNode parentNode, OppositePropertyCallExp ele) {
-		createNode(parentNode, ele.getSource());
-	}
-
-	protected void _createChildren(IOutlineNode parentNode, PropertyCallExp ele) {
-		createNode(parentNode, ele.getSource());
-	}
+//	protected boolean _isLeaf(Variable csExp) {
+//		return true;
+//	}
 }
