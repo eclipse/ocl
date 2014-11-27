@@ -37,7 +37,7 @@ import org.eclipse.xtext.ui.editor.outline.impl.EObjectNode;
 public class BaseOutlineTreeProvider extends DefaultOutlineTreeProvider
 {
 	public static final @NonNull TracingOption CREATE = new TracingOption(
-		BaseUiPluginHelper.PLUGIN_ID, "create"); //$NON-NLS-1$
+		BaseUiPluginHelper.PLUGIN_ID, "outline/create"); //$NON-NLS-1$
 	
 	@Override
 	protected EObjectNode createEObjectNode(IOutlineNode parentNode, EObject modelElement, Image image, Object text, boolean isLeaf) {

@@ -12,6 +12,7 @@ package org.eclipse.ocl.examples.xtext.essentialocl.as2cs;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.xtext.base.as2cs.BaseLocationInFileProvider;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
@@ -29,8 +30,10 @@ import org.eclipse.xtext.util.TextRegionWithLineInformation;
  */
 public class EssentialOCLLocationInFileProvider extends BaseLocationInFileProvider
 {
+	private static final @SuppressWarnings("null")@NonNull ITextRegion EMPTY_REGION = ITextRegion.EMPTY_REGION;
+
 	@Override
-	protected ITextRegion getTextRegion(EObject obj, boolean isSignificant) {
+	protected @NonNull ITextRegion getTextRegion(EObject obj, boolean isSignificant) {
 		ITextRegion textRegion;
 		ElementCS csModelElement = null;
 		if (obj instanceof Element) {
@@ -68,7 +71,7 @@ public class EssentialOCLLocationInFileProvider extends BaseLocationInFileProvid
 	 * <p>
 	 * This ensures that for an infix "or" the full region covers the input terms.
 	 */
-	public ITextRegion getTextRegionCS(@NonNull ExpCS csExp, boolean isSignificant) {
+	public @NonNull ITextRegion getTextRegionCS(@NonNull ExpCS csExp, boolean isSignificant) {
 		if (!isSignificant) {
 			ExpCS csLeftmost = csExp;
 			ExpCS csRightmost = csExp;
@@ -87,7 +90,7 @@ public class EssentialOCLLocationInFileProvider extends BaseLocationInFileProvid
 			}
 			ITextRegion leftRegion = super.getTextRegion(csLeftmost, isSignificant);
 			ITextRegion rightRegion = super.getTextRegion(csRightmost, isSignificant);
-			return leftRegion.merge(rightRegion);
+			return DomainUtil.nonNullState(leftRegion.merge(rightRegion));
 		}
 		else {
 			return super.getTextRegion(csExp, isSignificant);
@@ -101,7 +104,7 @@ public class EssentialOCLLocationInFileProvider extends BaseLocationInFileProvid
 	 * <p>
 	 * This ensures that for an implicit oclAsSet() the significant region is the navigation operator.
 	 */
-	protected ITextRegion getTextRegionNoCS(EObject obj, boolean isSignificant) {
+	protected @NonNull ITextRegion getTextRegionNoCS(EObject obj, boolean isSignificant) {
 		Element asParentElement = null;
 		for (EObject eObject = obj; eObject != null; eObject = eObject.eContainer()) {
 			if (eObject instanceof Element) {
@@ -113,7 +116,7 @@ public class EssentialOCLLocationInFileProvider extends BaseLocationInFileProvid
 			}
 		}
 		if (asParentElement == null) {
-			return null;
+			return EMPTY_REGION;
 		}
 		ITextRegion parentSignificantTextRegion = getTextRegion(asParentElement, true);
 		ITextRegion childrenFullTextRegion = null;
@@ -122,14 +125,12 @@ public class EssentialOCLLocationInFileProvider extends BaseLocationInFileProvid
 				ElementCS csModelElement = ElementUtil.getCsElement((Element) eChild);
 				if (csModelElement != null) {
 					ITextRegion childFullTextRegion = getTextRegion(csModelElement, false);
-					if (childFullTextRegion != null) {
-						childrenFullTextRegion = childrenFullTextRegion != null ? childrenFullTextRegion.merge(childFullTextRegion) : childFullTextRegion;
-					}
+					childrenFullTextRegion = childrenFullTextRegion != null ? childrenFullTextRegion.merge(childFullTextRegion) : childFullTextRegion;
 				}
 			}
 		}
 		if (childrenFullTextRegion == null) {
-			return null;
+			return new TextRegionWithLineInformation(parentSignificantTextRegion.getOffset(), 0, 0, 0);
 		}
 		int parentStart = parentSignificantTextRegion.getOffset();
 		int parentEnd = parentStart + parentSignificantTextRegion.getLength();

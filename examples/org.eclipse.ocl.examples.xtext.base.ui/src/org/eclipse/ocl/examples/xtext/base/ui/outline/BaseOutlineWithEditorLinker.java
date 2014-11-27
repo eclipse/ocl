@@ -20,10 +20,16 @@ import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.actions.OutlineWithEditorLinker;
 import org.eclipse.xtext.util.ITextRegion;
 
+/**
+ * BaseOutlineWithEditorLinker is they key class for mapping a text location to an outline node and
+ * so to an AS/CS element.
+ * <p>
+ * The reverse CS/AS element to text location mapping is in BaseLocationInFileProvider. 
+ */
 public class BaseOutlineWithEditorLinker extends OutlineWithEditorLinker
 {
 	public static final @NonNull TracingOption LOCATE = new TracingOption(
-		BaseUiPluginHelper.PLUGIN_ID, "locate"); //$NON-NLS-1$
+		BaseUiPluginHelper.PLUGIN_ID, "outline/locate"); //$NON-NLS-1$
 
 	private static final Logger logger = Logger.getLogger(BaseOutlineWithEditorLinker.class);
 

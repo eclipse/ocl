@@ -15,6 +15,8 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
@@ -27,6 +29,13 @@ import org.eclipse.xtext.resource.DefaultLocationInFileProvider;
 import org.eclipse.xtext.util.ITextRegion;
 import org.eclipse.xtext.util.TextRegion;
 
+/**
+ * BaseLocationInFileProvider is they key class for mapping the location of an AS/CS element to
+ * either a full (!significant) text range, which is the all the characters associated with the element,
+ * or a short (significant) text range, which is the characters to be highlighted when selected.
+ * <p>
+ * The reverse location to CS/AS element is in BaseOutlineWithEditorLinker. 
+ */
 public class BaseLocationInFileProvider extends DefaultLocationInFileProvider
 {
 	@Override
@@ -42,11 +51,11 @@ public class BaseLocationInFileProvider extends DefaultLocationInFileProvider
 	}
 
 	@Override
-	protected ITextRegion getTextRegion(EObject obj, boolean isSignificant) {
+	protected @NonNull ITextRegion getTextRegion(EObject obj, boolean isSignificant) {
 		if (obj instanceof Element) {
 			ModelElementCS csModelElement = ElementUtil.getCsElement((Element) obj);
 			if (csModelElement != null) {
-				return super.getTextRegion(csModelElement, isSignificant);
+				return DomainUtil.nonNullState(super.getTextRegion(csModelElement, isSignificant));
 			}
 		}
 		else if (obj instanceof Comment) {
@@ -66,6 +75,6 @@ public class BaseLocationInFileProvider extends DefaultLocationInFileProvider
 				}
 			}
 		}
-		return super.getTextRegion(obj, isSignificant);
+		return DomainUtil.nonNullState(super.getTextRegion(obj, isSignificant));
 	}
 }
