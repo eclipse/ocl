@@ -93,6 +93,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NullLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NumberLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
@@ -111,68 +112,30 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		super(context);
 	}	
 
-/*	private void appendInfixChild(@NonNull List<ExpCS> csExpressions, @NonNull List<InfixExpCS> csOperators, @NonNull InfixExpCS csOperator, @Nullable Precedence siblingPrecedence) {
-		MetaModelManager metaModelManager = context.getMetaModelManager();
-		String parentOperatorName = csOperator.getName();
-		Precedence precedence = parentOperatorName != null ? metaModelManager.getInfixPrecedence(parentOperatorName) : null;
-		if ((siblingPrecedence != null) && (precedence != null) && (precedence.getOrder().intValue() > siblingPrecedence.getOrder().intValue())) {
-			@SuppressWarnings("null")@NonNull NestedExpCS csNestedExp = EssentialOCLCSFactory.eINSTANCE.createNestedExpCS();
-			ExpCS csNestedInfixExp = createInfixExpCS(csOperator);
-			csNestedExp.setSource(csNestedInfixExp);
-			csExpressions.add(csNestedExp);
-		}
-		else {
-			{
-				ExpCS csSource = csOperator.getSource();
-				if (csSource instanceof InfixExpCS) {
-					InfixExpCS csSourceOperator = (InfixExpCS) csSource;
-					appendInfixChild(csExpressions, csOperators, csSourceOperator, precedence);
-				}
-				else {
-					assert !(csSource instanceof InfixExpCS);
-					csExpressions.add(csSource);
-				}
-			}
-			csOperators.add(csOperator);
-			{
-				ExpCS csArgument = csOperator.getArgument();
-				if (csArgument instanceof InfixExpCS) {
-					InfixExpCS csArgumentOperator = (InfixExpCS) csArgument;
-					appendInfixChild(csExpressions, csOperators, csArgumentOperator, precedence);
-				}
-				else {
-					assert !(csArgument instanceof InfixExpCS);
-					csExpressions.add(csArgument);
-				}
-			}
-		}
-	} */
-
 	protected ExpCS createExpCS(OCLExpression oclExpression) {
-		ExpCS csExp = context.visitDeclaration(ExpCS.class, oclExpression);
-		if (csExp instanceof InfixExpCS) {
-			return createInfixExpCS((InfixExpCS)csExp);
-		}
-		else {
-			return csExp;
-		}
+		return context.visitDeclaration(ExpCS.class, oclExpression);
 	}
 
-	protected ExpCS createInfixExpCS(@NonNull InfixExpCS csOperator) {
-/*		List<ExpCS> csExpressions = new ArrayList<ExpCS>();
-		List<InfixExpCS> csOperators = new ArrayList<InfixExpCS>();
-		appendInfixChild(csExpressions, csOperators, csOperator, null);
-		int i = csOperators.size();
-		ExpCS csLastExp = csExpressions.get(i);
-		while (--i >= 0) {
-			@SuppressWarnings("null")@NonNull InfixExpCS csInfixExp = EssentialOCLCSFactory.eINSTANCE.createInfixExpCS();
-			csInfixExp.setOwnedArgument(csLastExp);
-			csInfixExp.setOwnedOperator(csOperators.get(i));
-			csInfixExp.setOwnedSource(csExpressions.get(i));
-			csLastExp = csInfixExp;
+	protected @NonNull InfixExpCS createInfixExpCS(ExpCS csSource, String operationName, ExpCS csArgument) {
+		InfixExpCS csNew = EssentialOCLCSFactory.eINSTANCE.createInfixExpCS();
+		csNew.setName(operationName);
+		csNew.setOwnedRight(csArgument);
+		if (csSource instanceof InfixExpCS) {		// Must add additional InfixExpCS to transitive right.
+			InfixExpCS csRoot = (InfixExpCS)csSource;
+			InfixExpCS csParent = csRoot;
+			ExpCS csRight;
+			while ((csRight = csParent.getOwnedRight()) instanceof InfixExpCS) {
+				csParent = (InfixExpCS)csRight;
+			}
+			csParent.setOwnedRight(null);				// Bypass child stealing detector
+			csNew.setOwnedLeft(csRight);
+			csParent.setOwnedRight(csNew);
+			return csRoot;
 		}
-		return csLastExp; */
-		return csOperator;
+		else {
+			csNew.setOwnedLeft(csSource);
+			return csNew;
+		}
 	}
 
 	protected @NonNull NameExpCS createNameExpCS(NamedElement asNamedElement) {
@@ -213,12 +176,10 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 			}
 		}
 		Type asType = asSource.getType();
-		InfixExpCS csNavigationOperator = EssentialOCLCSFactory.eINSTANCE.createInfixExpCS();
-		csNavigationOperator.setOwnedLeft(context.visitDeclaration(ExpCS.class, asSource));
 		boolean isCollection = (asType instanceof CollectionType) ^ isConverted;
-		csNavigationOperator.setName(isCollection ? PivotConstants.COLLECTION_NAVIGATION_OPERATOR : PivotConstants.OBJECT_NAVIGATION_OPERATOR);
-		csNavigationOperator.setOwnedRight(csArgument);
-		return csNavigationOperator;
+		String operationName = isCollection ? PivotConstants.COLLECTION_NAVIGATION_OPERATOR : PivotConstants.OBJECT_NAVIGATION_OPERATOR;
+		ExpCS csSource = context.visitDeclaration(ExpCS.class, asSource);
+		return createInfixExpCS(csSource, operationName, csArgument);
 	}
 
 	protected @NonNull PathNameCS createPathNameCS(NamedElement asNamedElement) {
@@ -265,6 +226,21 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 			asType = context.getMetaModelManager().getStandardLibrary().getOclInvalidType();
 		}
 		return asType;
+	}
+
+	protected boolean isLowerPrecedence(@Nullable OCLExpression asExp, @NonNull Precedence asThatPrecedence) {
+		if (!(asExp instanceof OperationCallExp)) {
+			return false;
+		}
+		Operation asOperation = ((OperationCallExp)asExp).getReferredOperation();
+		if (asOperation == null) {
+			return false;
+		}
+		Precedence asThisPrecedence = asOperation.getPrecedence();
+		if (asThisPrecedence == null) {
+			return false;
+		}
+		return asThisPrecedence.getOrder().intValue() > asThatPrecedence.getOrder().intValue();
 	}
 
 	protected ElementCS refreshConstraint(@NonNull ConstraintCS csElement, @NonNull Constraint object) {
@@ -563,6 +539,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 	@Override
 	public ElementCS visitOperationCallExp(@NonNull OperationCallExp asOperationCallExp) {
 		Operation asOperation = getNonNullOperation(asOperationCallExp.getReferredOperation());
+		String operationName = asOperation.getName();
 		Precedence asPrecedence = asOperation.getPrecedence();
 		List<OCLExpression> asArguments = asOperationCallExp.getArgument();
 		OCLExpression asSource = asOperationCallExp.getSource();
@@ -577,28 +554,37 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 				prefix = ",";
 			}
 			return createNavigationOperatorCS(asSource, csNameExp, false);
-		} else {
-			ExpCS csSource = context.visitDeclaration(ExpCS.class, asSource);
-			if (asArguments.size() == 1) {
-				InfixExpCS csBinaryOperator = EssentialOCLCSFactory.eINSTANCE.createInfixExpCS();
-				csBinaryOperator.setOwnedLeft(csSource);
-				csBinaryOperator.setName(asOperation.getName());
-				csBinaryOperator.setOwnedRight(context.visitDeclaration(ExpCS.class, asArguments.get(0)));
-				return csBinaryOperator;
+		}
+		else if (asArguments.size() == 1) {
+			ExpCS csSource;
+			if (isLowerPrecedence(asSource, asPrecedence)) {
+				ExpCS csExp = createExpCS(asSource);
+				NestedExpCS csNested = EssentialOCLCSFactory.eINSTANCE.createNestedExpCS();
+				csNested.setSource(csExp);
+				csSource = csNested;
 			}
 			else {
-				PrefixExpCS csPrefix = null;
-				if (csSource instanceof PrefixExpCS) {
-					csPrefix = (PrefixExpCS) csSource;
-				}
-				else {
-					csPrefix = EssentialOCLCSFactory.eINSTANCE.createPrefixExpCS();
-					csPrefix.setOwnedRight(csSource);
-				}
-				csPrefix.setName(asOperation.getName());
-				csPrefix.setOwnedRight(csSource);
-				return csPrefix;
+				csSource = context.visitDeclaration(ExpCS.class, asSource);
 			}
+			OCLExpression asArgument = asArguments.get(0);
+			ExpCS csArgument;
+			if (isLowerPrecedence(asArgument, asPrecedence)) {
+				ExpCS csExp = createExpCS(asArgument);
+				NestedExpCS csNested = EssentialOCLCSFactory.eINSTANCE.createNestedExpCS();
+				csNested.setSource(csExp);
+				csArgument = csNested;
+			}
+			else {
+				csArgument = context.visitDeclaration(ExpCS.class, asArgument);
+			}
+			return createInfixExpCS(csSource, operationName, csArgument);
+		}
+		else {
+			ExpCS csSource = context.visitDeclaration(ExpCS.class, asSource);
+			PrefixExpCS csPrefix = EssentialOCLCSFactory.eINSTANCE.createPrefixExpCS();
+			csPrefix.setName(operationName);
+			csPrefix.setOwnedRight(csSource);
+			return csPrefix;
 		}
 	}
 
