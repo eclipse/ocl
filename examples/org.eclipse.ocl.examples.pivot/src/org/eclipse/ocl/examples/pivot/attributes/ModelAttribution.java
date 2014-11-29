@@ -10,9 +10,14 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.pivot.attributes;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.pivot.Import;
 import org.eclipse.ocl.examples.pivot.Model;
+import org.eclipse.ocl.examples.pivot.Namespace;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
@@ -23,9 +28,36 @@ public class ModelAttribution extends AbstractAttribution
 
 	@Override
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
-		Model targetPackage = (Model)target;
-		environmentView.addAllPackages(targetPackage);
-		environmentView.addRootPackages();
+		Model targetModel = (Model)target;
+		environmentView.addAllPackages(targetModel);
+		if (environmentView.accepts(PivotPackage.Literals.NAMESPACE)) {
+			for (Import anImport : targetModel.getImports()) {
+				Namespace namespace = anImport.getImportedNamespace();
+				if ((namespace != null) && !namespace.eIsProxy()) {
+					String importName = anImport.getName();
+					if (importName == null) {
+						if (namespace instanceof org.eclipse.ocl.examples.pivot.Package) {
+							environmentView.addAllPackages((org.eclipse.ocl.examples.pivot.Package)namespace);
+						}
+					}
+					else {
+						environmentView.addElement(importName, namespace);
+					}
+				}
+			}
+			if (!environmentView.hasFinalResult()) {
+				environmentView.addRootPackages();
+				if (!environmentView.hasFinalResult()) {
+					Resource eResource = targetModel.eResource();
+					if (eResource != null) {
+						URI baseURI = eResource.getURI();
+			           	if (baseURI != null) {
+			           		environmentView.addImportedElement(baseURI);
+			           	}
+					}
+				}
+			}
+		}
 		return scopeView.getParent();
 	}
 }

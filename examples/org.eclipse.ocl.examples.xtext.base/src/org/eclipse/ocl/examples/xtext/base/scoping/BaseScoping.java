@@ -25,7 +25,6 @@ import org.eclipse.ocl.examples.xtext.base.attributes.ImportCSAttribution;
 import org.eclipse.ocl.examples.xtext.base.attributes.LibraryCSAttribution;
 import org.eclipse.ocl.examples.xtext.base.attributes.PathElementCSAttribution;
 import org.eclipse.ocl.examples.xtext.base.attributes.PivotableElementCSAttribution;
-import org.eclipse.ocl.examples.xtext.base.attributes.RootPackageCSAttribution;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
@@ -41,7 +40,6 @@ public class BaseScoping
 		registry.put(BaseCSPackage.Literals.LIBRARY_CS, LibraryCSAttribution.INSTANCE);	// return new LibraryAttribution();		// WIP static instance
 		registry.put(BaseCSPackage.Literals.PATH_ELEMENT_CS, PathElementCSAttribution.INSTANCE);
 		registry.put(BaseCSPackage.Literals.PIVOTABLE_ELEMENT_CS, PivotableElementCSAttribution.INSTANCE);
-		registry.put(BaseCSPackage.Literals.ROOT_PACKAGE_CS, RootPackageCSAttribution.INSTANCE);
 		CS2AS.addUnresolvedProxyMessageProvider(ImportCSAttribution.INSTANCE);
 		CS2AS.addUnresolvedProxyMessageProvider(LibraryCSAttribution.INSTANCE);
 		CS2AS.addUnresolvedProxyMessageProvider(new SimpleNamedElementRefCSTypeUnresolvedProxyMessageProvider());
