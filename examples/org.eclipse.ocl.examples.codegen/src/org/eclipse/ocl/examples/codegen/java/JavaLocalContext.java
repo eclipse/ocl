@@ -170,11 +170,12 @@ public class JavaLocalContext<CG extends JavaCodeGenerator> extends AbstractJava
 
 	@Override
 	public void setNames(@NonNull CGValuedElement cgValueElement, @NonNull CGValuedElement cgExpression) {
-		String name = cgExpression.getName();
-		if (name == null) {
-			name = nameManagerContext.getSymbolName(cgExpression);
+		String nameHint = cgExpression.getName();
+		if (nameHint == null) {
+			nameHint = nameManagerContext.getSymbolName(cgExpression);
 		}
-		cgValueElement.setName(name);
+		String name = nameManagerContext.getSymbolName(null, nameHint);
+		cgValueElement.setName(nameHint);
 		cgValueElement.setValueName(name);
 	}
 
