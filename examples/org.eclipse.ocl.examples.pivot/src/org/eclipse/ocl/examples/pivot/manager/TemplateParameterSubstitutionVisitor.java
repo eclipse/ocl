@@ -409,7 +409,10 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		Operation referredOperation = object.getReferredOperation();
 //		visit(referredOperation, object);
 		analyzeType(referredOperation.getType(), object.getType());
-		analyzeType(referredOperation.getOwningClass(), object.getSource().getType());
+		OCLExpression source = object.getSource();
+		if (source != null) {
+			analyzeType(referredOperation.getOwningClass(), source.getType());
+		}
 		analyzeTypedElements(referredOperation.getOwnedParameter(), object.getArgument());
 		//
 		//	FIXME More general processing for T2 < T1
