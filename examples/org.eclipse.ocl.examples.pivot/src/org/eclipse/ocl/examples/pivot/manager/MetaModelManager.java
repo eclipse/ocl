@@ -1029,16 +1029,24 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 			return castTarget;
 		}
 		Model root = (Model)EcoreUtil.getRootContainer(element);
-		Resource metaModel = element.eResource();
-		if (metaModel == null) {
+		Resource asResource = element.eResource();
+		if (asResource == null) {
 			return null;
 		}
-		if (metaModel instanceof OCLstdlib) {		// Not really a model so no Ecore
+		if (asResource instanceof OCLstdlib) {		// Not really a model so no Ecore
 			return null;
 		}
-		URI ecoreURI = DomainUtil.nonNullEMF(URI.createURI(root.getExternalURI()).appendFileExtension("ecore"));
+		URI ecoreURI;
+		String externalUri = root.getExternalURI();
+		URI externalURI = URI.createURI(externalUri);
+		if (PivotUtil.isASURI(externalUri)) {
+			ecoreURI = DomainUtil.nonNullEMF(externalURI.trimFileExtension());
+		}
+		else {
+			ecoreURI = DomainUtil.nonNullEMF(externalURI.appendFileExtension("ecore"));
+		}
 		AS2Ecore converter = new AS2Ecore(this, ecoreURI, null);
-		converter.convertResource(metaModel, ecoreURI);					// FIXME install ETargets
+		converter.convertResource(asResource, ecoreURI);
 		return converter.getCreated(ecoreClass, element);
 	}
 
