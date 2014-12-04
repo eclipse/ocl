@@ -38,8 +38,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CurlyBracketedClauseCSImpl#getOwningNameExp <em>Owning Name Exp</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CurlyBracketedClauseCSImpl#getOwnedParts <em>Owned Parts</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CurlyBracketedClauseCSImpl#getOwningNameExp <em>Owning Name Exp</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CurlyBracketedClauseCSImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
@@ -203,12 +203,12 @@ public class CurlyBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	{
 		switch (featureID)
 		{
+			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNED_PARTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedParts()).basicAdd(otherEnd, msgs);
 			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningNameExp((AbstractNameExpCS)otherEnd, msgs);
-			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNED_PARTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedParts()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -223,10 +223,10 @@ public class CurlyBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
-				return basicSetOwningNameExp(null, msgs);
 			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNED_PARTS:
 				return ((InternalEList<?>)getOwnedParts()).basicRemove(otherEnd, msgs);
+			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
+				return basicSetOwningNameExp(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -257,10 +257,10 @@ public class CurlyBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
-				return getOwningNameExp();
 			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNED_PARTS:
 				return getOwnedParts();
+			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
+				return getOwningNameExp();
 			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__VALUE:
 				return getValue();
 		}
@@ -278,12 +278,12 @@ public class CurlyBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
-				setOwningNameExp((AbstractNameExpCS)newValue);
-				return;
 			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNED_PARTS:
 				getOwnedParts().clear();
 				getOwnedParts().addAll((Collection<? extends ConstructorPartCS>)newValue);
+				return;
+			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
+				setOwningNameExp((AbstractNameExpCS)newValue);
 				return;
 			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__VALUE:
 				setValue((String)newValue);
@@ -302,11 +302,11 @@ public class CurlyBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
-				setOwningNameExp((AbstractNameExpCS)null);
-				return;
 			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNED_PARTS:
 				getOwnedParts().clear();
+				return;
+			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
+				setOwningNameExp((AbstractNameExpCS)null);
 				return;
 			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__VALUE:
 				setValue(VALUE_EDEFAULT);
@@ -325,10 +325,10 @@ public class CurlyBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
-				return getOwningNameExp() != null;
 			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNED_PARTS:
 				return ownedParts != null && !ownedParts.isEmpty();
+			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
+				return getOwningNameExp() != null;
 			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__VALUE:
 				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}

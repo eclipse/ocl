@@ -30,7 +30,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCS
  * <!-- end-user-doc -->
  * @see org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/OCL/Import ecore='http://www.eclipse.org/emf/2002/Ecore' pivot='../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#/' basecs='../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#/' essentialoclcs='../../org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCS.ecore#/'"
  * @generated
  */
 public interface CompleteOCLCSPackage
@@ -157,13 +156,13 @@ public interface CompleteOCLCSPackage
 	int PATH_NAME_DECL_CS__PIVOT = BaseCSPackage.MODEL_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_NAME_DECL_CS__OWNED_ANNOTATIONS = BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
+	int PATH_NAME_DECL_CS__CSI = BaseCSPackage.MODEL_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -175,13 +174,13 @@ public interface CompleteOCLCSPackage
 	int PATH_NAME_DECL_CS__ORIGINAL_XMI_ID = BaseCSPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_NAME_DECL_CS__CSI = BaseCSPackage.MODEL_ELEMENT_CS__CSI;
+	int PATH_NAME_DECL_CS__OWNED_ANNOTATIONS = BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
@@ -220,13 +219,13 @@ public interface CompleteOCLCSPackage
 	int CONTEXT_DECL_CS__PIVOT = PATH_NAME_DECL_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_DECL_CS__OWNED_ANNOTATIONS = PATH_NAME_DECL_CS__OWNED_ANNOTATIONS;
+	int CONTEXT_DECL_CS__CSI = PATH_NAME_DECL_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -238,13 +237,13 @@ public interface CompleteOCLCSPackage
 	int CONTEXT_DECL_CS__ORIGINAL_XMI_ID = PATH_NAME_DECL_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_DECL_CS__CSI = PATH_NAME_DECL_CS__CSI;
+	int CONTEXT_DECL_CS__OWNED_ANNOTATIONS = PATH_NAME_DECL_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
@@ -283,13 +282,13 @@ public interface CompleteOCLCSPackage
 	int CLASSIFIER_CONTEXT_DECL_CS__PIVOT = CONTEXT_DECL_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER_CONTEXT_DECL_CS__OWNED_ANNOTATIONS = CONTEXT_DECL_CS__OWNED_ANNOTATIONS;
+	int CLASSIFIER_CONTEXT_DECL_CS__CSI = CONTEXT_DECL_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -301,13 +300,13 @@ public interface CompleteOCLCSPackage
 	int CLASSIFIER_CONTEXT_DECL_CS__ORIGINAL_XMI_ID = CONTEXT_DECL_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER_CONTEXT_DECL_CS__CSI = CONTEXT_DECL_CS__CSI;
+	int CLASSIFIER_CONTEXT_DECL_CS__OWNED_ANNOTATIONS = CONTEXT_DECL_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
@@ -328,22 +327,13 @@ public interface CompleteOCLCSPackage
 	int CLASSIFIER_CONTEXT_DECL_CS__OWNED_SIGNATURE = CONTEXT_DECL_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Self Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Definitions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME = CONTEXT_DECL_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Referred Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASSIFIER_CONTEXT_DECL_CS__REFERRED_CLASS = CONTEXT_DECL_CS_FEATURE_COUNT + 2;
+	int CLASSIFIER_CONTEXT_DECL_CS__OWNED_DEFINITIONS = CONTEXT_DECL_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
@@ -352,16 +342,25 @@ public interface CompleteOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER_CONTEXT_DECL_CS__OWNED_INVARIANTS = CONTEXT_DECL_CS_FEATURE_COUNT + 3;
+	int CLASSIFIER_CONTEXT_DECL_CS__OWNED_INVARIANTS = CONTEXT_DECL_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Owned Definitions</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Referred Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER_CONTEXT_DECL_CS__OWNED_DEFINITIONS = CONTEXT_DECL_CS_FEATURE_COUNT + 4;
+	int CLASSIFIER_CONTEXT_DECL_CS__REFERRED_CLASS = CONTEXT_DECL_CS_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Self Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME = CONTEXT_DECL_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Classifier Context Decl CS</em>' class.
@@ -401,13 +400,13 @@ public interface CompleteOCLCSPackage
 	int COMPLETE_OCL_DOCUMENT_CS__PIVOT = BaseCSPackage.NAMESPACE_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_OCL_DOCUMENT_CS__OWNED_ANNOTATIONS = BaseCSPackage.NAMESPACE_CS__OWNED_ANNOTATIONS;
+	int COMPLETE_OCL_DOCUMENT_CS__CSI = BaseCSPackage.NAMESPACE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -419,13 +418,13 @@ public interface CompleteOCLCSPackage
 	int COMPLETE_OCL_DOCUMENT_CS__ORIGINAL_XMI_ID = BaseCSPackage.NAMESPACE_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_OCL_DOCUMENT_CS__CSI = BaseCSPackage.NAMESPACE_CS__CSI;
+	int COMPLETE_OCL_DOCUMENT_CS__OWNED_ANNOTATIONS = BaseCSPackage.NAMESPACE_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -455,22 +454,13 @@ public interface CompleteOCLCSPackage
 	int COMPLETE_OCL_DOCUMENT_CS__OWNED_LIBRARIES = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Owned Packages</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OCL_DOCUMENT_CS__OWNED_PACKAGES = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Owned Contexts</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_OCL_DOCUMENT_CS__OWNED_CONTEXTS = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 3;
+	int COMPLETE_OCL_DOCUMENT_CS__OWNED_CONTEXTS = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Owned Includes</b></em>' containment reference list.
@@ -479,7 +469,16 @@ public interface CompleteOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_OCL_DOCUMENT_CS__OWNED_INCLUDES = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 4;
+	int COMPLETE_OCL_DOCUMENT_CS__OWNED_INCLUDES = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Owned Packages</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_OCL_DOCUMENT_CS__OWNED_PACKAGES = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Complete OCL Document CS</em>' class.
@@ -509,13 +508,13 @@ public interface CompleteOCLCSPackage
 	int DEF_CS__PIVOT = BaseCSPackage.TYPED_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS__OWNED_ANNOTATIONS = BaseCSPackage.TYPED_ELEMENT_CS__OWNED_ANNOTATIONS;
+	int DEF_CS__CSI = BaseCSPackage.TYPED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -527,13 +526,13 @@ public interface CompleteOCLCSPackage
 	int DEF_CS__ORIGINAL_XMI_ID = BaseCSPackage.TYPED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS__CSI = BaseCSPackage.TYPED_ELEMENT_CS__CSI;
+	int DEF_CS__OWNED_ANNOTATIONS = BaseCSPackage.TYPED_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -543,6 +542,15 @@ public interface CompleteOCLCSPackage
 	 * @ordered
 	 */
 	int DEF_CS__NAME = BaseCSPackage.TYPED_ELEMENT_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_CS__IS_OPTIONAL = BaseCSPackage.TYPED_ELEMENT_CS__IS_OPTIONAL;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -563,22 +571,13 @@ public interface CompleteOCLCSPackage
 	int DEF_CS__QUALIFIERS = BaseCSPackage.TYPED_ELEMENT_CS__QUALIFIERS;
 
 	/**
-	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS__IS_OPTIONAL = BaseCSPackage.TYPED_ELEMENT_CS__IS_OPTIONAL;
-
-	/**
-	 * The feature id for the '<em><b>Owning Classifier Context Decl</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEF_CS__OWNING_CLASSIFIER_CONTEXT_DECL = BaseCSPackage.TYPED_ELEMENT_CS_FEATURE_COUNT + 0;
+	int DEF_CS__IS_STATIC = BaseCSPackage.TYPED_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Specification</b></em>' containment reference.
@@ -590,13 +589,13 @@ public interface CompleteOCLCSPackage
 	int DEF_CS__OWNED_SPECIFICATION = BaseCSPackage.TYPED_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * The feature id for the '<em><b>Owning Classifier Context Decl</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS__IS_STATIC = BaseCSPackage.TYPED_ELEMENT_CS_FEATURE_COUNT + 2;
+	int DEF_CS__OWNING_CLASSIFIER_CONTEXT_DECL = BaseCSPackage.TYPED_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Def CS</em>' class.
@@ -636,13 +635,13 @@ public interface CompleteOCLCSPackage
 	int DEF_OPERATION_CS__PIVOT = DEF_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_OPERATION_CS__OWNED_ANNOTATIONS = DEF_CS__OWNED_ANNOTATIONS;
+	int DEF_OPERATION_CS__CSI = DEF_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -654,13 +653,13 @@ public interface CompleteOCLCSPackage
 	int DEF_OPERATION_CS__ORIGINAL_XMI_ID = DEF_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_OPERATION_CS__CSI = DEF_CS__CSI;
+	int DEF_OPERATION_CS__OWNED_ANNOTATIONS = DEF_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -670,6 +669,15 @@ public interface CompleteOCLCSPackage
 	 * @ordered
 	 */
 	int DEF_OPERATION_CS__NAME = DEF_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_OPERATION_CS__IS_OPTIONAL = DEF_CS__IS_OPTIONAL;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -690,22 +698,13 @@ public interface CompleteOCLCSPackage
 	int DEF_OPERATION_CS__QUALIFIERS = DEF_CS__QUALIFIERS;
 
 	/**
-	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_OPERATION_CS__IS_OPTIONAL = DEF_CS__IS_OPTIONAL;
-
-	/**
-	 * The feature id for the '<em><b>Owning Classifier Context Decl</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEF_OPERATION_CS__OWNING_CLASSIFIER_CONTEXT_DECL = DEF_CS__OWNING_CLASSIFIER_CONTEXT_DECL;
+	int DEF_OPERATION_CS__IS_STATIC = DEF_CS__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Owned Specification</b></em>' containment reference.
@@ -717,13 +716,13 @@ public interface CompleteOCLCSPackage
 	int DEF_OPERATION_CS__OWNED_SPECIFICATION = DEF_CS__OWNED_SPECIFICATION;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * The feature id for the '<em><b>Owning Classifier Context Decl</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_OPERATION_CS__IS_STATIC = DEF_CS__IS_STATIC;
+	int DEF_OPERATION_CS__OWNING_CLASSIFIER_CONTEXT_DECL = DEF_CS__OWNING_CLASSIFIER_CONTEXT_DECL;
 
 	/**
 	 * The feature id for the '<em><b>Owned Signature</b></em>' containment reference.
@@ -781,13 +780,13 @@ public interface CompleteOCLCSPackage
 	int DEF_PROPERTY_CS__PIVOT = DEF_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_PROPERTY_CS__OWNED_ANNOTATIONS = DEF_CS__OWNED_ANNOTATIONS;
+	int DEF_PROPERTY_CS__CSI = DEF_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -799,13 +798,13 @@ public interface CompleteOCLCSPackage
 	int DEF_PROPERTY_CS__ORIGINAL_XMI_ID = DEF_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_PROPERTY_CS__CSI = DEF_CS__CSI;
+	int DEF_PROPERTY_CS__OWNED_ANNOTATIONS = DEF_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -815,6 +814,15 @@ public interface CompleteOCLCSPackage
 	 * @ordered
 	 */
 	int DEF_PROPERTY_CS__NAME = DEF_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_PROPERTY_CS__IS_OPTIONAL = DEF_CS__IS_OPTIONAL;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -835,22 +843,13 @@ public interface CompleteOCLCSPackage
 	int DEF_PROPERTY_CS__QUALIFIERS = DEF_CS__QUALIFIERS;
 
 	/**
-	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_PROPERTY_CS__IS_OPTIONAL = DEF_CS__IS_OPTIONAL;
-
-	/**
-	 * The feature id for the '<em><b>Owning Classifier Context Decl</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEF_PROPERTY_CS__OWNING_CLASSIFIER_CONTEXT_DECL = DEF_CS__OWNING_CLASSIFIER_CONTEXT_DECL;
+	int DEF_PROPERTY_CS__IS_STATIC = DEF_CS__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Owned Specification</b></em>' containment reference.
@@ -862,13 +861,13 @@ public interface CompleteOCLCSPackage
 	int DEF_PROPERTY_CS__OWNED_SPECIFICATION = DEF_CS__OWNED_SPECIFICATION;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * The feature id for the '<em><b>Owning Classifier Context Decl</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_PROPERTY_CS__IS_STATIC = DEF_CS__IS_STATIC;
+	int DEF_PROPERTY_CS__OWNING_CLASSIFIER_CONTEXT_DECL = DEF_CS__OWNING_CLASSIFIER_CONTEXT_DECL;
 
 	/**
 	 * The number of structural features of the '<em>Def Property CS</em>' class.
@@ -908,13 +907,13 @@ public interface CompleteOCLCSPackage
 	int FEATURE_CONTEXT_DECL_CS__PIVOT = CONTEXT_DECL_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CONTEXT_DECL_CS__OWNED_ANNOTATIONS = CONTEXT_DECL_CS__OWNED_ANNOTATIONS;
+	int FEATURE_CONTEXT_DECL_CS__CSI = CONTEXT_DECL_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -926,13 +925,13 @@ public interface CompleteOCLCSPackage
 	int FEATURE_CONTEXT_DECL_CS__ORIGINAL_XMI_ID = CONTEXT_DECL_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CONTEXT_DECL_CS__CSI = CONTEXT_DECL_CS__CSI;
+	int FEATURE_CONTEXT_DECL_CS__OWNED_ANNOTATIONS = CONTEXT_DECL_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
@@ -990,13 +989,13 @@ public interface CompleteOCLCSPackage
 	int INCLUDE_CS__PIVOT = BaseCSPackage.NAMESPACE_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INCLUDE_CS__OWNED_ANNOTATIONS = BaseCSPackage.NAMESPACE_CS__OWNED_ANNOTATIONS;
+	int INCLUDE_CS__CSI = BaseCSPackage.NAMESPACE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1008,13 +1007,13 @@ public interface CompleteOCLCSPackage
 	int INCLUDE_CS__ORIGINAL_XMI_ID = BaseCSPackage.NAMESPACE_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INCLUDE_CS__CSI = BaseCSPackage.NAMESPACE_CS__CSI;
+	int INCLUDE_CS__OWNED_ANNOTATIONS = BaseCSPackage.NAMESPACE_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1072,13 +1071,13 @@ public interface CompleteOCLCSPackage
 	int OCL_MESSAGE_ARG_CS__PIVOT = EssentialOCLCSPackage.EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_MESSAGE_ARG_CS__OWNED_ANNOTATIONS = EssentialOCLCSPackage.EXP_CS__OWNED_ANNOTATIONS;
+	int OCL_MESSAGE_ARG_CS__CSI = EssentialOCLCSPackage.EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1090,13 +1089,13 @@ public interface CompleteOCLCSPackage
 	int OCL_MESSAGE_ARG_CS__ORIGINAL_XMI_ID = EssentialOCLCSPackage.EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_MESSAGE_ARG_CS__CSI = EssentialOCLCSPackage.EXP_CS__CSI;
+	int OCL_MESSAGE_ARG_CS__OWNED_ANNOTATIONS = EssentialOCLCSPackage.EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -1198,13 +1197,13 @@ public interface CompleteOCLCSPackage
 	int OPERATION_CONTEXT_DECL_CS__PIVOT = FEATURE_CONTEXT_DECL_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CONTEXT_DECL_CS__OWNED_ANNOTATIONS = FEATURE_CONTEXT_DECL_CS__OWNED_ANNOTATIONS;
+	int OPERATION_CONTEXT_DECL_CS__CSI = FEATURE_CONTEXT_DECL_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1216,13 +1215,13 @@ public interface CompleteOCLCSPackage
 	int OPERATION_CONTEXT_DECL_CS__ORIGINAL_XMI_ID = FEATURE_CONTEXT_DECL_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CONTEXT_DECL_CS__CSI = FEATURE_CONTEXT_DECL_CS__CSI;
+	int OPERATION_CONTEXT_DECL_CS__OWNED_ANNOTATIONS = FEATURE_CONTEXT_DECL_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
@@ -1252,13 +1251,13 @@ public interface CompleteOCLCSPackage
 	int OPERATION_CONTEXT_DECL_CS__OWNED_SIGNATURE = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Referred Operation</b></em>' reference.
+	 * The feature id for the '<em><b>Owned Bodies</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CONTEXT_DECL_CS__REFERRED_OPERATION = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 1;
+	int OPERATION_CONTEXT_DECL_CS__OWNED_BODIES = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owned Parameters</b></em>' containment reference list.
@@ -1270,13 +1269,13 @@ public interface CompleteOCLCSPackage
 	int OPERATION_CONTEXT_DECL_CS__OWNED_PARAMETERS = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Owned Result</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Postconditions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CONTEXT_DECL_CS__OWNED_RESULT = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 3;
+	int OPERATION_CONTEXT_DECL_CS__OWNED_POSTCONDITIONS = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Owned Preconditions</b></em>' containment reference list.
@@ -1288,22 +1287,22 @@ public interface CompleteOCLCSPackage
 	int OPERATION_CONTEXT_DECL_CS__OWNED_PRECONDITIONS = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Owned Postconditions</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Result</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CONTEXT_DECL_CS__OWNED_POSTCONDITIONS = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 5;
+	int OPERATION_CONTEXT_DECL_CS__OWNED_RESULT = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 5;
 
 	/**
-	 * The feature id for the '<em><b>Owned Bodies</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Referred Operation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CONTEXT_DECL_CS__OWNED_BODIES = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 6;
+	int OPERATION_CONTEXT_DECL_CS__REFERRED_OPERATION = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Operation Context Decl CS</em>' class.
@@ -1333,13 +1332,13 @@ public interface CompleteOCLCSPackage
 	int PACKAGE_DECLARATION_CS__PIVOT = PATH_NAME_DECL_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_DECLARATION_CS__OWNED_ANNOTATIONS = PATH_NAME_DECL_CS__OWNED_ANNOTATIONS;
+	int PACKAGE_DECLARATION_CS__CSI = PATH_NAME_DECL_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1351,13 +1350,13 @@ public interface CompleteOCLCSPackage
 	int PACKAGE_DECLARATION_CS__ORIGINAL_XMI_ID = PATH_NAME_DECL_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_DECLARATION_CS__CSI = PATH_NAME_DECL_CS__CSI;
+	int PACKAGE_DECLARATION_CS__OWNED_ANNOTATIONS = PATH_NAME_DECL_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
@@ -1369,22 +1368,13 @@ public interface CompleteOCLCSPackage
 	int PACKAGE_DECLARATION_CS__OWNED_PATH_NAME = PATH_NAME_DECL_CS__OWNED_PATH_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Referred Package</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE_DECLARATION_CS__REFERRED_PACKAGE = PATH_NAME_DECL_CS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Owned Contexts</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_DECLARATION_CS__OWNED_CONTEXTS = PATH_NAME_DECL_CS_FEATURE_COUNT + 1;
+	int PACKAGE_DECLARATION_CS__OWNED_CONTEXTS = PATH_NAME_DECL_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
@@ -1393,7 +1383,16 @@ public interface CompleteOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_DECLARATION_CS__OWNED_INVARIANTS = PATH_NAME_DECL_CS_FEATURE_COUNT + 2;
+	int PACKAGE_DECLARATION_CS__OWNED_INVARIANTS = PATH_NAME_DECL_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Referred Package</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_DECLARATION_CS__REFERRED_PACKAGE = PATH_NAME_DECL_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Package Declaration CS</em>' class.
@@ -1423,13 +1422,13 @@ public interface CompleteOCLCSPackage
 	int PROPERTY_CONTEXT_DECL_CS__PIVOT = FEATURE_CONTEXT_DECL_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CONTEXT_DECL_CS__OWNED_ANNOTATIONS = FEATURE_CONTEXT_DECL_CS__OWNED_ANNOTATIONS;
+	int PROPERTY_CONTEXT_DECL_CS__CSI = FEATURE_CONTEXT_DECL_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1441,13 +1440,13 @@ public interface CompleteOCLCSPackage
 	int PROPERTY_CONTEXT_DECL_CS__ORIGINAL_XMI_ID = FEATURE_CONTEXT_DECL_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CONTEXT_DECL_CS__CSI = FEATURE_CONTEXT_DECL_CS__CSI;
+	int PROPERTY_CONTEXT_DECL_CS__OWNED_ANNOTATIONS = FEATURE_CONTEXT_DECL_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
@@ -1468,22 +1467,13 @@ public interface CompleteOCLCSPackage
 	int PROPERTY_CONTEXT_DECL_CS__OWNED_TYPE = FEATURE_CONTEXT_DECL_CS__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Referred Property</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_CONTEXT_DECL_CS__REFERRED_PROPERTY = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Owned Default Expressions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CONTEXT_DECL_CS__OWNED_DEFAULT_EXPRESSIONS = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 1;
+	int PROPERTY_CONTEXT_DECL_CS__OWNED_DEFAULT_EXPRESSIONS = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Derived Invariants</b></em>' containment reference list.
@@ -1492,7 +1482,16 @@ public interface CompleteOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CONTEXT_DECL_CS__OWNED_DERIVED_INVARIANTS = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 2;
+	int PROPERTY_CONTEXT_DECL_CS__OWNED_DERIVED_INVARIANTS = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Referred Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CONTEXT_DECL_CS__REFERRED_PROPERTY = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Property Context Decl CS</em>' class.

@@ -21,9 +21,9 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.PackageCS#getOwnedClasses <em>Owned Classes</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.PackageCS#getNsPrefix <em>Ns Prefix</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.PackageCS#getNsURI <em>Ns URI</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.PackageCS#getOwnedClasses <em>Owned Classes</em>}</li>
  * </ul>
  * </p>
  *

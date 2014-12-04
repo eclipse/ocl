@@ -47,6 +47,10 @@ public abstract class AbstractOCLstdlibCSLeft2RightVisitor
 		return visitNamedElementCS(csElement);
 	}
 
+	public @Nullable Element visitJavaImplementationCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaImplementationCS csElement) {
+		return visitElementCS(csElement);
+	}
+
 	public @Nullable Element visitLibClassCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibClassCS csElement) {
 		return visitStructuredClassCS(csElement);
 	}

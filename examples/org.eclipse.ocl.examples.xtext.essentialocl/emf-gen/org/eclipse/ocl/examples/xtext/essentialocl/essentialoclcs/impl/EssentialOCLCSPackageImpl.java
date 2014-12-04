@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
@@ -490,7 +489,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getAbstractNameExpCS_OwnedPathName()
 	{
-		return (EReference)abstractNameExpCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)abstractNameExpCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -500,7 +499,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EAttribute getAbstractNameExpCS_IsPre()
 	{
-		return (EAttribute)abstractNameExpCSEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)abstractNameExpCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -510,7 +509,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getAbstractNameExpCS_OwnedCurlyBracketedClause()
 	{
-		return (EReference)abstractNameExpCSEClass.getEStructuralFeatures().get(2);
+		return (EReference)abstractNameExpCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -626,7 +625,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getConstructorExpCS_TypeName()
 	{
-		return (EReference)constructorExpCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)constructorExpCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -636,7 +635,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getConstructorExpCS_Parts()
 	{
-		return (EReference)constructorExpCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)constructorExpCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -665,7 +664,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getConstructorPartCS_OwningCurlyBracketClause()
 	{
-		return (EReference)constructorPartCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)constructorPartCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -675,7 +674,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getConstructorPartCS_ReferredProperty()
 	{
-		return (EReference)constructorPartCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)constructorPartCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -685,7 +684,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getConstructorPartCS_OwnedInitExpression()
 	{
-		return (EReference)constructorPartCSEClass.getEStructuralFeatures().get(2);
+		return (EReference)constructorPartCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -723,7 +722,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getCurlyBracketedClauseCS_OwningNameExp()
 	{
-		return (EReference)curlyBracketedClauseCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)curlyBracketedClauseCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -733,7 +732,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getCurlyBracketedClauseCS_OwnedParts()
 	{
-		return (EReference)curlyBracketedClauseCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)curlyBracketedClauseCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -887,7 +886,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getTypeNameExpCS_OwnedPathName()
 	{
-		return (EReference)typeNameExpCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)typeNameExpCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -896,7 +895,7 @@ public class EssentialOCLCSPackageImpl
 	 * @generated
 	 */
 	public EReference getTypeNameExpCS_Element() {
-		return (EReference)typeNameExpCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)typeNameExpCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -906,7 +905,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getTypeNameExpCS_OwnedCurlyBracketedClause()
 	{
-		return (EReference)typeNameExpCSEClass.getEStructuralFeatures().get(2);
+		return (EReference)typeNameExpCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -943,7 +942,7 @@ public class EssentialOCLCSPackageImpl
 	 * @generated
 	 */
 	public EReference getVariableCS_OwnedType() {
-		return (EReference)variableCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)variableCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -953,7 +952,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getVariableCS_OwnedInitExpression()
 	{
-		return (EReference)variableCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)variableCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1019,7 +1018,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getNavigatingArgCS_OwningRoundBracketedClause()
 	{
-		return (EReference)navigatingArgCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)navigatingArgCSEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1028,7 +1027,7 @@ public class EssentialOCLCSPackageImpl
 	 * @generated
 	 */
 	public EAttribute getNavigatingArgCS_Role() {
-		return (EAttribute)navigatingArgCSEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)navigatingArgCSEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1037,7 +1036,7 @@ public class EssentialOCLCSPackageImpl
 	 * @generated
 	 */
 	public EAttribute getNavigatingArgCS_Prefix() {
-		return (EAttribute)navigatingArgCSEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)navigatingArgCSEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1047,7 +1046,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getNavigatingArgCS_OwnedNameExpression()
 	{
-		return (EReference)navigatingArgCSEClass.getEStructuralFeatures().get(3);
+		return (EReference)navigatingArgCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1056,7 +1055,7 @@ public class EssentialOCLCSPackageImpl
 	 * @generated
 	 */
 	public EReference getNavigatingArgCS_OwnedType() {
-		return (EReference)navigatingArgCSEClass.getEStructuralFeatures().get(4);
+		return (EReference)navigatingArgCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1066,7 +1065,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getNavigatingArgCS_OwnedInitExpression()
 	{
-		return (EReference)navigatingArgCSEClass.getEStructuralFeatures().get(5);
+		return (EReference)navigatingArgCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1102,7 +1101,7 @@ public class EssentialOCLCSPackageImpl
 	 * @generated
 	 */
 	public EReference getCollectionLiteralExpCS_OwnedType() {
-		return (EReference)collectionLiteralExpCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)collectionLiteralExpCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1111,7 +1110,7 @@ public class EssentialOCLCSPackageImpl
 	 * @generated
 	 */
 	public EReference getCollectionLiteralExpCS_OwnedParts() {
-		return (EReference)collectionLiteralExpCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)collectionLiteralExpCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1160,7 +1159,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getCollectionPatternCS_OwnedType()
 	{
-		return (EReference)collectionPatternCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)collectionPatternCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1170,7 +1169,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getCollectionPatternCS_OwnedParts()
 	{
-		return (EReference)collectionPatternCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)collectionPatternCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1180,7 +1179,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EAttribute getCollectionPatternCS_RestVariableName()
 	{
-		return (EAttribute)collectionPatternCSEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)collectionPatternCSEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1190,7 +1189,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getCollectionPatternCS_OwnedPatternGuard()
 	{
-		return (EReference)collectionPatternCSEClass.getEStructuralFeatures().get(3);
+		return (EReference)collectionPatternCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1239,7 +1238,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getRoundBracketedClauseCS_OwningNameExp()
 	{
-		return (EReference)roundBracketedClauseCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)roundBracketedClauseCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1249,7 +1248,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getRoundBracketedClauseCS_OwnedArguments()
 	{
-		return (EReference)roundBracketedClauseCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)roundBracketedClauseCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1287,7 +1286,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getSquareBracketedClauseCS_OwningNameExp()
 	{
-		return (EReference)squareBracketedClauseCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)squareBracketedClauseCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1297,7 +1296,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getSquareBracketedClauseCS_OwnedTerms()
 	{
-		return (EReference)squareBracketedClauseCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)squareBracketedClauseCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1382,7 +1381,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getCallExpCS_Source()
 	{
-		return (EReference)callExpCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)callExpCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1392,7 +1391,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getCallExpCS_Arguments()
 	{
-		return (EReference)callExpCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)callExpCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1441,7 +1440,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getIterationCallExpCS_ReferredIteration()
 	{
-		return (EReference)iterationCallExpCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)iterationCallExpCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1451,7 +1450,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getIterationCallExpCS_Iterators()
 	{
-		return (EReference)iterationCallExpCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)iterationCallExpCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1569,7 +1568,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EAttribute getPatternExpCS_PatternVariableName()
 	{
-		return (EAttribute)patternExpCSEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)patternExpCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1579,7 +1578,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getPatternExpCS_OwnedPatternType()
 	{
-		return (EReference)patternExpCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)patternExpCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1607,7 +1606,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getIfExpCS_OwnedCondition()
 	{
-		return (EReference)ifExpCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)ifExpCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1617,7 +1616,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getIfExpCS_OwnedThenExpression()
 	{
-		return (EReference)ifExpCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)ifExpCSEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1627,7 +1626,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getIfExpCS_OwnedIfThenExpressions()
 	{
-		return (EReference)ifExpCSEClass.getEStructuralFeatures().get(2);
+		return (EReference)ifExpCSEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1637,7 +1636,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getIfExpCS_OwnedElseExpression()
 	{
-		return (EReference)ifExpCSEClass.getEStructuralFeatures().get(3);
+		return (EReference)ifExpCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1647,7 +1646,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EAttribute getIfExpCS_IsImplicit()
 	{
-		return (EAttribute)ifExpCSEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)ifExpCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1696,7 +1695,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getInfixExpCS_OwnedLeft()
 	{
-		return (EReference)infixExpCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)infixExpCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1706,7 +1705,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getInfixExpCS_Argument()
 	{
-		return (EReference)infixExpCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)infixExpCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1725,7 +1724,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getLetExpCS_OwnedVariables()
 	{
-		return (EReference)letExpCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)letExpCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1745,7 +1744,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EAttribute getLetExpCS_IsImplicit()
 	{
-		return (EAttribute)letExpCSEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)letExpCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1764,7 +1763,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getLetVariableCS_OwningLetExpression()
 	{
-		return (EReference)letVariableCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)letVariableCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1774,7 +1773,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getLetVariableCS_OwnedRoundBracketedClause()
 	{
-		return (EReference)letVariableCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)letVariableCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1797,9 +1796,9 @@ public class EssentialOCLCSPackageImpl
 
 		// Create classes and their features
 		abstractNameExpCSEClass = createEClass(ABSTRACT_NAME_EXP_CS);
-		createEReference(abstractNameExpCSEClass, ABSTRACT_NAME_EXP_CS__OWNED_PATH_NAME);
 		createEAttribute(abstractNameExpCSEClass, ABSTRACT_NAME_EXP_CS__IS_PRE);
 		createEReference(abstractNameExpCSEClass, ABSTRACT_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE);
+		createEReference(abstractNameExpCSEClass, ABSTRACT_NAME_EXP_CS__OWNED_PATH_NAME);
 		createEReference(abstractNameExpCSEClass, ABSTRACT_NAME_EXP_CS__OWNED_ROUND_BRACKETED_CLAUSE);
 		createEReference(abstractNameExpCSEClass, ABSTRACT_NAME_EXP_CS__OWNED_SQUARE_BRACKETED_CLAUSES);
 		createEReference(abstractNameExpCSEClass, ABSTRACT_NAME_EXP_CS__SOURCE_TYPE);
@@ -1812,43 +1811,43 @@ public class EssentialOCLCSPackageImpl
 		createEAttribute(booleanLiteralExpCSEClass, BOOLEAN_LITERAL_EXP_CS__SYMBOL);
 
 		callExpCSEClass = createEClass(CALL_EXP_CS);
-		createEReference(callExpCSEClass, CALL_EXP_CS__SOURCE);
 		createEReference(callExpCSEClass, CALL_EXP_CS__ARGUMENTS);
+		createEReference(callExpCSEClass, CALL_EXP_CS__SOURCE);
 
 		collectionLiteralExpCSEClass = createEClass(COLLECTION_LITERAL_EXP_CS);
-		createEReference(collectionLiteralExpCSEClass, COLLECTION_LITERAL_EXP_CS__OWNED_TYPE);
 		createEReference(collectionLiteralExpCSEClass, COLLECTION_LITERAL_EXP_CS__OWNED_PARTS);
+		createEReference(collectionLiteralExpCSEClass, COLLECTION_LITERAL_EXP_CS__OWNED_TYPE);
 
 		collectionLiteralPartCSEClass = createEClass(COLLECTION_LITERAL_PART_CS);
 		createEReference(collectionLiteralPartCSEClass, COLLECTION_LITERAL_PART_CS__OWNED_EXPRESSION);
 		createEReference(collectionLiteralPartCSEClass, COLLECTION_LITERAL_PART_CS__OWNED_LAST_EXPRESSION);
 
 		collectionPatternCSEClass = createEClass(COLLECTION_PATTERN_CS);
-		createEReference(collectionPatternCSEClass, COLLECTION_PATTERN_CS__OWNED_TYPE);
 		createEReference(collectionPatternCSEClass, COLLECTION_PATTERN_CS__OWNED_PARTS);
-		createEAttribute(collectionPatternCSEClass, COLLECTION_PATTERN_CS__REST_VARIABLE_NAME);
 		createEReference(collectionPatternCSEClass, COLLECTION_PATTERN_CS__OWNED_PATTERN_GUARD);
+		createEReference(collectionPatternCSEClass, COLLECTION_PATTERN_CS__OWNED_TYPE);
+		createEAttribute(collectionPatternCSEClass, COLLECTION_PATTERN_CS__REST_VARIABLE_NAME);
 
 		collectionTypeCSEClass = createEClass(COLLECTION_TYPE_CS);
 		createEAttribute(collectionTypeCSEClass, COLLECTION_TYPE_CS__NAME);
 		createEReference(collectionTypeCSEClass, COLLECTION_TYPE_CS__OWNED_TYPE);
 
 		constructorExpCSEClass = createEClass(CONSTRUCTOR_EXP_CS);
-		createEReference(constructorExpCSEClass, CONSTRUCTOR_EXP_CS__TYPE_NAME);
 		createEReference(constructorExpCSEClass, CONSTRUCTOR_EXP_CS__PARTS);
+		createEReference(constructorExpCSEClass, CONSTRUCTOR_EXP_CS__TYPE_NAME);
 		createEAttribute(constructorExpCSEClass, CONSTRUCTOR_EXP_CS__VALUE);
 
 		constructorPartCSEClass = createEClass(CONSTRUCTOR_PART_CS);
+		createEReference(constructorPartCSEClass, CONSTRUCTOR_PART_CS__OWNED_INIT_EXPRESSION);
 		createEReference(constructorPartCSEClass, CONSTRUCTOR_PART_CS__OWNING_CURLY_BRACKET_CLAUSE);
 		createEReference(constructorPartCSEClass, CONSTRUCTOR_PART_CS__REFERRED_PROPERTY);
-		createEReference(constructorPartCSEClass, CONSTRUCTOR_PART_CS__OWNED_INIT_EXPRESSION);
 
 		contextCSEClass = createEClass(CONTEXT_CS);
 		createEReference(contextCSEClass, CONTEXT_CS__OWNED_EXPRESSION);
 
 		curlyBracketedClauseCSEClass = createEClass(CURLY_BRACKETED_CLAUSE_CS);
-		createEReference(curlyBracketedClauseCSEClass, CURLY_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP);
 		createEReference(curlyBracketedClauseCSEClass, CURLY_BRACKETED_CLAUSE_CS__OWNED_PARTS);
+		createEReference(curlyBracketedClauseCSEClass, CURLY_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP);
 		createEAttribute(curlyBracketedClauseCSEClass, CURLY_BRACKETED_CLAUSE_CS__VALUE);
 
 		expCSEClass = createEClass(EXP_CS);
@@ -1864,19 +1863,19 @@ public class EssentialOCLCSPackageImpl
 		createEReference(expSpecificationCSEClass, EXP_SPECIFICATION_CS__OWNED_EXPRESSION);
 
 		ifExpCSEClass = createEClass(IF_EXP_CS);
-		createEReference(ifExpCSEClass, IF_EXP_CS__OWNED_CONDITION);
-		createEReference(ifExpCSEClass, IF_EXP_CS__OWNED_THEN_EXPRESSION);
-		createEReference(ifExpCSEClass, IF_EXP_CS__OWNED_IF_THEN_EXPRESSIONS);
-		createEReference(ifExpCSEClass, IF_EXP_CS__OWNED_ELSE_EXPRESSION);
 		createEAttribute(ifExpCSEClass, IF_EXP_CS__IS_IMPLICIT);
+		createEReference(ifExpCSEClass, IF_EXP_CS__OWNED_CONDITION);
+		createEReference(ifExpCSEClass, IF_EXP_CS__OWNED_ELSE_EXPRESSION);
+		createEReference(ifExpCSEClass, IF_EXP_CS__OWNED_IF_THEN_EXPRESSIONS);
+		createEReference(ifExpCSEClass, IF_EXP_CS__OWNED_THEN_EXPRESSION);
 
 		ifThenExpCSEClass = createEClass(IF_THEN_EXP_CS);
 		createEReference(ifThenExpCSEClass, IF_THEN_EXP_CS__OWNED_CONDITION);
 		createEReference(ifThenExpCSEClass, IF_THEN_EXP_CS__OWNED_THEN_EXPRESSION);
 
 		infixExpCSEClass = createEClass(INFIX_EXP_CS);
-		createEReference(infixExpCSEClass, INFIX_EXP_CS__OWNED_LEFT);
 		createEReference(infixExpCSEClass, INFIX_EXP_CS__ARGUMENT);
+		createEReference(infixExpCSEClass, INFIX_EXP_CS__OWNED_LEFT);
 
 		invalidLiteralExpCSEClass = createEClass(INVALID_LITERAL_EXP_CS);
 
@@ -1884,32 +1883,32 @@ public class EssentialOCLCSPackageImpl
 		createEReference(iterateCallExpCSEClass, ITERATE_CALL_EXP_CS__ACCUMULATORS);
 
 		iterationCallExpCSEClass = createEClass(ITERATION_CALL_EXP_CS);
-		createEReference(iterationCallExpCSEClass, ITERATION_CALL_EXP_CS__REFERRED_ITERATION);
 		createEReference(iterationCallExpCSEClass, ITERATION_CALL_EXP_CS__ITERATORS);
+		createEReference(iterationCallExpCSEClass, ITERATION_CALL_EXP_CS__REFERRED_ITERATION);
 
 		lambdaLiteralExpCSEClass = createEClass(LAMBDA_LITERAL_EXP_CS);
 		createEReference(lambdaLiteralExpCSEClass, LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION_CS);
 
 		letExpCSEClass = createEClass(LET_EXP_CS);
-		createEReference(letExpCSEClass, LET_EXP_CS__OWNED_VARIABLES);
-		createEReference(letExpCSEClass, LET_EXP_CS__OWNED_IN_EXPRESSION);
 		createEAttribute(letExpCSEClass, LET_EXP_CS__IS_IMPLICIT);
+		createEReference(letExpCSEClass, LET_EXP_CS__OWNED_IN_EXPRESSION);
+		createEReference(letExpCSEClass, LET_EXP_CS__OWNED_VARIABLES);
 
 		letVariableCSEClass = createEClass(LET_VARIABLE_CS);
-		createEReference(letVariableCSEClass, LET_VARIABLE_CS__OWNING_LET_EXPRESSION);
 		createEReference(letVariableCSEClass, LET_VARIABLE_CS__OWNED_ROUND_BRACKETED_CLAUSE);
+		createEReference(letVariableCSEClass, LET_VARIABLE_CS__OWNING_LET_EXPRESSION);
 
 		literalExpCSEClass = createEClass(LITERAL_EXP_CS);
 
 		nameExpCSEClass = createEClass(NAME_EXP_CS);
 
 		navigatingArgCSEClass = createEClass(NAVIGATING_ARG_CS);
-		createEReference(navigatingArgCSEClass, NAVIGATING_ARG_CS__OWNING_ROUND_BRACKETED_CLAUSE);
-		createEAttribute(navigatingArgCSEClass, NAVIGATING_ARG_CS__ROLE);
-		createEAttribute(navigatingArgCSEClass, NAVIGATING_ARG_CS__PREFIX);
+		createEReference(navigatingArgCSEClass, NAVIGATING_ARG_CS__OWNED_INIT_EXPRESSION);
 		createEReference(navigatingArgCSEClass, NAVIGATING_ARG_CS__OWNED_NAME_EXPRESSION);
 		createEReference(navigatingArgCSEClass, NAVIGATING_ARG_CS__OWNED_TYPE);
-		createEReference(navigatingArgCSEClass, NAVIGATING_ARG_CS__OWNED_INIT_EXPRESSION);
+		createEReference(navigatingArgCSEClass, NAVIGATING_ARG_CS__OWNING_ROUND_BRACKETED_CLAUSE);
+		createEAttribute(navigatingArgCSEClass, NAVIGATING_ARG_CS__PREFIX);
+		createEAttribute(navigatingArgCSEClass, NAVIGATING_ARG_CS__ROLE);
 
 		nestedExpCSEClass = createEClass(NESTED_EXP_CS);
 		createEReference(nestedExpCSEClass, NESTED_EXP_CS__SOURCE);
@@ -1927,8 +1926,8 @@ public class EssentialOCLCSPackageImpl
 		createEReference(operatorExpCSEClass, OPERATOR_EXP_CS__SOURCE);
 
 		patternExpCSEClass = createEClass(PATTERN_EXP_CS);
-		createEAttribute(patternExpCSEClass, PATTERN_EXP_CS__PATTERN_VARIABLE_NAME);
 		createEReference(patternExpCSEClass, PATTERN_EXP_CS__OWNED_PATTERN_TYPE);
+		createEAttribute(patternExpCSEClass, PATTERN_EXP_CS__PATTERN_VARIABLE_NAME);
 
 		prefixExpCSEClass = createEClass(PREFIX_EXP_CS);
 
@@ -1938,15 +1937,15 @@ public class EssentialOCLCSPackageImpl
 		createEReference(propertyCallExpCSEClass, PROPERTY_CALL_EXP_CS__REFERRED_PROPERTY);
 
 		roundBracketedClauseCSEClass = createEClass(ROUND_BRACKETED_CLAUSE_CS);
-		createEReference(roundBracketedClauseCSEClass, ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP);
 		createEReference(roundBracketedClauseCSEClass, ROUND_BRACKETED_CLAUSE_CS__OWNED_ARGUMENTS);
+		createEReference(roundBracketedClauseCSEClass, ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP);
 
 		selfExpCSEClass = createEClass(SELF_EXP_CS);
 		createEAttribute(selfExpCSEClass, SELF_EXP_CS__NAME);
 
 		squareBracketedClauseCSEClass = createEClass(SQUARE_BRACKETED_CLAUSE_CS);
-		createEReference(squareBracketedClauseCSEClass, SQUARE_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP);
 		createEReference(squareBracketedClauseCSEClass, SQUARE_BRACKETED_CLAUSE_CS__OWNED_TERMS);
+		createEReference(squareBracketedClauseCSEClass, SQUARE_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP);
 
 		stringLiteralExpCSEClass = createEClass(STRING_LITERAL_EXP_CS);
 		createEAttribute(stringLiteralExpCSEClass, STRING_LITERAL_EXP_CS__SEGMENTS);
@@ -1961,16 +1960,16 @@ public class EssentialOCLCSPackageImpl
 		createEReference(typeLiteralExpCSEClass, TYPE_LITERAL_EXP_CS__OWNED_TYPE);
 
 		typeNameExpCSEClass = createEClass(TYPE_NAME_EXP_CS);
-		createEReference(typeNameExpCSEClass, TYPE_NAME_EXP_CS__OWNED_PATH_NAME);
 		createEReference(typeNameExpCSEClass, TYPE_NAME_EXP_CS__ELEMENT);
 		createEReference(typeNameExpCSEClass, TYPE_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE);
+		createEReference(typeNameExpCSEClass, TYPE_NAME_EXP_CS__OWNED_PATH_NAME);
 		createEReference(typeNameExpCSEClass, TYPE_NAME_EXP_CS__OWNED_PATTERN_GUARD);
 
 		unlimitedNaturalLiteralExpCSEClass = createEClass(UNLIMITED_NATURAL_LITERAL_EXP_CS);
 
 		variableCSEClass = createEClass(VARIABLE_CS);
-		createEReference(variableCSEClass, VARIABLE_CS__OWNED_TYPE);
 		createEReference(variableCSEClass, VARIABLE_CS__OWNED_INIT_EXPRESSION);
+		createEReference(variableCSEClass, VARIABLE_CS__OWNED_TYPE);
 
 		variableExpCSEClass = createEClass(VARIABLE_EXP_CS);
 		createEReference(variableExpCSEClass, VARIABLE_EXP_CS__REFERRED_VARIABLE);
@@ -2005,7 +2004,6 @@ public class EssentialOCLCSPackageImpl
 		// Obtain other dependent packages
 		BaseCSPackage theBaseCSPackage = (BaseCSPackage)EPackage.Registry.INSTANCE.getEPackage(BaseCSPackage.eNS_URI);
 		PivotPackage thePivotPackage = (PivotPackage)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -2072,58 +2070,58 @@ public class EssentialOCLCSPackageImpl
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(abstractNameExpCSEClass, AbstractNameExpCS.class, "AbstractNameExpCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getAbstractNameExpCS_OwnedPathName(), theBaseCSPackage.getPathNameCS(), null, "ownedPathName", null, 0, 1, AbstractNameExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getAbstractNameExpCS_IsPre(), ecorePackage.getEBoolean(), "isPre", "false", 0, 1, AbstractNameExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEReference(getAbstractNameExpCS_OwnedCurlyBracketedClause(), this.getCurlyBracketedClauseCS(), this.getCurlyBracketedClauseCS_OwningNameExp(), "ownedCurlyBracketedClause", null, 0, 1, AbstractNameExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getAbstractNameExpCS_OwnedPathName(), theBaseCSPackage.getPathNameCS(), null, "ownedPathName", null, 0, 1, AbstractNameExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getAbstractNameExpCS_OwnedRoundBracketedClause(), this.getRoundBracketedClauseCS(), this.getRoundBracketedClauseCS_OwningNameExp(), "ownedRoundBracketedClause", null, 0, 1, AbstractNameExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getAbstractNameExpCS_OwnedSquareBracketedClauses(), this.getSquareBracketedClauseCS(), this.getSquareBracketedClauseCS_OwningNameExp(), "ownedSquareBracketedClauses", null, 0, 2, AbstractNameExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getAbstractNameExpCS_SourceType(), thePivotPackage.getType(), null, "sourceType", null, 0, 1, AbstractNameExpCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getAbstractNameExpCS_SourceTypeValue(), thePivotPackage.getType(), null, "sourceTypeValue", null, 0, 1, AbstractNameExpCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(associationClassCallExpCSEClass, AssociationClassCallExpCS.class, "AssociationClassCallExpCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getAssociationClassCallExpCS_ReferredAssociation(), thePivotPackage.getAssociationClass(), null, "referredAssociation", null, 0, 1, AssociationClassCallExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getAssociationClassCallExpCS_ReferredAssociation(), thePivotPackage.getAssociationClass(), null, "referredAssociation", null, 0, 1, AssociationClassCallExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(booleanLiteralExpCSEClass, BooleanLiteralExpCS.class, "BooleanLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getBooleanLiteralExpCS_Symbol(), ecorePackage.getEString(), "symbol", null, 0, 1, BooleanLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(callExpCSEClass, CallExpCS.class, "CallExpCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getCallExpCS_Source(), this.getExpCS(), null, "source", null, 0, 1, CallExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getCallExpCS_Arguments(), this.getExpCS(), null, "arguments", null, 0, -1, CallExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getCallExpCS_Arguments(), this.getExpCS(), null, "arguments", null, 0, -1, CallExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getCallExpCS_Source(), this.getExpCS(), null, "source", null, 0, 1, CallExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(collectionLiteralExpCSEClass, CollectionLiteralExpCS.class, "CollectionLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getCollectionLiteralExpCS_OwnedType(), this.getCollectionTypeCS(), null, "ownedType", null, 0, 1, CollectionLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getCollectionLiteralExpCS_OwnedParts(), this.getCollectionLiteralPartCS(), null, "ownedParts", null, 0, -1, CollectionLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getCollectionLiteralExpCS_OwnedType(), this.getCollectionTypeCS(), null, "ownedType", null, 0, 1, CollectionLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(collectionLiteralPartCSEClass, CollectionLiteralPartCS.class, "CollectionLiteralPartCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getCollectionLiteralPartCS_OwnedExpression(), this.getExpCS(), null, "ownedExpression", null, 0, 1, CollectionLiteralPartCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getCollectionLiteralPartCS_OwnedLastExpression(), this.getExpCS(), null, "ownedLastExpression", null, 0, 1, CollectionLiteralPartCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(collectionPatternCSEClass, CollectionPatternCS.class, "CollectionPatternCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getCollectionPatternCS_OwnedType(), this.getCollectionTypeCS(), null, "ownedType", null, 0, 1, CollectionPatternCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getCollectionPatternCS_OwnedParts(), this.getPatternExpCS(), null, "ownedParts", null, 0, -1, CollectionPatternCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getCollectionPatternCS_RestVariableName(), ecorePackage.getEString(), "restVariableName", null, 0, 1, CollectionPatternCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getCollectionPatternCS_OwnedPatternGuard(), this.getExpCS(), null, "ownedPatternGuard", null, 0, 1, CollectionPatternCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getCollectionPatternCS_OwnedType(), this.getCollectionTypeCS(), null, "ownedType", null, 0, 1, CollectionPatternCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getCollectionPatternCS_RestVariableName(), ecorePackage.getEString(), "restVariableName", null, 0, 1, CollectionPatternCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(collectionTypeCSEClass, CollectionTypeCS.class, "CollectionTypeCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getCollectionTypeCS_Name(), ecorePackage.getEString(), "name", null, 0, 1, CollectionTypeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getCollectionTypeCS_OwnedType(), theBaseCSPackage.getTypedRefCS(), null, "ownedType", null, 0, 1, CollectionTypeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(constructorExpCSEClass, ConstructorExpCS.class, "ConstructorExpCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getConstructorExpCS_TypeName(), this.getTypeNameExpCS(), null, "typeName", null, 0, 1, ConstructorExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getConstructorExpCS_Parts(), this.getConstructorPartCS(), null, "parts", null, 0, -1, ConstructorExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getConstructorExpCS_Parts(), this.getConstructorPartCS(), null, "parts", null, 0, -1, ConstructorExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getConstructorExpCS_TypeName(), this.getTypeNameExpCS(), null, "typeName", null, 0, 1, ConstructorExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getConstructorExpCS_Value(), ecorePackage.getEString(), "value", null, 0, 1, ConstructorExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(constructorPartCSEClass, ConstructorPartCS.class, "ConstructorPartCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getConstructorPartCS_OwnedInitExpression(), this.getExpCS(), null, "ownedInitExpression", null, 1, 1, ConstructorPartCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getConstructorPartCS_OwningCurlyBracketClause(), this.getCurlyBracketedClauseCS(), this.getCurlyBracketedClauseCS_OwnedParts(), "owningCurlyBracketClause", null, 0, 1, ConstructorPartCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getConstructorPartCS_ReferredProperty(), thePivotPackage.getProperty(), null, "referredProperty", null, 1, 1, ConstructorPartCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getConstructorPartCS_OwnedInitExpression(), this.getExpCS(), null, "ownedInitExpression", null, 1, 1, ConstructorPartCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(contextCSEClass, ContextCS.class, "ContextCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getContextCS_OwnedExpression(), this.getExpCS(), null, "ownedExpression", null, 0, 1, ContextCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(curlyBracketedClauseCSEClass, CurlyBracketedClauseCS.class, "CurlyBracketedClauseCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getCurlyBracketedClauseCS_OwningNameExp(), this.getAbstractNameExpCS(), this.getAbstractNameExpCS_OwnedCurlyBracketedClause(), "owningNameExp", null, 0, 1, CurlyBracketedClauseCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getCurlyBracketedClauseCS_OwnedParts(), this.getConstructorPartCS(), this.getConstructorPartCS_OwningCurlyBracketClause(), "ownedParts", null, 0, -1, CurlyBracketedClauseCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getCurlyBracketedClauseCS_OwningNameExp(), this.getAbstractNameExpCS(), this.getAbstractNameExpCS_OwnedCurlyBracketedClause(), "owningNameExp", null, 0, 1, CurlyBracketedClauseCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getCurlyBracketedClauseCS_Value(), ecorePackage.getEString(), "value", null, 0, 1, CurlyBracketedClauseCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(expCSEClass, ExpCS.class, "ExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -2135,62 +2133,62 @@ public class EssentialOCLCSPackageImpl
 		initEReference(getExpCS_LocalRightmostDescendant(), this.getExpCS(), null, "localRightmostDescendant", null, 1, 1, ExpCS.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getExpCS_Precedence(), thePivotPackage.getPrecedence(), null, "precedence", null, 0, 1, ExpCS.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		EOperation op = addEOperation(expCSEClass, theEcorePackage.getEBoolean(), "isLocalLeftAncestorOf", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		EOperation op = addEOperation(expCSEClass, ecorePackage.getEBoolean(), "isLocalLeftAncestorOf", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, this.getExpCS(), "csExp", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		op = addEOperation(expCSEClass, theEcorePackage.getEBoolean(), "isLocalRightAncestorOf", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(expCSEClass, ecorePackage.getEBoolean(), "isLocalRightAncestorOf", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, this.getExpCS(), "csExp", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(expSpecificationCSEClass, ExpSpecificationCS.class, "ExpSpecificationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getExpSpecificationCS_OwnedExpression(), this.getExpCS(), null, "ownedExpression", null, 0, 1, ExpSpecificationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(ifExpCSEClass, IfExpCS.class, "IfExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getIfExpCS_IsImplicit(), ecorePackage.getEBoolean(), "isImplicit", "false", 0, 1, IfExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEReference(getIfExpCS_OwnedCondition(), this.getExpCS(), null, "ownedCondition", null, 0, 1, IfExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getIfExpCS_OwnedThenExpression(), this.getExpCS(), null, "ownedThenExpression", null, 0, 1, IfExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getIfExpCS_OwnedIfThenExpressions(), this.getIfThenExpCS(), null, "ownedIfThenExpressions", null, 0, -1, IfExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getIfExpCS_OwnedElseExpression(), this.getExpCS(), null, "ownedElseExpression", null, 0, 1, IfExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getIfExpCS_IsImplicit(), theEcorePackage.getEBoolean(), "isImplicit", "false", 0, 1, IfExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEReference(getIfExpCS_OwnedIfThenExpressions(), this.getIfThenExpCS(), null, "ownedIfThenExpressions", null, 0, -1, IfExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getIfExpCS_OwnedThenExpression(), this.getExpCS(), null, "ownedThenExpression", null, 0, 1, IfExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(ifThenExpCSEClass, IfThenExpCS.class, "IfThenExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getIfThenExpCS_OwnedCondition(), this.getExpCS(), null, "ownedCondition", null, 0, 1, IfThenExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getIfThenExpCS_OwnedThenExpression(), this.getExpCS(), null, "ownedThenExpression", null, 0, 1, IfThenExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(infixExpCSEClass, InfixExpCS.class, "InfixExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getInfixExpCS_OwnedLeft(), this.getExpCS(), null, "ownedLeft", null, 1, 1, InfixExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getInfixExpCS_Argument(), this.getExpCS(), null, "argument", null, 0, 1, InfixExpCS.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getInfixExpCS_OwnedLeft(), this.getExpCS(), null, "ownedLeft", null, 1, 1, InfixExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(invalidLiteralExpCSEClass, InvalidLiteralExpCS.class, "InvalidLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(iterateCallExpCSEClass, IterateCallExpCS.class, "IterateCallExpCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getIterateCallExpCS_Accumulators(), this.getVariableCS(), null, "accumulators", null, 0, -1, IterateCallExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getIterateCallExpCS_Accumulators(), this.getVariableCS(), null, "accumulators", null, 0, -1, IterateCallExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(iterationCallExpCSEClass, IterationCallExpCS.class, "IterationCallExpCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getIterationCallExpCS_ReferredIteration(), thePivotPackage.getIteration(), null, "referredIteration", null, 0, 1, IterationCallExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getIterationCallExpCS_Iterators(), this.getVariableCS(), null, "iterators", null, 0, -1, IterationCallExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getIterationCallExpCS_Iterators(), this.getVariableCS(), null, "iterators", null, 0, -1, IterationCallExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getIterationCallExpCS_ReferredIteration(), thePivotPackage.getIteration(), null, "referredIteration", null, 0, 1, IterationCallExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(lambdaLiteralExpCSEClass, LambdaLiteralExpCS.class, "LambdaLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getLambdaLiteralExpCS_OwnedExpressionCS(), this.getExpCS(), null, "ownedExpressionCS", null, 0, 1, LambdaLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(letExpCSEClass, LetExpCS.class, "LetExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getLetExpCS_OwnedVariables(), this.getLetVariableCS(), this.getLetVariableCS_OwningLetExpression(), "ownedVariables", null, 0, -1, LetExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getLetExpCS_IsImplicit(), ecorePackage.getEBoolean(), "isImplicit", "false", 0, 1, LetExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEReference(getLetExpCS_OwnedInExpression(), this.getExpCS(), null, "ownedInExpression", null, 0, 1, LetExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getLetExpCS_IsImplicit(), theEcorePackage.getEBoolean(), "isImplicit", "false", 0, 1, LetExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEReference(getLetExpCS_OwnedVariables(), this.getLetVariableCS(), this.getLetVariableCS_OwningLetExpression(), "ownedVariables", null, 0, -1, LetExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(letVariableCSEClass, LetVariableCS.class, "LetVariableCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getLetVariableCS_OwningLetExpression(), this.getLetExpCS(), this.getLetExpCS_OwnedVariables(), "owningLetExpression", null, 0, 1, LetVariableCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getLetVariableCS_OwnedRoundBracketedClause(), this.getRoundBracketedClauseCS(), null, "ownedRoundBracketedClause", null, 0, 1, LetVariableCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getLetVariableCS_OwningLetExpression(), this.getLetExpCS(), this.getLetExpCS_OwnedVariables(), "owningLetExpression", null, 0, 1, LetVariableCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(literalExpCSEClass, LiteralExpCS.class, "LiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(nameExpCSEClass, NameExpCS.class, "NameExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(navigatingArgCSEClass, NavigatingArgCS.class, "NavigatingArgCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getNavigatingArgCS_OwningRoundBracketedClause(), this.getRoundBracketedClauseCS(), this.getRoundBracketedClauseCS_OwnedArguments(), "owningRoundBracketedClause", null, 0, 1, NavigatingArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getNavigatingArgCS_Role(), this.getNavigationRole(), "role", null, 0, 1, NavigatingArgCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getNavigatingArgCS_Prefix(), ecorePackage.getEString(), "prefix", null, 0, 1, NavigatingArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getNavigatingArgCS_OwnedInitExpression(), this.getExpCS(), null, "ownedInitExpression", null, 0, 1, NavigatingArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getNavigatingArgCS_OwnedNameExpression(), this.getExpCS(), null, "ownedNameExpression", null, 0, 1, NavigatingArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getNavigatingArgCS_OwnedType(), theBaseCSPackage.getTypedRefCS(), null, "ownedType", null, 0, 1, NavigatingArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getNavigatingArgCS_OwnedInitExpression(), this.getExpCS(), null, "ownedInitExpression", null, 0, 1, NavigatingArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getNavigatingArgCS_OwningRoundBracketedClause(), this.getRoundBracketedClauseCS(), this.getRoundBracketedClauseCS_OwnedArguments(), "owningRoundBracketedClause", null, 0, 1, NavigatingArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getNavigatingArgCS_Prefix(), ecorePackage.getEString(), "prefix", null, 0, 1, NavigatingArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getNavigatingArgCS_Role(), this.getNavigationRole(), "role", null, 0, 1, NavigatingArgCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(nestedExpCSEClass, NestedExpCS.class, "NestedExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getNestedExpCS_Source(), this.getExpCS(), null, "source", null, 0, 1, NestedExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -2201,33 +2199,33 @@ public class EssentialOCLCSPackageImpl
 		initEAttribute(getNumberLiteralExpCS_Symbol(), theBaseCSPackage.getBigNumber(), "symbol", null, 0, 1, NumberLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(operationCallExpCSEClass, OperationCallExpCS.class, "OperationCallExpCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getOperationCallExpCS_ReferredOperation(), thePivotPackage.getOperation(), null, "referredOperation", null, 0, 1, OperationCallExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getOperationCallExpCS_ReferredOperation(), thePivotPackage.getOperation(), null, "referredOperation", null, 0, 1, OperationCallExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(operatorExpCSEClass, OperatorExpCS.class, "OperatorExpCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getOperatorExpCS_OwnedRight(), this.getExpCS(), null, "ownedRight", null, 1, 1, OperatorExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getOperatorExpCS_Source(), this.getExpCS(), null, "source", null, 0, 1, OperatorExpCS.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(patternExpCSEClass, PatternExpCS.class, "PatternExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getPatternExpCS_PatternVariableName(), ecorePackage.getEString(), "patternVariableName", null, 0, 1, PatternExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPatternExpCS_OwnedPatternType(), theBaseCSPackage.getTypeRefCS(), null, "ownedPatternType", null, 0, 1, PatternExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getPatternExpCS_PatternVariableName(), ecorePackage.getEString(), "patternVariableName", null, 0, 1, PatternExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(prefixExpCSEClass, PrefixExpCS.class, "PrefixExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(primitiveLiteralExpCSEClass, PrimitiveLiteralExpCS.class, "PrimitiveLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(propertyCallExpCSEClass, PropertyCallExpCS.class, "PropertyCallExpCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getPropertyCallExpCS_ReferredProperty(), thePivotPackage.getProperty(), null, "referredProperty", null, 0, 1, PropertyCallExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPropertyCallExpCS_ReferredProperty(), thePivotPackage.getProperty(), null, "referredProperty", null, 0, 1, PropertyCallExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(roundBracketedClauseCSEClass, RoundBracketedClauseCS.class, "RoundBracketedClauseCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getRoundBracketedClauseCS_OwningNameExp(), this.getAbstractNameExpCS(), this.getAbstractNameExpCS_OwnedRoundBracketedClause(), "owningNameExp", null, 0, 1, RoundBracketedClauseCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getRoundBracketedClauseCS_OwnedArguments(), this.getNavigatingArgCS(), this.getNavigatingArgCS_OwningRoundBracketedClause(), "ownedArguments", null, 0, -1, RoundBracketedClauseCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getRoundBracketedClauseCS_OwningNameExp(), this.getAbstractNameExpCS(), this.getAbstractNameExpCS_OwnedRoundBracketedClause(), "owningNameExp", null, 0, 1, RoundBracketedClauseCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(selfExpCSEClass, SelfExpCS.class, "SelfExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getSelfExpCS_Name(), ecorePackage.getEString(), "name", null, 0, 1, SelfExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(squareBracketedClauseCSEClass, SquareBracketedClauseCS.class, "SquareBracketedClauseCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getSquareBracketedClauseCS_OwningNameExp(), this.getAbstractNameExpCS(), this.getAbstractNameExpCS_OwnedSquareBracketedClauses(), "owningNameExp", null, 0, 1, SquareBracketedClauseCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getSquareBracketedClauseCS_OwnedTerms(), this.getExpCS(), null, "ownedTerms", null, 1, -1, SquareBracketedClauseCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getSquareBracketedClauseCS_OwningNameExp(), this.getAbstractNameExpCS(), this.getAbstractNameExpCS_OwnedSquareBracketedClauses(), "owningNameExp", null, 0, 1, SquareBracketedClauseCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(stringLiteralExpCSEClass, StringLiteralExpCS.class, "StringLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getStringLiteralExpCS_Segments(), ecorePackage.getEString(), "segments", null, 0, -1, StringLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -2242,19 +2240,19 @@ public class EssentialOCLCSPackageImpl
 		initEReference(getTypeLiteralExpCS_OwnedType(), theBaseCSPackage.getTypedRefCS(), null, "ownedType", null, 1, 1, TypeLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(typeNameExpCSEClass, TypeNameExpCS.class, "TypeNameExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getTypeNameExpCS_OwnedPathName(), theBaseCSPackage.getPathNameCS(), null, "ownedPathName", null, 0, 1, TypeNameExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTypeNameExpCS_Element(), thePivotPackage.getType(), null, "element", null, 0, 1, TypeNameExpCS.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTypeNameExpCS_OwnedCurlyBracketedClause(), this.getCurlyBracketedClauseCS(), null, "ownedCurlyBracketedClause", null, 0, 1, TypeNameExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTypeNameExpCS_OwnedPathName(), theBaseCSPackage.getPathNameCS(), null, "ownedPathName", null, 0, 1, TypeNameExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTypeNameExpCS_OwnedPatternGuard(), this.getExpCS(), null, "ownedPatternGuard", null, 0, 1, TypeNameExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(unlimitedNaturalLiteralExpCSEClass, UnlimitedNaturalLiteralExpCS.class, "UnlimitedNaturalLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(variableCSEClass, VariableCS.class, "VariableCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getVariableCS_OwnedType(), theBaseCSPackage.getTypedRefCS(), null, "ownedType", null, 0, 1, VariableCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getVariableCS_OwnedInitExpression(), this.getExpCS(), null, "ownedInitExpression", null, 0, 1, VariableCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getVariableCS_OwnedType(), theBaseCSPackage.getTypedRefCS(), null, "ownedType", null, 0, 1, VariableCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(variableExpCSEClass, VariableExpCS.class, "VariableExpCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getVariableExpCS_ReferredVariable(), thePivotPackage.getVariable(), null, "referredVariable", null, 0, 1, VariableExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getVariableExpCS_ReferredVariable(), thePivotPackage.getVariable(), null, "referredVariable", null, 0, 1, VariableExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize enums and add enum literals
 		initEEnum(navigationRoleEEnum, NavigationRole.class, "NavigationRole"); //$NON-NLS-1$
@@ -2264,30 +2262,6 @@ public class EssentialOCLCSPackageImpl
 
 		// Create resource
 		createResource(eNS_URI);
-
-		// Create annotations
-		// http://www.eclipse.org/OCL/Import
-		createImportAnnotations();
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://www.eclipse.org/OCL/Import</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createImportAnnotations()
-	{
-		String source = "http://www.eclipse.org/OCL/Import"; //$NON-NLS-1$	
-		addAnnotation
-		  (this, 
-		   source, 
-		   new String[] 
-		   {
-			 "ecore", "http://www.eclipse.org/emf/2002/Ecore", //$NON-NLS-1$ //$NON-NLS-2$
-			 "pivot", "../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#/", //$NON-NLS-1$ //$NON-NLS-2$
-			 "basecs", "../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#/" //$NON-NLS-1$ //$NON-NLS-2$
-		   });
 	}
 
 } //EssentialOCLCSPackageImpl

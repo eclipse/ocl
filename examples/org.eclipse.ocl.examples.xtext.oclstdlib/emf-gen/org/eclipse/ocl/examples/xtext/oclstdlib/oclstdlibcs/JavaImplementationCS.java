@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,11 +25,11 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage#getJavaImplementationCS()
- * @model interface="true" abstract="true"
+ * @model abstract="true"
  * @generated
  */
 public interface JavaImplementationCS
-		extends EObject {
+		extends ElementCS {
 
 	/**
 	 * Returns the value of the '<em><b>Implementation</b></em>' reference.

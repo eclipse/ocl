@@ -17,7 +17,7 @@ package org.eclipse.ocl.examples.xtext.base.basecs;
  *
  *
  * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getMultiplicityCS()
- * @model interface="true" abstract="true"
+ * @model abstract="true"
  * @generated
  */
 public interface MultiplicityCS extends ElementCS

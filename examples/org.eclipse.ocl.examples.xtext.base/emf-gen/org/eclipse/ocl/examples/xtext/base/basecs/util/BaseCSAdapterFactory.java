@@ -265,14 +265,14 @@ public class BaseCSAdapterFactory extends AdapterFactoryImpl {
 				return createSpecificationCSAdapter();
 			}
 			@Override
-			public Adapter caseStructuredClassCS(StructuredClassCS object)
-			{
-				return createStructuredClassCSAdapter();
-			}
-			@Override
 			public Adapter caseStructuralFeatureCS(StructuralFeatureCS object)
 			{
 				return createStructuralFeatureCSAdapter();
+			}
+			@Override
+			public Adapter caseStructuredClassCS(StructuredClassCS object)
+			{
+				return createStructuredClassCSAdapter();
 			}
 			@Override
 			public Adapter caseTemplateBindingCS(TemplateBindingCS object)

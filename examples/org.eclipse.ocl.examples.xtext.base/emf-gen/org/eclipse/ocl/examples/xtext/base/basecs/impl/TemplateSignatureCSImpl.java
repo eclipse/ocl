@@ -36,8 +36,8 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TemplateSignatureCSImpl#getOwningElement <em>Owning Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TemplateSignatureCSImpl#getOwnedParameters <em>Owned Parameters</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TemplateSignatureCSImpl#getOwningElement <em>Owning Element</em>}</li>
  * </ul>
  * </p>
  *
@@ -138,12 +138,12 @@ public class TemplateSignatureCSImpl extends ModelElementCSImpl implements Templ
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNED_PARAMETERS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedParameters()).basicAdd(otherEnd, msgs);
 			case BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNING_ELEMENT:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningElement((TemplateableElementCS)otherEnd, msgs);
-			case BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNED_PARAMETERS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedParameters()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -157,10 +157,10 @@ public class TemplateSignatureCSImpl extends ModelElementCSImpl implements Templ
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNING_ELEMENT:
-				return basicSetOwningElement(null, msgs);
 			case BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNED_PARAMETERS:
 				return ((InternalEList<?>)getOwnedParameters()).basicRemove(otherEnd, msgs);
+			case BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNING_ELEMENT:
+				return basicSetOwningElement(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -189,10 +189,10 @@ public class TemplateSignatureCSImpl extends ModelElementCSImpl implements Templ
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNING_ELEMENT:
-				return getOwningElement();
 			case BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNED_PARAMETERS:
 				return getOwnedParameters();
+			case BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNING_ELEMENT:
+				return getOwningElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -207,12 +207,12 @@ public class TemplateSignatureCSImpl extends ModelElementCSImpl implements Templ
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNING_ELEMENT:
-				setOwningElement((TemplateableElementCS)newValue);
-				return;
 			case BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNED_PARAMETERS:
 				getOwnedParameters().clear();
 				getOwnedParameters().addAll((Collection<? extends TemplateParameterCS>)newValue);
+				return;
+			case BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNING_ELEMENT:
+				setOwningElement((TemplateableElementCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -227,11 +227,11 @@ public class TemplateSignatureCSImpl extends ModelElementCSImpl implements Templ
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNING_ELEMENT:
-				setOwningElement((TemplateableElementCS)null);
-				return;
 			case BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNED_PARAMETERS:
 				getOwnedParameters().clear();
+				return;
+			case BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNING_ELEMENT:
+				setOwningElement((TemplateableElementCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -246,10 +246,10 @@ public class TemplateSignatureCSImpl extends ModelElementCSImpl implements Templ
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNING_ELEMENT:
-				return getOwningElement() != null;
 			case BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNED_PARAMETERS:
 				return ownedParameters != null && !ownedParameters.isEmpty();
+			case BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNING_ELEMENT:
+				return getOwningElement() != null;
 		}
 		return super.eIsSet(featureID);
 	}

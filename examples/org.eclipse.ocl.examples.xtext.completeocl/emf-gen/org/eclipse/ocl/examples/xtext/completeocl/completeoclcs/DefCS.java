@@ -21,9 +21,9 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpSpecificati
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS#getOwningClassifierContextDecl <em>Owning Classifier Context Decl</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS#getOwnedSpecification <em>Owned Specification</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS#isIsStatic <em>Is Static</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS#getOwnedSpecification <em>Owned Specification</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS#getOwningClassifierContextDecl <em>Owning Classifier Context Decl</em>}</li>
  * </ul>
  * </p>
  *

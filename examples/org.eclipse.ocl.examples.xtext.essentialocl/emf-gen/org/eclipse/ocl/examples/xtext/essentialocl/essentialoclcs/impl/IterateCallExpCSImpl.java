@@ -14,7 +14,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IterateCallExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS;
@@ -73,7 +73,7 @@ public abstract class IterateCallExpCSImpl extends IterationCallExpCSImpl implem
 	{
 		if (accumulators == null)
 		{
-			accumulators = new EObjectResolvingEList<VariableCS>(VariableCS.class, this, EssentialOCLCSPackage.ITERATE_CALL_EXP_CS__ACCUMULATORS);
+			accumulators = new EObjectEList<VariableCS>(VariableCS.class, this, EssentialOCLCSPackage.ITERATE_CALL_EXP_CS__ACCUMULATORS);
 		}
 		return accumulators;
 	}

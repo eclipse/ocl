@@ -238,7 +238,7 @@ public class OCLstdlibCSPackageImpl
 	 */
 	public EReference getLibIterationCS_OwnedIterators()
 	{
-		return (EReference)libIterationCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)libIterationCSEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -248,7 +248,7 @@ public class OCLstdlibCSPackageImpl
 	 */
 	public EReference getLibIterationCS_OwnedAccumulators()
 	{
-		return (EReference)libIterationCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)libIterationCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -258,7 +258,7 @@ public class OCLstdlibCSPackageImpl
 	 */
 	public EAttribute getLibIterationCS_IsInvalidating()
 	{
-		return (EAttribute)libIterationCSEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)libIterationCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -268,7 +268,7 @@ public class OCLstdlibCSPackageImpl
 	 */
 	public EAttribute getLibIterationCS_IsValidating()
 	{
-		return (EAttribute)libIterationCSEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)libIterationCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -286,7 +286,7 @@ public class OCLstdlibCSPackageImpl
 	 * @generated
 	 */
 	public EReference getLibOperationCS_Precedence() {
-		return (EReference)libOperationCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)libOperationCSEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -296,7 +296,7 @@ public class OCLstdlibCSPackageImpl
 	 */
 	public EAttribute getLibOperationCS_IsInvalidating()
 	{
-		return (EAttribute)libOperationCSEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)libOperationCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -306,7 +306,7 @@ public class OCLstdlibCSPackageImpl
 	 */
 	public EAttribute getLibOperationCS_IsStatic()
 	{
-		return (EAttribute)libOperationCSEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)libOperationCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -316,7 +316,7 @@ public class OCLstdlibCSPackageImpl
 	 */
 	public EAttribute getLibOperationCS_IsValidating()
 	{
-		return (EAttribute)libOperationCSEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)libOperationCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -465,16 +465,16 @@ public class OCLstdlibCSPackageImpl
 		libConstraintCSEClass = createEClass(LIB_CONSTRAINT_CS);
 
 		libIterationCSEClass = createEClass(LIB_ITERATION_CS);
-		createEReference(libIterationCSEClass, LIB_ITERATION_CS__OWNED_ITERATORS);
-		createEReference(libIterationCSEClass, LIB_ITERATION_CS__OWNED_ACCUMULATORS);
 		createEAttribute(libIterationCSEClass, LIB_ITERATION_CS__IS_INVALIDATING);
 		createEAttribute(libIterationCSEClass, LIB_ITERATION_CS__IS_VALIDATING);
+		createEReference(libIterationCSEClass, LIB_ITERATION_CS__OWNED_ACCUMULATORS);
+		createEReference(libIterationCSEClass, LIB_ITERATION_CS__OWNED_ITERATORS);
 
 		libOperationCSEClass = createEClass(LIB_OPERATION_CS);
-		createEReference(libOperationCSEClass, LIB_OPERATION_CS__PRECEDENCE);
 		createEAttribute(libOperationCSEClass, LIB_OPERATION_CS__IS_INVALIDATING);
 		createEAttribute(libOperationCSEClass, LIB_OPERATION_CS__IS_STATIC);
 		createEAttribute(libOperationCSEClass, LIB_OPERATION_CS__IS_VALIDATING);
+		createEReference(libOperationCSEClass, LIB_OPERATION_CS__PRECEDENCE);
 
 		libPackageCSEClass = createEClass(LIB_PACKAGE_CS);
 		createEReference(libPackageCSEClass, LIB_PACKAGE_CS__OWNED_PRECEDENCES);
@@ -524,6 +524,7 @@ public class OCLstdlibCSPackageImpl
 
 		// Add supertypes to classes
 		javaClassCSEClass.getESuperTypes().add(theBaseCSPackage.getNamedElementCS());
+		javaImplementationCSEClass.getESuperTypes().add(theBaseCSPackage.getElementCS());
 		libClassCSEClass.getESuperTypes().add(theBaseCSPackage.getStructuredClassCS());
 		libConstraintCSEClass.getESuperTypes().add(theBaseCSPackage.getConstraintCS());
 		libIterationCSEClass.getESuperTypes().add(theBaseCSPackage.getOperationCS());
@@ -541,25 +542,25 @@ public class OCLstdlibCSPackageImpl
 		// Initialize classes and features; add operations and parameters
 		initEClass(javaClassCSEClass, JavaClassCS.class, "JavaClassCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(javaImplementationCSEClass, JavaImplementationCS.class, "JavaImplementationCS", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(javaImplementationCSEClass, JavaImplementationCS.class, "JavaImplementationCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getJavaImplementationCS_Implementation(), this.getJavaClassCS(), null, "implementation", null, 0, 1, JavaImplementationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(libClassCSEClass, LibClassCS.class, "LibClassCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLibClassCS_MetaclassName(), this.getMetaclassNameCS(), null, "metaclassName", null, 0, 1, LibClassCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLibClassCS_MetaclassName(), this.getMetaclassNameCS(), null, "metaclassName", null, 0, 1, LibClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(libConstraintCSEClass, LibConstraintCS.class, "LibConstraintCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(libIterationCSEClass, LibIterationCS.class, "LibIterationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLibIterationCS_OwnedIterators(), theBaseCSPackage.getParameterCS(), null, "ownedIterators", null, 0, -1, LibIterationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLibIterationCS_OwnedAccumulators(), theBaseCSPackage.getParameterCS(), null, "ownedAccumulators", null, 0, -1, LibIterationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLibIterationCS_IsInvalidating(), thePivotPackage.getBoolean(), "isInvalidating", "false", 0, 1, LibIterationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLibIterationCS_IsValidating(), thePivotPackage.getBoolean(), "isValidating", "false", 0, 1, LibIterationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLibIterationCS_OwnedAccumulators(), theBaseCSPackage.getParameterCS(), null, "ownedAccumulators", null, 0, -1, LibIterationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLibIterationCS_OwnedIterators(), theBaseCSPackage.getParameterCS(), null, "ownedIterators", null, 0, -1, LibIterationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(libOperationCSEClass, LibOperationCS.class, "LibOperationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLibOperationCS_Precedence(), thePivotPackage.getPrecedence(), null, "precedence", null, 0, 1, LibOperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLibOperationCS_IsInvalidating(), thePivotPackage.getBoolean(), "isInvalidating", "false", 0, 1, LibOperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLibOperationCS_IsStatic(), thePivotPackage.getBoolean(), "isStatic", "false", 0, 1, LibOperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLibOperationCS_IsValidating(), thePivotPackage.getBoolean(), "isValidating", "false", 0, 1, LibOperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLibOperationCS_Precedence(), thePivotPackage.getPrecedence(), null, "precedence", null, 0, 1, LibOperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(libPackageCSEClass, LibPackageCS.class, "LibPackageCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLibPackageCS_OwnedPrecedences(), this.getPrecedenceCS(), null, "ownedPrecedences", null, 0, -1, LibPackageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -577,53 +578,6 @@ public class OCLstdlibCSPackageImpl
 
 		// Create resource
 		createResource(eNS_URI);
-
-		// Create annotations
-		// http://www.eclipse.org/emf/2002/Ecore
-		createEcoreAnnotations();
-		// http://www.eclipse.org/OCL/Import
-		createImportAnnotations();
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createEcoreAnnotations()
-	{
-		String source = "http://www.eclipse.org/emf/2002/Ecore";	
-		addAnnotation
-		  (this, 
-		   source, 
-		   new String[] 
-		   {
-			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL",
-			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL",
-			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL"
-		   });
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://www.eclipse.org/OCL/Import</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createImportAnnotations()
-	{
-		String source = "http://www.eclipse.org/OCL/Import";	
-		addAnnotation
-		  (this, 
-		   source, 
-		   new String[] 
-		   {
-			 "ecore", "http://www.eclipse.org/emf/2002/Ecore",
-			 "pivot", "../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#/",
-			 "basecs", "../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#/",
-			 "essentialoclcs", "../../org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCS.ecore#/"
-		   });
 	}
 
 } //OCLstdlibCSPackageImpl

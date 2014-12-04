@@ -36,8 +36,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.PatternExpCSImpl#getPatternVariableName <em>Pattern Variable Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.PatternExpCSImpl#getOwnedPatternType <em>Owned Pattern Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.PatternExpCSImpl#getPatternVariableName <em>Pattern Variable Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -45,6 +45,16 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  */
 public class PatternExpCSImpl extends ExpCSImpl implements PatternExpCS
 {
+	/**
+	 * The cached value of the '{@link #getOwnedPatternType() <em>Owned Pattern Type</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedPatternType()
+	 * @generated
+	 * @ordered
+	 */
+	protected TypeRefCS ownedPatternType;
+
 	/**
 	 * The default value of the '{@link #getPatternVariableName() <em>Pattern Variable Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -64,16 +74,6 @@ public class PatternExpCSImpl extends ExpCSImpl implements PatternExpCS
 	 * @ordered
 	 */
 	protected String patternVariableName = PATTERN_VARIABLE_NAME_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getOwnedPatternType() <em>Owned Pattern Type</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedPatternType()
-	 * @generated
-	 * @ordered
-	 */
-	protected TypeRefCS ownedPatternType;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -204,10 +204,10 @@ public class PatternExpCSImpl extends ExpCSImpl implements PatternExpCS
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.PATTERN_EXP_CS__PATTERN_VARIABLE_NAME:
-				return getPatternVariableName();
 			case EssentialOCLCSPackage.PATTERN_EXP_CS__OWNED_PATTERN_TYPE:
 				return getOwnedPatternType();
+			case EssentialOCLCSPackage.PATTERN_EXP_CS__PATTERN_VARIABLE_NAME:
+				return getPatternVariableName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -222,11 +222,11 @@ public class PatternExpCSImpl extends ExpCSImpl implements PatternExpCS
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.PATTERN_EXP_CS__PATTERN_VARIABLE_NAME:
-				setPatternVariableName((String)newValue);
-				return;
 			case EssentialOCLCSPackage.PATTERN_EXP_CS__OWNED_PATTERN_TYPE:
 				setOwnedPatternType((TypeRefCS)newValue);
+				return;
+			case EssentialOCLCSPackage.PATTERN_EXP_CS__PATTERN_VARIABLE_NAME:
+				setPatternVariableName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -242,11 +242,11 @@ public class PatternExpCSImpl extends ExpCSImpl implements PatternExpCS
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.PATTERN_EXP_CS__PATTERN_VARIABLE_NAME:
-				setPatternVariableName(PATTERN_VARIABLE_NAME_EDEFAULT);
-				return;
 			case EssentialOCLCSPackage.PATTERN_EXP_CS__OWNED_PATTERN_TYPE:
 				setOwnedPatternType((TypeRefCS)null);
+				return;
+			case EssentialOCLCSPackage.PATTERN_EXP_CS__PATTERN_VARIABLE_NAME:
+				setPatternVariableName(PATTERN_VARIABLE_NAME_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -262,10 +262,10 @@ public class PatternExpCSImpl extends ExpCSImpl implements PatternExpCS
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.PATTERN_EXP_CS__PATTERN_VARIABLE_NAME:
-				return PATTERN_VARIABLE_NAME_EDEFAULT == null ? patternVariableName != null : !PATTERN_VARIABLE_NAME_EDEFAULT.equals(patternVariableName);
 			case EssentialOCLCSPackage.PATTERN_EXP_CS__OWNED_PATTERN_TYPE:
 				return ownedPatternType != null;
+			case EssentialOCLCSPackage.PATTERN_EXP_CS__PATTERN_VARIABLE_NAME:
+				return PATTERN_VARIABLE_NAME_EDEFAULT == null ? patternVariableName != null : !PATTERN_VARIABLE_NAME_EDEFAULT.equals(patternVariableName);
 		}
 		return super.eIsSet(featureID);
 	}

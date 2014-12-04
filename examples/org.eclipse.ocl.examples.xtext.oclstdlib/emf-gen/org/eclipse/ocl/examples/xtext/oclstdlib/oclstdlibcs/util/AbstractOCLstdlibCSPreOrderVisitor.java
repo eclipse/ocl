@@ -47,6 +47,10 @@ public abstract class AbstractOCLstdlibCSPreOrderVisitor
 		return visitNamedElementCS(csElement);
 	}
 
+	public @Nullable Continuation<?> visitJavaImplementationCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaImplementationCS csElement) {
+		return visitElementCS(csElement);
+	}
+
 	public @Nullable Continuation<?> visitLibClassCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibClassCS csElement) {
 		return visitStructuredClassCS(csElement);
 	}

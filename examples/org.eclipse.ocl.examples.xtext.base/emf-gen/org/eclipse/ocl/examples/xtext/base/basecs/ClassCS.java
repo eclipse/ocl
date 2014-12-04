@@ -21,9 +21,9 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ClassCS#getOwningPackage <em>Owning Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ClassCS#getInstanceClassName <em>Instance Class Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ClassCS#getOwnedConstraints <em>Owned Constraints</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ClassCS#getOwningPackage <em>Owning Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ClassCS#getQualifiers <em>Qualifiers</em>}</li>
  * </ul>
  * </p>
@@ -72,7 +72,7 @@ public interface ClassCS extends NamedElementCS, TypeCS, TemplateableElementCS {
 	 * @return the value of the '<em>Instance Class Name</em>' attribute.
 	 * @see #setInstanceClassName(String)
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getClassCS_InstanceClassName()
-	 * @model unsettable="true" suppressedIsSetVisibility="true" suppressedUnsetVisibility="true"
+	 * @model
 	 * @generated
 	 */
 	String getInstanceClassName();

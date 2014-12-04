@@ -22,8 +22,8 @@ import org.eclipse.ocl.examples.pivot.Iteration;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IterationCallExpCS#getReferredIteration <em>Referred Iteration</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IterationCallExpCS#getIterators <em>Iterators</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IterationCallExpCS#getReferredIteration <em>Referred Iteration</em>}</li>
  * </ul>
  * </p>
  *
@@ -44,7 +44,7 @@ public interface IterationCallExpCS extends CallExpCS
 	 * @return the value of the '<em>Referred Iteration</em>' reference.
 	 * @see #setReferredIteration(Iteration)
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getIterationCallExpCS_ReferredIteration()
-	 * @model derived="true"
+	 * @model resolveProxies="false" derived="true"
 	 * @generated
 	 */
 	Iteration getReferredIteration();
@@ -70,7 +70,7 @@ public interface IterationCallExpCS extends CallExpCS
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Iterators</em>' reference list.
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getIterationCallExpCS_Iterators()
-	 * @model derived="true"
+	 * @model resolveProxies="false" derived="true"
 	 * @generated
 	 */
 	EList<VariableCS> getIterators();

@@ -36,9 +36,9 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PathElementCSImpl#getElementType <em>Element Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PathElementCSImpl#getOwningPathName <em>Owning Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PathElementCSImpl#getReferredElement <em>Referred Element</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PathElementCSImpl#getElementType <em>Element Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -46,16 +46,6 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  */
 public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 {
-	/**
-	 * The cached value of the '{@link #getReferredElement() <em>Referred Element</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getReferredElement()
-	 * @generated
-	 * @ordered
-	 */
-	protected Element referredElement;
-
 	/**
 	 * The cached value of the '{@link #getElementType() <em>Element Type</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -65,6 +55,16 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	 * @ordered
 	 */
 	protected EClassifier elementType;
+
+	/**
+	 * The cached value of the '{@link #getReferredElement() <em>Referred Element</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReferredElement()
+	 * @generated
+	 * @ordered
+	 */
+	protected Element referredElement;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -152,6 +152,26 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	 */
 	public EClassifier getElementType()
 	{
+		if (elementType != null && elementType.eIsProxy())
+		{
+			InternalEObject oldElementType = (InternalEObject)elementType;
+			elementType = (EClassifier)eResolveProxy(oldElementType);
+			if (elementType != oldElementType)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BaseCSPackage.PATH_ELEMENT_CS__ELEMENT_TYPE, oldElementType, elementType));
+			}
+		}
+		return elementType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClassifier basicGetElementType()
+	{
 		return elementType;
 	}
 
@@ -228,13 +248,14 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	{
 		switch (featureID)
 		{
+			case BaseCSPackage.PATH_ELEMENT_CS__ELEMENT_TYPE:
+				if (resolve) return getElementType();
+				return basicGetElementType();
 			case BaseCSPackage.PATH_ELEMENT_CS__OWNING_PATH_NAME:
 				return getOwningPathName();
 			case BaseCSPackage.PATH_ELEMENT_CS__REFERRED_ELEMENT:
 				if (resolve) return getReferredElement();
 				return basicGetReferredElement();
-			case BaseCSPackage.PATH_ELEMENT_CS__ELEMENT_TYPE:
-				return getElementType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -249,14 +270,14 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	{
 		switch (featureID)
 		{
+			case BaseCSPackage.PATH_ELEMENT_CS__ELEMENT_TYPE:
+				setElementType((EClassifier)newValue);
+				return;
 			case BaseCSPackage.PATH_ELEMENT_CS__OWNING_PATH_NAME:
 				setOwningPathName((PathNameCS)newValue);
 				return;
 			case BaseCSPackage.PATH_ELEMENT_CS__REFERRED_ELEMENT:
 				setReferredElement((Element)newValue);
-				return;
-			case BaseCSPackage.PATH_ELEMENT_CS__ELEMENT_TYPE:
-				setElementType((EClassifier)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -272,14 +293,14 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	{
 		switch (featureID)
 		{
+			case BaseCSPackage.PATH_ELEMENT_CS__ELEMENT_TYPE:
+				setElementType((EClassifier)null);
+				return;
 			case BaseCSPackage.PATH_ELEMENT_CS__OWNING_PATH_NAME:
 				setOwningPathName((PathNameCS)null);
 				return;
 			case BaseCSPackage.PATH_ELEMENT_CS__REFERRED_ELEMENT:
 				setReferredElement((Element)null);
-				return;
-			case BaseCSPackage.PATH_ELEMENT_CS__ELEMENT_TYPE:
-				setElementType((EClassifier)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -295,12 +316,12 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	{
 		switch (featureID)
 		{
+			case BaseCSPackage.PATH_ELEMENT_CS__ELEMENT_TYPE:
+				return elementType != null;
 			case BaseCSPackage.PATH_ELEMENT_CS__OWNING_PATH_NAME:
 				return getOwningPathName() != null;
 			case BaseCSPackage.PATH_ELEMENT_CS__REFERRED_ELEMENT:
 				return referredElement != null;
-			case BaseCSPackage.PATH_ELEMENT_CS__ELEMENT_TYPE:
-				return elementType != null;
 		}
 		return super.eIsSet(featureID);
 	}

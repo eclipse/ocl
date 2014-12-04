@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.Nameable;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.xtext.base.as2cs.AliasAnalysis;
@@ -219,6 +220,9 @@ public class BaseCrossReferenceSerializer extends CrossReferenceSerializer
 				if (converted != null) {
 					return converted;
 				}
+			}
+			if (target instanceof Nameable) {			// OCLstdlib MetaclassNameCS
+				return ((Nameable)target).getName();
 			}
 		}
 		helper.report(foundOne);

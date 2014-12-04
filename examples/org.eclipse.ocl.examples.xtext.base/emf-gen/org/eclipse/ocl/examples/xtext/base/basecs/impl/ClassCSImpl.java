@@ -39,9 +39,9 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TypeCS;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ClassCSImpl#getOwnedSignature <em>Owned Signature</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ClassCSImpl#getOwningPackage <em>Owning Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ClassCSImpl#getInstanceClassName <em>Instance Class Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ClassCSImpl#getOwnedConstraints <em>Owned Constraints</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ClassCSImpl#getOwningPackage <em>Owning Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ClassCSImpl#getQualifiers <em>Qualifiers</em>}</li>
  * </ul>
  * </p>
@@ -76,14 +76,6 @@ public abstract class ClassCSImpl extends NamedElementCSImpl implements ClassCS 
 	 * @ordered
 	 */
 	protected String instanceClassName = INSTANCE_CLASS_NAME_EDEFAULT;
-	/**
-	 * This is true if the Instance Class Name attribute has been set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean instanceClassNameESet;
 	/**
 	 * The cached value of the '{@link #getOwnedConstraints() <em>Owned Constraints</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -230,35 +222,8 @@ public abstract class ClassCSImpl extends NamedElementCSImpl implements ClassCS 
 	{
 		String oldInstanceClassName = instanceClassName;
 		instanceClassName = newInstanceClassName;
-		boolean oldInstanceClassNameESet = instanceClassNameESet;
-		instanceClassNameESet = true;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.CLASS_CS__INSTANCE_CLASS_NAME, oldInstanceClassName, instanceClassName, !oldInstanceClassNameESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetInstanceClassName()
-	{
-		String oldInstanceClassName = instanceClassName;
-		boolean oldInstanceClassNameESet = instanceClassNameESet;
-		instanceClassName = INSTANCE_CLASS_NAME_EDEFAULT;
-		instanceClassNameESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, BaseCSPackage.CLASS_CS__INSTANCE_CLASS_NAME, oldInstanceClassName, INSTANCE_CLASS_NAME_EDEFAULT, oldInstanceClassNameESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetInstanceClassName()
-	{
-		return instanceClassNameESet;
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.CLASS_CS__INSTANCE_CLASS_NAME, oldInstanceClassName, instanceClassName));
 	}
 
 	/**
@@ -341,10 +306,10 @@ public abstract class ClassCSImpl extends NamedElementCSImpl implements ClassCS 
 		{
 			case BaseCSPackage.CLASS_CS__OWNED_SIGNATURE:
 				return basicSetOwnedSignature(null, msgs);
-			case BaseCSPackage.CLASS_CS__OWNING_PACKAGE:
-				return basicSetOwningPackage(null, msgs);
 			case BaseCSPackage.CLASS_CS__OWNED_CONSTRAINTS:
 				return ((InternalEList<?>)getOwnedConstraints()).basicRemove(otherEnd, msgs);
+			case BaseCSPackage.CLASS_CS__OWNING_PACKAGE:
+				return basicSetOwningPackage(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -375,12 +340,12 @@ public abstract class ClassCSImpl extends NamedElementCSImpl implements ClassCS 
 		{
 			case BaseCSPackage.CLASS_CS__OWNED_SIGNATURE:
 				return getOwnedSignature();
-			case BaseCSPackage.CLASS_CS__OWNING_PACKAGE:
-				return getOwningPackage();
 			case BaseCSPackage.CLASS_CS__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case BaseCSPackage.CLASS_CS__OWNED_CONSTRAINTS:
 				return getOwnedConstraints();
+			case BaseCSPackage.CLASS_CS__OWNING_PACKAGE:
+				return getOwningPackage();
 			case BaseCSPackage.CLASS_CS__QUALIFIERS:
 				return getQualifiers();
 		}
@@ -400,15 +365,15 @@ public abstract class ClassCSImpl extends NamedElementCSImpl implements ClassCS 
 			case BaseCSPackage.CLASS_CS__OWNED_SIGNATURE:
 				setOwnedSignature((TemplateSignatureCS)newValue);
 				return;
-			case BaseCSPackage.CLASS_CS__OWNING_PACKAGE:
-				setOwningPackage((PackageCS)newValue);
-				return;
 			case BaseCSPackage.CLASS_CS__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
 				return;
 			case BaseCSPackage.CLASS_CS__OWNED_CONSTRAINTS:
 				getOwnedConstraints().clear();
 				getOwnedConstraints().addAll((Collection<? extends ConstraintCS>)newValue);
+				return;
+			case BaseCSPackage.CLASS_CS__OWNING_PACKAGE:
+				setOwningPackage((PackageCS)newValue);
 				return;
 			case BaseCSPackage.CLASS_CS__QUALIFIERS:
 				getQualifiers().clear();
@@ -430,14 +395,14 @@ public abstract class ClassCSImpl extends NamedElementCSImpl implements ClassCS 
 			case BaseCSPackage.CLASS_CS__OWNED_SIGNATURE:
 				setOwnedSignature((TemplateSignatureCS)null);
 				return;
-			case BaseCSPackage.CLASS_CS__OWNING_PACKAGE:
-				setOwningPackage((PackageCS)null);
-				return;
 			case BaseCSPackage.CLASS_CS__INSTANCE_CLASS_NAME:
-				unsetInstanceClassName();
+				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
 				return;
 			case BaseCSPackage.CLASS_CS__OWNED_CONSTRAINTS:
 				getOwnedConstraints().clear();
+				return;
+			case BaseCSPackage.CLASS_CS__OWNING_PACKAGE:
+				setOwningPackage((PackageCS)null);
 				return;
 			case BaseCSPackage.CLASS_CS__QUALIFIERS:
 				getQualifiers().clear();
@@ -457,12 +422,12 @@ public abstract class ClassCSImpl extends NamedElementCSImpl implements ClassCS 
 		{
 			case BaseCSPackage.CLASS_CS__OWNED_SIGNATURE:
 				return ownedSignature != null;
-			case BaseCSPackage.CLASS_CS__OWNING_PACKAGE:
-				return getOwningPackage() != null;
 			case BaseCSPackage.CLASS_CS__INSTANCE_CLASS_NAME:
-				return isSetInstanceClassName();
+				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case BaseCSPackage.CLASS_CS__OWNED_CONSTRAINTS:
 				return ownedConstraints != null && !ownedConstraints.isEmpty();
+			case BaseCSPackage.CLASS_CS__OWNING_PACKAGE:
+				return getOwningPackage() != null;
 			case BaseCSPackage.CLASS_CS__QUALIFIERS:
 				return qualifiers != null && !qualifiers.isEmpty();
 		}

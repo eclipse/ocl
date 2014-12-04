@@ -25,7 +25,7 @@ package org.eclipse.ocl.examples.xtext.base.basecs;
  * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getTemplateableElementCS()
- * @model interface="true" abstract="true"
+ * @model abstract="true"
  * @generated
  */
 public interface TemplateableElementCS extends ElementCS {

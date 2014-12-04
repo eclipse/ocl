@@ -21,12 +21,12 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwningClass <em>Owning Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedParameters <em>Owned Parameters</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedExceptions <em>Owned Exceptions</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedPreconditions <em>Owned Preconditions</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedPostconditions <em>Owned Postconditions</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedBodyExpressions <em>Owned Body Expressions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedExceptions <em>Owned Exceptions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedParameters <em>Owned Parameters</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedPostconditions <em>Owned Postconditions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwnedPreconditions <em>Owned Preconditions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.OperationCS#getOwningClass <em>Owning Class</em>}</li>
  * </ul>
  * </p>
  *

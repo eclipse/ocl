@@ -32,7 +32,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  *
  * @generated
  */
-public class MultiplicityStringCSImpl extends ElementCSImpl implements MultiplicityStringCS
+public class MultiplicityStringCSImpl extends MultiplicityCSImpl implements MultiplicityStringCS
 {
 	/**
 	 * The default value of the '{@link #getStringBounds() <em>String Bounds</em>}' attribute.
@@ -189,6 +189,7 @@ public class MultiplicityStringCSImpl extends ElementCSImpl implements Multiplic
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public int getLower() {
 		if ("?".equals(stringBounds)) {
 			return 0;
@@ -209,6 +210,7 @@ public class MultiplicityStringCSImpl extends ElementCSImpl implements Multiplic
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public int getUpper() {
 		if ("?".equals(stringBounds)) {
 			return 1;

@@ -22,10 +22,10 @@ import org.eclipse.ocl.examples.xtext.base.basecs.OperationCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#getPrecedence <em>Precedence</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#isIsInvalidating <em>Is Invalidating</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#isIsStatic <em>Is Static</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#isIsValidating <em>Is Validating</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS#getPrecedence <em>Precedence</em>}</li>
  * </ul>
  * </p>
  *

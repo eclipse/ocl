@@ -30,9 +30,9 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TypedElementCSImpl#isIsOptional <em>Is Optional</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TypedElementCSImpl#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TypedElementCSImpl#getQualifiers <em>Qualifiers</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TypedElementCSImpl#isIsOptional <em>Is Optional</em>}</li>
  * </ul>
  * </p>
  *
@@ -40,26 +40,6 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
  */
 public abstract class TypedElementCSImpl extends NamedElementCSImpl implements TypedElementCS
 {
-	/**
-	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedType()
-	 * @generated
-	 * @ordered
-	 */
-	protected TypedRefCS ownedType;
-
-	/**
-	 * The cached value of the '{@link #getQualifiers() <em>Qualifiers</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getQualifiers()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<String> qualifiers;
-
 	/**
 	 * The default value of the '{@link #isIsOptional() <em>Is Optional</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -79,6 +59,26 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	 * @ordered
 	 */
 	protected boolean isOptional = IS_OPTIONAL_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedType()
+	 * @generated
+	 * @ordered
+	 */
+	protected TypedRefCS ownedType;
+
+	/**
+	 * The cached value of the '{@link #getQualifiers() <em>Qualifiers</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getQualifiers()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> qualifiers;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -223,12 +223,12 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	{
 		switch (featureID)
 		{
+			case BaseCSPackage.TYPED_ELEMENT_CS__IS_OPTIONAL:
+				return isIsOptional();
 			case BaseCSPackage.TYPED_ELEMENT_CS__OWNED_TYPE:
 				return getOwnedType();
 			case BaseCSPackage.TYPED_ELEMENT_CS__QUALIFIERS:
 				return getQualifiers();
-			case BaseCSPackage.TYPED_ELEMENT_CS__IS_OPTIONAL:
-				return isIsOptional();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -244,15 +244,15 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	{
 		switch (featureID)
 		{
+			case BaseCSPackage.TYPED_ELEMENT_CS__IS_OPTIONAL:
+				setIsOptional((Boolean)newValue);
+				return;
 			case BaseCSPackage.TYPED_ELEMENT_CS__OWNED_TYPE:
 				setOwnedType((TypedRefCS)newValue);
 				return;
 			case BaseCSPackage.TYPED_ELEMENT_CS__QUALIFIERS:
 				getQualifiers().clear();
 				getQualifiers().addAll((Collection<? extends String>)newValue);
-				return;
-			case BaseCSPackage.TYPED_ELEMENT_CS__IS_OPTIONAL:
-				setIsOptional((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -268,14 +268,14 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	{
 		switch (featureID)
 		{
+			case BaseCSPackage.TYPED_ELEMENT_CS__IS_OPTIONAL:
+				setIsOptional(IS_OPTIONAL_EDEFAULT);
+				return;
 			case BaseCSPackage.TYPED_ELEMENT_CS__OWNED_TYPE:
 				setOwnedType((TypedRefCS)null);
 				return;
 			case BaseCSPackage.TYPED_ELEMENT_CS__QUALIFIERS:
 				getQualifiers().clear();
-				return;
-			case BaseCSPackage.TYPED_ELEMENT_CS__IS_OPTIONAL:
-				setIsOptional(IS_OPTIONAL_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -291,12 +291,12 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	{
 		switch (featureID)
 		{
+			case BaseCSPackage.TYPED_ELEMENT_CS__IS_OPTIONAL:
+				return isOptional != IS_OPTIONAL_EDEFAULT;
 			case BaseCSPackage.TYPED_ELEMENT_CS__OWNED_TYPE:
 				return ownedType != null;
 			case BaseCSPackage.TYPED_ELEMENT_CS__QUALIFIERS:
 				return qualifiers != null && !qualifiers.isEmpty();
-			case BaseCSPackage.TYPED_ELEMENT_CS__IS_OPTIONAL:
-				return isOptional != IS_OPTIONAL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

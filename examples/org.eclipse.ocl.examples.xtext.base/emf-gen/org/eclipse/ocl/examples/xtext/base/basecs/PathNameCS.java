@@ -23,9 +23,9 @@ import org.eclipse.ocl.examples.pivot.util.Pivotable;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS#getContext <em>Context</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS#getOwnedPathElements <em>Owned Path Elements</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS#getReferredElement <em>Referred Element</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS#getContext <em>Context</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS#getScopeFilter <em>Scope Filter</em>}</li>
  * </ul>
  * </p>

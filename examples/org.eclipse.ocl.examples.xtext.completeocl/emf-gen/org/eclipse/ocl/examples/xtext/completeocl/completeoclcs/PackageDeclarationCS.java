@@ -21,9 +21,9 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PackageDeclarationCS#getReferredPackage <em>Referred Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PackageDeclarationCS#getOwnedContexts <em>Owned Contexts</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PackageDeclarationCS#getOwnedInvariants <em>Owned Invariants</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PackageDeclarationCS#getReferredPackage <em>Referred Package</em>}</li>
  * </ul>
  * </p>
  *

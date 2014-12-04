@@ -26,9 +26,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getRootCS()
- * @model interface="true" abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='TestConstraint'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL TestConstraint='true'"
+ * @model abstract="true"
  * @generated
  */
 public interface RootCS extends ModelElementCS

@@ -12,8 +12,6 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
@@ -72,26 +70,6 @@ public abstract class VariableExpCSImpl extends AbstractNameExpCSImpl implements
 	 */
 	public Variable getReferredVariable()
 	{
-		if (referredVariable != null && ((EObject)referredVariable).eIsProxy())
-		{
-			InternalEObject oldReferredVariable = (InternalEObject)referredVariable;
-			referredVariable = (Variable)eResolveProxy(oldReferredVariable);
-			if (referredVariable != oldReferredVariable)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EssentialOCLCSPackage.VARIABLE_EXP_CS__REFERRED_VARIABLE, oldReferredVariable, referredVariable));
-			}
-		}
-		return referredVariable;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Variable basicGetReferredVariable()
-	{
 		return referredVariable;
 	}
 
@@ -119,8 +97,7 @@ public abstract class VariableExpCSImpl extends AbstractNameExpCSImpl implements
 		switch (featureID)
 		{
 			case EssentialOCLCSPackage.VARIABLE_EXP_CS__REFERRED_VARIABLE:
-				if (resolve) return getReferredVariable();
-				return basicGetReferredVariable();
+				return getReferredVariable();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

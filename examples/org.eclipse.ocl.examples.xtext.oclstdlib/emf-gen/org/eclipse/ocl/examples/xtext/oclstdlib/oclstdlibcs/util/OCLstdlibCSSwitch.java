@@ -128,6 +128,8 @@ public class OCLstdlibCSSwitch<T>
 			{
 				JavaImplementationCS javaImplementationCS = (JavaImplementationCS)theEObject;
 				T result = caseJavaImplementationCS(javaImplementationCS);
+				if (result == null) result = caseElementCS(javaImplementationCS);
+				if (result == null) result = caseVisitableCS(javaImplementationCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

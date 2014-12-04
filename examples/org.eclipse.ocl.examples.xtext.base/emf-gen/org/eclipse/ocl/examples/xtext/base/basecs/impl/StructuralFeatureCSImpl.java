@@ -34,9 +34,9 @@ import org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.StructuralFeatureCSImpl#getOwningClass <em>Owning Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.StructuralFeatureCSImpl#getDefault <em>Default</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.StructuralFeatureCSImpl#getOwnedDefaultExpressions <em>Owned Default Expressions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.StructuralFeatureCSImpl#getOwningClass <em>Owning Class</em>}</li>
  * </ul>
  * </p>
  *
@@ -209,10 +209,10 @@ public abstract class StructuralFeatureCSImpl extends TypedElementCSImpl impleme
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS:
-				return basicSetOwningClass(null, msgs);
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS:
 				return ((InternalEList<?>)getOwnedDefaultExpressions()).basicRemove(otherEnd, msgs);
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS:
+				return basicSetOwningClass(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -241,12 +241,12 @@ public abstract class StructuralFeatureCSImpl extends TypedElementCSImpl impleme
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS:
-				return getOwningClass();
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__DEFAULT:
 				return getDefault();
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS:
 				return getOwnedDefaultExpressions();
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS:
+				return getOwningClass();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -261,15 +261,15 @@ public abstract class StructuralFeatureCSImpl extends TypedElementCSImpl impleme
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS:
-				setOwningClass((StructuredClassCS)newValue);
-				return;
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__DEFAULT:
 				setDefault((String)newValue);
 				return;
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS:
 				getOwnedDefaultExpressions().clear();
 				getOwnedDefaultExpressions().addAll((Collection<? extends SpecificationCS>)newValue);
+				return;
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS:
+				setOwningClass((StructuredClassCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -284,14 +284,14 @@ public abstract class StructuralFeatureCSImpl extends TypedElementCSImpl impleme
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS:
-				setOwningClass((StructuredClassCS)null);
-				return;
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__DEFAULT:
 				setDefault(DEFAULT_EDEFAULT);
 				return;
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS:
 				getOwnedDefaultExpressions().clear();
+				return;
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS:
+				setOwningClass((StructuredClassCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -306,12 +306,12 @@ public abstract class StructuralFeatureCSImpl extends TypedElementCSImpl impleme
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS:
-				return getOwningClass() != null;
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__DEFAULT:
 				return DEFAULT_EDEFAULT == null ? default_ != null : !DEFAULT_EDEFAULT.equals(default_);
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS:
 				return ownedDefaultExpressions != null && !ownedDefaultExpressions.isEmpty();
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS:
+				return getOwningClass() != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -20,11 +20,11 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS#getOwnedCondition <em>Owned Condition</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS#getOwnedThenExpression <em>Owned Then Expression</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS#getOwnedIfThenExpressions <em>Owned If Then Expressions</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS#getOwnedElseExpression <em>Owned Else Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS#isIsImplicit <em>Is Implicit</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS#getOwnedCondition <em>Owned Condition</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS#getOwnedElseExpression <em>Owned Else Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS#getOwnedIfThenExpressions <em>Owned If Then Expressions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS#getOwnedThenExpression <em>Owned Then Expression</em>}</li>
  * </ul>
  * </p>
  *

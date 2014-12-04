@@ -22,9 +22,9 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS#getOwnedPathName <em>Owned Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS#getElement <em>Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS#getOwnedCurlyBracketedClause <em>Owned Curly Bracketed Clause</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS#getOwnedPathName <em>Owned Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS#getOwnedPatternGuard <em>Owned Pattern Guard</em>}</li>
  * </ul>
  * </p>

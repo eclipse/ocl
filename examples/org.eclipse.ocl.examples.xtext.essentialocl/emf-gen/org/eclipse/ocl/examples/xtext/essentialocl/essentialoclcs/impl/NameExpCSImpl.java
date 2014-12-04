@@ -14,13 +14,10 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -50,11 +47,11 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getTypeName <em>Type Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getParts <em>Parts</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getTypeName <em>Type Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getValue <em>Value</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getReferredIteration <em>Referred Iteration</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getIterators <em>Iterators</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getReferredIteration <em>Referred Iteration</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getAccumulators <em>Accumulators</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getReferredOperation <em>Referred Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl#getReferredProperty <em>Referred Property</em>}</li>
@@ -69,16 +66,6 @@ public class NameExpCSImpl
 		implements NameExpCS {
 
 	/**
-	 * The cached value of the '{@link #getTypeName() <em>Type Name</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTypeName()
-	 * @generated
-	 * @ordered
-	 */
-	protected TypeNameExpCS typeName;
-
-	/**
 	 * The cached value of the '{@link #getParts() <em>Parts</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -87,6 +74,16 @@ public class NameExpCSImpl
 	 * @ordered
 	 */
 	protected EList<ConstructorPartCS> parts;
+
+	/**
+	 * The cached value of the '{@link #getTypeName() <em>Type Name</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTypeName()
+	 * @generated
+	 * @ordered
+	 */
+	protected TypeNameExpCS typeName;
 
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -109,16 +106,6 @@ public class NameExpCSImpl
 	protected String value = VALUE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getReferredIteration() <em>Referred Iteration</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getReferredIteration()
-	 * @generated
-	 * @ordered
-	 */
-	protected Iteration referredIteration;
-
-	/**
 	 * The cached value of the '{@link #getIterators() <em>Iterators</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -127,6 +114,16 @@ public class NameExpCSImpl
 	 * @ordered
 	 */
 	protected EList<VariableCS> iterators;
+
+	/**
+	 * The cached value of the '{@link #getReferredIteration() <em>Referred Iteration</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReferredIteration()
+	 * @generated
+	 * @ordered
+	 */
+	protected Iteration referredIteration;
 
 	/**
 	 * The cached value of the '{@link #getAccumulators() <em>Accumulators</em>}' reference list.
@@ -149,7 +146,7 @@ public class NameExpCSImpl
 	protected Operation referredOperation;
 
 	/**
-	 * The cached value of the '{@link #getReferredProperty() <em>Referred Property</em>}' containment reference.
+	 * The cached value of the '{@link #getReferredProperty() <em>Referred Property</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getReferredProperty()
@@ -194,26 +191,6 @@ public class NameExpCSImpl
 	 */
 	public TypeNameExpCS getTypeName()
 	{
-		if (typeName != null && typeName.eIsProxy())
-		{
-			InternalEObject oldTypeName = (InternalEObject)typeName;
-			typeName = (TypeNameExpCS)eResolveProxy(oldTypeName);
-			if (typeName != oldTypeName)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EssentialOCLCSPackage.NAME_EXP_CS__TYPE_NAME, oldTypeName, typeName));
-			}
-		}
-		return typeName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TypeNameExpCS basicGetTypeName()
-	{
 		return typeName;
 	}
 
@@ -239,7 +216,7 @@ public class NameExpCSImpl
 	{
 		if (parts == null)
 		{
-			parts = new EObjectResolvingEList<ConstructorPartCS>(ConstructorPartCS.class, this, EssentialOCLCSPackage.NAME_EXP_CS__PARTS);
+			parts = new EObjectEList<ConstructorPartCS>(ConstructorPartCS.class, this, EssentialOCLCSPackage.NAME_EXP_CS__PARTS);
 		}
 		return parts;
 	}
@@ -274,26 +251,6 @@ public class NameExpCSImpl
 	 */
 	public Iteration getReferredIteration()
 	{
-		if (referredIteration != null && ((EObject)referredIteration).eIsProxy())
-		{
-			InternalEObject oldReferredIteration = (InternalEObject)referredIteration;
-			referredIteration = (Iteration)eResolveProxy(oldReferredIteration);
-			if (referredIteration != oldReferredIteration)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EssentialOCLCSPackage.NAME_EXP_CS__REFERRED_ITERATION, oldReferredIteration, referredIteration));
-			}
-		}
-		return referredIteration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Iteration basicGetReferredIteration()
-	{
 		return referredIteration;
 	}
 
@@ -319,7 +276,7 @@ public class NameExpCSImpl
 	{
 		if (iterators == null)
 		{
-			iterators = new EObjectResolvingEList<VariableCS>(VariableCS.class, this, EssentialOCLCSPackage.NAME_EXP_CS__ITERATORS);
+			iterators = new EObjectEList<VariableCS>(VariableCS.class, this, EssentialOCLCSPackage.NAME_EXP_CS__ITERATORS);
 		}
 		return iterators;
 	}
@@ -333,7 +290,7 @@ public class NameExpCSImpl
 	{
 		if (accumulators == null)
 		{
-			accumulators = new EObjectResolvingEList<VariableCS>(VariableCS.class, this, EssentialOCLCSPackage.NAME_EXP_CS__ACCUMULATORS);
+			accumulators = new EObjectEList<VariableCS>(VariableCS.class, this, EssentialOCLCSPackage.NAME_EXP_CS__ACCUMULATORS);
 		}
 		return accumulators;
 	}
@@ -344,26 +301,6 @@ public class NameExpCSImpl
 	 * @generated
 	 */
 	public Operation getReferredOperation()
-	{
-		if (referredOperation != null && ((EObject)referredOperation).eIsProxy())
-		{
-			InternalEObject oldReferredOperation = (InternalEObject)referredOperation;
-			referredOperation = (Operation)eResolveProxy(oldReferredOperation);
-			if (referredOperation != oldReferredOperation)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EssentialOCLCSPackage.NAME_EXP_CS__REFERRED_OPERATION, oldReferredOperation, referredOperation));
-			}
-		}
-		return referredOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Operation basicGetReferredOperation()
 	{
 		return referredOperation;
 	}
@@ -396,37 +333,12 @@ public class NameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetReferredProperty(Property newReferredProperty, NotificationChain msgs)
+	public void setReferredProperty(Property newReferredProperty)
 	{
 		Property oldReferredProperty = referredProperty;
 		referredProperty = newReferredProperty;
 		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAME_EXP_CS__REFERRED_PROPERTY, oldReferredProperty, newReferredProperty);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setReferredProperty(Property newReferredProperty)
-	{
-		if (newReferredProperty != referredProperty)
-		{
-			NotificationChain msgs = null;
-			if (referredProperty != null)
-				msgs = ((InternalEObject)referredProperty).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.NAME_EXP_CS__REFERRED_PROPERTY, null, msgs);
-			if (newReferredProperty != null)
-				msgs = ((InternalEObject)newReferredProperty).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.NAME_EXP_CS__REFERRED_PROPERTY, null, msgs);
-			msgs = basicSetReferredProperty(newReferredProperty, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAME_EXP_CS__REFERRED_PROPERTY, newReferredProperty, newReferredProperty));
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAME_EXP_CS__REFERRED_PROPERTY, oldReferredProperty, referredProperty));
 	}
 
 	/**
@@ -435,26 +347,6 @@ public class NameExpCSImpl
 	 * @generated
 	 */
 	public Variable getReferredVariable()
-	{
-		if (referredVariable != null && ((EObject)referredVariable).eIsProxy())
-		{
-			InternalEObject oldReferredVariable = (InternalEObject)referredVariable;
-			referredVariable = (Variable)eResolveProxy(oldReferredVariable);
-			if (referredVariable != oldReferredVariable)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EssentialOCLCSPackage.NAME_EXP_CS__REFERRED_VARIABLE, oldReferredVariable, referredVariable));
-			}
-		}
-		return referredVariable;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Variable basicGetReferredVariable()
 	{
 		return referredVariable;
 	}
@@ -509,47 +401,27 @@ public class NameExpCSImpl
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
-		switch (featureID)
-		{
-			case EssentialOCLCSPackage.NAME_EXP_CS__REFERRED_PROPERTY:
-				return basicSetReferredProperty(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.NAME_EXP_CS__TYPE_NAME:
-				if (resolve) return getTypeName();
-				return basicGetTypeName();
 			case EssentialOCLCSPackage.NAME_EXP_CS__PARTS:
 				return getParts();
+			case EssentialOCLCSPackage.NAME_EXP_CS__TYPE_NAME:
+				return getTypeName();
 			case EssentialOCLCSPackage.NAME_EXP_CS__VALUE:
 				return getValue();
-			case EssentialOCLCSPackage.NAME_EXP_CS__REFERRED_ITERATION:
-				if (resolve) return getReferredIteration();
-				return basicGetReferredIteration();
 			case EssentialOCLCSPackage.NAME_EXP_CS__ITERATORS:
 				return getIterators();
+			case EssentialOCLCSPackage.NAME_EXP_CS__REFERRED_ITERATION:
+				return getReferredIteration();
 			case EssentialOCLCSPackage.NAME_EXP_CS__ACCUMULATORS:
 				return getAccumulators();
 			case EssentialOCLCSPackage.NAME_EXP_CS__REFERRED_OPERATION:
-				if (resolve) return getReferredOperation();
-				return basicGetReferredOperation();
+				return getReferredOperation();
 			case EssentialOCLCSPackage.NAME_EXP_CS__REFERRED_PROPERTY:
 				return getReferredProperty();
 			case EssentialOCLCSPackage.NAME_EXP_CS__REFERRED_VARIABLE:
-				if (resolve) return getReferredVariable();
-				return basicGetReferredVariable();
+				return getReferredVariable();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -564,22 +436,22 @@ public class NameExpCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.NAME_EXP_CS__TYPE_NAME:
-				setTypeName((TypeNameExpCS)newValue);
-				return;
 			case EssentialOCLCSPackage.NAME_EXP_CS__PARTS:
 				getParts().clear();
 				getParts().addAll((Collection<? extends ConstructorPartCS>)newValue);
 				return;
+			case EssentialOCLCSPackage.NAME_EXP_CS__TYPE_NAME:
+				setTypeName((TypeNameExpCS)newValue);
+				return;
 			case EssentialOCLCSPackage.NAME_EXP_CS__VALUE:
 				setValue((String)newValue);
-				return;
-			case EssentialOCLCSPackage.NAME_EXP_CS__REFERRED_ITERATION:
-				setReferredIteration((Iteration)newValue);
 				return;
 			case EssentialOCLCSPackage.NAME_EXP_CS__ITERATORS:
 				getIterators().clear();
 				getIterators().addAll((Collection<? extends VariableCS>)newValue);
+				return;
+			case EssentialOCLCSPackage.NAME_EXP_CS__REFERRED_ITERATION:
+				setReferredIteration((Iteration)newValue);
 				return;
 			case EssentialOCLCSPackage.NAME_EXP_CS__ACCUMULATORS:
 				getAccumulators().clear();
@@ -607,20 +479,20 @@ public class NameExpCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.NAME_EXP_CS__TYPE_NAME:
-				setTypeName((TypeNameExpCS)null);
-				return;
 			case EssentialOCLCSPackage.NAME_EXP_CS__PARTS:
 				getParts().clear();
+				return;
+			case EssentialOCLCSPackage.NAME_EXP_CS__TYPE_NAME:
+				setTypeName((TypeNameExpCS)null);
 				return;
 			case EssentialOCLCSPackage.NAME_EXP_CS__VALUE:
 				setValue(VALUE_EDEFAULT);
 				return;
-			case EssentialOCLCSPackage.NAME_EXP_CS__REFERRED_ITERATION:
-				setReferredIteration((Iteration)null);
-				return;
 			case EssentialOCLCSPackage.NAME_EXP_CS__ITERATORS:
 				getIterators().clear();
+				return;
+			case EssentialOCLCSPackage.NAME_EXP_CS__REFERRED_ITERATION:
+				setReferredIteration((Iteration)null);
 				return;
 			case EssentialOCLCSPackage.NAME_EXP_CS__ACCUMULATORS:
 				getAccumulators().clear();
@@ -647,16 +519,16 @@ public class NameExpCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.NAME_EXP_CS__TYPE_NAME:
-				return typeName != null;
 			case EssentialOCLCSPackage.NAME_EXP_CS__PARTS:
 				return parts != null && !parts.isEmpty();
+			case EssentialOCLCSPackage.NAME_EXP_CS__TYPE_NAME:
+				return typeName != null;
 			case EssentialOCLCSPackage.NAME_EXP_CS__VALUE:
 				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
-			case EssentialOCLCSPackage.NAME_EXP_CS__REFERRED_ITERATION:
-				return referredIteration != null;
 			case EssentialOCLCSPackage.NAME_EXP_CS__ITERATORS:
 				return iterators != null && !iterators.isEmpty();
+			case EssentialOCLCSPackage.NAME_EXP_CS__REFERRED_ITERATION:
+				return referredIteration != null;
 			case EssentialOCLCSPackage.NAME_EXP_CS__ACCUMULATORS:
 				return accumulators != null && !accumulators.isEmpty();
 			case EssentialOCLCSPackage.NAME_EXP_CS__REFERRED_OPERATION:
@@ -681,8 +553,8 @@ public class NameExpCSImpl
 		{
 			switch (derivedFeatureID)
 			{
-				case EssentialOCLCSPackage.NAME_EXP_CS__TYPE_NAME: return EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__TYPE_NAME;
 				case EssentialOCLCSPackage.NAME_EXP_CS__PARTS: return EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__PARTS;
+				case EssentialOCLCSPackage.NAME_EXP_CS__TYPE_NAME: return EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__TYPE_NAME;
 				case EssentialOCLCSPackage.NAME_EXP_CS__VALUE: return EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__VALUE;
 				default: return -1;
 			}
@@ -691,8 +563,8 @@ public class NameExpCSImpl
 		{
 			switch (derivedFeatureID)
 			{
-				case EssentialOCLCSPackage.NAME_EXP_CS__REFERRED_ITERATION: return EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__REFERRED_ITERATION;
 				case EssentialOCLCSPackage.NAME_EXP_CS__ITERATORS: return EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__ITERATORS;
+				case EssentialOCLCSPackage.NAME_EXP_CS__REFERRED_ITERATION: return EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__REFERRED_ITERATION;
 				default: return -1;
 			}
 		}
@@ -743,8 +615,8 @@ public class NameExpCSImpl
 		{
 			switch (baseFeatureID)
 			{
-				case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__TYPE_NAME: return EssentialOCLCSPackage.NAME_EXP_CS__TYPE_NAME;
 				case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__PARTS: return EssentialOCLCSPackage.NAME_EXP_CS__PARTS;
+				case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__TYPE_NAME: return EssentialOCLCSPackage.NAME_EXP_CS__TYPE_NAME;
 				case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__VALUE: return EssentialOCLCSPackage.NAME_EXP_CS__VALUE;
 				default: return -1;
 			}
@@ -753,8 +625,8 @@ public class NameExpCSImpl
 		{
 			switch (baseFeatureID)
 			{
-				case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__REFERRED_ITERATION: return EssentialOCLCSPackage.NAME_EXP_CS__REFERRED_ITERATION;
 				case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__ITERATORS: return EssentialOCLCSPackage.NAME_EXP_CS__ITERATORS;
+				case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__REFERRED_ITERATION: return EssentialOCLCSPackage.NAME_EXP_CS__REFERRED_ITERATION;
 				default: return -1;
 			}
 		}

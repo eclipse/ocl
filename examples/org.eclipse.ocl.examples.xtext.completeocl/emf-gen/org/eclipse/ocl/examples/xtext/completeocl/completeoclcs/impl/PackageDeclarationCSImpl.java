@@ -37,9 +37,9 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.util.CompleteOCL
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.PackageDeclarationCSImpl#getReferredPackage <em>Referred Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.PackageDeclarationCSImpl#getOwnedContexts <em>Owned Contexts</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.PackageDeclarationCSImpl#getOwnedInvariants <em>Owned Invariants</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.PackageDeclarationCSImpl#getReferredPackage <em>Referred Package</em>}</li>
  * </ul>
  * </p>
  *
@@ -140,12 +140,12 @@ public class PackageDeclarationCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__REFERRED_PACKAGE:
-				return getReferredPackage();
 			case CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__OWNED_CONTEXTS:
 				return getOwnedContexts();
 			case CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__OWNED_INVARIANTS:
 				return getOwnedInvariants();
+			case CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__REFERRED_PACKAGE:
+				return getReferredPackage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -200,12 +200,12 @@ public class PackageDeclarationCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__REFERRED_PACKAGE:
-				return getReferredPackage() != null;
 			case CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__OWNED_CONTEXTS:
 				return ownedContexts != null && !ownedContexts.isEmpty();
 			case CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__OWNED_INVARIANTS:
 				return ownedInvariants != null && !ownedInvariants.isEmpty();
+			case CompleteOCLCSPackage.PACKAGE_DECLARATION_CS__REFERRED_PACKAGE:
+				return getReferredPackage() != null;
 		}
 		return super.eIsSet(featureID);
 	}

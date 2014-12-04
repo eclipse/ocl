@@ -61,6 +61,7 @@ public interface BaseCSVisitor<R>
 	@Nullable R visitModelElementCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS object);
 	@Nullable R visitModelElementRefCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.ModelElementRefCS object);
 	@Nullable R visitMultiplicityBoundsCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.MultiplicityBoundsCS object);
+	@Nullable R visitMultiplicityCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.MultiplicityCS object);
 	@Nullable R visitMultiplicityStringCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.MultiplicityStringCS object);
 	@Nullable R visitNamedElementCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.NamedElementCS object);
 	@Nullable R visitOperationCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.OperationCS object);
@@ -73,6 +74,7 @@ public interface BaseCSVisitor<R>
 	@Nullable R visitPivotableElementCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.PivotableElementCS object);
 	@Nullable R visitPrimitiveTypeRefCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.PrimitiveTypeRefCS object);
 	@Nullable R visitReferenceCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.ReferenceCS object);
+	@Nullable R visitRootCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.RootCS object);
 	@Nullable R visitRootPackageCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.RootPackageCS object);
 	@Nullable R visitSpecificationCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.SpecificationCS object);
 	@Nullable R visitStructuralFeatureCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS object);
@@ -81,6 +83,7 @@ public interface BaseCSVisitor<R>
 	@Nullable R visitTemplateParameterCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterCS object);
 	@Nullable R visitTemplateParameterSubstitutionCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS object);
 	@Nullable R visitTemplateSignatureCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS object);
+	@Nullable R visitTemplateableElementCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS object);
 	@Nullable R visitTuplePartCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.TuplePartCS object);
 	@Nullable R visitTupleTypeCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.TupleTypeCS object);
 	@Nullable R visitTypeParameterCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.TypeParameterCS object);

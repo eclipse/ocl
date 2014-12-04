@@ -14,9 +14,8 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CallExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
@@ -28,8 +27,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CallExpCSImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CallExpCSImpl#getArguments <em>Arguments</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CallExpCSImpl#getSource <em>Source</em>}</li>
  * </ul>
  * </p>
  *
@@ -37,16 +36,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
  */
 public abstract class CallExpCSImpl extends AbstractNameExpCSImpl implements CallExpCS
 {
-	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSource()
-	 * @generated
-	 * @ordered
-	 */
-	protected ExpCS source;
-
 	/**
 	 * The cached value of the '{@link #getArguments() <em>Arguments</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -56,6 +45,16 @@ public abstract class CallExpCSImpl extends AbstractNameExpCSImpl implements Cal
 	 * @ordered
 	 */
 	protected EList<ExpCS> arguments;
+
+	/**
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected ExpCS source;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -85,26 +84,6 @@ public abstract class CallExpCSImpl extends AbstractNameExpCSImpl implements Cal
 	 */
 	public ExpCS getSource()
 	{
-		if (source != null && source.eIsProxy())
-		{
-			InternalEObject oldSource = (InternalEObject)source;
-			source = (ExpCS)eResolveProxy(oldSource);
-			if (source != oldSource)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EssentialOCLCSPackage.CALL_EXP_CS__SOURCE, oldSource, source));
-			}
-		}
-		return source;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ExpCS basicGetSource()
-	{
 		return source;
 	}
 
@@ -130,7 +109,7 @@ public abstract class CallExpCSImpl extends AbstractNameExpCSImpl implements Cal
 	{
 		if (arguments == null)
 		{
-			arguments = new EObjectResolvingEList<ExpCS>(ExpCS.class, this, EssentialOCLCSPackage.CALL_EXP_CS__ARGUMENTS);
+			arguments = new EObjectEList<ExpCS>(ExpCS.class, this, EssentialOCLCSPackage.CALL_EXP_CS__ARGUMENTS);
 		}
 		return arguments;
 	}
@@ -145,11 +124,10 @@ public abstract class CallExpCSImpl extends AbstractNameExpCSImpl implements Cal
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.CALL_EXP_CS__SOURCE:
-				if (resolve) return getSource();
-				return basicGetSource();
 			case EssentialOCLCSPackage.CALL_EXP_CS__ARGUMENTS:
 				return getArguments();
+			case EssentialOCLCSPackage.CALL_EXP_CS__SOURCE:
+				return getSource();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -165,12 +143,12 @@ public abstract class CallExpCSImpl extends AbstractNameExpCSImpl implements Cal
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.CALL_EXP_CS__SOURCE:
-				setSource((ExpCS)newValue);
-				return;
 			case EssentialOCLCSPackage.CALL_EXP_CS__ARGUMENTS:
 				getArguments().clear();
 				getArguments().addAll((Collection<? extends ExpCS>)newValue);
+				return;
+			case EssentialOCLCSPackage.CALL_EXP_CS__SOURCE:
+				setSource((ExpCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -186,11 +164,11 @@ public abstract class CallExpCSImpl extends AbstractNameExpCSImpl implements Cal
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.CALL_EXP_CS__SOURCE:
-				setSource((ExpCS)null);
-				return;
 			case EssentialOCLCSPackage.CALL_EXP_CS__ARGUMENTS:
 				getArguments().clear();
+				return;
+			case EssentialOCLCSPackage.CALL_EXP_CS__SOURCE:
+				setSource((ExpCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -206,10 +184,10 @@ public abstract class CallExpCSImpl extends AbstractNameExpCSImpl implements Cal
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.CALL_EXP_CS__SOURCE:
-				return source != null;
 			case EssentialOCLCSPackage.CALL_EXP_CS__ARGUMENTS:
 				return arguments != null && !arguments.isEmpty();
+			case EssentialOCLCSPackage.CALL_EXP_CS__SOURCE:
+				return source != null;
 		}
 		return super.eIsSet(featureID);
 	}

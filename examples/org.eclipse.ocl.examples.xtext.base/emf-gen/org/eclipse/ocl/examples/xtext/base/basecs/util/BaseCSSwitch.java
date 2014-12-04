@@ -572,6 +572,22 @@ public class BaseCSSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS:
+			{
+				StructuralFeatureCS structuralFeatureCS = (StructuralFeatureCS)theEObject;
+				T result = caseStructuralFeatureCS(structuralFeatureCS);
+				if (result == null) result = caseFeatureCS(structuralFeatureCS);
+				if (result == null) result = caseTypedElementCS(structuralFeatureCS);
+				if (result == null) result = caseNamedElementCS(structuralFeatureCS);
+				if (result == null) result = caseModelElementCS(structuralFeatureCS);
+				if (result == null) result = caseNameable(structuralFeatureCS);
+				if (result == null) result = casePivotableElementCS(structuralFeatureCS);
+				if (result == null) result = caseElementCS(structuralFeatureCS);
+				if (result == null) result = casePivotable(structuralFeatureCS);
+				if (result == null) result = caseVisitableCS(structuralFeatureCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BaseCSPackage.STRUCTURED_CLASS_CS:
 			{
 				StructuredClassCS structuredClassCS = (StructuredClassCS)theEObject;
@@ -587,22 +603,6 @@ public class BaseCSSwitch<T> extends Switch<T> {
 				if (result == null) result = caseElementCS(structuredClassCS);
 				if (result == null) result = casePivotable(structuredClassCS);
 				if (result == null) result = caseVisitableCS(structuredClassCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BaseCSPackage.STRUCTURAL_FEATURE_CS:
-			{
-				StructuralFeatureCS structuralFeatureCS = (StructuralFeatureCS)theEObject;
-				T result = caseStructuralFeatureCS(structuralFeatureCS);
-				if (result == null) result = caseFeatureCS(structuralFeatureCS);
-				if (result == null) result = caseTypedElementCS(structuralFeatureCS);
-				if (result == null) result = caseNamedElementCS(structuralFeatureCS);
-				if (result == null) result = caseModelElementCS(structuralFeatureCS);
-				if (result == null) result = caseNameable(structuralFeatureCS);
-				if (result == null) result = casePivotableElementCS(structuralFeatureCS);
-				if (result == null) result = caseElementCS(structuralFeatureCS);
-				if (result == null) result = casePivotable(structuralFeatureCS);
-				if (result == null) result = caseVisitableCS(structuralFeatureCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

@@ -33,7 +33,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  *
  * @generated
  */
-public class MultiplicityBoundsCSImpl extends ElementCSImpl implements MultiplicityBoundsCS
+public class MultiplicityBoundsCSImpl extends MultiplicityCSImpl implements MultiplicityBoundsCS
 {
 	/**
 	 * The default value of the '{@link #getLowerBound() <em>Lower Bound</em>}' attribute.
@@ -243,6 +243,7 @@ public class MultiplicityBoundsCSImpl extends ElementCSImpl implements Multiplic
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public int getLower()
 	{
 		return lowerBound;
@@ -253,6 +254,7 @@ public class MultiplicityBoundsCSImpl extends ElementCSImpl implements Multiplic
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public int getUpper()
 	{
 		return upperBound != null ? upperBound : lowerBound;

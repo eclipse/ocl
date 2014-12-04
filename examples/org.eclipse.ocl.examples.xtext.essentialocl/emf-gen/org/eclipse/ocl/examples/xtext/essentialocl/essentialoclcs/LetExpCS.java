@@ -20,9 +20,9 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS#getOwnedVariables <em>Owned Variables</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS#getOwnedInExpression <em>Owned In Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS#isIsImplicit <em>Is Implicit</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS#getOwnedInExpression <em>Owned In Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS#getOwnedVariables <em>Owned Variables</em>}</li>
  * </ul>
  * </p>
  *

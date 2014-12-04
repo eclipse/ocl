@@ -41,7 +41,7 @@ public interface AssociationClassCallExpCS extends CallExpCS
 	 * @return the value of the '<em>Referred Association</em>' reference.
 	 * @see #setReferredAssociation(AssociationClass)
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getAssociationClassCallExpCS_ReferredAssociation()
-	 * @model derived="true"
+	 * @model resolveProxies="false" derived="true"
 	 * @generated
 	 */
 	AssociationClass getReferredAssociation();

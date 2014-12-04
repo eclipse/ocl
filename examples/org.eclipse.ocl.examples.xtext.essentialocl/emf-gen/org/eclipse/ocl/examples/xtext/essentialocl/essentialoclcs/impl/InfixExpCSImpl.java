@@ -30,8 +30,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.InfixExpCSImpl#getOwnedLeft <em>Owned Left</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.InfixExpCSImpl#getArgument <em>Argument</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.InfixExpCSImpl#getOwnedLeft <em>Owned Left</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,16 +42,6 @@ public class InfixExpCSImpl
 		implements InfixExpCS {
 
 	/**
-	 * The cached value of the '{@link #getOwnedLeft() <em>Owned Left</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedLeft()
-	 * @generated
-	 * @ordered
-	 */
-	protected ExpCS ownedLeft;
-
-	/**
 	 * The cached value of the '{@link #getArgument() <em>Argument</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,6 +50,16 @@ public class InfixExpCSImpl
 	 * @ordered
 	 */
 	protected ExpCS argument;
+
+	/**
+	 * The cached value of the '{@link #getOwnedLeft() <em>Owned Left</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedLeft()
+	 * @generated
+	 * @ordered
+	 */
+	protected ExpCS ownedLeft;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -153,10 +153,10 @@ public class InfixExpCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.INFIX_EXP_CS__OWNED_LEFT:
-				return getOwnedLeft();
 			case EssentialOCLCSPackage.INFIX_EXP_CS__ARGUMENT:
 				return getArgument();
+			case EssentialOCLCSPackage.INFIX_EXP_CS__OWNED_LEFT:
+				return getOwnedLeft();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -202,10 +202,10 @@ public class InfixExpCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.INFIX_EXP_CS__OWNED_LEFT:
-				return ownedLeft != null;
 			case EssentialOCLCSPackage.INFIX_EXP_CS__ARGUMENT:
 				return argument != null;
+			case EssentialOCLCSPackage.INFIX_EXP_CS__OWNED_LEFT:
+				return ownedLeft != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -15,9 +15,8 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
@@ -30,8 +29,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ConstructorExpCSImpl#getTypeName <em>Type Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ConstructorExpCSImpl#getParts <em>Parts</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ConstructorExpCSImpl#getTypeName <em>Type Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ConstructorExpCSImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
@@ -41,16 +40,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS;
 public abstract class ConstructorExpCSImpl extends AbstractNameExpCSImpl implements ConstructorExpCS
 {
 	/**
-	 * The cached value of the '{@link #getTypeName() <em>Type Name</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTypeName()
-	 * @generated
-	 * @ordered
-	 */
-	protected TypeNameExpCS typeName;
-
-	/**
 	 * The cached value of the '{@link #getParts() <em>Parts</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -59,6 +48,16 @@ public abstract class ConstructorExpCSImpl extends AbstractNameExpCSImpl impleme
 	 * @ordered
 	 */
 	protected EList<ConstructorPartCS> parts;
+
+	/**
+	 * The cached value of the '{@link #getTypeName() <em>Type Name</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTypeName()
+	 * @generated
+	 * @ordered
+	 */
+	protected TypeNameExpCS typeName;
 
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -108,26 +107,6 @@ public abstract class ConstructorExpCSImpl extends AbstractNameExpCSImpl impleme
 	 */
 	public TypeNameExpCS getTypeName()
 	{
-		if (typeName != null && typeName.eIsProxy())
-		{
-			InternalEObject oldTypeName = (InternalEObject)typeName;
-			typeName = (TypeNameExpCS)eResolveProxy(oldTypeName);
-			if (typeName != oldTypeName)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__TYPE_NAME, oldTypeName, typeName));
-			}
-		}
-		return typeName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TypeNameExpCS basicGetTypeName()
-	{
 		return typeName;
 	}
 
@@ -153,7 +132,7 @@ public abstract class ConstructorExpCSImpl extends AbstractNameExpCSImpl impleme
 	{
 		if (parts == null)
 		{
-			parts = new EObjectResolvingEList<ConstructorPartCS>(ConstructorPartCS.class, this, EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__PARTS);
+			parts = new EObjectEList<ConstructorPartCS>(ConstructorPartCS.class, this, EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__PARTS);
 		}
 		return parts;
 	}
@@ -202,11 +181,10 @@ public abstract class ConstructorExpCSImpl extends AbstractNameExpCSImpl impleme
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__TYPE_NAME:
-				if (resolve) return getTypeName();
-				return basicGetTypeName();
 			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__PARTS:
 				return getParts();
+			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__TYPE_NAME:
+				return getTypeName();
 			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__VALUE:
 				return getValue();
 		}
@@ -224,12 +202,12 @@ public abstract class ConstructorExpCSImpl extends AbstractNameExpCSImpl impleme
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__TYPE_NAME:
-				setTypeName((TypeNameExpCS)newValue);
-				return;
 			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__PARTS:
 				getParts().clear();
 				getParts().addAll((Collection<? extends ConstructorPartCS>)newValue);
+				return;
+			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__TYPE_NAME:
+				setTypeName((TypeNameExpCS)newValue);
 				return;
 			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__VALUE:
 				setValue((String)newValue);
@@ -248,11 +226,11 @@ public abstract class ConstructorExpCSImpl extends AbstractNameExpCSImpl impleme
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__TYPE_NAME:
-				setTypeName((TypeNameExpCS)null);
-				return;
 			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__PARTS:
 				getParts().clear();
+				return;
+			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__TYPE_NAME:
+				setTypeName((TypeNameExpCS)null);
 				return;
 			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__VALUE:
 				setValue(VALUE_EDEFAULT);
@@ -271,10 +249,10 @@ public abstract class ConstructorExpCSImpl extends AbstractNameExpCSImpl impleme
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__TYPE_NAME:
-				return typeName != null;
 			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__PARTS:
 				return parts != null && !parts.isEmpty();
+			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__TYPE_NAME:
+				return typeName != null;
 			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__VALUE:
 				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}

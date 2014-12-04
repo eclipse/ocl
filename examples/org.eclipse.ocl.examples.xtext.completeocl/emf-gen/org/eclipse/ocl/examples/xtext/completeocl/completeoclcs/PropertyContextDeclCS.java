@@ -23,9 +23,9 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpSpecificati
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PropertyContextDeclCS#getReferredProperty <em>Referred Property</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PropertyContextDeclCS#getOwnedDefaultExpressions <em>Owned Default Expressions</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PropertyContextDeclCS#getOwnedDerivedInvariants <em>Owned Derived Invariants</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PropertyContextDeclCS#getReferredProperty <em>Referred Property</em>}</li>
  * </ul>
  * </p>
  *

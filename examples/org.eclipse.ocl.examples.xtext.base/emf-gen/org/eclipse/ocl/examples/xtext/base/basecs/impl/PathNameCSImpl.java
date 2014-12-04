@@ -37,9 +37,9 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PathNameCSImpl#getContext <em>Context</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PathNameCSImpl#getOwnedPathElements <em>Owned Path Elements</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PathNameCSImpl#getReferredElement <em>Referred Element</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PathNameCSImpl#getContext <em>Context</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PathNameCSImpl#getScopeFilter <em>Scope Filter</em>}</li>
  * </ul>
  * </p>
@@ -48,16 +48,6 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  */
 public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 {
-	/**
-	 * The cached value of the '{@link #getOwnedPathElements() <em>Owned Path Elements</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedPathElements()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<PathElementCS> ownedPathElements;
-
 	/**
 	 * The cached value of the '{@link #getContext() <em>Context</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -76,6 +66,16 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	 * @ordered
 	 */
 	protected boolean contextESet;
+
+	/**
+	 * The cached value of the '{@link #getOwnedPathElements() <em>Owned Path Elements</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedPathElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<PathElementCS> ownedPathElements;
 
 	/**
 	 * The default value of the '{@link #getScopeFilter() <em>Scope Filter</em>}' attribute.
@@ -158,13 +158,13 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	{
 		switch (featureID)
 		{
+			case BaseCSPackage.PATH_NAME_CS__CONTEXT:
+				return getContext();
 			case BaseCSPackage.PATH_NAME_CS__OWNED_PATH_ELEMENTS:
 				return getOwnedPathElements();
 			case BaseCSPackage.PATH_NAME_CS__REFERRED_ELEMENT:
 				if (resolve) return getReferredElement();
 				return basicGetReferredElement();
-			case BaseCSPackage.PATH_NAME_CS__CONTEXT:
-				return getContext();
 			case BaseCSPackage.PATH_NAME_CS__SCOPE_FILTER:
 				return getScopeFilter();
 		}
@@ -182,12 +182,12 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	{
 		switch (featureID)
 		{
+			case BaseCSPackage.PATH_NAME_CS__CONTEXT:
+				setContext((ElementCS)newValue);
+				return;
 			case BaseCSPackage.PATH_NAME_CS__OWNED_PATH_ELEMENTS:
 				getOwnedPathElements().clear();
 				getOwnedPathElements().addAll((Collection<? extends PathElementCS>)newValue);
-				return;
-			case BaseCSPackage.PATH_NAME_CS__CONTEXT:
-				setContext((ElementCS)newValue);
 				return;
 			case BaseCSPackage.PATH_NAME_CS__SCOPE_FILTER:
 				setScopeFilter((ScopeFilter)newValue);
@@ -206,11 +206,11 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.PATH_NAME_CS__OWNED_PATH_ELEMENTS:
-				getOwnedPathElements().clear();
-				return;
 			case BaseCSPackage.PATH_NAME_CS__CONTEXT:
 				unsetContext();
+				return;
+			case BaseCSPackage.PATH_NAME_CS__OWNED_PATH_ELEMENTS:
+				getOwnedPathElements().clear();
 				return;
 			case BaseCSPackage.PATH_NAME_CS__SCOPE_FILTER:
 				setScopeFilter(SCOPE_FILTER_EDEFAULT);
@@ -229,12 +229,12 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	{
 		switch (featureID)
 		{
+			case BaseCSPackage.PATH_NAME_CS__CONTEXT:
+				return isSetContext();
 			case BaseCSPackage.PATH_NAME_CS__OWNED_PATH_ELEMENTS:
 				return ownedPathElements != null && !ownedPathElements.isEmpty();
 			case BaseCSPackage.PATH_NAME_CS__REFERRED_ELEMENT:
 				return basicGetReferredElement() != null;
-			case BaseCSPackage.PATH_NAME_CS__CONTEXT:
-				return isSetContext();
 			case BaseCSPackage.PATH_NAME_CS__SCOPE_FILTER:
 				return SCOPE_FILTER_EDEFAULT == null ? scopeFilter != null : !SCOPE_FILTER_EDEFAULT.equals(scopeFilter);
 		}

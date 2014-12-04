@@ -44,10 +44,10 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.util.CompleteOCL
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.ClassifierContextDeclCSImpl#getOwnedSignature <em>Owned Signature</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.ClassifierContextDeclCSImpl#getSelfName <em>Self Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.ClassifierContextDeclCSImpl#getReferredClass <em>Referred Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.ClassifierContextDeclCSImpl#getOwnedInvariants <em>Owned Invariants</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.ClassifierContextDeclCSImpl#getOwnedDefinitions <em>Owned Definitions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.ClassifierContextDeclCSImpl#getOwnedInvariants <em>Owned Invariants</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.ClassifierContextDeclCSImpl#getReferredClass <em>Referred Class</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.ClassifierContextDeclCSImpl#getSelfName <em>Self Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -68,6 +68,26 @@ public class ClassifierContextDeclCSImpl
 	protected TemplateSignatureCS ownedSignature;
 
 	/**
+	 * The cached value of the '{@link #getOwnedDefinitions() <em>Owned Definitions</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedDefinitions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<DefCS> ownedDefinitions;
+
+	/**
+	 * The cached value of the '{@link #getOwnedInvariants() <em>Owned Invariants</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedInvariants()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ConstraintCS> ownedInvariants;
+
+	/**
 	 * The default value of the '{@link #getSelfName() <em>Self Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -86,26 +106,6 @@ public class ClassifierContextDeclCSImpl
 	 * @ordered
 	 */
 	protected String selfName = SELF_NAME_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getOwnedInvariants() <em>Owned Invariants</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedInvariants()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ConstraintCS> ownedInvariants;
-
-	/**
-	 * The cached value of the '{@link #getOwnedDefinitions() <em>Owned Definitions</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedDefinitions()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<DefCS> ownedDefinitions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -206,14 +206,14 @@ public class ClassifierContextDeclCSImpl
 		{
 			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_SIGNATURE:
 				return getOwnedSignature();
-			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME:
-				return getSelfName();
-			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__REFERRED_CLASS:
-				return getReferredClass();
-			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_INVARIANTS:
-				return getOwnedInvariants();
 			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_DEFINITIONS:
 				return getOwnedDefinitions();
+			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_INVARIANTS:
+				return getOwnedInvariants();
+			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__REFERRED_CLASS:
+				return getReferredClass();
+			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME:
+				return getSelfName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -231,16 +231,16 @@ public class ClassifierContextDeclCSImpl
 			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_SIGNATURE:
 				setOwnedSignature((TemplateSignatureCS)newValue);
 				return;
-			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME:
-				setSelfName((String)newValue);
+			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_DEFINITIONS:
+				getOwnedDefinitions().clear();
+				getOwnedDefinitions().addAll((Collection<? extends DefCS>)newValue);
 				return;
 			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_INVARIANTS:
 				getOwnedInvariants().clear();
 				getOwnedInvariants().addAll((Collection<? extends ConstraintCS>)newValue);
 				return;
-			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_DEFINITIONS:
-				getOwnedDefinitions().clear();
-				getOwnedDefinitions().addAll((Collection<? extends DefCS>)newValue);
+			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME:
+				setSelfName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -258,14 +258,14 @@ public class ClassifierContextDeclCSImpl
 			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_SIGNATURE:
 				setOwnedSignature((TemplateSignatureCS)null);
 				return;
-			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME:
-				setSelfName(SELF_NAME_EDEFAULT);
+			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_DEFINITIONS:
+				getOwnedDefinitions().clear();
 				return;
 			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_INVARIANTS:
 				getOwnedInvariants().clear();
 				return;
-			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_DEFINITIONS:
-				getOwnedDefinitions().clear();
+			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME:
+				setSelfName(SELF_NAME_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -282,14 +282,14 @@ public class ClassifierContextDeclCSImpl
 		{
 			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_SIGNATURE:
 				return ownedSignature != null;
-			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME:
-				return SELF_NAME_EDEFAULT == null ? selfName != null : !SELF_NAME_EDEFAULT.equals(selfName);
-			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__REFERRED_CLASS:
-				return getReferredClass() != null;
-			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_INVARIANTS:
-				return ownedInvariants != null && !ownedInvariants.isEmpty();
 			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_DEFINITIONS:
 				return ownedDefinitions != null && !ownedDefinitions.isEmpty();
+			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_INVARIANTS:
+				return ownedInvariants != null && !ownedInvariants.isEmpty();
+			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__REFERRED_CLASS:
+				return getReferredClass() != null;
+			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME:
+				return SELF_NAME_EDEFAULT == null ? selfName != null : !SELF_NAME_EDEFAULT.equals(selfName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -425,10 +425,10 @@ public class ClassifierContextDeclCSImpl
 		{
 			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_SIGNATURE:
 				return basicSetOwnedSignature(null, msgs);
-			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_INVARIANTS:
-				return ((InternalEList<?>)getOwnedInvariants()).basicRemove(otherEnd, msgs);
 			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_DEFINITIONS:
 				return ((InternalEList<?>)getOwnedDefinitions()).basicRemove(otherEnd, msgs);
+			case CompleteOCLCSPackage.CLASSIFIER_CONTEXT_DECL_CS__OWNED_INVARIANTS:
+				return ((InternalEList<?>)getOwnedInvariants()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}

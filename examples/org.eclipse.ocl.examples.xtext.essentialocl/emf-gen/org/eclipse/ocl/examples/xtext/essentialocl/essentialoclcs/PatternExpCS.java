@@ -20,8 +20,8 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TypeRefCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PatternExpCS#getPatternVariableName <em>Pattern Variable Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PatternExpCS#getOwnedPatternType <em>Owned Pattern Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PatternExpCS#getPatternVariableName <em>Pattern Variable Name</em>}</li>
  * </ul>
  * </p>
  *

@@ -44,12 +44,12 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.OperationCSImpl#getOwnedSignature <em>Owned Signature</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.OperationCSImpl#getOwningClass <em>Owning Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.OperationCSImpl#getOwnedParameters <em>Owned Parameters</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.OperationCSImpl#getOwnedExceptions <em>Owned Exceptions</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.OperationCSImpl#getOwnedPreconditions <em>Owned Preconditions</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.OperationCSImpl#getOwnedPostconditions <em>Owned Postconditions</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.OperationCSImpl#getOwnedBodyExpressions <em>Owned Body Expressions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.OperationCSImpl#getOwnedExceptions <em>Owned Exceptions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.OperationCSImpl#getOwnedParameters <em>Owned Parameters</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.OperationCSImpl#getOwnedPostconditions <em>Owned Postconditions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.OperationCSImpl#getOwnedPreconditions <em>Owned Preconditions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.OperationCSImpl#getOwningClass <em>Owning Class</em>}</li>
  * </ul>
  * </p>
  *
@@ -67,14 +67,14 @@ public class OperationCSImpl extends TypedElementCSImpl implements OperationCS {
 	protected TemplateSignatureCS ownedSignature;
 
 	/**
-	 * The cached value of the '{@link #getOwnedParameters() <em>Owned Parameters</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedBodyExpressions() <em>Owned Body Expressions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedParameters()
+	 * @see #getOwnedBodyExpressions()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ParameterCS> ownedParameters;
+	protected EList<SpecificationCS> ownedBodyExpressions;
 
 	/**
 	 * The cached value of the '{@link #getOwnedExceptions() <em>Owned Exceptions</em>}' containment reference list.
@@ -87,14 +87,14 @@ public class OperationCSImpl extends TypedElementCSImpl implements OperationCS {
 	protected EList<TypedRefCS> ownedExceptions;
 
 	/**
-	 * The cached value of the '{@link #getOwnedPreconditions() <em>Owned Preconditions</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedParameters() <em>Owned Parameters</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedPreconditions()
+	 * @see #getOwnedParameters()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ConstraintCS> ownedPreconditions;
+	protected EList<ParameterCS> ownedParameters;
 
 	/**
 	 * The cached value of the '{@link #getOwnedPostconditions() <em>Owned Postconditions</em>}' containment reference list.
@@ -107,14 +107,14 @@ public class OperationCSImpl extends TypedElementCSImpl implements OperationCS {
 	protected EList<ConstraintCS> ownedPostconditions;
 
 	/**
-	 * The cached value of the '{@link #getOwnedBodyExpressions() <em>Owned Body Expressions</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedPreconditions() <em>Owned Preconditions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedBodyExpressions()
+	 * @see #getOwnedPreconditions()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<SpecificationCS> ownedBodyExpressions;
+	protected EList<ConstraintCS> ownedPreconditions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -316,12 +316,12 @@ public class OperationCSImpl extends TypedElementCSImpl implements OperationCS {
 				if (ownedSignature != null)
 					msgs = ((InternalEObject)ownedSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.OPERATION_CS__OWNED_SIGNATURE, null, msgs);
 				return basicSetOwnedSignature((TemplateSignatureCS)otherEnd, msgs);
+			case BaseCSPackage.OPERATION_CS__OWNED_PARAMETERS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedParameters()).basicAdd(otherEnd, msgs);
 			case BaseCSPackage.OPERATION_CS__OWNING_CLASS:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningClass((StructuredClassCS)otherEnd, msgs);
-			case BaseCSPackage.OPERATION_CS__OWNED_PARAMETERS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedParameters()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -337,18 +337,18 @@ public class OperationCSImpl extends TypedElementCSImpl implements OperationCS {
 		{
 			case BaseCSPackage.OPERATION_CS__OWNED_SIGNATURE:
 				return basicSetOwnedSignature(null, msgs);
-			case BaseCSPackage.OPERATION_CS__OWNING_CLASS:
-				return basicSetOwningClass(null, msgs);
-			case BaseCSPackage.OPERATION_CS__OWNED_PARAMETERS:
-				return ((InternalEList<?>)getOwnedParameters()).basicRemove(otherEnd, msgs);
-			case BaseCSPackage.OPERATION_CS__OWNED_EXCEPTIONS:
-				return ((InternalEList<?>)getOwnedExceptions()).basicRemove(otherEnd, msgs);
-			case BaseCSPackage.OPERATION_CS__OWNED_PRECONDITIONS:
-				return ((InternalEList<?>)getOwnedPreconditions()).basicRemove(otherEnd, msgs);
-			case BaseCSPackage.OPERATION_CS__OWNED_POSTCONDITIONS:
-				return ((InternalEList<?>)getOwnedPostconditions()).basicRemove(otherEnd, msgs);
 			case BaseCSPackage.OPERATION_CS__OWNED_BODY_EXPRESSIONS:
 				return ((InternalEList<?>)getOwnedBodyExpressions()).basicRemove(otherEnd, msgs);
+			case BaseCSPackage.OPERATION_CS__OWNED_EXCEPTIONS:
+				return ((InternalEList<?>)getOwnedExceptions()).basicRemove(otherEnd, msgs);
+			case BaseCSPackage.OPERATION_CS__OWNED_PARAMETERS:
+				return ((InternalEList<?>)getOwnedParameters()).basicRemove(otherEnd, msgs);
+			case BaseCSPackage.OPERATION_CS__OWNED_POSTCONDITIONS:
+				return ((InternalEList<?>)getOwnedPostconditions()).basicRemove(otherEnd, msgs);
+			case BaseCSPackage.OPERATION_CS__OWNED_PRECONDITIONS:
+				return ((InternalEList<?>)getOwnedPreconditions()).basicRemove(otherEnd, msgs);
+			case BaseCSPackage.OPERATION_CS__OWNING_CLASS:
+				return basicSetOwningClass(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -379,18 +379,18 @@ public class OperationCSImpl extends TypedElementCSImpl implements OperationCS {
 		{
 			case BaseCSPackage.OPERATION_CS__OWNED_SIGNATURE:
 				return getOwnedSignature();
-			case BaseCSPackage.OPERATION_CS__OWNING_CLASS:
-				return getOwningClass();
-			case BaseCSPackage.OPERATION_CS__OWNED_PARAMETERS:
-				return getOwnedParameters();
-			case BaseCSPackage.OPERATION_CS__OWNED_EXCEPTIONS:
-				return getOwnedExceptions();
-			case BaseCSPackage.OPERATION_CS__OWNED_PRECONDITIONS:
-				return getOwnedPreconditions();
-			case BaseCSPackage.OPERATION_CS__OWNED_POSTCONDITIONS:
-				return getOwnedPostconditions();
 			case BaseCSPackage.OPERATION_CS__OWNED_BODY_EXPRESSIONS:
 				return getOwnedBodyExpressions();
+			case BaseCSPackage.OPERATION_CS__OWNED_EXCEPTIONS:
+				return getOwnedExceptions();
+			case BaseCSPackage.OPERATION_CS__OWNED_PARAMETERS:
+				return getOwnedParameters();
+			case BaseCSPackage.OPERATION_CS__OWNED_POSTCONDITIONS:
+				return getOwnedPostconditions();
+			case BaseCSPackage.OPERATION_CS__OWNED_PRECONDITIONS:
+				return getOwnedPreconditions();
+			case BaseCSPackage.OPERATION_CS__OWNING_CLASS:
+				return getOwningClass();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -408,28 +408,28 @@ public class OperationCSImpl extends TypedElementCSImpl implements OperationCS {
 			case BaseCSPackage.OPERATION_CS__OWNED_SIGNATURE:
 				setOwnedSignature((TemplateSignatureCS)newValue);
 				return;
-			case BaseCSPackage.OPERATION_CS__OWNING_CLASS:
-				setOwningClass((StructuredClassCS)newValue);
-				return;
-			case BaseCSPackage.OPERATION_CS__OWNED_PARAMETERS:
-				getOwnedParameters().clear();
-				getOwnedParameters().addAll((Collection<? extends ParameterCS>)newValue);
+			case BaseCSPackage.OPERATION_CS__OWNED_BODY_EXPRESSIONS:
+				getOwnedBodyExpressions().clear();
+				getOwnedBodyExpressions().addAll((Collection<? extends SpecificationCS>)newValue);
 				return;
 			case BaseCSPackage.OPERATION_CS__OWNED_EXCEPTIONS:
 				getOwnedExceptions().clear();
 				getOwnedExceptions().addAll((Collection<? extends TypedRefCS>)newValue);
 				return;
-			case BaseCSPackage.OPERATION_CS__OWNED_PRECONDITIONS:
-				getOwnedPreconditions().clear();
-				getOwnedPreconditions().addAll((Collection<? extends ConstraintCS>)newValue);
+			case BaseCSPackage.OPERATION_CS__OWNED_PARAMETERS:
+				getOwnedParameters().clear();
+				getOwnedParameters().addAll((Collection<? extends ParameterCS>)newValue);
 				return;
 			case BaseCSPackage.OPERATION_CS__OWNED_POSTCONDITIONS:
 				getOwnedPostconditions().clear();
 				getOwnedPostconditions().addAll((Collection<? extends ConstraintCS>)newValue);
 				return;
-			case BaseCSPackage.OPERATION_CS__OWNED_BODY_EXPRESSIONS:
-				getOwnedBodyExpressions().clear();
-				getOwnedBodyExpressions().addAll((Collection<? extends SpecificationCS>)newValue);
+			case BaseCSPackage.OPERATION_CS__OWNED_PRECONDITIONS:
+				getOwnedPreconditions().clear();
+				getOwnedPreconditions().addAll((Collection<? extends ConstraintCS>)newValue);
+				return;
+			case BaseCSPackage.OPERATION_CS__OWNING_CLASS:
+				setOwningClass((StructuredClassCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -447,23 +447,23 @@ public class OperationCSImpl extends TypedElementCSImpl implements OperationCS {
 			case BaseCSPackage.OPERATION_CS__OWNED_SIGNATURE:
 				setOwnedSignature((TemplateSignatureCS)null);
 				return;
-			case BaseCSPackage.OPERATION_CS__OWNING_CLASS:
-				setOwningClass((StructuredClassCS)null);
-				return;
-			case BaseCSPackage.OPERATION_CS__OWNED_PARAMETERS:
-				getOwnedParameters().clear();
+			case BaseCSPackage.OPERATION_CS__OWNED_BODY_EXPRESSIONS:
+				getOwnedBodyExpressions().clear();
 				return;
 			case BaseCSPackage.OPERATION_CS__OWNED_EXCEPTIONS:
 				getOwnedExceptions().clear();
 				return;
-			case BaseCSPackage.OPERATION_CS__OWNED_PRECONDITIONS:
-				getOwnedPreconditions().clear();
+			case BaseCSPackage.OPERATION_CS__OWNED_PARAMETERS:
+				getOwnedParameters().clear();
 				return;
 			case BaseCSPackage.OPERATION_CS__OWNED_POSTCONDITIONS:
 				getOwnedPostconditions().clear();
 				return;
-			case BaseCSPackage.OPERATION_CS__OWNED_BODY_EXPRESSIONS:
-				getOwnedBodyExpressions().clear();
+			case BaseCSPackage.OPERATION_CS__OWNED_PRECONDITIONS:
+				getOwnedPreconditions().clear();
+				return;
+			case BaseCSPackage.OPERATION_CS__OWNING_CLASS:
+				setOwningClass((StructuredClassCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -480,18 +480,18 @@ public class OperationCSImpl extends TypedElementCSImpl implements OperationCS {
 		{
 			case BaseCSPackage.OPERATION_CS__OWNED_SIGNATURE:
 				return ownedSignature != null;
-			case BaseCSPackage.OPERATION_CS__OWNING_CLASS:
-				return getOwningClass() != null;
-			case BaseCSPackage.OPERATION_CS__OWNED_PARAMETERS:
-				return ownedParameters != null && !ownedParameters.isEmpty();
-			case BaseCSPackage.OPERATION_CS__OWNED_EXCEPTIONS:
-				return ownedExceptions != null && !ownedExceptions.isEmpty();
-			case BaseCSPackage.OPERATION_CS__OWNED_PRECONDITIONS:
-				return ownedPreconditions != null && !ownedPreconditions.isEmpty();
-			case BaseCSPackage.OPERATION_CS__OWNED_POSTCONDITIONS:
-				return ownedPostconditions != null && !ownedPostconditions.isEmpty();
 			case BaseCSPackage.OPERATION_CS__OWNED_BODY_EXPRESSIONS:
 				return ownedBodyExpressions != null && !ownedBodyExpressions.isEmpty();
+			case BaseCSPackage.OPERATION_CS__OWNED_EXCEPTIONS:
+				return ownedExceptions != null && !ownedExceptions.isEmpty();
+			case BaseCSPackage.OPERATION_CS__OWNED_PARAMETERS:
+				return ownedParameters != null && !ownedParameters.isEmpty();
+			case BaseCSPackage.OPERATION_CS__OWNED_POSTCONDITIONS:
+				return ownedPostconditions != null && !ownedPostconditions.isEmpty();
+			case BaseCSPackage.OPERATION_CS__OWNED_PRECONDITIONS:
+				return ownedPreconditions != null && !ownedPreconditions.isEmpty();
+			case BaseCSPackage.OPERATION_CS__OWNING_CLASS:
+				return getOwningClass() != null;
 		}
 		return super.eIsSet(featureID);
 	}

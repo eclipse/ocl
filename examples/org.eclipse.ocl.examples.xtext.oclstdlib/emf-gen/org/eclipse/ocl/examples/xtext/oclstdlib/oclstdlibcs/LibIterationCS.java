@@ -23,10 +23,10 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ParameterCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS#getOwnedIterators <em>Owned Iterators</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS#getOwnedAccumulators <em>Owned Accumulators</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS#isIsInvalidating <em>Is Invalidating</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS#isIsValidating <em>Is Validating</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS#getOwnedAccumulators <em>Owned Accumulators</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS#getOwnedIterators <em>Owned Iterators</em>}</li>
  * </ul>
  * </p>
  *

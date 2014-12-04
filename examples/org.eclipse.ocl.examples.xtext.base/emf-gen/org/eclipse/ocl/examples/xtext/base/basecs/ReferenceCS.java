@@ -23,8 +23,8 @@ import org.eclipse.ocl.examples.pivot.Property;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ReferenceCS#getReferredOpposite <em>Referred Opposite</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ReferenceCS#getReferredKeys <em>Referred Keys</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ReferenceCS#getReferredOpposite <em>Referred Opposite</em>}</li>
  * </ul>
  * </p>
  *

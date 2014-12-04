@@ -18,8 +18,8 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS#getOwningLetExpression <em>Owning Let Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS#getOwnedRoundBracketedClause <em>Owned Round Bracketed Clause</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS#getOwningLetExpression <em>Owning Let Expression</em>}</li>
  * </ul>
  * </p>
  *

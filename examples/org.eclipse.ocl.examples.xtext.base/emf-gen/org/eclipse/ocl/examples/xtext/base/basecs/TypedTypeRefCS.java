@@ -20,10 +20,10 @@ import org.eclipse.ocl.examples.pivot.Type;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#isIsTypeof <em>Is Typeof</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getOwnedBinding <em>Owned Binding</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getOwnedPathName <em>Owned Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getReferredType <em>Referred Type</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#getOwnedBinding <em>Owned Binding</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS#isIsTypeof <em>Is Typeof</em>}</li>
  * </ul>
  * </p>
  *

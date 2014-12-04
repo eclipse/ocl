@@ -29,9 +29,9 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ConstraintCSImpl#getStereotype <em>Stereotype</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ConstraintCSImpl#getOwnedSpecification <em>Owned Specification</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ConstraintCSImpl#getOwnedMessageSpecification <em>Owned Message Specification</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ConstraintCSImpl#getOwnedSpecification <em>Owned Specification</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ConstraintCSImpl#getStereotype <em>Stereotype</em>}</li>
  * </ul>
  * </p>
  *
@@ -39,6 +39,26 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  */
 public class ConstraintCSImpl extends NamedElementCSImpl implements ConstraintCS
 {
+	/**
+	 * The cached value of the '{@link #getOwnedMessageSpecification() <em>Owned Message Specification</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedMessageSpecification()
+	 * @generated
+	 * @ordered
+	 */
+	protected SpecificationCS ownedMessageSpecification;
+
+	/**
+	 * The cached value of the '{@link #getOwnedSpecification() <em>Owned Specification</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedSpecification()
+	 * @generated
+	 * @ordered
+	 */
+	protected SpecificationCS ownedSpecification;
+
 	/**
 	 * The default value of the '{@link #getStereotype() <em>Stereotype</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -58,26 +78,6 @@ public class ConstraintCSImpl extends NamedElementCSImpl implements ConstraintCS
 	 * @ordered
 	 */
 	protected String stereotype = STEREOTYPE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getOwnedSpecification() <em>Owned Specification</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedSpecification()
-	 * @generated
-	 * @ordered
-	 */
-	protected SpecificationCS ownedSpecification;
-
-	/**
-	 * The cached value of the '{@link #getOwnedMessageSpecification() <em>Owned Message Specification</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedMessageSpecification()
-	 * @generated
-	 * @ordered
-	 */
-	protected SpecificationCS ownedMessageSpecification;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -240,10 +240,10 @@ public class ConstraintCSImpl extends NamedElementCSImpl implements ConstraintCS
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.CONSTRAINT_CS__OWNED_SPECIFICATION:
-				return basicSetOwnedSpecification(null, msgs);
 			case BaseCSPackage.CONSTRAINT_CS__OWNED_MESSAGE_SPECIFICATION:
 				return basicSetOwnedMessageSpecification(null, msgs);
+			case BaseCSPackage.CONSTRAINT_CS__OWNED_SPECIFICATION:
+				return basicSetOwnedSpecification(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -258,12 +258,12 @@ public class ConstraintCSImpl extends NamedElementCSImpl implements ConstraintCS
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.CONSTRAINT_CS__STEREOTYPE:
-				return getStereotype();
-			case BaseCSPackage.CONSTRAINT_CS__OWNED_SPECIFICATION:
-				return getOwnedSpecification();
 			case BaseCSPackage.CONSTRAINT_CS__OWNED_MESSAGE_SPECIFICATION:
 				return getOwnedMessageSpecification();
+			case BaseCSPackage.CONSTRAINT_CS__OWNED_SPECIFICATION:
+				return getOwnedSpecification();
+			case BaseCSPackage.CONSTRAINT_CS__STEREOTYPE:
+				return getStereotype();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -278,14 +278,14 @@ public class ConstraintCSImpl extends NamedElementCSImpl implements ConstraintCS
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.CONSTRAINT_CS__STEREOTYPE:
-				setStereotype((String)newValue);
+			case BaseCSPackage.CONSTRAINT_CS__OWNED_MESSAGE_SPECIFICATION:
+				setOwnedMessageSpecification((SpecificationCS)newValue);
 				return;
 			case BaseCSPackage.CONSTRAINT_CS__OWNED_SPECIFICATION:
 				setOwnedSpecification((SpecificationCS)newValue);
 				return;
-			case BaseCSPackage.CONSTRAINT_CS__OWNED_MESSAGE_SPECIFICATION:
-				setOwnedMessageSpecification((SpecificationCS)newValue);
+			case BaseCSPackage.CONSTRAINT_CS__STEREOTYPE:
+				setStereotype((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -301,14 +301,14 @@ public class ConstraintCSImpl extends NamedElementCSImpl implements ConstraintCS
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.CONSTRAINT_CS__STEREOTYPE:
-				setStereotype(STEREOTYPE_EDEFAULT);
+			case BaseCSPackage.CONSTRAINT_CS__OWNED_MESSAGE_SPECIFICATION:
+				setOwnedMessageSpecification((SpecificationCS)null);
 				return;
 			case BaseCSPackage.CONSTRAINT_CS__OWNED_SPECIFICATION:
 				setOwnedSpecification((SpecificationCS)null);
 				return;
-			case BaseCSPackage.CONSTRAINT_CS__OWNED_MESSAGE_SPECIFICATION:
-				setOwnedMessageSpecification((SpecificationCS)null);
+			case BaseCSPackage.CONSTRAINT_CS__STEREOTYPE:
+				setStereotype(STEREOTYPE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -324,12 +324,12 @@ public class ConstraintCSImpl extends NamedElementCSImpl implements ConstraintCS
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.CONSTRAINT_CS__STEREOTYPE:
-				return STEREOTYPE_EDEFAULT == null ? stereotype != null : !STEREOTYPE_EDEFAULT.equals(stereotype);
-			case BaseCSPackage.CONSTRAINT_CS__OWNED_SPECIFICATION:
-				return ownedSpecification != null;
 			case BaseCSPackage.CONSTRAINT_CS__OWNED_MESSAGE_SPECIFICATION:
 				return ownedMessageSpecification != null;
+			case BaseCSPackage.CONSTRAINT_CS__OWNED_SPECIFICATION:
+				return ownedSpecification != null;
+			case BaseCSPackage.CONSTRAINT_CS__STEREOTYPE:
+				return STEREOTYPE_EDEFAULT == null ? stereotype != null : !STEREOTYPE_EDEFAULT.equals(stereotype);
 		}
 		return super.eIsSet(featureID);
 	}

@@ -36,8 +36,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CollectionLiteralExpCSImpl#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CollectionLiteralExpCSImpl#getOwnedParts <em>Owned Parts</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CollectionLiteralExpCSImpl#getOwnedType <em>Owned Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,16 +48,6 @@ public class CollectionLiteralExpCSImpl
 		implements CollectionLiteralExpCS {
 
 	/**
-	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedType()
-	 * @generated
-	 * @ordered
-	 */
-	protected CollectionTypeCS ownedType;
-
-	/**
 	 * The cached value of the '{@link #getOwnedParts() <em>Owned Parts</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,6 +56,16 @@ public class CollectionLiteralExpCSImpl
 	 * @ordered
 	 */
 	protected EList<CollectionLiteralPartCS> ownedParts;
+
+	/**
+	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedType()
+	 * @generated
+	 * @ordered
+	 */
+	protected CollectionTypeCS ownedType;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -155,10 +155,10 @@ public class CollectionLiteralExpCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_TYPE:
-				return basicSetOwnedType(null, msgs);
 			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_PARTS:
 				return ((InternalEList<?>)getOwnedParts()).basicRemove(otherEnd, msgs);
+			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_TYPE:
+				return basicSetOwnedType(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -172,10 +172,10 @@ public class CollectionLiteralExpCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_TYPE:
-				return getOwnedType();
 			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_PARTS:
 				return getOwnedParts();
+			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_TYPE:
+				return getOwnedType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -190,12 +190,12 @@ public class CollectionLiteralExpCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_TYPE:
-				setOwnedType((CollectionTypeCS)newValue);
-				return;
 			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_PARTS:
 				getOwnedParts().clear();
 				getOwnedParts().addAll((Collection<? extends CollectionLiteralPartCS>)newValue);
+				return;
+			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_TYPE:
+				setOwnedType((CollectionTypeCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -210,11 +210,11 @@ public class CollectionLiteralExpCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_TYPE:
-				setOwnedType((CollectionTypeCS)null);
-				return;
 			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_PARTS:
 				getOwnedParts().clear();
+				return;
+			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_TYPE:
+				setOwnedType((CollectionTypeCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -229,10 +229,10 @@ public class CollectionLiteralExpCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_TYPE:
-				return ownedType != null;
 			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_PARTS:
 				return ownedParts != null && !ownedParts.isEmpty();
+			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_TYPE:
+				return ownedType != null;
 		}
 		return super.eIsSet(featureID);
 	}

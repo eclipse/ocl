@@ -21,12 +21,12 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getOwningRoundBracketedClause <em>Owning Round Bracketed Clause</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getRole <em>Role</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getPrefix <em>Prefix</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getOwnedInitExpression <em>Owned Init Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getOwnedNameExpression <em>Owned Name Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getOwnedType <em>Owned Type</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getOwnedInitExpression <em>Owned Init Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getOwningRoundBracketedClause <em>Owning Round Bracketed Clause</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getPrefix <em>Prefix</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getRole <em>Role</em>}</li>
  * </ul>
  * </p>
  *

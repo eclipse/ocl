@@ -22,9 +22,9 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS#getOwnedInitExpression <em>Owned Init Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS#getOwningCurlyBracketClause <em>Owning Curly Bracket Clause</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS#getReferredProperty <em>Referred Property</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS#getOwnedInitExpression <em>Owned Init Expression</em>}</li>
  * </ul>
  * </p>
  *

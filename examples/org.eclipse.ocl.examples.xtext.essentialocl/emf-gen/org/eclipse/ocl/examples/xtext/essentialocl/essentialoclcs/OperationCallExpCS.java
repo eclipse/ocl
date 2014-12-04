@@ -41,7 +41,7 @@ public interface OperationCallExpCS extends CallExpCS
 	 * @return the value of the '<em>Referred Operation</em>' reference.
 	 * @see #setReferredOperation(Operation)
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getOperationCallExpCS_ReferredOperation()
-	 * @model derived="true"
+	 * @model resolveProxies="false" derived="true"
 	 * @generated
 	 */
 	Operation getReferredOperation();

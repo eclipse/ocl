@@ -34,9 +34,9 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SquareBrackete
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.AbstractNameExpCSImpl#getOwnedPathName <em>Owned Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.AbstractNameExpCSImpl#isIsPre <em>Is Pre</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.AbstractNameExpCSImpl#getOwnedCurlyBracketedClause <em>Owned Curly Bracketed Clause</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.AbstractNameExpCSImpl#getOwnedPathName <em>Owned Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.AbstractNameExpCSImpl#getOwnedRoundBracketedClause <em>Owned Round Bracketed Clause</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.AbstractNameExpCSImpl#getOwnedSquareBracketedClauses <em>Owned Square Bracketed Clauses</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.AbstractNameExpCSImpl#getSourceType <em>Source Type</em>}</li>
@@ -48,16 +48,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SquareBrackete
  */
 public abstract class AbstractNameExpCSImpl extends ExpCSImpl implements AbstractNameExpCS
 {
-	/**
-	 * The cached value of the '{@link #getOwnedPathName() <em>Owned Path Name</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedPathName()
-	 * @generated
-	 * @ordered
-	 */
-	protected PathNameCS ownedPathName;
-
 	/**
 	 * The default value of the '{@link #isIsPre() <em>Is Pre</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -87,6 +77,16 @@ public abstract class AbstractNameExpCSImpl extends ExpCSImpl implements Abstrac
 	 * @ordered
 	 */
 	protected CurlyBracketedClauseCS ownedCurlyBracketedClause;
+
+	/**
+	 * The cached value of the '{@link #getOwnedPathName() <em>Owned Path Name</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedPathName()
+	 * @generated
+	 * @ordered
+	 */
+	protected PathNameCS ownedPathName;
 
 	/**
 	 * The cached value of the '{@link #getOwnedRoundBracketedClause() <em>Owned Round Bracketed Clause</em>}' containment reference.
@@ -422,10 +422,10 @@ public abstract class AbstractNameExpCSImpl extends ExpCSImpl implements Abstrac
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS__OWNED_PATH_NAME:
-				return basicSetOwnedPathName(null, msgs);
 			case EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
 				return basicSetOwnedCurlyBracketedClause(null, msgs);
+			case EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS__OWNED_PATH_NAME:
+				return basicSetOwnedPathName(null, msgs);
 			case EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS__OWNED_ROUND_BRACKETED_CLAUSE:
 				return basicSetOwnedRoundBracketedClause(null, msgs);
 			case EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS__OWNED_SQUARE_BRACKETED_CLAUSES:
@@ -444,12 +444,12 @@ public abstract class AbstractNameExpCSImpl extends ExpCSImpl implements Abstrac
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS__OWNED_PATH_NAME:
-				return getOwnedPathName();
 			case EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS__IS_PRE:
 				return isIsPre();
 			case EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
 				return getOwnedCurlyBracketedClause();
+			case EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS__OWNED_PATH_NAME:
+				return getOwnedPathName();
 			case EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS__OWNED_ROUND_BRACKETED_CLAUSE:
 				return getOwnedRoundBracketedClause();
 			case EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS__OWNED_SQUARE_BRACKETED_CLAUSES:
@@ -473,14 +473,14 @@ public abstract class AbstractNameExpCSImpl extends ExpCSImpl implements Abstrac
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS__OWNED_PATH_NAME:
-				setOwnedPathName((PathNameCS)newValue);
-				return;
 			case EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS__IS_PRE:
 				setIsPre((Boolean)newValue);
 				return;
 			case EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
 				setOwnedCurlyBracketedClause((CurlyBracketedClauseCS)newValue);
+				return;
+			case EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS__OWNED_PATH_NAME:
+				setOwnedPathName((PathNameCS)newValue);
 				return;
 			case EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS__OWNED_ROUND_BRACKETED_CLAUSE:
 				setOwnedRoundBracketedClause((RoundBracketedClauseCS)newValue);
@@ -509,14 +509,14 @@ public abstract class AbstractNameExpCSImpl extends ExpCSImpl implements Abstrac
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS__OWNED_PATH_NAME:
-				setOwnedPathName((PathNameCS)null);
-				return;
 			case EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS__IS_PRE:
 				setIsPre(IS_PRE_EDEFAULT);
 				return;
 			case EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
 				setOwnedCurlyBracketedClause((CurlyBracketedClauseCS)null);
+				return;
+			case EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS__OWNED_PATH_NAME:
+				setOwnedPathName((PathNameCS)null);
 				return;
 			case EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS__OWNED_ROUND_BRACKETED_CLAUSE:
 				setOwnedRoundBracketedClause((RoundBracketedClauseCS)null);
@@ -544,12 +544,12 @@ public abstract class AbstractNameExpCSImpl extends ExpCSImpl implements Abstrac
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS__OWNED_PATH_NAME:
-				return ownedPathName != null;
 			case EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS__IS_PRE:
 				return isPre != IS_PRE_EDEFAULT;
 			case EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
 				return ownedCurlyBracketedClause != null;
+			case EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS__OWNED_PATH_NAME:
+				return ownedPathName != null;
 			case EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS__OWNED_ROUND_BRACKETED_CLAUSE:
 				return ownedRoundBracketedClause != null;
 			case EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS__OWNED_SQUARE_BRACKETED_CLAUSES:

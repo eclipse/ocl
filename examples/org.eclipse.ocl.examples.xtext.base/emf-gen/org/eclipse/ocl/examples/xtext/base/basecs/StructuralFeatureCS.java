@@ -22,9 +22,9 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS#getOwningClass <em>Owning Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS#getDefault <em>Default</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS#getOwnedDefaultExpressions <em>Owned Default Expressions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuralFeatureCS#getOwningClass <em>Owning Class</em>}</li>
  * </ul>
  * </p>
  *

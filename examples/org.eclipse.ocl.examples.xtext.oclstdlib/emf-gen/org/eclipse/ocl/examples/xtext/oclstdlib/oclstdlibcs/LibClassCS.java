@@ -42,7 +42,7 @@ public interface LibClassCS
 	 * @return the value of the '<em>Metaclass Name</em>' reference.
 	 * @see #setMetaclassName(MetaclassNameCS)
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage#getLibClassCS_MetaclassName()
-	 * @model transient="true"
+	 * @model
 	 * @generated
 	 */
 	MetaclassNameCS getMetaclassName();

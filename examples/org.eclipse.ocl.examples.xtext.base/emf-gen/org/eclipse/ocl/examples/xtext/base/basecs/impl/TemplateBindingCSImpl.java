@@ -36,8 +36,8 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TemplateBindingCSImpl#getOwningElement <em>Owning Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TemplateBindingCSImpl#getOwnedSubstitutions <em>Owned Substitutions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TemplateBindingCSImpl#getOwningElement <em>Owning Element</em>}</li>
  * </ul>
  * </p>
  *
@@ -139,12 +139,12 @@ public class TemplateBindingCSImpl extends ElementRefCSImpl implements TemplateB
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNED_SUBSTITUTIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedSubstitutions()).basicAdd(otherEnd, msgs);
 			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNING_ELEMENT:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningElement((TypedTypeRefCS)otherEnd, msgs);
-			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNED_SUBSTITUTIONS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedSubstitutions()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -158,10 +158,10 @@ public class TemplateBindingCSImpl extends ElementRefCSImpl implements TemplateB
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNING_ELEMENT:
-				return basicSetOwningElement(null, msgs);
 			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNED_SUBSTITUTIONS:
 				return ((InternalEList<?>)getOwnedSubstitutions()).basicRemove(otherEnd, msgs);
+			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNING_ELEMENT:
+				return basicSetOwningElement(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -190,10 +190,10 @@ public class TemplateBindingCSImpl extends ElementRefCSImpl implements TemplateB
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNING_ELEMENT:
-				return getOwningElement();
 			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNED_SUBSTITUTIONS:
 				return getOwnedSubstitutions();
+			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNING_ELEMENT:
+				return getOwningElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -208,12 +208,12 @@ public class TemplateBindingCSImpl extends ElementRefCSImpl implements TemplateB
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNING_ELEMENT:
-				setOwningElement((TypedTypeRefCS)newValue);
-				return;
 			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNED_SUBSTITUTIONS:
 				getOwnedSubstitutions().clear();
 				getOwnedSubstitutions().addAll((Collection<? extends TemplateParameterSubstitutionCS>)newValue);
+				return;
+			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNING_ELEMENT:
+				setOwningElement((TypedTypeRefCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -228,11 +228,11 @@ public class TemplateBindingCSImpl extends ElementRefCSImpl implements TemplateB
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNING_ELEMENT:
-				setOwningElement((TypedTypeRefCS)null);
-				return;
 			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNED_SUBSTITUTIONS:
 				getOwnedSubstitutions().clear();
+				return;
+			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNING_ELEMENT:
+				setOwningElement((TypedTypeRefCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -247,10 +247,10 @@ public class TemplateBindingCSImpl extends ElementRefCSImpl implements TemplateB
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNING_ELEMENT:
-				return getOwningElement() != null;
 			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNED_SUBSTITUTIONS:
 				return ownedSubstitutions != null && !ownedSubstitutions.isEmpty();
+			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNING_ELEMENT:
+				return getOwningElement() != null;
 		}
 		return super.eIsSet(featureID);
 	}

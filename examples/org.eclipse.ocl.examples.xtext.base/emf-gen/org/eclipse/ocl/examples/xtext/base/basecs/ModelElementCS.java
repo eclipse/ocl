@@ -21,9 +21,9 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS#getOwnedAnnotations <em>Owned Annotations</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS#getOriginalXmiId <em>Original Xmi Id</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS#getCsi <em>Csi</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS#getOriginalXmiId <em>Original Xmi Id</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS#getOwnedAnnotations <em>Owned Annotations</em>}</li>
  * </ul>
  * </p>
  *

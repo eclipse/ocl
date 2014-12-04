@@ -20,8 +20,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS#getTypeName <em>Type Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS#getParts <em>Parts</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS#getTypeName <em>Type Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
@@ -43,7 +43,7 @@ public interface ConstructorExpCS extends AbstractNameExpCS
 	 * @return the value of the '<em>Type Name</em>' reference.
 	 * @see #setTypeName(TypeNameExpCS)
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getConstructorExpCS_TypeName()
-	 * @model derived="true"
+	 * @model resolveProxies="false" derived="true"
 	 * @generated
 	 */
 	TypeNameExpCS getTypeName();
@@ -69,7 +69,7 @@ public interface ConstructorExpCS extends AbstractNameExpCS
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parts</em>' reference list.
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getConstructorExpCS_Parts()
-	 * @model derived="true"
+	 * @model resolveProxies="false" derived="true"
 	 * @generated
 	 */
 	EList<ConstructorPartCS> getParts();

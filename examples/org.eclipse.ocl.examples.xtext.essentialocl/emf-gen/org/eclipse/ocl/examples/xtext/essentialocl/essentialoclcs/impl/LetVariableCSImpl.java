@@ -39,10 +39,10 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetVariableCSImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetVariableCSImpl#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetVariableCSImpl#getOwnedInitExpression <em>Owned Init Expression</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetVariableCSImpl#getOwningLetExpression <em>Owning Let Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetVariableCSImpl#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetVariableCSImpl#getOwnedRoundBracketedClause <em>Owned Round Bracketed Clause</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetVariableCSImpl#getOwningLetExpression <em>Owning Let Expression</em>}</li>
  * </ul>
  * </p>
  *
@@ -71,15 +71,6 @@ public class LetVariableCSImpl
 	 */
 	protected String name = NAME_EDEFAULT;
 	/**
-	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedType()
-	 * @generated
-	 * @ordered
-	 */
-	protected TypedRefCS ownedType;
-	/**
 	 * The cached value of the '{@link #getOwnedInitExpression() <em>Owned Init Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -88,6 +79,15 @@ public class LetVariableCSImpl
 	 * @ordered
 	 */
 	protected ExpCS ownedInitExpression;
+	/**
+	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedType()
+	 * @generated
+	 * @ordered
+	 */
+	protected TypedRefCS ownedType;
 	/**
 	 * The cached value of the '{@link #getOwnedRoundBracketedClause() <em>Owned Round Bracketed Clause</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -355,14 +355,14 @@ public class LetVariableCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_TYPE:
-				return basicSetOwnedType(null, msgs);
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_INIT_EXPRESSION:
 				return basicSetOwnedInitExpression(null, msgs);
-			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNING_LET_EXPRESSION:
-				return basicSetOwningLetExpression(null, msgs);
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_TYPE:
+				return basicSetOwnedType(null, msgs);
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_ROUND_BRACKETED_CLAUSE:
 				return basicSetOwnedRoundBracketedClause(null, msgs);
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNING_LET_EXPRESSION:
+				return basicSetOwningLetExpression(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -394,14 +394,14 @@ public class LetVariableCSImpl
 		{
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__NAME:
 				return getName();
-			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_TYPE:
-				return getOwnedType();
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_INIT_EXPRESSION:
 				return getOwnedInitExpression();
-			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNING_LET_EXPRESSION:
-				return getOwningLetExpression();
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_TYPE:
+				return getOwnedType();
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_ROUND_BRACKETED_CLAUSE:
 				return getOwnedRoundBracketedClause();
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNING_LET_EXPRESSION:
+				return getOwningLetExpression();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -418,17 +418,17 @@ public class LetVariableCSImpl
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__NAME:
 				setName((String)newValue);
 				return;
-			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_TYPE:
-				setOwnedType((TypedRefCS)newValue);
-				return;
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_INIT_EXPRESSION:
 				setOwnedInitExpression((ExpCS)newValue);
 				return;
-			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNING_LET_EXPRESSION:
-				setOwningLetExpression((LetExpCS)newValue);
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_TYPE:
+				setOwnedType((TypedRefCS)newValue);
 				return;
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_ROUND_BRACKETED_CLAUSE:
 				setOwnedRoundBracketedClause((RoundBracketedClauseCS)newValue);
+				return;
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNING_LET_EXPRESSION:
+				setOwningLetExpression((LetExpCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -446,17 +446,17 @@ public class LetVariableCSImpl
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_TYPE:
-				setOwnedType((TypedRefCS)null);
-				return;
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_INIT_EXPRESSION:
 				setOwnedInitExpression((ExpCS)null);
 				return;
-			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNING_LET_EXPRESSION:
-				setOwningLetExpression((LetExpCS)null);
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_TYPE:
+				setOwnedType((TypedRefCS)null);
 				return;
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_ROUND_BRACKETED_CLAUSE:
 				setOwnedRoundBracketedClause((RoundBracketedClauseCS)null);
+				return;
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNING_LET_EXPRESSION:
+				setOwningLetExpression((LetExpCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -473,14 +473,14 @@ public class LetVariableCSImpl
 		{
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_TYPE:
-				return ownedType != null;
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_INIT_EXPRESSION:
 				return ownedInitExpression != null;
-			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNING_LET_EXPRESSION:
-				return getOwningLetExpression() != null;
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_TYPE:
+				return ownedType != null;
 			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_ROUND_BRACKETED_CLAUSE:
 				return ownedRoundBracketedClause != null;
+			case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNING_LET_EXPRESSION:
+				return getOwningLetExpression() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -511,8 +511,8 @@ public class LetVariableCSImpl
 		{
 			switch (derivedFeatureID)
 			{
-				case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_TYPE: return EssentialOCLCSPackage.VARIABLE_CS__OWNED_TYPE;
 				case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_INIT_EXPRESSION: return EssentialOCLCSPackage.VARIABLE_CS__OWNED_INIT_EXPRESSION;
+				case EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_TYPE: return EssentialOCLCSPackage.VARIABLE_CS__OWNED_TYPE;
 				default: return -1;
 			}
 		}
@@ -545,8 +545,8 @@ public class LetVariableCSImpl
 		{
 			switch (baseFeatureID)
 			{
-				case EssentialOCLCSPackage.VARIABLE_CS__OWNED_TYPE: return EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_TYPE;
 				case EssentialOCLCSPackage.VARIABLE_CS__OWNED_INIT_EXPRESSION: return EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_INIT_EXPRESSION;
+				case EssentialOCLCSPackage.VARIABLE_CS__OWNED_TYPE: return EssentialOCLCSPackage.LET_VARIABLE_CS__OWNED_TYPE;
 				default: return -1;
 			}
 		}

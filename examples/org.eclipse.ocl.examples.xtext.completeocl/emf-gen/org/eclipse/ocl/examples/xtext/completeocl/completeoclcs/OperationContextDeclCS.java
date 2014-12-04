@@ -26,12 +26,12 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getReferredOperation <em>Referred Operation</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getOwnedParameters <em>Owned Parameters</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getOwnedResult <em>Owned Result</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getOwnedPreconditions <em>Owned Preconditions</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getOwnedPostconditions <em>Owned Postconditions</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getOwnedBodies <em>Owned Bodies</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getOwnedParameters <em>Owned Parameters</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getOwnedPostconditions <em>Owned Postconditions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getOwnedPreconditions <em>Owned Preconditions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getOwnedResult <em>Owned Result</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS#getReferredOperation <em>Referred Operation</em>}</li>
  * </ul>
  * </p>
  *

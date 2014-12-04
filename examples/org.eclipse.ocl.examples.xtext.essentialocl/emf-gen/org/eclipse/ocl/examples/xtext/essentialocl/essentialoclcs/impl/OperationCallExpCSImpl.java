@@ -12,8 +12,6 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
@@ -72,26 +70,6 @@ public abstract class OperationCallExpCSImpl extends CallExpCSImpl implements Op
 	 */
 	public Operation getReferredOperation()
 	{
-		if (referredOperation != null && ((EObject)referredOperation).eIsProxy())
-		{
-			InternalEObject oldReferredOperation = (InternalEObject)referredOperation;
-			referredOperation = (Operation)eResolveProxy(oldReferredOperation);
-			if (referredOperation != oldReferredOperation)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EssentialOCLCSPackage.OPERATION_CALL_EXP_CS__REFERRED_OPERATION, oldReferredOperation, referredOperation));
-			}
-		}
-		return referredOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Operation basicGetReferredOperation()
-	{
 		return referredOperation;
 	}
 
@@ -119,8 +97,7 @@ public abstract class OperationCallExpCSImpl extends CallExpCSImpl implements Op
 		switch (featureID)
 		{
 			case EssentialOCLCSPackage.OPERATION_CALL_EXP_CS__REFERRED_OPERATION:
-				if (resolve) return getReferredOperation();
-				return basicGetReferredOperation();
+				return getReferredOperation();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

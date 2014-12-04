@@ -41,7 +41,7 @@ public interface VariableExpCS extends AbstractNameExpCS
 	 * @return the value of the '<em>Referred Variable</em>' reference.
 	 * @see #setReferredVariable(Variable)
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getVariableExpCS_ReferredVariable()
-	 * @model derived="true"
+	 * @model resolveProxies="false" derived="true"
 	 * @generated
 	 */
 	Variable getReferredVariable();

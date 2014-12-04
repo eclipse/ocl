@@ -21,8 +21,8 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS#getOwnedInitExpression <em>Owned Init Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS#getOwnedType <em>Owned Type</em>}</li>
  * </ul>
  * </p>
  *

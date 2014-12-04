@@ -32,9 +32,9 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ModelElementCSImpl#getOwnedAnnotations <em>Owned Annotations</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ModelElementCSImpl#getOriginalXmiId <em>Original Xmi Id</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ModelElementCSImpl#getCsi <em>Csi</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ModelElementCSImpl#getOriginalXmiId <em>Original Xmi Id</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ModelElementCSImpl#getOwnedAnnotations <em>Owned Annotations</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,14 +42,24 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
  */
 public abstract class ModelElementCSImpl extends PivotableElementCSImpl implements ModelElementCS {
 	/**
-	 * The cached value of the '{@link #getOwnedAnnotations() <em>Owned Annotations</em>}' containment reference list.
+	 * The default value of the '{@link #getCsi() <em>Csi</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedAnnotations()
+	 * @see #getCsi()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AnnotationElementCS> ownedAnnotations;
+	protected static final String CSI_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getCsi() <em>Csi</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCsi()
+	 * @generated
+	 * @ordered
+	 */
+	protected String csi = CSI_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getOriginalXmiId() <em>Original Xmi Id</em>}' attribute.
@@ -72,24 +82,14 @@ public abstract class ModelElementCSImpl extends PivotableElementCSImpl implemen
 	protected String originalXmiId = ORIGINAL_XMI_ID_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getCsi() <em>Csi</em>}' attribute.
+	 * The cached value of the '{@link #getOwnedAnnotations() <em>Owned Annotations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCsi()
+	 * @see #getOwnedAnnotations()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String CSI_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getCsi() <em>Csi</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCsi()
-	 * @generated
-	 * @ordered
-	 */
-	protected String csi = CSI_EDEFAULT;
+	protected EList<AnnotationElementCS> ownedAnnotations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -203,12 +203,12 @@ public abstract class ModelElementCSImpl extends PivotableElementCSImpl implemen
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS:
-				return getOwnedAnnotations();
-			case BaseCSPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID:
-				return getOriginalXmiId();
 			case BaseCSPackage.MODEL_ELEMENT_CS__CSI:
 				return getCsi();
+			case BaseCSPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID:
+				return getOriginalXmiId();
+			case BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -223,15 +223,15 @@ public abstract class ModelElementCSImpl extends PivotableElementCSImpl implemen
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS:
-				getOwnedAnnotations().clear();
-				getOwnedAnnotations().addAll((Collection<? extends AnnotationElementCS>)newValue);
+			case BaseCSPackage.MODEL_ELEMENT_CS__CSI:
+				setCsi((String)newValue);
 				return;
 			case BaseCSPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID:
 				setOriginalXmiId((String)newValue);
 				return;
-			case BaseCSPackage.MODEL_ELEMENT_CS__CSI:
-				setCsi((String)newValue);
+			case BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends AnnotationElementCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -246,14 +246,14 @@ public abstract class ModelElementCSImpl extends PivotableElementCSImpl implemen
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS:
-				getOwnedAnnotations().clear();
+			case BaseCSPackage.MODEL_ELEMENT_CS__CSI:
+				setCsi(CSI_EDEFAULT);
 				return;
 			case BaseCSPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID:
 				setOriginalXmiId(ORIGINAL_XMI_ID_EDEFAULT);
 				return;
-			case BaseCSPackage.MODEL_ELEMENT_CS__CSI:
-				setCsi(CSI_EDEFAULT);
+			case BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -268,12 +268,12 @@ public abstract class ModelElementCSImpl extends PivotableElementCSImpl implemen
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS:
-				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
-			case BaseCSPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID:
-				return ORIGINAL_XMI_ID_EDEFAULT == null ? originalXmiId != null : !ORIGINAL_XMI_ID_EDEFAULT.equals(originalXmiId);
 			case BaseCSPackage.MODEL_ELEMENT_CS__CSI:
 				return CSI_EDEFAULT == null ? csi != null : !CSI_EDEFAULT.equals(csi);
+			case BaseCSPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID:
+				return ORIGINAL_XMI_ID_EDEFAULT == null ? originalXmiId != null : !ORIGINAL_XMI_ID_EDEFAULT.equals(originalXmiId);
+			case BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

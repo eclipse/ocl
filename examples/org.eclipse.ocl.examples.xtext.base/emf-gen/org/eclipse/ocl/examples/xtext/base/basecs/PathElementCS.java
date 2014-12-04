@@ -22,9 +22,9 @@ import org.eclipse.ocl.examples.pivot.util.Pivotable;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS#getElementType <em>Element Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS#getOwningPathName <em>Owning Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS#getReferredElement <em>Referred Element</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS#getElementType <em>Element Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -99,7 +99,7 @@ public interface PathElementCS extends ElementCS, Pivotable
 	 * @return the value of the '<em>Element Type</em>' reference.
 	 * @see #setElementType(EClassifier)
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getPathElementCS_ElementType()
-	 * @model resolveProxies="false" transient="true"
+	 * @model transient="true"
 	 * @generated
 	 */
 	EClassifier getElementType();

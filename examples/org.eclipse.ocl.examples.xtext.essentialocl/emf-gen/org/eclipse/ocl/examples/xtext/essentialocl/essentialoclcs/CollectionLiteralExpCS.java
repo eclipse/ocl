@@ -20,8 +20,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralExpCS#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralExpCS#getOwnedParts <em>Owned Parts</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralExpCS#getOwnedType <em>Owned Type</em>}</li>
  * </ul>
  * </p>
  *

@@ -35,11 +35,11 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IfExpCSImpl#getOwnedCondition <em>Owned Condition</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IfExpCSImpl#getOwnedThenExpression <em>Owned Then Expression</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IfExpCSImpl#getOwnedIfThenExpressions <em>Owned If Then Expressions</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IfExpCSImpl#getOwnedElseExpression <em>Owned Else Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IfExpCSImpl#isIsImplicit <em>Is Implicit</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IfExpCSImpl#getOwnedCondition <em>Owned Condition</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IfExpCSImpl#getOwnedElseExpression <em>Owned Else Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IfExpCSImpl#getOwnedIfThenExpressions <em>Owned If Then Expressions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IfExpCSImpl#getOwnedThenExpression <em>Owned Then Expression</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,46 +48,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
 public class IfExpCSImpl
 		extends ExpCSImpl
 		implements IfExpCS {
-
-	/**
-	 * The cached value of the '{@link #getOwnedCondition() <em>Owned Condition</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedCondition()
-	 * @generated
-	 * @ordered
-	 */
-	protected ExpCS ownedCondition;
-
-	/**
-	 * The cached value of the '{@link #getOwnedThenExpression() <em>Owned Then Expression</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedThenExpression()
-	 * @generated
-	 * @ordered
-	 */
-	protected ExpCS ownedThenExpression;
-
-	/**
-	 * The cached value of the '{@link #getOwnedIfThenExpressions() <em>Owned If Then Expressions</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedIfThenExpressions()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<IfThenExpCS> ownedIfThenExpressions;
-
-	/**
-	 * The cached value of the '{@link #getOwnedElseExpression() <em>Owned Else Expression</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedElseExpression()
-	 * @generated
-	 * @ordered
-	 */
-	protected ExpCS ownedElseExpression;
 
 	/**
 	 * The default value of the '{@link #isIsImplicit() <em>Is Implicit</em>}' attribute.
@@ -108,6 +68,46 @@ public class IfExpCSImpl
 	 * @ordered
 	 */
 	protected boolean isImplicit = IS_IMPLICIT_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getOwnedCondition() <em>Owned Condition</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedCondition()
+	 * @generated
+	 * @ordered
+	 */
+	protected ExpCS ownedCondition;
+
+	/**
+	 * The cached value of the '{@link #getOwnedElseExpression() <em>Owned Else Expression</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedElseExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected ExpCS ownedElseExpression;
+
+	/**
+	 * The cached value of the '{@link #getOwnedIfThenExpressions() <em>Owned If Then Expressions</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedIfThenExpressions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<IfThenExpCS> ownedIfThenExpressions;
+
+	/**
+	 * The cached value of the '{@link #getOwnedThenExpression() <em>Owned Then Expression</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedThenExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected ExpCS ownedThenExpression;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -327,12 +327,12 @@ public class IfExpCSImpl
 		{
 			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_CONDITION:
 				return basicSetOwnedCondition(null, msgs);
-			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_THEN_EXPRESSION:
-				return basicSetOwnedThenExpression(null, msgs);
-			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_IF_THEN_EXPRESSIONS:
-				return ((InternalEList<?>)getOwnedIfThenExpressions()).basicRemove(otherEnd, msgs);
 			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_ELSE_EXPRESSION:
 				return basicSetOwnedElseExpression(null, msgs);
+			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_IF_THEN_EXPRESSIONS:
+				return ((InternalEList<?>)getOwnedIfThenExpressions()).basicRemove(otherEnd, msgs);
+			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_THEN_EXPRESSION:
+				return basicSetOwnedThenExpression(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -346,16 +346,16 @@ public class IfExpCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_CONDITION:
-				return getOwnedCondition();
-			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_THEN_EXPRESSION:
-				return getOwnedThenExpression();
-			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_IF_THEN_EXPRESSIONS:
-				return getOwnedIfThenExpressions();
-			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_ELSE_EXPRESSION:
-				return getOwnedElseExpression();
 			case EssentialOCLCSPackage.IF_EXP_CS__IS_IMPLICIT:
 				return isIsImplicit();
+			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_CONDITION:
+				return getOwnedCondition();
+			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_ELSE_EXPRESSION:
+				return getOwnedElseExpression();
+			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_IF_THEN_EXPRESSIONS:
+				return getOwnedIfThenExpressions();
+			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_THEN_EXPRESSION:
+				return getOwnedThenExpression();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -370,21 +370,21 @@ public class IfExpCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case EssentialOCLCSPackage.IF_EXP_CS__IS_IMPLICIT:
+				setIsImplicit((Boolean)newValue);
+				return;
 			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_CONDITION:
 				setOwnedCondition((ExpCS)newValue);
 				return;
-			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_THEN_EXPRESSION:
-				setOwnedThenExpression((ExpCS)newValue);
+			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_ELSE_EXPRESSION:
+				setOwnedElseExpression((ExpCS)newValue);
 				return;
 			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_IF_THEN_EXPRESSIONS:
 				getOwnedIfThenExpressions().clear();
 				getOwnedIfThenExpressions().addAll((Collection<? extends IfThenExpCS>)newValue);
 				return;
-			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_ELSE_EXPRESSION:
-				setOwnedElseExpression((ExpCS)newValue);
-				return;
-			case EssentialOCLCSPackage.IF_EXP_CS__IS_IMPLICIT:
-				setIsImplicit((Boolean)newValue);
+			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_THEN_EXPRESSION:
+				setOwnedThenExpression((ExpCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -399,20 +399,20 @@ public class IfExpCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case EssentialOCLCSPackage.IF_EXP_CS__IS_IMPLICIT:
+				setIsImplicit(IS_IMPLICIT_EDEFAULT);
+				return;
 			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_CONDITION:
 				setOwnedCondition((ExpCS)null);
-				return;
-			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_THEN_EXPRESSION:
-				setOwnedThenExpression((ExpCS)null);
-				return;
-			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_IF_THEN_EXPRESSIONS:
-				getOwnedIfThenExpressions().clear();
 				return;
 			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_ELSE_EXPRESSION:
 				setOwnedElseExpression((ExpCS)null);
 				return;
-			case EssentialOCLCSPackage.IF_EXP_CS__IS_IMPLICIT:
-				setIsImplicit(IS_IMPLICIT_EDEFAULT);
+			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_IF_THEN_EXPRESSIONS:
+				getOwnedIfThenExpressions().clear();
+				return;
+			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_THEN_EXPRESSION:
+				setOwnedThenExpression((ExpCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -427,16 +427,16 @@ public class IfExpCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_CONDITION:
-				return ownedCondition != null;
-			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_THEN_EXPRESSION:
-				return ownedThenExpression != null;
-			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_IF_THEN_EXPRESSIONS:
-				return ownedIfThenExpressions != null && !ownedIfThenExpressions.isEmpty();
-			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_ELSE_EXPRESSION:
-				return ownedElseExpression != null;
 			case EssentialOCLCSPackage.IF_EXP_CS__IS_IMPLICIT:
 				return isImplicit != IS_IMPLICIT_EDEFAULT;
+			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_CONDITION:
+				return ownedCondition != null;
+			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_ELSE_EXPRESSION:
+				return ownedElseExpression != null;
+			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_IF_THEN_EXPRESSIONS:
+				return ownedIfThenExpressions != null && !ownedIfThenExpressions.isEmpty();
+			case EssentialOCLCSPackage.IF_EXP_CS__OWNED_THEN_EXPRESSION:
+				return ownedThenExpression != null;
 		}
 		return super.eIsSet(featureID);
 	}

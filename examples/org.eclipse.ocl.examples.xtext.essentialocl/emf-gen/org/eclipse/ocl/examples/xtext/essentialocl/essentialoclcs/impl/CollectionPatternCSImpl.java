@@ -47,10 +47,10 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CollectionPatternCSImpl#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CollectionPatternCSImpl#getOwnedParts <em>Owned Parts</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CollectionPatternCSImpl#getRestVariableName <em>Rest Variable Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CollectionPatternCSImpl#getOwnedPatternGuard <em>Owned Pattern Guard</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CollectionPatternCSImpl#getOwnedType <em>Owned Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CollectionPatternCSImpl#getRestVariableName <em>Rest Variable Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -58,16 +58,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  */
 public class CollectionPatternCSImpl extends TypedRefCSImpl implements CollectionPatternCS
 {
-	/**
-	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedType()
-	 * @generated
-	 * @ordered
-	 */
-	protected CollectionTypeCS ownedType;
-
 	/**
 	 * The cached value of the '{@link #getOwnedParts() <em>Owned Parts</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -77,6 +67,26 @@ public class CollectionPatternCSImpl extends TypedRefCSImpl implements Collectio
 	 * @ordered
 	 */
 	protected EList<PatternExpCS> ownedParts;
+
+	/**
+	 * The cached value of the '{@link #getOwnedPatternGuard() <em>Owned Pattern Guard</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedPatternGuard()
+	 * @generated
+	 * @ordered
+	 */
+	protected ExpCS ownedPatternGuard;
+
+	/**
+	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedType()
+	 * @generated
+	 * @ordered
+	 */
+	protected CollectionTypeCS ownedType;
 
 	/**
 	 * The default value of the '{@link #getRestVariableName() <em>Rest Variable Name</em>}' attribute.
@@ -97,16 +107,6 @@ public class CollectionPatternCSImpl extends TypedRefCSImpl implements Collectio
 	 * @ordered
 	 */
 	protected String restVariableName = REST_VARIABLE_NAME_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getOwnedPatternGuard() <em>Owned Pattern Guard</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedPatternGuard()
-	 * @generated
-	 * @ordered
-	 */
-	protected ExpCS ownedPatternGuard;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -283,12 +283,12 @@ public class CollectionPatternCSImpl extends TypedRefCSImpl implements Collectio
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS__OWNED_TYPE:
-				return basicSetOwnedType(null, msgs);
 			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS__OWNED_PARTS:
 				return ((InternalEList<?>)getOwnedParts()).basicRemove(otherEnd, msgs);
 			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS__OWNED_PATTERN_GUARD:
 				return basicSetOwnedPatternGuard(null, msgs);
+			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS__OWNED_TYPE:
+				return basicSetOwnedType(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -303,14 +303,14 @@ public class CollectionPatternCSImpl extends TypedRefCSImpl implements Collectio
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS__OWNED_TYPE:
-				return getOwnedType();
 			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS__OWNED_PARTS:
 				return getOwnedParts();
-			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS__REST_VARIABLE_NAME:
-				return getRestVariableName();
 			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS__OWNED_PATTERN_GUARD:
 				return getOwnedPatternGuard();
+			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS__OWNED_TYPE:
+				return getOwnedType();
+			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS__REST_VARIABLE_NAME:
+				return getRestVariableName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -326,18 +326,18 @@ public class CollectionPatternCSImpl extends TypedRefCSImpl implements Collectio
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS__OWNED_TYPE:
-				setOwnedType((CollectionTypeCS)newValue);
-				return;
 			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS__OWNED_PARTS:
 				getOwnedParts().clear();
 				getOwnedParts().addAll((Collection<? extends PatternExpCS>)newValue);
 				return;
-			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS__REST_VARIABLE_NAME:
-				setRestVariableName((String)newValue);
-				return;
 			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS__OWNED_PATTERN_GUARD:
 				setOwnedPatternGuard((ExpCS)newValue);
+				return;
+			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS__OWNED_TYPE:
+				setOwnedType((CollectionTypeCS)newValue);
+				return;
+			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS__REST_VARIABLE_NAME:
+				setRestVariableName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -353,17 +353,17 @@ public class CollectionPatternCSImpl extends TypedRefCSImpl implements Collectio
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS__OWNED_TYPE:
-				setOwnedType((CollectionTypeCS)null);
-				return;
 			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS__OWNED_PARTS:
 				getOwnedParts().clear();
 				return;
-			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS__REST_VARIABLE_NAME:
-				setRestVariableName(REST_VARIABLE_NAME_EDEFAULT);
-				return;
 			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS__OWNED_PATTERN_GUARD:
 				setOwnedPatternGuard((ExpCS)null);
+				return;
+			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS__OWNED_TYPE:
+				setOwnedType((CollectionTypeCS)null);
+				return;
+			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS__REST_VARIABLE_NAME:
+				setRestVariableName(REST_VARIABLE_NAME_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -379,14 +379,14 @@ public class CollectionPatternCSImpl extends TypedRefCSImpl implements Collectio
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS__OWNED_TYPE:
-				return ownedType != null;
 			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS__OWNED_PARTS:
 				return ownedParts != null && !ownedParts.isEmpty();
-			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS__REST_VARIABLE_NAME:
-				return REST_VARIABLE_NAME_EDEFAULT == null ? restVariableName != null : !REST_VARIABLE_NAME_EDEFAULT.equals(restVariableName);
 			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS__OWNED_PATTERN_GUARD:
 				return ownedPatternGuard != null;
+			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS__OWNED_TYPE:
+				return ownedType != null;
+			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS__REST_VARIABLE_NAME:
+				return REST_VARIABLE_NAME_EDEFAULT == null ? restVariableName != null : !REST_VARIABLE_NAME_EDEFAULT.equals(restVariableName);
 		}
 		return super.eIsSet(featureID);
 	}

@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
@@ -76,7 +75,6 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.WildcardTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSValidator;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.VisitableCS;
 
 /**
@@ -534,17 +532,6 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		// Initialize created meta-data
 		theBaseCSPackage.initializePackageContents();
 
-		// Register package validator
-		EValidator.Registry.INSTANCE.put
-			(theBaseCSPackage, 
-			 new EValidator.Descriptor()
-			 {
-				 public EValidator getEValidator()
-				 {
-					 return BaseCSValidator.INSTANCE;
-				 }
-			 });
-
 		// Mark meta-data to indicate it can't be changed
 		theBaseCSPackage.freeze();
 
@@ -629,7 +616,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getClassCS_OwningPackage()
 	{
-		return (EReference)classCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)classCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -639,7 +626,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EAttribute getClassCS_InstanceClassName()
 	{
-		return (EAttribute)classCSEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)classCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -649,7 +636,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getClassCS_OwnedConstraints()
 	{
-		return (EReference)classCSEClass.getEStructuralFeatures().get(2);
+		return (EReference)classCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -679,7 +666,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EAttribute getConstraintCS_Stereotype()
 	{
-		return (EAttribute)constraintCSEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)constraintCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -699,7 +686,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getConstraintCS_OwnedMessageSpecification()
 	{
-		return (EReference)constraintCSEClass.getEStructuralFeatures().get(2);
+		return (EReference)constraintCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -855,7 +842,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getImportCS_OwnedPathName()
 	{
-		return (EReference)importCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)importCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -865,7 +852,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getImportCS_ReferredNamespace()
 	{
-		return (EReference)importCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)importCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -875,7 +862,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EAttribute getImportCS_IsAll()
 	{
-		return (EAttribute)importCSEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)importCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -963,7 +950,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getModelElementCS_OwnedAnnotations()
 	{
-		return (EReference)modelElementCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)modelElementCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -982,7 +969,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EAttribute getModelElementCS_Csi()
 	{
-		return (EAttribute)modelElementCSEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)modelElementCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1118,7 +1105,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * @generated
 	 */
 	public EReference getOperationCS_OwningClass() {
-		return (EReference)operationCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)operationCSEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1128,7 +1115,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getOperationCS_OwnedParameters()
 	{
-		return (EReference)operationCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)operationCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1138,7 +1125,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getOperationCS_OwnedExceptions()
 	{
-		return (EReference)operationCSEClass.getEStructuralFeatures().get(2);
+		return (EReference)operationCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1148,7 +1135,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getOperationCS_OwnedPreconditions()
 	{
-		return (EReference)operationCSEClass.getEStructuralFeatures().get(3);
+		return (EReference)operationCSEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1158,7 +1145,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getOperationCS_OwnedPostconditions()
 	{
-		return (EReference)operationCSEClass.getEStructuralFeatures().get(4);
+		return (EReference)operationCSEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1168,7 +1155,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getOperationCS_OwnedBodyExpressions()
 	{
-		return (EReference)operationCSEClass.getEStructuralFeatures().get(5);
+		return (EReference)operationCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1187,7 +1174,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getPackageCS_OwnedClasses()
 	{
-		return (EReference)packageCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)packageCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1197,7 +1184,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EAttribute getPackageCS_NsPrefix()
 	{
-		return (EAttribute)packageCSEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)packageCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1207,7 +1194,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EAttribute getPackageCS_NsURI()
 	{
-		return (EAttribute)packageCSEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)packageCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1266,7 +1253,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getPathElementCS_OwningPathName()
 	{
-		return (EReference)pathElementCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)pathElementCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1276,7 +1263,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getPathElementCS_ReferredElement()
 	{
-		return (EReference)pathElementCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)pathElementCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1286,7 +1273,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getPathElementCS_ElementType()
 	{
-		return (EReference)pathElementCSEClass.getEStructuralFeatures().get(2);
+		return (EReference)pathElementCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1326,7 +1313,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getPathNameCS_OwnedPathElements()
 	{
-		return (EReference)pathNameCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)pathNameCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1336,7 +1323,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getPathNameCS_ReferredElement()
 	{
-		return (EReference)pathNameCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)pathNameCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1346,7 +1333,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getPathNameCS_Context()
 	{
-		return (EReference)pathNameCSEClass.getEStructuralFeatures().get(2);
+		return (EReference)pathNameCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1414,7 +1401,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getReferenceCS_ReferredOpposite()
 	{
-		return (EReference)referenceCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)referenceCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1424,7 +1411,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getReferenceCS_ReferredKeys()
 	{
-		return (EReference)referenceCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)referenceCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1504,7 +1491,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getStructuredClassCS_OwnedSuperTypes()
 	{
-		return (EReference)structuredClassCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)structuredClassCSEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1534,7 +1521,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getStructuredClassCS_OwnedMetaclass()
 	{
-		return (EReference)structuredClassCSEClass.getEStructuralFeatures().get(3);
+		return (EReference)structuredClassCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1553,7 +1540,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getStructuralFeatureCS_OwningClass()
 	{
-		return (EReference)structuralFeatureCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)structuralFeatureCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1563,7 +1550,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EAttribute getStructuralFeatureCS_Default()
 	{
-		return (EAttribute)structuralFeatureCSEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)structuralFeatureCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1573,7 +1560,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getStructuralFeatureCS_OwnedDefaultExpressions()
 	{
-		return (EReference)structuralFeatureCSEClass.getEStructuralFeatures().get(2);
+		return (EReference)structuralFeatureCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1592,7 +1579,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getTemplateBindingCS_OwningElement()
 	{
-		return (EReference)templateBindingCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)templateBindingCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1602,7 +1589,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getTemplateBindingCS_OwnedSubstitutions()
 	{
-		return (EReference)templateBindingCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)templateBindingCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1640,7 +1627,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getTemplateParameterSubstitutionCS_OwningBinding()
 	{
-		return (EReference)templateParameterSubstitutionCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)templateParameterSubstitutionCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1649,7 +1636,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * @generated
 	 */
 	public EReference getTemplateParameterSubstitutionCS_OwnedActualParameter() {
-		return (EReference)templateParameterSubstitutionCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)templateParameterSubstitutionCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1668,7 +1655,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getTemplateSignatureCS_OwningElement()
 	{
-		return (EReference)templateSignatureCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)templateSignatureCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1678,7 +1665,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getTemplateSignatureCS_OwnedParameters()
 	{
-		return (EReference)templateSignatureCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)templateSignatureCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1800,7 +1787,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * @generated
 	 */
 	public EReference getTypedElementCS_OwnedType() {
-		return (EReference)typedElementCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)typedElementCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1810,7 +1797,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EAttribute getTypedElementCS_Qualifiers()
 	{
-		return (EAttribute)typedElementCSEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)typedElementCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1820,7 +1807,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EAttribute getTypedElementCS_IsOptional()
 	{
-		return (EAttribute)typedElementCSEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)typedElementCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1858,7 +1845,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getTypedTypeRefCS_OwnedPathName()
 	{
-		return (EReference)typedTypeRefCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)typedTypeRefCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1868,7 +1855,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getTypedTypeRefCS_ReferredType()
 	{
-		return (EReference)typedTypeRefCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)typedTypeRefCSEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1878,7 +1865,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EReference getTypedTypeRefCS_OwnedBinding()
 	{
-		return (EReference)typedTypeRefCSEClass.getEStructuralFeatures().get(2);
+		return (EReference)typedTypeRefCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1888,7 +1875,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	public EAttribute getTypedTypeRefCS_IsTypeof()
 	{
-		return (EAttribute)typedTypeRefCSEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)typedTypeRefCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1989,15 +1976,15 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		attributeCSEClass = createEClass(ATTRIBUTE_CS);
 
 		classCSEClass = createEClass(CLASS_CS);
-		createEReference(classCSEClass, CLASS_CS__OWNING_PACKAGE);
 		createEAttribute(classCSEClass, CLASS_CS__INSTANCE_CLASS_NAME);
 		createEReference(classCSEClass, CLASS_CS__OWNED_CONSTRAINTS);
+		createEReference(classCSEClass, CLASS_CS__OWNING_PACKAGE);
 		createEAttribute(classCSEClass, CLASS_CS__QUALIFIERS);
 
 		constraintCSEClass = createEClass(CONSTRAINT_CS);
-		createEAttribute(constraintCSEClass, CONSTRAINT_CS__STEREOTYPE);
-		createEReference(constraintCSEClass, CONSTRAINT_CS__OWNED_SPECIFICATION);
 		createEReference(constraintCSEClass, CONSTRAINT_CS__OWNED_MESSAGE_SPECIFICATION);
+		createEReference(constraintCSEClass, CONSTRAINT_CS__OWNED_SPECIFICATION);
+		createEAttribute(constraintCSEClass, CONSTRAINT_CS__STEREOTYPE);
 
 		contextLessElementCSEClass = createEClass(CONTEXT_LESS_ELEMENT_CS);
 
@@ -2023,9 +2010,9 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		featureCSEClass = createEClass(FEATURE_CS);
 
 		importCSEClass = createEClass(IMPORT_CS);
+		createEAttribute(importCSEClass, IMPORT_CS__IS_ALL);
 		createEReference(importCSEClass, IMPORT_CS__OWNED_PATH_NAME);
 		createEReference(importCSEClass, IMPORT_CS__REFERRED_NAMESPACE);
-		createEAttribute(importCSEClass, IMPORT_CS__IS_ALL);
 
 		lambdaTypeCSEClass = createEClass(LAMBDA_TYPE_CS);
 		createEAttribute(lambdaTypeCSEClass, LAMBDA_TYPE_CS__NAME);
@@ -2037,9 +2024,9 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		createEReference(libraryCSEClass, LIBRARY_CS__REFERRED_PACKAGE);
 
 		modelElementCSEClass = createEClass(MODEL_ELEMENT_CS);
-		createEReference(modelElementCSEClass, MODEL_ELEMENT_CS__OWNED_ANNOTATIONS);
-		createEAttribute(modelElementCSEClass, MODEL_ELEMENT_CS__ORIGINAL_XMI_ID);
 		createEAttribute(modelElementCSEClass, MODEL_ELEMENT_CS__CSI);
+		createEAttribute(modelElementCSEClass, MODEL_ELEMENT_CS__ORIGINAL_XMI_ID);
+		createEReference(modelElementCSEClass, MODEL_ELEMENT_CS__OWNED_ANNOTATIONS);
 
 		modelElementRefCSEClass = createEClass(MODEL_ELEMENT_REF_CS);
 		createEReference(modelElementRefCSEClass, MODEL_ELEMENT_REF_CS__OWNED_PATH_NAME);
@@ -2060,17 +2047,17 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		namespaceCSEClass = createEClass(NAMESPACE_CS);
 
 		operationCSEClass = createEClass(OPERATION_CS);
-		createEReference(operationCSEClass, OPERATION_CS__OWNING_CLASS);
-		createEReference(operationCSEClass, OPERATION_CS__OWNED_PARAMETERS);
-		createEReference(operationCSEClass, OPERATION_CS__OWNED_EXCEPTIONS);
-		createEReference(operationCSEClass, OPERATION_CS__OWNED_PRECONDITIONS);
-		createEReference(operationCSEClass, OPERATION_CS__OWNED_POSTCONDITIONS);
 		createEReference(operationCSEClass, OPERATION_CS__OWNED_BODY_EXPRESSIONS);
+		createEReference(operationCSEClass, OPERATION_CS__OWNED_EXCEPTIONS);
+		createEReference(operationCSEClass, OPERATION_CS__OWNED_PARAMETERS);
+		createEReference(operationCSEClass, OPERATION_CS__OWNED_POSTCONDITIONS);
+		createEReference(operationCSEClass, OPERATION_CS__OWNED_PRECONDITIONS);
+		createEReference(operationCSEClass, OPERATION_CS__OWNING_CLASS);
 
 		packageCSEClass = createEClass(PACKAGE_CS);
-		createEReference(packageCSEClass, PACKAGE_CS__OWNED_CLASSES);
 		createEAttribute(packageCSEClass, PACKAGE_CS__NS_PREFIX);
 		createEAttribute(packageCSEClass, PACKAGE_CS__NS_URI);
+		createEReference(packageCSEClass, PACKAGE_CS__OWNED_CLASSES);
 
 		packageOwnerCSEClass = createEClass(PACKAGE_OWNER_CS);
 		createEReference(packageOwnerCSEClass, PACKAGE_OWNER_CS__OWNED_PACKAGES);
@@ -2079,17 +2066,17 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		createEReference(parameterCSEClass, PARAMETER_CS__OWNING_OPERATION);
 
 		pathElementCSEClass = createEClass(PATH_ELEMENT_CS);
+		createEReference(pathElementCSEClass, PATH_ELEMENT_CS__ELEMENT_TYPE);
 		createEReference(pathElementCSEClass, PATH_ELEMENT_CS__OWNING_PATH_NAME);
 		createEReference(pathElementCSEClass, PATH_ELEMENT_CS__REFERRED_ELEMENT);
-		createEReference(pathElementCSEClass, PATH_ELEMENT_CS__ELEMENT_TYPE);
 
 		pathElementWithURICSEClass = createEClass(PATH_ELEMENT_WITH_URICS);
 		createEAttribute(pathElementWithURICSEClass, PATH_ELEMENT_WITH_URICS__URI);
 
 		pathNameCSEClass = createEClass(PATH_NAME_CS);
+		createEReference(pathNameCSEClass, PATH_NAME_CS__CONTEXT);
 		createEReference(pathNameCSEClass, PATH_NAME_CS__OWNED_PATH_ELEMENTS);
 		createEReference(pathNameCSEClass, PATH_NAME_CS__REFERRED_ELEMENT);
-		createEReference(pathNameCSEClass, PATH_NAME_CS__CONTEXT);
 		createEAttribute(pathNameCSEClass, PATH_NAME_CS__SCOPE_FILTER);
 
 		pivotableElementCSEClass = createEClass(PIVOTABLE_ELEMENT_CS);
@@ -2099,8 +2086,8 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		createEAttribute(primitiveTypeRefCSEClass, PRIMITIVE_TYPE_REF_CS__NAME);
 
 		referenceCSEClass = createEClass(REFERENCE_CS);
-		createEReference(referenceCSEClass, REFERENCE_CS__REFERRED_OPPOSITE);
 		createEReference(referenceCSEClass, REFERENCE_CS__REFERRED_KEYS);
+		createEReference(referenceCSEClass, REFERENCE_CS__REFERRED_OPPOSITE);
 
 		rootCSEClass = createEClass(ROOT_CS);
 		createEReference(rootCSEClass, ROOT_CS__OWNED_IMPORTS);
@@ -2111,31 +2098,31 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		specificationCSEClass = createEClass(SPECIFICATION_CS);
 		createEAttribute(specificationCSEClass, SPECIFICATION_CS__EXPR_STRING);
 
-		structuredClassCSEClass = createEClass(STRUCTURED_CLASS_CS);
-		createEReference(structuredClassCSEClass, STRUCTURED_CLASS_CS__OWNED_SUPER_TYPES);
-		createEReference(structuredClassCSEClass, STRUCTURED_CLASS_CS__OWNED_OPERATIONS);
-		createEReference(structuredClassCSEClass, STRUCTURED_CLASS_CS__OWNED_PROPERTIES);
-		createEReference(structuredClassCSEClass, STRUCTURED_CLASS_CS__OWNED_METACLASS);
-
 		structuralFeatureCSEClass = createEClass(STRUCTURAL_FEATURE_CS);
-		createEReference(structuralFeatureCSEClass, STRUCTURAL_FEATURE_CS__OWNING_CLASS);
 		createEAttribute(structuralFeatureCSEClass, STRUCTURAL_FEATURE_CS__DEFAULT);
 		createEReference(structuralFeatureCSEClass, STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS);
+		createEReference(structuralFeatureCSEClass, STRUCTURAL_FEATURE_CS__OWNING_CLASS);
+
+		structuredClassCSEClass = createEClass(STRUCTURED_CLASS_CS);
+		createEReference(structuredClassCSEClass, STRUCTURED_CLASS_CS__OWNED_METACLASS);
+		createEReference(structuredClassCSEClass, STRUCTURED_CLASS_CS__OWNED_OPERATIONS);
+		createEReference(structuredClassCSEClass, STRUCTURED_CLASS_CS__OWNED_PROPERTIES);
+		createEReference(structuredClassCSEClass, STRUCTURED_CLASS_CS__OWNED_SUPER_TYPES);
 
 		templateBindingCSEClass = createEClass(TEMPLATE_BINDING_CS);
-		createEReference(templateBindingCSEClass, TEMPLATE_BINDING_CS__OWNING_ELEMENT);
 		createEReference(templateBindingCSEClass, TEMPLATE_BINDING_CS__OWNED_SUBSTITUTIONS);
+		createEReference(templateBindingCSEClass, TEMPLATE_BINDING_CS__OWNING_ELEMENT);
 
 		templateParameterCSEClass = createEClass(TEMPLATE_PARAMETER_CS);
 		createEReference(templateParameterCSEClass, TEMPLATE_PARAMETER_CS__OWNING_SIGNATURE);
 
 		templateParameterSubstitutionCSEClass = createEClass(TEMPLATE_PARAMETER_SUBSTITUTION_CS);
-		createEReference(templateParameterSubstitutionCSEClass, TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNING_BINDING);
 		createEReference(templateParameterSubstitutionCSEClass, TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNED_ACTUAL_PARAMETER);
+		createEReference(templateParameterSubstitutionCSEClass, TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNING_BINDING);
 
 		templateSignatureCSEClass = createEClass(TEMPLATE_SIGNATURE_CS);
-		createEReference(templateSignatureCSEClass, TEMPLATE_SIGNATURE_CS__OWNING_ELEMENT);
 		createEReference(templateSignatureCSEClass, TEMPLATE_SIGNATURE_CS__OWNED_PARAMETERS);
+		createEReference(templateSignatureCSEClass, TEMPLATE_SIGNATURE_CS__OWNING_ELEMENT);
 
 		templateableElementCSEClass = createEClass(TEMPLATEABLE_ELEMENT_CS);
 		createEReference(templateableElementCSEClass, TEMPLATEABLE_ELEMENT_CS__OWNED_SIGNATURE);
@@ -2155,18 +2142,18 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		typeRefCSEClass = createEClass(TYPE_REF_CS);
 
 		typedElementCSEClass = createEClass(TYPED_ELEMENT_CS);
+		createEAttribute(typedElementCSEClass, TYPED_ELEMENT_CS__IS_OPTIONAL);
 		createEReference(typedElementCSEClass, TYPED_ELEMENT_CS__OWNED_TYPE);
 		createEAttribute(typedElementCSEClass, TYPED_ELEMENT_CS__QUALIFIERS);
-		createEAttribute(typedElementCSEClass, TYPED_ELEMENT_CS__IS_OPTIONAL);
 
 		typedRefCSEClass = createEClass(TYPED_REF_CS);
 		createEReference(typedRefCSEClass, TYPED_REF_CS__OWNED_MULTIPLICITY);
 
 		typedTypeRefCSEClass = createEClass(TYPED_TYPE_REF_CS);
+		createEAttribute(typedTypeRefCSEClass, TYPED_TYPE_REF_CS__IS_TYPEOF);
+		createEReference(typedTypeRefCSEClass, TYPED_TYPE_REF_CS__OWNED_BINDING);
 		createEReference(typedTypeRefCSEClass, TYPED_TYPE_REF_CS__OWNED_PATH_NAME);
 		createEReference(typedTypeRefCSEClass, TYPED_TYPE_REF_CS__REFERRED_TYPE);
-		createEReference(typedTypeRefCSEClass, TYPED_TYPE_REF_CS__OWNED_BINDING);
-		createEAttribute(typedTypeRefCSEClass, TYPED_TYPE_REF_CS__IS_TYPEOF);
 
 		visitableCSEClass = createEClass(VISITABLE_CS);
 
@@ -2262,9 +2249,9 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		rootPackageCSEClass.getESuperTypes().add(this.getPackageOwnerCS());
 		rootPackageCSEClass.getESuperTypes().add(this.getRootCS());
 		specificationCSEClass.getESuperTypes().add(this.getModelElementCS());
+		structuralFeatureCSEClass.getESuperTypes().add(this.getFeatureCS());
 		structuredClassCSEClass.getESuperTypes().add(this.getClassCS());
 		structuredClassCSEClass.getESuperTypes().add(this.getNamespaceCS());
-		structuralFeatureCSEClass.getESuperTypes().add(this.getFeatureCS());
 		templateBindingCSEClass.getESuperTypes().add(this.getElementRefCS());
 		templateParameterCSEClass.getESuperTypes().add(this.getNamedElementCS());
 		templateParameterSubstitutionCSEClass.getESuperTypes().add(this.getModelElementCS());
@@ -2293,15 +2280,15 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		initEClass(attributeCSEClass, AttributeCS.class, "AttributeCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(classCSEClass, ClassCS.class, "ClassCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getClassCS_OwningPackage(), this.getPackageCS(), this.getPackageCS_OwnedClasses(), "owningPackage", null, 0, 1, ClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getClassCS_InstanceClassName(), ecorePackage.getEString(), "instanceClassName", null, 0, 1, ClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getClassCS_InstanceClassName(), ecorePackage.getEString(), "instanceClassName", null, 0, 1, ClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getClassCS_OwnedConstraints(), this.getConstraintCS(), null, "ownedConstraints", null, 0, -1, ClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getClassCS_OwningPackage(), this.getPackageCS(), this.getPackageCS_OwnedClasses(), "owningPackage", null, 0, 1, ClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getClassCS_Qualifiers(), ecorePackage.getEString(), "qualifiers", null, 0, -1, ClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(constraintCSEClass, ConstraintCS.class, "ConstraintCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getConstraintCS_Stereotype(), ecorePackage.getEString(), "stereotype", null, 0, 1, ConstraintCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getConstraintCS_OwnedSpecification(), this.getSpecificationCS(), null, "ownedSpecification", null, 0, 1, ConstraintCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getConstraintCS_OwnedMessageSpecification(), this.getSpecificationCS(), null, "ownedMessageSpecification", null, 0, 1, ConstraintCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getConstraintCS_OwnedSpecification(), this.getSpecificationCS(), null, "ownedSpecification", null, 0, 1, ConstraintCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getConstraintCS_Stereotype(), ecorePackage.getEString(), "stereotype", null, 0, 1, ConstraintCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(contextLessElementCSEClass, ContextLessElementCS.class, "ContextLessElementCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -2329,9 +2316,9 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		initEClass(featureCSEClass, FeatureCS.class, "FeatureCS", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(importCSEClass, ImportCS.class, "ImportCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getImportCS_IsAll(), ecorePackage.getEBoolean(), "isAll", "false", 0, 1, ImportCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEReference(getImportCS_OwnedPathName(), this.getPathNameCS(), null, "ownedPathName", null, 0, 1, ImportCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getImportCS_ReferredNamespace(), thePivotPackage.getNamespace(), null, "referredNamespace", null, 0, 1, ImportCS.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getImportCS_IsAll(), ecorePackage.getEBoolean(), "isAll", "false", 0, 1, ImportCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
 		initEClass(lambdaTypeCSEClass, LambdaTypeCS.class, "LambdaTypeCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getLambdaTypeCS_Name(), ecorePackage.getEString(), "name", null, 0, 1, LambdaTypeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -2343,9 +2330,9 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		initEReference(getLibraryCS_ReferredPackage(), thePivotPackage.getPackage(), null, "referredPackage", null, 0, 1, LibraryCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(modelElementCSEClass, ModelElementCS.class, "ModelElementCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getModelElementCS_OwnedAnnotations(), this.getAnnotationElementCS(), null, "ownedAnnotations", null, 0, -1, ModelElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getModelElementCS_OriginalXmiId(), ecorePackage.getEString(), "originalXmiId", null, 0, 1, ModelElementCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getModelElementCS_Csi(), ecorePackage.getEString(), "csi", null, 0, 1, ModelElementCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getModelElementCS_OriginalXmiId(), ecorePackage.getEString(), "originalXmiId", null, 0, 1, ModelElementCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getModelElementCS_OwnedAnnotations(), this.getAnnotationElementCS(), null, "ownedAnnotations", null, 0, -1, ModelElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(modelElementRefCSEClass, ModelElementRefCS.class, "ModelElementRefCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getModelElementRefCS_OwnedPathName(), this.getPathNameCS(), null, "ownedPathName", null, 0, 1, ModelElementRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -2355,7 +2342,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		initEAttribute(getMultiplicityBoundsCS_LowerBound(), ecorePackage.getEInt(), "lowerBound", "1", 0, 1, MultiplicityBoundsCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getMultiplicityBoundsCS_UpperBound(), ecorePackage.getEIntegerObject(), "upperBound", null, 0, 1, MultiplicityBoundsCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(multiplicityCSEClass, MultiplicityCS.class, "MultiplicityCS", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(multiplicityCSEClass, MultiplicityCS.class, "MultiplicityCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		addEOperation(multiplicityCSEClass, ecorePackage.getEInt(), "getLower", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
@@ -2370,17 +2357,17 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		initEClass(namespaceCSEClass, NamespaceCS.class, "NamespaceCS", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(operationCSEClass, OperationCS.class, "OperationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getOperationCS_OwningClass(), this.getStructuredClassCS(), this.getStructuredClassCS_OwnedOperations(), "owningClass", null, 0, 1, OperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getOperationCS_OwnedParameters(), this.getParameterCS(), this.getParameterCS_OwningOperation(), "ownedParameters", null, 0, -1, OperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getOperationCS_OwnedExceptions(), this.getTypedRefCS(), null, "ownedExceptions", null, 0, -1, OperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getOperationCS_OwnedPreconditions(), this.getConstraintCS(), null, "ownedPreconditions", null, 0, -1, OperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getOperationCS_OwnedPostconditions(), this.getConstraintCS(), null, "ownedPostconditions", null, 0, -1, OperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getOperationCS_OwnedBodyExpressions(), this.getSpecificationCS(), null, "ownedBodyExpressions", null, 0, -1, OperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getOperationCS_OwnedExceptions(), this.getTypedRefCS(), null, "ownedExceptions", null, 0, -1, OperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getOperationCS_OwnedParameters(), this.getParameterCS(), this.getParameterCS_OwningOperation(), "ownedParameters", null, 0, -1, OperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getOperationCS_OwnedPostconditions(), this.getConstraintCS(), null, "ownedPostconditions", null, 0, -1, OperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getOperationCS_OwnedPreconditions(), this.getConstraintCS(), null, "ownedPreconditions", null, 0, -1, OperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getOperationCS_OwningClass(), this.getStructuredClassCS(), this.getStructuredClassCS_OwnedOperations(), "owningClass", null, 0, 1, OperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(packageCSEClass, PackageCS.class, "PackageCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getPackageCS_OwnedClasses(), this.getClassCS(), this.getClassCS_OwningPackage(), "ownedClasses", null, 0, -1, PackageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPackageCS_NsPrefix(), ecorePackage.getEString(), "nsPrefix", null, 0, 1, PackageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPackageCS_NsURI(), ecorePackage.getEString(), "nsURI", null, 0, 1, PackageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPackageCS_OwnedClasses(), this.getClassCS(), this.getClassCS_OwningPackage(), "ownedClasses", null, 0, -1, PackageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(packageOwnerCSEClass, PackageOwnerCS.class, "PackageOwnerCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getPackageOwnerCS_OwnedPackages(), this.getPackageCS(), null, "ownedPackages", null, 0, -1, PackageOwnerCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -2389,17 +2376,17 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		initEReference(getParameterCS_OwningOperation(), this.getOperationCS(), this.getOperationCS_OwnedParameters(), "owningOperation", null, 0, 1, ParameterCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(pathElementCSEClass, PathElementCS.class, "PathElementCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getPathElementCS_ElementType(), theEcorePackage.getEClassifier(), null, "elementType", null, 0, 1, PathElementCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPathElementCS_OwningPathName(), this.getPathNameCS(), this.getPathNameCS_OwnedPathElements(), "owningPathName", null, 1, 1, PathElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPathElementCS_ReferredElement(), thePivotPackage.getElement(), null, "referredElement", null, 1, 1, PathElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getPathElementCS_ElementType(), theEcorePackage.getEClassifier(), null, "elementType", null, 0, 1, PathElementCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(pathElementWithURICSEClass, PathElementWithURICS.class, "PathElementWithURICS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getPathElementWithURICS_Uri(), ecorePackage.getEString(), "uri", null, 0, 1, PathElementWithURICS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(pathNameCSEClass, PathNameCS.class, "PathNameCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getPathNameCS_Context(), this.getElementCS(), null, "context", null, 0, 1, PathNameCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPathNameCS_OwnedPathElements(), this.getPathElementCS(), this.getPathElementCS_OwningPathName(), "ownedPathElements", null, 1, -1, PathNameCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPathNameCS_ReferredElement(), thePivotPackage.getElement(), null, "referredElement", null, 1, 1, PathNameCS.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getPathNameCS_Context(), this.getElementCS(), null, "context", null, 0, 1, PathNameCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPathNameCS_ScopeFilter(), this.getScopeFilter(), "scopeFilter", null, 0, 1, PathNameCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(pivotableElementCSEClass, PivotableElementCS.class, "PivotableElementCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -2409,10 +2396,10 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		initEAttribute(getPrimitiveTypeRefCS_Name(), ecorePackage.getEString(), "name", null, 0, 1, PrimitiveTypeRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(referenceCSEClass, ReferenceCS.class, "ReferenceCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getReferenceCS_ReferredOpposite(), thePivotPackage.getProperty(), null, "referredOpposite", null, 0, 1, ReferenceCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getReferenceCS_ReferredKeys(), thePivotPackage.getProperty(), null, "referredKeys", null, 0, -1, ReferenceCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getReferenceCS_ReferredOpposite(), thePivotPackage.getProperty(), null, "referredOpposite", null, 0, 1, ReferenceCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(rootCSEClass, RootCS.class, "RootCS", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(rootCSEClass, RootCS.class, "RootCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getRootCS_OwnedImports(), this.getImportCS(), null, "ownedImports", null, 0, -1, RootCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getRootCS_OwnedLibraries(), this.getLibraryCS(), null, "ownedLibraries", null, 0, -1, RootCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
@@ -2421,33 +2408,33 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		initEClass(specificationCSEClass, SpecificationCS.class, "SpecificationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getSpecificationCS_ExprString(), ecorePackage.getEString(), "exprString", null, 0, 1, SpecificationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(structuredClassCSEClass, StructuredClassCS.class, "StructuredClassCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getStructuredClassCS_OwnedSuperTypes(), this.getTypedRefCS(), null, "ownedSuperTypes", null, 0, -1, StructuredClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getStructuredClassCS_OwnedOperations(), this.getOperationCS(), this.getOperationCS_OwningClass(), "ownedOperations", null, 0, -1, StructuredClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getStructuredClassCS_OwnedProperties(), this.getStructuralFeatureCS(), this.getStructuralFeatureCS_OwningClass(), "ownedProperties", null, 0, -1, StructuredClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getStructuredClassCS_OwnedMetaclass(), this.getTypedRefCS(), null, "ownedMetaclass", null, 0, 1, StructuredClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(structuralFeatureCSEClass, StructuralFeatureCS.class, "StructuralFeatureCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getStructuralFeatureCS_OwningClass(), this.getStructuredClassCS(), this.getStructuredClassCS_OwnedProperties(), "owningClass", null, 0, 1, StructuralFeatureCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getStructuralFeatureCS_Default(), ecorePackage.getEString(), "default", null, 0, 1, StructuralFeatureCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getStructuralFeatureCS_OwnedDefaultExpressions(), this.getSpecificationCS(), null, "ownedDefaultExpressions", null, 0, -1, StructuralFeatureCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getStructuralFeatureCS_OwningClass(), this.getStructuredClassCS(), this.getStructuredClassCS_OwnedProperties(), "owningClass", null, 0, 1, StructuralFeatureCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(structuredClassCSEClass, StructuredClassCS.class, "StructuredClassCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getStructuredClassCS_OwnedMetaclass(), this.getTypedRefCS(), null, "ownedMetaclass", null, 0, 1, StructuredClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getStructuredClassCS_OwnedOperations(), this.getOperationCS(), this.getOperationCS_OwningClass(), "ownedOperations", null, 0, -1, StructuredClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getStructuredClassCS_OwnedProperties(), this.getStructuralFeatureCS(), this.getStructuralFeatureCS_OwningClass(), "ownedProperties", null, 0, -1, StructuredClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getStructuredClassCS_OwnedSuperTypes(), this.getTypedRefCS(), null, "ownedSuperTypes", null, 0, -1, StructuredClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(templateBindingCSEClass, TemplateBindingCS.class, "TemplateBindingCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getTemplateBindingCS_OwningElement(), this.getTypedTypeRefCS(), this.getTypedTypeRefCS_OwnedBinding(), "owningElement", null, 0, 1, TemplateBindingCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTemplateBindingCS_OwnedSubstitutions(), this.getTemplateParameterSubstitutionCS(), this.getTemplateParameterSubstitutionCS_OwningBinding(), "ownedSubstitutions", null, 0, -1, TemplateBindingCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTemplateBindingCS_OwningElement(), this.getTypedTypeRefCS(), this.getTypedTypeRefCS_OwnedBinding(), "owningElement", null, 0, 1, TemplateBindingCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(templateParameterCSEClass, TemplateParameterCS.class, "TemplateParameterCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTemplateParameterCS_OwningSignature(), this.getTemplateSignatureCS(), this.getTemplateSignatureCS_OwnedParameters(), "owningSignature", null, 1, 1, TemplateParameterCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(templateParameterSubstitutionCSEClass, TemplateParameterSubstitutionCS.class, "TemplateParameterSubstitutionCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getTemplateParameterSubstitutionCS_OwningBinding(), this.getTemplateBindingCS(), this.getTemplateBindingCS_OwnedSubstitutions(), "owningBinding", null, 0, 1, TemplateParameterSubstitutionCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTemplateParameterSubstitutionCS_OwnedActualParameter(), this.getTypeRefCS(), null, "ownedActualParameter", null, 0, 1, TemplateParameterSubstitutionCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTemplateParameterSubstitutionCS_OwningBinding(), this.getTemplateBindingCS(), this.getTemplateBindingCS_OwnedSubstitutions(), "owningBinding", null, 0, 1, TemplateParameterSubstitutionCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(templateSignatureCSEClass, TemplateSignatureCS.class, "TemplateSignatureCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getTemplateSignatureCS_OwningElement(), this.getTemplateableElementCS(), this.getTemplateableElementCS_OwnedSignature(), "owningElement", null, 0, 1, TemplateSignatureCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTemplateSignatureCS_OwnedParameters(), this.getTemplateParameterCS(), this.getTemplateParameterCS_OwningSignature(), "ownedParameters", null, 0, -1, TemplateSignatureCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTemplateSignatureCS_OwningElement(), this.getTemplateableElementCS(), this.getTemplateableElementCS_OwnedSignature(), "owningElement", null, 0, 1, TemplateSignatureCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(templateableElementCSEClass, TemplateableElementCS.class, "TemplateableElementCS", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(templateableElementCSEClass, TemplateableElementCS.class, "TemplateableElementCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTemplateableElementCS_OwnedSignature(), this.getTemplateSignatureCS(), this.getTemplateSignatureCS_OwningElement(), "ownedSignature", null, 0, 1, TemplateableElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(tuplePartCSEClass, TuplePartCS.class, "TuplePartCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -2465,18 +2452,18 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		initEClass(typeRefCSEClass, TypeRefCS.class, "TypeRefCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(typedElementCSEClass, TypedElementCS.class, "TypedElementCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getTypedElementCS_IsOptional(), ecorePackage.getEBoolean(), "isOptional", null, 0, 1, TypedElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTypedElementCS_OwnedType(), this.getTypedRefCS(), null, "ownedType", null, 0, 1, TypedElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getTypedElementCS_Qualifiers(), ecorePackage.getEString(), "qualifiers", null, 0, -1, TypedElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getTypedElementCS_IsOptional(), ecorePackage.getEBoolean(), "isOptional", null, 0, 1, TypedElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(typedRefCSEClass, TypedRefCS.class, "TypedRefCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTypedRefCS_OwnedMultiplicity(), this.getMultiplicityCS(), null, "ownedMultiplicity", null, 0, 1, TypedRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(typedTypeRefCSEClass, TypedTypeRefCS.class, "TypedTypeRefCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getTypedTypeRefCS_IsTypeof(), ecorePackage.getEBoolean(), "isTypeof", "false", 1, 1, TypedTypeRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEReference(getTypedTypeRefCS_OwnedBinding(), this.getTemplateBindingCS(), this.getTemplateBindingCS_OwningElement(), "ownedBinding", null, 0, 1, TypedTypeRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTypedTypeRefCS_OwnedPathName(), this.getPathNameCS(), null, "ownedPathName", null, 0, 1, TypedTypeRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTypedTypeRefCS_ReferredType(), thePivotPackage.getType(), null, "referredType", null, 0, 1, TypedTypeRefCS.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTypedTypeRefCS_OwnedBinding(), this.getTemplateBindingCS(), this.getTemplateBindingCS_OwningElement(), "ownedBinding", null, 0, 1, TypedTypeRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getTypedTypeRefCS_IsTypeof(), theEcorePackage.getEBoolean(), "isTypeof", "false", 1, 1, TypedTypeRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
 		initEClass(visitableCSEClass, VisitableCS.class, "VisitableCS", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -2490,77 +2477,6 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 
 		// Create resource
 		createResource(eNS_URI);
-
-		// Create annotations
-		// http://www.eclipse.org/OCL/Import
-		createImportAnnotations();
-		// http://www.eclipse.org/emf/2002/Ecore
-		createEcoreAnnotations();
-		// http://www.eclipse.org/emf/2002/Ecore/OCL
-		createOCLAnnotations();
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://www.eclipse.org/OCL/Import</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createImportAnnotations()
-	{
-		String source = "http://www.eclipse.org/OCL/Import"; //$NON-NLS-1$	
-		addAnnotation
-		  (this, 
-		   source, 
-		   new String[] 
-		   {
-			 "ecore", "http://www.eclipse.org/emf/2002/Ecore" //$NON-NLS-1$ //$NON-NLS-2$
-		   });
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createEcoreAnnotations()
-	{
-		String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$	
-		addAnnotation
-		  (this, 
-		   source, 
-		   new String[] 
-		   {
-			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL", //$NON-NLS-1$ //$NON-NLS-2$
-			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL", //$NON-NLS-1$ //$NON-NLS-2$
-			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL" //$NON-NLS-1$ //$NON-NLS-2$
-		   });	
-		addAnnotation
-		  (rootCSEClass, 
-		   source, 
-		   new String[] 
-		   {
-			 "constraints", "TestConstraint" //$NON-NLS-1$ //$NON-NLS-2$
-		   });
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createOCLAnnotations()
-	{
-		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL"; //$NON-NLS-1$	
-		addAnnotation
-		  (rootCSEClass, 
-		   source, 
-		   new String[] 
-		   {
-			 "TestConstraint", "true" //$NON-NLS-1$ //$NON-NLS-2$
-		   });
 	}
 
 } //BaseCSPackageImpl

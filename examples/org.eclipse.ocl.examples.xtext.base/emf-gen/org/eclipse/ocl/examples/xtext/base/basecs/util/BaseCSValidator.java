@@ -225,10 +225,10 @@ public class BaseCSValidator extends EObjectValidator
 				return validateRootPackageCS((RootPackageCS)value, diagnostics, context);
 			case BaseCSPackage.SPECIFICATION_CS:
 				return validateSpecificationCS((SpecificationCS)value, diagnostics, context);
-			case BaseCSPackage.STRUCTURED_CLASS_CS:
-				return validateStructuredClassCS((StructuredClassCS)value, diagnostics, context);
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS:
 				return validateStructuralFeatureCS((StructuralFeatureCS)value, diagnostics, context);
+			case BaseCSPackage.STRUCTURED_CLASS_CS:
+				return validateStructuredClassCS((StructuredClassCS)value, diagnostics, context);
 			case BaseCSPackage.TEMPLATE_BINDING_CS:
 				return validateTemplateBindingCS((TemplateBindingCS)value, diagnostics, context);
 			case BaseCSPackage.TEMPLATE_PARAMETER_CS:

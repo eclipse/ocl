@@ -30,7 +30,6 @@ import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
  * <!-- end-user-doc -->
  * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/OCL/Import ecore='http://www.eclipse.org/emf/2002/Ecore' pivot='../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#/' basecs='../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#/'"
  * @generated
  */
 public interface EssentialOCLCSPackage
@@ -277,13 +276,13 @@ public interface EssentialOCLCSPackage
 	int EXP_CS__PIVOT = BaseCSPackage.MODEL_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXP_CS__OWNED_ANNOTATIONS = BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
+	int EXP_CS__CSI = BaseCSPackage.MODEL_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -295,13 +294,13 @@ public interface EssentialOCLCSPackage
 	int EXP_CS__ORIGINAL_XMI_ID = BaseCSPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXP_CS__CSI = BaseCSPackage.MODEL_ELEMENT_CS__CSI;
+	int EXP_CS__OWNED_ANNOTATIONS = BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -404,13 +403,13 @@ public interface EssentialOCLCSPackage
 	int ABSTRACT_NAME_EXP_CS__PIVOT = EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_NAME_EXP_CS__OWNED_ANNOTATIONS = EXP_CS__OWNED_ANNOTATIONS;
+	int ABSTRACT_NAME_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -422,13 +421,13 @@ public interface EssentialOCLCSPackage
 	int ABSTRACT_NAME_EXP_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_NAME_EXP_CS__CSI = EXP_CS__CSI;
+	int ABSTRACT_NAME_EXP_CS__OWNED_ANNOTATIONS = EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -494,22 +493,13 @@ public interface EssentialOCLCSPackage
 	int ABSTRACT_NAME_EXP_CS__PRECEDENCE = EXP_CS__PRECEDENCE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_NAME_EXP_CS__OWNED_PATH_NAME = EXP_CS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_NAME_EXP_CS__IS_PRE = EXP_CS_FEATURE_COUNT + 1;
+	int ABSTRACT_NAME_EXP_CS__IS_PRE = EXP_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Curly Bracketed Clause</b></em>' containment reference.
@@ -518,7 +508,16 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE = EXP_CS_FEATURE_COUNT + 2;
+	int ABSTRACT_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE = EXP_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_NAME_EXP_CS__OWNED_PATH_NAME = EXP_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Owned Round Bracketed Clause</b></em>' containment reference.
@@ -594,13 +593,13 @@ public interface EssentialOCLCSPackage
 	int CALL_EXP_CS__PIVOT = ABSTRACT_NAME_EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CALL_EXP_CS__OWNED_ANNOTATIONS = ABSTRACT_NAME_EXP_CS__OWNED_ANNOTATIONS;
+	int CALL_EXP_CS__CSI = ABSTRACT_NAME_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -612,13 +611,13 @@ public interface EssentialOCLCSPackage
 	int CALL_EXP_CS__ORIGINAL_XMI_ID = ABSTRACT_NAME_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CALL_EXP_CS__CSI = ABSTRACT_NAME_EXP_CS__CSI;
+	int CALL_EXP_CS__OWNED_ANNOTATIONS = ABSTRACT_NAME_EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -684,15 +683,6 @@ public interface EssentialOCLCSPackage
 	int CALL_EXP_CS__PRECEDENCE = ABSTRACT_NAME_EXP_CS__PRECEDENCE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CALL_EXP_CS__OWNED_PATH_NAME = ABSTRACT_NAME_EXP_CS__OWNED_PATH_NAME;
-
-	/**
 	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -709,6 +699,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int CALL_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE = ABSTRACT_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_EXP_CS__OWNED_PATH_NAME = ABSTRACT_NAME_EXP_CS__OWNED_PATH_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owned Round Bracketed Clause</b></em>' containment reference.
@@ -747,22 +746,22 @@ public interface EssentialOCLCSPackage
 	int CALL_EXP_CS__SOURCE_TYPE_VALUE = ABSTRACT_NAME_EXP_CS__SOURCE_TYPE_VALUE;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CALL_EXP_CS__SOURCE = ABSTRACT_NAME_EXP_CS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Arguments</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CALL_EXP_CS__ARGUMENTS = ABSTRACT_NAME_EXP_CS_FEATURE_COUNT + 1;
+	int CALL_EXP_CS__ARGUMENTS = ABSTRACT_NAME_EXP_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_EXP_CS__SOURCE = ABSTRACT_NAME_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Call Exp CS</em>' class.
@@ -802,13 +801,13 @@ public interface EssentialOCLCSPackage
 	int ASSOCIATION_CLASS_CALL_EXP_CS__PIVOT = CALL_EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_CLASS_CALL_EXP_CS__OWNED_ANNOTATIONS = CALL_EXP_CS__OWNED_ANNOTATIONS;
+	int ASSOCIATION_CLASS_CALL_EXP_CS__CSI = CALL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -820,13 +819,13 @@ public interface EssentialOCLCSPackage
 	int ASSOCIATION_CLASS_CALL_EXP_CS__ORIGINAL_XMI_ID = CALL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_CLASS_CALL_EXP_CS__CSI = CALL_EXP_CS__CSI;
+	int ASSOCIATION_CLASS_CALL_EXP_CS__OWNED_ANNOTATIONS = CALL_EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -892,15 +891,6 @@ public interface EssentialOCLCSPackage
 	int ASSOCIATION_CLASS_CALL_EXP_CS__PRECEDENCE = CALL_EXP_CS__PRECEDENCE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS_CALL_EXP_CS__OWNED_PATH_NAME = CALL_EXP_CS__OWNED_PATH_NAME;
-
-	/**
 	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -917,6 +907,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int ASSOCIATION_CLASS_CALL_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE = CALL_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS_CALL_EXP_CS__OWNED_PATH_NAME = CALL_EXP_CS__OWNED_PATH_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owned Round Bracketed Clause</b></em>' containment reference.
@@ -955,15 +954,6 @@ public interface EssentialOCLCSPackage
 	int ASSOCIATION_CLASS_CALL_EXP_CS__SOURCE_TYPE_VALUE = CALL_EXP_CS__SOURCE_TYPE_VALUE;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS_CALL_EXP_CS__SOURCE = CALL_EXP_CS__SOURCE;
-
-	/**
 	 * The feature id for the '<em><b>Arguments</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -971,6 +961,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int ASSOCIATION_CLASS_CALL_EXP_CS__ARGUMENTS = CALL_EXP_CS__ARGUMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS_CALL_EXP_CS__SOURCE = CALL_EXP_CS__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Referred Association</b></em>' reference.
@@ -1009,13 +1008,13 @@ public interface EssentialOCLCSPackage
 	int LITERAL_EXP_CS__PIVOT = EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_EXP_CS__OWNED_ANNOTATIONS = EXP_CS__OWNED_ANNOTATIONS;
+	int LITERAL_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1027,13 +1026,13 @@ public interface EssentialOCLCSPackage
 	int LITERAL_EXP_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_EXP_CS__CSI = EXP_CS__CSI;
+	int LITERAL_EXP_CS__OWNED_ANNOTATIONS = EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -1126,13 +1125,13 @@ public interface EssentialOCLCSPackage
 	int PRIMITIVE_LITERAL_EXP_CS__PIVOT = LITERAL_EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_LITERAL_EXP_CS__OWNED_ANNOTATIONS = LITERAL_EXP_CS__OWNED_ANNOTATIONS;
+	int PRIMITIVE_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1144,13 +1143,13 @@ public interface EssentialOCLCSPackage
 	int PRIMITIVE_LITERAL_EXP_CS__ORIGINAL_XMI_ID = LITERAL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
+	int PRIMITIVE_LITERAL_EXP_CS__OWNED_ANNOTATIONS = LITERAL_EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -1243,13 +1242,13 @@ public interface EssentialOCLCSPackage
 	int BOOLEAN_LITERAL_EXP_CS__PIVOT = PRIMITIVE_LITERAL_EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_LITERAL_EXP_CS__OWNED_ANNOTATIONS = PRIMITIVE_LITERAL_EXP_CS__OWNED_ANNOTATIONS;
+	int BOOLEAN_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1261,13 +1260,13 @@ public interface EssentialOCLCSPackage
 	int BOOLEAN_LITERAL_EXP_CS__ORIGINAL_XMI_ID = PRIMITIVE_LITERAL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
+	int BOOLEAN_LITERAL_EXP_CS__OWNED_ANNOTATIONS = PRIMITIVE_LITERAL_EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -1369,13 +1368,13 @@ public interface EssentialOCLCSPackage
 	int COLLECTION_LITERAL_EXP_CS__PIVOT = LITERAL_EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_LITERAL_EXP_CS__OWNED_ANNOTATIONS = LITERAL_EXP_CS__OWNED_ANNOTATIONS;
+	int COLLECTION_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1387,13 +1386,13 @@ public interface EssentialOCLCSPackage
 	int COLLECTION_LITERAL_EXP_CS__ORIGINAL_XMI_ID = LITERAL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
+	int COLLECTION_LITERAL_EXP_CS__OWNED_ANNOTATIONS = LITERAL_EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -1459,22 +1458,22 @@ public interface EssentialOCLCSPackage
 	int COLLECTION_LITERAL_EXP_CS__PRECEDENCE = LITERAL_EXP_CS__PRECEDENCE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_LITERAL_EXP_CS__OWNED_TYPE = LITERAL_EXP_CS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Owned Parts</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_LITERAL_EXP_CS__OWNED_PARTS = LITERAL_EXP_CS_FEATURE_COUNT + 1;
+	int COLLECTION_LITERAL_EXP_CS__OWNED_PARTS = LITERAL_EXP_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_EXP_CS__OWNED_TYPE = LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Collection Literal Exp CS</em>' class.
@@ -1504,13 +1503,13 @@ public interface EssentialOCLCSPackage
 	int COLLECTION_LITERAL_PART_CS__PIVOT = BaseCSPackage.MODEL_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_LITERAL_PART_CS__OWNED_ANNOTATIONS = BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
+	int COLLECTION_LITERAL_PART_CS__CSI = BaseCSPackage.MODEL_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1522,13 +1521,13 @@ public interface EssentialOCLCSPackage
 	int COLLECTION_LITERAL_PART_CS__ORIGINAL_XMI_ID = BaseCSPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_LITERAL_PART_CS__CSI = BaseCSPackage.MODEL_ELEMENT_CS__CSI;
+	int COLLECTION_LITERAL_PART_CS__OWNED_ANNOTATIONS = BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Expression</b></em>' containment reference.
@@ -1595,31 +1594,13 @@ public interface EssentialOCLCSPackage
 	int COLLECTION_PATTERN_CS__OWNED_MULTIPLICITY = BaseCSPackage.TYPED_REF_CS__OWNED_MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_PATTERN_CS__OWNED_TYPE = BaseCSPackage.TYPED_REF_CS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Owned Parts</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_PATTERN_CS__OWNED_PARTS = BaseCSPackage.TYPED_REF_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Rest Variable Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_PATTERN_CS__REST_VARIABLE_NAME = BaseCSPackage.TYPED_REF_CS_FEATURE_COUNT + 2;
+	int COLLECTION_PATTERN_CS__OWNED_PARTS = BaseCSPackage.TYPED_REF_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Pattern Guard</b></em>' containment reference.
@@ -1628,7 +1609,25 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_PATTERN_CS__OWNED_PATTERN_GUARD = BaseCSPackage.TYPED_REF_CS_FEATURE_COUNT + 3;
+	int COLLECTION_PATTERN_CS__OWNED_PATTERN_GUARD = BaseCSPackage.TYPED_REF_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_PATTERN_CS__OWNED_TYPE = BaseCSPackage.TYPED_REF_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Rest Variable Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_PATTERN_CS__REST_VARIABLE_NAME = BaseCSPackage.TYPED_REF_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Collection Pattern CS</em>' class.
@@ -1722,13 +1721,13 @@ public interface EssentialOCLCSPackage
 	int CONSTRUCTOR_EXP_CS__PIVOT = ABSTRACT_NAME_EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRUCTOR_EXP_CS__OWNED_ANNOTATIONS = ABSTRACT_NAME_EXP_CS__OWNED_ANNOTATIONS;
+	int CONSTRUCTOR_EXP_CS__CSI = ABSTRACT_NAME_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1740,13 +1739,13 @@ public interface EssentialOCLCSPackage
 	int CONSTRUCTOR_EXP_CS__ORIGINAL_XMI_ID = ABSTRACT_NAME_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRUCTOR_EXP_CS__CSI = ABSTRACT_NAME_EXP_CS__CSI;
+	int CONSTRUCTOR_EXP_CS__OWNED_ANNOTATIONS = ABSTRACT_NAME_EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -1812,15 +1811,6 @@ public interface EssentialOCLCSPackage
 	int CONSTRUCTOR_EXP_CS__PRECEDENCE = ABSTRACT_NAME_EXP_CS__PRECEDENCE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__OWNED_PATH_NAME = ABSTRACT_NAME_EXP_CS__OWNED_PATH_NAME;
-
-	/**
 	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1837,6 +1827,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int CONSTRUCTOR_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE = ABSTRACT_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRUCTOR_EXP_CS__OWNED_PATH_NAME = ABSTRACT_NAME_EXP_CS__OWNED_PATH_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owned Round Bracketed Clause</b></em>' containment reference.
@@ -1875,22 +1874,22 @@ public interface EssentialOCLCSPackage
 	int CONSTRUCTOR_EXP_CS__SOURCE_TYPE_VALUE = ABSTRACT_NAME_EXP_CS__SOURCE_TYPE_VALUE;
 
 	/**
-	 * The feature id for the '<em><b>Type Name</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__TYPE_NAME = ABSTRACT_NAME_EXP_CS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Parts</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRUCTOR_EXP_CS__PARTS = ABSTRACT_NAME_EXP_CS_FEATURE_COUNT + 1;
+	int CONSTRUCTOR_EXP_CS__PARTS = ABSTRACT_NAME_EXP_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Type Name</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRUCTOR_EXP_CS__TYPE_NAME = ABSTRACT_NAME_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1979,13 +1978,13 @@ public interface EssentialOCLCSPackage
 	int CONSTRUCTOR_PART_CS__PIVOT = BaseCSPackage.MODEL_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRUCTOR_PART_CS__OWNED_ANNOTATIONS = BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
+	int CONSTRUCTOR_PART_CS__CSI = BaseCSPackage.MODEL_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1997,31 +1996,13 @@ public interface EssentialOCLCSPackage
 	int CONSTRUCTOR_PART_CS__ORIGINAL_XMI_ID = BaseCSPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRUCTOR_PART_CS__CSI = BaseCSPackage.MODEL_ELEMENT_CS__CSI;
-
-	/**
-	 * The feature id for the '<em><b>Owning Curly Bracket Clause</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_PART_CS__OWNING_CURLY_BRACKET_CLAUSE = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Referred Property</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_PART_CS__REFERRED_PROPERTY = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
+	int CONSTRUCTOR_PART_CS__OWNED_ANNOTATIONS = BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Init Expression</b></em>' containment reference.
@@ -2030,7 +2011,25 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRUCTOR_PART_CS__OWNED_INIT_EXPRESSION = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 2;
+	int CONSTRUCTOR_PART_CS__OWNED_INIT_EXPRESSION = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owning Curly Bracket Clause</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRUCTOR_PART_CS__OWNING_CURLY_BRACKET_CLAUSE = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Referred Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRUCTOR_PART_CS__REFERRED_PROPERTY = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Constructor Part CS</em>' class.
@@ -2060,13 +2059,13 @@ public interface EssentialOCLCSPackage
 	int CONTEXT_CS__PIVOT = BaseCSPackage.NAMED_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_CS__OWNED_ANNOTATIONS = BaseCSPackage.NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
+	int CONTEXT_CS__CSI = BaseCSPackage.NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2078,13 +2077,13 @@ public interface EssentialOCLCSPackage
 	int CONTEXT_CS__ORIGINAL_XMI_ID = BaseCSPackage.NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_CS__CSI = BaseCSPackage.NAMED_ELEMENT_CS__CSI;
+	int CONTEXT_CS__OWNED_ANNOTATIONS = BaseCSPackage.NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2151,22 +2150,22 @@ public interface EssentialOCLCSPackage
 	int CURLY_BRACKETED_CLAUSE_CS__PARENT = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS__PARENT;
 
 	/**
-	 * The feature id for the '<em><b>Owning Name Exp</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CURLY_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Owned Parts</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CURLY_BRACKETED_CLAUSE_CS__OWNED_PARTS = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS_FEATURE_COUNT + 1;
+	int CURLY_BRACKETED_CLAUSE_CS__OWNED_PARTS = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owning Name Exp</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CURLY_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2205,13 +2204,13 @@ public interface EssentialOCLCSPackage
 	int EXP_SPECIFICATION_CS__PIVOT = BaseCSPackage.SPECIFICATION_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXP_SPECIFICATION_CS__OWNED_ANNOTATIONS = BaseCSPackage.SPECIFICATION_CS__OWNED_ANNOTATIONS;
+	int EXP_SPECIFICATION_CS__CSI = BaseCSPackage.SPECIFICATION_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2223,13 +2222,13 @@ public interface EssentialOCLCSPackage
 	int EXP_SPECIFICATION_CS__ORIGINAL_XMI_ID = BaseCSPackage.SPECIFICATION_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXP_SPECIFICATION_CS__CSI = BaseCSPackage.SPECIFICATION_CS__CSI;
+	int EXP_SPECIFICATION_CS__OWNED_ANNOTATIONS = BaseCSPackage.SPECIFICATION_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Expr String</b></em>' attribute.
@@ -2277,13 +2276,13 @@ public interface EssentialOCLCSPackage
 	int IF_EXP_CS__PIVOT = EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IF_EXP_CS__OWNED_ANNOTATIONS = EXP_CS__OWNED_ANNOTATIONS;
+	int IF_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2295,13 +2294,13 @@ public interface EssentialOCLCSPackage
 	int IF_EXP_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IF_EXP_CS__CSI = EXP_CS__CSI;
+	int IF_EXP_CS__OWNED_ANNOTATIONS = EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -2367,31 +2366,22 @@ public interface EssentialOCLCSPackage
 	int IF_EXP_CS__PRECEDENCE = EXP_CS__PRECEDENCE;
 
 	/**
+	 * The feature id for the '<em><b>Is Implicit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_EXP_CS__IS_IMPLICIT = EXP_CS_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Owned Condition</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IF_EXP_CS__OWNED_CONDITION = EXP_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owned Then Expression</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IF_EXP_CS__OWNED_THEN_EXPRESSION = EXP_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Owned If Then Expressions</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IF_EXP_CS__OWNED_IF_THEN_EXPRESSIONS = EXP_CS_FEATURE_COUNT + 2;
+	int IF_EXP_CS__OWNED_CONDITION = EXP_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owned Else Expression</b></em>' containment reference.
@@ -2400,16 +2390,25 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IF_EXP_CS__OWNED_ELSE_EXPRESSION = EXP_CS_FEATURE_COUNT + 3;
+	int IF_EXP_CS__OWNED_ELSE_EXPRESSION = EXP_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Is Implicit</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned If Then Expressions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IF_EXP_CS__IS_IMPLICIT = EXP_CS_FEATURE_COUNT + 4;
+	int IF_EXP_CS__OWNED_IF_THEN_EXPRESSIONS = EXP_CS_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Owned Then Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_EXP_CS__OWNED_THEN_EXPRESSION = EXP_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>If Exp CS</em>' class.
@@ -2449,13 +2448,13 @@ public interface EssentialOCLCSPackage
 	int IF_THEN_EXP_CS__PIVOT = EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IF_THEN_EXP_CS__OWNED_ANNOTATIONS = EXP_CS__OWNED_ANNOTATIONS;
+	int IF_THEN_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2467,13 +2466,13 @@ public interface EssentialOCLCSPackage
 	int IF_THEN_EXP_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IF_THEN_EXP_CS__CSI = EXP_CS__CSI;
+	int IF_THEN_EXP_CS__OWNED_ANNOTATIONS = EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -2594,13 +2593,13 @@ public interface EssentialOCLCSPackage
 	int OPERATOR_EXP_CS__PIVOT = EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXP_CS__OWNED_ANNOTATIONS = EXP_CS__OWNED_ANNOTATIONS;
+	int OPERATOR_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2612,13 +2611,13 @@ public interface EssentialOCLCSPackage
 	int OPERATOR_EXP_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXP_CS__CSI = EXP_CS__CSI;
+	int OPERATOR_EXP_CS__OWNED_ANNOTATIONS = EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -2738,13 +2737,13 @@ public interface EssentialOCLCSPackage
 	int INFIX_EXP_CS__PIVOT = OPERATOR_EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_EXP_CS__OWNED_ANNOTATIONS = OPERATOR_EXP_CS__OWNED_ANNOTATIONS;
+	int INFIX_EXP_CS__CSI = OPERATOR_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2756,13 +2755,13 @@ public interface EssentialOCLCSPackage
 	int INFIX_EXP_CS__ORIGINAL_XMI_ID = OPERATOR_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_EXP_CS__CSI = OPERATOR_EXP_CS__CSI;
+	int INFIX_EXP_CS__OWNED_ANNOTATIONS = OPERATOR_EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -2855,22 +2854,22 @@ public interface EssentialOCLCSPackage
 	int INFIX_EXP_CS__SOURCE = OPERATOR_EXP_CS__SOURCE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Left</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INFIX_EXP_CS__OWNED_LEFT = OPERATOR_EXP_CS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Argument</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_EXP_CS__ARGUMENT = OPERATOR_EXP_CS_FEATURE_COUNT + 1;
+	int INFIX_EXP_CS__ARGUMENT = OPERATOR_EXP_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Left</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX_EXP_CS__OWNED_LEFT = OPERATOR_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Infix Exp CS</em>' class.
@@ -2900,13 +2899,13 @@ public interface EssentialOCLCSPackage
 	int INVALID_LITERAL_EXP_CS__PIVOT = PRIMITIVE_LITERAL_EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INVALID_LITERAL_EXP_CS__OWNED_ANNOTATIONS = PRIMITIVE_LITERAL_EXP_CS__OWNED_ANNOTATIONS;
+	int INVALID_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2918,13 +2917,13 @@ public interface EssentialOCLCSPackage
 	int INVALID_LITERAL_EXP_CS__ORIGINAL_XMI_ID = PRIMITIVE_LITERAL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INVALID_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
+	int INVALID_LITERAL_EXP_CS__OWNED_ANNOTATIONS = PRIMITIVE_LITERAL_EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -3027,13 +3026,13 @@ public interface EssentialOCLCSPackage
 	int ITERATION_CALL_EXP_CS__PIVOT = CALL_EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATION_CALL_EXP_CS__OWNED_ANNOTATIONS = CALL_EXP_CS__OWNED_ANNOTATIONS;
+	int ITERATION_CALL_EXP_CS__CSI = CALL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3045,13 +3044,13 @@ public interface EssentialOCLCSPackage
 	int ITERATION_CALL_EXP_CS__ORIGINAL_XMI_ID = CALL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATION_CALL_EXP_CS__CSI = CALL_EXP_CS__CSI;
+	int ITERATION_CALL_EXP_CS__OWNED_ANNOTATIONS = CALL_EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -3117,15 +3116,6 @@ public interface EssentialOCLCSPackage
 	int ITERATION_CALL_EXP_CS__PRECEDENCE = CALL_EXP_CS__PRECEDENCE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION_CALL_EXP_CS__OWNED_PATH_NAME = CALL_EXP_CS__OWNED_PATH_NAME;
-
-	/**
 	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3142,6 +3132,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int ITERATION_CALL_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE = CALL_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION_CALL_EXP_CS__OWNED_PATH_NAME = CALL_EXP_CS__OWNED_PATH_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owned Round Bracketed Clause</b></em>' containment reference.
@@ -3180,15 +3179,6 @@ public interface EssentialOCLCSPackage
 	int ITERATION_CALL_EXP_CS__SOURCE_TYPE_VALUE = CALL_EXP_CS__SOURCE_TYPE_VALUE;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION_CALL_EXP_CS__SOURCE = CALL_EXP_CS__SOURCE;
-
-	/**
 	 * The feature id for the '<em><b>Arguments</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3198,13 +3188,13 @@ public interface EssentialOCLCSPackage
 	int ITERATION_CALL_EXP_CS__ARGUMENTS = CALL_EXP_CS__ARGUMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Referred Iteration</b></em>' reference.
+	 * The feature id for the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATION_CALL_EXP_CS__REFERRED_ITERATION = CALL_EXP_CS_FEATURE_COUNT + 0;
+	int ITERATION_CALL_EXP_CS__SOURCE = CALL_EXP_CS__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Iterators</b></em>' reference list.
@@ -3213,7 +3203,16 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATION_CALL_EXP_CS__ITERATORS = CALL_EXP_CS_FEATURE_COUNT + 1;
+	int ITERATION_CALL_EXP_CS__ITERATORS = CALL_EXP_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Referred Iteration</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION_CALL_EXP_CS__REFERRED_ITERATION = CALL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Iteration Call Exp CS</em>' class.
@@ -3253,13 +3252,13 @@ public interface EssentialOCLCSPackage
 	int ITERATE_CALL_EXP_CS__PIVOT = ITERATION_CALL_EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATE_CALL_EXP_CS__OWNED_ANNOTATIONS = ITERATION_CALL_EXP_CS__OWNED_ANNOTATIONS;
+	int ITERATE_CALL_EXP_CS__CSI = ITERATION_CALL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3271,13 +3270,13 @@ public interface EssentialOCLCSPackage
 	int ITERATE_CALL_EXP_CS__ORIGINAL_XMI_ID = ITERATION_CALL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATE_CALL_EXP_CS__CSI = ITERATION_CALL_EXP_CS__CSI;
+	int ITERATE_CALL_EXP_CS__OWNED_ANNOTATIONS = ITERATION_CALL_EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -3343,15 +3342,6 @@ public interface EssentialOCLCSPackage
 	int ITERATE_CALL_EXP_CS__PRECEDENCE = ITERATION_CALL_EXP_CS__PRECEDENCE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATE_CALL_EXP_CS__OWNED_PATH_NAME = ITERATION_CALL_EXP_CS__OWNED_PATH_NAME;
-
-	/**
 	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3368,6 +3358,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int ITERATE_CALL_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE = ITERATION_CALL_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_CALL_EXP_CS__OWNED_PATH_NAME = ITERATION_CALL_EXP_CS__OWNED_PATH_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owned Round Bracketed Clause</b></em>' containment reference.
@@ -3406,15 +3405,6 @@ public interface EssentialOCLCSPackage
 	int ITERATE_CALL_EXP_CS__SOURCE_TYPE_VALUE = ITERATION_CALL_EXP_CS__SOURCE_TYPE_VALUE;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATE_CALL_EXP_CS__SOURCE = ITERATION_CALL_EXP_CS__SOURCE;
-
-	/**
 	 * The feature id for the '<em><b>Arguments</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3424,13 +3414,13 @@ public interface EssentialOCLCSPackage
 	int ITERATE_CALL_EXP_CS__ARGUMENTS = ITERATION_CALL_EXP_CS__ARGUMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Referred Iteration</b></em>' reference.
+	 * The feature id for the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATE_CALL_EXP_CS__REFERRED_ITERATION = ITERATION_CALL_EXP_CS__REFERRED_ITERATION;
+	int ITERATE_CALL_EXP_CS__SOURCE = ITERATION_CALL_EXP_CS__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Iterators</b></em>' reference list.
@@ -3440,6 +3430,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int ITERATE_CALL_EXP_CS__ITERATORS = ITERATION_CALL_EXP_CS__ITERATORS;
+
+	/**
+	 * The feature id for the '<em><b>Referred Iteration</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_CALL_EXP_CS__REFERRED_ITERATION = ITERATION_CALL_EXP_CS__REFERRED_ITERATION;
 
 	/**
 	 * The feature id for the '<em><b>Accumulators</b></em>' reference list.
@@ -3488,13 +3487,13 @@ public interface EssentialOCLCSPackage
 	int LAMBDA_LITERAL_EXP_CS__PIVOT = LITERAL_EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAMBDA_LITERAL_EXP_CS__OWNED_ANNOTATIONS = LITERAL_EXP_CS__OWNED_ANNOTATIONS;
+	int LAMBDA_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3506,13 +3505,13 @@ public interface EssentialOCLCSPackage
 	int LAMBDA_LITERAL_EXP_CS__ORIGINAL_XMI_ID = LITERAL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAMBDA_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
+	int LAMBDA_LITERAL_EXP_CS__OWNED_ANNOTATIONS = LITERAL_EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -3614,13 +3613,13 @@ public interface EssentialOCLCSPackage
 	int LET_EXP_CS__PIVOT = EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LET_EXP_CS__OWNED_ANNOTATIONS = EXP_CS__OWNED_ANNOTATIONS;
+	int LET_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3632,13 +3631,13 @@ public interface EssentialOCLCSPackage
 	int LET_EXP_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LET_EXP_CS__CSI = EXP_CS__CSI;
+	int LET_EXP_CS__OWNED_ANNOTATIONS = EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -3704,13 +3703,13 @@ public interface EssentialOCLCSPackage
 	int LET_EXP_CS__PRECEDENCE = EXP_CS__PRECEDENCE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Variables</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Is Implicit</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LET_EXP_CS__OWNED_VARIABLES = EXP_CS_FEATURE_COUNT + 0;
+	int LET_EXP_CS__IS_IMPLICIT = EXP_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned In Expression</b></em>' containment reference.
@@ -3722,13 +3721,13 @@ public interface EssentialOCLCSPackage
 	int LET_EXP_CS__OWNED_IN_EXPRESSION = EXP_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Is Implicit</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Variables</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LET_EXP_CS__IS_IMPLICIT = EXP_CS_FEATURE_COUNT + 2;
+	int LET_EXP_CS__OWNED_VARIABLES = EXP_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Let Exp CS</em>' class.
@@ -3758,13 +3757,13 @@ public interface EssentialOCLCSPackage
 	int LET_VARIABLE_CS__PIVOT = EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LET_VARIABLE_CS__OWNED_ANNOTATIONS = EXP_CS__OWNED_ANNOTATIONS;
+	int LET_VARIABLE_CS__CSI = EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3776,13 +3775,13 @@ public interface EssentialOCLCSPackage
 	int LET_VARIABLE_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LET_VARIABLE_CS__CSI = EXP_CS__CSI;
+	int LET_VARIABLE_CS__OWNED_ANNOTATIONS = EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -3857,31 +3856,22 @@ public interface EssentialOCLCSPackage
 	int LET_VARIABLE_CS__NAME = EXP_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LET_VARIABLE_CS__OWNED_TYPE = EXP_CS_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Owned Init Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LET_VARIABLE_CS__OWNED_INIT_EXPRESSION = EXP_CS_FEATURE_COUNT + 2;
+	int LET_VARIABLE_CS__OWNED_INIT_EXPRESSION = EXP_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Owning Let Expression</b></em>' container reference.
+	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LET_VARIABLE_CS__OWNING_LET_EXPRESSION = EXP_CS_FEATURE_COUNT + 3;
+	int LET_VARIABLE_CS__OWNED_TYPE = EXP_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Owned Round Bracketed Clause</b></em>' containment reference.
@@ -3890,7 +3880,16 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LET_VARIABLE_CS__OWNED_ROUND_BRACKETED_CLAUSE = EXP_CS_FEATURE_COUNT + 4;
+	int LET_VARIABLE_CS__OWNED_ROUND_BRACKETED_CLAUSE = EXP_CS_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Owning Let Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LET_VARIABLE_CS__OWNING_LET_EXPRESSION = EXP_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Let Variable CS</em>' class.
@@ -3920,13 +3919,13 @@ public interface EssentialOCLCSPackage
 	int NAME_EXP_CS__PIVOT = ASSOCIATION_CLASS_CALL_EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_EXP_CS__OWNED_ANNOTATIONS = ASSOCIATION_CLASS_CALL_EXP_CS__OWNED_ANNOTATIONS;
+	int NAME_EXP_CS__CSI = ASSOCIATION_CLASS_CALL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3938,13 +3937,13 @@ public interface EssentialOCLCSPackage
 	int NAME_EXP_CS__ORIGINAL_XMI_ID = ASSOCIATION_CLASS_CALL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_EXP_CS__CSI = ASSOCIATION_CLASS_CALL_EXP_CS__CSI;
+	int NAME_EXP_CS__OWNED_ANNOTATIONS = ASSOCIATION_CLASS_CALL_EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -4010,15 +4009,6 @@ public interface EssentialOCLCSPackage
 	int NAME_EXP_CS__PRECEDENCE = ASSOCIATION_CLASS_CALL_EXP_CS__PRECEDENCE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAME_EXP_CS__OWNED_PATH_NAME = ASSOCIATION_CLASS_CALL_EXP_CS__OWNED_PATH_NAME;
-
-	/**
 	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4035,6 +4025,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE = ASSOCIATION_CLASS_CALL_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAME_EXP_CS__OWNED_PATH_NAME = ASSOCIATION_CLASS_CALL_EXP_CS__OWNED_PATH_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owned Round Bracketed Clause</b></em>' containment reference.
@@ -4073,15 +4072,6 @@ public interface EssentialOCLCSPackage
 	int NAME_EXP_CS__SOURCE_TYPE_VALUE = ASSOCIATION_CLASS_CALL_EXP_CS__SOURCE_TYPE_VALUE;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAME_EXP_CS__SOURCE = ASSOCIATION_CLASS_CALL_EXP_CS__SOURCE;
-
-	/**
 	 * The feature id for the '<em><b>Arguments</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4089,6 +4079,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int NAME_EXP_CS__ARGUMENTS = ASSOCIATION_CLASS_CALL_EXP_CS__ARGUMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAME_EXP_CS__SOURCE = ASSOCIATION_CLASS_CALL_EXP_CS__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Referred Association</b></em>' reference.
@@ -4100,22 +4099,22 @@ public interface EssentialOCLCSPackage
 	int NAME_EXP_CS__REFERRED_ASSOCIATION = ASSOCIATION_CLASS_CALL_EXP_CS__REFERRED_ASSOCIATION;
 
 	/**
-	 * The feature id for the '<em><b>Type Name</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAME_EXP_CS__TYPE_NAME = ASSOCIATION_CLASS_CALL_EXP_CS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Parts</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_EXP_CS__PARTS = ASSOCIATION_CLASS_CALL_EXP_CS_FEATURE_COUNT + 1;
+	int NAME_EXP_CS__PARTS = ASSOCIATION_CLASS_CALL_EXP_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Type Name</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAME_EXP_CS__TYPE_NAME = ASSOCIATION_CLASS_CALL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4127,22 +4126,22 @@ public interface EssentialOCLCSPackage
 	int NAME_EXP_CS__VALUE = ASSOCIATION_CLASS_CALL_EXP_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Referred Iteration</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAME_EXP_CS__REFERRED_ITERATION = ASSOCIATION_CLASS_CALL_EXP_CS_FEATURE_COUNT + 3;
-
-	/**
 	 * The feature id for the '<em><b>Iterators</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_EXP_CS__ITERATORS = ASSOCIATION_CLASS_CALL_EXP_CS_FEATURE_COUNT + 4;
+	int NAME_EXP_CS__ITERATORS = ASSOCIATION_CLASS_CALL_EXP_CS_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Referred Iteration</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAME_EXP_CS__REFERRED_ITERATION = ASSOCIATION_CLASS_CALL_EXP_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Accumulators</b></em>' reference list.
@@ -4163,7 +4162,7 @@ public interface EssentialOCLCSPackage
 	int NAME_EXP_CS__REFERRED_OPERATION = ASSOCIATION_CLASS_CALL_EXP_CS_FEATURE_COUNT + 6;
 
 	/**
-	 * The feature id for the '<em><b>Referred Property</b></em>' containment reference.
+	 * The feature id for the '<em><b>Referred Property</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -4208,13 +4207,13 @@ public interface EssentialOCLCSPackage
 	int NAVIGATING_ARG_CS__PIVOT = BaseCSPackage.MODEL_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAVIGATING_ARG_CS__OWNED_ANNOTATIONS = BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
+	int NAVIGATING_ARG_CS__CSI = BaseCSPackage.MODEL_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -4226,58 +4225,13 @@ public interface EssentialOCLCSPackage
 	int NAVIGATING_ARG_CS__ORIGINAL_XMI_ID = BaseCSPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAVIGATING_ARG_CS__CSI = BaseCSPackage.MODEL_ELEMENT_CS__CSI;
-
-	/**
-	 * The feature id for the '<em><b>Owning Round Bracketed Clause</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATING_ARG_CS__OWNING_ROUND_BRACKETED_CLAUSE = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Role</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATING_ARG_CS__ROLE = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Prefix</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATING_ARG_CS__PREFIX = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Owned Name Expression</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATING_ARG_CS__OWNED_NAME_EXPRESSION = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATING_ARG_CS__OWNED_TYPE = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 4;
+	int NAVIGATING_ARG_CS__OWNED_ANNOTATIONS = BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Init Expression</b></em>' containment reference.
@@ -4286,7 +4240,52 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NAVIGATING_ARG_CS__OWNED_INIT_EXPRESSION = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 5;
+	int NAVIGATING_ARG_CS__OWNED_INIT_EXPRESSION = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Name Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATING_ARG_CS__OWNED_NAME_EXPRESSION = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATING_ARG_CS__OWNED_TYPE = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Owning Round Bracketed Clause</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATING_ARG_CS__OWNING_ROUND_BRACKETED_CLAUSE = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Prefix</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATING_ARG_CS__PREFIX = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Role</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATING_ARG_CS__ROLE = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Navigating Arg CS</em>' class.
@@ -4316,13 +4315,13 @@ public interface EssentialOCLCSPackage
 	int NESTED_EXP_CS__PIVOT = EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_EXP_CS__OWNED_ANNOTATIONS = EXP_CS__OWNED_ANNOTATIONS;
+	int NESTED_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -4334,13 +4333,13 @@ public interface EssentialOCLCSPackage
 	int NESTED_EXP_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_EXP_CS__CSI = EXP_CS__CSI;
+	int NESTED_EXP_CS__OWNED_ANNOTATIONS = EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -4442,13 +4441,13 @@ public interface EssentialOCLCSPackage
 	int NULL_LITERAL_EXP_CS__PIVOT = PRIMITIVE_LITERAL_EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NULL_LITERAL_EXP_CS__OWNED_ANNOTATIONS = PRIMITIVE_LITERAL_EXP_CS__OWNED_ANNOTATIONS;
+	int NULL_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -4460,13 +4459,13 @@ public interface EssentialOCLCSPackage
 	int NULL_LITERAL_EXP_CS__ORIGINAL_XMI_ID = PRIMITIVE_LITERAL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NULL_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
+	int NULL_LITERAL_EXP_CS__OWNED_ANNOTATIONS = PRIMITIVE_LITERAL_EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -4559,13 +4558,13 @@ public interface EssentialOCLCSPackage
 	int NUMBER_LITERAL_EXP_CS__PIVOT = PRIMITIVE_LITERAL_EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUMBER_LITERAL_EXP_CS__OWNED_ANNOTATIONS = PRIMITIVE_LITERAL_EXP_CS__OWNED_ANNOTATIONS;
+	int NUMBER_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -4577,13 +4576,13 @@ public interface EssentialOCLCSPackage
 	int NUMBER_LITERAL_EXP_CS__ORIGINAL_XMI_ID = PRIMITIVE_LITERAL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUMBER_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
+	int NUMBER_LITERAL_EXP_CS__OWNED_ANNOTATIONS = PRIMITIVE_LITERAL_EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -4695,13 +4694,13 @@ public interface EssentialOCLCSPackage
 	int OPERATION_CALL_EXP_CS__PIVOT = CALL_EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CALL_EXP_CS__OWNED_ANNOTATIONS = CALL_EXP_CS__OWNED_ANNOTATIONS;
+	int OPERATION_CALL_EXP_CS__CSI = CALL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -4713,13 +4712,13 @@ public interface EssentialOCLCSPackage
 	int OPERATION_CALL_EXP_CS__ORIGINAL_XMI_ID = CALL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CALL_EXP_CS__CSI = CALL_EXP_CS__CSI;
+	int OPERATION_CALL_EXP_CS__OWNED_ANNOTATIONS = CALL_EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -4785,15 +4784,6 @@ public interface EssentialOCLCSPackage
 	int OPERATION_CALL_EXP_CS__PRECEDENCE = CALL_EXP_CS__PRECEDENCE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_CALL_EXP_CS__OWNED_PATH_NAME = CALL_EXP_CS__OWNED_PATH_NAME;
-
-	/**
 	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4810,6 +4800,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int OPERATION_CALL_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE = CALL_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CALL_EXP_CS__OWNED_PATH_NAME = CALL_EXP_CS__OWNED_PATH_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owned Round Bracketed Clause</b></em>' containment reference.
@@ -4848,15 +4847,6 @@ public interface EssentialOCLCSPackage
 	int OPERATION_CALL_EXP_CS__SOURCE_TYPE_VALUE = CALL_EXP_CS__SOURCE_TYPE_VALUE;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_CALL_EXP_CS__SOURCE = CALL_EXP_CS__SOURCE;
-
-	/**
 	 * The feature id for the '<em><b>Arguments</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4864,6 +4854,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int OPERATION_CALL_EXP_CS__ARGUMENTS = CALL_EXP_CS__ARGUMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CALL_EXP_CS__SOURCE = CALL_EXP_CS__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Referred Operation</b></em>' reference.
@@ -4912,13 +4911,13 @@ public interface EssentialOCLCSPackage
 	int PATTERN_EXP_CS__PIVOT = EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATTERN_EXP_CS__OWNED_ANNOTATIONS = EXP_CS__OWNED_ANNOTATIONS;
+	int PATTERN_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -4930,13 +4929,13 @@ public interface EssentialOCLCSPackage
 	int PATTERN_EXP_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATTERN_EXP_CS__CSI = EXP_CS__CSI;
+	int PATTERN_EXP_CS__OWNED_ANNOTATIONS = EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -5002,22 +5001,22 @@ public interface EssentialOCLCSPackage
 	int PATTERN_EXP_CS__PRECEDENCE = EXP_CS__PRECEDENCE;
 
 	/**
-	 * The feature id for the '<em><b>Pattern Variable Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PATTERN_EXP_CS__PATTERN_VARIABLE_NAME = EXP_CS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Owned Pattern Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATTERN_EXP_CS__OWNED_PATTERN_TYPE = EXP_CS_FEATURE_COUNT + 1;
+	int PATTERN_EXP_CS__OWNED_PATTERN_TYPE = EXP_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Pattern Variable Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATTERN_EXP_CS__PATTERN_VARIABLE_NAME = EXP_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Pattern Exp CS</em>' class.
@@ -5117,13 +5116,13 @@ public interface EssentialOCLCSPackage
 	int PREFIX_EXP_CS__PIVOT = OPERATOR_EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREFIX_EXP_CS__OWNED_ANNOTATIONS = OPERATOR_EXP_CS__OWNED_ANNOTATIONS;
+	int PREFIX_EXP_CS__CSI = OPERATOR_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -5135,13 +5134,13 @@ public interface EssentialOCLCSPackage
 	int PREFIX_EXP_CS__ORIGINAL_XMI_ID = OPERATOR_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREFIX_EXP_CS__CSI = OPERATOR_EXP_CS__CSI;
+	int PREFIX_EXP_CS__OWNED_ANNOTATIONS = OPERATOR_EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -5261,13 +5260,13 @@ public interface EssentialOCLCSPackage
 	int PROPERTY_CALL_EXP_CS__PIVOT = CALL_EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CALL_EXP_CS__OWNED_ANNOTATIONS = CALL_EXP_CS__OWNED_ANNOTATIONS;
+	int PROPERTY_CALL_EXP_CS__CSI = CALL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -5279,13 +5278,13 @@ public interface EssentialOCLCSPackage
 	int PROPERTY_CALL_EXP_CS__ORIGINAL_XMI_ID = CALL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CALL_EXP_CS__CSI = CALL_EXP_CS__CSI;
+	int PROPERTY_CALL_EXP_CS__OWNED_ANNOTATIONS = CALL_EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -5351,15 +5350,6 @@ public interface EssentialOCLCSPackage
 	int PROPERTY_CALL_EXP_CS__PRECEDENCE = CALL_EXP_CS__PRECEDENCE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_CALL_EXP_CS__OWNED_PATH_NAME = CALL_EXP_CS__OWNED_PATH_NAME;
-
-	/**
 	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5376,6 +5366,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int PROPERTY_CALL_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE = CALL_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP_CS__OWNED_PATH_NAME = CALL_EXP_CS__OWNED_PATH_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owned Round Bracketed Clause</b></em>' containment reference.
@@ -5414,15 +5413,6 @@ public interface EssentialOCLCSPackage
 	int PROPERTY_CALL_EXP_CS__SOURCE_TYPE_VALUE = CALL_EXP_CS__SOURCE_TYPE_VALUE;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_CALL_EXP_CS__SOURCE = CALL_EXP_CS__SOURCE;
-
-	/**
 	 * The feature id for the '<em><b>Arguments</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5432,7 +5422,16 @@ public interface EssentialOCLCSPackage
 	int PROPERTY_CALL_EXP_CS__ARGUMENTS = CALL_EXP_CS__ARGUMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Referred Property</b></em>' containment reference.
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP_CS__SOURCE = CALL_EXP_CS__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Referred Property</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -5459,22 +5458,22 @@ public interface EssentialOCLCSPackage
 	int ROUND_BRACKETED_CLAUSE_CS__PARENT = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS__PARENT;
 
 	/**
-	 * The feature id for the '<em><b>Owning Name Exp</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Owned Arguments</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROUND_BRACKETED_CLAUSE_CS__OWNED_ARGUMENTS = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS_FEATURE_COUNT + 1;
+	int ROUND_BRACKETED_CLAUSE_CS__OWNED_ARGUMENTS = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owning Name Exp</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Round Bracketed Clause CS</em>' class.
@@ -5504,13 +5503,13 @@ public interface EssentialOCLCSPackage
 	int SELF_EXP_CS__PIVOT = EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SELF_EXP_CS__OWNED_ANNOTATIONS = EXP_CS__OWNED_ANNOTATIONS;
+	int SELF_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -5522,13 +5521,13 @@ public interface EssentialOCLCSPackage
 	int SELF_EXP_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SELF_EXP_CS__CSI = EXP_CS__CSI;
+	int SELF_EXP_CS__OWNED_ANNOTATIONS = EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -5621,22 +5620,22 @@ public interface EssentialOCLCSPackage
 	int SQUARE_BRACKETED_CLAUSE_CS__PARENT = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS__PARENT;
 
 	/**
-	 * The feature id for the '<em><b>Owning Name Exp</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SQUARE_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Owned Terms</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SQUARE_BRACKETED_CLAUSE_CS__OWNED_TERMS = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS_FEATURE_COUNT + 1;
+	int SQUARE_BRACKETED_CLAUSE_CS__OWNED_TERMS = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owning Name Exp</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SQUARE_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Square Bracketed Clause CS</em>' class.
@@ -5666,13 +5665,13 @@ public interface EssentialOCLCSPackage
 	int STRING_LITERAL_EXP_CS__PIVOT = PRIMITIVE_LITERAL_EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_LITERAL_EXP_CS__OWNED_ANNOTATIONS = PRIMITIVE_LITERAL_EXP_CS__OWNED_ANNOTATIONS;
+	int STRING_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -5684,13 +5683,13 @@ public interface EssentialOCLCSPackage
 	int STRING_LITERAL_EXP_CS__ORIGINAL_XMI_ID = PRIMITIVE_LITERAL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
+	int STRING_LITERAL_EXP_CS__OWNED_ANNOTATIONS = PRIMITIVE_LITERAL_EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -5792,13 +5791,13 @@ public interface EssentialOCLCSPackage
 	int TUPLE_LITERAL_EXP_CS__PIVOT = LITERAL_EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_EXP_CS__OWNED_ANNOTATIONS = LITERAL_EXP_CS__OWNED_ANNOTATIONS;
+	int TUPLE_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -5810,13 +5809,13 @@ public interface EssentialOCLCSPackage
 	int TUPLE_LITERAL_EXP_CS__ORIGINAL_XMI_ID = LITERAL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
+	int TUPLE_LITERAL_EXP_CS__OWNED_ANNOTATIONS = LITERAL_EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -5918,13 +5917,13 @@ public interface EssentialOCLCSPackage
 	int VARIABLE_CS__PIVOT = BaseCSPackage.NAMED_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_CS__OWNED_ANNOTATIONS = BaseCSPackage.NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
+	int VARIABLE_CS__CSI = BaseCSPackage.NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -5936,13 +5935,13 @@ public interface EssentialOCLCSPackage
 	int VARIABLE_CS__ORIGINAL_XMI_ID = BaseCSPackage.NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_CS__CSI = BaseCSPackage.NAMED_ELEMENT_CS__CSI;
+	int VARIABLE_CS__OWNED_ANNOTATIONS = BaseCSPackage.NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5954,22 +5953,22 @@ public interface EssentialOCLCSPackage
 	int VARIABLE_CS__NAME = BaseCSPackage.NAMED_ELEMENT_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_CS__OWNED_TYPE = BaseCSPackage.NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Owned Init Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_CS__OWNED_INIT_EXPRESSION = BaseCSPackage.NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
+	int VARIABLE_CS__OWNED_INIT_EXPRESSION = BaseCSPackage.NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_CS__OWNED_TYPE = BaseCSPackage.NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Variable CS</em>' class.
@@ -5999,13 +5998,13 @@ public interface EssentialOCLCSPackage
 	int TUPLE_LITERAL_PART_CS__PIVOT = VARIABLE_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART_CS__OWNED_ANNOTATIONS = VARIABLE_CS__OWNED_ANNOTATIONS;
+	int TUPLE_LITERAL_PART_CS__CSI = VARIABLE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -6017,13 +6016,13 @@ public interface EssentialOCLCSPackage
 	int TUPLE_LITERAL_PART_CS__ORIGINAL_XMI_ID = VARIABLE_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART_CS__CSI = VARIABLE_CS__CSI;
+	int TUPLE_LITERAL_PART_CS__OWNED_ANNOTATIONS = VARIABLE_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -6035,15 +6034,6 @@ public interface EssentialOCLCSPackage
 	int TUPLE_LITERAL_PART_CS__NAME = VARIABLE_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_LITERAL_PART_CS__OWNED_TYPE = VARIABLE_CS__OWNED_TYPE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Init Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6051,6 +6041,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int TUPLE_LITERAL_PART_CS__OWNED_INIT_EXPRESSION = VARIABLE_CS__OWNED_INIT_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_PART_CS__OWNED_TYPE = VARIABLE_CS__OWNED_TYPE;
 
 	/**
 	 * The number of structural features of the '<em>Tuple Literal Part CS</em>' class.
@@ -6080,13 +6079,13 @@ public interface EssentialOCLCSPackage
 	int TYPE_LITERAL_EXP_CS__PIVOT = LITERAL_EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_LITERAL_EXP_CS__OWNED_ANNOTATIONS = LITERAL_EXP_CS__OWNED_ANNOTATIONS;
+	int TYPE_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -6098,13 +6097,13 @@ public interface EssentialOCLCSPackage
 	int TYPE_LITERAL_EXP_CS__ORIGINAL_XMI_ID = LITERAL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
+	int TYPE_LITERAL_EXP_CS__OWNED_ANNOTATIONS = LITERAL_EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -6224,22 +6223,13 @@ public interface EssentialOCLCSPackage
 	int TYPE_NAME_EXP_CS__OWNED_MULTIPLICITY = BaseCSPackage.TYPED_REF_CS__OWNED_MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_NAME_EXP_CS__OWNED_PATH_NAME = BaseCSPackage.TYPED_REF_CS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_NAME_EXP_CS__ELEMENT = BaseCSPackage.TYPED_REF_CS_FEATURE_COUNT + 1;
+	int TYPE_NAME_EXP_CS__ELEMENT = BaseCSPackage.TYPED_REF_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Curly Bracketed Clause</b></em>' containment reference.
@@ -6248,7 +6238,16 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE = BaseCSPackage.TYPED_REF_CS_FEATURE_COUNT + 2;
+	int TYPE_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE = BaseCSPackage.TYPED_REF_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_NAME_EXP_CS__OWNED_PATH_NAME = BaseCSPackage.TYPED_REF_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Owned Pattern Guard</b></em>' containment reference.
@@ -6297,13 +6296,13 @@ public interface EssentialOCLCSPackage
 	int UNLIMITED_NATURAL_LITERAL_EXP_CS__PIVOT = PRIMITIVE_LITERAL_EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP_CS__OWNED_ANNOTATIONS = PRIMITIVE_LITERAL_EXP_CS__OWNED_ANNOTATIONS;
+	int UNLIMITED_NATURAL_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -6315,13 +6314,13 @@ public interface EssentialOCLCSPackage
 	int UNLIMITED_NATURAL_LITERAL_EXP_CS__ORIGINAL_XMI_ID = PRIMITIVE_LITERAL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
+	int UNLIMITED_NATURAL_LITERAL_EXP_CS__OWNED_ANNOTATIONS = PRIMITIVE_LITERAL_EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -6424,13 +6423,13 @@ public interface EssentialOCLCSPackage
 	int VARIABLE_EXP_CS__PIVOT = ABSTRACT_NAME_EXP_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_EXP_CS__OWNED_ANNOTATIONS = ABSTRACT_NAME_EXP_CS__OWNED_ANNOTATIONS;
+	int VARIABLE_EXP_CS__CSI = ABSTRACT_NAME_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -6442,13 +6441,13 @@ public interface EssentialOCLCSPackage
 	int VARIABLE_EXP_CS__ORIGINAL_XMI_ID = ABSTRACT_NAME_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_EXP_CS__CSI = ABSTRACT_NAME_EXP_CS__CSI;
+	int VARIABLE_EXP_CS__OWNED_ANNOTATIONS = ABSTRACT_NAME_EXP_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
@@ -6514,15 +6513,6 @@ public interface EssentialOCLCSPackage
 	int VARIABLE_EXP_CS__PRECEDENCE = ABSTRACT_NAME_EXP_CS__PRECEDENCE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_EXP_CS__OWNED_PATH_NAME = ABSTRACT_NAME_EXP_CS__OWNED_PATH_NAME;
-
-	/**
 	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6539,6 +6529,15 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int VARIABLE_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE = ABSTRACT_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_EXP_CS__OWNED_PATH_NAME = ABSTRACT_NAME_EXP_CS__OWNED_PATH_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owned Round Bracketed Clause</b></em>' containment reference.
@@ -7427,10 +7426,10 @@ public interface EssentialOCLCSPackage
 	EClass getPropertyCallExpCS();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PropertyCallExpCS#getReferredProperty <em>Referred Property</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PropertyCallExpCS#getReferredProperty <em>Referred Property</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Referred Property</em>'.
+	 * @return the meta object for the reference '<em>Referred Property</em>'.
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PropertyCallExpCS#getReferredProperty()
 	 * @see #getPropertyCallExpCS()
 	 * @generated
@@ -8721,7 +8720,7 @@ public interface EssentialOCLCSPackage
 		EClass PROPERTY_CALL_EXP_CS = eINSTANCE.getPropertyCallExpCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Referred Property</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Referred Property</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

@@ -28,7 +28,6 @@ import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
  * <!-- end-user-doc -->
  * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.OCLinEcoreCSFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/OCL/Import basecs='../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#/' ecore='http://www.eclipse.org/emf/2002/Ecore' essentialoclcs='../../org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCS.ecore#/' pivot='../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#/'"
  * @generated
  */
 public interface OCLinEcoreCSPackage extends EPackage {
@@ -162,13 +161,13 @@ public interface OCLinEcoreCSPackage extends EPackage {
 	int OC_LIN_ECORE_CONSTRAINT_CS__PIVOT = BaseCSPackage.CONSTRAINT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__OWNED_ANNOTATIONS = BaseCSPackage.CONSTRAINT_CS__OWNED_ANNOTATIONS;
+	int OC_LIN_ECORE_CONSTRAINT_CS__CSI = BaseCSPackage.CONSTRAINT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -180,13 +179,13 @@ public interface OCLinEcoreCSPackage extends EPackage {
 	int OC_LIN_ECORE_CONSTRAINT_CS__ORIGINAL_XMI_ID = BaseCSPackage.CONSTRAINT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__CSI = BaseCSPackage.CONSTRAINT_CS__CSI;
+	int OC_LIN_ECORE_CONSTRAINT_CS__OWNED_ANNOTATIONS = BaseCSPackage.CONSTRAINT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -198,13 +197,13 @@ public interface OCLinEcoreCSPackage extends EPackage {
 	int OC_LIN_ECORE_CONSTRAINT_CS__NAME = BaseCSPackage.CONSTRAINT_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Stereotype</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Message Specification</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__STEREOTYPE = BaseCSPackage.CONSTRAINT_CS__STEREOTYPE;
+	int OC_LIN_ECORE_CONSTRAINT_CS__OWNED_MESSAGE_SPECIFICATION = BaseCSPackage.CONSTRAINT_CS__OWNED_MESSAGE_SPECIFICATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Specification</b></em>' containment reference.
@@ -216,13 +215,13 @@ public interface OCLinEcoreCSPackage extends EPackage {
 	int OC_LIN_ECORE_CONSTRAINT_CS__OWNED_SPECIFICATION = BaseCSPackage.CONSTRAINT_CS__OWNED_SPECIFICATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Message Specification</b></em>' containment reference.
+	 * The feature id for the '<em><b>Stereotype</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__OWNED_MESSAGE_SPECIFICATION = BaseCSPackage.CONSTRAINT_CS__OWNED_MESSAGE_SPECIFICATION;
+	int OC_LIN_ECORE_CONSTRAINT_CS__STEREOTYPE = BaseCSPackage.CONSTRAINT_CS__STEREOTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Is Callable</b></em>' attribute.
@@ -271,13 +270,13 @@ public interface OCLinEcoreCSPackage extends EPackage {
 	int SYS_MLCS__PIVOT = BaseCSPackage.ANNOTATION_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SYS_MLCS__OWNED_ANNOTATIONS = BaseCSPackage.ANNOTATION_ELEMENT_CS__OWNED_ANNOTATIONS;
+	int SYS_MLCS__CSI = BaseCSPackage.ANNOTATION_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -289,13 +288,13 @@ public interface OCLinEcoreCSPackage extends EPackage {
 	int SYS_MLCS__ORIGINAL_XMI_ID = BaseCSPackage.ANNOTATION_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SYS_MLCS__CSI = BaseCSPackage.ANNOTATION_ELEMENT_CS__CSI;
+	int SYS_MLCS__OWNED_ANNOTATIONS = BaseCSPackage.ANNOTATION_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -362,13 +361,13 @@ public interface OCLinEcoreCSPackage extends EPackage {
 	int TOP_LEVEL_CS__PIVOT = BaseCSPackage.ROOT_PACKAGE_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOP_LEVEL_CS__OWNED_ANNOTATIONS = BaseCSPackage.ROOT_PACKAGE_CS__OWNED_ANNOTATIONS;
+	int TOP_LEVEL_CS__CSI = BaseCSPackage.ROOT_PACKAGE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -380,13 +379,13 @@ public interface OCLinEcoreCSPackage extends EPackage {
 	int TOP_LEVEL_CS__ORIGINAL_XMI_ID = BaseCSPackage.ROOT_PACKAGE_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOP_LEVEL_CS__CSI = BaseCSPackage.ROOT_PACKAGE_CS__CSI;
+	int TOP_LEVEL_CS__OWNED_ANNOTATIONS = BaseCSPackage.ROOT_PACKAGE_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Packages</b></em>' containment reference list.

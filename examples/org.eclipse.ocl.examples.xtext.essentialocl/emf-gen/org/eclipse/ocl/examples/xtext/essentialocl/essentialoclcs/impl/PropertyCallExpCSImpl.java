@@ -11,9 +11,7 @@
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
@@ -35,7 +33,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PropertyCallEx
 public abstract class PropertyCallExpCSImpl extends CallExpCSImpl implements PropertyCallExpCS
 {
 	/**
-	 * The cached value of the '{@link #getReferredProperty() <em>Referred Property</em>}' containment reference.
+	 * The cached value of the '{@link #getReferredProperty() <em>Referred Property</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getReferredProperty()
@@ -80,53 +78,12 @@ public abstract class PropertyCallExpCSImpl extends CallExpCSImpl implements Pro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetReferredProperty(Property newReferredProperty, NotificationChain msgs)
+	public void setReferredProperty(Property newReferredProperty)
 	{
 		Property oldReferredProperty = referredProperty;
 		referredProperty = newReferredProperty;
 		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.PROPERTY_CALL_EXP_CS__REFERRED_PROPERTY, oldReferredProperty, newReferredProperty);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setReferredProperty(Property newReferredProperty)
-	{
-		if (newReferredProperty != referredProperty)
-		{
-			NotificationChain msgs = null;
-			if (referredProperty != null)
-				msgs = ((InternalEObject)referredProperty).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.PROPERTY_CALL_EXP_CS__REFERRED_PROPERTY, null, msgs);
-			if (newReferredProperty != null)
-				msgs = ((InternalEObject)newReferredProperty).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.PROPERTY_CALL_EXP_CS__REFERRED_PROPERTY, null, msgs);
-			msgs = basicSetReferredProperty(newReferredProperty, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.PROPERTY_CALL_EXP_CS__REFERRED_PROPERTY, newReferredProperty, newReferredProperty));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
-			case EssentialOCLCSPackage.PROPERTY_CALL_EXP_CS__REFERRED_PROPERTY:
-				return basicSetReferredProperty(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.PROPERTY_CALL_EXP_CS__REFERRED_PROPERTY, oldReferredProperty, referredProperty));
 	}
 
 	/**

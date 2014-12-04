@@ -32,8 +32,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.VariableCSImpl#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.VariableCSImpl#getOwnedInitExpression <em>Owned Init Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.VariableCSImpl#getOwnedType <em>Owned Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -44,16 +44,6 @@ public class VariableCSImpl
 		implements VariableCS {
 
 	/**
-	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedType()
-	 * @generated
-	 * @ordered
-	 */
-	protected TypedRefCS ownedType;
-
-	/**
 	 * The cached value of the '{@link #getOwnedInitExpression() <em>Owned Init Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,6 +52,16 @@ public class VariableCSImpl
 	 * @ordered
 	 */
 	protected ExpCS ownedInitExpression;
+
+	/**
+	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedType()
+	 * @generated
+	 * @ordered
+	 */
+	protected TypedRefCS ownedType;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -184,10 +184,10 @@ public class VariableCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.VARIABLE_CS__OWNED_TYPE:
-				return basicSetOwnedType(null, msgs);
 			case EssentialOCLCSPackage.VARIABLE_CS__OWNED_INIT_EXPRESSION:
 				return basicSetOwnedInitExpression(null, msgs);
+			case EssentialOCLCSPackage.VARIABLE_CS__OWNED_TYPE:
+				return basicSetOwnedType(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -201,10 +201,10 @@ public class VariableCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.VARIABLE_CS__OWNED_TYPE:
-				return getOwnedType();
 			case EssentialOCLCSPackage.VARIABLE_CS__OWNED_INIT_EXPRESSION:
 				return getOwnedInitExpression();
+			case EssentialOCLCSPackage.VARIABLE_CS__OWNED_TYPE:
+				return getOwnedType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -218,11 +218,11 @@ public class VariableCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.VARIABLE_CS__OWNED_TYPE:
-				setOwnedType((TypedRefCS)newValue);
-				return;
 			case EssentialOCLCSPackage.VARIABLE_CS__OWNED_INIT_EXPRESSION:
 				setOwnedInitExpression((ExpCS)newValue);
+				return;
+			case EssentialOCLCSPackage.VARIABLE_CS__OWNED_TYPE:
+				setOwnedType((TypedRefCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -237,11 +237,11 @@ public class VariableCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.VARIABLE_CS__OWNED_TYPE:
-				setOwnedType((TypedRefCS)null);
-				return;
 			case EssentialOCLCSPackage.VARIABLE_CS__OWNED_INIT_EXPRESSION:
 				setOwnedInitExpression((ExpCS)null);
+				return;
+			case EssentialOCLCSPackage.VARIABLE_CS__OWNED_TYPE:
+				setOwnedType((TypedRefCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -256,10 +256,10 @@ public class VariableCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.VARIABLE_CS__OWNED_TYPE:
-				return ownedType != null;
 			case EssentialOCLCSPackage.VARIABLE_CS__OWNED_INIT_EXPRESSION:
 				return ownedInitExpression != null;
+			case EssentialOCLCSPackage.VARIABLE_CS__OWNED_TYPE:
+				return ownedType != null;
 		}
 		return super.eIsSet(featureID);
 	}

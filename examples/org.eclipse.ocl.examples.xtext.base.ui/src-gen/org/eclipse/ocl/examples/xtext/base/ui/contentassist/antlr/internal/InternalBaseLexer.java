@@ -14,8 +14,8 @@ import java.util.ArrayList;
 public class InternalBaseLexer extends Lexer {
     public static final int RULE_ML_SINGLE_QUOTED_STRING=11;
     public static final int T__26=26;
-    public static final int T__25=25;
     public static final int RULE_ESCAPED_CHARACTER=7;
+    public static final int T__25=25;
     public static final int T__24=24;
     public static final int T__23=23;
     public static final int T__22=22;
@@ -27,8 +27,8 @@ public class InternalBaseLexer extends Lexer {
     public static final int RULE_DOUBLE_QUOTED_STRING=9;
     public static final int EOF=-1;
     public static final int RULE_SL_COMMENT=13;
-    public static final int RULE_LETTER_CHARACTER=8;
     public static final int RULE_ML_COMMENT=12;
+    public static final int RULE_LETTER_CHARACTER=8;
     public static final int T__19=19;
     public static final int T__16=16;
     public static final int T__18=18;

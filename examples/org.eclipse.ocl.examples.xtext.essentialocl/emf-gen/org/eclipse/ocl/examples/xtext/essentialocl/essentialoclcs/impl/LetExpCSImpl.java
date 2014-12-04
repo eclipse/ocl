@@ -36,9 +36,9 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetExpCSImpl#getOwnedVariables <em>Owned Variables</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetExpCSImpl#getOwnedInExpression <em>Owned In Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetExpCSImpl#isIsImplicit <em>Is Implicit</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetExpCSImpl#getOwnedInExpression <em>Owned In Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetExpCSImpl#getOwnedVariables <em>Owned Variables</em>}</li>
  * </ul>
  * </p>
  *
@@ -47,26 +47,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
 public class LetExpCSImpl
 		extends ExpCSImpl
 		implements LetExpCS {
-
-	/**
-	 * The cached value of the '{@link #getOwnedVariables() <em>Owned Variables</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedVariables()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<LetVariableCS> ownedVariables;
-
-	/**
-	 * The cached value of the '{@link #getOwnedInExpression() <em>Owned In Expression</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedInExpression()
-	 * @generated
-	 * @ordered
-	 */
-	protected ExpCS ownedInExpression;
 
 	/**
 	 * The default value of the '{@link #isIsImplicit() <em>Is Implicit</em>}' attribute.
@@ -87,6 +67,26 @@ public class LetExpCSImpl
 	 * @ordered
 	 */
 	protected boolean isImplicit = IS_IMPLICIT_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getOwnedInExpression() <em>Owned In Expression</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedInExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected ExpCS ownedInExpression;
+
+	/**
+	 * The cached value of the '{@link #getOwnedVariables() <em>Owned Variables</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedVariables()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<LetVariableCS> ownedVariables;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -227,10 +227,10 @@ public class LetExpCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_VARIABLES:
-				return ((InternalEList<?>)getOwnedVariables()).basicRemove(otherEnd, msgs);
 			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_IN_EXPRESSION:
 				return basicSetOwnedInExpression(null, msgs);
+			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_VARIABLES:
+				return ((InternalEList<?>)getOwnedVariables()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -244,12 +244,12 @@ public class LetExpCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_VARIABLES:
-				return getOwnedVariables();
-			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_IN_EXPRESSION:
-				return getOwnedInExpression();
 			case EssentialOCLCSPackage.LET_EXP_CS__IS_IMPLICIT:
 				return isIsImplicit();
+			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_IN_EXPRESSION:
+				return getOwnedInExpression();
+			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_VARIABLES:
+				return getOwnedVariables();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -264,15 +264,15 @@ public class LetExpCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_VARIABLES:
-				getOwnedVariables().clear();
-				getOwnedVariables().addAll((Collection<? extends LetVariableCS>)newValue);
+			case EssentialOCLCSPackage.LET_EXP_CS__IS_IMPLICIT:
+				setIsImplicit((Boolean)newValue);
 				return;
 			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_IN_EXPRESSION:
 				setOwnedInExpression((ExpCS)newValue);
 				return;
-			case EssentialOCLCSPackage.LET_EXP_CS__IS_IMPLICIT:
-				setIsImplicit((Boolean)newValue);
+			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_VARIABLES:
+				getOwnedVariables().clear();
+				getOwnedVariables().addAll((Collection<? extends LetVariableCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -287,14 +287,14 @@ public class LetExpCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_VARIABLES:
-				getOwnedVariables().clear();
+			case EssentialOCLCSPackage.LET_EXP_CS__IS_IMPLICIT:
+				setIsImplicit(IS_IMPLICIT_EDEFAULT);
 				return;
 			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_IN_EXPRESSION:
 				setOwnedInExpression((ExpCS)null);
 				return;
-			case EssentialOCLCSPackage.LET_EXP_CS__IS_IMPLICIT:
-				setIsImplicit(IS_IMPLICIT_EDEFAULT);
+			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_VARIABLES:
+				getOwnedVariables().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -309,12 +309,12 @@ public class LetExpCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_VARIABLES:
-				return ownedVariables != null && !ownedVariables.isEmpty();
-			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_IN_EXPRESSION:
-				return ownedInExpression != null;
 			case EssentialOCLCSPackage.LET_EXP_CS__IS_IMPLICIT:
 				return isImplicit != IS_IMPLICIT_EDEFAULT;
+			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_IN_EXPRESSION:
+				return ownedInExpression != null;
+			case EssentialOCLCSPackage.LET_EXP_CS__OWNED_VARIABLES:
+				return ownedVariables != null && !ownedVariables.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

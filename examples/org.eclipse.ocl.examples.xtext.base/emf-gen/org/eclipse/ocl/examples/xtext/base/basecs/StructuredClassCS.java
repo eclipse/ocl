@@ -21,10 +21,10 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS#getOwnedSuperTypes <em>Owned Super Types</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS#getOwnedMetaclass <em>Owned Metaclass</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS#getOwnedOperations <em>Owned Operations</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS#getOwnedProperties <em>Owned Properties</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS#getOwnedMetaclass <em>Owned Metaclass</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS#getOwnedSuperTypes <em>Owned Super Types</em>}</li>
  * </ul>
  * </p>
  *
@@ -43,34 +43,11 @@ public interface StructuredClassCS extends ClassCS, NamespaceCS {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Super Types</em>' containment reference list.
-	 * @see #isSetOwnedSuperTypes()
-	 * @see #unsetOwnedSuperTypes()
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getStructuredClassCS_OwnedSuperTypes()
-	 * @model containment="true" unsettable="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<TypedRefCS> getOwnedSuperTypes();
-
-	/**
-	 * Unsets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS#getOwnedSuperTypes <em>Owned Super Types</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetOwnedSuperTypes()
-	 * @see #getOwnedSuperTypes()
-	 * @generated
-	 */
-	void unsetOwnedSuperTypes();
-
-	/**
-	 * Returns whether the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.StructuredClassCS#getOwnedSuperTypes <em>Owned Super Types</em>}' containment reference list is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Owned Super Types</em>' containment reference list is set.
-	 * @see #unsetOwnedSuperTypes()
-	 * @see #getOwnedSuperTypes()
-	 * @generated
-	 */
-	boolean isSetOwnedSuperTypes();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Operations</b></em>' containment reference list.

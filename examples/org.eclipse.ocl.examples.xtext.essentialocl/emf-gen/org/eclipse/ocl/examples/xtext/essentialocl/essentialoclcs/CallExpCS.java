@@ -20,8 +20,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CallExpCS#getSource <em>Source</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CallExpCS#getArguments <em>Arguments</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CallExpCS#getSource <em>Source</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,7 +42,7 @@ public interface CallExpCS extends AbstractNameExpCS
 	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(ExpCS)
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getCallExpCS_Source()
-	 * @model derived="true"
+	 * @model resolveProxies="false" derived="true"
 	 * @generated
 	 */
 	ExpCS getSource();
@@ -68,7 +68,7 @@ public interface CallExpCS extends AbstractNameExpCS
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Arguments</em>' reference list.
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getCallExpCS_Arguments()
-	 * @model derived="true"
+	 * @model resolveProxies="false" derived="true"
 	 * @generated
 	 */
 	EList<ExpCS> getArguments();

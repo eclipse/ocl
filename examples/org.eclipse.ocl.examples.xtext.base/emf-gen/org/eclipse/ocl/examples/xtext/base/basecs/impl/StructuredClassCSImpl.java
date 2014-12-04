@@ -37,10 +37,10 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.StructuredClassCSImpl#getOwnedSuperTypes <em>Owned Super Types</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.StructuredClassCSImpl#getOwnedMetaclass <em>Owned Metaclass</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.StructuredClassCSImpl#getOwnedOperations <em>Owned Operations</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.StructuredClassCSImpl#getOwnedProperties <em>Owned Properties</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.StructuredClassCSImpl#getOwnedMetaclass <em>Owned Metaclass</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.StructuredClassCSImpl#getOwnedSuperTypes <em>Owned Super Types</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,14 +48,14 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  */
 public class StructuredClassCSImpl extends ClassCSImpl implements StructuredClassCS {
 	/**
-	 * The cached value of the '{@link #getOwnedSuperTypes() <em>Owned Super Types</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedMetaclass() <em>Owned Metaclass</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedSuperTypes()
+	 * @see #getOwnedMetaclass()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TypedRefCS> ownedSuperTypes;
+	protected TypedRefCS ownedMetaclass;
 
 	/**
 	 * The cached value of the '{@link #getOwnedOperations() <em>Owned Operations</em>}' containment reference list.
@@ -78,14 +78,14 @@ public class StructuredClassCSImpl extends ClassCSImpl implements StructuredClas
 	protected EList<StructuralFeatureCS> ownedProperties;
 
 	/**
-	 * The cached value of the '{@link #getOwnedMetaclass() <em>Owned Metaclass</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedSuperTypes() <em>Owned Super Types</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedMetaclass()
+	 * @see #getOwnedSuperTypes()
 	 * @generated
 	 * @ordered
 	 */
-	protected TypedRefCS ownedMetaclass;
+	protected EList<TypedRefCS> ownedSuperTypes;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -114,29 +114,9 @@ public class StructuredClassCSImpl extends ClassCSImpl implements StructuredClas
 	public EList<TypedRefCS> getOwnedSuperTypes() {
 		if (ownedSuperTypes == null)
 		{
-			ownedSuperTypes = new EObjectContainmentEList.Unsettable<TypedRefCS>(TypedRefCS.class, this, BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_SUPER_TYPES);
+			ownedSuperTypes = new EObjectContainmentEList<TypedRefCS>(TypedRefCS.class, this, BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_SUPER_TYPES);
 		}
 		return ownedSuperTypes;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetOwnedSuperTypes()
-	{
-		if (ownedSuperTypes != null) ((InternalEList.Unsettable<?>)ownedSuperTypes).unset();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwnedSuperTypes()
-	{
-		return ownedSuperTypes != null && ((InternalEList.Unsettable<?>)ownedSuperTypes).isSet();
 	}
 
 	/**
@@ -240,14 +220,14 @@ public class StructuredClassCSImpl extends ClassCSImpl implements StructuredClas
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_SUPER_TYPES:
-				return ((InternalEList<?>)getOwnedSuperTypes()).basicRemove(otherEnd, msgs);
+			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_METACLASS:
+				return basicSetOwnedMetaclass(null, msgs);
 			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_OPERATIONS:
 				return ((InternalEList<?>)getOwnedOperations()).basicRemove(otherEnd, msgs);
 			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_PROPERTIES:
 				return ((InternalEList<?>)getOwnedProperties()).basicRemove(otherEnd, msgs);
-			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_METACLASS:
-				return basicSetOwnedMetaclass(null, msgs);
+			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_SUPER_TYPES:
+				return ((InternalEList<?>)getOwnedSuperTypes()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -261,14 +241,14 @@ public class StructuredClassCSImpl extends ClassCSImpl implements StructuredClas
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_SUPER_TYPES:
-				return getOwnedSuperTypes();
+			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_METACLASS:
+				return getOwnedMetaclass();
 			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_OPERATIONS:
 				return getOwnedOperations();
 			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_PROPERTIES:
 				return getOwnedProperties();
-			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_METACLASS:
-				return getOwnedMetaclass();
+			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_SUPER_TYPES:
+				return getOwnedSuperTypes();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -283,9 +263,8 @@ public class StructuredClassCSImpl extends ClassCSImpl implements StructuredClas
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_SUPER_TYPES:
-				getOwnedSuperTypes().clear();
-				getOwnedSuperTypes().addAll((Collection<? extends TypedRefCS>)newValue);
+			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_METACLASS:
+				setOwnedMetaclass((TypedRefCS)newValue);
 				return;
 			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_OPERATIONS:
 				getOwnedOperations().clear();
@@ -295,8 +274,9 @@ public class StructuredClassCSImpl extends ClassCSImpl implements StructuredClas
 				getOwnedProperties().clear();
 				getOwnedProperties().addAll((Collection<? extends StructuralFeatureCS>)newValue);
 				return;
-			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_METACLASS:
-				setOwnedMetaclass((TypedRefCS)newValue);
+			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_SUPER_TYPES:
+				getOwnedSuperTypes().clear();
+				getOwnedSuperTypes().addAll((Collection<? extends TypedRefCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -311,8 +291,8 @@ public class StructuredClassCSImpl extends ClassCSImpl implements StructuredClas
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_SUPER_TYPES:
-				unsetOwnedSuperTypes();
+			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_METACLASS:
+				setOwnedMetaclass((TypedRefCS)null);
 				return;
 			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_OPERATIONS:
 				getOwnedOperations().clear();
@@ -320,8 +300,8 @@ public class StructuredClassCSImpl extends ClassCSImpl implements StructuredClas
 			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_PROPERTIES:
 				getOwnedProperties().clear();
 				return;
-			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_METACLASS:
-				setOwnedMetaclass((TypedRefCS)null);
+			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_SUPER_TYPES:
+				getOwnedSuperTypes().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -336,14 +316,14 @@ public class StructuredClassCSImpl extends ClassCSImpl implements StructuredClas
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_SUPER_TYPES:
-				return isSetOwnedSuperTypes();
+			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_METACLASS:
+				return ownedMetaclass != null;
 			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_OPERATIONS:
 				return ownedOperations != null && !ownedOperations.isEmpty();
 			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_PROPERTIES:
 				return ownedProperties != null && !ownedProperties.isEmpty();
-			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_METACLASS:
-				return ownedMetaclass != null;
+			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_SUPER_TYPES:
+				return ownedSuperTypes != null && !ownedSuperTypes.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

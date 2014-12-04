@@ -38,8 +38,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.RoundBracketedClauseCSImpl#getOwningNameExp <em>Owning Name Exp</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.RoundBracketedClauseCSImpl#getOwnedArguments <em>Owned Arguments</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.RoundBracketedClauseCSImpl#getOwningNameExp <em>Owning Name Exp</em>}</li>
  * </ul>
  * </p>
  *
@@ -148,12 +148,12 @@ public class RoundBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	{
 		switch (featureID)
 		{
+			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNED_ARGUMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedArguments()).basicAdd(otherEnd, msgs);
 			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningNameExp((AbstractNameExpCS)otherEnd, msgs);
-			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNED_ARGUMENTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedArguments()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -168,10 +168,10 @@ public class RoundBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
-				return basicSetOwningNameExp(null, msgs);
 			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNED_ARGUMENTS:
 				return ((InternalEList<?>)getOwnedArguments()).basicRemove(otherEnd, msgs);
+			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
+				return basicSetOwningNameExp(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -202,10 +202,10 @@ public class RoundBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
-				return getOwningNameExp();
 			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNED_ARGUMENTS:
 				return getOwnedArguments();
+			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
+				return getOwningNameExp();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -221,12 +221,12 @@ public class RoundBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
-				setOwningNameExp((AbstractNameExpCS)newValue);
-				return;
 			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNED_ARGUMENTS:
 				getOwnedArguments().clear();
 				getOwnedArguments().addAll((Collection<? extends NavigatingArgCS>)newValue);
+				return;
+			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
+				setOwningNameExp((AbstractNameExpCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -242,11 +242,11 @@ public class RoundBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
-				setOwningNameExp((AbstractNameExpCS)null);
-				return;
 			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNED_ARGUMENTS:
 				getOwnedArguments().clear();
+				return;
+			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
+				setOwningNameExp((AbstractNameExpCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -262,10 +262,10 @@ public class RoundBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
-				return getOwningNameExp() != null;
 			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNED_ARGUMENTS:
 				return ownedArguments != null && !ownedArguments.isEmpty();
+			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
+				return getOwningNameExp() != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -41,7 +41,7 @@ public interface IterateCallExpCS extends IterationCallExpCS
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Accumulators</em>' reference list.
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getIterateCallExpCS_Accumulators()
-	 * @model derived="true"
+	 * @model resolveProxies="false" derived="true"
 	 * @generated
 	 */
 	EList<VariableCS> getAccumulators();

@@ -28,9 +28,9 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpSpecificati
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.DefCSImpl#getOwningClassifierContextDecl <em>Owning Classifier Context Decl</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.DefCSImpl#getOwnedSpecification <em>Owned Specification</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.DefCSImpl#isIsStatic <em>Is Static</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.DefCSImpl#getOwnedSpecification <em>Owned Specification</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.DefCSImpl#getOwningClassifierContextDecl <em>Owning Classifier Context Decl</em>}</li>
  * </ul>
  * </p>
  *
@@ -39,16 +39,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpSpecificati
 public abstract class DefCSImpl
 		extends TypedElementCSImpl
 		implements DefCS {
-
-	/**
-	 * The cached value of the '{@link #getOwnedSpecification() <em>Owned Specification</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedSpecification()
-	 * @generated
-	 * @ordered
-	 */
-	protected ExpSpecificationCS ownedSpecification;
 
 	/**
 	 * The default value of the '{@link #isIsStatic() <em>Is Static</em>}' attribute.
@@ -69,6 +59,16 @@ public abstract class DefCSImpl
 	 * @ordered
 	 */
 	protected boolean isStatic = IS_STATIC_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getOwnedSpecification() <em>Owned Specification</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedSpecification()
+	 * @generated
+	 * @ordered
+	 */
+	protected ExpSpecificationCS ownedSpecification;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -206,10 +206,10 @@ public abstract class DefCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.DEF_CS__OWNING_CLASSIFIER_CONTEXT_DECL:
-				return eBasicSetContainer(null, CompleteOCLCSPackage.DEF_CS__OWNING_CLASSIFIER_CONTEXT_DECL, msgs);
 			case CompleteOCLCSPackage.DEF_CS__OWNED_SPECIFICATION:
 				return basicSetOwnedSpecification(null, msgs);
+			case CompleteOCLCSPackage.DEF_CS__OWNING_CLASSIFIER_CONTEXT_DECL:
+				return eBasicSetContainer(null, CompleteOCLCSPackage.DEF_CS__OWNING_CLASSIFIER_CONTEXT_DECL, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -239,12 +239,12 @@ public abstract class DefCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.DEF_CS__OWNING_CLASSIFIER_CONTEXT_DECL:
-				return getOwningClassifierContextDecl();
-			case CompleteOCLCSPackage.DEF_CS__OWNED_SPECIFICATION:
-				return getOwnedSpecification();
 			case CompleteOCLCSPackage.DEF_CS__IS_STATIC:
 				return isIsStatic();
+			case CompleteOCLCSPackage.DEF_CS__OWNED_SPECIFICATION:
+				return getOwnedSpecification();
+			case CompleteOCLCSPackage.DEF_CS__OWNING_CLASSIFIER_CONTEXT_DECL:
+				return getOwningClassifierContextDecl();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -258,11 +258,11 @@ public abstract class DefCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.DEF_CS__OWNED_SPECIFICATION:
-				setOwnedSpecification((ExpSpecificationCS)newValue);
-				return;
 			case CompleteOCLCSPackage.DEF_CS__IS_STATIC:
 				setIsStatic((Boolean)newValue);
+				return;
+			case CompleteOCLCSPackage.DEF_CS__OWNED_SPECIFICATION:
+				setOwnedSpecification((ExpSpecificationCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -277,11 +277,11 @@ public abstract class DefCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.DEF_CS__OWNED_SPECIFICATION:
-				setOwnedSpecification((ExpSpecificationCS)null);
-				return;
 			case CompleteOCLCSPackage.DEF_CS__IS_STATIC:
 				setIsStatic(IS_STATIC_EDEFAULT);
+				return;
+			case CompleteOCLCSPackage.DEF_CS__OWNED_SPECIFICATION:
+				setOwnedSpecification((ExpSpecificationCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -296,12 +296,12 @@ public abstract class DefCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.DEF_CS__OWNING_CLASSIFIER_CONTEXT_DECL:
-				return getOwningClassifierContextDecl() != null;
-			case CompleteOCLCSPackage.DEF_CS__OWNED_SPECIFICATION:
-				return ownedSpecification != null;
 			case CompleteOCLCSPackage.DEF_CS__IS_STATIC:
 				return isStatic != IS_STATIC_EDEFAULT;
+			case CompleteOCLCSPackage.DEF_CS__OWNED_SPECIFICATION:
+				return ownedSpecification != null;
+			case CompleteOCLCSPackage.DEF_CS__OWNING_CLASSIFIER_CONTEXT_DECL:
+				return getOwningClassifierContextDecl() != null;
 		}
 		return super.eIsSet(featureID);
 	}

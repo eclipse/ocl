@@ -15,10 +15,8 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IterationCallExpCS;
@@ -31,8 +29,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IterationCallExpCSImpl#getReferredIteration <em>Referred Iteration</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IterationCallExpCSImpl#getIterators <em>Iterators</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IterationCallExpCSImpl#getReferredIteration <em>Referred Iteration</em>}</li>
  * </ul>
  * </p>
  *
@@ -40,16 +38,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS;
  */
 public abstract class IterationCallExpCSImpl extends CallExpCSImpl implements IterationCallExpCS
 {
-	/**
-	 * The cached value of the '{@link #getReferredIteration() <em>Referred Iteration</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getReferredIteration()
-	 * @generated
-	 * @ordered
-	 */
-	protected Iteration referredIteration;
-
 	/**
 	 * The cached value of the '{@link #getIterators() <em>Iterators</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -59,6 +47,16 @@ public abstract class IterationCallExpCSImpl extends CallExpCSImpl implements It
 	 * @ordered
 	 */
 	protected EList<VariableCS> iterators;
+
+	/**
+	 * The cached value of the '{@link #getReferredIteration() <em>Referred Iteration</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReferredIteration()
+	 * @generated
+	 * @ordered
+	 */
+	protected Iteration referredIteration;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -88,26 +86,6 @@ public abstract class IterationCallExpCSImpl extends CallExpCSImpl implements It
 	 */
 	public Iteration getReferredIteration()
 	{
-		if (referredIteration != null && ((EObject)referredIteration).eIsProxy())
-		{
-			InternalEObject oldReferredIteration = (InternalEObject)referredIteration;
-			referredIteration = (Iteration)eResolveProxy(oldReferredIteration);
-			if (referredIteration != oldReferredIteration)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__REFERRED_ITERATION, oldReferredIteration, referredIteration));
-			}
-		}
-		return referredIteration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Iteration basicGetReferredIteration()
-	{
 		return referredIteration;
 	}
 
@@ -133,7 +111,7 @@ public abstract class IterationCallExpCSImpl extends CallExpCSImpl implements It
 	{
 		if (iterators == null)
 		{
-			iterators = new EObjectResolvingEList<VariableCS>(VariableCS.class, this, EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__ITERATORS);
+			iterators = new EObjectEList<VariableCS>(VariableCS.class, this, EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__ITERATORS);
 		}
 		return iterators;
 	}
@@ -148,11 +126,10 @@ public abstract class IterationCallExpCSImpl extends CallExpCSImpl implements It
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__REFERRED_ITERATION:
-				if (resolve) return getReferredIteration();
-				return basicGetReferredIteration();
 			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__ITERATORS:
 				return getIterators();
+			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__REFERRED_ITERATION:
+				return getReferredIteration();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -168,12 +145,12 @@ public abstract class IterationCallExpCSImpl extends CallExpCSImpl implements It
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__REFERRED_ITERATION:
-				setReferredIteration((Iteration)newValue);
-				return;
 			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__ITERATORS:
 				getIterators().clear();
 				getIterators().addAll((Collection<? extends VariableCS>)newValue);
+				return;
+			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__REFERRED_ITERATION:
+				setReferredIteration((Iteration)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -189,11 +166,11 @@ public abstract class IterationCallExpCSImpl extends CallExpCSImpl implements It
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__REFERRED_ITERATION:
-				setReferredIteration((Iteration)null);
-				return;
 			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__ITERATORS:
 				getIterators().clear();
+				return;
+			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__REFERRED_ITERATION:
+				setReferredIteration((Iteration)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -209,10 +186,10 @@ public abstract class IterationCallExpCSImpl extends CallExpCSImpl implements It
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__REFERRED_ITERATION:
-				return referredIteration != null;
 			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__ITERATORS:
 				return iterators != null && !iterators.isEmpty();
+			case EssentialOCLCSPackage.ITERATION_CALL_EXP_CS__REFERRED_ITERATION:
+				return referredIteration != null;
 		}
 		return super.eIsSet(featureID);
 	}

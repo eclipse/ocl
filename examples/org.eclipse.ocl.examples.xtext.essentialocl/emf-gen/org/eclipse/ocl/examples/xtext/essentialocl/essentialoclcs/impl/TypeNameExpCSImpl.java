@@ -35,9 +35,9 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.TypeNameExpCSImpl#getOwnedPathName <em>Owned Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.TypeNameExpCSImpl#getElement <em>Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.TypeNameExpCSImpl#getOwnedCurlyBracketedClause <em>Owned Curly Bracketed Clause</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.TypeNameExpCSImpl#getOwnedPathName <em>Owned Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.TypeNameExpCSImpl#getOwnedPatternGuard <em>Owned Pattern Guard</em>}</li>
  * </ul>
  * </p>
@@ -49,15 +49,6 @@ public class TypeNameExpCSImpl
 		implements TypeNameExpCS {
 
 	/**
-	 * The cached value of the '{@link #getOwnedPathName() <em>Owned Path Name</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedPathName()
-	 * @generated
-	 * @ordered
-	 */
-	protected PathNameCS ownedPathName;
-	/**
 	 * The cached value of the '{@link #getOwnedCurlyBracketedClause() <em>Owned Curly Bracketed Clause</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,6 +57,15 @@ public class TypeNameExpCSImpl
 	 * @ordered
 	 */
 	protected CurlyBracketedClauseCS ownedCurlyBracketedClause;
+	/**
+	 * The cached value of the '{@link #getOwnedPathName() <em>Owned Path Name</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedPathName()
+	 * @generated
+	 * @ordered
+	 */
+	protected PathNameCS ownedPathName;
 	/**
 	 * The cached value of the '{@link #getOwnedPatternGuard() <em>Owned Pattern Guard</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -150,10 +150,10 @@ public class TypeNameExpCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_PATH_NAME:
-				return basicSetOwnedPathName(null, msgs);
 			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
 				return basicSetOwnedCurlyBracketedClause(null, msgs);
+			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_PATH_NAME:
+				return basicSetOwnedPathName(null, msgs);
 			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_PATTERN_GUARD:
 				return basicSetOwnedPatternGuard(null, msgs);
 		}
@@ -178,12 +178,12 @@ public class TypeNameExpCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_PATH_NAME:
-				return getOwnedPathName();
 			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__ELEMENT:
 				return getElement();
 			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
 				return getOwnedCurlyBracketedClause();
+			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_PATH_NAME:
+				return getOwnedPathName();
 			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_PATTERN_GUARD:
 				return getOwnedPatternGuard();
 		}
@@ -199,11 +199,11 @@ public class TypeNameExpCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_PATH_NAME:
-				setOwnedPathName((PathNameCS)newValue);
-				return;
 			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
 				setOwnedCurlyBracketedClause((CurlyBracketedClauseCS)newValue);
+				return;
+			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_PATH_NAME:
+				setOwnedPathName((PathNameCS)newValue);
 				return;
 			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_PATTERN_GUARD:
 				setOwnedPatternGuard((ExpCS)newValue);
@@ -221,11 +221,11 @@ public class TypeNameExpCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_PATH_NAME:
-				setOwnedPathName((PathNameCS)null);
-				return;
 			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
 				setOwnedCurlyBracketedClause((CurlyBracketedClauseCS)null);
+				return;
+			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_PATH_NAME:
+				setOwnedPathName((PathNameCS)null);
 				return;
 			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_PATTERN_GUARD:
 				setOwnedPatternGuard((ExpCS)null);
@@ -243,12 +243,12 @@ public class TypeNameExpCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_PATH_NAME:
-				return ownedPathName != null;
 			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__ELEMENT:
 				return getElement() != null;
 			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
 				return ownedCurlyBracketedClause != null;
+			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_PATH_NAME:
+				return ownedPathName != null;
 			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_PATTERN_GUARD:
 				return ownedPatternGuard != null;
 		}

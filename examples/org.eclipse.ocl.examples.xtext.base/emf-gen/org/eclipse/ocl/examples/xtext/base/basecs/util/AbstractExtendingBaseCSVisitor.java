@@ -113,11 +113,15 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 	}
 
 	public @Nullable R visitMultiplicityBoundsCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.MultiplicityBoundsCS object) {
+		return visitMultiplicityCS(object);
+	}
+
+	public @Nullable R visitMultiplicityCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.MultiplicityCS object) {
 		return visitElementCS(object);
 	}
 
 	public @Nullable R visitMultiplicityStringCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.MultiplicityStringCS object) {
-		return visitElementCS(object);
+		return visitMultiplicityCS(object);
 	}
 
 	public @Nullable R visitNamedElementCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.NamedElementCS object) {
@@ -164,6 +168,10 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 		return visitStructuralFeatureCS(object);
 	}
 
+	public @Nullable R visitRootCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.RootCS object) {
+		return visitModelElementCS(object);
+	}
+
 	public @Nullable R visitRootPackageCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.RootPackageCS object) {
 		return visitPackageOwnerCS(object);
 	}
@@ -194,6 +202,10 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 
 	public @Nullable R visitTemplateSignatureCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS object) {
 		return visitModelElementCS(object);
+	}
+
+	public @Nullable R visitTemplateableElementCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS object) {
+		return visitElementCS(object);
 	}
 
 	public @Nullable R visitTuplePartCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.TuplePartCS object) {

@@ -20,8 +20,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS#getOwningElement <em>Owning Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS#getOwnedParameters <em>Owned Parameters</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS#getOwningElement <em>Owning Element</em>}</li>
  * </ul>
  * </p>
  *

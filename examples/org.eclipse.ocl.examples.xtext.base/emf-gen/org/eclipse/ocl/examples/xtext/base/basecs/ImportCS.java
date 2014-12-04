@@ -22,9 +22,9 @@ import org.eclipse.ocl.examples.pivot.Namespace;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ImportCS#isIsAll <em>Is All</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ImportCS#getOwnedPathName <em>Owned Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ImportCS#getReferredNamespace <em>Referred Namespace</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ImportCS#isIsAll <em>Is All</em>}</li>
  * </ul>
  * </p>
  *
@@ -86,7 +86,7 @@ public interface ImportCS extends NamespaceCS {
 	 * @return the value of the '<em>Is All</em>' attribute.
 	 * @see #setIsAll(boolean)
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getImportCS_IsAll()
-	 * @model default="false" transient="true"
+	 * @model default="false"
 	 * @generated
 	 */
 	boolean isIsAll();

@@ -35,10 +35,10 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.util.OCLstdlibCSVisi
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.LibOperationCSImpl#getImplementation <em>Implementation</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.LibOperationCSImpl#getPrecedence <em>Precedence</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.LibOperationCSImpl#isIsInvalidating <em>Is Invalidating</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.LibOperationCSImpl#isIsStatic <em>Is Static</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.LibOperationCSImpl#isIsValidating <em>Is Validating</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl.LibOperationCSImpl#getPrecedence <em>Precedence</em>}</li>
  * </ul>
  * </p>
  *
@@ -57,16 +57,6 @@ public class LibOperationCSImpl
 	 * @ordered
 	 */
 	protected JavaClassCS implementation;
-
-	/**
-	 * The cached value of the '{@link #getPrecedence() <em>Precedence</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPrecedence()
-	 * @generated
-	 * @ordered
-	 */
-	protected Precedence precedence;
 
 	/**
 	 * The default value of the '{@link #isIsInvalidating() <em>Is Invalidating</em>}' attribute.
@@ -127,6 +117,16 @@ public class LibOperationCSImpl
 	 * @ordered
 	 */
 	protected boolean isValidating = IS_VALIDATING_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getPrecedence() <em>Precedence</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPrecedence()
+	 * @generated
+	 * @ordered
+	 */
+	protected Precedence precedence;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -310,15 +310,15 @@ public class LibOperationCSImpl
 			case OCLstdlibCSPackage.LIB_OPERATION_CS__IMPLEMENTATION:
 				if (resolve) return getImplementation();
 				return basicGetImplementation();
-			case OCLstdlibCSPackage.LIB_OPERATION_CS__PRECEDENCE:
-				if (resolve) return getPrecedence();
-				return basicGetPrecedence();
 			case OCLstdlibCSPackage.LIB_OPERATION_CS__IS_INVALIDATING:
 				return isIsInvalidating();
 			case OCLstdlibCSPackage.LIB_OPERATION_CS__IS_STATIC:
 				return isIsStatic();
 			case OCLstdlibCSPackage.LIB_OPERATION_CS__IS_VALIDATING:
 				return isIsValidating();
+			case OCLstdlibCSPackage.LIB_OPERATION_CS__PRECEDENCE:
+				if (resolve) return getPrecedence();
+				return basicGetPrecedence();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -335,9 +335,6 @@ public class LibOperationCSImpl
 			case OCLstdlibCSPackage.LIB_OPERATION_CS__IMPLEMENTATION:
 				setImplementation((JavaClassCS)newValue);
 				return;
-			case OCLstdlibCSPackage.LIB_OPERATION_CS__PRECEDENCE:
-				setPrecedence((Precedence)newValue);
-				return;
 			case OCLstdlibCSPackage.LIB_OPERATION_CS__IS_INVALIDATING:
 				setIsInvalidating((Boolean)newValue);
 				return;
@@ -346,6 +343,9 @@ public class LibOperationCSImpl
 				return;
 			case OCLstdlibCSPackage.LIB_OPERATION_CS__IS_VALIDATING:
 				setIsValidating((Boolean)newValue);
+				return;
+			case OCLstdlibCSPackage.LIB_OPERATION_CS__PRECEDENCE:
+				setPrecedence((Precedence)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -363,9 +363,6 @@ public class LibOperationCSImpl
 			case OCLstdlibCSPackage.LIB_OPERATION_CS__IMPLEMENTATION:
 				setImplementation((JavaClassCS)null);
 				return;
-			case OCLstdlibCSPackage.LIB_OPERATION_CS__PRECEDENCE:
-				setPrecedence((Precedence)null);
-				return;
 			case OCLstdlibCSPackage.LIB_OPERATION_CS__IS_INVALIDATING:
 				setIsInvalidating(IS_INVALIDATING_EDEFAULT);
 				return;
@@ -374,6 +371,9 @@ public class LibOperationCSImpl
 				return;
 			case OCLstdlibCSPackage.LIB_OPERATION_CS__IS_VALIDATING:
 				setIsValidating(IS_VALIDATING_EDEFAULT);
+				return;
+			case OCLstdlibCSPackage.LIB_OPERATION_CS__PRECEDENCE:
+				setPrecedence((Precedence)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -390,14 +390,14 @@ public class LibOperationCSImpl
 		{
 			case OCLstdlibCSPackage.LIB_OPERATION_CS__IMPLEMENTATION:
 				return implementation != null;
-			case OCLstdlibCSPackage.LIB_OPERATION_CS__PRECEDENCE:
-				return precedence != null;
 			case OCLstdlibCSPackage.LIB_OPERATION_CS__IS_INVALIDATING:
 				return isInvalidating != IS_INVALIDATING_EDEFAULT;
 			case OCLstdlibCSPackage.LIB_OPERATION_CS__IS_STATIC:
 				return isStatic != IS_STATIC_EDEFAULT;
 			case OCLstdlibCSPackage.LIB_OPERATION_CS__IS_VALIDATING:
 				return isValidating != IS_VALIDATING_EDEFAULT;
+			case OCLstdlibCSPackage.LIB_OPERATION_CS__PRECEDENCE:
+				return precedence != null;
 		}
 		return super.eIsSet(featureID);
 	}

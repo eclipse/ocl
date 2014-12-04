@@ -21,9 +21,9 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedElementCS#isIsOptional <em>Is Optional</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedElementCS#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedElementCS#getQualifiers <em>Qualifiers</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TypedElementCS#isIsOptional <em>Is Optional</em>}</li>
  * </ul>
  * </p>
  *

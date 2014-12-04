@@ -38,9 +38,9 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PackageCSImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PackageCSImpl#getOwnedClasses <em>Owned Classes</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PackageCSImpl#getNsPrefix <em>Ns Prefix</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PackageCSImpl#getNsURI <em>Ns URI</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PackageCSImpl#getOwnedClasses <em>Owned Classes</em>}</li>
  * </ul>
  * </p>
  *
@@ -65,15 +65,6 @@ public class PackageCSImpl extends PackageOwnerCSImpl implements PackageCS {
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
-	/**
-	 * The cached value of the '{@link #getOwnedClasses() <em>Owned Classes</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedClasses()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ClassCS> ownedClasses;
 	/**
 	 * The default value of the '{@link #getNsPrefix() <em>Ns Prefix</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -111,6 +102,15 @@ public class PackageCSImpl extends PackageOwnerCSImpl implements PackageCS {
 	 * @ordered
 	 */
 	protected String nsURI = NS_URI_EDEFAULT;
+	/**
+	 * The cached value of the '{@link #getOwnedClasses() <em>Owned Classes</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedClasses()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ClassCS> ownedClasses;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -270,12 +270,12 @@ public class PackageCSImpl extends PackageOwnerCSImpl implements PackageCS {
 		{
 			case BaseCSPackage.PACKAGE_CS__NAME:
 				return getName();
-			case BaseCSPackage.PACKAGE_CS__OWNED_CLASSES:
-				return getOwnedClasses();
 			case BaseCSPackage.PACKAGE_CS__NS_PREFIX:
 				return getNsPrefix();
 			case BaseCSPackage.PACKAGE_CS__NS_URI:
 				return getNsURI();
+			case BaseCSPackage.PACKAGE_CS__OWNED_CLASSES:
+				return getOwnedClasses();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -294,15 +294,15 @@ public class PackageCSImpl extends PackageOwnerCSImpl implements PackageCS {
 			case BaseCSPackage.PACKAGE_CS__NAME:
 				setName((String)newValue);
 				return;
-			case BaseCSPackage.PACKAGE_CS__OWNED_CLASSES:
-				getOwnedClasses().clear();
-				getOwnedClasses().addAll((Collection<? extends ClassCS>)newValue);
-				return;
 			case BaseCSPackage.PACKAGE_CS__NS_PREFIX:
 				setNsPrefix((String)newValue);
 				return;
 			case BaseCSPackage.PACKAGE_CS__NS_URI:
 				setNsURI((String)newValue);
+				return;
+			case BaseCSPackage.PACKAGE_CS__OWNED_CLASSES:
+				getOwnedClasses().clear();
+				getOwnedClasses().addAll((Collection<? extends ClassCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -321,14 +321,14 @@ public class PackageCSImpl extends PackageOwnerCSImpl implements PackageCS {
 			case BaseCSPackage.PACKAGE_CS__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case BaseCSPackage.PACKAGE_CS__OWNED_CLASSES:
-				getOwnedClasses().clear();
-				return;
 			case BaseCSPackage.PACKAGE_CS__NS_PREFIX:
 				setNsPrefix(NS_PREFIX_EDEFAULT);
 				return;
 			case BaseCSPackage.PACKAGE_CS__NS_URI:
 				setNsURI(NS_URI_EDEFAULT);
+				return;
+			case BaseCSPackage.PACKAGE_CS__OWNED_CLASSES:
+				getOwnedClasses().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -346,12 +346,12 @@ public class PackageCSImpl extends PackageOwnerCSImpl implements PackageCS {
 		{
 			case BaseCSPackage.PACKAGE_CS__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case BaseCSPackage.PACKAGE_CS__OWNED_CLASSES:
-				return ownedClasses != null && !ownedClasses.isEmpty();
 			case BaseCSPackage.PACKAGE_CS__NS_PREFIX:
 				return NS_PREFIX_EDEFAULT == null ? nsPrefix != null : !NS_PREFIX_EDEFAULT.equals(nsPrefix);
 			case BaseCSPackage.PACKAGE_CS__NS_URI:
 				return NS_URI_EDEFAULT == null ? nsURI != null : !NS_URI_EDEFAULT.equals(nsURI);
+			case BaseCSPackage.PACKAGE_CS__OWNED_CLASSES:
+				return ownedClasses != null && !ownedClasses.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

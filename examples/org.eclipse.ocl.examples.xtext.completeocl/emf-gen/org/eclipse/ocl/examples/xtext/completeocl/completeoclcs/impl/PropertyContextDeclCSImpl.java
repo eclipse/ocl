@@ -38,9 +38,9 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpSpecificati
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.PropertyContextDeclCSImpl#getReferredProperty <em>Referred Property</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.PropertyContextDeclCSImpl#getOwnedDefaultExpressions <em>Owned Default Expressions</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.PropertyContextDeclCSImpl#getOwnedDerivedInvariants <em>Owned Derived Invariants</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl.PropertyContextDeclCSImpl#getReferredProperty <em>Referred Property</em>}</li>
  * </ul>
  * </p>
  *
@@ -98,12 +98,12 @@ public class PropertyContextDeclCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__REFERRED_PROPERTY:
-				return getReferredProperty();
 			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__OWNED_DEFAULT_EXPRESSIONS:
 				return getOwnedDefaultExpressions();
 			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__OWNED_DERIVED_INVARIANTS:
 				return getOwnedDerivedInvariants();
+			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__REFERRED_PROPERTY:
+				return getReferredProperty();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -158,12 +158,12 @@ public class PropertyContextDeclCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__REFERRED_PROPERTY:
-				return getReferredProperty() != null;
 			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__OWNED_DEFAULT_EXPRESSIONS:
 				return ownedDefaultExpressions != null && !ownedDefaultExpressions.isEmpty();
 			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__OWNED_DERIVED_INVARIANTS:
 				return ownedDerivedInvariants != null && !ownedDerivedInvariants.isEmpty();
+			case CompleteOCLCSPackage.PROPERTY_CONTEXT_DECL_CS__REFERRED_PROPERTY:
+				return getReferredProperty() != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -31,26 +31,26 @@ import org.eclipse.ocl.examples.pivot.Property;
 public interface PropertyCallExpCS extends CallExpCS
 {
 	/**
-	 * Returns the value of the '<em><b>Referred Property</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Referred Property</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Referred Property</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Referred Property</em>' containment reference.
+	 * @return the value of the '<em>Referred Property</em>' reference.
 	 * @see #setReferredProperty(Property)
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getPropertyCallExpCS_ReferredProperty()
-	 * @model containment="true"
+	 * @model resolveProxies="false" derived="true"
 	 * @generated
 	 */
 	Property getReferredProperty();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PropertyCallExpCS#getReferredProperty <em>Referred Property</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PropertyCallExpCS#getReferredProperty <em>Referred Property</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Referred Property</em>' containment reference.
+	 * @param value the new value of the '<em>Referred Property</em>' reference.
 	 * @see #getReferredProperty()
 	 * @generated
 	 */

@@ -18,8 +18,8 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedLeft <em>Owned Left</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getArgument <em>Argument</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS#getOwnedLeft <em>Owned Left</em>}</li>
  * </ul>
  * </p>
  *

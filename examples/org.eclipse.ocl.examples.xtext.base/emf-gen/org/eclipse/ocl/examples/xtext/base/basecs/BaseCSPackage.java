@@ -30,8 +30,6 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/OCL/Import ecore='http://www.eclipse.org/emf/2002/Ecore'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL' validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL'"
  * @generated
  */
 public interface BaseCSPackage extends EPackage {
@@ -180,13 +178,13 @@ public interface BaseCSPackage extends EPackage {
 	int MODEL_ELEMENT_CS__PIVOT = PIVOTABLE_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_CS__OWNED_ANNOTATIONS = PIVOTABLE_ELEMENT_CS_FEATURE_COUNT + 0;
+	int MODEL_ELEMENT_CS__CSI = PIVOTABLE_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -198,13 +196,13 @@ public interface BaseCSPackage extends EPackage {
 	int MODEL_ELEMENT_CS__ORIGINAL_XMI_ID = PIVOTABLE_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_CS__CSI = PIVOTABLE_ELEMENT_CS_FEATURE_COUNT + 2;
+	int MODEL_ELEMENT_CS__OWNED_ANNOTATIONS = PIVOTABLE_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Model Element CS</em>' class.
@@ -274,13 +272,13 @@ public interface BaseCSPackage extends EPackage {
 	int NAMED_ELEMENT_CS__PIVOT = MODEL_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_CS__OWNED_ANNOTATIONS = MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
+	int NAMED_ELEMENT_CS__CSI = MODEL_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -292,13 +290,13 @@ public interface BaseCSPackage extends EPackage {
 	int NAMED_ELEMENT_CS__ORIGINAL_XMI_ID = MODEL_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_CS__CSI = MODEL_ELEMENT_CS__CSI;
+	int NAMED_ELEMENT_CS__OWNED_ANNOTATIONS = MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -355,7 +353,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getStructuralFeatureCS()
 	 * @generated
 	 */
-	int STRUCTURAL_FEATURE_CS = 38;
+	int STRUCTURAL_FEATURE_CS = 37;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.AttributeCSImpl <em>Attribute CS</em>}' class.
@@ -548,10 +546,10 @@ public interface BaseCSPackage extends EPackage {
 	int TEMPLATE_SIGNATURE_CS = 42;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS <em>Templateable Element CS</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TemplateableElementCSImpl <em>Templateable Element CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.TemplateableElementCSImpl
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getTemplateableElementCS()
 	 * @generated
 	 */
@@ -617,13 +615,13 @@ public interface BaseCSPackage extends EPackage {
 	int ANNOTATION_ELEMENT_CS__PIVOT = NAMED_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION_ELEMENT_CS__OWNED_ANNOTATIONS = NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
+	int ANNOTATION_ELEMENT_CS__CSI = NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -635,13 +633,13 @@ public interface BaseCSPackage extends EPackage {
 	int ANNOTATION_ELEMENT_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION_ELEMENT_CS__CSI = NAMED_ELEMENT_CS__CSI;
+	int ANNOTATION_ELEMENT_CS__OWNED_ANNOTATIONS = NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -689,13 +687,13 @@ public interface BaseCSPackage extends EPackage {
 	int ANNOTATION_CS__PIVOT = ANNOTATION_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION_CS__OWNED_ANNOTATIONS = ANNOTATION_ELEMENT_CS__OWNED_ANNOTATIONS;
+	int ANNOTATION_CS__CSI = ANNOTATION_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -707,13 +705,13 @@ public interface BaseCSPackage extends EPackage {
 	int ANNOTATION_CS__ORIGINAL_XMI_ID = ANNOTATION_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION_CS__CSI = ANNOTATION_ELEMENT_CS__CSI;
+	int ANNOTATION_CS__OWNED_ANNOTATIONS = ANNOTATION_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -779,13 +777,13 @@ public interface BaseCSPackage extends EPackage {
 	int TYPED_ELEMENT_CS__PIVOT = NAMED_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_CS__OWNED_ANNOTATIONS = NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
+	int TYPED_ELEMENT_CS__CSI = NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -797,13 +795,13 @@ public interface BaseCSPackage extends EPackage {
 	int TYPED_ELEMENT_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_CS__CSI = NAMED_ELEMENT_CS__CSI;
+	int TYPED_ELEMENT_CS__OWNED_ANNOTATIONS = NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -815,13 +813,22 @@ public interface BaseCSPackage extends EPackage {
 	int TYPED_ELEMENT_CS__NAME = NAMED_ELEMENT_CS__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_ELEMENT_CS__IS_OPTIONAL = NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_CS__OWNED_TYPE = NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
+	int TYPED_ELEMENT_CS__OWNED_TYPE = NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
@@ -830,16 +837,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_CS__QUALIFIERS = NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_ELEMENT_CS__IS_OPTIONAL = NAMED_ELEMENT_CS_FEATURE_COUNT + 2;
+	int TYPED_ELEMENT_CS__QUALIFIERS = NAMED_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Typed Element CS</em>' class.
@@ -869,13 +867,13 @@ public interface BaseCSPackage extends EPackage {
 	int FEATURE_CS__PIVOT = TYPED_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CS__OWNED_ANNOTATIONS = TYPED_ELEMENT_CS__OWNED_ANNOTATIONS;
+	int FEATURE_CS__CSI = TYPED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -887,13 +885,13 @@ public interface BaseCSPackage extends EPackage {
 	int FEATURE_CS__ORIGINAL_XMI_ID = TYPED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CS__CSI = TYPED_ELEMENT_CS__CSI;
+	int FEATURE_CS__OWNED_ANNOTATIONS = TYPED_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -903,6 +901,15 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int FEATURE_CS__NAME = TYPED_ELEMENT_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CS__IS_OPTIONAL = TYPED_ELEMENT_CS__IS_OPTIONAL;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -921,15 +928,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int FEATURE_CS__QUALIFIERS = TYPED_ELEMENT_CS__QUALIFIERS;
-
-	/**
-	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_CS__IS_OPTIONAL = TYPED_ELEMENT_CS__IS_OPTIONAL;
 
 	/**
 	 * The number of structural features of the '<em>Feature CS</em>' class.
@@ -959,13 +957,13 @@ public interface BaseCSPackage extends EPackage {
 	int STRUCTURAL_FEATURE_CS__PIVOT = FEATURE_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURAL_FEATURE_CS__OWNED_ANNOTATIONS = FEATURE_CS__OWNED_ANNOTATIONS;
+	int STRUCTURAL_FEATURE_CS__CSI = FEATURE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -977,13 +975,13 @@ public interface BaseCSPackage extends EPackage {
 	int STRUCTURAL_FEATURE_CS__ORIGINAL_XMI_ID = FEATURE_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURAL_FEATURE_CS__CSI = FEATURE_CS__CSI;
+	int STRUCTURAL_FEATURE_CS__OWNED_ANNOTATIONS = FEATURE_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -993,6 +991,15 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int STRUCTURAL_FEATURE_CS__NAME = FEATURE_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURAL_FEATURE_CS__IS_OPTIONAL = FEATURE_CS__IS_OPTIONAL;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -1013,31 +1020,13 @@ public interface BaseCSPackage extends EPackage {
 	int STRUCTURAL_FEATURE_CS__QUALIFIERS = FEATURE_CS__QUALIFIERS;
 
 	/**
-	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRUCTURAL_FEATURE_CS__IS_OPTIONAL = FEATURE_CS__IS_OPTIONAL;
-
-	/**
-	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRUCTURAL_FEATURE_CS__OWNING_CLASS = FEATURE_CS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Default</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURAL_FEATURE_CS__DEFAULT = FEATURE_CS_FEATURE_COUNT + 1;
+	int STRUCTURAL_FEATURE_CS__DEFAULT = FEATURE_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Default Expressions</b></em>' containment reference list.
@@ -1046,7 +1035,16 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS = FEATURE_CS_FEATURE_COUNT + 2;
+	int STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS = FEATURE_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURAL_FEATURE_CS__OWNING_CLASS = FEATURE_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Structural Feature CS</em>' class.
@@ -1076,13 +1074,13 @@ public interface BaseCSPackage extends EPackage {
 	int ATTRIBUTE_CS__PIVOT = STRUCTURAL_FEATURE_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_CS__OWNED_ANNOTATIONS = STRUCTURAL_FEATURE_CS__OWNED_ANNOTATIONS;
+	int ATTRIBUTE_CS__CSI = STRUCTURAL_FEATURE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1094,13 +1092,13 @@ public interface BaseCSPackage extends EPackage {
 	int ATTRIBUTE_CS__ORIGINAL_XMI_ID = STRUCTURAL_FEATURE_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_CS__CSI = STRUCTURAL_FEATURE_CS__CSI;
+	int ATTRIBUTE_CS__OWNED_ANNOTATIONS = STRUCTURAL_FEATURE_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1110,6 +1108,15 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_CS__NAME = STRUCTURAL_FEATURE_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CS__IS_OPTIONAL = STRUCTURAL_FEATURE_CS__IS_OPTIONAL;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -1130,24 +1137,6 @@ public interface BaseCSPackage extends EPackage {
 	int ATTRIBUTE_CS__QUALIFIERS = STRUCTURAL_FEATURE_CS__QUALIFIERS;
 
 	/**
-	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_CS__IS_OPTIONAL = STRUCTURAL_FEATURE_CS__IS_OPTIONAL;
-
-	/**
-	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_CS__OWNING_CLASS = STRUCTURAL_FEATURE_CS__OWNING_CLASS;
-
-	/**
 	 * The feature id for the '<em><b>Default</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1164,6 +1153,15 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_CS__OWNED_DEFAULT_EXPRESSIONS = STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CS__OWNING_CLASS = STRUCTURAL_FEATURE_CS__OWNING_CLASS;
 
 	/**
 	 * The number of structural features of the '<em>Attribute CS</em>' class.
@@ -1203,13 +1201,13 @@ public interface BaseCSPackage extends EPackage {
 	int CLASS_CS__PIVOT = NAMED_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_CS__OWNED_ANNOTATIONS = NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
+	int CLASS_CS__CSI = NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1221,13 +1219,13 @@ public interface BaseCSPackage extends EPackage {
 	int CLASS_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_CS__CSI = NAMED_ELEMENT_CS__CSI;
+	int CLASS_CS__OWNED_ANNOTATIONS = NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1248,22 +1246,13 @@ public interface BaseCSPackage extends EPackage {
 	int CLASS_CS__OWNED_SIGNATURE = NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS__OWNING_PACKAGE = NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_CS__INSTANCE_CLASS_NAME = NAMED_ELEMENT_CS_FEATURE_COUNT + 2;
+	int CLASS_CS__INSTANCE_CLASS_NAME = NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
@@ -1272,7 +1261,16 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_CS__OWNED_CONSTRAINTS = NAMED_ELEMENT_CS_FEATURE_COUNT + 3;
+	int CLASS_CS__OWNED_CONSTRAINTS = NAMED_ELEMENT_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_CS__OWNING_PACKAGE = NAMED_ELEMENT_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
@@ -1341,13 +1339,13 @@ public interface BaseCSPackage extends EPackage {
 	int CONSTRAINT_CS__PIVOT = NAMED_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_CS__OWNED_ANNOTATIONS = NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
+	int CONSTRAINT_CS__CSI = NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1359,13 +1357,13 @@ public interface BaseCSPackage extends EPackage {
 	int CONSTRAINT_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_CS__CSI = NAMED_ELEMENT_CS__CSI;
+	int CONSTRAINT_CS__OWNED_ANNOTATIONS = NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1377,13 +1375,13 @@ public interface BaseCSPackage extends EPackage {
 	int CONSTRAINT_CS__NAME = NAMED_ELEMENT_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Stereotype</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Message Specification</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_CS__STEREOTYPE = NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
+	int CONSTRAINT_CS__OWNED_MESSAGE_SPECIFICATION = NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Specification</b></em>' containment reference.
@@ -1395,13 +1393,13 @@ public interface BaseCSPackage extends EPackage {
 	int CONSTRAINT_CS__OWNED_SPECIFICATION = NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Owned Message Specification</b></em>' containment reference.
+	 * The feature id for the '<em><b>Stereotype</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_CS__OWNED_MESSAGE_SPECIFICATION = NAMED_ELEMENT_CS_FEATURE_COUNT + 2;
+	int CONSTRAINT_CS__STEREOTYPE = NAMED_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Constraint CS</em>' class.
@@ -1459,13 +1457,13 @@ public interface BaseCSPackage extends EPackage {
 	int DATA_TYPE_CS__PIVOT = CLASS_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE_CS__OWNED_ANNOTATIONS = CLASS_CS__OWNED_ANNOTATIONS;
+	int DATA_TYPE_CS__CSI = CLASS_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1477,13 +1475,13 @@ public interface BaseCSPackage extends EPackage {
 	int DATA_TYPE_CS__ORIGINAL_XMI_ID = CLASS_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE_CS__CSI = CLASS_CS__CSI;
+	int DATA_TYPE_CS__OWNED_ANNOTATIONS = CLASS_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1504,15 +1502,6 @@ public interface BaseCSPackage extends EPackage {
 	int DATA_TYPE_CS__OWNED_SIGNATURE = CLASS_CS__OWNED_SIGNATURE;
 
 	/**
-	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE_CS__OWNING_PACKAGE = CLASS_CS__OWNING_PACKAGE;
-
-	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1529,6 +1518,15 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int DATA_TYPE_CS__OWNED_CONSTRAINTS = CLASS_CS__OWNED_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE_CS__OWNING_PACKAGE = CLASS_CS__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
@@ -1567,13 +1565,13 @@ public interface BaseCSPackage extends EPackage {
 	int DETAIL_CS__PIVOT = NAMED_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DETAIL_CS__OWNED_ANNOTATIONS = NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
+	int DETAIL_CS__CSI = NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1585,13 +1583,13 @@ public interface BaseCSPackage extends EPackage {
 	int DETAIL_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DETAIL_CS__CSI = NAMED_ELEMENT_CS__CSI;
+	int DETAIL_CS__OWNED_ANNOTATIONS = NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1639,13 +1637,13 @@ public interface BaseCSPackage extends EPackage {
 	int DOCUMENTATION_CS__PIVOT = ANNOTATION_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENTATION_CS__OWNED_ANNOTATIONS = ANNOTATION_ELEMENT_CS__OWNED_ANNOTATIONS;
+	int DOCUMENTATION_CS__CSI = ANNOTATION_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1657,13 +1655,13 @@ public interface BaseCSPackage extends EPackage {
 	int DOCUMENTATION_CS__ORIGINAL_XMI_ID = ANNOTATION_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENTATION_CS__CSI = ANNOTATION_ELEMENT_CS__CSI;
+	int DOCUMENTATION_CS__OWNED_ANNOTATIONS = ANNOTATION_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1747,13 +1745,13 @@ public interface BaseCSPackage extends EPackage {
 	int ENUMERATION_CS__PIVOT = CLASS_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_CS__OWNED_ANNOTATIONS = CLASS_CS__OWNED_ANNOTATIONS;
+	int ENUMERATION_CS__CSI = CLASS_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1765,13 +1763,13 @@ public interface BaseCSPackage extends EPackage {
 	int ENUMERATION_CS__ORIGINAL_XMI_ID = CLASS_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_CS__CSI = CLASS_CS__CSI;
+	int ENUMERATION_CS__OWNED_ANNOTATIONS = CLASS_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1792,15 +1790,6 @@ public interface BaseCSPackage extends EPackage {
 	int ENUMERATION_CS__OWNED_SIGNATURE = CLASS_CS__OWNED_SIGNATURE;
 
 	/**
-	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION_CS__OWNING_PACKAGE = CLASS_CS__OWNING_PACKAGE;
-
-	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1817,6 +1806,15 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int ENUMERATION_CS__OWNED_CONSTRAINTS = CLASS_CS__OWNED_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION_CS__OWNING_PACKAGE = CLASS_CS__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
@@ -1864,13 +1862,13 @@ public interface BaseCSPackage extends EPackage {
 	int ENUMERATION_LITERAL_CS__PIVOT = NAMED_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_LITERAL_CS__OWNED_ANNOTATIONS = NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
+	int ENUMERATION_LITERAL_CS__CSI = NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1882,13 +1880,13 @@ public interface BaseCSPackage extends EPackage {
 	int ENUMERATION_LITERAL_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_LITERAL_CS__CSI = NAMED_ELEMENT_CS__CSI;
+	int ENUMERATION_LITERAL_CS__OWNED_ANNOTATIONS = NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1936,13 +1934,13 @@ public interface BaseCSPackage extends EPackage {
 	int NAMESPACE_CS__PIVOT = NAMED_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMESPACE_CS__OWNED_ANNOTATIONS = NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
+	int NAMESPACE_CS__CSI = NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1954,13 +1952,13 @@ public interface BaseCSPackage extends EPackage {
 	int NAMESPACE_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMESPACE_CS__CSI = NAMED_ELEMENT_CS__CSI;
+	int NAMESPACE_CS__OWNED_ANNOTATIONS = NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1999,13 +1997,13 @@ public interface BaseCSPackage extends EPackage {
 	int IMPORT_CS__PIVOT = NAMESPACE_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMPORT_CS__OWNED_ANNOTATIONS = NAMESPACE_CS__OWNED_ANNOTATIONS;
+	int IMPORT_CS__CSI = NAMESPACE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2017,13 +2015,13 @@ public interface BaseCSPackage extends EPackage {
 	int IMPORT_CS__ORIGINAL_XMI_ID = NAMESPACE_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMPORT_CS__CSI = NAMESPACE_CS__CSI;
+	int IMPORT_CS__OWNED_ANNOTATIONS = NAMESPACE_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2035,13 +2033,22 @@ public interface BaseCSPackage extends EPackage {
 	int IMPORT_CS__NAME = NAMESPACE_CS__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is All</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT_CS__IS_ALL = NAMESPACE_CS_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMPORT_CS__OWNED_PATH_NAME = NAMESPACE_CS_FEATURE_COUNT + 0;
+	int IMPORT_CS__OWNED_PATH_NAME = NAMESPACE_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Referred Namespace</b></em>' reference.
@@ -2050,16 +2057,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMPORT_CS__REFERRED_NAMESPACE = NAMESPACE_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Is All</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMPORT_CS__IS_ALL = NAMESPACE_CS_FEATURE_COUNT + 2;
+	int IMPORT_CS__REFERRED_NAMESPACE = NAMESPACE_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Import CS</em>' class.
@@ -2143,10 +2141,10 @@ public interface BaseCSPackage extends EPackage {
 	int LAMBDA_TYPE_CS__PARENT = TYPED_REF_CS__PARENT;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.MultiplicityCS <em>Multiplicity CS</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.MultiplicityCSImpl <em>Multiplicity CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.MultiplicityCS
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.MultiplicityCSImpl
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getMultiplicityCS()
 	 * @generated
 	 */
@@ -2263,13 +2261,13 @@ public interface BaseCSPackage extends EPackage {
 	int LIBRARY_CS__PIVOT = NAMESPACE_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_CS__OWNED_ANNOTATIONS = NAMESPACE_CS__OWNED_ANNOTATIONS;
+	int LIBRARY_CS__CSI = NAMESPACE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2281,13 +2279,13 @@ public interface BaseCSPackage extends EPackage {
 	int LIBRARY_CS__ORIGINAL_XMI_ID = NAMESPACE_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_CS__CSI = NAMESPACE_CS__CSI;
+	int LIBRARY_CS__OWNED_ANNOTATIONS = NAMESPACE_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2461,13 +2459,13 @@ public interface BaseCSPackage extends EPackage {
 	int OPERATION_CS__PIVOT = FEATURE_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CS__OWNED_ANNOTATIONS = FEATURE_CS__OWNED_ANNOTATIONS;
+	int OPERATION_CS__CSI = FEATURE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2479,13 +2477,13 @@ public interface BaseCSPackage extends EPackage {
 	int OPERATION_CS__ORIGINAL_XMI_ID = FEATURE_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CS__CSI = FEATURE_CS__CSI;
+	int OPERATION_CS__OWNED_ANNOTATIONS = FEATURE_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2495,6 +2493,15 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int OPERATION_CS__NAME = FEATURE_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CS__IS_OPTIONAL = FEATURE_CS__IS_OPTIONAL;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -2515,15 +2522,6 @@ public interface BaseCSPackage extends EPackage {
 	int OPERATION_CS__QUALIFIERS = FEATURE_CS__QUALIFIERS;
 
 	/**
-	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_CS__IS_OPTIONAL = FEATURE_CS__IS_OPTIONAL;
-
-	/**
 	 * The feature id for the '<em><b>Owned Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2533,22 +2531,13 @@ public interface BaseCSPackage extends EPackage {
 	int OPERATION_CS__OWNED_SIGNATURE = FEATURE_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
+	 * The feature id for the '<em><b>Owned Body Expressions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CS__OWNING_CLASS = FEATURE_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Owned Parameters</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_CS__OWNED_PARAMETERS = FEATURE_CS_FEATURE_COUNT + 2;
+	int OPERATION_CS__OWNED_BODY_EXPRESSIONS = FEATURE_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owned Exceptions</b></em>' containment reference list.
@@ -2557,16 +2546,16 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CS__OWNED_EXCEPTIONS = FEATURE_CS_FEATURE_COUNT + 3;
+	int OPERATION_CS__OWNED_EXCEPTIONS = FEATURE_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Owned Preconditions</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CS__OWNED_PRECONDITIONS = FEATURE_CS_FEATURE_COUNT + 4;
+	int OPERATION_CS__OWNED_PARAMETERS = FEATURE_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Owned Postconditions</b></em>' containment reference list.
@@ -2575,16 +2564,25 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CS__OWNED_POSTCONDITIONS = FEATURE_CS_FEATURE_COUNT + 5;
+	int OPERATION_CS__OWNED_POSTCONDITIONS = FEATURE_CS_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Owned Body Expressions</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Preconditions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CS__OWNED_BODY_EXPRESSIONS = FEATURE_CS_FEATURE_COUNT + 6;
+	int OPERATION_CS__OWNED_PRECONDITIONS = FEATURE_CS_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CS__OWNING_CLASS = FEATURE_CS_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Operation CS</em>' class.
@@ -2624,13 +2622,13 @@ public interface BaseCSPackage extends EPackage {
 	int PACKAGE_OWNER_CS__PIVOT = MODEL_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_OWNER_CS__OWNED_ANNOTATIONS = MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
+	int PACKAGE_OWNER_CS__CSI = MODEL_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2642,13 +2640,13 @@ public interface BaseCSPackage extends EPackage {
 	int PACKAGE_OWNER_CS__ORIGINAL_XMI_ID = MODEL_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_OWNER_CS__CSI = MODEL_ELEMENT_CS__CSI;
+	int PACKAGE_OWNER_CS__OWNED_ANNOTATIONS = MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Packages</b></em>' containment reference list.
@@ -2687,13 +2685,13 @@ public interface BaseCSPackage extends EPackage {
 	int PACKAGE_CS__PIVOT = PACKAGE_OWNER_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_CS__OWNED_ANNOTATIONS = PACKAGE_OWNER_CS__OWNED_ANNOTATIONS;
+	int PACKAGE_CS__CSI = PACKAGE_OWNER_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2705,13 +2703,13 @@ public interface BaseCSPackage extends EPackage {
 	int PACKAGE_CS__ORIGINAL_XMI_ID = PACKAGE_OWNER_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_CS__CSI = PACKAGE_OWNER_CS__CSI;
+	int PACKAGE_CS__OWNED_ANNOTATIONS = PACKAGE_OWNER_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Packages</b></em>' containment reference list.
@@ -2732,22 +2730,13 @@ public interface BaseCSPackage extends EPackage {
 	int PACKAGE_CS__NAME = PACKAGE_OWNER_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Owned Classes</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE_CS__OWNED_CLASSES = PACKAGE_OWNER_CS_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Ns Prefix</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_CS__NS_PREFIX = PACKAGE_OWNER_CS_FEATURE_COUNT + 2;
+	int PACKAGE_CS__NS_PREFIX = PACKAGE_OWNER_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Ns URI</b></em>' attribute.
@@ -2756,7 +2745,16 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_CS__NS_URI = PACKAGE_OWNER_CS_FEATURE_COUNT + 3;
+	int PACKAGE_CS__NS_URI = PACKAGE_OWNER_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Owned Classes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_CS__OWNED_CLASSES = PACKAGE_OWNER_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Package CS</em>' class.
@@ -2786,13 +2784,13 @@ public interface BaseCSPackage extends EPackage {
 	int PARAMETER_CS__PIVOT = TYPED_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_CS__OWNED_ANNOTATIONS = TYPED_ELEMENT_CS__OWNED_ANNOTATIONS;
+	int PARAMETER_CS__CSI = TYPED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2804,13 +2802,13 @@ public interface BaseCSPackage extends EPackage {
 	int PARAMETER_CS__ORIGINAL_XMI_ID = TYPED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_CS__CSI = TYPED_ELEMENT_CS__CSI;
+	int PARAMETER_CS__OWNED_ANNOTATIONS = TYPED_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2820,6 +2818,15 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int PARAMETER_CS__NAME = TYPED_ELEMENT_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_CS__IS_OPTIONAL = TYPED_ELEMENT_CS__IS_OPTIONAL;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -2838,15 +2845,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int PARAMETER_CS__QUALIFIERS = TYPED_ELEMENT_CS__QUALIFIERS;
-
-	/**
-	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_CS__IS_OPTIONAL = TYPED_ELEMENT_CS__IS_OPTIONAL;
 
 	/**
 	 * The feature id for the '<em><b>Owning Operation</b></em>' container reference.
@@ -2886,13 +2884,22 @@ public interface BaseCSPackage extends EPackage {
 	int PATH_ELEMENT_CS__PARENT = ELEMENT_CS__PARENT;
 
 	/**
+	 * The feature id for the '<em><b>Element Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_ELEMENT_CS__ELEMENT_TYPE = ELEMENT_CS_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Owning Path Name</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_ELEMENT_CS__OWNING_PATH_NAME = ELEMENT_CS_FEATURE_COUNT + 0;
+	int PATH_ELEMENT_CS__OWNING_PATH_NAME = ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Referred Element</b></em>' reference.
@@ -2901,16 +2908,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_ELEMENT_CS__REFERRED_ELEMENT = ELEMENT_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Element Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PATH_ELEMENT_CS__ELEMENT_TYPE = ELEMENT_CS_FEATURE_COUNT + 2;
+	int PATH_ELEMENT_CS__REFERRED_ELEMENT = ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Path Element CS</em>' class.
@@ -2941,6 +2939,15 @@ public interface BaseCSPackage extends EPackage {
 	int PATH_ELEMENT_WITH_URICS__PARENT = PATH_ELEMENT_CS__PARENT;
 
 	/**
+	 * The feature id for the '<em><b>Element Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_ELEMENT_WITH_URICS__ELEMENT_TYPE = PATH_ELEMENT_CS__ELEMENT_TYPE;
+
+	/**
 	 * The feature id for the '<em><b>Owning Path Name</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2957,15 +2964,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int PATH_ELEMENT_WITH_URICS__REFERRED_ELEMENT = PATH_ELEMENT_CS__REFERRED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Element Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PATH_ELEMENT_WITH_URICS__ELEMENT_TYPE = PATH_ELEMENT_CS__ELEMENT_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -3005,13 +3003,22 @@ public interface BaseCSPackage extends EPackage {
 	int PATH_NAME_CS__PARENT = ELEMENT_CS__PARENT;
 
 	/**
+	 * The feature id for the '<em><b>Context</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_NAME_CS__CONTEXT = ELEMENT_CS_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Owned Path Elements</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_NAME_CS__OWNED_PATH_ELEMENTS = ELEMENT_CS_FEATURE_COUNT + 0;
+	int PATH_NAME_CS__OWNED_PATH_ELEMENTS = ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Referred Element</b></em>' reference.
@@ -3020,16 +3027,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_NAME_CS__REFERRED_ELEMENT = ELEMENT_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Context</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PATH_NAME_CS__CONTEXT = ELEMENT_CS_FEATURE_COUNT + 2;
+	int PATH_NAME_CS__REFERRED_ELEMENT = ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Scope Filter</b></em>' attribute.
@@ -3113,13 +3111,13 @@ public interface BaseCSPackage extends EPackage {
 	int REFERENCE_CS__PIVOT = STRUCTURAL_FEATURE_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_CS__OWNED_ANNOTATIONS = STRUCTURAL_FEATURE_CS__OWNED_ANNOTATIONS;
+	int REFERENCE_CS__CSI = STRUCTURAL_FEATURE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3131,13 +3129,13 @@ public interface BaseCSPackage extends EPackage {
 	int REFERENCE_CS__ORIGINAL_XMI_ID = STRUCTURAL_FEATURE_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_CS__CSI = STRUCTURAL_FEATURE_CS__CSI;
+	int REFERENCE_CS__OWNED_ANNOTATIONS = STRUCTURAL_FEATURE_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3147,6 +3145,15 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int REFERENCE_CS__NAME = STRUCTURAL_FEATURE_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_CS__IS_OPTIONAL = STRUCTURAL_FEATURE_CS__IS_OPTIONAL;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -3167,24 +3174,6 @@ public interface BaseCSPackage extends EPackage {
 	int REFERENCE_CS__QUALIFIERS = STRUCTURAL_FEATURE_CS__QUALIFIERS;
 
 	/**
-	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_CS__IS_OPTIONAL = STRUCTURAL_FEATURE_CS__IS_OPTIONAL;
-
-	/**
-	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_CS__OWNING_CLASS = STRUCTURAL_FEATURE_CS__OWNING_CLASS;
-
-	/**
 	 * The feature id for the '<em><b>Default</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3203,13 +3192,13 @@ public interface BaseCSPackage extends EPackage {
 	int REFERENCE_CS__OWNED_DEFAULT_EXPRESSIONS = STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS;
 
 	/**
-	 * The feature id for the '<em><b>Referred Opposite</b></em>' reference.
+	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_CS__REFERRED_OPPOSITE = STRUCTURAL_FEATURE_CS_FEATURE_COUNT + 0;
+	int REFERENCE_CS__OWNING_CLASS = STRUCTURAL_FEATURE_CS__OWNING_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Referred Keys</b></em>' reference list.
@@ -3218,7 +3207,16 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_CS__REFERRED_KEYS = STRUCTURAL_FEATURE_CS_FEATURE_COUNT + 1;
+	int REFERENCE_CS__REFERRED_KEYS = STRUCTURAL_FEATURE_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Referred Opposite</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_CS__REFERRED_OPPOSITE = STRUCTURAL_FEATURE_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Reference CS</em>' class.
@@ -3230,10 +3228,10 @@ public interface BaseCSPackage extends EPackage {
 	int REFERENCE_CS_FEATURE_COUNT = STRUCTURAL_FEATURE_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.RootCS <em>Root CS</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.RootCSImpl <em>Root CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.RootCS
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.RootCSImpl
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getRootCS()
 	 * @generated
 	 */
@@ -3258,13 +3256,13 @@ public interface BaseCSPackage extends EPackage {
 	int ROOT_CS__PIVOT = MODEL_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_CS__OWNED_ANNOTATIONS = MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
+	int ROOT_CS__CSI = MODEL_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3276,13 +3274,13 @@ public interface BaseCSPackage extends EPackage {
 	int ROOT_CS__ORIGINAL_XMI_ID = MODEL_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_CS__CSI = MODEL_ELEMENT_CS__CSI;
+	int ROOT_CS__OWNED_ANNOTATIONS = MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Imports</b></em>' containment reference list.
@@ -3340,13 +3338,13 @@ public interface BaseCSPackage extends EPackage {
 	int ROOT_PACKAGE_CS__PIVOT = PACKAGE_OWNER_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_PACKAGE_CS__OWNED_ANNOTATIONS = PACKAGE_OWNER_CS__OWNED_ANNOTATIONS;
+	int ROOT_PACKAGE_CS__CSI = PACKAGE_OWNER_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3358,13 +3356,13 @@ public interface BaseCSPackage extends EPackage {
 	int ROOT_PACKAGE_CS__ORIGINAL_XMI_ID = PACKAGE_OWNER_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_PACKAGE_CS__CSI = PACKAGE_OWNER_CS__CSI;
+	int ROOT_PACKAGE_CS__OWNED_ANNOTATIONS = PACKAGE_OWNER_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Packages</b></em>' containment reference list.
@@ -3431,13 +3429,13 @@ public interface BaseCSPackage extends EPackage {
 	int SPECIFICATION_CS__PIVOT = MODEL_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIFICATION_CS__OWNED_ANNOTATIONS = MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
+	int SPECIFICATION_CS__CSI = MODEL_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3449,13 +3447,13 @@ public interface BaseCSPackage extends EPackage {
 	int SPECIFICATION_CS__ORIGINAL_XMI_ID = MODEL_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIFICATION_CS__CSI = MODEL_ELEMENT_CS__CSI;
+	int SPECIFICATION_CS__OWNED_ANNOTATIONS = MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Expr String</b></em>' attribute.
@@ -3483,7 +3481,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getStructuredClassCS()
 	 * @generated
 	 */
-	int STRUCTURED_CLASS_CS = 37;
+	int STRUCTURED_CLASS_CS = 38;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -3504,13 +3502,13 @@ public interface BaseCSPackage extends EPackage {
 	int STRUCTURED_CLASS_CS__PIVOT = CLASS_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURED_CLASS_CS__OWNED_ANNOTATIONS = CLASS_CS__OWNED_ANNOTATIONS;
+	int STRUCTURED_CLASS_CS__CSI = CLASS_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3522,13 +3520,13 @@ public interface BaseCSPackage extends EPackage {
 	int STRUCTURED_CLASS_CS__ORIGINAL_XMI_ID = CLASS_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURED_CLASS_CS__CSI = CLASS_CS__CSI;
+	int STRUCTURED_CLASS_CS__OWNED_ANNOTATIONS = CLASS_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3549,15 +3547,6 @@ public interface BaseCSPackage extends EPackage {
 	int STRUCTURED_CLASS_CS__OWNED_SIGNATURE = CLASS_CS__OWNED_SIGNATURE;
 
 	/**
-	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRUCTURED_CLASS_CS__OWNING_PACKAGE = CLASS_CS__OWNING_PACKAGE;
-
-	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3576,6 +3565,15 @@ public interface BaseCSPackage extends EPackage {
 	int STRUCTURED_CLASS_CS__OWNED_CONSTRAINTS = CLASS_CS__OWNED_CONSTRAINTS;
 
 	/**
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_CLASS_CS__OWNING_PACKAGE = CLASS_CS__OWNING_PACKAGE;
+
+	/**
 	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3585,13 +3583,13 @@ public interface BaseCSPackage extends EPackage {
 	int STRUCTURED_CLASS_CS__QUALIFIERS = CLASS_CS__QUALIFIERS;
 
 	/**
-	 * The feature id for the '<em><b>Owned Super Types</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Metaclass</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURED_CLASS_CS__OWNED_SUPER_TYPES = CLASS_CS_FEATURE_COUNT + 0;
+	int STRUCTURED_CLASS_CS__OWNED_METACLASS = CLASS_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -3612,13 +3610,13 @@ public interface BaseCSPackage extends EPackage {
 	int STRUCTURED_CLASS_CS__OWNED_PROPERTIES = CLASS_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Owned Metaclass</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Super Types</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURED_CLASS_CS__OWNED_METACLASS = CLASS_CS_FEATURE_COUNT + 3;
+	int STRUCTURED_CLASS_CS__OWNED_SUPER_TYPES = CLASS_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Structured Class CS</em>' class.
@@ -3648,22 +3646,22 @@ public interface BaseCSPackage extends EPackage {
 	int TEMPLATE_BINDING_CS__PIVOT = ELEMENT_REF_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owning Element</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_BINDING_CS__OWNING_ELEMENT = ELEMENT_REF_CS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Owned Substitutions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_BINDING_CS__OWNED_SUBSTITUTIONS = ELEMENT_REF_CS_FEATURE_COUNT + 1;
+	int TEMPLATE_BINDING_CS__OWNED_SUBSTITUTIONS = ELEMENT_REF_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owning Element</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_BINDING_CS__OWNING_ELEMENT = ELEMENT_REF_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Template Binding CS</em>' class.
@@ -3693,13 +3691,13 @@ public interface BaseCSPackage extends EPackage {
 	int TEMPLATE_PARAMETER_CS__PIVOT = NAMED_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_CS__OWNED_ANNOTATIONS = NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
+	int TEMPLATE_PARAMETER_CS__CSI = NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3711,13 +3709,13 @@ public interface BaseCSPackage extends EPackage {
 	int TEMPLATE_PARAMETER_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_CS__CSI = NAMED_ELEMENT_CS__CSI;
+	int TEMPLATE_PARAMETER_CS__OWNED_ANNOTATIONS = NAMED_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3765,13 +3763,13 @@ public interface BaseCSPackage extends EPackage {
 	int TEMPLATE_PARAMETER_SUBSTITUTION_CS__PIVOT = MODEL_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNED_ANNOTATIONS = MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
+	int TEMPLATE_PARAMETER_SUBSTITUTION_CS__CSI = MODEL_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3783,22 +3781,13 @@ public interface BaseCSPackage extends EPackage {
 	int TEMPLATE_PARAMETER_SUBSTITUTION_CS__ORIGINAL_XMI_ID = MODEL_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION_CS__CSI = MODEL_ELEMENT_CS__CSI;
-
-	/**
-	 * The feature id for the '<em><b>Owning Binding</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNING_BINDING = MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
+	int TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNED_ANNOTATIONS = MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Actual Parameter</b></em>' containment reference.
@@ -3807,7 +3796,16 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNED_ACTUAL_PARAMETER = MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
+	int TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNED_ACTUAL_PARAMETER = MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owning Binding</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNING_BINDING = MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Template Parameter Substitution CS</em>' class.
@@ -3837,13 +3835,13 @@ public interface BaseCSPackage extends EPackage {
 	int TEMPLATE_SIGNATURE_CS__PIVOT = MODEL_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_SIGNATURE_CS__OWNED_ANNOTATIONS = MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
+	int TEMPLATE_SIGNATURE_CS__CSI = MODEL_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3855,22 +3853,13 @@ public interface BaseCSPackage extends EPackage {
 	int TEMPLATE_SIGNATURE_CS__ORIGINAL_XMI_ID = MODEL_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_SIGNATURE_CS__CSI = MODEL_ELEMENT_CS__CSI;
-
-	/**
-	 * The feature id for the '<em><b>Owning Element</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_SIGNATURE_CS__OWNING_ELEMENT = MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
+	int TEMPLATE_SIGNATURE_CS__OWNED_ANNOTATIONS = MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Parameters</b></em>' containment reference list.
@@ -3879,7 +3868,16 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_SIGNATURE_CS__OWNED_PARAMETERS = MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
+	int TEMPLATE_SIGNATURE_CS__OWNED_PARAMETERS = MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owning Element</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_SIGNATURE_CS__OWNING_ELEMENT = MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Template Signature CS</em>' class.
@@ -3946,13 +3944,13 @@ public interface BaseCSPackage extends EPackage {
 	int TUPLE_PART_CS__PIVOT = TYPED_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_PART_CS__OWNED_ANNOTATIONS = TYPED_ELEMENT_CS__OWNED_ANNOTATIONS;
+	int TUPLE_PART_CS__CSI = TYPED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3964,13 +3962,13 @@ public interface BaseCSPackage extends EPackage {
 	int TUPLE_PART_CS__ORIGINAL_XMI_ID = TYPED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_PART_CS__CSI = TYPED_ELEMENT_CS__CSI;
+	int TUPLE_PART_CS__OWNED_ANNOTATIONS = TYPED_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3980,6 +3978,15 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int TUPLE_PART_CS__NAME = TYPED_ELEMENT_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_PART_CS__IS_OPTIONAL = TYPED_ELEMENT_CS__IS_OPTIONAL;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -3998,15 +4005,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int TUPLE_PART_CS__QUALIFIERS = TYPED_ELEMENT_CS__QUALIFIERS;
-
-	/**
-	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_PART_CS__IS_OPTIONAL = TYPED_ELEMENT_CS__IS_OPTIONAL;
 
 	/**
 	 * The number of structural features of the '<em>Tuple Part CS</em>' class.
@@ -4100,13 +4098,13 @@ public interface BaseCSPackage extends EPackage {
 	int TYPE_CS__PIVOT = MODEL_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_CS__OWNED_ANNOTATIONS = MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
+	int TYPE_CS__CSI = MODEL_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -4118,13 +4116,13 @@ public interface BaseCSPackage extends EPackage {
 	int TYPE_CS__ORIGINAL_XMI_ID = MODEL_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_CS__CSI = MODEL_ELEMENT_CS__CSI;
+	int TYPE_CS__OWNED_ANNOTATIONS = MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The number of structural features of the '<em>Type CS</em>' class.
@@ -4154,13 +4152,13 @@ public interface BaseCSPackage extends EPackage {
 	int TYPE_PARAMETER_CS__PIVOT = TEMPLATE_PARAMETER_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_PARAMETER_CS__OWNED_ANNOTATIONS = TEMPLATE_PARAMETER_CS__OWNED_ANNOTATIONS;
+	int TYPE_PARAMETER_CS__CSI = TEMPLATE_PARAMETER_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -4172,13 +4170,13 @@ public interface BaseCSPackage extends EPackage {
 	int TYPE_PARAMETER_CS__ORIGINAL_XMI_ID = TEMPLATE_PARAMETER_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_PARAMETER_CS__CSI = TEMPLATE_PARAMETER_CS__CSI;
+	int TYPE_PARAMETER_CS__OWNED_ANNOTATIONS = TEMPLATE_PARAMETER_CS__OWNED_ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4253,22 +4251,13 @@ public interface BaseCSPackage extends EPackage {
 	int TYPED_TYPE_REF_CS__OWNED_MULTIPLICITY = TYPED_REF_CS__OWNED_MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_TYPE_REF_CS__OWNED_PATH_NAME = TYPED_REF_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Referred Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_TYPE_REF_CS__REFERRED_TYPE = TYPED_REF_CS_FEATURE_COUNT + 1;
+	int TYPED_TYPE_REF_CS__IS_TYPEOF = TYPED_REF_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Binding</b></em>' containment reference.
@@ -4277,16 +4266,25 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_TYPE_REF_CS__OWNED_BINDING = TYPED_REF_CS_FEATURE_COUNT + 2;
+	int TYPED_TYPE_REF_CS__OWNED_BINDING = TYPED_REF_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_TYPE_REF_CS__IS_TYPEOF = TYPED_REF_CS_FEATURE_COUNT + 3;
+	int TYPED_TYPE_REF_CS__OWNED_PATH_NAME = TYPED_REF_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Referred Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_TYPE_REF_CS__REFERRED_TYPE = TYPED_REF_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Typed Type Ref CS</em>' class.
@@ -6347,10 +6345,10 @@ public interface BaseCSPackage extends EPackage {
 		EAttribute MULTIPLICITY_BOUNDS_CS__UPPER_BOUND = eINSTANCE.getMultiplicityBoundsCS_UpperBound();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.MultiplicityCS <em>Multiplicity CS</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.MultiplicityCSImpl <em>Multiplicity CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.xtext.base.basecs.MultiplicityCS
+		 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.MultiplicityCSImpl
 		 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getMultiplicityCS()
 		 * @generated
 		 */
@@ -6687,10 +6685,10 @@ public interface BaseCSPackage extends EPackage {
 		EReference REFERENCE_CS__REFERRED_KEYS = eINSTANCE.getReferenceCS_ReferredKeys();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.RootCS <em>Root CS</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.RootCSImpl <em>Root CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.xtext.base.basecs.RootCS
+		 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.RootCSImpl
 		 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getRootCS()
 		 * @generated
 		 */
@@ -6913,10 +6911,10 @@ public interface BaseCSPackage extends EPackage {
 		EReference TEMPLATE_SIGNATURE_CS__OWNED_PARAMETERS = eINSTANCE.getTemplateSignatureCS_OwnedParameters();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS <em>Templateable Element CS</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TemplateableElementCSImpl <em>Templateable Element CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS
+		 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.TemplateableElementCSImpl
 		 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getTemplateableElementCS()
 		 * @generated
 		 */

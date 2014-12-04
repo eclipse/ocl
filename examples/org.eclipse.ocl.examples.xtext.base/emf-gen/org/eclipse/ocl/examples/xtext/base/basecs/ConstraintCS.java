@@ -18,9 +18,9 @@ package org.eclipse.ocl.examples.xtext.base.basecs;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS#getStereotype <em>Stereotype</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS#getOwnedSpecification <em>Owned Specification</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS#getOwnedMessageSpecification <em>Owned Message Specification</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS#getOwnedSpecification <em>Owned Specification</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS#getStereotype <em>Stereotype</em>}</li>
  * </ul>
  * </p>
  *

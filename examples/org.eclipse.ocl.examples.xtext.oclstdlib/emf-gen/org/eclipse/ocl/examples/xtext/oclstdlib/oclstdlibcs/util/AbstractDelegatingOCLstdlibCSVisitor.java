@@ -40,6 +40,10 @@ public abstract class AbstractDelegatingOCLstdlibCSVisitor<R, C, D extends OCLst
 		return delegate.visitJavaClassCS(object);
 	}
 
+	public @Nullable R visitJavaImplementationCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaImplementationCS object) {
+		return delegate.visitJavaImplementationCS(object);
+	}
+
 	public @Nullable R visitLibClassCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibClassCS object) {
 		return delegate.visitLibClassCS(object);
 	}
