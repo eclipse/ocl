@@ -81,6 +81,7 @@ public class ProfileImpl extends PackageImpl implements Profile
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<ProfileApplication> getApplication()
 	{

@@ -130,6 +130,7 @@ public class CompleteOCLDocumentCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ImportCS> getOwnedImports()
 	{
 		if (ownedImports == null)
@@ -144,6 +145,7 @@ public class CompleteOCLDocumentCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<LibraryCS> getOwnedLibraries()
 	{
 		if (ownedLibraries == null)
@@ -158,6 +160,7 @@ public class CompleteOCLDocumentCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<PackageDeclarationCS> getOwnedPackages() {
 		if (ownedPackages == null)
 		{
@@ -171,6 +174,7 @@ public class CompleteOCLDocumentCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ContextDeclCS> getOwnedContexts() {
 		if (ownedContexts == null)
 		{
@@ -184,6 +188,7 @@ public class CompleteOCLDocumentCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<IncludeCS> getOwnedIncludes() {
 		if (ownedIncludes == null)
 		{

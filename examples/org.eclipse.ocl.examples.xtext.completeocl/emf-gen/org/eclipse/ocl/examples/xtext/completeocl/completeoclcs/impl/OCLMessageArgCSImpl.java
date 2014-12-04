@@ -75,6 +75,7 @@ public class OCLMessageArgCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypeCS getType() {
 		return type;
 	}
@@ -100,6 +101,7 @@ public class OCLMessageArgCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(TypeCS newType) {
 		if (newType != type)
 		{

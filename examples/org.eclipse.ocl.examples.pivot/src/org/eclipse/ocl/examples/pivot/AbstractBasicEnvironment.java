@@ -45,6 +45,7 @@ public abstract class AbstractBasicEnvironment<P extends BasicEnvironment> imple
 	    return options;
 	}
 	
+	@Override
 	public @NonNull Map<Option<?>, Object> clearOptions() {
 		Map<Option<?>, Object> myOptions = options;
 		
@@ -60,6 +61,7 @@ public abstract class AbstractBasicEnvironment<P extends BasicEnvironment> imple
 	 * Implements the interface method by testing whether I am an instance of
 	 * the requested adapter type.
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public <T> T getAdapter(java.lang.Class<T> adapterType) {
 		if (adapterType.isInstance(this)) {
@@ -68,6 +70,7 @@ public abstract class AbstractBasicEnvironment<P extends BasicEnvironment> imple
 		return null;
 	}
 	
+	@Override
 	public Map<Option<?>, Object> getOptions() {
 		P parent2 = parent;
 		Map<Option<?>, Object> result = (parent2 != null)
@@ -84,6 +87,7 @@ public abstract class AbstractBasicEnvironment<P extends BasicEnvironment> imple
 		return parent;
 	}
 	
+	@Override
 	public @Nullable <T> T getValue(@NonNull Option<T> option) {
 		@SuppressWarnings("unchecked")
 		T result = (T) getOptions().get(option);
@@ -95,6 +99,7 @@ public abstract class AbstractBasicEnvironment<P extends BasicEnvironment> imple
 		return result;
 	}
 	
+	@Override
 	public boolean isEnabled(@NonNull Option<Boolean> option) {
 		Boolean result = getValue(option);
 		return (result == null)? false : result.booleanValue();
@@ -114,18 +119,21 @@ public abstract class AbstractBasicEnvironment<P extends BasicEnvironment> imple
         return (sev != null) && !sev.isOK();
     }
 	
+	@Override
 	public <T> void putOptions(@NonNull Map<? extends Option<T>, ? extends T> newOptions) {
 		Map<Option<?>, Object> myOptions = options;	
 		myOptions.clear();
 		myOptions.putAll(newOptions);
 	}
 	
+	@Override
 	public @Nullable <T> T removeOption(@NonNull Option<T> option) {
 		T result = getValue(option);	
 		options.remove(option);	
 		return result;
 	}
 	
+	@Override
 	public @NonNull <T> Map<Option<T>, T> removeOptions(@NonNull Collection<Option<T>> unwantedOptions) {
 		Map<Option<T>, T> result = new HashMap<Option<T>, T>();	
 		Map<Option<?>, Object> myOptions = options;		
@@ -138,6 +146,7 @@ public abstract class AbstractBasicEnvironment<P extends BasicEnvironment> imple
 		return result;
 	}
 	
+	@Override
 	public <T> void setOption(@NonNull Option<T> option, @Nullable T value) {
 		options.put(option, value);
 	}

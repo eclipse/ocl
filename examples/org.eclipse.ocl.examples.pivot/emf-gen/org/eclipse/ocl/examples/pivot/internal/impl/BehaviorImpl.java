@@ -77,6 +77,7 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Transition getTransition()
 	{
 		if (eContainerFeatureID() != PivotPackage.BEHAVIOR__TRANSITION) return null;
@@ -99,6 +100,7 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("cast")
 	public void setTransition(Transition newTransition)
 	{

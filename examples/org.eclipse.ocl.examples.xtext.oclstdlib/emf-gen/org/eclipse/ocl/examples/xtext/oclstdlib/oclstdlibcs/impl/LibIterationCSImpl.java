@@ -147,6 +147,7 @@ public class LibIterationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public JavaClassCS getImplementation() {
 		if (implementation != null && implementation.eIsProxy())
 		{
@@ -176,6 +177,7 @@ public class LibIterationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setImplementation(JavaClassCS newImplementation)
 	{
 		JavaClassCS oldImplementation = implementation;
@@ -189,6 +191,7 @@ public class LibIterationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ParameterCS> getOwnedIterators()
 	{
 		if (ownedIterators == null)
@@ -203,6 +206,7 @@ public class LibIterationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ParameterCS> getOwnedAccumulators()
 	{
 		if (ownedAccumulators == null)
@@ -217,6 +221,7 @@ public class LibIterationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsInvalidating()
 	{
 		return isInvalidating;
@@ -227,6 +232,7 @@ public class LibIterationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsInvalidating(boolean newIsInvalidating)
 	{
 		boolean oldIsInvalidating = isInvalidating;
@@ -240,6 +246,7 @@ public class LibIterationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsValidating()
 	{
 		return isValidating;
@@ -250,6 +257,7 @@ public class LibIterationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsValidating(boolean newIsValidating)
 	{
 		boolean oldIsValidating = isValidating;

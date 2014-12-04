@@ -139,6 +139,7 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<Element> getConstrainedElement()
 	{
 		if (constrainedElement == null)
@@ -153,6 +154,7 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LanguageExpression getSpecification() {
 		return specification;
 	}
@@ -179,6 +181,7 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSpecification(LanguageExpression newSpecification)
 	{
 		if (newSpecification != specification)
@@ -200,6 +203,7 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Transition getTransition()
 	{
 		if (eContainerFeatureID() != PivotPackage.CONSTRAINT__TRANSITION) return null;
@@ -222,6 +226,7 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("cast")
 	public void setTransition(Transition newTransition)
 	{
@@ -246,6 +251,7 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isCallable()
 	{
 		return (eFlags & IS_CALLABLE_EFLAG) != 0;
@@ -256,6 +262,7 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsCallable(boolean newIsCallable)
 	{
 		boolean oldIsCallable = (eFlags & IS_CALLABLE_EFLAG) != 0;
@@ -269,6 +276,7 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public State getOwningState()
 	{
 		if (eContainerFeatureID() != PivotPackage.CONSTRAINT__OWNING_STATE) return null;
@@ -291,6 +299,7 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("cast")
 	public void setOwningState(State newOwningState)
 	{
@@ -315,6 +324,7 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Operation getPostContext()
 	{
 		if (eContainerFeatureID() != PivotPackage.CONSTRAINT__POST_CONTEXT) return null;
@@ -337,6 +347,7 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPostContext(Operation newPostContext)
 	{
 		if (newPostContext != eInternalContainer() || (eContainerFeatureID() != PivotPackage.CONSTRAINT__POST_CONTEXT && newPostContext != null))
@@ -360,6 +371,7 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Operation getPreContext()
 	{
 		if (eContainerFeatureID() != PivotPackage.CONSTRAINT__PRE_CONTEXT) return null;
@@ -382,6 +394,7 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPreContext(Operation newPreContext)
 	{
 		if (newPreContext != eInternalContainer() || (eContainerFeatureID() != PivotPackage.CONSTRAINT__PRE_CONTEXT && newPreContext != null))
@@ -405,6 +418,7 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<Constraint> getRedefinedConstraint()
 	{
 		if (redefinedConstraint == null)
@@ -419,6 +433,7 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateUniqueName(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -741,6 +756,7 @@ public class ConstraintImpl
 		return visitor.visitConstraint(this);
 	}
 
+	@Override
 	public Namespace getContext() {
 		for (EObject context = eContainer(); context != null; context = context.eContainer()) {
 			if (context instanceof Namespace) {

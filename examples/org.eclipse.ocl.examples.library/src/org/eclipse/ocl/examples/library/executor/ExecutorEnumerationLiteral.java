@@ -27,14 +27,17 @@ public abstract class ExecutorEnumerationLiteral implements DomainEnumerationLit
 		this.ordinal = ordinal;
 	}
 
+	@Override
 	public @NonNull DomainEnumeration getEnumeration() {
 		return enumeration;
 	}
 
+	@Override
 	public @NonNull EnumerationLiteralId getEnumerationLiteralId() {
 		return enumeration.getEnumerationId().getEnumerationLiteralId(name);
 	}
 
+	@Override
 	public @NonNull String getName() {
 		return name;
 	}

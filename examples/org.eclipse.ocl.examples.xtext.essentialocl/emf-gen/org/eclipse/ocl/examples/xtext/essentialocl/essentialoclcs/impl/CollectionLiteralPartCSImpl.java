@@ -86,6 +86,7 @@ public class CollectionLiteralPartCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpCS getOwnedExpression()
 	{
 		return ownedExpression;
@@ -113,6 +114,7 @@ public class CollectionLiteralPartCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedExpression(ExpCS newOwnedExpression)
 	{
 		if (newOwnedExpression != ownedExpression)
@@ -134,6 +136,7 @@ public class CollectionLiteralPartCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpCS getOwnedLastExpression()
 	{
 		return ownedLastExpression;
@@ -161,6 +164,7 @@ public class CollectionLiteralPartCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedLastExpression(ExpCS newOwnedLastExpression)
 	{
 		if (newOwnedLastExpression != ownedLastExpression)

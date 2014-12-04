@@ -52,6 +52,7 @@ public class DomainProperties
 		@NonNull Iterable<DomainProperty> subItOps = Iterables.filter(values,
 			new Predicate<DomainProperty>()
 			{
+				@Override
 				public boolean apply(DomainProperty domainProperty) {
 					return (domainProperty != null) && featureFilter.accept(domainProperty);
 				}

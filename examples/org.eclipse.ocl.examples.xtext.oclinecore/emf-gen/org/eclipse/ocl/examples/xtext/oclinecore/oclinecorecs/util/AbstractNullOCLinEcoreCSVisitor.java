@@ -36,14 +36,17 @@ public abstract class AbstractNullOCLinEcoreCSVisitor<R, C>
 		super(context);
 	}	
 
+	@Override
 	public @Nullable R visitOCLinEcoreConstraintCS(@NonNull org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.OCLinEcoreConstraintCS object) {
 		return null;
 	}
 
+	@Override
 	public @Nullable R visitSysMLCS(@NonNull org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.SysMLCS object) {
 		return null;
 	}
 
+	@Override
 	public @Nullable R visitTopLevelCS(@NonNull org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.TopLevelCS object) {
 		return null;
 	}

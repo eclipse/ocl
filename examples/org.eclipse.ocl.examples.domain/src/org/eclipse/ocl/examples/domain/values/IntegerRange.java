@@ -25,5 +25,6 @@ public interface IntegerRange extends List<Value>
 	@NonNull IntegerValue getLast();
 	@NonNull IntegerValue getSize();	
 //	@NonNull ValueFactory getValueFactory();
+	@Override
 	@NonNull Iterator<Value> iterator();
 }

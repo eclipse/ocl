@@ -35,6 +35,7 @@ public class BaseProperty extends AbstractProperty
 		this.property = property;
 	}
 	
+	@Override
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 //		return property.getType(); 
 		if (sourceValue instanceof ElementExtension) {

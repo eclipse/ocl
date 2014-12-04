@@ -24,10 +24,12 @@ public class CollectionTypeParameters<T extends DomainType> implements Iterable<
 	{
 		private int position = 0;
 		
+		@Override
 		public boolean hasNext() {
 			return position < 3;
 		}
 
+		@Override
 		public Object next() {
 			switch (position++) {
 				case 0: return elementType;
@@ -37,6 +39,7 @@ public class CollectionTypeParameters<T extends DomainType> implements Iterable<
 			throw new NoSuchElementException();
 		}
 
+		@Override
 		public void remove() {
 			throw new UnsupportedOperationException();
 		}
@@ -95,6 +98,7 @@ public class CollectionTypeParameters<T extends DomainType> implements Iterable<
 		return hashCode;
 	}
 
+	@Override
 	public @NonNull Iterator iterator() {
 		return new Iterator();
 	}		

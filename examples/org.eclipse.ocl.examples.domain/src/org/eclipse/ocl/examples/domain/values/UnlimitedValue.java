@@ -17,5 +17,6 @@ public interface UnlimitedValue extends IntegerValue
 	/**
 	 * @generated NOT
 	 */
+	@Override
 	@NonNull UnlimitedValue negate();
 }

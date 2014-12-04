@@ -46,6 +46,7 @@ public class ExecutorDoubleIterationManager extends AbstractIterationManager
 		currentValue2 = iteratorValue2.hasNext() ? iteratorValue2.next() : null;
 	}
 	
+	@Override
 	public boolean advanceIterators() {
 		if (iteratorValue1.hasNext()) {
 			currentValue1 = iteratorValue1.next();
@@ -62,23 +63,28 @@ public class ExecutorDoubleIterationManager extends AbstractIterationManager
 		return currentValue1 != null;
 	}
 
+	@Override
 	public @Nullable Object evaluateBody() {
 		return body.evaluate(evaluator, returnTypeId, accumulatorValue,
 			DomainUtil.nonNullState(currentValue1), DomainUtil.nonNullState(currentValue2));
 	}
 
+	@Override
 	public @Nullable Object getAccumulatorValue() {
 		return accumulatorValue;
 	}
 
+	@Override
 	public @NonNull CollectionValue getSourceCollection() {
 		return collectionValue;
 	}
 	
+	@Override
 	public boolean hasCurrent() {
 		return currentValue1 != null;
 	}
 
+	@Override
 	public @Nullable Object updateAccumulator(Object newValue) {
 		this.accumulatorValue = newValue;
 		return null;					// carry on

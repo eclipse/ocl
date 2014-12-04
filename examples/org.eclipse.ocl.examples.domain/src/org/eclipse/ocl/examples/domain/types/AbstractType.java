@@ -36,10 +36,12 @@ public abstract class AbstractType implements DomainType	// FIXME rename as perh
 		this.name = name;
 	}
 	
+	@Override
 	public @NonNull DomainType flattenedType() {
 		return this;
 	}
 
+	@Override
 	public @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
 //		return standardLibrary.getInheritance(this);
 		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
@@ -50,18 +52,22 @@ public abstract class AbstractType implements DomainType	// FIXME rename as perh
 //		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
 //	}
 
+	@Override
 	public @NonNull String getMetaTypeName() {
 		return getTypeId().getMetaTypeName();
 	}
 	
+	@Override
 	public final String getName() {
 		return name;
 	}
 
+	@Override
 	public @NonNull DomainClass getNormalizedType(@NonNull DomainStandardLibrary standardLibrary) {
 		throw new UnsupportedOperationException();			// FIXME
 	}
 
+	@Override
 	public @NonNull List<? extends DomainConstraint> getOwnedRule() {
 		throw new UnsupportedOperationException();			// FIXME
 	}
@@ -70,6 +76,7 @@ public abstract class AbstractType implements DomainType	// FIXME rename as perh
 		return standardLibrary;
 	}
 
+	@Override
 	public boolean isEqualToUnspecializedType(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
 		if (this == type) {
 			return true;
@@ -77,10 +84,12 @@ public abstract class AbstractType implements DomainType	// FIXME rename as perh
 		return false;
 	}
 
+	@Override
 	public boolean isInvalid() {
 		return false;
 	}
 
+	@Override
 	public boolean oclEquals(@NonNull OCLValue thatValue) {
 		if (!(thatValue instanceof DomainType)) {
 			return false;
@@ -90,10 +99,12 @@ public abstract class AbstractType implements DomainType	// FIXME rename as perh
 		return thisTypeId.equals(thatTypeId);
 	}
 
+	@Override
 	public int oclHashCode() {
 		return getTypeId().hashCode();
 	}
 
+	@Override
 	public DomainType specializeIn(@NonNull DomainCallExp expr, DomainType selfType) {
 		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
 	}

@@ -271,6 +271,7 @@ public abstract class BaseDocumentProvider extends XtextDocumentProvider impleme
 		super.loadResource(resource, document, encoding);
 	}
 
+	@Override
 	public void metaModelManagerDisposed(@NonNull MetaModelManager metaModelManager) {
 		metaModelManager.removeListener(this);
 		this.metaModelManager = null;

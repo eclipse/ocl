@@ -51,6 +51,7 @@ public abstract class AbstractTemplateableIdImpl<T extends TemplateableId> exten
     	throw new UnsupportedOperationException();
     }
 
+	@Override
 	public @NonNull T getSpecializedId(@NonNull BindingsId templateBindings) {
     	WeakHashMapOfWeakReference<BindingsId, T> specializations2 = specializations;
 		if (specializations2 == null) {
@@ -79,6 +80,7 @@ public abstract class AbstractTemplateableIdImpl<T extends TemplateableId> exten
 		return IdManager.getTemplateParameterId(index);
 	}
 
+	@Override
 	public int getTemplateParameters() {
 		return templateParameters;
 	}

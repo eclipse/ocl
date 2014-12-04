@@ -97,6 +97,7 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<Pseudostate> getEntry()
 	{
 		if (entry == null)
@@ -111,6 +112,7 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public State getState()
 	{
 		if (eContainerFeatureID() != PivotPackage.CONNECTION_POINT_REFERENCE__STATE) return null;
@@ -133,6 +135,7 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("cast")
 	public void setState(State newState)
 	{
@@ -238,6 +241,7 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<Pseudostate> getExit()
 	{
 		if (exit == null)

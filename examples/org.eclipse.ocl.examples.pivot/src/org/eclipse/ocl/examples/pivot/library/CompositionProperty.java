@@ -35,6 +35,7 @@ public class CompositionProperty extends AbstractProperty
 		this.propertyId = propertyId;
 	}
 	
+	@Override
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		EObject eObject = asNavigableObject(sourceValue, eContainmentFeature); 
 		EObject eContainer = eObject.eContainer();

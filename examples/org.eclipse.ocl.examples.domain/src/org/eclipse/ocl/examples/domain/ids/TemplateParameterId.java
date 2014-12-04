@@ -20,5 +20,6 @@ public interface TemplateParameterId extends TypeId, Nameable
 {
 	int getIndex();
 
+	@Override
 	@NonNull String getName();
 }

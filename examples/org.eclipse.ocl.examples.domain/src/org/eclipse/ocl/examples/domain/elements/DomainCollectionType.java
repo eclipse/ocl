@@ -19,8 +19,11 @@ public interface DomainCollectionType extends DomainClass
 	/*@NonNull*/ DomainClass getContainerType();		
 	/*@NonNull*/ DomainType getElementType();
 	@NonNull IntegerValue getLowerValue();		
+	@Override
 	@NonNull CollectionTypeId getTypeId();
 	@NonNull IntegerValue getUpperValue();
+	@Override
 	boolean isOrdered();
+	@Override
 	boolean isUnique();
 }

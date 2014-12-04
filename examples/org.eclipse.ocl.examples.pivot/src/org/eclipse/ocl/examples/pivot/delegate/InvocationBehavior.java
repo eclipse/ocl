@@ -41,14 +41,17 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 //		return annotation != null;
 //	}
 
+	@Override
 	public @Nullable InvocationDelegate.Factory getDefaultFactory() {
 		return InvocationDelegate.Factory.Registry.INSTANCE.getFactory(getName());
 	}
 
+	@Override
 	public @NonNull InvocationDelegate.Factory.Registry getDefaultRegistry() {
 		return DomainUtil.nonNullEMF(InvocationDelegate.Factory.Registry.INSTANCE);
 	}
 
+	@Override
 	public @NonNull EPackage getEPackage(@NonNull EOperation eOperation) {
 		return DomainUtil.nonNullEMF(eOperation.getEContainingClass().getEPackage());
 	}
@@ -60,10 +63,12 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 	    return registry != null ? registry.getFactory(delegateDomain.getURI()) : null;
 	}
 
+	@Override
 	public @NonNull Class<InvocationDelegate.Factory> getFactoryClass() {
 		return InvocationDelegate.Factory.class;
 	}
 	
+	@Override
 	public @NonNull String getName() {
 		return NAME;
 	}
@@ -86,6 +91,7 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 		}
 	}
 
+	@Override
 	public @NonNull Class<InvocationDelegate.Factory.Registry> getRegistryClass() {
 		return InvocationDelegate.Factory.Registry.class;
 	}

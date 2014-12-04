@@ -85,6 +85,7 @@ public class TypeLiteralExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PathNameCS getOwnedPathName()
 	{
 		return ownedPathName;
@@ -112,6 +113,7 @@ public class TypeLiteralExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedPathName(PathNameCS newOwnedPathName)
 	{
 		if (newOwnedPathName != ownedPathName)
@@ -133,6 +135,7 @@ public class TypeLiteralExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypedRefCS getOwnedType() {
 		return ownedType;
 	}
@@ -159,6 +162,7 @@ public class TypeLiteralExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedType(TypedRefCS newOwnedType) {
 		if (newOwnedType != ownedType)
 		{

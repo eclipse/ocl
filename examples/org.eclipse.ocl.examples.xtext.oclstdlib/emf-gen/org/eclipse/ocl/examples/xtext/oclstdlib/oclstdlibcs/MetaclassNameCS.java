@@ -47,6 +47,7 @@ public interface MetaclassNameCS
 	 * @model
 	 * @generated
 	 */
+	@Override
 	String getName();
 
 	/**

@@ -28,10 +28,12 @@ public class NestedPackageIdImpl extends PackageIdImpl implements NestedPackageI
 		this.name = name;
 	}
 
+	@Override
 	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitNestedPackageId(this);
 	}
 
+	@Override
 	public @NonNull String getDisplayName() {
 		if (parent instanceof NsURIPackageId) {
 			return name;
@@ -41,10 +43,12 @@ public class NestedPackageIdImpl extends PackageIdImpl implements NestedPackageI
 		}
 	}
 
+	@Override
 	public @NonNull String getName() {
 		return name;
 	}
 	
+	@Override
 	public @NonNull PackageId getParent() {
 		return parent;
 	}

@@ -22,6 +22,7 @@ public class SpecializedTypeIdImpl extends AbstractSpecializedIdImpl<Templateabl
 		super(generalizedId, templateBindings);
 	}
 
+	@Override
 	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitTemplateableTypeId(this);
 	}
@@ -35,7 +36,8 @@ public class SpecializedTypeIdImpl extends AbstractSpecializedIdImpl<Templateabl
 //		return parent + "::" + typeParameters;
 //	}
 
-    public @NonNull TemplateableTypeId specialize(@NonNull BindingsId templateBindings) {
+    @Override
+	public @NonNull TemplateableTypeId specialize(@NonNull BindingsId templateBindings) {
     	return createSpecializedId(templateBindings);
 	}
 }

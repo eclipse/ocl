@@ -30,6 +30,7 @@ public class StaticProperty extends AbstractProperty
 		this.property = property;
 	}
 	
+	@Override
 	public @Nullable DomainType evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		return property.getType(); 
 	}

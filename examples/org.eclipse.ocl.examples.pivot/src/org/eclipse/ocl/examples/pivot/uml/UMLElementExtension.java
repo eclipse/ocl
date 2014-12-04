@@ -86,6 +86,7 @@ public class UMLElementExtension extends DynamicEObjectImpl implements Adapter.I
 		return umlStaticStereotype;
 	}
 
+	@Override
 	public @NonNull org.eclipse.uml2.uml.Element getTarget() {
 		return umlElement;
 	}
@@ -105,12 +106,15 @@ public class UMLElementExtension extends DynamicEObjectImpl implements Adapter.I
 		}
 	}
 	
+	@Override
 	public boolean isAdapterForType(Object type) {
 		return type == umlDynamicStereotype;
 	}
 
+	@Override
 	public void notifyChanged(Notification notification) {}
 
+	@Override
 	public void setTarget(Notifier newTarget) {
 		assert newTarget == umlElement;
 	}
@@ -137,6 +141,7 @@ public class UMLElementExtension extends DynamicEObjectImpl implements Adapter.I
 		return s.toString();
 	}
 
+	@Override
 	public void unsetTarget(Notifier oldTarget) {
 		assert oldTarget == umlElement;
 	}

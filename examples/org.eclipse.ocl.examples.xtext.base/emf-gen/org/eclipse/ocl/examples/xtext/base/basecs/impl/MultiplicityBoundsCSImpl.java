@@ -101,6 +101,7 @@ public class MultiplicityBoundsCSImpl extends MultiplicityCSImpl implements Mult
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getLowerBound()
 	{
 		return lowerBound;
@@ -111,6 +112,7 @@ public class MultiplicityBoundsCSImpl extends MultiplicityCSImpl implements Mult
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLowerBound(int newLowerBound)
 	{
 		int oldLowerBound = lowerBound;
@@ -124,6 +126,7 @@ public class MultiplicityBoundsCSImpl extends MultiplicityCSImpl implements Mult
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Integer getUpperBound()
 	{
 		return upperBound;
@@ -134,6 +137,7 @@ public class MultiplicityBoundsCSImpl extends MultiplicityCSImpl implements Mult
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUpperBound(Integer newUpperBound)
 	{
 		Integer oldUpperBound = upperBound;

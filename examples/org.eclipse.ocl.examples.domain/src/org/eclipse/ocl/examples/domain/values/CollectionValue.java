@@ -39,6 +39,7 @@ public interface CollectionValue extends Value, Iterable<Object>
 	/**
 	 * @generated NOT
 	 */
+	@Override
 	@Nullable List<?> asEcoreObject(@NonNull IdResolver idResolver);
 
 	/**
@@ -94,6 +95,7 @@ public interface CollectionValue extends Value, Iterable<Object>
 	/**
 	 * @generated NOT
 	 */
+	@Override
 	@NonNull CollectionTypeId getTypeId();
 
 	/**
@@ -143,6 +145,7 @@ public interface CollectionValue extends Value, Iterable<Object>
 	/**
 	 * @generated NOT
 	 */
+	@Override
 	@NonNull Iterator<Object> iterator();
 
 	/**

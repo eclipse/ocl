@@ -74,6 +74,7 @@ public abstract class AbstractEvaluationVisitorDecorator<EV extends EvaluationVi
     /**
      * Delegates to my decorated visitor.
      */
+	@Override
 	public @NonNull EvaluationVisitor createNestedEvaluator() {
         return delegate.createNestedEvaluator();
 	}
@@ -90,27 +91,31 @@ public abstract class AbstractEvaluationVisitorDecorator<EV extends EvaluationVi
     /**
      * Obtains my delegate's environment.
      */
-    public @NonNull Environment getEnvironment() {
+    @Override
+	public @NonNull Environment getEnvironment() {
         return delegate.getEnvironment();
     }
 
     /**
      * Obtains my delegate's evaluation environment.
      */
-    public @NonNull EvaluationEnvironment getEvaluationEnvironment() {
+    @Override
+	public @NonNull EvaluationEnvironment getEvaluationEnvironment() {
         return delegate.getEvaluationEnvironment();
     }
 
     /**
      * Obtains my delegate's extent map.
      */
-    public @NonNull DomainModelManager getModelManager() {
+    @Override
+	public @NonNull DomainModelManager getModelManager() {
         return delegate.getModelManager();
     }
 
     /**
      * Delegates to my decorated visitor.
      */
+	@Override
 	public void setUndecoratedVisitor(@NonNull EvaluationVisitor evaluationVisitor) {
         delegate.setUndecoratedVisitor(evaluationVisitor);
 	}
@@ -344,6 +349,7 @@ public abstract class AbstractEvaluationVisitorDecorator<EV extends EvaluationVi
     /**
      * Delegates to my decorated visitor.
      */
+	@Override
 	public Object visiting(@NonNull Visitable visitable) {
         return delegate.visiting(visitable);
 	}

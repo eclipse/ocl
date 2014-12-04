@@ -157,10 +157,12 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 //			FACTORY.getClass();				// This is redundant for this class but needed by derived classes
 		}
 
+		@Override
 		public @NonNull ToStringVisitor createToStringVisitor(@NonNull StringBuilder s) {
 			return new ToStringVisitor(s);
 		}
 
+		@Override
 		public @NonNull EPackage getEPackage() {
 			PivotPackage eInstance = PivotPackage.eINSTANCE;
 			assert eInstance != null;
@@ -1239,6 +1241,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 		return null;
 	}
 
+	@Override
 	public String visiting(@NonNull Visitable visitable) {
 		append(visitable.getClass().getName());
 		return null;

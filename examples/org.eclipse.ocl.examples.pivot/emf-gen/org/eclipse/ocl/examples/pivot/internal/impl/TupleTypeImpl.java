@@ -99,6 +99,7 @@ public class TupleTypeImpl
 		return tupleType.getInheritance(standardLibrary);
 	}
 
+	@Override
 	public @NonNull TupleTypeId getTupleTypeId() {
 		return (TupleTypeId) getTypeId();
 	}

@@ -32,18 +32,22 @@ public class ExecutorSpecializedType extends AbstractClass implements ExecutorTy
 		typeId = (TypeId) collectionTypeId.specialize(IdManager.getBindingsId(typeArguments));
 	}
 
+	@Override
 	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 
+	@Override
 	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 
+	@Override
 	public @NonNull DomainOperation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 
+	@Override
 	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
@@ -52,10 +56,12 @@ public class ExecutorSpecializedType extends AbstractClass implements ExecutorTy
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 
+	@Override
 	public @NonNull DomainType getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 
+	@Override
 	public @NonNull TypeId getTypeId() {
 		return typeId;
 	}

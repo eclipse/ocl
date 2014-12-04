@@ -77,6 +77,7 @@ public class HeadingElementImpl extends CompoundElementImpl implements HeadingEl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLevel() {
 		return level;
 	}
@@ -86,6 +87,7 @@ public class HeadingElementImpl extends CompoundElementImpl implements HeadingEl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLevel(String newLevel) {
 		String oldLevel = level;
 		level = newLevel;

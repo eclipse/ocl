@@ -58,6 +58,7 @@ public class ParentCompletePackageImpl extends RootCompletePackageImpl implement
 		return visitor.visitParentCompletePackage(this);
 	}
 	
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull PackageId getMetapackageId() {
 		return metapackageId;
@@ -68,6 +69,7 @@ public class ParentCompletePackageImpl extends RootCompletePackageImpl implement
 		return true;
 	}
 
+	@Override
 	public void init(@NonNull String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId, @NonNull PackageId metapackageId) {
 		super.init(name, nsPrefix, nsURI, packageId);
 		this.metapackageId = metapackageId;

@@ -78,6 +78,7 @@ public interface Operation
 	 * @see org.eclipse.ocl.examples.pivot.Parameter#getOperation
 	 * @generated
 	 */
+	@Override
 	@NonNull List<Parameter> getOwnedParameter();
 
 	/**
@@ -135,6 +136,7 @@ public interface Operation
 	 * @see org.eclipse.ocl.examples.pivot.Constraint#getPreContext
 	 * @generated
 	 */
+	@Override
 	@NonNull List<Constraint> getPrecondition();
 
 	/**
@@ -152,6 +154,7 @@ public interface Operation
 	 * @see org.eclipse.ocl.examples.pivot.Constraint#getPostContext
 	 * @generated
 	 */
+	@Override
 	@NonNull List<Constraint> getPostcondition();
 
 	/**
@@ -167,6 +170,7 @@ public interface Operation
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getOperation_BodyExpression()
 	 * @generated
 	 */
+	@Override
 	LanguageExpression getBodyExpression();
 
 	/**
@@ -271,6 +275,7 @@ public interface Operation
 	 * @see org.eclipse.ocl.examples.pivot.Class#getOwnedOperations
 	 * @generated
 	 */
+	@Override
 	org.eclipse.ocl.examples.pivot.Class getOwningClass();
 
 	/**

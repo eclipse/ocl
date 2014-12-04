@@ -85,6 +85,7 @@ public class AssociationClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<Property> getUnownedAttribute()
 	{
 		if (unownedAttribute == null)

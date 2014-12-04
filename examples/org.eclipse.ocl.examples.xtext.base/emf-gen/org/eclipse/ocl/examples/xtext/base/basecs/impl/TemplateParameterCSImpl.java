@@ -61,6 +61,7 @@ public abstract class TemplateParameterCSImpl extends NamedElementCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TemplateSignatureCS getOwningSignature()
 	{
 		if (eContainerFeatureID() != BaseCSPackage.TEMPLATE_PARAMETER_CS__OWNING_SIGNATURE) return null;
@@ -83,6 +84,7 @@ public abstract class TemplateParameterCSImpl extends NamedElementCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningSignature(TemplateSignatureCS newOwningSignature)
 	{
 		if (newOwningSignature != eInternalContainer() || (eContainerFeatureID() != BaseCSPackage.TEMPLATE_PARAMETER_CS__OWNING_SIGNATURE && newOwningSignature != null))

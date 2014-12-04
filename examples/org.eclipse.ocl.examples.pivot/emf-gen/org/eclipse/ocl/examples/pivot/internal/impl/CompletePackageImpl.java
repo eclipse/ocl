@@ -340,6 +340,7 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 		return visitor.visitCompletePackage(this);
 	}
 
+	@Override
 	public void assertSamePackage(DomainPackage pivotPackage) {
 		assert pivotPackage != null;
 		String typeBasedNsURI = pivotPackage.getURI();
@@ -405,30 +406,36 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 		}
 	}
 
+	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
 		
 	}
 
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull Iterable<? extends DomainClass> getAllClasses() {
 		return Iterables.transform(getOwnedCompleteClasses(), new Function<CompleteClass, DomainClass>()
 			{
+				@Override
 				public DomainClass apply(CompleteClass input) {
 					return input.getPivotClass();
 				}
 			});
 	}
 
+	@Override
 	public @NonNull CompleteClass.Internal getCompleteClass(@NonNull DomainClass pivotType) {
 		return DomainUtil.nonNullState(getOwnedCompleteClass(pivotType.getName()));
 	}
 
+	@Override
 	public @NonNull CompleteInheritance getCompleteInheritance(@NonNull CompleteClass.Internal completeClass) {
 		assert this != getCompleteModel().getOrphanCompletePackage();		// OrphanCompletePackage overrides
 		return getPartialPackages().getCompleteInheritance(completeClass);
 	}
 
+	@Override
 	public @NonNull CompleteModel.Internal getCompleteModel() {
 		for (EObject eContainer = eContainer(); eContainer != null; eContainer = eContainer.eContainer()) {
 			if (eContainer instanceof CompleteModel.Internal) {
@@ -438,6 +445,7 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 		throw new IllegalStateException();
 	}
 
+	@Override
 	public EPackage getEPackage() {
 		for (org.eclipse.ocl.examples.pivot.Package partialPackage : getPartialPackages()) {
 			EPackage ePackage = partialPackage.getEPackage();
@@ -448,23 +456,28 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 		return null;
 	}
 
+	@Override
 	public int getIndex(org.eclipse.ocl.examples.pivot.Package p1) {
 		return getPartialPackages().indexOf(p1);
 	}
 
+	@Override
 	public org.eclipse.ocl.examples.pivot.Class getMemberType(String name) {
 		CompleteClass completeClass = name != null ? getOwnedCompleteClass(name) : null;
 		return completeClass != null ? completeClass.getPivotClass() : null;
 	}
 
+	@Override
 	public String getNsPrefix() {
 		return nsPrefix;
 	}
 
+	@Override
 	public CompleteClass.Internal getOwnedCompleteClass(String name) {
 		return getOwnedCompleteClasses().getOwnedCompleteClass(name);
 	}
 	
+	@Override
 	public CompletePackage.Internal getOwnedCompletePackage(@Nullable String name) {
 		return getOwnedCompletePackages().getOwnedCompletePackage(name);
 	}
@@ -474,6 +487,7 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public @NonNull CompleteClasses getOwnedCompleteClasses()
 	{
 		CompleteClasses ownedCompleteClasses2 = ownedCompleteClasses;
@@ -489,6 +503,7 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public @NonNull NestedCompletePackages getOwnedCompletePackages()
 	{
 		NestedCompletePackages ownedCompletePackages2 = ownedCompletePackages;
@@ -499,10 +514,12 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 		return ownedCompletePackages2;
 	}
 
+	@Override
 	public @NonNull PartialPackages getPartialPackages() {
 		return partialPackages;
 	}
 
+	@Override
 	public final @NonNull org.eclipse.ocl.examples.pivot.Package getPivotPackage() {
 		for (org.eclipse.ocl.examples.pivot.Package partialPackage : getPartialPackages()) {
 			if (partialPackage != null) {
@@ -515,6 +532,7 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 		return DomainUtil.nonNullState(partialPackage);
 	}
 
+	@Override
 	public RootCompletePackage getRootCompletePackage() {
 		for (EObject eContainer = this; eContainer != null; eContainer = eContainer.eContainer()) {
 			if (eContainer instanceof RootCompletePackage) {
@@ -524,19 +542,23 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 		return null;
 	}
 
+	@Override
 	public DomainType getType(String metatypeName) {
 		CompleteClass completeClass = getOwnedCompleteClass(metatypeName);
 		return completeClass != null ? completeClass.getPivotClass() : null;
 	}
 
+	@Override
 	public String getURI() {
 		return nsURI;
 	}
 	
+	@Override
 	public boolean hasNestedClasses() {
 		return false;
 	}
 
+	@Override
 	public void init(String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId) {
 		setName(name);
 		this.nsPrefix = nsPrefix;

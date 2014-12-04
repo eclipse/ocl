@@ -27,18 +27,22 @@ public class AutoDependencyVisitor extends JavaDependencyVisitor implements Auto
 		super(analyzer, globalContext, globalPlace);
 	}
 
+	@Override
 	public @Nullable Object visitCGASTCallExp(@NonNull CGASTCallExp object) {
 		return visitCGOperationCallExp(object);
 	}
 
+	@Override
 	public @Nullable Object visitCGContainmentBody(@NonNull CGContainmentBody object) {
 		return visitCGValuedElement(object);
 	}
 
+	@Override
 	public @Nullable Object visitCGContainmentPart(@NonNull CGContainmentPart object) {
 		return visitCGValuedElement(object);
 	}
 
+	@Override
 	public @Nullable Object visitCGContainmentVisit(@NonNull CGContainmentVisit object) {
 		return visitCGOperation(object);
 	}

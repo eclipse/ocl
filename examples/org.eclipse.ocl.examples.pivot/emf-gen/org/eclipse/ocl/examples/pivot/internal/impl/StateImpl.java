@@ -243,6 +243,7 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Region getContainer()
 	{
 		if (eContainerFeatureID() != PivotPackage.STATE__CONTAINER) return null;
@@ -265,6 +266,7 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContainer(Region newContainer)
 	{
 		if (newContainer != eInternalContainer() || (eContainerFeatureID() != PivotPackage.STATE__CONTAINER && newContainer != null))
@@ -288,6 +290,7 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<Transition> getIncoming()
 	{
 		if (incoming == null)
@@ -302,6 +305,7 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<Transition> getOutgoing()
 	{
 		if (outgoing == null)
@@ -316,6 +320,7 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public boolean isComposite()
 	{
 		return getRegion().size() > 0;
@@ -326,6 +331,7 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public boolean isOrthogonal()
 	{
 		return getRegion().size() > 1;
@@ -336,6 +342,7 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public boolean isSimple()
 	{
 		return getRegion().size() == 0;
@@ -346,6 +353,7 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public boolean isSubmachineState()
 	{
 		return eContainer() instanceof StateMachine;
@@ -356,6 +364,7 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public StateMachine getSubmachine()
 	{
 		if (submachine != null && ((EObject)submachine).eIsProxy())
@@ -403,6 +412,7 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSubmachine(StateMachine newSubmachine)
 	{
 		if (newSubmachine != submachine)
@@ -424,6 +434,7 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<ConnectionPointReference> getConnection()
 	{
 		if (connection == null)
@@ -438,6 +449,7 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public State getRedefinedState()
 	{
 		if (redefinedState != null && ((EObject)redefinedState).eIsProxy())
@@ -468,6 +480,7 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRedefinedState(State newRedefinedState)
 	{
 		State oldRedefinedState = redefinedState;
@@ -481,6 +494,7 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<Region> getRegion()
 	{
 		if (region == null)
@@ -495,6 +509,7 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Constraint getStateInvariant()
 	{
 		return stateInvariant;
@@ -522,6 +537,7 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStateInvariant(Constraint newStateInvariant)
 	{
 		if (newStateInvariant != stateInvariant)
@@ -543,6 +559,7 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Behavior getEntry()
 	{
 		return entry;
@@ -570,6 +587,7 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEntry(Behavior newEntry)
 	{
 		if (newEntry != entry)
@@ -591,6 +609,7 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Behavior getExit()
 	{
 		return exit;
@@ -618,6 +637,7 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExit(Behavior newExit)
 	{
 		if (newExit != exit)
@@ -639,6 +659,7 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Behavior getDoActivity()
 	{
 		return doActivity;
@@ -666,6 +687,7 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDoActivity(Behavior newDoActivity)
 	{
 		if (newDoActivity != doActivity)
@@ -687,6 +709,7 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<Pseudostate> getConnectionPoint()
 	{
 		if (connectionPoint == null)
@@ -701,6 +724,7 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<Trigger> getDeferrableTrigger()
 	{
 		if (deferrableTrigger == null)

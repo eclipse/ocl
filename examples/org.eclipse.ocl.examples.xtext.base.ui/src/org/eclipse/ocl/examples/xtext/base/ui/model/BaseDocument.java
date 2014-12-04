@@ -87,6 +87,7 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 	public void disposeInput() {
 		MetaModelManager metaModelManager = readOnly(new IUnitOfWork<MetaModelManager, XtextResource>()
 			{
+				@Override
 				public MetaModelManager exec(@Nullable XtextResource resource) throws Exception {
 					if (resource != null) {
 						AbstractMetaModelManagerResourceAdapter<?> adapter = MetaModelManagerResourceAdapter.findAdapter(resource);
@@ -106,6 +107,7 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 	protected RootCSAttribution getDocumentAttribution() {
 		return readOnly(new IUnitOfWork<RootCSAttribution, XtextResource>()
 			{
+				@Override
 				public RootCSAttribution exec(@Nullable XtextResource resource) throws Exception {
 					if ((resource != null) && !resource.getContents().isEmpty()) {
 						ElementCS csElement = (ElementCS) resource.getContents().get(0);
@@ -122,17 +124,20 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 			});
 	}
 
-    public @Nullable EObject getOCLContext() {
+    @Override
+	public @Nullable EObject getOCLContext() {
         return context;
     }
 
-    public @Nullable Map<String, EClassifier> getOCLParameters() {
+    @Override
+	public @Nullable Map<String, EClassifier> getOCLParameters() {
 		return parameters;
 	}
 
 	public @Nullable ASResource getPivotResource() throws CoreException {
 		return readOnly(new IUnitOfWork<ASResource, XtextResource>()
 			{
+				@Override
 				public ASResource exec(@Nullable XtextResource resource) throws Exception {
 					if (!(resource instanceof BaseCSResource)) {
 						return null;
@@ -152,6 +157,7 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 	public @Nullable ResourceSet getResourceSet() {
 		return readOnly(new IUnitOfWork<ResourceSet, XtextResource>()
 			{
+				@Override
 				public ResourceSet exec(@Nullable XtextResource resource) throws Exception {
 					return resource != null ? resource.getResourceSet() : null;
 				}
@@ -168,9 +174,11 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 		}
 	}
 
+	@Override
 	public void setContext(final @NonNull EClassifier ecoreContext, final @Nullable Map<String, EClassifier> ecoreParameters) {
 		modify(new IUnitOfWork<Object, XtextResource>()
 		{
+			@Override
 			public Object exec(@Nullable XtextResource resource) throws Exception {
 				if (resource instanceof BaseCSResource) {
 					BaseCSResource csResource = (BaseCSResource)resource;

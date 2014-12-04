@@ -152,6 +152,7 @@ public class LibOperationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public JavaClassCS getImplementation() {
 		if (implementation != null && implementation.eIsProxy())
 		{
@@ -181,6 +182,7 @@ public class LibOperationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setImplementation(JavaClassCS newImplementation)
 	{
 		JavaClassCS oldImplementation = implementation;
@@ -194,6 +196,7 @@ public class LibOperationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Precedence getPrecedence() {
 		if (precedence != null && ((EObject)precedence).eIsProxy())
 		{
@@ -222,6 +225,7 @@ public class LibOperationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPrecedence(Precedence newPrecedence) {
 		Precedence oldPrecedence = precedence;
 		precedence = newPrecedence;
@@ -234,6 +238,7 @@ public class LibOperationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsInvalidating()
 	{
 		return isInvalidating;
@@ -244,6 +249,7 @@ public class LibOperationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsInvalidating(boolean newIsInvalidating)
 	{
 		boolean oldIsInvalidating = isInvalidating;
@@ -257,6 +263,7 @@ public class LibOperationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsStatic()
 	{
 		return isStatic;
@@ -267,6 +274,7 @@ public class LibOperationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsStatic(boolean newIsStatic)
 	{
 		boolean oldIsStatic = isStatic;
@@ -280,6 +288,7 @@ public class LibOperationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsValidating()
 	{
 		return isValidating;
@@ -290,6 +299,7 @@ public class LibOperationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsValidating(boolean newIsValidating)
 	{
 		boolean oldIsValidating = isValidating;

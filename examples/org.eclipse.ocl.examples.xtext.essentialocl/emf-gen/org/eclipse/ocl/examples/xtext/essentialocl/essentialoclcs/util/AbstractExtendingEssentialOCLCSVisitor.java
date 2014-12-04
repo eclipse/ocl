@@ -40,186 +40,232 @@ public abstract class AbstractExtendingEssentialOCLCSVisitor<R, C>
 		super(context);
 	}	
 
+	@Override
 	public @Nullable R visitAbstractNameExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AbstractNameExpCS object) {
 		return visitExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitAssociationClassCallExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AssociationClassCallExpCS object) {
 		return visitCallExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitBooleanLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteralExpCS object) {
 		return visitPrimitiveLiteralExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitCallExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CallExpCS object) {
 		return visitAbstractNameExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitCollectionLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralExpCS object) {
 		return visitLiteralExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitCollectionLiteralPartCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralPartCS object) {
 		return visitModelElementCS(object);
 	}
 
+	@Override
 	public @Nullable R visitCollectionPatternCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionPatternCS object) {
 		return visitTypedRefCS(object);
 	}
 
+	@Override
 	public @Nullable R visitCollectionTypeCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionTypeCS object) {
 		return visitTypedRefCS(object);
 	}
 
+	@Override
 	public @Nullable R visitConstructorExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS object) {
 		return visitAbstractNameExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitConstructorPartCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS object) {
 		return visitModelElementCS(object);
 	}
 
+	@Override
 	public @Nullable R visitContextCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ContextCS object) {
 		return visitNamedElementCS(object);
 	}
 
+	@Override
 	public @Nullable R visitCurlyBracketedClauseCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS object) {
 		return visitContextLessElementCS(object);
 	}
 
+	@Override
 	public @Nullable R visitExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS object) {
 		return visitModelElementCS(object);
 	}
 
+	@Override
 	public @Nullable R visitExpSpecificationCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpSpecificationCS object) {
 		return visitSpecificationCS(object);
 	}
 
+	@Override
 	public @Nullable R visitIfExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS object) {
 		return visitExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitIfThenExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfThenExpCS object) {
 		return visitExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitInfixExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS object) {
 		return visitOperatorExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitInvalidLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvalidLiteralExpCS object) {
 		return visitPrimitiveLiteralExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitIterateCallExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IterateCallExpCS object) {
 		return visitIterationCallExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitIterationCallExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IterationCallExpCS object) {
 		return visitCallExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitLambdaLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LambdaLiteralExpCS object) {
 		return visitLiteralExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitLetExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS object) {
 		return visitExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitLetVariableCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS object) {
 		return visitExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LiteralExpCS object) {
 		return visitExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitNameExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS object) {
 		return visitAssociationClassCallExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitNavigatingArgCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS object) {
 		return visitModelElementCS(object);
 	}
 
+	@Override
 	public @Nullable R visitNestedExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS object) {
 		return visitExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitNullLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NullLiteralExpCS object) {
 		return visitPrimitiveLiteralExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitNumberLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NumberLiteralExpCS object) {
 		return visitPrimitiveLiteralExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitOperationCallExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperationCallExpCS object) {
 		return visitCallExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitOperatorExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorExpCS object) {
 		return visitExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitPatternExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PatternExpCS object) {
 		return visitExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitPrefixExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS object) {
 		return visitOperatorExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitPrimitiveLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrimitiveLiteralExpCS object) {
 		return visitLiteralExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitPropertyCallExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PropertyCallExpCS object) {
 		return visitCallExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitRoundBracketedClauseCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS object) {
 		return visitContextLessElementCS(object);
 	}
 
+	@Override
 	public @Nullable R visitSelfExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SelfExpCS object) {
 		return visitExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitSquareBracketedClauseCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SquareBracketedClauseCS object) {
 		return visitContextLessElementCS(object);
 	}
 
+	@Override
 	public @Nullable R visitStringLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.StringLiteralExpCS object) {
 		return visitPrimitiveLiteralExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitTupleLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TupleLiteralExpCS object) {
 		return visitLiteralExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitTupleLiteralPartCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TupleLiteralPartCS object) {
 		return visitVariableCS(object);
 	}
 
+	@Override
 	public @Nullable R visitTypeLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeLiteralExpCS object) {
 		return visitLiteralExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitTypeNameExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS object) {
 		return visitTypedRefCS(object);
 	}
 
+	@Override
 	public @Nullable R visitUnlimitedNaturalLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.UnlimitedNaturalLiteralExpCS object) {
 		return visitPrimitiveLiteralExpCS(object);
 	}
 
+	@Override
 	public @Nullable R visitVariableCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS object) {
 		return visitNamedElementCS(object);
 	}
 
+	@Override
 	public @Nullable R visitVariableExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableExpCS object) {
 		return visitAbstractNameExpCS(object);
 	}

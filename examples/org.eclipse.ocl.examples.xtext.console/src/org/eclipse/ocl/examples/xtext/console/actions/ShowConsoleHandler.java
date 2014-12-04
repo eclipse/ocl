@@ -28,6 +28,7 @@ public class ShowConsoleHandler extends AbstractHandler
 {
 	private IConsoleFactory factory = new OCLConsoleFactory();
 
+	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		factory.openConsole();
 		return null;

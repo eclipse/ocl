@@ -34,14 +34,17 @@ public class OCLinEcoreAS2CS extends EssentialOCLAS2CS
 	{
 		private static @NonNull AS2CS.Factory INSTANCE = new Factory();
 
+		@Override
 		public @NonNull OCLinEcoreDeclarationVisitor createDeclarationVisitor(@NonNull AS2CSConversion converter) {
 			return new OCLinEcoreDeclarationVisitor(converter);
 		}
 
+		@Override
 		public @NonNull BaseReferenceVisitor createReferenceVisitor(@NonNull AS2CSConversion converter, @Nullable Namespace scope) {
 			return new BaseReferenceVisitor(converter);
 		}
 
+		@Override
 		public @NonNull EClass[] getEClasses() {
 			return new EClass[] {
 				PivotPackage.Literals.ANNOTATION,

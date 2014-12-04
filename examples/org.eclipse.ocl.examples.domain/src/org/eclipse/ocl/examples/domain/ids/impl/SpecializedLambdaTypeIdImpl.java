@@ -23,6 +23,7 @@ public class SpecializedLambdaTypeIdImpl extends AbstractSpecializedIdImpl<Lambd
 		super(generalizedId, templateBindings);
 	}
 
+	@Override
 	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitLambdaTypeId(this);
 	}
@@ -32,11 +33,13 @@ public class SpecializedLambdaTypeIdImpl extends AbstractSpecializedIdImpl<Lambd
 		return new SpecializedLambdaTypeIdImpl(this, templateBindings);
 	}
 
+	@Override
 	public @NonNull ParametersId getParametersId() {
 		return generalizedId.getParametersId();
 	}
 
-    public @NonNull LambdaTypeId specialize(@NonNull BindingsId templateBindings) {
+    @Override
+	public @NonNull LambdaTypeId specialize(@NonNull BindingsId templateBindings) {
     	return createSpecializedId(templateBindings);
 	}
 }

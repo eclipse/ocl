@@ -68,6 +68,7 @@ public abstract class AssociationClassCallExpCSImpl extends CallExpCSImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public AssociationClass getReferredAssociation()
 	{
 		return referredAssociation;
@@ -78,6 +79,7 @@ public abstract class AssociationClassCallExpCSImpl extends CallExpCSImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredAssociation(AssociationClass newReferredAssociation)
 	{
 		AssociationClass oldReferredAssociation = referredAssociation;

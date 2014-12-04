@@ -40,6 +40,7 @@ public class UnboxedOppositeNavigationProperty extends AbstractProperty
 		this.oppositePropertyId = oppositePropertyId;
 	}
 	
+	@Override
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		IdResolver idResolver = evaluator.getIdResolver();
 		DomainProperty oppositeProperty = idResolver.getProperty(oppositePropertyId);		

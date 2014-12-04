@@ -39,15 +39,18 @@ public class AutoOCLinEcoreCSContainmentVisitor
         this.idResolver = converter.getMetaModelManager().getIdResolver();
     }
     
-    public @Nullable Continuation<?> visitOCLinEcoreConstraintCS(@NonNull OCLinEcoreConstraintCS self) {
+    @Override
+	public @Nullable Continuation<?> visitOCLinEcoreConstraintCS(@NonNull OCLinEcoreConstraintCS self) {
         throw new UnsupportedOperationException("visitOCLinEcoreConstraintCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitSysMLCS(@NonNull SysMLCS self) {
+    @Override
+	public @Nullable Continuation<?> visitSysMLCS(@NonNull SysMLCS self) {
         throw new UnsupportedOperationException("visitSysMLCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitTopLevelCS(@NonNull TopLevelCS self) {
+    @Override
+	public @Nullable Continuation<?> visitTopLevelCS(@NonNull TopLevelCS self) {
         throw new UnsupportedOperationException("visitTopLevelCS is not supported by " + getClass().getName());
     }
 }

@@ -29,10 +29,12 @@ public class PathConstraintParser implements IParameterizedConstraintParser
 			this.descriptor = descriptor;
 		}
 
+		@Override
 		public IConstraintDescriptor getDescriptor() {
 			return descriptor;
 		}
 
+		@Override
 		public IStatus validate(IValidationContext ctx) {
 			return null;
 		}
@@ -41,6 +43,7 @@ public class PathConstraintParser implements IParameterizedConstraintParser
 	public PathConstraintParser() {
 	}
 
+	@Override
 	public PathConstraint parseConstraint(IParameterizedConstraintDescriptor descriptor) throws ConstraintParserException {
 		return descriptor != null ? new PathConstraint(descriptor) : null;
 	}

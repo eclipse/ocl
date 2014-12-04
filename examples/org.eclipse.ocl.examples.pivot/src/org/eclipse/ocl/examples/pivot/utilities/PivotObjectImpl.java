@@ -35,31 +35,38 @@ public abstract class PivotObjectImpl extends EObjectImpl implements PivotObject
 		return target;
 	}
 
+	@Override
 	public Object getImage() {
 		return null;
 	}
 	
+	@Override
 	public EObject getTarget() {
 		return target;
 	}
 	
+	@Override
 	public String getText() {
 		return toString();
 	}
 
+	@Override
 	public boolean isAdapterForType(Object type) {
 		return type == PivotObject.class;
 	}
 	
+	@Override
 	public void notifyChanged(Notification notification) {
 		// TODO Auto-generated method stub
 		
 	}
 	
+	@Override
 	public void setTarget(Notifier newTarget) {
 		target = (EObject) newTarget;
 	}
 
+	@Override
 	public void unsetTarget(Notifier oldTarget) {
 		target = null;
 	}

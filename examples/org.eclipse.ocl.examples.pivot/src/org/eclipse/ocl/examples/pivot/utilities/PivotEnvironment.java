@@ -134,6 +134,7 @@ public class PivotEnvironment extends AbstractEnvironment {
 	}
 
     // implements the inherited specification
+	@Override
 	public @NonNull EnvironmentFactory getFactory() {
 		return factory;
 	}
@@ -149,6 +150,7 @@ public class PivotEnvironment extends AbstractEnvironment {
 	 * {@link #collectStates} method.
 	 * </p>
 	 */
+	@Override
 	public @NonNull List<State> getStates(@NonNull Type owner, @NonNull List<String> pathPrefix) {
 		List<State> result = new ArrayList<State>();
 		
@@ -186,6 +188,7 @@ public class PivotEnvironment extends AbstractEnvironment {
 		// do nothing
 	}
 	
+	@Override
 	public Constraint getDefinition(@NonNull Object feature) {
     	Constraint result = null;
 		ETypedElement typedFeature = (ETypedElement) feature;
@@ -207,14 +210,17 @@ public class PivotEnvironment extends AbstractEnvironment {
     	return result;
 	}
 
+	@Override
 	public @NonNull MetaModelManager getMetaModelManager() {
 		return metaModelManager;
 	}
 
+	@Override
 	public @NonNull DomainStandardLibrary getOCLStandardLibrary() {
 		return metaModelManager.getStandardLibrary();
 	}
 
+	@Override
 	public @NonNull PivotFactory getOCLFactory() {
 		return DomainUtil.nonNullEMF(PivotFactoryImpl.eINSTANCE);
 	}
@@ -224,6 +230,7 @@ public class PivotEnvironment extends AbstractEnvironment {
 //		return EcoreOCLLibrary.getDefault();
 //	}
 
+	@Override
 	public @NonNull PivotStandardLibrary getStandardLibrary() {
 		return metaModelManager.getStandardLibrary();
 	}

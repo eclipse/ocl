@@ -30,6 +30,7 @@ public abstract class AbstractSpecializedIdImpl<T extends TemplateableId> extend
 		assert templateBindings.size() == templateParameterCount;
 	}
 
+	@Override
 	public @NonNull String getDisplayName() {
 		StringBuilder s = new StringBuilder();
 		s.append(generalizedId.getDisplayName());
@@ -47,18 +48,22 @@ public abstract class AbstractSpecializedIdImpl<T extends TemplateableId> extend
 		return string2;
 	}
 
+	@Override
 	public @NonNull T getGeneralizedId() {
 		return generalizedId;
 	}
 
+	@Override
 	public @NonNull String getMetaTypeName() {
 		return generalizedId.getMetaTypeName();
 	}
 
+	@Override
 	public @NonNull String getName() {
 		return generalizedId.getName();
 	}
 
+	@Override
 	public @NonNull BindingsId getTemplateBindings() {
 		return templateBindings;
 	}

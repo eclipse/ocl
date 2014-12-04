@@ -50,11 +50,13 @@ public class PivotStandardLibrary2 extends PivotStandardLibrary
 		return defaultStandardLibraryURI;
 	}
 
+	@Override
 	@NonNull
 	public DomainInheritance getInheritance(@NonNull DomainClass type) {
 		return metaModelManager.getInheritance(type);
 	}
 
+	@Override
 	public @NonNull DomainClass getMetaclass(@NonNull DomainType classType) {
 		return metaModelManager.getMetaclass(classType);
 	}
@@ -74,6 +76,7 @@ public class PivotStandardLibrary2 extends PivotStandardLibrary
 		return completePackage != null ? completePackage.getPivotPackage() : null;
 	}
 
+	@Override
 	public DomainType getOclType(@NonNull String typeName) {
 		return metaModelManager.getOclType(typeName);
 	}

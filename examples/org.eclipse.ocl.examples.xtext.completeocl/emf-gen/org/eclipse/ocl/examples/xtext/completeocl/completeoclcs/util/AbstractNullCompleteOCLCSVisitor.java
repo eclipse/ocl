@@ -36,54 +36,67 @@ public abstract class AbstractNullCompleteOCLCSVisitor<R, C>
 		super(context);
 	}	
 
+	@Override
 	public @Nullable R visitClassifierContextDeclCS(@NonNull org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS object) {
 		return null;
 	}
 
+	@Override
 	public @Nullable R visitCompleteOCLDocumentCS(@NonNull org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLDocumentCS object) {
 		return null;
 	}
 
+	@Override
 	public @Nullable R visitContextDeclCS(@NonNull org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ContextDeclCS object) {
 		return null;
 	}
 
+	@Override
 	public @Nullable R visitDefCS(@NonNull org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefCS object) {
 		return null;
 	}
 
+	@Override
 	public @Nullable R visitDefOperationCS(@NonNull org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefOperationCS object) {
 		return null;
 	}
 
+	@Override
 	public @Nullable R visitDefPropertyCS(@NonNull org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.DefPropertyCS object) {
 		return null;
 	}
 
+	@Override
 	public @Nullable R visitFeatureContextDeclCS(@NonNull org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.FeatureContextDeclCS object) {
 		return null;
 	}
 
+	@Override
 	public @Nullable R visitIncludeCS(@NonNull org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.IncludeCS object) {
 		return null;
 	}
 
+	@Override
 	public @Nullable R visitOCLMessageArgCS(@NonNull org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OCLMessageArgCS object) {
 		return null;
 	}
 
+	@Override
 	public @Nullable R visitOperationContextDeclCS(@NonNull org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.OperationContextDeclCS object) {
 		return null;
 	}
 
+	@Override
 	public @Nullable R visitPackageDeclarationCS(@NonNull org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PackageDeclarationCS object) {
 		return null;
 	}
 
+	@Override
 	public @Nullable R visitPathNameDeclCS(@NonNull org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PathNameDeclCS object) {
 		return null;
 	}
 
+	@Override
 	public @Nullable R visitPropertyContextDeclCS(@NonNull org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.PropertyContextDeclCS object) {
 		return null;
 	}

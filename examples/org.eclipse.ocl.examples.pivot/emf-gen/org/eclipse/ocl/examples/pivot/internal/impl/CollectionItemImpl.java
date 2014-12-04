@@ -95,6 +95,7 @@ public class CollectionItemImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OCLExpression getItem() {
 		return item;
 	}
@@ -121,6 +122,7 @@ public class CollectionItemImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setItem(OCLExpression newItem) {
 		if (newItem != item)
 		{
@@ -141,6 +143,7 @@ public class CollectionItemImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateTypeIsItemType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**

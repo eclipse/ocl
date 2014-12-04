@@ -48,6 +48,7 @@ public interface LambdaTypeCS extends TypedRefCS, TemplateableElementCS, Nameabl
 	 * @model
 	 * @generated
 	 */
+	@Override
 	String getName();
 
 	/**

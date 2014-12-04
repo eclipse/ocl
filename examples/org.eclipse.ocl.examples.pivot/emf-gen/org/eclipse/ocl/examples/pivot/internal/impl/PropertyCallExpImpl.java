@@ -104,6 +104,7 @@ public class PropertyCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Property getReferredProperty() {
 		if (referredProperty != null && ((EObject)referredProperty).eIsProxy())
 		{
@@ -132,6 +133,7 @@ public class PropertyCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredProperty(Property newReferredProperty) {
 		Property oldReferredProperty = referredProperty;
 		referredProperty = newReferredProperty;
@@ -406,6 +408,7 @@ public class PropertyCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public Element getReferredElement()
 	{
 		return getReferredProperty();
@@ -416,6 +419,7 @@ public class PropertyCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public DomainClass getSpecializedReferredPropertyOwningType()
 	{
 		Property referredProperty = getReferredProperty();
@@ -438,6 +442,7 @@ public class PropertyCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public DomainClass getSpecializedReferredPropertyType()
 	{
 		Property referredProperty = getReferredProperty();
@@ -471,6 +476,7 @@ public class PropertyCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateNonStaticSourceTypeIsConformant(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -621,6 +627,7 @@ public class PropertyCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateCompatibleResultType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**

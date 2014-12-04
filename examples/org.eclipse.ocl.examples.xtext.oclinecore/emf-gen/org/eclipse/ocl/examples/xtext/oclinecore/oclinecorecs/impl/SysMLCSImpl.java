@@ -84,6 +84,7 @@ public class SysMLCSImpl extends AnnotationElementCSImpl implements SysMLCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getValue()
 	{
 		return value;
@@ -94,6 +95,7 @@ public class SysMLCSImpl extends AnnotationElementCSImpl implements SysMLCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(String newValue)
 	{
 		String oldValue = value;

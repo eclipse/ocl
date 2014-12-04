@@ -26,6 +26,7 @@ public class EnumerationLiteralIdImpl extends UnscopedId implements EnumerationL
 		this.parentId = parentId;
 	}
 
+	@Override
 	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitEnumerationLiteralId(this);
 	}
@@ -39,6 +40,7 @@ public class EnumerationLiteralIdImpl extends UnscopedId implements EnumerationL
 		return TypeId.ENUMERATION_NAME;
 	}
 
+	@Override
 	public @NonNull EnumerationId getParentId() {
 		return parentId;
 	}

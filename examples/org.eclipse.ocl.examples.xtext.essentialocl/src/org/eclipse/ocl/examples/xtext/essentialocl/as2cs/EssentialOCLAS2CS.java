@@ -30,14 +30,17 @@ public class EssentialOCLAS2CS extends BaseAS2CS
 	{
 		private static @NonNull AS2CS.Factory INSTANCE = new Factory();
 
+		@Override
 		public @NonNull EssentialOCLDeclarationVisitor createDeclarationVisitor(@NonNull AS2CSConversion converter) {
 			return new EssentialOCLDeclarationVisitor(converter);
 		}
 
+		@Override
 		public @NonNull BaseReferenceVisitor createReferenceVisitor(@NonNull AS2CSConversion converter, @Nullable Namespace scope) {
 			return new BaseReferenceVisitor(converter);
 		}
 
+		@Override
 		public @NonNull EClass[] getEClasses() {
 			return new EClass[]{};
 		}

@@ -26,6 +26,7 @@ public class GeneralizedCollectionTypeIdImpl extends GeneralizedTypeIdImpl<Colle
 		super(IdHash.createGlobalHash(CollectionTypeId.class, name), 1, name);
 	}
 
+	@Override
 	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitCollectionTypeId(this);
 	}
@@ -35,14 +36,17 @@ public class GeneralizedCollectionTypeIdImpl extends GeneralizedTypeIdImpl<Colle
 		return new SpecializedCollectionTypeIdImpl(this, templateBindings);
 	}
 
+	@Override
 	public @NonNull String getDisplayName() {
 		return name;
 	}
 
+	@Override
 	public @NonNull TemplateParameterId getElementTypeId() {
 		return TypeId.T_1;
 	}
 
+	@Override
 	public @NonNull CollectionTypeId getGeneralizedId() {
 		return this;
 	}
@@ -72,11 +76,13 @@ public class GeneralizedCollectionTypeIdImpl extends GeneralizedTypeIdImpl<Colle
 		}
 	}
 
+	@Override
 	public @NonNull String getMetaTypeName() {
 		return name + "Type";
 	}
 
-    public @NonNull CollectionTypeId specialize(@NonNull BindingsId templateBindings) {
+    @Override
+	public @NonNull CollectionTypeId specialize(@NonNull BindingsId templateBindings) {
     	return getSpecializedId(templateBindings);
 	}
 }

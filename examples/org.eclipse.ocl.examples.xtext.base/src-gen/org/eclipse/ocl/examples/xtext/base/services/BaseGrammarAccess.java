@@ -29,6 +29,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//MultiplicityBoundsCS:
 		//	lowerBound=LOWER (".." upperBound=UPPER)?;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//lowerBound=LOWER (".." upperBound=UPPER)?
@@ -64,6 +65,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//MultiplicityCS:
 		//	"[" (MultiplicityBoundsCS | MultiplicityStringCS) "]";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//"[" (MultiplicityBoundsCS | MultiplicityStringCS) "]"
@@ -95,6 +97,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//MultiplicityStringCS:
 		//	stringBounds=("*" | "+" | "?");
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//stringBounds=("*" | "+" | "?")
@@ -125,6 +128,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//PathNameCS:
 		//	ownedPathElements+=FirstPathElementCS ("::" ownedPathElements+=NextPathElementCS)*;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//ownedPathElements+=FirstPathElementCS ("::" ownedPathElements+=NextPathElementCS)*
@@ -157,6 +161,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//FirstPathElementCS returns PathElementCS:
 		//	referredElement=[pivot::NamedElement|UnrestrictedName];
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//referredElement=[pivot::NamedElement|UnrestrictedName]
@@ -177,6 +182,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//NextPathElementCS returns PathElementCS:
 		//	referredElement=[pivot::NamedElement|UnreservedName];
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//referredElement=[pivot::NamedElement|UnreservedName]
@@ -204,6 +210,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		//TemplateBindingCS:
 		//	"(" ownedSubstitutions+=TemplateParameterSubstitutionCS ("," ownedSubstitutions+=TemplateParameterSubstitutionCS)*
 		//	")";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//"(" ownedSubstitutions+=TemplateParameterSubstitutionCS ("," ownedSubstitutions+=TemplateParameterSubstitutionCS)* ")"
@@ -241,6 +248,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//TemplateParameterSubstitutionCS:
 		//	ownedActualParameter=TypeRefCS;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//ownedActualParameter=TypeRefCS
@@ -264,6 +272,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//TemplateSignatureCS:
 		//	"(" ownedParameters+=TypeParameterCS ("," ownedParameters+=TypeParameterCS)* ")";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//"(" ownedParameters+=TypeParameterCS ("," ownedParameters+=TypeParameterCS)* ")"
@@ -316,6 +325,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		//TypeParameterCS:
 		//	name=UnrestrictedName ("extends" ownedExtends+=TypedRefCS ("&&" ownedExtends+=TypedRefCS)* | "super"
 		//	ownedSuper=TypedRefCS)?;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//name=UnrestrictedName ("extends" ownedExtends+=TypedRefCS ("&&" ownedExtends+=TypedRefCS)* | "super"
@@ -376,6 +386,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//TypeRefCS:
 		//	TypedRefCS | WildcardTypeRefCS;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//TypedRefCS | WildcardTypeRefCS
@@ -394,6 +405,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//TypedRefCS:
 		//	TypedTypeRefCS;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//TypedTypeRefCS
@@ -410,6 +422,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//TypedTypeRefCS:
 		//	ownedPathName=PathNameCS ownedBinding=TemplateBindingCS?;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//ownedPathName=PathNameCS ownedBinding=TemplateBindingCS?
@@ -435,6 +448,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		//// Intended to be overridden
 		// UnreservedName returns ecore::EString:
 		//	UnrestrictedName;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//UnrestrictedName
@@ -448,6 +462,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		//// Intended to be overridden
 		// UnrestrictedName returns ecore::EString:
 		//	Identifier;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//Identifier
@@ -471,6 +486,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//WildcardTypeRefCS:
 		//	{WildcardTypeRefCS} "?" ("extends" ownedExtends=TypedRefCS | "super" ownedSuper=TypedRefCS)?;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//{WildcardTypeRefCS} "?" ("extends" ownedExtends=TypedRefCS | "super" ownedSuper=TypedRefCS)?
@@ -518,6 +534,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ID:
 		//	SIMPLE_ID | ESCAPED_ID;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//SIMPLE_ID | ESCAPED_ID
@@ -536,6 +553,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//Identifier:
 		//	ID;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//ID
@@ -549,6 +567,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		/// * A lowerbounded integer is used to define the lowerbound of a collection multiplicity. The value may not be the unlimited value. * /
 		//LOWER returns ecore::EInt:
 		//	INT;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//INT
@@ -570,6 +589,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		// NUMBER_LITERAL returns
 		//BigNumber:
 		//	INT;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//INT
@@ -582,6 +602,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//StringLiteral:
 		//	SINGLE_QUOTED_STRING;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//SINGLE_QUOTED_STRING
@@ -597,6 +618,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		/// * An upperbounded integer is used to define the upperbound of a collection multiplicity. The value may be the unlimited value. * /
 		//UPPER returns ecore::EInt:
 		//	INT | "*";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//INT | "*"
@@ -615,6 +637,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//URI:
 		//	SINGLE_QUOTED_STRING;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//SINGLE_QUOTED_STRING
@@ -717,6 +740,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	
+	@Override
 	public Grammar getGrammar() {
 		return grammar;
 	}

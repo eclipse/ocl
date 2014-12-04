@@ -129,6 +129,7 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Stereotype getStereotype()
 	{
 		if (stereotype != null && ((EObject)stereotype).eIsProxy())
@@ -159,6 +160,7 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStereotype(Stereotype newStereotype)
 	{
 		Stereotype oldStereotype = stereotype;
@@ -172,6 +174,7 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Element getBase()
 	{
 		if (eContainerFeatureID() != PivotPackage.ELEMENT_EXTENSION__BASE) return null;
@@ -194,6 +197,7 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBase(Element newBase)
 	{
 		if (newBase != eInternalContainer() || (eContainerFeatureID() != PivotPackage.ELEMENT_EXTENSION__BASE && newBase != null))
@@ -217,6 +221,7 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isApplied()
 	{
 		return (eFlags & IS_APPLIED_EFLAG) != 0;
@@ -227,6 +232,7 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsApplied(boolean newIsApplied)
 	{
 		boolean oldIsApplied = (eFlags & IS_APPLIED_EFLAG) != 0;
@@ -240,6 +246,7 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isRequired()
 	{
 		return (eFlags & IS_REQUIRED_EFLAG) != 0;
@@ -250,6 +257,7 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsRequired(boolean newIsRequired)
 	{
 		boolean oldIsRequired = (eFlags & IS_REQUIRED_EFLAG) != 0;

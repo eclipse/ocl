@@ -107,6 +107,7 @@ public class LetExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OCLExpression getIn() {
 		return in;
 	}
@@ -133,6 +134,7 @@ public class LetExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIn(OCLExpression newIn) {
 		if (newIn != in)
 		{
@@ -153,6 +155,7 @@ public class LetExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Variable getVariable() {
 		return variable;
 	}
@@ -179,6 +182,7 @@ public class LetExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVariable(Variable newVariable) {
 		if (newVariable != variable)
 		{
@@ -199,6 +203,7 @@ public class LetExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateTypeIsInType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**

@@ -323,7 +323,8 @@ public class PivotEvaluationEnvironment extends AbstractEvaluationEnvironment {
    /**
     * {@inheritDoc}
     */
-   public @NonNull DomainModelManager createModelManager(@Nullable Object object) {
+   @Override
+public @NonNull DomainModelManager createModelManager(@Nullable Object object) {
         if (object instanceof ObjectValue) {
             object = ((ObjectValue) object).getObject();
         }
@@ -391,6 +392,7 @@ public class PivotEvaluationEnvironment extends AbstractEvaluationEnvironment {
 //    	throw new UnsupportedOperationException(getClass().getName() + ".navigateProperty");
 //    }
 
+	@Override
 	public @NonNull DomainTypedElement createVariable(@NonNull String name, @NonNull DomainType type) {
 		Variable variable = PivotFactory.eINSTANCE.createVariable();
 		variable.setName(name);
@@ -398,7 +400,8 @@ public class PivotEvaluationEnvironment extends AbstractEvaluationEnvironment {
 		return variable;
 	}	
 
-    public Object navigateAssociationClass(Type associationClass,
+    @Override
+	public Object navigateAssociationClass(Type associationClass,
     		Property navigationSource, Object source)
     		throws IllegalArgumentException {
     	throw new UnsupportedOperationException(getClass().getName() + ".navigateAssociationClass");

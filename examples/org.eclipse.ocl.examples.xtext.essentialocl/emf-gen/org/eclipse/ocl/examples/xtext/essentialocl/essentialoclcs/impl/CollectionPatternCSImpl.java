@@ -134,6 +134,7 @@ public class CollectionPatternCSImpl extends TypedRefCSImpl implements Collectio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CollectionTypeCS getOwnedType()
 	{
 		return ownedType;
@@ -161,6 +162,7 @@ public class CollectionPatternCSImpl extends TypedRefCSImpl implements Collectio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedType(CollectionTypeCS newOwnedType)
 	{
 		if (newOwnedType != ownedType)
@@ -182,6 +184,7 @@ public class CollectionPatternCSImpl extends TypedRefCSImpl implements Collectio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<PatternExpCS> getOwnedParts()
 	{
 		if (ownedParts == null)
@@ -196,6 +199,7 @@ public class CollectionPatternCSImpl extends TypedRefCSImpl implements Collectio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getRestVariableName()
 	{
 		return restVariableName;
@@ -206,6 +210,7 @@ public class CollectionPatternCSImpl extends TypedRefCSImpl implements Collectio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRestVariableName(String newRestVariableName)
 	{
 		String oldRestVariableName = restVariableName;
@@ -219,6 +224,7 @@ public class CollectionPatternCSImpl extends TypedRefCSImpl implements Collectio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpCS getOwnedPatternGuard()
 	{
 		return ownedPatternGuard;
@@ -246,6 +252,7 @@ public class CollectionPatternCSImpl extends TypedRefCSImpl implements Collectio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedPatternGuard(ExpCS newOwnedPatternGuard)
 	{
 		if (newOwnedPatternGuard != ownedPatternGuard)

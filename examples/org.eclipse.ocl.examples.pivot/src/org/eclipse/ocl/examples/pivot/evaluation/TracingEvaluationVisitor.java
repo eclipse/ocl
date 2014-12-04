@@ -76,10 +76,12 @@ public class TracingEvaluationVisitor extends EvaluationVisitorDecorator {
 		return new TracingEvaluationVisitor(super.createNestedEvaluator());
 	}
 
+	@Override
 	public void dispose() {
 //		delegate.dispose();
 	}
 
+	@Override
 	public @Nullable Object evaluate(@NonNull DomainExpression body) {
 		return delegate.evaluate(body);
 	}
@@ -88,62 +90,77 @@ public class TracingEvaluationVisitor extends EvaluationVisitorDecorator {
 		return delegate.evaluate(expressionInOCL);
 	}
 
+	@Override
 	public @NonNull DomainEnvironment getCompleteEnvironment() {
 		return delegate.getCompleteEnvironment();
 	}
 	
+	@Override
 	public @NonNull EvaluationVisitor getEvaluator() {
 		return delegate.getEvaluator();
 	}
 
+	@Override
 	public @NonNull IdResolver getIdResolver() {
 		return delegate.getIdResolver();
 	}
 
+	@Override
 	public @Nullable DomainLogger getLogger() {
 		return delegate.getLogger();
 	}
 
+	@Override
 	public @NonNull MetaModelManager getMetaModelManager() {
 		return delegate.getMetaModelManager();
 	}
 
+	@Override
 	public @Nullable Monitor getMonitor() {
 		return delegate.getMonitor();
 	}
 
+	@Override
 	public @NonNull Pattern getRegexPattern(@NonNull String regex) {
 		return delegate.getRegexPattern(regex);
 	}
 
+	@Override
 	public @NonNull DomainStandardLibrary getStandardLibrary() {
 		return delegate.getStandardLibrary();
 	}
 
+	@Override
 	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value) {
 		return delegate.getStaticTypeOf(value);
 	}
 
+	@Override
 	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value, @NonNull Object... values) {
 		return delegate.getStaticTypeOf(value, values);
 	}
 
+	@Override
 	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
 		return delegate.getStaticTypeOf(value, values);
 	}
 
+	@Override
 	public boolean isCanceled() {
 		return delegate.isCanceled();
 	}
 
+	@Override
 	public void setCanceled(boolean isCanceled) {
 		delegate.setCanceled(isCanceled);
 	}
 
+	@Override
 	public void setLogger(@Nullable DomainLogger logger) {
 		delegate.setLogger(logger);
 	}
 
+	@Override
 	public void setMonitor(@Nullable Monitor monitor) {
 		delegate.setMonitor(monitor);
 	}

@@ -27,6 +27,7 @@ public class CollectNestedIteration extends AbstractIteration
 {
 	public static final @NonNull CollectNestedIteration INSTANCE = new CollectNestedIteration();
 
+	@Override
 	public @NonNull CollectionValue.Accumulator createAccumulatorValue(@NonNull DomainEvaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
 		return createCollectionAccumulatorValue((CollectionTypeId) accumulatorTypeId);
 	}

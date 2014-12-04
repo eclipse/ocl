@@ -123,6 +123,7 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<PathElementCS> getOwnedPathElements()
 	{
 		if (ownedPathElements == null)
@@ -272,6 +273,7 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ElementCS getContext()
 	{
 		return context;
@@ -282,6 +284,7 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContext(ElementCS newContext)
 	{
 		ElementCS oldContext = context;
@@ -297,6 +300,7 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetContext()
 	{
 		ElementCS oldContext = context;
@@ -312,6 +316,7 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetContext()
 	{
 		return contextESet;
@@ -322,6 +327,7 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ScopeFilter getScopeFilter()
 	{
 		return scopeFilter;
@@ -332,6 +338,7 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setScopeFilter(ScopeFilter newScopeFilter)
 	{
 		ScopeFilter oldScopeFilter = scopeFilter;
@@ -373,6 +380,7 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public Element getReferredElement()
 	{
 		if (ownedPathElements == null) {
@@ -403,6 +411,7 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public Element getPivot() {
 		return getReferredElement();
 	}
@@ -412,5 +421,6 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public void resetPivot() {}
 } //QualifiedElementRefCSImpl

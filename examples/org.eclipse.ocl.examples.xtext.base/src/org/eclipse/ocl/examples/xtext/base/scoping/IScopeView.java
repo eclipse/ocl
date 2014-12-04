@@ -21,7 +21,9 @@ import org.eclipse.xtext.scoping.IScope;
  */
 public interface IScopeView extends ScopeView, IScope
 {	
+	@Override
 	@NonNull IScopeView getParent();
 
+	@Override
 	@NonNull IScopeView getRoot();
 }

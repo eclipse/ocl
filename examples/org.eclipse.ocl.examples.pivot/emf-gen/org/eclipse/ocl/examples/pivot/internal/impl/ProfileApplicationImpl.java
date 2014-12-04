@@ -102,6 +102,7 @@ public class ProfileApplicationImpl extends ElementImpl implements ProfileApplic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Profile getAppliedProfile()
 	{
 		if (appliedProfile != null && ((EObject)appliedProfile).eIsProxy())
@@ -149,6 +150,7 @@ public class ProfileApplicationImpl extends ElementImpl implements ProfileApplic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAppliedProfile(Profile newAppliedProfile)
 	{
 		if (newAppliedProfile != appliedProfile)
@@ -170,6 +172,7 @@ public class ProfileApplicationImpl extends ElementImpl implements ProfileApplic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public org.eclipse.ocl.examples.pivot.Package getApplyingPackage()
 	{
 		if (eContainerFeatureID() != PivotPackage.PROFILE_APPLICATION__APPLYING_PACKAGE) return null;
@@ -192,6 +195,7 @@ public class ProfileApplicationImpl extends ElementImpl implements ProfileApplic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("cast")
 	public void setApplyingPackage(org.eclipse.ocl.examples.pivot.Package newApplyingPackage)
 	{
@@ -216,6 +220,7 @@ public class ProfileApplicationImpl extends ElementImpl implements ProfileApplic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isStrict()
 	{
 		return (eFlags & IS_STRICT_EFLAG) != 0;
@@ -226,6 +231,7 @@ public class ProfileApplicationImpl extends ElementImpl implements ProfileApplic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsStrict(boolean newIsStrict)
 	{
 		boolean oldIsStrict = (eFlags & IS_STRICT_EFLAG) != 0;

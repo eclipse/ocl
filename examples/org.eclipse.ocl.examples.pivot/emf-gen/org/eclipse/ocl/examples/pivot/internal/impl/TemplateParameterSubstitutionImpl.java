@@ -107,6 +107,7 @@ public class TemplateParameterSubstitutionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getActual() {
 		if (actual != null && ((EObject)actual).eIsProxy())
 		{
@@ -148,6 +149,7 @@ public class TemplateParameterSubstitutionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TemplateParameter getFormal() {
 		if (formal != null && ((EObject)formal).eIsProxy())
 		{
@@ -176,6 +178,7 @@ public class TemplateParameterSubstitutionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFormal(TemplateParameter newFormal) {
 		TemplateParameter oldFormal = formal;
 		formal = newFormal;
@@ -188,6 +191,7 @@ public class TemplateParameterSubstitutionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public WildcardType getOwnedWildcard()
 	{
 		return ownedWildcard;
@@ -215,6 +219,7 @@ public class TemplateParameterSubstitutionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedWildcard(WildcardType newOwnedWildcard)
 	{
 		if (newOwnedWildcard != ownedWildcard)
@@ -236,6 +241,7 @@ public class TemplateParameterSubstitutionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TemplateBinding getOwningTemplateBinding() {
 		if (eContainerFeatureID() != PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNING_TEMPLATE_BINDING) return null;
 		return (TemplateBinding)eInternalContainer();
@@ -257,6 +263,7 @@ public class TemplateParameterSubstitutionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningTemplateBinding(TemplateBinding newOwningTemplateBinding) {
 		if (newOwningTemplateBinding != eInternalContainer() || (eContainerFeatureID() != PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNING_TEMPLATE_BINDING && newOwningTemplateBinding != null))
 		{
@@ -485,6 +492,7 @@ public class TemplateParameterSubstitutionImpl
 		return visitor.visitTemplateParameterSubstitution(this);
 	}
 
+	@Override
 	public void setActual(Type newActual)
 	{
 		setActualGen(newActual);

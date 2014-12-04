@@ -68,6 +68,7 @@ public abstract class OperationCallExpCSImpl extends CallExpCSImpl implements Op
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Operation getReferredOperation()
 	{
 		return referredOperation;
@@ -78,6 +79,7 @@ public abstract class OperationCallExpCSImpl extends CallExpCSImpl implements Op
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredOperation(Operation newReferredOperation)
 	{
 		Operation oldReferredOperation = referredOperation;

@@ -57,6 +57,7 @@ public class OCLinEcoreDocument extends BaseDocument
 	public void saveAsEcore(final @NonNull Writer writer, final @NonNull URI ecoreURI, final @Nullable String exportDelegateURI) throws IOException, CoreException {
 		readOnly(new IUnitOfWork<Object, XtextResource>()
 			{
+				@Override
 				public Object exec(@Nullable XtextResource resource) throws Exception {
 					if (resource != null) {
 						XMLResource asResource = getPivotResource();
@@ -87,6 +88,7 @@ public class OCLinEcoreDocument extends BaseDocument
 	public void saveAsUML(final @NonNull Writer writer, final @NonNull URI umlURI) throws IOException, CoreException {
 		readOnly(new IUnitOfWork<Object, XtextResource>()
 			{
+				@Override
 				public Object exec(@Nullable XtextResource resource) throws Exception {
 					if (resource != null) {
 						XMLResource asResource = getPivotResource();
@@ -114,6 +116,7 @@ public class OCLinEcoreDocument extends BaseDocument
 	public void saveInEcore(final @NonNull Writer writer, final @NonNull URI ecoreURI, final @Nullable String exportDelegateURI) throws IOException, CoreException {
 		readOnly(new IUnitOfWork<Object, XtextResource>()
 			{
+				@Override
 				public Object exec(@Nullable XtextResource resource) throws Exception {
 					if (resource != null) {
 						XMLResource asResource = getPivotResource();

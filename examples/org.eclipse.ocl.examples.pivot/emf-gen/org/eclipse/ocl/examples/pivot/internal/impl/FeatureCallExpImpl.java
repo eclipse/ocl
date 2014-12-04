@@ -86,6 +86,7 @@ public abstract class FeatureCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isPre() {
 		return (eFlags & IS_PRE_EFLAG) != 0;
 	}
@@ -95,6 +96,7 @@ public abstract class FeatureCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsPre(boolean newIsPre) {
 		boolean oldIsPre = (eFlags & IS_PRE_EFLAG) != 0;
 		if (newIsPre) eFlags |= IS_PRE_EFLAG; else eFlags &= ~IS_PRE_EFLAG;

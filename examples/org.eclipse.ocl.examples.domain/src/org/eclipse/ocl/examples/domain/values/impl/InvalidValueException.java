@@ -93,10 +93,12 @@ public class InvalidValueException extends UndefinedValueImpl implements Invalid
 		throw new InvalidValueException(this, "asDouble");
 	}
 	
+	@Override
 	public @NonNull List<Object> asEcoreObject(@NonNull IdResolver idResolver) {
 		throw new InvalidValueException(this, "asEcoreObject");
 	}
 
+	@Override
 	public DomainElement asElement() {
 		throw new InvalidValueException(this, "asElement");
 	}
@@ -165,6 +167,7 @@ public class InvalidValueException extends UndefinedValueImpl implements Invalid
 		return TypeId.OCL_INVALID;
 	}
 
+	@Override
 	public int intValue() {
     	toInvalidValue();		// throws rather than returns
     	return 0;
@@ -175,14 +178,17 @@ public class InvalidValueException extends UndefinedValueImpl implements Invalid
 		return 0x22222222;
 	}
 
+	@Override
 	public boolean isInvalid() {
 		return true;
 	}
 
+	@Override
 	public boolean oclEquals(@NonNull OCLValue thatValue) {
 		return equals(thatValue);
 	}
 
+	@Override
 	public int oclHashCode() {
 		return hashCode();
 	}

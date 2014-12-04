@@ -27,6 +27,7 @@ public class OCLSettingDelegateFactory extends AbstractOCLDelegateFactory
 		super(delegateURI);
 	}
 
+	@Override
 	public @Nullable EStructuralFeature.Internal.SettingDelegate createSettingDelegate(EStructuralFeature structuralFeature) {
 		if (structuralFeature == null) {
 			return null;

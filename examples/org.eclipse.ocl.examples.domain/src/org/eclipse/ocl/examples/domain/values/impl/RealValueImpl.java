@@ -78,11 +78,13 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 		assert value != null;
 	}
 
+	@Override
 	public @NonNull RealValue abs() {
 		@SuppressWarnings("null") @NonNull BigDecimal result = value.abs();
 		return ValuesUtil.realValueOf(result);
 	}
 
+	@Override
 	public @NonNull RealValue addInteger(@NonNull IntegerValue rightValue) {
 		try {
 			@SuppressWarnings("null") @NonNull BigDecimal result = value.add(rightValue.bigDecimalValue());
@@ -92,6 +94,7 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 		}
 	}
 
+	@Override
 	public @NonNull RealValue addReal(@NonNull RealValue rightValue) {
 		try {
 			@SuppressWarnings("null") @NonNull BigDecimal result = value.add(rightValue.bigDecimalValue());
@@ -107,14 +110,17 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 		return result;
 	}
 
+	@Override
 	public @NonNull Object asEcoreObject(@NonNull IdResolver idResolver) {
 		return value;
 	}
 	
+	@Override
 	public @NonNull Number asNumber() {
 		return value;
 	}
 
+	@Override
 	public @NonNull Object asObject() {
 		return value;
 	}
@@ -124,10 +130,12 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 		return this;
 	}
 
+	@Override
 	public @NonNull BigDecimal bigDecimalValue() {
 		return value;
 	}
 
+	@Override
 	public @NonNull BigInteger bigIntegerValue() {
 		Object intValue = getIntegerValue();
 		if (intValue instanceof Exception) {
@@ -138,42 +146,52 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 		}
 	}
 
+	@Override
 	public @NonNull RealValue commutatedAdd(@NonNull RealValue left) {
 		return left.addReal(this);
 	}
 
+	@Override
 	public @NonNull RealValue commutatedDivide(@NonNull RealValue left) {
 		return left.divideReal(this);
 	}
 
+	@Override
 	public @NonNull RealValue commutatedMultiply(@NonNull RealValue left) {
 		return left.multiplyReal(this);
 	}
 
+	@Override
 	public @NonNull RealValue commutatedSubtract(@NonNull RealValue left) {
 		return left.subtractReal(this);
 	}
 
+	@Override
 	public int compareTo(/*@NonNull*/ RealValue left) {
 		return -left.compareToReal(this);
 	}
 
+	@Override
 	public int compareToInteger(@NonNull IntegerValue o) {
 		return value.compareTo(o.bigDecimalValue());
 	}
 
+	@Override
 	public int compareToReal(@NonNull RealValue o) {
 		return value.compareTo(o.bigDecimalValue());
 	}
 
+	@Override
 	public int compareToUnlimited(@NonNull UnlimitedValue right) {
 		return -1;
 	}
 
+	@Override
 	public @NonNull RealValue divideInteger(@NonNull IntegerValue right) {
 		return divideBigDecimal(value, right.bigDecimalValue());
 	}
 
+	@Override
 	public @NonNull RealValue divideReal(@NonNull RealValue right) {
 		return divideBigDecimal(value, right.bigDecimalValue());
 	}
@@ -204,6 +222,7 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 		return value.floatValue();
 	}
 
+	@Override
 	public @NonNull IntegerValue floor() {
 		@SuppressWarnings("null") @NonNull BigInteger result = value.setScale(0, RoundingMode.FLOOR).toBigInteger();
 		return ValuesUtil.integerValueOf(result);
@@ -226,6 +245,7 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 		return standardLibrary.getRealType();
 	}
 
+	@Override
 	public @NonNull TypeId getTypeId() {
 		return TypeId.REAL;
 	}
@@ -246,10 +266,12 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 		return value.intValue();
 	}
 	
+	@Override
 	public @Nullable IntegerValue isIntegerValue() {
 		return null;
 	}
 
+	@Override
 	public boolean isUnlimited() {
 		return false;
 	}
@@ -259,10 +281,12 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 		return value.longValue();
 	}
 
+	@Override
 	public @NonNull RealValue max(@NonNull RealValue rightValue) {
 		return rightValue.maxReal(this);
 	}
 
+	@Override
 	public @NonNull RealValue maxInteger(@NonNull IntegerValue rightValue) {
 		try {
 			@SuppressWarnings("null") @NonNull BigDecimal result = value.max(rightValue.bigDecimalValue());
@@ -272,6 +296,7 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 		}
 	}
 
+	@Override
 	public @NonNull RealValue maxReal(@NonNull RealValue rightValue) {
 		try {
 			@SuppressWarnings("null") @NonNull BigDecimal result = value.max(rightValue.bigDecimalValue());
@@ -281,14 +306,17 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 		}
 	}
 
+	@Override
 	public @NonNull RealValue maxUnlimited(@NonNull UnlimitedValue rightValue) {
 		return rightValue;
 	}
 
+	@Override
 	public @NonNull RealValue min(@NonNull RealValue rightValue) {
 		return rightValue.minReal(this);
 	}
 
+	@Override
 	public @NonNull RealValue minInteger(@NonNull IntegerValue rightValue) {
 		try {
 			@SuppressWarnings("null") @NonNull BigDecimal result = value.min(rightValue.bigDecimalValue());
@@ -298,6 +326,7 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 		}
 	}
 
+	@Override
 	public @NonNull RealValue minReal(@NonNull RealValue rightValue) {
 		try {
 			@SuppressWarnings("null") @NonNull BigDecimal result = value.min(rightValue.bigDecimalValue());
@@ -307,10 +336,12 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 		}
 	}
 
+	@Override
 	public @NonNull RealValue minUnlimited(@NonNull UnlimitedValue rightValue) {
 		return this;
 	}
 
+	@Override
 	public @NonNull RealValue multiplyInteger(@NonNull IntegerValue rightValue) {
 		try {
 			@SuppressWarnings("null") @NonNull BigDecimal result = value.multiply(rightValue.bigDecimalValue());
@@ -320,6 +351,7 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 		}
 	}
 
+	@Override
 	public @NonNull RealValue multiplyReal(@NonNull RealValue rightValue) {
 		try {
 			@SuppressWarnings("null") @NonNull BigDecimal result = value.multiply(rightValue.bigDecimalValue());
@@ -329,11 +361,13 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 		}
 	}
 
+	@Override
 	public @NonNull RealValue negate() {
 		@SuppressWarnings("null") @NonNull BigDecimal result = value.negate();
 		return ValuesUtil.realValueOf(result);
 	}
 	
+	@Override
 	public @NonNull IntegerValue round() {
 		BigDecimal rounded;
 		if (value.signum() >= 0) {
@@ -346,10 +380,12 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 		return ValuesUtil.integerValueOf(result);
 	}
 
+	@Override
 	public int signum() {
 		return value.signum();
 	}
 
+	@Override
 	public @NonNull RealValue subtractInteger(@NonNull IntegerValue rightValue) {
 		try {
 			@SuppressWarnings("null") @NonNull BigDecimal result = value.subtract(rightValue.bigDecimalValue());
@@ -359,6 +395,7 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 		}
 	}
 
+	@Override
 	public @NonNull RealValue subtractReal(@NonNull RealValue rightValue) {
 		try {
 			@SuppressWarnings("null") @NonNull BigDecimal result = value.subtract(rightValue.bigDecimalValue());

@@ -197,6 +197,7 @@ public class FigureElementImpl extends MarkupElementImpl implements FigureElemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getId() {
 		return internalGetId();
 	}
@@ -206,6 +207,7 @@ public class FigureElementImpl extends MarkupElementImpl implements FigureElemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSrc() {
 		return src;
 	}
@@ -215,6 +217,7 @@ public class FigureElementImpl extends MarkupElementImpl implements FigureElemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSrc(String newSrc) {
 		String oldSrc = src;
 		src = newSrc;
@@ -227,6 +230,7 @@ public class FigureElementImpl extends MarkupElementImpl implements FigureElemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getAlt() {
 		return alt;
 	}
@@ -236,6 +240,7 @@ public class FigureElementImpl extends MarkupElementImpl implements FigureElemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAlt(String newAlt) {
 		String oldAlt = alt;
 		alt = newAlt;
@@ -248,6 +253,7 @@ public class FigureElementImpl extends MarkupElementImpl implements FigureElemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDef() {
 		return def;
 	}
@@ -257,6 +263,7 @@ public class FigureElementImpl extends MarkupElementImpl implements FigureElemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDef(String newDef) {
 		String oldDef = def;
 		def = newDef;
@@ -269,6 +276,7 @@ public class FigureElementImpl extends MarkupElementImpl implements FigureElemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getRequiredWidth() {
 		return requiredWidth;
 	}
@@ -278,6 +286,7 @@ public class FigureElementImpl extends MarkupElementImpl implements FigureElemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRequiredWidth(String newRequiredWidth) {
 		String oldRequiredWidth = requiredWidth;
 		requiredWidth = newRequiredWidth;
@@ -290,6 +299,7 @@ public class FigureElementImpl extends MarkupElementImpl implements FigureElemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getRequiredHeight() {
 		return requiredHeight;
 	}
@@ -299,6 +309,7 @@ public class FigureElementImpl extends MarkupElementImpl implements FigureElemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRequiredHeight(String newRequiredHeight) {
 		String oldRequiredHeight = requiredHeight;
 		requiredHeight = newRequiredHeight;
@@ -311,6 +322,7 @@ public class FigureElementImpl extends MarkupElementImpl implements FigureElemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getActualWidth() {
 		return internalGetActualWidth();
 	}
@@ -320,6 +332,7 @@ public class FigureElementImpl extends MarkupElementImpl implements FigureElemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getActualHeight() {
 		return internalGetActualHeight();
 	}

@@ -65,6 +65,7 @@ public class EvaluatorSingleIterationManager extends EvaluatorIterationManager
 		this.iterator = new ValueIterator(evaluator, collectionValue, referredIterator);
 	}
 
+	@Override
 	public boolean advanceIterators() {
 		iterator.next();
 		return hasCurrent();
@@ -88,6 +89,7 @@ public class EvaluatorSingleIterationManager extends EvaluatorIterationManager
 		return this;
 	}
 
+	@Override
 	public boolean hasCurrent() {
 		return iterator.hasCurrent();
 	}

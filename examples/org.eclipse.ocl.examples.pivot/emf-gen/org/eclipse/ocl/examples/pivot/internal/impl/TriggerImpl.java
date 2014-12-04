@@ -72,6 +72,7 @@ public class TriggerImpl extends NamedElementImpl implements Trigger
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public State getState()
 	{
 		if (eContainerFeatureID() != PivotPackage.TRIGGER__STATE) return null;
@@ -94,6 +95,7 @@ public class TriggerImpl extends NamedElementImpl implements Trigger
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("cast")
 	public void setState(State newState)
 	{
@@ -118,6 +120,7 @@ public class TriggerImpl extends NamedElementImpl implements Trigger
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Transition getTransition()
 	{
 		if (eContainerFeatureID() != PivotPackage.TRIGGER__TRANSITION) return null;
@@ -140,6 +143,7 @@ public class TriggerImpl extends NamedElementImpl implements Trigger
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("cast")
 	public void setTransition(Transition newTransition)
 	{

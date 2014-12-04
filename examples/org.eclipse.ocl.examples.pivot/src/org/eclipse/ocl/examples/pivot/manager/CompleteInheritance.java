@@ -45,6 +45,7 @@ public class CompleteInheritance extends ReflectiveInheritance
 
 	public static final class BestOperation implements Function<List<DomainOperation>, DomainOperation> {
 
+		@Override
 		public DomainOperation apply(List<DomainOperation> operations) {
 			return operations.get(0);
 		}
@@ -90,10 +91,12 @@ public class CompleteInheritance extends ReflectiveInheritance
 		return DomainUtil.nonNullEMF(completeClass.getPivotClass().getOwnedProperties());			// FIXME Use local cache
 	}
 
+	@Override
 	public @Nullable DomainOperation getMemberOperation(@NonNull OperationId operationId) {
 		return completeClass.getOperation(operationId);
 	}
 
+	@Override
 	public @Nullable DomainProperty getMemberProperty(@NonNull String propertyName) {
 		return completeClass.getProperty(propertyName);
 	}
@@ -114,6 +117,7 @@ public class CompleteInheritance extends ReflectiveInheritance
 		return completeClass.getProperSuperClasses();
 	}
 	
+	@Override
 	public @NonNull DomainClass getType() {
 		return getCompleteClass().getPivotClass();
 	}

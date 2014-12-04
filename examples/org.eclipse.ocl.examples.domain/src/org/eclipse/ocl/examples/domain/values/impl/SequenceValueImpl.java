@@ -49,7 +49,8 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
 		super(typeId, values);
 	}
 
-    public @NonNull OrderedCollectionValue append(@Nullable Object object) {
+    @Override
+	public @NonNull OrderedCollectionValue append(@Nullable Object object) {
 		if (object instanceof InvalidValueException) {
 			throw new InvalidValueException(EvaluatorMessages.InvalidSource, "append");
 		}
@@ -58,7 +59,8 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
         return new SparseSequenceValueImpl(getTypeId(), result);
     }
 
-    public @NonNull OrderedCollectionValue appendAll(@NonNull OrderedCollectionValue objects) {
+    @Override
+	public @NonNull OrderedCollectionValue appendAll(@NonNull OrderedCollectionValue objects) {
     	List<Object> result = new ArrayList<Object>(elements);
         result.addAll(objects.getElements());
         return new SparseSequenceValueImpl(getTypeId(), result);
@@ -79,7 +81,8 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
         return this;
     }
 
-    public @Nullable Object at(int index) {
+    @Override
+	public @Nullable Object at(int index) {
         index = index - 1;        
         if (index < 0 || elements.size() <= index) {
         	throw new InvalidValueException(EvaluatorMessages.IndexOutOfRange, index + 1, size());
@@ -104,6 +107,7 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
 		return !theseElements.hasNext() && !thoseElements.hasNext();
 	}
 
+	@Override
 	public @NonNull SequenceValue excluding(@Nullable Object value) {
 		List<Object> result = new ArrayList<Object>();
 		if (value == null) {
@@ -128,6 +132,7 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
 		}
 	}
 
+	@Override
 	public @NonNull SequenceValue excludingAll(@NonNull CollectionValue values) {
 		List<Object> result = new ArrayList<Object>();
 		for (Object element : elements) {
@@ -160,14 +165,16 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
 		}
 	}
 
-    public @Nullable Object first() {
+    @Override
+	public @Nullable Object first() {
         if (elements.size() <= 0) {
         	throw new InvalidValueException(EvaluatorMessages.EmptyCollection, TypeId.SEQUENCE_NAME, "first");
         }
         return getElements().get(0);
     }
 
-    public @NonNull SequenceValue flatten() {
+    @Override
+	public @NonNull SequenceValue flatten() {
     	List<Object> flattened = new ArrayList<Object>();
     	if (flatten(flattened)) {
     		return new SparseSequenceValueImpl(getTypeId(), flattened);
@@ -187,10 +194,12 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
 		return (List<? extends Object>) elements;
 	}
 	
+	@Override
 	public @NonNull String getKind() {
 	    return TypeId.SEQUENCE_NAME;
 	}
 	   
+	@Override
 	public @NonNull SequenceValue including(@Nullable Object value) {
 		if (value instanceof InvalidValueException) {
 			throw new InvalidValueException(EvaluatorMessages.InvalidSource, "including");
@@ -200,6 +209,7 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
 		return new SparseSequenceValueImpl(getTypeId(), result);
 	}
 
+	@Override
 	public @NonNull SequenceValue includingAll(@NonNull CollectionValue values) {
 		List<Object> result = new ArrayList<Object>(elements);
 		for (Object value : values) {
@@ -208,7 +218,8 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
 		return new SparseSequenceValueImpl(getTypeId(), result);
 	}
 
-    public @NonNull IntegerValue indexOf(@Nullable Object object) {
+    @Override
+	public @NonNull IntegerValue indexOf(@Nullable Object object) {
         int index = getElements().indexOf(object);
         if (index < 0) {
         	throw new InvalidValueException(EvaluatorMessages.MissingValue, "indexOf");
@@ -216,7 +227,8 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
     	return ValuesUtil.integerValueOf(index+1);
     }
 
-    public @NonNull SequenceValue insertAt(int index, @Nullable Object object) {
+    @Override
+	public @NonNull SequenceValue insertAt(int index, @Nullable Object object) {
 		if (object instanceof InvalidValueException) {
 			throw new InvalidValueException(EvaluatorMessages.InvalidSource, "insertAt");
 		}
@@ -229,15 +241,18 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
 		return new SparseSequenceValueImpl(getTypeId(), result);
     }
 
+	@Override
 	public boolean isOrdered() {
 		return true;
 	}
 
+	@Override
 	public boolean isUnique() {
 		return false;
 	}
    
-    public @Nullable Object last() {
+    @Override
+	public @Nullable Object last() {
         int size = elements.size();
 		if (size <= 0) {
 			throw new InvalidValueException(EvaluatorMessages.EmptyCollection, TypeId.SEQUENCE_NAME, "last");
@@ -245,7 +260,8 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
         return getElements().get(size-1);
     }
 
-    public @NonNull SequenceValue prepend(@Nullable Object object) {
+    @Override
+	public @NonNull SequenceValue prepend(@Nullable Object object) {
 		if (object instanceof InvalidValueException) {
 			throw new InvalidValueException(EvaluatorMessages.InvalidSource, "prepend");
 		}
@@ -255,19 +271,22 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
         return new SparseSequenceValueImpl(getTypeId(), result);
     }
 
-    public @NonNull SequenceValue prependAll(@NonNull OrderedCollectionValue objects) {
+    @Override
+	public @NonNull SequenceValue prependAll(@NonNull OrderedCollectionValue objects) {
     	List<Object> result = new ArrayList<Object>(objects.getElements());
         result.addAll(elements);
         return new SparseSequenceValueImpl(getTypeId(), result);
     }
 
+	@Override
 	public @NonNull SequenceValue reverse() {
 		List<Object> elements = new ArrayList<Object>(this.elements);
 		Collections.reverse(elements);
         return new SparseSequenceValueImpl(getTypeId(), elements);
     }
 	   
-    public @NonNull SequenceValue sort(@NonNull Comparator<Object> comparator) {
+    @Override
+	public @NonNull SequenceValue sort(@NonNull Comparator<Object> comparator) {
     	List<Object> values = new ArrayList<Object>(elements);
     	Collections.sort(values, comparator);
     	return new SparseSequenceValueImpl(getTypeId(), values);
@@ -285,7 +304,8 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
      * @throws IndexOutOfBoundsException if an index is out of bounds
      * @throws IllegalArgumentException if the lower bound is greater than the upper
      */
-    public @NonNull SequenceValue subSequence(int lower, int upper) {
+    @Override
+	public @NonNull SequenceValue subSequence(int lower, int upper) {
         lower = lower - 1;
         upper = upper - 1;
         
@@ -312,6 +332,7 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
         return new SparseSequenceValueImpl(getTypeId(), result);
     }
 
+	@Override
 	public @NonNull SequenceValue toSequenceValue() {
 		return this;
 	}

@@ -99,6 +99,7 @@ public class EnumerationLiteralImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Enumeration getEnumeration() {
 		if (eContainerFeatureID() != PivotPackage.ENUMERATION_LITERAL__ENUMERATION) return null;
 		return (Enumeration)eInternalContainer();
@@ -120,6 +121,7 @@ public class EnumerationLiteralImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEnumeration(Enumeration newEnumeration) {
 		if (newEnumeration != eInternalContainer() || (eContainerFeatureID() != PivotPackage.ENUMERATION_LITERAL__ENUMERATION && newEnumeration != null))
 		{
@@ -142,6 +144,7 @@ public class EnumerationLiteralImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Number getValue()
 	{
 		return value;
@@ -152,6 +155,7 @@ public class EnumerationLiteralImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(Number newValue)
 	{
 		Number oldValue = value;
@@ -424,6 +428,7 @@ public class EnumerationLiteralImpl
 		return visitor.visitEnumerationLiteral(this);
 	}
 
+	@Override
 	public @NonNull Enumerator getEnumerator() {
 		EObject eTarget = getETarget();
 		if (eTarget instanceof EEnumLiteral) {
@@ -436,6 +441,7 @@ public class EnumerationLiteralImpl
 	
 	private /*@LazyNonNull*/ EnumerationLiteralId enumerationLiteralId = null;
 
+	@Override
 	public @NonNull EnumerationLiteralId getEnumerationLiteralId() {
 		EnumerationLiteralId enumerationLiteralId2 = enumerationLiteralId;
 		if (enumerationLiteralId2 == null) {

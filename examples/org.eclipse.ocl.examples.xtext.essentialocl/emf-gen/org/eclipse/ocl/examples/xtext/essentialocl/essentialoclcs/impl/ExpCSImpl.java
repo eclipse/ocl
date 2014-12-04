@@ -94,6 +94,7 @@ public class ExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isHasError()
 	{
 		return hasError;
@@ -104,6 +105,7 @@ public class ExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setHasError(boolean newHasError)
 	{
 		boolean oldHasError = hasError;
@@ -218,6 +220,7 @@ public class ExpCSImpl
 	protected @Nullable ExpCS localLeft = null;
 	protected boolean hasLocalLeft = false;
 
+	@Override
 	public @Nullable ExpCS getLocalLeft() {
 		if ((localLeft == null) && !hasLocalLeft) {
 			hasLocalLeft = true;
@@ -226,6 +229,7 @@ public class ExpCSImpl
 		return localLeft;
 	}
 
+	@Override
 	public @Nullable OperatorExpCS getLocalLeftContainer() {
 		EObject eContainer = eContainer();
 		if (eContainer instanceof OperatorExpCS) {
@@ -240,6 +244,7 @@ public class ExpCSImpl
 		return null;
 	}
 
+	@Override
 	public @NonNull ExpCS getLocalLeftmostDescendant() {
 		return this;
 	}
@@ -247,6 +252,7 @@ public class ExpCSImpl
 	private @Nullable OperatorExpCS localParent = null;
 	private boolean hasLocalParent = false;
 
+	@Override
 	public OperatorExpCS getLocalParent() {
 		if ((localParent == null) && !hasLocalParent) {
 			hasLocalParent = true;
@@ -334,6 +340,7 @@ public class ExpCSImpl
 	private @Nullable ExpCS localRight = null;
 	private boolean hasLocalRight = false;
 
+	@Override
 	public @Nullable ExpCS getLocalRight() {
 		if ((localRight == null) && !hasLocalRight) {
 			hasLocalRight = true;
@@ -342,6 +349,7 @@ public class ExpCSImpl
 		return localRight;
 	}
 
+	@Override
 	public @Nullable OperatorExpCS getLocalRightContainer() {
 		EObject eContainer = eContainer();
 		if (eContainer instanceof InfixExpCS) {
@@ -360,6 +368,7 @@ public class ExpCSImpl
 		return null;
 	}
 
+	@Override
 	public @NonNull ExpCS getLocalRightmostDescendant() {
 		return this;
 	}
@@ -370,14 +379,17 @@ public class ExpCSImpl
 		return parent != null ? parent : super.getParent();
 	}
 
+	@Override
 	public Precedence getPrecedence() {
 		return PrecedenceManager.LEAF_PRECEDENCE;
 	}
 
+	@Override
 	public boolean isLocalLeftAncestorOf(@NonNull ExpCS csExp) {	// csExp should be to the right of this for associativity resolution
 		return false;
 	}
 
+	@Override
 	public boolean isLocalRightAncestorOf(@NonNull ExpCS csExp) {	// csExp should be to the left of this for associativity resolution
 		return false;
 	}
@@ -394,6 +406,7 @@ public class ExpCSImpl
 		hasLocalRight = false;
 	}
 
+	@Override
 	public void setPrecedence(Precedence newPrecedence) {
 		throw new UnsupportedOperationException(); // Only OperatorExpCS is settable
 	}

@@ -31,10 +31,12 @@ public class TuplePartIdImpl implements TuplePartId, WeakHashMapOfListOfWeakRefe
 		this.typeId = typeId;
 	}
 
+	@Override
 	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitTuplePartId(this);
 	}
 
+	@Override
 	public int compareTo(TuplePartId o) {
 		String n1 = name;
 		String n2 = o.getName();
@@ -49,18 +51,22 @@ public class TuplePartIdImpl implements TuplePartId, WeakHashMapOfListOfWeakRefe
 		return this == obj;
 	}
 
+	@Override
 	public @NonNull String getDisplayName() {
 		return String.valueOf(name) + " : " + String.valueOf(typeId);
 	}
 
+	@Override
 	public int getIndex() {
 		return index;
 	}
 
+	@Override
 	public @NonNull String getName() {
 		return name;
 	}
 
+	@Override
 	public @NonNull TypeId getTypeId() {
 		return typeId;
 	}
@@ -70,6 +76,7 @@ public class TuplePartIdImpl implements TuplePartId, WeakHashMapOfListOfWeakRefe
 		return hashCode;
 	}
 
+	@Override
 	public boolean matches(@NonNull Integer thatIndex, @NonNull String thatName, @NonNull TypeId thatTypeid) {
 		if (this.typeId != thatTypeid) {
 			return false;

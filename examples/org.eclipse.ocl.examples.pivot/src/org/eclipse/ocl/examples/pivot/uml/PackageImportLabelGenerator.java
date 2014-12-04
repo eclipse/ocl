@@ -24,6 +24,7 @@ public final class PackageImportLabelGenerator extends AbstractLabelGenerator<Pa
 		super(PackageImport.class);
 	}
 
+	@Override
 	public void buildLabelFor(@NonNull Builder labelBuilder, @NonNull PackageImport object) {
 		String name = object.getImportedPackage().getName();
 		if (name != null)

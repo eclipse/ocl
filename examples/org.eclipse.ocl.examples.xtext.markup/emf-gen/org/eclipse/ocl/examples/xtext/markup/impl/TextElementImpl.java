@@ -66,6 +66,7 @@ public class TextElementImpl extends MarkupElementImpl implements TextElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<String> getText() {
 		if (text == null) {
 			text = new EDataTypeEList<String>(String.class, this, MarkupPackage.TEXT_ELEMENT__TEXT);

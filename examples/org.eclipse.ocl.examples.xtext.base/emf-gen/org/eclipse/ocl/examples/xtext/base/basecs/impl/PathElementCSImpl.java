@@ -92,6 +92,7 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PathNameCS getOwningPathName()
 	{
 		if (eContainerFeatureID() != BaseCSPackage.PATH_ELEMENT_CS__OWNING_PATH_NAME) return null;
@@ -114,6 +115,7 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningPathName(PathNameCS newOwningPathName)
 	{
 		if (newOwningPathName != eInternalContainer() || (eContainerFeatureID() != BaseCSPackage.PATH_ELEMENT_CS__OWNING_PATH_NAME && newOwningPathName != null))
@@ -137,6 +139,7 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredElement(Element newReferredElement)
 	{
 		Element oldReferredElement = referredElement;
@@ -150,6 +153,7 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClassifier getElementType()
 	{
 		if (elementType != null && elementType.eIsProxy())
@@ -180,6 +184,7 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setElementType(EClassifier newElementType)
 	{
 		EClassifier oldElementType = elementType;
@@ -359,6 +364,7 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public Element getReferredElement()
 	{
 		Element element = getReferredElementGen();
@@ -386,6 +392,7 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Element basicGetReferredElement()
 	{
 		return referredElement;
@@ -396,6 +403,7 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public Element getPivot() {
 		return getReferredElement();
 	}
@@ -405,6 +413,7 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public boolean isType() {
 		return elementType == PivotPackage.Literals.TYPE;
 	}
@@ -414,5 +423,6 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public void resetPivot() {}
 } //SimpleNamedElementRefCSImpl

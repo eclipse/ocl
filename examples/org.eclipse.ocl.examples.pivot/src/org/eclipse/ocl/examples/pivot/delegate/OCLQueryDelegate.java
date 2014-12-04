@@ -95,6 +95,7 @@ public class OCLQueryDelegate implements QueryDelegate
 	 *             in case of failure to prepare or execute the query, usually
 	 *             because of an exception
 	 */
+	@Override
 	public Object execute(@Nullable Object target, Map<String, ?> arguments) throws InvocationTargetException {
 		@SuppressWarnings("null")
 		@NonNull Map<String, ?> nonNullArguments = (arguments != null ? arguments : (Map<String, ?>)Collections.<String, Object>emptyMap());
@@ -184,6 +185,7 @@ public class OCLQueryDelegate implements QueryDelegate
 	 *  
 	 * @throws InvocationTargetException wrapping any parser, io exceptions
 	 */
+	@Override
 	public void prepare() throws InvocationTargetException {
 		try {
 			specification = parserContext.parse(parserContext.getClassContext(), expression);

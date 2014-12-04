@@ -80,6 +80,7 @@ public class AssociationClassCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public AssociationClass getReferredAssociationClass() {
 		if (referredAssociationClass != null && ((EObject)referredAssociationClass).eIsProxy())
 		{
@@ -108,6 +109,7 @@ public class AssociationClassCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredAssociationClass(
 			AssociationClass newReferredAssociationClass) {
 		AssociationClass oldReferredAssociationClass = referredAssociationClass;

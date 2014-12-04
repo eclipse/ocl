@@ -30,5 +30,6 @@ public interface SelfType extends org.eclipse.ocl.examples.pivot.Class
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	Type specializeIn(OCLExpression expr, Type selfType);
 } // SelfType

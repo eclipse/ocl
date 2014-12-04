@@ -77,6 +77,7 @@ public class OCLinEcoreConstraintCSImpl extends ConstraintCSImpl implements OCLi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsCallable()
 	{
 		return isCallable;
@@ -87,6 +88,7 @@ public class OCLinEcoreConstraintCSImpl extends ConstraintCSImpl implements OCLi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsCallable(boolean newIsCallable)
 	{
 		boolean oldIsCallable = isCallable;

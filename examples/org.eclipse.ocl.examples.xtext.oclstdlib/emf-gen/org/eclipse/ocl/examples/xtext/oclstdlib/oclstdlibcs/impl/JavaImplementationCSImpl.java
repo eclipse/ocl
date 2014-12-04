@@ -72,6 +72,7 @@ public abstract class JavaImplementationCSImpl extends ElementCSImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public JavaClassCS getImplementation()
 	{
 		if (implementation != null && implementation.eIsProxy())
@@ -102,6 +103,7 @@ public abstract class JavaImplementationCSImpl extends ElementCSImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setImplementation(JavaClassCS newImplementation)
 	{
 		JavaClassCS oldImplementation = implementation;

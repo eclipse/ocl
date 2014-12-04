@@ -106,6 +106,7 @@ public class ContextCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ImportCS> getOwnedImports() {
 		if (ownedImports == null)
 		{
@@ -119,6 +120,7 @@ public class ContextCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<LibraryCS> getOwnedLibraries() {
 		if (ownedLibraries == null)
 		{
@@ -132,6 +134,7 @@ public class ContextCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpCS getOwnedExpression() {
 		return ownedExpression;
 	}
@@ -158,6 +161,7 @@ public class ContextCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedExpression(ExpCS newOwnedExpression) {
 		if (newOwnedExpression != ownedExpression)
 		{

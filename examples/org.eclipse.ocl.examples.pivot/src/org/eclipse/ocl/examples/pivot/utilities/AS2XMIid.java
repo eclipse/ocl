@@ -48,18 +48,22 @@ public class AS2XMIid
 			this.message = message;
 		}
 		
+		@Override
 		public String getMessage() {
 			return message.replace("\n",  "\\n");
 		}
 
+		@Override
 		public String getLocation() {
 			return null;
 		}
 
+		@Override
 		public int getLine() {
 			return 0;
 		}
 
+		@Override
 		public int getColumn() {
 			return 0;
 		}

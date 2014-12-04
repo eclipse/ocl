@@ -74,6 +74,7 @@ public class IncludeCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Namespace getReferredNamespace() {
 		if (referredNamespace != null && ((EObject)referredNamespace).eIsProxy())
 		{
@@ -103,6 +104,7 @@ public class IncludeCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredNamespace(Namespace newReferredNamespace) {
 		Namespace oldReferredNamespace = referredNamespace;
 		referredNamespace = newReferredNamespace;

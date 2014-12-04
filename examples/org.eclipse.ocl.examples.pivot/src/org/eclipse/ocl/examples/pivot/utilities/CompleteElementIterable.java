@@ -63,6 +63,7 @@ public abstract class CompleteElementIterable<O,I> implements Iterable<I>
 			return false;
 		}
 
+		@Override
 		public boolean hasNext() {
 			return nextValue != null;
 //			if (innerIterator == null) {
@@ -74,6 +75,7 @@ public abstract class CompleteElementIterable<O,I> implements Iterable<I>
 //			return advance();
 		}
 
+		@Override
 		public I next() {
 			try {
 				return nextValue;
@@ -84,6 +86,7 @@ public abstract class CompleteElementIterable<O,I> implements Iterable<I>
 //			return innerIterator != null ? getInnerValue(innerIterator.next()) : null;
 		}
 
+		@Override
 		public void remove() {
 			throw new IllegalStateException();
 		}
@@ -108,6 +111,7 @@ public abstract class CompleteElementIterable<O,I> implements Iterable<I>
 		return element;
 	}
 
+	@Override
 	public @NonNull java.util.Iterator<I> iterator() {
 		if (iterables instanceof List<?>) {
 			@SuppressWarnings("unchecked")

@@ -36,10 +36,12 @@ public class EnumerationIdImpl extends AbstractTypeId implements EnumerationId
 		this.name = name;
 	}
 
+	@Override
 	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitEnumerationId(this);
 	}
 
+	@Override
 	public @NonNull String getDisplayName() {
 		if (parent instanceof NsURIPackageId) {
 			return name;
@@ -74,10 +76,12 @@ public class EnumerationIdImpl extends AbstractTypeId implements EnumerationId
 		return TypeId.ENUMERATION_NAME;
 	}
 
+	@Override
 	public @NonNull String getName() {
 		return name;
 	}
 	
+	@Override
 	public @NonNull PackageId getParent() {
 		return parent;
 	}

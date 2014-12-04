@@ -30,6 +30,7 @@ public class AbstractTupleType extends AbstractClass implements DomainTupleType
 		this.typeId = typeId;
 	}
 
+	@Override
 	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
 		if (this == type) {
 			return true;
@@ -40,6 +41,7 @@ public class AbstractTupleType extends AbstractClass implements DomainTupleType
 		return standardLibrary.conformsToTupleType(this, (DomainTupleType)type);
 	}
 
+	@Override
 	public @NonNull DomainClass getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
 		if (type != this) {
 			return idResolver.getStandardLibrary().getOclAnyType();
@@ -47,14 +49,17 @@ public class AbstractTupleType extends AbstractClass implements DomainTupleType
 		return this;
 	}
 
+	@Override
 	public @NonNull TupleTypeId getTupleTypeId() {
 		return typeId;
 	}
 
+	@Override
 	public @NonNull TupleTypeId getTypeId() {
 		return typeId;
 	}
 
+	@Override
 	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
 		if (this == type) {
 			return true;
@@ -65,10 +70,12 @@ public class AbstractTupleType extends AbstractClass implements DomainTupleType
 		return standardLibrary.isEqualToTupleType(this, (DomainTupleType)type);
 	}
 	
+	@Override
 	public @NonNull DomainOperation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
 		return standardLibrary.getOclTupleType().lookupActualOperation(standardLibrary, apparentOperation);
 	}
 
+	@Override
 	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
 		return standardLibrary.getOclTupleType().lookupImplementation(standardLibrary, apparentOperation);
 	}

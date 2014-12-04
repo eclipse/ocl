@@ -31,12 +31,14 @@ import org.eclipse.ocl.examples.pivot.Type;
 
 public interface CompleteEnvironment extends DomainEnvironment
 {
+	@Override
 	@NonNull CollectionType getCollectionType(@NonNull DomainClass containerType, @NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper);
 	@NonNull CompleteModel getCompleteModel();
 	@NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType,
 			@Nullable TemplateParameterSubstitutions bindings);
 	@NonNull CollectionType getSetType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper);
 	@NonNull Type getSpecializedType(@NonNull Type type, @Nullable TemplateParameterSubstitutions substitutions);
+	@Override
 	@NonNull PivotStandardLibrary getStandardLibrary();
 	@NonNull TupleType getTupleType(@NonNull String typeName, @NonNull Collection<? extends DomainTypedElement> parts,
 			@Nullable TemplateParameterSubstitutions bindings);
@@ -52,8 +54,10 @@ public interface CompleteEnvironment extends DomainEnvironment
 		@NonNull CollectionType getCollectionType(@NonNull CompleteClass.Internal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters);
 		@NonNull <T extends CollectionType> T getCollectionType(@NonNull T containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper);
 		@NonNull CompleteClass.Internal getCompleteClass(@NonNull DomainType pivotType);
+		@Override
 		@NonNull CompleteModel.Internal getCompleteModel();
 		@NonNull MetaModelManager getMetaModelManager();
+		@Override
 		@NonNull PivotStandardLibrary2 getStandardLibrary();
 		@NonNull TupleTypeManager getTupleManager();
 	}

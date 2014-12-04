@@ -80,7 +80,8 @@ public class EnvironmentView
 {
 	public static abstract class Disambiguator<T> implements Comparator<T>
 	{
-	    public int compare(T o1, T o2) {
+	    @Override
+		public int compare(T o1, T o2) {
 		    throw new UnsupportedOperationException();
 	    }
 	    

@@ -30,18 +30,22 @@ public class DomainInvalidTypeImpl extends AbstractClass implements DomainInvali
 		this.message = message;
 	}
 
+	@Override
 	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType thatType) {
 		return false;
 	}
 
+	@Override
 	public @NonNull DomainClass getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
 		return this;
 	}	
 
+	@Override
 	public @NonNull TypeId getTypeId() {
 		return TypeId.OCL_INVALID;
 	}
 
+	@Override
 	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType thatType) {
 		return false;
 	}
@@ -51,10 +55,12 @@ public class DomainInvalidTypeImpl extends AbstractClass implements DomainInvali
 		return true;
 	}
 
+	@Override
 	public @NonNull DomainOperation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
 		return standardLibrary.getOclInvalidOperation();
 	}
 
+	@Override
 	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
 		return UnsupportedOperation.INSTANCE;
 	}

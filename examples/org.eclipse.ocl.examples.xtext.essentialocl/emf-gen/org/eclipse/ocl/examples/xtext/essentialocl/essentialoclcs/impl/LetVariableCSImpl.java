@@ -122,6 +122,7 @@ public class LetVariableCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName()
 	{
 		return name;
@@ -132,6 +133,7 @@ public class LetVariableCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName)
 	{
 		String oldName = name;
@@ -145,6 +147,7 @@ public class LetVariableCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypedRefCS getOwnedType()
 	{
 		return ownedType;
@@ -172,6 +175,7 @@ public class LetVariableCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedType(TypedRefCS newOwnedType)
 	{
 		if (newOwnedType != ownedType)
@@ -193,6 +197,7 @@ public class LetVariableCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpCS getOwnedInitExpression()
 	{
 		return ownedInitExpression;
@@ -220,6 +225,7 @@ public class LetVariableCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedInitExpression(ExpCS newOwnedInitExpression)
 	{
 		if (newOwnedInitExpression != ownedInitExpression)
@@ -241,6 +247,7 @@ public class LetVariableCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LetExpCS getOwningLetExpression() {
 		if (eContainerFeatureID() != EssentialOCLCSPackage.LET_VARIABLE_CS__OWNING_LET_EXPRESSION) return null;
 		return (LetExpCS)eInternalContainer();
@@ -262,6 +269,7 @@ public class LetVariableCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningLetExpression(LetExpCS newOwningLetExpression) {
 		if (newOwningLetExpression != eInternalContainer() || (eContainerFeatureID() != EssentialOCLCSPackage.LET_VARIABLE_CS__OWNING_LET_EXPRESSION && newOwningLetExpression != null))
 		{
@@ -284,6 +292,7 @@ public class LetVariableCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RoundBracketedClauseCS getOwnedRoundBracketedClause()
 	{
 		return ownedRoundBracketedClause;
@@ -311,6 +320,7 @@ public class LetVariableCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedRoundBracketedClause(RoundBracketedClauseCS newOwnedRoundBracketedClause)
 	{
 		if (newOwnedRoundBracketedClause != ownedRoundBracketedClause)

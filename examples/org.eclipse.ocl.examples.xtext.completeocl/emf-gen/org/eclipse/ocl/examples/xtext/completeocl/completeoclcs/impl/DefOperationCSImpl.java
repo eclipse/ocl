@@ -91,6 +91,7 @@ public class DefOperationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TemplateSignatureCS getOwnedSignature()
 	{
 		return ownedSignature;
@@ -118,6 +119,7 @@ public class DefOperationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedSignature(TemplateSignatureCS newOwnedSignature)
 	{
 		if (newOwnedSignature != ownedSignature)
@@ -139,6 +141,7 @@ public class DefOperationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ParameterCS> getOwnedParameters() {
 		if (ownedParameters == null)
 		{

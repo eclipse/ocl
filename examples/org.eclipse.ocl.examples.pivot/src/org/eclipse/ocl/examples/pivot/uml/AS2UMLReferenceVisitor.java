@@ -55,6 +55,7 @@ public class AS2UMLReferenceVisitor
 		}
 	}
 
+	@Override
 	public EObject visiting(@NonNull Visitable visitable) {
 		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for AS2UML Reference pass");
 	}

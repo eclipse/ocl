@@ -36,6 +36,7 @@ public class TemplateParameterIdImpl /*extends AbstractTypeId*/ implements Templ
 		this.hashCode = IdHash.createGlobalHash(TemplateParameterId.class, name);
 	}
 
+	@Override
 	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitTemplateParameterId(this);
 	}
@@ -58,14 +59,17 @@ public class TemplateParameterIdImpl /*extends AbstractTypeId*/ implements Templ
 		return true;
 	}
 
+	@Override
 	public @NonNull String getDisplayName() {
 		return name;
 	}
 
+	@Override
 	public int getIndex() {
 		return index;
 	}
 
+	@Override
 	public @Nullable String getLiteralName() {
 		if (this == TypeId.T_1) {
 			return "T_1";
@@ -81,27 +85,33 @@ public class TemplateParameterIdImpl /*extends AbstractTypeId*/ implements Templ
 		}
 	}
 
+	@Override
 	public @NonNull String getMetaTypeName() {
     	throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public @NonNull String getName() {
 		return name;
 	}
 
-    public @NonNull OperationId getOperationId(int templateParameters, @NonNull String name, @NonNull ParametersId parametersId) {
+    @Override
+	public @NonNull OperationId getOperationId(int templateParameters, @NonNull String name, @NonNull ParametersId parametersId) {
     	throw new UnsupportedOperationException();
     }
 
-    public @NonNull PropertyId getPropertyId(@NonNull String name) {
+    @Override
+	public @NonNull PropertyId getPropertyId(@NonNull String name) {
     	throw new UnsupportedOperationException();
     }
 	
-    public @NonNull TemplateParameterId getTemplateParameterId(int index) {
+    @Override
+	public @NonNull TemplateParameterId getTemplateParameterId(int index) {
     	throw new UnsupportedOperationException();
     }
 	
-    public int getTemplateParameters() {
+    @Override
+	public int getTemplateParameters() {
     	throw new UnsupportedOperationException();
     }
 
@@ -110,7 +120,8 @@ public class TemplateParameterIdImpl /*extends AbstractTypeId*/ implements Templ
 		return hashCode;
 	}
 
-    public @NonNull ElementId specialize(@NonNull BindingsId templateBindings) {
+    @Override
+	public @NonNull ElementId specialize(@NonNull BindingsId templateBindings) {
     	ElementId elementId = templateBindings.get(index);
 		assert elementId != null;
 		return elementId;

@@ -119,6 +119,7 @@ public class OCLinEcoreCSPackageImpl extends EPackageImpl implements OCLinEcoreC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOCLinEcoreConstraintCS()
 	{
 		return ocLinEcoreConstraintCSEClass;
@@ -129,6 +130,7 @@ public class OCLinEcoreCSPackageImpl extends EPackageImpl implements OCLinEcoreC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getOCLinEcoreConstraintCS_IsCallable()
 	{
 		return (EAttribute)ocLinEcoreConstraintCSEClass.getEStructuralFeatures().get(0);
@@ -139,6 +141,7 @@ public class OCLinEcoreCSPackageImpl extends EPackageImpl implements OCLinEcoreC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSysMLCS()
 	{
 		return sysMLCSEClass;
@@ -149,6 +152,7 @@ public class OCLinEcoreCSPackageImpl extends EPackageImpl implements OCLinEcoreC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSysMLCS_Value()
 	{
 		return (EAttribute)sysMLCSEClass.getEStructuralFeatures().get(0);
@@ -159,6 +163,7 @@ public class OCLinEcoreCSPackageImpl extends EPackageImpl implements OCLinEcoreC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTopLevelCS()
 	{
 		return topLevelCSEClass;
@@ -169,6 +174,7 @@ public class OCLinEcoreCSPackageImpl extends EPackageImpl implements OCLinEcoreC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OCLinEcoreCSFactory getOCLinEcoreCSFactory()
 	{
 		return (OCLinEcoreCSFactory)getEFactoryInstance();

@@ -26,6 +26,7 @@ public class CollectIteration extends AbstractIteration
 {
 	public static final @NonNull CollectIteration INSTANCE = new CollectIteration();
 
+	@Override
 	public @NonNull CollectionValue.Accumulator createAccumulatorValue(@NonNull DomainEvaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
 		return createCollectionAccumulatorValue((CollectionTypeId) accumulatorTypeId);
 	}

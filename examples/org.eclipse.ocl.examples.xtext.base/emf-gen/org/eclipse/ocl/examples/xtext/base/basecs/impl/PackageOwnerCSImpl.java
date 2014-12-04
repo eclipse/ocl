@@ -78,6 +78,7 @@ public abstract class PackageOwnerCSImpl extends ModelElementCSImpl implements P
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<PackageCS> getOwnedPackages()
 	{
 		if (ownedPackages == null)

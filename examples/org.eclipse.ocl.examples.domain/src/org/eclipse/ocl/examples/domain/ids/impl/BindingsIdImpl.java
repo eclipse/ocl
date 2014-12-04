@@ -24,15 +24,18 @@ public class BindingsIdImpl implements BindingsId, WeakHashMapOfListOfWeakRefere
 	{
 		private int index = 0;
 		
+		@Override
 		public boolean hasNext() {
 			return index < elementIds.length;
 		}
 
+		@Override
 		@SuppressWarnings("null")
 		public @NonNull ElementId next() {
 			return elementIds[index++];
 		}
 
+		@Override
 		public void remove() {
 			throw new UnsupportedOperationException();
 		}
@@ -54,6 +57,7 @@ public class BindingsIdImpl implements BindingsId, WeakHashMapOfListOfWeakRefere
 		return o == this;
 	}
 
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull ElementId get(int i) {
 		return elementIds[i];
@@ -64,10 +68,12 @@ public class BindingsIdImpl implements BindingsId, WeakHashMapOfListOfWeakRefere
 		return hashCode;
 	}
 
+	@Override
 	public java.util.Iterator<ElementId> iterator() {
 		return new Iterator();
 	}
 
+	@Override
 	public boolean matches(@NonNull ElementId[] thoseElementIds) {
 		if (elementIds.length != thoseElementIds.length) {
 			return false;
@@ -80,6 +86,7 @@ public class BindingsIdImpl implements BindingsId, WeakHashMapOfListOfWeakRefere
 		return true;
 	}
 
+	@Override
 	public int size() {
 		return elementIds.length;
 	}

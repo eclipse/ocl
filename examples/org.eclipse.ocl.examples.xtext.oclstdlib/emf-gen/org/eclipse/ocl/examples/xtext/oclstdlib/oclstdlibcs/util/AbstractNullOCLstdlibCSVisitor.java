@@ -36,46 +36,57 @@ public abstract class AbstractNullOCLstdlibCSVisitor<R, C>
 		super(context);
 	}	
 
+	@Override
 	public @Nullable R visitJavaClassCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaClassCS object) {
 		return null;
 	}
 
+	@Override
 	public @Nullable R visitJavaImplementationCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaImplementationCS object) {
 		return null;
 	}
 
+	@Override
 	public @Nullable R visitLibClassCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibClassCS object) {
 		return null;
 	}
 
+	@Override
 	public @Nullable R visitLibConstraintCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibConstraintCS object) {
 		return null;
 	}
 
+	@Override
 	public @Nullable R visitLibIterationCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS object) {
 		return null;
 	}
 
+	@Override
 	public @Nullable R visitLibOperationCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS object) {
 		return null;
 	}
 
+	@Override
 	public @Nullable R visitLibPackageCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPackageCS object) {
 		return null;
 	}
 
+	@Override
 	public @Nullable R visitLibPropertyCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPropertyCS object) {
 		return null;
 	}
 
+	@Override
 	public @Nullable R visitLibRootPackageCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibRootPackageCS object) {
 		return null;
 	}
 
+	@Override
 	public @Nullable R visitMetaclassNameCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaclassNameCS object) {
 		return null;
 	}
 
+	@Override
 	public @Nullable R visitPrecedenceCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.PrecedenceCS object) {
 		return null;
 	}

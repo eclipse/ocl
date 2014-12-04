@@ -63,5 +63,6 @@ public interface ElementCS extends EObject, VisitableCS {
 	 * @generated
 	 */
 	// Generated from org.eclipse.ocl.examples.build/templates/model/Class/insert.javajetinc
+	@Override
 	public @Nullable <R> R accept(@NonNull BaseCSVisitor<R> visitor);
 } // ElementCS

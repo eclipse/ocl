@@ -85,6 +85,7 @@ public class AnnotationCSImpl extends AnnotationElementCSImpl implements Annotat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ModelElementCS> getOwnedContents()
 	{
 		if (ownedContents == null)
@@ -99,6 +100,7 @@ public class AnnotationCSImpl extends AnnotationElementCSImpl implements Annotat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ModelElementRefCS> getOwnedReferences()
 	{
 		if (ownedReferences == null)

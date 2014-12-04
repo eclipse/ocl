@@ -97,6 +97,7 @@ public class TupleTypeCSImpl extends TypedRefCSImpl implements TupleTypeCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName()
 	{
 		return name;
@@ -107,6 +108,7 @@ public class TupleTypeCSImpl extends TypedRefCSImpl implements TupleTypeCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName)
 	{
 		String oldName = name;
@@ -120,6 +122,7 @@ public class TupleTypeCSImpl extends TypedRefCSImpl implements TupleTypeCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<TuplePartCS> getOwnedParts()
 	{
 		if (ownedParts == null)

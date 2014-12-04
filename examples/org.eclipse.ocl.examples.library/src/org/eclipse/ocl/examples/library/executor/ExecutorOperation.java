@@ -48,30 +48,37 @@ public class ExecutorOperation implements DomainOperation
 		this.typeParameters = typeParameters;
 	}
 
+	@Override
 	public @NonNull LibraryFeature getImplementation() {
 		return implementation;
 	}
 
+	@Override
 	public DomainExpression getBodyExpression() {
 		throw new UnsupportedOperationException(); 			// FIXME
 	}
 
+	@Override
 	public final int getIndex() {
 		return index;
 	}
 
+	@Override
 	public final @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
 		return inheritance;
 	}
 
+	@Override
 	public final String getName() {
 		return name;
 	}
 
+	@Override
 	public @NonNull OperationId getOperationId() {
 		throw new UnsupportedOperationException();			// FIXME
 	}
 	
+	@Override
 	public @NonNull List<? extends DomainParameter> getOwnedParameter() {
 		return getParameterTypes().getParameters();
 	}
@@ -80,43 +87,52 @@ public class ExecutorOperation implements DomainOperation
 		throw new UnsupportedOperationException();			// FIXME
 	}
 
+	@Override
 	public @NonNull DomainClass getOwningClass() {
 		throw new UnsupportedOperationException();			// FIXME
 	}
 
+	@Override
 	public @NonNull ParametersId getParametersId() {
 		return parameterTypes.getParametersId();
 	}
 	
+	@Override
 	public @NonNull DomainParameterTypes getParameterTypes() {
 		return parameterTypes;
 	}
 
 	
+	@Override
 	public @NonNull List<? extends DomainConstraint> getPostcondition() {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException(); // WIP FIXME
 	}
 
+	@Override
 	public @NonNull List<? extends DomainConstraint> getPrecondition() {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException(); // WIP FIXME
 	}
 
+	@Override
 	public @NonNull DomainType getType() {
 //		return executorType;
 		throw new UnsupportedOperationException(); // WIP FIXME
 	}
 
+	@Override
 	public @NonNull TypeId getTypeId() {
 		DomainType type2 = getType();
 		return type2.getTypeId();
 	}
 
+	@Override
 	public @NonNull DomainTypeParameters getTypeParameters() {
 		return typeParameters;
 	}
 
+	@Override
 	public boolean isStatic() {
 		return false;								// WIP FIXME
 	}

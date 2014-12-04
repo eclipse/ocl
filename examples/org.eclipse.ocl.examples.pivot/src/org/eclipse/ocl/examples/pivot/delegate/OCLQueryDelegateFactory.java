@@ -47,6 +47,7 @@ public class OCLQueryDelegateFactory extends AbstractOCLDelegateFactory
 		super(delegateURI);
 	}
 
+	@Override
 	public QueryDelegate createQueryDelegate(EClassifier context, Map<String, EClassifier> parameters, String expression) {
 		if ((context == null) || (expression == null)) {
 			return null;

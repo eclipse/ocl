@@ -40,46 +40,57 @@ public abstract class AbstractExtendingOCLstdlibCSVisitor<R, C>
 		super(context);
 	}	
 
+	@Override
 	public @Nullable R visitJavaClassCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaClassCS object) {
 		return visitNamedElementCS(object);
 	}
 
+	@Override
 	public @Nullable R visitJavaImplementationCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaImplementationCS object) {
 		return visitElementCS(object);
 	}
 
+	@Override
 	public @Nullable R visitLibClassCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibClassCS object) {
 		return visitStructuredClassCS(object);
 	}
 
+	@Override
 	public @Nullable R visitLibConstraintCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibConstraintCS object) {
 		return visitConstraintCS(object);
 	}
 
+	@Override
 	public @Nullable R visitLibIterationCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS object) {
 		return visitOperationCS(object);
 	}
 
+	@Override
 	public @Nullable R visitLibOperationCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS object) {
 		return visitOperationCS(object);
 	}
 
+	@Override
 	public @Nullable R visitLibPackageCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPackageCS object) {
 		return visitPackageCS(object);
 	}
 
+	@Override
 	public @Nullable R visitLibPropertyCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPropertyCS object) {
 		return visitAttributeCS(object);
 	}
 
+	@Override
 	public @Nullable R visitLibRootPackageCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibRootPackageCS object) {
 		return visitRootPackageCS(object);
 	}
 
+	@Override
 	public @Nullable R visitMetaclassNameCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaclassNameCS object) {
 		return visitElementCS(object);
 	}
 
+	@Override
 	public @Nullable R visitPrecedenceCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.PrecedenceCS object) {
 		return visitNamedElementCS(object);
 	}

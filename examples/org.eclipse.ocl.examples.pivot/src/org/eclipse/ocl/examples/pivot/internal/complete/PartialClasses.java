@@ -287,6 +287,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 		dispose();			// Force lazy recomputation
 	}
 
+	@Override
 	public void didAddOperation(@NonNull Operation pivotOperation) {
 		Map<String, PartialOperations> name2partialOperations2 = name2partialOperations;
 		if (name2partialOperations2 != null) {
@@ -302,6 +303,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 		}
 	}
 
+	@Override
 	public void didAddProperty(@NonNull Property pivotProperty) {
 		Map<String, PartialProperties> name2partialProperties2 = name2partialProperties;
 		if (name2partialProperties2 != null) {
@@ -315,12 +317,14 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 		}
 	}
 
+	@Override
 	public void didAddSuperClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
 		if (completeInheritance != null) {
 			completeInheritance.uninstall();
 		}
 	}
 
+	@Override
 	public void didRemoveOperation(@NonNull Operation pivotOperation) {
 		Map<String, PartialOperations> name2partialOperations2 = name2partialOperations;
 		if (name2partialOperations2 != null) {
@@ -334,6 +338,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 		}
 	}
 
+	@Override
 	public void didRemoveProperty(@NonNull Property pivotProperty) {
 		Map<String, PartialProperties> name2partialProperties2 = name2partialProperties;
 		if (name2partialProperties2 != null) {
@@ -347,6 +352,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 		}
 	}
 
+	@Override
 	public void didRemoveSuperClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
 		if (completeInheritance != null) {
 			completeInheritance.uninstall();
@@ -466,18 +472,22 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 		final Iterator<CompleteClass.Internal> iterator = computeSuperCompleteClasses().iterator();			// FIXME Use local cache
 		return new Iterable<DomainInheritance>()
 		{
+			@Override
 			public Iterator<DomainInheritance> iterator() {
 				return new Iterator<DomainInheritance>()
 				{
+					@Override
 					public boolean hasNext() {
 						return iterator.hasNext();
 					}
 
+					@Override
 					public DomainInheritance next() {
 						CompleteClass.Internal next = iterator.next();
 						return next.getCompleteInheritance();
 					}
 
+					@Override
 					public void remove() {
 						throw new UnsupportedOperationException();
 					}					
@@ -576,6 +586,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 		@SuppressWarnings("null")@NonNull Iterable<DomainOperation> subItOps = Iterables.filter(itOps,
 			new Predicate<DomainOperation>()
 			{
+				@Override
 				public boolean apply(DomainOperation domainOperation) {
 					return (domainOperation != null) && featureFilter.accept(domainOperation);
 				}
@@ -591,6 +602,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 		@SuppressWarnings("null")@NonNull Iterable<DomainProperty> transform = Iterables.transform(name2partialProperties2.values(),
 			new Function<PartialProperties, DomainProperty>()
 			{
+				@Override
 				public DomainProperty apply(PartialProperties properties) {
 					return properties.get();
 				}
@@ -602,6 +614,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 		@NonNull Iterable<DomainProperty> subItOps = Iterables.filter(transform,
 			new Predicate<DomainProperty>()
 			{
+				@Override
 				public boolean apply(DomainProperty domainProperty) {
 					return (domainProperty != null) && featureFilter.accept(domainProperty);
 				}
@@ -626,6 +639,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 		@SuppressWarnings("null")@NonNull Iterable<DomainProperty> subItOps = Iterables.filter(partials,
 			new Predicate<DomainProperty>()
 			{
+				@Override
 				public boolean apply(DomainProperty domainProperty) {
 					return (domainProperty != null) && featureFilter.accept(domainProperty);
 				}
@@ -730,6 +744,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.exampl
 		DomainInheritance inheritance = getCompleteClass().getCompleteInheritance();
 		return Iterables.transform(inheritance.getAllSuperFragments(), new Function<DomainFragment, CompleteClass>()
 		{
+			@Override
 			public CompleteClass apply(DomainFragment input) {
 				return ((CompleteInheritance)input.getBaseInheritance()).getCompleteClass();
 			}

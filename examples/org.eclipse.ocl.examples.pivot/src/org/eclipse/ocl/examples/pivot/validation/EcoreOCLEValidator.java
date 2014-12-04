@@ -276,11 +276,13 @@ public class EcoreOCLEValidator implements EValidator
 		return false;
 	}
 
+	@Override
 	public boolean validate(EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 	    return validate(eObject.eClass(), eObject, diagnostics, context); 
 //		return true;
 	}
 
+	@Override
 	public boolean validate(EClass eClass, EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		assert context != null;
 		boolean allOk = true;
@@ -303,6 +305,7 @@ public class EcoreOCLEValidator implements EValidator
 		return allOk;
 	}
 
+	@Override
 	public boolean validate(EDataType eDataType, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}

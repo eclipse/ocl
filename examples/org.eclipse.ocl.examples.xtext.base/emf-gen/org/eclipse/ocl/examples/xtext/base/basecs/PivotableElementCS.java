@@ -45,6 +45,7 @@ public interface PivotableElementCS extends ElementCS, Pivotable
 	 * @model resolveProxies="false" transient="true"
 	 * @generated
 	 */
+	@Override
 	Element getPivot();
 
 	/**

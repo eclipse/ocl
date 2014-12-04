@@ -26,6 +26,7 @@ public class PivotReflectiveFragment extends ReflectiveFragment
 		super(derivedInheritance, baseInheritance);
 	}
 
+	@Override
 	public @Nullable DomainOperation getLocalOperation(@NonNull DomainOperation baseOperation) {
 		CompleteInheritance completeInheritance = (CompleteInheritance) derivedInheritance;
 		String baseOperationName = baseOperation.getName();

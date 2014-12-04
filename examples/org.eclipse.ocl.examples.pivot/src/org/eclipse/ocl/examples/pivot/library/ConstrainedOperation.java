@@ -39,6 +39,7 @@ public class ConstrainedOperation extends AbstractOperation
 		this.expressionInOCL = expressionInOCL;
 	}
 	
+	@Override
 	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue) {
 		List<? extends DomainExpression> arguments = callExp.getArgument();
 		Object[] argumentValues = new Object[arguments.size()];

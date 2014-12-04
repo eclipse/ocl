@@ -49,6 +49,7 @@ public class EcoreExecutorPackage extends ExecutorPackage
 		return ePackage;
 	}
 
+	@Override
 	public List<? extends DomainPackage> getOwnedPackages() {
 		List<EcoreExecutorPackage> packages2 = packages;
 		if (packages2 == null) {
@@ -69,6 +70,7 @@ public class EcoreExecutorPackage extends ExecutorPackage
 		return packages2;
 	}
 
+	@Override
 	public DomainPackage getOwningPackage() {
 		EPackage eSuperPackage = ePackage.getESuperPackage();
 		if (eSuperPackage == null) {

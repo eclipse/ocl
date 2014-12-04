@@ -25,6 +25,7 @@ public class CollectionUpperProperty extends AbstractProperty
 {
 	public static final @NonNull CollectionUpperProperty INSTANCE = new CollectionUpperProperty();
 
+	@Override
 	public @NonNull IntegerValue evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		DomainCollectionType sourceType = asCollectionType(sourceValue);
 		return sourceType.getUpperValue();

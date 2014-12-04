@@ -25,18 +25,22 @@ public class AutoAnalysisVisitor extends AnalysisVisitor implements AutoCGModelV
 		super(analyzer);
 	}
 
+	@Override
 	public @Nullable Object visitCGASTCallExp(@NonNull CGASTCallExp object) {
 		return visitCGOperationCallExp(object);
 	}
 
+	@Override
 	public @Nullable Object visitCGContainmentBody(@NonNull CGContainmentBody object) {
 		return visitCGValuedElement(object);
 	}
 
+	@Override
 	public @Nullable Object visitCGContainmentPart(@NonNull CGContainmentPart object) {
 		return visitCGValuedElement(object);
 	}
 
+	@Override
 	public @Nullable Object visitCGContainmentVisit(@NonNull CGContainmentVisit object) {
 		return visitCGOperation(object);
 	}

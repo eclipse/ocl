@@ -23,5 +23,6 @@ import org.eclipse.jdt.annotation.NonNull;
  */
 public interface DecorableOCLstdlibCSVisitor<R> extends OCLstdlibCSVisitor<R>, org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.DecorableEssentialOCLCSVisitor<R>
 {
+	@Override
 	void setUndecoratedVisitor(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor<R> visitor);
 }

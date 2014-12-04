@@ -68,6 +68,7 @@ public abstract class PivotableElementCSImpl extends ElementCSImpl implements Pi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Element getPivot()
 	{
 		return pivot;
@@ -78,6 +79,7 @@ public abstract class PivotableElementCSImpl extends ElementCSImpl implements Pi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPivot(Element newPivot)
 	{
 		Element oldPivot = pivot;
@@ -157,6 +159,7 @@ public abstract class PivotableElementCSImpl extends ElementCSImpl implements Pi
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public void resetPivot() {
 		setPivot(null);
 	}

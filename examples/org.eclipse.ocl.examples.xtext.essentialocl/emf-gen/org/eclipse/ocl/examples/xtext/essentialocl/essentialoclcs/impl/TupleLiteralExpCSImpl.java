@@ -77,6 +77,7 @@ public class TupleLiteralExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<TupleLiteralPartCS> getOwnedParts() {
 		if (ownedParts == null)
 		{

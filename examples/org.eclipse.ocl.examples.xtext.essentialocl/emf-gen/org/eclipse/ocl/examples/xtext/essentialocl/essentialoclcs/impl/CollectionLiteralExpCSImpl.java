@@ -91,6 +91,7 @@ public class CollectionLiteralExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CollectionTypeCS getOwnedType() {
 		return ownedType;
 	}
@@ -117,6 +118,7 @@ public class CollectionLiteralExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedType(CollectionTypeCS newOwnedType) {
 		if (newOwnedType != ownedType)
 		{
@@ -137,6 +139,7 @@ public class CollectionLiteralExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<CollectionLiteralPartCS> getOwnedParts() {
 		if (ownedParts == null)
 		{

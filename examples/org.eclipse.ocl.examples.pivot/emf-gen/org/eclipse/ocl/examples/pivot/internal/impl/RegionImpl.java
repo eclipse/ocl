@@ -111,6 +111,7 @@ public class RegionImpl extends NamespaceImpl implements Region
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<Vertex> getSubvertex()
 	{
 		if (subvertex == null)
@@ -158,6 +159,7 @@ public class RegionImpl extends NamespaceImpl implements Region
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<Transition> getTransition()
 	{
 		if (transition == null)
@@ -172,6 +174,7 @@ public class RegionImpl extends NamespaceImpl implements Region
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public StateMachine getStateMachine()
 	{
 		if (eContainerFeatureID() != PivotPackage.REGION__STATE_MACHINE) return null;
@@ -194,6 +197,7 @@ public class RegionImpl extends NamespaceImpl implements Region
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("cast")
 	public void setStateMachine(StateMachine newStateMachine)
 	{
@@ -218,6 +222,7 @@ public class RegionImpl extends NamespaceImpl implements Region
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public State getState()
 	{
 		if (eContainerFeatureID() != PivotPackage.REGION__STATE) return null;
@@ -240,6 +245,7 @@ public class RegionImpl extends NamespaceImpl implements Region
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("cast")
 	public void setState(State newState)
 	{
@@ -264,6 +270,7 @@ public class RegionImpl extends NamespaceImpl implements Region
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Region getExtendedRegion()
 	{
 		if (extendedRegion != null && ((EObject)extendedRegion).eIsProxy())
@@ -294,6 +301,7 @@ public class RegionImpl extends NamespaceImpl implements Region
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExtendedRegion(Region newExtendedRegion)
 	{
 		Region oldExtendedRegion = extendedRegion;

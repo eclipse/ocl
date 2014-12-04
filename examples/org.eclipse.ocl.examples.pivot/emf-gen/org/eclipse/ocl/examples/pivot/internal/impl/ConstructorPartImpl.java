@@ -92,6 +92,7 @@ public class ConstructorPartImpl extends TypedElementImpl implements Constructor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Property getReferredProperty()
 	{
 		if (referredProperty != null && ((EObject)referredProperty).eIsProxy())
@@ -122,6 +123,7 @@ public class ConstructorPartImpl extends TypedElementImpl implements Constructor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredProperty(Property newReferredProperty)
 	{
 		Property oldReferredProperty = referredProperty;
@@ -135,6 +137,7 @@ public class ConstructorPartImpl extends TypedElementImpl implements Constructor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OCLExpression getInitExpression()
 	{
 		return initExpression;
@@ -162,6 +165,7 @@ public class ConstructorPartImpl extends TypedElementImpl implements Constructor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInitExpression(OCLExpression newInitExpression)
 	{
 		if (newInitExpression != initExpression)

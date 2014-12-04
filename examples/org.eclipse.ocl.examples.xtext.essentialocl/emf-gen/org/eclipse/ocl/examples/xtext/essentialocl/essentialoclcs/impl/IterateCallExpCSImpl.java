@@ -69,6 +69,7 @@ public abstract class IterateCallExpCSImpl extends IterationCallExpCSImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<VariableCS> getAccumulators()
 	{
 		if (accumulators == null)

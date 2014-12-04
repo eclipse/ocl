@@ -56,6 +56,7 @@ public abstract class ValueSpecificationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isComputable() {
 		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!isComputable()
 	}
@@ -65,6 +66,7 @@ public abstract class ValueSpecificationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Number integerValue() {
 		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!integerValue()
 	}
@@ -74,6 +76,7 @@ public abstract class ValueSpecificationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean booleanValue() {
 		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!booleanValue()
 	}
@@ -83,6 +86,7 @@ public abstract class ValueSpecificationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String stringValue() {
 		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!stringValue()
 	}
@@ -92,6 +96,7 @@ public abstract class ValueSpecificationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Number unlimitedValue() {
 		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!unlimitedValue()
 	}
@@ -101,6 +106,7 @@ public abstract class ValueSpecificationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isNull() {
 		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!isNull()
 	}

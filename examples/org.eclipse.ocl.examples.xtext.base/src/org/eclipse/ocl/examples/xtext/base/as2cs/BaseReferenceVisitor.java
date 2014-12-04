@@ -115,6 +115,7 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, AS
 		return csRef;
 	}
 
+	@Override
 	public ElementCS visiting(@NonNull Visitable visitable) {
 		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for AS2CS Reference pass");
 	}

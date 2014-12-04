@@ -64,6 +64,7 @@ public interface TemplateParameter
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateParameter_LowerBound()
 	 * @generated
 	 */
+	@Override
 	Type getLowerBound();
 
 	/**

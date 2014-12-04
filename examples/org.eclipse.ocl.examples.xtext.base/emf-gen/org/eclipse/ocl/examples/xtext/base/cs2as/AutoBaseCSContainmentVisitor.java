@@ -133,55 +133,68 @@ public class AutoBaseCSContainmentVisitor
         this.idResolver = converter.getMetaModelManager().getIdResolver();
     }
     
-    public @Nullable Continuation<?> visiting(@NonNull VisitableCS visitable) {
+    @Override
+	public @Nullable Continuation<?> visiting(@NonNull VisitableCS visitable) {
         throw new UnsupportedOperationException("AutoBaseCSContainmentVisitor is not supported by \"" + getClass().getName() + "\"");
     }
     
-    public @Nullable Continuation<?> visitAnnotationCS(@NonNull AnnotationCS self) {
+    @Override
+	public @Nullable Continuation<?> visitAnnotationCS(@NonNull AnnotationCS self) {
         throw new UnsupportedOperationException("visitAnnotationCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitAnnotationElementCS(@NonNull AnnotationElementCS self) {
+    @Override
+	public @Nullable Continuation<?> visitAnnotationElementCS(@NonNull AnnotationElementCS self) {
         throw new UnsupportedOperationException("visitAnnotationElementCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitAttributeCS(@NonNull AttributeCS self) {
+    @Override
+	public @Nullable Continuation<?> visitAttributeCS(@NonNull AttributeCS self) {
         throw new UnsupportedOperationException("visitAttributeCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitClassCS(@NonNull ClassCS self) {
+    @Override
+	public @Nullable Continuation<?> visitClassCS(@NonNull ClassCS self) {
         throw new UnsupportedOperationException("visitClassCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitConstraintCS(@NonNull ConstraintCS self) {
+    @Override
+	public @Nullable Continuation<?> visitConstraintCS(@NonNull ConstraintCS self) {
         throw new UnsupportedOperationException("visitConstraintCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitContextLessElementCS(@NonNull ContextLessElementCS self) {
+    @Override
+	public @Nullable Continuation<?> visitContextLessElementCS(@NonNull ContextLessElementCS self) {
         throw new UnsupportedOperationException("visitContextLessElementCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitDataTypeCS(@NonNull DataTypeCS self) {
+    @Override
+	public @Nullable Continuation<?> visitDataTypeCS(@NonNull DataTypeCS self) {
         throw new UnsupportedOperationException("visitDataTypeCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitDetailCS(@NonNull DetailCS self) {
+    @Override
+	public @Nullable Continuation<?> visitDetailCS(@NonNull DetailCS self) {
         throw new UnsupportedOperationException("visitDetailCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitDocumentationCS(@NonNull DocumentationCS self) {
+    @Override
+	public @Nullable Continuation<?> visitDocumentationCS(@NonNull DocumentationCS self) {
         throw new UnsupportedOperationException("visitDocumentationCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitElementCS(@NonNull ElementCS self) {
+    @Override
+	public @Nullable Continuation<?> visitElementCS(@NonNull ElementCS self) {
         throw new UnsupportedOperationException("visitElementCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitElementRefCS(@NonNull ElementRefCS self) {
+    @Override
+	public @Nullable Continuation<?> visitElementRefCS(@NonNull ElementRefCS self) {
         throw new UnsupportedOperationException("visitElementRefCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitEnumerationCS(@NonNull EnumerationCS self) {
+    @Override
+	public @Nullable Continuation<?> visitEnumerationCS(@NonNull EnumerationCS self) {
         //
         // Enumeration
         //
@@ -236,7 +249,8 @@ public class AutoBaseCSContainmentVisitor
         return null;
     }
     
-    public @Nullable Continuation<?> visitEnumerationLiteralCS(@NonNull EnumerationLiteralCS self) {
+    @Override
+	public @Nullable Continuation<?> visitEnumerationLiteralCS(@NonNull EnumerationLiteralCS self) {
         //
         // EnumerationLiteral
         //
@@ -267,39 +281,48 @@ public class AutoBaseCSContainmentVisitor
         throw new UnsupportedOperationException("visitFeatureCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitImportCS(@NonNull ImportCS self) {
+    @Override
+	public @Nullable Continuation<?> visitImportCS(@NonNull ImportCS self) {
         throw new UnsupportedOperationException("visitImportCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitLambdaTypeCS(@NonNull LambdaTypeCS self) {
+    @Override
+	public @Nullable Continuation<?> visitLambdaTypeCS(@NonNull LambdaTypeCS self) {
         throw new UnsupportedOperationException("visitLambdaTypeCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitLibraryCS(@NonNull LibraryCS self) {
+    @Override
+	public @Nullable Continuation<?> visitLibraryCS(@NonNull LibraryCS self) {
         throw new UnsupportedOperationException("visitLibraryCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitModelElementCS(@NonNull ModelElementCS self) {
+    @Override
+	public @Nullable Continuation<?> visitModelElementCS(@NonNull ModelElementCS self) {
         throw new UnsupportedOperationException("visitModelElementCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitModelElementRefCS(@NonNull ModelElementRefCS self) {
+    @Override
+	public @Nullable Continuation<?> visitModelElementRefCS(@NonNull ModelElementRefCS self) {
         throw new UnsupportedOperationException("visitModelElementRefCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitMultiplicityBoundsCS(@NonNull MultiplicityBoundsCS self) {
+    @Override
+	public @Nullable Continuation<?> visitMultiplicityBoundsCS(@NonNull MultiplicityBoundsCS self) {
         throw new UnsupportedOperationException("visitMultiplicityBoundsCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitMultiplicityCS(@NonNull MultiplicityCS self) {
+    @Override
+	public @Nullable Continuation<?> visitMultiplicityCS(@NonNull MultiplicityCS self) {
         throw new UnsupportedOperationException("visitMultiplicityCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitMultiplicityStringCS(@NonNull MultiplicityStringCS self) {
+    @Override
+	public @Nullable Continuation<?> visitMultiplicityStringCS(@NonNull MultiplicityStringCS self) {
         throw new UnsupportedOperationException("visitMultiplicityStringCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitNamedElementCS(@NonNull NamedElementCS self) {
+    @Override
+	public @Nullable Continuation<?> visitNamedElementCS(@NonNull NamedElementCS self) {
         throw new UnsupportedOperationException("visitNamedElementCS is not supported by " + getClass().getName());
     }
     
@@ -307,7 +330,8 @@ public class AutoBaseCSContainmentVisitor
         throw new UnsupportedOperationException("visitNamespaceCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitOperationCS(@NonNull OperationCS self) {
+    @Override
+	public @Nullable Continuation<?> visitOperationCS(@NonNull OperationCS self) {
         //
         // Operation
         //
@@ -334,7 +358,8 @@ public class AutoBaseCSContainmentVisitor
         return null;
     }
     
-    public @Nullable Continuation<?> visitPackageCS(@NonNull PackageCS self) {
+    @Override
+	public @Nullable Continuation<?> visitPackageCS(@NonNull PackageCS self) {
         //
         // Package
         //
@@ -390,11 +415,13 @@ public class AutoBaseCSContainmentVisitor
         return null;
     }
     
-    public @Nullable Continuation<?> visitPackageOwnerCS(@NonNull PackageOwnerCS self) {
+    @Override
+	public @Nullable Continuation<?> visitPackageOwnerCS(@NonNull PackageOwnerCS self) {
         throw new UnsupportedOperationException("visitPackageOwnerCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitParameterCS(@NonNull ParameterCS self) {
+    @Override
+	public @Nullable Continuation<?> visitParameterCS(@NonNull ParameterCS self) {
         //
         // Parameter
         //
@@ -421,47 +448,58 @@ public class AutoBaseCSContainmentVisitor
         return null;
     }
     
-    public @Nullable Continuation<?> visitPathElementCS(@NonNull PathElementCS self) {
+    @Override
+	public @Nullable Continuation<?> visitPathElementCS(@NonNull PathElementCS self) {
         throw new UnsupportedOperationException("visitPathElementCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitPathElementWithURICS(@NonNull PathElementWithURICS self) {
+    @Override
+	public @Nullable Continuation<?> visitPathElementWithURICS(@NonNull PathElementWithURICS self) {
         throw new UnsupportedOperationException("visitPathElementWithURICS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitPathNameCS(@NonNull PathNameCS self) {
+    @Override
+	public @Nullable Continuation<?> visitPathNameCS(@NonNull PathNameCS self) {
         throw new UnsupportedOperationException("visitPathNameCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitPivotableElementCS(@NonNull PivotableElementCS self) {
+    @Override
+	public @Nullable Continuation<?> visitPivotableElementCS(@NonNull PivotableElementCS self) {
         throw new UnsupportedOperationException("visitPivotableElementCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitPrimitiveTypeRefCS(@NonNull PrimitiveTypeRefCS self) {
+    @Override
+	public @Nullable Continuation<?> visitPrimitiveTypeRefCS(@NonNull PrimitiveTypeRefCS self) {
         throw new UnsupportedOperationException("visitPrimitiveTypeRefCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitReferenceCS(@NonNull ReferenceCS self) {
+    @Override
+	public @Nullable Continuation<?> visitReferenceCS(@NonNull ReferenceCS self) {
         throw new UnsupportedOperationException("visitReferenceCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitRootCS(@NonNull RootCS self) {
+    @Override
+	public @Nullable Continuation<?> visitRootCS(@NonNull RootCS self) {
         throw new UnsupportedOperationException("visitRootCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitRootPackageCS(@NonNull RootPackageCS self) {
+    @Override
+	public @Nullable Continuation<?> visitRootPackageCS(@NonNull RootPackageCS self) {
         throw new UnsupportedOperationException("visitRootPackageCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitSpecificationCS(@NonNull SpecificationCS self) {
+    @Override
+	public @Nullable Continuation<?> visitSpecificationCS(@NonNull SpecificationCS self) {
         throw new UnsupportedOperationException("visitSpecificationCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitStructuredClassCS(@NonNull StructuredClassCS self) {
+    @Override
+	public @Nullable Continuation<?> visitStructuredClassCS(@NonNull StructuredClassCS self) {
         throw new UnsupportedOperationException("visitStructuredClassCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitStructuralFeatureCS(@NonNull StructuralFeatureCS self) {
+    @Override
+	public @Nullable Continuation<?> visitStructuralFeatureCS(@NonNull StructuralFeatureCS self) {
         //
         // Property
         //
@@ -488,31 +526,38 @@ public class AutoBaseCSContainmentVisitor
         return null;
     }
     
-    public @Nullable Continuation<?> visitTemplateBindingCS(@NonNull TemplateBindingCS self) {
+    @Override
+	public @Nullable Continuation<?> visitTemplateBindingCS(@NonNull TemplateBindingCS self) {
         throw new UnsupportedOperationException("visitTemplateBindingCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitTemplateParameterCS(@NonNull TemplateParameterCS self) {
+    @Override
+	public @Nullable Continuation<?> visitTemplateParameterCS(@NonNull TemplateParameterCS self) {
         throw new UnsupportedOperationException("visitTemplateParameterCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitTemplateParameterSubstitutionCS(@NonNull TemplateParameterSubstitutionCS self) {
+    @Override
+	public @Nullable Continuation<?> visitTemplateParameterSubstitutionCS(@NonNull TemplateParameterSubstitutionCS self) {
         throw new UnsupportedOperationException("visitTemplateParameterSubstitutionCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitTemplateSignatureCS(@NonNull TemplateSignatureCS self) {
+    @Override
+	public @Nullable Continuation<?> visitTemplateSignatureCS(@NonNull TemplateSignatureCS self) {
         throw new UnsupportedOperationException("visitTemplateSignatureCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitTemplateableElementCS(@NonNull TemplateableElementCS self) {
+    @Override
+	public @Nullable Continuation<?> visitTemplateableElementCS(@NonNull TemplateableElementCS self) {
         throw new UnsupportedOperationException("visitTemplateableElementCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitTuplePartCS(@NonNull TuplePartCS self) {
+    @Override
+	public @Nullable Continuation<?> visitTuplePartCS(@NonNull TuplePartCS self) {
         throw new UnsupportedOperationException("visitTuplePartCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitTupleTypeCS(@NonNull TupleTypeCS self) {
+    @Override
+	public @Nullable Continuation<?> visitTupleTypeCS(@NonNull TupleTypeCS self) {
         throw new UnsupportedOperationException("visitTupleTypeCS is not supported by " + getClass().getName());
     }
     
@@ -520,23 +565,28 @@ public class AutoBaseCSContainmentVisitor
         throw new UnsupportedOperationException("visitTypeCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitTypeParameterCS(@NonNull TypeParameterCS self) {
+    @Override
+	public @Nullable Continuation<?> visitTypeParameterCS(@NonNull TypeParameterCS self) {
         throw new UnsupportedOperationException("visitTypeParameterCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitTypeRefCS(@NonNull TypeRefCS self) {
+    @Override
+	public @Nullable Continuation<?> visitTypeRefCS(@NonNull TypeRefCS self) {
         throw new UnsupportedOperationException("visitTypeRefCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitTypedElementCS(@NonNull TypedElementCS self) {
+    @Override
+	public @Nullable Continuation<?> visitTypedElementCS(@NonNull TypedElementCS self) {
         throw new UnsupportedOperationException("visitTypedElementCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitTypedRefCS(@NonNull TypedRefCS self) {
+    @Override
+	public @Nullable Continuation<?> visitTypedRefCS(@NonNull TypedRefCS self) {
         throw new UnsupportedOperationException("visitTypedRefCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitTypedTypeRefCS(@NonNull TypedTypeRefCS self) {
+    @Override
+	public @Nullable Continuation<?> visitTypedTypeRefCS(@NonNull TypedTypeRefCS self) {
         throw new UnsupportedOperationException("visitTypedTypeRefCS is not supported by " + getClass().getName());
     }
     
@@ -544,7 +594,8 @@ public class AutoBaseCSContainmentVisitor
         throw new UnsupportedOperationException("visitVisitableCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitWildcardTypeRefCS(@NonNull WildcardTypeRefCS self) {
+    @Override
+	public @Nullable Continuation<?> visitWildcardTypeRefCS(@NonNull WildcardTypeRefCS self) {
         throw new UnsupportedOperationException("visitWildcardTypeRefCS is not supported by " + getClass().getName());
     }
     

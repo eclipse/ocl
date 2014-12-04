@@ -22,6 +22,7 @@ import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculato
 
 public class EssentialOCLSemanticHighlightingCalculator implements ISemanticHighlightingCalculator
 {
+	@Override
 	public void provideHighlightingFor(XtextResource resource, IHighlightedPositionAcceptor acceptor) {
 		if (resource != null) {
 			IParseResult parseResult = resource.getParseResult();

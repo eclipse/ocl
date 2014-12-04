@@ -24,6 +24,7 @@ public final class CommentLabelGenerator extends AbstractLabelGenerator<Comment>
 		super(Comment.class);
 	}
 
+	@Override
 	public void buildLabelFor(@NonNull Builder labelBuilder, @NonNull Comment object) {
 		String name = object.getBody();
 		if (name != null)

@@ -45,6 +45,7 @@ public class CompatibilityGrammarProvider extends GrammarProvider
 	{
 		public static final @NonNull BinaryGrammarResourceFactoryImpl INSTANCE = new BinaryGrammarResourceFactoryImpl();
 
+		@Override
 		public Resource createResource(URI uri) {
 			XMIResourceImpl resource = new XMIResourceImpl(uri);
 			
@@ -55,13 +56,16 @@ public class CompatibilityGrammarProvider extends GrammarProvider
 			// don't do any resolution, since the only external references point to Ecore elements from EPackages in the registry. 
 			XMLResource.URIHandler uriHandler = new XMLResource.URIHandler() {
 	
+				@Override
 				public void setBaseURI(URI uri) {
 				}
 	
+				@Override
 				public URI resolve(URI uri) {
 					return uri;
 				}
 	
+				@Override
 				public URI deresolve(URI uri) {
 					return uri;
 				}

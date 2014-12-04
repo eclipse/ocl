@@ -24,6 +24,7 @@ public class LiteralIntegerLabelGenerator extends AbstractLabelGenerator<Literal
 		super(LiteralInteger.class);
 	}
 
+	@Override
 	public void buildLabelFor(@NonNull Builder labelBuilder, @NonNull LiteralInteger object) {
 		int value = object.getValue();
 		labelBuilder.appendString(Integer.toString(value));

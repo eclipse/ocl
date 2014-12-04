@@ -69,6 +69,7 @@ public class LibraryCSImpl extends NamedElementCSImpl implements LibraryCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public org.eclipse.ocl.examples.pivot.Package getReferredPackage() {
 		if (referredPackage != null && ((EObject)referredPackage).eIsProxy())
 		{
@@ -98,6 +99,7 @@ public class LibraryCSImpl extends NamedElementCSImpl implements LibraryCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredPackage(org.eclipse.ocl.examples.pivot.Package newReferredPackage)
 	{
 		org.eclipse.ocl.examples.pivot.Package oldReferredPackage = referredPackage;

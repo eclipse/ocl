@@ -75,6 +75,7 @@ public class ExpSpecificationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpCS getOwnedExpression() {
 		return ownedExpression;
 	}
@@ -101,6 +102,7 @@ public class ExpSpecificationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedExpression(ExpCS newOwnedExpression) {
 		if (newOwnedExpression != ownedExpression)
 		{

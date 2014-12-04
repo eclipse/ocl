@@ -25,6 +25,7 @@ public class CollectionLowerProperty extends AbstractProperty
 {
 	public static final @NonNull CollectionLowerProperty INSTANCE = new CollectionLowerProperty();
 
+	@Override
 	public @NonNull IntegerValue evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		DomainCollectionType sourceType = asCollectionType(sourceValue);
 		return sourceType.getLowerValue();

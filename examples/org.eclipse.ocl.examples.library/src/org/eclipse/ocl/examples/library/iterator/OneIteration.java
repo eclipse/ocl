@@ -39,6 +39,7 @@ public class OneIteration extends AbstractIteration
 
 	public static final @NonNull OneIteration INSTANCE = new OneIteration();
 
+	@Override
 	public @NonNull MutableBoolean createAccumulatorValue(@NonNull DomainEvaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
 		return new MutableBoolean();
 	}

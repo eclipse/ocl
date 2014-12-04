@@ -91,6 +91,7 @@ public class PackageDeclarationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ContextDeclCS> getOwnedContexts() {
 		if (ownedContexts == null)
 		{
@@ -104,6 +105,7 @@ public class PackageDeclarationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ConstraintCS> getOwnedInvariants()
 	{
 		if (ownedInvariants == null)
@@ -225,6 +227,7 @@ public class PackageDeclarationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public org.eclipse.ocl.examples.pivot.Package getReferredPackage() {
 		PathNameCS ownedPathName2 = ownedPathName;
 		if (ownedPathName2 == null) {

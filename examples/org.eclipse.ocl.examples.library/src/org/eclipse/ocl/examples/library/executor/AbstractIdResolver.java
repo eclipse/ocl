@@ -101,50 +101,62 @@ public abstract class AbstractIdResolver implements IdResolver
 			this.stringValue = stringValue;
 		}
 
+		@Override
 		public @Nullable Object visitClassId(@NonNull ClassId id) {
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public @Nullable Object visitCollectionTypeId(@NonNull CollectionTypeId id) {
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public @Nullable Object visitDataTypeId(@NonNull DataTypeId id) {
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public @Nullable Object visitEnumerationId(@NonNull EnumerationId id) {
 			return id.getEnumerationLiteralId(stringValue);
 		}
 
+		@Override
 		public @Nullable Object visitEnumerationLiteralId(@NonNull EnumerationLiteralId id) {
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public @Nullable Object visitInvalidId(@NonNull OclInvalidTypeId id) {
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public @Nullable Object visitLambdaTypeId(@NonNull LambdaTypeId id) {
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public @Nullable Object visitNestedPackageId(@NonNull NestedPackageId id) {
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public @Nullable Object visitNsURIPackageId(@NonNull NsURIPackageId id) {
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public @Nullable Object visitNullId(@NonNull OclVoidTypeId id) {
 			return null;
 		}
 
+		@Override
 		public @Nullable Object visitOperationId(@NonNull OperationId id) {
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public @Nullable Object visitPrimitiveTypeId(@NonNull PrimitiveTypeId id) {
 			if (id == TypeId.BOOLEAN) {
 				return Boolean.valueOf(stringValue);
@@ -164,34 +176,42 @@ public abstract class AbstractIdResolver implements IdResolver
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public @Nullable Object visitPropertyId(@NonNull PropertyId id) {
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public @Nullable Object visitRootPackageId(@NonNull RootPackageId id) {
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public @Nullable Object visitTemplateBinding(@NonNull TemplateBinding id) {
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public @Nullable Object visitTemplateParameterId(@NonNull TemplateParameterId id) {
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public @Nullable Object visitTemplateableTypeId(@NonNull TemplateableTypeId id) {
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public @Nullable Object visitTuplePartId(@NonNull TuplePartId id) {
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public @Nullable Object visitTupleTypeId(@NonNull TupleTypeId id) {
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public @Nullable Object visitUnspecifiedId(@NonNull UnspecifiedId id) {
 			throw new UnsupportedOperationException();
 		}
@@ -215,6 +235,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		this.standardLibrary = environment.getStandardLibrary();
 	}
 
+	@Override
 	public @Nullable Object boxedValueOf(@Nullable Object unboxedValue) {
 		if (unboxedValue == null) {
 			return unboxedValue;
@@ -306,6 +327,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		throw new UnsupportedOperationException();				// Must invoke createObjectValue with the appropriate TypeId
 	}
 
+	@Override
 	public @Nullable Object boxedValueOf(@NonNull Object unboxedValue, @Nullable EClassifier eClassifier) {
 		if (unboxedValue instanceof Value) {
 			return unboxedValue;		
@@ -322,6 +344,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		}
 	}
 
+	@Override
 	public @Nullable Object boxedValueOf(@NonNull Object unboxedValue, @NonNull ETypedElement eFeature, @Nullable TypeId typeId) {
 		EClassifier eClassifier = eFeature.getEType();
 		if (typeId instanceof CollectionTypeId) {
@@ -370,6 +393,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		return enumerationLiteralId;
 	}
 
+	@Override
 	public @NonNull BagValue createBagOfAll(@NonNull CollectionTypeId typeId, @NonNull Iterable<? extends Object> unboxedValues) {
 		Bag<Object> boxedValues = new BagImpl<Object>();
 		for (Object unboxedValue : unboxedValues) {
@@ -378,6 +402,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		return ValuesUtil.createBagValue(typeId, boxedValues);
 	}
 	
+	@Override
 	public @NonNull BagValue createBagOfEach(@NonNull CollectionTypeId typeId, @NonNull Object... unboxedValues) {
 		Bag<Object> boxedValues = new BagImpl<Object>();
 		for (Object unboxedValue : unboxedValues) {
@@ -394,6 +419,7 @@ public abstract class AbstractIdResolver implements IdResolver
 	 * @param unboxedValues the required collection contents
 	 * @return the new collection
 	 */
+	@Override
 	public @NonNull CollectionValue createCollectionOfAll(boolean isOrdered, boolean isUnique, @NonNull TypeId elementTypeId, @NonNull Iterable<? extends Object> unboxedValues) {
 		if (isOrdered) {
 			if (isUnique) {
@@ -413,6 +439,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		}
 	}
 
+	@Override
 	public @NonNull CollectionValue createCollectionOfAll(@NonNull CollectionTypeId collectedId, @NonNull Iterable<?> unboxedValues) {
 		CollectionTypeId collectionId = collectedId.getGeneralizedId();
 		if (collectionId == TypeId.BAG) {
@@ -429,11 +456,13 @@ public abstract class AbstractIdResolver implements IdResolver
 		}
 	} 
 
+	@Override
 	public @Nullable Object createInstance(@NonNull TypeId typeId, @NonNull String stringValue) {
 		Id2InstanceVisitor visitor = new Id2InstanceVisitor(stringValue);
 		return typeId.accept(visitor);
 	}
 
+	@Override
 	public @NonNull OrderedSetValue createOrderedSetOfAll(@NonNull CollectionTypeId typeId, @NonNull Iterable<? extends Object> unboxedValues) {
 		OrderedSet<Object> boxedValues = new OrderedSetImpl<Object>();
 		for (Object unboxedValue : unboxedValues) {
@@ -442,6 +471,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		return ValuesUtil.createOrderedSetValue(typeId, boxedValues);
 	}
 
+	@Override
 	public @NonNull OrderedSetValue createOrderedSetOfEach(@NonNull CollectionTypeId typeId, @NonNull Object... unboxedValues) {
 		OrderedSet<Object> boxedValues = new OrderedSetImpl<Object>();
 		for (Object unboxedValue : unboxedValues) {
@@ -450,6 +480,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		return ValuesUtil.createOrderedSetValue(typeId, boxedValues);
 	}
 
+	@Override
 	public @NonNull SequenceValue createSequenceOfAll(@NonNull CollectionTypeId typeId, @NonNull Iterable<? extends Object> unboxedValues) {
 		List<Object> boxedValues = new ArrayList<Object>();
 		for (Object unboxedValue : unboxedValues) {
@@ -458,6 +489,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		return ValuesUtil.createSequenceValue(typeId, boxedValues);
 	}
 
+	@Override
 	public @NonNull SequenceValue createSequenceOfEach(@NonNull CollectionTypeId typeId, @NonNull Object... unboxedValues) {
 		List<Object> boxedValues = new ArrayList<Object>();
 		for (Object unboxedValue : unboxedValues) {
@@ -466,6 +498,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		return ValuesUtil.createSequenceValue(typeId, boxedValues);
 	}
 
+	@Override
 	public @NonNull SetValue createSetOfAll(@NonNull CollectionTypeId typeId, @NonNull Iterable<? extends Object> unboxedValues) {
 		Set<Object> boxedValues = new HashSet<Object>();
 		for (Object unboxedValue : unboxedValues) {
@@ -474,6 +507,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		return ValuesUtil.createSetValue(typeId, boxedValues);
 	}
 
+	@Override
 	public @NonNull SetValue createSetOfEach(@NonNull CollectionTypeId typeId, @NonNull Object... unboxedValues) {
 		Set<Object> boxedValues = new HashSet<Object>();
 		for (Object unboxedValue : unboxedValues) {
@@ -482,6 +516,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		return ValuesUtil.createSetValue(typeId, boxedValues);
 	}
 
+	@Override
 	public void dispose() {
 		tupleParts = null;
 		key2type.clear();
@@ -489,12 +524,14 @@ public abstract class AbstractIdResolver implements IdResolver
 		enumerator2enumerationLiteralId = null;
 	}
 
+	@Override
 	public @NonNull DomainClass getClass(@NonNull TypeId typeId, @Nullable Object context) {
 		DomainElement type = typeId.accept(this);
 		assert type != null;
 		return (DomainClass)type;
 	}
 
+	@Override
 	public @NonNull DomainClass getCollectionType(@NonNull CollectionTypeId typeId) {
 		return getCollectionType(typeId, null, null);
 	}
@@ -548,6 +585,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		}
 	}
 	
+	@Override
 	public @NonNull DomainClass getDynamicTypeOf(@Nullable Object value) {
 		if (value instanceof CollectionValue) {
 			CollectionValue collectionValue = (CollectionValue) value;
@@ -567,6 +605,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		}
 	}
 	
+	@Override
 	public @Nullable DomainType getDynamicTypeOf(@NonNull Object... values) {
 		DomainType elementType = null;
 		for (Object value : values) {
@@ -584,6 +623,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		return elementType;
 	}
 	
+	@Override
 	public @Nullable DomainType getDynamicTypeOf(@NonNull Iterable<?> values) {
 		DomainType elementType = null;
 		for (Object value : values) {
@@ -598,10 +638,12 @@ public abstract class AbstractIdResolver implements IdResolver
 		return elementType;
 	}
 
+	@Override
 	public @NonNull DomainEnvironment getEnvironment() {
 		return environment;
 	}
 
+	@Override
 	public synchronized @NonNull DomainClass getJavaType(@NonNull Class<?> javaClass) {
 		DomainClass type = key2type.get(javaClass);
 		if (type != null) {
@@ -620,6 +662,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		return type;
 	}
 
+	@Override
 	public @NonNull DomainOperation getOperation(@NonNull OperationId operationId) {
 		DomainElement element = operationId.accept(this);
 		if (element instanceof DomainOperation) {
@@ -636,6 +679,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		throw new IllegalStateException("No " + packageId); //$NON-NLS-1$
 	}
 
+	@Override
 	public @NonNull DomainProperty getProperty(@NonNull PropertyId propertyId) {
 		DomainElement element = propertyId.accept(this);
 		if (element instanceof DomainProperty) {
@@ -644,10 +688,12 @@ public abstract class AbstractIdResolver implements IdResolver
 		throw new IllegalStateException("No " + propertyId); //$NON-NLS-1$
 	}
 
+	@Override
 	public @NonNull DomainStandardLibrary getStandardLibrary() {
 		return standardLibrary;
 	}
 
+	@Override
 	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value) {
 		if (value instanceof DomainType) {
 			DomainClass type = key2type.get(value);
@@ -708,6 +754,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		return getJavaType(jClass);
 	}
 
+	@Override
 	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value, Object... values) {
 		Object bestTypeId = getTypeKeyOf(value);
 		DomainClass bestType = key2type.get(bestTypeId);
@@ -737,6 +784,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		return bestType;
 	}
 
+	@Override
 	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
 		Object bestTypeKey = getTypeKeyOf(value);
 		DomainClass bestType = key2type.get(bestTypeKey);
@@ -765,6 +813,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		return bestType;
 	}
 	
+	@Override
 	public @NonNull DomainTypedElement getTuplePart(@NonNull String name, @NonNull TypeId typeId) {
 		return getTuplePart(name, getType(typeId, null));
 	}
@@ -786,8 +835,10 @@ public abstract class AbstractIdResolver implements IdResolver
 		return tupleProperty;
 	}
 
+	@Override
 	public abstract @NonNull DomainTupleType getTupleType(@NonNull TupleTypeId typeId);
 
+	@Override
 	public @NonNull DomainType getType(@NonNull TypeId typeId, @Nullable Object context) {
 		DomainElement type = typeId.accept(this);
 		assert type != null;
@@ -851,6 +902,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public boolean oclEquals(@Nullable Object thisValue, @Nullable Object thatValue) {
 		if (thisValue == thatValue) {
 			return true;
@@ -891,6 +943,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		}
 	}
 
+	@Override
 	public @Nullable Object unboxedValueOf(@Nullable Object boxedValue) {
 		if (boxedValue instanceof Value) {
 			return ((Value)boxedValue).asEcoreObject(this);
@@ -903,6 +956,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		}
 	}
 
+	@Override
 	public @NonNull Enumerator unboxedValueOf(@NonNull EnumerationLiteralId enumerationLiteralId) {
 		if (enumerationLiteral2enumerator == null) {
 			synchronized (this) {
@@ -930,6 +984,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		return enumerator;
 	}
 
+	@Override
 	public @NonNull EList<Object> unboxedValuesOfAll(@NonNull Collection<? extends Object> boxedValues) {
 		Object[] unboxedValues = new Object[boxedValues.size()];
 		int i= 0;
@@ -939,6 +994,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		return new EcoreEList.UnmodifiableEList<Object>(null, null, i, unboxedValues);
 	}
 
+	@Override
 	public @NonNull EList<Object> unboxedValuesOfEach(@NonNull Object... boxedValues) {
 		Object[] unboxedValues = new Object[boxedValues.length];
 		int i= 0;
@@ -948,6 +1004,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		return new EcoreEList.UnmodifiableEList<Object>(null, null, boxedValues.length, unboxedValues);
 	}
 
+	@Override
 	public @NonNull DomainType visitClassId(@NonNull ClassId id) {
 		DomainPackage parentPackage = (DomainPackage) id.getParent().accept(this);
 		assert parentPackage != null;
@@ -969,10 +1026,12 @@ public abstract class AbstractIdResolver implements IdResolver
 		return environment.getCollectionType(collectionType, elementType, null, null);
 	}
 
+	@Override
 	public @NonNull DomainType visitCollectionTypeId(@NonNull CollectionTypeId id) {
 		return getCollectionType(id);
 	}
 
+	@Override
 	public @NonNull DomainType visitDataTypeId(@NonNull DataTypeId id) {
 		DomainPackage parentPackage = (DomainPackage) id.getParent().accept(this);
 		assert parentPackage != null;
@@ -986,6 +1045,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		return nestedType;
 	}
 	
+	@Override
 	public @NonNull DomainEnumeration visitEnumerationId(@NonNull EnumerationId id) {
 		DomainPackage parentPackage = (DomainPackage) id.getParent().accept(this);
 		assert parentPackage != null;
@@ -1000,6 +1060,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		return (DomainEnumeration) nestedType;
 	}
 
+	@Override
 	public @NonNull DomainEnumerationLiteral visitEnumerationLiteralId(@NonNull EnumerationLiteralId id) {
 		DomainElement parent = id.getParentId().accept(this);
 		if (!(parent instanceof DomainEnumeration)) {
@@ -1012,14 +1073,17 @@ public abstract class AbstractIdResolver implements IdResolver
 		return enumerationLiteral;
 	}
 
+	@Override
 	public @NonNull DomainType visitInvalidId(@NonNull OclInvalidTypeId id) {
 		return standardLibrary.getOclInvalidType();
 	}
 
+	@Override
 	public @NonNull DomainType visitLambdaTypeId(@NonNull LambdaTypeId id) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public @NonNull DomainPackage visitNestedPackageId(@NonNull NestedPackageId packageId) {
 		DomainPackage parentPackage = (DomainPackage) packageId.getParent().accept(this);
 		assert parentPackage != null;
@@ -1030,6 +1094,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		return nestedPackage;
 	}
 
+	@Override
 	public @NonNull DomainPackage visitNsURIPackageId(@NonNull NsURIPackageId id) {
 		DomainPackage nsURIPackage = standardLibrary.getNsURIPackage(id.getNsURI());
 		if (nsURIPackage == null) {
@@ -1038,10 +1103,12 @@ public abstract class AbstractIdResolver implements IdResolver
 		return nsURIPackage;
 	}
 
+	@Override
 	public @NonNull DomainType visitNullId(@NonNull OclVoidTypeId id) {
 		return standardLibrary.getOclVoidType();
 	}
 
+	@Override
 	public @NonNull DomainOperation visitOperationId(@NonNull OperationId id) {
 		DomainClass domainType = (DomainClass) id.getParent().accept(this);
 		if (domainType == null) {
@@ -1055,6 +1122,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		return memberOperation;
 	}
 
+	@Override
 	public @NonNull DomainType visitPrimitiveTypeId(@NonNull PrimitiveTypeId id) {
 		DomainType primitiveType = standardLibrary.getPrimitiveType(id);
 		if (primitiveType == null) {
@@ -1063,6 +1131,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		return primitiveType;
 	}
 
+	@Override
 	public @NonNull DomainProperty visitPropertyId(@NonNull PropertyId id) {
 		DomainClass domainType = (DomainClass) id.getParent().accept(this);
 		if (domainType == null) {
@@ -1076,6 +1145,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		return memberProperty;
 	}
 
+	@Override
 	public @NonNull DomainPackage visitRootPackageId(@NonNull RootPackageId id) {
 		String completeURIorName = id.getName();
 		DomainPackage rootPackage = standardLibrary.getRootPackage(completeURIorName);
@@ -1085,26 +1155,32 @@ public abstract class AbstractIdResolver implements IdResolver
 		return rootPackage;
 	}
 
+	@Override
 	public @NonNull DomainElement visitTemplateBinding(@NonNull TemplateBinding id) {
 		return id.getTemplateParameter();
 	}
 
+	@Override
 	public @NonNull DomainElement visitTemplateParameterId(@NonNull TemplateParameterId id) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public @NonNull DomainType visitTemplateableTypeId(@NonNull TemplateableTypeId id) {
 		return getType(id, null);
 	}
 
+	@Override
 	public @NonNull DomainTypedElement visitTuplePartId(@NonNull TuplePartId id) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public @NonNull DomainType visitTupleTypeId(@NonNull TupleTypeId id) {
 		return getTupleType(id);
 	}
 
+	@Override
 	public @NonNull DomainType visitUnspecifiedId(@NonNull UnspecifiedId id) {
 		return (DomainType) id.getSpecifier();
 	}

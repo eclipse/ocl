@@ -91,6 +91,7 @@ public class RootPackageCSImpl extends PackageOwnerCSImpl implements RootPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ImportCS> getOwnedImports()
 	{
 		if (ownedImports == null)
@@ -105,6 +106,7 @@ public class RootPackageCSImpl extends PackageOwnerCSImpl implements RootPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<LibraryCS> getOwnedLibraries()
 	{
 		if (ownedLibraries == null)

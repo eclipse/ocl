@@ -60,6 +60,7 @@ public interface Type
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	Type flattenedType();
 
 	/**
@@ -69,8 +70,10 @@ public interface Type
 	 */
 	Type specializeIn(OCLExpression expr, Type selfType);
 
+	@Override
 	@Nullable org.eclipse.ocl.examples.pivot.Class isClass();
 
+	@Override
 	@Nullable TemplateParameter isTemplateParameter();
 
 } // Type

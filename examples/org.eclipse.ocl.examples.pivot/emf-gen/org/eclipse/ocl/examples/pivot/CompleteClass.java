@@ -119,7 +119,9 @@ public interface CompleteClass extends NamedElement
 		void uninstall();
 		@NonNull CompleteModel.Internal getCompleteModel();
 		@NonNull MetaModelManager getMetaModelManager();
+		@Override
 		CompletePackage.Internal getOwningCompletePackage();
+		@Override
 		@NonNull PartialClasses getPartialClasses();
 		@NonNull Iterable<? extends DomainClass> getProperSuperClasses();
 	}

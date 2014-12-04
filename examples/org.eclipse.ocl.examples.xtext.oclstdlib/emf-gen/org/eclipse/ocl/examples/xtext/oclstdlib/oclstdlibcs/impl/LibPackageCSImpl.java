@@ -77,6 +77,7 @@ public class LibPackageCSImpl extends PackageCSImpl implements LibPackageCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<PrecedenceCS> getOwnedPrecedences()
 	{
 		if (ownedPrecedences == null)

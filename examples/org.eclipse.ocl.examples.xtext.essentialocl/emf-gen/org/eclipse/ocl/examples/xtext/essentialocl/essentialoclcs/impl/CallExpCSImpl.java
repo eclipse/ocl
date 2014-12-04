@@ -82,6 +82,7 @@ public abstract class CallExpCSImpl extends AbstractNameExpCSImpl implements Cal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpCS getSource()
 	{
 		return source;
@@ -92,6 +93,7 @@ public abstract class CallExpCSImpl extends AbstractNameExpCSImpl implements Cal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSource(ExpCS newSource)
 	{
 		ExpCS oldSource = source;
@@ -105,6 +107,7 @@ public abstract class CallExpCSImpl extends AbstractNameExpCSImpl implements Cal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ExpCS> getArguments()
 	{
 		if (arguments == null)

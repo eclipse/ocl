@@ -112,6 +112,7 @@ public class BaseCSLeft2RightVisitor extends AbstractExtendingBaseCSVisitor<Elem
 		return null;
 	}
 
+	@Override
 	public Element visiting(@NonNull VisitableCS visitable) {
 		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for CS2AS Left2Right pass");
 	}

@@ -46,10 +46,12 @@ public class DomainReflectivePackage extends ReflectivePackage
 		return DomainUtil.nonNullPivot(domainPackage.getOwnedClasses());
 	}
 
+	@Override
 	public List<? extends DomainPackage> getOwnedPackages() {
 		return domainPackage.getOwnedPackages();			// FIXME Is this recursive??
 	}
 
+	@Override
 	public DomainPackage getOwningPackage() {
 		return domainPackage.getOwningPackage();			// FIXME Is this recursive??
 	}

@@ -103,6 +103,7 @@ public class CommentImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getBody() {
 		return body;
 	}
@@ -112,6 +113,7 @@ public class CommentImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBody(String newBody) {
 		String oldBody = body;
 		body = newBody;
@@ -124,6 +126,7 @@ public class CommentImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Element getOwningElement()
 	{
 		if (eContainerFeatureID() != PivotPackage.COMMENT__OWNING_ELEMENT) return null;
@@ -146,6 +149,7 @@ public class CommentImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningElement(Element newOwningElement)
 	{
 		if (newOwningElement != eInternalContainer() || (eContainerFeatureID() != PivotPackage.COMMENT__OWNING_ELEMENT && newOwningElement != null))
@@ -238,6 +242,7 @@ public class CommentImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<Element> getAnnotatedElement()
 	{
 		if (annotatedElement == null)

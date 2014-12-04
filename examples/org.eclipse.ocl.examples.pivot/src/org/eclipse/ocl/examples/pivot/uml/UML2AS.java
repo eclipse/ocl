@@ -896,16 +896,19 @@ public abstract class UML2AS extends AbstractEcore2AS
 	
 	public abstract @Nullable Type getPivotType(@NonNull EObject eObject);
 
+	@Override
 	public @NonNull Resource getResource() {
 		return umlResource;
 	}
 	
 	public abstract @NonNull Outer getRoot();
 
+	@Override
 	public @NonNull Notifier getTarget() {
 		return umlResource;
 	}
 
+	@Override
 	public @NonNull URI getURI() {
 		return DomainUtil.nonNullState(umlResource.getURI());
 	}
@@ -929,10 +932,12 @@ public abstract class UML2AS extends AbstractEcore2AS
 		return pivotModel2;
 	}
 
+	@Override
 	public boolean isAdapterFor(@NonNull MetaModelManager metaModelManager) {
 		return this.metaModelManager == metaModelManager;
 	}
 
+	@Override
 	public boolean isAdapterForType(Object type) {
 		return type == UML2AS.class;
 	}
@@ -961,10 +966,12 @@ public abstract class UML2AS extends AbstractEcore2AS
 		return true;
 	}
 
+	@Override
 	public void metaModelManagerDisposed(@NonNull MetaModelManager metaModelManager) {
 		dispose();
 	}
 
+	@Override
 	public void notifyChanged(Notification notification) {}
 
 	public abstract void queueUse(@NonNull EObject eObject);
@@ -1214,6 +1221,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 		addCreated(umlElement, pivotElement);
 	}
 
+	@Override
 	public void setTarget(Notifier newTarget) {
 		assert (newTarget == null) || (newTarget == umlResource);
 	}
@@ -1227,6 +1235,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 		return String.valueOf(umlResource.getURI());
 	}
 
+	@Override
 	public void unsetTarget(Notifier oldTarget) {
 		assert (oldTarget == umlResource);
 	}

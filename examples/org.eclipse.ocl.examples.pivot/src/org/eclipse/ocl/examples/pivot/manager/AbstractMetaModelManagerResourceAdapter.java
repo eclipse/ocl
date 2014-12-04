@@ -62,29 +62,36 @@ public abstract class AbstractMetaModelManagerResourceAdapter<T extends Resource
 		return metaModelManager;
 	}
 
+	@Override
 	public T getTarget() {
 		return resource;
 	}
 
+	@Override
 	public boolean isAdapterFor(@NonNull MetaModelManager metaModelManager) {
 		return this.metaModelManager == metaModelManager;
 	}
 
+	@Override
 	public boolean isAdapterForType(Object type) {
 		return type == AbstractMetaModelManagerResourceAdapter.class;
 	}	
 
+	@Override
 	public void metaModelManagerDisposed(@NonNull MetaModelManager metaModelManager) {
 		dispose();
 	}
 
+	@Override
 	public void notifyChanged(Notification notification) {
 	}
 
+	@Override
 	public void setTarget(Notifier newTarget) {
 		assert newTarget == resource;
 	}
 
+	@Override
 	public void unsetTarget(Notifier oldTarget) {
 		assert oldTarget == resource;
 	}

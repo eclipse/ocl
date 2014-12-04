@@ -102,6 +102,7 @@ public abstract class TemplateableElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<TemplateBinding> getOwnedTemplateBindings()
 	{
 		if (ownedTemplateBindings == null)
@@ -116,6 +117,7 @@ public abstract class TemplateableElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TemplateSignature getOwnedTemplateSignature() {
 		return ownedTemplateSignature;
 	}
@@ -142,6 +144,7 @@ public abstract class TemplateableElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedTemplateSignature(
 			TemplateSignature newOwnedTemplateSignature) {
 		if (newOwnedTemplateSignature != ownedTemplateSignature)
@@ -163,6 +166,7 @@ public abstract class TemplateableElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TemplateableElement getUnspecializedElement()
 	{
 		return unspecializedElement;
@@ -173,6 +177,7 @@ public abstract class TemplateableElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUnspecializedElement(TemplateableElement newUnspecializedElement)
 	{
 		TemplateableElement oldUnspecializedElement = unspecializedElement;

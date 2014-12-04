@@ -33,10 +33,12 @@ public class BasicOption<T> implements Option<T> {
 		this.defaultValue = defaultValue;
 	}
 	
+	@Override
 	public final String getKey() {
 		return key;
 	}
 	
+	@Override
 	public final T getDefaultValue() {
 		return defaultValue;
 	}

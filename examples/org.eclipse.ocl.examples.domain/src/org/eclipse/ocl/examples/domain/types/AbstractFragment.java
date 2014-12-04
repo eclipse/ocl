@@ -30,6 +30,7 @@ public abstract class AbstractFragment implements DomainFragment
 	/**
 	 * Return the actualOperation that has the same signature as apparentOperation.
 	 */
+	@Override
 	public @NonNull DomainOperation getActualOperation(@NonNull DomainOperation apparentOperation) {
 		DomainOperation localOperation = getLocalOperation(apparentOperation);
 		if (localOperation == null) {
@@ -85,14 +86,17 @@ public abstract class AbstractFragment implements DomainFragment
 		return localOperation;
 	}
 
+	@Override
 	public final @NonNull DomainFragment getBaseFragment() {
 		return baseInheritance.getSelfFragment();
 	}
 
+	@Override
 	public final @NonNull DomainInheritance getBaseInheritance() {
 		return baseInheritance;
 	}
 
+	@Override
 	public final @NonNull DomainInheritance getDerivedInheritance() {
 		return derivedInheritance;
 	}

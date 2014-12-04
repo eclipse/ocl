@@ -34,18 +34,22 @@ public class AutoReferencesVisitor extends ReferencesVisitor implements AutoCGMo
 		super(context);
 	}
 
+	@Override
 	public @Nullable List<Object> visitCGASTCallExp(@NonNull CGASTCallExp object) {
 		return visitCGOperationCallExp(object);
 	}
 
+	@Override
 	public @Nullable List<Object> visitCGContainmentBody(@NonNull CGContainmentBody object) {
 		return visitCGValuedElement(object);
 	}
 
+	@Override
 	public @Nullable List<Object> visitCGContainmentPart(@NonNull CGContainmentPart object) {
 		return visitCGValuedElement(object);
 	}
 
+	@Override
 	public @Nullable List<Object> visitCGContainmentVisit(@NonNull CGContainmentVisit object) {
 		return visitCGOperation(object);
 	}

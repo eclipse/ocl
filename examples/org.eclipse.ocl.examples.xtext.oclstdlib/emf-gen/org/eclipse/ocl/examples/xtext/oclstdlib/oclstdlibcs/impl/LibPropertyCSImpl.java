@@ -97,6 +97,7 @@ public class LibPropertyCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public JavaClassCS getImplementation() {
 		if (implementation != null && implementation.eIsProxy())
 		{
@@ -126,6 +127,7 @@ public class LibPropertyCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setImplementation(JavaClassCS newImplementation)
 	{
 		JavaClassCS oldImplementation = implementation;
@@ -139,6 +141,7 @@ public class LibPropertyCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsStatic() {
 		return isStatic;
 	}
@@ -148,6 +151,7 @@ public class LibPropertyCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsStatic(boolean newIsStatic) {
 		boolean oldIsStatic = isStatic;
 		isStatic = newIsStatic;

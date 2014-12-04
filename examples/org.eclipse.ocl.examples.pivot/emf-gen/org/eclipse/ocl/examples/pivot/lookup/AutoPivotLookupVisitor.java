@@ -147,7 +147,8 @@ public class AutoPivotLookupVisitor
         }
     }
     
-    public @Nullable Environment visiting(@NonNull Visitable visitable) {
+    @Override
+	public @Nullable Environment visiting(@NonNull Visitable visitable) {
         throw new UnsupportedOperationException("AutoPivotLookupVisitor is not supported by \"" + getClass().getName() + "\"");
     }
     

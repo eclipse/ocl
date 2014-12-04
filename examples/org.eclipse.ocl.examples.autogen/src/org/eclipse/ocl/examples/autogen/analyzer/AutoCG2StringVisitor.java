@@ -30,10 +30,12 @@ public class AutoCG2StringVisitor extends CG2StringVisitor implements AutoCGMode
 			CG2StringVisitor.addFactory(this);
 		}
 
+		@Override
 		public @NonNull CG2StringVisitor createToStringVisitor() {
 			return new AutoCG2StringVisitor();
 		}
 
+		@Override
 		public @NonNull EPackage getEPackage() {
 			AutoCGModelPackage eInstance = AutoCGModelPackage.eINSTANCE;
 			assert eInstance != null;
@@ -45,6 +47,7 @@ public class AutoCG2StringVisitor extends CG2StringVisitor implements AutoCGMode
 
 	public AutoCG2StringVisitor() {}
 
+	@Override
 	public @Nullable String visitCGASTCallExp(@NonNull CGASTCallExp object) {
         CGValuedElement source = object.getSource();
 		safeVisit(source);
@@ -52,14 +55,17 @@ public class AutoCG2StringVisitor extends CG2StringVisitor implements AutoCGMode
 		return null;
 	}
 
+	@Override
 	public @Nullable String visitCGContainmentBody(@NonNull CGContainmentBody object) {
 		return visitCGValuedElement(object);
 	}
 
+	@Override
 	public @Nullable String visitCGContainmentPart(@NonNull CGContainmentPart object) {
 		return visitCGValuedElement(object);
 	}
 
+	@Override
 	public @Nullable String visitCGContainmentVisit(@NonNull CGContainmentVisit object) {
 		return visitCGOperation(object);
 	}

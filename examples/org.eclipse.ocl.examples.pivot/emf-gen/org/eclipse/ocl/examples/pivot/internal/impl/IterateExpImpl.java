@@ -106,6 +106,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Variable getResult()
 	{
 		return result;
@@ -133,6 +134,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setResult(Variable newResult)
 	{
 		if (newResult != result)
@@ -451,6 +453,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public Element getReferredElement()
 	{
 		return getReferredIteration();
@@ -461,6 +464,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateTypeIsResultType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -497,6 +501,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateBodyTypeConformsToResultType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -537,6 +542,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateOneInitializer(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**

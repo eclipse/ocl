@@ -154,6 +154,7 @@ public class CollectionLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CollectionKind getKind() {
 		return KIND_EFLAG_VALUES[(eFlags & KIND_EFLAG) >>> KIND_EFLAG_OFFSET];
 	}
@@ -163,6 +164,7 @@ public class CollectionLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setKind(CollectionKind newKind) {
 		CollectionKind oldKind = KIND_EFLAG_VALUES[(eFlags & KIND_EFLAG) >>> KIND_EFLAG_OFFSET];
 		if (newKind == null) newKind = KIND_EDEFAULT;
@@ -176,6 +178,7 @@ public class CollectionLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<CollectionLiteralPart> getPart()
 	{
 		if (part == null)
@@ -190,6 +193,7 @@ public class CollectionLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateCollectionKindIsConcrete(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -221,6 +225,7 @@ public class CollectionLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateSetKindIsSet(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -330,6 +335,7 @@ public class CollectionLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateOrderedSetKindIsOrderedSet(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -440,6 +446,7 @@ public class CollectionLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateSequenceKindIsSequence(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -549,6 +556,7 @@ public class CollectionLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateBagKindIsBag(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**

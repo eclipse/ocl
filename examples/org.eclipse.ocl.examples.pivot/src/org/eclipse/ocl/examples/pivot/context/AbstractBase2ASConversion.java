@@ -82,6 +82,7 @@ public abstract class AbstractBase2ASConversion extends AbstractConversion imple
 		setType(targetElement, null, sourceElement.isRequired());
 	}
 
+	@Override
 	public void setContextVariable(@NonNull ExpressionInOCL pivotSpecification, @NonNull String selfVariableName, @Nullable Type contextType, @Nullable Type contextInstance) {
 		Variable contextVariable = pivotSpecification.getContextVariable();
 		if (contextVariable == null) {
@@ -94,6 +95,7 @@ public abstract class AbstractBase2ASConversion extends AbstractConversion imple
 		setType(contextVariable, contextType, contextVariable.isRequired(), contextInstance);
 	}
 
+	@Override
 	public void setClassifierContext(@NonNull ExpressionInOCL pivotSpecification, @NonNull Type contextType) {
 		Variable contextVariable = pivotSpecification.getContextVariable();
 		if (contextVariable != null) {
@@ -118,6 +120,7 @@ public abstract class AbstractBase2ASConversion extends AbstractConversion imple
 		}
 	}
 
+	@Override
 	public void setParameterVariables(@NonNull ExpressionInOCL pivotSpecification, @NonNull List<Parameter> parameters) {
 		List<Variable> oldVariables = new ArrayList<Variable>(pivotSpecification.getParameterVariable());
 		List<Variable> newVariables = new ArrayList<Variable>();
@@ -138,6 +141,7 @@ public abstract class AbstractBase2ASConversion extends AbstractConversion imple
 		refreshList(DomainUtil.nonNullModel(pivotSpecification.getParameterVariable()), newVariables);
 	}
 
+	@Override
 	public void setParameterVariables(@NonNull ExpressionInOCL pivotSpecification, @NonNull Map<String, Type> parameters) {
 		List<Variable> oldVariables = new ArrayList<Variable>(pivotSpecification.getParameterVariable());
 		List<Variable> newVariables = new ArrayList<Variable>();
@@ -165,6 +169,7 @@ public abstract class AbstractBase2ASConversion extends AbstractConversion imple
 		}
 	}
 
+	@Override
 	public void setResultVariable(@NonNull ExpressionInOCL pivotSpecification, @NonNull Operation contextOperation, @NonNull String resultName) {
 		Type returnType = contextOperation.getType();
 		if (returnType != null) {					// FIXME BUG 385711 Use OclVoid rather than null

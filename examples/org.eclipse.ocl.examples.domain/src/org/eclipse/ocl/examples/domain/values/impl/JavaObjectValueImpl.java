@@ -50,6 +50,7 @@ public class JavaObjectValueImpl extends ObjectValueImpl
 		return type2;
 	} */
 
+	@Override
 	public @NonNull TypeId getTypeId() {
 //		return getType(valueFactory.getStandardLibrary()).getTypeId();
 		TypeId typeId2 = typeId;

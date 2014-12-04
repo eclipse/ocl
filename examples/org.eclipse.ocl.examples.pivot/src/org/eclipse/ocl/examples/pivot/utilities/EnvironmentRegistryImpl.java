@@ -54,11 +54,13 @@ public class EnvironmentRegistryImpl implements Environment.Registry {
     private static final String E_PACKAGE = "package"; //$NON-NLS-1$
     private static final String A_NS_URI = "nsURI"; //$NON-NLS-1$
     
+	@Override
 	public @Nullable Environment getEnvironmentFor(@NonNull OCLExpression expression) {
 		Type type = expression.getType();
 		return type != null ? getEnvironmentFor(type) : null;
 	}
 
+	@Override
 	public @Nullable Environment getEnvironmentFor(@NonNull Object abstractSyntaxElement) {
 		
 		if (abstractSyntaxElement instanceof TypedElement) {
@@ -92,6 +94,7 @@ public class EnvironmentRegistryImpl implements Environment.Registry {
 		return null;
 	}
 
+	@Override
 	public void registerEnvironment(@NonNull Environment environment) {
 
 		if (!environments.contains(environment)) {
@@ -99,7 +102,8 @@ public class EnvironmentRegistryImpl implements Environment.Registry {
 		}
 	}
     
-    public void deregisterEnvironment(@NonNull Environment environment) {
+    @Override
+	public void deregisterEnvironment(@NonNull Environment environment) {
         environments.remove(environment);
     }
 	
@@ -222,6 +226,7 @@ public class EnvironmentRegistryImpl implements Environment.Registry {
 			}
 		}
 
+		@Override
 		public void registryChanged(IRegistryChangeEvent event) {
 			for (IExtensionDelta delta : event.getExtensionDeltas(
                     namespace, PT_ENVIRONMENTS)) {

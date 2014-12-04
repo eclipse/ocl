@@ -69,6 +69,7 @@ public class DetailCSImpl extends NamedElementCSImpl implements DetailCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<String> getValues()
 	{
 		if (values == null)

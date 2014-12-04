@@ -19,6 +19,7 @@ public abstract class AbstractDependency<T> implements Dependency
 		assert element != null;
 	}
 
+	@Override
 	public abstract boolean canExecute();
 
 	public T getElement() {

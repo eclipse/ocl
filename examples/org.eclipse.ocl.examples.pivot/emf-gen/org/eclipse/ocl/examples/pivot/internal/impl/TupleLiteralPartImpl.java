@@ -82,6 +82,7 @@ public class TupleLiteralPartImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OCLExpression getInitExpression()
 	{
 		return initExpression;
@@ -109,6 +110,7 @@ public class TupleLiteralPartImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInitExpression(OCLExpression newInitExpression)
 	{
 		if (newInitExpression != initExpression)
@@ -308,6 +310,7 @@ public class TupleLiteralPartImpl
 
 	private TuplePartId partId = null;
 	
+	@Override
 	public @Nullable TuplePartId getPartId() {
 		TupleTypeId tupleTypeId = (TupleTypeId) ((TupleLiteralExp)eContainer()).getTypeId();
 		TuplePartId partId2 = partId;

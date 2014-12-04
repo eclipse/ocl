@@ -32,14 +32,17 @@ public abstract class AbstractInheritance implements DomainInheritance
 		{
 			private int index = firstIndex;
 			
+			@Override
 			public boolean hasNext() {
 				return index < lastIndex;
 			}
 
+			@Override
 			public DomainFragment next() {
 				return array[index++];
 			}
 
+			@Override
 			public void remove() {
 				throw new UnsupportedOperationException();
 			}
@@ -61,14 +64,17 @@ public abstract class AbstractInheritance implements DomainInheritance
 			this.lastIndex = lastIndex;
 		}
 
+		@Override
 		public @NonNull DomainFragment get(int index) {
 			return DomainUtil.nonNullState(array[firstIndex + index]);
 		}
 		
+		@Override
 		public @NonNull java.util.Iterator<DomainFragment> iterator() {
 			return new Iterator();
 		}
 
+		@Override
 		public int size() {
 			return lastIndex - firstIndex;
 		}
@@ -115,6 +121,7 @@ public abstract class AbstractInheritance implements DomainInheritance
 		this.flags = flags;
 	}
 
+	@Override
 	public @NonNull DomainInheritance getCommonInheritance(@NonNull DomainInheritance thatInheritance) {
 		if (this == thatInheritance) {
 			return this;
@@ -163,6 +170,7 @@ public abstract class AbstractInheritance implements DomainInheritance
 		return getFragment(0).getBaseInheritance();	// Always OclAny at index 0
 	}
 
+	@Override
 	public @Nullable DomainFragment getFragment(@NonNull DomainInheritance thatInheritance) {
 		int staticDepth = thatInheritance.getDepth();
 		if (staticDepth <= getDepth()) {
@@ -177,6 +185,7 @@ public abstract class AbstractInheritance implements DomainInheritance
 		return null;
 	}
 
+	@Override
 	public final String getName() {
 		return name;
 	}
@@ -185,10 +194,12 @@ public abstract class AbstractInheritance implements DomainInheritance
 		return (flags & OCL_INVALID) != 0;
 	}
 
+	@Override
 	public final boolean isOclAny() {
 		return (flags & OCL_ANY) != 0;
 	}
 
+	@Override
 	public boolean isSubInheritanceOf(@NonNull DomainInheritance thatInheritance) {
 		int theseFlags = flags & (OCL_VOID|OCL_INVALID);
 		int thoseFlags = ((AbstractInheritance)thatInheritance).flags & (OCL_VOID|OCL_INVALID);
@@ -200,6 +211,7 @@ public abstract class AbstractInheritance implements DomainInheritance
 		}
 	}
 
+	@Override
 	public boolean isSuperInheritanceOf(@NonNull DomainInheritance thatInheritance) {
 		int theseFlags = flags & (OCL_VOID|OCL_INVALID);
 		int thoseFlags = ((AbstractInheritance)thatInheritance).flags & (OCL_VOID|OCL_INVALID);
@@ -211,10 +223,12 @@ public abstract class AbstractInheritance implements DomainInheritance
 		}
 	}
 
+	@Override
 	public final boolean isUndefined() {
 		return (flags & (OCL_VOID|OCL_INVALID)) != 0;
 	}
 
+	@Override
 	public @NonNull DomainOperation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
 		getDepth();
 		DomainInheritance apparentInheritance = apparentOperation.getInheritance(standardLibrary);
@@ -232,6 +246,7 @@ public abstract class AbstractInheritance implements DomainInheritance
 		return apparentOperation;	// invoke apparent op for null and invalid
 	}
 
+	@Override
 	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
 		getDepth();
 		DomainInheritance apparentInheritance = apparentOperation.getInheritance(standardLibrary);
@@ -252,6 +267,7 @@ public abstract class AbstractInheritance implements DomainInheritance
 		return implementation;			
 	}
 
+	@Override
 	public @Nullable DomainOperation lookupLocalOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull String operationName, DomainInheritance... argumentTypes) {
 		for (DomainOperation localOperation : getType().getOwnedOperations()) {
 			if (localOperation.getName().equals(operationName)) {

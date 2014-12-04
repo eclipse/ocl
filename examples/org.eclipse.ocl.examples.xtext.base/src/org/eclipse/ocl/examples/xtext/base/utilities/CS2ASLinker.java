@@ -41,17 +41,20 @@ public class CS2ASLinker extends LazyLinker
         super(exception);
       }
 
-      public String getLocation()
+      @Override
+	public String getLocation()
       {
         return "unknown";			// FIXME
       }
 
-      public int getColumn()
+      @Override
+	public int getColumn()
       {
         return 0;
       }
 
-      public int getLine()
+      @Override
+	public int getLine()
       {
         return 0;
       }

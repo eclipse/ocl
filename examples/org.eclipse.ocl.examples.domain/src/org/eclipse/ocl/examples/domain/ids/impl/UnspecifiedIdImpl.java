@@ -29,23 +29,28 @@ public class UnspecifiedIdImpl extends AbstractTypeId implements UnspecifiedId, 
 		this.type = type;
 	}
 
+	@Override
 	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitUnspecifiedId(this);
 	}
 
+	@Override
 	public @NonNull String getDisplayName() {
 		return DomainUtil.getSafeName(type);
 	}
 
+	@Override
 	public @NonNull String getName() {
 		throw new UnsupportedOperationException();
 	}
 
 	
+	@Override
 	public @NonNull PackageId getParent() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public @NonNull Object getSpecifier() {
 		return type;
 	}

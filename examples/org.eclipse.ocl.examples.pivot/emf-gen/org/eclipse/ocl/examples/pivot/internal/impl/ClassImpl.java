@@ -317,6 +317,7 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TemplateSignature getOwnedTemplateSignature()
 	{
 		return ownedTemplateSignature;
@@ -344,6 +345,7 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedTemplateSignature(TemplateSignature newOwnedTemplateSignature)
 	{
 		if (newOwnedTemplateSignature != ownedTemplateSignature)
@@ -365,6 +367,7 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<TemplateBinding> getOwnedTemplateBindings()
 	{
 		if (ownedTemplateBindings == null)
@@ -379,6 +382,7 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUnspecializedElement(TemplateableElement newUnspecializedElement)
 	{
 		TemplateableElement oldUnspecializedElement = unspecializedElement;
@@ -392,6 +396,7 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getInstanceClassName()
 	{
 		return instanceClassName;
@@ -402,6 +407,7 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInstanceClassName(String newInstanceClassName)
 	{
 		String oldInstanceClassName = instanceClassName;
@@ -415,6 +421,7 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isAbstract() {
 		return (eFlags & IS_ABSTRACT_EFLAG) != 0;
 	}
@@ -424,6 +431,7 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsAbstract(boolean newIsAbstract) {
 		boolean oldIsAbstract = (eFlags & IS_ABSTRACT_EFLAG) != 0;
 		if (newIsAbstract) eFlags |= IS_ABSTRACT_EFLAG; else eFlags &= ~IS_ABSTRACT_EFLAG;
@@ -436,6 +444,7 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isActive()
 	{
 		return (eFlags & IS_ACTIVE_EFLAG) != 0;
@@ -446,6 +455,7 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsActive(boolean newIsActive)
 	{
 		boolean oldIsActive = (eFlags & IS_ACTIVE_EFLAG) != 0;
@@ -459,6 +469,7 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<Behavior> getOwnedBehavior()
 	{
@@ -474,6 +485,7 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<Constraint> getOwnedInvariants()
 	{
@@ -489,6 +501,7 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public org.eclipse.ocl.examples.pivot.Package getOwningPackage()
 	{
 		if (eContainerFeatureID() != PivotPackage.CLASS__OWNING_PACKAGE) return null;
@@ -511,6 +524,7 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("cast")
 	public void setOwningPackage(org.eclipse.ocl.examples.pivot.Package newOwningPackage)
 	{
@@ -628,6 +642,7 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateUniqueInvariantName(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -685,6 +700,7 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isInterface()
 	{
 		return (eFlags & IS_INTERFACE_EFLAG) != 0;
@@ -695,6 +711,7 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsInterface(boolean newIsInterface)
 	{
 		boolean oldIsInterface = (eFlags & IS_INTERFACE_EFLAG) != 0;
@@ -1075,6 +1092,7 @@ public class ClassImpl
 		return IdManager.getClassId(this);
 	}
 	
+	@Override
 	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
 		if (this == type) {
 			return true;
@@ -1095,10 +1113,12 @@ public class ClassImpl
 		return thisInheritance.getCommonInheritance(thatInheritance).getType();
 	}
 
+	@Override
 	public @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
 		return standardLibrary.getInheritance(this);
 	}
 
+	@Override
 	public @NonNull DomainClass getNormalizedType(@NonNull DomainStandardLibrary standardLibrary) {
 		try {
 			return getInheritance(standardLibrary).getType();
@@ -1108,6 +1128,7 @@ public class ClassImpl
 		}
 	}
 
+	@Override
 	public @NonNull List<Operation> getOwnedOperations()
 	{
 		EList<Operation> ownedOperations2 = ownedOperations;
@@ -1147,6 +1168,7 @@ public class ClassImpl
 		return ownedOperations2;
 	}
 
+	@Override
 	public @NonNull List<Property> getOwnedProperties()
 	{
 		EList<Property> ownedProperties2 = ownedProperties;
@@ -1186,6 +1208,7 @@ public class ClassImpl
 		return ownedProperties2;
 	}
 
+	@Override
 	public @NonNull List<org.eclipse.ocl.examples.pivot.Class> getSuperClasses()
 	{
 		EList<org.eclipse.ocl.examples.pivot.Class> superClasses2 = superClasses;
@@ -1225,6 +1248,7 @@ public class ClassImpl
 		return superClasses2;
 	}
 
+	@Override
 	public @NonNull TypeId getTypeId() {
 		TypeId typeId2 = typeId;
 		if (typeId2 == null) {
@@ -1243,6 +1267,7 @@ public class ClassImpl
 		return TemplateSignatureImpl.getTypeParameters(getOwnedTemplateSignature());
 	}
 
+	@Override
 	public TemplateableElement getUnspecializedElement()
 	{
 		if (unspecializedElement == null) {
@@ -1269,11 +1294,13 @@ public class ClassImpl
 		return null;
 	}
 
+	@Override
 	public @NonNull DomainOperation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
 		DomainInheritance inheritance = getInheritance(standardLibrary);
 		return inheritance.lookupActualOperation(standardLibrary, apparentOperation);
 	}
 
+	@Override
 	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
 		DomainInheritance inheritance = getInheritance(standardLibrary);
 		return inheritance.lookupImplementation(standardLibrary, apparentOperation);
@@ -1299,6 +1326,7 @@ public class ClassImpl
 		}
 	}
 
+	@Override
 	public DomainType specializeIn(@NonNull DomainCallExp expr, DomainType selfType) {
 		if ((expr instanceof CallExp) && (selfType instanceof Type)) {
 			TemplateSignature templateSignature = getOwnedTemplateSignature();

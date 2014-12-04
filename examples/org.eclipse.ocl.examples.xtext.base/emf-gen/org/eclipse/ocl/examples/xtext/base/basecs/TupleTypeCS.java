@@ -46,6 +46,7 @@ public interface TupleTypeCS extends TypedRefCS, Nameable
 	 * @model
 	 * @generated
 	 */
+	@Override
 	String getName();
 
 	/**

@@ -47,6 +47,7 @@ public interface LambdaType extends DataType, org.eclipse.ocl.examples.domain.el
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getLambdaType_ContextType()
 	 * @generated
 	 */
+	@Override
 	Type getContextType();
 
 	/**
@@ -87,6 +88,7 @@ public interface LambdaType extends DataType, org.eclipse.ocl.examples.domain.el
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getLambdaType_ResultType()
 	 * @generated
 	 */
+	@Override
 	Type getResultType();
 
 	/**

@@ -113,6 +113,7 @@ public class BooleanLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isBooleanSymbol() {
 		return (eFlags & BOOLEAN_SYMBOL_EFLAG) != 0;
 	}
@@ -122,6 +123,7 @@ public class BooleanLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBooleanSymbol(boolean newBooleanSymbol) {
 		boolean oldBooleanSymbol = (eFlags & BOOLEAN_SYMBOL_EFLAG) != 0;
 		if (newBooleanSymbol) eFlags |= BOOLEAN_SYMBOL_EFLAG; else eFlags &= ~BOOLEAN_SYMBOL_EFLAG;
@@ -136,6 +138,7 @@ public class BooleanLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetBooleanSymbol() {
 		boolean oldBooleanSymbol = (eFlags & BOOLEAN_SYMBOL_EFLAG) != 0;
 		boolean oldBooleanSymbolESet = (eFlags & BOOLEAN_SYMBOL_ESETFLAG) != 0;
@@ -150,6 +153,7 @@ public class BooleanLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetBooleanSymbol() {
 		return (eFlags & BOOLEAN_SYMBOL_ESETFLAG) != 0;
 	}
@@ -159,6 +163,7 @@ public class BooleanLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateTypeIsBoolean(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**

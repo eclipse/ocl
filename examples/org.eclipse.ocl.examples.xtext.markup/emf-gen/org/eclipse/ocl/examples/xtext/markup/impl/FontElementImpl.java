@@ -74,6 +74,7 @@ public class FontElementImpl extends CompoundElementImpl implements FontElement 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFont() {
 		return font;
 	}
@@ -83,6 +84,7 @@ public class FontElementImpl extends CompoundElementImpl implements FontElement 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFont(String newFont) {
 		String oldFont = font;
 		font = newFont;

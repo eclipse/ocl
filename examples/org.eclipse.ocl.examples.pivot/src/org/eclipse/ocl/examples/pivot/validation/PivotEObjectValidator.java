@@ -301,6 +301,7 @@ public class PivotEObjectValidator implements EValidator
 		return resourceSet;
 	}
 
+	@Override
 	public boolean validate(EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate(eObject.eClass(), eObject, diagnostics, context);
 	}
@@ -308,6 +309,7 @@ public class PivotEObjectValidator implements EValidator
 	/**
 	 * Overriden to intercept the validation of an EObject to add the additional Pivot-defined validation.
 	 */
+	@Override
 	public boolean validate(EClass eClass, EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		boolean allOk = true;
 		if ((eClass != null) && !eObject.eIsProxy()) {
@@ -319,6 +321,7 @@ public class PivotEObjectValidator implements EValidator
 	/**
 	 * Overriden to intercept the validation of an EDataType value to add the additional Pivot-defined validation.
 	 */
+	@Override
 	public boolean validate(EDataType eDataType, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		boolean allOk = true;
 		if (eDataType != null) {

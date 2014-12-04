@@ -126,6 +126,7 @@ public class AutoCGModelPackageImpl extends EPackageImpl implements AutoCGModelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCGASTCallExp() {
 		return cgastCallExpEClass;
 	}
@@ -135,6 +136,7 @@ public class AutoCGModelPackageImpl extends EPackageImpl implements AutoCGModelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCGContainmentVisit() {
 		return cgContainmentVisitEClass;
 	}
@@ -144,6 +146,7 @@ public class AutoCGModelPackageImpl extends EPackageImpl implements AutoCGModelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCGContainmentPart() {
 		return cgContainmentPartEClass;
 	}
@@ -153,6 +156,7 @@ public class AutoCGModelPackageImpl extends EPackageImpl implements AutoCGModelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCGContainmentPart_ContainmentBody() {
 		return (EReference)cgContainmentPartEClass.getEStructuralFeatures().get(0);
 	}
@@ -162,6 +166,7 @@ public class AutoCGModelPackageImpl extends EPackageImpl implements AutoCGModelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCGContainmentPart_Init() {
 		return (EReference)cgContainmentPartEClass.getEStructuralFeatures().get(1);
 	}
@@ -171,6 +176,7 @@ public class AutoCGModelPackageImpl extends EPackageImpl implements AutoCGModelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCGContainmentPart_EStructuralFeature() {
 		return (EReference)cgContainmentPartEClass.getEStructuralFeatures().get(2);
 	}
@@ -180,6 +186,7 @@ public class AutoCGModelPackageImpl extends EPackageImpl implements AutoCGModelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCGContainmentBody() {
 		return cgContainmentBodyEClass;
 	}
@@ -189,6 +196,7 @@ public class AutoCGModelPackageImpl extends EPackageImpl implements AutoCGModelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCGContainmentBody_ContainmentVisit() {
 		return (EReference)cgContainmentBodyEClass.getEStructuralFeatures().get(0);
 	}
@@ -198,6 +206,7 @@ public class AutoCGModelPackageImpl extends EPackageImpl implements AutoCGModelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCGContainmentBody_Parts() {
 		return (EReference)cgContainmentBodyEClass.getEStructuralFeatures().get(1);
 	}
@@ -207,6 +216,7 @@ public class AutoCGModelPackageImpl extends EPackageImpl implements AutoCGModelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public AutoCGModelFactory getAutoCGModelFactory() {
 		return (AutoCGModelFactory)getEFactoryInstance();
 	}

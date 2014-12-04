@@ -33,8 +33,10 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  */
 public interface EvaluationVisitor extends Visitor<Object>, DomainEvaluator
 {
+	@Override
 	@NonNull EvaluationVisitor createNestedEvaluator();
 
+	@Override
 	@Nullable Object evaluate(@NonNull DomainExpression body);
 
 //	@Nullable Object evaluate(@NonNull ExpressionInOCL expressionInOCL);
@@ -53,6 +55,7 @@ public interface EvaluationVisitor extends Visitor<Object>, DomainEvaluator
      * 
 	 * @return the evaluation environment
 	 */
+	@Override
 	@NonNull EvaluationEnvironment getEvaluationEnvironment();
 
 	@NonNull EvaluationVisitor getEvaluator();
@@ -62,16 +65,20 @@ public interface EvaluationVisitor extends Visitor<Object>, DomainEvaluator
      * 
 	 * @return the model manager
 	 */
+	@Override
 	@NonNull DomainModelManager getModelManager();
 
 	@NonNull MetaModelManager getMetaModelManager();
 
 	@Nullable Monitor getMonitor();
 
+	@Override
 	@NonNull DomainStandardLibrary getStandardLibrary();
 
+	@Override
 	boolean isCanceled();
 	
+	@Override
 	void setCanceled(boolean isCanceled);
 
 	void setMonitor(@Nullable Monitor monitor);

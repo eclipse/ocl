@@ -35,6 +35,7 @@ public interface ValidationDelegate extends ValidationDelegateExtension // waiti
 		 */
 		interface Descriptor extends EValidator.ValidationDelegate.Descriptor {
 
+			@Override
 			@Nullable ValidationDelegate.Factory getValidationDelegate();
 		}
 
@@ -43,6 +44,7 @@ public interface ValidationDelegate extends ValidationDelegateExtension // waiti
 		 */
 		interface Registry extends EValidator.ValidationDelegate.Registry {
 
+			@Override
 			ValidationDelegate.Factory getValidationDelegate(String uri);
 
 			class Impl extends ValidationDelegateRegistryImpl implements Factory.Registry {

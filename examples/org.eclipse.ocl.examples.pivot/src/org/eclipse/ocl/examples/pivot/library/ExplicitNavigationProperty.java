@@ -38,6 +38,7 @@ public class ExplicitNavigationProperty extends AbstractProperty
 		this.propertyId = property.getPropertyId();
 	}
 	
+	@Override
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		EObject eObject = asNavigableObject(sourceValue, propertyId); 
 		EStructuralFeature eFeature2 = eFeature;

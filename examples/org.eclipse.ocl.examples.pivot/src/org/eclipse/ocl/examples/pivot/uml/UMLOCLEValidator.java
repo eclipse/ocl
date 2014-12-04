@@ -265,11 +265,13 @@ public class UMLOCLEValidator implements EValidator
 		return ocl;
 	}
 
+	@Override
 	public boolean validate(EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 	    return validate(eObject.eClass(), eObject, diagnostics, context); 
 //		return true;
 	}
 
+	@Override
 	public boolean validate(EClass eClass, EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		assert context != null;
 		boolean allOk = true;
@@ -335,6 +337,7 @@ public class UMLOCLEValidator implements EValidator
 		return true;
 	}
 
+	@Override
 	public boolean validate(EDataType eDataType, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}

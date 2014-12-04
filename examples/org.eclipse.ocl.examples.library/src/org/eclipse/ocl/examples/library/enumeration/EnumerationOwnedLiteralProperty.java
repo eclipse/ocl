@@ -31,6 +31,7 @@ public class EnumerationOwnedLiteralProperty extends AbstractProperty
 {
 	public static final @NonNull EnumerationOwnedLiteralProperty INSTANCE = new EnumerationOwnedLiteralProperty();
 
+	@Override
 	public @NonNull OrderedSetValue evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		DomainType sourceType = asType(sourceValue);
 		Set<Object> results = new OrderedSetImpl<Object>();

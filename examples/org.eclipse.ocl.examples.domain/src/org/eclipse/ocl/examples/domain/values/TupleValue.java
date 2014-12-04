@@ -30,7 +30,8 @@ public interface TupleValue extends Value {
      * @return its type
 	 * @generated NOT
      */
-//	@NonNull DomainType getType();
+@Override
+	//	@NonNull DomainType getType();
 	@NonNull TupleTypeId getTypeId();
 	
     /**

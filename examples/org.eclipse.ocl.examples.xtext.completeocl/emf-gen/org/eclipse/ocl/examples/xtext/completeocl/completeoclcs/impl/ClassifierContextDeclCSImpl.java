@@ -131,6 +131,7 @@ public class ClassifierContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TemplateSignatureCS getOwnedSignature()
 	{
 		return ownedSignature;
@@ -158,6 +159,7 @@ public class ClassifierContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedSignature(TemplateSignatureCS newOwnedSignature)
 	{
 		if (newOwnedSignature != ownedSignature)
@@ -179,6 +181,7 @@ public class ClassifierContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSelfName() {
 		return selfName;
 	}
@@ -188,6 +191,7 @@ public class ClassifierContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSelfName(String newSelfName) {
 		String oldSelfName = selfName;
 		selfName = newSelfName;
@@ -347,6 +351,7 @@ public class ClassifierContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public org.eclipse.ocl.examples.pivot.Class getReferredClass() {
 		PathNameCS ownedPathName2 = ownedPathName;
 		if (ownedPathName2 == null) {
@@ -361,6 +366,7 @@ public class ClassifierContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ConstraintCS> getOwnedInvariants() {
 		if (ownedInvariants == null)
 		{
@@ -374,6 +380,7 @@ public class ClassifierContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<DefCS> getOwnedDefinitions() {
 		if (ownedDefinitions == null)
 		{

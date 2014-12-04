@@ -24,6 +24,7 @@ public class ExpressionInOCLLabelGenerator extends AbstractLabelGenerator<Expres
 		super(ExpressionInOCL.class);
 	}
 
+	@Override
 	public void buildLabelFor(@NonNull Builder labelBuilder, @NonNull ExpressionInOCL object) {
 		labelBuilder.appendString(PivotUtil.getSpecificationRole(object));
 	}

@@ -32,6 +32,7 @@ public abstract class GeneralizedNestedTypeIdImpl extends GeneralizedTypeIdImpl<
 		return new SpecializedTypeIdImpl(this, templateBindings);
 	}
 
+	@Override
 	public @NonNull String getDisplayName() {
 		if (parent instanceof NsURIPackageId) {
 			return name;
@@ -41,15 +42,18 @@ public abstract class GeneralizedNestedTypeIdImpl extends GeneralizedTypeIdImpl<
 		}
 	}
 
+	@Override
 	public @NonNull TemplateableTypeId getGeneralizedId() {
 		return this;
 	}
 	
+	@Override
 	public @NonNull PackageId getParent() {
 		return parent;
 	}
 
-    public @NonNull TemplateableTypeId specialize(@NonNull BindingsId templateBindings) {
+    @Override
+	public @NonNull TemplateableTypeId specialize(@NonNull BindingsId templateBindings) {
     	return createSpecializedId(templateBindings);
 	}
 	

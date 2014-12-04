@@ -25,22 +25,27 @@ public abstract class AbstractIterationManager implements DomainIterationManager
 		this.evaluator = evaluator;
 	}
 
+	@Override
 	public @NonNull DomainIterationManager createNestedIterationManager(@NonNull CollectionValue value) {
 		throw new UnsupportedOperationException();	// Only required for single iterator managers
 	}
 
+	@Override
 	public void dispose() {
 		evaluator.dispose();
 	}
 
+	@Override
 	public @Nullable Object get() {
 		throw new UnsupportedOperationException();	// Only required for single iterator managers
 	}
 	
+	@Override
 	public @NonNull DomainEvaluator getEvaluator() {
 		return evaluator;
 	}
 
+	@Override
 	public @NonNull DomainStandardLibrary getStandardLibrary() {
 		return evaluator.getStandardLibrary();
 	}

@@ -81,6 +81,7 @@ public class BooleanLiteralExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSymbol() {
 		return symbol;
 	}
@@ -90,6 +91,7 @@ public class BooleanLiteralExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSymbol(String newSymbol) {
 		String oldSymbol = symbol;
 		symbol = newSymbol;

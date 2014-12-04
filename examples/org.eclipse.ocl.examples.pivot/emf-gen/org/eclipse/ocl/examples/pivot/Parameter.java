@@ -50,6 +50,7 @@ public interface Parameter
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getParameter_IsTypeof()
 	 * @generated
 	 */
+	@Override
 	boolean isTypeof();
 
 	/**

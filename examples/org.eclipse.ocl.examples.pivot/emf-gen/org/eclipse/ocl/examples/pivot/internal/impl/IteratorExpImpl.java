@@ -104,6 +104,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public boolean validateClosureBodyTypeIsConformanttoIteratorType(DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		if (getReferredIteration().getImplementation() != ClosureIteration.INSTANCE) {
@@ -136,6 +137,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public boolean validateSortedByIteratorTypeIsComparable(DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		if (getReferredIteration().getImplementation() != SortedByIteration.INSTANCE) {
@@ -187,6 +189,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateAnyHasOneIterator(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -295,6 +298,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateAnyTypeIsSourceElementType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -415,6 +419,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateAnyBodyTypeIsBoolean(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -523,6 +528,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateClosureHasOneIterator(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -631,6 +637,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateClosureTypeIsUniqueCollection(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -836,6 +843,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateCollectElementTypeIsFlattenedBodyType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -961,6 +969,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateClosureSourceElementTypeIsBodyElementType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -1102,6 +1111,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateClosureElementTypeIsSourceElementType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -1228,6 +1238,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateCollectHasOneIterator(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -1336,6 +1347,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateCollectTypeIsUnordered(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -1541,6 +1553,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateCollectNestedHasOneIterator(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -1651,6 +1664,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateCollectNestedTypeIsBag(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -1759,6 +1773,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateCollectNestedTypeIsBodyType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -1870,6 +1885,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateExistsTypeIsBoolean(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -1978,6 +1994,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateExistsBodyTypeIsBoolean(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -2090,6 +2107,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateForAllTypeIsBoolean(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -2198,6 +2216,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateForAllBodyTypeIsBoolean(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -2310,6 +2329,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateIsUniqueHasOneIterator(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -2418,6 +2438,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateIsUniqueTypeIsBoolean(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -2526,6 +2547,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateOneHasOneIterator(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -2634,6 +2656,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateOneTypeIsBoolean(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -2742,6 +2765,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateOneBodyTypeIsBoolean(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -2854,6 +2878,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateRejectOrSelectHasOneIterator(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -3034,6 +3059,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateRejectOrSelectTypeIsSourceType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -3215,6 +3241,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateRejectOrSelectTypeIsBoolean(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -3394,6 +3421,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateSortedByHasOneIterator(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -3502,6 +3530,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateSortedByIsOrderedIfSourceIsOrdered(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -3707,6 +3736,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateSortedByElementTypeIsSourceElementType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -3833,6 +3863,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateIteratorTypeIsSourceElementType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -4041,6 +4072,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public Element getReferredElement()
 	{
 		return getReferredIteration();

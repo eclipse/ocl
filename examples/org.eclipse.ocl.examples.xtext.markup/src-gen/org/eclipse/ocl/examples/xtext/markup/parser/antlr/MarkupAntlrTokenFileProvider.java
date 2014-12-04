@@ -8,6 +8,7 @@ import org.eclipse.xtext.parser.antlr.IAntlrTokenFileProvider;
 
 public class MarkupAntlrTokenFileProvider implements IAntlrTokenFileProvider {
 	
+	@Override
 	public InputStream getAntlrTokenFile() {
 		ClassLoader classLoader = getClass().getClassLoader();
     	return classLoader.getResourceAsStream("org/eclipse/ocl/examples/xtext/markup/parser/antlr/internal/InternalMarkup.tokens");

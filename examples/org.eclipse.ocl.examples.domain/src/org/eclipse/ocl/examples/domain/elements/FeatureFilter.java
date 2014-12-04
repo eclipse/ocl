@@ -18,6 +18,7 @@ public interface FeatureFilter
 	
 	public static final @NonNull FeatureFilter SELECT_NON_STATIC = new FeatureFilter()
 	{
+		@Override
 		public boolean accept(@NonNull DomainFeature asFeature) {
 			return !asFeature.isStatic();
 		}
@@ -25,6 +26,7 @@ public interface FeatureFilter
 	
 	public static final @NonNull FeatureFilter SELECT_STATIC = new FeatureFilter()
 	{
+		@Override
 		public boolean accept(@NonNull DomainFeature asFeature) {
 			return asFeature.isStatic();
 		}

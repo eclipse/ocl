@@ -44,6 +44,7 @@ public interface NestedCompletePackage extends CompletePackage
 	 * @see org.eclipse.ocl.examples.pivot.CompletePackage#getOwnedCompletePackages
 	 * @generated
 	 */
+	@Override
 	CompletePackage getOwningCompletePackage();
 
 	/**

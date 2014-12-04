@@ -70,6 +70,7 @@ public class CompoundElementImpl extends MarkupElementImpl implements CompoundEl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<MarkupElement> getElements() {
 		if (elements == null) {
 			elements = new EObjectContainmentWithInverseEList<MarkupElement>(MarkupElement.class, this, MarkupPackage.COMPOUND_ELEMENT__ELEMENTS, MarkupPackage.MARKUP_ELEMENT__OWNER);

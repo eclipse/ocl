@@ -298,6 +298,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 		super.loadResource(resource, document, encoding);
 	}
 
+	@Override
 	public void metaModelManagerDisposed(@NonNull MetaModelManager metaModelManager) {
 		metaModelManager.removeListener(this);
 		this.metaModelManager = null;

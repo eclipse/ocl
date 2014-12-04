@@ -145,14 +145,17 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			this.invocation = invocation;
 		}
 
+		@Override
 		public @NonNull NamedElement getSingleResult() {
 			return invocation;
 		}
 		
+		@Override
 		public @NonNull Type getSourceType() {
 			return DomainUtil.nonNullState(invocation.getOwningClass());
 		}
 
+		@Override
 		public Iterator<NamedElement> iterator() {
 			return new SingletonIterator<NamedElement>(invocation);
 		}
@@ -168,14 +171,17 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			this.invocations = invocations;
 		}
 
+		@Override
 		public @Nullable NamedElement getSingleResult() {
 			return invocations.size() == 1 ? invocations.get(0) : null;
 		}
 		
+		@Override
 		public @NonNull Type getSourceType() {
 			return asType;
 		}
 
+		@Override
 		public Iterator<NamedElement> iterator() {
 			return invocations.iterator();
 		}

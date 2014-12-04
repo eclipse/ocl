@@ -61,6 +61,7 @@ public class ParameterCSImpl extends TypedElementCSImpl implements ParameterCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OperationCS getOwningOperation() {
 		if (eContainerFeatureID() != BaseCSPackage.PARAMETER_CS__OWNING_OPERATION) return null;
 		return (OperationCS)eInternalContainer();
@@ -82,6 +83,7 @@ public class ParameterCSImpl extends TypedElementCSImpl implements ParameterCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningOperation(OperationCS newOwningOperation) {
 		if (newOwningOperation != eInternalContainer() || (eContainerFeatureID() != BaseCSPackage.PARAMETER_CS__OWNING_OPERATION && newOwningOperation != null))
 		{

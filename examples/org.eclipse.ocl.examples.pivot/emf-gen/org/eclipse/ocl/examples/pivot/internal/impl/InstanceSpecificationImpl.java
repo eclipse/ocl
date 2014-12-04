@@ -106,6 +106,7 @@ public class InstanceSpecificationImpl extends NamedElementImpl implements Insta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<org.eclipse.ocl.examples.pivot.Class> getClasses()
 	{
 		if (classes == null)
@@ -120,6 +121,7 @@ public class InstanceSpecificationImpl extends NamedElementImpl implements Insta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public org.eclipse.ocl.examples.pivot.Package getOwningPackage()
 	{
 		if (eContainerFeatureID() != PivotPackage.INSTANCE_SPECIFICATION__OWNING_PACKAGE) return null;
@@ -142,6 +144,7 @@ public class InstanceSpecificationImpl extends NamedElementImpl implements Insta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningPackage(org.eclipse.ocl.examples.pivot.Package newOwningPackage)
 	{
 		if (newOwningPackage != eInternalContainer() || (eContainerFeatureID() != PivotPackage.INSTANCE_SPECIFICATION__OWNING_PACKAGE && newOwningPackage != null))
@@ -165,6 +168,7 @@ public class InstanceSpecificationImpl extends NamedElementImpl implements Insta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<Slot> getSlots()
 	{
 		if (slots == null)
@@ -179,6 +183,7 @@ public class InstanceSpecificationImpl extends NamedElementImpl implements Insta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LanguageExpression getSpecification()
 	{
 		return specification;
@@ -206,6 +211,7 @@ public class InstanceSpecificationImpl extends NamedElementImpl implements Insta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSpecification(LanguageExpression newSpecification)
 	{
 		if (newSpecification != specification)

@@ -36,46 +36,57 @@ public abstract class AbstractDelegatingOCLstdlibCSVisitor<R, C, D extends OCLst
 		return delegate.visiting(visitable);
 	}
 
+	@Override
 	public @Nullable R visitJavaClassCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaClassCS object) {
 		return delegate.visitJavaClassCS(object);
 	}
 
+	@Override
 	public @Nullable R visitJavaImplementationCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaImplementationCS object) {
 		return delegate.visitJavaImplementationCS(object);
 	}
 
+	@Override
 	public @Nullable R visitLibClassCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibClassCS object) {
 		return delegate.visitLibClassCS(object);
 	}
 
+	@Override
 	public @Nullable R visitLibConstraintCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibConstraintCS object) {
 		return delegate.visitLibConstraintCS(object);
 	}
 
+	@Override
 	public @Nullable R visitLibIterationCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS object) {
 		return delegate.visitLibIterationCS(object);
 	}
 
+	@Override
 	public @Nullable R visitLibOperationCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS object) {
 		return delegate.visitLibOperationCS(object);
 	}
 
+	@Override
 	public @Nullable R visitLibPackageCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPackageCS object) {
 		return delegate.visitLibPackageCS(object);
 	}
 
+	@Override
 	public @Nullable R visitLibPropertyCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPropertyCS object) {
 		return delegate.visitLibPropertyCS(object);
 	}
 
+	@Override
 	public @Nullable R visitLibRootPackageCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibRootPackageCS object) {
 		return delegate.visitLibRootPackageCS(object);
 	}
 
+	@Override
 	public @Nullable R visitMetaclassNameCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaclassNameCS object) {
 		return delegate.visitMetaclassNameCS(object);
 	}
 
+	@Override
 	public @Nullable R visitPrecedenceCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.PrecedenceCS object) {
 		return delegate.visitPrecedenceCS(object);
 	}

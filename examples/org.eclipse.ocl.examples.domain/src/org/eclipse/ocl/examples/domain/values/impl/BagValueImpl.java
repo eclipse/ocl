@@ -57,6 +57,7 @@ public class BagValueImpl extends CollectionValueImpl implements BagValue
 			super(typeId, new BagImpl<Object>());
 		}
 
+		@Override
 		@SuppressWarnings("unchecked")
 		public boolean add(@Nullable Object value) {
 			return ((Collection<Object>)elements).add(value);			
@@ -99,6 +100,7 @@ public class BagValueImpl extends CollectionValueImpl implements BagValue
 		return elements.equals(((BagValueImpl)obj).elements);
 	}
 
+	@Override
 	public @NonNull BagValue excluding(@Nullable Object value) {
 		Bag<Object> result = new BagImpl<Object>();
 		if (value == null) {
@@ -123,6 +125,7 @@ public class BagValueImpl extends CollectionValueImpl implements BagValue
 		}
 	}
 
+	@Override
 	public @NonNull BagValue excludingAll(@NonNull CollectionValue values) {
 		Bag<Object> result = new BagImpl<Object>();
 		for (Object element : elements) {
@@ -155,7 +158,8 @@ public class BagValueImpl extends CollectionValueImpl implements BagValue
 		}
 	}
 
-    public @NonNull BagValue flatten() {
+    @Override
+	public @NonNull BagValue flatten() {
     	Bag<Object> flattened = new BagImpl<Object>();
     	if (flatten(flattened)) {
     		return new BagValueImpl(getTypeId(), flattened);
@@ -175,10 +179,12 @@ public class BagValueImpl extends CollectionValueImpl implements BagValue
 		return (Bag<? extends Object>) elements;
 	}
 
+	@Override
 	public @NonNull String getKind() {
 	    return TypeId.BAG_NAME;
 	}
 
+	@Override
 	public @NonNull BagValue including(@Nullable Object value) {
 		assert !(value instanceof InvalidValueException);
 		Bag<Object> result = new BagImpl<Object>(elements);
@@ -186,6 +192,7 @@ public class BagValueImpl extends CollectionValueImpl implements BagValue
 		return new BagValueImpl(getTypeId(), result);
 	}
 
+	@Override
 	public @NonNull BagValue includingAll(@NonNull CollectionValue values) {
 		Bag<Object> result = new BagImpl<Object>(elements);
 		for (Object value : values) {
@@ -194,20 +201,24 @@ public class BagValueImpl extends CollectionValueImpl implements BagValue
 		return new BagValueImpl(getTypeId(), result);
 	}
 
+	@Override
 	public boolean isOrdered() {
 		return false;
 	}
 
+	@Override
 	public boolean isUnique() {
 		return false;
 	}
 	   
-    public @NonNull SequenceValue sort(@NonNull Comparator<Object> comparator) {
+    @Override
+	public @NonNull SequenceValue sort(@NonNull Comparator<Object> comparator) {
     	List<Object> values = new ArrayList<Object>(elements);
     	Collections.sort(values, comparator);
     	return new SparseSequenceValueImpl(getSequenceTypeId(), values);
     }
     
+	@Override
 	public @NonNull SequenceValue toSequenceValue() {
 		return new SparseSequenceValueImpl(getSequenceTypeId(), new ArrayList<Object>(elements));
 	}

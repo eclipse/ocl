@@ -40,6 +40,7 @@ public class SparseOrderedSetValueImpl extends OrderedSetValueImpl
 			super(typeId, new OrderedSetImpl<Object>());
 		}
 
+		@Override
 		@SuppressWarnings("unchecked")
 		public boolean add(@Nullable Object value) {
 			return ((Collection<Object>)elements).add(value);			
@@ -50,7 +51,8 @@ public class SparseOrderedSetValueImpl extends OrderedSetValueImpl
 		super(typeId, boxedValues);
 	}
 
-    public @NonNull OrderedSetValue append(@Nullable Object object) {
+    @Override
+	public @NonNull OrderedSetValue append(@Nullable Object object) {
 		if (object instanceof InvalidValueException) {
         	throw new InvalidValueException(EvaluatorMessages.InvalidSource, "append");
 		}
@@ -60,14 +62,16 @@ public class SparseOrderedSetValueImpl extends OrderedSetValueImpl
         return new SparseOrderedSetValueImpl(getTypeId(), result);
     }
 
-    public @Nullable Object first() {
+    @Override
+	public @Nullable Object first() {
         if (elements.size() <= 0) {
         	throw new InvalidValueException(EvaluatorMessages.EmptyCollection, TypeId.ORDERED_SET_NAME, "first");
         }
         return elements.iterator().next();
     }
 
-    public @NonNull OrderedSetValue flatten() {
+    @Override
+	public @NonNull OrderedSetValue flatten() {
     	OrderedSet<Object> flattened = new OrderedSetImpl<Object>();
     	if (flatten(flattened)) {
     		return new SparseOrderedSetValueImpl(getTypeId(), flattened);
@@ -82,6 +86,7 @@ public class SparseOrderedSetValueImpl extends OrderedSetValueImpl
 //		return (OrderedSet<? extends Object>) elements;
 //	}
 
+	@Override
 	public @NonNull OrderedSetValue including(@Nullable Object value) {
 		if (value instanceof InvalidValueException) {
 			throw new InvalidValueException(EvaluatorMessages.InvalidSource, "including");
@@ -91,7 +96,8 @@ public class SparseOrderedSetValueImpl extends OrderedSetValueImpl
 		return new SparseOrderedSetValueImpl(getTypeId(), result);
 	}
 
-    public @Nullable Object last() {
+    @Override
+	public @Nullable Object last() {
         if (elements.size() <= 0) {
         	throw new InvalidValueException(EvaluatorMessages.EmptyCollection, TypeId.ORDERED_SET_NAME, "last");
         }
@@ -102,7 +108,8 @@ public class SparseOrderedSetValueImpl extends OrderedSetValueImpl
         return result;
     }
 
-    public @NonNull OrderedSetValue prepend(@Nullable Object object) {
+    @Override
+	public @NonNull OrderedSetValue prepend(@Nullable Object object) {
 		if (object instanceof InvalidValueException) {
 			throw new InvalidValueException(EvaluatorMessages.InvalidSource, "prepend");
 		}
@@ -112,6 +119,7 @@ public class SparseOrderedSetValueImpl extends OrderedSetValueImpl
         return new SparseOrderedSetValueImpl(getTypeId(), result);
     }
 
+	@Override
 	public SequenceValue toSequenceValue() {
 		return new SparseSequenceValueImpl(getSequenceTypeId(), SparseSequenceValueImpl.createSequenceOfEach(elements));
 	}

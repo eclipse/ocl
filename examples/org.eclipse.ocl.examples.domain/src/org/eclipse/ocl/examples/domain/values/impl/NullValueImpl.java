@@ -52,10 +52,12 @@ public class NullValueImpl extends UndefinedValueImpl implements NullValue
 		super(null, null);
 	}
 	
+	@Override
 	public List<Object> asEcoreObject(@NonNull IdResolver idResolver) {
 		return null;
 	}
 
+	@Override
 	public DomainElement asElement() {
 		return null;
 	}
@@ -79,19 +81,23 @@ public class NullValueImpl extends UndefinedValueImpl implements NullValue
 		return 0x33333337;
 	}
 
+	@Override
 	public int intValue() {
     	toInvalidValue();		// throws rather than returns
     	return 0;
 	}
 
+	@Override
 	public boolean isInvalid() {
 		return false;
 	}
 
+	@Override
 	public boolean oclEquals(@NonNull OCLValue thatValue) {
 		return equals(thatValue);
 	}
 
+	@Override
 	public int oclHashCode() {
 		return hashCode();
 	}

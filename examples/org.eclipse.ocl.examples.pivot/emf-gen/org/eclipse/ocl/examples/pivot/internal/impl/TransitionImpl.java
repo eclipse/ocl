@@ -182,6 +182,7 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TransitionKind getKind()
 	{
 		return KIND_EFLAG_VALUES[(eFlags & KIND_EFLAG) >>> KIND_EFLAG_OFFSET];
@@ -192,6 +193,7 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setKind(TransitionKind newKind)
 	{
 		TransitionKind oldKind = KIND_EFLAG_VALUES[(eFlags & KIND_EFLAG) >>> KIND_EFLAG_OFFSET];
@@ -206,6 +208,7 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Region getContainer()
 	{
 		if (eContainerFeatureID() != PivotPackage.TRANSITION__CONTAINER) return null;
@@ -228,6 +231,7 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("cast")
 	public void setContainer(Region newContainer)
 	{
@@ -295,6 +299,7 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Vertex getSource()
 	{
 		if (source != null && ((EObject)source).eIsProxy())
@@ -342,6 +347,7 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSource(Vertex newSource)
 	{
 		if (newSource != source)
@@ -411,6 +417,7 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTarget(Vertex newTarget)
 	{
 		if (newTarget != target)
@@ -432,6 +439,7 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Constraint getGuard()
 	{
 		return guard;
@@ -459,6 +467,7 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGuard(Constraint newGuard)
 	{
 		if (newGuard != guard)
@@ -480,6 +489,7 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Behavior getEffect()
 	{
 		return effect;
@@ -507,6 +517,7 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEffect(Behavior newEffect)
 	{
 		if (newEffect != effect)
@@ -528,6 +539,7 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<Trigger> getTrigger()
 	{
 		if (trigger == null)

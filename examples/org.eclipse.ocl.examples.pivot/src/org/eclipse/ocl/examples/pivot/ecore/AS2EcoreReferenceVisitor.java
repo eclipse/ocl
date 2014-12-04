@@ -271,6 +271,7 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 		}
 	}
 
+	@Override
 	public EObject visiting(@NonNull Visitable visitable) {
 		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for AS2Ecore Reference pass");
 	}

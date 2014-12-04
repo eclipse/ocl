@@ -125,6 +125,7 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<Region> getRegion()
 	{
 		if (region == null)
@@ -139,6 +140,7 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<Pseudostate> getConnectionPoint()
 	{
 		if (connectionPoint == null)
@@ -153,6 +155,7 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<StateMachine> getExtendedStateMachine()
 	{
 		if (extendedStateMachine == null)
@@ -214,6 +217,7 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<State> getSubmachineState()
 	{
 		if (submachineState == null)

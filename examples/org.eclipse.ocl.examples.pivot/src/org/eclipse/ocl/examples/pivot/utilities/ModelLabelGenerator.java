@@ -24,6 +24,7 @@ public final class ModelLabelGenerator extends AbstractLabelGenerator<Model>
 		super(Model.class);
 	}
 
+	@Override
 	public void buildLabelFor(@NonNull Builder labelBuilder, @NonNull Model object) {
 		if (object == labelBuilder.getLabelledObject()) {
 			String name = object.getExternalURI();

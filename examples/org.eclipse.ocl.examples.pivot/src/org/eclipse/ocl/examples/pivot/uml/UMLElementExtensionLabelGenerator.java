@@ -24,6 +24,7 @@ public final class UMLElementExtensionLabelGenerator extends AbstractLabelGenera
 		super(UMLElementExtension.class);
 	}
 
+	@Override
 	public void buildLabelFor(@NonNull Builder labelBuilder, @NonNull UMLElementExtension object) {
 		labelBuilder.appendString(EcoreUtils.simpleNameFor(object.getTarget()));
 		labelBuilder.appendString("$");

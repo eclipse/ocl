@@ -130,6 +130,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		super.dispose();
 	}
 
+	@Override
 	public @NonNull BagType getBagType() {
 		BagType bagType2 = bagType;
 		if (bagType2 == null) {
@@ -138,6 +139,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		return bagType2;
 	}
 
+	@Override
 	public @NonNull PrimitiveType getBooleanType() {
 		PrimitiveType booleanType2 = booleanType;
 		if (booleanType2 == null) {
@@ -146,6 +148,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		return booleanType2;
 	}
 
+	@Override
 	public @NonNull org.eclipse.ocl.examples.pivot.Class getClassType() {
 		org.eclipse.ocl.examples.pivot.Class classType2 = classType;
 		if (classType2 == null) {
@@ -154,6 +157,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		return classType2;
 	}
 
+	@Override
 	public @NonNull CollectionType getCollectionType() {
 		CollectionType collectionType2 = collectionType;
 		if (collectionType2 == null) {
@@ -162,6 +166,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		return collectionType2;
 	}
 
+	@Override
 	public @NonNull org.eclipse.ocl.examples.pivot.Class getEnumerationType() {
 		org.eclipse.ocl.examples.pivot.Class enumerationType2 = enumerationType;
 		if (enumerationType2 == null) {
@@ -170,6 +175,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		return enumerationType2;
 	}
 
+	@Override
 	public @NonNull PrimitiveType getIntegerType() {
 		PrimitiveType integerType2 = integerType;
 		if (integerType2 == null) {
@@ -192,6 +198,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		return getClassType();
 	}
 
+	@Override
 	public @NonNull AnyType getOclAnyType() {
 		AnyType oclAnyType2 = oclAnyType;
 		if (oclAnyType2 == null) {
@@ -200,6 +207,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		return oclAnyType2;
 	}
 
+	@Override
 	public @NonNull org.eclipse.ocl.examples.pivot.Class getOclComparableType() {
 		org.eclipse.ocl.examples.pivot.Class oclComparableType2 = oclComparableType;
 		if (oclComparableType2 == null) {
@@ -208,6 +216,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		return oclComparableType2;
 	}
 
+	@Override
 	public @NonNull org.eclipse.ocl.examples.pivot.Class getOclElementType() {
 		org.eclipse.ocl.examples.pivot.Class oclElementType2 = oclElementType;
 		if (oclElementType2 == null) {
@@ -216,6 +225,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		return oclElementType2;
 	}
 
+	@Override
 	public @NonNull Operation getOclInvalidOperation() {
 		Operation oclInvalidOperation2 = oclInvalidOperation;
 		if (oclInvalidOperation2 == null) {
@@ -254,6 +264,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		return oclInvalidProperty2;
 	}
 
+	@Override
 	public @NonNull InvalidType getOclInvalidType() {
 		InvalidType oclInvalidType2 = oclInvalidType;
 		if (oclInvalidType2 == null) {
@@ -270,10 +281,12 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		return oclLambdaType2;
 	}
 
+	@Override
 	public @NonNull org.eclipse.ocl.examples.pivot.Class getOclMessageType() {
 		return getRequiredLibraryType("OclMessage");
 	}
 
+	@Override
 	public @NonNull SelfType getOclSelfType() {
 		SelfType oclSelfType2 = oclSelfType;
 		if (oclSelfType2 == null) {
@@ -282,6 +295,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		return oclSelfType2;
 	}
 
+	@Override
 	public @NonNull org.eclipse.ocl.examples.pivot.Class getOclSummableType() {
 		org.eclipse.ocl.examples.pivot.Class oclSummableType2 = oclSummableType;
 		if (oclSummableType2 == null) {
@@ -290,6 +304,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		return oclSummableType2;
 	}
 
+	@Override
 	public @NonNull org.eclipse.ocl.examples.pivot.Class getOclTupleType() {
 		org.eclipse.ocl.examples.pivot.Class oclTupleType2 = oclTupleType;
 		if (oclTupleType2 == null) {
@@ -306,6 +321,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		return oclTypeType2;
 	}
 
+	@Override
 	public @NonNull VoidType getOclVoidType() {
 		VoidType oclVoidType2 = oclVoidType;
 		if (oclVoidType2 == null) {
@@ -314,6 +330,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		return oclVoidType2;
 	}
 
+	@Override
 	public @NonNull CollectionType getOrderedCollectionType() {
 		CollectionType orderedCollectionType2 = orderedCollectionType;
 		if (orderedCollectionType2 == null) {
@@ -322,6 +339,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		return orderedCollectionType2;
 	}
 
+	@Override
 	public @NonNull OrderedSetType getOrderedSetType() {
 		OrderedSetType orderedSetType2 = orderedSetType;
 		if (orderedSetType2 == null) {
@@ -330,6 +348,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		return orderedSetType2;
 	}
 
+	@Override
 	public @NonNull PrimitiveType getRealType() {
 		PrimitiveType realType2 = realType;
 		if (realType2 == null) {
@@ -354,6 +373,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		return type;
 	}
 
+	@Override
 	public @NonNull SequenceType getSequenceType() {
 		SequenceType sequenceType2 = sequenceType;
 		if (sequenceType2 == null) {
@@ -362,6 +382,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		return sequenceType2;
 	}
 
+	@Override
 	public @NonNull SetType getSetType() {
 		SetType setType2 = setType;
 		if (setType2 == null) {
@@ -370,6 +391,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		return setType2;
 	}
 
+	@Override
 	public @NonNull PrimitiveType getStringType() {
 		PrimitiveType stringType2 = stringType;
 		if (stringType2 == null) {
@@ -378,6 +400,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		return stringType2;
 	}
 
+	@Override
 	public @NonNull CollectionType getUniqueCollectionType() {
 		CollectionType uniqueCollectionType2 = uniqueCollectionType;
 		if (uniqueCollectionType2 == null) {
@@ -386,6 +409,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		return uniqueCollectionType2;
 	}
 
+	@Override
 	public @NonNull PrimitiveType getUnlimitedNaturalType() {
 		PrimitiveType unlimitedNaturalType2 = unlimitedNaturalType;
 		if (unlimitedNaturalType2 == null) {

@@ -24,6 +24,7 @@ public class OclAnyOclLogOperation extends AbstractPolyOperation
 {
 	public static final @NonNull OclAnyOclLogOperation INSTANCE = new OclAnyOclLogOperation();
 
+	@Override
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceVal) {
 		try {
 			DomainLogger log = evaluator.getLogger();
@@ -34,6 +35,7 @@ public class OclAnyOclLogOperation extends AbstractPolyOperation
 		return sourceVal;
 	}
 
+	@Override
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId,
 			@Nullable Object sourceVal, @Nullable Object argVal) {
 		try {
@@ -46,6 +48,7 @@ public class OclAnyOclLogOperation extends AbstractPolyOperation
 		return sourceVal;
 	}
 
+	@Override
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId,
 			@Nullable Object sourceValue, @Nullable Object firstArgumentValue, @Nullable Object secondArgumentValue) {
 		throw new UnsupportedOperationException();

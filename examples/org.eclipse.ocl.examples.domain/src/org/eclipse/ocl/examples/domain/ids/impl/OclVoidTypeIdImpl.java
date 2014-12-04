@@ -27,6 +27,7 @@ public class OclVoidTypeIdImpl extends UnscopedId implements OclVoidTypeId
 		super(name);
 	}
 
+	@Override
 	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitNullId(this);
 	}
@@ -39,14 +40,17 @@ public class OclVoidTypeIdImpl extends UnscopedId implements OclVoidTypeId
 		return this;
 	}
 
+	@Override
 	public @NonNull TypeId getElementTypeId() {
 		return this;
 	}
 
+	@Override
 	public @NonNull OclVoidTypeIdImpl getGeneralizedId() {
 		return this;
 	}
 
+	@Override
 	public int getIndex() {
 		return 0;
 	}
@@ -74,18 +78,22 @@ public class OclVoidTypeIdImpl extends UnscopedId implements OclVoidTypeId
 		return this;									// FIXME Is this safe?
 	}
 
+	@Override
 	public TuplePartId getPartId(@NonNull String name) {
 		return null;
 	}
 
+	@Override
 	public @NonNull TuplePartId[] getPartIds() {
 		return NULL_TUPLE_PART_ID_ARRAY;
 	}
 
+	@Override
 	public @NonNull OclVoidTypeIdImpl getSpecializedId(@NonNull BindingsId templateBindings) {
 		return this;
 	}
 
+	@Override
 	public @NonNull CollectionTypeId getSpecializedId(@NonNull ElementId... templateBindings) {
 		return this;
 	}

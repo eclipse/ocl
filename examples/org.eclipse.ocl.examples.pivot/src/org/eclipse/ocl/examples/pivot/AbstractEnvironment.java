@@ -68,6 +68,7 @@ public abstract class AbstractEnvironment extends AbstractBasicEnvironment<Envir
     }
 	
     // implements the interface method
+	@Override
 	public boolean addElement(@NonNull String name, @NonNull Variable elem, boolean isExplicit) {
 		throw new UnsupportedOperationException();
 /*		// FIXME this is now redundant
@@ -92,10 +93,12 @@ public abstract class AbstractEnvironment extends AbstractBasicEnvironment<Envir
     /**
      * Dispose of any owned objects.
      */
-    public void dispose() {
+    @Override
+	public void dispose() {
     }    
 	
     // implements the interface method
+	@Override
 	public @Nullable org.eclipse.ocl.examples.pivot.Package getContextPackage() {
 		if (contextPackage != null) {
 			return contextPackage;
@@ -108,12 +111,14 @@ public abstract class AbstractEnvironment extends AbstractBasicEnvironment<Envir
 	}
 	
     // implements the interface method
+	@Override
 	public @Nullable org.eclipse.ocl.examples.pivot.Class getContextClassifier() {
 		Variable selfVariable = getSelfVariable();
 		return selfVariable != null ? (org.eclipse.ocl.examples.pivot.Class)selfVariable.getType() : null;	// FIXME cast
 	}
 	
     // implements the interface method
+	@Override
 	public @Nullable Operation getContextOperation() {
 		if (contextOperation != null) {
 			return contextOperation;
@@ -126,6 +131,7 @@ public abstract class AbstractEnvironment extends AbstractBasicEnvironment<Envir
 	}
 	
     // implements the interface method
+	@Override
 	public @Nullable Property getContextProperty() {
 		if (contextProperty != null) {
 			return contextProperty;
@@ -138,6 +144,7 @@ public abstract class AbstractEnvironment extends AbstractBasicEnvironment<Envir
 	}
 	
     // implements the interface method
+	@Override
 	public @Nullable Variable getSelfVariable() {
 		Variable result = selfVariable;		
 		if (result == null) {
@@ -178,6 +185,7 @@ public abstract class AbstractEnvironment extends AbstractBasicEnvironment<Envir
 	}
 
     // implements the interface method
+	@Override
 	public void setSelfVariable(@NonNull Variable var) {
 		selfVariable = var;
 		

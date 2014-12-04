@@ -20,6 +20,7 @@ public class OCLDelegateDomainFactory implements DelegateDomain.Factory
 {	
 	public OCLDelegateDomainFactory() {}
 
+	@Override
 	public @NonNull OCLDelegateDomain createDelegateDomain(@NonNull String delegateURI, @NonNull EPackage ePackage) {
 		return new OCLDelegateDomain(delegateURI, ePackage);
 	}

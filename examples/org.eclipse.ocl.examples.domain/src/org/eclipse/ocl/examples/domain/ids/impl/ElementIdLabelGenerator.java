@@ -24,6 +24,7 @@ public final class ElementIdLabelGenerator extends AbstractLabelGenerator<Elemen
 		super(ElementId.class);
 	}
 
+	@Override
 	public void buildLabelFor(@NonNull Builder labelBuilder, @NonNull ElementId object) {
 		String name = object.getDisplayName();
 		labelBuilder.appendString(name);

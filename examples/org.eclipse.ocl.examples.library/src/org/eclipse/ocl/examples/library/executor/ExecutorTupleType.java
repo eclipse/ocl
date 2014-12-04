@@ -33,18 +33,22 @@ public class ExecutorTupleType extends AbstractClass implements ExecutorTypeArgu
 		typeId = IdManager.getTupleTypeId(name, parts);
 	}
 
+	@Override
 	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 
+	@Override
 	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 
+	@Override
 	public @NonNull DomainOperation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 
+	@Override
 	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
@@ -53,10 +57,12 @@ public class ExecutorTupleType extends AbstractClass implements ExecutorTypeArgu
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 
+	@Override
 	public @NonNull DomainType getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 
+	@Override
 	public @NonNull TypeId getTypeId() {
 		return typeId;
 	}

@@ -96,6 +96,7 @@ public class MarkupFactoryImpl extends EFactoryImpl implements MarkupFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BulletElement createBulletElement() {
 		BulletElementImpl bulletElement = new BulletElementImpl();
 		return bulletElement;
@@ -106,6 +107,7 @@ public class MarkupFactoryImpl extends EFactoryImpl implements MarkupFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CompoundElement createCompoundElement() {
 		CompoundElementImpl compoundElement = new CompoundElementImpl();
 		return compoundElement;
@@ -116,6 +118,7 @@ public class MarkupFactoryImpl extends EFactoryImpl implements MarkupFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FigureElement createFigureElement() {
 		FigureElementImpl figureElement = new FigureElementImpl();
 		return figureElement;
@@ -126,6 +129,7 @@ public class MarkupFactoryImpl extends EFactoryImpl implements MarkupFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FigureRefElement createFigureRefElement() {
 		FigureRefElementImpl figureRefElement = new FigureRefElementImpl();
 		return figureRefElement;
@@ -136,6 +140,7 @@ public class MarkupFactoryImpl extends EFactoryImpl implements MarkupFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FontElement createFontElement() {
 		FontElementImpl fontElement = new FontElementImpl();
 		return fontElement;
@@ -146,6 +151,7 @@ public class MarkupFactoryImpl extends EFactoryImpl implements MarkupFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FootnoteElement createFootnoteElement() {
 		FootnoteElementImpl footnoteElement = new FootnoteElementImpl();
 		return footnoteElement;
@@ -156,6 +162,7 @@ public class MarkupFactoryImpl extends EFactoryImpl implements MarkupFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public HeadingElement createHeadingElement() {
 		HeadingElementImpl headingElement = new HeadingElementImpl();
 		return headingElement;
@@ -166,6 +173,7 @@ public class MarkupFactoryImpl extends EFactoryImpl implements MarkupFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Markup createMarkup() {
 		MarkupImpl markup = new MarkupImpl();
 		return markup;
@@ -176,6 +184,7 @@ public class MarkupFactoryImpl extends EFactoryImpl implements MarkupFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MarkupElement createMarkupElement() {
 		MarkupElementImpl markupElement = new MarkupElementImpl();
 		return markupElement;
@@ -186,6 +195,7 @@ public class MarkupFactoryImpl extends EFactoryImpl implements MarkupFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NewLineElement createNewLineElement() {
 		NewLineElementImpl newLineElement = new NewLineElementImpl();
 		return newLineElement;
@@ -196,6 +206,7 @@ public class MarkupFactoryImpl extends EFactoryImpl implements MarkupFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NullElement createNullElement() {
 		NullElementImpl nullElement = new NullElementImpl();
 		return nullElement;
@@ -206,6 +217,7 @@ public class MarkupFactoryImpl extends EFactoryImpl implements MarkupFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OCLCodeElement createOCLCodeElement() {
 		OCLCodeElementImpl oclCodeElement = new OCLCodeElementImpl();
 		return oclCodeElement;
@@ -216,6 +228,7 @@ public class MarkupFactoryImpl extends EFactoryImpl implements MarkupFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OCLEvalElement createOCLEvalElement() {
 		OCLEvalElementImpl oclEvalElement = new OCLEvalElementImpl();
 		return oclEvalElement;
@@ -226,6 +239,7 @@ public class MarkupFactoryImpl extends EFactoryImpl implements MarkupFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OCLTextElement createOCLTextElement() {
 		OCLTextElementImpl oclTextElement = new OCLTextElementImpl();
 		return oclTextElement;
@@ -236,6 +250,7 @@ public class MarkupFactoryImpl extends EFactoryImpl implements MarkupFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TextElement createTextElement() {
 		TextElementImpl textElement = new TextElementImpl();
 		return textElement;
@@ -246,6 +261,7 @@ public class MarkupFactoryImpl extends EFactoryImpl implements MarkupFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MarkupPackage getMarkupPackage() {
 		return (MarkupPackage)getEPackage();
 	}

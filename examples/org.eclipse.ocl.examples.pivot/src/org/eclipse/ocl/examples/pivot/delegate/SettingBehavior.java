@@ -36,14 +36,17 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 	public static final @NonNull String INITIAL_CONSTRAINT_KEY = "initial"; //$NON-NLS-1$
 	public static final @NonNull String NAME = "settingDelegates"; //$NON-NLS-1$
 
+	@Override
 	public @Nullable SettingDelegate.Factory getDefaultFactory() {
 		return SettingDelegate.Factory.Registry.INSTANCE.getFactory(getName());
 	}
 
+	@Override
 	public @NonNull SettingDelegate.Factory.Registry getDefaultRegistry() {
 		return DomainUtil.nonNullEMF(SettingDelegate.Factory.Registry.INSTANCE);
 	}
 
+	@Override
 	public @NonNull EPackage getEPackage(@NonNull EStructuralFeature eStructuralFeature) {
 		return DomainUtil.nonNullEMF(eStructuralFeature.getEContainingClass().getEPackage());
 	}
@@ -73,14 +76,17 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 	    return registry != null ? registry.getFactory(delegateDomain.getURI()) : null;
 	}	
 
+	@Override
 	public @NonNull Class<SettingDelegate.Factory> getFactoryClass() {
 		return SettingDelegate.Factory.class;
 	}
 	
+	@Override
 	public @NonNull String getName() {
 		return NAME;
 	}
 
+	@Override
 	public @NonNull Class<SettingDelegate.Factory.Registry> getRegistryClass() {
 		return SettingDelegate.Factory.Registry.class;
 	}

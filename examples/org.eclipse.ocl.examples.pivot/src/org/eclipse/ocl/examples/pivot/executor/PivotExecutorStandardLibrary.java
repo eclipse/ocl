@@ -78,26 +78,32 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 		return pivotType;
 	}
 
+	@Override
 	public @NonNull org.eclipse.ocl.examples.pivot.Class getClassType() {
 		return metaModelManager.getStandardLibrary().getClassType();
 	}
 
+	@Override
 	public @NonNull org.eclipse.ocl.examples.pivot.Class getEnumerationType() {
 		return metaModelManager.getStandardLibrary().getEnumerationType();
 	}
 
+	@Override
 	public @NonNull DomainInheritance getInheritance(@NonNull DomainClass type) {
 		return metaModelManager.getInheritance(type);
 	}
 
+	@Override
 	public @NonNull MetaModelManager getMetaModelManager() {
 		return metaModelManager;
 	}
 
+	@Override
 	public @NonNull DomainOperation getOclInvalidOperation() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public DomainType getOclType(@NonNull String typeName) {
 		return PivotTables.PACKAGE.getType(typeName).getType();
 	}

@@ -24,6 +24,7 @@ public class LiteralUnlimitedNaturalLabelGenerator extends AbstractLabelGenerato
 		super(LiteralUnlimitedNatural.class);
 	}
 
+	@Override
 	public void buildLabelFor(@NonNull Builder labelBuilder, @NonNull LiteralUnlimitedNatural object) {
 		int value = object.getValue();
 		labelBuilder.appendString(value >= 0 ? Integer.toString(value) : "*");

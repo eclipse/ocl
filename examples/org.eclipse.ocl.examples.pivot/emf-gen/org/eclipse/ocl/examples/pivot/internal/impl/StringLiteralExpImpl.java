@@ -85,6 +85,7 @@ public class StringLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getStringSymbol() {
 		return stringSymbol;
 	}
@@ -94,6 +95,7 @@ public class StringLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStringSymbol(String newStringSymbol) {
 		String oldStringSymbol = stringSymbol;
 		stringSymbol = newStringSymbol;

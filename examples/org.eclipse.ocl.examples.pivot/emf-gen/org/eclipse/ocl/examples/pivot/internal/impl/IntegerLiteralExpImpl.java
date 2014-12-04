@@ -104,6 +104,7 @@ public class IntegerLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Number getIntegerSymbol() {
 		return integerSymbol;
 	}
@@ -113,6 +114,7 @@ public class IntegerLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIntegerSymbol(Number newIntegerSymbol)
 	{
 		Number oldIntegerSymbol = integerSymbol;
@@ -126,6 +128,7 @@ public class IntegerLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateTypeIsInteger(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**

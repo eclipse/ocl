@@ -342,6 +342,7 @@ public class AS2Moniker implements PivotConstants
 		List<TypedElement> parts = new ArrayList<TypedElement>(tupleParts);
 		Collections.sort(parts, new Comparator<TypedElement>()
 		{
+			@Override
 			public int compare(TypedElement o1, TypedElement o2) {
 				return o1.getName().compareTo(o2.getName());
 			}

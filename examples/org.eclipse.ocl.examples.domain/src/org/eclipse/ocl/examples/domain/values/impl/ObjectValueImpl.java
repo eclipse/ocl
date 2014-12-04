@@ -32,6 +32,7 @@ public abstract class ObjectValueImpl extends ValueImpl implements ObjectValue
 	
 	protected ObjectValueImpl() {}
 
+	@Override
 	public @NonNull Object asObject() {
 		return getObject();
 	}
@@ -49,6 +50,7 @@ public abstract class ObjectValueImpl extends ValueImpl implements ObjectValue
 		return getObject().equals(((ObjectValue)obj).getObject());
 	}
 
+	@Override
 	public abstract @NonNull Object getObject();
 
 	@Override

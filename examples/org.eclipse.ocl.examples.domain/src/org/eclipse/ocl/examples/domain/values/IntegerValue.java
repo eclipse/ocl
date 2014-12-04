@@ -24,6 +24,7 @@ public interface IntegerValue extends RealValue
 	/**
 	 * @generated NOT
 	 */
+	@Override
 	@NonNull IntegerValue addInteger(@NonNull IntegerValue right);
 
 	/**
@@ -39,6 +40,7 @@ public interface IntegerValue extends RealValue
 	/**
 	 * @generated NOT
 	 */
+	@Override
 	int compareToInteger(@NonNull IntegerValue right);
 
 	/**
@@ -54,6 +56,7 @@ public interface IntegerValue extends RealValue
 	/**
 	 * @generated NOT
 	 */
+	@Override
 	@NonNull RealValue divideInteger(@NonNull IntegerValue right);
 
 	/**
@@ -69,11 +72,13 @@ public interface IntegerValue extends RealValue
 	/**
 	 * @generated NOT
 	 */
+	@Override
 	@NonNull IntegerValue maxInteger(@NonNull IntegerValue right);
 
 	/**
 	 * @generated NOT
 	 */
+	@Override
 	@NonNull IntegerValue minInteger(@NonNull IntegerValue right);
 
 	/**
@@ -89,15 +94,18 @@ public interface IntegerValue extends RealValue
 	/**
 	 * @generated NOT
 	 */
+	@Override
 	@NonNull IntegerValue multiplyInteger(@NonNull IntegerValue right);
 
 	/**
 	 * @generated NOT
 	 */
+	@Override
 	@NonNull IntegerValue negate();
 
 	/**
 	 * @generated NOT
 	 */
+	@Override
 	@NonNull IntegerValue subtractInteger(@NonNull IntegerValue right);
 }

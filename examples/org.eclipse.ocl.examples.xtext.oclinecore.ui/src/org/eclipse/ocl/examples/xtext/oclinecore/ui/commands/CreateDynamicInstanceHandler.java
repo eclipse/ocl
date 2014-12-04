@@ -51,6 +51,7 @@ public class CreateDynamicInstanceHandler extends AbstractHandler
 	protected static final URI PLATFORM_RESOURCE = URI.createPlatformResourceURI("/", false);
 	private org.eclipse.ocl.examples.pivot.Class selectedClass = null;
 
+	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		if (selectedClass != null) {
 			EObject eTarget = selectedClass.getETarget();
@@ -106,6 +107,7 @@ public class CreateDynamicInstanceHandler extends AbstractHandler
 		final ITextSelection selection = (ITextSelection) xtextEditor.getSelectionProvider().getSelection();	// FIXME this is the 'double-clicked' selection
 		IXtextDocument document = xtextEditor.getDocument();
 		selectedClass = document.readOnly(new IUnitOfWork<org.eclipse.ocl.examples.pivot.Class, XtextResource>() {
+			@Override
 			public org.eclipse.ocl.examples.pivot.Class exec(@Nullable XtextResource xtextResource) {
 				if (xtextResource == null) {
 					return null;

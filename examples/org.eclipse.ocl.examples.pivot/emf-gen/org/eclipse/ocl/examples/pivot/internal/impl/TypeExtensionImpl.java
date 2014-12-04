@@ -103,6 +103,7 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isRequired()
 	{
 		return (eFlags & IS_REQUIRED_EFLAG) != 0;
@@ -113,6 +114,7 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsRequired(boolean newIsRequired)
 	{
 		boolean oldIsRequired = (eFlags & IS_REQUIRED_EFLAG) != 0;
@@ -126,6 +128,7 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Stereotype getStereotype()
 	{
 		if (eContainerFeatureID() != PivotPackage.TYPE_EXTENSION__STEREOTYPE) return null;
@@ -148,6 +151,7 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("cast")
 	public void setStereotype(Stereotype newStereotype)
 	{
@@ -172,6 +176,7 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getType()
 	{
 		if (type != null && ((EObject)type).eIsProxy())
@@ -219,6 +224,7 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(Type newType)
 	{
 		if (newType != type)

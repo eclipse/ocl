@@ -126,6 +126,7 @@ public abstract class TypedElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getType() {
 		if (type != null && ((EObject)type).eIsProxy())
 		{
@@ -154,6 +155,7 @@ public abstract class TypedElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(Type newType) {
 		Type oldType = type;
 		type = newType;
@@ -166,6 +168,7 @@ public abstract class TypedElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean CompatibleBody(final ValueSpecification bodySpecification)
 	{
 		/**
@@ -183,6 +186,7 @@ public abstract class TypedElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Parameter makeParameter()
 	{
 		/**
@@ -202,6 +206,7 @@ public abstract class TypedElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isRequired()
 	{
 		return (eFlags & IS_REQUIRED_EFLAG) != 0;
@@ -212,6 +217,7 @@ public abstract class TypedElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsRequired(boolean newIsRequired)
 	{
 		boolean oldIsRequired = (eFlags & IS_REQUIRED_EFLAG) != 0;
@@ -390,11 +396,13 @@ public abstract class TypedElementImpl
 		return visitor.visitTypedElement(this);
 	}
 
+	@Override
 	public @NonNull TypeId getTypeId() {
 		Type type2 = getType();
 		return type2 != null ? type2.getTypeId() : TypeId.OCL_INVALID;
 	}
 
+	@Override
 	public boolean isMany() {
 		Type type = getType();
 		if (type instanceof CollectionType) {

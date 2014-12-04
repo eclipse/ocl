@@ -77,6 +77,7 @@ public class DynamicElementImpl extends ElementImpl implements DynamicElement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getMetaType()
 	{
 		if (metaType != null && ((EObject)metaType).eIsProxy())
@@ -107,6 +108,7 @@ public class DynamicElementImpl extends ElementImpl implements DynamicElement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMetaType(Type newMetaType)
 	{
 		Type oldMetaType = metaType;

@@ -68,6 +68,7 @@ public abstract class VariableExpCSImpl extends AbstractNameExpCSImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Variable getReferredVariable()
 	{
 		return referredVariable;
@@ -78,6 +79,7 @@ public abstract class VariableExpCSImpl extends AbstractNameExpCSImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredVariable(Variable newReferredVariable)
 	{
 		Variable oldReferredVariable = referredVariable;

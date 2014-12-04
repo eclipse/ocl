@@ -21,14 +21,17 @@ public class ArrayIterable<T> implements IndexableIterable<T>
 	{
 		private int index = firstIndex;
 		
+		@Override
 		public boolean hasNext() {
 			return index < lastIndex;
 		}
 
+		@Override
 		public T next() {
 			return array[index++];
 		}
 
+		@Override
 		public void remove() {
 			throw new UnsupportedOperationException();
 		}
@@ -50,14 +53,17 @@ public class ArrayIterable<T> implements IndexableIterable<T>
 		this.lastIndex = lastIndex;
 	}
 
+	@Override
 	public @NonNull T get(int index) {
 		return DomainUtil.nonNullState(array[firstIndex + index]);
 	}		
 	
+	@Override
 	public java.util.Iterator<T> iterator() {
 		return new Iterator();
 	}
 
+	@Override
 	public int size() {
 		return lastIndex - firstIndex;
 	}

@@ -25,14 +25,17 @@ public class ExecutorTypedElement implements DomainTypedElement
 		this.type = type;
 	}
 
+	@Override
 	public @NonNull String getName() {
 		return name;
 	}
 
+	@Override
 	public @NonNull DomainType getType() {
 		return type;
 	}
 
+	@Override
 	public @NonNull TypeId getTypeId() {
 		DomainType type2 = getType();
 		return type2.getTypeId();

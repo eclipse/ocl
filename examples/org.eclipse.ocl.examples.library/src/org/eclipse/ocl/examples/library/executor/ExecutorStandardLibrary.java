@@ -69,6 +69,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 //		}
 	}
 
+	@Override
 	public @NonNull DomainClass getClassType() {
 		Map<EcoreExecutorPackage, List<EcoreExecutorPackage>> extensions2 = extensions;
 		if (extensions2 == null) {
@@ -90,6 +91,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 		throw new IllegalStateException("No extension package defines Class type"); //$NON-NLS-1$
 	}
 
+	@Override
 	public @NonNull DomainClass getEnumerationType() {
 		Map<EcoreExecutorPackage, List<EcoreExecutorPackage>> extensions2 = extensions;
 		if (extensions2 == null) {
@@ -111,6 +113,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 		throw new IllegalStateException("No extension package defines Enumeration type"); //$NON-NLS-1$
 	}
 
+	@Override
 	public @NonNull DomainInheritance getInheritance(@NonNull DomainClass domainClass) {
 		if (domainClass instanceof DomainInheritance) {
 			return (DomainInheritance) domainClass;
@@ -195,6 +198,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 		return weakReference.get();
 	}
 
+	@Override
 	public @NonNull DomainOperation getOclInvalidOperation() {
 		throw new UnsupportedOperationException();
 	}
@@ -204,6 +208,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 		return nsURI != null ? weakGet(ePackageMap, nsURI) : null;
 	}
 
+	@Override
 	public synchronized ExecutorType getOclType(@NonNull String typeName) {
 		for (WeakReference<EcoreExecutorPackage> dPackage : ePackageMap.values()) {
 // FIXME			if (OCLstdlibTables.PACKAGE.getNsURI().equals(dPackage.getNsURI())) {

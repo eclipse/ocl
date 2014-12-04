@@ -76,6 +76,7 @@ public abstract class RootCompletePackageImpl extends CompletePackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CompleteModel getOwningCompleteModel()
 	{
 		if (eContainerFeatureID() != PivotPackage.ROOT_COMPLETE_PACKAGE__OWNING_COMPLETE_MODEL) return null;
@@ -98,6 +99,7 @@ public abstract class RootCompletePackageImpl extends CompletePackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("cast")
 	public void setOwningCompleteModel(CompleteModel newOwningCompleteModel)
 	{
@@ -366,6 +368,7 @@ public abstract class RootCompletePackageImpl extends CompletePackageImpl implem
 		}
 	}
 
+	@Override
 	public DomainCompletePackage getOwningCompletePackage() {
 		return null;
 	}

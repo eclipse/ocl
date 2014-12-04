@@ -30,34 +30,42 @@ public class ExecutorTypeParameter extends AbstractType implements ExecutorTypeA
 		this.typeid = typeid;
 	}
 
+	@Override
 	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 
+	@Override
 	public @NonNull DomainType getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 
+	@Override
 	public @Nullable DomainType getLowerBound() {
 		return null;
 	}
 	
+	@Override
 	public @NonNull TemplateParameterId getTemplateParameterId() {
 		return typeid;
 	}
 
+	@Override
 	public @NonNull TemplateParameterId getTypeId() {
 		return typeid;
 	}
 	
+	@Override
 	public @Nullable DomainClass isClass() {
 		return null;
 	}
 
+	@Override
 	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 
+	@Override
 	public @NonNull DomainTemplateParameter isTemplateParameter() {
 		return this;
 	}

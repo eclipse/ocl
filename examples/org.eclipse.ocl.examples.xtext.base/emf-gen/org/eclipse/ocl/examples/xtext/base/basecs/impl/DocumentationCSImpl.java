@@ -77,6 +77,7 @@ public class DocumentationCSImpl extends AnnotationElementCSImpl implements Docu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getValue() {
 		return value;
 	}
@@ -86,6 +87,7 @@ public class DocumentationCSImpl extends AnnotationElementCSImpl implements Docu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(String newValue) {
 		String oldValue = value;
 		value = newValue;

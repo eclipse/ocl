@@ -112,6 +112,7 @@ public class LetExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<LetVariableCS> getOwnedVariables() {
 		if (ownedVariables == null)
 		{
@@ -125,6 +126,7 @@ public class LetExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpCS getOwnedInExpression() {
 		return ownedInExpression;
 	}
@@ -151,6 +153,7 @@ public class LetExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedInExpression(ExpCS newOwnedInExpression) {
 		if (newOwnedInExpression != ownedInExpression)
 		{
@@ -171,6 +174,7 @@ public class LetExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsImplicit()
 	{
 		return isImplicit;
@@ -181,6 +185,7 @@ public class LetExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsImplicit(boolean newIsImplicit)
 	{
 		boolean oldIsImplicit = isImplicit;

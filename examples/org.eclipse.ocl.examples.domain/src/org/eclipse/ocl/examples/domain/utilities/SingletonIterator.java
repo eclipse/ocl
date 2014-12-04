@@ -27,10 +27,12 @@ public final class SingletonIterator<T> implements Iterator<T>
 		this.value = value;
 	}
 
+	@Override
 	public boolean hasNext() {
 		return !done;
 	}
 
+	@Override
 	public @NonNull T next() {
         if (done) {
         	throw new NoSuchElementException();
@@ -41,6 +43,7 @@ public final class SingletonIterator<T> implements Iterator<T>
         }
 	}
 
+	@Override
 	public void remove() {
 		throw new UnsupportedOperationException();			
 	}

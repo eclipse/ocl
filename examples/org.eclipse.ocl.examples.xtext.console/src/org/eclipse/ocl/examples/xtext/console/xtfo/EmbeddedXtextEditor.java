@@ -257,6 +257,7 @@ public class EmbeddedXtextEditor {
 		MenuManager manager = new MenuManager(null, null);
 		manager.setRemoveAllWhenShown(true);
 		manager.addMenuListener(new IMenuListener() {
+			@Override
 			public void menuAboutToShow(IMenuManager mgr) {
 				EmbeddedXtextEditor.this.menuAboutToShow(mgr);
 			}
@@ -323,6 +324,7 @@ public class EmbeddedXtextEditor {
 		
 		fSourceViewerDecorationSupport.install(fPreferenceStoreAccess.getPreferenceStore());
 		parent.addDisposeListener(new DisposeListener() {
+			@Override
 			public void widgetDisposed(DisposeEvent e) {
 				fSourceViewerDecorationSupport.dispose();
 			}
@@ -338,6 +340,7 @@ public class EmbeddedXtextEditor {
 				new IValidationIssueProcessor() {
 					private AnnotationIssueProcessor annotationIssueProcessor;
 					
+					@Override
 					public void processIssues(List<Issue> issues, IProgressMonitor monitor) {
 						if (annotationIssueProcessor == null) {
 							annotationIssueProcessor = new AnnotationIssueProcessor(fDocument, 
@@ -351,6 +354,7 @@ public class EmbeddedXtextEditor {
 		fDocument.setValidationJob(job);
 		
 		fSourceViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				updateSelectionDependentActions();
 			}
@@ -596,6 +600,7 @@ public class EmbeddedXtextEditor {
 			fHandlerActivations = Lists.newArrayList();
 			
 			fSourceViewer.getControl().addDisposeListener(new DisposeListener() {
+				@Override
 				public void widgetDisposed(DisposeEvent e) {
 					IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getAdapter(IHandlerService.class);
 					if (handlerService != null) {
@@ -606,6 +611,7 @@ public class EmbeddedXtextEditor {
 			});
 		}
 		
+		@Override
 		public void focusLost(FocusEvent e) {
 			if (fContextActivation != null) {
 				IWorkbench workbench = PlatformUI.getWorkbench();
@@ -615,7 +621,7 @@ public class EmbeddedXtextEditor {
 					IEditorPart activeEditor = activePage.getActiveEditor();
 					if (activeEditor != null) {
 						IWorkbenchPartSite site = activeEditor.getSite();
-						IContextService contextService = (IContextService) site.getService(IContextService.class);
+						IContextService contextService = site.getService(IContextService.class);
 						contextService.deactivateContext(fContextActivation);
 					}
 				}
@@ -627,6 +633,7 @@ public class EmbeddedXtextEditor {
 			}
 		}
 
+		@Override
 		public void focusGained(FocusEvent e) {
 			IWorkbench workbench = PlatformUI.getWorkbench();
 			IWorkbenchWindow activeWorkbenchWindow = workbench.getActiveWorkbenchWindow();
@@ -635,7 +642,7 @@ public class EmbeddedXtextEditor {
 				IEditorPart activeEditor = activePage.getActiveEditor();
 				if (activeEditor != null) {
 					IWorkbenchPartSite site = activeEditor.getSite();
-					IContextService contextService = (IContextService) site.getService(IContextService.class);
+					IContextService contextService = site.getService(IContextService.class);
 					fContextActivation = contextService.activateContext(EMBEDEDXTEXT_EDITOR_CONTEXT);
 				}
 				else {

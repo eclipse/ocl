@@ -37,6 +37,7 @@ public abstract class ReflectiveFragment extends AbstractFragment
 		super(derivedInheritance, baseInheritance);
 	}
 
+	@Override
 	public @NonNull LibraryFeature getImplementation(@NonNull DomainOperation apparentOperation) {
 		if (operationMap == null) {
 			synchronized (this) {
@@ -110,11 +111,13 @@ public abstract class ReflectiveFragment extends AbstractFragment
 		}
 	}
 
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull Iterable<? extends DomainOperation> getLocalOperations() {
 		return operationMap != null ? operationMap.keySet() : Collections.<DomainOperation>emptyList();
 	}
 	
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull Iterable<? extends DomainProperty> getLocalProperties() {
 		return propertyMap != null ? propertyMap.keySet() : Collections.<DomainProperty>emptyList();

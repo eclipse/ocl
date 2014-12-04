@@ -14,6 +14,7 @@ import org.eclipse.emf.validation.model.IClientSelector;
 
 public class PivotClientSelector implements IClientSelector
 {
+	@Override
 	public boolean selects(Object object) {
 		return true;
 	}

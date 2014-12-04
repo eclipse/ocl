@@ -116,6 +116,7 @@ public class FinalAnalysis
 		List<CompleteClass> completeClasses = new ArrayList<CompleteClass>(superCompleteClass2subCompleteClasses.keySet());
 		Collections.sort(completeClasses, new Comparator<CompleteClass>()
 		{
+			@Override
 			public int compare(CompleteClass o1, CompleteClass o2) {
 				return o1.getName().compareTo(o2.getName());
 			}

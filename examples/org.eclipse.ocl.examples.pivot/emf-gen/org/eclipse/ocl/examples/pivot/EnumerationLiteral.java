@@ -50,6 +50,7 @@ public interface EnumerationLiteral
 	 * @see org.eclipse.ocl.examples.pivot.Enumeration#getOwnedLiteral
 	 * @generated
 	 */
+	@Override
 	Enumeration getEnumeration();
 
 	/**

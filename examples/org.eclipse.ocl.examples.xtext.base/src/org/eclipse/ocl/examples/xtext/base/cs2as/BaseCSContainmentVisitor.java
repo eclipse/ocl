@@ -558,6 +558,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		return null;
 	}
 
+	@Override
 	public Continuation<?> visiting(@NonNull VisitableCS visitable) {
 		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for CS2AS Containment pass");
 	}

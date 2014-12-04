@@ -139,6 +139,7 @@ public class CollectionTypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getElementType() {
 		if (elementType != null && ((EObject)elementType).eIsProxy())
 		{
@@ -167,6 +168,7 @@ public class CollectionTypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setElementType(Type newElementType) {
 		Type oldElementType = elementType;
 		elementType = newElementType;
@@ -179,6 +181,7 @@ public class CollectionTypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Number getLower()
 	{
 		return lower;
@@ -189,6 +192,7 @@ public class CollectionTypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLower(Number newLower)
 	{
 		Number oldLower = lower;
@@ -202,6 +206,7 @@ public class CollectionTypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Number getUpper()
 	{
 		return upper;
@@ -212,6 +217,7 @@ public class CollectionTypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUpper(Number newUpper)
 	{
 		Number oldUpper = upper;
@@ -631,6 +637,7 @@ public class CollectionTypeImpl
 		}
 	}
 
+	@Override
 	public @NonNull CollectionType getContainerType() {
 		TemplateableElement unspecializedElement2 = unspecializedElement;
 		return unspecializedElement2 != null ? (CollectionType)unspecializedElement2 : this;
@@ -652,22 +659,26 @@ public class CollectionTypeImpl
 		return standardLibrary.isEqualToCollectionType(this, (DomainCollectionType)type);
 	}
 
+	@Override
 	public @NonNull IntegerValue getLowerValue() {
 		Number lower2 = lower;
 		assert lower2 != null;
 		return ValuesUtil.integerValueOf(lower2);
 	}
 
+	@Override
 	public @NonNull IntegerValue getUpperValue() {
 		Number upper2 = upper;
 		assert upper2 != null;
 		return ValuesUtil.integerValueOf(upper2);
 	}
 
+	@Override
 	public void setLowerValue(@NonNull IntegerValue lower) {
 		setLower(lower.intValue());
 	}
 
+	@Override
 	public void setUpperValue(@NonNull IntegerValue upper) {
 		setUpper(upper.isUnlimited() ? Unlimited.INSTANCE : upper.intValue());
 	}

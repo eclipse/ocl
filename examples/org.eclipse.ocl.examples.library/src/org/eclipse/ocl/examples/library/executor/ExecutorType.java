@@ -64,6 +64,7 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 		this.typeParameters = new DomainTypeParameters(typeParameters);
 	}
 
+	@Override
 	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
 		DomainInheritance thatInheritance = type.getInheritance(standardLibrary);
 		if (this == thatInheritance) {
@@ -72,19 +73,23 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 		return thatInheritance.isSuperInheritanceOf(this);
 	}
 	
+	@Override
 	public @NonNull DomainClass flattenedType() {
 		return this;
 	}
 	
+	@Override
 	public final @NonNull FragmentIterable getAllProperSuperFragments() {
 		DomainFragment[] fragments2 = DomainUtil.nonNullState(fragments);
 		return new FragmentIterable(fragments2, 0, fragments2.length-1);
 	}
 	
+	@Override
 	public @NonNull FragmentIterable getAllSuperFragments() {
 		return new FragmentIterable(DomainUtil.nonNullState(fragments));
 	}
 	
+	@Override
 	public @NonNull DomainType getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
 		if (this == type) {
 			return this.getType();
@@ -95,34 +100,42 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 		return commonInheritance.getType();
 	}
 
+	@Override
 	public int getDepth() {
 		return indexes.length-2;
 	}
 	
+	@Override
 	public @NonNull Iterable<DomainFragment> getFragments() {
 		return new ArrayIterable<DomainFragment>(fragments);
 	}
 
+	@Override
 	public ExecutorFragment getFragment(int fragmentNumber) {
 		return fragments[fragmentNumber];
 	}
 	
+	@Override
 	public int getIndex(int fragmentNumber) {
 		return indexes[fragmentNumber];
 	}
 
+	@Override
 	public int getIndexes(){
 		return indexes.length;
 	}
 
+	@Override
 	public @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
 		return this;
 	}
 
+	@Override
 	public @Nullable DomainOperation getMemberOperation(@NonNull OperationId operationId) {
 		throw new UnsupportedOperationException();					// FIXME
 	}
 
+	@Override
 	public @Nullable DomainProperty getMemberProperty(@NonNull String name) {
 		DomainProperties allProperties2 = allProperties;
 		if (allProperties2 == null) {
@@ -131,34 +144,42 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 		return allProperties2.getMemberProperty(name);
 	}
 
+	@Override
 	public @NonNull String getMetaTypeName() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public @NonNull DomainClass getNormalizedType(@NonNull DomainStandardLibrary standardLibrary) {
 		return this;
 	}
 
+	@Override
 	public @NonNull List<? extends DomainConstraint> getOwnedInvariants() {
 		throw new UnsupportedOperationException();			// FIXME
 	}
 
+	@Override
 	public @NonNull List<? extends DomainProperty> getOwnedProperties() {
 		return getSelfFragment().getLocalProperties();
 	}
 
+	@Override
 	public @NonNull List<? extends DomainOperation> getOwnedOperations() {
 		return getSelfFragment().getLocalOperations();
 	}
 	
+	@Override
 	public @NonNull DomainPackage getOwningPackage() {
 		return evaluationPackage;
 	}
 
+	@Override
 	public @NonNull List<? extends DomainConstraint> getOwnedRule() {
 		throw new UnsupportedOperationException();			// FIXME
 	}
 
+	@Override
 	public @NonNull ExecutorFragment getSelfFragment() {
 		return DomainUtil.nonNullState(getFragment(fragments.length-1));
 	}
@@ -167,14 +188,17 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 		return OCLstdlibTables.LIBRARY;
 	}
 
+	@Override
 	public @NonNull List<? extends DomainClass> getSuperClasses() {
 		return getSelfFragment().getSuperClasses();
 	}
 	
+	@Override
 	public final @NonNull FragmentIterable getSuperFragments(int depth) {
 		return new FragmentIterable(DomainUtil.nonNullState(fragments), indexes[depth], indexes[depth+1]);
 	}
 
+	@Override
 	public @NonNull DomainClass getType() {
 		return this;
 	}
@@ -183,6 +207,7 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 //		throw new UnsupportedOperationException();					// FIXME
 //	}
 
+	@Override
 	public @NonNull DomainTypeParameters getTypeParameters() {
 		return typeParameters;
 	}
@@ -197,30 +222,37 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 		this.indexes = indexes;
 	}
 
+	@Override
 	public @NonNull DomainClass isClass() {
 		return this;
 	}
 
+	@Override
 	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
 		return this == type;
 	}
 
+	@Override
 	public boolean isEqualToUnspecializedType(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
 		return this == type;
 	}
 
+	@Override
 	public boolean isOrdered() {
 		return (flags & ORDERED) != 0;
 	}
 
+	@Override
 	public @Nullable DomainTemplateParameter isTemplateParameter() {
 		return null;
 	}
 
+	@Override
 	public boolean isUnique() {
 		return (flags & UNIQUE) != 0;
 	}
 
+	@Override
 	public boolean oclEquals(@NonNull OCLValue thatValue) {
 		if (!(thatValue instanceof DomainType)) {
 			return false;
@@ -230,10 +262,12 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 		return thisTypeId.equals(thatTypeId);
 	}
 
+	@Override
 	public int oclHashCode() {
 		return getTypeId().hashCode();
 	}
 
+	@Override
 	public DomainType specializeIn(@NonNull DomainCallExp expr, DomainType selfType) {
 		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
 	}

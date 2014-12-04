@@ -101,6 +101,7 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getBody()
 	{
 		return body;
@@ -111,6 +112,7 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBody(String newBody)
 	{
 		String oldBody = body;
@@ -124,6 +126,7 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLanguage()
 	{
 		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!LanguageExpression!language
@@ -134,6 +137,7 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Constraint getOwningConstraint()
 	{
 		if (eContainerFeatureID() != PivotPackage.LANGUAGE_EXPRESSION__OWNING_CONSTRAINT) return null;
@@ -156,6 +160,7 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("cast")
 	public void setOwningConstraint(Constraint newOwningConstraint)
 	{

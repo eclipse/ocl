@@ -24,6 +24,7 @@ public final class NameableLabelGenerator extends AbstractLabelGenerator<Nameabl
 		super(Nameable.class);
 	}
 
+	@Override
 	public void buildLabelFor(@NonNull Builder labelBuilder, @NonNull Nameable object) {
 		String name = object.getName();
 		if (name != null)

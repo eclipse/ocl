@@ -31,30 +31,37 @@ public class PivotScopeView implements ScopeView
      */
     public static final @NonNull ScopeView NULLSCOPEVIEW = new ScopeView()
     {
+		@Override
 		public @NonNull Attribution getAttribution() {
 			return NullAttribution.INSTANCE;
 		}
 
+		@Override
 		public @Nullable Element getChild() {
 			return null;
 		}
 
+		@Override
 		public @Nullable EStructuralFeature getContainmentFeature() {
 			return null;
 		}
 
+		@Override
 		public @NonNull ScopeView getParent() {
 			return NULLSCOPEVIEW;
 		}
 
+		@Override
 		public @NonNull ScopeView getRoot() {
 			return NULLSCOPEVIEW;
 		}
 
+		@Override
 		public Element getTarget() {
 			return null;
 		}
 
+		@Override
 		public boolean isQualified() {
 			return false;
 		}
@@ -82,6 +89,7 @@ public class PivotScopeView implements ScopeView
 		return attribution.computeLookup(aTarget, environmentView, this);
 	}
 
+	@Override
 	public @NonNull Attribution getAttribution() {
 		Attribution attribution2 = attribution;
 		if (attribution2 == null) {
@@ -90,10 +98,12 @@ public class PivotScopeView implements ScopeView
 		return attribution2;
 	}
 
+	@Override
 	public @Nullable Element getChild() {
 		return child;
 	}
 
+	@Override
 	public @Nullable EStructuralFeature getContainmentFeature() {
 //		assert ((child == null) && (containmentFeature == null)) || ((child != null) && (child.eContainmentFeature() ==  containmentFeature));
 		return (child != null) ? child.eContainmentFeature() : null;
@@ -103,6 +113,7 @@ public class PivotScopeView implements ScopeView
 		return metaModelManager;
 	}
 
+	@Override
 	public @NonNull ScopeView getParent() {
 		ScopeView parent2 = parent;
 		if (parent2 == null) {
@@ -118,6 +129,7 @@ public class PivotScopeView implements ScopeView
 		return parent2;
 	}
 
+	@Override
 	public @NonNull ScopeView getRoot() {
 		ScopeView parent = getParent();
 		if (parent == NULLSCOPEVIEW) {
@@ -128,10 +140,12 @@ public class PivotScopeView implements ScopeView
 		}
 	}
 
+	@Override
 	public final @NonNull Element getTarget() {
 		return target;
 	}
 
+	@Override
 	public boolean isQualified() {
 		return isQualified;
 	}

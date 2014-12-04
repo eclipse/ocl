@@ -48,6 +48,7 @@ public interface Model extends Namespace, org.eclipse.ocl.examples.domain.elemen
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getModel_OwnedPackages()
 	 * @generated
 	 */
+	@Override
 	@NonNull List<org.eclipse.ocl.examples.pivot.Package> getOwnedPackages();
 
 	/**

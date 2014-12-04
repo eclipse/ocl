@@ -140,6 +140,7 @@ public class OrphanCompletePackageImpl extends RootCompletePackageImpl implement
 		return new CompleteInheritance(completeClass);
 	}
 	
+	@Override
 	public @NonNull PackageId getMetapackageId() {
 		return IdManager.METAMODEL;
 	}

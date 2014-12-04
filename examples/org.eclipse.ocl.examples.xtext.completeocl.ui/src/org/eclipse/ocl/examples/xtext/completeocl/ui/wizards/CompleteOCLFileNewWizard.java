@@ -65,6 +65,7 @@ public class CompleteOCLFileNewWizard extends AbstractFileNewWizard
 			List<URI> sortedURIs = new ArrayList<URI>(uris);
 			Collections.sort(sortedURIs, new Comparator<URI>()
 			{
+				@Override
 				public int compare(URI o1, URI o2) {
 					return o1.toString().compareTo(o2.toString());
 				}

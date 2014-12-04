@@ -74,6 +74,7 @@ public abstract class VariableDeclarationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getTypeValue()
 	{
 		return typeValue;
@@ -84,6 +85,7 @@ public abstract class VariableDeclarationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTypeValue(Type newTypeValue)
 	{
 		Type oldTypeValue = typeValue;

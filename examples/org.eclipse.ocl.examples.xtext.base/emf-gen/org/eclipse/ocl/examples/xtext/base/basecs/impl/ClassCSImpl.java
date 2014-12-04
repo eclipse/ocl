@@ -118,6 +118,7 @@ public abstract class ClassCSImpl extends NamedElementCSImpl implements ClassCS 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TemplateSignatureCS getOwnedSignature() {
 		return ownedSignature;
 	}
@@ -144,6 +145,7 @@ public abstract class ClassCSImpl extends NamedElementCSImpl implements ClassCS 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedSignature(TemplateSignatureCS newOwnedSignature) {
 		if (newOwnedSignature != ownedSignature)
 		{
@@ -164,6 +166,7 @@ public abstract class ClassCSImpl extends NamedElementCSImpl implements ClassCS 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PackageCS getOwningPackage() {
 		if (eContainerFeatureID() != BaseCSPackage.CLASS_CS__OWNING_PACKAGE) return null;
 		return (PackageCS)eInternalContainer();
@@ -185,6 +188,7 @@ public abstract class ClassCSImpl extends NamedElementCSImpl implements ClassCS 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningPackage(PackageCS newOwningPackage)
 	{
 		if (newOwningPackage != eInternalContainer() || (eContainerFeatureID() != BaseCSPackage.CLASS_CS__OWNING_PACKAGE && newOwningPackage != null))
@@ -208,6 +212,7 @@ public abstract class ClassCSImpl extends NamedElementCSImpl implements ClassCS 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getInstanceClassName()
 	{
 		return instanceClassName;
@@ -218,6 +223,7 @@ public abstract class ClassCSImpl extends NamedElementCSImpl implements ClassCS 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInstanceClassName(String newInstanceClassName)
 	{
 		String oldInstanceClassName = instanceClassName;
@@ -231,6 +237,7 @@ public abstract class ClassCSImpl extends NamedElementCSImpl implements ClassCS 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ConstraintCS> getOwnedConstraints()
 	{
 		if (ownedConstraints == null)
@@ -245,6 +252,7 @@ public abstract class ClassCSImpl extends NamedElementCSImpl implements ClassCS 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<String> getQualifiers()
 	{
 		if (qualifiers == null)

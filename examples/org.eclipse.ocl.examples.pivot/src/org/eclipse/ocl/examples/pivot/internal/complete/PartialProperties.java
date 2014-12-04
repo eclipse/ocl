@@ -130,6 +130,7 @@ public class PartialProperties implements Iterable<DomainProperty>
 		return partials2.size() <= 0;
 	}
 
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull Iterator<DomainProperty> iterator() {
 		if (!isResolved) {

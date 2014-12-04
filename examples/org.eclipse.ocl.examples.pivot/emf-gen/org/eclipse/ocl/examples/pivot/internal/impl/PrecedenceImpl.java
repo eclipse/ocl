@@ -124,6 +124,7 @@ public class PrecedenceImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public AssociativityKind getAssociativity() {
 		return ASSOCIATIVITY_EFLAG_VALUES[(eFlags & ASSOCIATIVITY_EFLAG) >>> ASSOCIATIVITY_EFLAG_OFFSET];
 	}
@@ -133,6 +134,7 @@ public class PrecedenceImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAssociativity(AssociativityKind newAssociativity) {
 		AssociativityKind oldAssociativity = ASSOCIATIVITY_EFLAG_VALUES[(eFlags & ASSOCIATIVITY_EFLAG) >>> ASSOCIATIVITY_EFLAG_OFFSET];
 		if (newAssociativity == null) newAssociativity = ASSOCIATIVITY_EDEFAULT;
@@ -156,6 +158,7 @@ public class PrecedenceImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Number getOrder() {
 		return order;
 	}
@@ -165,6 +168,7 @@ public class PrecedenceImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOrder(Number newOrder)
 	{
 		Number oldOrder = order;

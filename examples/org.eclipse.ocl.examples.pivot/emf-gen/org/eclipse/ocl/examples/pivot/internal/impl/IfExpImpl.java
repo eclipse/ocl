@@ -122,6 +122,7 @@ public class IfExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OCLExpression getCondition() {
 		return condition;
 	}
@@ -148,6 +149,7 @@ public class IfExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCondition(OCLExpression newCondition) {
 		if (newCondition != condition)
 		{
@@ -168,6 +170,7 @@ public class IfExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OCLExpression getThenExpression() {
 		return thenExpression;
 	}
@@ -194,6 +197,7 @@ public class IfExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setThenExpression(OCLExpression newThenExpression) {
 		if (newThenExpression != thenExpression)
 		{
@@ -214,6 +218,7 @@ public class IfExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OCLExpression getElseExpression() {
 		return elseExpression;
 	}
@@ -240,6 +245,7 @@ public class IfExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setElseExpression(OCLExpression newElseExpression) {
 		if (newElseExpression != elseExpression)
 		{
@@ -260,6 +266,7 @@ public class IfExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateConditionTypeIsBoolean(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**

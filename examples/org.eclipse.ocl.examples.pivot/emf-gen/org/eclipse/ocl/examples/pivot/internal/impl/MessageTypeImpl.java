@@ -96,6 +96,7 @@ public class MessageTypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Signal getReferredSignal() {
 		if (referredSignal != null && ((EObject)referredSignal).eIsProxy())
 		{
@@ -124,6 +125,7 @@ public class MessageTypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredSignal(Signal newReferredSignal) {
 		Signal oldReferredSignal = referredSignal;
 		referredSignal = newReferredSignal;
@@ -136,6 +138,7 @@ public class MessageTypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Operation getReferredOperation() {
 		if (referredOperation != null && ((EObject)referredOperation).eIsProxy())
 		{
@@ -164,6 +167,7 @@ public class MessageTypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredOperation(Operation newReferredOperation) {
 		Operation oldReferredOperation = referredOperation;
 		referredOperation = newReferredOperation;

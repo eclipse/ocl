@@ -39,6 +39,7 @@ public abstract class AbstractVisitor<R, C>
 		this.context = context;
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public <A> A getAdapter(@NonNull Class<A> adapter) {
 		if (adapter.isAssignableFrom(getClass())) {

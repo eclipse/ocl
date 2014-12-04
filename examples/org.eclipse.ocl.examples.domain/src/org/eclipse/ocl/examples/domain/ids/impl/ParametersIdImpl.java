@@ -25,15 +25,18 @@ public class ParametersIdImpl implements ParametersId, WeakHashMapOfListOfWeakRe
 	{
 		private int index = 0;
 		
+		@Override
 		public boolean hasNext() {
 			return index < typeIds.length;
 		}
 
+		@Override
 		@SuppressWarnings("null")
 		public @NonNull TypeId next() {
 			return typeIds[index++];
 		}
 
+		@Override
 		public void remove() {
 			throw new UnsupportedOperationException();
 		}
@@ -55,6 +58,7 @@ public class ParametersIdImpl implements ParametersId, WeakHashMapOfListOfWeakRe
 		return obj == this;
 	}
 
+	@Override
 	public @NonNull TypeId get(int index) {
 		TypeId parameterType = typeIds[index];
 		assert parameterType != null;
@@ -71,10 +75,12 @@ public class ParametersIdImpl implements ParametersId, WeakHashMapOfListOfWeakRe
 		return hashCode;
 	}
 
+	@Override
 	public java.util.Iterator<TypeId> iterator() {
 		return new Iterator();
 	}
 
+	@Override
 	public boolean matches(@NonNull TypeId[] thoseTypeIds) {
 		if (typeIds.length != thoseTypeIds.length) {
 			return false;
@@ -87,6 +93,7 @@ public class ParametersIdImpl implements ParametersId, WeakHashMapOfListOfWeakRe
 		return true;
 	}
 
+	@Override
 	public int size() {
 		return typeIds.length;
 	}

@@ -86,6 +86,7 @@ public class TypeParameterCSImpl extends TemplateParameterCSImpl implements Type
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<TypedRefCS> getOwnedExtends() {
 		if (ownedExtends == null)
 		{
@@ -99,6 +100,7 @@ public class TypeParameterCSImpl extends TemplateParameterCSImpl implements Type
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypedRefCS getOwnedSuper() {
 		return ownedSuper;
 	}
@@ -124,6 +126,7 @@ public class TypeParameterCSImpl extends TemplateParameterCSImpl implements Type
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedSuper(TypedRefCS newOwnedSuper) {
 		if (newOwnedSuper != ownedSuper)
 		{

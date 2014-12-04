@@ -81,6 +81,7 @@ public class MarkupElementImpl extends MinimalEObjectImpl.Container implements M
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CompoundElement getOwner() {
 		if (eContainerFeatureID() != MarkupPackage.MARKUP_ELEMENT__OWNER) return null;
 		return (CompoundElement)eInternalContainer();
@@ -101,6 +102,7 @@ public class MarkupElementImpl extends MinimalEObjectImpl.Container implements M
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwner(CompoundElement newOwner) {
 		if (newOwner != eInternalContainer() || (eContainerFeatureID() != MarkupPackage.MARKUP_ELEMENT__OWNER && newOwner != null)) {
 			if (EcoreUtil.isAncestor(this, newOwner))
@@ -123,6 +125,7 @@ public class MarkupElementImpl extends MinimalEObjectImpl.Container implements M
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getUniqueId() {
 		return uniqueId;
 	}

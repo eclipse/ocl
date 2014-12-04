@@ -179,6 +179,7 @@ public class PackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getNsPrefix() {
 		return nsPrefix;
 	}
@@ -188,6 +189,7 @@ public class PackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNsPrefix(String newNsPrefix) {
 		String oldNsPrefix = nsPrefix;
 		nsPrefix = newNsPrefix;
@@ -212,6 +214,7 @@ public class PackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getURI() {
 		return uri;
 	}
@@ -221,6 +224,7 @@ public class PackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<org.eclipse.ocl.examples.pivot.Package> getImportedPackage()
 	{
@@ -236,6 +240,7 @@ public class PackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<InstanceSpecification> getOwnedInstances()
 	{
 		if (ownedInstances == null)
@@ -250,6 +255,7 @@ public class PackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<ProfileApplication> getProfileApplication()
 	{
@@ -265,6 +271,7 @@ public class PackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public org.eclipse.ocl.examples.pivot.Package getOwningPackage() {
 		if (eContainerFeatureID() != PivotPackage.PACKAGE__OWNING_PACKAGE) return null;
 		return (org.eclipse.ocl.examples.pivot.Package)eInternalContainer();
@@ -286,6 +293,7 @@ public class PackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningPackage(
 			org.eclipse.ocl.examples.pivot.Package newOwningPackage) {
 		if (newOwningPackage != eInternalContainer() || (eContainerFeatureID() != PivotPackage.PACKAGE__OWNING_PACKAGE && newOwningPackage != null))
@@ -635,11 +643,13 @@ public class PackageImpl
 		}
 	}
 
+	@Override
 	public @Nullable EPackage getEPackage() {
 		EObject eTarget = getETarget();
 		return eTarget instanceof EPackage ? (EPackage) eTarget : null;
 	}
 
+	@Override
 	public @NonNull List<org.eclipse.ocl.examples.pivot.Class> getOwnedClasses()
 	{
 		EList<Class> ownedClasses2 = ownedClasses;
@@ -674,6 +684,7 @@ public class PackageImpl
 		return ownedClasses2;
 	}
 
+	@Override
 	public @NonNull List<org.eclipse.ocl.examples.pivot.Package> getOwnedPackages()
 	{
 		EList<org.eclipse.ocl.examples.pivot.Package> ownedPackages2 = ownedPackages;
@@ -708,6 +719,7 @@ public class PackageImpl
 		return ownedPackages2;
 	}
 	
+	@Override
 	public @NonNull PackageId getPackageId() {
 		PackageId packageId2 = packageId;
 		if (packageId2 == null) {
@@ -766,6 +778,7 @@ public class PackageImpl
 		this.packageId = packageId;
 	}
 
+	@Override
 	public void setURI(String newURI) {
 		setURIGen(newURI);
 		if ((packageId == null) && (newURI != null)) {

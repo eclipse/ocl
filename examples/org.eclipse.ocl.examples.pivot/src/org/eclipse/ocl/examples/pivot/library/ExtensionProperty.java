@@ -43,6 +43,7 @@ public class ExtensionProperty extends AbstractProperty
 		this.property = property;
 	}
 	
+	@Override
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		DomainType staticType = property.getType();
 		if (staticType == null) {

@@ -95,6 +95,7 @@ public class SlotImpl extends ElementImpl implements Slot
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Property getDefiningProperty()
 	{
 		if (definingProperty != null && ((EObject)definingProperty).eIsProxy())
@@ -125,6 +126,7 @@ public class SlotImpl extends ElementImpl implements Slot
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefiningProperty(Property newDefiningProperty)
 	{
 		Property oldDefiningProperty = definingProperty;
@@ -138,6 +140,7 @@ public class SlotImpl extends ElementImpl implements Slot
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public InstanceSpecification getOwningInstance()
 	{
 		if (eContainerFeatureID() != PivotPackage.SLOT__OWNING_INSTANCE) return null;
@@ -160,6 +163,7 @@ public class SlotImpl extends ElementImpl implements Slot
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("cast")
 	public void setOwningInstance(InstanceSpecification newOwningInstance)
 	{
@@ -184,6 +188,7 @@ public class SlotImpl extends ElementImpl implements Slot
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<ValueSpecification> getValues()
 	{
 		if (values == null)

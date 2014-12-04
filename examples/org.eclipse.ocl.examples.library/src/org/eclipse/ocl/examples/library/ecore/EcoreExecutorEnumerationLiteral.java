@@ -27,6 +27,7 @@ public class EcoreExecutorEnumerationLiteral extends ExecutorEnumerationLiteral
 	}
 
 //	@Override
+	@Override
 	public @NonNull Enumerator getEnumerator() {
 		return DomainUtil.nonNullEMF(DomainUtil.nonNullState(eEnumLiteral).getInstance());
 	}

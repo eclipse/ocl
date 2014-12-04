@@ -45,5 +45,6 @@ public abstract class AbstractSimpleBinaryOperation extends AbstractUntypedBinar
 	}
 
 	// Redundant declaration avoids @Override dilemma for 1.5/1.6
+	@Override
 	public abstract @Nullable /*@Thrown*/ Object evaluate(@Nullable Object sourceValue, @Nullable Object argumentValue);
 }

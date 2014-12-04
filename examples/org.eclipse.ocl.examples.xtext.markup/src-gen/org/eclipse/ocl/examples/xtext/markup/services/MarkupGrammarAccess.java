@@ -24,6 +24,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//Markup:
 		//	elements+=MarkupElement*;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//elements+=MarkupElement*
@@ -49,6 +50,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//MarkupKeyword:
 		//	"b" | "e" | "bullet" | "figure" | "figureRef" | "footnote" | "heading" | "oclCode" | "oclEval" | "oclText";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//"b" | "e" | "bullet" | "figure" | "figureRef" | "footnote" | "heading" | "oclCode" | "oclEval" | "oclText"
@@ -106,6 +108,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		//	NullElement | OCLCodeElement | OCLEvalElement | OCLTextElement | // Last to give everything else a try first
 		//
 		//	TextElement;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//FontElement | NewLineElement | BulletElement | FigureElement | FigureRefElement | FootnoteElement | HeadingElement |
@@ -168,6 +171,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//BulletElement:
 		//	{BulletElement} "bullet" (":" level=INT)? "[" elements+=MarkupElement* "]";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//{BulletElement} "bullet" (":" level=INT)? "[" elements+=MarkupElement* "]"
@@ -218,6 +222,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//FontElement:
 		//	font=("b" | "e") "[" elements+=MarkupElement* "]";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//font=("b" | "e") "[" elements+=MarkupElement* "]"
@@ -275,6 +280,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//FigureElement:
 		//	"figure" ("#" def=ID)? "[" src=STRING ("," alt=STRING ("," requiredWidth=INT ("," requiredHeight=INT)?)?)? "]";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//"figure" ("#" def=ID)? "[" src=STRING ("," alt=STRING ("," requiredWidth=INT ("," requiredHeight=INT)?)?)? "]"
@@ -356,6 +362,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//FigureRefElement:
 		//	"figureRef" "[" ref=[FigureElement] "]";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//"figureRef" "[" ref=[FigureElement] "]"
@@ -392,6 +399,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//FootnoteElement:
 		//	{FootnoteElement} "footnote" "[" elements+=MarkupElement* "]";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//{FootnoteElement} "footnote" "[" elements+=MarkupElement* "]"
@@ -432,6 +440,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//HeadingElement:
 		//	{HeadingElement} "heading" (":" level=INT)? "[" elements+=MarkupElement* "]";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//{HeadingElement} "heading" (":" level=INT)? "[" elements+=MarkupElement* "]"
@@ -475,6 +484,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//NewLineElement:
 		//	text=NL;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//text=NL
@@ -495,6 +505,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//NullElement:
 		//	{NullElement} "[" elements+=MarkupElement* "]";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//{NullElement} "[" elements+=MarkupElement* "]"
@@ -528,6 +539,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//OCLCodeElement:
 		//	{OCLCodeElement} "oclCode" "[" elements+=MarkupElement* "]";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//{OCLCodeElement} "oclCode" "[" elements+=MarkupElement* "]"
@@ -564,6 +576,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//OCLEvalElement:
 		//	{OCLEvalElement} "oclEval" "[" elements+=MarkupElement* "]";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//{OCLEvalElement} "oclEval" "[" elements+=MarkupElement* "]"
@@ -600,6 +613,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//OCLTextElement:
 		//	{OCLTextElement} "oclText" "[" elements+=MarkupElement* "]";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//{OCLTextElement} "oclText" "[" elements+=MarkupElement* "]"
@@ -641,6 +655,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//TextElement:
 		//	text+=(ID | WORD | INT | WS | ":" | "#" | ",")+ | text+=MarkupKeyword;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//text+=(ID | WORD | INT | WS | ":" | "#" | ",")+ | text+=MarkupKeyword
@@ -760,6 +775,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	
+	@Override
 	public Grammar getGrammar() {
 		return grammar;
 	}

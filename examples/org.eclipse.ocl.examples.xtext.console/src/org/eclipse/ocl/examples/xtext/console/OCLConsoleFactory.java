@@ -23,6 +23,7 @@ import org.eclipse.ui.console.IConsoleManager;
  * @author Christian W. Damus (cdamus)
  */
 public class OCLConsoleFactory implements IConsoleFactory {
+	@Override
 	public void openConsole() {
 		OCLConsole console = OCLConsole.getInstance();
 		

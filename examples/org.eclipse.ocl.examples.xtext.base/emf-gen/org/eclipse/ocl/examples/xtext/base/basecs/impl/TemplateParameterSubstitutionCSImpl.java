@@ -73,6 +73,7 @@ public class TemplateParameterSubstitutionCSImpl extends ModelElementCSImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TemplateBindingCS getOwningBinding() {
 		if (eContainerFeatureID() != BaseCSPackage.TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNING_BINDING) return null;
 		return (TemplateBindingCS)eInternalContainer();
@@ -94,6 +95,7 @@ public class TemplateParameterSubstitutionCSImpl extends ModelElementCSImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningBinding(TemplateBindingCS newOwningBinding) {
 		if (newOwningBinding != eInternalContainer() || (eContainerFeatureID() != BaseCSPackage.TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNING_BINDING && newOwningBinding != null))
 		{
@@ -139,6 +141,7 @@ public class TemplateParameterSubstitutionCSImpl extends ModelElementCSImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypeRefCS getOwnedActualParameter()
 	{
 		return ownedActualParameter;
@@ -166,6 +169,7 @@ public class TemplateParameterSubstitutionCSImpl extends ModelElementCSImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedActualParameter(TypeRefCS newOwnedActualParameter)
 	{
 		if (newOwnedActualParameter != ownedActualParameter)

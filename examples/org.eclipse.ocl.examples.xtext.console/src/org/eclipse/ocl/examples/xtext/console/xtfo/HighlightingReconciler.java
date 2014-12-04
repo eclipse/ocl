@@ -103,6 +103,7 @@ public class HighlightingReconciler implements ITextInputListener, IXtextModelLi
 	 * @param offset The range offset
 	 * @param length The range length
 	 */
+	@Override
 	public void addPosition(int offset, int length, String... ids) {
 		TextAttribute highlighting = ids.length == 1 ? 
 				attributeProvider.getAttribute(ids[0])
@@ -200,6 +201,7 @@ public class HighlightingReconciler implements ITextInputListener, IXtextModelLi
 	/*
 	 * @see org.eclipse.jface.text.ITextInputListener#inputDocumentAboutToBeChanged(org.eclipse.jface.text.IDocument, org.eclipse.jface.text.IDocument)
 	 */
+	@Override
 	public void inputDocumentAboutToBeChanged(IDocument oldInput, IDocument newInput) {
 		if (oldInput != null)
 			((IXtextDocument) oldInput).removeModelListener(this);
@@ -208,6 +210,7 @@ public class HighlightingReconciler implements ITextInputListener, IXtextModelLi
 	/*
 	 * @see org.eclipse.jface.text.ITextInputListener#inputDocumentChanged(org.eclipse.jface.text.IDocument, org.eclipse.jface.text.IDocument)
 	 */
+	@Override
 	public void inputDocumentChanged(IDocument oldInput, IDocument newInput) {
 		if (newInput != null) {
 			refresh();
@@ -232,6 +235,7 @@ public class HighlightingReconciler implements ITextInputListener, IXtextModelLi
 		}
 	}
 
+	@Override
 	public void modelChanged(XtextResource resource) {
 		// ensure at most one thread can be reconciling at any time
 		synchronized (fReconcileLock) {

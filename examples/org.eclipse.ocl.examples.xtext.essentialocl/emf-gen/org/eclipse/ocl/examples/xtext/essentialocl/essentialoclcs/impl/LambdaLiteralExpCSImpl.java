@@ -79,6 +79,7 @@ public class LambdaLiteralExpCSImpl extends LiteralExpCSImpl implements LambdaLi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpCS getOwnedExpressionCS()
 	{
 		return ownedExpressionCS;
@@ -106,6 +107,7 @@ public class LambdaLiteralExpCSImpl extends LiteralExpCSImpl implements LambdaLi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedExpressionCS(ExpCS newOwnedExpressionCS)
 	{
 		if (newOwnedExpressionCS != ownedExpressionCS)

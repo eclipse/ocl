@@ -26,14 +26,17 @@ public class RootPackageIdImpl extends PackageIdImpl implements RootPackageId
 		this.name = name;
 	}
 
+	@Override
 	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitRootPackageId(this);
 	}
 
+	@Override
 	public @NonNull String getDisplayName() {
 		return name;
 	}
 
+	@Override
 	public @NonNull String getName() {
 		return name;
 	}

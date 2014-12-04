@@ -100,6 +100,7 @@ public class ConstructorExpImpl extends OCLExpressionImpl implements Constructor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<ConstructorPart> getPart()
 	{
 		if (part == null)
@@ -114,6 +115,7 @@ public class ConstructorExpImpl extends OCLExpressionImpl implements Constructor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getValue()
 	{
 		return value;
@@ -124,6 +126,7 @@ public class ConstructorExpImpl extends OCLExpressionImpl implements Constructor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(String newValue)
 	{
 		String oldValue = value;

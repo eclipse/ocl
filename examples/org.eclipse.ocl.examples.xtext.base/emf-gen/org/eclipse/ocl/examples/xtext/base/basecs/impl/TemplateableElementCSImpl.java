@@ -73,6 +73,7 @@ public abstract class TemplateableElementCSImpl extends ElementCSImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TemplateSignatureCS getOwnedSignature()
 	{
 		return ownedSignature;
@@ -100,6 +101,7 @@ public abstract class TemplateableElementCSImpl extends ElementCSImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedSignature(TemplateSignatureCS newOwnedSignature)
 	{
 		if (newOwnedSignature != ownedSignature)

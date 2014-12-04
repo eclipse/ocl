@@ -50,6 +50,7 @@ public class ModelAnalysis
 	{
 		public static final @NonNull ElementComparator INSTANCE = new ElementComparator();
 		
+		@Override
 		public int compare(Element o1, Element o2) {
 			if (o1 instanceof NamedElement) {
 				if (o1 instanceof NamedElement) {

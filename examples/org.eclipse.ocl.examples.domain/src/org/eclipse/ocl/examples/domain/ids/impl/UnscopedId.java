@@ -22,6 +22,7 @@ public abstract class UnscopedId extends AbstractTypeId
 		this.hashCode = name.hashCode();
 	}
 
+	@Override
 	public @NonNull String getDisplayName() {
 		return name;
 	}

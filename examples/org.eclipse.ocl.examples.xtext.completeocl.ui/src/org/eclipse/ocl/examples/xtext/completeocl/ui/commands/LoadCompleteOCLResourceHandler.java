@@ -315,11 +315,13 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 	}
 	
 	public static class URIComparator implements Comparator<URI> {
+		@Override
 		public int compare(URI o1, URI o2) {
 			return o1.toString().compareTo(o2.toString());
 		}
 	}
 
+	@Override
 	public @Nullable Object execute(ExecutionEvent event) throws ExecutionException {
 		Object applicationContext = event.getApplicationContext();
 		EditingDomain editingDomain = getEditingDomain(applicationContext);
@@ -370,6 +372,7 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 		if (xtextEditor != null) {
 			IXtextDocument document = xtextEditor.getDocument();
 			ResourceSet resourceSet = document.readOnly(new IUnitOfWork<ResourceSet, XtextResource>() {
+				@Override
 				public ResourceSet exec(@Nullable XtextResource xtextResource) {
 					if (xtextResource == null) {
 						return null;

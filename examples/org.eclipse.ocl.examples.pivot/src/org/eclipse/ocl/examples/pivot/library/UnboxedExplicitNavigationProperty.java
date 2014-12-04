@@ -35,6 +35,7 @@ public class UnboxedExplicitNavigationProperty extends AbstractProperty
 		// FIXME static attempt at eFeature
 	}
 	
+	@Override
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		assert sourceValue != null;
 		EObject eObject = (EObject)sourceValue; 

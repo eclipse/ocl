@@ -105,6 +105,7 @@ public abstract class ConstructorExpCSImpl extends AbstractNameExpCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypeNameExpCS getTypeName()
 	{
 		return typeName;
@@ -115,6 +116,7 @@ public abstract class ConstructorExpCSImpl extends AbstractNameExpCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTypeName(TypeNameExpCS newTypeName)
 	{
 		TypeNameExpCS oldTypeName = typeName;
@@ -128,6 +130,7 @@ public abstract class ConstructorExpCSImpl extends AbstractNameExpCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ConstructorPartCS> getParts()
 	{
 		if (parts == null)
@@ -142,6 +145,7 @@ public abstract class ConstructorExpCSImpl extends AbstractNameExpCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getValue()
 	{
 		return value;
@@ -152,6 +156,7 @@ public abstract class ConstructorExpCSImpl extends AbstractNameExpCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(String newValue)
 	{
 		String oldValue = value;

@@ -41,6 +41,7 @@ public class AbstractCollectionType extends AbstractSpecializedType implements D
 		this.typeId = IdManager.getCollectionTypeId(name).getSpecializedId(elementType.getTypeId());
 	}
 
+	@Override
 	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
 		if (this == type) {
 			return true;
@@ -51,6 +52,7 @@ public class AbstractCollectionType extends AbstractSpecializedType implements D
 		return standardLibrary.conformsToCollectionType(this, (DomainCollectionType)type);
 	}
 
+	@Override
 	public @NonNull DomainClass getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
 		if (!(type instanceof AbstractCollectionType)) {
 			return standardLibrary.getOclAnyType();
@@ -90,10 +92,12 @@ public class AbstractCollectionType extends AbstractSpecializedType implements D
 		return containerType;
 	}
 
+	@Override
 	public @NonNull DomainType getElementType() {
 		return elementType;
 	}
 
+	@Override
 	public @NonNull IntegerValue getLowerValue() {
 		return lower;
 	}
@@ -108,14 +112,17 @@ public class AbstractCollectionType extends AbstractSpecializedType implements D
 		return containerType.getOwnedOperations();
 	}
 
+	@Override
 	public @NonNull CollectionTypeId getTypeId() {
 		return typeId;
 	}
 
+	@Override
 	public @NonNull IntegerValue getUpperValue() {
 		return upper;
 	}
 
+	@Override
 	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
 		if (this == type) {
 			return true;

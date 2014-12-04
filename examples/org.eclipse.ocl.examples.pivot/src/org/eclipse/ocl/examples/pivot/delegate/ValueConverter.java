@@ -26,6 +26,7 @@ interface ValueConverter {
 
 	ValueConverter VERBATIM = new ValueConverter() {
 
+		@Override
 		public @NonNull Object convert(@NonNull OCL ocl, @NonNull Value value) {
 			return value;
 		}
@@ -33,6 +34,7 @@ interface ValueConverter {
 
 	ValueConverter LIST = new ValueConverter() {
 
+		@Override
 		public @NonNull Object convert(@NonNull OCL ocl, @NonNull Value value) {
 			Collection<?> collection = (Collection<?>) value;
 			return new BasicEList.UnmodifiableEList<Object>(collection

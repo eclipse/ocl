@@ -189,6 +189,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getJavaClassCS()
 	{
 		return javaClassCSEClass;
@@ -199,6 +200,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLibClassCS() {
 		return libClassCSEClass;
 	}
@@ -208,6 +210,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLibClassCS_MetaclassName()
 	{
 		return (EReference)libClassCSEClass.getEStructuralFeatures().get(0);
@@ -218,6 +221,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLibConstraintCS() {
 		return libConstraintCSEClass;
 	}
@@ -227,6 +231,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLibIterationCS() {
 		return libIterationCSEClass;
 	}
@@ -236,6 +241,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLibIterationCS_OwnedIterators()
 	{
 		return (EReference)libIterationCSEClass.getEStructuralFeatures().get(3);
@@ -246,6 +252,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLibIterationCS_OwnedAccumulators()
 	{
 		return (EReference)libIterationCSEClass.getEStructuralFeatures().get(2);
@@ -256,6 +263,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLibIterationCS_IsInvalidating()
 	{
 		return (EAttribute)libIterationCSEClass.getEStructuralFeatures().get(0);
@@ -266,6 +274,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLibIterationCS_IsValidating()
 	{
 		return (EAttribute)libIterationCSEClass.getEStructuralFeatures().get(1);
@@ -276,6 +285,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLibOperationCS() {
 		return libOperationCSEClass;
 	}
@@ -285,6 +295,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLibOperationCS_Precedence() {
 		return (EReference)libOperationCSEClass.getEStructuralFeatures().get(3);
 	}
@@ -294,6 +305,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLibOperationCS_IsInvalidating()
 	{
 		return (EAttribute)libOperationCSEClass.getEStructuralFeatures().get(0);
@@ -304,6 +316,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLibOperationCS_IsStatic()
 	{
 		return (EAttribute)libOperationCSEClass.getEStructuralFeatures().get(1);
@@ -314,6 +327,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLibOperationCS_IsValidating()
 	{
 		return (EAttribute)libOperationCSEClass.getEStructuralFeatures().get(2);
@@ -324,6 +338,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLibPackageCS()
 	{
 		return libPackageCSEClass;
@@ -334,6 +349,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLibPackageCS_OwnedPrecedences()
 	{
 		return (EReference)libPackageCSEClass.getEStructuralFeatures().get(0);
@@ -344,6 +360,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLibPropertyCS() {
 		return libPropertyCSEClass;
 	}
@@ -353,6 +370,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLibPropertyCS_IsStatic()
 	{
 		return (EAttribute)libPropertyCSEClass.getEStructuralFeatures().get(0);
@@ -363,6 +381,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLibRootPackageCS()
 	{
 		return libRootPackageCSEClass;
@@ -373,6 +392,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMetaclassNameCS()
 	{
 		return metaclassNameCSEClass;
@@ -383,6 +403,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMetaclassNameCS_Name()
 	{
 		return (EAttribute)metaclassNameCSEClass.getEStructuralFeatures().get(0);
@@ -393,6 +414,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getJavaImplementationCS() {
 		return javaImplementationCSEClass;
 	}
@@ -402,6 +424,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getJavaImplementationCS_Implementation() {
 		return (EReference)javaImplementationCSEClass.getEStructuralFeatures().get(0);
 	}
@@ -411,6 +434,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPrecedenceCS() {
 		return precedenceCSEClass;
 	}
@@ -420,6 +444,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPrecedenceCS_IsRightAssociative()
 	{
 		return (EAttribute)precedenceCSEClass.getEStructuralFeatures().get(0);
@@ -430,6 +455,7 @@ public class OCLstdlibCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OCLstdlibCSFactory getOCLstdlibCSFactory()
 	{
 		return (OCLstdlibCSFactory)getEFactoryInstance();

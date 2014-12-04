@@ -138,16 +138,23 @@ public interface CompleteModel extends NamedElement
 		void didRemoveClass(@NonNull DomainClass partialClass);
 		@Nullable CollectionType findCollectionType(@NonNull CompleteClass.Internal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters);
 		@NonNull CollectionType getCollectionType(@NonNull CompleteClass.Internal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters);
+		@Override
 		@NonNull CompleteClass.Internal getCompleteClass(@NonNull DomainType partialClass);
+		@Override
 		@NonNull CompletePackage.Internal getCompletePackage(@NonNull DomainPackage partialPackage);
+		@Override
 		@Nullable CompletePackage getCompletePackageByURI(@NonNull String packageURI);
 		@NonNull CompleteURIs getCompleteURIs();
 		@NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType,
 				@Nullable TemplateParameterSubstitutions bindings);
 		@NonNull MetaModelManager getMetaModelManager();
+		@Override
 		@NonNull OrphanCompletePackage.Internal getOrphanCompletePackage();
+		@Override
 		@NonNull RootCompletePackages getOwnedCompletePackages();
+		@Override
 		@NonNull PartialModels getPartialModels();
+		@Override
 		@NonNull PrimitiveCompletePackage.Internal getPrimitiveCompletePackage();
 		@NonNull Type getSpecializedType(@NonNull Type type, @Nullable TemplateParameterSubstitutions substitutions);
 		@NonNull TupleType getTupleType(@NonNull String typeName, @NonNull Collection<? extends DomainTypedElement> parts,
@@ -163,6 +170,7 @@ public interface CompleteModel extends NamedElement
 		@NonNull TupleTypeManager getTupleManager();
 		@NonNull Orphanage getOrphanage();
 		@NonNull PivotStandardLibrary2 getStandardLibrary();
+		@Override
 		@NonNull CompleteEnvironment.Internal getCompleteEnvironment();
 	}
 } // CompleteModel

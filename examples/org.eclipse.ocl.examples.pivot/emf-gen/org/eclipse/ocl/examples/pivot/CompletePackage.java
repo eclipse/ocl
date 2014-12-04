@@ -78,6 +78,7 @@ public interface CompletePackage extends NamedElement, org.eclipse.ocl.examples.
 	 * @see org.eclipse.ocl.examples.pivot.NestedCompletePackage#getOwningCompletePackage
 	 * @generated
 	 */
+	@Override
 	@NonNull List<NestedCompletePackage> getOwnedCompletePackages();
 
 	/**
@@ -121,6 +122,7 @@ public interface CompletePackage extends NamedElement, org.eclipse.ocl.examples.
 
 	void assertSamePackage(DomainPackage pivotPackage);
 
+	@Override
 	EPackage getEPackage();
 
 	DomainType getType(String metatypeName);
@@ -131,13 +133,18 @@ public interface CompletePackage extends NamedElement, org.eclipse.ocl.examples.
 	
 	public interface Internal extends CompletePackage
 	{
+		@Override
 		@NonNull CompleteClass.Internal getCompleteClass(@NonNull DomainClass pivotType);
 		@NonNull CompleteInheritance getCompleteInheritance(@NonNull CompleteClass.Internal completeClass);
+		@Override
 		@NonNull CompleteModel.Internal getCompleteModel();
 		void dispose();
+		@Override
 		CompleteClass.Internal getOwnedCompleteClass(String name);
+		@Override
 		@Nullable CompletePackage.Internal getOwnedCompletePackage(@Nullable String name);
 //		@Nullable CompletePackage.Internal getOwnedCompletePackage(@NonNull DomainPackage partialPackage);
+		@Override
 		@NonNull PartialPackages getPartialPackages();
 		boolean hasNestedClasses();
 		void init(String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId);

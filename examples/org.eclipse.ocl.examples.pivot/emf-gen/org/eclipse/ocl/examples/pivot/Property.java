@@ -195,6 +195,7 @@ public interface Property
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_Opposite()
 	 * @generated
 	 */
+	@Override
 	Property getOpposite();
 
 	/**
@@ -246,6 +247,7 @@ public interface Property
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_DefaultExpression()
 	 * @generated
 	 */
+	@Override
 	LanguageExpression getDefaultExpression();
 
 	/**
@@ -486,6 +488,7 @@ public interface Property
 	 * @see org.eclipse.ocl.examples.pivot.Class#getOwnedProperties
 	 * @generated
 	 */
+	@Override
 	org.eclipse.ocl.examples.pivot.Class getOwningClass();
 
 	/**

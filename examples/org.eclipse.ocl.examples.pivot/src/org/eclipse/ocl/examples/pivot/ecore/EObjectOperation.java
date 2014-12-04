@@ -46,6 +46,7 @@ public class EObjectOperation extends AbstractOperation
 		this.specification = specification;
 	}
 
+	@Override
 	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue) {
 		if (specification.getBodyExpression() == null) {		
 			try {

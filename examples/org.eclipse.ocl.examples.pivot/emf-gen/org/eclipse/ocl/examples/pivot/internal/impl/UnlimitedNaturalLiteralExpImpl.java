@@ -85,6 +85,7 @@ public class UnlimitedNaturalLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Number getUnlimitedNaturalSymbol() {
 		return unlimitedNaturalSymbol;
 	}
@@ -94,6 +95,7 @@ public class UnlimitedNaturalLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUnlimitedNaturalSymbol(Number newUnlimitedNaturalSymbol)
 	{
 		Number oldUnlimitedNaturalSymbol = unlimitedNaturalSymbol;

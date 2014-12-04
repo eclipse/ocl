@@ -20,6 +20,7 @@ import org.eclipse.jdt.annotation.NonNull;
  */
 public abstract class AbstractAttribution implements Attribution
 {	
+	@Override
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		return scopeView.getParent();
 	}

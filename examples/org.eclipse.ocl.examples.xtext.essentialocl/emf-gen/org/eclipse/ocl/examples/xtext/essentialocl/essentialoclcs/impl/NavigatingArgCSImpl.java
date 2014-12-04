@@ -144,6 +144,7 @@ public class NavigatingArgCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RoundBracketedClauseCS getOwningRoundBracketedClause()
 	{
 		if (eContainerFeatureID() != EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNING_ROUND_BRACKETED_CLAUSE) return null;
@@ -166,6 +167,7 @@ public class NavigatingArgCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningRoundBracketedClause(RoundBracketedClauseCS newOwningRoundBracketedClause)
 	{
 		if (newOwningRoundBracketedClause != eInternalContainer() || (eContainerFeatureID() != EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNING_ROUND_BRACKETED_CLAUSE && newOwningRoundBracketedClause != null))
@@ -189,6 +191,7 @@ public class NavigatingArgCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NavigationRole getRole() {
 		return role;
 	}
@@ -198,6 +201,7 @@ public class NavigatingArgCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRole(NavigationRole newRole) {
 		NavigationRole oldRole = role;
 		role = newRole == null ? ROLE_EDEFAULT : newRole;
@@ -210,6 +214,7 @@ public class NavigatingArgCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getPrefix() {
 		return prefix;
 	}
@@ -219,6 +224,7 @@ public class NavigatingArgCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPrefix(String newPrefix) {
 		String oldPrefix = prefix;
 		prefix = newPrefix;
@@ -231,6 +237,7 @@ public class NavigatingArgCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpCS getOwnedNameExpression() {
 		return ownedNameExpression;
 	}
@@ -257,6 +264,7 @@ public class NavigatingArgCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedNameExpression(ExpCS newOwnedNameExpression) {
 		if (newOwnedNameExpression != ownedNameExpression)
 		{
@@ -277,6 +285,7 @@ public class NavigatingArgCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypedRefCS getOwnedType() {
 		return ownedType;
 	}
@@ -303,6 +312,7 @@ public class NavigatingArgCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedType(TypedRefCS newOwnedType) {
 		if (newOwnedType != ownedType)
 		{
@@ -323,6 +333,7 @@ public class NavigatingArgCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpCS getOwnedInitExpression() {
 		return ownedInitExpression;
 	}
@@ -349,6 +360,7 @@ public class NavigatingArgCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedInitExpression(ExpCS newOwnedInitExpression) {
 		if (newOwnedInitExpression != ownedInitExpression)
 		{

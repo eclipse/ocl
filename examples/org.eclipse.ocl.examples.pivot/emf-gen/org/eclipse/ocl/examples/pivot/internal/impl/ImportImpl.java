@@ -76,6 +76,7 @@ public class ImportImpl extends NamedElementImpl implements Import
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Namespace getImportedNamespace()
 	{
 		if (importedNamespace != null && ((EObject)importedNamespace).eIsProxy())
@@ -106,6 +107,7 @@ public class ImportImpl extends NamedElementImpl implements Import
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setImportedNamespace(Namespace newImportedNamespace)
 	{
 		Namespace oldImportedNamespace = importedNamespace;

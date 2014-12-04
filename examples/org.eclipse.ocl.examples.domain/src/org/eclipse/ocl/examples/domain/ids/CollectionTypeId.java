@@ -18,8 +18,11 @@ import org.eclipse.jdt.annotation.NonNull;
 public interface CollectionTypeId extends BuiltInTypeId, TemplateableId
 {
 	@NonNull TypeId getElementTypeId();
+	@Override
 	@NonNull CollectionTypeId getGeneralizedId();
+	@Override
 	@NonNull String getMetaTypeName();
+	@Override
 	@NonNull CollectionTypeId getSpecializedId(@NonNull BindingsId templateBindings);
 	@NonNull CollectionTypeId getSpecializedId(@NonNull ElementId... templateBindings);
 }

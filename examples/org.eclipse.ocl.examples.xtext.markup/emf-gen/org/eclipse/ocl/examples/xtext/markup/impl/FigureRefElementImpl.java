@@ -66,6 +66,7 @@ public class FigureRefElementImpl extends MarkupElementImpl implements FigureRef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FigureElement getRef() {
 		if (ref != null && ref.eIsProxy()) {
 			InternalEObject oldRef = (InternalEObject)ref;
@@ -92,6 +93,7 @@ public class FigureRefElementImpl extends MarkupElementImpl implements FigureRef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRef(FigureElement newRef) {
 		FigureElement oldRef = ref;
 		ref = newRef;

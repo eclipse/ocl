@@ -47,5 +47,6 @@ public interface Namespace
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getNamespace_OwnedRule()
 	 * @generated
 	 */
+	@Override
 	@NonNull List<Constraint> getOwnedRule();
 } // Namespace

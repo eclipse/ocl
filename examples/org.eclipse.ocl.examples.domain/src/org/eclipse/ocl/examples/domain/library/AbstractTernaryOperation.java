@@ -25,6 +25,7 @@ import org.eclipse.ocl.examples.domain.ids.TypeId;
  */
 public abstract class AbstractTernaryOperation extends AbstractOperation implements LibraryTernaryOperation
 {
+	@Override
 	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue) {
 		List<? extends DomainExpression> arguments = callExp.getArgument();
 		DomainExpression argument0 = arguments.get(0);
@@ -37,5 +38,6 @@ public abstract class AbstractTernaryOperation extends AbstractOperation impleme
 	}
 
 	// Redundant declaration avoids @Override dilemma for 1.5/1.6
+	@Override
 	public abstract @Nullable /*@Thrown*/ Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue, @Nullable Object firstArgumentValue, @Nullable Object secondArgumentValue);
 }

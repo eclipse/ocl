@@ -126,6 +126,7 @@ public class OperationCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<OCLExpression> getArgument()
 	{
@@ -141,6 +142,7 @@ public class OperationCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Operation getReferredOperation() {
 		if (referredOperation != null && ((EObject)referredOperation).eIsProxy())
 		{
@@ -169,6 +171,7 @@ public class OperationCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredOperation(Operation newReferredOperation) {
 		Operation oldReferredOperation = referredOperation;
 		referredOperation = newReferredOperation;
@@ -454,6 +457,7 @@ public class OperationCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public Element getReferredElement()
 	{
 		return getReferredOperation();
@@ -464,6 +468,7 @@ public class OperationCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateArgumentTypeIsConformant(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -606,6 +611,7 @@ public class OperationCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateArgumentCount(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**

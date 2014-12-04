@@ -31,6 +31,7 @@ public class EcoreLibraryProperty extends AbstractProperty
 		this.eFeature = eFeature;
 	}
 
+	@Override
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		EObject eObject = asNavigableObject(sourceValue, eFeature);
 		Object eValue = eObject.eGet(eFeature);

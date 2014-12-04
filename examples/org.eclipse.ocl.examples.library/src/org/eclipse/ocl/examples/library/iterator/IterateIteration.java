@@ -24,6 +24,7 @@ public class IterateIteration extends AbstractIteration
 {
 	public static final @NonNull IterateIteration INSTANCE = new IterateIteration();
 
+	@Override
 	public @NonNull Object createAccumulatorValue(@NonNull DomainEvaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
 		throw new UnsupportedOperationException();		// Never used since values are assigned directly as the accumulator
 	}

@@ -49,14 +49,17 @@ public class PivotResourceValidator extends ResourceValidatorImpl
 			super(EObjectValidator.DIAGNOSTIC_SOURCE, 0, "", null);
 		}
 
+		@Override
 		public int getColumn() {
 			return 0;		// This could be computed from the CS
 		}
 
+		@Override
 		public int getLine() {
 			return 0;		// This could be computed from the CS
 		}
 
+		@Override
 		public String getLocation() {
 			return null;		// This could be computed from the CS
 		}

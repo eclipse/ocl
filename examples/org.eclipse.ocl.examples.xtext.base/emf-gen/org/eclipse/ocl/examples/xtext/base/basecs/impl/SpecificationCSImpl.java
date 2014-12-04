@@ -80,6 +80,7 @@ public class SpecificationCSImpl extends ModelElementCSImpl implements Specifica
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getExprString()
 	{
 		return exprString;
@@ -90,6 +91,7 @@ public class SpecificationCSImpl extends ModelElementCSImpl implements Specifica
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExprString(String newExprString)
 	{
 		String oldExprString = exprString;

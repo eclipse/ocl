@@ -32,6 +32,7 @@ public class EcoreExecutorProperty extends ExecutorProperty implements LibraryPr
 		this.eFeature = eFeature;
 	}
 
+	@Override
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		EObject eObject = ValuesUtil.asNavigableObject(sourceValue, eFeature);
 		Object eValue = eObject.eGet(eFeature);
@@ -42,6 +43,7 @@ public class EcoreExecutorProperty extends ExecutorProperty implements LibraryPr
 		return eFeature;
 	}
 
+	@Override
 	public @NonNull LibraryProperty getImplementation() {
 		return this;
 	}

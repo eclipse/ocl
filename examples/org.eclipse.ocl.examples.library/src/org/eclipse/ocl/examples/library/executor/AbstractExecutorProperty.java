@@ -35,30 +35,37 @@ public abstract class AbstractExecutorProperty implements DomainProperty
 		this.opposite = null;
 	}
 
+	@Override
 	public DomainExpression getDefaultExpression() {
 		throw new UnsupportedOperationException(); 			// FIXME
 	}
 
+	@Override
 	public @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
 		return executorType;
 	}
 
+	@Override
 	public @NonNull String getName() {
 		return name;
 	}
 
+	@Override
 	public @NonNull DomainProperty getOpposite() {
 		return DomainUtil.nonNullState(opposite);
 	}
 
+	@Override
 	public DomainClass getOwningClass() {
 		throw new UnsupportedOperationException();			// FIXME
 	}
 
+	@Override
 	public @NonNull DomainType getType() {
 		return executorType.getType();
 	}
 
+	@Override
 	public @NonNull TypeId getTypeId() {
 		DomainType type2 = getType();
 		return type2.getTypeId();
@@ -68,10 +75,12 @@ public abstract class AbstractExecutorProperty implements DomainProperty
 		this.opposite = opposite;
 	}
 
+	@Override
 	public void initValue(@NonNull Object objectValue, @Nullable Object propertyValue) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public boolean isStatic() {
 		return false;								// WIP FIXME
 	}

@@ -78,6 +78,7 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 		return delegateDomains;
 	}
 
+	@Override
 	public @NonNull List<F> getFactories(@NonNull E eObject) {
 		EPackage ePackage = getEPackage(eObject);
 		DelegateEPackageAdapter adapter = DelegateEPackageAdapter.getAdapter(ePackage);
@@ -99,6 +100,7 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 
 	protected abstract @Nullable F getFactory(@NonNull DelegateDomain delegateDomain, @NonNull E eObject);
 
+	@Override
 	public @Nullable F getFactory(@NonNull E eObject) {
 		EPackage ePackage = getEPackage(eObject);
 		DelegateEPackageAdapter adapter = DelegateEPackageAdapter.getAdapter(ePackage);
@@ -150,6 +152,7 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 		return false;
 	}
 
+	@Override
 	public void setDelegates(@NonNull EPackage ePackage, @Nullable List<String> delegateURIs) {
 		final String name = getName();
 		EAnnotation eAnnotation = ePackage.getEAnnotation(EcorePackage.eNS_URI);

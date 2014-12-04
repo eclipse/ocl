@@ -91,6 +91,7 @@ public class IfThenExpCSImpl extends ExpCSImpl implements IfThenExpCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpCS getOwnedCondition()
 	{
 		return ownedCondition;
@@ -118,6 +119,7 @@ public class IfThenExpCSImpl extends ExpCSImpl implements IfThenExpCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedCondition(ExpCS newOwnedCondition)
 	{
 		if (newOwnedCondition != ownedCondition)
@@ -139,6 +141,7 @@ public class IfThenExpCSImpl extends ExpCSImpl implements IfThenExpCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpCS getOwnedThenExpression()
 	{
 		return ownedThenExpression;
@@ -166,6 +169,7 @@ public class IfThenExpCSImpl extends ExpCSImpl implements IfThenExpCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedThenExpression(ExpCS newOwnedThenExpression)
 	{
 		if (newOwnedThenExpression != ownedThenExpression)

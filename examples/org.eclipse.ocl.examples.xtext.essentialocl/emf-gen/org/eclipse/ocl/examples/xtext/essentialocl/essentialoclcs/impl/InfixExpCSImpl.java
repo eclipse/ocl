@@ -85,6 +85,7 @@ public class InfixExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpCS getOwnedLeft()
 	{
 		return ownedLeft;
@@ -112,6 +113,7 @@ public class InfixExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedLeft(ExpCS newOwnedLeft)
 	{
 		if (newOwnedLeft != ownedLeft)
@@ -222,6 +224,7 @@ public class InfixExpCSImpl
 	
 	private boolean hasArgument = false;
 
+	@Override
 	public ExpCS getArgument() {
 		if ((argument == null) && !hasArgument) {
 			hasArgument = true;

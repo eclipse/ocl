@@ -77,6 +77,7 @@ public class TemplateSignatureCSImpl extends ModelElementCSImpl implements Templ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TemplateableElementCS getOwningElement() {
 		if (eContainerFeatureID() != BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNING_ELEMENT) return null;
 		return (TemplateableElementCS)eInternalContainer();
@@ -98,6 +99,7 @@ public class TemplateSignatureCSImpl extends ModelElementCSImpl implements Templ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningElement(TemplateableElementCS newOwningElement) {
 		if (newOwningElement != eInternalContainer() || (eContainerFeatureID() != BaseCSPackage.TEMPLATE_SIGNATURE_CS__OWNING_ELEMENT && newOwningElement != null))
 		{
@@ -120,6 +122,7 @@ public class TemplateSignatureCSImpl extends ModelElementCSImpl implements Templ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<TemplateParameterCS> getOwnedParameters() {
 		if (ownedParameters == null)
 		{

@@ -24,6 +24,7 @@ public class LiteralBooleanLabelGenerator extends AbstractLabelGenerator<Literal
 		super(LiteralBoolean.class);
 	}
 
+	@Override
 	public void buildLabelFor(@NonNull Builder labelBuilder, @NonNull LiteralBoolean object) {
 		boolean value = object.isValue();
 		labelBuilder.appendString(Boolean.toString(value));

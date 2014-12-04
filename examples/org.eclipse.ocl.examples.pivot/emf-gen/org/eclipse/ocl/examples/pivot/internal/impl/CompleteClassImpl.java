@@ -91,6 +91,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 		if (eContainerFeatureID() != PivotPackage.COMPLETE_CLASS__OWNING_COMPLETE_PACKAGE) return null;
 		return (CompletePackage)eInternalContainer();
 	}
+	@Override
 	public CompletePackage.Internal getOwningCompletePackage()
 	{
 		return (CompletePackage.Internal)getOwningCompletePackageGen();
@@ -112,6 +113,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("cast")
 	public void setOwningCompletePackage(CompletePackage newOwningCompletePackage)
 	{
@@ -350,6 +352,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 		return visitor.visitCompleteClass(this);
 	}
 
+	@Override
 	public boolean conformsTo(@NonNull DomainType elementType) {
 		DomainStandardLibrary standardLibrary = getStandardLibrary();
 		DomainInheritance thisInheritance = getCompleteInheritance();
@@ -360,6 +363,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 		return thatInheritance.isSuperInheritanceOf(thisInheritance);
 	}
 
+	@Override
 	public boolean conformsTo(@NonNull CompleteClass thatCompleteClass) {
 		DomainInheritance thisInheritance = getCompleteInheritance();
 		DomainInheritance thatInheritance = thatCompleteClass.getCompleteInheritance();
@@ -372,6 +376,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	/**
 	 * Eliminate a partialClass from a CompleteClass returning true if the CompleteClass is empty.
 	 */
+	@Override
 	public void didAddClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
 		partialClasses.add(partialClass);
 	}
@@ -379,19 +384,23 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	/**
 	 * Eliminate a partialClass from a CompleteClass returning true if the CompleteClass is empty.
 	 */
+	@Override
 	public boolean didRemoveClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
 		partialClasses.remove(partialClass);
 		return partialClasses.size() <= 0;
 	}
 
+	@Override
 	public void dispose() {
 		partialClasses.dispose();
 	}
 
+	@Override
 	public @Nullable CollectionType findCollectionType(@NonNull CollectionTypeParameters<Type> typeParameters) {
 		return null;
 	}
 
+	@Override
 	public @NonNull org.eclipse.ocl.examples.pivot.Class getBehavioralClass() {
 		for (org.eclipse.ocl.examples.pivot.Class partialClass : partialClasses) {
 			if (partialClass != null) {
@@ -407,14 +416,17 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 		throw new IllegalStateException();
 	}
 
+	@Override
 	public @NonNull CollectionType getCollectionType(@NonNull CollectionTypeParameters<Type> typeParameters) {
 		throw new UnsupportedOperationException("Not a collection");
 	}
 
+	@Override
 	public final @NonNull CompleteInheritance getCompleteInheritance() {
 		return partialClasses.getCompleteInheritance();
 	}
 
+	@Override
 	public @NonNull CompleteModel.Internal getCompleteModel() {
 		return getOwningCompletePackage().getCompleteModel();
 	}
@@ -423,26 +435,32 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 		return partialClasses.getOperations();
 	}
 
+	@Override
 	public @NonNull MetaModelManager getMetaModelManager() {
 		return getCompleteModel().getMetaModelManager();
 	}
 
+	@Override
 	public @Nullable DomainOperation getOperation(@NonNull OperationId operationId) {
 		return partialClasses.getOperation(operationId);
 	}
 
+	@Override
 	public @Nullable DomainOperation getOperation(@NonNull DomainOperation operationId) {
 		return partialClasses.getOperation(operationId);
 	}
 
+	@Override
 	public @Nullable Iterable<DomainOperation> getOperationOverloads(@NonNull DomainOperation pivotOperation) {
 		return partialClasses.getOperationOverloads(pivotOperation);
 	}
 
+	@Override
 	public @NonNull Iterable<? extends DomainOperation> getOperations(final @Nullable FeatureFilter featureFilter) {
 		return partialClasses.getOperations(featureFilter);
 	}
 
+	@Override
 	public @NonNull Iterable<? extends DomainOperation> getOperations(final @Nullable FeatureFilter featureFilter, @Nullable String name) {
 		return partialClasses.getOperationOverloads(featureFilter, name);
 	}
@@ -452,10 +470,12 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public @NonNull PartialClasses getPartialClasses() {
 		return partialClasses;
 	}
 
+	@Override
 	public @NonNull org.eclipse.ocl.examples.pivot.Class getPivotClass() {
 		for (org.eclipse.ocl.examples.pivot.Class partialClass : partialClasses) {
 			if (partialClass != null) {
@@ -465,44 +485,53 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 		throw new IllegalStateException();
 	}
 
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull Iterable<? extends DomainClass> getProperSuperClasses() {
 		DomainInheritance inheritance = getCompleteInheritance();
 		return Iterables.transform(inheritance.getAllProperSuperFragments(), new Function<DomainFragment, DomainClass>()
 		{
+			@Override
 			public DomainClass apply(DomainFragment input) {
 				return input.getBaseInheritance().getType();
 			}
 		});
 	}
 	
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull Iterable<CompleteClass> getProperSuperCompleteClasses() {
 		DomainInheritance inheritance = getCompleteInheritance();
 		return Iterables.transform(inheritance.getAllProperSuperFragments(), new Function<DomainFragment, CompleteClass>()
 		{
+			@Override
 			public CompleteClass apply(DomainFragment input) {
 				return ((CompleteInheritance)input.getBaseInheritance()).getCompleteClass();		// FIXME cast
 			}
 		});
 	}
 
+	@Override
 	public @Nullable Iterable<DomainProperty> getProperties(@NonNull DomainProperty pivotProperty) {
 		return partialClasses.getProperties(pivotProperty);
 	}
 
+	@Override
 	public @NonNull Iterable<? extends DomainProperty> getProperties(final @Nullable FeatureFilter featureFilter) {
 		return partialClasses.getProperties(featureFilter);
 	}
 
+	@Override
 	public @NonNull Iterable<? extends DomainProperty> getProperties(final @Nullable FeatureFilter featureFilter, @Nullable String name) {
 		return partialClasses.getProperties(featureFilter, name);
 	}
 
+	@Override
 	public @Nullable Iterable<DomainProperty> getProperties(@Nullable String propertyName) {
 		return partialClasses.getProperties(propertyName);
 	}
 
+	@Override
 	public @Nullable DomainProperty getProperty(@Nullable String propertyName) {
 		return partialClasses.getProperty(propertyName);
 	}
@@ -511,14 +540,17 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 		return getCompleteModel().getStandardLibrary();
 	}
 
+	@Override
 	public @NonNull Iterable<? extends State> getStates() {
 		return partialClasses.getStates();
 	}
 
+	@Override
 	public @NonNull Iterable<? extends State> getStates(@Nullable String name) {
 		return partialClasses.getStates(name);
 	}
 	
+	@Override
 	public @NonNull Iterable<CompleteClass> getSuperCompleteClasses() {
 		return partialClasses.getSuperCompleteClasses();
 	}
@@ -536,6 +568,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 		return false;
 	} */
 
+	@Override
 	public void uninstall() {
 		partialClasses.dispose();
 	}

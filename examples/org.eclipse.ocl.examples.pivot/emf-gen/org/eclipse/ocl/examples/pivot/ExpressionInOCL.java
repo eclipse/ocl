@@ -53,6 +53,7 @@ public interface ExpressionInOCL
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getExpressionInOCL_BodyExpression()
 	 * @generated
 	 */
+	@Override
 	OCLExpression getBodyExpression();
 
 	/**

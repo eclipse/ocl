@@ -140,6 +140,7 @@ public class OperationCSImpl extends TypedElementCSImpl implements OperationCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TemplateSignatureCS getOwnedSignature() {
 		return ownedSignature;
 	}
@@ -166,6 +167,7 @@ public class OperationCSImpl extends TypedElementCSImpl implements OperationCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedSignature(TemplateSignatureCS newOwnedSignature) {
 		if (newOwnedSignature != ownedSignature)
 		{
@@ -186,6 +188,7 @@ public class OperationCSImpl extends TypedElementCSImpl implements OperationCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public StructuredClassCS getOwningClass() {
 		if (eContainerFeatureID() != BaseCSPackage.OPERATION_CS__OWNING_CLASS) return null;
 		return (StructuredClassCS)eInternalContainer();
@@ -206,6 +209,7 @@ public class OperationCSImpl extends TypedElementCSImpl implements OperationCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningClass(StructuredClassCS newOwningClass) {
 		if (newOwningClass != eInternalContainer() || (eContainerFeatureID() != BaseCSPackage.OPERATION_CS__OWNING_CLASS && newOwningClass != null))
 		{
@@ -228,6 +232,7 @@ public class OperationCSImpl extends TypedElementCSImpl implements OperationCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ParameterCS> getOwnedParameters()
 	{
 		if (ownedParameters == null)
@@ -242,6 +247,7 @@ public class OperationCSImpl extends TypedElementCSImpl implements OperationCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<TypedRefCS> getOwnedExceptions()
 	{
 		if (ownedExceptions == null)
@@ -256,6 +262,7 @@ public class OperationCSImpl extends TypedElementCSImpl implements OperationCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ConstraintCS> getOwnedPreconditions()
 	{
 		if (ownedPreconditions == null)
@@ -270,6 +277,7 @@ public class OperationCSImpl extends TypedElementCSImpl implements OperationCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ConstraintCS> getOwnedPostconditions()
 	{
 		if (ownedPostconditions == null)
@@ -284,6 +292,7 @@ public class OperationCSImpl extends TypedElementCSImpl implements OperationCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<SpecificationCS> getOwnedBodyExpressions()
 	{
 		if (ownedBodyExpressions == null)

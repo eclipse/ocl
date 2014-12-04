@@ -95,6 +95,7 @@ public abstract class NavigationCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<OCLExpression> getQualifier()
 	{
 		if (qualifier == null)
@@ -109,6 +110,7 @@ public abstract class NavigationCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Property getNavigationSource() {
 		if (navigationSource != null && ((EObject)navigationSource).eIsProxy())
 		{
@@ -137,6 +139,7 @@ public abstract class NavigationCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNavigationSource(Property newNavigationSource) {
 		Property oldNavigationSource = navigationSource;
 		navigationSource = newNavigationSource;
@@ -343,6 +346,7 @@ public abstract class NavigationCallExpImpl
 		return visitor.visitNavigationCallExp(this);
 	}
 
+	@Override
 	@SuppressWarnings({"null", "unchecked"})
 	public @NonNull List<? extends DomainExpression> getArgument() {
 		return Collections.EMPTY_LIST;

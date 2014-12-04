@@ -392,6 +392,7 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 		return null;
 	}
 
+	@Override
 	public @Nullable Boolean visiting(@NonNull Visitable visitable) {
 		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for " + getClass().getSimpleName());
 	}

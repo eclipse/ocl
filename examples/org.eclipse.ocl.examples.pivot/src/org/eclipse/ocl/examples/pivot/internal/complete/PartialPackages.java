@@ -34,6 +34,7 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 {
 	private static class Package2PackageOwnedPackages implements Function<org.eclipse.ocl.examples.pivot.Package, Iterable<org.eclipse.ocl.examples.pivot.Package>>
 	{
+		@Override
 		public Iterable<org.eclipse.ocl.examples.pivot.Package> apply(org.eclipse.ocl.examples.pivot.Package partialPackage) {
 			return partialPackage.getOwnedPackages();
 		}
@@ -80,6 +81,7 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 		getCompletePackage().didAddPartialPackage(partialPackage);
 	}
 
+	@Override
 	public void didAddPackage(@NonNull org.eclipse.ocl.examples.pivot.Package nestedPackage) {
 		getCompletePackage().didAddNestedPackage(nestedPackage);
 	}
@@ -140,14 +142,17 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 		getCompletePackage().didRemovePartialPackage(partialPackage);
 	}
 
+	@Override
 	public void didRemovePackage(@NonNull org.eclipse.ocl.examples.pivot.Package nestedPackage) {
 		getCompletePackage().didRemoveNestedPackage(nestedPackage);
 	}
 
+	@Override
 	public void didAddClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
 		getCompletePackage().didAddClass(partialClass);
 	}
 
+	@Override
 	public void didRemoveClass(@NonNull org.eclipse.ocl.examples.pivot.Class partialClass) {
 		name2inheritance.remove(partialClass.getName());
 		getCompletePackage().didRemoveClass(partialClass);

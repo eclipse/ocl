@@ -26,6 +26,7 @@ public class OpaqueExpressionLabelGenerator extends AbstractLabelGenerator<Opaqu
 		super(OpaqueExpression.class);
 	}
 
+	@Override
 	public void buildLabelFor(@NonNull Builder labelBuilder, @NonNull OpaqueExpression object) {
 		List<String> bodies = object.getBodies();
 		if (bodies.size() < 1) {

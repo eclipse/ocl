@@ -154,6 +154,7 @@ public abstract class AbstractNameExpCSImpl extends ExpCSImpl implements Abstrac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PathNameCS getOwnedPathName()
 	{
 		return ownedPathName;
@@ -181,6 +182,7 @@ public abstract class AbstractNameExpCSImpl extends ExpCSImpl implements Abstrac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedPathName(PathNameCS newOwnedPathName)
 	{
 		if (newOwnedPathName != ownedPathName)
@@ -202,6 +204,7 @@ public abstract class AbstractNameExpCSImpl extends ExpCSImpl implements Abstrac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsPre()
 	{
 		return isPre;
@@ -212,6 +215,7 @@ public abstract class AbstractNameExpCSImpl extends ExpCSImpl implements Abstrac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsPre(boolean newIsPre)
 	{
 		boolean oldIsPre = isPre;
@@ -225,6 +229,7 @@ public abstract class AbstractNameExpCSImpl extends ExpCSImpl implements Abstrac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CurlyBracketedClauseCS getOwnedCurlyBracketedClause()
 	{
 		return ownedCurlyBracketedClause;
@@ -252,6 +257,7 @@ public abstract class AbstractNameExpCSImpl extends ExpCSImpl implements Abstrac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedCurlyBracketedClause(CurlyBracketedClauseCS newOwnedCurlyBracketedClause)
 	{
 		if (newOwnedCurlyBracketedClause != ownedCurlyBracketedClause)
@@ -273,6 +279,7 @@ public abstract class AbstractNameExpCSImpl extends ExpCSImpl implements Abstrac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RoundBracketedClauseCS getOwnedRoundBracketedClause()
 	{
 		return ownedRoundBracketedClause;
@@ -300,6 +307,7 @@ public abstract class AbstractNameExpCSImpl extends ExpCSImpl implements Abstrac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedRoundBracketedClause(RoundBracketedClauseCS newOwnedRoundBracketedClause)
 	{
 		if (newOwnedRoundBracketedClause != ownedRoundBracketedClause)
@@ -321,6 +329,7 @@ public abstract class AbstractNameExpCSImpl extends ExpCSImpl implements Abstrac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<SquareBracketedClauseCS> getOwnedSquareBracketedClauses()
 	{
 		if (ownedSquareBracketedClauses == null)
@@ -335,6 +344,7 @@ public abstract class AbstractNameExpCSImpl extends ExpCSImpl implements Abstrac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getSourceType()
 	{
 		return sourceType;
@@ -345,6 +355,7 @@ public abstract class AbstractNameExpCSImpl extends ExpCSImpl implements Abstrac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSourceType(Type newSourceType)
 	{
 		Type oldSourceType = sourceType;
@@ -358,6 +369,7 @@ public abstract class AbstractNameExpCSImpl extends ExpCSImpl implements Abstrac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getSourceTypeValue()
 	{
 		return sourceTypeValue;
@@ -368,6 +380,7 @@ public abstract class AbstractNameExpCSImpl extends ExpCSImpl implements Abstrac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSourceTypeValue(Type newSourceTypeValue)
 	{
 		Type oldSourceTypeValue = sourceTypeValue;

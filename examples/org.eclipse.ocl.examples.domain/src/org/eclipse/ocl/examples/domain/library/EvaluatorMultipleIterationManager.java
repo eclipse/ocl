@@ -43,6 +43,7 @@ public class EvaluatorMultipleIterationManager extends EvaluatorIterationManager
 		this.hasCurrent = true;
 	}
 	
+	@Override
 	public boolean advanceIterators() {
 		if (hasCurrent) {
 			for (ValueIterator advancingIterator : iterators) {
@@ -69,6 +70,7 @@ public class EvaluatorMultipleIterationManager extends EvaluatorIterationManager
 		return currentValue;		
 	}
 	
+	@Override
 	public boolean hasCurrent() {
 		return hasCurrent;
 	}

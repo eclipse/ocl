@@ -71,6 +71,7 @@ public abstract class FeatureContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypedRefCS getOwnedType() {
 		return ownedType;
 	}
@@ -97,6 +98,7 @@ public abstract class FeatureContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedType(TypedRefCS newOwnedType) {
 		if (newOwnedType != ownedType)
 		{

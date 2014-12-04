@@ -47,6 +47,7 @@ public class PivotExecutorManager extends ExecutorManager
 		return metaModelManager.getIdResolver();
 	}
 
+	@Override
 	public @NonNull DomainEvaluator createNestedEvaluator() {
 		return new PivotExecutorManager(metaModelManager, contextObject);
 	}
@@ -56,6 +57,7 @@ public class PivotExecutorManager extends ExecutorManager
 		return idResolver.getDynamicTypeOf(value);
 	}
 
+	@Override
 	public @NonNull DomainModelManager getModelManager() {
 		DomainModelManager modelManager2 = modelManager;
 		if (modelManager2 == null) {
@@ -79,6 +81,7 @@ public class PivotExecutorManager extends ExecutorManager
 		return modelManager2;
 	}
 
+	@Override
 	public @NonNull IdResolver getIdResolver() {
 		return idResolver;
 	}

@@ -32,6 +32,7 @@ public class PartialModels extends EObjectResolvingEList<Model> implements Model
 
 	private static class Model2RootOwnedPackages implements Function<Model, Iterable<org.eclipse.ocl.examples.pivot.Package>>
 	{
+		@Override
 		public Iterable<Package> apply(Model partialModel) {
 			return partialModel.getOwnedPackages();
 		}
@@ -71,6 +72,7 @@ public class PartialModels extends EObjectResolvingEList<Model> implements Model
 		((ModelImpl)partialModel).addRootListener(this);
 	}
 
+	@Override
 	public void didAddPackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
 		getCompleteModel().didAddNestedPackage(partialPackage);
 	}
@@ -95,6 +97,7 @@ public class PartialModels extends EObjectResolvingEList<Model> implements Model
 		completeModel.didRemovePartialModel(partialModel);
 	}
 
+	@Override
 	public void didRemovePackage(@NonNull org.eclipse.ocl.examples.pivot.Package partialPackage) {
 		getCompleteModel().didRemoveNestedPackage(partialPackage);
 	}

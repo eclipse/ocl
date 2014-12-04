@@ -91,6 +91,7 @@ public class ConstructorPartCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CurlyBracketedClauseCS getOwningCurlyBracketClause()
 	{
 		if (eContainerFeatureID() != EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__OWNING_CURLY_BRACKET_CLAUSE) return null;
@@ -113,6 +114,7 @@ public class ConstructorPartCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningCurlyBracketClause(CurlyBracketedClauseCS newOwningCurlyBracketClause)
 	{
 		if (newOwningCurlyBracketClause != eInternalContainer() || (eContainerFeatureID() != EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__OWNING_CURLY_BRACKET_CLAUSE && newOwningCurlyBracketClause != null))
@@ -136,6 +138,7 @@ public class ConstructorPartCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Property getReferredProperty() {
 		if (referredProperty != null && ((EObject)referredProperty).eIsProxy())
 		{
@@ -165,6 +168,7 @@ public class ConstructorPartCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredProperty(Property newReferredProperty) {
 		Property oldReferredProperty = referredProperty;
 		referredProperty = newReferredProperty;
@@ -177,6 +181,7 @@ public class ConstructorPartCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpCS getOwnedInitExpression() {
 		return ownedInitExpression;
 	}
@@ -203,6 +208,7 @@ public class ConstructorPartCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedInitExpression(ExpCS newOwnedInitExpression) {
 		if (newOwnedInitExpression != ownedInitExpression)
 		{
@@ -368,6 +374,7 @@ public class ConstructorPartCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public String getName() {
 		return getReferredProperty().getName();
 	}

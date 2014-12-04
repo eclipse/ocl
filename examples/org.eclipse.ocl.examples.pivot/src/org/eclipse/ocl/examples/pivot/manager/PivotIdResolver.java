@@ -114,6 +114,7 @@ public class PivotIdResolver extends AbstractIdResolver
 		return rootPackage;
 	}
 
+	@Override
 	public @NonNull DomainInheritance getInheritance(@NonNull EClassifier eClassifier) {
 		return metaModelManager.getInheritance(getType(eClassifier));
 	}
@@ -163,6 +164,7 @@ public class PivotIdResolver extends AbstractIdResolver
 		return tupleManager.getTupleType(this, typeId);
 	}
 
+	@Override
 	public @NonNull org.eclipse.ocl.examples.pivot.Class getType(@NonNull EClassifier eClassifier) {
 		EObject eType = eClassifier;
 		EPackage ePackage = eClassifier.getEPackage();

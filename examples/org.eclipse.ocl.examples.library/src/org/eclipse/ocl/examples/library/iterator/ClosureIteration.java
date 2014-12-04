@@ -28,6 +28,7 @@ public class ClosureIteration extends AbstractIteration
 {
 	public static final @NonNull ClosureIteration INSTANCE = new ClosureIteration();
 
+	@Override
 	public @NonNull CollectionValue.Accumulator createAccumulatorValue(@NonNull DomainEvaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
 		return createCollectionAccumulatorValue((CollectionTypeId) accumulatorTypeId);
 	}

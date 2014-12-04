@@ -68,6 +68,7 @@ public class RetokenizingTokenSource implements TokenSource
 		}
 	}
 
+	@Override
 	public String getSourceName() {
 		return tokenSource.getSourceName();
 	}
@@ -90,6 +91,7 @@ public class RetokenizingTokenSource implements TokenSource
 		return true;
 	}
 	
+	@Override
 	public Token nextToken() {
 		Token firstToken = peek(0);
 		int firstType = firstToken.getType();

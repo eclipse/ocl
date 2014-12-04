@@ -52,6 +52,7 @@ public class DomainUtil
 	{
 		public static final @NonNull EAnnotationComparator INSTANCE = new EAnnotationComparator();
 
+		@Override
 		public int compare(EAnnotation o1, EAnnotation o2) {
 			String n1 = o1.getSource();
 			String n2 = o2.getSource();
@@ -63,6 +64,7 @@ public class DomainUtil
 	{	
 		public static final @NonNull NameableComparator INSTANCE = new NameableComparator();
 
+		@Override
 		public int compare(Nameable o1, Nameable o2) {
 			String n1 = DomainUtil.getSafeName(o1);
 			String n2 = DomainUtil.getSafeName(o2);
@@ -74,6 +76,7 @@ public class DomainUtil
 	{
 		public static final @NonNull ENamedElementComparator INSTANCE = new ENamedElementComparator();
 
+		@Override
 		public int compare(ENamedElement o1, ENamedElement o2) {
 			String n1 = o1.getName();
 			String n2 = o2.getName();

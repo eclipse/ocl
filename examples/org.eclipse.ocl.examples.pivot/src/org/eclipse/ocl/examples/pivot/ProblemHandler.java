@@ -64,6 +64,7 @@ public interface ProblemHandler {
 		/**
 		 * Phases sort according to their names.
 		 */
+		@Override
 		public final int compareTo(Phase o) {
 			return localizedName.compareTo(o.localizedName);
 		}

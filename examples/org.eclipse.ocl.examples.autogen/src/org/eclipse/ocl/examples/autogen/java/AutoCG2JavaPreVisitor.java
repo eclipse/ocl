@@ -32,18 +32,22 @@ public class AutoCG2JavaPreVisitor extends CG2JavaPreVisitor implements AutoCGMo
 		return localContext.getIdResolverVariable(cgValuedElement);
 	}
 
+	@Override
 	public @Nullable Object visitCGASTCallExp(@NonNull CGASTCallExp object) {
 		return visitCGOperationCallExp(object);
 	}
 
+	@Override
 	public @Nullable Object visitCGContainmentBody(@NonNull CGContainmentBody object) {
 		return visitCGValuedElement(object);
 	}
 
+	@Override
 	public @Nullable Object visitCGContainmentPart(@NonNull CGContainmentPart object) {
 		return visitCGValuedElement(object);
 	}
 
+	@Override
 	public @Nullable Object visitCGContainmentVisit(@NonNull CGContainmentVisit object) {
 		return visitCGOperation(object);
 	}

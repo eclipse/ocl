@@ -47,6 +47,7 @@ public interface NamedElement
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getNamedElement_Name()
 	 * @generated
 	 */
+	@Override
 	String getName();
 
 	/**

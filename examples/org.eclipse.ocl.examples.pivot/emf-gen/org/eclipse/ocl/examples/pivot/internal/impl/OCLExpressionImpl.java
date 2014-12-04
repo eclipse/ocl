@@ -75,6 +75,7 @@ public abstract class OCLExpressionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getTypeValue()
 	{
 		return typeValue;
@@ -85,6 +86,7 @@ public abstract class OCLExpressionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTypeValue(Type newTypeValue)
 	{
 		Type oldTypeValue = typeValue;
@@ -244,6 +246,7 @@ public abstract class OCLExpressionImpl
 		return visitor.visitOCLExpression(this);
 	}
 
+	@Override
 	public DomainExpression getBodyExpression() {
 		return this;
 	}

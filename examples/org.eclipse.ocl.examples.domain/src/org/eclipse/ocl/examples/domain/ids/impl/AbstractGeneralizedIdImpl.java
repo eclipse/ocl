@@ -22,6 +22,7 @@ public abstract class AbstractGeneralizedIdImpl<T extends TemplateableId> extend
 		this.name = name;
 	}
 
+	@Override
 	public @NonNull String getName() {
 		return name;
 	}

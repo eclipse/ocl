@@ -41,6 +41,7 @@ public class ImplicitNonCompositionProperty extends AbstractProperty
 		this.property = property;
 	}
 	
+	@Override
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		DomainModelManager modelManager = evaluator.getModelManager();
 		DomainProperty thatProperty = property.getOpposite();

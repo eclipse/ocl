@@ -33,10 +33,12 @@ public abstract class AbstractClass extends AbstractType implements DomainClass	
 		super(environment, name);
 	}
 
+	@Override
 	public @NonNull ObjectValue createInstance() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public @NonNull Value createInstance(@NonNull String value) {
 		throw new UnsupportedOperationException();
 	}
@@ -51,42 +53,52 @@ public abstract class AbstractClass extends AbstractType implements DomainClass	
 		return standardLibrary.getInheritance(this);
 	}
 
+	@Override
 	public @NonNull List<? extends DomainConstraint> getOwnedInvariants() {
 		throw new UnsupportedOperationException();			// FIXME
 	}
 
+	@Override
 	public @NonNull List<? extends DomainOperation> getOwnedOperations() {
 		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
 	}
 
+	@Override
 	public @NonNull List<? extends DomainProperty> getOwnedProperties() {
 		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
 	}
 
+	@Override
 	public DomainPackage getOwningPackage() {
 		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
 	}
 
+	@Override
 	public @NonNull List<? extends DomainClass> getSuperClasses() {
 		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
 	}
 
+	@Override
 	public @NonNull DomainTypeParameters getTypeParameters() {
 		return DomainTypeParameters.EMPTY_LIST;
 	}
 	
+	@Override
 	public @NonNull DomainClass isClass() {
 		return this;
 	}
 
+	@Override
 	public boolean isOrdered() {
 		return false;
 	}
 
+	@Override
 	public @Nullable DomainTemplateParameter isTemplateParameter() {
 		return null;
 	}
 
+	@Override
 	public boolean isUnique() {
 		return false;
 	}

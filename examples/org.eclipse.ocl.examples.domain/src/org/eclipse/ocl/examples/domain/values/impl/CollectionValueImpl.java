@@ -69,6 +69,7 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 		/**
 		 * Returns true if this iterator contains more elements.
 		 */
+		@Override
 		public boolean hasNext() {
 			return index < size;
 		}
@@ -76,10 +77,12 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 		/**
 		 * Returns the next element of this iterator.
 		 */
+		@Override
 		public T next() {
 			return elements[index++];
 		}
 
+		@Override
 		public void remove() {
 			throw new UnsupportedOperationException();
 		}
@@ -107,6 +110,7 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 		/**
 		 * Returns true if this iterator contains more elements.
 		 */
+		@Override
 		public boolean hasNext() {
 			return index < size;
 		}
@@ -114,10 +118,12 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 		/**
 		 * Returns the next element of this iterator.
 		 */
+		@Override
 		public T next() {
 			return elements.get(index++);
 		}
 
+		@Override
 		public void remove() {
 			throw new UnsupportedOperationException();
 		}
@@ -137,6 +143,7 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 		/**
 		 * Returns true if this iterator contains more elements.
 		 */
+		@Override
 		public boolean hasNext() {
 			return false;
 		}
@@ -144,10 +151,12 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 		/**
 		 * Returns the next element of this iterator.
 		 */
+		@Override
 		public Object next() {
 			throw new NoSuchElementException();
 		}
 
+		@Override
 		public void remove() {
 			throw new UnsupportedOperationException();
 		}
@@ -215,6 +224,7 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
         return new BagValueImpl(getBagTypeId(), new BagImpl<Object>(elements));
     }
 
+	@Override
 	public @NonNull Collection<? extends Object> asCollection() {
 		return elements;
 	}
@@ -241,6 +251,7 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 		return new EcoreEList.UnmodifiableEList<Object>(null, null, i, unboxedValues);
 	}
 	
+	@Override
 	@SuppressWarnings("unchecked")			// FIXME check element types
 	public @NonNull <T> List<T> asEcoreObjects(@NonNull IdResolver idResolver, @NonNull Class<T> elementClass) {
 		return (List<T>) asEcoreObject(idResolver);
@@ -250,6 +261,7 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 		return new ArrayList<Object>(elements);
 	}
 
+	@Override
 	public @NonNull Object asObject() {
 		return elements;
 	}
@@ -286,7 +298,8 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
      * @return the number of occurrences of the object in the collection
      * @throws InvalidValueException 
      */
-    public @NonNull IntegerValue count(@Nullable Object value) {
+    @Override
+	public @NonNull IntegerValue count(@Nullable Object value) {
         long count = 0;
         if (value == null) {
 	        for (Object next : elements) {
@@ -313,7 +326,8 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
      * @param value an object
      * @return whether the collection does not include the object
      */
-    public @NonNull Boolean excludes(@Nullable Object value) {
+    @Override
+	public @NonNull Boolean excludes(@Nullable Object value) {
         if (value == null) {
 	        for (Object next : elements) {
 	            if (next == null) {
@@ -340,7 +354,8 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
      * @return whether the source collection does not contain any of the
      *     elements of the other
      */
-    public @NonNull Boolean excludesAll(@NonNull CollectionValue c) {
+    @Override
+	public @NonNull Boolean excludesAll(@NonNull CollectionValue c) {
         for (Object e1 : elements) {
             if (e1 == null) {
             	for (Object e2 : c.iterable()) {
@@ -364,6 +379,7 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
      * Returns true if any element flattened.
      * @throws InvalidValueException 
      */
+	@Override
 	public boolean flatten(@NonNull Collection<Object> flattenedElements) {
 		boolean flattened = false;
 		for (Object element : elements) {
@@ -445,6 +461,7 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 		return getTypeId().getElementTypeId();
 	}
 
+	@Override
 	public @NonNull Collection<? extends Object> getElements() {
 		return elements;
 	}
@@ -465,6 +482,7 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 		return TypeId.SET.getSpecializedId(getElementTypeId());
 	}
 
+	@Override
 	public @NonNull CollectionTypeId getTypeId() {
 		return typeId;
 	}
@@ -503,6 +521,7 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 		return hashCode;
 	}
 
+	@Override
 	public @NonNull Boolean includes(@Nullable Object value) {
 		return elements.contains(value) != false;			// FIXME redundant test to suppress warning
     }
@@ -516,7 +535,8 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
      * @return whether the source collection includes all of the elements
      *     of the other
      */
-    public @NonNull Boolean includesAll(@NonNull CollectionValue c) {
+    @Override
+	public @NonNull Boolean includesAll(@NonNull CollectionValue c) {
         for (Object e1 : c.iterable()) {
         	boolean gotIt = false;
         	if (e1 == null) {
@@ -542,10 +562,12 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
         return true;
     }
 
+	@Override
 	public int intSize() {
 		return elements.size();
 	}
 
+	@Override
 	public @NonNull CollectionValue intersection(@NonNull CollectionValue that) {
     	assert !this.isUndefined() && !that.isUndefined();
 		Collection<? extends Object> theseElements = this.asCollection();
@@ -595,14 +617,17 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 //		return this;
 //	}
 
+	@Override
 	public @NonNull Boolean isEmpty() {
 		return intSize() == 0;
 	}
 
+	@Override
 	public @NonNull Iterable<? extends Object> iterable() {
 		return elements;
 	}
 
+	@Override
 	public @NonNull Iterator<Object> iterator() {
 		if (elements instanceof BasicEList) {
 			@SuppressWarnings("unchecked")
@@ -619,11 +644,13 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 		return result;
 	}
 
+	@Override
 	public @NonNull Boolean notEmpty() {
 		return intSize() != 0;
 	}
 
-    public @NonNull Set<TupleValue> product(@NonNull CollectionValue c, @NonNull TupleTypeId tupleTypeId) {   	
+    @Override
+	public @NonNull Set<TupleValue> product(@NonNull CollectionValue c, @NonNull TupleTypeId tupleTypeId) {   	
     	Set<TupleValue> result = new HashSet<TupleValue>();		
         for (Object next1 : iterable()) {
          	for (Object next2 : c.iterable()) {
@@ -633,6 +660,7 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
         return result;
     }
 
+	@Override
 	public @NonNull IntegerValue size() {
 		return ValuesUtil.integerValueOf(intSize());
 	}
@@ -664,7 +692,8 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 		s.append("}");		
 	}
 
-    public @NonNull CollectionValue union(@NonNull CollectionValue that) {
+    @Override
+	public @NonNull CollectionValue union(@NonNull CollectionValue that) {
     	assert !this.isUndefined() && !that.isUndefined();
 		Collection<? extends Object> theseElements = this.asCollection();
         Collection<? extends Object> thoseElements = that.asCollection();

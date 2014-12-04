@@ -102,6 +102,7 @@ public class AnnotationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("null") 
 	public @NonNull List<Element> getOwnedContent()
 	{
@@ -117,6 +118,7 @@ public class AnnotationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<Detail> getOwnedDetail()
 	{
@@ -132,6 +134,7 @@ public class AnnotationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<Element> getReference()
 	{

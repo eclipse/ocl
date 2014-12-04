@@ -111,6 +111,7 @@ public class StructuredClassCSImpl extends ClassCSImpl implements StructuredClas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<TypedRefCS> getOwnedSuperTypes() {
 		if (ownedSuperTypes == null)
 		{
@@ -124,6 +125,7 @@ public class StructuredClassCSImpl extends ClassCSImpl implements StructuredClas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<OperationCS> getOwnedOperations() {
 		if (ownedOperations == null)
 		{
@@ -137,6 +139,7 @@ public class StructuredClassCSImpl extends ClassCSImpl implements StructuredClas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<StructuralFeatureCS> getOwnedProperties() {
 		if (ownedProperties == null)
 		{
@@ -150,6 +153,7 @@ public class StructuredClassCSImpl extends ClassCSImpl implements StructuredClas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypedRefCS getOwnedMetaclass()
 	{
 		return ownedMetaclass;
@@ -177,6 +181,7 @@ public class StructuredClassCSImpl extends ClassCSImpl implements StructuredClas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedMetaclass(TypedRefCS newOwnedMetaclass)
 	{
 		if (newOwnedMetaclass != ownedMetaclass)

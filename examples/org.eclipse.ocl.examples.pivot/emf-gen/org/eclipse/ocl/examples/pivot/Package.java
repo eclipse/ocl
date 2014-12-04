@@ -58,6 +58,7 @@ public interface Package
 	 * @see org.eclipse.ocl.examples.pivot.Package#getOwningPackage
 	 * @generated
 	 */
+	@Override
 	@NonNull List<Package> getOwnedPackages();
 
 	/**
@@ -73,6 +74,7 @@ public interface Package
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPackage_NsPrefix()
 	 * @generated
 	 */
+	@Override
 	String getNsPrefix();
 
 	/**
@@ -98,6 +100,7 @@ public interface Package
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPackage_URI()
 	 * @generated
 	 */
+	@Override
 	String getURI();
 
 	/**
@@ -155,6 +158,7 @@ public interface Package
 	 * @see org.eclipse.ocl.examples.pivot.Class#getOwningPackage
 	 * @generated
 	 */
+	@Override
 	@NonNull List<org.eclipse.ocl.examples.pivot.Class> getOwnedClasses();
 
 	/**
@@ -188,6 +192,7 @@ public interface Package
 	 * @see org.eclipse.ocl.examples.pivot.Package#getOwnedPackages
 	 * @generated
 	 */
+	@Override
 	Package getOwningPackage();
 
 	/**

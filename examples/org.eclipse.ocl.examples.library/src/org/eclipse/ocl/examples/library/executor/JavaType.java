@@ -36,10 +36,12 @@ public class JavaType extends AbstractClass
 		this.javaClass = javaClass;
 	}
 
+	@Override
 	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType thatType) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public @NonNull DomainClass getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
 		if (this == type) {
 			return this;
@@ -109,21 +111,25 @@ public class JavaType extends AbstractClass
 		}
 	}
 
+	@Override
 	@NonNull
 	public TypeId getTypeId() {
 		throw new UnsupportedOperationException();
 //		return TypeId.OCL_VOID;
 	}
 
+	@Override
 	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType thatType) {
 		return this == thatType;
 	}
 
+	@Override
 	public @NonNull DomainOperation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
 		DomainInheritance inheritance = getInheritance(standardLibrary);
 		return inheritance.lookupActualOperation(standardLibrary, apparentOperation);
 	}
 
+	@Override
 	@NonNull
 	public LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
 		DomainInheritance inheritance = standardLibrary.getInheritance(standardLibrary.getOclAnyType());

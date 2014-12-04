@@ -29,6 +29,7 @@ public class EcoreLibraryOppositeProperty extends AbstractProperty
 		this.eFeature = eFeature;
 	}
 
+	@Override
 	public @NonNull Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		throw new UnsupportedOperationException();		// WIP
 	}

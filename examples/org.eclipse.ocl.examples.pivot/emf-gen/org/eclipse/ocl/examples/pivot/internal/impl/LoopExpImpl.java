@@ -134,6 +134,7 @@ public abstract class LoopExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OCLExpression getBody() {
 		return body;
 	}
@@ -160,6 +161,7 @@ public abstract class LoopExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBody(OCLExpression newBody) {
 		if (newBody != body)
 		{
@@ -180,6 +182,7 @@ public abstract class LoopExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<Variable> getIterator()
 	{
@@ -195,6 +198,7 @@ public abstract class LoopExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Iteration getReferredIteration()
 	{
 		if (referredIteration != null && ((EObject)referredIteration).eIsProxy())
@@ -225,6 +229,7 @@ public abstract class LoopExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredIteration(Iteration newReferredIteration)
 	{
 		Iteration oldReferredIteration = referredIteration;
@@ -238,6 +243,7 @@ public abstract class LoopExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateSourceIsCollection(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -275,6 +281,7 @@ public abstract class LoopExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateNoInitializers(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -603,6 +610,7 @@ public abstract class LoopExpImpl
 		return visitor.visitLoopExp(this);
 	}
 
+	@Override
 	@SuppressWarnings({"null", "unchecked"})
 	public @NonNull List<? extends DomainExpression> getArgument() {
 		return Collections.EMPTY_LIST;

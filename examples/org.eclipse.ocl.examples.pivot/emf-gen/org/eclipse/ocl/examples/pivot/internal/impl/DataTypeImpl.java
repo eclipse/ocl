@@ -110,6 +110,7 @@ public class DataTypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSerializable()
 	{
 		return (eFlags & IS_SERIALIZABLE_EFLAG) != 0;
@@ -120,6 +121,7 @@ public class DataTypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsSerializable(boolean newIsSerializable)
 	{
 		boolean oldIsSerializable = (eFlags & IS_SERIALIZABLE_EFLAG) != 0;
@@ -133,6 +135,7 @@ public class DataTypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public org.eclipse.ocl.examples.pivot.Class getBehavioralClass()
 	{
 		if (behavioralClass != null && ((EObject)behavioralClass).eIsProxy())
@@ -163,6 +166,7 @@ public class DataTypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBehavioralClass(org.eclipse.ocl.examples.pivot.Class newBehavioralClass)
 	{
 		org.eclipse.ocl.examples.pivot.Class oldBehavioralClass = behavioralClass;

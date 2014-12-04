@@ -92,6 +92,7 @@ public abstract class ElementCSImpl extends EObjectImpl implements ElementCS {
 	 * {@inheritDoc}
 	 * @generated
 	 */
+	@Override
 	public @Nullable <R> R accept(@NonNull BaseCSVisitor<R> visitor) {
 		return visitor.visitElementCS(this);
 	}
@@ -101,6 +102,7 @@ public abstract class ElementCSImpl extends EObjectImpl implements ElementCS {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public String getDescription()
 	{
 		return eClass().getName();
@@ -126,6 +128,7 @@ public abstract class ElementCSImpl extends EObjectImpl implements ElementCS {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public ElementCS getParent()
 	{
 		EObject eContainer = eContainer();

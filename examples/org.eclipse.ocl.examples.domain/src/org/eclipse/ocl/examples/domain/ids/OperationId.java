@@ -20,7 +20,9 @@ import org.eclipse.jdt.annotation.NonNull;
  */
 public interface OperationId extends TemplateableId
 {
+	@Override
 	@NonNull OperationId getGeneralizedId();
+	@Override
 	@NonNull String getName();
 	@NonNull ParametersId getParametersId();
 	@NonNull TypeId getParent();

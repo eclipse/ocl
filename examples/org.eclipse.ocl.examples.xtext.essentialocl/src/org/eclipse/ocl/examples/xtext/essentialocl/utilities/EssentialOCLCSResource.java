@@ -99,6 +99,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 			return syntaxErrorMessage.getIssueData();
 		}
 
+		@Override
 		public String getMessage() {
 			return newMessage;
 		}
@@ -197,6 +198,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 		}
 	}
 
+	@Override
 	public @NonNull CS2AS createCS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap,
 			@NonNull MetaModelManager metaModelManager) {
 		return new EssentialOCLCS2AS(cs2asResourceMap, metaModelManager);
@@ -219,11 +221,13 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 		}
 	}
 
+	@Override
 	public @NonNull AS2CS createAS2CS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap,
 			@NonNull MetaModelManager metaModelManager) {
 		return new EssentialOCLAS2CS(cs2asResourceMap, metaModelManager);
 	}
 
+	@Override
 	public @NonNull MetaModelManager createMetaModelManager() {
 		ResourceSet resourceSet = getResourceSet();
 		if (resourceSet != null) {
@@ -262,14 +266,17 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 		}
 	}
 	
+	@Override
 	public final @Nullable CS2ASResourceAdapter findCS2ASAdapter() {
 		return PivotUtil.getAdapter(CS2ASResourceAdapter.class, this);
 	}
 	
+	@Override
 	public @NonNull String getASContentType() {
 		return ASResource.ESSENTIALOCL_CONTENT_TYPE;
 	}
 	
+	@Override
 	public final @NonNull CS2ASResourceAdapter getCS2ASAdapter(@Nullable MetaModelManager metaModelManager) {
 		CS2ASResourceAdapter adapter = PivotUtil.getAdapter(CS2ASResourceAdapter.class, this);
 		if (adapter == null) {
@@ -295,14 +302,17 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 		return adapter;
 	}
 
+	@Override
 	public @NonNull String getEditorName() {
 		return "Essential OCL";
 	}
 
+	@Override
 	public final @Nullable ParserContext getParserContext() {
 		return parserContext;
 	}
 
+	@Override
 	public final @NonNull ASResource getASResource(@Nullable MetaModelManager metaModelManager) {
 		CS2ASResourceAdapter adapter = getCS2ASAdapter(metaModelManager);
 		ASResource asResource = adapter.getASResource(this);
@@ -312,6 +322,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 		return asResource;
 	}
 
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull URI getASURI(@NonNull URI csURI) {
 		return csURI.appendFileExtension(PivotConstants.OCL_AS_FILE_EXTENSION);
@@ -339,6 +350,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	 */
 	protected void initializeResourceFactory(@NonNull Resource.Factory.Registry resourceFactoryRegistry) {}
 
+	@Override
 	public @Nullable NamedElement isPathable(@NonNull EObject element) {
 		if (element instanceof Feature) {
 			return (Feature)element;
@@ -374,6 +386,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 		}
 	}
 
+	@Override
 	public final @NonNull URI resolve(@NonNull URI uri) {
 		URI csURI = getURI();
 		if (csURI.isRelative()) {
@@ -506,10 +519,12 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 		}
 	}
 
+	@Override
 	public final void setParserContext(@Nullable ParserContext parserContext) {
 		this.parserContext = parserContext;
 	}
 
+	@Override
 	public void updateFrom(@NonNull ASResource asResource, @NonNull MetaModelManager metaModelManager) {		
 		Map<BaseCSResource, ASResource> cs2asResourceMap = new HashMap<BaseCSResource, ASResource>();
 		cs2asResourceMap.put(this, asResource);

@@ -78,6 +78,7 @@ public class StateExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public State getReferredState() {
 		if (referredState != null && ((EObject)referredState).eIsProxy())
 		{
@@ -106,6 +107,7 @@ public class StateExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredState(State newReferredState) {
 		State oldReferredState = referredState;
 		referredState = newReferredState;

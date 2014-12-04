@@ -73,6 +73,7 @@ public class LibClassCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MetaclassNameCS getMetaclassName() {
 		if (metaclassName != null && metaclassName.eIsProxy())
 		{
@@ -102,6 +103,7 @@ public class LibClassCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMetaclassName(MetaclassNameCS newMetaclassName) {
 		MetaclassNameCS oldMetaclassName = metaclassName;
 		metaclassName = newMetaclassName;

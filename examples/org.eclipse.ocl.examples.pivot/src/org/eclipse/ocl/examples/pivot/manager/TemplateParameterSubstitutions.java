@@ -46,14 +46,17 @@ public interface TemplateParameterSubstitutions
 	
 	public static class Empty implements TemplateParameterSubstitutions
 	{
+		@Override
 		public @Nullable Type get(@Nullable TemplateParameter templateParameter) {
 			return null;
 		}
 		
+		@Override
 		public boolean isEmpty() {
 			return true;
 		}
 		
+		@Override
 		public @NonNull Type put(@NonNull TemplateParameter formalTemplateParameter, @NonNull Type actualType) {
 			return actualType;
 		}

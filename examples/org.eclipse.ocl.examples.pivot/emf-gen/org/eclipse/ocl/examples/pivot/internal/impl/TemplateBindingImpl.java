@@ -88,6 +88,7 @@ public class TemplateBindingImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<TemplateParameterSubstitution> getOwnedTemplateParameterSubstitutions()
 	{
 		if (ownedTemplateParameterSubstitutions == null)
@@ -102,6 +103,7 @@ public class TemplateBindingImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TemplateableElement getOwningTemplateableElement() {
 		if (eContainerFeatureID() != PivotPackage.TEMPLATE_BINDING__OWNING_TEMPLATEABLE_ELEMENT) return null;
 		return (TemplateableElement)eInternalContainer();
@@ -123,6 +125,7 @@ public class TemplateBindingImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningTemplateableElement(TemplateableElement newOwningTemplateableElement) {
 		if (newOwningTemplateableElement != eInternalContainer() || (eContainerFeatureID() != PivotPackage.TEMPLATE_BINDING__OWNING_TEMPLATEABLE_ELEMENT && newOwningTemplateableElement != null))
 		{
@@ -336,6 +339,7 @@ public class TemplateBindingImpl
 		return visitor.visitTemplateBinding(this);
 	}
 
+	@Override
 	public TemplateSignature getTemplateSignature()
 	{
 		for (TemplateParameterSubstitution templateParameterSubstitution : getOwnedTemplateParameterSubstitutions()) {

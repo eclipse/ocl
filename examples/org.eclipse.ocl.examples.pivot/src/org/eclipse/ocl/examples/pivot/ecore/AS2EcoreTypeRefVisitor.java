@@ -89,6 +89,7 @@ public class AS2EcoreTypeRefVisitor
 		}
 	}
 
+	@Override
 	public EClassifier visiting(@NonNull Visitable visitable) {
 		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for AS2Ecore TypeRef pass");
 	}

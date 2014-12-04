@@ -54,6 +54,7 @@ public abstract class AbstractEvaluationEnvironment extends AbstractBasicEnviron
     	this.metaModelManager = parent.getMetaModelManager();
     }
     
+	@Override
 	public @NonNull MetaModelManager getMetaModelManager() {
 		return metaModelManager;
 	}
@@ -65,6 +66,7 @@ public abstract class AbstractEvaluationEnvironment extends AbstractBasicEnviron
      *            the referredVariable whose value is to be returned
      * @return the value associated with the referredVariable
      */
+	@Override
 	public @Nullable Object getValueOf(@NonNull DomainTypedElement referredVariable) {
     	Object object = variableValues.get(referredVariable);
         if (object == null) {
@@ -81,6 +83,7 @@ public abstract class AbstractEvaluationEnvironment extends AbstractBasicEnviron
         return object;
 	}
     
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull Set<DomainTypedElement> getVariables() {
 		return variableValues.keySet();
@@ -94,7 +97,8 @@ public abstract class AbstractEvaluationEnvironment extends AbstractBasicEnviron
      * @param value
      *            the new value
      */
-    public void replace(@NonNull DomainTypedElement referredVariable, @Nullable Object value) {
+    @Override
+	public void replace(@NonNull DomainTypedElement referredVariable, @Nullable Object value) {
     	variableValues.put(referredVariable, value);
     }
 
@@ -106,7 +110,8 @@ public abstract class AbstractEvaluationEnvironment extends AbstractBasicEnviron
      * @param value
      *            the associated binding
      */
-    public void add(@NonNull DomainTypedElement referredVariable, @Nullable Object value) {
+    @Override
+	public void add(@NonNull DomainTypedElement referredVariable, @Nullable Object value) {
         if (variableValues.containsKey(referredVariable)) {
         	Object oldValue = variableValues.get(referredVariable);
         	if ((oldValue != value) && ((oldValue == null) || !oldValue.equals(value))) {
@@ -128,7 +133,8 @@ public abstract class AbstractEvaluationEnvironment extends AbstractBasicEnviron
      *            the referredVariable to remove
      * @return the value associated with the removed referredVariable
      */
-    @Deprecated
+    @Override
+	@Deprecated
     public Object remove(@NonNull DomainTypedElement referredVariable) {
     	return variableValues.remove(referredVariable);
     }
@@ -136,7 +142,8 @@ public abstract class AbstractEvaluationEnvironment extends AbstractBasicEnviron
     /**
      * Clears the environment of variables.
      */
-    public void clear() {
+    @Override
+	public void clear() {
     	variableValues.clear();
     }
 

@@ -82,6 +82,7 @@ public class NumberLiteralExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Number getSymbol() {
 		return symbol;
 	}
@@ -91,6 +92,7 @@ public class NumberLiteralExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSymbol(Number newSymbol) {
 		Number oldSymbol = symbol;
 		symbol = newSymbol;

@@ -24,14 +24,17 @@ public class AbstractTuplePart implements DomainTypedElement
 		this.name = name;
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}
 
+	@Override
 	public DomainType getType() {
 		return type;
 	}
 
+	@Override
 	public @NonNull TypeId getTypeId() {
 		DomainType type2 = getType();
 		return type2 != null ? type2.getTypeId() : TypeId.OCL_INVALID;

@@ -77,6 +77,7 @@ public class CallOperationActionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Operation getOperation() {
 		if (operation != null && ((EObject)operation).eIsProxy())
 		{
@@ -105,6 +106,7 @@ public class CallOperationActionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOperation(Operation newOperation) {
 		Operation oldOperation = operation;
 		operation = newOperation;

@@ -37,6 +37,7 @@ public class EObjectProperty extends AbstractProperty
 		this.specification = specification;
 	}
 
+	@Override
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		Object object = asObject(sourceValue);
 		if (!(object instanceof EObject)) {

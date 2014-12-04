@@ -27,6 +27,7 @@ public class UMLExplicitNavigator implements ImplementationManager.ExplicitNavig
 {			
 	public static final@NonNull  ExplicitNavigator INSTANCE = new UMLExplicitNavigator();
 
+	@Override
 	public @Nullable LibraryProperty getPropertyImplementation(@Nullable Object sourceValue, @NonNull Property property) {
 		if (sourceValue instanceof org.eclipse.uml2.uml.InstanceSpecification) {
 			EObject eTarget = property.getETarget();

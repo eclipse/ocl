@@ -27,6 +27,7 @@ public abstract class AbstractReflectiveInheritanceType extends ReflectiveInheri
 		super(name, flags);
 	}
 
+	@Override
 	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
 		DomainInheritance thatInheritance = type.getInheritance(standardLibrary);
 		if (this == thatInheritance) {
@@ -35,34 +36,42 @@ public abstract class AbstractReflectiveInheritanceType extends ReflectiveInheri
 		return thatInheritance.isSuperInheritanceOf(this);
 	}
 	
+	@Override
 	public @NonNull DomainClass flattenedType() {
 		return this;
 	}
 
+	@Override
 	public @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
 		return this;
 	}
 
+	@Override
 	public @NonNull DomainClass getNormalizedType(@NonNull DomainStandardLibrary standardLibrary) {
 		return getType();
 	}
 
+	@Override
 	public @NonNull DomainClass isClass() {
 		return getType();
 	}
 
+	@Override
 	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
 		return getType() == type;
 	}
 
+	@Override
 	public boolean isEqualToUnspecializedType(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
 		return getType() == type;
 	}
 
+	@Override
 	public @Nullable DomainTemplateParameter isTemplateParameter() {
 		return null;
 	}
 
+	@Override
 	public boolean oclEquals(@NonNull OCLValue thatValue) {
 		if (!(thatValue instanceof DomainType)) {
 			return false;
@@ -72,10 +81,12 @@ public abstract class AbstractReflectiveInheritanceType extends ReflectiveInheri
 		return thisTypeId.equals(thatTypeId);
 	}
 
+	@Override
 	public int oclHashCode() {
 		return getTypeId().hashCode();
 	}
 
+	@Override
 	public DomainType specializeIn(@NonNull DomainCallExp expr, DomainType selfType) {
 		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
 	}

@@ -109,10 +109,12 @@ public abstract class EvaluatorIterationManager extends AbstractIterationManager
 		this.accumulatorVariable = iterationManager.accumulatorVariable;
 	}
 
+	@Override
 	public @Nullable Object evaluateBody() {
 		return evaluator.evaluate(body);
 	}
 	
+	@Override
 	public @Nullable Object getAccumulatorValue() {
 		return accumulatorValue;
 	}
@@ -125,6 +127,7 @@ public abstract class EvaluatorIterationManager extends AbstractIterationManager
 		return evaluator.getEvaluationEnvironment();
 	}
 
+	@Override
 	public @NonNull CollectionValue getSourceCollection() {
 		return collectionValue;
 	}
@@ -135,6 +138,7 @@ public abstract class EvaluatorIterationManager extends AbstractIterationManager
 		return body.toString();
 	}
 
+	@Override
 	public @Nullable Object updateAccumulator(Object newValue) {
 		this.accumulatorValue = newValue;
 		DomainTypedElement accumulatorVariable2 = accumulatorVariable;

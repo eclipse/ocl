@@ -1162,7 +1162,8 @@ public class PivotPackageImpl
 			(thePivotPackage, 
 			 new EValidator.Descriptor()
 			 {
-				 public EValidator getEValidator()
+				 @Override
+				public EValidator getEValidator()
 				 {
 					 return PivotValidator.INSTANCE;
 				 }
@@ -1182,6 +1183,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAnnotation() {
 		return annotationEClass;
 	}
@@ -1191,6 +1193,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAnnotation_OwnedContent() {
 		return (EReference)annotationEClass.getEStructuralFeatures().get(0);
 	}
@@ -1200,6 +1203,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAnnotation_OwnedDetail() {
 		return (EReference)annotationEClass.getEStructuralFeatures().get(1);
 	}
@@ -1209,6 +1213,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAnnotation_Reference() {
 		return (EReference)annotationEClass.getEStructuralFeatures().get(2);
 	}
@@ -1218,6 +1223,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNamedElement() {
 		return namedElementEClass;
 	}
@@ -1227,6 +1233,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNamedElement_Name() {
 		return (EAttribute)namedElementEClass.getEStructuralFeatures().get(0);
 	}
@@ -1236,6 +1243,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getElement() {
 		return elementEClass;
 	}
@@ -1245,6 +1253,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getElement_Comment()
 	{
 		return (EReference)elementEClass.getEStructuralFeatures().get(0);
@@ -1255,6 +1264,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getElement_Extension()
 	{
 		return (EReference)elementEClass.getEStructuralFeatures().get(1);
@@ -1265,6 +1275,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getElement_OwnedComment() {
 		return (EReference)elementEClass.getEStructuralFeatures().get(3);
 	}
@@ -1274,6 +1285,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getElement_OwnedAnnotation()
 	{
 		return (EReference)elementEClass.getEStructuralFeatures().get(2);
@@ -1284,6 +1296,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getElement__AllOwnedElements()
 	{
 		return elementEClass.getEOperations().get(0);
@@ -1294,6 +1307,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getElement__GetValue__Type_String()
 	{
 		return elementEClass.getEOperations().get(1);
@@ -1304,6 +1318,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getElementExtension()
 	{
 		return elementExtensionEClass;
@@ -1314,6 +1329,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getElementExtension_Stereotype()
 	{
 		return (EReference)elementExtensionEClass.getEStructuralFeatures().get(3);
@@ -1324,6 +1340,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getElementExtension_Base()
 	{
 		return (EReference)elementExtensionEClass.getEStructuralFeatures().get(0);
@@ -1334,6 +1351,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getElementExtension_IsApplied()
 	{
 		return (EAttribute)elementExtensionEClass.getEStructuralFeatures().get(1);
@@ -1344,6 +1362,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getElementExtension_IsRequired()
 	{
 		return (EAttribute)elementExtensionEClass.getEStructuralFeatures().get(2);
@@ -1354,6 +1373,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getBagType() {
 		return bagTypeEClass;
 	}
@@ -1363,6 +1383,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getBehavior()
 	{
 		return behaviorEClass;
@@ -1373,6 +1394,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getBehavior_Transition()
 	{
 		return (EReference)behaviorEClass.getEStructuralFeatures().get(0);
@@ -1383,6 +1405,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCollectionType() {
 		return collectionTypeEClass;
 	}
@@ -1392,6 +1415,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCollectionType_ElementType() {
 		return (EReference)collectionTypeEClass.getEStructuralFeatures().get(0);
 	}
@@ -1401,6 +1425,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getCollectionType_Lower()
 	{
 		return (EAttribute)collectionTypeEClass.getEStructuralFeatures().get(1);
@@ -1411,6 +1436,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getCollectionType_Upper()
 	{
 		return (EAttribute)collectionTypeEClass.getEStructuralFeatures().get(2);
@@ -1421,6 +1447,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDataType() {
 		return dataTypeEClass;
 	}
@@ -1430,6 +1457,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDataType_BehavioralClass()
 	{
 		return (EReference)dataTypeEClass.getEStructuralFeatures().get(0);
@@ -1440,6 +1468,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDataType_IsSerializable()
 	{
 		return (EAttribute)dataTypeEClass.getEStructuralFeatures().get(1);
@@ -1450,6 +1479,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getBooleanLiteralExp() {
 		return booleanLiteralExpEClass;
 	}
@@ -1459,6 +1489,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getBooleanLiteralExp_BooleanSymbol() {
 		return (EAttribute)booleanLiteralExpEClass.getEStructuralFeatures().get(0);
 	}
@@ -1468,6 +1499,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getBooleanLiteralExp__ValidateTypeIsBoolean__DiagnosticChain_Map()
 	{
 		return booleanLiteralExpEClass.getEOperations().get(0);
@@ -1478,6 +1510,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPrimitiveLiteralExp() {
 		return primitiveLiteralExpEClass;
 	}
@@ -1487,6 +1520,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLiteralExp() {
 		return literalExpEClass;
 	}
@@ -1496,6 +1530,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCallOperationAction() {
 		return callOperationActionEClass;
 	}
@@ -1505,6 +1540,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCallOperationAction_Operation() {
 		return (EReference)callOperationActionEClass.getEStructuralFeatures().get(0);
 	}
@@ -1514,6 +1550,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCollectionItem() {
 		return collectionItemEClass;
 	}
@@ -1523,6 +1560,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCollectionItem_Item() {
 		return (EReference)collectionItemEClass.getEStructuralFeatures().get(0);
 	}
@@ -1532,6 +1570,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getCollectionItem__ValidateTypeIsItemType__DiagnosticChain_Map()
 	{
 		return collectionItemEClass.getEOperations().get(0);
@@ -1542,6 +1581,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCollectionLiteralPart() {
 		return collectionLiteralPartEClass;
 	}
@@ -1551,6 +1591,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCollectionLiteralExp() {
 		return collectionLiteralExpEClass;
 	}
@@ -1560,6 +1601,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getCollectionLiteralExp_Kind() {
 		return (EAttribute)collectionLiteralExpEClass.getEStructuralFeatures().get(0);
 	}
@@ -1569,6 +1611,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCollectionLiteralExp_Part() {
 		return (EReference)collectionLiteralExpEClass.getEStructuralFeatures().get(1);
 	}
@@ -1578,6 +1621,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getCollectionLiteralExp__ValidateCollectionKindIsConcrete__DiagnosticChain_Map()
 	{
 		return collectionLiteralExpEClass.getEOperations().get(1);
@@ -1588,6 +1632,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getCollectionLiteralExp__ValidateSetKindIsSet__DiagnosticChain_Map()
 	{
 		return collectionLiteralExpEClass.getEOperations().get(4);
@@ -1598,6 +1643,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getCollectionLiteralExp__ValidateOrderedSetKindIsOrderedSet__DiagnosticChain_Map()
 	{
 		return collectionLiteralExpEClass.getEOperations().get(2);
@@ -1608,6 +1654,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getCollectionLiteralExp__ValidateSequenceKindIsSequence__DiagnosticChain_Map()
 	{
 		return collectionLiteralExpEClass.getEOperations().get(3);
@@ -1618,6 +1665,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getCollectionLiteralExp__ValidateBagKindIsBag__DiagnosticChain_Map()
 	{
 		return collectionLiteralExpEClass.getEOperations().get(0);
@@ -1628,6 +1676,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCollectionRange() {
 		return collectionRangeEClass;
 	}
@@ -1637,6 +1686,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCollectionRange_First() {
 		return (EReference)collectionRangeEClass.getEStructuralFeatures().get(0);
 	}
@@ -1646,6 +1696,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCollectionRange_Last() {
 		return (EReference)collectionRangeEClass.getEStructuralFeatures().get(1);
 	}
@@ -1655,6 +1706,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getEnumLiteralExp() {
 		return enumLiteralExpEClass;
 	}
@@ -1664,6 +1716,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getEnumLiteralExp_ReferredEnumLiteral() {
 		return (EReference)enumLiteralExpEClass.getEStructuralFeatures().get(0);
 	}
@@ -1673,6 +1726,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getEnumLiteralExp__ValidateTypeIsEnumerationType__DiagnosticChain_Map()
 	{
 		return enumLiteralExpEClass.getEOperations().get(0);
@@ -1683,6 +1737,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getEnumerationLiteral() {
 		return enumerationLiteralEClass;
 	}
@@ -1692,6 +1747,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getEnumerationLiteral_Enumeration() {
 		return (EReference)enumerationLiteralEClass.getEStructuralFeatures().get(0);
 	}
@@ -1701,6 +1757,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getEnumerationLiteral_Value()
 	{
 		return (EAttribute)enumerationLiteralEClass.getEStructuralFeatures().get(1);
@@ -1711,6 +1768,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getExpressionInOCL()
 	{
 		return expressionInOCLEClass;
@@ -1721,6 +1779,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getExpressionInOCL_BodyExpression()
 	{
 		return (EReference)expressionInOCLEClass.getEStructuralFeatures().get(0);
@@ -1731,6 +1790,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getExpressionInOCL_ContextVariable()
 	{
 		return (EReference)expressionInOCLEClass.getEStructuralFeatures().get(1);
@@ -1741,6 +1801,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getExpressionInOCL_ResultVariable()
 	{
 		return (EReference)expressionInOCLEClass.getEStructuralFeatures().get(3);
@@ -1751,6 +1812,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getExpressionInOCL_ParameterVariable()
 	{
 		return (EReference)expressionInOCLEClass.getEStructuralFeatures().get(2);
@@ -1761,6 +1823,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getEnumeration() {
 		return enumerationEClass;
 	}
@@ -1770,6 +1833,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getEnumeration_OwnedLiteral() {
 		return (EReference)enumerationEClass.getEStructuralFeatures().get(0);
 	}
@@ -1779,6 +1843,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFeature() {
 		return featureEClass;
 	}
@@ -1788,6 +1853,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFeature_ImplementationClass()
 	{
 		return (EAttribute)featureEClass.getEStructuralFeatures().get(1);
@@ -1798,6 +1864,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFeature_IsStatic()
 	{
 		return (EAttribute)featureEClass.getEStructuralFeatures().get(2);
@@ -1808,6 +1875,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFeature_Implementation()
 	{
 		return (EAttribute)featureEClass.getEStructuralFeatures().get(0);
@@ -1818,6 +1886,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getVariable() {
 		return variableEClass;
 	}
@@ -1827,6 +1896,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getVariable_InitExpression() {
 		return (EReference)variableEClass.getEStructuralFeatures().get(1);
 	}
@@ -1836,6 +1906,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getVariable_RepresentedParameter() {
 		return (EReference)variableEClass.getEStructuralFeatures().get(2);
 	}
@@ -1845,6 +1916,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getVariable__ValidateCompatibleInitialiserType__DiagnosticChain_Map()
 	{
 		return variableEClass.getEOperations().get(0);
@@ -1855,6 +1927,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getVariable_Implicit()
 	{
 		return (EAttribute)variableEClass.getEStructuralFeatures().get(0);
@@ -1865,6 +1938,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIfExp() {
 		return ifExpEClass;
 	}
@@ -1874,6 +1948,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIfExp_Condition() {
 		return (EReference)ifExpEClass.getEStructuralFeatures().get(0);
 	}
@@ -1883,6 +1958,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIfExp_ThenExpression() {
 		return (EReference)ifExpEClass.getEStructuralFeatures().get(2);
 	}
@@ -1892,6 +1968,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIfExp_ElseExpression() {
 		return (EReference)ifExpEClass.getEStructuralFeatures().get(1);
 	}
@@ -1901,6 +1978,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIfExp__ValidateConditionTypeIsBoolean__DiagnosticChain_Map()
 	{
 		return ifExpEClass.getEOperations().get(0);
@@ -1911,6 +1989,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getImport()
 	{
 		return importEClass;
@@ -1921,6 +2000,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getImport_ImportedNamespace()
 	{
 		return (EReference)importEClass.getEStructuralFeatures().get(0);
@@ -1931,6 +2011,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getInstanceSpecification()
 	{
 		return instanceSpecificationEClass;
@@ -1941,6 +2022,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getInstanceSpecification_Classes()
 	{
 		return (EReference)instanceSpecificationEClass.getEStructuralFeatures().get(0);
@@ -1951,6 +2033,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getInstanceSpecification_OwningPackage()
 	{
 		return (EReference)instanceSpecificationEClass.getEStructuralFeatures().get(1);
@@ -1961,6 +2044,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getInstanceSpecification_Slots()
 	{
 		return (EReference)instanceSpecificationEClass.getEStructuralFeatures().get(2);
@@ -1971,6 +2055,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getInstanceSpecification_Specification()
 	{
 		return (EReference)instanceSpecificationEClass.getEStructuralFeatures().get(3);
@@ -1981,6 +2066,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIntegerLiteralExp() {
 		return integerLiteralExpEClass;
 	}
@@ -1990,6 +2076,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIntegerLiteralExp_IntegerSymbol() {
 		return (EAttribute)integerLiteralExpEClass.getEStructuralFeatures().get(0);
 	}
@@ -1999,6 +2086,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIntegerLiteralExp__ValidateTypeIsInteger__DiagnosticChain_Map()
 	{
 		return integerLiteralExpEClass.getEOperations().get(0);
@@ -2009,6 +2097,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNumericLiteralExp() {
 		return numericLiteralExpEClass;
 	}
@@ -2018,6 +2107,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOCLExpression()
 	{
 		return oclExpressionEClass;
@@ -2028,6 +2118,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOCLExpression_TypeValue()
 	{
 		return (EReference)oclExpressionEClass.getEStructuralFeatures().get(0);
@@ -2038,6 +2129,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getInvalidLiteralExp() {
 		return invalidLiteralExpEClass;
 	}
@@ -2047,6 +2139,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getInvalidType() {
 		return invalidTypeEClass;
 	}
@@ -2056,6 +2149,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIterateExp()
 	{
 		return iterateExpEClass;
@@ -2066,6 +2160,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIterateExp_Result()
 	{
 		return (EReference)iterateExpEClass.getEStructuralFeatures().get(0);
@@ -2076,6 +2171,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIterateExp__ValidateTypeIsResultType__DiagnosticChain_Map()
 	{
 		return iterateExpEClass.getEOperations().get(2);
@@ -2086,6 +2182,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIterateExp__ValidateBodyTypeConformsToResultType__DiagnosticChain_Map()
 	{
 		return iterateExpEClass.getEOperations().get(0);
@@ -2096,6 +2193,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIterateExp__ValidateOneInitializer__DiagnosticChain_Map()
 	{
 		return iterateExpEClass.getEOperations().get(1);
@@ -2106,6 +2204,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIteration()
 	{
 		return iterationEClass;
@@ -2116,6 +2215,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIteration_OwnedIterator()
 	{
 		return (EReference)iterationEClass.getEStructuralFeatures().get(1);
@@ -2126,6 +2226,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIteration_OwnedAccumulator()
 	{
 		return (EReference)iterationEClass.getEStructuralFeatures().get(0);
@@ -2136,6 +2237,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIteratorExp()
 	{
 		return iteratorExpEClass;
@@ -2146,6 +2248,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateClosureBodyTypeIsConformanttoIteratorType__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(3);
@@ -2156,6 +2259,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateSortedByIteratorTypeIsComparable__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(30);
@@ -2166,6 +2270,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateAnyHasOneIterator__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(1);
@@ -2176,6 +2281,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateAnyTypeIsSourceElementType__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(2);
@@ -2186,6 +2292,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateAnyBodyTypeIsBoolean__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(0);
@@ -2196,6 +2303,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateClosureHasOneIterator__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(5);
@@ -2206,6 +2314,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateClosureTypeIsUniqueCollection__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(7);
@@ -2216,6 +2325,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateCollectElementTypeIsFlattenedBodyType__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(8);
@@ -2226,6 +2336,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateClosureSourceElementTypeIsBodyElementType__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(6);
@@ -2236,6 +2347,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateClosureElementTypeIsSourceElementType__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(4);
@@ -2246,6 +2358,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateCollectHasOneIterator__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(9);
@@ -2256,6 +2369,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateCollectTypeIsUnordered__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(13);
@@ -2266,6 +2380,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateCollectNestedHasOneIterator__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(10);
@@ -2276,6 +2391,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateCollectNestedTypeIsBag__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(11);
@@ -2286,6 +2402,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateCollectNestedTypeIsBodyType__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(12);
@@ -2296,6 +2413,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateExistsTypeIsBoolean__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(15);
@@ -2306,6 +2424,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateExistsBodyTypeIsBoolean__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(14);
@@ -2316,6 +2435,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateForAllTypeIsBoolean__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(17);
@@ -2326,6 +2446,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateForAllBodyTypeIsBoolean__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(16);
@@ -2336,6 +2457,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateIsUniqueHasOneIterator__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(18);
@@ -2346,6 +2468,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateIsUniqueTypeIsBoolean__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(19);
@@ -2356,6 +2479,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateOneHasOneIterator__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(22);
@@ -2366,6 +2490,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateOneTypeIsBoolean__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(23);
@@ -2376,6 +2501,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateOneBodyTypeIsBoolean__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(21);
@@ -2386,6 +2512,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateRejectOrSelectHasOneIterator__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(24);
@@ -2396,6 +2523,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateRejectOrSelectTypeIsSourceType__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(26);
@@ -2406,6 +2534,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateRejectOrSelectTypeIsBoolean__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(25);
@@ -2416,6 +2545,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateSortedByHasOneIterator__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(28);
@@ -2426,6 +2556,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateSortedByIsOrderedIfSourceIsOrdered__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(29);
@@ -2436,6 +2567,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateSortedByElementTypeIsSourceElementType__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(27);
@@ -2446,6 +2578,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getIteratorExp__ValidateIteratorTypeIsSourceElementType__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(20);
@@ -2456,6 +2589,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLambdaType()
 	{
 		return lambdaTypeEClass;
@@ -2466,6 +2600,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLambdaType_ContextType()
 	{
 		return (EReference)lambdaTypeEClass.getEStructuralFeatures().get(0);
@@ -2476,6 +2611,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLambdaType_ParameterType()
 	{
 		return (EReference)lambdaTypeEClass.getEStructuralFeatures().get(1);
@@ -2486,6 +2622,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLambdaType_ResultType()
 	{
 		return (EReference)lambdaTypeEClass.getEStructuralFeatures().get(2);
@@ -2496,6 +2633,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLanguageExpression()
 	{
 		return languageExpressionEClass;
@@ -2506,6 +2644,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLanguageExpression_Body()
 	{
 		return (EAttribute)languageExpressionEClass.getEStructuralFeatures().get(0);
@@ -2516,6 +2655,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLanguageExpression_Language()
 	{
 		return (EAttribute)languageExpressionEClass.getEStructuralFeatures().get(1);
@@ -2526,6 +2666,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLanguageExpression_OwningConstraint()
 	{
 		return (EReference)languageExpressionEClass.getEStructuralFeatures().get(2);
@@ -2536,6 +2677,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLetExp() {
 		return letExpEClass;
 	}
@@ -2545,6 +2687,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLetExp_In() {
 		return (EReference)letExpEClass.getEStructuralFeatures().get(0);
 	}
@@ -2554,6 +2697,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLetExp_Variable() {
 		return (EReference)letExpEClass.getEStructuralFeatures().get(1);
 	}
@@ -2563,6 +2707,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getLetExp__ValidateTypeIsInType__DiagnosticChain_Map()
 	{
 		return letExpEClass.getEOperations().get(0);
@@ -2573,6 +2718,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLibrary()
 	{
 		return libraryEClass;
@@ -2583,6 +2729,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLibrary_OwnedPrecedence()
 	{
 		return (EReference)libraryEClass.getEStructuralFeatures().get(0);
@@ -2593,6 +2740,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLoopExp() {
 		return loopExpEClass;
 	}
@@ -2602,6 +2750,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLoopExp_Body() {
 		return (EReference)loopExpEClass.getEStructuralFeatures().get(0);
 	}
@@ -2611,6 +2760,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLoopExp_Iterator() {
 		return (EReference)loopExpEClass.getEStructuralFeatures().get(1);
 	}
@@ -2620,6 +2770,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLoopExp_ReferredIteration()
 	{
 		return (EReference)loopExpEClass.getEStructuralFeatures().get(2);
@@ -2630,6 +2781,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getLoopExp__ValidateSourceIsCollection__DiagnosticChain_Map()
 	{
 		return loopExpEClass.getEOperations().get(1);
@@ -2640,6 +2792,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getLoopExp__ValidateNoInitializers__DiagnosticChain_Map()
 	{
 		return loopExpEClass.getEOperations().get(0);
@@ -2650,6 +2803,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMessageExp() {
 		return messageExpEClass;
 	}
@@ -2659,6 +2813,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMessageExp_Target() {
 		return (EReference)messageExpEClass.getEStructuralFeatures().get(3);
 	}
@@ -2668,6 +2823,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMessageExp_Argument() {
 		return (EReference)messageExpEClass.getEStructuralFeatures().get(0);
 	}
@@ -2677,6 +2833,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMessageExp_CalledOperation() {
 		return (EReference)messageExpEClass.getEStructuralFeatures().get(1);
 	}
@@ -2686,6 +2843,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMessageExp_SentSignal() {
 		return (EReference)messageExpEClass.getEStructuralFeatures().get(2);
 	}
@@ -2695,6 +2853,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getMessageExp__ValidateOneCallOrOneSend__DiagnosticChain_Map()
 	{
 		return messageExpEClass.getEOperations().get(0);
@@ -2705,6 +2864,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getMessageExp__ValidateTargetIsNotACollection__DiagnosticChain_Map()
 	{
 		return messageExpEClass.getEOperations().get(1);
@@ -2715,6 +2875,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSendSignalAction() {
 		return sendSignalActionEClass;
 	}
@@ -2724,6 +2885,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSendSignalAction_Signal() {
 		return (EReference)sendSignalActionEClass.getEStructuralFeatures().get(0);
 	}
@@ -2733,6 +2895,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSignal() {
 		return signalEClass;
 	}
@@ -2742,6 +2905,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSlot()
 	{
 		return slotEClass;
@@ -2752,6 +2916,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSlot_DefiningProperty()
 	{
 		return (EReference)slotEClass.getEStructuralFeatures().get(0);
@@ -2762,6 +2927,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSlot_OwningInstance()
 	{
 		return (EReference)slotEClass.getEStructuralFeatures().get(1);
@@ -2772,6 +2938,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSlot_Values()
 	{
 		return (EReference)slotEClass.getEStructuralFeatures().get(2);
@@ -2782,6 +2949,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMessageType() {
 		return messageTypeEClass;
 	}
@@ -2791,6 +2959,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMessageType_ReferredSignal() {
 		return (EReference)messageTypeEClass.getEStructuralFeatures().get(1);
 	}
@@ -2800,6 +2969,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getModel()
 	{
 		return modelEClass;
@@ -2810,6 +2980,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getModel_ExternalURI()
 	{
 		return (EAttribute)modelEClass.getEStructuralFeatures().get(0);
@@ -2820,6 +2991,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getModel_Imports()
 	{
 		return (EReference)modelEClass.getEStructuralFeatures().get(1);
@@ -2830,6 +3002,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getModel_OwnedPackages()
 	{
 		return (EReference)modelEClass.getEStructuralFeatures().get(2);
@@ -2840,6 +3013,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMessageType_ReferredOperation() {
 		return (EReference)messageTypeEClass.getEStructuralFeatures().get(0);
 	}
@@ -2849,6 +3023,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMorePivotable()
 	{
 		return morePivotableEClass;
@@ -2859,6 +3034,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNullLiteralExp() {
 		return nullLiteralExpEClass;
 	}
@@ -2868,6 +3044,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOperationCallExp() {
 		return operationCallExpEClass;
 	}
@@ -2877,6 +3054,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperationCallExp_Argument() {
 		return (EReference)operationCallExpEClass.getEStructuralFeatures().get(0);
 	}
@@ -2886,6 +3064,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperationCallExp_ReferredOperation() {
 		return (EReference)operationCallExpEClass.getEStructuralFeatures().get(1);
 	}
@@ -2895,6 +3074,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getOperationCallExp__ValidateArgumentTypeIsConformant__DiagnosticChain_Map()
 	{
 		return operationCallExpEClass.getEOperations().get(1);
@@ -2905,6 +3085,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getOperationCallExp__ValidateArgumentCount__DiagnosticChain_Map()
 	{
 		return operationCallExpEClass.getEOperations().get(0);
@@ -2915,6 +3096,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOrderedSetType() {
 		return orderedSetTypeEClass;
 	}
@@ -2924,6 +3106,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOrphanCompletePackage()
 	{
 		return orphanCompletePackageEClass;
@@ -2934,6 +3117,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPrimitiveType() {
 		return primitiveTypeEClass;
 	}
@@ -2943,6 +3127,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getProfile()
 	{
 		return profileEClass;
@@ -2953,6 +3138,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getProfile_Application()
 	{
 		return (EReference)profileEClass.getEStructuralFeatures().get(0);
@@ -2963,6 +3149,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getProfileApplication()
 	{
 		return profileApplicationEClass;
@@ -2973,6 +3160,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getProfileApplication_AppliedProfile()
 	{
 		return (EReference)profileApplicationEClass.getEStructuralFeatures().get(0);
@@ -2983,6 +3171,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getProfileApplication_ApplyingPackage()
 	{
 		return (EReference)profileApplicationEClass.getEStructuralFeatures().get(1);
@@ -2993,6 +3182,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProfileApplication_IsStrict()
 	{
 		return (EAttribute)profileApplicationEClass.getEStructuralFeatures().get(2);
@@ -3003,6 +3193,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPropertyCallExp() {
 		return propertyCallExpEClass;
 	}
@@ -3012,6 +3203,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPropertyCallExp_ReferredProperty() {
 		return (EReference)propertyCallExpEClass.getEStructuralFeatures().get(0);
 	}
@@ -3021,6 +3213,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getPropertyCallExp__GetSpecializedReferredPropertyOwningType()
 	{
 		return propertyCallExpEClass.getEOperations().get(2);
@@ -3031,6 +3224,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getPropertyCallExp__GetSpecializedReferredPropertyType()
 	{
 		return propertyCallExpEClass.getEOperations().get(3);
@@ -3041,6 +3235,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getPropertyCallExp__ValidateNonStaticSourceTypeIsConformant__DiagnosticChain_Map()
 	{
 		return propertyCallExpEClass.getEOperations().get(1);
@@ -3051,6 +3246,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getPropertyCallExp__ValidateCompatibleResultType__DiagnosticChain_Map()
 	{
 		return propertyCallExpEClass.getEOperations().get(0);
@@ -3061,6 +3257,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPseudostate()
 	{
 		return pseudostateEClass;
@@ -3071,6 +3268,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPseudostate_Kind()
 	{
 		return (EAttribute)pseudostateEClass.getEStructuralFeatures().get(0);
@@ -3081,6 +3279,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPseudostate_StateMachine()
 	{
 		return (EReference)pseudostateEClass.getEStructuralFeatures().get(2);
@@ -3091,6 +3290,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPseudostate_State()
 	{
 		return (EReference)pseudostateEClass.getEStructuralFeatures().get(1);
@@ -3101,6 +3301,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRealLiteralExp() {
 		return realLiteralExpEClass;
 	}
@@ -3110,6 +3311,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getRealLiteralExp_RealSymbol() {
 		return (EAttribute)realLiteralExpEClass.getEStructuralFeatures().get(0);
 	}
@@ -3119,6 +3321,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getReferringElement()
 	{
 		return referringElementEClass;
@@ -3129,6 +3332,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getReferringElement__GetReferredElement()
 	{
 		return referringElementEClass.getEOperations().get(0);
@@ -3139,6 +3343,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRegion()
 	{
 		return regionEClass;
@@ -3149,6 +3354,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRegion_Subvertex()
 	{
 		return (EReference)regionEClass.getEStructuralFeatures().get(3);
@@ -3159,6 +3365,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRegion_Transition()
 	{
 		return (EReference)regionEClass.getEStructuralFeatures().get(4);
@@ -3169,6 +3376,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRegion_StateMachine()
 	{
 		return (EReference)regionEClass.getEStructuralFeatures().get(2);
@@ -3179,6 +3387,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRegion_State()
 	{
 		return (EReference)regionEClass.getEStructuralFeatures().get(1);
@@ -3189,6 +3398,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRegion_ExtendedRegion()
 	{
 		return (EReference)regionEClass.getEStructuralFeatures().get(0);
@@ -3199,6 +3409,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRootCompletePackage()
 	{
 		return rootCompletePackageEClass;
@@ -3209,6 +3420,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRootCompletePackage_OwningCompleteModel()
 	{
 		return (EReference)rootCompletePackageEClass.getEStructuralFeatures().get(0);
@@ -3219,6 +3431,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSelfType()
 	{
 		return selfTypeEClass;
@@ -3229,6 +3442,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getSelfType__SpecializeIn__OCLExpression_Type_1()
 	{
 		return selfTypeEClass.getEOperations().get(0);
@@ -3239,6 +3453,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSequenceType() {
 		return sequenceTypeEClass;
 	}
@@ -3248,6 +3463,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSetType() {
 		return setTypeEClass;
 	}
@@ -3257,6 +3473,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getState() {
 		return stateEClass;
 	}
@@ -3266,6 +3483,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getState_IsComposite()
 	{
 		return (EAttribute)stateEClass.getEStructuralFeatures().get(6);
@@ -3276,6 +3494,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getState_IsOrthogonal()
 	{
 		return (EAttribute)stateEClass.getEStructuralFeatures().get(7);
@@ -3286,6 +3505,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getState_IsSimple()
 	{
 		return (EAttribute)stateEClass.getEStructuralFeatures().get(8);
@@ -3296,6 +3516,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getState_IsSubmachineState()
 	{
 		return (EAttribute)stateEClass.getEStructuralFeatures().get(9);
@@ -3306,6 +3527,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getState_Submachine()
 	{
 		return (EReference)stateEClass.getEStructuralFeatures().get(13);
@@ -3316,6 +3538,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getState_Connection()
 	{
 		return (EReference)stateEClass.getEStructuralFeatures().get(0);
@@ -3326,6 +3549,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getState_RedefinedState()
 	{
 		return (EReference)stateEClass.getEStructuralFeatures().get(10);
@@ -3336,6 +3560,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getState_Region()
 	{
 		return (EReference)stateEClass.getEStructuralFeatures().get(11);
@@ -3346,6 +3571,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getState_StateInvariant()
 	{
 		return (EReference)stateEClass.getEStructuralFeatures().get(12);
@@ -3356,6 +3582,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getState_Entry()
 	{
 		return (EReference)stateEClass.getEStructuralFeatures().get(4);
@@ -3366,6 +3593,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getState_Exit()
 	{
 		return (EReference)stateEClass.getEStructuralFeatures().get(5);
@@ -3376,6 +3604,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getState_DoActivity()
 	{
 		return (EReference)stateEClass.getEStructuralFeatures().get(3);
@@ -3386,6 +3615,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getState_ConnectionPoint()
 	{
 		return (EReference)stateEClass.getEStructuralFeatures().get(1);
@@ -3396,6 +3626,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getState_DeferrableTrigger()
 	{
 		return (EReference)stateEClass.getEStructuralFeatures().get(2);
@@ -3406,6 +3637,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getStateExp() {
 		return stateExpEClass;
 	}
@@ -3415,6 +3647,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getStateExp_ReferredState() {
 		return (EReference)stateExpEClass.getEStructuralFeatures().get(0);
 	}
@@ -3424,6 +3657,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getStateMachine()
 	{
 		return stateMachineEClass;
@@ -3434,6 +3668,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getStateMachine_Region()
 	{
 		return (EReference)stateMachineEClass.getEStructuralFeatures().get(2);
@@ -3444,6 +3679,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getStateMachine_ConnectionPoint()
 	{
 		return (EReference)stateMachineEClass.getEStructuralFeatures().get(0);
@@ -3454,6 +3690,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getStateMachine_ExtendedStateMachine()
 	{
 		return (EReference)stateMachineEClass.getEStructuralFeatures().get(1);
@@ -3464,6 +3701,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getStateMachine_SubmachineState()
 	{
 		return (EReference)stateMachineEClass.getEStructuralFeatures().get(3);
@@ -3474,6 +3712,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getStereotype()
 	{
 		return stereotypeEClass;
@@ -3484,6 +3723,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getStereotype_ExtensionOfs()
 	{
 		return (EReference)stereotypeEClass.getEStructuralFeatures().get(0);
@@ -3494,6 +3734,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getStringLiteralExp() {
 		return stringLiteralExpEClass;
 	}
@@ -3503,6 +3744,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStringLiteralExp_StringSymbol() {
 		return (EAttribute)stringLiteralExpEClass.getEStructuralFeatures().get(0);
 	}
@@ -3512,6 +3754,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTupleLiteralExp() {
 		return tupleLiteralExpEClass;
 	}
@@ -3521,6 +3764,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTupleLiteralExp_Part() {
 		return (EReference)tupleLiteralExpEClass.getEStructuralFeatures().get(0);
 	}
@@ -3530,6 +3774,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTupleLiteralPart() {
 		return tupleLiteralPartEClass;
 	}
@@ -3539,6 +3784,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTupleLiteralPart_InitExpression()
 	{
 		return (EReference)tupleLiteralPartEClass.getEStructuralFeatures().get(0);
@@ -3549,6 +3795,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTupleType() {
 		return tupleTypeEClass;
 	}
@@ -3558,6 +3805,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTypeExp() {
 		return typeExpEClass;
 	}
@@ -3567,6 +3815,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTypeExp_ReferredType() {
 		return (EReference)typeExpEClass.getEStructuralFeatures().get(0);
 	}
@@ -3576,6 +3825,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTypeExtension()
 	{
 		return typeExtensionEClass;
@@ -3586,6 +3836,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTypeExtension_IsRequired()
 	{
 		return (EAttribute)typeExtensionEClass.getEStructuralFeatures().get(0);
@@ -3596,6 +3847,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTypeExtension_Stereotype()
 	{
 		return (EReference)typeExtensionEClass.getEStructuralFeatures().get(1);
@@ -3606,6 +3858,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTypeExtension_Type()
 	{
 		return (EReference)typeExtensionEClass.getEStructuralFeatures().get(2);
@@ -3616,6 +3869,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getUnlimitedNaturalLiteralExp() {
 		return unlimitedNaturalLiteralExpEClass;
 	}
@@ -3625,6 +3879,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getUnlimitedNaturalLiteralExp_UnlimitedNaturalSymbol()
 	{
 		return (EAttribute)unlimitedNaturalLiteralExpEClass.getEStructuralFeatures().get(0);
@@ -3635,6 +3890,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getUnspecifiedValueExp() {
 		return unspecifiedValueExpEClass;
 	}
@@ -3644,6 +3900,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getVariableExp() {
 		return variableExpEClass;
 	}
@@ -3653,6 +3910,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getVariableExp_ReferredVariable() {
 		return (EReference)variableExpEClass.getEStructuralFeatures().get(1);
 	}
@@ -3662,6 +3920,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getVariableExp_Implicit()
 	{
 		return (EAttribute)variableExpEClass.getEStructuralFeatures().get(0);
@@ -3672,6 +3931,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getVertex()
 	{
 		return vertexEClass;
@@ -3682,6 +3942,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getVertex_Container()
 	{
 		return (EReference)vertexEClass.getEStructuralFeatures().get(0);
@@ -3692,6 +3953,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getVertex_Outgoing()
 	{
 		return (EReference)vertexEClass.getEStructuralFeatures().get(2);
@@ -3702,6 +3964,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getVertex_Incoming()
 	{
 		return (EReference)vertexEClass.getEStructuralFeatures().get(1);
@@ -3712,6 +3975,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getVoidType() {
 		return voidTypeEClass;
 	}
@@ -3721,6 +3985,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getWildcardType()
 	{
 		return wildcardTypeEClass;
@@ -3731,6 +3996,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getWildcardType_LowerBound()
 	{
 		return (EReference)wildcardTypeEClass.getEStructuralFeatures().get(0);
@@ -3741,6 +4007,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getWildcardType_UpperBound()
 	{
 		return (EReference)wildcardTypeEClass.getEStructuralFeatures().get(1);
@@ -3751,6 +4018,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPivotable() {
 		return pivotableEClass;
 	}
@@ -3760,6 +4028,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getVisitable() {
 		return visitableEClass;
 	}
@@ -3769,6 +4038,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getClass_() {
 		return classEClass;
 	}
@@ -3778,6 +4048,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getClass_InstanceClassName()
 	{
 		return (EAttribute)classEClass.getEStructuralFeatures().get(0);
@@ -3788,6 +4059,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getClass_IsAbstract() {
 		return (EAttribute)classEClass.getEStructuralFeatures().get(1);
 	}
@@ -3797,6 +4069,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getClass_IsActive()
 	{
 		return (EAttribute)classEClass.getEStructuralFeatures().get(2);
@@ -3807,6 +4080,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getClass_OwnedBehavior()
 	{
 		return (EReference)classEClass.getEStructuralFeatures().get(4);
@@ -3817,6 +4091,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getClass_OwnedInvariants()
 	{
 		return (EReference)classEClass.getEStructuralFeatures().get(5);
@@ -3827,6 +4102,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getClass_OwnedOperations()
 	{
 		return (EReference)classEClass.getEStructuralFeatures().get(6);
@@ -3837,6 +4113,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getClass_OwnedProperties()
 	{
 		return (EReference)classEClass.getEStructuralFeatures().get(7);
@@ -3847,6 +4124,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getClass_OwningPackage()
 	{
 		return (EReference)classEClass.getEStructuralFeatures().get(8);
@@ -3857,6 +4135,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getClass_SuperClasses()
 	{
 		return (EReference)classEClass.getEStructuralFeatures().get(9);
@@ -3867,6 +4146,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getClass__ValidateUniqueInvariantName__DiagnosticChain_Map()
 	{
 		return classEClass.getEOperations().get(0);
@@ -3877,6 +4157,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getClass_IsInterface()
 	{
 		return (EAttribute)classEClass.getEStructuralFeatures().get(3);
@@ -3887,6 +4168,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getType() {
 		return typeEClass;
 	}
@@ -3896,6 +4178,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getType_ExtendedBys()
 	{
 		return (EReference)typeEClass.getEStructuralFeatures().get(0);
@@ -3906,6 +4189,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getType__FlattenedType()
 	{
 		return typeEClass.getEOperations().get(0);
@@ -3916,6 +4200,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getType__IsClass()
 	{
 		return typeEClass.getEOperations().get(1);
@@ -3926,6 +4211,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getType__IsTemplateParameter()
 	{
 		return typeEClass.getEOperations().get(2);
@@ -3936,6 +4222,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getType__SpecializeIn__OCLExpression_Type()
 	{
 		return typeEClass.getEOperations().get(3);
@@ -3946,6 +4233,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTemplateableElement() {
 		return templateableElementEClass;
 	}
@@ -3955,6 +4243,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTemplateableElement_OwnedTemplateBindings()
 	{
 		return (EReference)templateableElementEClass.getEStructuralFeatures().get(0);
@@ -3965,6 +4254,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTemplateableElement_OwnedTemplateSignature() {
 		return (EReference)templateableElementEClass.getEStructuralFeatures().get(1);
 	}
@@ -3974,6 +4264,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTemplateableElement_UnspecializedElement()
 	{
 		return (EReference)templateableElementEClass.getEStructuralFeatures().get(2);
@@ -3984,6 +4275,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTransition()
 	{
 		return transitionEClass;
@@ -3994,6 +4286,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTransition_Kind()
 	{
 		return (EAttribute)transitionEClass.getEStructuralFeatures().get(3);
@@ -4004,6 +4297,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTransition_Container()
 	{
 		return (EReference)transitionEClass.getEStructuralFeatures().get(0);
@@ -4014,6 +4308,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTransition_Source()
 	{
 		return (EReference)transitionEClass.getEStructuralFeatures().get(4);
@@ -4024,6 +4319,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTransition_Target()
 	{
 		return (EReference)transitionEClass.getEStructuralFeatures().get(5);
@@ -4034,6 +4330,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTransition_Guard()
 	{
 		return (EReference)transitionEClass.getEStructuralFeatures().get(2);
@@ -4044,6 +4341,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTransition_Effect()
 	{
 		return (EReference)transitionEClass.getEStructuralFeatures().get(1);
@@ -4054,6 +4352,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTransition_Trigger()
 	{
 		return (EReference)transitionEClass.getEStructuralFeatures().get(6);
@@ -4064,6 +4363,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTrigger()
 	{
 		return triggerEClass;
@@ -4074,6 +4374,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTrigger_State()
 	{
 		return (EReference)triggerEClass.getEStructuralFeatures().get(0);
@@ -4084,6 +4385,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTrigger_Transition()
 	{
 		return (EReference)triggerEClass.getEStructuralFeatures().get(1);
@@ -4094,6 +4396,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTemplateBinding() {
 		return templateBindingEClass;
 	}
@@ -4103,6 +4406,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTemplateBinding_OwnedTemplateParameterSubstitutions()
 	{
 		return (EReference)templateBindingEClass.getEStructuralFeatures().get(0);
@@ -4113,6 +4417,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTemplateBinding_OwningTemplateableElement()
 	{
 		return (EReference)templateBindingEClass.getEStructuralFeatures().get(1);
@@ -4123,6 +4428,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTemplateBinding_TemplateSignature()
 	{
 		return (EReference)templateBindingEClass.getEStructuralFeatures().get(2);
@@ -4133,6 +4439,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTemplateSignature() {
 		return templateSignatureEClass;
 	}
@@ -4142,6 +4449,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTemplateSignature_OwnedTemplateParameters()
 	{
 		return (EReference)templateSignatureEClass.getEStructuralFeatures().get(0);
@@ -4152,6 +4460,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTemplateSignature_OwningTemplateableElement()
 	{
 		return (EReference)templateSignatureEClass.getEStructuralFeatures().get(1);
@@ -4162,6 +4471,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTemplateParameter() {
 		return templateParameterEClass;
 	}
@@ -4171,6 +4481,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTemplateParameter_ConstrainingClass()
 	{
 		return (EReference)templateParameterEClass.getEStructuralFeatures().get(0);
@@ -4181,6 +4492,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTemplateParameter_LowerBound()
 	{
 		return (EReference)templateParameterEClass.getEStructuralFeatures().get(1);
@@ -4191,6 +4503,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTemplateParameter_OwningTemplateSignature()
 	{
 		return (EReference)templateParameterEClass.getEStructuralFeatures().get(2);
@@ -4201,6 +4514,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTemplateParameter_UpperBound()
 	{
 		return (EReference)templateParameterEClass.getEStructuralFeatures().get(3);
@@ -4211,6 +4525,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTemplateParameterSubstitution() {
 		return templateParameterSubstitutionEClass;
 	}
@@ -4220,6 +4535,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTemplateParameterSubstitution_Formal() {
 		return (EReference)templateParameterSubstitutionEClass.getEStructuralFeatures().get(1);
 	}
@@ -4229,6 +4545,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTemplateParameterSubstitution_OwnedWildcard()
 	{
 		return (EReference)templateParameterSubstitutionEClass.getEStructuralFeatures().get(2);
@@ -4239,6 +4556,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTemplateParameterSubstitution_OwningTemplateBinding()
 	{
 		return (EReference)templateParameterSubstitutionEClass.getEStructuralFeatures().get(3);
@@ -4249,6 +4567,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTemplateParameterSubstitution_Actual() {
 		return (EReference)templateParameterSubstitutionEClass.getEStructuralFeatures().get(0);
 	}
@@ -4258,6 +4577,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPackage() {
 		return packageEClass;
 	}
@@ -4267,6 +4587,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPackage_URI()
 	{
 		return (EAttribute)packageEClass.getEStructuralFeatures().get(0);
@@ -4277,6 +4598,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPackage_NsPrefix() {
 		return (EAttribute)packageEClass.getEStructuralFeatures().get(2);
 	}
@@ -4286,6 +4608,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPackage_OwnedClasses()
 	{
 		return (EReference)packageEClass.getEStructuralFeatures().get(3);
@@ -4296,6 +4619,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPackage_OwnedInstances()
 	{
 		return (EReference)packageEClass.getEStructuralFeatures().get(4);
@@ -4306,6 +4630,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPackage_OwnedPackages()
 	{
 		return (EReference)packageEClass.getEStructuralFeatures().get(5);
@@ -4316,6 +4641,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPackage_ImportedPackage()
 	{
 		return (EReference)packageEClass.getEStructuralFeatures().get(1);
@@ -4326,6 +4652,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPackage_OwningPackage()
 	{
 		return (EReference)packageEClass.getEStructuralFeatures().get(6);
@@ -4336,6 +4663,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPackage_ProfileApplication()
 	{
 		return (EReference)packageEClass.getEStructuralFeatures().get(7);
@@ -4346,6 +4674,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNamespace() {
 		return namespaceEClass;
 	}
@@ -4355,6 +4684,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getNamespace_OwnedRule()
 	{
 		return (EReference)namespaceEClass.getEStructuralFeatures().get(0);
@@ -4365,6 +4695,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPrecedence() {
 		return precedenceEClass;
 	}
@@ -4374,6 +4705,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPrecedence_Associativity() {
 		return (EAttribute)precedenceEClass.getEStructuralFeatures().get(0);
 	}
@@ -4383,6 +4715,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPrecedence_Order() {
 		return (EAttribute)precedenceEClass.getEStructuralFeatures().get(1);
 	}
@@ -4392,6 +4725,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPrimitiveCompletePackage()
 	{
 		return primitiveCompletePackageEClass;
@@ -4402,6 +4736,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getProperty() {
 		return propertyEClass;
 	}
@@ -4411,6 +4746,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getProperty_AssociationClass()
 	{
 		return (EReference)propertyEClass.getEStructuralFeatures().get(0);
@@ -4421,6 +4757,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProperty_IsReadOnly() {
 		return (EAttribute)propertyEClass.getEStructuralFeatures().get(7);
 	}
@@ -4430,6 +4767,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProperty_Default() {
 		return (EAttribute)propertyEClass.getEStructuralFeatures().get(1);
 	}
@@ -4439,6 +4777,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProperty_IsComposite() {
 		return (EAttribute)propertyEClass.getEStructuralFeatures().get(4);
 	}
@@ -4448,6 +4787,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProperty_IsDerived() {
 		return (EAttribute)propertyEClass.getEStructuralFeatures().get(5);
 	}
@@ -4457,6 +4797,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getProperty_Opposite() {
 		return (EReference)propertyEClass.getEStructuralFeatures().get(13);
 	}
@@ -4466,6 +4807,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getProperty_OwningClass()
 	{
 		return (EReference)propertyEClass.getEStructuralFeatures().get(14);
@@ -4476,6 +4818,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProperty_Implicit()
 	{
 		return (EAttribute)propertyEClass.getEStructuralFeatures().get(3);
@@ -4486,6 +4829,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getProperty_DefaultExpression()
 	{
 		return (EReference)propertyEClass.getEStructuralFeatures().get(2);
@@ -4496,6 +4840,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProperty_IsID()
 	{
 		return (EAttribute)propertyEClass.getEStructuralFeatures().get(6);
@@ -4506,6 +4851,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getProperty_Keys()
 	{
 		return (EReference)propertyEClass.getEStructuralFeatures().get(12);
@@ -4516,6 +4862,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProperty_IsResolveProxies()
 	{
 		return (EAttribute)propertyEClass.getEStructuralFeatures().get(8);
@@ -4526,6 +4873,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProperty_IsTransient()
 	{
 		return (EAttribute)propertyEClass.getEStructuralFeatures().get(9);
@@ -4536,6 +4884,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProperty_IsUnsettable()
 	{
 		return (EAttribute)propertyEClass.getEStructuralFeatures().get(10);
@@ -4546,6 +4895,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProperty_IsVolatile()
 	{
 		return (EAttribute)propertyEClass.getEStructuralFeatures().get(11);
@@ -4556,6 +4906,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getProperty_RedefinedProperty()
 	{
 		return (EReference)propertyEClass.getEStructuralFeatures().get(15);
@@ -4566,6 +4917,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getProperty_SubsettedProperty()
 	{
 		return (EReference)propertyEClass.getEStructuralFeatures().get(17);
@@ -4576,6 +4928,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getProperty_ReferredProperty()
 	{
 		return (EReference)propertyEClass.getEStructuralFeatures().get(16);
@@ -4586,6 +4939,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getProperty__IsAttribute__Property()
 	{
 		return propertyEClass.getEOperations().get(1);
@@ -4596,6 +4950,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getProperty__ValidateCompatibleDefaultExpression__DiagnosticChain_Map()
 	{
 		return propertyEClass.getEOperations().get(0);
@@ -4606,6 +4961,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTypedElement() {
 		return typedElementEClass;
 	}
@@ -4615,6 +4971,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTypedElement_IsMany()
 	{
 		return (EAttribute)typedElementEClass.getEStructuralFeatures().get(0);
@@ -4625,6 +4982,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTypedElement_Type() {
 		return (EReference)typedElementEClass.getEStructuralFeatures().get(2);
 	}
@@ -4634,6 +4992,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getTypedElement__CompatibleBody__ValueSpecification()
 	{
 		return typedElementEClass.getEOperations().get(0);
@@ -4644,6 +5003,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getTypedElement__MakeParameter()
 	{
 		return typedElementEClass.getEOperations().get(1);
@@ -4654,6 +5014,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTypedElement_IsRequired()
 	{
 		return (EAttribute)typedElementEClass.getEStructuralFeatures().get(1);
@@ -4664,6 +5025,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAssociationClass() {
 		return associationClassEClass;
 	}
@@ -4673,6 +5035,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAssociationClass_UnownedAttribute() {
 		return (EReference)associationClassEClass.getEStructuralFeatures().get(0);
 	}
@@ -4682,6 +5045,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOperation() {
 		return operationEClass;
 	}
@@ -4691,6 +5055,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperation_RaisedException() {
 		return (EReference)operationEClass.getEStructuralFeatures().get(9);
 	}
@@ -4700,6 +5065,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperation_OwnedParameter() {
 		return (EReference)operationEClass.getEStructuralFeatures().get(4);
 	}
@@ -4709,6 +5075,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperation_OwningClass()
 	{
 		return (EReference)operationEClass.getEStructuralFeatures().get(5);
@@ -4719,6 +5086,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperation_Precondition()
 	{
 		return (EReference)operationEClass.getEStructuralFeatures().get(8);
@@ -4729,6 +5097,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperation_Postcondition()
 	{
 		return (EReference)operationEClass.getEStructuralFeatures().get(6);
@@ -4739,6 +5108,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperation_BodyExpression()
 	{
 		return (EReference)operationEClass.getEStructuralFeatures().get(0);
@@ -4749,6 +5119,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getOperation_IsInvalidating()
 	{
 		return (EAttribute)operationEClass.getEStructuralFeatures().get(1);
@@ -4759,6 +5130,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getOperation_IsTypeof()
 	{
 		return (EAttribute)operationEClass.getEStructuralFeatures().get(2);
@@ -4769,6 +5141,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getOperation_IsValidating()
 	{
 		return (EAttribute)operationEClass.getEStructuralFeatures().get(3);
@@ -4779,6 +5152,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperation_Precedence() {
 		return (EReference)operationEClass.getEStructuralFeatures().get(7);
 	}
@@ -4788,6 +5162,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperation_RedefinedOperation()
 	{
 		return (EReference)operationEClass.getEStructuralFeatures().get(10);
@@ -4798,6 +5173,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getOperation__ValidateCompatibleReturn__DiagnosticChain_Map()
 	{
 		return operationEClass.getEOperations().get(0);
@@ -4808,6 +5184,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getOperation__ValidateLoadableImplementation__DiagnosticChain_Map()
 	{
 		return operationEClass.getEOperations().get(1);
@@ -4818,6 +5195,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getOperation__ValidateUniquePreconditionName__DiagnosticChain_Map()
 	{
 		return operationEClass.getEOperations().get(3);
@@ -4828,6 +5206,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getOperation__ValidateUniquePostconditionName__DiagnosticChain_Map()
 	{
 		return operationEClass.getEOperations().get(2);
@@ -4838,6 +5217,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getParameter() {
 		return parameterEClass;
 	}
@@ -4847,6 +5227,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getParameter_IsTypeof()
 	{
 		return (EAttribute)parameterEClass.getEStructuralFeatures().get(0);
@@ -4857,6 +5238,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getParameter_Operation() {
 		return (EReference)parameterEClass.getEStructuralFeatures().get(1);
 	}
@@ -4866,6 +5248,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getParentCompletePackage()
 	{
 		return parentCompletePackageEClass;
@@ -4876,6 +5259,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getVariableDeclaration() {
 		return variableDeclarationEClass;
 	}
@@ -4885,6 +5269,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getVariableDeclaration_TypeValue()
 	{
 		return (EReference)variableDeclarationEClass.getEStructuralFeatures().get(0);
@@ -4895,6 +5280,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOppositePropertyCallExp()
 	{
 		return oppositePropertyCallExpEClass;
@@ -4905,6 +5291,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOppositePropertyCallExp_ReferredProperty()
 	{
 		return (EReference)oppositePropertyCallExpEClass.getEStructuralFeatures().get(0);
@@ -4915,6 +5302,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getComment() {
 		return commentEClass;
 	}
@@ -4924,6 +5312,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getComment_Body() {
 		return (EAttribute)commentEClass.getEStructuralFeatures().get(1);
 	}
@@ -4933,6 +5322,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getComment_OwningElement()
 	{
 		return (EReference)commentEClass.getEStructuralFeatures().get(2);
@@ -4943,6 +5333,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCompleteClass()
 	{
 		return completeClassEClass;
@@ -4953,6 +5344,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCompleteClass_OwningCompletePackage()
 	{
 		return (EReference)completeClassEClass.getEStructuralFeatures().get(0);
@@ -4963,6 +5355,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCompleteClass_PartialClasses()
 	{
 		return (EReference)completeClassEClass.getEStructuralFeatures().get(1);
@@ -4973,6 +5366,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCompleteModel()
 	{
 		return completeModelEClass;
@@ -4983,6 +5377,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCompleteModel_OrphanCompletePackage()
 	{
 		return (EReference)completeModelEClass.getEStructuralFeatures().get(0);
@@ -4993,6 +5388,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCompleteModel_OwnedCompletePackages()
 	{
 		return (EReference)completeModelEClass.getEStructuralFeatures().get(1);
@@ -5003,6 +5399,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCompleteModel_PartialModels()
 	{
 		return (EReference)completeModelEClass.getEStructuralFeatures().get(2);
@@ -5013,6 +5410,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCompleteModel_PrimitiveCompletePackage()
 	{
 		return (EReference)completeModelEClass.getEStructuralFeatures().get(3);
@@ -5023,6 +5421,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getCompleteModel__GetOwnedCompletePackage__String()
 	{
 		return completeModelEClass.getEOperations().get(0);
@@ -5033,6 +5432,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCompletePackage()
 	{
 		return completePackageEClass;
@@ -5043,6 +5443,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCompletePackage_OwnedCompleteClasses()
 	{
 		return (EReference)completePackageEClass.getEStructuralFeatures().get(0);
@@ -5053,6 +5454,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCompletePackage_OwnedCompletePackages()
 	{
 		return (EReference)completePackageEClass.getEStructuralFeatures().get(1);
@@ -5063,6 +5465,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCompletePackage_PartialPackages()
 	{
 		return (EReference)completePackageEClass.getEStructuralFeatures().get(2);
@@ -5073,6 +5476,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getCompletePackage__GetOwnedCompleteClass__String()
 	{
 		return completePackageEClass.getEOperations().get(0);
@@ -5083,6 +5487,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getComment_AnnotatedElement() {
 		return (EReference)commentEClass.getEStructuralFeatures().get(0);
 	}
@@ -5092,6 +5497,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getConnectionPointReference()
 	{
 		return connectionPointReferenceEClass;
@@ -5102,6 +5508,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConnectionPointReference_Entry()
 	{
 		return (EReference)connectionPointReferenceEClass.getEStructuralFeatures().get(0);
@@ -5112,6 +5519,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConnectionPointReference_State()
 	{
 		return (EReference)connectionPointReferenceEClass.getEStructuralFeatures().get(2);
@@ -5122,6 +5530,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConnectionPointReference_Exit()
 	{
 		return (EReference)connectionPointReferenceEClass.getEStructuralFeatures().get(1);
@@ -5132,6 +5541,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getConstraint() {
 		return constraintEClass;
 	}
@@ -5141,6 +5551,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConstraint_ConstrainedElement() {
 		return (EReference)constraintEClass.getEStructuralFeatures().get(0);
 	}
@@ -5150,6 +5561,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConstraint_Specification() {
 		return (EReference)constraintEClass.getEStructuralFeatures().get(7);
 	}
@@ -5159,6 +5571,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConstraint_Transition()
 	{
 		return (EReference)constraintEClass.getEStructuralFeatures().get(8);
@@ -5169,6 +5582,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConstraint_Context() {
 		return (EReference)constraintEClass.getEStructuralFeatures().get(1);
 	}
@@ -5178,6 +5592,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConstraint_IsCallable()
 	{
 		return (EAttribute)constraintEClass.getEStructuralFeatures().get(2);
@@ -5188,6 +5603,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConstraint_OwningState()
 	{
 		return (EReference)constraintEClass.getEStructuralFeatures().get(3);
@@ -5198,6 +5614,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConstraint_PostContext()
 	{
 		return (EReference)constraintEClass.getEStructuralFeatures().get(4);
@@ -5208,6 +5625,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConstraint_PreContext()
 	{
 		return (EReference)constraintEClass.getEStructuralFeatures().get(5);
@@ -5218,6 +5636,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConstraint_RedefinedConstraint()
 	{
 		return (EReference)constraintEClass.getEStructuralFeatures().get(6);
@@ -5228,6 +5647,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getConstraint__ValidateUniqueName__DiagnosticChain_Map()
 	{
 		return constraintEClass.getEOperations().get(0);
@@ -5238,6 +5658,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getConstructorExp()
 	{
 		return constructorExpEClass;
@@ -5248,6 +5669,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConstructorExp_Part()
 	{
 		return (EReference)constructorExpEClass.getEStructuralFeatures().get(0);
@@ -5258,6 +5680,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConstructorExp_Value()
 	{
 		return (EAttribute)constructorExpEClass.getEStructuralFeatures().get(1);
@@ -5268,6 +5691,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getConstructorPart()
 	{
 		return constructorPartEClass;
@@ -5278,6 +5702,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConstructorPart_ReferredProperty()
 	{
 		return (EReference)constructorPartEClass.getEStructuralFeatures().get(1);
@@ -5288,6 +5713,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConstructorPart_InitExpression()
 	{
 		return (EReference)constructorPartEClass.getEStructuralFeatures().get(0);
@@ -5298,6 +5724,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getValueSpecification() {
 		return valueSpecificationEClass;
 	}
@@ -5307,6 +5734,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getValueSpecification__IsComputable() {
 		return valueSpecificationEClass.getEOperations().get(2);
 	}
@@ -5316,6 +5744,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getValueSpecification__IntegerValue() {
 		return valueSpecificationEClass.getEOperations().get(1);
 	}
@@ -5325,6 +5754,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getValueSpecification__BooleanValue() {
 		return valueSpecificationEClass.getEOperations().get(0);
 	}
@@ -5334,6 +5764,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getValueSpecification__StringValue() {
 		return valueSpecificationEClass.getEOperations().get(4);
 	}
@@ -5343,6 +5774,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getValueSpecification__UnlimitedValue() {
 		return valueSpecificationEClass.getEOperations().get(5);
 	}
@@ -5352,6 +5784,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getValueSpecification__IsNull() {
 		return valueSpecificationEClass.getEOperations().get(3);
 	}
@@ -5361,6 +5794,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNameable() {
 		return nameableEClass;
 	}
@@ -5370,6 +5804,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDetail() {
 		return detailEClass;
 	}
@@ -5379,6 +5814,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDetail_Value() {
 		return (EAttribute)detailEClass.getEStructuralFeatures().get(0);
 	}
@@ -5388,6 +5824,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDynamicBehavior()
 	{
 		return dynamicBehaviorEClass;
@@ -5398,6 +5835,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDynamicElement()
 	{
 		return dynamicElementEClass;
@@ -5408,6 +5846,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDynamicElement_MetaType()
 	{
 		return (EReference)dynamicElementEClass.getEStructuralFeatures().get(0);
@@ -5418,6 +5857,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDynamicProperty()
 	{
 		return dynamicPropertyEClass;
@@ -5428,6 +5868,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDynamicProperty_ReferredProperty()
 	{
 		return (EReference)dynamicPropertyEClass.getEStructuralFeatures().get(1);
@@ -5438,6 +5879,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDynamicProperty_Default()
 	{
 		return (EAttribute)dynamicPropertyEClass.getEStructuralFeatures().get(0);
@@ -5448,6 +5890,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDynamicType()
 	{
 		return dynamicTypeEClass;
@@ -5458,6 +5901,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDynamicType_OwnedProperty()
 	{
 		return (EReference)dynamicTypeEClass.getEStructuralFeatures().get(0);
@@ -5468,6 +5912,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDynamicValueSpecification()
 	{
 		return dynamicValueSpecificationEClass;
@@ -5478,6 +5923,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAnyType() {
 		return anyTypeEClass;
 	}
@@ -5487,6 +5933,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAssociationClassCallExp() {
 		return associationClassCallExpEClass;
 	}
@@ -5496,6 +5943,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAssociationClassCallExp_ReferredAssociationClass() {
 		return (EReference)associationClassCallExpEClass.getEStructuralFeatures().get(0);
 	}
@@ -5505,6 +5953,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNavigationCallExp() {
 		return navigationCallExpEClass;
 	}
@@ -5514,6 +5963,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getNavigationCallExp_Qualifier() {
 		return (EReference)navigationCallExpEClass.getEStructuralFeatures().get(1);
 	}
@@ -5523,6 +5973,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNestedCompletePackage()
 	{
 		return nestedCompletePackageEClass;
@@ -5533,6 +5984,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getNestedCompletePackage_OwningCompletePackage()
 	{
 		return (EReference)nestedCompletePackageEClass.getEStructuralFeatures().get(0);
@@ -5543,6 +5995,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getNavigationCallExp_NavigationSource() {
 		return (EReference)navigationCallExpEClass.getEStructuralFeatures().get(0);
 	}
@@ -5552,6 +6005,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFeatureCallExp() {
 		return featureCallExpEClass;
 	}
@@ -5561,6 +6015,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFeatureCallExp_IsPre() {
 		return (EAttribute)featureCallExpEClass.getEStructuralFeatures().get(0);
 	}
@@ -5570,6 +6025,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFinalState()
 	{
 		return finalStateEClass;
@@ -5580,6 +6036,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCallExp() {
 		return callExpEClass;
 	}
@@ -5589,6 +6046,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCallExp_Source() {
 		return (EReference)callExpEClass.getEStructuralFeatures().get(1);
 	}
@@ -5598,6 +6056,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getCallExp_Implicit()
 	{
 		return (EAttribute)callExpEClass.getEStructuralFeatures().get(0);
@@ -5608,6 +6067,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getAssociativityKind() {
 		return associativityKindEEnum;
 	}
@@ -5617,6 +6077,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getCollectionKind() {
 		return collectionKindEEnum;
 	}
@@ -5626,6 +6087,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getPseudostateKind()
 	{
 		return pseudostateKindEEnum;
@@ -5636,6 +6098,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getTransitionKind()
 	{
 		return transitionKindEEnum;
@@ -5646,6 +6109,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EDataType getBoolean() {
 		return booleanEDataType;
 	}
@@ -5655,6 +6119,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EDataType getInteger() {
 		return integerEDataType;
 	}
@@ -5664,6 +6129,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EDataType getLibraryFeature()
 	{
 		return libraryFeatureEDataType;
@@ -5674,6 +6140,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EDataType getObject()
 	{
 		return objectEDataType;
@@ -5684,6 +6151,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EDataType getReal() {
 		return realEDataType;
 	}
@@ -5693,6 +6161,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EDataType getString() {
 		return stringEDataType;
 	}
@@ -5702,6 +6171,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EDataType getThrowable() {
 		return throwableEDataType;
 	}
@@ -5711,6 +6181,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EDataType getUnlimitedNatural() {
 		return unlimitedNaturalEDataType;
 	}
@@ -5720,6 +6191,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PivotFactory getPivotFactory() {
 		return (PivotFactory)getEFactoryInstance();
 	}

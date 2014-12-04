@@ -104,6 +104,7 @@ public class CurlyBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public AbstractNameExpCS getOwningNameExp()
 	{
 		if (eContainerFeatureID() != EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP) return null;
@@ -126,6 +127,7 @@ public class CurlyBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningNameExp(AbstractNameExpCS newOwningNameExp)
 	{
 		if (newOwningNameExp != eInternalContainer() || (eContainerFeatureID() != EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP && newOwningNameExp != null))
@@ -149,6 +151,7 @@ public class CurlyBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ConstructorPartCS> getOwnedParts()
 	{
 		if (ownedParts == null)
@@ -163,6 +166,7 @@ public class CurlyBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getValue()
 	{
 		return value;
@@ -173,6 +177,7 @@ public class CurlyBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(String newValue)
 	{
 		String oldValue = value;

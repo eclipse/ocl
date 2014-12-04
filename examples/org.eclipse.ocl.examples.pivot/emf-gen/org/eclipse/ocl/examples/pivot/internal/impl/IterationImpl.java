@@ -99,6 +99,7 @@ public class IterationImpl extends OperationImpl implements Iteration
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<Parameter> getOwnedIterator()
 	{
@@ -114,6 +115,7 @@ public class IterationImpl extends OperationImpl implements Iteration
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<Parameter> getOwnedAccumulator()
 	{

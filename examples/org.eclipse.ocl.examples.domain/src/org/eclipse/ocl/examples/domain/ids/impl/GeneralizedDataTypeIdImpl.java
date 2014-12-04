@@ -23,10 +23,12 @@ public class GeneralizedDataTypeIdImpl extends GeneralizedNestedTypeIdImpl imple
 		super(parent, templateParameters, name);
 	}
 
+	@Override
 	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitDataTypeId(this);
 	}
 
+	@Override
 	public @NonNull String getMetaTypeName() {
 		return TypeId.DATA_TYPE_NAME;
 	}

@@ -30,10 +30,12 @@ public class GeneralizedTupleTypeIdImpl extends AbstractTypeId implements TupleT
 		assert partsAreOrdered();
 	}
 
+	@Override
 	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitTupleTypeId(this);
 	}
 
+	@Override
 	public @NonNull String getDisplayName() {
 		StringBuilder s = new StringBuilder();
 		s.append(name);
@@ -61,10 +63,12 @@ public class GeneralizedTupleTypeIdImpl extends AbstractTypeId implements TupleT
 		return TUPLE_TYPE_NAME;
 	}
 
+	@Override
 	public @NonNull String getName() {
 		return name;
 	}
 
+	@Override
 	public @Nullable TuplePartId getPartId(@NonNull String name) {
 		for (TuplePartId partId : partIds) {
 			if (name.equals(partId.getName())) {
@@ -74,6 +78,7 @@ public class GeneralizedTupleTypeIdImpl extends AbstractTypeId implements TupleT
 		return null;
 	}
 	
+	@Override
 	public @NonNull TuplePartId[] getPartIds() {
 		return partIds;
 	}
@@ -83,6 +88,7 @@ public class GeneralizedTupleTypeIdImpl extends AbstractTypeId implements TupleT
 		return hashCode;
 	}
 
+	@Override
 	public boolean matches(@NonNull String thatName, @NonNull TuplePartId[] thoseOrderedParts) {
 		for (int i = 0; i < partIds.length; i++) {
 			if (partIds[i] != thoseOrderedParts[i]) {

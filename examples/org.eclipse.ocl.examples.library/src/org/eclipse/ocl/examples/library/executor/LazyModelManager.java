@@ -76,6 +76,7 @@ public abstract class LazyModelManager implements DomainModelManager {
 	 * 
 	 * @param type a class in the model
 	 */
+	@Override
 	public @NonNull Set<EObject> get(@NonNull DomainType type) {
 		// TODO: Optimize by parsing ahead of time to find all EClasses that we will query
 		Set<EObject> result = modelManager.get(type);		

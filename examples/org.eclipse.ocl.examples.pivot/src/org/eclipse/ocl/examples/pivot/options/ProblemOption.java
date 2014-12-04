@@ -80,10 +80,12 @@ public enum ProblemOption implements Option<ProblemHandler.Severity> {
 		this.defaultValue = defaultValue;
 	}
 	
+	@Override
 	public String getKey() {
 		return key;
 	}
 	
+	@Override
 	public ProblemHandler.Severity getDefaultValue() {
 		return defaultValue;
 	}

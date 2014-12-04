@@ -33,6 +33,7 @@ public class RangeOrderedSetValueImpl extends OrderedSetValueImpl
 		super(typeId, range);
 	}
 
+	@Override
 	public @NonNull OrderedSetValue append(@Nullable Object value) {
 		IntegerRange theElements = getElements();
 		IntegerValue nextValue = theElements.getLast().addInteger(ONE_VALUE);
@@ -78,10 +79,12 @@ public class RangeOrderedSetValueImpl extends OrderedSetValueImpl
 		}
 	}
 
+	@Override
 	public @Nullable Value first() {
 		return getElements().getFirst();
 	}
 
+	@Override
 	public @NonNull OrderedSetValue flatten() {
 		return this;
 	}
@@ -103,14 +106,17 @@ public class RangeOrderedSetValueImpl extends OrderedSetValueImpl
 //		return type;
 //	}
 
+	@Override
 	public @NonNull OrderedSetValue including(@Nullable Object value) {
 		return append(value);
 	}
 
+	@Override
 	public @Nullable Value last() {
 		return getElements().getLast();
 	}
 
+	@Override
 	public @NonNull OrderedSetValue prepend(@Nullable Object value) {
 		IntegerRange theElements = getElements();
 		IntegerValue previousValue = theElements.getFirst().subtractInteger(ONE_VALUE);
@@ -126,6 +132,7 @@ public class RangeOrderedSetValueImpl extends OrderedSetValueImpl
 		}
 	}
 
+	@Override
 	public SequenceValue toSequenceValue() {
 		return new RangeSequenceValueImpl(getSequenceTypeId(), getElements());
 	}

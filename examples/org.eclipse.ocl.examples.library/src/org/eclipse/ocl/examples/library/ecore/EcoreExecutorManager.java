@@ -124,6 +124,7 @@ public class EcoreExecutorManager extends ExecutorManager
 		}
 	}
 
+	@Override
 	public @NonNull DomainEvaluator createNestedEvaluator() {
 		return new EcoreExecutorManager(contextObject, (ExecutorStandardLibrary) standardLibrary);
 	}
@@ -137,6 +138,7 @@ public class EcoreExecutorManager extends ExecutorManager
 		return idResolver2.getDynamicTypeOf(value);
 	}
 
+	@Override
 	public @NonNull DomainModelManager getModelManager() {
 		DomainModelManager modelManager2 = modelManager;
 		if (modelManager2 == null) {
@@ -165,6 +167,7 @@ public class EcoreExecutorManager extends ExecutorManager
 		return modelManager2;
 	}
 
+	@Override
 	public @NonNull IdResolver getIdResolver() {
 		IdResolver idResolver2 = idResolver;
 		if (idResolver2 == null) {

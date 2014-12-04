@@ -31,10 +31,12 @@ public class PropertyIdImpl extends AbstractElementId implements PropertyId //, 
 //		this.eFeature = eFeature;
 	}
 
+	@Override
 	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitPropertyId(this);
 	}
 
+	@Override
 	public @NonNull String getDisplayName() {
 		StringBuilder s = new StringBuilder();
 		s.append(parentId);
@@ -52,10 +54,12 @@ public class PropertyIdImpl extends AbstractElementId implements PropertyId //, 
 		return TypeId.PROPERTY_NAME;
 	}
 
+	@Override
 	public @NonNull String getName() {
 		return name;
 	}
 
+	@Override
 	public @NonNull TypeId getParent() {
 		return parentId;
 	}

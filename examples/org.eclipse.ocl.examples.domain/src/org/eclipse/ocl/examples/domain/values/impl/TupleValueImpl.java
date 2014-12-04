@@ -77,6 +77,7 @@ public class TupleValueImpl extends ValueImpl implements TupleValue
 		}
     }
 
+	@Override
 	public @NonNull Object asObject() {
 		return partValues;
 	}
@@ -116,17 +117,20 @@ public class TupleValueImpl extends ValueImpl implements TupleValue
     	return true;
     }
 
+	@Override
 	public @NonNull TupleTypeId getTypeId() {
 		return tupleTypeId;
 	}
 
     // implements the inherited specification
-    public @Nullable Object getValue(@NonNull TuplePartId partId) {
+    @Override
+	public @Nullable Object getValue(@NonNull TuplePartId partId) {
         return getValue(partId.getIndex());
     }
 
     // implements the inherited specification
-    public @Nullable Object getValue(int index) {
+    @Override
+	public @Nullable Object getValue(int index) {
         return partValues[index];
     }
 

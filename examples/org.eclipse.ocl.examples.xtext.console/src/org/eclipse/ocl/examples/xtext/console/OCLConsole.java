@@ -58,6 +58,7 @@ public class OCLConsole
 		}
 	}
 	
+	@Override
 	public IPageBookViewPage createPage(IConsoleView view) {
 		OCLConsolePage page = new OCLConsolePage(this);
 		return page;

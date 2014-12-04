@@ -76,6 +76,7 @@ public class PrimitiveTypeRefCSImpl extends TypedRefCSImpl implements PrimitiveT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName()
 	{
 		return name;
@@ -86,6 +87,7 @@ public class PrimitiveTypeRefCSImpl extends TypedRefCSImpl implements PrimitiveT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName)
 	{
 		String oldName = name;

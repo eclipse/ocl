@@ -179,11 +179,13 @@ public class IncludeCSAttribution extends AbstractAttribution implements Unresol
 		return adapter.computeLookup(targetElement, environmentView, scopeView);
 	}
 
+	@Override
 	public @NonNull EReference getEReference() {
 		@SuppressWarnings("null") @NonNull EReference eReference = CompleteOCLCSPackage.Literals.INCLUDE_CS__REFERRED_NAMESPACE;
 		return eReference;
 	}
 
+	@Override
 	public String getMessage(@NonNull EObject context, @NonNull String linkText) {
 		IncludeAdapter adapter = PivotUtil.getAdapter(IncludeAdapter.class, context);
 		if (adapter != null) {

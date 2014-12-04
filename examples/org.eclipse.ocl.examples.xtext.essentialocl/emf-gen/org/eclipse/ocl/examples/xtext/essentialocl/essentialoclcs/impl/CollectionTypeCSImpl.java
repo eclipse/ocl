@@ -96,6 +96,7 @@ public class CollectionTypeCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -105,6 +106,7 @@ public class CollectionTypeCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -117,6 +119,7 @@ public class CollectionTypeCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypedRefCS getOwnedType() {
 		return ownedType;
 	}
@@ -143,6 +146,7 @@ public class CollectionTypeCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedType(TypedRefCS newOwnedType) {
 		if (newOwnedType != ownedType)
 		{

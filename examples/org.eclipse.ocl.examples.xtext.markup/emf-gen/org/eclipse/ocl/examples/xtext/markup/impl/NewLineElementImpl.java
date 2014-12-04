@@ -74,6 +74,7 @@ public class NewLineElementImpl extends MarkupElementImpl implements NewLineElem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getText() {
 		return text;
 	}
@@ -83,6 +84,7 @@ public class NewLineElementImpl extends MarkupElementImpl implements NewLineElem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setText(String newText) {
 		String oldText = text;
 		text = newText;

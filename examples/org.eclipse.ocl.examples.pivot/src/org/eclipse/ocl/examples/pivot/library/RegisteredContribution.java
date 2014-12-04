@@ -48,10 +48,12 @@ public interface RegisteredContribution<C extends RegisteredContribution<C>> {
 
 		protected abstract C createContribution();
 
+		@Override
 		public IConfigurationElement getElement() {
 			return element;
 		}
 		
+		@Override
 		public C getContribution() {
 			if (contribution == null) {
 				contribution = createContribution();
@@ -64,19 +66,23 @@ public interface RegisteredContribution<C extends RegisteredContribution<C>> {
 	{
 		private final @NonNull Map<String, C>  map = new HashMap<String, C>();
 
+		@Override
 		public @Nullable C get(@NonNull String key) {
 			C contribution = map.get(key);
 			return contribution != null ? contribution.getContribution() : null;
 		}
 
+		@Override
 		public @Nullable C put(@NonNull String key, @NonNull C contribution) {
 			return map.put(key, contribution);
 		}
 
+		@Override
 		public C remove(@NonNull String key) {
 			return map.remove(key);
 		}
 
+		@Override
 		public int size() {
 			return map.size();
 		}

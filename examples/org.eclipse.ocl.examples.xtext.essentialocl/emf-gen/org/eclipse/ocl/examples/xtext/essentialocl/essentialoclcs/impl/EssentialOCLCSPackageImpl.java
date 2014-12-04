@@ -477,6 +477,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAbstractNameExpCS()
 	{
 		return abstractNameExpCSEClass;
@@ -487,6 +488,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAbstractNameExpCS_OwnedPathName()
 	{
 		return (EReference)abstractNameExpCSEClass.getEStructuralFeatures().get(2);
@@ -497,6 +499,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAbstractNameExpCS_IsPre()
 	{
 		return (EAttribute)abstractNameExpCSEClass.getEStructuralFeatures().get(0);
@@ -507,6 +510,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAbstractNameExpCS_OwnedCurlyBracketedClause()
 	{
 		return (EReference)abstractNameExpCSEClass.getEStructuralFeatures().get(1);
@@ -517,6 +521,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAbstractNameExpCS_OwnedRoundBracketedClause()
 	{
 		return (EReference)abstractNameExpCSEClass.getEStructuralFeatures().get(3);
@@ -527,6 +532,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAbstractNameExpCS_OwnedSquareBracketedClauses()
 	{
 		return (EReference)abstractNameExpCSEClass.getEStructuralFeatures().get(4);
@@ -537,6 +543,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAbstractNameExpCS_SourceType()
 	{
 		return (EReference)abstractNameExpCSEClass.getEStructuralFeatures().get(5);
@@ -547,6 +554,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAbstractNameExpCS_SourceTypeValue()
 	{
 		return (EReference)abstractNameExpCSEClass.getEStructuralFeatures().get(6);
@@ -557,6 +565,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAssociationClassCallExpCS()
 	{
 		return associationClassCallExpCSEClass;
@@ -567,6 +576,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAssociationClassCallExpCS_ReferredAssociation()
 	{
 		return (EReference)associationClassCallExpCSEClass.getEStructuralFeatures().get(0);
@@ -577,6 +587,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPrefixExpCS() {
 		return prefixExpCSEClass;
 	}
@@ -586,6 +597,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCollectionTypeCS() {
 		return collectionTypeCSEClass;
 	}
@@ -595,6 +607,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getCollectionTypeCS_Name() {
 		return (EAttribute)collectionTypeCSEClass.getEStructuralFeatures().get(0);
 	}
@@ -604,6 +617,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCollectionTypeCS_OwnedType() {
 		return (EReference)collectionTypeCSEClass.getEStructuralFeatures().get(1);
 	}
@@ -613,6 +627,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getConstructorExpCS()
 	{
 		return constructorExpCSEClass;
@@ -623,6 +638,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConstructorExpCS_TypeName()
 	{
 		return (EReference)constructorExpCSEClass.getEStructuralFeatures().get(1);
@@ -633,6 +649,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConstructorExpCS_Parts()
 	{
 		return (EReference)constructorExpCSEClass.getEStructuralFeatures().get(0);
@@ -643,6 +660,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConstructorExpCS_Value()
 	{
 		return (EAttribute)constructorExpCSEClass.getEStructuralFeatures().get(2);
@@ -653,6 +671,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getConstructorPartCS() {
 		return constructorPartCSEClass;
 	}
@@ -662,6 +681,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConstructorPartCS_OwningCurlyBracketClause()
 	{
 		return (EReference)constructorPartCSEClass.getEStructuralFeatures().get(1);
@@ -672,6 +692,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConstructorPartCS_ReferredProperty()
 	{
 		return (EReference)constructorPartCSEClass.getEStructuralFeatures().get(2);
@@ -682,6 +703,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConstructorPartCS_OwnedInitExpression()
 	{
 		return (EReference)constructorPartCSEClass.getEStructuralFeatures().get(0);
@@ -692,6 +714,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getContextCS() {
 		return contextCSEClass;
 	}
@@ -701,6 +724,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getContextCS_OwnedExpression() {
 		return (EReference)contextCSEClass.getEStructuralFeatures().get(0);
 	}
@@ -710,6 +734,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCurlyBracketedClauseCS()
 	{
 		return curlyBracketedClauseCSEClass;
@@ -720,6 +745,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCurlyBracketedClauseCS_OwningNameExp()
 	{
 		return (EReference)curlyBracketedClauseCSEClass.getEStructuralFeatures().get(1);
@@ -730,6 +756,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCurlyBracketedClauseCS_OwnedParts()
 	{
 		return (EReference)curlyBracketedClauseCSEClass.getEStructuralFeatures().get(0);
@@ -740,6 +767,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getCurlyBracketedClauseCS_Value()
 	{
 		return (EAttribute)curlyBracketedClauseCSEClass.getEStructuralFeatures().get(2);
@@ -750,6 +778,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getExpCS() {
 		return expCSEClass;
 	}
@@ -759,6 +788,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getExpCS_HasError()
 	{
 		return (EAttribute)expCSEClass.getEStructuralFeatures().get(0);
@@ -769,6 +799,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getExpCS_LocalLeft()
 	{
 		return (EReference)expCSEClass.getEStructuralFeatures().get(1);
@@ -779,6 +810,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getExpCS_LocalLeftmostDescendant()
 	{
 		return (EReference)expCSEClass.getEStructuralFeatures().get(2);
@@ -789,6 +821,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getExpCS_LocalParent()
 	{
 		return (EReference)expCSEClass.getEStructuralFeatures().get(3);
@@ -799,6 +832,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getExpCS_LocalRight()
 	{
 		return (EReference)expCSEClass.getEStructuralFeatures().get(4);
@@ -809,6 +843,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getExpCS_LocalRightmostDescendant()
 	{
 		return (EReference)expCSEClass.getEStructuralFeatures().get(5);
@@ -819,6 +854,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getExpCS_Precedence()
 	{
 		return (EReference)expCSEClass.getEStructuralFeatures().get(6);
@@ -829,6 +865,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getExpSpecificationCS() {
 		return expSpecificationCSEClass;
 	}
@@ -838,6 +875,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getExpSpecificationCS_OwnedExpression() {
 		return (EReference)expSpecificationCSEClass.getEStructuralFeatures().get(0);
 	}
@@ -847,6 +885,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTypeLiteralExpCS() {
 		return typeLiteralExpCSEClass;
 	}
@@ -856,6 +895,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTypeLiteralExpCS_OwnedPathName()
 	{
 		return (EReference)typeLiteralExpCSEClass.getEStructuralFeatures().get(0);
@@ -866,6 +906,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTypeLiteralExpCS_OwnedType() {
 		return (EReference)typeLiteralExpCSEClass.getEStructuralFeatures().get(1);
 	}
@@ -875,6 +916,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTypeNameExpCS() {
 		return typeNameExpCSEClass;
 	}
@@ -884,6 +926,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTypeNameExpCS_OwnedPathName()
 	{
 		return (EReference)typeNameExpCSEClass.getEStructuralFeatures().get(2);
@@ -894,6 +937,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTypeNameExpCS_Element() {
 		return (EReference)typeNameExpCSEClass.getEStructuralFeatures().get(0);
 	}
@@ -903,6 +947,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTypeNameExpCS_OwnedCurlyBracketedClause()
 	{
 		return (EReference)typeNameExpCSEClass.getEStructuralFeatures().get(1);
@@ -913,6 +958,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTypeNameExpCS_OwnedPatternGuard()
 	{
 		return (EReference)typeNameExpCSEClass.getEStructuralFeatures().get(3);
@@ -923,6 +969,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getUnlimitedNaturalLiteralExpCS() {
 		return unlimitedNaturalLiteralExpCSEClass;
 	}
@@ -932,6 +979,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getVariableCS() {
 		return variableCSEClass;
 	}
@@ -941,6 +989,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getVariableCS_OwnedType() {
 		return (EReference)variableCSEClass.getEStructuralFeatures().get(1);
 	}
@@ -950,6 +999,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getVariableCS_OwnedInitExpression()
 	{
 		return (EReference)variableCSEClass.getEStructuralFeatures().get(0);
@@ -960,6 +1010,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getVariableExpCS()
 	{
 		return variableExpCSEClass;
@@ -970,6 +1021,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getVariableExpCS_ReferredVariable()
 	{
 		return (EReference)variableExpCSEClass.getEStructuralFeatures().get(0);
@@ -980,6 +1032,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getNavigationRole() {
 		return navigationRoleEEnum;
 	}
@@ -989,6 +1042,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLiteralExpCS() {
 		return literalExpCSEClass;
 	}
@@ -998,6 +1052,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNameExpCS() {
 		return nameExpCSEClass;
 	}
@@ -1007,6 +1062,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNavigatingArgCS() {
 		return navigatingArgCSEClass;
 	}
@@ -1016,6 +1072,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getNavigatingArgCS_OwningRoundBracketedClause()
 	{
 		return (EReference)navigatingArgCSEClass.getEStructuralFeatures().get(3);
@@ -1026,6 +1083,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNavigatingArgCS_Role() {
 		return (EAttribute)navigatingArgCSEClass.getEStructuralFeatures().get(5);
 	}
@@ -1035,6 +1093,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNavigatingArgCS_Prefix() {
 		return (EAttribute)navigatingArgCSEClass.getEStructuralFeatures().get(4);
 	}
@@ -1044,6 +1103,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getNavigatingArgCS_OwnedNameExpression()
 	{
 		return (EReference)navigatingArgCSEClass.getEStructuralFeatures().get(1);
@@ -1054,6 +1114,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getNavigatingArgCS_OwnedType() {
 		return (EReference)navigatingArgCSEClass.getEStructuralFeatures().get(2);
 	}
@@ -1063,6 +1124,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getNavigatingArgCS_OwnedInitExpression()
 	{
 		return (EReference)navigatingArgCSEClass.getEStructuralFeatures().get(0);
@@ -1073,6 +1135,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNestedExpCS() {
 		return nestedExpCSEClass;
 	}
@@ -1082,6 +1145,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getNestedExpCS_Source() {
 		return (EReference)nestedExpCSEClass.getEStructuralFeatures().get(0);
 	}
@@ -1091,6 +1155,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCollectionLiteralExpCS() {
 		return collectionLiteralExpCSEClass;
 	}
@@ -1100,6 +1165,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCollectionLiteralExpCS_OwnedType() {
 		return (EReference)collectionLiteralExpCSEClass.getEStructuralFeatures().get(1);
 	}
@@ -1109,6 +1175,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCollectionLiteralExpCS_OwnedParts() {
 		return (EReference)collectionLiteralExpCSEClass.getEStructuralFeatures().get(0);
 	}
@@ -1118,6 +1185,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCollectionLiteralPartCS() {
 		return collectionLiteralPartCSEClass;
 	}
@@ -1127,6 +1195,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCollectionLiteralPartCS_OwnedExpression()
 	{
 		return (EReference)collectionLiteralPartCSEClass.getEStructuralFeatures().get(0);
@@ -1137,6 +1206,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCollectionLiteralPartCS_OwnedLastExpression()
 	{
 		return (EReference)collectionLiteralPartCSEClass.getEStructuralFeatures().get(1);
@@ -1147,6 +1217,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCollectionPatternCS()
 	{
 		return collectionPatternCSEClass;
@@ -1157,6 +1228,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCollectionPatternCS_OwnedType()
 	{
 		return (EReference)collectionPatternCSEClass.getEStructuralFeatures().get(2);
@@ -1167,6 +1239,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCollectionPatternCS_OwnedParts()
 	{
 		return (EReference)collectionPatternCSEClass.getEStructuralFeatures().get(0);
@@ -1177,6 +1250,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getCollectionPatternCS_RestVariableName()
 	{
 		return (EAttribute)collectionPatternCSEClass.getEStructuralFeatures().get(3);
@@ -1187,6 +1261,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCollectionPatternCS_OwnedPatternGuard()
 	{
 		return (EReference)collectionPatternCSEClass.getEStructuralFeatures().get(1);
@@ -1197,6 +1272,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPrimitiveLiteralExpCS() {
 		return primitiveLiteralExpCSEClass;
 	}
@@ -1206,6 +1282,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPropertyCallExpCS()
 	{
 		return propertyCallExpCSEClass;
@@ -1216,6 +1293,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPropertyCallExpCS_ReferredProperty()
 	{
 		return (EReference)propertyCallExpCSEClass.getEStructuralFeatures().get(0);
@@ -1226,6 +1304,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRoundBracketedClauseCS()
 	{
 		return roundBracketedClauseCSEClass;
@@ -1236,6 +1315,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRoundBracketedClauseCS_OwningNameExp()
 	{
 		return (EReference)roundBracketedClauseCSEClass.getEStructuralFeatures().get(1);
@@ -1246,6 +1326,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRoundBracketedClauseCS_OwnedArguments()
 	{
 		return (EReference)roundBracketedClauseCSEClass.getEStructuralFeatures().get(0);
@@ -1256,6 +1337,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSelfExpCS() {
 		return selfExpCSEClass;
 	}
@@ -1265,6 +1347,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSelfExpCS_Name() {
 		return (EAttribute)selfExpCSEClass.getEStructuralFeatures().get(0);
 	}
@@ -1274,6 +1357,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSquareBracketedClauseCS()
 	{
 		return squareBracketedClauseCSEClass;
@@ -1284,6 +1368,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSquareBracketedClauseCS_OwningNameExp()
 	{
 		return (EReference)squareBracketedClauseCSEClass.getEStructuralFeatures().get(1);
@@ -1294,6 +1379,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSquareBracketedClauseCS_OwnedTerms()
 	{
 		return (EReference)squareBracketedClauseCSEClass.getEStructuralFeatures().get(0);
@@ -1304,6 +1390,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTupleLiteralExpCS() {
 		return tupleLiteralExpCSEClass;
 	}
@@ -1313,6 +1400,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTupleLiteralExpCS_OwnedParts() {
 		return (EReference)tupleLiteralExpCSEClass.getEStructuralFeatures().get(0);
 	}
@@ -1322,6 +1410,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTupleLiteralPartCS() {
 		return tupleLiteralPartCSEClass;
 	}
@@ -1331,6 +1420,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getStringLiteralExpCS() {
 		return stringLiteralExpCSEClass;
 	}
@@ -1340,6 +1430,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStringLiteralExpCS_Segments()
 	{
 		return (EAttribute)stringLiteralExpCSEClass.getEStructuralFeatures().get(0);
@@ -1350,6 +1441,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getBooleanLiteralExpCS() {
 		return booleanLiteralExpCSEClass;
 	}
@@ -1359,6 +1451,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getBooleanLiteralExpCS_Symbol()
 	{
 		return (EAttribute)booleanLiteralExpCSEClass.getEStructuralFeatures().get(0);
@@ -1369,6 +1462,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCallExpCS()
 	{
 		return callExpCSEClass;
@@ -1379,6 +1473,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCallExpCS_Source()
 	{
 		return (EReference)callExpCSEClass.getEStructuralFeatures().get(1);
@@ -1389,6 +1484,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCallExpCS_Arguments()
 	{
 		return (EReference)callExpCSEClass.getEStructuralFeatures().get(0);
@@ -1399,6 +1495,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getInvalidLiteralExpCS() {
 		return invalidLiteralExpCSEClass;
 	}
@@ -1408,6 +1505,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIterateCallExpCS()
 	{
 		return iterateCallExpCSEClass;
@@ -1418,6 +1516,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIterateCallExpCS_Accumulators()
 	{
 		return (EReference)iterateCallExpCSEClass.getEStructuralFeatures().get(0);
@@ -1428,6 +1527,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIterationCallExpCS()
 	{
 		return iterationCallExpCSEClass;
@@ -1438,6 +1538,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIterationCallExpCS_ReferredIteration()
 	{
 		return (EReference)iterationCallExpCSEClass.getEStructuralFeatures().get(1);
@@ -1448,6 +1549,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIterationCallExpCS_Iterators()
 	{
 		return (EReference)iterationCallExpCSEClass.getEStructuralFeatures().get(0);
@@ -1458,6 +1560,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLambdaLiteralExpCS()
 	{
 		return lambdaLiteralExpCSEClass;
@@ -1468,6 +1571,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLambdaLiteralExpCS_OwnedExpressionCS()
 	{
 		return (EReference)lambdaLiteralExpCSEClass.getEStructuralFeatures().get(0);
@@ -1478,6 +1582,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNullLiteralExpCS() {
 		return nullLiteralExpCSEClass;
 	}
@@ -1487,6 +1592,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNumberLiteralExpCS() {
 		return numberLiteralExpCSEClass;
 	}
@@ -1496,6 +1602,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNumberLiteralExpCS_Symbol()
 	{
 		return (EAttribute)numberLiteralExpCSEClass.getEStructuralFeatures().get(0);
@@ -1506,6 +1613,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOperationCallExpCS()
 	{
 		return operationCallExpCSEClass;
@@ -1516,6 +1624,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperationCallExpCS_ReferredOperation()
 	{
 		return (EReference)operationCallExpCSEClass.getEStructuralFeatures().get(0);
@@ -1526,6 +1635,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOperatorExpCS()
 	{
 		return operatorExpCSEClass;
@@ -1536,6 +1646,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperatorExpCS_OwnedRight()
 	{
 		return (EReference)operatorExpCSEClass.getEStructuralFeatures().get(0);
@@ -1546,6 +1657,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperatorExpCS_Source()
 	{
 		return (EReference)operatorExpCSEClass.getEStructuralFeatures().get(1);
@@ -1556,6 +1668,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPatternExpCS()
 	{
 		return patternExpCSEClass;
@@ -1566,6 +1679,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPatternExpCS_PatternVariableName()
 	{
 		return (EAttribute)patternExpCSEClass.getEStructuralFeatures().get(1);
@@ -1576,6 +1690,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPatternExpCS_OwnedPatternType()
 	{
 		return (EReference)patternExpCSEClass.getEStructuralFeatures().get(0);
@@ -1586,6 +1701,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EssentialOCLCSFactory getEssentialOCLCSFactory() {
 		return (EssentialOCLCSFactory)getEFactoryInstance();
 	}
@@ -1595,6 +1711,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIfExpCS() {
 		return ifExpCSEClass;
 	}
@@ -1604,6 +1721,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIfExpCS_OwnedCondition()
 	{
 		return (EReference)ifExpCSEClass.getEStructuralFeatures().get(1);
@@ -1614,6 +1732,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIfExpCS_OwnedThenExpression()
 	{
 		return (EReference)ifExpCSEClass.getEStructuralFeatures().get(4);
@@ -1624,6 +1743,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIfExpCS_OwnedIfThenExpressions()
 	{
 		return (EReference)ifExpCSEClass.getEStructuralFeatures().get(3);
@@ -1634,6 +1754,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIfExpCS_OwnedElseExpression()
 	{
 		return (EReference)ifExpCSEClass.getEStructuralFeatures().get(2);
@@ -1644,6 +1765,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIfExpCS_IsImplicit()
 	{
 		return (EAttribute)ifExpCSEClass.getEStructuralFeatures().get(0);
@@ -1654,6 +1776,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIfThenExpCS()
 	{
 		return ifThenExpCSEClass;
@@ -1664,6 +1787,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIfThenExpCS_OwnedCondition()
 	{
 		return (EReference)ifThenExpCSEClass.getEStructuralFeatures().get(0);
@@ -1674,6 +1798,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIfThenExpCS_OwnedThenExpression()
 	{
 		return (EReference)ifThenExpCSEClass.getEStructuralFeatures().get(1);
@@ -1684,6 +1809,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getInfixExpCS() {
 		return infixExpCSEClass;
 	}
@@ -1693,6 +1819,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getInfixExpCS_OwnedLeft()
 	{
 		return (EReference)infixExpCSEClass.getEStructuralFeatures().get(1);
@@ -1703,6 +1830,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getInfixExpCS_Argument()
 	{
 		return (EReference)infixExpCSEClass.getEStructuralFeatures().get(0);
@@ -1713,6 +1841,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLetExpCS() {
 		return letExpCSEClass;
 	}
@@ -1722,6 +1851,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLetExpCS_OwnedVariables()
 	{
 		return (EReference)letExpCSEClass.getEStructuralFeatures().get(2);
@@ -1732,6 +1862,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLetExpCS_OwnedInExpression()
 	{
 		return (EReference)letExpCSEClass.getEStructuralFeatures().get(1);
@@ -1742,6 +1873,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLetExpCS_IsImplicit()
 	{
 		return (EAttribute)letExpCSEClass.getEStructuralFeatures().get(0);
@@ -1752,6 +1884,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLetVariableCS() {
 		return letVariableCSEClass;
 	}
@@ -1761,6 +1894,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLetVariableCS_OwningLetExpression()
 	{
 		return (EReference)letVariableCSEClass.getEStructuralFeatures().get(1);
@@ -1771,6 +1905,7 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLetVariableCS_OwnedRoundBracketedClause()
 	{
 		return (EReference)letVariableCSEClass.getEStructuralFeatures().get(0);

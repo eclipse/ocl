@@ -397,6 +397,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public AssociationClass getAssociationClass()
 	{
 		if (associationClass != null && ((EObject)associationClass).eIsProxy())
@@ -444,6 +445,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAssociationClass(AssociationClass newAssociationClass)
 	{
 		if (newAssociationClass != associationClass)
@@ -465,6 +467,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isReadOnly() {
 		return (eFlags & IS_READ_ONLY_EFLAG) != 0;
 	}
@@ -474,6 +477,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsReadOnly(boolean newIsReadOnly) {
 		boolean oldIsReadOnly = (eFlags & IS_READ_ONLY_EFLAG) != 0;
 		if (newIsReadOnly) eFlags |= IS_READ_ONLY_EFLAG; else eFlags &= ~IS_READ_ONLY_EFLAG;
@@ -486,6 +490,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDefault() {
 		return default_;
 	}
@@ -495,6 +500,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefault(String newDefault) {
 		String oldDefault = default_;
 		default_ = newDefault;
@@ -507,6 +513,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isComposite() {
 		return (eFlags & IS_COMPOSITE_EFLAG) != 0;
 	}
@@ -516,6 +523,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsComposite(boolean newIsComposite) {
 		boolean oldIsComposite = (eFlags & IS_COMPOSITE_EFLAG) != 0;
 		if (newIsComposite) eFlags |= IS_COMPOSITE_EFLAG; else eFlags &= ~IS_COMPOSITE_EFLAG;
@@ -528,6 +536,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isDerived() {
 		return (eFlags & IS_DERIVED_EFLAG) != 0;
 	}
@@ -537,6 +546,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsDerived(boolean newIsDerived) {
 		boolean oldIsDerived = (eFlags & IS_DERIVED_EFLAG) != 0;
 		if (newIsDerived) eFlags |= IS_DERIVED_EFLAG; else eFlags &= ~IS_DERIVED_EFLAG;
@@ -549,6 +559,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Property getOpposite() {
 		if (opposite != null && ((EObject)opposite).eIsProxy())
 		{
@@ -577,6 +588,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOpposite(Property newOpposite) {
 		Property oldOpposite = opposite;
 		opposite = newOpposite;
@@ -589,6 +601,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isImplicit()
 	{
 		return (eFlags & IMPLICIT_EFLAG) != 0;
@@ -599,6 +612,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setImplicit(boolean newImplicit)
 	{
 		boolean oldImplicit = (eFlags & IMPLICIT_EFLAG) != 0;
@@ -612,6 +626,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LanguageExpression getDefaultExpression()
 	{
 		return defaultExpression;
@@ -639,6 +654,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefaultExpression(LanguageExpression newDefaultExpression)
 	{
 		if (newDefaultExpression != defaultExpression)
@@ -660,6 +676,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isID()
 	{
 		return (eFlags & IS_ID_EFLAG) != 0;
@@ -670,6 +687,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsID(boolean newIsID)
 	{
 		boolean oldIsID = (eFlags & IS_ID_EFLAG) != 0;
@@ -683,6 +701,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<Property> getKeys()
 	{
 		if (keys == null)
@@ -697,6 +716,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isResolveProxies()
 	{
 		return (eFlags & IS_RESOLVE_PROXIES_EFLAG) != 0;
@@ -707,6 +727,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsResolveProxies(boolean newIsResolveProxies)
 	{
 		boolean oldIsResolveProxies = (eFlags & IS_RESOLVE_PROXIES_EFLAG) != 0;
@@ -720,6 +741,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isTransient()
 	{
 		return (eFlags & IS_TRANSIENT_EFLAG) != 0;
@@ -730,6 +752,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsTransient(boolean newIsTransient)
 	{
 		boolean oldIsTransient = (eFlags & IS_TRANSIENT_EFLAG) != 0;
@@ -743,6 +766,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isUnsettable()
 	{
 		return (eFlags & IS_UNSETTABLE_EFLAG) != 0;
@@ -753,6 +777,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsUnsettable(boolean newIsUnsettable)
 	{
 		boolean oldIsUnsettable = (eFlags & IS_UNSETTABLE_EFLAG) != 0;
@@ -766,6 +791,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isVolatile()
 	{
 		return (eFlags & IS_VOLATILE_EFLAG) != 0;
@@ -776,6 +802,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsVolatile(boolean newIsVolatile)
 	{
 		boolean oldIsVolatile = (eFlags & IS_VOLATILE_EFLAG) != 0;
@@ -789,6 +816,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<Property> getRedefinedProperty()
 	{
 		if (redefinedProperty == null)
@@ -803,6 +831,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<Property> getSubsettedProperty()
 	{
 		if (subsettedProperty == null)
@@ -817,6 +846,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Property getReferredProperty()
 	{
 		if (referredProperty != null && ((EObject)referredProperty).eIsProxy())
@@ -847,6 +877,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredProperty(Property newReferredProperty)
 	{
 		Property oldReferredProperty = referredProperty;
@@ -860,6 +891,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isAttribute(final Property p)
 	{
 		/**
@@ -981,6 +1013,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateCompatibleDefaultExpression(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -1638,6 +1671,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public org.eclipse.ocl.examples.pivot.Class getOwningClass() {
 		if (eContainerFeatureID() != PivotPackage.PROPERTY__OWNING_CLASS) return null;
 		return (org.eclipse.ocl.examples.pivot.Class)eInternalContainer();
@@ -1659,6 +1693,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningClass(org.eclipse.ocl.examples.pivot.Class newOwningClass)
 	{
 		if (newOwningClass != eInternalContainer() || (eContainerFeatureID() != PivotPackage.PROPERTY__OWNING_CLASS && newOwningClass != null))
@@ -1677,6 +1712,7 @@ public class PropertyImpl
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__OWNING_CLASS, newOwningClass, newOwningClass));
 	}
 
+	@Override
 	public @Nullable DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
 		org.eclipse.ocl.examples.pivot.Class owningType = getOwningClass();
 		if (owningType != null) {
@@ -1689,6 +1725,7 @@ public class PropertyImpl
 
 	private PropertyId propertyId = null;
 	
+	@Override
 	public @NonNull PropertyId getPropertyId() {
 		PropertyId propertyId2 = propertyId;
 		if (propertyId2 == null) {
@@ -1704,6 +1741,7 @@ public class PropertyImpl
 		return propertyId2;
 	}
 
+	@Override
 	public void initValue(@NonNull Object objectValue, @Nullable Object unboxedValue) {
 		assert ValuesUtil.isUnboxed(unboxedValue);
 		EObject eTarget = getETarget();

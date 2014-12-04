@@ -211,6 +211,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getBulletElement() {
 		return bulletElementEClass;
 	}
@@ -220,6 +221,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getBulletElement_Level() {
 		return (EAttribute)bulletElementEClass.getEStructuralFeatures().get(0);
 	}
@@ -229,6 +231,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCompoundElement() {
 		return compoundElementEClass;
 	}
@@ -238,6 +241,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCompoundElement_Elements() {
 		return (EReference)compoundElementEClass.getEStructuralFeatures().get(0);
 	}
@@ -247,6 +251,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFigureElement() {
 		return figureElementEClass;
 	}
@@ -256,6 +261,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFigureElement_Id() {
 		return (EAttribute)figureElementEClass.getEStructuralFeatures().get(0);
 	}
@@ -265,6 +271,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFigureElement_Src() {
 		return (EAttribute)figureElementEClass.getEStructuralFeatures().get(1);
 	}
@@ -274,6 +281,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFigureElement_Alt() {
 		return (EAttribute)figureElementEClass.getEStructuralFeatures().get(2);
 	}
@@ -283,6 +291,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFigureElement_Def() {
 		return (EAttribute)figureElementEClass.getEStructuralFeatures().get(3);
 	}
@@ -292,6 +301,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFigureElement_RequiredWidth() {
 		return (EAttribute)figureElementEClass.getEStructuralFeatures().get(4);
 	}
@@ -301,6 +311,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFigureElement_RequiredHeight() {
 		return (EAttribute)figureElementEClass.getEStructuralFeatures().get(5);
 	}
@@ -310,6 +321,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFigureElement_ActualWidth() {
 		return (EAttribute)figureElementEClass.getEStructuralFeatures().get(6);
 	}
@@ -319,6 +331,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFigureElement_ActualHeight() {
 		return (EAttribute)figureElementEClass.getEStructuralFeatures().get(7);
 	}
@@ -328,6 +341,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFigureRefElement() {
 		return figureRefElementEClass;
 	}
@@ -337,6 +351,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFigureRefElement_Ref() {
 		return (EReference)figureRefElementEClass.getEStructuralFeatures().get(0);
 	}
@@ -346,6 +361,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFontElement() {
 		return fontElementEClass;
 	}
@@ -355,6 +371,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFontElement_Font() {
 		return (EAttribute)fontElementEClass.getEStructuralFeatures().get(0);
 	}
@@ -364,6 +381,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFootnoteElement() {
 		return footnoteElementEClass;
 	}
@@ -373,6 +391,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getHeadingElement() {
 		return headingElementEClass;
 	}
@@ -382,6 +401,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getHeadingElement_Level() {
 		return (EAttribute)headingElementEClass.getEStructuralFeatures().get(0);
 	}
@@ -391,6 +411,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMarkup() {
 		return markupEClass;
 	}
@@ -400,6 +421,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMarkupElement() {
 		return markupElementEClass;
 	}
@@ -409,6 +431,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMarkupElement_Owner() {
 		return (EReference)markupElementEClass.getEStructuralFeatures().get(0);
 	}
@@ -418,6 +441,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMarkupElement_UniqueId() {
 		return (EAttribute)markupElementEClass.getEStructuralFeatures().get(1);
 	}
@@ -427,6 +451,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNewLineElement() {
 		return newLineElementEClass;
 	}
@@ -436,6 +461,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNewLineElement_Text() {
 		return (EAttribute)newLineElementEClass.getEStructuralFeatures().get(0);
 	}
@@ -445,6 +471,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNullElement() {
 		return nullElementEClass;
 	}
@@ -454,6 +481,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOCLCodeElement() {
 		return oclCodeElementEClass;
 	}
@@ -463,6 +491,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOCLEvalElement() {
 		return oclEvalElementEClass;
 	}
@@ -472,6 +501,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOCLTextElement() {
 		return oclTextElementEClass;
 	}
@@ -481,6 +511,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTextElement() {
 		return textElementEClass;
 	}
@@ -490,6 +521,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTextElement_Text() {
 		return (EAttribute)textElementEClass.getEStructuralFeatures().get(0);
 	}
@@ -499,6 +531,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MarkupFactory getMarkupFactory() {
 		return (MarkupFactory)getEFactoryInstance();
 	}

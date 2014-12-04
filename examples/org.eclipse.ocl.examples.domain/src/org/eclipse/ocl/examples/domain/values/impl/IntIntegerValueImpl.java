@@ -36,6 +36,7 @@ public class IntIntegerValueImpl extends IntegerValueImpl
 		this.value = value;
 	}
 
+	@Override
 	public @NonNull IntegerValue abs() {
 		if (value >= 0) {
 			return this;
@@ -48,6 +49,7 @@ public class IntIntegerValueImpl extends IntegerValueImpl
 		}
 	}
 
+	@Override
 	public @NonNull IntegerValue addInteger(@NonNull IntegerValue right) {
 		if (right instanceof IntIntegerValueImpl) {
 			int thatValue = ((IntIntegerValueImpl)right).intValue();
@@ -80,6 +82,7 @@ public class IntIntegerValueImpl extends IntegerValueImpl
 		return result;
 	}
 
+	@Override
 	public @NonNull Object asEcoreObject(@NonNull IdResolver idResolver) {
 		@SuppressWarnings("null") @NonNull Integer result = Integer.valueOf(value);
 		return result;
@@ -91,20 +94,24 @@ public class IntIntegerValueImpl extends IntegerValueImpl
 		return result;
 	}
 	
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull Number asNumber() {
 		return Integer.valueOf(value);
 	}
 
+	@Override
 	public @NonNull Object asObject() {
 		@SuppressWarnings("null") @NonNull Integer result = Integer.valueOf(value);
 		return result;
 	}
 
+	@Override
 	public @NonNull BigDecimal bigDecimalValue() {
 		return new BigDecimal(value);
 	}
 
+	@Override
 	public @NonNull BigInteger bigIntegerValue() {
 		BigInteger bigValue2 = bigValue;
 		if (bigValue2 != null) {
@@ -115,6 +122,7 @@ public class IntIntegerValueImpl extends IntegerValueImpl
 		return bigValue3;
 	}
 
+	@Override
 	public int compareToInteger(@NonNull IntegerValue o) {
 		try {
 			if (o instanceof IntIntegerValueImpl) {
@@ -133,6 +141,7 @@ public class IntIntegerValueImpl extends IntegerValueImpl
 		}
 	}
 
+	@Override
 	public @NonNull IntegerValue divInteger(@NonNull IntegerValue right) {
 		if (right.bigIntegerValue().signum() == 0) {
 			throw new InvalidValueException("div zero");
@@ -141,6 +150,7 @@ public class IntIntegerValueImpl extends IntegerValueImpl
 		return ValuesUtil.integerValueOf(result);
 	}
 
+	@Override
 	public @NonNull RealValue divideInteger(@NonNull IntegerValue right) {
 		BigDecimal bigLeft = bigDecimalValue();
 		BigDecimal bigRight = right.bigDecimalValue();
@@ -201,6 +211,7 @@ public class IntIntegerValueImpl extends IntegerValueImpl
 		return value;
 	}
 
+	@Override
 	public @NonNull IntegerValue maxInteger(@NonNull IntegerValue right) {
 		if (right instanceof IntIntegerValueImpl) {
 			int thatValue = ((IntIntegerValueImpl)right).intValue();
@@ -215,6 +226,7 @@ public class IntIntegerValueImpl extends IntegerValueImpl
 		}
 	}
 
+	@Override
 	public @NonNull IntegerValue minInteger(@NonNull IntegerValue right) {
 		if (right instanceof IntIntegerValueImpl) {
 			int thatValue = ((IntIntegerValueImpl)right).intValue();
@@ -229,6 +241,7 @@ public class IntIntegerValueImpl extends IntegerValueImpl
 		}
 	}
 
+	@Override
 	public @NonNull IntegerValue modInteger(@NonNull IntegerValue right) {
 		if (right.bigIntegerValue().signum() == 0) {
 			throw new InvalidValueException("mod zero");
@@ -247,6 +260,7 @@ public class IntIntegerValueImpl extends IntegerValueImpl
 		}
 	}
 
+	@Override
 	public @NonNull IntegerValue multiplyInteger(@NonNull IntegerValue right) {
 		if (right instanceof IntIntegerValueImpl) {
 			long thatValue = ((IntIntegerValueImpl)right).intValue();
@@ -258,6 +272,7 @@ public class IntIntegerValueImpl extends IntegerValueImpl
 		}
 	}
 
+	@Override
 	public @NonNull IntegerValue negate() {
 		if (value > Integer.MIN_VALUE) {
 			return ValuesUtil.integerValueOf(-value);
@@ -267,10 +282,12 @@ public class IntIntegerValueImpl extends IntegerValueImpl
 		}
 	}
 
+	@Override
 	public int signum() {
 		return Integer.signum(value);
 	}
 
+	@Override
 	public @NonNull IntegerValue subtractInteger(@NonNull IntegerValue right) {
 		if (right instanceof IntIntegerValueImpl) {
 			int thatValue = ((IntIntegerValueImpl)right).intValue();

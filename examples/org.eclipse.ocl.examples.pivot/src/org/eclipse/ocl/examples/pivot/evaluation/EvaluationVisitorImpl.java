@@ -128,6 +128,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	}
 	
 	// FIXME Revise API so that cannot invoke createNestedEvaluator() by mistake
+	@Override
 	public @NonNull EvaluationVisitor createNestedEvaluator() {
 		Environment environment = getEnvironment();
 		EnvironmentFactory factory = environment.getFactory();
@@ -142,12 +143,14 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		return undecoratedVisitor.createNestedEvaluator();
 	}
 
+	@Override
 	public void dispose() {
 		if (undecoratedVisitor != this) {
 			undecoratedVisitor.dispose();
 		}
 	}
 
+	@Override
 	public @Nullable Object evaluate(@NonNull DomainExpression body) {
 		Object value = ((Element) body).accept(undecoratedVisitor);
 		assert ValuesUtil.isBoxed(value);	// Make sure Integer/Real are boxed, invalid is an exception, null is null
@@ -180,6 +183,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		}
 	}
 
+	@Override
 	public @NonNull EvaluationVisitor getEvaluator() {
 		return this;
 	}
@@ -915,6 +919,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		}
 	}
 
+	@Override
 	public Object visiting(@NonNull Visitable visitable) {
 		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for " + getClass().getSimpleName());
 	}

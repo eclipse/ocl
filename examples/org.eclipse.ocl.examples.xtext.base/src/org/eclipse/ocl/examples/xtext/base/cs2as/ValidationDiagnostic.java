@@ -38,6 +38,7 @@ public class ValidationDiagnostic extends AbstractDiagnostic
 		return null;
 	}		
 
+	@Override
 	public String getMessage() {
 		return message;
 	}

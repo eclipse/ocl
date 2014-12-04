@@ -25,20 +25,24 @@ public class AutoBoxingAnalyzer extends BoxingAnalyzer implements AutoCGModelVis
 		super(analyzer);
 	}
 
+	@Override
 	public @Nullable Object visitCGASTCallExp(@NonNull CGASTCallExp cgElement) {
 		rewriteAsGuarded(cgElement.getSource(), "source for '" + cgElement.getReferredOperation() + "'");
 		return visitCGOperationCallExp(cgElement);
 	}
 
+	@Override
 	public @Nullable Object visitCGContainmentBody(@NonNull CGContainmentBody object) {
 		return visitCGValuedElement(object);
 	}
 
+	@Override
 	public @Nullable Object visitCGContainmentPart(@NonNull CGContainmentPart cgElement) {
 		rewriteAsUnboxed(cgElement.getInit());
 		return visitCGValuedElement(cgElement);
 	}
 
+	@Override
 	public @Nullable Object visitCGContainmentVisit(@NonNull CGContainmentVisit object) {
 		return visitCGOperation(object);
 	}

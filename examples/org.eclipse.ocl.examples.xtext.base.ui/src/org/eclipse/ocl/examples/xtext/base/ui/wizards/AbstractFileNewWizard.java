@@ -106,6 +106,7 @@ public abstract class AbstractFileNewWizard extends Wizard implements INewWizard
 	 * @see org.eclipse.ui.IWorkbenchWizard#init(org.eclipse.ui.IWorkbench,
 	 *      org.eclipse.jface.viewers.IStructuredSelection)
 	 */
+	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		IResource selectedResource = null;
 		Iterator<?> it = selection.iterator();

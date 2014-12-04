@@ -26,6 +26,7 @@ public class AnyIteration extends AbstractIteration
 {
 	public static final @NonNull AnyIteration INSTANCE = new AnyIteration();
 
+	@Override
 	public @NonNull Object createAccumulatorValue(@NonNull DomainEvaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
 		return INSTANCE;		// Not used
 	}

@@ -72,6 +72,7 @@ public class StringLiteralExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<String> getSegments()
 	{
 		if (segments == null)

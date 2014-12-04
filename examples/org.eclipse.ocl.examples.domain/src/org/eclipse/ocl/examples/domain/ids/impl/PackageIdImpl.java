@@ -48,6 +48,7 @@ public abstract class PackageIdImpl extends AbstractElementId implements Package
 		this.hashCode = hashCode;
 	}
 
+	@Override
 	public @NonNull ClassId getClassId(@NonNull String name, final int templateParameters) {
     	WeakHashMapOfWeakReference<String, GeneralizedClassIdImpl> classes2 = classes;
 		if (classes2 == null) {
@@ -67,6 +68,7 @@ public abstract class PackageIdImpl extends AbstractElementId implements Package
 		return classes2.getId(name);
     }
 
+	@Override
 	public @NonNull DataTypeId getDataTypeId(@NonNull String name, final int templateParameters) {
     	WeakHashMapOfWeakReference<String, GeneralizedDataTypeIdImpl> dataTypes2 = dataTypes;
 		if (dataTypes2 == null) {
@@ -86,6 +88,7 @@ public abstract class PackageIdImpl extends AbstractElementId implements Package
 		return dataTypes2.getId(name);
     }
 
+	@Override
 	public @NonNull EnumerationId getEnumerationId(@NonNull String name) {
     	WeakHashMapOfWeakReference<String, EnumerationIdImpl> enumerations2 = enumerations;
 		if (enumerations2 == null) {
@@ -109,7 +112,8 @@ public abstract class PackageIdImpl extends AbstractElementId implements Package
 		return TypeId.CLASS_NAME;
 	}
 
- 	public @NonNull NestedPackageId getNestedPackageId(@NonNull String name) {
+ 	@Override
+	public @NonNull NestedPackageId getNestedPackageId(@NonNull String name) {
     	WeakHashMapOfWeakReference<String, NestedPackageId> packages2 = packages;
 		if (packages2 == null) {
     		synchronized (this) {

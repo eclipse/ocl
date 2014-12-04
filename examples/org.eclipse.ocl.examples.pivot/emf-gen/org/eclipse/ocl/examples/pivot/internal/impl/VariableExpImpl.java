@@ -102,6 +102,7 @@ public class VariableExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public VariableDeclaration getReferredVariable() {
 		if (referredVariable != null && ((EObject)referredVariable).eIsProxy())
 		{
@@ -130,6 +131,7 @@ public class VariableExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredVariable(VariableDeclaration newReferredVariable) {
 		VariableDeclaration oldReferredVariable = referredVariable;
 		referredVariable = newReferredVariable;
@@ -142,6 +144,7 @@ public class VariableExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isImplicit()
 	{
 		return (eFlags & IMPLICIT_EFLAG) != 0;
@@ -152,6 +155,7 @@ public class VariableExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setImplicit(boolean newImplicit)
 	{
 		boolean oldImplicit = (eFlags & IMPLICIT_EFLAG) != 0;
@@ -387,6 +391,7 @@ public class VariableExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public Element getReferredElement()
 	{
 		return getReferredVariable();

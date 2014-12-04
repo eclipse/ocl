@@ -91,6 +91,7 @@ public class CollectionRangeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OCLExpression getFirst() {
 		return first;
 	}
@@ -117,6 +118,7 @@ public class CollectionRangeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFirst(OCLExpression newFirst) {
 		if (newFirst != first)
 		{
@@ -137,6 +139,7 @@ public class CollectionRangeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OCLExpression getLast() {
 		return last;
 	}
@@ -163,6 +166,7 @@ public class CollectionRangeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLast(OCLExpression newLast) {
 		if (newLast != last)
 		{

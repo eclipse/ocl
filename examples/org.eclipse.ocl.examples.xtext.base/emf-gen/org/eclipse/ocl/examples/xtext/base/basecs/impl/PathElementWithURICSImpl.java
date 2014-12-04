@@ -80,6 +80,7 @@ public class PathElementWithURICSImpl extends PathElementCSImpl implements PathE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getUri()
 	{
 		return uri;
@@ -90,6 +91,7 @@ public class PathElementWithURICSImpl extends PathElementCSImpl implements PathE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUri(String newUri)
 	{
 		String oldUri = uri;

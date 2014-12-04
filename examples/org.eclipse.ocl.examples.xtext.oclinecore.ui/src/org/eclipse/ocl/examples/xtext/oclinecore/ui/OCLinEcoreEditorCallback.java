@@ -50,6 +50,7 @@ public class OCLinEcoreEditorCallback extends ValidatingEditorCallback
 			this.editor = editor;
 		}
 
+		@Override
 		public Object getAdapter(Object adaptableObject, @SuppressWarnings("rawtypes") Class adapterType) {
 			if ((adapterType == EcoreEditor.class) && (adaptableObject instanceof XtextEditor)) {
 				return new XtextEditor_EcoreEditor(editor);
@@ -57,6 +58,7 @@ public class OCLinEcoreEditorCallback extends ValidatingEditorCallback
 			return null;
 		}
 
+		@Override
 		public Class<?>[] getAdapterList() {
 			return new Class[] {EcoreEditor.class};
 		}
@@ -105,6 +107,7 @@ public class OCLinEcoreEditorCallback extends ValidatingEditorCallback
 			}
 			EObject eObject = document.readOnly(new IUnitOfWork<EObject, XtextResource>()
 			{
+				@Override
 				public @Nullable EObject exec(@Nullable XtextResource state) throws Exception {
 					return state != null ? state.getEObject(uri.fragment()) : null;
 				}

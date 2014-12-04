@@ -82,6 +82,7 @@ public class SaveExpressionAction extends Action
 					BaseDocument editorDocument = consolePage.getEditorDocument();
 					editorDocument.modify(new IUnitOfWork<Object, XtextResource>()
 					{
+						@Override
 						public Object exec(@Nullable XtextResource resource) throws Exception {
 							if (resource instanceof BaseCSResource) {
 								Resource asResource = ((BaseCSResource)resource).getASResource(null);

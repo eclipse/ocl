@@ -41,6 +41,7 @@ public class ConstrainedProperty extends AbstractProperty
 		this.property = property;
 	}
 
+	@Override
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		ExpressionInOCL expression2 = expression;
 		if (expression2 == null) {

@@ -33,6 +33,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		// Library returns
 		//LibRootPackageCS:
 		//	(ownedLibraries+=LibraryCS ";")* ownedPackages+=LibPackageCS*;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//(ownedLibraries+=LibraryCS ";")* ownedPackages+=LibPackageCS*
@@ -65,6 +66,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//Identifier:
 		//	ID | RestrictedKeywords;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//ID | RestrictedKeywords
@@ -109,6 +111,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		// | "conformsTo" | "documentation" | "extends" | "import" | "inv" | "invalidating" |
 		//	"iteration" | "left" | "library" | "operation" | "package" | "post" | "pre" | "precedence" | "property" | "right" |
 		//	"static" | "super" | "type" | "validating";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//"annotation" //|	'typeof'
@@ -192,6 +195,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//Name:
 		//	Identifier | DOUBLE_QUOTED_STRING | EssentialOCLReservedKeyword | PrimitiveTypeIdentifier | CollectionTypeIdentifier;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//Identifier | DOUBLE_QUOTED_STRING | EssentialOCLReservedKeyword | PrimitiveTypeIdentifier | CollectionTypeIdentifier
@@ -222,6 +226,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//AnyName:
 		//	Name | "Lambda" | "Tuple";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//Name | "Lambda" | "Tuple"
@@ -249,6 +254,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//LibPathNameCS returns base::PathNameCS:
 		//	ownedPathElements+=LibPathElementCS ("::" ownedPathElements+=LibPathElementCS)*;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//ownedPathElements+=LibPathElementCS ("::" ownedPathElements+=LibPathElementCS)*
@@ -281,6 +287,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//LibPathElementCS returns base::PathElementCS:
 		//	referredElement=[pivot::NamedElement|Name];
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//referredElement=[pivot::NamedElement|Name]
@@ -304,6 +311,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//AccumulatorCS returns base::ParameterCS:
 		//	name=Identifier ":" ownedType=TypedMultiplicityRefCS;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//name=Identifier ":" ownedType=TypedMultiplicityRefCS
@@ -353,6 +361,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//AnnotationCS returns base::AnnotationCS:
 		//	"annotation" name=(Identifier | SINGLE_QUOTED_STRING) ("(" ownedDetails+=DetailCS ("," ownedDetails+=DetailCS)* ")")?
 		//	("{" ownedAnnotations+=AnnotationElementCS "}" | ";");
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//"annotation" name=(Identifier | SINGLE_QUOTED_STRING) ("(" ownedDetails+=DetailCS ("," ownedDetails+=DetailCS)* ")")?
@@ -431,6 +440,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//AnnotationElementCS returns base::AnnotationElementCS:
 		//	AnnotationCS | DocumentationCS;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//AnnotationCS | DocumentationCS
@@ -480,6 +490,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//	"type" name=AnyName ownedSignature=TemplateSignatureCS? (":" metaclassName=[MetaclassNameCS|AnyName])? ("conformsTo"
 		//	ownedSuperTypes+=TypedRefCS ("," ownedSuperTypes+=TypedRefCS)*)? "{" (ownedOperations+=OperationCS |
 		//	ownedProperties+=LibPropertyCS | ownedConstraints+=InvCS | ownedAnnotations+=AnnotationElementCS)* "}";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//"type" name=AnyName ownedSignature=TemplateSignatureCS? (":" metaclassName=[MetaclassNameCS|AnyName])? ("conformsTo"
@@ -582,6 +593,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ClassCS returns base::ClassCS:
 		//	LibClassCS;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//LibClassCS
@@ -603,6 +615,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//DetailCS returns base::DetailCS:
 		//	name=(Name | SINGLE_QUOTED_STRING) "=" values+=(SINGLE_QUOTED_STRING | ML_SINGLE_QUOTED_STRING)*;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//name=(Name | SINGLE_QUOTED_STRING) "=" values+=(SINGLE_QUOTED_STRING | ML_SINGLE_QUOTED_STRING)*
@@ -657,6 +670,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//DocumentationCS returns base::DocumentationCS:
 		//	{base::DocumentationCS} "documentation" value=SINGLE_QUOTED_STRING? ("(" ownedDetails+=DetailCS (","
 		//	ownedDetails+=DetailCS)* ")")? ";";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//{base::DocumentationCS} "documentation" value=SINGLE_QUOTED_STRING? ("(" ownedDetails+=DetailCS (","
@@ -727,6 +741,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//InvCS returns LibConstraintCS:
 		//	stereotype="inv" (name=UnrestrictedName ("(" ownedMessageSpecification=SpecificationCS ")")?)? ":"
 		//	ownedSpecification=SpecificationCS ";";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//stereotype="inv" (name=UnrestrictedName ("(" ownedMessageSpecification=SpecificationCS ")")?)? ":"
@@ -839,6 +854,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//	ownedParameters+=ParameterCS ("," ownedParameters+=ParameterCS)*)? ")" ":" ownedType=TypedMultiplicityRefCS
 		//	isInvalidating?="invalidating"? isValidating?="validating"? ("=>" implementation=[JavaClassCS|SINGLE_QUOTED_STRING])?
 		//	("{" (ownedAnnotations+=AnnotationElementCS | ownedPreconditions+=PostCS | ownedPostconditions+=PreCS)* "}" | ";");
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//"iteration" name=Name ownedSignature=TemplateSignatureCS? "(" ownedIterators+=IteratorCS (","
@@ -1019,6 +1035,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//IteratorCS returns base::ParameterCS:
 		//	name=Identifier ":" ownedType=TypedMultiplicityRefCS;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//name=Identifier ":" ownedType=TypedMultiplicityRefCS
@@ -1066,6 +1083,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//	name="Lambda" ownedSignature=TemplateSignatureCS? ownedContextType=LambdaContextTypeRefCS "("
 		//	(ownedParameterTypes+=TypedMultiplicityRefCS ("," ownedParameterTypes+=TypedMultiplicityRefCS)*)? ")" ":"
 		//	ownedResultType=TypedRefCS;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//name="Lambda" ownedSignature=TemplateSignatureCS? ownedContextType=LambdaContextTypeRefCS "("
@@ -1135,6 +1153,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//LambdaContextTypeRefCS returns base::TypedTypeRefCS:
 		//	ownedPathName=LibPathNameCS;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//ownedPathName=LibPathNameCS
@@ -1154,6 +1173,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//LibraryCS returns base::LibraryCS:
 		//	"import" referredPackage=[pivot::Package|URI];
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//"import" referredPackage=[pivot::Package|URI]
@@ -1180,6 +1200,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//OperationCS returns base::OperationCS:
 		//	LibIterationCS | LibOperationCS;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//LibIterationCS | LibOperationCS
@@ -1256,6 +1277,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//	implementation=[JavaClassCS|SINGLE_QUOTED_STRING])? ("{" (ownedAnnotations+=AnnotationElementCS | "body"
 		//	UnrestrictedName? ":" ownedBodyExpressions+=SpecificationCS ";" | ownedPostconditions+=PostCS |
 		//	ownedPreconditions+=PreCS)* "}" | ";");
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//isStatic?="static"? "operation" name=Name ownedSignature=TemplateSignatureCS? "(" (ownedParameters+=ParameterCS (","
@@ -1460,6 +1482,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//LibPackageCS:
 		//	"library" name=Name (":" nsPrefix=Identifier "=" nsURI=URI)? "{" (ownedPackages+=PackageCS | "precedence"
 		//	ownedPrecedences+=PrecedenceCS+ ";" | ownedClasses+=ClassCS | ownedAnnotations+=AnnotationElementCS)* "}";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//"library" name=Name (":" nsPrefix=Identifier "=" nsURI=URI)? "{" (ownedPackages+=PackageCS | "precedence"
@@ -1566,6 +1589,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//PackageCS returns base::PackageCS:
 		//	"package" name=Name (":" nsPrefix=Identifier "=" nsURI=URI)? "{" (ownedPackages+=PackageCS | ownedClasses+=ClassCS |
 		//	ownedAnnotations+=AnnotationElementCS)* "}";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//"package" name=Name (":" nsPrefix=Identifier "=" nsURI=URI)? "{" (ownedPackages+=PackageCS | ownedClasses+=ClassCS |
@@ -1641,6 +1665,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ParameterCS returns base::ParameterCS:
 		//	name=Identifier ":" ownedType=TypedMultiplicityRefCS;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//name=Identifier ":" ownedType=TypedMultiplicityRefCS
@@ -1689,6 +1714,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//LibPropertyCS:
 		//	isStatic?="static"? "property" name=Name ":" ownedType=TypedMultiplicityRefCS ("=>"
 		//	implementation=[JavaClassCS|SINGLE_QUOTED_STRING])? ("{" ownedAnnotations+=AnnotationElementCS* "}" | ";");
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//isStatic?="static"? "property" name=Name ":" ownedType=TypedMultiplicityRefCS ("=>"
@@ -1777,6 +1803,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//PostCS returns LibConstraintCS:
 		//	stereotype="post" (name=UnrestrictedName ("(" ownedMessageSpecification=SpecificationCS ")")?)? ":"
 		//	ownedSpecification=SpecificationCS ";";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//stereotype="post" (name=UnrestrictedName ("(" ownedMessageSpecification=SpecificationCS ")")?)? ":"
@@ -1847,6 +1874,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//PreCS returns LibConstraintCS:
 		//	stereotype="pre" (name=UnrestrictedName ("(" ownedMessageSpecification=SpecificationCS ")")?)? ":"
 		//	ownedSpecification=SpecificationCS ";";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//stereotype="pre" (name=UnrestrictedName ("(" ownedMessageSpecification=SpecificationCS ")")?)? ":"
@@ -1909,6 +1937,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//PrecedenceCS:
 		//	("left" | isRightAssociative?="right") ":" name=Name;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//("left" | isRightAssociative?="right") ":" name=Name
@@ -1943,6 +1972,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//SpecificationCS returns essentialocl::ExpSpecificationCS:
 		//	ownedExpression=ExpCS;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//ownedExpression=ExpCS
@@ -1964,6 +1994,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//TypedMultiplicityRefCS returns base::TypedRefCS:
 		//	(TupleTypeCS | TypedTypeRefCS | LambdaTypeCS) ownedMultiplicity=MultiplicityCS?;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//(TupleTypeCS | TypedTypeRefCS | LambdaTypeCS) ownedMultiplicity=MultiplicityCS?
@@ -2002,6 +2033,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		// TypedRefCS returns
 		//base::TypedRefCS:
 		//	TupleTypeCS | TypedTypeRefCS | LambdaTypeCS;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//TupleTypeCS | TypedTypeRefCS | LambdaTypeCS
@@ -2035,6 +2067,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//TypedTypeRefCS returns base::TypedTypeRefCS:
 		//	isTypeof?="typeof" "(" ownedPathName=LibPathNameCS ")" | ownedPathName=LibPathNameCS ownedBinding=TemplateBindingCS?;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//isTypeof?="typeof" "(" ownedPathName=LibPathNameCS ")" | ownedPathName=LibPathNameCS ownedBinding=TemplateBindingCS?
@@ -2093,6 +2126,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		// TuplePartCS returns
 		//base::TuplePartCS:
 		//	name=Identifier ":" ownedType=TypedMultiplicityRefCS;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//name=Identifier ":" ownedType=TypedMultiplicityRefCS
@@ -2212,6 +2246,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	
+	@Override
 	public Grammar getGrammar() {
 		return grammar;
 	}

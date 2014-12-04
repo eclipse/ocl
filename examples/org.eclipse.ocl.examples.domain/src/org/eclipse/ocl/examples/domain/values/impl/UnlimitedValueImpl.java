@@ -47,27 +47,33 @@ public class UnlimitedValueImpl extends NumberValueImpl implements UnlimitedValu
 
 	public UnlimitedValueImpl() {}
 
+	@Override
 	public @NonNull UnlimitedValueImpl abs() {
 		return this;
 	}
 
+	@Override
 	public @NonNull IntegerValue addInteger(@NonNull IntegerValue right) {
 		throw new InvalidValueException(EvaluatorMessages.InvalidOperation, "add", "UnlimitedValue");
 	}
 
+	@Override
 	public @NonNull RealValue addReal(@NonNull RealValue right) {
 		throw new InvalidValueException(EvaluatorMessages.InvalidOperation, "add", "UnlimitedValue");
 	}
 
+	@Override
 	public @NonNull Object asEcoreObject(@NonNull IdResolver idResolver) {
 		return Unlimited.INSTANCE;
 	}
 
+	@Override
 	public @NonNull Number asNumber() {
 		return Unlimited.INSTANCE;
 //		throw new InvalidValueException(EvaluatorMessages.InvalidOperation, "asNumber", "UnlimitedValue");
 	}
 
+	@Override
 	public @NonNull Object asObject() {
 		return Unlimited.INSTANCE;
 	}
@@ -82,66 +88,82 @@ public class UnlimitedValueImpl extends NumberValueImpl implements UnlimitedValu
 		return this;
 	}
 
+	@Override
 	public @NonNull BigDecimal bigDecimalValue() {
 		throw new InvalidValueException(EvaluatorMessages.InvalidOperation, "bigDecimalValue", "UnlimitedValue");
 	}
 
+	@Override
 	public @NonNull BigInteger bigIntegerValue() {
 		throw new InvalidValueException(EvaluatorMessages.InvalidOperation, "bigIntegerValue", "UnlimitedValue");
 	}
 
+	@Override
 	public @NonNull RealValue commutatedAdd(@NonNull RealValue left) {
 		throw new InvalidValueException(EvaluatorMessages.InvalidOperation, "add", "UnlimitedValue");
 	}
 
+	@Override
 	public @NonNull IntegerValue commutatedDiv(@NonNull IntegerValue left) {
 		throw new InvalidValueException(EvaluatorMessages.InvalidOperation, "div", "UnlimitedValue");
 	}
 
+	@Override
 	public @NonNull RealValue commutatedDivide(@NonNull RealValue left) {
 		throw new InvalidValueException(EvaluatorMessages.InvalidOperation, "divide", "UnlimitedValue");
 	}
 
+	@Override
 	public @NonNull IntegerValue commutatedMod(@NonNull IntegerValue left) {
 		throw new InvalidValueException(EvaluatorMessages.InvalidOperation, "mod", "UnlimitedValue");
 	}
 
+	@Override
 	public @NonNull RealValue commutatedMultiply(@NonNull RealValue left) {
 		throw new InvalidValueException(EvaluatorMessages.InvalidOperation, "multiply", "UnlimitedValue");
 	}
 
+	@Override
 	public @NonNull RealValue commutatedSubtract(@NonNull RealValue left) {
 		throw new InvalidValueException(EvaluatorMessages.InvalidOperation, "subtract", "UnlimitedValue");
 	}
 
+	@Override
 	public int compareTo(/*@NonNull*/ RealValue left) {
 		return -left.compareToUnlimited(this);
 	}
 
+	@Override
 	public int compareToInteger(@NonNull IntegerValue right) {
 		return 1;
 	}
 
+	@Override
 	public int compareToReal(@NonNull RealValue right) {
 		return 1;
 	}
 
+	@Override
 	public int compareToUnlimited(@NonNull UnlimitedValue right) {
 		return 0;
 	}
 
+	@Override
 	public @NonNull IntegerValue divInteger(@NonNull IntegerValue right) {
 		throw new InvalidValueException(EvaluatorMessages.InvalidOperation, "div", "UnlimitedValue");
 	}
 
+	@Override
 	public @NonNull IntegerValue divUnlimited(@NonNull UnlimitedValue right) {
 		throw new InvalidValueException(EvaluatorMessages.InvalidOperation, "div", "UnlimitedValue");
 	}
 
+	@Override
 	public @NonNull RealValue divideInteger(@NonNull IntegerValue right) {
 		throw new InvalidValueException(EvaluatorMessages.InvalidOperation, "divide", "UnlimitedValue");
 	}
 
+	@Override
 	public @NonNull RealValue divideReal(@NonNull RealValue right) {
 		throw new InvalidValueException(EvaluatorMessages.InvalidOperation, "divide", "UnlimitedValue");
 	}
@@ -156,6 +178,7 @@ public class UnlimitedValueImpl extends NumberValueImpl implements UnlimitedValu
 		throw new InvalidValueException(EvaluatorMessages.InvalidReal, null, null, this);
 	}
 
+	@Override
 	public @NonNull IntegerValue floor() {
 		throw new InvalidValueException(EvaluatorMessages.InvalidOperation, "floor", "UnlimitedValue");
 	}
@@ -164,6 +187,7 @@ public class UnlimitedValueImpl extends NumberValueImpl implements UnlimitedValu
 		return standardLibrary.getUnlimitedNaturalType();
 	}
 
+	@Override
 	public @NonNull TypeId getTypeId() {
 		return TypeId.UNLIMITED_NATURAL;
 	}
@@ -173,14 +197,17 @@ public class UnlimitedValueImpl extends NumberValueImpl implements UnlimitedValu
 		throw new InvalidValueException(EvaluatorMessages.InvalidInteger, null, null, this);
 	}
 	
+	@Override
 	public @Nullable IntegerValue isIntegerValue() {
 		return null;
 	}
 
+	@Override
 	public boolean isUnlimited() {
 		return true;
 	}
 
+	@Override
 	public boolean isUnlimitedNatural() {
 		return true;
 	}
@@ -190,70 +217,87 @@ public class UnlimitedValueImpl extends NumberValueImpl implements UnlimitedValu
 		throw new InvalidValueException(EvaluatorMessages.InvalidInteger, null, null, this);
 	}
 
+	@Override
 	public @NonNull RealValue max(@NonNull RealValue rightValue) {
 		return this;
 	}
 
+	@Override
 	public @NonNull IntegerValue maxInteger(@NonNull IntegerValue right) {
 		return this;
 	}
 
+	@Override
 	public @NonNull RealValue maxReal(@NonNull RealValue right) {
 		return this;
 	}
 
+	@Override
 	public @NonNull RealValue maxUnlimited(@NonNull UnlimitedValue rightValue) {
 		return this;
 	}
 
+	@Override
 	public @NonNull RealValue min(@NonNull RealValue rightValue) {
 		return rightValue;
 	}
 
+	@Override
 	public @NonNull RealValue minUnlimited(@NonNull UnlimitedValue rightValue) {
 		return this;
 	}
 
+	@Override
 	public @NonNull IntegerValue minInteger(@NonNull IntegerValue right) {
 		return right;
 	}
 
+	@Override
 	public @NonNull RealValue minReal(@NonNull RealValue right) {
 		return right;
 	}
 
+	@Override
 	public @NonNull IntegerValue modInteger(@NonNull IntegerValue right) {
 		throw new InvalidValueException(EvaluatorMessages.InvalidOperation, "mod", "UnlimitedValue");
 	}
 
+	@Override
 	public @NonNull IntegerValue modUnlimited(@NonNull UnlimitedValue right) {
 		throw new InvalidValueException(EvaluatorMessages.InvalidOperation, "mod", "UnlimitedValue");
 	}
 
+	@Override
 	public @NonNull IntegerValue multiplyInteger(@NonNull IntegerValue right) {
 		throw new InvalidValueException(EvaluatorMessages.InvalidOperation, "multiply", "UnlimitedValue");
 	}
 
+	@Override
 	public @NonNull RealValue multiplyReal(@NonNull RealValue right) {
 		throw new InvalidValueException(EvaluatorMessages.InvalidOperation, "multiply", "UnlimitedValue");
 	}
 
+	@Override
 	public @NonNull UnlimitedValue negate() {
 		throw new InvalidValueException(EvaluatorMessages.InvalidOperation, "negate", "UnlimitedValue");
 	}
 
+	@Override
 	public @NonNull IntegerValue round() {
 		throw new InvalidValueException(EvaluatorMessages.InvalidOperation, "round", "UnlimitedValue");
 	}
 
+	@Override
 	public int signum() {
 		return 1;
 	}
 
+	@Override
 	public @NonNull IntegerValue subtractInteger(@NonNull IntegerValue right) {
 		throw new InvalidValueException(EvaluatorMessages.InvalidOperation, "subtract", "UnlimitedValue");
 	}
 
+	@Override
 	public @NonNull RealValue subtractReal(@NonNull RealValue right) {
 		throw new InvalidValueException(EvaluatorMessages.InvalidOperation, "subtract", "UnlimitedValue");
 	}

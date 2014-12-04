@@ -39,6 +39,7 @@ public abstract class AbstractOperationMatcher
 {
 	private static Comparator<Operation> operationComparator = new Comparator<Operation>()
 	{
+		@Override
 		public int compare(Operation o1, Operation o2) {
 			String n1 = o1.getName();
 			String n2 = o2.getName();

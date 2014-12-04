@@ -48,5 +48,6 @@ public abstract class AbstractSimpleTernaryOperation extends AbstractUntypedTern
 	}
 
 	// Redundant declaration avoids @Override dilemma for 1.5/1.6
+	@Override
 	public abstract @Nullable /*@Thrown*/ Object evaluate(@Nullable Object sourceValue, @Nullable Object firstArgumentValue, @Nullable Object secondArgumentValue);
 }

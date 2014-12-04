@@ -71,6 +71,7 @@ public class PrimitiveCompletePackageImpl extends RootCompletePackageImpl implem
 		return completeClass;
 	}
 	
+	@Override
 	public @NonNull PackageId getMetapackageId() {
 		return IdManager.METAMODEL;
 	}

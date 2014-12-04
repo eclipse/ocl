@@ -134,6 +134,7 @@ public class AS2UMLDeclarationVisitor
 		}
 	}
 
+	@Override
 	public org.eclipse.uml2.uml.Element visiting(@NonNull Visitable visitable) {
 		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for AS2UML Declaration pass");
 	}

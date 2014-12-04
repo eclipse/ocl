@@ -98,6 +98,7 @@ public class DynamicPropertyImpl extends ElementImpl implements DynamicProperty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Property getReferredProperty()
 	{
 		if (referredProperty != null && ((EObject)referredProperty).eIsProxy())
@@ -128,6 +129,7 @@ public class DynamicPropertyImpl extends ElementImpl implements DynamicProperty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredProperty(Property newReferredProperty)
 	{
 		Property oldReferredProperty = referredProperty;
@@ -141,6 +143,7 @@ public class DynamicPropertyImpl extends ElementImpl implements DynamicProperty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDefault()
 	{
 		return default_;
@@ -151,6 +154,7 @@ public class DynamicPropertyImpl extends ElementImpl implements DynamicProperty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefault(String newDefault)
 	{
 		String oldDefault = default_;

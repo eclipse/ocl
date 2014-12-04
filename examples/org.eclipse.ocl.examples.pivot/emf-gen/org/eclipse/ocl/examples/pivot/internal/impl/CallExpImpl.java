@@ -99,6 +99,7 @@ public abstract class CallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OCLExpression getSource() {
 		return source;
 	}
@@ -125,6 +126,7 @@ public abstract class CallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSource(OCLExpression newSource) {
 		if (newSource != source)
 		{
@@ -145,6 +147,7 @@ public abstract class CallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isImplicit()
 	{
 		return (eFlags & IMPLICIT_EFLAG) != 0;
@@ -155,6 +158,7 @@ public abstract class CallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setImplicit(boolean newImplicit)
 	{
 		boolean oldImplicit = (eFlags & IMPLICIT_EFLAG) != 0;

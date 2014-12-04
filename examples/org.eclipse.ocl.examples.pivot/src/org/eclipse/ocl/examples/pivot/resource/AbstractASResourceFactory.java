@@ -71,6 +71,7 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 		ASResourceFactoryRegistry.INSTANCE.addASResourceFactory(contentType, this);
 	}
 
+	@Override
 	public void configure(@NonNull ResourceSet resourceSet) {
 		Registry resourceFactoryRegistry = resourceSet.getResourceFactoryRegistry();
 		resourceFactoryRegistry.getContentTypeToFactoryMap().put(contentType, this);
@@ -89,34 +90,42 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 		defaultSaveOptions.put(XMLResource.OPTION_SCHEMA_LOCATION_IMPLEMENTATION, Boolean.TRUE);
 	}
 	
+	@Override
 	public @NonNull AS2MonikerVisitor createAS2MonikerVisitor(@NonNull AS2Moniker as2moniker) {
 		return new AS2MonikerVisitor(as2moniker);
 	}
 
+	@Override
 	public @NonNull AS2XMIidVisitor createAS2XMIidVisitor(@NonNull AS2XMIid as2id) {
 		return new AS2XMIidVisitor(as2id);
 	}
 
+	@Override
 	public @NonNull ASSaverLocateVisitor createASSaverLocateVisitor(@NonNull ASSaver saver) {
 		return new ASSaverLocateVisitor(saver);
 	}
 
+	@Override
 	public @NonNull ASSaverNormalizeVisitor createASSaverNormalizeVisitor(@NonNull ASSaver saver) {
 		return new ASSaverNormalizeVisitor(saver);
 	}
 
+	@Override
 	public @NonNull ASSaverResolveVisitor createASSaverResolveVisitor(@NonNull ASSaver saver) {
 		return new ASSaverResolveVisitor(saver);
 	}
 	
+	@Override
 	public @NonNull PrettyPrintVisitor createPrettyPrintVisitor(@NonNull PrettyPrinter prettyPrinter) {
 		return new EssentialOCLPrettyPrintVisitor(prettyPrinter);
 	}
 	
+	@Override
 	public @NonNull TemplateParameterSubstitutionVisitor createTemplateParameterSubstitutionVisitor(@NonNull MetaModelManager metaModelManager, @Nullable Type selfType, @Nullable Type selfTypeValue) {
 		return new TemplateParameterSubstitutionVisitor(metaModelManager, selfType, selfTypeValue);
 	}
 
+	@Override
 	public @NonNull ToStringVisitor createToStringVisitor(@NonNull StringBuilder s) {
 		return new ToStringVisitor(s);
 	}
@@ -132,27 +141,33 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 	    return result;
 	}
 
+	@Override
 	public @Nullable <T extends Element> T getASElement(@NonNull MetaModelManager metaModelManager,
 			@NonNull Class<T> pivotClass, @NonNull EObject eObject) throws ParserException {
 		throw new UnsupportedOperationException(getClass().getName() + ".getPivotOf");
 	}
 
+	@Override
 	public @NonNull String getContentType() {
 		return contentType;
 	}
 
+	@Override
 	public @Nullable EOperation getEOperation(@NonNull ASResource asResource, @NonNull EObject eObject) {
 		return null;
 	}
 	
+	@Override
 	public @Nullable EReference getEReference(@NonNull ASResource asResource, @NonNull EObject eObject) {
 		return null;
 	}
 	
+	@Override
 	public int getHandlerPriority(@NonNull EObject eObject) {
 		return CANNOT_HANDLE;
 	}
 
+	@Override
 	public int getHandlerPriority(@NonNull Resource resource) {
 		if ((resource instanceof ASResource) && (((ASResource)resource).getASResourceFactory() == this)) {
 			return CAN_HANDLE;
@@ -160,18 +175,22 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 		return CANNOT_HANDLE;
 	}
 
+	@Override
 	public int getHandlerPriority(@NonNull URI uri) {
 		return CANNOT_HANDLE;
 	}
 
+	@Override
 	public @Nullable String getMetamodelNsURI(@NonNull EPackage ePackage) {
 		return null;
 	}
 
+	@Override
 	public @Nullable URI getPackageURI(@NonNull EObject eObject) {
 		return null;
 	}
 
+	@Override
 	public @Nullable Element importFromResource(@NonNull MetaModelManager metaModelManager,
 			@NonNull Resource resource, @Nullable URI uri) throws ParserException {
 		if (resource instanceof ASResource) {
@@ -193,6 +212,7 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 		throw new UnsupportedOperationException(getClass().getName() + ".importFromResource");
 	}
 
+	@Override
 	public boolean isCompatibleResource(@NonNull Resource newResource, @NonNull Resource oldResource) {
 		return false;
 	}

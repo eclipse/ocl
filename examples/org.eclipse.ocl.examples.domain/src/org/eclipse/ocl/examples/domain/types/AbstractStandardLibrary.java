@@ -37,6 +37,7 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 	
 	protected AbstractStandardLibrary() {}
 
+	@Override
 	public boolean conformsToCollectionType(@NonNull DomainCollectionType firstCollectionType, @NonNull DomainCollectionType secondCollectionType) {
 		DomainType firstContainerType = firstCollectionType.getContainerType();
 		DomainType secondContainerType = secondCollectionType.getContainerType();
@@ -73,10 +74,12 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 		return true;
 	}
 
+	@Override
 	public boolean conformsToLambdaType(@NonNull DomainLambdaType firstLambdaType, @NonNull DomainLambdaType secondLambdaType) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public boolean conformsToTupleType(@NonNull DomainTupleType firstTupleType, @NonNull DomainTupleType secondTupleType) {
 		if (isEqualToTupleType(firstTupleType, secondTupleType)) {
 			return true;
@@ -92,26 +95,32 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public @NonNull Iterable<? extends DomainCompletePackage> getAllCompletePackages() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public DomainEnumeration getEnumeration(@NonNull Enumerator enumerator) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public DomainType getMetaType(@NonNull DomainType instanceType) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public @Nullable DomainPackage getNsURIPackage(@NonNull String nsURI) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public @Nullable DomainElement getOperationTemplateParameter(@NonNull DomainOperation anOperation, int index) {
 		return anOperation.getTypeParameters().get(index);
 	}
 
+	@Override
 	public @Nullable DomainType getPrimitiveType(@NonNull PrimitiveTypeId typeId) {
 		if (typeId == TypeId.BOOLEAN) {
 			return getBooleanType();
@@ -143,10 +152,12 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public DomainPackage getRootPackage(@NonNull String name) {
 		throw new UnsupportedOperationException();
 	}
 	
+	@Override
 	public boolean isEqualToCollectionType(@NonNull DomainCollectionType firstCollectionType, @NonNull DomainCollectionType secondCollectionType) {
 		DomainType firstContainerType = firstCollectionType.getContainerType();
 		DomainType secondContainerType = secondCollectionType.getContainerType();
@@ -171,6 +182,7 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 		return true;
 	}
 
+	@Override
 	public boolean isEqualToTupleType(@NonNull DomainTupleType firstTupleType, @NonNull DomainTupleType secondTupleType) {
 		TypeId firstParts = firstTupleType.getTypeId();
 		TypeId secondParts = secondTupleType.getTypeId();

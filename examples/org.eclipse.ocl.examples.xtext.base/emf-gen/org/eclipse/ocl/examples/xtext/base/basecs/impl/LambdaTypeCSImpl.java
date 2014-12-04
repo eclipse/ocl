@@ -135,6 +135,7 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TemplateSignatureCS getOwnedSignature()
 	{
 		return ownedSignature;
@@ -162,6 +163,7 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedSignature(TemplateSignatureCS newOwnedSignature)
 	{
 		if (newOwnedSignature != ownedSignature)
@@ -183,6 +185,7 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName()
 	{
 		return name;
@@ -193,6 +196,7 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName)
 	{
 		String oldName = name;
@@ -206,6 +210,7 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypedRefCS getOwnedContextType()
 	{
 		return ownedContextType;
@@ -233,6 +238,7 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedContextType(TypedRefCS newOwnedContextType)
 	{
 		if (newOwnedContextType != ownedContextType)
@@ -254,6 +260,7 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<TypedRefCS> getOwnedParameterTypes()
 	{
 		if (ownedParameterTypes == null)
@@ -268,6 +275,7 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypedRefCS getOwnedResultType()
 	{
 		return ownedResultType;
@@ -295,6 +303,7 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedResultType(TypedRefCS newOwnedResultType)
 	{
 		if (newOwnedResultType != ownedResultType)

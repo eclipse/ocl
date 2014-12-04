@@ -41,6 +41,7 @@ public class SaveCSHandler extends AbstractHandler
 {
 	public SaveCSHandler() {}
 
+	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
 		if (window == null) {
@@ -59,6 +60,7 @@ public class SaveCSHandler extends AbstractHandler
 		try {
 			csURI = document.readOnly(new IUnitOfWork<URI, XtextResource>()
 			{
+				@Override
 				public URI exec(@Nullable XtextResource resource) throws Exception {
 					if (resource != null) {
 						return resource.getURI().appendFileExtension("xmi");
@@ -97,6 +99,7 @@ public class SaveCSHandler extends AbstractHandler
 		try {
 			document.modify(new IUnitOfWork<Object, XtextResource>()
 			{
+				@Override
 				public Object exec(@Nullable XtextResource resource) throws Exception {
 					if (resource != null) {
 						XMIResource xmiResource = new XMIResourceImpl(newURI);

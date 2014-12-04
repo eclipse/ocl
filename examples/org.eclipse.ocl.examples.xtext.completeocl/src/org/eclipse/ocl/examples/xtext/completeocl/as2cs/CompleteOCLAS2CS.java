@@ -35,14 +35,17 @@ public class CompleteOCLAS2CS extends EssentialOCLAS2CS
 	{
 		private static @NonNull AS2CS.Factory INSTANCE = new Factory();
 
+		@Override
 		public @NonNull CompleteOCLDeclarationVisitor createDeclarationVisitor(@NonNull AS2CSConversion converter) {
 			return new CompleteOCLDeclarationVisitor(converter);
 		}
 
+		@Override
 		public @NonNull BaseReferenceVisitor createReferenceVisitor(@NonNull AS2CSConversion converter, @Nullable Namespace scope) {
 			return new EssentialOCLReferenceVisitor(converter, scope);
 		}
 
+		@Override
 		public @NonNull EClass[] getEClasses() {
 			return new EClass[] {
 				PivotPackage.Literals.CLASS,

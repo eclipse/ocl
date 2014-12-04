@@ -152,6 +152,7 @@ public interface Class
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getClass_OwnedInvariants()
 	 * @generated
 	 */
+	@Override
 	@NonNull List<Constraint> getOwnedInvariants();
 
 	/**
@@ -168,6 +169,7 @@ public interface Class
 	 * @see org.eclipse.ocl.examples.pivot.Operation#getOwningClass
 	 * @generated
 	 */
+	@Override
 	@NonNull List<Operation> getOwnedOperations();
 
 	/**
@@ -184,6 +186,7 @@ public interface Class
 	 * @see org.eclipse.ocl.examples.pivot.Package#getOwnedClasses
 	 * @generated
 	 */
+	@Override
 	org.eclipse.ocl.examples.pivot.Package getOwningPackage();
 
 	/**
@@ -208,6 +211,7 @@ public interface Class
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getClass_SuperClasses()
 	 * @generated
 	 */
+	@Override
 	@NonNull List<Class> getSuperClasses();
 
 	/**
@@ -257,6 +261,7 @@ public interface Class
 	 * @see org.eclipse.ocl.examples.pivot.Property#getOwningClass
 	 * @generated
 	 */
+	@Override
 	@NonNull List<Property> getOwnedProperties();
 
 } // Class

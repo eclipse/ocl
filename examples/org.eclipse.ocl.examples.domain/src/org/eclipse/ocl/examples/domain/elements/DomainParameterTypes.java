@@ -35,18 +35,22 @@ public class DomainParameterTypes
 			this.type = type;
 			this.typeof = typeof;
 		}
+		@Override
 		public @NonNull String getName() {
 			return name;
 		}
 
+		@Override
 		public @NonNull DomainType getType() {
 			return type;
 		}
 		
+		@Override
 		public @NonNull TypeId getTypeId() {
 			return type.getTypeId();
 		}
 		
+		@Override
 		public boolean isTypeof() {
 			return typeof;
 		}

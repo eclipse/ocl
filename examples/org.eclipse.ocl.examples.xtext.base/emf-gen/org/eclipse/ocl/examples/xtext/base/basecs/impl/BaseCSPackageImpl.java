@@ -546,6 +546,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAnnotationCS()
 	{
 		return annotationCSEClass;
@@ -556,6 +557,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAnnotationCS_OwnedContents()
 	{
 		return (EReference)annotationCSEClass.getEStructuralFeatures().get(0);
@@ -566,6 +568,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAnnotationCS_OwnedReferences()
 	{
 		return (EReference)annotationCSEClass.getEStructuralFeatures().get(1);
@@ -576,6 +579,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAnnotationElementCS() {
 		return annotationElementCSEClass;
 	}
@@ -585,6 +589,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAnnotationElementCS_OwnedDetails()
 	{
 		return (EReference)annotationElementCSEClass.getEStructuralFeatures().get(0);
@@ -595,6 +600,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAttributeCS() {
 		return attributeCSEClass;
 	}
@@ -604,6 +610,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getClassCS()
 	{
 		return classCSEClass;
@@ -614,6 +621,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getClassCS_OwningPackage()
 	{
 		return (EReference)classCSEClass.getEStructuralFeatures().get(2);
@@ -624,6 +632,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getClassCS_InstanceClassName()
 	{
 		return (EAttribute)classCSEClass.getEStructuralFeatures().get(0);
@@ -634,6 +643,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getClassCS_OwnedConstraints()
 	{
 		return (EReference)classCSEClass.getEStructuralFeatures().get(1);
@@ -644,6 +654,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getClassCS_Qualifiers()
 	{
 		return (EAttribute)classCSEClass.getEStructuralFeatures().get(3);
@@ -654,6 +665,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getConstraintCS()
 	{
 		return constraintCSEClass;
@@ -664,6 +676,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConstraintCS_Stereotype()
 	{
 		return (EAttribute)constraintCSEClass.getEStructuralFeatures().get(2);
@@ -674,6 +687,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConstraintCS_OwnedSpecification()
 	{
 		return (EReference)constraintCSEClass.getEStructuralFeatures().get(1);
@@ -684,6 +698,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConstraintCS_OwnedMessageSpecification()
 	{
 		return (EReference)constraintCSEClass.getEStructuralFeatures().get(0);
@@ -694,6 +709,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getContextLessElementCS()
 	{
 		return contextLessElementCSEClass;
@@ -704,6 +720,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDataTypeCS()
 	{
 		return dataTypeCSEClass;
@@ -714,6 +731,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDetailCS() {
 		return detailCSEClass;
 	}
@@ -723,6 +741,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDetailCS_Values()
 	{
 		return (EAttribute)detailCSEClass.getEStructuralFeatures().get(0);
@@ -733,6 +752,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDocumentationCS()
 	{
 		return documentationCSEClass;
@@ -743,6 +763,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDocumentationCS_Value()
 	{
 		return (EAttribute)documentationCSEClass.getEStructuralFeatures().get(0);
@@ -753,6 +774,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getElementCS() {
 		return elementCSEClass;
 	}
@@ -762,6 +784,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getElementCS_Parent()
 	{
 		return (EReference)elementCSEClass.getEStructuralFeatures().get(0);
@@ -772,6 +795,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getElementRefCS()
 	{
 		return elementRefCSEClass;
@@ -782,6 +806,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getEnumerationCS()
 	{
 		return enumerationCSEClass;
@@ -792,6 +817,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getEnumerationCS_OwnedLiterals()
 	{
 		return (EReference)enumerationCSEClass.getEStructuralFeatures().get(0);
@@ -802,6 +828,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getEnumerationLiteralCS()
 	{
 		return enumerationLiteralCSEClass;
@@ -812,6 +839,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getEnumerationLiteralCS_Value()
 	{
 		return (EAttribute)enumerationLiteralCSEClass.getEStructuralFeatures().get(0);
@@ -822,6 +850,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFeatureCS() {
 		return featureCSEClass;
 	}
@@ -831,6 +860,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getImportCS() {
 		return importCSEClass;
 	}
@@ -840,6 +870,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getImportCS_OwnedPathName()
 	{
 		return (EReference)importCSEClass.getEStructuralFeatures().get(1);
@@ -850,6 +881,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getImportCS_ReferredNamespace()
 	{
 		return (EReference)importCSEClass.getEStructuralFeatures().get(2);
@@ -860,6 +892,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getImportCS_IsAll()
 	{
 		return (EAttribute)importCSEClass.getEStructuralFeatures().get(0);
@@ -870,6 +903,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLambdaTypeCS()
 	{
 		return lambdaTypeCSEClass;
@@ -880,6 +914,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLambdaTypeCS_Name()
 	{
 		return (EAttribute)lambdaTypeCSEClass.getEStructuralFeatures().get(0);
@@ -890,6 +925,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLambdaTypeCS_OwnedContextType()
 	{
 		return (EReference)lambdaTypeCSEClass.getEStructuralFeatures().get(1);
@@ -900,6 +936,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLambdaTypeCS_OwnedParameterTypes()
 	{
 		return (EReference)lambdaTypeCSEClass.getEStructuralFeatures().get(2);
@@ -910,6 +947,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLambdaTypeCS_OwnedResultType()
 	{
 		return (EReference)lambdaTypeCSEClass.getEStructuralFeatures().get(3);
@@ -920,6 +958,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLibraryCS() {
 		return libraryCSEClass;
 	}
@@ -929,6 +968,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLibraryCS_ReferredPackage()
 	{
 		return (EReference)libraryCSEClass.getEStructuralFeatures().get(0);
@@ -939,6 +979,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getModelElementCS() {
 		return modelElementCSEClass;
 	}
@@ -948,6 +989,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getModelElementCS_OwnedAnnotations()
 	{
 		return (EReference)modelElementCSEClass.getEStructuralFeatures().get(2);
@@ -958,6 +1000,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getModelElementCS_OriginalXmiId() {
 		return (EAttribute)modelElementCSEClass.getEStructuralFeatures().get(1);
 	}
@@ -967,6 +1010,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getModelElementCS_Csi()
 	{
 		return (EAttribute)modelElementCSEClass.getEStructuralFeatures().get(0);
@@ -977,6 +1021,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getModelElementRefCS()
 	{
 		return modelElementRefCSEClass;
@@ -987,6 +1032,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getModelElementRefCS_OwnedPathName()
 	{
 		return (EReference)modelElementRefCSEClass.getEStructuralFeatures().get(0);
@@ -997,6 +1043,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getModelElementRefCS_ReferredElement()
 	{
 		return (EReference)modelElementRefCSEClass.getEStructuralFeatures().get(1);
@@ -1007,6 +1054,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMultiplicityBoundsCS()
 	{
 		return multiplicityBoundsCSEClass;
@@ -1017,6 +1065,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMultiplicityBoundsCS_LowerBound()
 	{
 		return (EAttribute)multiplicityBoundsCSEClass.getEStructuralFeatures().get(0);
@@ -1027,6 +1076,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMultiplicityBoundsCS_UpperBound()
 	{
 		return (EAttribute)multiplicityBoundsCSEClass.getEStructuralFeatures().get(1);
@@ -1037,6 +1087,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMultiplicityCS()
 	{
 		return multiplicityCSEClass;
@@ -1047,6 +1098,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMultiplicityStringCS()
 	{
 		return multiplicityStringCSEClass;
@@ -1057,6 +1109,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMultiplicityStringCS_StringBounds()
 	{
 		return (EAttribute)multiplicityStringCSEClass.getEStructuralFeatures().get(0);
@@ -1067,6 +1120,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNamedElementCS() {
 		return namedElementCSEClass;
 	}
@@ -1076,6 +1130,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNamedElementCS_Name()
 	{
 		return (EAttribute)namedElementCSEClass.getEStructuralFeatures().get(0);
@@ -1086,6 +1141,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNamespaceCS() {
 		return namespaceCSEClass;
 	}
@@ -1095,6 +1151,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOperationCS() {
 		return operationCSEClass;
 	}
@@ -1104,6 +1161,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperationCS_OwningClass() {
 		return (EReference)operationCSEClass.getEStructuralFeatures().get(5);
 	}
@@ -1113,6 +1171,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperationCS_OwnedParameters()
 	{
 		return (EReference)operationCSEClass.getEStructuralFeatures().get(2);
@@ -1123,6 +1182,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperationCS_OwnedExceptions()
 	{
 		return (EReference)operationCSEClass.getEStructuralFeatures().get(1);
@@ -1133,6 +1193,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperationCS_OwnedPreconditions()
 	{
 		return (EReference)operationCSEClass.getEStructuralFeatures().get(4);
@@ -1143,6 +1204,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperationCS_OwnedPostconditions()
 	{
 		return (EReference)operationCSEClass.getEStructuralFeatures().get(3);
@@ -1153,6 +1215,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperationCS_OwnedBodyExpressions()
 	{
 		return (EReference)operationCSEClass.getEStructuralFeatures().get(0);
@@ -1163,6 +1226,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPackageCS() {
 		return packageCSEClass;
 	}
@@ -1172,6 +1236,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPackageCS_OwnedClasses()
 	{
 		return (EReference)packageCSEClass.getEStructuralFeatures().get(2);
@@ -1182,6 +1247,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPackageCS_NsPrefix()
 	{
 		return (EAttribute)packageCSEClass.getEStructuralFeatures().get(0);
@@ -1192,6 +1258,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPackageCS_NsURI()
 	{
 		return (EAttribute)packageCSEClass.getEStructuralFeatures().get(1);
@@ -1202,6 +1269,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPackageOwnerCS()
 	{
 		return packageOwnerCSEClass;
@@ -1212,6 +1280,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPackageOwnerCS_OwnedPackages()
 	{
 		return (EReference)packageOwnerCSEClass.getEStructuralFeatures().get(0);
@@ -1222,6 +1291,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getParameterCS() {
 		return parameterCSEClass;
 	}
@@ -1231,6 +1301,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getParameterCS_OwningOperation()
 	{
 		return (EReference)parameterCSEClass.getEStructuralFeatures().get(0);
@@ -1241,6 +1312,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPathElementCS()
 	{
 		return pathElementCSEClass;
@@ -1251,6 +1323,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPathElementCS_OwningPathName()
 	{
 		return (EReference)pathElementCSEClass.getEStructuralFeatures().get(1);
@@ -1261,6 +1334,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPathElementCS_ReferredElement()
 	{
 		return (EReference)pathElementCSEClass.getEStructuralFeatures().get(2);
@@ -1271,6 +1345,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPathElementCS_ElementType()
 	{
 		return (EReference)pathElementCSEClass.getEStructuralFeatures().get(0);
@@ -1281,6 +1356,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPathElementWithURICS()
 	{
 		return pathElementWithURICSEClass;
@@ -1291,6 +1367,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPathElementWithURICS_Uri()
 	{
 		return (EAttribute)pathElementWithURICSEClass.getEStructuralFeatures().get(0);
@@ -1301,6 +1378,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPathNameCS()
 	{
 		return pathNameCSEClass;
@@ -1311,6 +1389,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPathNameCS_OwnedPathElements()
 	{
 		return (EReference)pathNameCSEClass.getEStructuralFeatures().get(1);
@@ -1321,6 +1400,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPathNameCS_ReferredElement()
 	{
 		return (EReference)pathNameCSEClass.getEStructuralFeatures().get(2);
@@ -1331,6 +1411,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPathNameCS_Context()
 	{
 		return (EReference)pathNameCSEClass.getEStructuralFeatures().get(0);
@@ -1341,6 +1422,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPathNameCS_ScopeFilter()
 	{
 		return (EAttribute)pathNameCSEClass.getEStructuralFeatures().get(3);
@@ -1351,6 +1433,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPivotableElementCS()
 	{
 		return pivotableElementCSEClass;
@@ -1361,6 +1444,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPivotableElementCS_Pivot()
 	{
 		return (EReference)pivotableElementCSEClass.getEStructuralFeatures().get(0);
@@ -1371,6 +1455,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPrimitiveTypeRefCS() {
 		return primitiveTypeRefCSEClass;
 	}
@@ -1380,6 +1465,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPrimitiveTypeRefCS_Name()
 	{
 		return (EAttribute)primitiveTypeRefCSEClass.getEStructuralFeatures().get(0);
@@ -1390,6 +1476,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getReferenceCS() {
 		return referenceCSEClass;
 	}
@@ -1399,6 +1486,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getReferenceCS_ReferredOpposite()
 	{
 		return (EReference)referenceCSEClass.getEStructuralFeatures().get(1);
@@ -1409,6 +1497,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getReferenceCS_ReferredKeys()
 	{
 		return (EReference)referenceCSEClass.getEStructuralFeatures().get(0);
@@ -1419,6 +1508,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRootCS()
 	{
 		return rootCSEClass;
@@ -1429,6 +1519,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRootCS_OwnedImports()
 	{
 		return (EReference)rootCSEClass.getEStructuralFeatures().get(0);
@@ -1439,6 +1530,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRootCS_OwnedLibraries()
 	{
 		return (EReference)rootCSEClass.getEStructuralFeatures().get(1);
@@ -1449,6 +1541,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRootPackageCS()
 	{
 		return rootPackageCSEClass;
@@ -1459,6 +1552,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSpecificationCS()
 	{
 		return specificationCSEClass;
@@ -1469,6 +1563,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSpecificationCS_ExprString()
 	{
 		return (EAttribute)specificationCSEClass.getEStructuralFeatures().get(0);
@@ -1479,6 +1574,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getStructuredClassCS()
 	{
 		return structuredClassCSEClass;
@@ -1489,6 +1585,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getStructuredClassCS_OwnedSuperTypes()
 	{
 		return (EReference)structuredClassCSEClass.getEStructuralFeatures().get(3);
@@ -1499,6 +1596,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getStructuredClassCS_OwnedOperations()
 	{
 		return (EReference)structuredClassCSEClass.getEStructuralFeatures().get(1);
@@ -1509,6 +1607,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getStructuredClassCS_OwnedProperties()
 	{
 		return (EReference)structuredClassCSEClass.getEStructuralFeatures().get(2);
@@ -1519,6 +1618,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getStructuredClassCS_OwnedMetaclass()
 	{
 		return (EReference)structuredClassCSEClass.getEStructuralFeatures().get(0);
@@ -1529,6 +1629,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getStructuralFeatureCS() {
 		return structuralFeatureCSEClass;
 	}
@@ -1538,6 +1639,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getStructuralFeatureCS_OwningClass()
 	{
 		return (EReference)structuralFeatureCSEClass.getEStructuralFeatures().get(2);
@@ -1548,6 +1650,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStructuralFeatureCS_Default()
 	{
 		return (EAttribute)structuralFeatureCSEClass.getEStructuralFeatures().get(0);
@@ -1558,6 +1661,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getStructuralFeatureCS_OwnedDefaultExpressions()
 	{
 		return (EReference)structuralFeatureCSEClass.getEStructuralFeatures().get(1);
@@ -1568,6 +1672,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTemplateBindingCS() {
 		return templateBindingCSEClass;
 	}
@@ -1577,6 +1682,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTemplateBindingCS_OwningElement()
 	{
 		return (EReference)templateBindingCSEClass.getEStructuralFeatures().get(1);
@@ -1587,6 +1693,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTemplateBindingCS_OwnedSubstitutions()
 	{
 		return (EReference)templateBindingCSEClass.getEStructuralFeatures().get(0);
@@ -1597,6 +1704,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTemplateParameterCS() {
 		return templateParameterCSEClass;
 	}
@@ -1606,6 +1714,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTemplateParameterCS_OwningSignature()
 	{
 		return (EReference)templateParameterCSEClass.getEStructuralFeatures().get(0);
@@ -1616,6 +1725,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTemplateParameterSubstitutionCS() {
 		return templateParameterSubstitutionCSEClass;
 	}
@@ -1625,6 +1735,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTemplateParameterSubstitutionCS_OwningBinding()
 	{
 		return (EReference)templateParameterSubstitutionCSEClass.getEStructuralFeatures().get(1);
@@ -1635,6 +1746,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTemplateParameterSubstitutionCS_OwnedActualParameter() {
 		return (EReference)templateParameterSubstitutionCSEClass.getEStructuralFeatures().get(0);
 	}
@@ -1644,6 +1756,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTemplateSignatureCS() {
 		return templateSignatureCSEClass;
 	}
@@ -1653,6 +1766,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTemplateSignatureCS_OwningElement()
 	{
 		return (EReference)templateSignatureCSEClass.getEStructuralFeatures().get(1);
@@ -1663,6 +1777,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTemplateSignatureCS_OwnedParameters()
 	{
 		return (EReference)templateSignatureCSEClass.getEStructuralFeatures().get(0);
@@ -1673,6 +1788,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTemplateableElementCS() {
 		return templateableElementCSEClass;
 	}
@@ -1682,6 +1798,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTemplateableElementCS_OwnedSignature()
 	{
 		return (EReference)templateableElementCSEClass.getEStructuralFeatures().get(0);
@@ -1692,6 +1809,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTuplePartCS()
 	{
 		return tuplePartCSEClass;
@@ -1702,6 +1820,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTupleTypeCS()
 	{
 		return tupleTypeCSEClass;
@@ -1712,6 +1831,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTupleTypeCS_Name()
 	{
 		return (EAttribute)tupleTypeCSEClass.getEStructuralFeatures().get(0);
@@ -1722,6 +1842,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTupleTypeCS_OwnedParts()
 	{
 		return (EReference)tupleTypeCSEClass.getEStructuralFeatures().get(1);
@@ -1732,6 +1853,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTypeCS() {
 		return typeCSEClass;
 	}
@@ -1741,6 +1863,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTypeParameterCS() {
 		return typeParameterCSEClass;
 	}
@@ -1750,6 +1873,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTypeParameterCS_OwnedExtends() {
 		return (EReference)typeParameterCSEClass.getEStructuralFeatures().get(0);
 	}
@@ -1759,6 +1883,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTypeParameterCS_OwnedSuper() {
 		return (EReference)typeParameterCSEClass.getEStructuralFeatures().get(1);
 	}
@@ -1768,6 +1893,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTypeRefCS() {
 		return typeRefCSEClass;
 	}
@@ -1777,6 +1903,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTypedElementCS() {
 		return typedElementCSEClass;
 	}
@@ -1786,6 +1913,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTypedElementCS_OwnedType() {
 		return (EReference)typedElementCSEClass.getEStructuralFeatures().get(1);
 	}
@@ -1795,6 +1923,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTypedElementCS_Qualifiers()
 	{
 		return (EAttribute)typedElementCSEClass.getEStructuralFeatures().get(2);
@@ -1805,6 +1934,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTypedElementCS_IsOptional()
 	{
 		return (EAttribute)typedElementCSEClass.getEStructuralFeatures().get(0);
@@ -1815,6 +1945,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTypedRefCS() {
 		return typedRefCSEClass;
 	}
@@ -1824,6 +1955,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTypedRefCS_OwnedMultiplicity()
 	{
 		return (EReference)typedRefCSEClass.getEStructuralFeatures().get(0);
@@ -1834,6 +1966,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTypedTypeRefCS() {
 		return typedTypeRefCSEClass;
 	}
@@ -1843,6 +1976,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTypedTypeRefCS_OwnedPathName()
 	{
 		return (EReference)typedTypeRefCSEClass.getEStructuralFeatures().get(2);
@@ -1853,6 +1987,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTypedTypeRefCS_ReferredType()
 	{
 		return (EReference)typedTypeRefCSEClass.getEStructuralFeatures().get(3);
@@ -1863,6 +1998,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTypedTypeRefCS_OwnedBinding()
 	{
 		return (EReference)typedTypeRefCSEClass.getEStructuralFeatures().get(1);
@@ -1873,6 +2009,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTypedTypeRefCS_IsTypeof()
 	{
 		return (EAttribute)typedTypeRefCSEClass.getEStructuralFeatures().get(0);
@@ -1883,6 +2020,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getVisitableCS()
 	{
 		return visitableCSEClass;
@@ -1893,6 +2031,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getWildcardTypeRefCS() {
 		return wildcardTypeRefCSEClass;
 	}
@@ -1902,6 +2041,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getWildcardTypeRefCS_OwnedExtends()
 	{
 		return (EReference)wildcardTypeRefCSEClass.getEStructuralFeatures().get(0);
@@ -1912,6 +2052,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getWildcardTypeRefCS_OwnedSuper()
 	{
 		return (EReference)wildcardTypeRefCSEClass.getEStructuralFeatures().get(1);
@@ -1922,6 +2063,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EDataType getBigNumber()
 	{
 		return bigNumberEDataType;
@@ -1932,6 +2074,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EDataType getScopeFilter()
 	{
 		return scopeFilterEDataType;
@@ -1942,6 +2085,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BaseCSFactory getBaseCSFactory()
 	{
 		return (BaseCSFactory)getEFactoryInstance();

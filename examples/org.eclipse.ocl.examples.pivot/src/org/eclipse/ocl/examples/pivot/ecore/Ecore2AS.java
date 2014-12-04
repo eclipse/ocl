@@ -429,14 +429,17 @@ public class Ecore2AS extends AbstractEcore2AS
 		return pivotModel2;
 	}
 
+	@Override
 	public @Nullable Resource getResource() {
 		return ecoreResource;
 	}
 
+	@Override
 	public @Nullable Notifier getTarget() {
 		return ecoreResource;
 	}
 
+	@Override
 	public @NonNull URI getURI() {
 		return DomainUtil.nonNullEMF(ecoreResource.getURI());
 	}
@@ -533,10 +536,12 @@ public class Ecore2AS extends AbstractEcore2AS
 		}
 	}
 
+	@Override
 	public boolean isAdapterFor(@NonNull MetaModelManager metaModelManager) {
 		return this.metaModelManager == metaModelManager;
 	}
 
+	@Override
 	public boolean isAdapterForType(Object type) {
 		return type == Ecore2AS.class;
 	}
@@ -650,10 +655,12 @@ public class Ecore2AS extends AbstractEcore2AS
 		}
 	}
 
+	@Override
 	public void metaModelManagerDisposed(@NonNull MetaModelManager metaModelManager) {
 		dispose();
 	}
 
+	@Override
 	public void notifyChanged(Notification notification) {}
 
 	@Override
@@ -815,6 +822,7 @@ public class Ecore2AS extends AbstractEcore2AS
 		this.ecoreURI = ecoreURI;
 	}
 
+	@Override
 	public void setTarget(Notifier newTarget) {
 		assert (newTarget == null) || (newTarget == ecoreResource);
 	}
@@ -824,6 +832,7 @@ public class Ecore2AS extends AbstractEcore2AS
 		return String.valueOf(ecoreResource.getURI());
 	}
 
+	@Override
 	public void unsetTarget(Notifier oldTarget) {
 		assert (oldTarget == ecoreResource);
 	}

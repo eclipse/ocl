@@ -90,6 +90,7 @@ public class EnumerationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<EnumerationLiteral> getOwnedLiteral()
 	{
@@ -488,10 +489,12 @@ public class EnumerationImpl
 		return IdManager.getEnumerationId(this);
 	}
 
+	@Override
 	public @NonNull EnumerationId getEnumerationId() {
 		return (EnumerationId) getTypeId();
 	}
 
+	@Override
 	public @Nullable EnumerationLiteral getEnumerationLiteral(@NonNull String name) {
 		for (EnumerationLiteral enumerationLiteral : getEnumerationLiterals()) {
 			if (name.equals(enumerationLiteral.getName())) {
@@ -501,6 +504,7 @@ public class EnumerationImpl
 		return null;
 	}
 
+	@Override
 	public @NonNull List<EnumerationLiteral> getEnumerationLiterals() {
 		return DomainUtil.nonNullEMF(getOwnedLiteral());
 	}

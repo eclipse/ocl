@@ -189,6 +189,7 @@ public class NameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypeNameExpCS getTypeName()
 	{
 		return typeName;
@@ -199,6 +200,7 @@ public class NameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTypeName(TypeNameExpCS newTypeName)
 	{
 		TypeNameExpCS oldTypeName = typeName;
@@ -212,6 +214,7 @@ public class NameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ConstructorPartCS> getParts()
 	{
 		if (parts == null)
@@ -226,6 +229,7 @@ public class NameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getValue()
 	{
 		return value;
@@ -236,6 +240,7 @@ public class NameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(String newValue)
 	{
 		String oldValue = value;
@@ -249,6 +254,7 @@ public class NameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Iteration getReferredIteration()
 	{
 		return referredIteration;
@@ -259,6 +265,7 @@ public class NameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredIteration(Iteration newReferredIteration)
 	{
 		Iteration oldReferredIteration = referredIteration;
@@ -272,6 +279,7 @@ public class NameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<VariableCS> getIterators()
 	{
 		if (iterators == null)
@@ -286,6 +294,7 @@ public class NameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<VariableCS> getAccumulators()
 	{
 		if (accumulators == null)
@@ -300,6 +309,7 @@ public class NameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Operation getReferredOperation()
 	{
 		return referredOperation;
@@ -310,6 +320,7 @@ public class NameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredOperation(Operation newReferredOperation)
 	{
 		Operation oldReferredOperation = referredOperation;
@@ -323,6 +334,7 @@ public class NameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Property getReferredProperty()
 	{
 		return referredProperty;
@@ -333,6 +345,7 @@ public class NameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredProperty(Property newReferredProperty)
 	{
 		Property oldReferredProperty = referredProperty;
@@ -346,6 +359,7 @@ public class NameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Variable getReferredVariable()
 	{
 		return referredVariable;
@@ -356,6 +370,7 @@ public class NameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredVariable(Variable newReferredVariable)
 	{
 		Variable oldReferredVariable = referredVariable;

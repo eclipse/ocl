@@ -91,6 +91,7 @@ public class CGContainmentBodyImpl extends CGValuedElementImpl implements CGCont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CGContainmentVisit getContainmentVisit() {
 		return containmentVisit;
 	}
@@ -100,6 +101,7 @@ public class CGContainmentBodyImpl extends CGValuedElementImpl implements CGCont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContainmentVisit(CGContainmentVisit newContainmentVisit) {
 		CGContainmentVisit oldContainmentVisit = containmentVisit;
 		containmentVisit = newContainmentVisit;
@@ -112,6 +114,7 @@ public class CGContainmentBodyImpl extends CGValuedElementImpl implements CGCont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<CGContainmentPart> getParts() {
 		if (parts == null) {
 			parts = new EObjectContainmentWithInverseEList<CGContainmentPart>(CGContainmentPart.class, this, AutoCGModelPackage.CG_CONTAINMENT_BODY__PARTS, AutoCGModelPackage.CG_CONTAINMENT_PART__CONTAINMENT_BODY);
@@ -250,6 +253,7 @@ public class CGContainmentBodyImpl extends CGValuedElementImpl implements CGCont
 	 * {@inheritDoc}
 	 * @generated
 	 */
+	@Override
 	public @Nullable Boolean isEquivalentToInternal(@NonNull CGValuedElement thatValue) {
 		throw new UnsupportedOperationException(getClass().getName() + ".isEquivalentToInternal()");
 	}

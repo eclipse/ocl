@@ -152,11 +152,13 @@ public class ImportCSAttribution extends AbstractAttribution implements Unresolv
 		return adapter.computeLookup(targetElement, environmentView, scopeView);
 	}
 
+	@Override
 	public @NonNull EReference getEReference() {
 		@SuppressWarnings("null") @NonNull EReference importCsNamespace = BaseCSPackage.Literals.IMPORT_CS__REFERRED_NAMESPACE;
 		return importCsNamespace;
 	}
 
+	@Override
 	public @Nullable String getMessage(@NonNull EObject context, @NonNull String linkText) {
 		ImportAdapter adapter = PivotUtil.getAdapter(ImportAdapter.class, context);
 		if (adapter != null) {

@@ -80,6 +80,7 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 		throw new UnsupportedOperationException();
 	}
 	
+	@Override
 	public @NonNull DomainType getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
 		if (this == type) {
 			return this.getType();
@@ -100,15 +101,18 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 		final Iterator<EClass> iterator = eSuperTypes.iterator();
 		return new Iterable<DomainInheritance>()
 		{
+			@Override
 			public Iterator<DomainInheritance> iterator() {
 				return new Iterator<DomainInheritance>()
 				{
 					private boolean gotOne = false;
 					
+					@Override
 					public boolean hasNext() {
 						return !gotOne || iterator.hasNext();
 					}
 
+					@Override
 					public DomainInheritance next() {
 						if (!gotOne) {
 							gotOne = true;
@@ -124,6 +128,7 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 						return idResolver.getInheritance(next);
 					}
 
+					@Override
 					public void remove() {
 						throw new UnsupportedOperationException();
 					}					
@@ -132,18 +137,22 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 		};
 	}
 	
+	@Override
 	public @NonNull DomainPackage getOwningPackage() {
 		return evaluationPackage;
 	}
 
+	@Override
 	public @NonNull List<? extends DomainClass> getSuperClasses() {
 		throw new UnsupportedOperationException();		// FIXME
 	}
 
+	@Override
 	public @Nullable DomainOperation getMemberOperation(@NonNull OperationId operationId) {
 		throw new UnsupportedOperationException();					// FIXME
 	}
 
+	@Override
 	public @Nullable DomainProperty getMemberProperty(@NonNull String name) {
 		DomainProperties allProperties2 = allProperties;
 		if (allProperties2 == null) {
@@ -152,42 +161,52 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 		return allProperties2.getMemberProperty(name);
 	}
 
+	@Override
 	public @NonNull String getMetaTypeName() {
 		return DomainUtil.nonNullPivot(eClassifier.getName());
 	}
 
+	@Override
 	public @NonNull List<? extends DomainConstraint> getOwnedInvariants() {
 		throw new UnsupportedOperationException();			// FIXME
 	}
 
+	@Override
 	public @NonNull List<? extends DomainProperty> getOwnedProperties() {
 		throw new UnsupportedOperationException();		// FIXME
 	}
 
+	@Override
 	public @NonNull List<? extends DomainOperation> getOwnedOperations() {
 		throw new UnsupportedOperationException();		// FIXME
 	}
 
+	@Override
 	public @NonNull List<? extends DomainConstraint> getOwnedRule() {
 		throw new UnsupportedOperationException();			// FIXME
 	}
 
+	@Override
 	public @NonNull DomainClass getType() {
 		return this;
 	}
 
+	@Override
 	public @NonNull TypeId getTypeId() {
 		return getOwningPackage().getPackageId().getClassId(name, getType().getTypeParameters().parametersSize());			// FIXME DataTypeId alternative
 	}
 
+	@Override
 	public @NonNull DomainTypeParameters getTypeParameters() {
 		return typeParameters;
 	}
 
+	@Override
 	public boolean isOrdered() {
 		return (flags & ORDERED) != 0;
 	}
 
+	@Override
 	public boolean isUnique() {
 		return (flags & UNIQUE) != 0;
 	}

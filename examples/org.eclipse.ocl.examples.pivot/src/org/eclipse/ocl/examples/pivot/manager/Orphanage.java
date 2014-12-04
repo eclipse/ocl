@@ -94,18 +94,22 @@ public class Orphanage extends PackageImpl
 				}
 			}
 
+			@Override
 			public void add(T o) {
 				throw new UnsupportedOperationException();
 			}
 
+			@Override
 			public boolean hasNext() {
 				return cursor < size;
 			}
 
+			@Override
 			public boolean hasPrevious() {
 				return 0 < cursor;
 			}
 
+			@Override
 			public T next() {
 				if ((cursor < 0) || (size <= cursor)) {
 					throw new NoSuchElementException(cursor + "/" + size);
@@ -113,10 +117,12 @@ public class Orphanage extends PackageImpl
 				return list.get(cursor++).getKey();
 			}
 
+			@Override
 			public int nextIndex() {
 				return cursor;
 			}
 
+			@Override
 			public T previous() {
 				int previousCursor = cursor - 1;
 				if ((previousCursor < 0) || (size <= previousCursor)) {
@@ -126,14 +132,17 @@ public class Orphanage extends PackageImpl
 				return list.get(previousCursor).getKey();
 			}
 
+			@Override
 			public int previousIndex() {
 				return cursor - 1;
 			}
 
+			@Override
 			public void remove() {
 				throw new UnsupportedOperationException();
 			}
 
+			@Override
 			public void set(T o) {
 				throw new UnsupportedOperationException();
 			}
@@ -184,6 +193,7 @@ public class Orphanage extends PackageImpl
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public NotificationChain basicAdd(T object, NotificationChain notifications) {
 			synchronized (weakMap) {
 				if (!weakMap.containsKey(object)) {
@@ -194,10 +204,12 @@ public class Orphanage extends PackageImpl
 			return notifications;
 		}
 
+		@Override
 		public boolean basicContains(Object object) {
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public boolean basicContainsAll(Collection<?> collection) {
 			throw new UnsupportedOperationException();
 		}
@@ -207,6 +219,7 @@ public class Orphanage extends PackageImpl
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public int basicIndexOf(Object object) {
 			throw new UnsupportedOperationException();
 		}
@@ -216,6 +229,7 @@ public class Orphanage extends PackageImpl
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public int basicLastIndexOf(Object object) {
 			throw new UnsupportedOperationException();
 		}
@@ -235,14 +249,17 @@ public class Orphanage extends PackageImpl
 			return listIterator(index);
 		}
 
+		@Override
 		public NotificationChain basicRemove(Object object, NotificationChain notifications) {
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public Object[] basicToArray() {
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public <T2> T2[] basicToArray(T2[] array) {
 			throw new UnsupportedOperationException();
 		}
@@ -268,6 +285,7 @@ public class Orphanage extends PackageImpl
 					weakList2 = weakList = new ArrayList<Entry<T, Integer>>(weakMap.entrySet());
 					Collections.sort(weakList2, new Comparator<Entry<T, Integer>>()
 					{
+						@Override
 						public int compare(Entry<T, Integer> o1, Entry<T, Integer> o2) {
 							return o1.getValue().intValue() - o2.getValue().intValue();
 						}

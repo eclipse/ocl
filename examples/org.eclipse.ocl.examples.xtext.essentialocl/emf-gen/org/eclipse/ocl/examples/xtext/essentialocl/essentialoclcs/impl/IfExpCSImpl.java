@@ -133,6 +133,7 @@ public class IfExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpCS getOwnedCondition() {
 		return ownedCondition;
 	}
@@ -159,6 +160,7 @@ public class IfExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedCondition(ExpCS newOwnedCondition) {
 		if (newOwnedCondition != ownedCondition)
 		{
@@ -179,6 +181,7 @@ public class IfExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpCS getOwnedThenExpression() {
 		return ownedThenExpression;
 	}
@@ -205,6 +208,7 @@ public class IfExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedThenExpression(ExpCS newOwnedThenExpression) {
 		if (newOwnedThenExpression != ownedThenExpression)
 		{
@@ -225,6 +229,7 @@ public class IfExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<IfThenExpCS> getOwnedIfThenExpressions()
 	{
 		if (ownedIfThenExpressions == null)
@@ -239,6 +244,7 @@ public class IfExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpCS getOwnedElseExpression() {
 		return ownedElseExpression;
 	}
@@ -265,6 +271,7 @@ public class IfExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedElseExpression(ExpCS newOwnedElseExpression)
 	{
 		if (newOwnedElseExpression != ownedElseExpression)
@@ -286,6 +293,7 @@ public class IfExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsImplicit()
 	{
 		return isImplicit;
@@ -296,6 +304,7 @@ public class IfExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsImplicit(boolean newIsImplicit)
 	{
 		boolean oldIsImplicit = isImplicit;

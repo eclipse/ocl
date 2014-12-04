@@ -106,6 +106,7 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypedRefCS getOwnedType()
 	{
 		return ownedType;
@@ -133,6 +134,7 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedType(TypedRefCS newOwnedType)
 	{
 		if (newOwnedType != ownedType)
@@ -154,6 +156,7 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<String> getQualifiers()
 	{
 		if (qualifiers == null)
@@ -168,6 +171,7 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsOptional()
 	{
 		return isOptional;
@@ -178,6 +182,7 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsOptional(boolean newIsOptional)
 	{
 		boolean oldIsOptional = isOptional;

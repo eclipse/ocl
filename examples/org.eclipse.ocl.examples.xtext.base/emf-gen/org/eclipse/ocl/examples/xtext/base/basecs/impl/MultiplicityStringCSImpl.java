@@ -80,6 +80,7 @@ public class MultiplicityStringCSImpl extends MultiplicityCSImpl implements Mult
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getStringBounds()
 	{
 		return stringBounds;
@@ -90,6 +91,7 @@ public class MultiplicityStringCSImpl extends MultiplicityCSImpl implements Mult
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStringBounds(String newStringBounds)
 	{
 		String oldStringBounds = stringBounds;

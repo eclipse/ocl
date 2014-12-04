@@ -23,10 +23,12 @@ public class UnsupportedOperation extends AbstractOperation implements LibraryPr
 {
 	public static final @NonNull UnsupportedOperation INSTANCE = new UnsupportedOperation();
 
+	@Override
 	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		throw new UnsupportedOperationException();
 	}

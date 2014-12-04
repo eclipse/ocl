@@ -24,6 +24,7 @@ public class SpecializedOperationIdImpl extends AbstractSpecializedIdImpl<Operat
 		super(generalizedId, templateBindings);
 	}
 
+	@Override
 	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitOperationId(this);
 	}
@@ -33,10 +34,12 @@ public class SpecializedOperationIdImpl extends AbstractSpecializedIdImpl<Operat
 		return new SpecializedOperationIdImpl(this, templateBindings);
 	}
 
+	@Override
 	public @NonNull ParametersId getParametersId() {
 		return generalizedId.getParametersId();
 	}
 
+	@Override
 	public @NonNull TypeId getParent() {
 		return generalizedId.getParent();
 	}

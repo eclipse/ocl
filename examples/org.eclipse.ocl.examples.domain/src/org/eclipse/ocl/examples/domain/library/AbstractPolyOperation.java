@@ -24,6 +24,7 @@ import org.eclipse.ocl.examples.domain.ids.TypeId;
  */
 public abstract class AbstractPolyOperation extends AbstractOperation implements LibraryUnaryOperation, LibraryBinaryOperation, LibraryTernaryOperation 
 {
+	@Override
 	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue) {
 		TypeId typeId = callExp.getTypeId();
 		List<? extends DomainExpression> arguments = callExp.getArgument();

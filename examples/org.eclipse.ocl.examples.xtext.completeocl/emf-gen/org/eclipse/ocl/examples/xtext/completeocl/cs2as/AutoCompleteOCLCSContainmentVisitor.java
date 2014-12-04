@@ -49,55 +49,68 @@ public class AutoCompleteOCLCSContainmentVisitor
         this.idResolver = converter.getMetaModelManager().getIdResolver();
     }
     
-    public @Nullable Continuation<?> visitClassifierContextDeclCS(@NonNull ClassifierContextDeclCS self) {
+    @Override
+	public @Nullable Continuation<?> visitClassifierContextDeclCS(@NonNull ClassifierContextDeclCS self) {
         throw new UnsupportedOperationException("visitClassifierContextDeclCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitCompleteOCLDocumentCS(@NonNull CompleteOCLDocumentCS self) {
+    @Override
+	public @Nullable Continuation<?> visitCompleteOCLDocumentCS(@NonNull CompleteOCLDocumentCS self) {
         throw new UnsupportedOperationException("visitCompleteOCLDocumentCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitContextDeclCS(@NonNull ContextDeclCS self) {
+    @Override
+	public @Nullable Continuation<?> visitContextDeclCS(@NonNull ContextDeclCS self) {
         throw new UnsupportedOperationException("visitContextDeclCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitDefCS(@NonNull DefCS self) {
+    @Override
+	public @Nullable Continuation<?> visitDefCS(@NonNull DefCS self) {
         throw new UnsupportedOperationException("visitDefCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitDefOperationCS(@NonNull DefOperationCS self) {
+    @Override
+	public @Nullable Continuation<?> visitDefOperationCS(@NonNull DefOperationCS self) {
         throw new UnsupportedOperationException("visitDefOperationCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitDefPropertyCS(@NonNull DefPropertyCS self) {
+    @Override
+	public @Nullable Continuation<?> visitDefPropertyCS(@NonNull DefPropertyCS self) {
         throw new UnsupportedOperationException("visitDefPropertyCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitFeatureContextDeclCS(@NonNull FeatureContextDeclCS self) {
+    @Override
+	public @Nullable Continuation<?> visitFeatureContextDeclCS(@NonNull FeatureContextDeclCS self) {
         throw new UnsupportedOperationException("visitFeatureContextDeclCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitIncludeCS(@NonNull IncludeCS self) {
+    @Override
+	public @Nullable Continuation<?> visitIncludeCS(@NonNull IncludeCS self) {
         throw new UnsupportedOperationException("visitIncludeCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitOCLMessageArgCS(@NonNull OCLMessageArgCS self) {
+    @Override
+	public @Nullable Continuation<?> visitOCLMessageArgCS(@NonNull OCLMessageArgCS self) {
         throw new UnsupportedOperationException("visitOCLMessageArgCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitOperationContextDeclCS(@NonNull OperationContextDeclCS self) {
+    @Override
+	public @Nullable Continuation<?> visitOperationContextDeclCS(@NonNull OperationContextDeclCS self) {
         throw new UnsupportedOperationException("visitOperationContextDeclCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitPackageDeclarationCS(@NonNull PackageDeclarationCS self) {
+    @Override
+	public @Nullable Continuation<?> visitPackageDeclarationCS(@NonNull PackageDeclarationCS self) {
         throw new UnsupportedOperationException("visitPackageDeclarationCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitPathNameDeclCS(@NonNull PathNameDeclCS self) {
+    @Override
+	public @Nullable Continuation<?> visitPathNameDeclCS(@NonNull PathNameDeclCS self) {
         throw new UnsupportedOperationException("visitPathNameDeclCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitPropertyContextDeclCS(@NonNull PropertyContextDeclCS self) {
+    @Override
+	public @Nullable Continuation<?> visitPropertyContextDeclCS(@NonNull PropertyContextDeclCS self) {
         throw new UnsupportedOperationException("visitPropertyContextDeclCS is not supported by " + getClass().getName());
     }
 }

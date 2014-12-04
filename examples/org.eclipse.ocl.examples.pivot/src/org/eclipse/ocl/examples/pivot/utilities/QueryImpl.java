@@ -72,6 +72,7 @@ public class QueryImpl implements Query, ProblemAware
 		this.modelManager = ocl.getModelManager();
 	}
 
+	@Override
 	public boolean check(Object obj) {
 		if (resultType() != environment.getStandardLibrary().getBooleanType()) {
 			IllegalArgumentException error = new IllegalArgumentException(
@@ -91,6 +92,7 @@ public class QueryImpl implements Query, ProblemAware
 		return result == ValuesUtil.TRUE_VALUE;
 	}
 	
+	@Override
 	public boolean check(List<?> objList) {
 		if (objList == null) {
 			IllegalArgumentException error = new IllegalArgumentException(
@@ -125,6 +127,7 @@ public class QueryImpl implements Query, ProblemAware
 		batchEvalProblems = null;
 	}
 
+	@Override
 	public Object evaluate() throws DomainException {
 		evalProblems = null;
 		
@@ -149,6 +152,7 @@ public class QueryImpl implements Query, ProblemAware
 		return result;
 	}
 
+	@Override
 	public Object evaluate(Object obj) throws DomainException {
 		evalProblems = null;
 		
@@ -197,6 +201,7 @@ public class QueryImpl implements Query, ProblemAware
 		return result;
 	}
 
+	@Override
 	public List<?> evaluate(List<?> objList) {
 		if (objList == null) {
 			IllegalArgumentException error = new IllegalArgumentException(
@@ -220,6 +225,7 @@ public class QueryImpl implements Query, ProblemAware
 		return result;
 	}
 
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull EvaluationEnvironment getEvaluationEnvironment() {
 		if (evalEnv == null) {
@@ -229,10 +235,12 @@ public class QueryImpl implements Query, ProblemAware
 		return evalEnv;
 	}
 
+	@Override
 	public OCLExpression getExpression() {
 		return expression;
 	}
 
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull DomainModelManager getModelManager() {
 		if (modelManager == null) {
@@ -246,11 +254,13 @@ public class QueryImpl implements Query, ProblemAware
 		return modelManager;
 	}
 
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull OCL getOCL() {
 		return ocl;
 	}
 
+	@Override
 	public Diagnostic getProblems() {
 		return evalProblems;
 	}
@@ -275,10 +285,12 @@ public class QueryImpl implements Query, ProblemAware
 		}
 	}		
 
+	@Override
 	public String queryText() {
 		return expression.toString();
 	}
 
+	@Override
 	public <T> List<T> reject(List<T> objList) {
 		if (objList == null) {
 			IllegalArgumentException error = new IllegalArgumentException(
@@ -303,10 +315,12 @@ public class QueryImpl implements Query, ProblemAware
 		return result;
 	}
 
+	@Override
 	public Type resultType() {
 		return expression.getType();
 	}
 
+	@Override
 	public <T> List<T> select(List<T> objList) {
 		if (objList == null) {
 			IllegalArgumentException error = new IllegalArgumentException(

@@ -183,6 +183,7 @@ public class CSI2ASMapping extends AdapterImpl implements MetaModelManagerListen
 		return type == CSI2ASMapping.class;
 	}
 
+	@Override
 	public void metaModelManagerDisposed(@NonNull MetaModelManager metaModelManager) {
 		clear();
 	}

@@ -37,6 +37,7 @@ public class IntegerRangeImpl extends AbstractList<Value> implements IntegerRang
 //			return curr;
 //		}
 
+		@Override
 		public boolean hasNext() {
 			if (curr == null) {
 				return first.compareToInteger(last) <= 0;
@@ -46,6 +47,7 @@ public class IntegerRangeImpl extends AbstractList<Value> implements IntegerRang
 			}
 		}
 
+		@Override
 		public IntegerValue next() {
 			if (curr == null) {
 				curr = first;
@@ -63,6 +65,7 @@ public class IntegerRangeImpl extends AbstractList<Value> implements IntegerRang
 			return curr;
 		}
 
+		@Override
 		public void remove() {
 			throw new UnsupportedOperationException();	// Unimplemented optional operation
 		}
@@ -114,14 +117,17 @@ public class IntegerRangeImpl extends AbstractList<Value> implements IntegerRang
 		}
 	}
 
+	@Override
 	public @NonNull IntegerValue getFirst() {
 		return first;
 	}
 
+	@Override
 	public @NonNull IntegerValue getLast() {
 		return last;
 	}
 
+	@Override
 	public @NonNull IntegerValue getSize() {
 		return fullSize;
 	}

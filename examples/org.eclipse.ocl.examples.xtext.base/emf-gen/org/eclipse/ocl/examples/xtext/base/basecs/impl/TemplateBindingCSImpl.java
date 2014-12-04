@@ -77,6 +77,7 @@ public class TemplateBindingCSImpl extends ElementRefCSImpl implements TemplateB
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypedTypeRefCS getOwningElement() {
 		if (eContainerFeatureID() != BaseCSPackage.TEMPLATE_BINDING_CS__OWNING_ELEMENT) return null;
 		return (TypedTypeRefCS)eInternalContainer();
@@ -98,6 +99,7 @@ public class TemplateBindingCSImpl extends ElementRefCSImpl implements TemplateB
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningElement(TypedTypeRefCS newOwningElement)
 	{
 		if (newOwningElement != eInternalContainer() || (eContainerFeatureID() != BaseCSPackage.TEMPLATE_BINDING_CS__OWNING_ELEMENT && newOwningElement != null))
@@ -121,6 +123,7 @@ public class TemplateBindingCSImpl extends ElementRefCSImpl implements TemplateB
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<TemplateParameterSubstitutionCS> getOwnedSubstitutions() {
 		if (ownedSubstitutions == null)
 		{

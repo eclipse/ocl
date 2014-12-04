@@ -67,6 +67,7 @@ public abstract class TypedRefCSImpl extends TypeRefCSImpl implements TypedRefCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MultiplicityCS getOwnedMultiplicity()
 	{
 		return ownedMultiplicity;
@@ -94,6 +95,7 @@ public abstract class TypedRefCSImpl extends TypeRefCSImpl implements TypedRefCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedMultiplicity(MultiplicityCS newOwnedMultiplicity)
 	{
 		if (newOwnedMultiplicity != ownedMultiplicity)

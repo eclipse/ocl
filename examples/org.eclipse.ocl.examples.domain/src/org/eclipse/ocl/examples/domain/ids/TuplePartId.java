@@ -19,6 +19,7 @@ import org.eclipse.ocl.examples.domain.elements.Nameable;
 public interface TuplePartId extends ElementId, Nameable, Comparable<TuplePartId>
 {
 	int getIndex();
+	@Override
 	@NonNull String getName();
 	@NonNull TypeId getTypeId();
 }

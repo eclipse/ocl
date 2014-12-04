@@ -80,6 +80,7 @@ public class DynamicBehaviorImpl extends DynamicTypeImpl implements DynamicBehav
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Transition getTransition()
 	{
 		if (eContainerFeatureID() != PivotPackage.DYNAMIC_BEHAVIOR__TRANSITION) return null;
@@ -102,6 +103,7 @@ public class DynamicBehaviorImpl extends DynamicTypeImpl implements DynamicBehav
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTransition(Transition newTransition)
 	{
 		if (newTransition != eInternalContainer() || (eContainerFeatureID() != PivotPackage.DYNAMIC_BEHAVIOR__TRANSITION && newTransition != null))

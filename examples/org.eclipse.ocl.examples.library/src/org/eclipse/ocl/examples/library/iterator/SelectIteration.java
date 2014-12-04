@@ -29,6 +29,7 @@ public class SelectIteration extends AbstractIteration
 {
 	public static final @NonNull SelectIteration INSTANCE = new SelectIteration();
 
+	@Override
 	public @NonNull CollectionValue.Accumulator createAccumulatorValue(@NonNull DomainEvaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
 		return createCollectionAccumulatorValue((CollectionTypeId)accumulatorTypeId);
 	}

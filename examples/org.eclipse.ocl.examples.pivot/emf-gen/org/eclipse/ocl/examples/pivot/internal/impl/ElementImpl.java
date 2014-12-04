@@ -119,6 +119,7 @@ public abstract class ElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<Comment> getComment()
 	{
 		if (comment == null)
@@ -133,6 +134,7 @@ public abstract class ElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<Comment> getOwnedComment()
 	{
@@ -148,6 +150,7 @@ public abstract class ElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<ElementExtension> getExtension()
 	{
@@ -163,6 +166,7 @@ public abstract class ElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<Element> getOwnedAnnotation()
 	{
@@ -178,6 +182,7 @@ public abstract class ElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public @NonNull List<Element> allOwnedElements()
 	{
 		/**
@@ -196,6 +201,7 @@ public abstract class ElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Element getValue(final Type stereotype, final String propertyName)
 	{
 		/**
@@ -360,6 +366,7 @@ public abstract class ElementImpl
 		return eDynamicInvoke(operationID, arguments);
 	}
 
+	@Override
 	public <R> R accept(@NonNull Visitor<R> visitor) {
 		return visitor.visitElement(this);
 	}

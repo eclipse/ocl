@@ -75,6 +75,7 @@ public class NestedExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpCS getSource() {
 		return source;
 	}
@@ -101,6 +102,7 @@ public class NestedExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSource(ExpCS newSource) {
 		if (newSource != source)
 		{

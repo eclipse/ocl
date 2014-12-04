@@ -25,6 +25,7 @@ public class SpecializedCollectionTypeIdImpl extends AbstractSpecializedIdImpl<C
 		super(generalizedId, templateBindings);
 	}
 
+	@Override
 	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitCollectionTypeId(this);
 	}
@@ -34,6 +35,7 @@ public class SpecializedCollectionTypeIdImpl extends AbstractSpecializedIdImpl<C
 		return new SpecializedCollectionTypeIdImpl(this, templateBindings);
 	}
 
+	@Override
 	public @NonNull TypeId getElementTypeId() {
 		TypeId elementTypeId2 = elementTypeId;
 		if (elementTypeId2 == null) {
@@ -42,7 +44,8 @@ public class SpecializedCollectionTypeIdImpl extends AbstractSpecializedIdImpl<C
 		return elementTypeId2;
 	}
 
-    public @NonNull CollectionTypeId specialize(@NonNull BindingsId templateBindings) {
+    @Override
+	public @NonNull CollectionTypeId specialize(@NonNull BindingsId templateBindings) {
     	return createSpecializedId(templateBindings);
 	}
 }

@@ -72,6 +72,7 @@ public class NestedCompletePackageImpl extends CompletePackageImpl implements Ne
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CompletePackage getOwningCompletePackage()
 	{
 		if (eContainerFeatureID() != PivotPackage.NESTED_COMPLETE_PACKAGE__OWNING_COMPLETE_PACKAGE) return null;
@@ -94,6 +95,7 @@ public class NestedCompletePackageImpl extends CompletePackageImpl implements Ne
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("cast")
 	public void setOwningCompletePackage(CompletePackage newOwningCompletePackage)
 	{

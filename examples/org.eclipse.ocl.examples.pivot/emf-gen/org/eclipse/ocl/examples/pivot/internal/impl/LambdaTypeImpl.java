@@ -116,6 +116,7 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getContextType()
 	{
 		if (contextType != null && ((EObject)contextType).eIsProxy())
@@ -146,6 +147,7 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContextType(Type newContextType)
 	{
 		Type oldContextType = contextType;
@@ -159,6 +161,7 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<Type> getParameterType()
 	{
@@ -174,6 +177,7 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getResultType()
 	{
 		if (resultType != null && ((EObject)resultType).eIsProxy())
@@ -204,6 +208,7 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setResultType(Type newResultType)
 	{
 		Type oldResultType = resultType;
@@ -558,6 +563,7 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 	
 	private ParametersId parametersId = null;
 
+	@Override
 	public @NonNull ParametersId getParametersId() {
 		ParametersId parametersId2 = parametersId;
 		if (parametersId2 == null) {
@@ -578,6 +584,7 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 		return parametersId2;
 	}
 
+	@Override
 	public @NonNull List<? extends DomainType> getParameterTypes() {
 		return getParameterType();
 	}

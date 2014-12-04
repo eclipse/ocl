@@ -103,6 +103,7 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getMetaType()
 	{
 		if (metaType != null && ((EObject)metaType).eIsProxy())
@@ -133,6 +134,7 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMetaType(Type newMetaType)
 	{
 		Type oldMetaType = metaType;
@@ -146,6 +148,7 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<DynamicProperty> getOwnedProperty()
 	{
 		if (ownedProperty == null)

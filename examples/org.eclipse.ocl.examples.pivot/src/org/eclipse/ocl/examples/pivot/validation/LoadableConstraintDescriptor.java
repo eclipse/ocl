@@ -47,6 +47,7 @@ public abstract class LoadableConstraintDescriptor<T> extends AbstractConstraint
 			super(targetType, constraint, targetType.getEPackage().getNsURI(), targetType.getName(), code);
 		}
 
+		@Override
 		public boolean targetsTypeOf(EObject eObject) {
 			return targetType.isInstance(eObject);
 		}
@@ -73,6 +74,7 @@ public abstract class LoadableConstraintDescriptor<T> extends AbstractConstraint
 			return false;
 		}
 
+		@Override
 		public boolean targetsTypeOf(EObject eObject) {
 			EClass eClass = eObject.eClass();
 			String nsURI = targetType.getProfile().getURI();
@@ -114,46 +116,57 @@ public abstract class LoadableConstraintDescriptor<T> extends AbstractConstraint
 		return constraint;
 	}
 	
+	@Override
 	public String getBody() {
 		return PrettyPrinter.print(constraint);
 	}
 
+	@Override
 	public String getDescription() {
 		return getBody();
 	}
 
+	@Override
 	public EvaluationMode<?> getEvaluationMode() {
 		return EvaluationMode.BATCH;
 	}
 
+	@Override
 	public String getId() {
 		return id;
 	}
 
+	@Override
 	public String getMessagePattern() {
 		return String.format("Constraint %s violated on {0}", getName()); //$NON-NLS-1$
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}
 
+	@Override
 	public String getPluginId() {
 		return PivotPlugin.getPluginId();
 	}
 
+	@Override
 	public ConstraintSeverity getSeverity() {
 		return ConstraintSeverity.WARNING;
 	}
 
+	@Override
 	public int getStatusCode() {
 		return code;
 	}
 
+	@Override
 	public boolean targetsEvent(Notification notification) {
 		return false;
 	}
 
+	@Override
 	public IStatus validate(IValidationContext ctx) {
 		EObject target = ctx.getTarget();
 		if (target == null) {

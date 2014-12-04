@@ -46,6 +46,7 @@ public class EcoreExecutorEnumeration extends EcoreExecutorType implements Domai
 		return (EEnum) eClassifier2;
 	}
 
+	@Override
 	public @Nullable EcoreExecutorEnumerationLiteral getEnumerationLiteral(@NonNull String name) {
 		for (EcoreExecutorEnumerationLiteral enumerationLiteral : literals) {
 			if (name.equals(enumerationLiteral.getName())) {
@@ -55,10 +56,12 @@ public class EcoreExecutorEnumeration extends EcoreExecutorType implements Domai
 		return null;
 	}
 	
+	@Override
 	public @NonNull EnumerationId getEnumerationId() {
 		return (EnumerationId) getTypeId();
 	}
 
+	@Override
 	public @NonNull Iterable<? extends DomainEnumerationLiteral> getEnumerationLiterals() {
 		return new ArrayIterable<EcoreExecutorEnumerationLiteral>(literals);
 	}

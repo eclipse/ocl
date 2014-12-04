@@ -32,11 +32,13 @@ public abstract class AbstractTypeId extends AbstractElementId implements TypeId
     	throw new UnsupportedOperationException();
     }
 
+	@Override
 	public @NonNull String getMetaTypeName() {
 		return TypeId.CLASS_NAME;
 	}
 
-    public @NonNull OperationId getOperationId(int templateParameters, @NonNull String name, @NonNull ParametersId parametersId) {
+    @Override
+	public @NonNull OperationId getOperationId(int templateParameters, @NonNull String name, @NonNull ParametersId parametersId) {
 //		System.out.println("getOperationId " + name + " " + DomainUtil.debugFullName(parametersId) + " with " + DomainUtil.debugFullName(templateParameters));		
 		OperationIdsMap memberOperations2 = memberOperations;
 		if (memberOperations2 == null) {
@@ -50,19 +52,23 @@ public abstract class AbstractTypeId extends AbstractElementId implements TypeId
 		return memberOperations2.getId(templateParameters, name, parametersId);
 	}
 
-    public @NonNull PropertyId getPropertyId(@NonNull String name) {
+    @Override
+	public @NonNull PropertyId getPropertyId(@NonNull String name) {
     	throw new UnsupportedOperationException();
     }
 	
-    public @NonNull TemplateParameterId getTemplateParameterId(int index) {
+    @Override
+	public @NonNull TemplateParameterId getTemplateParameterId(int index) {
     	throw new UnsupportedOperationException();
     }
 	
-    public int getTemplateParameters() {
+    @Override
+	public int getTemplateParameters() {
     	throw new UnsupportedOperationException();
     }
    
-    public @NonNull TypeId specialize(@NonNull BindingsId templateBindings) {
+    @Override
+	public @NonNull TypeId specialize(@NonNull BindingsId templateBindings) {
     	throw new UnsupportedOperationException();
 	}
 }

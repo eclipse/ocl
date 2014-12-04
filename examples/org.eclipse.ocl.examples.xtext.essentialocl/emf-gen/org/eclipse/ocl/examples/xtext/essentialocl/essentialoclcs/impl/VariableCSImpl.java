@@ -87,6 +87,7 @@ public class VariableCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypedRefCS getOwnedType() {
 		return ownedType;
 	}
@@ -113,6 +114,7 @@ public class VariableCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedType(TypedRefCS newOwnedType) {
 		if (newOwnedType != ownedType)
 		{
@@ -133,6 +135,7 @@ public class VariableCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpCS getOwnedInitExpression() {
 		return ownedInitExpression;
 	}
@@ -159,6 +162,7 @@ public class VariableCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedInitExpression(ExpCS newOwnedInitExpression) {
 		if (newOwnedInitExpression != ownedInitExpression)
 		{

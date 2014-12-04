@@ -68,6 +68,7 @@ public abstract class PropertyCallExpCSImpl extends CallExpCSImpl implements Pro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Property getReferredProperty()
 	{
 		return referredProperty;
@@ -78,6 +79,7 @@ public abstract class PropertyCallExpCSImpl extends CallExpCSImpl implements Pro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredProperty(Property newReferredProperty)
 	{
 		Property oldReferredProperty = referredProperty;

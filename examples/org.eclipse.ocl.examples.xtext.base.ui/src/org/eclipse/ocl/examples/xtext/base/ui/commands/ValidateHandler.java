@@ -70,6 +70,7 @@ public final class ValidateHandler implements IHandler2
 		this.action = new ValidateCommand();
 	}
 
+	@Override
 	public final void addHandlerListener(final IHandlerListener handlerListener) {
 		if (!hasListeners()) {
 			attachListener();
@@ -100,6 +101,7 @@ public final class ValidateHandler implements IHandler2
 		if (propertyChangeListener == null) {
 			propertyChangeListener = new IPropertyChangeListener() {
 //				@Override
+				@Override
 				public final void propertyChange(
 						final PropertyChangeEvent propertyChangeEvent) {
 					final String property = propertyChangeEvent.getProperty();
@@ -136,6 +138,7 @@ public final class ValidateHandler implements IHandler2
 	 * 
 	 * @see org.eclipse.core.commands.IHandler#dispose()
 	 */
+	@Override
 	public final void dispose() {
 		if (hasListeners()) {
 			action.removePropertyChangeListener(propertyChangeListener);
@@ -164,6 +167,7 @@ public final class ValidateHandler implements IHandler2
 		return null;
 	} */
 
+	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		IWorkbenchPart part = HandlerUtil.getActivePart(event);
 		action.setActiveWorkbenchPart(part);
@@ -229,10 +233,12 @@ public final class ValidateHandler implements IHandler2
 		return list.getListeners();
 	}
 
+	@Override
 	public final boolean isEnabled() {
 		return action.isEnabled();
 	}
 
+	@Override
 	public final boolean isHandled() {
 		return action.isHandled();
 	}
@@ -268,6 +274,7 @@ public final class ValidateHandler implements IHandler2
 		return listenerList != null;
 	}
 
+	@Override
 	public final void removeHandlerListener(final IHandlerListener handlerListener) {
 		removeListenerObject(handlerListener);
 		if (!hasListeners()) {
@@ -318,6 +325,7 @@ public final class ValidateHandler implements IHandler2
 	 *            the application context. May be <code>null</code>
 	 * @see #setBaseEnabled(boolean)
 	 */
+	@Override
 	public void setEnabled(Object evaluationContext) {
 	}
 

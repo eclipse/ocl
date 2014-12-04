@@ -54,6 +54,7 @@ public class EcoreReflectiveFragment extends ReflectiveFragment
 		return keySet;
 	}
 
+	@Override
 	public @Nullable DomainOperation getLocalOperation(@NonNull DomainOperation baseOperation) {
 		throw new UnsupportedOperationException();		// FIXME
 	}

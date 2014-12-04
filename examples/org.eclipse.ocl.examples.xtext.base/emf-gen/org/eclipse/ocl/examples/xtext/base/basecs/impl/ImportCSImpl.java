@@ -91,6 +91,7 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PathNameCS getOwnedPathName()
 	{
 		return ownedPathName;
@@ -118,6 +119,7 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedPathName(PathNameCS newOwnedPathName)
 	{
 		if (newOwnedPathName != ownedPathName)
@@ -139,6 +141,7 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsAll()
 	{
 		return isAll;
@@ -149,6 +152,7 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsAll(boolean newIsAll)
 	{
 		boolean oldIsAll = isAll;
@@ -274,6 +278,7 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public Namespace getReferredNamespace() {
 		if (ownedPathName == null) {
 			return null;

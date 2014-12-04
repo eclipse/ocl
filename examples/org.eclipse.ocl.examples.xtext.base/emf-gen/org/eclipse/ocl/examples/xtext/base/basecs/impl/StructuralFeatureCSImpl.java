@@ -97,6 +97,7 @@ public abstract class StructuralFeatureCSImpl extends TypedElementCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public StructuredClassCS getOwningClass() {
 		if (eContainerFeatureID() != BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS) return null;
 		return (StructuredClassCS)eInternalContainer();
@@ -118,6 +119,7 @@ public abstract class StructuralFeatureCSImpl extends TypedElementCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningClass(StructuredClassCS newOwningClass) {
 		if (newOwningClass != eInternalContainer() || (eContainerFeatureID() != BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS && newOwningClass != null))
 		{
@@ -140,6 +142,7 @@ public abstract class StructuralFeatureCSImpl extends TypedElementCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDefault()
 	{
 		return default_;
@@ -150,6 +153,7 @@ public abstract class StructuralFeatureCSImpl extends TypedElementCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefault(String newDefault)
 	{
 		String oldDefault = default_;
@@ -163,6 +167,7 @@ public abstract class StructuralFeatureCSImpl extends TypedElementCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<SpecificationCS> getOwnedDefaultExpressions()
 	{
 		if (ownedDefaultExpressions == null)

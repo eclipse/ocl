@@ -52,6 +52,7 @@ public class InstanceSlotNavigationProperty extends AbstractProperty
 		this.collectionTypeId = collectionTypeId;
 	}
 
+	@Override
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		if (sourceValue != null) {
 			InstanceSpecification instanceSpecification = (InstanceSpecification)sourceValue; 

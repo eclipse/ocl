@@ -27,6 +27,7 @@ public class OCLInvocationDelegateFactory extends AbstractOCLDelegateFactory
 		super(delegateURI);
 	}
 
+	@Override
 	public @Nullable EOperation.Internal.InvocationDelegate createInvocationDelegate(EOperation operation) {
 		if (operation == null) {
 			return null;

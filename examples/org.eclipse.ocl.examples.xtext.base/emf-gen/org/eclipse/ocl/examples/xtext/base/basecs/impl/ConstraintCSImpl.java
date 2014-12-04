@@ -105,6 +105,7 @@ public class ConstraintCSImpl extends NamedElementCSImpl implements ConstraintCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getStereotype()
 	{
 		return stereotype;
@@ -115,6 +116,7 @@ public class ConstraintCSImpl extends NamedElementCSImpl implements ConstraintCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStereotype(String newStereotype)
 	{
 		String oldStereotype = stereotype;
@@ -128,6 +130,7 @@ public class ConstraintCSImpl extends NamedElementCSImpl implements ConstraintCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SpecificationCS getOwnedSpecification()
 	{
 		return ownedSpecification;
@@ -155,6 +158,7 @@ public class ConstraintCSImpl extends NamedElementCSImpl implements ConstraintCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedSpecification(SpecificationCS newOwnedSpecification)
 	{
 		if (newOwnedSpecification != ownedSpecification)
@@ -176,6 +180,7 @@ public class ConstraintCSImpl extends NamedElementCSImpl implements ConstraintCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SpecificationCS getOwnedMessageSpecification()
 	{
 		return ownedMessageSpecification;
@@ -203,6 +208,7 @@ public class ConstraintCSImpl extends NamedElementCSImpl implements ConstraintCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedMessageSpecification(SpecificationCS newOwnedMessageSpecification)
 	{
 		if (newOwnedMessageSpecification != ownedMessageSpecification)

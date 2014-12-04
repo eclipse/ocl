@@ -122,6 +122,7 @@ public class TemplateParameterImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<org.eclipse.ocl.examples.pivot.Class> getConstrainingClass()
 	{
 		if (constrainingClass == null)
@@ -136,6 +137,7 @@ public class TemplateParameterImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getLowerBound()
 	{
 		if (lowerBound != null && ((EObject)lowerBound).eIsProxy())
@@ -166,6 +168,7 @@ public class TemplateParameterImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLowerBound(Type newLowerBound)
 	{
 		Type oldLowerBound = lowerBound;
@@ -179,6 +182,7 @@ public class TemplateParameterImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TemplateSignature getOwningTemplateSignature() {
 		if (eContainerFeatureID() != PivotPackage.TEMPLATE_PARAMETER__OWNING_TEMPLATE_SIGNATURE) return null;
 		return (TemplateSignature)eInternalContainer();
@@ -200,6 +204,7 @@ public class TemplateParameterImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningTemplateSignature(TemplateSignature newOwningTemplateSignature) {
 		if (newOwningTemplateSignature != eInternalContainer() || (eContainerFeatureID() != PivotPackage.TEMPLATE_PARAMETER__OWNING_TEMPLATE_SIGNATURE && newOwningTemplateSignature != null))
 		{
@@ -222,6 +227,7 @@ public class TemplateParameterImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getUpperBound()
 	{
 		if (upperBound != null && ((EObject)upperBound).eIsProxy())
@@ -252,6 +258,7 @@ public class TemplateParameterImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUpperBound(Type newUpperBound)
 	{
 		Type oldUpperBound = upperBound;
@@ -495,16 +502,19 @@ public class TemplateParameterImpl
 		return visitor.visitTemplateParameter(this);
 	}
 	
+	@Override
 	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
 		DomainInheritance thisInheritance = standardLibrary.getOclAnyType().getInheritance(standardLibrary);
 		DomainInheritance thatInheritance = type.getInheritance(standardLibrary);
 		return thisInheritance.isSubInheritanceOf(thatInheritance);
 	}
 
+	@Override
 	public @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
 		return standardLibrary.getInheritance(standardLibrary.getOclAnyType());		// FIXME loaer bound
 	}
 
+	@Override
 	public @NonNull DomainClass getNormalizedType(@NonNull DomainStandardLibrary standardLibrary) {
 		try {
 			return getInheritance(standardLibrary).getType();
@@ -516,6 +526,7 @@ public class TemplateParameterImpl
 
 	private /*@LazyNonNull*/ TemplateParameterId templateParameterId;
 	
+	@Override
 	public @NonNull TemplateParameterId getTemplateParameterId() {
 		TemplateParameterId templateParameterId2 = templateParameterId;
 		if (templateParameterId2 == null) {
@@ -546,6 +557,7 @@ public class TemplateParameterImpl
 		return templateParameterId2;
 	}
 
+	@Override
 	public @NonNull TemplateParameterId getTypeId() {
 		return getTemplateParameterId();
 	}
@@ -560,6 +572,7 @@ public class TemplateParameterImpl
 		return this;
 	}
 
+	@Override
 	public DomainType specializeIn(@NonNull DomainCallExp expr, DomainType selfType) {
 		if (expr instanceof CallExp) {
 			Resource eResource = ((EObject) expr).eResource();

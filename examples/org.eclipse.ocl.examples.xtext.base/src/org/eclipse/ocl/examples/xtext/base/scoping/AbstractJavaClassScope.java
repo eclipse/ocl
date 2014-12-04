@@ -39,18 +39,22 @@ public abstract class AbstractJavaClassScope extends AbstractScope implements Ad
 
 	public abstract void getAdapter(@NonNull BaseCSResource importedResource);
 
+	@Override
 	public Notifier getTarget() {
 		return target;
 	}
 
 	public abstract void installContents(@NonNull BaseCSResource csResource);
 
+	@Override
 	public boolean isAdapterForType(Object type) {
 		return type == AbstractJavaClassScope.class;
 	}
 
+	@Override
 	public void notifyChanged(Notification notification) {}
 
+	@Override
 	public void setTarget(Notifier newTarget) {
 		this.target = newTarget;
 	}

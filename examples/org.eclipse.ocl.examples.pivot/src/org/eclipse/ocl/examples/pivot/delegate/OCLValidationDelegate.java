@@ -151,6 +151,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 		return "<" + delegateDomain.getURI() + ":validate> " + eClassifier.getEPackage().getName() + "::" + eClassifier.getName(); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
+	@Override
 	public boolean validate(EClass eClass, EObject eObject,
 			Map<Object, Object> context, EOperation invariant, String expression) {
 		if (eClass == null) {
@@ -182,6 +183,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 		}
 	}
 
+	@Override
 	public boolean validate(@NonNull EClass eClass, @NonNull EObject eObject, @Nullable DiagnosticChain diagnostics,
 			Map<Object, Object> context, @NonNull EOperation invariant, String expression, int severity, String source, int code) {
 		MetaModelManager metaModelManager = delegateDomain.getMetaModelManager();
@@ -207,6 +209,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 		}
 	}
 
+	@Override
 	public boolean validate(EClass eClass, EObject eObject,
 			Map<Object, Object> context, String constraintName, String expression) {
 		if (eClass == null) {
@@ -221,11 +224,13 @@ public class OCLValidationDelegate implements ValidationDelegate
 		return validatePivot(eClass, eObject, null, context, constraintName, null, 0);
 	}
 
+	@Override
 	public boolean validate(@NonNull EClass eClass, @NonNull EObject eObject, @Nullable DiagnosticChain diagnostics, Map<Object, Object> context,
 			@NonNull String constraintName, String expression, int severity, String source, int code) {
 		return validatePivot(eClass, eObject, diagnostics, context, constraintName, source, code);
 	}
 
+	@Override
 	public boolean validate(EDataType eDataType, Object value,
 			Map<Object, Object> context, String constraintName, String expression) {
 		if (eDataType == null) {
@@ -240,6 +245,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 		return validatePivot(eDataType, value, null, context, constraintName, null, 0);
 	}
 
+	@Override
 	public boolean validate(@NonNull EDataType eDataType, @NonNull Object value, @Nullable DiagnosticChain diagnostics, Map<Object, Object> context,
 			@NonNull String constraintName, String expression, int severity, String source, int code) {
 		return validatePivot(eDataType, value, diagnostics, context, constraintName, source, code);

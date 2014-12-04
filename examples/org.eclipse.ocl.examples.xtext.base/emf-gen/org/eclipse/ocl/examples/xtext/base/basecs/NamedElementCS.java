@@ -47,6 +47,7 @@ public interface NamedElementCS extends ModelElementCS, Nameable {
 	 * @model
 	 * @generated
 	 */
+	@Override
 	String getName();
 
 	/**

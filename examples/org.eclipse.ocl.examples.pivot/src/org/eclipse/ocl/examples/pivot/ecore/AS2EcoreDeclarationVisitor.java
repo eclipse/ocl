@@ -90,6 +90,7 @@ public class AS2EcoreDeclarationVisitor
 
 	protected static class DuplicateConstraintsFilter implements Predicate<Constraint>
 	{
+		@Override
 		public boolean apply(@Nullable Constraint aConstraint) {
 			if (aConstraint == null) {
 				return false;
@@ -103,6 +104,7 @@ public class AS2EcoreDeclarationVisitor
 
 	protected static class DuplicateOperationsFilter implements Predicate<Operation>
 	{
+		@Override
 		public boolean apply(@Nullable Operation anOperation) {
 			if (anOperation == null) {
 				return false;
@@ -120,6 +122,7 @@ public class AS2EcoreDeclarationVisitor
 
 	protected static class DuplicatePropertiesFilter implements Predicate<Property>
 	{
+		@Override
 		public boolean apply(@Nullable Property aProperty) {
 			if (aProperty == null) {
 				return false;
@@ -133,6 +136,7 @@ public class AS2EcoreDeclarationVisitor
 
 	protected static class NonDuplicateConstraintsFilter implements Predicate<Constraint>
 	{
+		@Override
 		public boolean apply(@Nullable Constraint aConstraint) {
 			if (aConstraint == null) {
 				return false;
@@ -146,6 +150,7 @@ public class AS2EcoreDeclarationVisitor
 
 	protected static class NonDuplicateOperationsFilter implements Predicate<Operation>
 	{
+		@Override
 		public boolean apply(@Nullable Operation anOperation) {
 			if (anOperation == null) {
 				return false;
@@ -163,6 +168,7 @@ public class AS2EcoreDeclarationVisitor
 
 	protected static class NonDuplicatePropertiesFilter implements Predicate<Property>
 	{
+		@Override
 		public boolean apply(@Nullable Property aProperty) {
 			if (aProperty == null) {
 				return false;
@@ -361,6 +367,7 @@ public class AS2EcoreDeclarationVisitor
 		}
 	}
 
+	@Override
 	public EObject visiting(@NonNull Visitable visitable) {
 		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for AS2Ecore Declaration pass");
 	}
@@ -528,6 +535,7 @@ public class AS2EcoreDeclarationVisitor
 				imports = new ArrayList<Import>(imports);
 				Collections.sort(imports, new Comparator<Import>()
 						{
+						@Override
 						public int compare(Import o1, Import o2) {
 							String n1 = o1.getName();
 							String n2 = o2.getName();

@@ -211,6 +211,7 @@ public class ValuesPackageImpl extends EPackageImpl implements ValuesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getBagValue() {
 		return bagValueEClass;
 	}
@@ -220,6 +221,7 @@ public class ValuesPackageImpl extends EPackageImpl implements ValuesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCollectionValue() {
 		return collectionValueEClass;
 	}
@@ -229,6 +231,7 @@ public class ValuesPackageImpl extends EPackageImpl implements ValuesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIntegerValue() {
 		return integerValueEClass;
 	}
@@ -238,6 +241,7 @@ public class ValuesPackageImpl extends EPackageImpl implements ValuesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getInvalidValue() {
 		return invalidValueEClass;
 	}
@@ -247,6 +251,7 @@ public class ValuesPackageImpl extends EPackageImpl implements ValuesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNullValue() {
 		return nullValueEClass;
 	}
@@ -256,6 +261,7 @@ public class ValuesPackageImpl extends EPackageImpl implements ValuesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getObjectValue() {
 		return objectValueEClass;
 	}
@@ -265,6 +271,7 @@ public class ValuesPackageImpl extends EPackageImpl implements ValuesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOrderedCollectionValue() {
 		return orderedCollectionValueEClass;
 	}
@@ -274,6 +281,7 @@ public class ValuesPackageImpl extends EPackageImpl implements ValuesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOrderedSetValue() {
 		return orderedSetValueEClass;
 	}
@@ -283,6 +291,7 @@ public class ValuesPackageImpl extends EPackageImpl implements ValuesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRealValue() {
 		return realValueEClass;
 	}
@@ -292,6 +301,7 @@ public class ValuesPackageImpl extends EPackageImpl implements ValuesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSequenceValue() {
 		return sequenceValueEClass;
 	}
@@ -301,6 +311,7 @@ public class ValuesPackageImpl extends EPackageImpl implements ValuesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSetValue() {
 		return setValueEClass;
 	}
@@ -310,6 +321,7 @@ public class ValuesPackageImpl extends EPackageImpl implements ValuesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTupleValue() {
 		return tupleValueEClass;
 	}
@@ -319,6 +331,7 @@ public class ValuesPackageImpl extends EPackageImpl implements ValuesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getUniqueCollectionValue() {
 		return uniqueCollectionValueEClass;
 	}
@@ -328,6 +341,7 @@ public class ValuesPackageImpl extends EPackageImpl implements ValuesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getUnlimitedValue() {
 		return unlimitedValueEClass;
 	}
@@ -337,6 +351,7 @@ public class ValuesPackageImpl extends EPackageImpl implements ValuesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getValue() {
 		return valueEClass;
 	}
@@ -346,6 +361,7 @@ public class ValuesPackageImpl extends EPackageImpl implements ValuesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ValuesFactory getValuesFactory() {
 		return (ValuesFactory)getEFactoryInstance();
 	}

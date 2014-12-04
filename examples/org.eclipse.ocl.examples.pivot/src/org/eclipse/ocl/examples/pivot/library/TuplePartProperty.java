@@ -28,6 +28,7 @@ public class TuplePartProperty extends AbstractProperty
 		this.tuplePartId = tuplePartId;
 	}
 
+	@Override
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		TupleValue tupleValue = asTupleValue(sourceValue);
 		Object resultValue = tupleValue.getValue(tuplePartId);

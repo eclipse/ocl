@@ -31,26 +31,32 @@ public class NsURIPackageIdImpl extends PackageIdImpl implements NsURIPackageId
 		this.ePackage = ePackage;
 	}
 
+	@Override
 	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitNsURIPackageId(this);
 	}
 
+	@Override
 	public @NonNull String getDisplayName() {
 		return nsURI;
 	}
 
+	@Override
 	public @Nullable EPackage getEPackage() {
 		return ePackage;
 	}
 
+	@Override
 	public @Nullable String getNsPrefix() {
 		return nsPrefix;
 	}
 
+	@Override
 	public @NonNull String getNsURI() {
 		return nsURI;
 	}
 
+	@Override
 	public void setEPackage(@NonNull EPackage ePackage) {
 		this.ePackage = ePackage;
 	}

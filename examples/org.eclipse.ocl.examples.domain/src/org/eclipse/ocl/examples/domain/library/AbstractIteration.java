@@ -63,6 +63,7 @@ public abstract class AbstractIteration extends AbstractFeature implements Libra
 	 * the call-backs to customize the default iteration.
 	 * @throws Exception 
 	 */
+	@Override
 	public @Nullable Object evaluateIteration(@NonNull DomainIterationManager iterationManager) {
 		try {
 			while (true) {

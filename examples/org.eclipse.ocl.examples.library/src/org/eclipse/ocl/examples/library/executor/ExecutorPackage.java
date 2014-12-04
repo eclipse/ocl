@@ -35,6 +35,7 @@ public abstract class ExecutorPackage implements DomainPackage
 		this.packageId = packageId;
 	}
 
+	@Override
 	public @Nullable EPackage getEPackage() {
 		return null;
 	}
@@ -43,24 +44,30 @@ public abstract class ExecutorPackage implements DomainPackage
 		return packageId;
 	}
 
+	@Override
 	public final @NonNull String getName() {
 		return name;
 	}
 
+	@Override
 	public final @Nullable String getNsPrefix() {
 		return nsPrefix;
 	}
 
+	@Override
 	public final @Nullable String getURI() {
 		return nsURI;
 	}
 
+	@Override
 	public @NonNull List<? extends DomainConstraint> getOwnedRule() {
 		throw new UnsupportedOperationException();			// FIXME
 	}
 	
+	@Override
 	public abstract @NonNull List<? extends DomainClass> getOwnedClasses();
 
+	@Override
 	public @NonNull PackageId getPackageId() {
 		return packageId;
 	}

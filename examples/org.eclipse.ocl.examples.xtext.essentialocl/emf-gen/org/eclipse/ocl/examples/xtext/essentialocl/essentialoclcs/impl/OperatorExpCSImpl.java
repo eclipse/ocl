@@ -112,6 +112,7 @@ public abstract class OperatorExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName()
 	{
 		return name;
@@ -122,6 +123,7 @@ public abstract class OperatorExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName)
 	{
 		String oldName = name;
@@ -135,6 +137,7 @@ public abstract class OperatorExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpCS getOwnedRight()
 	{
 		return ownedRight;
@@ -162,6 +165,7 @@ public abstract class OperatorExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedRight(ExpCS newOwnedRight)
 	{
 		if (newOwnedRight != ownedRight)
@@ -408,6 +412,7 @@ public abstract class OperatorExpCSImpl
 		return ownedRight != null ? ownedRight.getLocalRightmostDescendant() : this;
 	}
 
+	@Override
 	public abstract ExpCS getSource();
 
 	@Override

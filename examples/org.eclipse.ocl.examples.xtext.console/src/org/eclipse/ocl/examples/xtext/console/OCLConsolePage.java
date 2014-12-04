@@ -188,6 +188,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 			return value;
 		}
 
+		@Override
 		public void run(final IProgressMonitor monitor) {
 			monitor.beginTask(NLS.bind(ConsoleMessages.Progress_Title, expression), 10);
 			monitor.subTask(ConsoleMessages.Progress_Synchronising);
@@ -230,9 +231,11 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 					CancelableEvaluationVisitor evaluationVisitor = new CancelableEvaluationVisitor(monitor, environment, evaluationEnvironment, modelManager2);
 					evaluationVisitor.setLogger(new DomainLogger()
 					{
+						@Override
 						public void append(final @NonNull String message) {
 							OCLConsolePage.this.getControl().getDisplay().asyncExec(new Runnable()
 							{
+								@Override
 								public void run() {
 									OCLConsolePage.this.append(message, ColorManager.DEFAULT, false);
 								}
@@ -263,6 +266,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 		private List<String> history = new ArrayList<String>();
 		private int currentHistoryPointer = 0;
 		
+		@Override
 		public void keyPressed(KeyEvent e) {
 			IContentAssistant contentAssistant = editor.getViewer().getContentAssistant();
 	    	if ((contentAssistant instanceof InterrogatableContentAssistant)
@@ -304,6 +308,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 			}
 		}
 
+		@Override
 		public void keyReleased(KeyEvent e) {
 			switch (e.keyCode) {
 			case SWT.CR :
@@ -516,7 +521,8 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 		input.getTextWidget().setFont(JFaceResources.getFont(JFaceResources.TEXT_FONT));
 		
 		selectionListener = new ISelectionListener() {
-            public void selectionChanged(IWorkbenchPart part, final ISelection selection) {
+            @Override
+			public void selectionChanged(IWorkbenchPart part, final ISelection selection) {
 //				System.out.println("selectionChanged: ");
             	if (part instanceof IConsoleView) {
             		IConsole console = ((IConsoleView)part).getConsole();
@@ -532,6 +538,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
                 		IXtextDocument xtextDocument = outlinePage.getXtextDocument();
                 		Element pivotElement = xtextDocument.readOnly(new IUnitOfWork<Element, XtextResource>()
                 		{
+							@Override
 							public Element exec(@Nullable XtextResource state) throws Exception {
 								if ((state != null) && (selection instanceof IStructuredSelection)) {
 									IStructuredSelection structuredSelection = (IStructuredSelection) selection;
@@ -665,6 +672,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 		}); */
 		
 		editor.getViewer().getTextWidget().addVerifyKeyListener(new VerifyKeyListener() {
+			@Override
 			public void verifyKey(VerifyEvent e) {
 //				System.out.println("verifyKey: " + e.keyCode);
 				if (e.keyCode == SWT.KEYPAD_CR || e.keyCode == SWT.CR) {
@@ -744,6 +752,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
         	try {
         		value = editorDocument.readOnly(new IUnitOfWork<Object, XtextResource>() {
 
+				@Override
 				public Object exec(@Nullable XtextResource state) throws Exception {
 					if (state != null) {
 						IProgressService progressService = PlatformUI.getWorkbench().getProgressService();
@@ -851,6 +860,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 		return debugAction.launch();
 	}
 
+	@Override
 	public void metaModelManagerDisposed(@NonNull MetaModelManager metaModelManager) {
 		metaModelManager.removeListener(this);
 		reset();
@@ -860,6 +870,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 		final BaseDocument editorDocument = getEditorDocument();
 		editorDocument.modify(new IUnitOfWork<Object, XtextResource>()
 		{
+			@Override
 			public Value exec(@Nullable XtextResource resource) throws Exception {
 				Object selectedObject = selected;
 		    	if (selectedObject instanceof IAdaptable) {
@@ -919,6 +930,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 		if (editor != null) {
 			IXtextDocument document = editor.getDocument();
 			MetaModelManager metaModelManager = document.readOnly(new IUnitOfWork<MetaModelManager, XtextResource>() {				// Cancel validation
+				@Override
 				public MetaModelManager exec(@Nullable XtextResource state) throws Exception {
 					if (state == null) {
 						return null;

@@ -27,6 +27,7 @@ public class GeneralizedLambdaTypeIdImpl extends AbstractGeneralizedIdImpl<Lambd
 		this.parametersId = parametersId;
 	}
 
+	@Override
 	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitLambdaTypeId(this);
 	}
@@ -36,6 +37,7 @@ public class GeneralizedLambdaTypeIdImpl extends AbstractGeneralizedIdImpl<Lambd
 		return new SpecializedLambdaTypeIdImpl(this, templateBindings);
 	}
 
+	@Override
 	public @NonNull String getDisplayName() {
 		StringBuilder s = new StringBuilder();
 		if (templateParameters > 0) {
@@ -73,18 +75,22 @@ public class GeneralizedLambdaTypeIdImpl extends AbstractGeneralizedIdImpl<Lambd
 		return string2;
 	}
 
+	@Override
 	public @NonNull LambdaTypeId getGeneralizedId() {
 		return this;
 	}
 
+	@Override
 	public @NonNull String getMetaTypeName() {
 		return TypeId.LAMBDA_TYPE_NAME;
 	}
 
+	@Override
 	public @NonNull ParametersId getParametersId() {
 		return parametersId;
 	}
 
+	@Override
 	public boolean matches(@NonNull String thatName, @NonNull ParametersId thatParametersId) {
 		if (parametersId != thatParametersId) {
 			return false;
@@ -95,7 +101,8 @@ public class GeneralizedLambdaTypeIdImpl extends AbstractGeneralizedIdImpl<Lambd
 		return true;
 	}
 
-    public @NonNull LambdaTypeId specialize(@NonNull BindingsId templateBindings) {
+    @Override
+	public @NonNull LambdaTypeId specialize(@NonNull BindingsId templateBindings) {
     	return createSpecializedId(templateBindings);
 	}
 }

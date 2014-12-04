@@ -74,6 +74,7 @@ public class ModelElementRefCSImpl extends ElementRefCSImpl implements ModelElem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PathNameCS getOwnedPathName()
 	{
 		return ownedPathName;
@@ -101,6 +102,7 @@ public class ModelElementRefCSImpl extends ElementRefCSImpl implements ModelElem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedPathName(PathNameCS newOwnedPathName)
 	{
 		if (newOwnedPathName != ownedPathName)
@@ -217,6 +219,7 @@ public class ModelElementRefCSImpl extends ElementRefCSImpl implements ModelElem
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public Element getReferredElement()
 	{
 		if (ownedPathName == null) {

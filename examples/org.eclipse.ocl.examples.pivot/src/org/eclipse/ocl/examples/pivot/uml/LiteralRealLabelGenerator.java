@@ -24,6 +24,7 @@ public class LiteralRealLabelGenerator extends AbstractLabelGenerator<LiteralRea
 		super(LiteralReal.class);
 	}
 
+	@Override
 	public void buildLabelFor(@NonNull Builder labelBuilder, @NonNull LiteralReal object) {
 		double value = object.getValue();
 		labelBuilder.appendString(Double.toString(value));

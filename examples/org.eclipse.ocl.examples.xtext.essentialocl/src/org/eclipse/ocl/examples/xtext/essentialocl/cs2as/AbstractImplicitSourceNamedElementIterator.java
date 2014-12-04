@@ -101,6 +101,7 @@ public abstract class AbstractImplicitSourceNamedElementIterator<T extends Named
 		return CONTINUE;
 	}
 
+	@Override
 	public boolean hasNext() {
 		ElementCS csElement = cursor;
 		while ((next == null) && (csElement != null)) {
@@ -117,6 +118,7 @@ public abstract class AbstractImplicitSourceNamedElementIterator<T extends Named
 		return next != null;
 	}
 
+	@Override
 	public @NonNull T next() {
 		T next2 = next;
 		if (next2 == null) {

@@ -88,6 +88,7 @@ public class ReferenceCSImpl extends StructuralFeatureCSImpl implements Referenc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Property getReferredOpposite()
 	{
 		if (referredOpposite != null && ((EObject)referredOpposite).eIsProxy())
@@ -118,6 +119,7 @@ public class ReferenceCSImpl extends StructuralFeatureCSImpl implements Referenc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredOpposite(Property newReferredOpposite)
 	{
 		Property oldReferredOpposite = referredOpposite;
@@ -131,6 +133,7 @@ public class ReferenceCSImpl extends StructuralFeatureCSImpl implements Referenc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Property> getReferredKeys()
 	{
 		if (referredKeys == null)

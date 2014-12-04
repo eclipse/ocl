@@ -136,6 +136,7 @@ public class PackageCSImpl extends PackageOwnerCSImpl implements PackageCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName()
 	{
 		return name;
@@ -146,6 +147,7 @@ public class PackageCSImpl extends PackageOwnerCSImpl implements PackageCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName)
 	{
 		String oldName = name;
@@ -159,6 +161,7 @@ public class PackageCSImpl extends PackageOwnerCSImpl implements PackageCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ClassCS> getOwnedClasses()
 	{
 		if (ownedClasses == null)
@@ -173,6 +176,7 @@ public class PackageCSImpl extends PackageOwnerCSImpl implements PackageCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getNsPrefix()
 	{
 		return nsPrefix;
@@ -183,6 +187,7 @@ public class PackageCSImpl extends PackageOwnerCSImpl implements PackageCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNsPrefix(String newNsPrefix)
 	{
 		String oldNsPrefix = nsPrefix;
@@ -196,6 +201,7 @@ public class PackageCSImpl extends PackageOwnerCSImpl implements PackageCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getNsURI()
 	{
 		return nsURI;
@@ -206,6 +212,7 @@ public class PackageCSImpl extends PackageOwnerCSImpl implements PackageCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNsURI(String newNsURI)
 	{
 		String oldNsURI = nsURI;

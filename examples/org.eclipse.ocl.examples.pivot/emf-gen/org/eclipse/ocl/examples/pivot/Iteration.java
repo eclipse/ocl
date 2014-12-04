@@ -46,6 +46,7 @@ public interface Iteration extends Operation, org.eclipse.ocl.examples.domain.el
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getIteration_OwnedIterator()
 	 * @generated
 	 */
+	@Override
 	@NonNull List<Parameter> getOwnedIterator();
 
 	/**
@@ -61,6 +62,7 @@ public interface Iteration extends Operation, org.eclipse.ocl.examples.domain.el
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getIteration_OwnedAccumulator()
 	 * @generated
 	 */
+	@Override
 	@NonNull List<Parameter> getOwnedAccumulator();
 
 } // Iteration

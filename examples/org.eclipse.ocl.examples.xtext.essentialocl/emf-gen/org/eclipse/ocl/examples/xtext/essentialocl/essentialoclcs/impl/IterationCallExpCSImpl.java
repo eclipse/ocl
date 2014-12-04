@@ -84,6 +84,7 @@ public abstract class IterationCallExpCSImpl extends CallExpCSImpl implements It
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Iteration getReferredIteration()
 	{
 		return referredIteration;
@@ -94,6 +95,7 @@ public abstract class IterationCallExpCSImpl extends CallExpCSImpl implements It
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredIteration(Iteration newReferredIteration)
 	{
 		Iteration oldReferredIteration = referredIteration;
@@ -107,6 +109,7 @@ public abstract class IterationCallExpCSImpl extends CallExpCSImpl implements It
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<VariableCS> getIterators()
 	{
 		if (iterators == null)

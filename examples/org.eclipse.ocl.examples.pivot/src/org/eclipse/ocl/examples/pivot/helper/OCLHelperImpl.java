@@ -59,6 +59,7 @@ public class OCLHelperImpl implements OCLHelper
 		this.environmentFactory = rootEnvironment.getFactory();
 	}
 
+	@Override
 	public @NonNull ExpressionInOCL createBodyCondition(@NonNull String expression) throws ParserException {
 		Operation contextOperation = getEnvironment().getContextOperation();
 		if (contextOperation == null) {
@@ -68,6 +69,7 @@ public class OCLHelperImpl implements OCLHelper
 		return parserContext.parse(contextOperation, expression);
 	}
 
+	@Override
 	public @NonNull ExpressionInOCL createDerivedValueExpression(@NonNull String expression) throws ParserException {
 		Property contextProperty = getEnvironment().getContextProperty();
 		if (contextProperty == null) {
@@ -77,6 +79,7 @@ public class OCLHelperImpl implements OCLHelper
 		return parserContext.parse(contextProperty, expression);
 	}
 
+	@Override
 	public @NonNull ExpressionInOCL createInvariant(@NonNull String expression) throws ParserException {
 		org.eclipse.ocl.examples.pivot.Class contextClassifier = getEnvironment().getContextClassifier();
 		if (contextClassifier == null) {
@@ -86,6 +89,7 @@ public class OCLHelperImpl implements OCLHelper
 		return parserContext.parse(contextClassifier, expression);
 	}
 
+	@Override
 	public @NonNull ExpressionInOCL createPostcondition(@NonNull String expression) throws ParserException {
 		Operation contextOperation = getEnvironment().getContextOperation();  // FIXME need contextConstraint
 		if (contextOperation == null) {
@@ -95,6 +99,7 @@ public class OCLHelperImpl implements OCLHelper
 		return parserContext.parse(contextOperation, expression);
 	}
 
+	@Override
 	public @NonNull ExpressionInOCL createPrecondition(@NonNull String expression) throws ParserException {
 		Operation contextOperation = getEnvironment().getContextOperation();  // FIXME need contextConstraint
 		if (contextOperation == null) {
@@ -104,6 +109,7 @@ public class OCLHelperImpl implements OCLHelper
 		return parserContext.parse(contextOperation, expression);
 	}
 
+	@Override
 	public @NonNull ExpressionInOCL createQuery(@NonNull String expression) throws ParserException {
 		org.eclipse.ocl.examples.pivot.Class contextClassifier = getEnvironment().getContextClassifier();
 		ParserContext parserContext;
@@ -125,18 +131,22 @@ public class OCLHelperImpl implements OCLHelper
 		return parserContext.parse(contextClassifier, expression);
 	}
 	
+	@Override
 	public @Nullable Property getContextProperty() {
 		return getEnvironment().getContextProperty();
 	}
 	
+	@Override
 	public @Nullable org.eclipse.ocl.examples.pivot.Class getContextClassifier() {
 		return getEnvironment().getContextClassifier();
 	}
 	
+	@Override
 	public @Nullable Operation getContextOperation() {
 		return getEnvironment().getContextOperation();
 	}
 	
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull Environment getEnvironment() {
 		return env == null ? rootEnvironment : env;
@@ -146,18 +156,22 @@ public class OCLHelperImpl implements OCLHelper
 		return metaModelManager;
 	}
 	
+	@Override
 	public @NonNull OCL getOCL() {
         return ocl;
     }
 	
+	@Override
 	public Diagnostic getProblems() {
 		return problems;
 	}
     
+	@Override
 	public boolean isValidating() {
 		return validating;
 	}
 
+	@Override
 	public void setContext(@NonNull EClassifier context) {
 		org.eclipse.ocl.examples.pivot.Class pContext = metaModelManager.getPivotOfEcore(org.eclipse.ocl.examples.pivot.Class.class, context);
 		if (pContext != null) {
@@ -165,6 +179,7 @@ public class OCLHelperImpl implements OCLHelper
 		}
 	}
 	
+	@Override
 	public void setContext(@NonNull org.eclipse.ocl.examples.pivot.Class context) {
 		setEnvironment(environmentFactory.createClassifierContext(getEnvironment(), context));
 	}
@@ -173,20 +188,24 @@ public class OCLHelperImpl implements OCLHelper
 		this.env = env;
 	}
     
-    public void setInstancePropertyContext(@NonNull Object instance, @NonNull Property property) {
+    @Override
+	public void setInstancePropertyContext(@NonNull Object instance, @NonNull Property property) {
         setInstanceContext(instance);
         setEnvironment(environmentFactory.createPropertyContext(getEnvironment(), property));
     }
     
-    public void setInstanceContext(@NonNull Object instance) {
+    @Override
+	public void setInstanceContext(@NonNull Object instance) {
         setEnvironment(environmentFactory.createInstanceContext(getEnvironment(), instance));
     }
     
-    public void setInstanceOperationContext(@NonNull Object instance, @NonNull Operation operation) {
+    @Override
+	public void setInstanceOperationContext(@NonNull Object instance, @NonNull Operation operation) {
         setInstanceContext(instance);
         setEnvironment(environmentFactory.createOperationContext(getEnvironment(), operation));
     }
 
+	@Override
 	public void setOperationContext(@NonNull EClassifier context, @NonNull EOperation operation) {
 		org.eclipse.ocl.examples.pivot.Class pContext = metaModelManager.getPivotOfEcore(org.eclipse.ocl.examples.pivot.Class.class, context);
 		Operation pOperation = metaModelManager.getPivotOfEcore(Operation.class, operation);
@@ -195,11 +214,13 @@ public class OCLHelperImpl implements OCLHelper
 		}
 	}
 	
+	@Override
 	public void setOperationContext(@NonNull org.eclipse.ocl.examples.pivot.Class context, @NonNull Operation operation) {
         setContext(context);
 		setEnvironment(environmentFactory.createOperationContext(getEnvironment(), operation));
 	}
 	
+	@Override
 	public void setPropertyContext(@NonNull EClassifier context, @NonNull EStructuralFeature property) {
 		org.eclipse.ocl.examples.pivot.Class pContext = metaModelManager.getPivotOfEcore(org.eclipse.ocl.examples.pivot.Class.class, context);
 		Property pProperty = metaModelManager.getPivotOfEcore(Property.class, property);
@@ -208,6 +229,7 @@ public class OCLHelperImpl implements OCLHelper
 		}
 	}
 	
+	@Override
 	public void setPropertyContext(@NonNull org.eclipse.ocl.examples.pivot.Class context, @NonNull Property property) {
         setContext(context);
 		setEnvironment(environmentFactory.createPropertyContext(getEnvironment(), property));
@@ -217,6 +239,7 @@ public class OCLHelperImpl implements OCLHelper
 		this.problems = problems;
 	}
 	
+	@Override
 	public void setValidating(boolean validating) {
 		this.validating = validating;
 	}

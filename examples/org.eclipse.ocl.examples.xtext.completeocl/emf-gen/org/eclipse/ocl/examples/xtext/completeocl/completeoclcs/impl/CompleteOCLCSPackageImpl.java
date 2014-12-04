@@ -204,6 +204,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFeatureContextDeclCS() {
 		return featureContextDeclCSEClass;
 	}
@@ -213,6 +214,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFeatureContextDeclCS_OwnedType() {
 		return (EReference)featureContextDeclCSEClass.getEStructuralFeatures().get(0);
 	}
@@ -222,6 +224,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIncludeCS() {
 		return includeCSEClass;
 	}
@@ -231,6 +234,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIncludeCS_ReferredNamespace()
 	{
 		return (EReference)includeCSEClass.getEStructuralFeatures().get(0);
@@ -241,6 +245,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPackageDeclarationCS() {
 		return packageDeclarationCSEClass;
 	}
@@ -250,6 +255,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPackageDeclarationCS_ReferredPackage()
 	{
 		return (EReference)packageDeclarationCSEClass.getEStructuralFeatures().get(2);
@@ -260,6 +266,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPackageDeclarationCS_OwnedContexts()
 	{
 		return (EReference)packageDeclarationCSEClass.getEStructuralFeatures().get(0);
@@ -270,6 +277,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPackageDeclarationCS_OwnedInvariants()
 	{
 		return (EReference)packageDeclarationCSEClass.getEStructuralFeatures().get(1);
@@ -280,6 +288,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPathNameDeclCS() {
 		return pathNameDeclCSEClass;
 	}
@@ -289,6 +298,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPathNameDeclCS_OwnedPathName()
 	{
 		return (EReference)pathNameDeclCSEClass.getEStructuralFeatures().get(0);
@@ -299,6 +309,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getContextDeclCS() {
 		return contextDeclCSEClass;
 	}
@@ -308,6 +319,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPropertyContextDeclCS() {
 		return propertyContextDeclCSEClass;
 	}
@@ -317,6 +329,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPropertyContextDeclCS_ReferredProperty()
 	{
 		return (EReference)propertyContextDeclCSEClass.getEStructuralFeatures().get(2);
@@ -327,6 +340,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPropertyContextDeclCS_OwnedDefaultExpressions()
 	{
 		return (EReference)propertyContextDeclCSEClass.getEStructuralFeatures().get(0);
@@ -337,6 +351,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPropertyContextDeclCS_OwnedDerivedInvariants()
 	{
 		return (EReference)propertyContextDeclCSEClass.getEStructuralFeatures().get(1);
@@ -347,6 +362,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CompleteOCLCSFactory getCompleteOCLCSFactory() {
 		return (CompleteOCLCSFactory)getEFactoryInstance();
 	}
@@ -356,6 +372,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getClassifierContextDeclCS() {
 		return classifierContextDeclCSEClass;
 	}
@@ -365,6 +382,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getClassifierContextDeclCS_SelfName() {
 		return (EAttribute)classifierContextDeclCSEClass.getEStructuralFeatures().get(3);
 	}
@@ -374,6 +392,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getClassifierContextDeclCS_ReferredClass()
 	{
 		return (EReference)classifierContextDeclCSEClass.getEStructuralFeatures().get(2);
@@ -384,6 +403,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getClassifierContextDeclCS_OwnedInvariants()
 	{
 		return (EReference)classifierContextDeclCSEClass.getEStructuralFeatures().get(1);
@@ -394,6 +414,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getClassifierContextDeclCS_OwnedDefinitions()
 	{
 		return (EReference)classifierContextDeclCSEClass.getEStructuralFeatures().get(0);
@@ -404,6 +425,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCompleteOCLDocumentCS() {
 		return completeOCLDocumentCSEClass;
 	}
@@ -413,6 +435,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCompleteOCLDocumentCS_OwnedPackages()
 	{
 		return (EReference)completeOCLDocumentCSEClass.getEStructuralFeatures().get(2);
@@ -423,6 +446,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCompleteOCLDocumentCS_OwnedContexts()
 	{
 		return (EReference)completeOCLDocumentCSEClass.getEStructuralFeatures().get(0);
@@ -433,6 +457,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCompleteOCLDocumentCS_OwnedIncludes()
 	{
 		return (EReference)completeOCLDocumentCSEClass.getEStructuralFeatures().get(1);
@@ -443,6 +468,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOCLMessageArgCS() {
 		return oclMessageArgCSEClass;
 	}
@@ -452,6 +478,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOCLMessageArgCS_Type() {
 		return (EReference)oclMessageArgCSEClass.getEStructuralFeatures().get(0);
 	}
@@ -461,6 +488,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDefCS() {
 		return defCSEClass;
 	}
@@ -470,6 +498,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDefCS_OwningClassifierContextDecl()
 	{
 		return (EReference)defCSEClass.getEStructuralFeatures().get(2);
@@ -480,6 +509,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDefCS_OwnedSpecification()
 	{
 		return (EReference)defCSEClass.getEStructuralFeatures().get(1);
@@ -490,6 +520,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDefCS_IsStatic()
 	{
 		return (EAttribute)defCSEClass.getEStructuralFeatures().get(0);
@@ -500,6 +531,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDefOperationCS() {
 		return defOperationCSEClass;
 	}
@@ -509,6 +541,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDefOperationCS_OwnedParameters()
 	{
 		return (EReference)defOperationCSEClass.getEStructuralFeatures().get(0);
@@ -519,6 +552,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDefPropertyCS() {
 		return defPropertyCSEClass;
 	}
@@ -528,6 +562,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOperationContextDeclCS() {
 		return operationContextDeclCSEClass;
 	}
@@ -537,6 +572,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperationContextDeclCS_ReferredOperation()
 	{
 		return (EReference)operationContextDeclCSEClass.getEStructuralFeatures().get(5);
@@ -547,6 +583,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperationContextDeclCS_OwnedParameters()
 	{
 		return (EReference)operationContextDeclCSEClass.getEStructuralFeatures().get(1);
@@ -557,6 +594,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperationContextDeclCS_OwnedResult()
 	{
 		return (EReference)operationContextDeclCSEClass.getEStructuralFeatures().get(4);
@@ -567,6 +605,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperationContextDeclCS_OwnedPreconditions()
 	{
 		return (EReference)operationContextDeclCSEClass.getEStructuralFeatures().get(3);
@@ -577,6 +616,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperationContextDeclCS_OwnedPostconditions()
 	{
 		return (EReference)operationContextDeclCSEClass.getEStructuralFeatures().get(2);
@@ -587,6 +627,7 @@ public class CompleteOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOperationContextDeclCS_OwnedBodies()
 	{
 		return (EReference)operationContextDeclCSEClass.getEStructuralFeatures().get(0);

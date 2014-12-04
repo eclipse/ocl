@@ -79,6 +79,7 @@ public abstract class NamespaceImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<Constraint> getOwnedRule()
 	{

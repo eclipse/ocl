@@ -40,6 +40,7 @@ public class ExecutorFragment extends AbstractFragment
 		this.properties = null;
 	}
 	
+	@Override
 	public @NonNull LibraryFeature getImplementation(@NonNull DomainOperation staticOperation) {
 		int index = staticOperation.getIndex();
 		if (index >= 0) {
@@ -50,6 +51,7 @@ public class ExecutorFragment extends AbstractFragment
 		}
 	}
 
+	@Override
 	public @Nullable DomainOperation getLocalOperation(@NonNull DomainOperation staticOperation) {
 		int index = staticOperation.getIndex();
 		if (index >= 0) {
@@ -60,12 +62,14 @@ public class ExecutorFragment extends AbstractFragment
 		}
 	}
 
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<? extends DomainOperation> getLocalOperations() {
 		assert operations != null;
 		return Lists.newArrayList(operations);
 	}
 	
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<? extends DomainProperty> getLocalProperties() {
 		assert properties != null;

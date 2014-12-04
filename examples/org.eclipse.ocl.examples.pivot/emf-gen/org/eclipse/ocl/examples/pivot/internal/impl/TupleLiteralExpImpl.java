@@ -79,6 +79,7 @@ public class TupleLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<TupleLiteralPart> getPart()
 	{

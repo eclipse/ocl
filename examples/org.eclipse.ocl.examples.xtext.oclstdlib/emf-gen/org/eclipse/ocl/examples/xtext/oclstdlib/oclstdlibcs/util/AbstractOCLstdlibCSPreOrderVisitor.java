@@ -43,46 +43,57 @@ public abstract class AbstractOCLstdlibCSPreOrderVisitor
 		super(context);
 	}
 
+	@Override
 	public @Nullable Continuation<?> visitJavaClassCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaClassCS csElement) {
 		return visitNamedElementCS(csElement);
 	}
 
+	@Override
 	public @Nullable Continuation<?> visitJavaImplementationCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaImplementationCS csElement) {
 		return visitElementCS(csElement);
 	}
 
+	@Override
 	public @Nullable Continuation<?> visitLibClassCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibClassCS csElement) {
 		return visitStructuredClassCS(csElement);
 	}
 
+	@Override
 	public @Nullable Continuation<?> visitLibConstraintCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibConstraintCS csElement) {
 		return visitConstraintCS(csElement);
 	}
 
+	@Override
 	public @Nullable Continuation<?> visitLibIterationCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS csElement) {
 		return visitOperationCS(csElement);
 	}
 
+	@Override
 	public @Nullable Continuation<?> visitLibOperationCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS csElement) {
 		return visitOperationCS(csElement);
 	}
 
+	@Override
 	public @Nullable Continuation<?> visitLibPackageCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPackageCS csElement) {
 		return visitPackageCS(csElement);
 	}
 
+	@Override
 	public @Nullable Continuation<?> visitLibPropertyCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPropertyCS csElement) {
 		return visitAttributeCS(csElement);
 	}
 
+	@Override
 	public @Nullable Continuation<?> visitLibRootPackageCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibRootPackageCS csElement) {
 		return visitRootPackageCS(csElement);
 	}
 
+	@Override
 	public @Nullable Continuation<?> visitMetaclassNameCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaclassNameCS csElement) {
 		return visitElementCS(csElement);
 	}
 
+	@Override
 	public @Nullable Continuation<?> visitPrecedenceCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.PrecedenceCS csElement) {
 		return visitNamedElementCS(csElement);
 	}

@@ -132,6 +132,7 @@ public class VariableImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OCLExpression getInitExpression() {
 		return initExpression;
 	}
@@ -158,6 +159,7 @@ public class VariableImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInitExpression(OCLExpression newInitExpression) {
 		if (newInitExpression != initExpression)
 		{
@@ -178,6 +180,7 @@ public class VariableImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Parameter getRepresentedParameter() {
 		if (representedParameter != null && ((EObject)representedParameter).eIsProxy())
 		{
@@ -206,6 +209,7 @@ public class VariableImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRepresentedParameter(Parameter newRepresentedParameter) {
 		Parameter oldRepresentedParameter = representedParameter;
 		representedParameter = newRepresentedParameter;
@@ -218,6 +222,7 @@ public class VariableImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateCompatibleInitialiserType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -330,6 +335,7 @@ public class VariableImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isImplicit()
 	{
 		return (eFlags & IMPLICIT_EFLAG) != 0;
@@ -340,6 +346,7 @@ public class VariableImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setImplicit(boolean newImplicit)
 	{
 		boolean oldImplicit = (eFlags & IMPLICIT_EFLAG) != 0;

@@ -115,6 +115,7 @@ public abstract class ModelElementCSImpl extends PivotableElementCSImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<AnnotationElementCS> getOwnedAnnotations()
 	{
 		if (ownedAnnotations == null)
@@ -129,6 +130,7 @@ public abstract class ModelElementCSImpl extends PivotableElementCSImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getOriginalXmiId() {
 		return originalXmiId;
 	}
@@ -138,6 +140,7 @@ public abstract class ModelElementCSImpl extends PivotableElementCSImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOriginalXmiId(String newOriginalXmiId) {
 		String oldOriginalXmiId = originalXmiId;
 		originalXmiId = newOriginalXmiId;
@@ -150,6 +153,7 @@ public abstract class ModelElementCSImpl extends PivotableElementCSImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getCsi()
 	{
 		return csi;
@@ -160,6 +164,7 @@ public abstract class ModelElementCSImpl extends PivotableElementCSImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCsi(String newCsi)
 	{
 		String oldCsi = csi;

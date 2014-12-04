@@ -183,6 +183,7 @@ public class PropertyContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public Property getReferredProperty() {
 		PathNameCS ownedPathName2 = ownedPathName;
 		if (ownedPathName2 == null) {
@@ -198,6 +199,7 @@ public class PropertyContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ExpSpecificationCS> getOwnedDefaultExpressions() {
 		if (ownedDefaultExpressions == null)
 		{
@@ -211,6 +213,7 @@ public class PropertyContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ConstraintCS> getOwnedDerivedInvariants() {
 		if (ownedDerivedInvariants == null)
 		{

@@ -26,6 +26,7 @@ public class CollectionElementTypeProperty extends AbstractProperty
 {
 	public static final @NonNull CollectionElementTypeProperty INSTANCE = new CollectionElementTypeProperty();
 
+	@Override
 	public @NonNull DomainType evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		DomainCollectionType sourceType = asCollectionType(sourceValue);
 		return DomainUtil.nonNullModel(sourceType.getElementType());

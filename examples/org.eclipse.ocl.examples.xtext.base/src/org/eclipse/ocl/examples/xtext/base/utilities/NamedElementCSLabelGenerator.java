@@ -26,6 +26,7 @@ public final class NamedElementCSLabelGenerator extends AbstractLabelGenerator<N
 		super(NamedElementCS.class);
 	}
 
+	@Override
 	public void buildLabelFor(@NonNull Builder labelBuilder, @NonNull NamedElementCS object) {
 		String name = object.getName();
 		if (name == null) {

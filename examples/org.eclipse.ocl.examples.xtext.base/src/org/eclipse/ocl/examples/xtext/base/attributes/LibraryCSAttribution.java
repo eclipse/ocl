@@ -196,11 +196,13 @@ public class LibraryCSAttribution extends AbstractAttribution implements Unresol
 		return adapter.computeLookup(targetElement, environmentView, scopeView);
 	}
 
+	@Override
 	public @NonNull EReference getEReference() {
 		@SuppressWarnings("null") @NonNull EReference libraryCsPackage = BaseCSPackage.Literals.LIBRARY_CS__REFERRED_PACKAGE;
 		return libraryCsPackage;
 	}
 
+	@Override
 	public @Nullable String getMessage(@NonNull EObject context, @NonNull String linkText) {
 		LibraryAdapter adapter = PivotUtil.getAdapter(LibraryAdapter.class, context);
 		if (adapter != null) {

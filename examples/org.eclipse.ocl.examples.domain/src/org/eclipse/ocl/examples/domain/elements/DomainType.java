@@ -43,6 +43,7 @@ public interface DomainType extends DomainNamespace, OCLValue
 	/**
 	 * Return the name of this type (without any decorations for specializations).
 	 */
+	@Override
 	/* @NonNull*/ String getName();
 	
 	/**

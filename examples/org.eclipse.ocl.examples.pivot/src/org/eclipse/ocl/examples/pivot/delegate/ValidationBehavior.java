@@ -50,14 +50,17 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 		throw new OCLDelegateException(new SemanticException(OCLMessages.MissingSpecificationBody_ERROR_, type, PivotConstants.OWNED_RULE_ROLE));
 	}
 
+	@Override
 	public @Nullable ValidationDelegate.Factory getDefaultFactory() {
 		return (ValidationDelegate.Factory) ValidationDelegate.Factory.Registry.INSTANCE.getValidationDelegate(getName());
 	}
 
+	@Override
 	public @NonNull EValidator.ValidationDelegate.Registry getDefaultRegistry() {
 		return DomainUtil.nonNullEMF(ValidationDelegate.Factory.Registry.INSTANCE);
 	}
 
+	@Override
 	public @NonNull EPackage getEPackage(@NonNull EClassifier eClassifier) {
 		return DomainUtil.nonNullEMF(eClassifier.getEPackage());
 	}
@@ -89,10 +92,12 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 		return (ValidationDelegate.Factory) validationDelegate;
 	}
 
+	@Override
 	public @NonNull Class<ValidationDelegate.Factory> getFactoryClass() {
 		return ValidationDelegate.Factory.class;
 	}
 
+	@Override
 	public @NonNull String getName() {
 		return NAME;
 	}
@@ -115,6 +120,7 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 		}
 	}
 
+	@Override
 	public @NonNull Class<ValidationDelegate.Factory.Registry> getRegistryClass() {
 		return ValidationDelegate.Factory.Registry.class;
 	}

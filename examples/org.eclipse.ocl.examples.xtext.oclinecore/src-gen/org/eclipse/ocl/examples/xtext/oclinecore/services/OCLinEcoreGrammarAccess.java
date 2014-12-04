@@ -37,6 +37,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		// TopLevelCS:
 		//	{TopLevelCS} ("module" UnrestrictedName)? ownedLibraries+=LibraryCS* ownedImports+=ImportCS*
 		//	ownedPackages+=PackageCS*;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//{TopLevelCS} ("module" UnrestrictedName)? ownedLibraries+=LibraryCS* ownedImports+=ImportCS* ownedPackages+=PackageCS*
@@ -79,6 +80,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//INTEGER returns ecore::EInt:
 		//	INT;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//INT
@@ -93,6 +95,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//SIGNED returns ecore::EInt:
 		//	"-"? INT;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//"-"? INT
@@ -151,6 +154,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//	"library" | "module" | "operation" | "ordered" | "package" | "postcondition" | "precondition" | "property" |
 		//	"readonly" | "reference" | "resolve" | "static" | "super" | "throws" | "transient" | "unique" | "unsettable" |
 		//	"volatile";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//EssentialOCLUnrestrictedName | "abstract" | "attribute" | "body" | "callable" | "class" | "composes" | "datatype" |
@@ -295,6 +299,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//InvariantConstraintCS returns OCLinEcoreConstraintCS:
 		//	isCallable?="callable"? stereotype="invariant" (name=UnrestrictedName ("(" ownedMessageSpecification=SpecificationCS
 		//	")")?)? (":" ownedSpecification=SpecificationCS? ";" | ";");
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//isCallable?="callable"? stereotype="invariant" (name=UnrestrictedName ("(" ownedMessageSpecification=SpecificationCS
@@ -380,6 +385,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//PostconditionConstraintCS returns OCLinEcoreConstraintCS:
 		//	stereotype="postcondition" (name=UnrestrictedName ("(" ownedMessageSpecification=SpecificationCS ")")?)? ":"
 		//	ownedSpecification=SpecificationCS? ";";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//stereotype="postcondition" (name=UnrestrictedName ("(" ownedMessageSpecification=SpecificationCS ")")?)? ":"
@@ -450,6 +456,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//PreconditionConstraintCS returns OCLinEcoreConstraintCS:
 		//	stereotype="precondition" (name=UnrestrictedName ("(" ownedMessageSpecification=SpecificationCS ")")?)? ":"
 		//	ownedSpecification=SpecificationCS? ";";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//stereotype="precondition" (name=UnrestrictedName ("(" ownedMessageSpecification=SpecificationCS ")")?)? ":"
@@ -534,6 +541,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//	{base::AnnotationCS} "annotation" name=(UnrestrictedName | SINGLE_QUOTED_STRING)? ("(" ownedDetails+=DetailCS (","
 		//	ownedDetails+=DetailCS)* ")")? ("{" (ownedAnnotations+=AnnotationElementCS | ownedContents+=ModelElementCS |
 		//	ownedReferences+=ModelElementRefCS)+ "}" | ";");
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//{base::AnnotationCS} "annotation" name=(UnrestrictedName | SINGLE_QUOTED_STRING)? ("(" ownedDetails+=DetailCS (","
@@ -633,6 +641,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//AnnotationElementCS returns base::AnnotationElementCS:
 		//	AnnotationCS | DocumentationCS | SysMLCS;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//AnnotationCS | DocumentationCS | SysMLCS
@@ -743,6 +752,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//	qualifiers+="!unsettable" | qualifiers+="volatile" | qualifiers+="!volatile") ","?)+ "}")? ("{"
 		//	(ownedAnnotations+=AnnotationElementCS | "derivation" UnrestrictedName? ":" ownedDefaultExpressions+=SpecificationCS?
 		//	";" | "initial" UnrestrictedName? ":" ownedDefaultExpressions+=SpecificationCS? ";")* "}" | ";");
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//(qualifiers+="static" qualifiers+="definition"? | qualifiers+="definition" qualifiers+="static"?)? "attribute"
@@ -1025,6 +1035,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ClassCS returns base::ClassCS:
 		//	StructuredClassCS | DataTypeCS | EnumerationCS;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//StructuredClassCS | DataTypeCS | EnumerationCS
@@ -1075,6 +1086,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//	"datatype" name=UnrestrictedName ownedSignature=TemplateSignatureCS? (":" instanceClassName=SINGLE_QUOTED_STRING)?
 		//	("{" (qualifiers+="serializable" | qualifiers+="!serializable")? "}")? ("{" (ownedAnnotations+=AnnotationElementCS |
 		//	ownedConstraints+=InvariantConstraintCS)* "}" | ";");
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//"datatype" name=UnrestrictedName ownedSignature=TemplateSignatureCS? (":" instanceClassName=SINGLE_QUOTED_STRING)? ("{"
@@ -1179,6 +1191,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//DetailCS returns base::DetailCS:
 		//	name=(UnrestrictedName | SINGLE_QUOTED_STRING) "=" values+=(SINGLE_QUOTED_STRING | ML_SINGLE_QUOTED_STRING)*;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//name=(UnrestrictedName | SINGLE_QUOTED_STRING) "=" values+=(SINGLE_QUOTED_STRING | ML_SINGLE_QUOTED_STRING)*
@@ -1233,6 +1246,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//DocumentationCS returns base::DocumentationCS:
 		//	{base::DocumentationCS} "documentation" value=SINGLE_QUOTED_STRING? ("(" ownedDetails+=DetailCS (","
 		//	ownedDetails+=DetailCS)* ")")? ";";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//{base::DocumentationCS} "documentation" value=SINGLE_QUOTED_STRING? ("(" ownedDetails+=DetailCS (","
@@ -1319,6 +1333,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//	"enum" name=UnrestrictedName ownedSignature=TemplateSignatureCS? (":" instanceClassName=SINGLE_QUOTED_STRING)? ("{"
 		//	(qualifiers+="serializable" | qualifiers+="!serializable")? "}")? ("{" (ownedAnnotations+=AnnotationElementCS |
 		//	ownedLiterals+=EnumerationLiteralCS | ownedConstraints+=InvariantConstraintCS)* "}" | ";");
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//"enum" name=UnrestrictedName ownedSignature=TemplateSignatureCS? (":" instanceClassName=SINGLE_QUOTED_STRING)? ("{"
@@ -1441,6 +1456,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//EnumerationLiteralCS returns base::EnumerationLiteralCS:
 		//	("literal" name=UnrestrictedName | name=EnumerationLiteralName) ("=" value=SIGNED)? ("{"
 		//	ownedAnnotations+=AnnotationElementCS* "}" | ";");
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//("literal" name=UnrestrictedName | name=EnumerationLiteralName) ("=" value=SIGNED)? ("{"
@@ -1518,6 +1534,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ImportCS returns base::ImportCS:
 		//	"import" (name=UnrestrictedName ":")? ownedPathName=URIPathNameCS isAll?="::*"? ";";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//"import" (name=UnrestrictedName ":")? ownedPathName=URIPathNameCS isAll?="::*"? ";"
@@ -1569,6 +1586,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//LibraryCS returns base::LibraryCS:
 		//	"library" (name=UnrestrictedName ":")? referredPackage=[pivot::Package|URI] ";";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//"library" (name=UnrestrictedName ":")? referredPackage=[pivot::Package|URI] ";"
@@ -1613,6 +1631,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ModelElementCS returns base::ModelElementCS:
 		//	ClassCS | EnumerationLiteralCS | OperationCS | PackageCS | StructuralFeatureCS;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//ClassCS | EnumerationLiteralCS | OperationCS | PackageCS | StructuralFeatureCS
@@ -1644,6 +1663,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ModelElementRefCS returns base::ModelElementRefCS:
 		//	"reference" ownedPathName=PathNameCS ";";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//"reference" ownedPathName=PathNameCS ";"
@@ -1748,6 +1768,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//	qualifiers+="!ordered" | qualifiers+="unique" | qualifiers+="!unique") ","?)+ "}")? ("{"
 		//	(ownedAnnotations+=AnnotationElementCS | ownedPreconditions+=PreconditionConstraintCS | "body" UnrestrictedName? ":"
 		//	ownedBodyExpressions+=SpecificationCS? ";" | ownedPostconditions+=PostconditionConstraintCS)* "}" | ";");
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//(qualifiers+="static" qualifiers+="definition"? | qualifiers+="definition" qualifiers+="static"?)? "operation"
@@ -2018,6 +2039,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//PackageCS returns base::PackageCS:
 		//	"package" name=UnrestrictedName (":" nsPrefix=UnrestrictedName)? ("=" nsURI=URI)? ("{"
 		//	(ownedAnnotations+=AnnotationElementCS | ownedPackages+=PackageCS | ownedClasses+=ClassCS)* "}" | ";");
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//"package" name=UnrestrictedName (":" nsPrefix=UnrestrictedName)? ("=" nsURI=URI)? ("{"
@@ -2126,6 +2148,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//ParameterCS returns base::ParameterCS:
 		//	name=UnrestrictedName (":" ownedType=TypedMultiplicityRefCS)? ("{" ((qualifiers+="ordered" | qualifiers+="!ordered" |
 		//	qualifiers+="unique" | qualifiers+="!unique") ","?)+ "}")? ("{" ownedAnnotations+=AnnotationElementCS* "}")?;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//name=UnrestrictedName (":" ownedType=TypedMultiplicityRefCS)? ("{" ((qualifiers+="ordered" | qualifiers+="!ordered" |
@@ -2326,6 +2349,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//	referredKeys+=[pivot::Property|UnrestrictedName] ("," referredKeys+=[pivot::Property|UnrestrictedName])* ";" |
 		//	"derivation" UnrestrictedName? ":" ownedDefaultExpressions+=SpecificationCS? ";" | "initial" UnrestrictedName? ":"
 		//	ownedDefaultExpressions+=SpecificationCS? ";")* "}" | ";");
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//(qualifiers+="static" qualifiers+="definition"? | qualifiers+="definition" qualifiers+="static"?)? "property"
@@ -2679,6 +2703,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//SpecificationCS returns essentialocl::ExpSpecificationCS:
 		//	ownedExpression=ExpCS | exprString=UNQUOTED_STRING;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//ownedExpression=ExpCS | exprString=UNQUOTED_STRING
@@ -2744,6 +2769,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//	ownedSuperTypes+=TypedRefCS ("," ownedSuperTypes+=TypedRefCS)*)? (":" instanceClassName=SINGLE_QUOTED_STRING)? ("{"
 		//	qualifiers+="interface" "}")? ("{" (ownedAnnotations+=AnnotationElementCS | ownedOperations+=OperationCS |
 		//	ownedProperties+=StructuralFeatureCS | ownedConstraints+=InvariantConstraintCS)* "}" | ";");
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//qualifiers+="abstract"? "class" name=UnrestrictedName ownedSignature=TemplateSignatureCS? ("extends"
@@ -2878,6 +2904,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//StructuralFeatureCS returns base::StructuralFeatureCS:
 		//	AttributeCS | ReferenceCS;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//AttributeCS | ReferenceCS
@@ -2910,6 +2937,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//SysMLCS:
 		//	{SysMLCS} "sysml" (ownedDetails+=DetailCS ";" | "{" (ownedDetails+=DetailCS ";")* "}");
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//{SysMLCS} "sysml" (ownedDetails+=DetailCS ";" | "{" (ownedDetails+=DetailCS ";")* "}")
@@ -2966,6 +2994,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//TypeIdentifier:
 		//	UnrestrictedName | PrimitiveTypeIdentifier;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//UnrestrictedName | PrimitiveTypeIdentifier
@@ -2987,6 +3016,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//TypedMultiplicityRefCS returns base::TypedRefCS:
 		//	TypedRefCS ownedMultiplicity=MultiplicityCS?;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//TypedRefCS ownedMultiplicity=MultiplicityCS?
@@ -3033,6 +3063,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//	"(" ownedSubstitutions+=TemplateParameterSubstitutionCS ("," ownedSubstitutions+=TemplateParameterSubstitutionCS)*
 		//	")" | "<" ownedSubstitutions+=TemplateParameterSubstitutionCS (","
 		//	ownedSubstitutions+=TemplateParameterSubstitutionCS)* ">";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//"(" ownedSubstitutions+=TemplateParameterSubstitutionCS ("," ownedSubstitutions+=TemplateParameterSubstitutionCS)* ")" |
@@ -3119,6 +3150,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//TemplateSignatureCS returns base::TemplateSignatureCS:
 		//	"(" ownedParameters+=TypeParameterCS ("," ownedParameters+=TypeParameterCS)* ")" | "<"
 		//	ownedParameters+=TypeParameterCS ("," ownedParameters+=TypeParameterCS)* ">";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//"(" ownedParameters+=TypeParameterCS ("," ownedParameters+=TypeParameterCS)* ")" | "<" ownedParameters+=TypeParameterCS
@@ -3188,6 +3220,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//TypedRefCS returns base::TypedRefCS:
 		//	TypeLiteralCS | TypedTypeRefCS;
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//TypeLiteralCS | TypedTypeRefCS
@@ -3213,6 +3246,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//UnrestrictedName returns ecore::EString:
 		//	EnumerationLiteralName | "annotation" | "documentation" | "invariant" | "literal" | "serializable" | "sysml";
+		@Override
 		public ParserRule getRule() { return rule; }
 
 		//EnumerationLiteralName | "annotation" | "documentation" | "invariant" | "literal" | "serializable" | "sysml"
@@ -3340,6 +3374,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	
+	@Override
 	public Grammar getGrammar() {
 		return grammar;
 	}

@@ -301,6 +301,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<Constraint> getOwnedRule()
 	{
@@ -316,6 +317,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<TemplateBinding> getOwnedTemplateBindings()
 	{
 		if (ownedTemplateBindings == null)
@@ -330,6 +332,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<Type> getRaisedException()
 	{
@@ -345,6 +348,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<Parameter> getOwnedParameter()
 	{
@@ -360,6 +364,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TemplateSignature getOwnedTemplateSignature() {
 		return ownedTemplateSignature;
 	}
@@ -386,6 +391,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedTemplateSignature(
 			TemplateSignature newOwnedTemplateSignature) {
 		if (newOwnedTemplateSignature != ownedTemplateSignature)
@@ -407,6 +413,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public TemplateableElement getUnspecializedElement()
 	{
 //		throw new UnsupportedOperationException();	// FIXME Eliminate this feature once Acceleo bug 349278 fixed
@@ -418,6 +425,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public void setUnspecializedElement(TemplateableElement newUnspecializedElement)
 	{
 		throw new UnsupportedOperationException();	// FIXME Eliminate this feature once Acceleo bug 349278 fixed
@@ -428,6 +436,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Precedence getPrecedence() {
 		if (precedence != null && ((EObject)precedence).eIsProxy())
 		{
@@ -456,6 +465,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPrecedence(Precedence newPrecedence) {
 		Precedence oldPrecedence = precedence;
 		precedence = newPrecedence;
@@ -468,6 +478,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<Operation> getRedefinedOperation()
 	{
@@ -483,6 +494,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<Constraint> getPrecondition()
 	{
@@ -498,6 +510,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<Constraint> getPostcondition()
 	{
@@ -513,6 +526,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LanguageExpression getBodyExpression()
 	{
 		return bodyExpression;
@@ -540,6 +554,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBodyExpression(LanguageExpression newBodyExpression)
 	{
 		if (newBodyExpression != bodyExpression)
@@ -561,6 +576,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isInvalidating()
 	{
 		return (eFlags & IS_INVALIDATING_EFLAG) != 0;
@@ -571,6 +587,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsInvalidating(boolean newIsInvalidating)
 	{
 		boolean oldIsInvalidating = (eFlags & IS_INVALIDATING_EFLAG) != 0;
@@ -584,6 +601,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isTypeof()
 	{
 		return (eFlags & IS_TYPEOF_EFLAG) != 0;
@@ -594,6 +612,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsTypeof(boolean newIsTypeof)
 	{
 		boolean oldIsTypeof = (eFlags & IS_TYPEOF_EFLAG) != 0;
@@ -607,6 +626,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isValidating()
 	{
 		return (eFlags & IS_VALIDATING_EFLAG) != 0;
@@ -617,6 +637,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsValidating(boolean newIsValidating)
 	{
 		boolean oldIsValidating = (eFlags & IS_VALIDATING_EFLAG) != 0;
@@ -630,6 +651,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public org.eclipse.ocl.examples.pivot.Class getOwningClass() {
 		if (eContainerFeatureID() != PivotPackage.OPERATION__OWNING_CLASS) return null;
 		return (org.eclipse.ocl.examples.pivot.Class)eInternalContainer();
@@ -651,6 +673,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningClass(org.eclipse.ocl.examples.pivot.Class newOwningClass)
 	{
 		if (newOwningClass != eInternalContainer() || (eContainerFeatureID() != PivotPackage.OPERATION__OWNING_CLASS && newOwningClass != null))
@@ -674,6 +697,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateCompatibleReturn(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -868,6 +892,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateLoadableImplementation(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -881,6 +906,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateUniquePreconditionName(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -938,6 +964,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateUniquePostconditionName(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -1503,10 +1530,12 @@ public class OperationImpl
 		return visitor.visitOperation(this);
 	}
 
+	@Override
 	public int getIndex() {
 		return -1;		// WIP
 	}
 
+	@Override
 	public @Nullable DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
 		org.eclipse.ocl.examples.pivot.Class owningType = getOwningClass();
 		if (owningType != null) {
@@ -1517,10 +1546,12 @@ public class OperationImpl
 		}
 	}
 	
+	@Override
 	public @NonNull ParametersId getParametersId() {
 		return getOperationId().getParametersId();
 	}
 
+	@Override
 	public @NonNull DomainParameterTypes getParameterTypes() {
 		List<Parameter> ownedParameter = getOwnedParameter();
 		int iMax = ownedParameter.size();
@@ -1531,12 +1562,14 @@ public class OperationImpl
 		return new DomainParameterTypes(types);
 	}
 
+	@Override
 	public @NonNull DomainTypeParameters getTypeParameters() {
 		return TemplateSignatureImpl.getTypeParameters(getOwnedTemplateSignature());
 	}
 
 	private OperationId operationId = null;
 	
+	@Override
 	public final @NonNull OperationId getOperationId() {
 		OperationId operationId2 = operationId;
 		if (operationId2 == null) {

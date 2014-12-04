@@ -86,6 +86,7 @@ public final class ToggleSLCommentAction extends Action implements IUpdate {
 			display= shell.getDisplay();
 
 		BusyIndicator.showWhile(display, new Runnable() {
+			@Override
 			public void run() {
 				fOperationTarget.doOperation(operationCode);
 			}
@@ -248,6 +249,7 @@ public final class ToggleSLCommentAction extends Action implements IUpdate {
 	 * <code>ITextOperationTarget</code> adapter, and sets the enabled state
 	 * accordingly.
 	 */
+	@Override
 	public void update() {
 		boolean isEnabled= (fOperationTarget != null && fOperationTarget.canDoOperation(ITextOperationTarget.PREFIX) && fOperationTarget.canDoOperation(ITextOperationTarget.STRIP_PREFIX));
 		setEnabled(isEnabled);

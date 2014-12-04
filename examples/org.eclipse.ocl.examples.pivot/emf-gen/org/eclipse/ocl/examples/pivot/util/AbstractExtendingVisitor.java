@@ -38,474 +38,592 @@ public abstract class AbstractExtendingVisitor<R, C>
 		super(context);
 	}	
 
+	@Override
 	public @Nullable R visitAnnotation(@NonNull org.eclipse.ocl.examples.pivot.Annotation object) {
 		return visitNamedElement(object);
 	}
 
+	@Override
 	public @Nullable R visitAnyType(@NonNull org.eclipse.ocl.examples.pivot.AnyType object) {
 		return visitClass(object);
 	}
 
+	@Override
 	public @Nullable R visitAssociationClass(@NonNull org.eclipse.ocl.examples.pivot.AssociationClass object) {
 		return visitClass(object);
 	}
 
+	@Override
 	public @Nullable R visitAssociationClassCallExp(@NonNull org.eclipse.ocl.examples.pivot.AssociationClassCallExp object) {
 		return visitNavigationCallExp(object);
 	}
 
+	@Override
 	public @Nullable R visitBagType(@NonNull org.eclipse.ocl.examples.pivot.BagType object) {
 		return visitCollectionType(object);
 	}
 
+	@Override
 	public @Nullable R visitBehavior(@NonNull org.eclipse.ocl.examples.pivot.Behavior object) {
 		return visitClass(object);
 	}
 
+	@Override
 	public @Nullable R visitBooleanLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.BooleanLiteralExp object) {
 		return visitPrimitiveLiteralExp(object);
 	}
 
+	@Override
 	public @Nullable R visitCallExp(@NonNull org.eclipse.ocl.examples.pivot.CallExp object) {
 		return visitOCLExpression(object);
 	}
 
+	@Override
 	public @Nullable R visitCallOperationAction(@NonNull org.eclipse.ocl.examples.pivot.CallOperationAction object) {
 		return visitNamedElement(object);
 	}
 
+	@Override
 	public @Nullable R visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class object) {
 		return visitType(object);
 	}
 
+	@Override
 	public @Nullable R visitCollectionItem(@NonNull org.eclipse.ocl.examples.pivot.CollectionItem object) {
 		return visitCollectionLiteralPart(object);
 	}
 
+	@Override
 	public @Nullable R visitCollectionLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.CollectionLiteralExp object) {
 		return visitLiteralExp(object);
 	}
 
+	@Override
 	public @Nullable R visitCollectionLiteralPart(@NonNull org.eclipse.ocl.examples.pivot.CollectionLiteralPart object) {
 		return visitTypedElement(object);
 	}
 
+	@Override
 	public @Nullable R visitCollectionRange(@NonNull org.eclipse.ocl.examples.pivot.CollectionRange object) {
 		return visitCollectionLiteralPart(object);
 	}
 
+	@Override
 	public @Nullable R visitCollectionType(@NonNull org.eclipse.ocl.examples.pivot.CollectionType object) {
 		return visitDataType(object);
 	}
 
+	@Override
 	public @Nullable R visitComment(@NonNull org.eclipse.ocl.examples.pivot.Comment object) {
 		return visitElement(object);
 	}
 
+	@Override
 	public @Nullable R visitCompleteClass(@NonNull org.eclipse.ocl.examples.pivot.CompleteClass object) {
 		return visitNamedElement(object);
 	}
 
+	@Override
 	public @Nullable R visitCompleteModel(@NonNull org.eclipse.ocl.examples.pivot.CompleteModel object) {
 		return visitNamedElement(object);
 	}
 
+	@Override
 	public @Nullable R visitCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.CompletePackage object) {
 		return visitNamedElement(object);
 	}
 
+	@Override
 	public @Nullable R visitConnectionPointReference(@NonNull org.eclipse.ocl.examples.pivot.ConnectionPointReference object) {
 		return visitVertex(object);
 	}
 
+	@Override
 	public @Nullable R visitConstraint(@NonNull org.eclipse.ocl.examples.pivot.Constraint object) {
 		return visitNamedElement(object);
 	}
 
+	@Override
 	public @Nullable R visitConstructorExp(@NonNull org.eclipse.ocl.examples.pivot.ConstructorExp object) {
 		return visitOCLExpression(object);
 	}
 
+	@Override
 	public @Nullable R visitConstructorPart(@NonNull org.eclipse.ocl.examples.pivot.ConstructorPart object) {
 		return visitTypedElement(object);
 	}
 
+	@Override
 	public @Nullable R visitDataType(@NonNull org.eclipse.ocl.examples.pivot.DataType object) {
 		return visitClass(object);
 	}
 
+	@Override
 	public @Nullable R visitDetail(@NonNull org.eclipse.ocl.examples.pivot.Detail object) {
 		return visitNamedElement(object);
 	}
 
+	@Override
 	public @Nullable R visitDynamicBehavior(@NonNull org.eclipse.ocl.examples.pivot.DynamicBehavior object) {
 		return visitDynamicType(object);
 	}
 
+	@Override
 	public @Nullable R visitDynamicElement(@NonNull org.eclipse.ocl.examples.pivot.DynamicElement object) {
 		return visitElement(object);
 	}
 
+	@Override
 	public @Nullable R visitDynamicProperty(@NonNull org.eclipse.ocl.examples.pivot.DynamicProperty object) {
 		return visitElement(object);
 	}
 
+	@Override
 	public @Nullable R visitDynamicType(@NonNull org.eclipse.ocl.examples.pivot.DynamicType object) {
 		return visitClass(object);
 	}
 
+	@Override
 	public @Nullable R visitDynamicValueSpecification(@NonNull org.eclipse.ocl.examples.pivot.DynamicValueSpecification object) {
 		return visitValueSpecification(object);
 	}
 
+	@Override
 	public @Nullable R visitElement(@NonNull org.eclipse.ocl.examples.pivot.Element object) {
 		return visiting(object);
 	}
 
+	@Override
 	public @Nullable R visitElementExtension(@NonNull org.eclipse.ocl.examples.pivot.ElementExtension object) {
 		return visitClass(object);
 	}
 
+	@Override
 	public @Nullable R visitEnumLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.EnumLiteralExp object) {
 		return visitLiteralExp(object);
 	}
 
+	@Override
 	public @Nullable R visitEnumeration(@NonNull org.eclipse.ocl.examples.pivot.Enumeration object) {
 		return visitDataType(object);
 	}
 
+	@Override
 	public @Nullable R visitEnumerationLiteral(@NonNull org.eclipse.ocl.examples.pivot.EnumerationLiteral object) {
 		return visitInstanceSpecification(object);
 	}
 
+	@Override
 	public @Nullable R visitExpressionInOCL(@NonNull org.eclipse.ocl.examples.pivot.ExpressionInOCL object) {
 		return visitLanguageExpression(object);
 	}
 
+	@Override
 	public @Nullable R visitFeature(@NonNull org.eclipse.ocl.examples.pivot.Feature object) {
 		return visitTypedElement(object);
 	}
 
+	@Override
 	public @Nullable R visitFeatureCallExp(@NonNull org.eclipse.ocl.examples.pivot.FeatureCallExp object) {
 		return visitCallExp(object);
 	}
 
+	@Override
 	public @Nullable R visitFinalState(@NonNull org.eclipse.ocl.examples.pivot.FinalState object) {
 		return visitState(object);
 	}
 
+	@Override
 	public @Nullable R visitIfExp(@NonNull org.eclipse.ocl.examples.pivot.IfExp object) {
 		return visitOCLExpression(object);
 	}
 
+	@Override
 	public @Nullable R visitImport(@NonNull org.eclipse.ocl.examples.pivot.Import object) {
 		return visitNamedElement(object);
 	}
 
+	@Override
 	public @Nullable R visitInstanceSpecification(@NonNull org.eclipse.ocl.examples.pivot.InstanceSpecification object) {
 		return visitNamedElement(object);
 	}
 
+	@Override
 	public @Nullable R visitIntegerLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.IntegerLiteralExp object) {
 		return visitNumericLiteralExp(object);
 	}
 
+	@Override
 	public @Nullable R visitInvalidLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.InvalidLiteralExp object) {
 		return visitLiteralExp(object);
 	}
 
+	@Override
 	public @Nullable R visitInvalidType(@NonNull org.eclipse.ocl.examples.pivot.InvalidType object) {
 		return visitClass(object);
 	}
 
+	@Override
 	public @Nullable R visitIterateExp(@NonNull org.eclipse.ocl.examples.pivot.IterateExp object) {
 		return visitLoopExp(object);
 	}
 
+	@Override
 	public @Nullable R visitIteration(@NonNull org.eclipse.ocl.examples.pivot.Iteration object) {
 		return visitOperation(object);
 	}
 
+	@Override
 	public @Nullable R visitIteratorExp(@NonNull org.eclipse.ocl.examples.pivot.IteratorExp object) {
 		return visitLoopExp(object);
 	}
 
+	@Override
 	public @Nullable R visitLambdaType(@NonNull org.eclipse.ocl.examples.pivot.LambdaType object) {
 		return visitDataType(object);
 	}
 
+	@Override
 	public @Nullable R visitLanguageExpression(@NonNull org.eclipse.ocl.examples.pivot.LanguageExpression object) {
 		return visitValueSpecification(object);
 	}
 
+	@Override
 	public @Nullable R visitLetExp(@NonNull org.eclipse.ocl.examples.pivot.LetExp object) {
 		return visitOCLExpression(object);
 	}
 
+	@Override
 	public @Nullable R visitLibrary(@NonNull org.eclipse.ocl.examples.pivot.Library object) {
 		return visitPackage(object);
 	}
 
+	@Override
 	public @Nullable R visitLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.LiteralExp object) {
 		return visitOCLExpression(object);
 	}
 
+	@Override
 	public @Nullable R visitLoopExp(@NonNull org.eclipse.ocl.examples.pivot.LoopExp object) {
 		return visitCallExp(object);
 	}
 
+	@Override
 	public @Nullable R visitMessageExp(@NonNull org.eclipse.ocl.examples.pivot.MessageExp object) {
 		return visitOCLExpression(object);
 	}
 
+	@Override
 	public @Nullable R visitMessageType(@NonNull org.eclipse.ocl.examples.pivot.MessageType object) {
 		return visitClass(object);
 	}
 
+	@Override
 	public @Nullable R visitModel(@NonNull org.eclipse.ocl.examples.pivot.Model object) {
 		return visitNamespace(object);
 	}
 
+	@Override
 	public @Nullable R visitNamedElement(@NonNull org.eclipse.ocl.examples.pivot.NamedElement object) {
 		return visitElement(object);
 	}
 
+	@Override
 	public @Nullable R visitNamespace(@NonNull org.eclipse.ocl.examples.pivot.Namespace object) {
 		return visitNamedElement(object);
 	}
 
+	@Override
 	public @Nullable R visitNavigationCallExp(@NonNull org.eclipse.ocl.examples.pivot.NavigationCallExp object) {
 		return visitFeatureCallExp(object);
 	}
 
+	@Override
 	public @Nullable R visitNestedCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.NestedCompletePackage object) {
 		return visitCompletePackage(object);
 	}
 
+	@Override
 	public @Nullable R visitNullLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.NullLiteralExp object) {
 		return visitPrimitiveLiteralExp(object);
 	}
 
+	@Override
 	public @Nullable R visitNumericLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.NumericLiteralExp object) {
 		return visitPrimitiveLiteralExp(object);
 	}
 
+	@Override
 	public @Nullable R visitOCLExpression(@NonNull org.eclipse.ocl.examples.pivot.OCLExpression object) {
 		return visitTypedElement(object);
 	}
 
+	@Override
 	public @Nullable R visitOperation(@NonNull org.eclipse.ocl.examples.pivot.Operation object) {
 		return visitFeature(object);
 	}
 
+	@Override
 	public @Nullable R visitOperationCallExp(@NonNull org.eclipse.ocl.examples.pivot.OperationCallExp object) {
 		return visitFeatureCallExp(object);
 	}
 
+	@Override
 	public @Nullable R visitOppositePropertyCallExp(@NonNull org.eclipse.ocl.examples.pivot.OppositePropertyCallExp object) {
 		return visitNavigationCallExp(object);
 	}
 
+	@Override
 	public @Nullable R visitOrderedSetType(@NonNull org.eclipse.ocl.examples.pivot.OrderedSetType object) {
 		return visitCollectionType(object);
 	}
 
+	@Override
 	public @Nullable R visitOrphanCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.OrphanCompletePackage object) {
 		return visitRootCompletePackage(object);
 	}
 
+	@Override
 	public @Nullable R visitPackage(@NonNull org.eclipse.ocl.examples.pivot.Package object) {
 		return visitNamespace(object);
 	}
 
+	@Override
 	public @Nullable R visitParameter(@NonNull org.eclipse.ocl.examples.pivot.Parameter object) {
 		return visitVariableDeclaration(object);
 	}
 
+	@Override
 	public @Nullable R visitParentCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.ParentCompletePackage object) {
 		return visitRootCompletePackage(object);
 	}
 
+	@Override
 	public @Nullable R visitPrecedence(@NonNull org.eclipse.ocl.examples.pivot.Precedence object) {
 		return visitNamedElement(object);
 	}
 
+	@Override
 	public @Nullable R visitPrimitiveCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.PrimitiveCompletePackage object) {
 		return visitRootCompletePackage(object);
 	}
 
+	@Override
 	public @Nullable R visitPrimitiveLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.PrimitiveLiteralExp object) {
 		return visitLiteralExp(object);
 	}
 
+	@Override
 	public @Nullable R visitPrimitiveType(@NonNull org.eclipse.ocl.examples.pivot.PrimitiveType object) {
 		return visitDataType(object);
 	}
 
+	@Override
 	public @Nullable R visitProfile(@NonNull org.eclipse.ocl.examples.pivot.Profile object) {
 		return visitPackage(object);
 	}
 
+	@Override
 	public @Nullable R visitProfileApplication(@NonNull org.eclipse.ocl.examples.pivot.ProfileApplication object) {
 		return visitElement(object);
 	}
 
+	@Override
 	public @Nullable R visitProperty(@NonNull org.eclipse.ocl.examples.pivot.Property object) {
 		return visitFeature(object);
 	}
 
+	@Override
 	public @Nullable R visitPropertyCallExp(@NonNull org.eclipse.ocl.examples.pivot.PropertyCallExp object) {
 		return visitNavigationCallExp(object);
 	}
 
+	@Override
 	public @Nullable R visitPseudostate(@NonNull org.eclipse.ocl.examples.pivot.Pseudostate object) {
 		return visitVertex(object);
 	}
 
+	@Override
 	public @Nullable R visitRealLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.RealLiteralExp object) {
 		return visitNumericLiteralExp(object);
 	}
 
+	@Override
 	public @Nullable R visitRegion(@NonNull org.eclipse.ocl.examples.pivot.Region object) {
 		return visitNamespace(object);
 	}
 
+	@Override
 	public @Nullable R visitRootCompletePackage(@NonNull org.eclipse.ocl.examples.pivot.RootCompletePackage object) {
 		return visitCompletePackage(object);
 	}
 
+	@Override
 	public @Nullable R visitSelfType(@NonNull org.eclipse.ocl.examples.pivot.SelfType object) {
 		return visitClass(object);
 	}
 
+	@Override
 	public @Nullable R visitSendSignalAction(@NonNull org.eclipse.ocl.examples.pivot.SendSignalAction object) {
 		return visitNamedElement(object);
 	}
 
+	@Override
 	public @Nullable R visitSequenceType(@NonNull org.eclipse.ocl.examples.pivot.SequenceType object) {
 		return visitCollectionType(object);
 	}
 
+	@Override
 	public @Nullable R visitSetType(@NonNull org.eclipse.ocl.examples.pivot.SetType object) {
 		return visitCollectionType(object);
 	}
 
+	@Override
 	public @Nullable R visitSignal(@NonNull org.eclipse.ocl.examples.pivot.Signal object) {
 		return visitClass(object);
 	}
 
+	@Override
 	public @Nullable R visitSlot(@NonNull org.eclipse.ocl.examples.pivot.Slot object) {
 		return visitElement(object);
 	}
 
+	@Override
 	public @Nullable R visitState(@NonNull org.eclipse.ocl.examples.pivot.State object) {
 		return visitNamespace(object);
 	}
 
+	@Override
 	public @Nullable R visitStateExp(@NonNull org.eclipse.ocl.examples.pivot.StateExp object) {
 		return visitOCLExpression(object);
 	}
 
+	@Override
 	public @Nullable R visitStateMachine(@NonNull org.eclipse.ocl.examples.pivot.StateMachine object) {
 		return visitBehavior(object);
 	}
 
+	@Override
 	public @Nullable R visitStereotype(@NonNull org.eclipse.ocl.examples.pivot.Stereotype object) {
 		return visitClass(object);
 	}
 
+	@Override
 	public @Nullable R visitStringLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.StringLiteralExp object) {
 		return visitPrimitiveLiteralExp(object);
 	}
 
+	@Override
 	public @Nullable R visitTemplateBinding(@NonNull org.eclipse.ocl.examples.pivot.TemplateBinding object) {
 		return visitElement(object);
 	}
 
+	@Override
 	public @Nullable R visitTemplateParameter(@NonNull org.eclipse.ocl.examples.pivot.TemplateParameter object) {
 		return visitType(object);
 	}
 
+	@Override
 	public @Nullable R visitTemplateParameterSubstitution(@NonNull org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution object) {
 		return visitElement(object);
 	}
 
+	@Override
 	public @Nullable R visitTemplateSignature(@NonNull org.eclipse.ocl.examples.pivot.TemplateSignature object) {
 		return visitElement(object);
 	}
 
+	@Override
 	public @Nullable R visitTemplateableElement(@NonNull org.eclipse.ocl.examples.pivot.TemplateableElement object) {
 		return visitElement(object);
 	}
 
+	@Override
 	public @Nullable R visitTransition(@NonNull org.eclipse.ocl.examples.pivot.Transition object) {
 		return visitNamespace(object);
 	}
 
+	@Override
 	public @Nullable R visitTrigger(@NonNull org.eclipse.ocl.examples.pivot.Trigger object) {
 		return visitNamedElement(object);
 	}
 
+	@Override
 	public @Nullable R visitTupleLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.TupleLiteralExp object) {
 		return visitLiteralExp(object);
 	}
 
+	@Override
 	public @Nullable R visitTupleLiteralPart(@NonNull org.eclipse.ocl.examples.pivot.TupleLiteralPart object) {
 		return visitVariableDeclaration(object);
 	}
 
+	@Override
 	public @Nullable R visitTupleType(@NonNull org.eclipse.ocl.examples.pivot.TupleType object) {
 		return visitDataType(object);
 	}
 
+	@Override
 	public @Nullable R visitType(@NonNull org.eclipse.ocl.examples.pivot.Type object) {
 		return visitNamedElement(object);
 	}
 
+	@Override
 	public @Nullable R visitTypeExp(@NonNull org.eclipse.ocl.examples.pivot.TypeExp object) {
 		return visitOCLExpression(object);
 	}
 
+	@Override
 	public @Nullable R visitTypeExtension(@NonNull org.eclipse.ocl.examples.pivot.TypeExtension object) {
 		return visitElement(object);
 	}
 
+	@Override
 	public @Nullable R visitTypedElement(@NonNull org.eclipse.ocl.examples.pivot.TypedElement object) {
 		return visitNamedElement(object);
 	}
 
+	@Override
 	public @Nullable R visitUnlimitedNaturalLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp object) {
 		return visitNumericLiteralExp(object);
 	}
 
+	@Override
 	public @Nullable R visitUnspecifiedValueExp(@NonNull org.eclipse.ocl.examples.pivot.UnspecifiedValueExp object) {
 		return visitOCLExpression(object);
 	}
 
+	@Override
 	public @Nullable R visitValueSpecification(@NonNull org.eclipse.ocl.examples.pivot.ValueSpecification object) {
 		return visitTypedElement(object);
 	}
 
+	@Override
 	public @Nullable R visitVariable(@NonNull org.eclipse.ocl.examples.pivot.Variable object) {
 		return visitVariableDeclaration(object);
 	}
 
+	@Override
 	public @Nullable R visitVariableDeclaration(@NonNull org.eclipse.ocl.examples.pivot.VariableDeclaration object) {
 		return visitTypedElement(object);
 	}
 
+	@Override
 	public @Nullable R visitVariableExp(@NonNull org.eclipse.ocl.examples.pivot.VariableExp object) {
 		return visitOCLExpression(object);
 	}
 
+	@Override
 	public @Nullable R visitVertex(@NonNull org.eclipse.ocl.examples.pivot.Vertex object) {
 		return visitNamedElement(object);
 	}
 
+	@Override
 	public @Nullable R visitVoidType(@NonNull org.eclipse.ocl.examples.pivot.VoidType object) {
 		return visitClass(object);
 	}
 
+	@Override
 	public @Nullable R visitWildcardType(@NonNull org.eclipse.ocl.examples.pivot.WildcardType object) {
 		return visitClass(object);
 	}

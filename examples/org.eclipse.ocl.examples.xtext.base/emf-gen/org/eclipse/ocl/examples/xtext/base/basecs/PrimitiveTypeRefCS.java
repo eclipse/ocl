@@ -45,6 +45,7 @@ public interface PrimitiveTypeRefCS extends TypedRefCS, Nameable {
 	 * @model
 	 * @generated
 	 */
+	@Override
 	String getName();
 
 	/**

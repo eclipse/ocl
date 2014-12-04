@@ -97,6 +97,7 @@ public abstract class TypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public org.eclipse.ocl.examples.pivot.Class isClass()
 	{
 		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Type!isClass()
@@ -107,6 +108,7 @@ public abstract class TypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TemplateParameter isTemplateParameter()
 	{
 		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Type!isTemplateParameter()
@@ -117,6 +119,7 @@ public abstract class TypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<TypeExtension> getExtendedBys()
 	{
 		if (extendedBys == null)
@@ -131,6 +134,7 @@ public abstract class TypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type flattenedType()
 	{
 		/**
@@ -368,6 +372,7 @@ public abstract class TypeImpl
 		throw new UnsupportedOperationException();		// FIXME do a lazy AS2Ecore
 	}
 
+	@Override
 	public @NonNull DomainType getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
 		if (type == this) {
 			return this;
@@ -378,10 +383,12 @@ public abstract class TypeImpl
 		return thisInheritance.getCommonInheritance(thatInheritance).getType();
 	}
 
+	@Override
 	public @NonNull String getMetaTypeName() {
 		return DomainUtil.nonNullState(eClass().getName());
 	}
 
+	@Override
 	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
 		if (this == type) {
 			return true;
@@ -391,6 +398,7 @@ public abstract class TypeImpl
 		return thisType == thatType;
 	}
 
+	@Override
 	public boolean isEqualToUnspecializedType(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
 		if (this == type) {
 			return true;
@@ -398,6 +406,7 @@ public abstract class TypeImpl
 		return false;
 	}
 
+	@Override
 	public boolean isInvalid() {
 		return false;
 	}
@@ -410,6 +419,7 @@ public abstract class TypeImpl
 		return false;
 	}
 
+	@Override
 	public boolean oclEquals(@NonNull OCLValue thatValue) {
 		if (!(thatValue instanceof DomainType)) {
 			return false;
@@ -419,10 +429,12 @@ public abstract class TypeImpl
 		return thisTypeId.equals(thatTypeId);
 	}
 
+	@Override
 	public int oclHashCode() {
 		return getTypeId().hashCode();
 	}
 
+	@Override
 	public Type specializeIn(final /*@NonNull*/ OCLExpression expr, final /*@NonNull*/ Type selfType)
 	{
 		assert expr != null;
@@ -430,6 +442,7 @@ public abstract class TypeImpl
 		return (Type) specializeIn(DomainUtil.nonNullState((DomainCallExp)expr), (DomainType)selfType);
 	}
 
+	@Override
 	@NonNull
 	public List<? extends DomainConstraint> getOwnedRule() {
 		throw new UnsupportedOperationException();		// FIXME

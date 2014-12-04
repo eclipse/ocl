@@ -28,6 +28,7 @@ import org.eclipse.xtext.ui.editor.XtextEditor;
  */
 public class SetExportDelegateURIHandler extends AbstractHandler
 {
+	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		event.getApplicationContext();
 		String id = event.getCommand().getId();

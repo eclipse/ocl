@@ -52,6 +52,7 @@ public class Continuations implements Continuation<ModelElementCS>
 		continuations.add(continuation);
 	}
 	
+	@Override
 	public void addTo(@NonNull List<BasicContinuation<?>> simpleContinuations) {
 		for (BasicContinuation<?> continuation : continuations) {
 			continuation.addTo(simpleContinuations);

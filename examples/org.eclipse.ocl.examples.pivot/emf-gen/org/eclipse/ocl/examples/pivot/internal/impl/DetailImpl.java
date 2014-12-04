@@ -74,6 +74,7 @@ public class DetailImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<String> getValue()
 	{
 		if (value == null)

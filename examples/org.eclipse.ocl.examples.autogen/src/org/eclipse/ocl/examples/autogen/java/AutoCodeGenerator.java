@@ -159,6 +159,7 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 		return ImportUtils.resolveImports(generator.toString(), long2ShortImportNames);
 	}
 
+	@Override
 	public @NonNull AutoAnalyzer getAnalyzer() {
 		return cgAnalyzer;
 	}

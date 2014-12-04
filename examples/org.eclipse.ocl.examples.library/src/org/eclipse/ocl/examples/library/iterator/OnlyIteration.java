@@ -26,6 +26,7 @@ public class OnlyIteration extends AbstractIteration
 {
 	public static final @NonNull OnlyIteration INSTANCE = new OnlyIteration();
 
+	@Override
 	public @NonNull Object createAccumulatorValue(@NonNull DomainEvaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
 		return new MutableObject(null);
 	}

@@ -17,9 +17,11 @@ public interface NullValue
 	extends ObjectValue, UnlimitedValue,
 		BagValue, OrderedSetValue, SequenceValue, SetValue, TupleValue
 {
+	@Override
 	@NonNull OclVoidTypeId getTypeId();
 	/**
 	 * @generated NOT
 	 */
+	@Override
 	@NonNull NullValue negate();	
 }

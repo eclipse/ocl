@@ -109,6 +109,7 @@ public class ModelImpl extends NamespaceImpl implements Model
 		return PivotPackage.Literals.MODEL;
 	}
 
+	@Override
 	public @NonNull List<org.eclipse.ocl.examples.pivot.Package> getOwnedPackages()
 	{
 		EList<org.eclipse.ocl.examples.pivot.Package> ownedPackages2 = ownedPackages;
@@ -148,6 +149,7 @@ public class ModelImpl extends NamespaceImpl implements Model
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getExternalURI()
 	{
 		return externalURI;
@@ -171,6 +173,7 @@ public class ModelImpl extends NamespaceImpl implements Model
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<Import> getImports()
 	{
@@ -397,6 +400,7 @@ public class ModelImpl extends NamespaceImpl implements Model
 		}
 	}
 	
+	@Override
 	public void setExternalURI(String newExternalURI)
 	{
 		setExternalURIGen(newExternalURI);

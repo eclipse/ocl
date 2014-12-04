@@ -81,6 +81,7 @@ public class WildcardTypeRefCSImpl extends TypeRefCSImpl implements WildcardType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypedRefCS getOwnedExtends() {
 		return ownedExtends;
 	}
@@ -107,6 +108,7 @@ public class WildcardTypeRefCSImpl extends TypeRefCSImpl implements WildcardType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedExtends(TypedRefCS newOwnedExtends) {
 		if (newOwnedExtends != ownedExtends)
 		{
@@ -127,6 +129,7 @@ public class WildcardTypeRefCSImpl extends TypeRefCSImpl implements WildcardType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypedRefCS getOwnedSuper() {
 		return ownedSuper;
 	}
@@ -153,6 +156,7 @@ public class WildcardTypeRefCSImpl extends TypeRefCSImpl implements WildcardType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedSuper(TypedRefCS newOwnedSuper) {
 		if (newOwnedSuper != ownedSuper)
 		{

@@ -64,6 +64,7 @@ public class ImportDiagnostic extends AbstractDiagnostic
 		return data;
 	}
 
+	@Override
 	public String getMessage() {
 		return message;
 	}

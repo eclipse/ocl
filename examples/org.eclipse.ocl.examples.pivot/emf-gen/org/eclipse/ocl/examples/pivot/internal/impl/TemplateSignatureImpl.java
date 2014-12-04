@@ -88,6 +88,7 @@ public class TemplateSignatureImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<TemplateParameter> getOwnedTemplateParameters()
 	{
@@ -103,6 +104,7 @@ public class TemplateSignatureImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TemplateableElement getOwningTemplateableElement() {
 		if (eContainerFeatureID() != PivotPackage.TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT) return null;
 		return (TemplateableElement)eInternalContainer();
@@ -124,6 +126,7 @@ public class TemplateSignatureImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningTemplateableElement(TemplateableElement newOwningTemplateableElement) {
 		if (newOwningTemplateableElement != eInternalContainer() || (eContainerFeatureID() != PivotPackage.TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT && newOwningTemplateableElement != null))
 		{

@@ -195,6 +195,7 @@ public class JavaClassScope extends AbstractJavaClassScope
 	protected Iterable<IEObjectDescription> getLocalElementsByName(final QualifiedName name) {
 		Iterable<IEObjectDescription> localElements = getAllLocalElements();
 		Iterable<IEObjectDescription> result = Iterables.filter(localElements, new Predicate<IEObjectDescription>() {
+			@Override
 			public boolean apply(IEObjectDescription input) {
 				if (isIgnoreCase()) {
 					QualifiedName lowerCase = name.toLowerCase();

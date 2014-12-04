@@ -163,6 +163,7 @@ public class BaseValueConverterService extends AbstractDeclarativeValueConverter
 
 	protected static class NumberConverter implements IValueConverter<Number>
 	{	
+		@Override
 		public Number toValue(String string, INode node) {
 			if (Strings.isEmpty(string))
 				throw new ValueConverterException("Couldn't convert empty string to number", node, null);
@@ -178,6 +179,7 @@ public class BaseValueConverterService extends AbstractDeclarativeValueConverter
 			}
 		}
 		
+		@Override
 		public String toString(Number value) {
 			return value.toString();
 		}

@@ -85,6 +85,7 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<TypeExtension> getExtensionOfs()
 	{

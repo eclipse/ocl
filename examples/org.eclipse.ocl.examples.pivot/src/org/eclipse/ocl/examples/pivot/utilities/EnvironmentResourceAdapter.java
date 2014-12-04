@@ -54,6 +54,7 @@ public class EnvironmentResourceAdapter implements Adapter
 		return new MetaModelManager();
 	}
 
+	@Override
 	public @NonNull Resource getTarget() {
 		return resource;
 	}
@@ -66,13 +67,16 @@ public class EnvironmentResourceAdapter implements Adapter
 //		return metaModelManager;
 //	}
 
+	@Override
 	public boolean isAdapterForType(Object type) {
 		return type == EnvironmentResourceAdapter.class;
 	}	
 
+	@Override
 	public void notifyChanged(Notification notification) {
 	}
 
+	@Override
 	public void setTarget(Notifier newTarget) {
 		assert (newTarget == resource) || (newTarget == null);
 	}

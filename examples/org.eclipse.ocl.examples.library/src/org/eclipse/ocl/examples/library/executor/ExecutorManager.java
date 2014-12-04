@@ -78,10 +78,12 @@ public abstract class ExecutorManager implements DomainEvaluator
 		};
 	}
 
+	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
 	}
 
+	@Override
 	public @NonNull Value evaluate(@NonNull DomainExpression body) {
 		throw new UnsupportedOperationException();
 //		try {
@@ -97,6 +99,7 @@ public abstract class ExecutorManager implements DomainEvaluator
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public @NonNull DomainEnvironment getCompleteEnvironment() {
 		return environment;
 	}
@@ -105,6 +108,7 @@ public abstract class ExecutorManager implements DomainEvaluator
 		return getIdResolver().getDynamicTypeOf(value);
 	}
 
+	@Override
 	public @NonNull DomainEvaluationEnvironment getEvaluationEnvironment() {
 		throw new UnsupportedOperationException();
 	}
@@ -113,6 +117,7 @@ public abstract class ExecutorManager implements DomainEvaluator
 //		return standardLibrary.getIdResolver();
 //	}
 
+	@Override
 	public @Nullable DomainLogger getLogger() {
 		return null;
 	}
@@ -120,6 +125,7 @@ public abstract class ExecutorManager implements DomainEvaluator
 	/**
 	 * Return a cached matcher for a give regular expression.
 	 */
+	@Override
 	public @NonNull Pattern getRegexPattern(@NonNull String regex) {
 		if (regexPatterns == null) {
 			synchronized (this) {
@@ -143,18 +149,22 @@ public abstract class ExecutorManager implements DomainEvaluator
 		}
 	}
 
+	@Override
 	public @NonNull DomainStandardLibrary getStandardLibrary() {
 		return standardLibrary;
 	}
 
+	@Override
 	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value) {
 		return getIdResolver().getStaticTypeOf(value);
 	}
 
+	@Override
 	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value, @NonNull Object... values) {
 		return getIdResolver().getStaticTypeOf(value, values);
 	}
 
+	@Override
 	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
 		return getIdResolver().getStaticTypeOf(value, values);
 	}
@@ -166,14 +176,17 @@ public abstract class ExecutorManager implements DomainEvaluator
 //		return valueFactory;
 //	}
 
+	@Override
 	public boolean isCanceled() {
 		return isCanceled;
 	}
 
+	@Override
 	public void setCanceled(boolean isCanceled) {
 		this.isCanceled = isCanceled;
 	}
 
+	@Override
 	public void setLogger(@Nullable DomainLogger logger) {
 		/* ignored */;
 	}

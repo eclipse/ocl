@@ -29,6 +29,7 @@ public class RejectIteration extends AbstractIteration
 {
 	public static final @NonNull RejectIteration INSTANCE = new RejectIteration();
 
+	@Override
 	public @NonNull CollectionValue.Accumulator createAccumulatorValue(@NonNull DomainEvaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
 		return createCollectionAccumulatorValue((CollectionTypeId)accumulatorTypeId);
 	}

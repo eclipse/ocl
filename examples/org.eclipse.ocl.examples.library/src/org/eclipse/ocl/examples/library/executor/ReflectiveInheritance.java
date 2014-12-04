@@ -124,6 +124,7 @@ public abstract class ReflectiveInheritance extends AbstractInheritance
 		return gotOne;
 	}
 	
+	@Override
 	public final @NonNull FragmentIterable getAllProperSuperFragments() {
 		if (fragments == null) {
 			initialize();
@@ -132,6 +133,7 @@ public abstract class ReflectiveInheritance extends AbstractInheritance
 		return new FragmentIterable(fragments2, 0, fragments2.length-1);
 	}
 
+	@Override
 	public final @NonNull FragmentIterable getAllSuperFragments() {
 		if (fragments == null) {
 			initialize();
@@ -139,6 +141,7 @@ public abstract class ReflectiveInheritance extends AbstractInheritance
 		return new FragmentIterable(DomainUtil.nonNullState(fragments));
 	}
 
+	@Override
 	public final int getDepth() {
 		if (indexes == null) {
 			initialize();
@@ -146,6 +149,7 @@ public abstract class ReflectiveInheritance extends AbstractInheritance
 		return indexes.length-2;
 	}
 
+	@Override
 	public DomainFragment getFragment(int fragmentNumber) {
 		if ((fragments == null) && isOclAny()) {
 			installOclAny();
@@ -153,6 +157,7 @@ public abstract class ReflectiveInheritance extends AbstractInheritance
 		return fragments[fragmentNumber];
 	}
 	
+	@Override
 	public @NonNull Iterable<DomainFragment> getFragments() {
 		DomainFragment[] fragments2 = fragments;
 		if (fragments2 == null) {
@@ -163,10 +168,12 @@ public abstract class ReflectiveInheritance extends AbstractInheritance
 		return new FragmentIterable(fragments2);
 	}
 
+	@Override
 	public int getIndex(int fragmentNumber) {
 		return indexes[fragmentNumber];
 	}
 
+	@Override
 	public int getIndexes(){
 		return indexes.length;
 	}
@@ -176,6 +183,7 @@ public abstract class ReflectiveInheritance extends AbstractInheritance
 	 */
 	protected abstract @NonNull Iterable<? extends DomainInheritance> getInitialSuperInheritances();
 
+	@Override
 	public @NonNull DomainFragment getSelfFragment() {
 		if (indexes == null) {
 			initialize();
@@ -187,6 +195,7 @@ public abstract class ReflectiveInheritance extends AbstractInheritance
 		return fragment;
 	}
 	
+	@Override
 	public final @NonNull FragmentIterable getSuperFragments(int depth) {
 		return new FragmentIterable(DomainUtil.nonNullState(fragments), indexes[depth], indexes[depth+1]);
 	}

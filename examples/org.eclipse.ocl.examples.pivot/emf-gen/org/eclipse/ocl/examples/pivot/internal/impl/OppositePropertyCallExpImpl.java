@@ -79,6 +79,7 @@ public class OppositePropertyCallExpImpl extends NavigationCallExpImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Property getReferredProperty()
 	{
 		if (referredProperty != null && ((EObject)referredProperty).eIsProxy())
@@ -109,6 +110,7 @@ public class OppositePropertyCallExpImpl extends NavigationCallExpImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredProperty(Property newReferredProperty)
 	{
 		Property oldReferredProperty = referredProperty;

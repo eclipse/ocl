@@ -47,6 +47,7 @@ public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 		return new DomainReflectiveFragment(this, baseInheritance);
 	}
 	
+	@Override
 	public @NonNull DomainType getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
 		if (this == type) {
 			return this.getType();
@@ -63,16 +64,19 @@ public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 		final Iterator<? extends DomainClass> iterator = superClasses.iterator();
 		return new Iterable<DomainInheritance>()
 		{
+			@Override
 			public Iterator<DomainInheritance> iterator() {
 				return new Iterator<DomainInheritance>()
 				{
 					private @NonNull DomainStandardLibrary standardLibrary = evaluationPackage.getStandardLibrary();
 					private boolean gotOne = false;
 					
+					@Override
 					public boolean hasNext() {
 						return !gotOne || iterator.hasNext();
 					}
 
+					@Override
 					public DomainInheritance next() {
 						DomainClass next = null;
 						if (!gotOne) {
@@ -87,6 +91,7 @@ public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 						return next.getInheritance(standardLibrary);
 					}
 
+					@Override
 					public void remove() {
 						throw new UnsupportedOperationException();
 					}					
@@ -95,14 +100,17 @@ public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 		};
 	}
 
+	@Override
 	public @NonNull List<? extends DomainClass> getSuperClasses() {
 		return domainClass.getSuperClasses();
 	}
 
+	@Override
 	public @Nullable DomainOperation getMemberOperation(@NonNull OperationId operationId) {
 		throw new UnsupportedOperationException();					// FIXME
 	}
 
+	@Override
 	public @Nullable DomainProperty getMemberProperty(@NonNull String name) {
 		DomainProperties allProperties2 = allProperties;
 		if (allProperties2 == null) {
@@ -111,46 +119,57 @@ public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 		return allProperties2.getMemberProperty(name);
 	}
 
+	@Override
 	public @NonNull String getMetaTypeName() {
 		return domainClass.getMetaTypeName();
 	}
 
+	@Override
 	public @NonNull List<? extends DomainConstraint> getOwnedInvariants() {
 		return domainClass.getOwnedInvariants();
 	}
 
+	@Override
 	public @NonNull List<? extends DomainOperation> getOwnedOperations() {
 		return domainClass.getOwnedOperations();
 	}
 
+	@Override
 	public @NonNull List<? extends DomainProperty> getOwnedProperties() {
 		return domainClass.getOwnedProperties();
 	}
 
+	@Override
 	public @NonNull List<? extends DomainConstraint> getOwnedRule() {
 		throw new UnsupportedOperationException();			// FIXME
 	}
 	
+	@Override
 	public @NonNull DomainPackage getOwningPackage() {
 		return evaluationPackage;
 	}
 
+	@Override
 	public @NonNull DomainClass getType() {
 		return domainClass;
 	}
 
+	@Override
 	public @NonNull TypeId getTypeId() {
 		return domainClass.getTypeId();
 	}
 
+	@Override
 	public @NonNull DomainTypeParameters getTypeParameters() {
 		return domainClass.getTypeParameters();
 	}
 
+	@Override
 	public boolean isOrdered() {
 		return domainClass.isOrdered();
 	}
 
+	@Override
 	public boolean isUnique() {
 		return domainClass.isUnique();
 	}

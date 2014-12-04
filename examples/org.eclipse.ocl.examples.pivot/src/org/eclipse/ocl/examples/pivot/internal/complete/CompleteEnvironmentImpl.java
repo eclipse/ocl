@@ -90,6 +90,7 @@ public class CompleteEnvironmentImpl implements CompleteEnvironment.Internal
 		pivotElement.setOwningPackage(completeModel.getOrphanage());
 	}
 
+	@Override
 	public boolean conformsTo(@NonNull Type firstType, @NonNull TemplateParameterSubstitutions firstSubstitutions,
 			@NonNull Type secondType, @NonNull TemplateParameterSubstitutions secondSubstitutions) {
 		//
@@ -250,16 +251,19 @@ public class CompleteEnvironmentImpl implements CompleteEnvironment.Internal
 		return true;
 	}
 
+	@Override
 	public void didAddClass(@NonNull DomainClass partialClass, @NonNull CompleteClass.Internal completeClass) {
 //		assert partialClass.getUnspecializedElement() == null;
 		CompleteClass oldCompleteClass = class2completeClass.put(partialClass, completeClass);
 		assert (oldCompleteClass == null) ||(oldCompleteClass == completeClass);
 	}
 	
+	@Override
 	public void didRemoveClass(@NonNull DomainClass pivotType) {
 		class2completeClass.remove(pivotType);
 	}
 
+	@Override
 	public void dispose() {
 		class2completeClass.clear();
 		if (lambdaManager != null) {
@@ -272,10 +276,12 @@ public class CompleteEnvironmentImpl implements CompleteEnvironment.Internal
 		}
 	}
 
+	@Override
 	public @Nullable CollectionType findCollectionType(@NonNull CompleteClass.Internal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters) {
 		return completeClass.findCollectionType(typeParameters);
 	}
 
+	@Override
 	public @NonNull CollectionType getBagType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
 		return getBagType(metaModelManager.getType(elementType), lower, upper);
 	}
@@ -284,14 +290,17 @@ public class CompleteEnvironmentImpl implements CompleteEnvironment.Internal
 		return getCollectionType(standardLibrary.getBagType(), elementType, lower, upper);
 	}
 
+	@Override
 	public @NonNull CollectionType getCollectionType(@NonNull CompleteClass.Internal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters) {
 		return completeClass.getCollectionType(typeParameters);
 	}
 	
+	@Override
 	public @NonNull CollectionType getCollectionType(@NonNull DomainClass containerType, @NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
 		return getCollectionType((CollectionType)metaModelManager.getType(containerType), metaModelManager.getType(elementType), lower, upper);
 	}
 
+	@Override
 	public @NonNull <T extends CollectionType> T getCollectionType(@NonNull T containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
 		assert containerType == PivotUtil.getUnspecializedTemplateableElement(containerType);
 		TemplateSignature templateSignature = containerType.getOwnedTemplateSignature();
@@ -311,6 +320,7 @@ public class CompleteEnvironmentImpl implements CompleteEnvironment.Internal
 		return specializedType;
 	}
 	
+	@Override
 	public @NonNull CompleteClass.Internal getCompleteClass(@NonNull DomainType pivotType) {
 		for (int recursions = 0; pivotType instanceof DomainTemplateParameter; recursions++) {
 			DomainType lowerBound = ((DomainTemplateParameter)pivotType).getLowerBound();
@@ -350,6 +360,7 @@ public class CompleteEnvironmentImpl implements CompleteEnvironment.Internal
 		}
 	}
 
+	@Override
 	public @NonNull CompleteModel.Internal getCompleteModel() {
 		return completeModel;
 	}
@@ -362,27 +373,32 @@ public class CompleteEnvironmentImpl implements CompleteEnvironment.Internal
 		return lambdaManager2;
 	}
 
+	@Override
 	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType,
 			@Nullable TemplateParameterSubstitutions bindings) {
 		LambdaTypeManager lambdaManager = getLambdaManager();
 		return lambdaManager.getLambdaType(typeName, contextType, parameterTypes, resultType, bindings);
 	}
 
+	@Override
 	public @NonNull MetaModelManager getMetaModelManager() {
 		return metaModelManager;
 	}
 
+	@Override
 	public DomainPackage getNestedPackage(@NonNull DomainPackage domainPackage, @NonNull String name) {
 		CompletePackage completePackage = metaModelManager.getCompletePackage(domainPackage);
 		CompletePackage memberPackage = completePackage.getOwnedCompletePackage(name);
 		return memberPackage != null ? memberPackage.getPivotPackage() : null;
 	}
 
+	@Override
 	public org.eclipse.ocl.examples.pivot.Class getNestedType(@NonNull DomainPackage domainPackage, @NonNull String name) {
 		CompletePackage completePackage = metaModelManager.getCompletePackage(domainPackage);
 		return completePackage.getMemberType(name);
 	}
 
+	@Override
 	public @NonNull CollectionType getOrderedSetType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
 		return getOrderedSetType(metaModelManager.getType(elementType), lower, upper);
 	}
@@ -391,6 +407,7 @@ public class CompleteEnvironmentImpl implements CompleteEnvironment.Internal
 		return getCollectionType(standardLibrary.getOrderedSetType(), elementType, lower, upper);
 	}
 
+	@Override
 	public @NonNull CollectionType getSequenceType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
 		return getSequenceType(metaModelManager.getType(elementType), lower, upper);
 	}
@@ -399,14 +416,17 @@ public class CompleteEnvironmentImpl implements CompleteEnvironment.Internal
 		return getCollectionType(standardLibrary.getSequenceType(), elementType, lower, upper);
 	}
 
+	@Override
 	public @NonNull CollectionType getSetType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
 		return getSetType(metaModelManager.getType(elementType), lower, upper);
 	}
 
+	@Override
 	public @NonNull CollectionType getSetType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
 		return getCollectionType(standardLibrary.getSetType(), elementType, lower, upper);
 	}
 
+	@Override
 	public @NonNull Type getSpecializedType(@NonNull Type type, @Nullable TemplateParameterSubstitutions substitutions) {
 		if ((substitutions == null) || substitutions.isEmpty()) {
 			return type;
@@ -465,10 +485,12 @@ public class CompleteEnvironmentImpl implements CompleteEnvironment.Internal
 		return type;
 	}
 
+	@Override
 	public @NonNull PivotStandardLibrary2 getStandardLibrary() {
 		return standardLibrary;
 	}
 
+	@Override
 	public @NonNull TupleTypeManager getTupleManager() {
 		TupleTypeManager tupleManager2 = tupleManager;
 		if (tupleManager2 == null) {
@@ -477,6 +499,7 @@ public class CompleteEnvironmentImpl implements CompleteEnvironment.Internal
 		return tupleManager2;
 	}
 
+	@Override
 	public @NonNull TupleType getTupleType(@NonNull String typeName, @NonNull Collection<? extends DomainTypedElement> parts,
 			@Nullable TemplateParameterSubstitutions bindings) {
 		return getTupleManager().getTupleType(typeName, parts, bindings);

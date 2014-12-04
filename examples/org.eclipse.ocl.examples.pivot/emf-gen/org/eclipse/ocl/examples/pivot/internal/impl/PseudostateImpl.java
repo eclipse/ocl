@@ -122,6 +122,7 @@ public class PseudostateImpl extends VertexImpl implements Pseudostate
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PseudostateKind getKind()
 	{
 		return KIND_EFLAG_VALUES[(eFlags & KIND_EFLAG) >>> KIND_EFLAG_OFFSET];
@@ -132,6 +133,7 @@ public class PseudostateImpl extends VertexImpl implements Pseudostate
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setKind(PseudostateKind newKind)
 	{
 		PseudostateKind oldKind = KIND_EFLAG_VALUES[(eFlags & KIND_EFLAG) >>> KIND_EFLAG_OFFSET];
@@ -146,6 +148,7 @@ public class PseudostateImpl extends VertexImpl implements Pseudostate
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public StateMachine getStateMachine()
 	{
 		if (eContainerFeatureID() != PivotPackage.PSEUDOSTATE__STATE_MACHINE) return null;
@@ -168,6 +171,7 @@ public class PseudostateImpl extends VertexImpl implements Pseudostate
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStateMachine(StateMachine newStateMachine)
 	{
 		if (newStateMachine != eInternalContainer() || (eContainerFeatureID() != PivotPackage.PSEUDOSTATE__STATE_MACHINE && newStateMachine != null))
@@ -280,6 +284,7 @@ public class PseudostateImpl extends VertexImpl implements Pseudostate
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public State getState()
 	{
 		if (eContainerFeatureID() != PivotPackage.PSEUDOSTATE__STATE) return null;
@@ -302,6 +307,7 @@ public class PseudostateImpl extends VertexImpl implements Pseudostate
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("cast")
 	public void setState(State newState)
 	{

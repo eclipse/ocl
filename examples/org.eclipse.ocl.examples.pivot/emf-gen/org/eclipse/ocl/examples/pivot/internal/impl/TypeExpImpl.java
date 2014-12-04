@@ -81,6 +81,7 @@ public class TypeExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getReferredType() {
 		if (referredType != null && ((EObject)referredType).eIsProxy())
 		{
@@ -109,6 +110,7 @@ public class TypeExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredType(Type newReferredType) {
 		Type oldReferredType = referredType;
 		referredType = newReferredType;
@@ -322,6 +324,7 @@ public class TypeExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public Element getReferredElement()
 	{
 		return getReferredType();

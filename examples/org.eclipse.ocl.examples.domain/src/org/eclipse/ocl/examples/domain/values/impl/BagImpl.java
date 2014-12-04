@@ -78,7 +78,8 @@ public class BagImpl<E> extends AbstractCollection<E> implements Bag<E>
         return count(o) > 0;
     }
     
-    public int count(Object o) {
+    @Override
+	public int count(Object o) {
         MutableInteger count = coll.get(o);
         
         if (count != null) {
@@ -145,10 +146,12 @@ public class BagImpl<E> extends AbstractCollection<E> implements Bag<E>
 				maxOffset = 0;
 			}
 
+			@Override
 			public boolean hasNext() {
 				return (offset < maxOffset) || it.hasNext();
 			}
 
+			@Override
 			public E next() {
 				if (offset < maxOffset) {
 					offset++;
@@ -163,6 +166,7 @@ public class BagImpl<E> extends AbstractCollection<E> implements Bag<E>
 				return curr;
 			}
 
+			@Override
 			public void remove() {
 				throw new UnsupportedOperationException("Remove not supported by OCL collections");	// Unimplemented optional operation
 			}

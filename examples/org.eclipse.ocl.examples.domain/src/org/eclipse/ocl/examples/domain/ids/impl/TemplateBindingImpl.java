@@ -31,16 +31,19 @@ public class TemplateBindingImpl extends AbstractTypeId implements TemplateBindi
 		this.templateParameter = templateParameter;
 	}
 
+	@Override
 	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitTemplateBinding(this);
 	}
 
+	@Override
 	public @NonNull String getDisplayName() {
 		String string = String.valueOf(templateParameter != null ? templateParameter : templateParameterId);
 		assert string != null;
 		return string;
 	}
 
+	@Override
 	public @NonNull DomainTemplateParameter getTemplateParameter() {
 		return DomainUtil.nonNullState(templateParameter);
 	}
@@ -50,6 +53,7 @@ public class TemplateBindingImpl extends AbstractTypeId implements TemplateBindi
 		return templateParameter.hashCode();
 	}
 
+	@Override
 	public void install(@NonNull TemplateParameterId templateParameterId) {
 		this.templateParameterId = templateParameterId;
 		this.templateParameter = null;

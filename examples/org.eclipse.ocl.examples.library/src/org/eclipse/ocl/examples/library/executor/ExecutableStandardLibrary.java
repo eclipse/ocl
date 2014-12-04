@@ -53,23 +53,28 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 //		return new EcoreIdResolver(emptyList, this);
 //	}
 
+	@Override
 	public @NonNull DomainClass getBagType() {
 		return OCLstdlibTables.Types._Bag;
 	}
 
+	@Override
 	public @NonNull DomainCollectionType getBagType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
 		return getCollectionType(getBagType(), elementType, lower, upper);
 	}
 
+	@Override
 	public @NonNull DomainClass getBooleanType() {
 		return OCLstdlibTables.Types._Boolean;
 	}
 
+	@Override
 	public @NonNull DomainClass getCollectionType() {
 		return OCLstdlibTables.Types._Collection;
 	}
 
 //	@Override
+	@Override
 	public synchronized @NonNull DomainCollectionType getCollectionType(@NonNull DomainClass genericType, @NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
 		IntegerValue lower2 = lower;
 		IntegerValue upper2 = upper;
@@ -96,97 +101,120 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 		return specializedType;
 	}
 
+	@Override
 	public @NonNull DomainClass getIntegerType() {
 		return OCLstdlibTables.Types._Integer;
 	}
 
 	// FIXME cf MetaModelManager
+	@Override
 	public @NonNull DomainClass getMetaclass(@NonNull DomainType classType) {
 //		return OCLstdlibTables.Types._OclType;
 		return getClassType();
 	}
 
+	@Override
 	public @Nullable DomainPackage getNestedPackage(@NonNull DomainPackage parentPackage, @NonNull String name) {
 		return DomainUtil.getNamedElement(parentPackage.getOwnedPackages(), name);
 	}
 
+	@Override
 	public @Nullable DomainClass getNestedType(@NonNull DomainPackage parentPackage, @NonNull String name) {
 		return DomainUtil.getNamedElement(parentPackage.getOwnedClasses(), name);
 	}
 
+	@Override
 	public @NonNull DomainClass getOclAnyType() {
 		return OCLstdlibTables.Types._OclAny;
 	}
 
+	@Override
 	public @NonNull DomainClass getOclComparableType() {
 		return OCLstdlibTables.Types._OclComparable;
 	}
 
+	@Override
 	public @NonNull DomainClass getOclElementType() {
 		return OCLstdlibTables.Types._OclElement;
 	}
 
+	@Override
 	public @NonNull DomainClass getOclInvalidType() {
 		return OCLstdlibTables.Types._OclInvalid;
 	}
 
+	@Override
 	public @NonNull DomainClass getOclMessageType() {
 		return OCLstdlibTables.Types._OclMessage;
 	}
 
+	@Override
 	public @NonNull DomainClass getOclSelfType() {
 		return OCLstdlibTables.Types._OclSelf;
 	}
 
+	@Override
 	public @NonNull DomainClass getOclSummableType() {
 		return OCLstdlibTables.Types._OclSummable;
 	}
 
+	@Override
 	public @NonNull DomainClass getOclTupleType() {
 		return OCLstdlibTables.Types._OclTuple;
 	}
 
+	@Override
 	public @NonNull DomainClass getOclVoidType() {
 		return OCLstdlibTables.Types._OclVoid;
 	}
 
+	@Override
 	public @NonNull DomainClass getOrderedCollectionType() {
 		return OCLstdlibTables.Types._OrderedCollection;
 	}
 
+	@Override
 	public @NonNull DomainClass getOrderedSetType() {
 		return OCLstdlibTables.Types._OrderedSet;
 	}
 
+	@Override
 	public @NonNull DomainCollectionType getOrderedSetType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
 		return getCollectionType(getOrderedSetType(), elementType, lower, upper);
 	}
 
+	@Override
 	public @NonNull DomainClass getRealType() {
 		return OCLstdlibTables.Types._Real;
 	}
 
+	@Override
 	public @NonNull DomainClass getSequenceType() {
 		return OCLstdlibTables.Types._Sequence;
 	}
 
+	@Override
 	public @NonNull DomainCollectionType getSequenceType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
 		return getCollectionType(getSequenceType(), elementType, lower, upper);
 	}
 
+	@Override
 	public @NonNull DomainClass getSetType() {
 		return OCLstdlibTables.Types._Set;
 	}
 
+	@Override
 	public @NonNull DomainCollectionType getSetType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
 		return getCollectionType(getSetType(), elementType, lower, upper);
 	}
 
 	
+	@Override
 	public @NonNull ExecutableStandardLibrary getStandardLibrary() {
 		return this;
 	}
 
+	@Override
 	public @NonNull DomainClass getStringType() {
 		return OCLstdlibTables.Types._String;
 	}
@@ -248,10 +276,12 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 		return domainTupleType;
 	}
 
+	@Override
 	public @NonNull DomainClass getUniqueCollectionType() {
 		return OCLstdlibTables.Types._UniqueCollection;
 	}
 
+	@Override
 	public @NonNull DomainClass getUnlimitedNaturalType() {
 		return OCLstdlibTables.Types._UnlimitedNatural;
 	}

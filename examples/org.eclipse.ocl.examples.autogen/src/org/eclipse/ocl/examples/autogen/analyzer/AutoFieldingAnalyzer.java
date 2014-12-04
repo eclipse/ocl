@@ -30,18 +30,22 @@ public class AutoFieldingAnalyzer extends FieldingAnalyzer
 			super(context);
 		}
 
+		@Override
 		public @Nullable Set<CGVariable> visitCGASTCallExp(@NonNull CGASTCallExp object) {
 			return visitCGOperationCallExp(object);
 		}
 
+		@Override
 		public @Nullable Set<CGVariable> visitCGContainmentBody(@NonNull CGContainmentBody object) {
 			return visitCGValuedElement(object);
 		}
 
+		@Override
 		public @Nullable Set<CGVariable> visitCGContainmentPart(@NonNull CGContainmentPart object) {
 			return visitCGValuedElement(object);
 		}
 
+		@Override
 		public @Nullable Set<CGVariable> visitCGContainmentVisit(@NonNull CGContainmentVisit object) {
 			return visitCGOperation(object);
 		}
@@ -53,18 +57,22 @@ public class AutoFieldingAnalyzer extends FieldingAnalyzer
 			super(context, caughtVariables);
 		}
 
+		@Override
 		public @Nullable Boolean visitCGASTCallExp(@NonNull CGASTCallExp object) {
 			return visitCGOperationCallExp(object);
 		}
 
+		@Override
 		public @Nullable Boolean visitCGContainmentBody(@NonNull CGContainmentBody object) {
 			return visitCGValuedElement(object);
 		}
 
+		@Override
 		public @Nullable Boolean visitCGContainmentPart(@NonNull CGContainmentPart object) {
 			return visitCGValuedElement(object);
 		}
 
+		@Override
 		public @Nullable Boolean visitCGContainmentVisit(@NonNull CGContainmentVisit object) {
 			return visitCGOperation(object);
 		}

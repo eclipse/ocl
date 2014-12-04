@@ -23,6 +23,7 @@ public class PrimitiveTypeIdImpl extends UnscopedId implements PrimitiveTypeId
 		super(name);
 	}
 
+	@Override
 	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitPrimitiveTypeId(this);
 	}

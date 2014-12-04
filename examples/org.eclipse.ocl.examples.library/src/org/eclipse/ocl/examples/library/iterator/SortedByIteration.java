@@ -60,10 +60,12 @@ public class SortedByIteration extends AbstractIteration
 			isUnique = (generalizedId == TypeId.SET) || (generalizedId == TypeId.ORDERED_SET);
 		}
 
+		@Override
 		public @NonNull Object asObject() {
 			return content;
 		}
 		
+		@Override
 		public int compare(Object o1, Object o2) {
 			if (o1 == o2) {
 				return 0;
@@ -114,6 +116,7 @@ public class SortedByIteration extends AbstractIteration
 //			return type;
 //		}
 
+		@Override
 		public @NonNull TypeId getTypeId() {
 			return typeId;
 		}
@@ -144,6 +147,7 @@ public class SortedByIteration extends AbstractIteration
 
 	public static final @NonNull SortedByIteration INSTANCE = new SortedByIteration();
 
+	@Override
 	public @NonNull SortedByIteration.SortingValue createAccumulatorValue(@NonNull DomainEvaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
 		DomainStandardLibrary standardLibrary = evaluator.getStandardLibrary();
 		DomainInheritance comparableType = standardLibrary.getOclComparableType().getInheritance(standardLibrary);

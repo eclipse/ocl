@@ -28,6 +28,7 @@ public class ExistsIteration extends AbstractIteration
 {
 	public static final @NonNull ExistsIteration INSTANCE = new ExistsIteration();
 
+	@Override
 	public @NonNull Object createAccumulatorValue(@NonNull DomainEvaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
 		return new MutableObject(Boolean.FALSE);
 	}

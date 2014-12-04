@@ -24,6 +24,7 @@ public final class SlotLabelGenerator extends AbstractLabelGenerator<Slot>
 		super(Slot.class);
 	}
 
+	@Override
 	public void buildLabelFor(@NonNull Builder labelBuilder, @NonNull Slot object) {
 		String name = object.getDefiningFeature().getName();
 		if (name != null)

@@ -87,6 +87,7 @@ public class CGContainmentPartImpl extends CGValuedElementImpl implements CGCont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CGContainmentBody getContainmentBody() {
 		if (eContainerFeatureID() != AutoCGModelPackage.CG_CONTAINMENT_PART__CONTAINMENT_BODY) return null;
 		return (CGContainmentBody)eInternalContainer();
@@ -107,6 +108,7 @@ public class CGContainmentPartImpl extends CGValuedElementImpl implements CGCont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContainmentBody(CGContainmentBody newContainmentBody) {
 		if (newContainmentBody != eInternalContainer() || (eContainerFeatureID() != AutoCGModelPackage.CG_CONTAINMENT_PART__CONTAINMENT_BODY && newContainmentBody != null)) {
 			if (EcoreUtil.isAncestor(this, newContainmentBody))
@@ -128,6 +130,7 @@ public class CGContainmentPartImpl extends CGValuedElementImpl implements CGCont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CGValuedElement getInit() {
 		return init;
 	}
@@ -152,6 +155,7 @@ public class CGContainmentPartImpl extends CGValuedElementImpl implements CGCont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInit(CGValuedElement newInit) {
 		if (newInit != init) {
 			NotificationChain msgs = null;
@@ -171,6 +175,7 @@ public class CGContainmentPartImpl extends CGValuedElementImpl implements CGCont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EStructuralFeature getEStructuralFeature() {
 		return eStructuralFeature;
 	}
@@ -180,6 +185,7 @@ public class CGContainmentPartImpl extends CGValuedElementImpl implements CGCont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEStructuralFeature(EStructuralFeature newEStructuralFeature) {
 		EStructuralFeature oldEStructuralFeature = eStructuralFeature;
 		eStructuralFeature = newEStructuralFeature;
@@ -343,6 +349,7 @@ public class CGContainmentPartImpl extends CGValuedElementImpl implements CGCont
 	 * {@inheritDoc}
 	 * @generated
 	 */
+	@Override
 	public @Nullable Boolean isEquivalentToInternal(@NonNull CGValuedElement thatValue) {
 		throw new UnsupportedOperationException(getClass().getName() + ".isEquivalentToInternal()");
 	}

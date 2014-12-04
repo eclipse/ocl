@@ -118,6 +118,7 @@ public class ExpressionInOCLImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OCLExpression getBodyExpression() {
 		return bodyExpression;
 	}
@@ -144,6 +145,7 @@ public class ExpressionInOCLImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBodyExpression(OCLExpression newBodyExpression) {
 		if (newBodyExpression != bodyExpression)
 		{
@@ -164,6 +166,7 @@ public class ExpressionInOCLImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Variable getContextVariable() {
 		return contextVariable;
 	}
@@ -190,6 +193,7 @@ public class ExpressionInOCLImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContextVariable(Variable newContextVariable) {
 		if (newContextVariable != contextVariable)
 		{
@@ -210,6 +214,7 @@ public class ExpressionInOCLImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Variable getResultVariable() {
 		return resultVariable;
 	}
@@ -236,6 +241,7 @@ public class ExpressionInOCLImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setResultVariable(Variable newResultVariable) {
 		if (newResultVariable != resultVariable)
 		{
@@ -256,6 +262,7 @@ public class ExpressionInOCLImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<Variable> getParameterVariable()
 	{

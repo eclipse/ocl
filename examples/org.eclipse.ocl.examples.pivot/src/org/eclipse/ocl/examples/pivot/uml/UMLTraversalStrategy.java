@@ -31,10 +31,12 @@ public class UMLTraversalStrategy implements ITraversalStrategy
 
 	private Iterator<EObject> stereotypeApplications = null;		// Non-null if stereotypeApplications maybe pending
 	
+	@Override
 	public void elementValidated(EObject element, IStatus status) {
 		delegate.elementValidated(element, status);
 	}
 
+	@Override
 	public boolean hasNext() {
 		if (stereotypeApplications != null) {
 			if (stereotypeApplications.hasNext()) {
@@ -45,10 +47,12 @@ public class UMLTraversalStrategy implements ITraversalStrategy
 		return delegate.hasNext();
 	}
 
+	@Override
 	public boolean isClientContextChanged() {
 		return delegate.isClientContextChanged();
 	}
 
+	@Override
 	public EObject next() {
 		if (stereotypeApplications != null) {
 			return stereotypeApplications.next();
@@ -63,6 +67,7 @@ public class UMLTraversalStrategy implements ITraversalStrategy
 		return next;
 	}
 
+	@Override
 	public void startTraversal(Collection<? extends EObject> traversalRoots, IProgressMonitor monitor) {
 		delegate.startTraversal(traversalRoots, monitor);
 	}	

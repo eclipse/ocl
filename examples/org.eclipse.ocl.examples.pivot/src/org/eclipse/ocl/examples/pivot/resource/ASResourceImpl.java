@@ -38,6 +38,7 @@ public class ASResourceImpl extends XMIResourceImpl implements ASResource
 		return new PivotSaveImpl(new XMIHelperImpl(this));
 	}
 
+	@Override
 	public @NonNull ASResourceFactory getASResourceFactory() {
 		return asResourceFactory;
 	}

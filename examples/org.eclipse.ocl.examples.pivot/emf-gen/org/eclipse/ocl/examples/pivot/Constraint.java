@@ -74,6 +74,7 @@ public interface Constraint
 	 * @see org.eclipse.ocl.examples.pivot.LanguageExpression#getOwningConstraint
 	 * @generated
 	 */
+	@Override
 	LanguageExpression getSpecification();
 
 	/**
@@ -125,6 +126,7 @@ public interface Constraint
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getConstraint_Context()
 	 * @generated
 	 */
+	@Override
 	Namespace getContext();
 
 	/**
@@ -141,6 +143,7 @@ public interface Constraint
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getConstraint_IsCallable()
 	 * @generated
 	 */
+	@Override
 	boolean isCallable();
 
 	/**

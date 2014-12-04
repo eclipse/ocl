@@ -31,6 +31,7 @@ public class ASSaverNormalizeVisitor extends AbstractExtendingVisitor<Object, AS
 	{
 		public static final @NonNull Comparator<Property> INSTANCE = new PropertyComparator();
 
+		@Override
 		public int compare(Property o1, Property o2) {
 			assert o1 != null;
 			assert o2 != null;
@@ -51,6 +52,7 @@ public class ASSaverNormalizeVisitor extends AbstractExtendingVisitor<Object, AS
 	{
 		public static final @NonNull Comparator<org.eclipse.ocl.examples.pivot.Class> INSTANCE = new TypeComparator();
 
+		@Override
 		public int compare(org.eclipse.ocl.examples.pivot.Class o1, org.eclipse.ocl.examples.pivot.Class o2) {
 			assert o1 != null;
 			assert o2 != null;
@@ -87,6 +89,7 @@ public class ASSaverNormalizeVisitor extends AbstractExtendingVisitor<Object, AS
 		return null;
 	}
 
+	@Override
 	public Object visiting(@NonNull Visitable visitable) {
 		return null;
 	}

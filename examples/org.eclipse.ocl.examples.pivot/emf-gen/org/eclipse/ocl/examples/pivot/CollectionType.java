@@ -48,6 +48,7 @@ public interface CollectionType
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCollectionType_ElementType()
 	 * @generated
 	 */
+	@Override
 	Type getElementType();
 
 	/**
@@ -115,5 +116,6 @@ public interface CollectionType
 	void setLowerValue(@NonNull IntegerValue lower);
 	void setUpperValue(@NonNull IntegerValue upper);
 	
+	@Override
 	@NonNull CollectionType getContainerType();
 } // CollectionType

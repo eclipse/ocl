@@ -85,6 +85,7 @@ public class RealLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Number getRealSymbol() {
 		return realSymbol;
 	}
@@ -94,6 +95,7 @@ public class RealLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRealSymbol(Number newRealSymbol)
 	{
 		Number oldRealSymbol = realSymbol;

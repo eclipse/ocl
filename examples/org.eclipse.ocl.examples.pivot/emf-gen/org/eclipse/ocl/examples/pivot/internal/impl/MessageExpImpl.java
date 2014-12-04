@@ -170,6 +170,7 @@ public class MessageExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTarget(OCLExpression newTarget) {
 		if (newTarget != target)
 		{
@@ -190,6 +191,7 @@ public class MessageExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<OCLExpression> getArgument()
 	{
 		if (argument == null)
@@ -204,6 +206,7 @@ public class MessageExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CallOperationAction getCalledOperation() {
 		return calledOperation;
 	}
@@ -230,6 +233,7 @@ public class MessageExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCalledOperation(CallOperationAction newCalledOperation) {
 		if (newCalledOperation != calledOperation)
 		{
@@ -250,6 +254,7 @@ public class MessageExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SendSignalAction getSentSignal() {
 		return sentSignal;
 	}
@@ -276,6 +281,7 @@ public class MessageExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSentSignal(SendSignalAction newSentSignal) {
 		if (newSentSignal != sentSignal)
 		{
@@ -296,6 +302,7 @@ public class MessageExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateOneCallOrOneSend(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -334,6 +341,7 @@ public class MessageExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateTargetIsNotACollection(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**

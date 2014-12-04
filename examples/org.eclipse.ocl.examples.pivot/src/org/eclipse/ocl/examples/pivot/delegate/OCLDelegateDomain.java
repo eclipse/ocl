@@ -219,14 +219,17 @@ public class OCLDelegateDomain implements DelegateDomain, MetaModelManagerListen
 		}
 	}
 	
+	@Override
 	public final @NonNull String getURI() {
 		return uri;
 	}
 
+	@Override
 	public void metaModelManagerDisposed(@NonNull MetaModelManager metaModelManager) {
 		reset();
 	}
 
+	@Override
 	public void reset() {
 		if (ocl != null) {
 			for (EClassifier eClassifier : ePackage.getEClassifiers()) {

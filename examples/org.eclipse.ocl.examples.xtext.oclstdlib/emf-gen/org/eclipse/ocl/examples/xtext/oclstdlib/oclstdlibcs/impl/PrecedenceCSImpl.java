@@ -82,6 +82,7 @@ public class PrecedenceCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsRightAssociative() {
 		return isRightAssociative;
 	}
@@ -91,6 +92,7 @@ public class PrecedenceCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsRightAssociative(boolean newIsRightAssociative) {
 		boolean oldIsRightAssociative = isRightAssociative;
 		isRightAssociative = newIsRightAssociative;

@@ -99,6 +99,7 @@ public class TypeNameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PathNameCS getOwnedPathName() {
 		return ownedPathName;
 	}
@@ -125,6 +126,7 @@ public class TypeNameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedPathName(PathNameCS newOwnedPathName) {
 		if (newOwnedPathName != ownedPathName)
 		{
@@ -270,6 +272,7 @@ public class TypeNameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public Type getElement() {
 		if (ownedPathName == null) {
 			return null;
@@ -282,6 +285,7 @@ public class TypeNameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CurlyBracketedClauseCS getOwnedCurlyBracketedClause()
 	{
 		return ownedCurlyBracketedClause;
@@ -309,6 +313,7 @@ public class TypeNameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedCurlyBracketedClause(CurlyBracketedClauseCS newOwnedCurlyBracketedClause)
 	{
 		if (newOwnedCurlyBracketedClause != ownedCurlyBracketedClause)
@@ -330,6 +335,7 @@ public class TypeNameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpCS getOwnedPatternGuard()
 	{
 		return ownedPatternGuard;
@@ -357,6 +363,7 @@ public class TypeNameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedPatternGuard(ExpCS newOwnedPatternGuard)
 	{
 		if (newOwnedPatternGuard != ownedPatternGuard)

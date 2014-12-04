@@ -31,6 +31,7 @@ public class EcoreReflectiveEnumeration extends EcoreReflectiveType implements D
 		super(evaluationPackage, flags, eEnum, typeParameters);
 	}
 
+	@Override
 	public @Nullable DomainEnumerationLiteral getEnumerationLiteral(@NonNull String name) {
 		if (name2literal == null) {
 			name2literal = initLiterals();
@@ -38,10 +39,12 @@ public class EcoreReflectiveEnumeration extends EcoreReflectiveType implements D
 		return name2literal.get(name);
 	}
 	
+	@Override
 	public @NonNull EnumerationId getEnumerationId() {
 		return (EnumerationId) getTypeId();
 	}
 
+	@Override
 	public @NonNull Iterable<? extends DomainEnumerationLiteral> getEnumerationLiterals() {
 		if (name2literal == null) {
 			name2literal = initLiterals();

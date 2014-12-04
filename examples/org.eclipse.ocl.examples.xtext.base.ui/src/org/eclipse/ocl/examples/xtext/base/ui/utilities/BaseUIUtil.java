@@ -121,6 +121,7 @@ public class BaseUIUtil
 				if (eObjectURI != null) {
 					return xtextDocument.readOnly(new IUnitOfWork<EObject, XtextResource>()
 					{
+						@Override
 						public EObject exec(@Nullable XtextResource resource) throws Exception {
 							if (resource ==  null) {
 								return null;
@@ -148,6 +149,7 @@ public class BaseUIUtil
 		}
 		return xtextDocument.readOnly(new IUnitOfWork<EObject, XtextResource>()
 		{
+			@Override
 			public EObject exec(@Nullable XtextResource resource) throws Exception {
 				if (resource == null) {
 					return null;

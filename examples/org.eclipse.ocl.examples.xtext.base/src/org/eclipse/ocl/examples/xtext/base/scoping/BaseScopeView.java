@@ -67,50 +67,62 @@ public class BaseScopeView extends AbstractScope implements IScopeView
      */
     public static final @NonNull IScopeView NULLSCOPEVIEW = new IScopeView()
     {
- 		public Iterable<IEObjectDescription> getAllElements() {
+ 		@Override
+		public Iterable<IEObjectDescription> getAllElements() {
 	   		return Collections.emptyList();
 		}
 
+		@Override
 		public @NonNull Attribution getAttribution() {
 			return NullAttribution.INSTANCE;
 		}
 
+		@Override
 		public ElementCS getChild() {
 			return null;
 		}
 
+		@Override
 		public EStructuralFeature getContainmentFeature() {
 			return null;
 		}
 
+		@Override
 		public Iterable<IEObjectDescription> getElements(EObject object) {
 	   		return Collections.emptyList();
 		}
 
+		@Override
 		public Iterable<IEObjectDescription> getElements(QualifiedName name) {
 	   		return Collections.emptyList();
 		}
 
+		@Override
 		public @NonNull IScopeView getParent() {
 			return NULLSCOPEVIEW;
 		}
 
+		@Override
 		public @NonNull IScopeView getRoot() {
 			return NULLSCOPEVIEW;
 		}
 
+		@Override
 		public IEObjectDescription getSingleElement(QualifiedName name) {
 			return null;
 		}
 
+		@Override
 		public IEObjectDescription getSingleElement(EObject object) {
 			return null;
 		}
 
+		@Override
 		public ElementCS getTarget() {
 			return null;
 		}
 
+		@Override
 		public boolean isQualified() {
 			return false;
 		}
@@ -144,6 +156,7 @@ public class BaseScopeView extends AbstractScope implements IScopeView
 		this.isQualified = isQualified;
 	}
 
+	@Override
 	public @NonNull Attribution getAttribution() {
 		Attribution attribution2 = attribution;
 		if (attribution2 == null) {
@@ -175,10 +188,12 @@ public class BaseScopeView extends AbstractScope implements IScopeView
 		return getDescriptions(environmentView);
 	}
 
+	@Override
 	public @Nullable ElementCS getChild() {
 		return child;
 	}
 
+	@Override
 	public EStructuralFeature getContainmentFeature() {
 //		assert ((child == null) && (containmentFeature == null)) || ((child != null) && (child.eContainmentFeature() ==  containmentFeature));
 		return child != null ? child.eContainmentFeature() : targetReference;
@@ -363,6 +378,7 @@ public class BaseScopeView extends AbstractScope implements IScopeView
 		return (IScopeView) parent;
 	}
 
+	@Override
 	public @NonNull IScopeView getRoot() {
 		IScopeView parent = getParent();
 		if (parent == NULLSCOPEVIEW) {
@@ -401,10 +417,12 @@ public class BaseScopeView extends AbstractScope implements IScopeView
 		}
 	}
 
+	@Override
 	public final @NonNull ElementCS getTarget() {
 		return target;
 	}
 	
+	@Override
 	public final boolean isQualified() {
 		return isQualified;
 	}

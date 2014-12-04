@@ -49,6 +49,7 @@ public interface TypedElement
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTypedElement_Type()
 	 * @generated
 	 */
+	@Override
 	Type getType();
 
 	/**

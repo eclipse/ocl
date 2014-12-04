@@ -79,6 +79,7 @@ public class ExecutorSingleIterationManager extends AbstractIterationManager
 		advanceIterators();
 	}
 	
+	@Override
 	public boolean advanceIterators() {
 		currentValue = iteratorValue.hasNext() ? iteratorValue.next() : iteratorValue;
 		return currentValue != iteratorValue;
@@ -89,6 +90,7 @@ public class ExecutorSingleIterationManager extends AbstractIterationManager
 		return new Nested(this, value);
 	}
 
+	@Override
 	public @Nullable Object evaluateBody() {
 		return body.evaluate(evaluator, returnTypeId, accumulatorValue, get());
 	}
@@ -98,6 +100,7 @@ public class ExecutorSingleIterationManager extends AbstractIterationManager
 		return currentValue;
 	}
 
+	@Override
 	public @Nullable Object getAccumulatorValue() {
 		return accumulatorValue;
 	}
@@ -110,14 +113,17 @@ public class ExecutorSingleIterationManager extends AbstractIterationManager
 		return this;
 	}
 
+	@Override
 	public @NonNull CollectionValue getSourceCollection() {
 		return collectionValue;
 	}
 	
+	@Override
 	public boolean hasCurrent() {
 		return currentValue != iteratorValue;
 	}
 
+	@Override
 	public @Nullable Object updateAccumulator(Object newValue) {
 		this.accumulatorValue = newValue;
 		return null;					// carry on

@@ -32,6 +32,7 @@ public interface StandardLibraryContribution extends RegisteredContribution<Stan
 			return (StandardLibraryContribution) createInstance;
 		}
 
+		@Override
 		public @NonNull Resource getResource() {
 			return getContribution().getResource();
 		}

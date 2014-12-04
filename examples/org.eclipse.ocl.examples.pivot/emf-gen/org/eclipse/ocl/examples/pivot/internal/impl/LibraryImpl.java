@@ -82,6 +82,7 @@ public class LibraryImpl extends PackageImpl implements Library
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<Precedence> getOwnedPrecedence()
 	{
 		if (ownedPrecedence == null)

@@ -101,6 +101,7 @@ public class PatternExpCSImpl extends ExpCSImpl implements PatternExpCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getPatternVariableName()
 	{
 		return patternVariableName;
@@ -111,6 +112,7 @@ public class PatternExpCSImpl extends ExpCSImpl implements PatternExpCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPatternVariableName(String newPatternVariableName)
 	{
 		String oldPatternVariableName = patternVariableName;
@@ -124,6 +126,7 @@ public class PatternExpCSImpl extends ExpCSImpl implements PatternExpCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypeRefCS getOwnedPatternType()
 	{
 		return ownedPatternType;
@@ -151,6 +154,7 @@ public class PatternExpCSImpl extends ExpCSImpl implements PatternExpCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedPatternType(TypeRefCS newOwnedPatternType)
 	{
 		if (newOwnedPatternType != ownedPatternType)

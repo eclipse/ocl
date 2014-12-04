@@ -94,6 +94,7 @@ public abstract class DefCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ClassifierContextDeclCS getOwningClassifierContextDecl() {
 		if (eContainerFeatureID() != CompleteOCLCSPackage.DEF_CS__OWNING_CLASSIFIER_CONTEXT_DECL) return null;
 		return (ClassifierContextDeclCS)eInternalContainer();
@@ -104,6 +105,7 @@ public abstract class DefCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpSpecificationCS getOwnedSpecification() {
 		return ownedSpecification;
 	}
@@ -130,6 +132,7 @@ public abstract class DefCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedSpecification(ExpSpecificationCS newOwnedSpecification) {
 		if (newOwnedSpecification != ownedSpecification)
 		{
@@ -150,6 +153,7 @@ public abstract class DefCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsStatic()
 	{
 		return isStatic;
@@ -160,6 +164,7 @@ public abstract class DefCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsStatic(boolean newIsStatic)
 	{
 		boolean oldIsStatic = isStatic;

@@ -75,6 +75,7 @@ public abstract class AbstractEvaluationVisitor
 
 	private DomainLogger logger = new DomainLogger()
 	{
+		@Override
 		public void append(@NonNull String message) {
 			System.out.append(message);
 		}		
@@ -128,37 +129,45 @@ public abstract class AbstractEvaluationVisitor
 		};
 	}
 
+	@Override
 	public @NonNull DomainEnvironment getCompleteEnvironment() {
 		return completeEnvironment;
 	}
 
     // implements the interface method
+	@Override
 	public @NonNull Environment getEnvironment() {
 		return environment;
 	}
     
     // implements the interface method
+	@Override
 	public @NonNull EvaluationEnvironment getEvaluationEnvironment() {
 		return evaluationEnvironment;
 	}
 
+	@Override
 	public @NonNull IdResolver getIdResolver() {
 		return metaModelManager.getIdResolver();
 	}
 
+	@Override
 	public @Nullable DomainLogger getLogger() {
 		return logger;
 	}
 
+	@Override
 	public @NonNull MetaModelManager getMetaModelManager() {
 		return metaModelManager;
 	}
 	
     // implements the interface method
+	@Override
 	public @NonNull DomainModelManager getModelManager() {
 		return modelManager;
 	}
 
+	@Override
 	public @Nullable Monitor getMonitor() {
 		return monitor;
 	}
@@ -166,6 +175,7 @@ public abstract class AbstractEvaluationVisitor
 	/**
 	 * Return a cached matcher for a give regular expression.
 	 */
+	@Override
 	public @NonNull Pattern getRegexPattern(@NonNull String regex) {
 		if (regexPatterns == null) {
 			synchronized (this) {
@@ -189,18 +199,22 @@ public abstract class AbstractEvaluationVisitor
 		}
 	}
 
+	@Override
 	public @NonNull DomainStandardLibrary getStandardLibrary() {
 		return standardLibrary;
 	}
 
+	@Override
 	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value) {
 		return metaModelManager.getIdResolver().getStaticTypeOf(value);
 	}
 
+	@Override
 	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value, @NonNull Object... values) {
 		return metaModelManager.getIdResolver().getStaticTypeOf(value, values);
 	}
  
+	@Override
 	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
 		return metaModelManager.getIdResolver().getStaticTypeOf(value, values);
 	}
@@ -218,10 +232,12 @@ public abstract class AbstractEvaluationVisitor
         return undecoratedVisitor;
     }
 
+	@Override
 	public boolean isCanceled() {
 		return (monitor != null) && monitor.isCanceled();
 	}
 
+	@Override
 	public void setCanceled(boolean isCanceled) {
 		if (monitor != null) {
 			monitor.setCanceled(isCanceled);
@@ -232,10 +248,12 @@ public abstract class AbstractEvaluationVisitor
 		}
 	}
 
+	@Override
 	public void setLogger(@Nullable DomainLogger logger) {
 		this.logger = logger;
 	}
 
+	@Override
 	public void setMonitor(@Nullable Monitor monitor) {
 		this.monitor = monitor;
 	}
@@ -248,6 +266,7 @@ public abstract class AbstractEvaluationVisitor
      * 
      * @see #getUndecoratedVisitor()
      */
+	@Override
 	public void setUndecoratedVisitor(@NonNull EvaluationVisitor evaluationVisitor) {
         this.undecoratedVisitor = evaluationVisitor;
 	}

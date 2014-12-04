@@ -101,6 +101,7 @@ public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PathNameCS getOwnedPathName()
 	{
 		return ownedPathName;
@@ -128,6 +129,7 @@ public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedPathName(PathNameCS newOwnedPathName)
 	{
 		if (newOwnedPathName != ownedPathName)
@@ -149,6 +151,7 @@ public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TemplateBindingCS getOwnedBinding()
 	{
 		return ownedBinding;
@@ -176,6 +179,7 @@ public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedBinding(TemplateBindingCS newOwnedBinding)
 	{
 		if (newOwnedBinding != ownedBinding)
@@ -197,6 +201,7 @@ public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsTypeof()
 	{
 		return isTypeof;
@@ -207,6 +212,7 @@ public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsTypeof(boolean newIsTypeof)
 	{
 		boolean oldIsTypeof = isTypeof;
@@ -362,6 +368,7 @@ public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public Type getReferredType() {
 		if (ownedPathName == null) {
 			return null;

@@ -125,6 +125,7 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 		super.dispose();
 	}
 
+	@Override
 	public synchronized @NonNull DomainInheritance getInheritance(@NonNull EClassifier eClassifier) {
 		DomainInheritance type = weakGet(typeMap, eClassifier);
 		if (type == null) {
@@ -149,6 +150,7 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 		return DomainUtil.nonNullState(type);
 	}
 
+	@Override
 	public Notifier getTarget() {
 		return null;
 	}
@@ -169,14 +171,17 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 		return getTupleType(IdManager.getTupleTypeId(TypeId.TUPLE_NAME, partsList));
 	}
 
+	@Override
 	public @NonNull DomainClass getType(@NonNull EClassifier eClassifier) {
 		return getInheritance(eClassifier).getType();
 	}
 
+	@Override
 	public boolean isAdapterForType(Object type) {
 		return false;
 	}
 
+	@Override
 	public void notifyChanged(Notification notification) {}			// FIXME ?? invalidate
 
 	protected synchronized void processCrossReferencedRoots() {
@@ -236,6 +241,7 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 		}
 	}
 
+	@Override
 	public void setTarget(Notifier newTarget) {
 //			assert newTarget == resource;
 	}

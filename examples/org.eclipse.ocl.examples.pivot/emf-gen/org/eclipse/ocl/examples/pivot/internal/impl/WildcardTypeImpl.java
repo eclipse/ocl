@@ -96,6 +96,7 @@ public class WildcardTypeImpl extends ClassImpl implements WildcardType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getLowerBound()
 	{
 		if (lowerBound != null && ((EObject)lowerBound).eIsProxy())
@@ -126,6 +127,7 @@ public class WildcardTypeImpl extends ClassImpl implements WildcardType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLowerBound(Type newLowerBound)
 	{
 		Type oldLowerBound = lowerBound;
@@ -139,6 +141,7 @@ public class WildcardTypeImpl extends ClassImpl implements WildcardType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getUpperBound()
 	{
 		if (upperBound != null && ((EObject)upperBound).eIsProxy())
@@ -169,6 +172,7 @@ public class WildcardTypeImpl extends ClassImpl implements WildcardType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUpperBound(Type newUpperBound)
 	{
 		Type oldUpperBound = upperBound;

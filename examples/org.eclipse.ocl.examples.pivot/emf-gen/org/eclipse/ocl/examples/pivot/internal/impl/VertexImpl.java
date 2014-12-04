@@ -95,6 +95,7 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Region getContainer()
 	{
 		if (eContainerFeatureID() != PivotPackage.VERTEX__CONTAINER) return null;
@@ -117,6 +118,7 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("cast")
 	public void setContainer(Region newContainer)
 	{
@@ -141,6 +143,7 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<Transition> getOutgoing()
 	{
 		if (outgoing == null)
@@ -155,6 +158,7 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List<Transition> getIncoming()
 	{
 		if (incoming == null)

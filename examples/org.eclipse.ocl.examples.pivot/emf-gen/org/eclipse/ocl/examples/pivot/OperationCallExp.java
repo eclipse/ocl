@@ -48,6 +48,7 @@ public interface OperationCallExp
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getOperationCallExp_Argument()
 	 * @generated
 	 */
+	@Override
 	@NonNull List<OCLExpression> getArgument();
 
 	/**

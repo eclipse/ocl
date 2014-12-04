@@ -36,14 +36,17 @@ public abstract class AbstractDelegatingOCLinEcoreCSVisitor<R, C, D extends OCLi
 		return delegate.visiting(visitable);
 	}
 
+	@Override
 	public @Nullable R visitOCLinEcoreConstraintCS(@NonNull org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.OCLinEcoreConstraintCS object) {
 		return delegate.visitOCLinEcoreConstraintCS(object);
 	}
 
+	@Override
 	public @Nullable R visitSysMLCS(@NonNull org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.SysMLCS object) {
 		return delegate.visitSysMLCS(object);
 	}
 
+	@Override
 	public @Nullable R visitTopLevelCS(@NonNull org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.TopLevelCS object) {
 		return delegate.visitTopLevelCS(object);
 	}

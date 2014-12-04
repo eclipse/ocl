@@ -393,19 +393,23 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	 * models are merged by mapping the package URI to a complete URI. DomainConstants.METAMODEL_NAME is the
 	 * complete URI for all contributions merged as the overall OCL metamodel. 
 	 */
+	@Override
 	public void addPackageURI2completeURI(@NonNull String packageURI, @NonNull String newCompleteURI) {
 		completeURIs.addPackageURI2completeURI(packageURI, newCompleteURI);
 	}
 
+	@Override
 	public boolean conformsTo(@NonNull Type firstType, @NonNull TemplateParameterSubstitutions firstSubstitutions,
 			@NonNull Type secondType, @NonNull TemplateParameterSubstitutions secondSubstitutions) {
 		return completeEnvironment.conformsTo(firstType, firstSubstitutions, secondType, secondSubstitutions);
 	}
 
+	@Override
 	public void didAddClass(@NonNull DomainClass partialClass, @NonNull CompleteClass.Internal completeClass) {
 		completeEnvironment.didAddClass(partialClass, completeClass);
 	}
 
+	@Override
 	public void didAddCompletePackage(@NonNull CompletePackage.Internal completePackage) {
 		completeURIs.didAddCompletePackage(completePackage);
 	}
@@ -414,6 +418,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 //		throw new UnsupportedOperationException();		// Classes not added to Root
 //	}
 
+	@Override
 	public void didAddNestedPackage(@NonNull org.eclipse.ocl.examples.pivot.Package pivotPackage) {
 		ownedCompletePackages.didAddPackage(pivotPackage);
 	}
@@ -425,6 +430,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 //		}
 	} */
 	
+	@Override
 	public void didAddPartialModel(@NonNull Model partialModel) {
 		completeURIs.didAddPartialModel(partialModel);
 	}
@@ -456,10 +462,12 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 		}
 	} */
 	
+	@Override
 	public void didRemoveClass(@NonNull DomainClass pivotType) {
 		completeEnvironment.didRemoveClass(pivotType);
 	}
 
+	@Override
 	public void didRemoveCompletePackage(@NonNull CompletePackage.Internal completePackage) {
 		if (completePackage == primitiveCompletePackage) {
 			primitiveCompletePackage = null;
@@ -467,14 +475,17 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 		completeURIs.didRemoveCompletePackage(completePackage);
 	}
 
+	@Override
 	public void didRemoveNestedPackage(@NonNull org.eclipse.ocl.examples.pivot.Package pivotPackage) {
 		ownedCompletePackages.didRemovePackage(pivotPackage);
 	}
 	
+	@Override
 	public void didRemovePartialModel(@NonNull Model partialModel) {
 		completeURIs.didRemovePartialModel(partialModel);
 	}
 
+	@Override
 	public synchronized void dispose() {
 		completeEnvironment.dispose();
 		ownedCompletePackages.dispose();
@@ -486,18 +497,22 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 		}
 	}
 
+	@Override
 	public @Nullable CollectionType findCollectionType(@NonNull CompleteClass.Internal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters) {
 		return completeEnvironment.findCollectionType(completeClass, typeParameters);
 	}
 
+	@Override
 	public @NonNull Iterable<? extends CompletePackage> getAllCompletePackages() {
 		return completeURIs.getAllCompletePackages();
 	}
 
+	@Override
 	public @NonNull Iterable<? extends CompletePackage> getAllCompletePackagesWithUris() {
 		return completeURIs.getAllCompletePackagesWithUris();
 	}
 
+	@Override
 	public @NonNull CollectionType getCollectionType(@NonNull CompleteClass.Internal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters) {
 		return completeEnvironment.getCollectionType(completeClass, typeParameters);
 	}
@@ -506,34 +521,42 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 		return completeEnvironment.getCollectionType(completeClass, new CollectionTypeParameters<Type>(elementType, lower, upper));
 	}
 	
+	@Override
 	public @NonNull CompleteClass.Internal getCompleteClass(@NonNull DomainType pivotType) {
 		return completeEnvironment.getCompleteClass(pivotType);
 	}
 
+	@Override
 	public @NonNull CompleteEnvironment.Internal getCompleteEnvironment() {
 		return completeEnvironment;
 	}
 
+	@Override
 	public @NonNull CompletePackage.Internal getCompletePackage(@NonNull DomainPackage asPackage) {
 		return ownedCompletePackages.getCompletePackage(asPackage);
 	}
 
+	@Override
 	public @Nullable CompletePackage getCompletePackageByURI(@NonNull String packageURI) {
 		return completeURIs.getCompletePackageByURI(packageURI);
 	}
 
+	@Override
 	public @Nullable String getCompleteURI(@Nullable String packageURI) {
 		return completeURIs.getCompleteURI(packageURI);
 	}
 
+	@Override
 	public @NonNull CompleteURIs getCompleteURIs() {
 		return completeURIs;
 	}
 	
+	@Override
 	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType) {
 		return completeEnvironment.getLambdaType(typeName, contextType, parameterTypes, resultType, null);
 	}
 
+	@Override
 	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType,
 			@Nullable TemplateParameterSubstitutions bindings) {
 		return completeEnvironment.getLambdaType(typeName, contextType, parameterTypes, resultType, bindings);
@@ -547,10 +570,12 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 		return ownedCompletePackages;
 	}
 
+	@Override
 	public @NonNull MetaModelManager getMetaModelManager() {
 		return DomainUtil.nonNullState(metaModelManager);
 	}
 
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull OrphanCompletePackage.Internal getOrphanCompletePackage()
 	{
@@ -562,6 +587,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 		return (OrphanCompletePackage.Internal)orphanCompletePackage2;
 	}
 
+	@Override
 	public @NonNull Orphanage getOrphanage() {
 		Orphanage orphanage2 = orphanage;
 		if (orphanage2 == null) {
@@ -576,6 +602,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public @NonNull RootCompletePackages getOwnedCompletePackages() {
 		return ownedCompletePackages;
 	}
@@ -585,10 +612,12 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public @NonNull PartialModels getPartialModels() {
 		return partialModels;
 	}
 	
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull PrimitiveCompletePackage.Internal getPrimitiveCompletePackage()
 	{
@@ -605,6 +634,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public @Nullable CompletePackage getOwnedCompletePackage(@Nullable String completeURIorName) {
 		CompletePackage completePackage = completeURIs.getCompletePackage(completeURIorName);
 		if (completePackage != null) {
@@ -613,6 +643,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 		return ownedCompletePackages.getOwnedCompletePackage(completeURIorName);
 	}
 
+	@Override
 	public @Nullable org.eclipse.ocl.examples.pivot.Package getRootPackage(@NonNull String completeURIorName) {
 		CompletePackage completePackage = completeURIs.getCompletePackage(completeURIorName);
 		if (completePackage != null) {
@@ -625,18 +656,22 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 		return completePackage != null ? completePackage.getPivotPackage() : null;
 	}
 	
+	@Override
 	public @NonNull Type getSpecializedType(@NonNull Type type, @Nullable TemplateParameterSubstitutions substitutions) {
 		return completeEnvironment.getSpecializedType(type, substitutions);
 	}
 
+	@Override
 	public @NonNull PivotStandardLibrary2 getStandardLibrary() {
 		return completeEnvironment.getStandardLibrary();
 	}
 	
+	@Override
 	public @NonNull TupleTypeManager getTupleManager() {
 		return completeEnvironment.getTupleManager();
 	}
 
+	@Override
 	public @NonNull TupleType getTupleType(@NonNull String typeName, @NonNull Collection<? extends DomainTypedElement> parts,
 			@Nullable TemplateParameterSubstitutions bindings) {
 		return completeEnvironment.getTupleType(typeName, parts, bindings);
@@ -649,6 +684,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 		}
 	} */
 
+	@Override
 	public void resolveSuperClasses(@NonNull org.eclipse.ocl.examples.pivot.Class specializedClass, @NonNull org.eclipse.ocl.examples.pivot.Class unspecializedClass) {
 		List<TemplateBinding> specializedTemplateBindings = specializedClass.getOwnedTemplateBindings();
 		for (org.eclipse.ocl.examples.pivot.Class superClass : unspecializedClass.getSuperClasses()) {

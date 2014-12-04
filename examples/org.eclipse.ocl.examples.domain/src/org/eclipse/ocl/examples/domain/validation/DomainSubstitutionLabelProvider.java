@@ -40,14 +40,17 @@ public class DomainSubstitutionLabelProvider implements SubstitutionLabelProvide
 		return context;
 	}
 	
+	@Override
 	public String getObjectLabel(EObject eObject) {
 		return DomainUtil.getLabel(eObject);
 	}
 
+	@Override
 	public String getFeatureLabel(EStructuralFeature eStructuralFeature) {
 		return DomainUtil.getLabel(eStructuralFeature);
 	}
 
+	@Override
 	public String getValueLabel(EDataType eDataType, Object value) {
 		return DomainUtil.getLabel(eDataType, value, null);
 	}

@@ -55,6 +55,7 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 		}
 	}
 
+	@Override
 	public @NonNull BaseResource createBaseResource(@NonNull String expression) throws IOException, ParserException {
 		InputStream inputStream = new URIConverter.ReadableInputStream(expression, "UTF-8");
 		try {
@@ -77,6 +78,7 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 		}
 	}
 
+	@Override
 	public @Nullable Type getClassContext() {
 		return null;
 	}
@@ -85,6 +87,7 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 		return null;
 	}
 
+	@Override
 	public @NonNull ExpressionInOCL getExpression(@NonNull BaseResource resource) throws ParserException {
 		List<EObject> contents = resource.getContents();
 		int size = contents.size();
@@ -104,20 +107,24 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 		throw new ParserException("Non-expression ignored");
 	}
 
+	@Override
 	public @NonNull MetaModelManager getMetaModelManager() {
 		return metaModelManager;
 	}
 
+	@Override
 	public @Nullable Element getRootElement() {
 		return rootElement;
 	}
 
+	@Override
 	public void initialize(@NonNull Base2ASConversion conversion, @NonNull ExpressionInOCL expression) {
 //		List<String> language = expression.getLanguage();
 //		language.clear();
 //		language.add(PivotConstants.OCL_LANGUAGE);
 	}
 
+	@Override
 	public @NonNull ExpressionInOCL parse(@Nullable EObject owner, @NonNull String expression) throws ParserException {
 		BaseResource resource = null;
 		try {
@@ -147,6 +154,7 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 		}
 	}
 	
+	@Override
 	public void setRootElement(@Nullable Element rootElement) {
 		this.rootElement = rootElement;
 	}

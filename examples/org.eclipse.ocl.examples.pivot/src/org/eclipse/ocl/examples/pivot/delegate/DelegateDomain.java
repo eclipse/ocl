@@ -80,6 +80,7 @@ public interface DelegateDomain {
 					}
 				}
 
+				@Override
 				public DelegateDomain.Factory getFactory(@NonNull String uri) {
 					return (DelegateDomain.Factory) get(uri);
 				}

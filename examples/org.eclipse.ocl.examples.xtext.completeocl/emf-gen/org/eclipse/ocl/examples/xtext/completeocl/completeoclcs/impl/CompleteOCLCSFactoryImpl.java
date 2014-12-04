@@ -97,6 +97,7 @@ public class CompleteOCLCSFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PackageDeclarationCS createPackageDeclarationCS() {
 		PackageDeclarationCSImpl packageDeclarationCS = new PackageDeclarationCSImpl();
 		return packageDeclarationCS;
@@ -107,6 +108,7 @@ public class CompleteOCLCSFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PropertyContextDeclCS createPropertyContextDeclCS() {
 		PropertyContextDeclCSImpl propertyContextDeclCS = new PropertyContextDeclCSImpl();
 		return propertyContextDeclCS;
@@ -117,6 +119,7 @@ public class CompleteOCLCSFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CompleteOCLCSPackage getCompleteOCLCSPackage() {
 		return (CompleteOCLCSPackage)getEPackage();
 	}
@@ -126,6 +129,7 @@ public class CompleteOCLCSFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IncludeCS createIncludeCS() {
 		IncludeCSImpl includeCS = new IncludeCSImpl();
 		return includeCS;
@@ -136,6 +140,7 @@ public class CompleteOCLCSFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ClassifierContextDeclCS createClassifierContextDeclCS() {
 		ClassifierContextDeclCSImpl classifierContextDeclCS = new ClassifierContextDeclCSImpl();
 		return classifierContextDeclCS;
@@ -146,6 +151,7 @@ public class CompleteOCLCSFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CompleteOCLDocumentCS createCompleteOCLDocumentCS() {
 		CompleteOCLDocumentCSImpl completeOCLDocumentCS = new CompleteOCLDocumentCSImpl();
 		return completeOCLDocumentCS;
@@ -156,6 +162,7 @@ public class CompleteOCLCSFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OCLMessageArgCS createOCLMessageArgCS() {
 		OCLMessageArgCSImpl oclMessageArgCS = new OCLMessageArgCSImpl();
 		return oclMessageArgCS;
@@ -166,6 +173,7 @@ public class CompleteOCLCSFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DefOperationCS createDefOperationCS() {
 		DefOperationCSImpl defOperationCS = new DefOperationCSImpl();
 		return defOperationCS;
@@ -176,6 +184,7 @@ public class CompleteOCLCSFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DefPropertyCS createDefPropertyCS() {
 		DefPropertyCSImpl defPropertyCS = new DefPropertyCSImpl();
 		return defPropertyCS;
@@ -186,6 +195,7 @@ public class CompleteOCLCSFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OperationContextDeclCS createOperationContextDeclCS() {
 		OperationContextDeclCSImpl operationContextDeclCS = new OperationContextDeclCSImpl();
 		return operationContextDeclCS;

@@ -29,6 +29,7 @@ public class GeneralizedOperationIdImpl extends AbstractGeneralizedIdImpl<Operat
 		this.parametersId = parametersId;
 	}
 
+	@Override
 	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitOperationId(this);
 	}
@@ -38,6 +39,7 @@ public class GeneralizedOperationIdImpl extends AbstractGeneralizedIdImpl<Operat
 		return new SpecializedOperationIdImpl(this, templateBindings);
 	}
 
+	@Override
 	public @NonNull String getDisplayName() {
 		StringBuilder s = new StringBuilder();
 		if (templateParameters > 0) {
@@ -52,22 +54,27 @@ public class GeneralizedOperationIdImpl extends AbstractGeneralizedIdImpl<Operat
 		return string2;
 	}
 
+	@Override
 	public @NonNull OperationId getGeneralizedId() {
 		return this;
 	}
 
+	@Override
 	public @NonNull String getMetaTypeName() {
 		return TypeId.OPERATION_NAME;
 	}
 
+	@Override
 	public @NonNull ParametersId getParametersId() {
 		return parametersId;
 	}
 
+	@Override
 	public @NonNull TypeId getParent() {
 		return parentId;
 	}
 
+	@Override
 	public boolean matches(@NonNull Integer thoseTemplateParameters, @NonNull String thatName, @NonNull ParametersId thatParametersId) {
 		if (this.parametersId != thatParametersId) {
 			return false;

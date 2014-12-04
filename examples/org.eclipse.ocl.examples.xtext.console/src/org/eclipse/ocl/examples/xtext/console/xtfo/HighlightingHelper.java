@@ -130,6 +130,7 @@ public class HighlightingHelper implements IPropertyChangeListener {
 		return preferenceStoreAccessor;
 	}
 
+	@Override
 	public void propertyChange(PropertyChangeEvent event) {
 		if (fReconciler != null && event.getProperty().contains(".syntaxColorer.tokenStyles")) //$NON-NLS-1$
 			fReconciler.refresh();

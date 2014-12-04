@@ -47,6 +47,7 @@ public class SparseSequenceValueImpl extends SequenceValueImpl
 			super(typeId, values);
 		}
 
+		@Override
 		@SuppressWarnings("unchecked")
 		public boolean add(@Nullable Object value) {
 			return ((Collection<Object>)elements).add(value);			

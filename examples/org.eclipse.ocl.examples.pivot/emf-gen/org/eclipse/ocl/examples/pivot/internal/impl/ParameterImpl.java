@@ -92,6 +92,7 @@ public class ParameterImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isTypeof()
 	{
 		return (eFlags & IS_TYPEOF_EFLAG) != 0;
@@ -102,6 +103,7 @@ public class ParameterImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsTypeof(boolean newIsTypeof)
 	{
 		boolean oldIsTypeof = (eFlags & IS_TYPEOF_EFLAG) != 0;
@@ -115,6 +117,7 @@ public class ParameterImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Operation getOperation() {
 		if (eContainerFeatureID() != PivotPackage.PARAMETER__OPERATION) return null;
 		return (Operation)eInternalContainer();
@@ -136,6 +139,7 @@ public class ParameterImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOperation(Operation newOperation) {
 		if (newOperation != eInternalContainer() || (eContainerFeatureID() != PivotPackage.PARAMETER__OPERATION && newOperation != null))
 		{

@@ -41,6 +41,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 	public static final @NonNull Function<PartialOperations, Iterable<Iterable<DomainOperation>>> partialOperations2allOperations =
 			new Function<PartialOperations, Iterable<Iterable<DomainOperation>>>() {
 
+		@Override
 		public Iterable<Iterable<DomainOperation>> apply(PartialOperations partialOperations) {
 			return partialOperations.getOperationsInternal(null);
 		}
@@ -61,6 +62,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 			super(4);
 		}
 
+		@Override
 		public int compare(Integer o1, Integer o2) {
 			Integer m1 = metrics[o1];
 			Integer m2 = metrics[o2];
@@ -146,6 +148,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 			return bestOperation;
 		}
 
+		@Override
 		public Iterator<DomainOperation> iterator() {
 			OverloadsList staticOperations2 = staticOperations;
 			OverloadsList nonStaticOperations2 = nonStaticOperations;
@@ -284,6 +287,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 			}
 			return Iterables.filter(overloads, new Predicate<DomainOperation>()
 				{
+					@Override
 					public boolean apply(DomainOperation input) {
 						return featureFilter.accept(input);
 					}
@@ -302,6 +306,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 	public @NonNull Iterable<DomainOperation> getOperationOverloads(final @Nullable FeatureFilter featureFilter) {
 		Iterable<DomainOperation> unfilteredOverloads = Iterables.concat(Iterables.transform(map.keySet(), new Function<ParametersId, Iterable<DomainOperation>>()
 		{
+			@Override
 			public Iterable<DomainOperation> apply(ParametersId parametersId) {
 				assert parametersId != null;
 				return getOperationOverloads(parametersId, featureFilter);
@@ -312,6 +317,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 		}
 		return Iterables.filter(unfilteredOverloads, new Predicate<DomainOperation>()
 		{
+			@Override
 			public boolean apply(DomainOperation input) {
 				return featureFilter.accept(input);
 			}
@@ -325,6 +331,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 //		}
 		return Iterables.transform(map.keySet(), new Function<ParametersId, DomainOperation>()
 		{
+			@Override
 			public DomainOperation apply(ParametersId parametersId) {
 				return getOperation(parametersId, featureFilter);
 			}
@@ -335,6 +342,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 	private @NonNull Iterable<Iterable<DomainOperation>> getOperationsInternal(final @Nullable FeatureFilter featureFilter) {
 		return Iterables.transform(map.keySet(), new Function<ParametersId, Iterable<DomainOperation>>()
 		{
+			@Override
 			public Iterable<DomainOperation> apply(ParametersId parametersId) {
 				assert parametersId != null;
 				return getOperationOverloads(parametersId, featureFilter);

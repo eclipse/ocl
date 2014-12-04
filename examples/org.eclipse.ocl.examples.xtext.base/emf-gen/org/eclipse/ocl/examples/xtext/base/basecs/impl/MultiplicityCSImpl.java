@@ -52,6 +52,7 @@ public abstract class MultiplicityCSImpl extends ElementCSImpl implements Multip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getLower()
 	{
 		// TODO: implement this method
@@ -64,6 +65,7 @@ public abstract class MultiplicityCSImpl extends ElementCSImpl implements Multip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getUpper()
 	{
 		// TODO: implement this method

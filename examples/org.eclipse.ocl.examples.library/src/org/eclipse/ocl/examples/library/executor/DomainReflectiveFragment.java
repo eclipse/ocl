@@ -28,6 +28,7 @@ public class DomainReflectiveFragment extends ReflectiveFragment
 //		return eClassifier;
 //	}
 
+	@Override
 	public @Nullable DomainOperation getLocalOperation(@NonNull DomainOperation baseOperation) {
 		throw new UnsupportedOperationException();		// FIXME
 	}

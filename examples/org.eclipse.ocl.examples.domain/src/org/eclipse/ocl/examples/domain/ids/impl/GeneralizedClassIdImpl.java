@@ -23,10 +23,12 @@ public class GeneralizedClassIdImpl extends GeneralizedNestedTypeIdImpl implemen
 		super(parent, templateParameters, name);
 	}
 
+	@Override
 	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitClassId(this);
 	}
 
+	@Override
 	public @NonNull String getMetaTypeName() {
 		return TypeId.CLASS_NAME;
 	}

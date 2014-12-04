@@ -123,6 +123,7 @@ public class PivotUtil extends DomainUtil
 	{
 		public static final PrecedenceComparator INSTANCE = new PrecedenceComparator();
 
+		@Override
 		public int compare(Precedence p1, Precedence p2) {
 			int o1 = p1 != null ? p1.getOrder().intValue() : -1;
 			int o2 = p2 != null ? p2.getOrder().intValue() : -1;
@@ -139,6 +140,7 @@ public class PivotUtil extends DomainUtil
 		public static Comparator<? super TemplateParameterSubstitution> INSTANCE =
 			new TemplateParameterSubstitutionComparator();
 
+		@Override
 		public int compare(TemplateParameterSubstitution o1, TemplateParameterSubstitution o2) {
 			TemplateParameter f1 = o1.getFormal();
 			TemplateParameter f2 = o2.getFormal();

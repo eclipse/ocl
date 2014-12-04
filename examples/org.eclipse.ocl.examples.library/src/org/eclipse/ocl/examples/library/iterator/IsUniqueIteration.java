@@ -27,6 +27,7 @@ public class IsUniqueIteration extends AbstractIteration
 {
 	public static final @NonNull IsUniqueIteration INSTANCE = new IsUniqueIteration();
 
+	@Override
 	public @NonNull SetValueImpl.Accumulator createAccumulatorValue(@NonNull DomainEvaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
 		return new SetValueImpl.Accumulator(TypeId.SET.getSpecializedId(accumulatorTypeId));
 	}

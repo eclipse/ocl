@@ -24,6 +24,7 @@ public class LiteralNullLabelGenerator extends AbstractLabelGenerator<LiteralNul
 		super(LiteralNull.class);
 	}
 
+	@Override
 	public void buildLabelFor(@NonNull Builder labelBuilder, @NonNull LiteralNull object) {
 		labelBuilder.appendString("null");
 	}

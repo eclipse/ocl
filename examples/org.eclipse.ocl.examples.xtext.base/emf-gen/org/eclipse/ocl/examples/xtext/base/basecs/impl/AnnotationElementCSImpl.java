@@ -70,6 +70,7 @@ public abstract class AnnotationElementCSImpl extends NamedElementCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<DetailCS> getOwnedDetails()
 	{
 		if (ownedDetails == null)

@@ -62,29 +62,36 @@ public class MetaModelManagerResourceSetAdapter implements MetaModelManagedAdapt
 		return metaModelManager;
 	}
 
+	@Override
 	public @NonNull ResourceSet getTarget() {
 		return resourceSet;
 	}
 
+	@Override
 	public boolean isAdapterForType(Object type) {
 		return type == MetaModelManagerResourceSetAdapter.class;
 	}	
 
+	@Override
 	public boolean isAdapterFor(@NonNull MetaModelManager metaModelManager) {
 		return this.metaModelManager == metaModelManager;
 	}
 
+	@Override
 	public void metaModelManagerDisposed(@NonNull MetaModelManager metaModelManager) {
 		dispose();
 	}
 
+	@Override
 	public void notifyChanged(Notification notification) {
 	}
 
+	@Override
 	public void setTarget(Notifier newTarget) {
 		assert (newTarget == resourceSet) || (newTarget == null);
 	}
 
+	@Override
 	public void unsetTarget(Notifier oldTarget) {
 		// TODO Auto-generated method stub		
 	}

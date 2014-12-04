@@ -67,6 +67,7 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactory, 
     } */
 	
     // implements the interface method
+	@Override
 	public @NonNull Environment createClassifierContext(@NonNull Environment parent, @NonNull org.eclipse.ocl.examples.pivot.Class context) {
         
         Environment result =
@@ -83,11 +84,13 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactory, 
 	}
     
     // implements the interface method
-    public @NonNull Environment createInstanceContext(@NonNull Environment parent, @NonNull Object context) {       
+    @Override
+	public @NonNull Environment createInstanceContext(@NonNull Environment parent, @NonNull Object context) {       
         return createClassifierContext(parent, getClassifier(context));
     }
 	
     // implements the interface method
+	@Override
 	public @NonNull Environment createOperationContext(@NonNull Environment parent, @NonNull Operation operation) {		
 		Environment result = createEnvironment(parent);		
 		if (result instanceof AbstractEnvironment) {
@@ -106,6 +109,7 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactory, 
 	}
 	
     // implements the interface method
+	@Override
 	public @NonNull Environment createPropertyContext(@NonNull Environment parent, @NonNull Property property) {
 		
 		Environment result =
@@ -119,6 +123,7 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactory, 
 		return result;
 	}
 
+	@Override
 	public @NonNull EvaluationVisitor createEvaluationVisitor(@Nullable Environment environment, @Nullable Object context, @NonNull ExpressionInOCL expression, @Nullable DomainModelManager modelManager) {
 		if (environment == null) {
 			environment = createEnvironment();
@@ -147,6 +152,7 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactory, 
 	}
 	
     // implements the interface method
+	@Override
 	public @NonNull EvaluationVisitor createEvaluationVisitor(@NonNull Environment env, @NonNull EvaluationEnvironment evalEnv,
 			@NonNull DomainModelManager modelManager) {
         EvaluationVisitor result = new EvaluationVisitorImpl(env, evalEnv, modelManager);
@@ -212,6 +218,7 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactory, 
 	 * Subclasses may override or extend this implementation.
 	 * </p>
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public <T> T getAdapter(java.lang.Class<T> adapterType) {
 		T result;

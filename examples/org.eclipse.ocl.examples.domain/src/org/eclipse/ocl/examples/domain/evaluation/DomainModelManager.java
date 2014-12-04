@@ -26,6 +26,7 @@ public interface DomainModelManager
 {
 	@NonNull DomainModelManager NULL = new DomainModelManager()
 	{
+		@Override
 		@SuppressWarnings("null")
 		public @NonNull Set<EObject> get(@NonNull DomainType type) {
 			return Collections.emptySet();

@@ -82,6 +82,7 @@ public class SquareBracketedClauseCSImpl extends ContextLessElementCSImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public AbstractNameExpCS getOwningNameExp()
 	{
 		if (eContainerFeatureID() != EssentialOCLCSPackage.SQUARE_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP) return null;
@@ -104,6 +105,7 @@ public class SquareBracketedClauseCSImpl extends ContextLessElementCSImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningNameExp(AbstractNameExpCS newOwningNameExp)
 	{
 		if (newOwningNameExp != eInternalContainer() || (eContainerFeatureID() != EssentialOCLCSPackage.SQUARE_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP && newOwningNameExp != null))
@@ -127,6 +129,7 @@ public class SquareBracketedClauseCSImpl extends ContextLessElementCSImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ExpCS> getOwnedTerms()
 	{
 		if (ownedTerms == null)

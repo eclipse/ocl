@@ -124,6 +124,7 @@ public abstract class FeatureImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getImplementationClass()
 	{
 		return implementationClass;
@@ -134,6 +135,7 @@ public abstract class FeatureImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setImplementationClass(String newImplementationClass)
 	{
 		String oldImplementationClass = implementationClass;
@@ -147,6 +149,7 @@ public abstract class FeatureImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isStatic()
 	{
 		return (eFlags & IS_STATIC_EFLAG) != 0;
@@ -157,6 +160,7 @@ public abstract class FeatureImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsStatic(boolean newIsStatic)
 	{
 		boolean oldIsStatic = (eFlags & IS_STATIC_EFLAG) != 0;
@@ -170,6 +174,7 @@ public abstract class FeatureImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LibraryFeature getImplementation()
 	{
 		return implementation;
@@ -180,6 +185,7 @@ public abstract class FeatureImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setImplementation(LibraryFeature newImplementation)
 	{
 		LibraryFeature oldImplementation = implementation;

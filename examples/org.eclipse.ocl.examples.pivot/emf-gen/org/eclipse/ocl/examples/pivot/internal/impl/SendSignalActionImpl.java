@@ -77,6 +77,7 @@ public class SendSignalActionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Signal getSignal() {
 		if (signal != null && ((EObject)signal).eIsProxy())
 		{
@@ -105,6 +106,7 @@ public class SendSignalActionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSignal(Signal newSignal) {
 		Signal oldSignal = signal;
 		signal = newSignal;

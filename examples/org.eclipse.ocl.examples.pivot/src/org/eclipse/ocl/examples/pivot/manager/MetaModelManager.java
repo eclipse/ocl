@@ -1294,6 +1294,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return getCompletePackage(pkg).getOwnedCompletePackages();
 	}
 
+	@Override
 	public @NonNull MetaModelManager getMetaModelManager() {
 		return this;
 	}
@@ -1875,6 +1876,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return completeClass.getProperSuperCompleteClasses();
 	}
 
+	@Override
 	public ResourceSet getTarget() {
 		return asResourceSet;
 	}
@@ -2007,6 +2009,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return this == metaModelManager;
 	}
 
+	@Override
 	public boolean isAdapterForType(Object type) {
 		return type == MetaModelManager.class;
 	}
@@ -2300,6 +2303,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return getImplementation((Operation) dynamicOperation);
 	}
 
+	@Override
 	public void notifyChanged(Notification notification) {}
 
 	public void removeExternalResource(@NonNull External2AS external2as) {
@@ -2342,6 +2346,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		}
 	}
 
+	@Override
 	public void setTarget(Notifier newTarget) {
 //		assert newTarget == asResourceSet;
 	}
@@ -2354,6 +2359,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return TemplateParameterSubstitutionVisitor.specializeType(type, callExp, this, selfType, selfTypeValue);
 	}
 
+	@Override
 	public void unsetTarget(Notifier oldTarget) {
 //		assert oldTarget == asResourceSet;
 	}

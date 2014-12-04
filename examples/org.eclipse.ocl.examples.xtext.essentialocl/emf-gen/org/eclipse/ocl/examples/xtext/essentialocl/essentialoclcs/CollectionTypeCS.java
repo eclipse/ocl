@@ -47,6 +47,7 @@ public interface CollectionTypeCS
 	 * @model
 	 * @generated
 	 */
+	@Override
 	String getName();
 
 	/**

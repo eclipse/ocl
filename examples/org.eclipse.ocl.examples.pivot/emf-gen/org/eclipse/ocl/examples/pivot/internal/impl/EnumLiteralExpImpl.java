@@ -94,6 +94,7 @@ public class EnumLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EnumerationLiteral getReferredEnumLiteral() {
 		if (referredEnumLiteral != null && ((EObject)referredEnumLiteral).eIsProxy())
 		{
@@ -122,6 +123,7 @@ public class EnumLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredEnumLiteral(EnumerationLiteral newReferredEnumLiteral) {
 		EnumerationLiteral oldReferredEnumLiteral = referredEnumLiteral;
 		referredEnumLiteral = newReferredEnumLiteral;
@@ -134,6 +136,7 @@ public class EnumLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateTypeIsEnumerationType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**

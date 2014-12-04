@@ -76,6 +76,7 @@ public abstract class PathNameDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PathNameCS getOwnedPathName() {
 		return ownedPathName;
 	}
@@ -102,6 +103,7 @@ public abstract class PathNameDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedPathName(PathNameCS newOwnedPathName) {
 		if (newOwnedPathName != ownedPathName)
 		{
@@ -200,6 +202,7 @@ public abstract class PathNameDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public @NonNull Iterable<Element> getMorePivots() {
 		if (ownedPathName == null) {
 			return MetaModelManager.EMPTY_ELEMENT_LIST;

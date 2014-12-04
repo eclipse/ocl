@@ -43,46 +43,57 @@ public abstract class AbstractOCLstdlibCSLeft2RightVisitor
 		super(context);
 	}
 
+	@Override
 	public @Nullable Element visitJavaClassCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaClassCS csElement) {
 		return visitNamedElementCS(csElement);
 	}
 
+	@Override
 	public @Nullable Element visitJavaImplementationCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.JavaImplementationCS csElement) {
 		return visitElementCS(csElement);
 	}
 
+	@Override
 	public @Nullable Element visitLibClassCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibClassCS csElement) {
 		return visitStructuredClassCS(csElement);
 	}
 
+	@Override
 	public @Nullable Element visitLibConstraintCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibConstraintCS csElement) {
 		return visitConstraintCS(csElement);
 	}
 
+	@Override
 	public @Nullable Element visitLibIterationCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibIterationCS csElement) {
 		return visitOperationCS(csElement);
 	}
 
+	@Override
 	public @Nullable Element visitLibOperationCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibOperationCS csElement) {
 		return visitOperationCS(csElement);
 	}
 
+	@Override
 	public @Nullable Element visitLibPackageCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPackageCS csElement) {
 		return visitPackageCS(csElement);
 	}
 
+	@Override
 	public @Nullable Element visitLibPropertyCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibPropertyCS csElement) {
 		return visitAttributeCS(csElement);
 	}
 
+	@Override
 	public @Nullable Element visitLibRootPackageCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.LibRootPackageCS csElement) {
 		return visitRootPackageCS(csElement);
 	}
 
+	@Override
 	public @Nullable Element visitMetaclassNameCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.MetaclassNameCS csElement) {
 		return visitElementCS(csElement);
 	}
 
+	@Override
 	public @Nullable Element visitPrecedenceCS(@NonNull org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.PrecedenceCS csElement) {
 		return visitNamedElementCS(csElement);
 	}

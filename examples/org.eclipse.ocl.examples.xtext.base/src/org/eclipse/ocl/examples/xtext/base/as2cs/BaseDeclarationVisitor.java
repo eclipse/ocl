@@ -108,6 +108,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 		context.refreshList(csElement.getOwnedProperties(), context.visitDeclarations(StructuralFeatureCS.class, object.getOwnedProperties(),
 			new AS2CS.Predicate<Property>()
 			{
+				@Override
 				public boolean filter(@NonNull Property element) {
 					return !element.isImplicit();
 				}
@@ -117,6 +118,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 		context.refreshList(csElement.getOwnedSuperTypes(), context.visitReferences(TypedRefCS.class, object.getSuperClasses(),
 			new AS2CS.Predicate<Type>()
 			{
+				@Override
 				public boolean filter(@NonNull Type element) {
 					return element != oclElementType;
 				}
@@ -281,6 +283,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 		return csElement;
 	}
 
+	@Override
 	public ElementCS visiting(@NonNull Visitable visitable) {
 		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for AS2CS Declaration pass");
 	}

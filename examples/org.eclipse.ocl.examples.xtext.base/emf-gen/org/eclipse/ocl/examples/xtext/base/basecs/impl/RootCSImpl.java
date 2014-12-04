@@ -89,6 +89,7 @@ public abstract class RootCSImpl extends ModelElementCSImpl implements RootCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ImportCS> getOwnedImports()
 	{
 		if (ownedImports == null)
@@ -103,6 +104,7 @@ public abstract class RootCSImpl extends ModelElementCSImpl implements RootCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<LibraryCS> getOwnedLibraries()
 	{
 		if (ownedLibraries == null)

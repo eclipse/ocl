@@ -88,13 +88,15 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
 	}
 	
     // implements the inherited specification
-    public @NonNull PivotEnvironment createEnvironment() {
+    @Override
+	public @NonNull PivotEnvironment createEnvironment() {
 		PivotEnvironment result = new PivotEnvironment(this, null);
 		return result;
 	}
 	
     // implements the inherited specification
-    public @NonNull PivotEnvironment loadEnvironment(@NonNull Resource resource) {
+    @Override
+	public @NonNull PivotEnvironment loadEnvironment(@NonNull Resource resource) {
     	PivotEnvironment result = new PivotEnvironment(this, resource);
 		return result;
 	}
@@ -110,6 +112,7 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
 	}
 
     // implements the inherited specification
+	@Override
 	public @NonNull PivotEnvironment createEnvironment(@NonNull Environment parent) {
 		if (!(parent instanceof PivotEnvironment)) {
 			throw new IllegalArgumentException(
@@ -121,11 +124,13 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
 	}
 
     // implements the inherited specification
+	@Override
 	public @NonNull EvaluationEnvironment createEvaluationEnvironment() {
 		return new PivotEvaluationEnvironment(getMetaModelManager());
 	}
 
     // implements the inherited specification
+	@Override
 	public @NonNull EvaluationEnvironment createEvaluationEnvironment(@NonNull EvaluationEnvironment parent) {
 		return new PivotEvaluationEnvironment(parent);
 	}

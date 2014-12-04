@@ -28,6 +28,7 @@ public class ForAllIteration extends AbstractIteration
 {
 	public static final @NonNull ForAllIteration INSTANCE = new ForAllIteration();
 
+	@Override
 	public @NonNull Object createAccumulatorValue(@NonNull DomainEvaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
 		return new MutableObject(Boolean.TRUE);
 	}

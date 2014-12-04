@@ -65,6 +65,7 @@ public class AbstractFileNewWizardPage extends WizardPage implements Listener
 	/**
 	 * (non-Javadoc) Method declared on IDialogPage.
 	 */
+	@Override
 	public void createControl(Composite parent) {
 		initDialog(initialSelection);
 		Composite topLevel = dialog.createDialogArea(parent);
@@ -105,6 +106,7 @@ public class AbstractFileNewWizardPage extends WizardPage implements Listener
 
 		IRunnableWithProgress op = new IRunnableWithProgress() {
 
+			@Override
 			public void run(IProgressMonitor monitor) {
 				CreateFileOperation op = new CreateFileOperation(newFile,
 					null, initialContents, wizard.getNewFileLabel());
@@ -114,6 +116,7 @@ public class AbstractFileNewWizardPage extends WizardPage implements Listener
 					getContainer().getShell().getDisplay()
 						.syncExec(new Runnable() {
 
+							@Override
 							public void run() {
 								if (e.getCause() instanceof CoreException) {
 									ErrorDialog.openError(getContainer().getShell(),
@@ -174,6 +177,7 @@ public class AbstractFileNewWizardPage extends WizardPage implements Listener
 	 * <code>Listener</code> method handles all events and enablements for
 	 * controls on this page. Subclasses may extend.
 	 */
+	@Override
 	public void handleEvent(Event event) {
 		if (dialog != null) {
 			setPageComplete(validatePage());

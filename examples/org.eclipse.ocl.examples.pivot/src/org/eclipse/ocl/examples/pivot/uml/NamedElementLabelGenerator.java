@@ -24,6 +24,7 @@ public final class NamedElementLabelGenerator extends AbstractLabelGenerator<Nam
 		super(NamedElement.class);
 	}
 
+	@Override
 	public void buildLabelFor(@NonNull Builder labelBuilder, @NonNull NamedElement object) {
 		String name = object.getName();
 		if (name != null)

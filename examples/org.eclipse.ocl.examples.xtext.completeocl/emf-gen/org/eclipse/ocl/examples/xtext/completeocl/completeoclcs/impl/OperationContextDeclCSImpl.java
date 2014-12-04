@@ -144,6 +144,7 @@ public class OperationContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TemplateSignatureCS getOwnedSignature()
 	{
 		return ownedSignature;
@@ -171,6 +172,7 @@ public class OperationContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedSignature(TemplateSignatureCS newOwnedSignature)
 	{
 		if (newOwnedSignature != ownedSignature)
@@ -192,6 +194,7 @@ public class OperationContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ParameterCS> getOwnedParameters() {
 		if (ownedParameters == null)
 		{
@@ -205,6 +208,7 @@ public class OperationContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public VariableCS getOwnedResult() {
 		if (ownedResult == null) {
 			VariableCS resultVariable = EssentialOCLCSFactory.eINSTANCE
@@ -238,6 +242,7 @@ public class OperationContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedResult(VariableCS newOwnedResult) {
 		if (newOwnedResult != ownedResult)
 		{
@@ -258,6 +263,7 @@ public class OperationContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ConstraintCS> getOwnedPreconditions() {
 		if (ownedPreconditions == null)
 		{
@@ -271,6 +277,7 @@ public class OperationContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ConstraintCS> getOwnedPostconditions() {
 		if (ownedPostconditions == null)
 		{
@@ -284,6 +291,7 @@ public class OperationContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ExpSpecificationCS> getOwnedBodies() {
 		if (ownedBodies == null)
 		{
@@ -510,6 +518,7 @@ public class OperationContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public Operation getReferredOperation() {
 		if (ownedPathName == null) {
 			return null;

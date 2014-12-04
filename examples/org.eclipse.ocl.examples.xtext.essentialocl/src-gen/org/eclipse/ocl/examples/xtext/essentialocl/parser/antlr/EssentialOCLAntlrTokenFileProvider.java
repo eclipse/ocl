@@ -8,6 +8,7 @@ import org.eclipse.xtext.parser.antlr.IAntlrTokenFileProvider;
 
 public class EssentialOCLAntlrTokenFileProvider implements IAntlrTokenFileProvider {
 	
+	@Override
 	public InputStream getAntlrTokenFile() {
 		ClassLoader classLoader = getClass().getClassLoader();
     	return classLoader.getResourceAsStream("org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.tokens");

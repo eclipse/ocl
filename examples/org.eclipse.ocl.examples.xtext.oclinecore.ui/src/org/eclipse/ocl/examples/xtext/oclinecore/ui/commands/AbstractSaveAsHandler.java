@@ -28,6 +28,7 @@ public class AbstractSaveAsHandler extends AbstractHandler
 		this.persistAs = persistAs;
 	}
 
+	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
 		if (window == null) {

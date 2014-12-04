@@ -40,6 +40,7 @@ public class SaveASHandler extends AbstractHandler
 {
 	public SaveASHandler() {}
 
+	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
 		if (window == null) {
@@ -58,6 +59,7 @@ public class SaveASHandler extends AbstractHandler
 		try {
 			asURI = document.readOnly(new IUnitOfWork<URI, XtextResource>()
 			{
+				@Override
 				public URI exec(@Nullable XtextResource resource) throws Exception {
 					if (resource instanceof BaseCSResource) {
 						Resource asResource = ((BaseCSResource)resource).getASResource(null);
@@ -97,6 +99,7 @@ public class SaveASHandler extends AbstractHandler
 		try {
 			document.modify(new IUnitOfWork<Object, XtextResource>()
 			{
+				@Override
 				public Object exec(@Nullable XtextResource resource) throws Exception {
 					if (resource instanceof BaseCSResource) {
 						Resource asResource = ((BaseCSResource)resource).getASResource(null);

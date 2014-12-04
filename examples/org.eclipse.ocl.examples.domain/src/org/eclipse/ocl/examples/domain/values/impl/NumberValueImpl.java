@@ -43,13 +43,16 @@ public abstract class NumberValueImpl extends Number implements Value
 
 	static class EmptyIterator implements Iterator<Value>
     {
-        public boolean hasNext() {
+        @Override
+		public boolean hasNext() {
             return false;
         }
-        public Value next() {
+        @Override
+		public Value next() {
             throw new NoSuchElementException();
         }
-        public void remove() {
+        @Override
+		public void remove() {
             throw new IllegalStateException();
         }
     }
@@ -65,30 +68,37 @@ public abstract class NumberValueImpl extends Number implements Value
 
 	protected NumberValueImpl() {}
 
+	@Override
 	public @NonNull BagValue asBagValue() {
 		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.BAG_NAME, getTypeName());
 	}
 
+	@Override
 	public @NonNull CollectionValue asCollectionValue() {
 		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.COLLECTION_NAME, getTypeName());
 	}
 
+	@Override
 	public @NonNull Double asDouble() {
 		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, "Double", getTypeName());
 	}
 
+	@Override
 	public DomainElement asElement() {
 		return null;
 	}
 
+	@Override
 	public @NonNull Integer asInteger() {
 		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.INTEGER_NAME, getTypeName());
 	}
 
+	@Override
 	public @NonNull IntegerValue asIntegerValue() {
 		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.INTEGER_NAME, getTypeName());
 	}
 
+	@Override
 	public @NonNull EObject asNavigableObject() {
 		Object object = asObject();
 		if (object instanceof EObject) {
@@ -99,38 +109,47 @@ public abstract class NumberValueImpl extends Number implements Value
 		}
 	}
 
+	@Override
 	public @NonNull ObjectValue asObjectValue() {
 		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, "Object", getTypeName());
 	}
 
+	@Override
 	public @NonNull OrderedCollectionValue asOrderedCollectionValue() {
 		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.ORDERED_COLLECTION_NAME, getTypeName());
 	}
 
+	@Override
 	public @NonNull OrderedSetValue asOrderedSetValue() {
 		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.ORDERED_SET_NAME, getTypeName());
 	}
 
+	@Override
 	public @NonNull RealValue asRealValue() {
 		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.REAL_NAME, getTypeName());
 	}
 
+	@Override
 	public @NonNull SequenceValue asSequenceValue() {
 		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.SEQUENCE_NAME, getTypeName());
 	}
 
+	@Override
 	public @NonNull SetValue asSetValue() {
 		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.SET_NAME, getTypeName());
 	}
 
+	@Override
 	public @NonNull TupleValue asTupleValue() {
 		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.TUPLE_NAME, getTypeName());
 	}
 
+	@Override
 	public @NonNull UniqueCollectionValue asUniqueCollectionValue() {
 		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, "Unique Collection", getTypeName());
 	}
 
+	@Override
 	public @NonNull Value asUnlimitedNaturalValue() {
 		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.UNLIMITED_NATURAL_NAME, getTypeName());
 	}
@@ -143,10 +162,12 @@ public abstract class NumberValueImpl extends Number implements Value
 		return getTypeId().getDisplayName();
 	}
 
+	@Override
 	public boolean isInvalid() {
 		return false;
 	}
 
+	@Override
 	public boolean isUndefined() {
 		return false;
 	}
@@ -159,6 +180,7 @@ public abstract class NumberValueImpl extends Number implements Value
 		return hashCode();
 	}
 
+	@Override
 	public void toString(@NonNull StringBuilder s, int sizeLimit) {
 		s.append(toString());
 	}

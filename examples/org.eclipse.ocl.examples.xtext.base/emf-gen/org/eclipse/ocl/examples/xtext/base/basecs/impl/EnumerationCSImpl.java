@@ -75,6 +75,7 @@ public class EnumerationCSImpl extends ClassCSImpl implements EnumerationCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<EnumerationLiteralCS> getOwnedLiterals()
 	{
 		if (ownedLiterals == null)

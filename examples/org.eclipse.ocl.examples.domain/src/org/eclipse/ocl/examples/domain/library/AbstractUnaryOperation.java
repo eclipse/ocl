@@ -22,10 +22,12 @@ import org.eclipse.ocl.examples.domain.ids.TypeId;
  */
 public abstract class AbstractUnaryOperation extends AbstractOperation implements LibraryUnaryOperation
 {
+	@Override
 	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue) {
 		return evaluate(evaluator, callExp.getTypeId(), sourceValue);
 	}
 
 	// Redundant declaration avoids @Override dilemma for 1.5/1.6
+	@Override
 	public abstract @Nullable /*@Thrown*/ Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue);
 }
