@@ -24,6 +24,7 @@ import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.WorkflowComponentWithModelSlot;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -40,6 +41,10 @@ public class PackageAlphabetizer extends WorkflowComponentWithModelSlot
 	public void invokeInternal(WorkflowContext ctx, ProgressMonitor arg1, Issues arg2) {
 		Resource resource = (Resource) ctx.get(getModelSlot());
 		log.info("Alphabeticizing '" + resource.getURI() + "'");
+		alphabeticize(resource);
+	}
+
+	public void alphabeticize(@NonNull Resource resource) {
 		List<List<? extends NamedElement>> listOfLists = new ArrayList<List<? extends NamedElement>>();
 		for (Iterator<EObject> it = resource.getAllContents(); it.hasNext(); ) {
 			EObject eObject = it.next();

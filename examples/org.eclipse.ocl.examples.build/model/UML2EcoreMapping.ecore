@@ -47,6 +47,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="newName" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="newIsDerived" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="newIsResolveProxies" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="newIsTransient" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="newIsUnsettable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="newIsVolatile" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="opposite" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CreateType" eSuperTypes="#//TypeMapping">
@@ -65,6 +69,8 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="newInstanceTypeName" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orderedSuperTypes" upperBound="-1"
+        eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Type"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="excludeProperties" upperBound="-1"
         eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="includeProperties" upperBound="-1"

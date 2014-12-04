@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010, 2013 E.D.Willink and others.
+ * Copyright (c) 2014 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -20,11 +20,11 @@ import org.eclipse.emf.mwe.utils.*
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.emf.ecore.resource.impl.*
 
+var resourcesProjectName = "org.eclipse.ocl.examples.build" //"org.eclipse.ocl.resources"
 var projectName = "org.eclipse.ocl.examples.build"
-var umlSlot = "uml"
 
 /**
- *	Generate the Concrete Syntax Models used by the Xtext editors.
+ *	Migrate the CS models from their OMG UML representation to their Eclipse Ecore representation.
  */
 Workflow {
 	bean = ResourceSetImpl : resourceSet {}
@@ -56,43 +56,68 @@ Workflow {
     
     component = IdAssigner { resourceSet = resourceSet skipOnErrors = true
     	assignFlatIds = false
+    	normalizeEcore = true
+//    	normalizePrimitives = "/${resourcesProjectName}/model/pivot.uml"
+    	alphabeticize = true
+    	removeEcoreStereotypes = true
+    	removeProfileApplications = true
 //    	mapping = Mapping {
 //    		from = "/${projectName}/model/ecore.uml"
 //    		to = "/${projectName}/model-gen/CSEcore.uml"
 //    	}
     	mapping = Mapping {
-    		from = "/${projectName}/model/pivot.uml"
+    		from = "/${resourcesProjectName}/model/pivot.uml"
     		to = "/${projectName}/model-gen/CSPivot.uml"
     	}
     	mapping = Mapping {
-    		from = "/${projectName}/model/basecs.uml"
+    		from = "/${resourcesProjectName}/model/basecs.uml"
     		to = "/${projectName}/model-gen/BaseCS.uml"
     	}
     	mapping = Mapping {
-    		from = "/${projectName}/model/essentialoclcs.uml"
+    		from = "/${resourcesProjectName}/model/essentialoclcs.uml"
     		to = "/${projectName}/model-gen/EssentialOCLCS.uml"
     	}
     	mapping = Mapping {
-    		from = "/${projectName}/model/completeoclcs.uml"
+    		from = "/${resourcesProjectName}/model/completeoclcs.uml"
     		to = "/${projectName}/model-gen/CompleteOCLCS.uml"
+    	}
+    	mapping = Mapping {
+    		from = "/${resourcesProjectName}/model/oclstdlibcs.uml"
+    		to = "/${projectName}/model-gen/OCLstdlibCS.uml"
+    	}
+    	mapping = Mapping {
+    		from = "/${resourcesProjectName}/model/oclinecorecs.uml"
+    		to = "/${projectName}/model-gen/OCLinEcoreCS.uml"
     	}
     }
     
     component = QVToTransformationExecutor { resourceSet = resourceSet skipOnErrors = true validate = false
-    	uri = "platform:/resource/${projectName}/src/org/eclipse/ocl/examples/build/qvto/UML2EcoreAnalyzer.qvto"
+    	uri = "platform:/resource/${projectName}/src/org/eclipse/ocl/examples/build/qvto/UML2EcoreMerger.qvto"
     	in = "platform:/resource/${projectName}/model/CS2ASinEcore.xmi" 
+    	out = "platform:/resource/${projectName}/model-gen/CS2ASinEcore.xmi" 
+	}
+    component = QVToTransformationExecutor { resourceSet = resourceSet skipOnErrors = true validate = false
+    	uri = "platform:/resource/${projectName}/src/org/eclipse/ocl/examples/build/qvto/UML2EcoreAnalyzer.qvto"
+    	in = "platform:/resource/${projectName}/model-gen/CS2ASinEcore.xmi" 
     	out = "platform:/resource/${projectName}/model-gen/CS2ASAnalysis.xmi" 
 	}
     component = QVToTransformationExecutor { resourceSet = resourceSet skipOnErrors = true validate = false
     	uri = "platform:/resource/${projectName}/src/org/eclipse/ocl/examples/build/qvto/UML2EcoreSynthesizer.qvto"
     	in = "platform:/resource/${projectName}/model-gen/CS2ASAnalysis.xmi" 
-    	out = "platform:/resource/${projectName}/model-gen/CS2AS.ecore" 
+    	in = "platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore" 
+    	out = "platform:/resource/${projectName}/model-gen/CS2AS.ecore"
+    	blackbox = "${projectName}.qvto.BlackBoxLibrary"
 	}
-    component = CSSplitter { resourceSet = resourceSet skipOnErrors = true
+     component = CSSplitter { resourceSet = resourceSet skipOnErrors = true
     	in = "platform:/resource/${projectName}/model-gen/CS2AS.ecore" 
      	exclude = Mapping {
+    		from = "csecore"
+    		to = "http://www.eclipse.org/emf/2002/Ecore"
+    	}
+     	exclude = Mapping {
     		from = "cspivot"
-    		to = "platform:/resource/org.eclipse.ocl.examples.pivot/model/Pivot.ecore"
+//    		to = "platform:/resource/org.eclipse.ocl.examples.pivot/model/Pivot.ecore"
+    		to = "Pivot.ecore"
     	}
      	include = Mapping {
     		from = "basecs"
@@ -105,6 +130,14 @@ Workflow {
      	include = Mapping {
     		from = "completeoclcs"
     		to = "platform:/resource/${projectName}/model-gen/CompleteOCLCS.ecore"
+    	}
+     	include = Mapping {
+    		from = "oclstdlibcs"
+    		to = "platform:/resource/${projectName}/model-gen/OCLstdlibCS.ecore"
+    	}
+     	include = Mapping {
+    		from = "oclinecorecs"
+    		to = "platform:/resource/${projectName}/model-gen/OCLinEcoreCS.ecore"
     	}
 	}
     

@@ -11,17 +11,23 @@
 package org.eclipse.ocl.examples.build.utilities;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLHelper;
 import org.eclipse.emf.ecore.xmi.XMLLoad;
@@ -36,6 +42,8 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.uml.UMLXMIID;
+import org.eclipse.uml2.common.util.DerivedEObjectEList;
+import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.internal.resource.XMI2UMLHandler;
 import org.eclipse.uml2.uml.internal.resource.XMI2UMLLoadImpl;
@@ -107,7 +115,12 @@ public class IdAssigner extends AbstractWorkflowComponent
 	protected Logger log = Logger.getLogger(getClass());	
 	private ResourceSet resourceSet = null;	
 	protected Map<URI, URI> uriMapping = new HashMap<URI, URI>();
+	protected boolean alphabeticize = false;
 	protected boolean assignFlatIds = true;
+	protected boolean normalizeEcore = false;
+	protected URI normalizePrimitives = null;
+	protected boolean removeEcoreStereotypes = false;
+	protected boolean removeProfileApplications = false;
 
 	/**
 	 * Define a mapping from a source UML/CMOF file to a UML file with resolved assignments.
@@ -129,8 +142,11 @@ public class IdAssigner extends AbstractWorkflowComponent
 		}
 		String name = namedElement.getName();
 		if (name == null) {
-			UMLXMIID umlXMIid = new UMLXMIID((XMLResource) namedElement.eResource());
-			name = umlXMIid.doSwitch(namedElement);
+			Resource eResource = namedElement.eResource();
+			if (eResource instanceof XMLResource) {
+				UMLXMIID umlXMIid = new UMLXMIID((XMLResource) eResource);
+				name = umlXMIid.doSwitch(namedElement);
+			}
 		}
 		s.append(name);
 		return s.toString();
@@ -148,11 +164,13 @@ public class IdAssigner extends AbstractWorkflowComponent
 	public void invokeInternal(WorkflowContext ctx, ProgressMonitor arg1, Issues arg2) {
 		ResourceSetImpl resourceSet = (ResourceSetImpl) getResourceSet();
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", LocalXMI2UMLResourceFactory.INSTANCE);
+		List<EObject> explicitRootContents = new ArrayList<EObject>();
 		Map<UMLResource, UMLResource> resourceMap = new HashMap<UMLResource, UMLResource>();
 		for (URI fromURI : uriMapping.keySet()) {
 			log.info("Assigning Ids from '" + fromURI + "'");
 			URI toURI = uriMapping.get(fromURI);
 			UMLResource fromResource = (UMLResource) resourceSet.getResource(fromURI, true);
+			explicitRootContents.addAll(fromResource.getContents());
 			EcoreUtil.resolveAll(fromResource);
 			for (EObject eRoot : fromResource.getContents()) {
 				if (eRoot instanceof org.eclipse.uml2.uml.Package) {
@@ -168,6 +186,66 @@ public class IdAssigner extends AbstractWorkflowComponent
 		}
 		EcoreUtil.resolveAll(resourceSet);
 		ResourceUtils.checkResourceSet(resourceSet);
+		if (normalizeEcore || (normalizePrimitives != null)) {
+			log.info("UMLEcoreNormalizing");
+			Resource ecorePrimitiveTypes = resourceSet.getResource(URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI/*"pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml"*/), true);
+			Resource pivotResource = (normalizePrimitives != null) ? resourceSet.getResource(normalizePrimitives, true) : null;
+		    Map<EObject, Collection<EStructuralFeature.Setting>> map = EcoreUtil.ExternalCrossReferencer.find(explicitRootContents);
+		    for (EObject eObject : map.keySet()) {
+    			EObject eReplacement = null;
+		    	Resource eResource = eObject.eResource();
+		    	if ((pivotResource != null) && eResource == ecorePrimitiveTypes) {
+		    		if (eObject instanceof org.eclipse.uml2.uml.PrimitiveType) {
+		    			String className = ((org.eclipse.uml2.uml.PrimitiveType)eObject).getName();
+		    			String replacementClassName;
+		    			if ("EBooleanObject".equals(className) || "EBoolean".equals(className)) {
+		    				replacementClassName = "Boolean";
+		    			}
+		    			else if ("EDoubleObject".equals(className) || "EDouble".equals(className)) {
+		    				replacementClassName = "Real";
+		    			}
+		    			else if ("EIntegerObject".equals(className) || "EInt".equals(className)) {
+		    				replacementClassName = "Integer";
+		    			}
+		    			else if ("EString".equals(className)) {
+		    				replacementClassName = "String";
+		    			}
+		    			else {
+		    				replacementClassName = null;
+		    			}
+		    			if (replacementClassName != null) {
+		    				eReplacement = ((org.eclipse.uml2.uml.Package)pivotResource.getContents().get(0)).getOwnedType(replacementClassName);
+		    			}
+		    		}
+		    	}
+		    	else if (normalizeEcore) {
+		    		EObject eRoot = EcoreUtil.getRootContainer(eObject);
+			    	if (eRoot instanceof Model) {
+				    	String uri = ((Model)eRoot).getURI();
+				    	if (EcorePackage.eNS_URI.equals(uri)) {
+				    		if (eObject instanceof org.eclipse.uml2.uml.Class) {
+				    			String className = ((org.eclipse.uml2.uml.Class)eObject).getName(); 
+				    			eReplacement = resourceSet.getEObject(URI.createURI(UMLResource.ECORE_METAMODEL_URI + "#" + className), true);
+				    		}
+				    	}
+			    	}
+		    	}
+	    		if (eReplacement != null) {
+		    		for (EStructuralFeature.Setting eSetting : map.get(eObject)) {
+		    			if (eSetting instanceof DerivedEObjectEList<?>) {}
+		    			else if (eSetting instanceof EcoreEList.UnmodifiableEList<?>) {}
+		    			else {
+		    				try {
+			    				eSetting.set(eReplacement);
+		    				}
+			    			catch (Exception e) {
+			    				log.error("eSetting failed for a " + eSetting.getClass().getName());
+			    			}
+		    			}
+		    		}
+	    		}
+		    }
+		}
 		for (UMLResource fromResource : resourceMap.keySet()) {
 			UMLResource toResource = resourceMap.get(fromResource);
 			toResource.getContents().addAll(fromResource.getContents());
@@ -215,6 +293,36 @@ public class IdAssigner extends AbstractWorkflowComponent
 				}
 			}
 		}
+		if (removeEcoreStereotypes) {
+			for (UMLResource toResource : resourceMap.values()) {
+				List<EObject> unwanted = new ArrayList<EObject>();
+				for (EObject eObject : toResource.getContents()) {
+					if (!(eObject instanceof org.eclipse.uml2.uml.Element)) {
+						unwanted.add(eObject);
+					}
+				}
+				toResource.getContents().removeAll(unwanted);
+			}
+		}
+		if (removeProfileApplications) {
+			for (UMLResource toResource : resourceMap.values()) {
+				if (toResource != null) {
+					for (EObject eObject : toResource.getContents()) {
+						if (eObject instanceof org.eclipse.uml2.uml.Package) {
+							((org.eclipse.uml2.uml.Package)eObject).getProfileApplications().clear();
+						}
+					}
+				}
+			}
+		}
+		if (alphabeticize) {
+			PackageAlphabetizer alphabeticizer = new PackageAlphabetizer();
+			for (UMLResource toResource : resourceMap.values()) {
+				if (toResource != null) {
+					alphabeticizer.alphabeticize(toResource);
+				}
+			}
+		}
 		for (UMLResource toResource : resourceMap.values()) {
 			log.info("Assigned Ids to '" + toResource.getURI() + "'");
 			try {
@@ -233,8 +341,43 @@ public class IdAssigner extends AbstractWorkflowComponent
 		return result;
 	}
 	
+	/**
+	 * True to alphabeticize the UML packages and contents.
+	 */
+	public void setAlphabeticize(boolean alphabeticize) {
+		this.alphabeticize = alphabeticize;
+	}
+	
 	public void setAssignFlatIds(boolean assignFlatIds) {
 		this.assignFlatIds = assignFlatIds;
+	}
+	
+	/**
+	 * True to normalize the UML models by replacing references to an ecore.uml by Ecore.metamodel.uml - Bug 453771.
+	 */
+	public void setNormalizeEcore(boolean normalizeEcore) {
+		this.normalizeEcore = normalizeEcore;
+	}
+	
+	/**
+	 * Non-null to normalize the UML models by replacing references to a Ecore primitives by those prefixed by this URI.
+	 */
+	public void setNormalizePrimitives(String normalizePrimitives) {
+		this.normalizePrimitives = URI.createPlatformResourceURI(normalizePrimitives, true);
+	}
+
+	/**
+	 * True to remove Ecore stereotypes from the UML models making them OMG-like.
+	 */
+	public void setRemoveEcoreStereotypes(boolean removeEcoreStereotypes) {
+		this.removeEcoreStereotypes = removeEcoreStereotypes;
+	}
+
+	/**
+	 * True to remove all profile applications from the UML models making them OMG-like.
+	 */
+	public void setRemoveProfileApplications(boolean removeProfileApplications) {
+		this.removeProfileApplications = removeProfileApplications;
 	}
 	
 	public void setResourceSet(@NonNull ResourceSet resourceSet) {

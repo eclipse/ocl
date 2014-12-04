@@ -32,6 +32,7 @@ import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.utils.Mapping;
 import org.eclipse.jdt.annotation.NonNull;
+//import org.eclipse.m2m.internal.qvt.oml.TransformationExecutorBlackboxRegistry;		-- not yet released
 import org.eclipse.m2m.qvt.oml.BasicModelExtent;
 import org.eclipse.m2m.qvt.oml.ExecutionContextImpl;
 import org.eclipse.m2m.qvt.oml.ExecutionDiagnostic;
@@ -48,6 +49,7 @@ public class QVToTransformationExecutor extends AbstractWorkflowComponent
 	
 	private ResourceSet resourceSet = null;	
 	private String uri = null;	
+	private List<String> blackboxes = new ArrayList<String>();
 	private List<String> ins = new ArrayList<String>();
 	private Map<String, Object> configs = new HashMap<String, Object>();
 	private String out = null;	
@@ -62,6 +64,10 @@ public class QVToTransformationExecutor extends AbstractWorkflowComponent
 		final String key = uriMap.getFrom();
 		final Object value = uriMap.getTo();
 		configs.put(key, value);
+	}
+	
+	public void addBlackbox(String className) {
+		blackboxes.add(className);
 	}
 	
 	public void addIn(String fileName) {
@@ -120,6 +126,16 @@ public class QVToTransformationExecutor extends AbstractWorkflowComponent
 		String uri = getUri();
 		URI txURI = URI.createURI(uri, true);
 		logger.info("Loading '" + txURI + "'");
+		for (String className : blackboxes) {
+			Class<?> blackbox;
+			try {
+				blackbox = Class.forName(className);
+			} catch (ClassNotFoundException e) {
+				issues.addError(this, "Failed to load blackbox '" + className + "'", className, e, null);
+				return;
+			}
+//			TransformationExecutorBlackboxRegistry.INSTANCE.registerModules(blackbox);
+		}
 		TransformationExecutor transformationExecutor = new TransformationExecutor(txURI);
 		Diagnostic diagnostic = transformationExecutor.loadTransformation();
 		if (diagnostic.getSeverity() != Diagnostic.OK) {

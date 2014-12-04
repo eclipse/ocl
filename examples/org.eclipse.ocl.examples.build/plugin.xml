@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+	<extension point="org.eclipse.m2m.qvt.oml.javaBlackboxUnits">
+   		<unit name="ExampleJavaLib" namespace="m2m.qvt.oml">
+    		<library name="BlackBoxLibrary" class="org.eclipse.ocl.examples.build.qvto.BlackBoxLibrary">
+    			<metamodel nsURI="http://www.eclipse.org/emf/2002/Ecore"/>
+    		</library>
+		</unit>
+	</extension>
+</plugin>

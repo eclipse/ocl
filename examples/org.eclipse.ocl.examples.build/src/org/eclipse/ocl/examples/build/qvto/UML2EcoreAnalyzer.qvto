@@ -38,9 +38,10 @@ helper UML::Property::getPropertyName() : String {
 /*
  *	Packages
  */
-property packageMappings : Set(UML2EcoreControl::PackageMapping) = uml2ecore.objectsOfType(UML2EcoreControl::PackageMapping);
-property explicitCreatePackageMappings : Set(UML2EcoreControl::CreatePackage) = uml2ecore.objectsOfType(UML2EcoreControl::CreatePackage);
-property explicitDeletePackagesMappings : Set(UML2EcoreControl::DeletePackages) = uml2ecore.objectsOfType(UML2EcoreControl::DeletePackages);
+property rootMappings : Set(UML2EcoreControl::Mappings) = uml2ecore.objectsOfType(UML2EcoreControl::Mappings);
+property packageMappings : Set(UML2EcoreControl::PackageMapping) = rootMappings.mappings->selectByKind(UML2EcoreControl::PackageMapping)->asSet();
+property explicitCreatePackageMappings : Set(UML2EcoreControl::CreatePackage) = rootMappings.mappings->selectByKind(UML2EcoreControl::CreatePackage)->asSet();
+property explicitDeletePackagesMappings : Set(UML2EcoreControl::DeletePackages) = rootMappings.mappings->selectByKind(UML2EcoreControl::DeletePackages)->asSet();
 
 property packageMappings_oldPackages : Set(UML::Package) = packageMappings.oldPackages->asSet();
 property packageMappings_nestingPackages : Set(UML::Package) = packageMappings_oldPackages->closure(nestingPackage)->union(packageMappings_oldPackages);
@@ -197,6 +198,7 @@ mapping UML2EcoreControl::CreateType::createRenameType() : UML2EcoreMapping::Cre
 --	log('  myTypes', myTypes->sortedBy(name)->iterate(n; acc : String = '' | acc + ' ' + n.name));
 	result.newName := self.newName;
 	result.newInstanceTypeName := self.newInstanceTypeName;
+	result.orderedSuperTypes := self.orderedSuperTypes;
 	result.oldTypes := myTypes;
 	result.operationMappings := selectOperations(myTypes);	 
 	result.propertyMappings := selectProperties(myTypes);	 
@@ -313,6 +315,10 @@ mapping String::createCreateProperty(wantedProperties : Set(UML::Property)) : UM
 	assert fatal (explicitCreateProperties->size() <= 1) with log("Duplicate CreateProperty ", explicitCreateProperties->display());
 	result.newName := if explicitCreateProperties->notEmpty() then explicitCreateProperties->any(true).newName else self endif;
 	result.newIsDerived := let newIsDerived : Bag(Boolean) = explicitCreateProperties->collect(newIsDerived)->excluding(null) in if newIsDerived->notEmpty() then newIsDerived->exists(n | n) else null endif;
+	result.newIsResolveProxies := let newIsResolveProxies : Bag(Boolean) = explicitCreateProperties->collect(newIsResolveProxies)->excluding(null) in if newIsResolveProxies->notEmpty() then newIsResolveProxies->exists(n | n) else null endif;
+	result.newIsTransient := let newIsTransient : Bag(Boolean) = explicitCreateProperties->collect(newIsTransient)->excluding(null) in if newIsTransient->notEmpty() then newIsTransient->exists(n | n) else null endif;
+	result.newIsUnsettable := let newIsUnsettable : Bag(Boolean) = explicitCreateProperties->collect(newIsUnsettable)->excluding(null) in if newIsUnsettable->notEmpty() then newIsUnsettable->exists(n | n) else null endif;
+	result.newIsVolatile := let newIsVolatile : Bag(Boolean) = explicitCreateProperties->collect(newIsVolatile)->excluding(null) in if newIsVolatile->notEmpty() then newIsVolatile->exists(n | n) else null endif;
 	result.oldProperties := sameNamedProperties;
 	var oppositeProperties1 : Set(UML::Property) := sameNamedProperties.getOtherEnd()->excluding(null)->asSet();
 	if (debugProperty) log('    oppositeProperties1', oppositeProperties1->display());
@@ -338,6 +344,14 @@ mapping UML2EcoreControl::CreateProperty::createRenameProperty() : UML2EcoreMapp
 	result.oldProperties := oldProperties;
 	if (debugProperty) log('    newIsDerived', self.newIsDerived);
 	result.newIsDerived := self.newIsDerived;
+	if (debugProperty) log('    newIsResolveProxies', self.newIsResolveProxies);
+	result.newIsResolveProxies := self.newIsResolveProxies;
+	if (debugProperty) log('    newIsTransient', self.newIsTransient);
+	result.newIsTransient := self.newIsTransient;
+	if (debugProperty) log('    newIsUnsettable', self.newIsUnsettable);
+	result.newIsUnsettable := self.newIsUnsettable;
+	if (debugProperty) log('    newIsVolatile', self.newIsVolatile);
+	result.newIsVolatile := self.newIsVolatile;
 	var oppositeProperties1 : Set(UML::Property) := oldProperties.getOtherEnd()->excluding(null)->asSet();
 	if (debugProperty) log('    oppositeProperties1', oppositeProperties1->display());
 	var oppositeProperties2 : Set(UML::Property) := oppositeProperties1 - explicitDeleteProperties;

@@ -1,0 +1,21 @@
+pivot::Root => pivot::Model
+RootAttribution => ModelAttribution
+
+org.eclipse.ocl.examples.xtext.base.pivot2cs => org.eclipse.ocl.examples.xtext.base.as2cs
+org.eclipse.ocl.examples.xtext.essentialocl.pivot2cs =? org.eclipse.ocl.examples.xtext.essentialocl.as2cs
+Pivot2CS => AS2CS
+CS2PivotConversion => CS2ASConversion
+Pivot2Ecore => AS2Ecore
+Ecore2Pivot => Ecore2AS
+EssentialOCLLinkingService => BaseLinkingService
+DomainType => DomainClass
+Type => Class
+
+getElement => getReferredElement
+getNestedPackage => getOwnedPackages
+getOwnedOperation => getOwnedOperations
+getOwnedClasses => getOwnedClasses
+getPivotRoot => getPivotModel
+getTemplateBinding => getOwnedTemplateBindings
+
+metaModelManager.getStandardLibrary()
