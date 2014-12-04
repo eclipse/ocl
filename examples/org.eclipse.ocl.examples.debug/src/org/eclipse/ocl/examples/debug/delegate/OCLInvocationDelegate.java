@@ -43,6 +43,7 @@ import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
  * An implementation of an operation-invocation delegate for OCL body
  * expressions.
  */
+@SuppressWarnings("restriction")
 public class OCLInvocationDelegate extends BasicInvocationDelegate
 {
 	protected final OCLDelegateDomain delegateDomain;

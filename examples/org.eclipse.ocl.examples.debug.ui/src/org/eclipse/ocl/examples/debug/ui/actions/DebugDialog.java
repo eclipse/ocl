@@ -23,6 +23,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.dialogs.Dialog;
@@ -62,24 +63,27 @@ public class DebugDialog extends Dialog
 				String selectedText = constraintsCombo.getItem(selectedIndex);
 				URI selectedURI = constraintsText2resourceURI.get(selectedText);
 				if (selectedURI != null) {
-					MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(selectedObject.eResource());
-					Element resource = null;
-					try {
-						resource = metaModelManager.loadResource(selectedURI, null, null);
-					} catch (ParserException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					if (resource != null) {
-						for (TreeIterator<EObject> tit = resource.eAllContents(); tit.hasNext(); ) {
-							EObject eObject = tit.next();
-							if (eObject instanceof Constraint) {
-								String constraintText = eObject.toString();
-								constraints.add(constraintText);
-								constraintText2constraint.put(constraintText, (Constraint)eObject);
-							}
+					Resource eResource = selectedObject.eResource();
+					if (eResource != null) {
+						MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(eResource);
+						Element resource = null;
+						try {
+							resource = metaModelManager.loadResource(selectedURI, null, null);
+						} catch (ParserException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
 						}
-						Collections.sort(constraints);
+						if (resource != null) {
+							for (TreeIterator<EObject> tit = resource.eAllContents(); tit.hasNext(); ) {
+								EObject eObject = tit.next();
+								if (eObject instanceof Constraint) {
+									String constraintText = eObject.toString();
+									constraints.add(constraintText);
+									constraintText2constraint.put(constraintText, (Constraint)eObject);
+								}
+							}
+							Collections.sort(constraints);
+						}
 					}
 				}
 			}
@@ -231,7 +235,7 @@ public class DebugDialog extends Dialog
 		EPackage ePackage = eClass != null ? eClass.getEPackage() : null;
 		String nsURI = ePackage != null ? ePackage.getNsURI() : null;
 		elementNsURI.setText(String.valueOf(nsURI));
-		List<String> elementNsURIs = Collections.singletonList(nsURI);
+		@SuppressWarnings("null")@NonNull List<String> elementNsURIs = Collections.singletonList(nsURI);
 		Set<URI> resourceURIs = completeOCLRegistry.getResourceURIs(elementNsURIs);
 		List<String> constraintNsURIs = new ArrayList<String>();
 		constraintsText2resourceURI.clear();

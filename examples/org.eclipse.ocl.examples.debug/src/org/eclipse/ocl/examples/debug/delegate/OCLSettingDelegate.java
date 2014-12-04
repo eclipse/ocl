@@ -35,6 +35,7 @@ import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
  * 
  * @since 3.0
  */
+@SuppressWarnings("restriction")
 public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 {
 	protected final OCLDelegateDomain delegateDomain;

@@ -48,6 +48,7 @@ import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
  * @see OCLQueryDelegateFactory
  * @since 3.1
  */
+@SuppressWarnings("restriction")
 public class OCLQueryDelegate implements QueryDelegate
 {
 	protected @NonNull OCLDelegateDomain delegateDomain;

@@ -4,7 +4,7 @@
     editDirectory="/org.eclipse.ocl.examples.xtext.markup.edit/src" editorDirectory="/org.eclipse.ocl.examples.xtext.markup.editor/src"
     modelPluginID="org.eclipse.ocl.examples.xtext.markup" forceOverwrite="true" modelName="Markup"
     updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
     editPluginID="org.eclipse.ocl.examples.xtext.markup.edit" editorPluginID="org.eclipse.ocl.examples.xtext.markup.editor"
     runtimeVersion="2.7">
   <genAnnotations source="http://www.eclipse.org/OCL/GenModel/ToString">

@@ -5,9 +5,9 @@
     modelPluginID="org.eclipse.ocl.examples.xtext.oclstdlib" forceOverwrite="true"
     modelName="OCLstdlibCS" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     codeFormatting="true" testsDirectory="/org.eclipse.ocl.examples.xtext.oclstdlib.tests/emf-gen"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
     editPluginID="org.eclipse.ocl.examples.xtext.oclstdlib.edit" editorPluginID="org.eclipse.ocl.examples.xtext.oclstdlib.editor"
-    runtimeVersion="2.7" usedGenPackages="../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.genmodel#//basecs ../../org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCS.genmodel#//essentialoclcs ../../org.eclipse.ocl.examples.pivot/model/Pivot.merged.genmodel#//pivot">
+    runtimeVersion="2.7" usedGenPackages="../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.genmodel#//basecs ../../org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCS.genmodel#//essentialoclcs ../../org.eclipse.ocl.examples.pivot/model/Pivot.merged.genmodel#//pivot ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
   <genAnnotations source="http://www.eclipse.org/OCL/GenModel">
     <details key="Use Null Annotations" value="true"/>
   </genAnnotations>
@@ -19,37 +19,38 @@
   <foreignModel>OCLstdlibCS.ecore</foreignModel>
   <genPackages prefix="OCLstdlibCS" basePackage="org.eclipse.ocl.examples.xtext.oclstdlib"
       disposableProviderFactory="true" ecorePackage="OCLstdlibCS.ecore#/">
+    <genClasses ecoreClass="OCLstdlibCS.ecore#//JavaClassCS"/>
     <genClasses image="false" ecoreClass="OCLstdlibCS.ecore#//JavaImplementationCS">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OCLstdlibCS.ecore#//JavaImplementationCS/implementation"/>
     </genClasses>
     <genClasses ecoreClass="OCLstdlibCS.ecore#//LibClassCS">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OCLstdlibCS.ecore#//LibClassCS/metaTypeName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OCLstdlibCS.ecore#//LibClassCS/metaclassName"/>
     </genClasses>
     <genClasses ecoreClass="OCLstdlibCS.ecore#//LibConstraintCS"/>
     <genClasses ecoreClass="OCLstdlibCS.ecore#//LibIterationCS">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLstdlibCS.ecore#//LibIterationCS/ownedIterator"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLstdlibCS.ecore#//LibIterationCS/ownedAccumulator"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLstdlibCS.ecore#//LibIterationCS/invalidating"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLstdlibCS.ecore#//LibIterationCS/validating"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLstdlibCS.ecore#//LibIterationCS/isInvalidating"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLstdlibCS.ecore#//LibIterationCS/isValidating"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLstdlibCS.ecore#//LibIterationCS/ownedAccumulators"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLstdlibCS.ecore#//LibIterationCS/ownedIterators"/>
     </genClasses>
     <genClasses ecoreClass="OCLstdlibCS.ecore#//LibOperationCS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLstdlibCS.ecore#//LibOperationCS/isInvalidating"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLstdlibCS.ecore#//LibOperationCS/isStatic"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLstdlibCS.ecore#//LibOperationCS/isValidating"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OCLstdlibCS.ecore#//LibOperationCS/precedence"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLstdlibCS.ecore#//LibOperationCS/invalidating"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLstdlibCS.ecore#//LibOperationCS/static"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLstdlibCS.ecore#//LibOperationCS/validating"/>
     </genClasses>
     <genClasses ecoreClass="OCLstdlibCS.ecore#//LibPackageCS">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLstdlibCS.ecore#//LibPackageCS/ownedPrecedence"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLstdlibCS.ecore#//LibPackageCS/ownedPrecedences"/>
     </genClasses>
     <genClasses ecoreClass="OCLstdlibCS.ecore#//LibPropertyCS">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLstdlibCS.ecore#//LibPropertyCS/static"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLstdlibCS.ecore#//LibPropertyCS/isStatic"/>
     </genClasses>
     <genClasses ecoreClass="OCLstdlibCS.ecore#//LibRootPackageCS"/>
-    <genClasses ecoreClass="OCLstdlibCS.ecore#//MetaTypeName">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLstdlibCS.ecore#//MetaTypeName/name"/>
+    <genClasses ecoreClass="OCLstdlibCS.ecore#//MetaclassNameCS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLstdlibCS.ecore#//MetaclassNameCS/name"/>
     </genClasses>
     <genClasses ecoreClass="OCLstdlibCS.ecore#//PrecedenceCS">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLstdlibCS.ecore#//PrecedenceCS/rightAssociative"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLstdlibCS.ecore#//PrecedenceCS/isRightAssociative"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

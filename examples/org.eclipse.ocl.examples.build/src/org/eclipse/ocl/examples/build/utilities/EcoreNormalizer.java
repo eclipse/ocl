@@ -100,7 +100,7 @@ public class EcoreNormalizer extends WorkflowComponentWithModelSlot
 //				}
 			}
 			else if (eObject instanceof EReference) {
-				EReference eReference = (EReference) eObject;
+				@SuppressWarnings("unused") EReference eReference = (EReference) eObject;
 //				eReference.setResolveProxies(true);
 			}
 			if (eObject instanceof EModelElement) {

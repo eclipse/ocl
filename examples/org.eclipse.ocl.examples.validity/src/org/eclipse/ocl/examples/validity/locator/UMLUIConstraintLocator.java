@@ -261,7 +261,11 @@ public class UMLUIConstraintLocator extends UMLConstraintLocator implements Cons
 //			return false;
 		}
 		org.eclipse.uml2.uml.Constraint umlConstraint = (org.eclipse.uml2.uml.Constraint)object;
-		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(umlConstraint.eResource());
+		Resource eResource = umlConstraint.eResource();
+		if (eResource == null) {
+			return false;
+		}
+		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(eResource);
 		Constraint constraint = null;
 		try {
 			constraint = metaModelManager.getPivotOf(Constraint.class, umlConstraint);
@@ -290,6 +294,9 @@ public class UMLUIConstraintLocator extends UMLConstraintLocator implements Cons
 		EObject eObject = parent.getConstrainedObject();
 		
 		Shell shell = validityView.getSite().getShell();
+		if (shell == null) {
+			return false;
+		}
 		DebugStarter runnable = new DebugStarter(shell, metaModelManager, eObject, expression);
 		
 		

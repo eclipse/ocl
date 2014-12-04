@@ -17,6 +17,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.internal.IWorkbenchGraphicConstants;
 import org.eclipse.ui.internal.WorkbenchImages;
 
+@SuppressWarnings("restriction")
 public class LockValidatableNodesAction extends Action
 {
 	public LockValidatableNodesAction() {

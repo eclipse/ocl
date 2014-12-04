@@ -174,7 +174,7 @@ public abstract class GenerateVisitors extends GenerateVisitorsWorkflowComponent
 				}
 				«ENDIF»
 			
-				«IF isDerived»
+				«IF isDerived || needsOverride»
 				@Override
 				«ENDIF»
 				public @Nullable R visiting(@NonNull «visitablePackageName».«visitableClassName» visitable) {
@@ -614,6 +614,9 @@ public abstract class GenerateVisitors extends GenerateVisitorsWorkflowComponent
 					return null;
 				}
 
+				«IF needsOverride»
+				@Override
+				«ENDIF»
 				public @Nullable R visiting(@NonNull «visitablePackageName».«visitableClassName» visitable) {
 					throw new UnsupportedOperationException();		// Cannot happen since all methods delegate.
 				}
@@ -644,6 +647,7 @@ public abstract class GenerateVisitors extends GenerateVisitorsWorkflowComponent
 	 */
 	protected def void generateDecorableVisitorInterface(@NonNull EPackage ePackage, String visitorRootClass) {
 		var boolean isDerived = isDerived();
+		var boolean needsOverride = needsOverride();
 		var MergeWriter writer = new MergeWriter(outputFolder + "Decorable" + visitorClassName + ".java");
 		writer.append('''
 			«ePackage.generateHeader(visitorPackageName)»
@@ -654,6 +658,9 @@ public abstract class GenerateVisitors extends GenerateVisitorsWorkflowComponent
 			 */
 			public interface Decorable«visitorClassName»<R> extends «visitorClassName»<R>«IF isDerived», «superVisitorPackageName».Decorable«superVisitorClassName»<R>«ENDIF»
 			{
+				«IF isDerived && needsOverride»
+				@Override
+				«ENDIF»
 				void setUndecoratedVisitor(@NonNull «visitorRootClass»<R> visitor);
 			}
 		''');

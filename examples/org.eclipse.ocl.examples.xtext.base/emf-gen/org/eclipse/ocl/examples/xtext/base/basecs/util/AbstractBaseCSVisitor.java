@@ -41,8 +41,8 @@ public abstract class AbstractBaseCSVisitor<R, C>
 		this.context = context;
 	}
 
-	@Override
 	@SuppressWarnings("unchecked")
+	@Override
 	public <A> A getAdapter(@NonNull Class<A> adapter) {
 		if (adapter.isAssignableFrom(getClass())) {
 			return (A) this;

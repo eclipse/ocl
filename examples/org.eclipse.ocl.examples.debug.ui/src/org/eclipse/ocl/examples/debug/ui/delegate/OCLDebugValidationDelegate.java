@@ -31,6 +31,7 @@ import org.eclipse.ocl.examples.pivot.utilities.ConstraintEvaluator;
  * An implementation of the dynamic validation delegate API, maintaining a cache
  * of compiled constraints and invariants.
  */
+@SuppressWarnings("restriction")
 public class OCLDebugValidationDelegate extends OCLValidationDelegate
 {	
 	public OCLDebugValidationDelegate(@NonNull OCLDelegateDomain delegateDomain, @NonNull EClassifier classifier) {

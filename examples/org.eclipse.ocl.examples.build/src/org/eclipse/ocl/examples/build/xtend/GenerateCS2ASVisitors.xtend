@@ -95,6 +95,7 @@ public class GenerateCS2ASVisitors extends GenerateCSVisitors
 	protected def void generateContextfulAbstractExtendingVisitor(@NonNull EPackage ePackage, 
 		@NonNull String className, @NonNull String extendedClassName, @NonNull String interfaceName,
 		@NonNull String resultTypeName, @NonNull List<Class<?>> additionalImports) {
+		var boolean needsOverride = needsOverride();
 		var MergeWriter writer = new MergeWriter(outputFolder + className + ".java");
 		writer.append('''
 			«ePackage.generateHeader(visitorPackageName)»
@@ -129,6 +130,9 @@ public class GenerateCS2ASVisitors extends GenerateCSVisitors
 				«FOR eClass : getSortedEClasses(ePackage)»
 				«var EClass firstSuperClass = eClass.firstSuperClass(eClass)»
 			
+				«IF needsOverride»
+				@Override
+				«ENDIF»
 				public @Nullable «resultTypeName» visit«eClass.name»(@NonNull «modelPackageName».«eClass.name» csElement) {
 					«IF firstSuperClass == eClass»
 					return visiting(csElement);

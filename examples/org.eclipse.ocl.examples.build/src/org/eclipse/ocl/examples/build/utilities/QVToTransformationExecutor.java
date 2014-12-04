@@ -127,7 +127,7 @@ public class QVToTransformationExecutor extends AbstractWorkflowComponent
 		URI txURI = URI.createURI(uri, true);
 		logger.info("Loading '" + txURI + "'");
 		for (String className : blackboxes) {
-			Class<?> blackbox;
+			@SuppressWarnings("unused") Class<?> blackbox;
 			try {
 				blackbox = Class.forName(className);
 			} catch (ClassNotFoundException e) {
