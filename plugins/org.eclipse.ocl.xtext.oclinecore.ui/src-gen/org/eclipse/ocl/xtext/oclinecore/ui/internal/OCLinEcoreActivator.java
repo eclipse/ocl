@@ -23,7 +23,7 @@ import com.google.inject.Module;
  */
 public class OCLinEcoreActivator extends AbstractUIPlugin {
 	
-	public static final String ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_OCLINECORE_OCLINECORE = "org.eclipse.ocl.xtext.oclinecore.OCLinEcore";
+	public static final String ORG_ECLIPSE_OCL_XTEXT_OCLINECORE_OCLINECORE = "org.eclipse.ocl.xtext.oclinecore.OCLinEcore";
 	
 	private static final Logger logger = Logger.getLogger(OCLinEcoreActivator.class);
 	
@@ -73,7 +73,7 @@ public class OCLinEcoreActivator extends AbstractUIPlugin {
 	}
 
 	protected Module getRuntimeModule(String grammar) {
-		if (ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_OCLINECORE_OCLINECORE.equals(grammar)) {
+		if (ORG_ECLIPSE_OCL_XTEXT_OCLINECORE_OCLINECORE.equals(grammar)) {
 			return new org.eclipse.ocl.xtext.oclinecore.OCLinEcoreRuntimeModule();
 		}
 		
@@ -81,7 +81,7 @@ public class OCLinEcoreActivator extends AbstractUIPlugin {
 	}
 	
 	protected Module getUiModule(String grammar) {
-		if (ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_OCLINECORE_OCLINECORE.equals(grammar)) {
+		if (ORG_ECLIPSE_OCL_XTEXT_OCLINECORE_OCLINECORE.equals(grammar)) {
 			return new org.eclipse.ocl.xtext.oclinecore.ui.OCLinEcoreUiModule(this);
 		}
 		

@@ -2,7 +2,6 @@ package org.eclipse.ocl.xtext.markup.serializer;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.xtext.markup.services.MarkupGrammarAccess;
 import org.eclipse.ocl.xtext.markupcs.BulletElement;

@@ -31,7 +31,7 @@ import com.google.common.collect.Multimap;
  */
 public class OCLstdlibUiModule extends AbstractOCLstdlibUiModule
 {
-	public static final String EDITOR_ID = OCLstdlibActivator.ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_OCLSTDLIB_OCLSTDLIB;
+	public static final String EDITOR_ID = OCLstdlibActivator.ORG_ECLIPSE_OCL_XTEXT_OCLSTDLIB_OCLSTDLIB;
 	
 	public OCLstdlibUiModule(AbstractUIPlugin plugin) {
 		super(plugin);

@@ -23,7 +23,7 @@ import com.google.inject.Module;
  */
 public class OCLstdlibActivator extends AbstractUIPlugin {
 	
-	public static final String ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_OCLSTDLIB_OCLSTDLIB = "org.eclipse.ocl.xtext.oclstdlib.OCLstdlib";
+	public static final String ORG_ECLIPSE_OCL_XTEXT_OCLSTDLIB_OCLSTDLIB = "org.eclipse.ocl.xtext.oclstdlib.OCLstdlib";
 	
 	private static final Logger logger = Logger.getLogger(OCLstdlibActivator.class);
 	
@@ -73,7 +73,7 @@ public class OCLstdlibActivator extends AbstractUIPlugin {
 	}
 
 	protected Module getRuntimeModule(String grammar) {
-		if (ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_OCLSTDLIB_OCLSTDLIB.equals(grammar)) {
+		if (ORG_ECLIPSE_OCL_XTEXT_OCLSTDLIB_OCLSTDLIB.equals(grammar)) {
 			return new org.eclipse.ocl.xtext.oclstdlib.OCLstdlibRuntimeModule();
 		}
 		
@@ -81,7 +81,7 @@ public class OCLstdlibActivator extends AbstractUIPlugin {
 	}
 	
 	protected Module getUiModule(String grammar) {
-		if (ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_OCLSTDLIB_OCLSTDLIB.equals(grammar)) {
+		if (ORG_ECLIPSE_OCL_XTEXT_OCLSTDLIB_OCLSTDLIB.equals(grammar)) {
 			return new org.eclipse.ocl.xtext.oclstdlib.ui.OCLstdlibUiModule(this);
 		}
 		

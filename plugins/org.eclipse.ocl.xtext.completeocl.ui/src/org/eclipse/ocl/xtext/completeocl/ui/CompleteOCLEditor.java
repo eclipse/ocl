@@ -15,7 +15,7 @@ import org.eclipse.xtext.ui.editor.XtextEditor;
 
 public class CompleteOCLEditor extends XtextEditor
 {
-	public static final String EDITOR_ID = CompleteOCLActivator.ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_COMPLETEOCL_COMPLETEOCL;
+	public static final String EDITOR_ID = CompleteOCLActivator.ORG_ECLIPSE_OCL_XTEXT_COMPLETEOCL_COMPLETEOCL;
 
 	public CompleteOCLEditor() {
 		super();

@@ -25,7 +25,7 @@ import com.google.common.collect.Multimap;
  */
 public class EssentialOCLUiModule extends org.eclipse.ocl.xtext.essentialocl.ui.AbstractEssentialOCLUiModule
 {
-	public static final String EDITOR_ID = EssentialOCLActivator.ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_ESSENTIALOCL_ESSENTIALOCL;
+	public static final String EDITOR_ID = EssentialOCLActivator.ORG_ECLIPSE_OCL_XTEXT_ESSENTIALOCL_ESSENTIALOCL;
 
 	public EssentialOCLUiModule(AbstractUIPlugin plugin) {
 		super(plugin);

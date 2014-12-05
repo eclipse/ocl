@@ -21,7 +21,7 @@ public abstract class AbstractCompleteOCLRuntimeModule extends DefaultRuntimeMod
 
 	@Override
 	public void configure(Binder binder) {
-		properties = tryBindProperties(binder, "org/eclipse/ocl/examples/xtext/completeocl/CompleteOCL.properties");
+		properties = tryBindProperties(binder, "org/eclipse/ocl/xtext/completeocl/CompleteOCL.properties");
 		super.configure(binder);
 	}
 	

@@ -23,7 +23,7 @@ import com.google.inject.Module;
  */
 public class BaseActivator extends AbstractUIPlugin {
 	
-	public static final String ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_BASE_BASE = "org.eclipse.ocl.xtext.base.Base";
+	public static final String ORG_ECLIPSE_OCL_XTEXT_BASE_BASE = "org.eclipse.ocl.xtext.base.Base";
 	
 	private static final Logger logger = Logger.getLogger(BaseActivator.class);
 	
@@ -73,7 +73,7 @@ public class BaseActivator extends AbstractUIPlugin {
 	}
 
 	protected Module getRuntimeModule(String grammar) {
-		if (ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_BASE_BASE.equals(grammar)) {
+		if (ORG_ECLIPSE_OCL_XTEXT_BASE_BASE.equals(grammar)) {
 			return new org.eclipse.ocl.xtext.base.BaseRuntimeModule();
 		}
 		
@@ -81,7 +81,7 @@ public class BaseActivator extends AbstractUIPlugin {
 	}
 	
 	protected Module getUiModule(String grammar) {
-		if (ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_BASE_BASE.equals(grammar)) {
+		if (ORG_ECLIPSE_OCL_XTEXT_BASE_BASE.equals(grammar)) {
 			return new org.eclipse.ocl.xtext.base.ui.BaseUiModule(this);
 		}
 		

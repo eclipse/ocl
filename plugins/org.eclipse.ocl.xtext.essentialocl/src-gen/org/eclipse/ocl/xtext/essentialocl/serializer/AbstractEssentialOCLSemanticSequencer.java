@@ -2,7 +2,6 @@ package org.eclipse.ocl.xtext.essentialocl.serializer;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.xtext.base.serializer.BaseSemanticSequencer;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;

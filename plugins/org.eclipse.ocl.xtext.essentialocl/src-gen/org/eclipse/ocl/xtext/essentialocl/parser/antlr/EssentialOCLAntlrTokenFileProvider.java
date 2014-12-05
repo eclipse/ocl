@@ -11,6 +11,6 @@ public class EssentialOCLAntlrTokenFileProvider implements IAntlrTokenFileProvid
 	@Override
 	public InputStream getAntlrTokenFile() {
 		ClassLoader classLoader = getClass().getClassLoader();
-    	return classLoader.getResourceAsStream("org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.tokens");
+    	return classLoader.getResourceAsStream("org/eclipse/ocl/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.tokens");
 	}
 }

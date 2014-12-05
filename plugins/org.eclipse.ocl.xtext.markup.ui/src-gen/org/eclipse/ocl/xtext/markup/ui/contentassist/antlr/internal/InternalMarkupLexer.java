@@ -52,15 +52,15 @@ public class InternalMarkupLexer extends Lexer {
         super(input,state);
 
     }
-    public String getGrammarFileName() { return "../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g"; }
+    public String getGrammarFileName() { return "../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g"; }
 
     // $ANTLR start "T__16"
     public final void mT__16() throws RecognitionException {
         try {
             int _type = T__16;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:11:7: ( 'b' )
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:11:9: 'b'
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:11:7: ( 'b' )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:11:9: 'b'
             {
             match('b'); 
 
@@ -79,8 +79,8 @@ public class InternalMarkupLexer extends Lexer {
         try {
             int _type = T__17;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:12:7: ( 'e' )
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:12:9: 'e'
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:12:7: ( 'e' )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:12:9: 'e'
             {
             match('e'); 
 
@@ -99,8 +99,8 @@ public class InternalMarkupLexer extends Lexer {
         try {
             int _type = T__18;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:13:7: ( 'bullet' )
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:13:9: 'bullet'
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:13:7: ( 'bullet' )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:13:9: 'bullet'
             {
             match("bullet"); 
 
@@ -120,8 +120,8 @@ public class InternalMarkupLexer extends Lexer {
         try {
             int _type = T__19;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:14:7: ( 'figure' )
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:14:9: 'figure'
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:14:7: ( 'figure' )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:14:9: 'figure'
             {
             match("figure"); 
 
@@ -141,8 +141,8 @@ public class InternalMarkupLexer extends Lexer {
         try {
             int _type = T__20;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:15:7: ( 'figureRef' )
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:15:9: 'figureRef'
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:15:7: ( 'figureRef' )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:15:9: 'figureRef'
             {
             match("figureRef"); 
 
@@ -162,8 +162,8 @@ public class InternalMarkupLexer extends Lexer {
         try {
             int _type = T__21;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:16:7: ( 'footnote' )
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:16:9: 'footnote'
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:16:7: ( 'footnote' )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:16:9: 'footnote'
             {
             match("footnote"); 
 
@@ -183,8 +183,8 @@ public class InternalMarkupLexer extends Lexer {
         try {
             int _type = T__22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:17:7: ( 'heading' )
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:17:9: 'heading'
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:17:7: ( 'heading' )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:17:9: 'heading'
             {
             match("heading"); 
 
@@ -204,8 +204,8 @@ public class InternalMarkupLexer extends Lexer {
         try {
             int _type = T__23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:18:7: ( 'oclCode' )
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:18:9: 'oclCode'
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:18:7: ( 'oclCode' )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:18:9: 'oclCode'
             {
             match("oclCode"); 
 
@@ -225,8 +225,8 @@ public class InternalMarkupLexer extends Lexer {
         try {
             int _type = T__24;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:19:7: ( 'oclEval' )
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:19:9: 'oclEval'
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:19:7: ( 'oclEval' )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:19:9: 'oclEval'
             {
             match("oclEval"); 
 
@@ -246,8 +246,8 @@ public class InternalMarkupLexer extends Lexer {
         try {
             int _type = T__25;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:20:7: ( 'oclText' )
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:20:9: 'oclText'
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:20:7: ( 'oclText' )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:20:9: 'oclText'
             {
             match("oclText"); 
 
@@ -267,8 +267,8 @@ public class InternalMarkupLexer extends Lexer {
         try {
             int _type = T__26;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:21:7: ( ':' )
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:21:9: ':'
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:21:7: ( ':' )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:21:9: ':'
             {
             match(':'); 
 
@@ -287,8 +287,8 @@ public class InternalMarkupLexer extends Lexer {
         try {
             int _type = T__27;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:22:7: ( '#' )
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:22:9: '#'
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:22:7: ( '#' )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:22:9: '#'
             {
             match('#'); 
 
@@ -307,8 +307,8 @@ public class InternalMarkupLexer extends Lexer {
         try {
             int _type = T__28;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:23:7: ( ',' )
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:23:9: ','
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:23:7: ( ',' )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:23:9: ','
             {
             match(','); 
 
@@ -327,8 +327,8 @@ public class InternalMarkupLexer extends Lexer {
         try {
             int _type = T__29;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:24:7: ( '[' )
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:24:9: '['
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:24:7: ( '[' )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:24:9: '['
             {
             match('['); 
 
@@ -347,8 +347,8 @@ public class InternalMarkupLexer extends Lexer {
         try {
             int _type = T__30;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:25:7: ( ']' )
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:25:9: ']'
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:25:7: ( ']' )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:25:9: ']'
             {
             match(']'); 
 
@@ -365,8 +365,8 @@ public class InternalMarkupLexer extends Lexer {
     // $ANTLR start "RULE_NUMBER"
     public final void mRULE_NUMBER() throws RecognitionException {
         try {
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3141:22: ( '0' .. '9' )
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3141:24: '0' .. '9'
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3141:22: ( '0' .. '9' )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3141:24: '0' .. '9'
             {
             matchRange('0','9'); 
 
@@ -381,8 +381,8 @@ public class InternalMarkupLexer extends Lexer {
     // $ANTLR start "RULE_LETTER"
     public final void mRULE_LETTER() throws RecognitionException {
         try {
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3143:22: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) )
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3143:24: ( 'a' .. 'z' | 'A' .. 'Z' | '_' )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3143:22: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3143:24: ( 'a' .. 'z' | 'A' .. 'Z' | '_' )
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -405,8 +405,8 @@ public class InternalMarkupLexer extends Lexer {
     // $ANTLR start "RULE_ESCAPED"
     public final void mRULE_ESCAPED() throws RecognitionException {
         try {
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3145:23: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '<' | '>' | '[' | ']' ) )
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3145:25: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '<' | '>' | '[' | ']' )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3145:23: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '<' | '>' | '[' | ']' ) )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3145:25: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '<' | '>' | '[' | ']' )
             {
             match('\\'); 
             if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='<'||input.LA(1)=='>'||(input.LA(1)>='[' && input.LA(1)<=']')||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -430,8 +430,8 @@ public class InternalMarkupLexer extends Lexer {
     // $ANTLR start "RULE_VERTICAL_WS"
     public final void mRULE_VERTICAL_WS() throws RecognitionException {
         try {
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3147:27: ( ( '\\n' | '\\r' ) )
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3147:29: ( '\\n' | '\\r' )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3147:27: ( ( '\\n' | '\\r' ) )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3147:29: ( '\\n' | '\\r' )
             {
             if ( input.LA(1)=='\n'||input.LA(1)=='\r' ) {
                 input.consume();
@@ -454,8 +454,8 @@ public class InternalMarkupLexer extends Lexer {
     // $ANTLR start "RULE_HORIZONTAL_WS"
     public final void mRULE_HORIZONTAL_WS() throws RecognitionException {
         try {
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3149:29: ( ( ' ' | '\\t' ) )
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3149:31: ( ' ' | '\\t' )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3149:29: ( ( ' ' | '\\t' ) )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3149:31: ( ' ' | '\\t' )
             {
             if ( input.LA(1)=='\t'||input.LA(1)==' ' ) {
                 input.consume();
@@ -480,10 +480,10 @@ public class InternalMarkupLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3151:10: ( ( RULE_NUMBER )+ )
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3151:12: ( RULE_NUMBER )+
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3151:10: ( ( RULE_NUMBER )+ )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3151:12: ( RULE_NUMBER )+
             {
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3151:12: ( RULE_NUMBER )+
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3151:12: ( RULE_NUMBER )+
             int cnt1=0;
             loop1:
             do {
@@ -497,7 +497,7 @@ public class InternalMarkupLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3151:12: RULE_NUMBER
+            	    // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3151:12: RULE_NUMBER
             	    {
             	    mRULE_NUMBER(); 
 
@@ -529,11 +529,11 @@ public class InternalMarkupLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3153:13: ( '\"' ( RULE_ESCAPED | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3153:15: '\"' ( RULE_ESCAPED | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3153:13: ( '\"' ( RULE_ESCAPED | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3153:15: '\"' ( RULE_ESCAPED | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
             {
             match('\"'); 
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3153:19: ( RULE_ESCAPED | ~ ( ( '\\\\' | '\"' ) ) )*
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3153:19: ( RULE_ESCAPED | ~ ( ( '\\\\' | '\"' ) ) )*
             loop2:
             do {
                 int alt2=3;
@@ -549,14 +549,14 @@ public class InternalMarkupLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3153:20: RULE_ESCAPED
+            	    // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3153:20: RULE_ESCAPED
             	    {
             	    mRULE_ESCAPED(); 
 
             	    }
             	    break;
             	case 2 :
-            	    // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3153:33: ~ ( ( '\\\\' | '\"' ) )
+            	    // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3153:33: ~ ( ( '\\\\' | '\"' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -593,11 +593,11 @@ public class InternalMarkupLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3155:9: ( RULE_LETTER ( RULE_LETTER | RULE_NUMBER )* )
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3155:11: RULE_LETTER ( RULE_LETTER | RULE_NUMBER )*
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3155:9: ( RULE_LETTER ( RULE_LETTER | RULE_NUMBER )* )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3155:11: RULE_LETTER ( RULE_LETTER | RULE_NUMBER )*
             {
             mRULE_LETTER(); 
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3155:23: ( RULE_LETTER | RULE_NUMBER )*
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3155:23: ( RULE_LETTER | RULE_NUMBER )*
             loop3:
             do {
                 int alt3=2;
@@ -610,7 +610,7 @@ public class InternalMarkupLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:
+            	    // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:
             	    {
             	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
             	        input.consume();
@@ -646,10 +646,10 @@ public class InternalMarkupLexer extends Lexer {
         try {
             int _type = RULE_WORD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3157:11: ( ( RULE_ESCAPED | ~ ( ( '\\\\' | '\"' | '[' | ']' | ':' | '#' | ',' | RULE_HORIZONTAL_WS | RULE_VERTICAL_WS ) ) )+ )
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3157:13: ( RULE_ESCAPED | ~ ( ( '\\\\' | '\"' | '[' | ']' | ':' | '#' | ',' | RULE_HORIZONTAL_WS | RULE_VERTICAL_WS ) ) )+
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3157:11: ( ( RULE_ESCAPED | ~ ( ( '\\\\' | '\"' | '[' | ']' | ':' | '#' | ',' | RULE_HORIZONTAL_WS | RULE_VERTICAL_WS ) ) )+ )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3157:13: ( RULE_ESCAPED | ~ ( ( '\\\\' | '\"' | '[' | ']' | ':' | '#' | ',' | RULE_HORIZONTAL_WS | RULE_VERTICAL_WS ) ) )+
             {
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3157:13: ( RULE_ESCAPED | ~ ( ( '\\\\' | '\"' | '[' | ']' | ':' | '#' | ',' | RULE_HORIZONTAL_WS | RULE_VERTICAL_WS ) ) )+
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3157:13: ( RULE_ESCAPED | ~ ( ( '\\\\' | '\"' | '[' | ']' | ':' | '#' | ',' | RULE_HORIZONTAL_WS | RULE_VERTICAL_WS ) ) )+
             int cnt4=0;
             loop4:
             do {
@@ -666,14 +666,14 @@ public class InternalMarkupLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3157:14: RULE_ESCAPED
+            	    // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3157:14: RULE_ESCAPED
             	    {
             	    mRULE_ESCAPED(); 
 
             	    }
             	    break;
             	case 2 :
-            	    // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3157:27: ~ ( ( '\\\\' | '\"' | '[' | ']' | ':' | '#' | ',' | RULE_HORIZONTAL_WS | RULE_VERTICAL_WS ) )
+            	    // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3157:27: ~ ( ( '\\\\' | '\"' | '[' | ']' | ':' | '#' | ',' | RULE_HORIZONTAL_WS | RULE_VERTICAL_WS ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\b')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\u001F')||input.LA(1)=='!'||(input.LA(1)>='$' && input.LA(1)<='+')||(input.LA(1)>='-' && input.LA(1)<='9')||(input.LA(1)>=';' && input.LA(1)<='Z')||(input.LA(1)>='^' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -713,10 +713,10 @@ public class InternalMarkupLexer extends Lexer {
         try {
             int _type = RULE_NL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3159:9: ( ( ( RULE_HORIZONTAL_WS )* RULE_VERTICAL_WS )+ )
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3159:11: ( ( RULE_HORIZONTAL_WS )* RULE_VERTICAL_WS )+
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3159:9: ( ( ( RULE_HORIZONTAL_WS )* RULE_VERTICAL_WS )+ )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3159:11: ( ( RULE_HORIZONTAL_WS )* RULE_VERTICAL_WS )+
             {
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3159:11: ( ( RULE_HORIZONTAL_WS )* RULE_VERTICAL_WS )+
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3159:11: ( ( RULE_HORIZONTAL_WS )* RULE_VERTICAL_WS )+
             int cnt6=0;
             loop6:
             do {
@@ -730,9 +730,9 @@ public class InternalMarkupLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3159:12: ( RULE_HORIZONTAL_WS )* RULE_VERTICAL_WS
+            	    // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3159:12: ( RULE_HORIZONTAL_WS )* RULE_VERTICAL_WS
             	    {
-            	    // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3159:12: ( RULE_HORIZONTAL_WS )*
+            	    // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3159:12: ( RULE_HORIZONTAL_WS )*
             	    loop5:
             	    do {
             	        int alt5=2;
@@ -745,7 +745,7 @@ public class InternalMarkupLexer extends Lexer {
 
             	        switch (alt5) {
             	    	case 1 :
-            	    	    // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3159:12: RULE_HORIZONTAL_WS
+            	    	    // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3159:12: RULE_HORIZONTAL_WS
             	    	    {
             	    	    mRULE_HORIZONTAL_WS(); 
 
@@ -787,10 +787,10 @@ public class InternalMarkupLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3161:9: ( ( RULE_HORIZONTAL_WS )+ )
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3161:11: ( RULE_HORIZONTAL_WS )+
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3161:9: ( ( RULE_HORIZONTAL_WS )+ )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3161:11: ( RULE_HORIZONTAL_WS )+
             {
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3161:11: ( RULE_HORIZONTAL_WS )+
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3161:11: ( RULE_HORIZONTAL_WS )+
             int cnt7=0;
             loop7:
             do {
@@ -804,7 +804,7 @@ public class InternalMarkupLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3161:11: RULE_HORIZONTAL_WS
+            	    // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3161:11: RULE_HORIZONTAL_WS
             	    {
             	    mRULE_HORIZONTAL_WS(); 
 
@@ -836,8 +836,8 @@ public class InternalMarkupLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3163:16: ( . )
-            // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3163:18: .
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3163:16: ( . )
+            // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3163:18: .
             {
             matchAny(); 
 
@@ -852,159 +852,159 @@ public class InternalMarkupLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:8: ( T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | RULE_INT | RULE_STRING | RULE_ID | RULE_WORD | RULE_NL | RULE_WS | RULE_ANY_OTHER )
+        // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:8: ( T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | RULE_INT | RULE_STRING | RULE_ID | RULE_WORD | RULE_NL | RULE_WS | RULE_ANY_OTHER )
         int alt8=22;
         alt8 = dfa8.predict(input);
         switch (alt8) {
             case 1 :
-                // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:10: T__16
+                // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:10: T__16
                 {
                 mT__16(); 
 
                 }
                 break;
             case 2 :
-                // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:16: T__17
+                // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:16: T__17
                 {
                 mT__17(); 
 
                 }
                 break;
             case 3 :
-                // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:22: T__18
+                // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:22: T__18
                 {
                 mT__18(); 
 
                 }
                 break;
             case 4 :
-                // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:28: T__19
+                // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:28: T__19
                 {
                 mT__19(); 
 
                 }
                 break;
             case 5 :
-                // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:34: T__20
+                // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:34: T__20
                 {
                 mT__20(); 
 
                 }
                 break;
             case 6 :
-                // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:40: T__21
+                // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:40: T__21
                 {
                 mT__21(); 
 
                 }
                 break;
             case 7 :
-                // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:46: T__22
+                // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:46: T__22
                 {
                 mT__22(); 
 
                 }
                 break;
             case 8 :
-                // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:52: T__23
+                // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:52: T__23
                 {
                 mT__23(); 
 
                 }
                 break;
             case 9 :
-                // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:58: T__24
+                // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:58: T__24
                 {
                 mT__24(); 
 
                 }
                 break;
             case 10 :
-                // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:64: T__25
+                // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:64: T__25
                 {
                 mT__25(); 
 
                 }
                 break;
             case 11 :
-                // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:70: T__26
+                // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:70: T__26
                 {
                 mT__26(); 
 
                 }
                 break;
             case 12 :
-                // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:76: T__27
+                // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:76: T__27
                 {
                 mT__27(); 
 
                 }
                 break;
             case 13 :
-                // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:82: T__28
+                // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:82: T__28
                 {
                 mT__28(); 
 
                 }
                 break;
             case 14 :
-                // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:88: T__29
+                // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:88: T__29
                 {
                 mT__29(); 
 
                 }
                 break;
             case 15 :
-                // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:94: T__30
+                // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:94: T__30
                 {
                 mT__30(); 
 
                 }
                 break;
             case 16 :
-                // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:100: RULE_INT
+                // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:100: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
             case 17 :
-                // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:109: RULE_STRING
+                // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:109: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
             case 18 :
-                // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:121: RULE_ID
+                // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:121: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
             case 19 :
-                // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:129: RULE_WORD
+                // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:129: RULE_WORD
                 {
                 mRULE_WORD(); 
 
                 }
                 break;
             case 20 :
-                // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:139: RULE_NL
+                // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:139: RULE_NL
                 {
                 mRULE_NL(); 
 
                 }
                 break;
             case 21 :
-                // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:147: RULE_WS
+                // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:147: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
             case 22 :
-                // ../org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:155: RULE_ANY_OTHER
+                // ../../plugins/org.eclipse.ocl.xtext.markup.ui/src-gen/org/eclipse/ocl/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:1:155: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 

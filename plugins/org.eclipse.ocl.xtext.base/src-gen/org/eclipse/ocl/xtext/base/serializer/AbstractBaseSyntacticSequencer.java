@@ -1,9 +1,7 @@
 package org.eclipse.ocl.xtext.base.serializer;
 
 import com.google.inject.Inject;
-
 import java.util.List;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.xtext.base.services.BaseGrammarAccess;
 import org.eclipse.xtext.IGrammarAccess;

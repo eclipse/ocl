@@ -15,7 +15,7 @@ import org.eclipse.xtext.ui.editor.XtextEditor;
 
 public class OCLstdlibEditor extends XtextEditor
 {
-	public static final String EDITOR_ID = OCLstdlibActivator.ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_OCLSTDLIB_OCLSTDLIB;
+	public static final String EDITOR_ID = OCLstdlibActivator.ORG_ECLIPSE_OCL_XTEXT_OCLSTDLIB_OCLSTDLIB;
 
 	public OCLstdlibEditor() {
 		super();

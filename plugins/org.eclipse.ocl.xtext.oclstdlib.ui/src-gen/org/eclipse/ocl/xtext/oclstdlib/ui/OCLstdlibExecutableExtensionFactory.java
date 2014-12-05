@@ -23,7 +23,7 @@ public class OCLstdlibExecutableExtensionFactory extends AbstractGuiceAwareExecu
 	
 	@Override
 	protected Injector getInjector() {
-		return OCLstdlibActivator.getInstance().getInjector(OCLstdlibActivator.ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_OCLSTDLIB_OCLSTDLIB);
+		return OCLstdlibActivator.getInstance().getInjector(OCLstdlibActivator.ORG_ECLIPSE_OCL_XTEXT_OCLSTDLIB_OCLSTDLIB);
 	}
 	
 }

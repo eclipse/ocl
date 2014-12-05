@@ -291,7 +291,7 @@ public class CompletionProposalTests extends XtextTestCase
 	}
 
 	public void testEditor_OCLinEcore_Completions() throws Exception {
-		Injector injector = OCLinEcoreActivator.getInstance().getInjector(OCLinEcoreActivator.ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_OCLINECORE_OCLINECORE);
+		Injector injector = OCLinEcoreActivator.getInstance().getInjector(OCLinEcoreActivator.ORG_ECLIPSE_OCL_XTEXT_OCLINECORE_OCLINECORE);
 		doSetUp(OCLinEcoreUiModule.EDITOR_ID, injector, "completion.oclinecore", "package test : test = 'test' {}");
 		doTestEditor("package p : p = 'p' {$}",
 			new IReferenceCompletionProposal[]{abstractKeywordProposal, annotationTemplateProposal}, null);
@@ -303,7 +303,7 @@ public class CompletionProposalTests extends XtextTestCase
 	}
 
 	public void testEditor_OCLstdlib_Completions() throws Exception {
-		Injector injector = OCLstdlibActivator.getInstance().getInjector(OCLstdlibActivator.ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_OCLSTDLIB_OCLSTDLIB);
+		Injector injector = OCLstdlibActivator.getInstance().getInjector(OCLstdlibActivator.ORG_ECLIPSE_OCL_XTEXT_OCLSTDLIB_OCLSTDLIB);
 		doSetUp(OCLstdlibUiModule.EDITOR_ID, injector, "completion.oclstdlib",
 			"import 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib';\n" +
 			"library ocl : ocl = 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib' {\n" +

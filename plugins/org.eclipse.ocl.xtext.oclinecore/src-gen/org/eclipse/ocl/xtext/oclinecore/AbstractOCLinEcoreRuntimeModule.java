@@ -21,7 +21,7 @@ public abstract class AbstractOCLinEcoreRuntimeModule extends DefaultRuntimeModu
 
 	@Override
 	public void configure(Binder binder) {
-		properties = tryBindProperties(binder, "org/eclipse/ocl/examples/xtext/oclinecore/OCLinEcore.properties");
+		properties = tryBindProperties(binder, "org/eclipse/ocl/xtext/oclinecore/OCLinEcore.properties");
 		super.configure(binder);
 	}
 	

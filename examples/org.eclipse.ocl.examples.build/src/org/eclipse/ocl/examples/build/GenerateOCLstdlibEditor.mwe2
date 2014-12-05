@@ -21,7 +21,7 @@ import org.eclipse.xtext.ui.generator.*
 
 var oclstdlib.file.extensions = "oclstdlib"
 var oclstdlibProjectName = "org.eclipse.ocl.xtext.oclstdlib"
-var oclstdlibRuntimeProject = "../${oclstdlibProjectName}"
+var oclstdlibRuntimeProject = "../../plugins/${oclstdlibProjectName}"
 
 /**
  *	Generate the OCL Standard Library Editor.
@@ -53,7 +53,7 @@ Workflow {
 		mergeManifest = false
 
 		language = {
-			uri = "classpath:/org/eclipse/ocl/examples/xtext/oclstdlib/OCLstdlib.xtext"
+			uri = "classpath:/org/eclipse/ocl/xtext/oclstdlib/OCLstdlib.xtext"
 			fileExtensions = oclstdlib.file.extensions
 			
 			// Java API to access grammar elements (required by several other fragments)

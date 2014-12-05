@@ -23,7 +23,7 @@ public class OCLinEcoreExecutableExtensionFactory extends AbstractGuiceAwareExec
 	
 	@Override
 	protected Injector getInjector() {
-		return OCLinEcoreActivator.getInstance().getInjector(OCLinEcoreActivator.ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_OCLINECORE_OCLINECORE);
+		return OCLinEcoreActivator.getInstance().getInjector(OCLinEcoreActivator.ORG_ECLIPSE_OCL_XTEXT_OCLINECORE_OCLINECORE);
 	}
 	
 }

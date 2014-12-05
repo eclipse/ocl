@@ -23,7 +23,7 @@ public class MarkupExecutableExtensionFactory extends AbstractGuiceAwareExecutab
 	
 	@Override
 	protected Injector getInjector() {
-		return MarkupActivator.getInstance().getInjector(MarkupActivator.ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_MARKUP_MARKUP);
+		return MarkupActivator.getInstance().getInjector(MarkupActivator.ORG_ECLIPSE_OCL_XTEXT_MARKUP_MARKUP);
 	}
 	
 }

@@ -21,7 +21,7 @@ public abstract class AbstractMarkupRuntimeModule extends DefaultRuntimeModule {
 
 	@Override
 	public void configure(Binder binder) {
-		properties = tryBindProperties(binder, "org/eclipse/ocl/examples/xtext/markup/Markup.properties");
+		properties = tryBindProperties(binder, "org/eclipse/ocl/xtext/markup/Markup.properties");
 		super.configure(binder);
 	}
 	

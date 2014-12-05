@@ -23,7 +23,7 @@ public class BaseExecutableExtensionFactory extends AbstractGuiceAwareExecutable
 	
 	@Override
 	protected Injector getInjector() {
-		return BaseActivator.getInstance().getInjector(BaseActivator.ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_BASE_BASE);
+		return BaseActivator.getInstance().getInjector(BaseActivator.ORG_ECLIPSE_OCL_XTEXT_BASE_BASE);
 	}
 	
 }

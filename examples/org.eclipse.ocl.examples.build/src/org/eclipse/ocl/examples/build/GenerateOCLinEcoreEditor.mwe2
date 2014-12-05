@@ -21,7 +21,7 @@ import org.eclipse.xtext.ui.generator.*
 
 var oclInEcore.file.extensions = "oclinecore"
 var oclInEcoreProjectName = "org.eclipse.ocl.xtext.oclinecore"
-var oclInEcoreRuntimeProject = "../${oclInEcoreProjectName}"
+var oclInEcoreRuntimeProject = "../../plugins/${oclInEcoreProjectName}"
 
 /**
  *	Generate the OCLinEcore Editor.
@@ -50,7 +50,7 @@ Workflow {
 		mergeManifest = false
 
 		language = {
-			uri = "classpath:/org/eclipse/ocl/examples/xtext/oclinecore/OCLinEcore.xtext"
+			uri = "classpath:/org/eclipse/ocl/xtext/oclinecore/OCLinEcore.xtext"
 			fileExtensions = oclInEcore.file.extensions
 			
 			// Java API to access grammar elements (required by several other fragments)

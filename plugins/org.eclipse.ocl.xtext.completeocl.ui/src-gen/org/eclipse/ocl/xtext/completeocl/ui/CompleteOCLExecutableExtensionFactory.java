@@ -23,7 +23,7 @@ public class CompleteOCLExecutableExtensionFactory extends AbstractGuiceAwareExe
 	
 	@Override
 	protected Injector getInjector() {
-		return CompleteOCLActivator.getInstance().getInjector(CompleteOCLActivator.ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_COMPLETEOCL_COMPLETEOCL);
+		return CompleteOCLActivator.getInstance().getInjector(CompleteOCLActivator.ORG_ECLIPSE_OCL_XTEXT_COMPLETEOCL_COMPLETEOCL);
 	}
 	
 }

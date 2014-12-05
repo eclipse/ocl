@@ -21,7 +21,7 @@ public abstract class AbstractOCLstdlibRuntimeModule extends DefaultRuntimeModul
 
 	@Override
 	public void configure(Binder binder) {
-		properties = tryBindProperties(binder, "org/eclipse/ocl/examples/xtext/oclstdlib/OCLstdlib.properties");
+		properties = tryBindProperties(binder, "org/eclipse/ocl/xtext/oclstdlib/OCLstdlib.properties");
 		super.configure(binder);
 	}
 	

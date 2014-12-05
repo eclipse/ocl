@@ -11,6 +11,6 @@ public class CompleteOCLAntlrTokenFileProvider implements IAntlrTokenFileProvide
 	@Override
 	public InputStream getAntlrTokenFile() {
 		ClassLoader classLoader = getClass().getClassLoader();
-    	return classLoader.getResourceAsStream("org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.tokens");
+    	return classLoader.getResourceAsStream("org/eclipse/ocl/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.tokens");
 	}
 }

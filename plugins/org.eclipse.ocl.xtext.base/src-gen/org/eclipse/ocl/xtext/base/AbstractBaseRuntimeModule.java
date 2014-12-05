@@ -21,7 +21,7 @@ public abstract class AbstractBaseRuntimeModule extends DefaultRuntimeModule {
 
 	@Override
 	public void configure(Binder binder) {
-		properties = tryBindProperties(binder, "org/eclipse/ocl/examples/xtext/base/Base.properties");
+		properties = tryBindProperties(binder, "org/eclipse/ocl/xtext/base/Base.properties");
 		super.configure(binder);
 	}
 	

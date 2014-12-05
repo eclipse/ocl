@@ -23,7 +23,7 @@ public class EssentialOCLExecutableExtensionFactory extends AbstractGuiceAwareEx
 	
 	@Override
 	protected Injector getInjector() {
-		return EssentialOCLActivator.getInstance().getInjector(EssentialOCLActivator.ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_ESSENTIALOCL_ESSENTIALOCL);
+		return EssentialOCLActivator.getInstance().getInjector(EssentialOCLActivator.ORG_ECLIPSE_OCL_XTEXT_ESSENTIALOCL_ESSENTIALOCL);
 	}
 	
 }

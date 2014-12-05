@@ -21,7 +21,7 @@ public abstract class AbstractEssentialOCLRuntimeModule extends DefaultRuntimeMo
 
 	@Override
 	public void configure(Binder binder) {
-		properties = tryBindProperties(binder, "org/eclipse/ocl/examples/xtext/essentialocl/EssentialOCL.properties");
+		properties = tryBindProperties(binder, "org/eclipse/ocl/xtext/essentialocl/EssentialOCL.properties");
 		super.configure(binder);
 	}
 	

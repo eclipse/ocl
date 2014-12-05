@@ -23,7 +23,7 @@ import com.google.inject.Module;
  */
 public class CompleteOCLActivator extends AbstractUIPlugin {
 	
-	public static final String ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_COMPLETEOCL_COMPLETEOCL = "org.eclipse.ocl.xtext.completeocl.CompleteOCL";
+	public static final String ORG_ECLIPSE_OCL_XTEXT_COMPLETEOCL_COMPLETEOCL = "org.eclipse.ocl.xtext.completeocl.CompleteOCL";
 	
 	private static final Logger logger = Logger.getLogger(CompleteOCLActivator.class);
 	
@@ -73,7 +73,7 @@ public class CompleteOCLActivator extends AbstractUIPlugin {
 	}
 
 	protected Module getRuntimeModule(String grammar) {
-		if (ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_COMPLETEOCL_COMPLETEOCL.equals(grammar)) {
+		if (ORG_ECLIPSE_OCL_XTEXT_COMPLETEOCL_COMPLETEOCL.equals(grammar)) {
 			return new org.eclipse.ocl.xtext.completeocl.CompleteOCLRuntimeModule();
 		}
 		
@@ -81,7 +81,7 @@ public class CompleteOCLActivator extends AbstractUIPlugin {
 	}
 	
 	protected Module getUiModule(String grammar) {
-		if (ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_COMPLETEOCL_COMPLETEOCL.equals(grammar)) {
+		if (ORG_ECLIPSE_OCL_XTEXT_COMPLETEOCL_COMPLETEOCL.equals(grammar)) {
 			return new org.eclipse.ocl.xtext.completeocl.ui.CompleteOCLUiModule(this);
 		}
 		

@@ -11,6 +11,6 @@ public class OCLinEcoreAntlrTokenFileProvider implements IAntlrTokenFileProvider
 	@Override
 	public InputStream getAntlrTokenFile() {
 		ClassLoader classLoader = getClass().getClassLoader();
-    	return classLoader.getResourceAsStream("org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.tokens");
+    	return classLoader.getResourceAsStream("org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.tokens");
 	}
 }

@@ -23,7 +23,7 @@ import com.google.inject.Module;
  */
 public class MarkupActivator extends AbstractUIPlugin {
 	
-	public static final String ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_MARKUP_MARKUP = "org.eclipse.ocl.xtext.markup.Markup";
+	public static final String ORG_ECLIPSE_OCL_XTEXT_MARKUP_MARKUP = "org.eclipse.ocl.xtext.markup.Markup";
 	
 	private static final Logger logger = Logger.getLogger(MarkupActivator.class);
 	
@@ -73,7 +73,7 @@ public class MarkupActivator extends AbstractUIPlugin {
 	}
 
 	protected Module getRuntimeModule(String grammar) {
-		if (ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_MARKUP_MARKUP.equals(grammar)) {
+		if (ORG_ECLIPSE_OCL_XTEXT_MARKUP_MARKUP.equals(grammar)) {
 			return new org.eclipse.ocl.xtext.markup.MarkupRuntimeModule();
 		}
 		
@@ -81,7 +81,7 @@ public class MarkupActivator extends AbstractUIPlugin {
 	}
 	
 	protected Module getUiModule(String grammar) {
-		if (ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_MARKUP_MARKUP.equals(grammar)) {
+		if (ORG_ECLIPSE_OCL_XTEXT_MARKUP_MARKUP.equals(grammar)) {
 			return new org.eclipse.ocl.xtext.markup.ui.MarkupUiModule(this);
 		}
 		

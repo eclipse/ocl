@@ -23,7 +23,7 @@ import com.google.inject.Module;
  */
 public class EssentialOCLActivator extends AbstractUIPlugin {
 	
-	public static final String ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_ESSENTIALOCL_ESSENTIALOCL = "org.eclipse.ocl.xtext.essentialocl.EssentialOCL";
+	public static final String ORG_ECLIPSE_OCL_XTEXT_ESSENTIALOCL_ESSENTIALOCL = "org.eclipse.ocl.xtext.essentialocl.EssentialOCL";
 	
 	private static final Logger logger = Logger.getLogger(EssentialOCLActivator.class);
 	
@@ -73,7 +73,7 @@ public class EssentialOCLActivator extends AbstractUIPlugin {
 	}
 
 	protected Module getRuntimeModule(String grammar) {
-		if (ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_ESSENTIALOCL_ESSENTIALOCL.equals(grammar)) {
+		if (ORG_ECLIPSE_OCL_XTEXT_ESSENTIALOCL_ESSENTIALOCL.equals(grammar)) {
 			return new org.eclipse.ocl.xtext.essentialocl.EssentialOCLRuntimeModule();
 		}
 		
@@ -81,7 +81,7 @@ public class EssentialOCLActivator extends AbstractUIPlugin {
 	}
 	
 	protected Module getUiModule(String grammar) {
-		if (ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_ESSENTIALOCL_ESSENTIALOCL.equals(grammar)) {
+		if (ORG_ECLIPSE_OCL_XTEXT_ESSENTIALOCL_ESSENTIALOCL.equals(grammar)) {
 			return new org.eclipse.ocl.xtext.essentialocl.ui.EssentialOCLUiModule(this);
 		}
 		

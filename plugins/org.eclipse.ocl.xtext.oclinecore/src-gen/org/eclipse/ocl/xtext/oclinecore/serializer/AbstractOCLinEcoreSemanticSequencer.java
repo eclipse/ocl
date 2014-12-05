@@ -2,7 +2,6 @@ package org.eclipse.ocl.xtext.oclinecore.serializer;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.xtext.basecs.AnnotationCS;
 import org.eclipse.ocl.xtext.basecs.AttributeCS;
