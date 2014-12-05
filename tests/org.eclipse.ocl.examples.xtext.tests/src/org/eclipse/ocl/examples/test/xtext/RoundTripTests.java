@@ -48,13 +48,13 @@ import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.uml.AS2UML;
 import org.eclipse.ocl.examples.pivot.uml.UML2AS;
 import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS.MessageBinder;
-import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
-import org.eclipse.ocl.examples.xtext.completeocl.as2cs.CompleteOCLSplitter;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.OCLinEcoreCSPackage;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
+import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
+import org.eclipse.ocl.xtext.base.cs2as.CS2AS.MessageBinder;
+import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
+import org.eclipse.ocl.xtext.completeocl.as2cs.CompleteOCLSplitter;
+import org.eclipse.ocl.xtext.oclinecorecs.OCLinEcoreCSPackage;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UML402UMLExtendedMetaData;
 import org.eclipse.xtext.resource.XtextResource;
@@ -546,7 +546,7 @@ public class RoundTripTests extends XtextTestCase
 	}
 
 	public void testOCLinEcoreCSTRoundTrip() throws IOException, InterruptedException, ParserException {
-		URI uri = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.xtext.oclinecore/model/OCLinEcoreCS.ecore", true);
+		URI uri = URI.createPlatformResourceURI("/org.eclipse.ocl.xtext.oclinecore/model/OCLinEcoreCS.ecore", true);
 //		String stem = uri.trimFileExtension().lastSegment();
 		MetaModelManager metaModelManager = new MetaModelManager();
 		IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor("org.eclipse.emf.ecore");
@@ -562,7 +562,7 @@ public class RoundTripTests extends XtextTestCase
 
 //	public void testEssentialOCLCSTRoundTrip() throws IOException, InterruptedException {
 //		ProjectMap.getAdapter(resourceSet);
-//		URI uri = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.ecore", true);
+//		URI uri = URI.createPlatformResourceURI("/org.eclipse.ocl.xtext.essentialocl/model/EssentialOCLCST.ecore", true);
 //		doRoundTripFromEcore(uri, "EssentialOCLCST");
 //	}
 

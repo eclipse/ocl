@@ -17,7 +17,7 @@ import org.eclipse.ocl.examples.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.xtext.base.services.BaseLinkingService;
+import org.eclipse.ocl.xtext.base.services.BaseLinkingService;
 
 /**
  * Tests for OclAny operations.

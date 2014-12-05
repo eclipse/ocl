@@ -21,7 +21,7 @@ The grammar used by the Xtext editors may be found at:
 
 /src/org/eclipse/ocl/examples/xtext/essentialocl/EssentialOCL.xtext
 
-in the org.eclipse.ocl.examples.xtext.essentialocl plugin.
+in the org.eclipse.ocl.xtext.essentialocl plugin.
 
 h4. Grammar Approach
 

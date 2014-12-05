@@ -2,7 +2,7 @@
 <templates>
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.AnnotationCS" 
+	context="org.eclipse.ocl.xtext.oclinecore.OCLinEcore.AnnotationCS" 
 	deleted="false" 
 	description="annotation declaration" 
 	enabled="true" 
@@ -11,7 +11,7 @@
 </template>
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.AttributeCS" 
+	context="org.eclipse.ocl.xtext.oclinecore.OCLinEcore.AttributeCS" 
 	deleted="false" description="attribute declaration" 
 	enabled="true"
 	name="Attribute"
@@ -19,7 +19,7 @@
 </template>
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.ClassCS" 
+	context="org.eclipse.ocl.xtext.oclinecore.OCLinEcore.ClassCS" 
 	deleted="false" 
 	description="abstract class declaration" 
 	enabled="true" 
@@ -30,7 +30,7 @@
 </template>
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.ClassCS" 
+	context="org.eclipse.ocl.xtext.oclinecore.OCLinEcore.ClassCS" 
 	deleted="false" 
 	description="class declaration" 
 	enabled="true" 
@@ -41,7 +41,7 @@
 </template>
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.DataTypeCS" 
+	context="org.eclipse.ocl.xtext.oclinecore.OCLinEcore.DataTypeCS" 
 	deleted="false" 
 	description="dataType declaration" 
 	enabled="true" 
@@ -50,7 +50,7 @@
 </template>
 <template 
 	autoinsert="true" 
-	context="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.DetailCS" 
+	context="org.eclipse.ocl.xtext.oclinecore.OCLinEcore.DetailCS" 
 	deleted="false" 
 	description="annotation detail declaration" 
 	enabled="true" 
@@ -58,7 +58,7 @@
 	id="DetailCS">${cursor}${key} '{$value}'</template>
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.DerivedConstraintCS" 
+	context="org.eclipse.ocl.xtext.oclinecore.OCLinEcore.DerivedConstraintCS" 
 	deleted="false" 
 	description="derived property constraint" 
 	enabled="true" 
@@ -67,7 +67,7 @@
 </template>
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.DocumentationCS" 
+	context="org.eclipse.ocl.xtext.oclinecore.OCLinEcore.DocumentationCS" 
 	deleted="false" 
 	description="documentation" 
 	enabled="true" 
@@ -76,7 +76,7 @@
 </template>
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.EnumerationCS" 
+	context="org.eclipse.ocl.xtext.oclinecore.OCLinEcore.EnumerationCS" 
 	deleted="false" 
 	description="enumeration declaration" 
 	enabled="true" 
@@ -86,7 +86,7 @@
 }
 <template 
 	autoinsert="true" 
-	context="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.EnumerationLiteralCS" 
+	context="org.eclipse.ocl.xtext.oclinecore.OCLinEcore.EnumerationLiteralCS" 
 	deleted="false" 
 	description="enumeration literal declaration" 
 	enabled="true" 
@@ -96,7 +96,7 @@
 </template>
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.ImportCS" 
+	context="org.eclipse.ocl.xtext.oclinecore.OCLinEcore.ImportCS" 
 	deleted="false" 
 	description="import declaration" 
 	enabled="true" 
@@ -105,7 +105,7 @@
 </template>
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.InvariantConstraintCS" 
+	context="org.eclipse.ocl.xtext.oclinecore.OCLinEcore.InvariantConstraintCS" 
 	deleted="false" 
 	description="invariant declaration" 
 	enabled="true" 
@@ -114,7 +114,7 @@
 </template>
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.LibraryCS" 
+	context="org.eclipse.ocl.xtext.oclinecore.OCLinEcore.LibraryCS" 
 	deleted="false" 
 	description="library declaration" 
 	enabled="true" 
@@ -123,7 +123,7 @@
 </template>
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.OperationCS" 
+	context="org.eclipse.ocl.xtext.oclinecore.OCLinEcore.OperationCS" 
 	deleted="false" 
 	description="operation declaration" 
 	enabled="true" 
@@ -135,7 +135,7 @@
 </template>
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.PackageCS" 
+	context="org.eclipse.ocl.xtext.oclinecore.OCLinEcore.PackageCS" 
 	deleted="false" 
 	description="package declaration" 
 	enabled="true" 
@@ -146,7 +146,7 @@
 </template>
 <template 
 	autoinsert="true" 
-	context="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.ParameterCS" 
+	context="org.eclipse.ocl.xtext.oclinecore.OCLinEcore.ParameterCS" 
 	deleted="false" 
 	description="parameter declaration" 
 	enabled="true" 
@@ -154,7 +154,7 @@
 	id="ParameterCS">${cursor}${param} : String</template>
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.ReferenceCS" 
+	context="org.eclipse.ocl.xtext.oclinecore.OCLinEcore.ReferenceCS" 
 	deleted="false" 
 	description="property declaration" 
 	enabled="true" 
@@ -163,7 +163,7 @@
 </template>
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.ReferenceCS" 
+	context="org.eclipse.ocl.xtext.oclinecore.OCLinEcore.ReferenceCS" 
 	deleted="false" 
 	description="bidirectional property declaration" 
 	enabled="true" 
@@ -172,7 +172,7 @@
 </template>
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.ReferenceCS" 
+	context="org.eclipse.ocl.xtext.oclinecore.OCLinEcore.ReferenceCS" 
 	deleted="false" 
 	description="derived property declaration" 
 	enabled="true" 
@@ -184,7 +184,7 @@
 </template>
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.PostconditionConstraintCS" 
+	context="org.eclipse.ocl.xtext.oclinecore.OCLinEcore.PostconditionConstraintCS" 
 	deleted="false" 
 	description="postcondition declaration" 
 	enabled="true" 
@@ -193,7 +193,7 @@
 </template>
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.PreconditionConstraintCS" 
+	context="org.eclipse.ocl.xtext.oclinecore.OCLinEcore.PreconditionConstraintCS" 
 	deleted="false" 
 	description="precondition declaration" 
 	enabled="true" 
@@ -202,7 +202,7 @@
 </template>
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL.IfExpCS" 
+	context="org.eclipse.ocl.xtext.essentialocl.EssentialOCL.IfExpCS" 
 	deleted="false" 
 	description="if then else expression" 
 	enabled="true" 
@@ -210,7 +210,7 @@
 	id="IfExpCS">if ${cursor}true then ${line_selection} else null endif</template>
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL.LetExpCS" 
+	context="org.eclipse.ocl.xtext.essentialocl.EssentialOCL.LetExpCS" 
 	deleted="false" 
 	description="let expression" 
 	enabled="true" 

@@ -25,7 +25,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.emf.validation.validity.export.ValidityExporterRegistry;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.standalone.StandaloneCommand.CommandToken;
-import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
+import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 
 /**
  * This class executes an OCL evaluation of a model with one or several OCL

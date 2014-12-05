@@ -12,7 +12,7 @@
       <!-- @generated OCLstdlibCS -->
       <package
             uri="http://www.eclipse.org/ocl/2015/OCLstdlibCS"
-            class="org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage"
+            class="org.eclipse.ocl.xtext.oclstdlibcs.OCLstdlibCSPackage"
             genModel="model/OCLstdlibCS.genmodel"/>
    </extension>
    <extension point="org.eclipse.team.core.fileTypes">

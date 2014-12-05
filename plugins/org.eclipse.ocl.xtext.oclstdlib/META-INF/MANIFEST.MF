@@ -11,18 +11,18 @@ Require-Bundle: org.eclipse.core.resources;bundle-version="[3.5.0,4.0.0)",
  org.eclipse.jdt.core;bundle-version="[3.5.0,4.0.0)",
  org.eclipse.ocl.xtext.essentialocl;bundle-version="[1.0.0,2.0.0)";visibility:=reexport
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: org.eclipse.ocl.examples.xtext.oclstdlib,
- org.eclipse.ocl.examples.xtext.oclstdlib.cs2as,
- org.eclipse.ocl.examples.xtext.oclstdlib.formatting,
- org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs,
- org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl,
- org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.util,
- org.eclipse.ocl.examples.xtext.oclstdlib.parser.antlr,
- org.eclipse.ocl.examples.xtext.oclstdlib.parser.antlr.internal;x-friends:="org.eclipse.ocl.xtext.oclstdlib.ui",
- org.eclipse.ocl.examples.xtext.oclstdlib.scoping,
- org.eclipse.ocl.examples.xtext.oclstdlib.serializer,
- org.eclipse.ocl.examples.xtext.oclstdlib.services,
- org.eclipse.ocl.examples.xtext.oclstdlib.utilities,
- org.eclipse.ocl.examples.xtext.oclstdlib.validation
+Export-Package: org.eclipse.ocl.xtext.oclstdlib,
+ org.eclipse.ocl.xtext.oclstdlib.cs2as,
+ org.eclipse.ocl.xtext.oclstdlib.formatting,
+ org.eclipse.ocl.xtext.oclstdlib.parser.antlr,
+ org.eclipse.ocl.xtext.oclstdlib.parser.antlr.internal;x-friends:="org.eclipse.ocl.xtext.oclstdlib.ui",
+ org.eclipse.ocl.xtext.oclstdlib.scoping,
+ org.eclipse.ocl.xtext.oclstdlib.serializer,
+ org.eclipse.ocl.xtext.oclstdlib.services,
+ org.eclipse.ocl.xtext.oclstdlib.utilities,
+ org.eclipse.ocl.xtext.oclstdlib.validation,
+ org.eclipse.ocl.xtext.oclstdlibcs,
+ org.eclipse.ocl.xtext.oclstdlibcs.impl,
+ org.eclipse.ocl.xtext.oclstdlibcs.util
 Import-Package: org.apache.log4j;version="[1.2.15,2.0.0)"
-Bundle-Activator: org.eclipse.ocl.examples.xtext.oclstdlib.utilities.OCLstdlibPlugin$Implementation
+Bundle-Activator: org.eclipse.ocl.xtext.oclstdlib.utilities.OCLstdlibPlugin$Implementation

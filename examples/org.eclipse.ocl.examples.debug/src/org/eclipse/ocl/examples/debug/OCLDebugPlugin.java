@@ -12,7 +12,7 @@ package org.eclipse.ocl.examples.debug;
 
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLASResourceFactory;
+import org.eclipse.ocl.xtext.completeocl.utilities.CompleteOCLASResourceFactory;
 import org.osgi.framework.BundleContext;
 
 public class OCLDebugPlugin extends Plugin

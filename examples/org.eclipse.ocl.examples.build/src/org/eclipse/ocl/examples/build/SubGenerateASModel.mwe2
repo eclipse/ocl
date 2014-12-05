@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet
 var ResourceSet resourceSet
 
 /**
- * The name of the project hosting the generated models; e.g. "org.eclipse.ocl.examples.xtext.essentialocl"
+ * The name of the project hosting the generated models; e.g. "org.eclipse.ocl.xtext.essentialocl"
  */
 var projectName
 
@@ -35,7 +35,7 @@ var modelName
 var projectPrefix
 
 /**
- * The name of the inherited project hosting the generated models; e.g. "org.eclipse.ocl.examples.xtext.essentialocl", "" for a base visitor.
+ * The name of the inherited project hosting the generated models; e.g. "org.eclipse.ocl.xtext.essentialocl", "" for a base visitor.
  */
 var superProjectName
 

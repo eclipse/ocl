@@ -14,7 +14,7 @@
 package org.eclipse.ocl.examples.xtext.console.xtfo;
 
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource;
+import org.eclipse.ocl.xtext.essentialocl.utilities.EssentialOCLCSResource;
 
 public class EmbeddedXtextResource extends EssentialOCLCSResource {
 

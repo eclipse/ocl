@@ -14,8 +14,8 @@ package org.eclipse.ocl.examples.debug.ui.pages;
 import org.eclipse.core.resources.IStorage;
 import org.eclipse.debug.core.model.ILineBreakpoint;
 import org.eclipse.ocl.examples.debug.vm.ui.pages.VMDebugModelPresentation;
-import org.eclipse.ocl.examples.xtext.completeocl.ui.CompleteOCLEditor;
-import org.eclipse.ocl.examples.xtext.oclinecore.ui.OCLinEcoreEditor;
+import org.eclipse.ocl.xtext.completeocl.ui.CompleteOCLEditor;
+import org.eclipse.ocl.xtext.oclinecore.ui.OCLinEcoreEditor;
 import org.eclipse.ui.IEditorInput;
 
 public class OCLDebugModelPresentation extends VMDebugModelPresentation

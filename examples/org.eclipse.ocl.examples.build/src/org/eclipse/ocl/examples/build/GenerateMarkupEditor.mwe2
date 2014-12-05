@@ -20,7 +20,7 @@ import org.eclipse.xtext.generator.*
 import org.eclipse.xtext.ui.generator.*
 
 var markup.file.extensions = "markupocl"
-var markupprojectName = "org.eclipse.ocl.examples.xtext.markup"
+var markupprojectName = "org.eclipse.ocl.xtext.markup"
 var markupruntimeProject = "../${markupprojectName}"
 
 /**
@@ -30,8 +30,8 @@ Workflow {
     bean = StandaloneSetup {
 		scanClassPath = true
 		platformUri = ".."
-		registerGeneratedEPackage = "org.eclipse.ocl.examples.xtext.markup.MarkupPackage"
-		registerGenModelFile = "platform:/resource/org.eclipse.ocl.examples.xtext.markup/model/Markup.genmodel"
+		registerGeneratedEPackage = "org.eclipse.ocl.xtext.markup.MarkupPackage"
+		registerGenModelFile = "platform:/resource/org.eclipse.ocl.xtext.markup/model/Markup.genmodel"
 	}
 	
 	component = DirectoryCleaner {

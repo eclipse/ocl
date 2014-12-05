@@ -34,10 +34,10 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.uml.UML2AS;
-import org.eclipse.ocl.examples.xtext.base.basecs.ImportCS;
-import org.eclipse.ocl.examples.xtext.base.basecs.RootPackageCS;
-import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
+import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.xtext.basecs.ImportCS;
+import org.eclipse.ocl.xtext.basecs.RootPackageCS;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.xtext.resource.XtextResource;
 
@@ -421,20 +421,20 @@ public class SerializeTests extends XtextTestCase
 	} */
 
 	public void testSerialize_BaseCST() throws Exception {
-		URI uri = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore", true);
+		URI uri = URI.createPlatformResourceURI("/org.eclipse.ocl.xtext.base/model/BaseCS.ecore", true);
 		@SuppressWarnings("null")@NonNull String stem = uri.trimFileExtension().lastSegment();
 		doSerialize(uri, stem, uri, null, false, true);		// FIXME URIs don't quite compare
 	}
 
 	public void testSerialize_EssentialOCLCST() throws Exception {
-		URI uri = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCS.ecore", true);
+		URI uri = URI.createPlatformResourceURI("/org.eclipse.ocl.xtext.essentialocl/model/EssentialOCLCS.ecore", true);
 		@SuppressWarnings("null")@NonNull String stem = uri.trimFileExtension().lastSegment();
 		Map<Object, Object> options = createLoadedEcoreOptions();
 		doSerialize(uri, stem, uri, options, false, true);		// FIXME URIs don't quite compare
 	}
 
 	public void testSerialize_OCLinEcoreCST() throws Exception {
-		URI uri = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.xtext.oclinecore/model/OCLinEcoreCS.ecore", true);
+		URI uri = URI.createPlatformResourceURI("/org.eclipse.ocl.xtext.oclinecore/model/OCLinEcoreCS.ecore", true);
 		@SuppressWarnings("null")@NonNull String stem = uri.trimFileExtension().lastSegment();
 		Map<Object, Object> options = createLoadedEcoreOptions();
 		doSerialize(uri, stem, uri, options, false, true);		// FIXME URIs don't quite compare

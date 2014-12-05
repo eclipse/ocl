@@ -1,0 +1,157 @@
+/*******************************************************************************
+ * Copyright (c) 2014 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *******************************************************************************/
+package org.eclipse.ocl.xtext.essentialoclcs.impl;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage;
+import org.eclipse.ocl.xtext.essentialoclcs.OperationCallExpCS;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Operation Call Exp CS</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.OperationCallExpCSImpl#getReferredOperation <em>Referred Operation</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @generated
+ */
+public abstract class OperationCallExpCSImpl extends CallExpCSImpl implements OperationCallExpCS
+{
+	/**
+	 * The cached value of the '{@link #getReferredOperation() <em>Referred Operation</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReferredOperation()
+	 * @generated
+	 * @ordered
+	 */
+	protected Operation referredOperation;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OperationCallExpCSImpl()
+	{
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass()
+	{
+		return EssentialOCLCSPackage.Literals.OPERATION_CALL_EXP_CS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Operation getReferredOperation()
+	{
+		return referredOperation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setReferredOperation(Operation newReferredOperation)
+	{
+		Operation oldReferredOperation = referredOperation;
+		referredOperation = newReferredOperation;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.OPERATION_CALL_EXP_CS__REFERRED_OPERATION, oldReferredOperation, referredOperation));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
+		switch (featureID)
+		{
+			case EssentialOCLCSPackage.OPERATION_CALL_EXP_CS__REFERRED_OPERATION:
+				return getReferredOperation();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue)
+	{
+		switch (featureID)
+		{
+			case EssentialOCLCSPackage.OPERATION_CALL_EXP_CS__REFERRED_OPERATION:
+				setReferredOperation((Operation)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID)
+	{
+		switch (featureID)
+		{
+			case EssentialOCLCSPackage.OPERATION_CALL_EXP_CS__REFERRED_OPERATION:
+				setReferredOperation((Operation)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID)
+	{
+		switch (featureID)
+		{
+			case EssentialOCLCSPackage.OPERATION_CALL_EXP_CS__REFERRED_OPERATION:
+				return referredOperation != null;
+		}
+		return super.eIsSet(featureID);
+	}
+
+} //OperationCallExpCSImpl

@@ -21,7 +21,7 @@ import org.eclipse.xtext.generator.*
 import org.eclipse.xtext.ui.generator.*
 
 var essentialOCL.file.extensions = "essentialocl"
-var essentialOCLprojectName = "org.eclipse.ocl.examples.xtext.essentialocl"
+var essentialOCLprojectName = "org.eclipse.ocl.xtext.essentialocl"
 var essentialOCLruntimeProject = "../${essentialOCLprojectName}"
 
 /**
@@ -31,8 +31,8 @@ Workflow {
     bean = StandaloneSetup {
 		scanClassPath = true
 		platformUri = ".."
-		registerGeneratedEPackage = "org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage"
-		registerGenModelFile = "platform:/resource/org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCS.genmodel"
+		registerGeneratedEPackage = "org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage"
+		registerGenModelFile = "platform:/resource/org.eclipse.ocl.xtext.essentialocl/model/EssentialOCLCS.genmodel"
 	}
 	
 	component = DirectoryCleaner {

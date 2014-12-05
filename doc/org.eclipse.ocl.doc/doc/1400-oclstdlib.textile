@@ -14,7 +14,7 @@ The grammar used by the Xtext editors may be found at:
 
 /src/org/eclipse/ocl/examples/xtext/oclstdlib/OCLstdlib.xtext
 
-in the org.eclipse.ocl.examples.xtext.oclstdlib plugin. The OCL Standard Library grammar extends the Essential OCL grammar.
+in the org.eclipse.ocl.xtext.oclstdlib plugin. The OCL Standard Library grammar extends the Essential OCL grammar.
 
 h4(#OCLstdlib-Library). OCL Standard Library Document
 

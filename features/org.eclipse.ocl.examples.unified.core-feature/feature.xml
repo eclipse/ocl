@@ -57,42 +57,42 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.ocl.examples.xtext.base"
+         id="org.eclipse.ocl.xtext.base"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.ocl.examples.xtext.completeocl"
+         id="org.eclipse.ocl.xtext.completeocl"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.ocl.examples.xtext.essentialocl"
+         id="org.eclipse.ocl.xtext.essentialocl"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.ocl.examples.xtext.markup"
+         id="org.eclipse.ocl.xtext.markup"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.ocl.examples.xtext.oclinecore"
+         id="org.eclipse.ocl.xtext.oclinecore"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.ocl.examples.xtext.oclstdlib"
+         id="org.eclipse.ocl.xtext.oclstdlib"
          download-size="0"
          install-size="0"
          version="0.0.0"

@@ -91,7 +91,7 @@
    </extension>
 
    <extension point="org.eclipse.emf.validation.constraintProviders"
-         id="org.eclipse.ocl.examples.xtext.completeocl.validation.provider">
+         id="org.eclipse.ocl.xtext.completeocl.validation.provider">
       <category id="org.eclipse.ocl.examples.pivot.validation.UMLProfile"
             name="UML Profiles">
          Constraints determined by analyzing UML Profiles

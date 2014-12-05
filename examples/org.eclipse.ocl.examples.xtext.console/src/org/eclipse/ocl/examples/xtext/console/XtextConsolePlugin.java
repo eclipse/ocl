@@ -13,8 +13,8 @@
 package org.eclipse.ocl.examples.xtext.console;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.xtext.essentialocl.ui.internal.EssentialOCLActivator;
-import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLPlugin;
+import org.eclipse.ocl.xtext.essentialocl.ui.internal.EssentialOCLActivator;
+import org.eclipse.ocl.xtext.essentialocl.utilities.EssentialOCLPlugin;
 
 import com.google.inject.Module;
 

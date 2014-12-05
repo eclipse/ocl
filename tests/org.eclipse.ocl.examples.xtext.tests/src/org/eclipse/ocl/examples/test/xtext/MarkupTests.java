@@ -24,16 +24,16 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.SemanticException;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.HTMLBuffer;
-import org.eclipse.ocl.examples.xtext.markup.Markup;
-import org.eclipse.ocl.examples.xtext.markup.MarkupElement;
-import org.eclipse.ocl.examples.xtext.markup.MarkupPackage;
-import org.eclipse.ocl.examples.xtext.markup.MarkupStandaloneSetup;
-import org.eclipse.ocl.examples.xtext.markup.MarkupToHTML;
-import org.eclipse.ocl.examples.xtext.markup.MarkupToString;
-import org.eclipse.ocl.examples.xtext.markup.MarkupToTree;
-import org.eclipse.ocl.examples.xtext.markup.MarkupUtils;
-import org.eclipse.ocl.examples.xtext.markup.NewLineElement;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
+import org.eclipse.ocl.xtext.markup.MarkupStandaloneSetup;
+import org.eclipse.ocl.xtext.markup.MarkupToHTML;
+import org.eclipse.ocl.xtext.markup.MarkupToString;
+import org.eclipse.ocl.xtext.markup.MarkupToTree;
+import org.eclipse.ocl.xtext.markup.MarkupUtils;
+import org.eclipse.ocl.xtext.markupcs.Markup;
+import org.eclipse.ocl.xtext.markupcs.MarkupElement;
+import org.eclipse.ocl.xtext.markupcs.MarkupPackage;
+import org.eclipse.ocl.xtext.markupcs.NewLineElement;
 
 public class MarkupTests extends XtextTestCase
 {	

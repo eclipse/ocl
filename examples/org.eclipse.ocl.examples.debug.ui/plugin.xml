@@ -4,12 +4,12 @@
              
     <extension point="org.eclipse.core.runtime.adapters">
         <factory class="org.eclipse.ocl.examples.debug.ui.actions.CompleteOCLRetargettableActionAdapterFactory"
-            adaptableType="org.eclipse.ocl.examples.xtext.completeocl.ui.CompleteOCLEditor">
+            adaptableType="org.eclipse.ocl.xtext.completeocl.ui.CompleteOCLEditor">
             	<adapter type="org.eclipse.debug.ui.actions.IToggleBreakpointsTarget"/>
             	<adapter type="org.eclipse.debug.ui.actions.IRunToLineTarget"/>
         </factory>    
         <factory class="org.eclipse.ocl.examples.debug.ui.actions.OCLinEcoreRetargettableActionAdapterFactory"
-            adaptableType="org.eclipse.ocl.examples.xtext.oclinecore.ui.OCLinEcoreEditor">
+            adaptableType="org.eclipse.ocl.xtext.oclinecore.ui.OCLinEcoreEditor">
             	<adapter type="org.eclipse.debug.ui.actions.IToggleBreakpointsTarget"/>
             	<adapter type="org.eclipse.debug.ui.actions.IRunToLineTarget"/>
         </factory>    
@@ -109,14 +109,14 @@
     
    <extension point="org.eclipse.ui.editorActions">
       <editorContribution id="org.eclipse.debug.ui.CompleteOCLBreakpointRulerActions"
-            targetID="org.eclipse.ocl.examples.xtext.completeocl.CompleteOCL">
+            targetID="org.eclipse.ocl.xtext.completeocl.CompleteOCL">
 		<action id="org.eclipse.ocl.examples.debug.ui.actions.CompleteOCLRulerToggleBreakpointAction"
 			label="%AddBreakpoint.label"
 			class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate"
 			actionID="RulerDoubleClick"/>
       </editorContribution>
       <editorContribution id="org.eclipse.debug.ui.OCLinEcoreBreakpointRulerActions"
-            targetID="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore">
+            targetID="org.eclipse.ocl.xtext.oclinecore.OCLinEcore">
 		<action id="org.eclipse.ocl.examples.debug.ui.actions.OCLinEcoreRulerToggleBreakpointAction"
 			label="%AddBreakpoint.label"
 			class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate"

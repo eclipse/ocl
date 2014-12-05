@@ -14,7 +14,7 @@ package org.eclipse.ocl.examples.debug.ui.actions;
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.debug.ui.actions.IRunToLineTarget;
 import org.eclipse.debug.ui.actions.IToggleBreakpointsTarget;
-import org.eclipse.ocl.examples.xtext.completeocl.ui.CompleteOCLEditor;
+import org.eclipse.ocl.xtext.completeocl.ui.CompleteOCLEditor;
 
 /**
  * Creates adapters for retargettable actions in debug platform.

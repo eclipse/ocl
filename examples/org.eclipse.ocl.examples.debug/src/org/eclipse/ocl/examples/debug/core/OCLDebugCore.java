@@ -19,7 +19,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.OCLDebugPlugin;
 import org.eclipse.ocl.examples.debug.vm.core.VMDebugCore;
 import org.eclipse.ocl.examples.debug.vm.utils.Trace;
-import org.eclipse.ocl.examples.xtext.essentialocl.as2cs.EssentialOCLLocationInFileProvider;
+import org.eclipse.ocl.xtext.essentialocl.as2cs.EssentialOCLLocationInFileProvider;
 
 public class OCLDebugCore extends VMDebugCore
 {

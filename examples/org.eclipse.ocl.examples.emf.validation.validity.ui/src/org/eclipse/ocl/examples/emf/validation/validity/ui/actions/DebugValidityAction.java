@@ -31,7 +31,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.ui.messages.ValidityUIMe
 import org.eclipse.ocl.examples.emf.validation.validity.ui.plugin.ValidityUIPlugin;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityView;
 import org.eclipse.ocl.examples.emf.validation.validity.utilities.ValidityUtils;
-//import org.eclipse.ocl.examples.xtext.essentialocl.ui.EssentialOCLEditor;
+//import org.eclipse.ocl.xtext.essentialocl.ui.EssentialOCLEditor;
 import org.eclipse.swt.widgets.Shell;
 
 /**

@@ -27,16 +27,16 @@ import org.eclipse.ocl.examples.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
-import org.eclipse.ocl.examples.xtext.base.as2cs.AS2CS;
-import org.eclipse.ocl.examples.xtext.base.cs2as.BaseCS2AS;
-import org.eclipse.ocl.examples.xtext.base.cs2as.CS2AS;
-import org.eclipse.ocl.examples.xtext.base.services.BaseLinkingService;
-import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2ASResourceAdapter;
-import org.eclipse.ocl.examples.xtext.oclinecore.as2cs.OCLinEcoreAS2CS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.cs2as.OCLstdlibCS2AS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.JavaClassScope;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
+import org.eclipse.ocl.xtext.base.as2cs.AS2CS;
+import org.eclipse.ocl.xtext.base.cs2as.BaseCS2AS;
+import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
+import org.eclipse.ocl.xtext.base.services.BaseLinkingService;
+import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
+import org.eclipse.ocl.xtext.oclinecore.as2cs.OCLinEcoreAS2CS;
+import org.eclipse.ocl.xtext.oclstdlib.cs2as.OCLstdlibCS2AS;
+import org.eclipse.ocl.xtext.oclstdlib.scoping.JavaClassScope;
 import org.eclipse.xtext.resource.impl.ListBasedDiagnosticConsumer;
 
 /**

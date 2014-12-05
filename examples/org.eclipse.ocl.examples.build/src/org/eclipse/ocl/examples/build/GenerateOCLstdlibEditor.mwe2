@@ -20,7 +20,7 @@ import org.eclipse.xtext.generator.*
 import org.eclipse.xtext.ui.generator.*
 
 var oclstdlib.file.extensions = "oclstdlib"
-var oclstdlibProjectName = "org.eclipse.ocl.examples.xtext.oclstdlib"
+var oclstdlibProjectName = "org.eclipse.ocl.xtext.oclstdlib"
 var oclstdlibRuntimeProject = "../${oclstdlibProjectName}"
 
 /**
@@ -30,11 +30,11 @@ Workflow {
     bean = StandaloneSetup {
 		scanClassPath = true
 		platformUri = ".."
-		registerGeneratedEPackage = "org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage"
-		registerGeneratedEPackage = "org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage"
-		registerGenModelFile = "platform:/resource/org.eclipse.ocl.examples.xtext.base/model/BaseCS.genmodel"
-		registerGenModelFile = "platform:/resource/org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCS.genmodel"
-		registerGenModelFile = "platform:/resource/org.eclipse.ocl.examples.xtext.oclstdlib/model/OCLstdlibCS.genmodel"
+		registerGeneratedEPackage = "org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage"
+		registerGeneratedEPackage = "org.eclipse.ocl.xtext.oclstdlibcs.OCLstdlibCSPackage"
+		registerGenModelFile = "platform:/resource/org.eclipse.ocl.xtext.base/model/BaseCS.genmodel"
+		registerGenModelFile = "platform:/resource/org.eclipse.ocl.xtext.essentialocl/model/EssentialOCLCS.genmodel"
+		registerGenModelFile = "platform:/resource/org.eclipse.ocl.xtext.oclstdlib/model/OCLstdlibCS.genmodel"
 	}
 	
 	component = DirectoryCleaner {

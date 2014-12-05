@@ -77,7 +77,7 @@ import org.eclipse.ocl.examples.pivot.manager.Orphanage;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLASResourceFactory;
+import org.eclipse.ocl.xtext.essentialocl.utilities.EssentialOCLASResourceFactory;
 
 /**
  * LookupCodeGenerator supports generation of the content of a JavaClassFile for the Lookup visitor.

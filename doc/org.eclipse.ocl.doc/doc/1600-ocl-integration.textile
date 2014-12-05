@@ -100,7 +100,7 @@ You may drag and drop one or more files from within Eclipse or outside Eclipse i
 
 h4. Browse Registered OCL Files...
 
-The org.eclipse.ocl.examples.xtext.completeocl.complete_ocl_registry may be used to register Complete OCL files against the nsURIs that they complement. These extension points may be defined in plugins or projects. In either case clicking *Browse Registered OCL Files...* presents a list of registered Complete OCL documents applicable to the context from which the dialog was invoked.
+The org.eclipse.ocl.xtext.completeocl.complete_ocl_registry may be used to register Complete OCL files against the nsURIs that they complement. These extension points may be defined in plugins or projects. In either case clicking *Browse Registered OCL Files...* presents a list of registered Complete OCL documents applicable to the context from which the dialog was invoked.
 
 h4. Browse File System...
 

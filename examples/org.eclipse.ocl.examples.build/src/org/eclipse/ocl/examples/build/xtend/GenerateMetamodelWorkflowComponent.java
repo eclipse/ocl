@@ -14,7 +14,7 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
-import org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlibStandaloneSetup;
+import org.eclipse.ocl.xtext.oclstdlib.OCLstdlibStandaloneSetup;
 
 public abstract class GenerateMetamodelWorkflowComponent extends AbstractWorkflowComponent
 {

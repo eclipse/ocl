@@ -33,7 +33,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.utils.Trace;
-import org.eclipse.ocl.examples.xtext.base.as2cs.BaseLocationInFileProvider;
+import org.eclipse.ocl.xtext.base.as2cs.BaseLocationInFileProvider;
 
 /**
  * The activator class controls the plug-in life cycle

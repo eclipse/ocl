@@ -20,8 +20,8 @@ import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
-import org.eclipse.ocl.examples.xtext.markup.Markup;
-import org.eclipse.ocl.examples.xtext.markup.MarkupUtils;
+import org.eclipse.ocl.xtext.markup.MarkupUtils;
+import org.eclipse.ocl.xtext.markupcs.Markup;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.parser.IParseResult;
 

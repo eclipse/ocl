@@ -14,7 +14,7 @@ package org.eclipse.ocl.examples.debug.ui.actions;
 import org.eclipse.debug.core.model.ISuspendResume;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ocl.examples.debug.vm.ui.actions.VMRunToLineAdapter;
-import org.eclipse.ocl.examples.xtext.completeocl.ui.CompleteOCLEditor;
+import org.eclipse.ocl.xtext.completeocl.ui.CompleteOCLEditor;
 import org.eclipse.ui.IWorkbenchPart;
 
 public class CompleteOCLRunToLineAdapter extends VMRunToLineAdapter

@@ -2,7 +2,7 @@
 <templates>
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL.IfExpCS" 
+	context="org.eclipse.ocl.xtext.essentialocl.EssentialOCL.IfExpCS" 
 	deleted="false" 
 	description="if then else expression" 
 	enabled="true" 
@@ -10,7 +10,7 @@
 	id="IfExpCS">if ${cursor}true then ${line_selection} else null endif</template>
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL.LetExpCS" 
+	context="org.eclipse.ocl.xtext.essentialocl.EssentialOCL.LetExpCS" 
 	deleted="false" 
 	description="let expression" 
 	enabled="true" 

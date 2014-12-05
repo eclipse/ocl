@@ -1,0 +1,144 @@
+/*******************************************************************************
+ * Copyright (c) 2010 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *******************************************************************************/
+grammar org.eclipse.ocl.xtext.completeocl.CompleteOCL
+with org.eclipse.ocl.xtext.essentialocl.EssentialOCL
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+import "http://www.eclipse.org/ocl/2015/BaseCS" as base
+import "http://www.eclipse.org/ocl/2015/EssentialOCLCS" as essentialocl
+import "http://www.eclipse.org/ocl/3.1.0/Pivot" as pivot
+import "http://www.eclipse.org/ocl/2015/CompleteOCLCS"
+//generate completeOCL "http://www.eclipse.org/ocl/examples/xtext/completeocl/CompleteOCL"
+CompleteOCLDocumentCS returns CompleteOCLDocumentCS:
+	(ownedImports+=ImportCS | ownedIncludes+=IncludeCS | ownedLibraries+=LibraryCS)*
+	(ownedPackages+=PackageDeclarationCS | ownedContexts+=ContextDeclCS)*;
+
+terminal UNQUOTED_STRING:	// Never forward parsed; just provides a placeholder
+	'£$%^£$%^'				//  for reverse serialisation of embedded OCL 
+;
+
+CompleteOCLNavigationOperatorName:
+	'^' | '^^';
+
+ClassifierContextDeclCS returns ClassifierContextDeclCS:
+	'context' (ownedSignature=TemplateSignatureCS)? (selfName=UnrestrictedName)?
+	ownedPathName=PathNameCS	
+	(('inv' ownedInvariants+=ConstraintCS)
+	| ownedDefinitions+=DefCS
+	)+;
+
+ConstraintCS returns base::ConstraintCS:
+	(name=UnrestrictedName ('(' ownedMessageSpecification=SpecificationCS ')')?)? ':' ownedSpecification=SpecificationCS;
+
+ContextDeclCS returns ContextDeclCS:
+	PropertyContextDeclCS
+	| ClassifierContextDeclCS
+	| OperationContextDeclCS;
+
+DefCS returns DefCS:
+	DefOperationCS|DefPropertyCS;
+
+DefOperationCS returns DefOperationCS:
+	(isStatic?='static')? 'def' UnrestrictedName? ':' (ownedSignature=TemplateSignatureCS)?
+		name=UnrestrictedName '(' (ownedParameters+=DefParameterCS (',' ownedParameters+=DefParameterCS)*)? ')' ':' (ownedType=TypeExpCS)?
+		 '=' ownedSpecification=SpecificationCS;
+
+DefParameterCS returns base::ParameterCS:
+	name=UnrestrictedName ':' ownedType=TypeExpCS;
+
+DefPropertyCS returns DefPropertyCS:
+	(isStatic?='static')? 'def' UnrestrictedName? ':' name=UnrestrictedName ':' ownedType=TypeExpCS
+		'=' ownedSpecification=SpecificationCS;
+
+ImportCS returns base::ImportCS:
+	'import' (name=Identifier ':')? ownedPathName=URIPathNameCS (isAll?='::*')?;
+
+IncludeCS returns IncludeCS:
+	'include' referredNamespace=[pivot::Namespace|URI];
+
+LibraryCS returns base::LibraryCS:
+	'library' referredPackage=[pivot::Package|URI];
+
+OperationContextDeclCS returns OperationContextDeclCS:
+	'context' (ownedSignature=TemplateSignatureCS)? ownedPathName=PathNameCS
+	'(' (ownedParameters+=ParameterCS (',' ownedParameters+=ParameterCS)*)? ')' ':' (ownedType=TypeExpCS)?
+	(('pre' ownedPreconditions+=ConstraintCS)
+	| ('post' ownedPostconditions+=ConstraintCS)
+	| ('body' UnrestrictedName? ':' ownedBodies+=SpecificationCS)
+	)*;
+
+PackageDeclarationCS returns PackageDeclarationCS:
+	'package' ownedPathName=PathNameCS ('inv' ownedInvariants+=ConstraintCS)* (ownedContexts+=ContextDeclCS)* 'endpackage';
+
+ParameterCS returns base::ParameterCS:
+	(name=UnrestrictedName ':')? ownedType=TypeExpCS;
+
+PropertyContextDeclCS returns PropertyContextDeclCS:
+	'context' ownedPathName=PathNameCS ':' (ownedType=TypeExpCS)?
+	(('derive' ownedDerivedInvariants+=ConstraintCS)
+	| ('init' ':' ownedDefaultExpressions+=SpecificationCS)
+	)*;
+
+SpecificationCS returns essentialocl::ExpSpecificationCS:
+	ownedExpression=ExpCS | exprString=UNQUOTED_STRING;
+
+//---------------------------------------------------------------------------------
+//	Base overrides
+//---------------------------------------------------------------------------------
+TemplateSignatureCS returns base::TemplateSignatureCS:
+	('(' ownedParameters+=TypeParameterCS (',' ownedParameters+=TypeParameterCS)* ')')
+|	('<' ownedParameters+=TypeParameterCS (',' ownedParameters+=TypeParameterCS)* '>')
+;
+
+TypedRefCS returns base::TypedRefCS:
+	TypeLiteralCS | TypedTypeRefCS
+;
+
+UnrestrictedName returns ecore::EString:
+	EssentialOCLUnrestrictedName
+	//| 'body'
+	//| 'context'
+	//| 'def'
+	//| 'derive'
+	//|	'endpackage'
+	| 'import'
+	| 'include'
+	//| 'init'
+	//| 'inv'
+	| 'library'
+	//|	'package'
+	//|	'post'
+	//|	'pre'
+	//|	'static'
+;
+
+//---------------------------------------------------------------------------------
+//	EssentialOCL overrides
+//---------------------------------------------------------------------------------
+NavigatingArgExpCS returns essentialocl::ExpCS:
+	({OCLMessageArgCS} '?')
+	| ExpCS
+;
+
+NavigationOperatorName:
+	EssentialOCLNavigationOperatorName | CompleteOCLNavigationOperatorName;
+
+PrimitiveTypeIdentifier:
+	'Boolean'
+	| 'Integer'
+	| 'Real'
+	| 'String'
+	| 'UnlimitedNatural'
+	| 'OclAny'
+	| 'OclInvalid'
+	| 'OclMessage'
+	| 'OclState'
+	| 'OclVoid';

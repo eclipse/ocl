@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.ocl.examples.xtext.oclstdlib/emf-gen"
-    editDirectory="/org.eclipse.ocl.examples.xtext.oclstdlib.edit/emf-gen" editorDirectory="/org.eclipse.ocl.examples.xtext.oclstdlib.editor/emf-gen"
-    modelPluginID="org.eclipse.ocl.examples.xtext.oclstdlib" forceOverwrite="true"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.ocl.xtext.oclstdlib/emf-gen"
+    editDirectory="/org.eclipse.ocl.xtext.oclstdlib.edit/emf-gen" editorDirectory="/org.eclipse.ocl.xtext.oclstdlib.editor/emf-gen"
+    modelPluginID="org.eclipse.ocl.xtext.oclstdlib" forceOverwrite="true"
     modelName="OCLstdlibCS" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    codeFormatting="true" testsDirectory="/org.eclipse.ocl.examples.xtext.oclstdlib.tests/emf-gen"
+    codeFormatting="true" testsDirectory="/org.eclipse.ocl.xtext.oclstdlib.tests/emf-gen"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
-    editPluginID="org.eclipse.ocl.examples.xtext.oclstdlib.edit" editorPluginID="org.eclipse.ocl.examples.xtext.oclstdlib.editor"
-    runtimeVersion="2.7" usedGenPackages="../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.genmodel#//basecs ../../org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCS.genmodel#//essentialoclcs ../../org.eclipse.ocl.examples.pivot/model/Pivot.merged.genmodel#//pivot ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+    editPluginID="org.eclipse.ocl.xtext.oclstdlib.edit" editorPluginID="org.eclipse.ocl.xtext.oclstdlib.editor"
+    runtimeVersion="2.7" usedGenPackages="../../org.eclipse.ocl.xtext.base/model/BaseCS.genmodel#//basecs ../../org.eclipse.ocl.xtext.essentialocl/model/EssentialOCLCS.genmodel#//essentialoclcs ../../org.eclipse.ocl.examples.pivot/model/Pivot.merged.genmodel#//pivot ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
   <genAnnotations source="http://www.eclipse.org/OCL/GenModel">
     <details key="Use Null Annotations" value="true"/>
   </genAnnotations>
   <genAnnotations source="http://www.eclipse.org/OCL/GenModel/ToString"/>
   <genAnnotations source="http://www.eclipse.org/OCL/GenModel/Visitor">
-    <details key="Root Visitor Class" value="org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor"/>
-    <details key="Derived Visitor Class" value="org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.util.OCLstdlibCSVisitor"/>
+    <details key="Root Visitor Class" value="org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor"/>
+    <details key="Derived Visitor Class" value="org.eclipse.ocl.xtext.oclstdlibcs.util.OCLstdlibCSVisitor"/>
   </genAnnotations>
   <foreignModel>OCLstdlibCS.ecore</foreignModel>
-  <genPackages prefix="OCLstdlibCS" basePackage="org.eclipse.ocl.examples.xtext.oclstdlib"
+  <genPackages prefix="OCLstdlibCS" basePackage="org.eclipse.ocl.xtext.oclstdlib"
       disposableProviderFactory="true" ecorePackage="OCLstdlibCS.ecore#/">
     <genClasses ecoreClass="OCLstdlibCS.ecore#//JavaClassCS"/>
     <genClasses image="false" ecoreClass="OCLstdlibCS.ecore#//JavaImplementationCS">

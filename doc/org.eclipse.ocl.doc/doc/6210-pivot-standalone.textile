@@ -10,9 +10,9 @@ org.eclipse.ocl.examples.pivot.OCL.initialize(resourceSet);
 org.eclipse.ocl.examples.pivot.uml.UML2AS.initialize(resourceSet);
 org.eclipse.ocl.examples.pivot.model.OCLstdlib.install();
 org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain.initialize(resourceSet);
-org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup.doSetup();
-org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcoreStandaloneSetup.doSetup();
-org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlibStandaloneSetup.doSetup();
+org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup.doSetup();
+org.eclipse.ocl.xtext.oclinecore.OCLinEcoreStandaloneSetup.doSetup();
+org.eclipse.ocl.xtext.oclstdlib.OCLstdlibStandaloneSetup.doSetup();
 org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.getAdapter(resourceSet);
 
 p. 
@@ -62,10 +62,10 @@ If you want to be able to convert any textual form of OCL to its internal pivot 
 Each of the above ensures that everything that it requires is installed. The various set ups can be found in one of the following packages:
 
 bc.. 
-org.eclipse.ocl.examples.xtext.completeocl.
-org.eclipse.ocl.examples.xtext.essentialocl.
-org.eclipse.ocl.examples.xtext.oclinecore.
-org.eclipse.ocl.examples.xtext.oclstdlib.
+org.eclipse.ocl.xtext.completeocl.
+org.eclipse.ocl.xtext.essentialocl.
+org.eclipse.ocl.xtext.oclinecore.
+org.eclipse.ocl.xtext.oclstdlib.
 p. 
 
 h3. platform:/plugin and platform:/resource URIs
@@ -94,11 +94,11 @@ org.eclipse.ocl.common
     org.eclipse.ocl.examples.domain
       org.eclipse.ocl.examples.library
         org.eclipse.ocl.examples.pivot
-          org.eclipse.ocl.examples.xtext.base
-            org.eclipse.ocl.examples.xtext.essentialocl
-              org.eclipse.ocl.examples.xtext.completeocl
-              org.eclipse.ocl.examples.xtext.oclinecore
-              org.eclipse.ocl.examples.xtext.oclstdlib
+          org.eclipse.ocl.xtext.base
+            org.eclipse.ocl.xtext.essentialocl
+              org.eclipse.ocl.xtext.completeocl
+              org.eclipse.ocl.xtext.oclinecore
+              org.eclipse.ocl.xtext.oclstdlib
 p. 
 
 Additionally the UI requires
@@ -107,11 +107,11 @@ bc..
 org.eclipse.ocl.common.ui
   org.eclipse.ocl.examples.markup
     org.eclipse.ocl.examples.markup.ui
-      org.eclipse.ocl.examples.xtext.essentialocl.ui
-        org.eclipse.ocl.examples.xtext.completeocl.ui
-        org.eclipse.ocl.examples.xtext.oclinecore.ui
-        org.eclipse.ocl.examples.xtext.oclstdlib.ui
-        org.eclipse.ocl.examples.xtext.console
+      org.eclipse.ocl.xtext.essentialocl.ui
+        org.eclipse.ocl.xtext.completeocl.ui
+        org.eclipse.ocl.xtext.oclinecore.ui
+        org.eclipse.ocl.xtext.oclstdlib.ui
+        org.eclipse.ocl.examples.console
 p. 
 
 You may also need the Xtext, EMF, MWE, Orbit plugins and their dependencies

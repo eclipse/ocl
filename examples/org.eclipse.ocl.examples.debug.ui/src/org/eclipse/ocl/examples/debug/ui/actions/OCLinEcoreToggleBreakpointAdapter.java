@@ -14,7 +14,7 @@ package org.eclipse.ocl.examples.debug.ui.actions;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ocl.examples.debug.vm.ui.actions.VMToggleBreakpointAdapter;
-import org.eclipse.ocl.examples.xtext.oclinecore.ui.OCLinEcoreEditor;
+import org.eclipse.ocl.xtext.oclinecore.ui.OCLinEcoreEditor;
 import org.eclipse.ui.IWorkbenchPart;
 
 public class OCLinEcoreToggleBreakpointAdapter extends VMToggleBreakpointAdapter

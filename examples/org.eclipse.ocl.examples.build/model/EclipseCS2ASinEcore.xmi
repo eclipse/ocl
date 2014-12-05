@@ -159,7 +159,7 @@
       </createProperties>
     </createTypes>
     <createTypes
-        newName="VisitableCS" newInstanceTypeName="org.eclipse.ocl.examples.xtext.base.basecs.util.VisitableCS">
+        newName="VisitableCS" newInstanceTypeName="org.eclipse.ocl.xtext.basecs.util.VisitableCS">
       <oldTypes
           xsi:type="uml:Class"
           href="../model-gen/BaseCS.uml#basecs-VisitableCS"/>

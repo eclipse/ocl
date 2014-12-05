@@ -1,0 +1,684 @@
+/*******************************************************************************
+ * Copyright (c) 2010, 2014 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   E.D.Willink - initial API and implementation
+ * 	 E.D.Willink (Obeo) - Bug 416287 - tuple-valued constraints
+ *******************************************************************************/
+package org.eclipse.ocl.xtext.essentialocl.as2cs;
+
+import java.util.List;
+
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.ids.IdManager;
+import org.eclipse.ocl.examples.domain.ids.TuplePartId;
+import org.eclipse.ocl.examples.domain.ids.TupleTypeId;
+import org.eclipse.ocl.examples.domain.ids.TypeId;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
+import org.eclipse.ocl.examples.pivot.CallExp;
+import org.eclipse.ocl.examples.pivot.CollectionItem;
+import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
+import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
+import org.eclipse.ocl.examples.pivot.CollectionRange;
+import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.ConstructorExp;
+import org.eclipse.ocl.examples.pivot.ConstructorPart;
+import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
+import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.IfExp;
+import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
+import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
+import org.eclipse.ocl.examples.pivot.IterateExp;
+import org.eclipse.ocl.examples.pivot.IteratorExp;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
+import org.eclipse.ocl.examples.pivot.LetExp;
+import org.eclipse.ocl.examples.pivot.MessageExp;
+import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.Namespace;
+import org.eclipse.ocl.examples.pivot.NullLiteralExp;
+import org.eclipse.ocl.examples.pivot.OCLExpression;
+import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
+import org.eclipse.ocl.examples.pivot.PivotConstants;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.PropertyCallExp;
+import org.eclipse.ocl.examples.pivot.RealLiteralExp;
+import org.eclipse.ocl.examples.pivot.StateExp;
+import org.eclipse.ocl.examples.pivot.StringLiteralExp;
+import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
+import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypeExp;
+import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.UMLReflection;
+import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
+import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.VariableDeclaration;
+import org.eclipse.ocl.examples.pivot.VariableExp;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.xtext.base.as2cs.AS2CSConversion;
+import org.eclipse.ocl.xtext.base.as2cs.BaseDeclarationVisitor;
+import org.eclipse.ocl.xtext.basecs.BaseCSFactory;
+import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
+import org.eclipse.ocl.xtext.basecs.ConstraintCS;
+import org.eclipse.ocl.xtext.basecs.ElementCS;
+import org.eclipse.ocl.xtext.basecs.PathElementCS;
+import org.eclipse.ocl.xtext.basecs.PathNameCS;
+import org.eclipse.ocl.xtext.basecs.TypedRefCS;
+import org.eclipse.ocl.xtext.essentialoclcs.BooleanLiteralExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralPartCS;
+import org.eclipse.ocl.xtext.essentialoclcs.CollectionTypeCS;
+import org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS;
+import org.eclipse.ocl.xtext.essentialoclcs.CurlyBracketedClauseCS;
+import org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSFactory;
+import org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage;
+import org.eclipse.ocl.xtext.essentialoclcs.ExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.ExpSpecificationCS;
+import org.eclipse.ocl.xtext.essentialoclcs.IfExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.InfixExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.InvalidLiteralExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.LetExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.LetVariableCS;
+import org.eclipse.ocl.xtext.essentialoclcs.NameExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.NavigatingArgCS;
+import org.eclipse.ocl.xtext.essentialoclcs.NestedExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.NullLiteralExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.NumberLiteralExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.PrefixExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.RoundBracketedClauseCS;
+import org.eclipse.ocl.xtext.essentialoclcs.StringLiteralExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.TupleLiteralExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.TupleLiteralPartCS;
+
+public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
+{
+	public static final @NonNull TuplePartId TUPLE_MESSAGE_STATUS_0 = IdManager.getTuplePartId(0, PivotConstants.MESSAGE_PART_NAME, TypeId.STRING);
+	public static final @NonNull TuplePartId TUPLE_MESSAGE_STATUS_1 = IdManager.getTuplePartId(1, PivotConstants.STATUS_PART_NAME, TypeId.BOOLEAN);
+	public static final @NonNull TupleTypeId TUPLE_MESSAGE_STATUS = IdManager.getTupleTypeId("Tuple", TUPLE_MESSAGE_STATUS_0, TUPLE_MESSAGE_STATUS_1);
+
+	public EssentialOCLDeclarationVisitor(@NonNull AS2CSConversion context) {
+		super(context);
+	}	
+
+	protected ExpCS createExpCS(OCLExpression oclExpression) {
+		return context.visitDeclaration(ExpCS.class, oclExpression);
+	}
+
+	protected @NonNull InfixExpCS createInfixExpCS(ExpCS csSource, String operationName, ExpCS csArgument) {
+		InfixExpCS csNew = EssentialOCLCSFactory.eINSTANCE.createInfixExpCS();
+		csNew.setName(operationName);
+		csNew.setOwnedRight(csArgument);
+		if (csSource instanceof InfixExpCS) {		// Must add additional InfixExpCS to transitive right.
+			InfixExpCS csRoot = (InfixExpCS)csSource;
+			InfixExpCS csParent = csRoot;
+			ExpCS csRight;
+			while ((csRight = csParent.getOwnedRight()) instanceof InfixExpCS) {
+				csParent = (InfixExpCS)csRight;
+			}
+			csParent.setOwnedRight(null);				// Bypass child stealing detector
+			csNew.setOwnedLeft(csRight);
+			csParent.setOwnedRight(csNew);
+			return csRoot;
+		}
+		else {
+			csNew.setOwnedLeft(csSource);
+			return csNew;
+		}
+	}
+
+	protected @NonNull NameExpCS createNameExpCS(NamedElement asNamedElement) {
+		NameExpCS csNameExp = EssentialOCLCSFactory.eINSTANCE.createNameExpCS();
+		PathNameCS csPathName = createPathNameCS(asNamedElement);
+		csNameExp.setOwnedPathName(csPathName);
+		return csNameExp;
+	}
+
+	protected @NonNull NavigatingArgCS createNavigatingArgCS(@Nullable String prefix, /*@NonNull*/ OCLExpression csExp) {
+		NavigatingArgCS csNavigatingArg = EssentialOCLCSFactory.eINSTANCE.createNavigatingArgCS();
+		csNavigatingArg.setPrefix(prefix);
+		csNavigatingArg.setOwnedNameExpression(createExpCS(csExp));
+		return csNavigatingArg;
+	}
+
+	protected NavigatingArgCS createNavigatingArgCS(@Nullable String prefix, /*@NonNull*/ NamedElement asNamedElement, @Nullable TypedElement asTypedElement, @Nullable OCLExpression csInit) {
+		NavigatingArgCS csNavigatingArg = EssentialOCLCSFactory.eINSTANCE.createNavigatingArgCS();
+		csNavigatingArg.setPrefix(prefix);
+		csNavigatingArg.setOwnedNameExpression(createNameExpCS(asNamedElement));
+		if (asTypedElement != null) {
+			csNavigatingArg.setOwnedType(createTypeRefCS(asTypedElement.getType()));
+		}
+		if (csInit != null) {
+			csNavigatingArg.setOwnedInitExpression(createExpCS(csInit));
+		}
+		return csNavigatingArg;
+	}
+
+	protected @NonNull ExpCS createNavigationOperatorCS(@Nullable OCLExpression asSource, @NonNull ExpCS csArgument, boolean isConverted) {
+		if (asSource == null) {
+			return csArgument;
+		}
+		if (asSource instanceof VariableExp) {
+			VariableDeclaration asVariable = ((VariableExp)asSource).getReferredVariable();
+			if ((asVariable instanceof Variable) && ((Variable)asVariable).isImplicit()) { // Skip implicit iterator variables
+				return csArgument;
+			}
+		}
+		Type asType = asSource.getType();
+		boolean isCollection = (asType instanceof CollectionType) ^ isConverted;
+		String operationName = isCollection ? PivotConstants.COLLECTION_NAVIGATION_OPERATOR : PivotConstants.OBJECT_NAVIGATION_OPERATOR;
+		ExpCS csSource = context.visitDeclaration(ExpCS.class, asSource);
+		return createInfixExpCS(csSource, operationName, csArgument);
+	}
+
+	protected @NonNull PathNameCS createPathNameCS(NamedElement asNamedElement) {
+		PathNameCS csPathName = BaseCSFactory.eINSTANCE.createPathNameCS();
+		PathElementCS csPathElement = BaseCSFactory.eINSTANCE.createPathElementCS();
+		csPathElement.setReferredElement(asNamedElement);
+		csPathName.getOwnedPathElements().add(csPathElement);
+		return csPathName;
+	}
+
+	protected @Nullable TypedRefCS createTypeRefCS(@Nullable Type asType) {
+		return asType != null ? context.visitReference(TypedRefCS.class, asType, null) : null;
+	}
+
+	protected @Nullable TypedRefCS createTypeRefCS(Type asType, @Nullable Namespace scope) {
+		return asType != null ? context.visitReference(TypedRefCS.class, asType, scope) : null;
+	}
+
+	/**
+	 * Return a non-null operation from asOPeration, replacing any null value by the oclInvalidOperation.
+	 */
+	protected @NonNull Operation getNonNullOperation(@Nullable Operation asOperation) {
+		if (asOperation == null) {
+			asOperation = context.getMetaModelManager().getStandardLibrary().getOclInvalidOperation();
+		}
+		return asOperation;
+	}
+
+	/**
+	 * Return a non-null property from asProperty, replacing any null value by the oclInvalidProperty.
+	 */
+	protected @NonNull Property getNonNullProperty(@Nullable Property asProperty) {
+		if (asProperty == null) {
+			asProperty = context.getMetaModelManager().getStandardLibrary().getOclInvalidProperty();
+		}
+		return asProperty;
+	}
+
+	/**
+	 * Return a non-null type from asType, replacing any null value by the OclInvalidType.
+	 */
+	protected @NonNull Type getNonNullType(@Nullable Type asType) {
+		if (asType == null) {
+			asType = context.getMetaModelManager().getStandardLibrary().getOclInvalidType();
+		}
+		return asType;
+	}
+
+	protected boolean isLowerPrecedence(@Nullable OCLExpression asExp, @NonNull Precedence asThatPrecedence) {
+		if (!(asExp instanceof OperationCallExp)) {
+			return false;
+		}
+		Operation asOperation = ((OperationCallExp)asExp).getReferredOperation();
+		if (asOperation == null) {
+			return false;
+		}
+		Precedence asThisPrecedence = asOperation.getPrecedence();
+		if (asThisPrecedence == null) {
+			return false;
+		}
+		return asThisPrecedence.getOrder().intValue() > asThatPrecedence.getOrder().intValue();
+	}
+
+	protected ElementCS refreshConstraint(@NonNull ConstraintCS csElement, @NonNull Constraint object) {
+		if (object.eContainmentFeature() == PivotPackage.Literals.OPERATION__POSTCONDITION) {
+			csElement.setStereotype(UMLReflection.POSTCONDITION);
+		}
+		else if (object.eContainmentFeature() == PivotPackage.Literals.OPERATION__PRECONDITION) {
+			csElement.setStereotype(UMLReflection.PRECONDITION);
+		}
+		else {
+			csElement.setStereotype(UMLReflection.INVARIANT);
+		}
+		ExpSpecificationCS csStatus = null;
+		LanguageExpression specification = object.getSpecification();
+		if (specification instanceof ExpressionInOCL) {
+			OCLExpression bodyExpression = ((ExpressionInOCL)specification).getBodyExpression();
+			if ((bodyExpression instanceof TupleLiteralExp) && (bodyExpression.getTypeId() == TUPLE_MESSAGE_STATUS)) {
+				TupleLiteralPart messagePart = DomainUtil.getNamedElement(((TupleLiteralExp)bodyExpression).getPart(), TUPLE_MESSAGE_STATUS_0.getName());
+				TupleLiteralPart statusPart = DomainUtil.getNamedElement(((TupleLiteralExp)bodyExpression).getPart(), TUPLE_MESSAGE_STATUS_1.getName());
+				OCLExpression messageExpression = messagePart.getInitExpression();
+				OCLExpression statusExpression = statusPart.getInitExpression();
+				ExpSpecificationCS csMessage = context.refreshElement(ExpSpecificationCS.class, EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, specification);
+				csMessage.setExprString(messageExpression != null ? PrettyPrinter.print(messageExpression) : "null");
+				csElement.setOwnedMessageSpecification(csMessage);
+				csStatus = context.refreshElement(ExpSpecificationCS.class, EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, specification);
+				csStatus.setExprString(statusExpression != null ? PrettyPrinter.print(statusExpression) : "null");
+			}
+			else if (bodyExpression != null) {
+				csStatus = context.refreshElement(ExpSpecificationCS.class, EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, specification);
+				csStatus.setExprString(PrettyPrinter.print(bodyExpression));
+			}
+		}
+		if ((csStatus == null) && (specification != null)) {
+			String body = specification.getBody();
+			if (body != null) {
+				if (body.startsWith("Tuple")) {
+					String[] lines = body.split("\n");
+					int lastLineNumber = lines.length-1;
+					if ((lastLineNumber >= 3)
+					 && lines[0].replaceAll("\\s", "").equals("Tuple{")
+					 && lines[1].replaceAll("\\s", "").startsWith("message:String=")
+					 && lines[lastLineNumber].replaceAll("\\s", "").equals("}.status")) {
+						StringBuilder message = new StringBuilder();
+						message.append(lines[1].substring(lines[1].indexOf("=")+1, lines[1].length()).trim());
+						for (int i = 2; i < lastLineNumber; i++) {
+							if (!lines[i].replaceAll("\\s", "").startsWith("status:Boolean=")) {
+								message.append("\n" + lines[i]);
+							}
+							else {
+								ExpSpecificationCS csMessage = context.refreshElement(ExpSpecificationCS.class, EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, specification);
+								String messageString = message.toString();
+								int lastIndex = messageString.lastIndexOf(',');
+								if (lastIndex > 0) {
+									messageString = messageString.substring(0, lastIndex); 
+								}
+								csMessage.setExprString(messageString);
+								csElement.setOwnedMessageSpecification(csMessage);
+								StringBuilder status = new StringBuilder();			
+								status.append(lines[i].substring(lines[i].indexOf("=")+1, lines[i].length()).trim());
+								for (i++; i < lastLineNumber; i++) {
+									status.append("\n" + lines[i]);
+								}
+								csStatus = context.refreshElement(ExpSpecificationCS.class, EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, specification);
+								csStatus.setExprString(status.toString());
+							}					
+						}
+					}
+				}
+				if (csStatus == null) {
+					csStatus = context.refreshElement(ExpSpecificationCS.class, EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, specification);
+					csStatus.setExprString(body);
+				}
+			}
+		}
+//		csElement.setSpecification(context.visitDeclaration(SpecificationCS.class, specification));	
+		csElement.setOwnedSpecification(csStatus);	
+		return csElement;
+	}
+
+	@Override
+	public @Nullable ElementCS visitBooleanLiteralExp(@NonNull BooleanLiteralExp asBooleanLiteralExp) {
+		BooleanLiteralExpCS csBooleanLiteralExp = EssentialOCLCSFactory.eINSTANCE.createBooleanLiteralExpCS();
+		csBooleanLiteralExp.setPivot(asBooleanLiteralExp);
+		csBooleanLiteralExp.setSymbol(Boolean.toString(asBooleanLiteralExp.isBooleanSymbol()));
+		return csBooleanLiteralExp;
+	}
+	
+	@Override
+	public @Nullable ElementCS visitCallExp(@NonNull CallExp object) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public @Nullable ElementCS visitCollectionItem(@NonNull CollectionItem asCollectionItem) {
+		CollectionLiteralPartCS csCollectionLiteralPart = EssentialOCLCSFactory.eINSTANCE.createCollectionLiteralPartCS();
+		csCollectionLiteralPart.setPivot(asCollectionItem);
+		csCollectionLiteralPart.setOwnedExpression(createExpCS(asCollectionItem.getItem()));
+		return csCollectionLiteralPart;
+	}
+
+	@Override
+	public @Nullable ElementCS visitCollectionLiteralExp(@NonNull CollectionLiteralExp asCollectionLiteralExp) {
+		CollectionLiteralExpCS csCollectionLiteralExp = EssentialOCLCSFactory.eINSTANCE.createCollectionLiteralExpCS();
+		csCollectionLiteralExp.setPivot(asCollectionLiteralExp);
+		csCollectionLiteralExp.setOwnedType((CollectionTypeCS) createTypeRefCS(asCollectionLiteralExp.getType()));
+		List<CollectionLiteralPartCS> csOwnedParts = csCollectionLiteralExp.getOwnedParts();
+		for (CollectionLiteralPart asPart : asCollectionLiteralExp.getPart()) {
+			csOwnedParts.add(context.visitDeclaration(CollectionLiteralPartCS.class, asPart));
+		}
+		return csCollectionLiteralExp;
+	}
+
+	@Override
+	public @Nullable ElementCS visitCollectionLiteralPart(@NonNull CollectionLiteralPart asCollectionLiteralPart) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public @Nullable ElementCS visitCollectionRange(@NonNull CollectionRange asCollectionRange) {
+		CollectionLiteralPartCS csCollectionLiteralPart = EssentialOCLCSFactory.eINSTANCE.createCollectionLiteralPartCS();
+		csCollectionLiteralPart.setPivot(asCollectionRange);
+		csCollectionLiteralPart.setOwnedExpression(createExpCS(asCollectionRange.getFirst()));
+		csCollectionLiteralPart.setOwnedLastExpression(createExpCS(asCollectionRange.getLast()));
+		return csCollectionLiteralPart;
+	}
+
+	@Override
+	public ElementCS visitConstraint(@NonNull Constraint object) {
+		ConstraintCS csElement = context.refreshNamedElement(ConstraintCS.class, BaseCSPackage.Literals.CONSTRAINT_CS, object);
+		if (csElement != null) {
+			refreshConstraint(csElement, object);
+		}
+		return csElement;
+	}
+
+	@Override
+	public @Nullable ElementCS visitConstructorExp(@NonNull ConstructorExp asConstructorExp) {
+		NameExpCS csNameExp = createNameExpCS(asConstructorExp.getType());
+		csNameExp.setPivot(asConstructorExp);
+		CurlyBracketedClauseCS csCurlyBracketedClause = EssentialOCLCSFactory.eINSTANCE.createCurlyBracketedClauseCS();
+		csNameExp.setOwnedCurlyBracketedClause(csCurlyBracketedClause);;
+		List<ConstructorPartCS> csOwnedParts = csCurlyBracketedClause.getOwnedParts();
+		for (ConstructorPart asPart : asConstructorExp.getPart()) {
+			csOwnedParts.add(context.visitDeclaration(ConstructorPartCS.class, asPart));
+		}
+		csCurlyBracketedClause.setValue(asConstructorExp.getValue());
+		return csNameExp;
+	}
+
+	@Override
+	public @Nullable ElementCS visitConstructorPart(@NonNull ConstructorPart asConstructorPart) {
+		ConstructorPartCS csConstructorPart = EssentialOCLCSFactory.eINSTANCE.createConstructorPartCS();
+		csConstructorPart.setPivot(asConstructorPart);
+		csConstructorPart.setOwnedInitExpression(createExpCS(asConstructorPart.getInitExpression()));
+		csConstructorPart.setReferredProperty(asConstructorPart.getReferredProperty());
+		return csConstructorPart;
+	}
+
+	@Override
+	public @Nullable ElementCS visitEnumLiteralExp(@NonNull EnumLiteralExp asEnumLiteralExp) {
+		EnumerationLiteral asEnumLiteral = asEnumLiteralExp.getReferredEnumLiteral();
+		if (asEnumLiteral != null) {
+			return createNameExpCS(asEnumLiteral);
+		}
+		else {
+			InvalidLiteralExpCS csInvalidLiteralExp = EssentialOCLCSFactory.eINSTANCE.createInvalidLiteralExpCS();
+			csInvalidLiteralExp.setPivot(asEnumLiteralExp);
+			return csInvalidLiteralExp;
+		}
+	}
+
+	@Override
+	public ElementCS visitExpressionInOCL(@NonNull ExpressionInOCL object) {
+		OCLExpression bodyExpression = object.getBodyExpression();
+		if (bodyExpression != null) {
+			ExpSpecificationCS csElement = context.refreshElement(ExpSpecificationCS.class, EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, object);
+			String body = PrettyPrinter.print(bodyExpression);
+			csElement.setExprString(body);
+			return csElement;
+		}
+		String body = object.getBody();
+		if (body != null) {
+			ExpSpecificationCS csElement = context.refreshElement(ExpSpecificationCS.class, EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, object);
+			csElement.setExprString(body);
+			return csElement;
+		}
+		return null;
+	}
+
+	@Override
+	public @Nullable ElementCS visitIfExp(@NonNull IfExp asIfExp) {
+		IfExpCS csIfExp = EssentialOCLCSFactory.eINSTANCE.createIfExpCS();
+		csIfExp.setPivot(asIfExp);
+		csIfExp.setOwnedCondition(createExpCS(asIfExp.getCondition()));
+		csIfExp.setOwnedThenExpression(createExpCS(asIfExp.getThenExpression()));
+		csIfExp.setOwnedElseExpression(createExpCS(asIfExp.getElseExpression()));
+		return csIfExp;
+	}
+
+	@Override
+	public @Nullable ElementCS visitIntegerLiteralExp(@NonNull IntegerLiteralExp asIntegerLiteralExp) {
+		NumberLiteralExpCS csNumberLiteralExp = EssentialOCLCSFactory.eINSTANCE.createNumberLiteralExpCS();
+		csNumberLiteralExp.setPivot(asIntegerLiteralExp);
+		csNumberLiteralExp.setSymbol(asIntegerLiteralExp.getIntegerSymbol());
+		return csNumberLiteralExp;
+	}
+
+	@Override
+	public @Nullable ElementCS visitInvalidLiteralExp(@NonNull InvalidLiteralExp asInvalidLiteralExp) {
+		InvalidLiteralExpCS csInvalidLiteralExp = EssentialOCLCSFactory.eINSTANCE.createInvalidLiteralExpCS();
+		csInvalidLiteralExp.setPivot(asInvalidLiteralExp);
+		return csInvalidLiteralExp;
+	}
+
+	@Override
+	public @Nullable ElementCS visitIterateExp(@NonNull IterateExp asIterateExp) {
+		Operation asIteration = getNonNullOperation(asIterateExp.getReferredIteration());
+		NameExpCS csNameExp = createNameExpCS(asIteration);
+		csNameExp.setPivot(asIterateExp);
+		RoundBracketedClauseCS csRoundBracketedClause = EssentialOCLCSFactory.eINSTANCE.createRoundBracketedClauseCS();
+		csNameExp.setOwnedRoundBracketedClause(csRoundBracketedClause);;
+		String prefix = null;
+		for (Variable asIterator : asIterateExp.getIterator()) {
+			if (!asIterator.isImplicit()) {
+				csRoundBracketedClause.getOwnedArguments().add(createNavigatingArgCS(prefix, asIterator, asIterator, null));
+				prefix = ",";
+			}
+		}
+		Variable asResult = asIterateExp.getResult();
+		csRoundBracketedClause.getOwnedArguments().add(createNavigatingArgCS(";", asResult, asResult, asResult.getInitExpression()));
+		csRoundBracketedClause.getOwnedArguments().add(createNavigatingArgCS("|", asIterateExp.getBody()));
+		return createNavigationOperatorCS(asIterateExp.getSource(), csNameExp, false);
+	}
+
+	@Override
+	public @Nullable ElementCS visitIteratorExp(@NonNull IteratorExp asIteratorExp) {
+		OCLExpression body = asIteratorExp.getBody();
+		if (asIteratorExp.isImplicit()) {					// Flatten implicit collect/oclAsSet
+			ElementCS csExp = body.accept(this);
+			if (csExp instanceof ExpCS) {
+				return createNavigationOperatorCS(asIteratorExp.getSource(), (ExpCS) csExp, true);
+			}
+		}
+		Operation asIteration = getNonNullOperation(asIteratorExp.getReferredIteration());
+		NameExpCS csNameExp = createNameExpCS(asIteration);
+		csNameExp.setPivot(asIteratorExp);
+		RoundBracketedClauseCS csRoundBracketedClause = EssentialOCLCSFactory.eINSTANCE.createRoundBracketedClauseCS();
+		csNameExp.setOwnedRoundBracketedClause(csRoundBracketedClause);;
+		String prefix = null;
+		for (Variable asIterator : asIteratorExp.getIterator()) {
+			if (!asIterator.isImplicit()) {
+				csRoundBracketedClause.getOwnedArguments().add(createNavigatingArgCS(prefix, asIterator, asIterator, null));
+				prefix = ",";
+			}
+		}
+		
+		if (prefix != null) {
+			prefix = "|";
+		}
+		csRoundBracketedClause.getOwnedArguments().add(createNavigatingArgCS(prefix, body));
+		return createNavigationOperatorCS(asIteratorExp.getSource(), csNameExp, false);
+	}
+	
+	@Override
+	public @Nullable ElementCS visitLetExp(@NonNull LetExp asLetExp) {
+		LetExpCS csLetExp = EssentialOCLCSFactory.eINSTANCE.createLetExpCS();
+		csLetExp.setPivot(asLetExp);
+		csLetExp.setOwnedInExpression(createExpCS(asLetExp.getIn()));
+		Variable asVariable = asLetExp.getVariable();
+		LetVariableCS csLetVariable = EssentialOCLCSFactory.eINSTANCE.createLetVariableCS();
+		csLetVariable.setPivot(asVariable);
+		csLetVariable.setName(asVariable.getName());
+		csLetVariable.setOwnedInitExpression(createExpCS(asVariable.getInitExpression()));
+		csLetVariable.setOwnedType(createTypeRefCS(asVariable.getType()));
+		csLetExp.getOwnedVariables().add(csLetVariable);
+		return csLetExp;
+	}
+
+	@Override
+	public @Nullable ElementCS visitMessageExp(@NonNull MessageExp object) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public @Nullable ElementCS visitNullLiteralExp(@NonNull NullLiteralExp asNullLiteralExp) {
+		NullLiteralExpCS csNullLiteralExp = EssentialOCLCSFactory.eINSTANCE.createNullLiteralExpCS();
+		csNullLiteralExp.setPivot(asNullLiteralExp);
+		return csNullLiteralExp;
+	}
+
+	@Override
+	public ElementCS visitOCLExpression(@NonNull OCLExpression object) {
+		return null;
+	}
+
+	@Override
+	public ElementCS visitOperationCallExp(@NonNull OperationCallExp asOperationCallExp) {
+		Operation asOperation = getNonNullOperation(asOperationCallExp.getReferredOperation());
+		String operationName = asOperation.getName();
+		Precedence asPrecedence = asOperation.getPrecedence();
+		List<OCLExpression> asArguments = asOperationCallExp.getArgument();
+		OCLExpression asSource = asOperationCallExp.getSource();
+		if ((asPrecedence == null) || (asSource == null)) {
+			NameExpCS csNameExp = createNameExpCS(asOperationCallExp.getReferredOperation());
+			csNameExp.setPivot(asOperationCallExp);
+			RoundBracketedClauseCS csRoundBracketedClause = EssentialOCLCSFactory.eINSTANCE.createRoundBracketedClauseCS();
+			csNameExp.setOwnedRoundBracketedClause(csRoundBracketedClause);;
+			String prefix = null;
+			for (OCLExpression asArgument : asArguments) {
+				csRoundBracketedClause.getOwnedArguments().add(createNavigatingArgCS(prefix, asArgument));
+				prefix = ",";
+			}
+			return createNavigationOperatorCS(asSource, csNameExp, false);
+		}
+		else if (asArguments.size() == 1) {
+			ExpCS csSource;
+			if (isLowerPrecedence(asSource, asPrecedence)) {
+				ExpCS csExp = createExpCS(asSource);
+				NestedExpCS csNested = EssentialOCLCSFactory.eINSTANCE.createNestedExpCS();
+				csNested.setSource(csExp);
+				csSource = csNested;
+			}
+			else {
+				csSource = context.visitDeclaration(ExpCS.class, asSource);
+			}
+			OCLExpression asArgument = asArguments.get(0);
+			ExpCS csArgument;
+			if (isLowerPrecedence(asArgument, asPrecedence)) {
+				ExpCS csExp = createExpCS(asArgument);
+				NestedExpCS csNested = EssentialOCLCSFactory.eINSTANCE.createNestedExpCS();
+				csNested.setSource(csExp);
+				csArgument = csNested;
+			}
+			else {
+				csArgument = context.visitDeclaration(ExpCS.class, asArgument);
+			}
+			return createInfixExpCS(csSource, operationName, csArgument);
+		}
+		else {
+			ExpCS csSource = context.visitDeclaration(ExpCS.class, asSource);
+			PrefixExpCS csPrefix = EssentialOCLCSFactory.eINSTANCE.createPrefixExpCS();
+			csPrefix.setName(operationName);
+			csPrefix.setOwnedRight(csSource);
+			return csPrefix;
+		}
+	}
+
+	@Override
+	public @Nullable ElementCS visitOppositePropertyCallExp(@NonNull OppositePropertyCallExp asOppositePropertyCallExp) {
+		Property reverseProperty = asOppositePropertyCallExp.getReferredProperty();
+		Property asProperty = getNonNullProperty(reverseProperty != null ? reverseProperty.getOpposite() : null);
+		NameExpCS csNameExp = createNameExpCS(asProperty);
+		return createNavigationOperatorCS(asOppositePropertyCallExp.getSource(), csNameExp, false);
+	}
+
+	@Override
+	public @Nullable ElementCS visitPropertyCallExp(@NonNull PropertyCallExp asPropertyCallExp) {
+		OCLExpression asSource = asPropertyCallExp.getSource();
+		Property asProperty = getNonNullProperty(asPropertyCallExp.getReferredProperty());
+		NameExpCS csNameExp = createNameExpCS(asProperty);
+		return createNavigationOperatorCS(asSource, csNameExp, false);
+	}
+
+	@Override
+	public @Nullable ElementCS visitRealLiteralExp(@NonNull RealLiteralExp asRealLiteralExp) {
+		NumberLiteralExpCS csNumberLiteralExp = EssentialOCLCSFactory.eINSTANCE.createNumberLiteralExpCS();
+		csNumberLiteralExp.setPivot(asRealLiteralExp);
+		csNumberLiteralExp.setSymbol(asRealLiteralExp.getRealSymbol());
+		return csNumberLiteralExp;
+	}
+
+	@Override
+	public @Nullable ElementCS visitStateExp(@NonNull StateExp asStateExp) {
+		return createNameExpCS(asStateExp.getReferredState());
+	}
+
+	@Override
+	public @Nullable ElementCS visitStringLiteralExp(@NonNull StringLiteralExp asStringLiteralExp) {
+		StringLiteralExpCS csStringLiteralExp = EssentialOCLCSFactory.eINSTANCE.createStringLiteralExpCS();
+		csStringLiteralExp.setPivot(asStringLiteralExp);
+		csStringLiteralExp.getSegments().add(asStringLiteralExp.getStringSymbol());
+		return csStringLiteralExp;
+	}
+
+	@Override
+	public @Nullable ElementCS visitTupleLiteralExp(@NonNull TupleLiteralExp asTupleLiteralExp) {
+		TupleLiteralExpCS csTupleLiteralExp = EssentialOCLCSFactory.eINSTANCE.createTupleLiteralExpCS();
+		csTupleLiteralExp.setPivot(asTupleLiteralExp);
+		List<TupleLiteralPartCS> csOwnedParts = csTupleLiteralExp.getOwnedParts();
+		for (TupleLiteralPart asPart : asTupleLiteralExp.getPart()) {
+			csOwnedParts.add(context.visitDeclaration(TupleLiteralPartCS.class, asPart));
+		}
+		return csTupleLiteralExp;
+	}
+
+	@Override
+	public @Nullable ElementCS visitTupleLiteralPart(@NonNull TupleLiteralPart asTupleLiteralPart) {
+		TupleLiteralPartCS csTupleLiteralPart = EssentialOCLCSFactory.eINSTANCE.createTupleLiteralPartCS();
+		csTupleLiteralPart.setPivot(asTupleLiteralPart);
+		csTupleLiteralPart.setName(asTupleLiteralPart.getName());
+		csTupleLiteralPart.setOwnedType(createTypeRefCS(asTupleLiteralPart.getType()));
+		csTupleLiteralPart.setOwnedInitExpression(createExpCS(asTupleLiteralPart.getInitExpression()));
+		return csTupleLiteralPart;
+	}
+
+	@Override
+	public @Nullable ElementCS visitTypeExp(@NonNull TypeExp asTypeExp) {
+		@SuppressWarnings("null")@NonNull NameExpCS csNameExp = EssentialOCLCSFactory.eINSTANCE.createNameExpCS();
+		@SuppressWarnings("null")@NonNull PathNameCS csPathName = BaseCSFactory.eINSTANCE.createPathNameCS();
+		csNameExp.setOwnedPathName(csPathName);
+		Type asType = getNonNullType(asTypeExp.getReferredType());
+		context.refreshPathName(csPathName, asType, null);
+		return csNameExp;
+	}
+
+	@Override
+	public @Nullable ElementCS visitUnlimitedNaturalLiteralExp(@NonNull UnlimitedNaturalLiteralExp asUnlimitedNaturalLiteralExp) {
+		NumberLiteralExpCS csNumberLiteralExp = EssentialOCLCSFactory.eINSTANCE.createNumberLiteralExpCS();
+		csNumberLiteralExp.setPivot(asUnlimitedNaturalLiteralExp);
+		csNumberLiteralExp.setSymbol(asUnlimitedNaturalLiteralExp.getUnlimitedNaturalSymbol());
+		return csNumberLiteralExp;
+	}
+
+	@Override
+	public @Nullable ElementCS visitVariable(@NonNull Variable object) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public @Nullable ElementCS visitVariableExp(@NonNull VariableExp asVariableExp) {
+		VariableDeclaration asVariable = asVariableExp.getReferredVariable();
+		if (asVariable != null) {
+			return createNameExpCS(asVariable);
+		}
+		else {
+			InvalidLiteralExpCS csInvalidLiteralExp = EssentialOCLCSFactory.eINSTANCE.createInvalidLiteralExpCS();
+			csInvalidLiteralExp.setPivot(asVariableExp);
+			return csInvalidLiteralExp;
+		}
+	}
+}

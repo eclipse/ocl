@@ -1280,7 +1280,7 @@ assertQueryResults(null,&nbsp;"Set{'b'}",&nbsp;"Set{'a',&nbsp;'b',&nbsp;'c'}&nbs
 </div>
 <p>The grammar used by the Xtext editors may be found at:</p>
 <p>/src/org/eclipse/ocl/examples/xtext/essentialocl/EssentialOCL.xtext</p>
-<p>in the org.eclipse.ocl.examples.xtext.essentialocl plugin.</p>
+<p>in the org.eclipse.ocl.xtext.essentialocl plugin.</p>
 </div>
 <div class="section" title="Grammar Approach">
 <div class="titlepage">
@@ -2728,7 +2728,7 @@ in&nbsp;test.substring(start,finish)<br>
 </div>
 <p>The grammar used by the Xtext editors may be found at:</p>
 <p>/src/org/eclipse/ocl/examples/xtext/oclinecore/OCLinEcore.xtext</p>
-<p>in the org.eclipse.ocl.examples.xtext.oclinecore plugin. The OCLinEcore grammar extends the Essential OCL grammar.</p>
+<p>in the org.eclipse.ocl.xtext.oclinecore plugin. The OCLinEcore grammar extends the Essential OCL grammar.</p>
 </div>
 <div class="section" title="Module">
 <div class="titlepage">
@@ -3828,7 +3828,7 @@ in&nbsp;test.substring(start,finish)<br>
 </div>
 <p>The grammar used by the Xtext editors may be found at:</p>
 <p>/src/org/eclipse/ocl/examples/xtext/completeocl/CompleteOCL.xtext</p>
-<p>in the org.eclipse.ocl.examples.xtext.completeocl plugin. The Complete OCL grammar extends the Essential OCL grammar.</p>
+<p>in the org.eclipse.ocl.xtext.completeocl plugin. The Complete OCL grammar extends the Essential OCL grammar.</p>
 </div>
 <div class="section" title="Complete OCL Document">
 <div class="titlepage">
@@ -4528,7 +4528,7 @@ in&nbsp;test.substring(start,finish)<br>
 </div>
 <p>The grammar used by the Xtext editors may be found at:</p>
 <p>/src/org/eclipse/ocl/examples/xtext/oclstdlib/OCLstdlib.xtext</p>
-<p>in the org.eclipse.ocl.examples.xtext.oclstdlib plugin. The OCL Standard Library grammar extends the Essential OCL grammar.</p>
+<p>in the org.eclipse.ocl.xtext.oclstdlib plugin. The OCL Standard Library grammar extends the Essential OCL grammar.</p>
 </div>
 <div class="section" title="OCL Standard Library Document">
 <div class="titlepage">
@@ -6485,7 +6485,7 @@ in&nbsp;test.substring(start,finish)<br>
 </div>
 </div>
 </div>
-<p>The org.eclipse.ocl.examples.xtext.completeocl.complete_ocl_registry may be used to register Complete OCL files against the nsURIs that they complement. These extension points may be defined in plugins or projects. In either case clicking 
+<p>The org.eclipse.ocl.xtext.completeocl.complete_ocl_registry may be used to register Complete OCL files against the nsURIs that they complement. These extension points may be defined in plugins or projects. In either case clicking 
 						<span class="bold"><strong>Browse Registered OCL Files...</strong></span> presents a list of registered Complete OCL documents applicable to the context from which the dialog was invoked.
 					</p>
 </div>
@@ -18702,7 +18702,7 @@ public&nbsp;class&nbsp;CompanyValidator&nbsp;extends&nbsp;EObjectValidator&nbsp;
 <p>to</p>
 <div class="literallayout">
 <p>
-<code class="code">import&nbsp;org.eclipse.ocl.examples.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;<br>
+<code class="code">import&nbsp;org.eclipse.ocl.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;<br>
 
 <br>
 /**<br>
@@ -19012,9 +19012,9 @@ public&nbsp;class&nbsp;CompanyValidator&nbsp;extends&nbsp;OCLinEcoreEObjectValid
 org.eclipse.ocl.examples.pivot.uml.UML2AS.initialize(resourceSet);<br>
 org.eclipse.ocl.examples.pivot.model.OCLstdlib.install();<br>
 org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain.initialize(resourceSet);<br>
-org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup.doSetup();<br>
-org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcoreStandaloneSetup.doSetup();<br>
-org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlibStandaloneSetup.doSetup();<br>
+org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup.doSetup();<br>
+org.eclipse.ocl.xtext.oclinecore.OCLinEcoreStandaloneSetup.doSetup();<br>
+org.eclipse.ocl.xtext.oclstdlib.OCLstdlibStandaloneSetup.doSetup();<br>
 org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.getAdapter(resourceSet);<br>
 
 <br>
@@ -19107,10 +19107,10 @@ org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.getAdapter(resour
 <p>Each of the above ensures that everything that it requires is installed. The various set ups can be found in one of the following packages:</p>
 <div class="literallayout">
 <p>
-<code class="code">org.eclipse.ocl.examples.xtext.completeocl.<br>
-org.eclipse.ocl.examples.xtext.essentialocl.<br>
-org.eclipse.ocl.examples.xtext.oclinecore.<br>
-org.eclipse.ocl.examples.xtext.oclstdlib.<br>
+<code class="code">org.eclipse.ocl.xtext.completeocl.<br>
+org.eclipse.ocl.xtext.essentialocl.<br>
+org.eclipse.ocl.xtext.oclinecore.<br>
+org.eclipse.ocl.xtext.oclstdlib.<br>
 
 </code>
 </p>
@@ -19167,11 +19167,11 @@ org.eclipse.ocl.examples.xtext.oclstdlib.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.examples.domain<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.examples.library<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.examples.pivot<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.examples.xtext.base<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.examples.xtext.essentialocl<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.examples.xtext.completeocl<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.examples.xtext.oclinecore<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.examples.xtext.oclstdlib<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.base<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.essentialocl<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.completeocl<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.oclinecore<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.oclstdlib<br>
 
 </code>
 </p>
@@ -19183,11 +19183,11 @@ org.eclipse.ocl.examples.xtext.oclstdlib.<br>
 <code class="code">org.eclipse.ocl.common.ui<br>
 &nbsp;&nbsp;org.eclipse.ocl.examples.markup<br>
 &nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.examples.markup.ui<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.examples.xtext.essentialocl.ui<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.examples.xtext.completeocl.ui<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.examples.xtext.oclinecore.ui<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.examples.xtext.oclstdlib.ui<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.examples.xtext.console<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.essentialocl.ui<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.completeocl.ui<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.oclinecore.ui<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.oclstdlib.ui<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.examples.console<br>
 
 </code>
 </p>
@@ -20551,7 +20551,7 @@ org.eclipse.xtext<br>
 </div>
 <div class="literallayout">
 <p>&lt;genAnnotations&nbsp;source="http://www.eclipse.org/OCL/GenModel/CopyAndPaste"&gt;<br>
-&nbsp;&nbsp;&lt;details&nbsp;key="org.eclipse.ocl.examples.xtext.markup.FigureElement"&nbsp;<br>
+&nbsp;&nbsp;&lt;details&nbsp;key="org.eclipse.ocl.xtext.markup.FigureElement"&nbsp;<br>
 &nbsp;&nbsp;&nbsp;value="model/FigureElement.javacopy"/&gt;<br>
 &lt;/genAnnotations&gt;<br>
 

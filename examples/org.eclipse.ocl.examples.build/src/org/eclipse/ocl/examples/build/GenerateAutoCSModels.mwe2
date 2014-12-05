@@ -32,44 +32,44 @@ Workflow {
     bean = GenModelSetup { resourceSet = resourceSet }
     bean = UMLGenModelSetup { resourceSet = resourceSet }
 //    component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
-//    	genModel = "/org.eclipse.ocl.examples.xtext.markup/model/Markup.genmodel"
+//    	genModel = "/org.eclipse.ocl.xtext.markup/model/Markup.genmodel"
 //    }
     component = @SubGenerateAutoCSModel { resourceSet = resourceSet
-    	projectName = "org.eclipse.ocl.examples.xtext.base"
+    	projectName = "org.eclipse.ocl.xtext.base"
     	modelName = "basecs"
     	projectPrefix = "BaseCS"
     	superProjectName = ""
     	superModelName = ""
     }
     component = @SubGenerateAutoCSModel { resourceSet = resourceSet
-    	projectName = "org.eclipse.ocl.examples.xtext.essentialocl"
+    	projectName = "org.eclipse.ocl.xtext.essentialocl"
     	modelName = "essentialoclcs"
     	projectPrefix = "EssentialOCLCS"
-    	superProjectName = "org.eclipse.ocl.examples.xtext.base"
+    	superProjectName = "org.eclipse.ocl.xtext.base"
     	superModelName = "basecs"
     	superProjectPrefix = "BaseCS"
     }
     component = @SubGenerateAutoCSModel { resourceSet = resourceSet
-    	projectName = "org.eclipse.ocl.examples.xtext.oclstdlib"
+    	projectName = "org.eclipse.ocl.xtext.oclstdlib"
     	modelName = "oclstdlibcs"
     	projectPrefix = "OCLstdlibCS"
-    	superProjectName = "org.eclipse.ocl.examples.xtext.essentialocl"
+    	superProjectName = "org.eclipse.ocl.xtext.essentialocl"
     	superModelName = "essentialoclcs"
     	superProjectPrefix = "EssentialOCLCS"
     }
     component = @SubGenerateAutoCSModel { resourceSet = resourceSet
-    	projectName = "org.eclipse.ocl.examples.xtext.oclinecore"
+    	projectName = "org.eclipse.ocl.xtext.oclinecore"
     	modelName = "oclinecorecs"
     	projectPrefix = "OCLinEcoreCS"
-    	superProjectName = "org.eclipse.ocl.examples.xtext.essentialocl"
+    	superProjectName = "org.eclipse.ocl.xtext.essentialocl"
     	superModelName = "essentialoclcs"
     	superProjectPrefix = "EssentialOCLCS"
     }
     component = @SubGenerateAutoCSModel { resourceSet = resourceSet
-    	projectName = "org.eclipse.ocl.examples.xtext.completeocl"
+    	projectName = "org.eclipse.ocl.xtext.completeocl"
     	modelName = "completeoclcs"
     	projectPrefix = "CompleteOCLCS"
-    	superProjectName = "org.eclipse.ocl.examples.xtext.essentialocl"
+    	superProjectName = "org.eclipse.ocl.xtext.essentialocl"
     	superModelName = "essentialoclcs"
     	superProjectPrefix = "EssentialOCLCS"
     }

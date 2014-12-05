@@ -1,0 +1,118 @@
+/*******************************************************************************
+ * Copyright (c) 2012 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *******************************************************************************/
+package org.eclipse.ocl.xtext.essentialoclcs;
+
+import org.eclipse.ocl.examples.domain.elements.Nameable;
+import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.xtext.basecs.ModelElementCS;
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Constructor Part CS</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS#getOwnedInitExpression <em>Owned Init Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS#getOwningCurlyBracketClause <em>Owning Curly Bracket Clause</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS#getReferredProperty <em>Referred Property</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getConstructorPartCS()
+ * @model superTypes="org.eclipse.ocl.xtext.basecs.ModelElementCS org.eclipse.ocl.examples.pivot.Nameable"
+ * @generated
+ */
+public interface ConstructorPartCS
+		extends ModelElementCS, Nameable {
+
+	/**
+	 * Returns the value of the '<em><b>Owning Curly Bracket Clause</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.xtext.essentialoclcs.CurlyBracketedClauseCS#getOwnedParts <em>Owned Parts</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Curly Bracket Clause</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owning Curly Bracket Clause</em>' container reference.
+	 * @see #setOwningCurlyBracketClause(CurlyBracketedClauseCS)
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getConstructorPartCS_OwningCurlyBracketClause()
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.CurlyBracketedClauseCS#getOwnedParts
+	 * @model opposite="ownedParts" transient="false"
+	 * @generated
+	 */
+	CurlyBracketedClauseCS getOwningCurlyBracketClause();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS#getOwningCurlyBracketClause <em>Owning Curly Bracket Clause</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Curly Bracket Clause</em>' container reference.
+	 * @see #getOwningCurlyBracketClause()
+	 * @generated
+	 */
+	void setOwningCurlyBracketClause(CurlyBracketedClauseCS value);
+
+	/**
+	 * Returns the value of the '<em><b>Referred Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Property</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Referred Property</em>' reference.
+	 * @see #setReferredProperty(Property)
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getConstructorPartCS_ReferredProperty()
+	 * @model required="true"
+	 * @generated
+	 */
+	Property getReferredProperty();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS#getReferredProperty <em>Referred Property</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Referred Property</em>' reference.
+	 * @see #getReferredProperty()
+	 * @generated
+	 */
+	void setReferredProperty(Property value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Init Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Init Expression</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Init Expression</em>' containment reference.
+	 * @see #setOwnedInitExpression(ExpCS)
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getConstructorPartCS_OwnedInitExpression()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	ExpCS getOwnedInitExpression();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS#getOwnedInitExpression <em>Owned Init Expression</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Init Expression</em>' containment reference.
+	 * @see #getOwnedInitExpression()
+	 * @generated
+	 */
+	void setOwnedInitExpression(ExpCS value);
+
+} // ConstructorPartCS

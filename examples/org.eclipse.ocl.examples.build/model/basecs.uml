@@ -712,7 +712,7 @@
   <Ecore:EClass xmi:id="_zxW7EnvXEeSfY7DIIV8YQg" base_Class="_zxW5e3vXEeSfY7DIIV8YQg"/>
   <Ecore:EReference xmi:id="_zxW7E3vXEeSfY7DIIV8YQg" isTransient="true" isVolatile="true" base_Property="_zxW5fHvXEeSfY7DIIV8YQg" isResolveProxies="false"/>
   <Ecore:EOperation xmi:id="_zxW7FHvXEeSfY7DIIV8YQg" base_Operation="_zxW5f3vXEeSfY7DIIV8YQg"/>
-  <Ecore:EClass xmi:id="_zxW7FXvXEeSfY7DIIV8YQg" instanceClassName="org.eclipse.ocl.examples.xtext.base.basecs.util.VisitableCS" base_Interface="_zxW5gnvXEeSfY7DIIV8YQg"/>
+  <Ecore:EClass xmi:id="_zxW7FXvXEeSfY7DIIV8YQg" instanceClassName="org.eclipse.ocl.xtext.basecs.util.VisitableCS" base_Interface="_zxW5gnvXEeSfY7DIIV8YQg"/>
   <Ecore:EClass xmi:id="_zxW7FnvXEeSfY7DIIV8YQg" base_Class="_zxW5h3vXEeSfY7DIIV8YQg"/>
   <Ecore:EReference xmi:id="_zxW7F3vXEeSfY7DIIV8YQg" isTransient="true" isUnsettable="true" base_Property="_zxW5iXvXEeSfY7DIIV8YQg" isResolveProxies="false"/>
   <Ecore:EReference xmi:id="_zxW7GHvXEeSfY7DIIV8YQg" base_Property="_zxW5i3vXEeSfY7DIIV8YQg"/>

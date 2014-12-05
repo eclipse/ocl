@@ -27,7 +27,7 @@ p.
 to
 
 bc.. 
-import org.eclipse.ocl.examples.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
+import org.eclipse.ocl.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
 
 /**
  * <!-- begin-user-doc -->

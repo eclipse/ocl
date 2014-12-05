@@ -1,8 +1,8 @@
 pivot::Root => pivot::Model
 RootAttribution => ModelAttribution
 
-org.eclipse.ocl.examples.xtext.base.pivot2cs => org.eclipse.ocl.examples.xtext.base.as2cs
-org.eclipse.ocl.examples.xtext.essentialocl.pivot2cs =? org.eclipse.ocl.examples.xtext.essentialocl.as2cs
+org.eclipse.ocl.xtext.base.pivot2cs => org.eclipse.ocl.xtext.base.as2cs
+org.eclipse.ocl.xtext.essentialocl.pivot2cs =? org.eclipse.ocl.xtext.essentialocl.as2cs
 Pivot2CS => AS2CS
 CS2PivotConversion => CS2ASConversion
 Pivot2Ecore => AS2Ecore

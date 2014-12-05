@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.console;
 
-import org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLRuntimeModule;
+import org.eclipse.ocl.xtext.essentialocl.EssentialOCLRuntimeModule;
 
 /**
  * Use this class to register components to be used within the IDE.

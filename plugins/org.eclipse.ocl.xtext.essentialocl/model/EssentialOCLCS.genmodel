@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.ocl.examples.xtext.essentialocl/emf-gen"
-    editDirectory="/org.eclipse.ocl.examples.xtext.essentialocl.edit/emf-gen" editorDirectory="/org.eclipse.ocl.examples.xtext.essentialocl.editor/emf-gen"
-    modelPluginID="org.eclipse.ocl.examples.xtext.essentialocl" modelName="EssentialOCLCS"
-    nonNLSMarkers="true" codeFormatting="true" testsDirectory="/org.eclipse.ocl.examples.xtext.essentialocl.tests/emf-gen"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.ocl.xtext.essentialocl/emf-gen"
+    editDirectory="/org.eclipse.ocl.xtext.essentialocl.edit/emf-gen" editorDirectory="/org.eclipse.ocl.xtext.essentialocl.editor/emf-gen"
+    modelPluginID="org.eclipse.ocl.xtext.essentialocl" modelName="EssentialOCLCS"
+    nonNLSMarkers="true" codeFormatting="true" testsDirectory="/org.eclipse.ocl.xtext.essentialocl.tests/emf-gen"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
-    runtimeVersion="2.7" usedGenPackages="../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.genmodel#//basecs ../../org.eclipse.ocl.examples.pivot/model/Pivot.merged.genmodel#//pivot ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
+    runtimeVersion="2.7" usedGenPackages="../../org.eclipse.ocl.xtext.base/model/BaseCS.genmodel#//basecs ../../org.eclipse.ocl.examples.pivot/model/Pivot.merged.genmodel#//pivot ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
     classNamePattern="">
   <genAnnotations source="http://www.eclipse.org/OCL/GenModel">
     <details key="Use Null Annotations" value="true"/>
   </genAnnotations>
   <genAnnotations source="http://www.eclipse.org/OCL/GenModel/ToString"/>
   <genAnnotations source="http://www.eclipse.org/OCL/GenModel/Visitor">
-    <details key="Root Visitor Class" value="org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor"/>
-    <details key="Derived Visitor Class" value="org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.EssentialOCLCSVisitor"/>
+    <details key="Root Visitor Class" value="org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor"/>
+    <details key="Derived Visitor Class" value="org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor"/>
   </genAnnotations>
   <foreignModel>EssentialOCLCS.ecore</foreignModel>
-  <genPackages prefix="EssentialOCLCS" basePackage="org.eclipse.ocl.examples.xtext.essentialocl"
+  <genPackages prefix="EssentialOCLCS" basePackage="org.eclipse.ocl.xtext.essentialocl"
       disposableProviderFactory="true" generateExampleClass="false" ecorePackage="EssentialOCLCS.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="EssentialOCLCS.ecore#//NavigationRole">
       <genEnumLiterals ecoreEnumLiteral="EssentialOCLCS.ecore#//NavigationRole/ITERATOR"/>

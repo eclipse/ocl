@@ -27,7 +27,7 @@ import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.xtext.XtextStandaloneSetup;
 
 public abstract class GenerateLaTeXForLibrary extends GenerateLaTeXUtils

@@ -21,7 +21,7 @@ public class GenerateCGVisitors extends GenerateVisitors
 		ePackage.generateAbstractExtendingVisitor();
 		ePackage.generateAbstractNonNullExtendingVisitor();
 		ePackage.generateVisitorInterface();
-		/* ePackage.generateDecorableVisitorInterface("org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor"); */
+		/* ePackage.generateDecorableVisitorInterface("org.eclipse.ocl.xtext.base.util.BaseCSVisitor"); */
 		ePackage.generateAbstractVisitor();
 		ePackage.generateAbstractNullVisitor();
 	}

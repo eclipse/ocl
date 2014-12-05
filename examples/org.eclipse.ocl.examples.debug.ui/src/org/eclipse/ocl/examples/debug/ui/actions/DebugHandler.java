@@ -35,7 +35,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
 import org.eclipse.ocl.examples.debug.ui.messages.DebugUIMessages;
 import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.xtext.base.ui.utilities.BaseUIUtil;
+import org.eclipse.ocl.xtext.base.ui.utilities.BaseUIUtil;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;

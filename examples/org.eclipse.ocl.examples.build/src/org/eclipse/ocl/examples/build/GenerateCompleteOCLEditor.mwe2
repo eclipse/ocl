@@ -20,7 +20,7 @@ import org.eclipse.xtext.generator.*
 import org.eclipse.xtext.ui.generator.*
 
 var completeOCL.file.extensions = "ocl"
-var completeOCLprojectName = "org.eclipse.ocl.examples.xtext.completeocl"
+var completeOCLprojectName = "org.eclipse.ocl.xtext.completeocl"
 var completeOCLruntimeProject = "../${completeOCLprojectName}"
 
 /**
@@ -30,8 +30,8 @@ Workflow {
     bean = StandaloneSetup {
 		scanClassPath = true
 		platformUri = ".."
-		registerGeneratedEPackage = "org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage"
-		registerGenModelFile = "platform:/resource/org.eclipse.ocl.examples.xtext.completeocl/model/CompleteOCLCS.genmodel"
+		registerGeneratedEPackage = "org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage"
+		registerGenModelFile = "platform:/resource/org.eclipse.ocl.xtext.completeocl/model/CompleteOCLCS.genmodel"
 	}
 	
 	component = DirectoryCleaner {
@@ -59,7 +59,7 @@ Workflow {
 			// generates Java API for the generated EPackages 
 //			fragment = ecore.EcoreGeneratorFragment {
 //				referencedGenModels = "platform:/resource/org.eclipse.emf.ecore/model/Ecore.genmodel"  
-//				referencedGenModels = "platform:/resource/org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCS.genmodel"
+//				referencedGenModels = "platform:/resource/org.eclipse.ocl.xtext.essentialocl/model/EssentialOCLCS.genmodel"
 //			}
 			
 			// the serialization component

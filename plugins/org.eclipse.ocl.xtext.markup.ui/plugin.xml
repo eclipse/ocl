@@ -6,42 +6,42 @@
     <extension
             point="org.eclipse.ui.editors">
         <editor
-            class="org.eclipse.ocl.examples.xtext.markup.ui.MarkupExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+            class="org.eclipse.ocl.xtext.markup.ui.MarkupExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
             contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
             default="true"
             extensions="markupocl"
-            id="org.eclipse.ocl.examples.xtext.markup.Markup"
+            id="org.eclipse.ocl.xtext.markup.Markup"
             name="%MF_MarkupEditor">
         </editor>
     </extension>
     <extension
         point="org.eclipse.ui.handlers">
         <handler
-            class="org.eclipse.ocl.examples.xtext.markup.ui.MarkupExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
+            class="org.eclipse.ocl.xtext.markup.ui.MarkupExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
             commandId="org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclaration">
             <activeWhen>
                 <reference
-                    definitionId="org.eclipse.ocl.examples.xtext.markup.Markup.Editor.opened">
+                    definitionId="org.eclipse.ocl.xtext.markup.Markup.Editor.opened">
                 </reference>
             </activeWhen>
         </handler>
         <handler
-            class="org.eclipse.ocl.examples.xtext.markup.ui.MarkupExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
-            commandId="org.eclipse.ocl.examples.xtext.markup.Markup.validate">
+            class="org.eclipse.ocl.xtext.markup.ui.MarkupExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
+            commandId="org.eclipse.ocl.xtext.markup.Markup.validate">
          <activeWhen>
             <reference
-                    definitionId="org.eclipse.ocl.examples.xtext.markup.Markup.Editor.opened">
+                    definitionId="org.eclipse.ocl.xtext.markup.Markup.Editor.opened">
             </reference>
          </activeWhen>
       </handler>
     </extension>
     <extension point="org.eclipse.core.expressions.definitions">
-        <definition id="org.eclipse.ocl.examples.xtext.markup.Markup.Editor.opened">
+        <definition id="org.eclipse.ocl.xtext.markup.Markup.Editor.opened">
             <and>
                 <reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
                 <with variable="activeEditor">
                     <test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-                        value="org.eclipse.ocl.examples.xtext.markup.Markup" 
+                        value="org.eclipse.ocl.xtext.markup.Markup" 
                         forcePluginActivation="true"/>
                 </with>        
             </and>
@@ -51,37 +51,37 @@
             point="org.eclipse.ui.preferencePages">
         <!--page
             category="org.eclipse.ocl.common.ui.preferences.ProjectPreferencePage"
-            class="org.eclipse.ocl.examples.xtext.markup.ui.MarkupExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="org.eclipse.ocl.examples.xtext.markup.Markup"
+            class="org.eclipse.ocl.xtext.markup.ui.MarkupExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+            id="org.eclipse.ocl.xtext.markup.Markup"
             name="%MF_Markup">
-            <keywordReference id="org.eclipse.ocl.examples.xtext.markup.ui.keyword_Markup"/>
+            <keywordReference id="org.eclipse.ocl.xtext.markup.ui.keyword_Markup"/>
         </page-->
         <page
             category="org.eclipse.ocl.common.ui.preferences.SyntaxColoringPreferencePage"
-            class="org.eclipse.ocl.examples.xtext.markup.ui.MarkupExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
-            id="org.eclipse.ocl.examples.xtext.markup.Markup.coloring"
+            class="org.eclipse.ocl.xtext.markup.ui.MarkupExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
+            id="org.eclipse.ocl.xtext.markup.Markup.coloring"
             name="%MF_Markup">
-            <keywordReference id="org.eclipse.ocl.examples.xtext.markup.ui.keyword_Markup"/>
+            <keywordReference id="org.eclipse.ocl.xtext.markup.ui.keyword_Markup"/>
         </page>
         <page
             category="org.eclipse.ocl.common.ui.preferences.TemplatePreferencePage"
-            class="org.eclipse.ocl.examples.xtext.markup.ui.MarkupExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
-            id="org.eclipse.ocl.examples.xtext.markup.Markup.templates"
+            class="org.eclipse.ocl.xtext.markup.ui.MarkupExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
+            id="org.eclipse.ocl.xtext.markup.Markup.templates"
             name="%MF_Markup">
-            <keywordReference id="org.eclipse.ocl.examples.xtext.markup.ui.keyword_Markup"/>
+            <keywordReference id="org.eclipse.ocl.xtext.markup.ui.keyword_Markup"/>
         </page>
     </extension>
     <extension
         point="org.eclipse.ui.keywords">
         <keyword
-            id="org.eclipse.ocl.examples.xtext.markup.ui.keyword_Markup"
+            id="org.eclipse.ocl.xtext.markup.ui.keyword_Markup"
             label="%MF_Markup"/>
     </extension>
     <extension
          point="org.eclipse.ui.commands">
       <command
             description="%MF_TriggerExpensiveValidation"
-            id="org.eclipse.ocl.examples.xtext.markup.Markup.validate"
+            id="org.eclipse.ocl.xtext.markup.Markup.validate"
             name="%MF_Validate">
       </command>
     </extension>
@@ -89,12 +89,12 @@
         <menuContribution
             locationURI="popup:#TextEditorContext?after=group.edit">
              <command
-                 commandId="org.eclipse.ocl.examples.xtext.markup.Markup.validate"
+                 commandId="org.eclipse.ocl.xtext.markup.Markup.validate"
                  style="push"
                  tooltip="%MF_TriggerExpensiveValidation">
             <visibleWhen checkEnabled="false">
                 <reference
-                    definitionId="org.eclipse.ocl.examples.xtext.markup.Markup.Editor.opened">
+                    definitionId="org.eclipse.ocl.xtext.markup.Markup.Editor.opened">
                 </reference>
             </visibleWhen>
          </command>  
@@ -104,7 +104,7 @@
 		<menuContribution locationURI="popup:#TextEditorContext?endof=group.find">
 			<command commandId="org.eclipse.xtext.ui.editor.FindReferences">
 				<visibleWhen checkEnabled="false">
-                	<reference definitionId="org.eclipse.ocl.examples.xtext.markup.Markup.Editor.opened">
+                	<reference definitionId="org.eclipse.ocl.xtext.markup.Markup.Editor.opened">
                 	</reference>
             	</visibleWhen>
 			</command>
@@ -112,11 +112,11 @@
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 	    <handler
-            class="org.eclipse.ocl.examples.xtext.markup.ui.MarkupExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
+            class="org.eclipse.ocl.xtext.markup.ui.MarkupExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
             commandId="org.eclipse.xtext.ui.editor.FindReferences">
             <activeWhen>
                 <reference
-                    definitionId="org.eclipse.ocl.examples.xtext.markup.Markup.Editor.opened">
+                    definitionId="org.eclipse.ocl.xtext.markup.Markup.Editor.opened">
                 </reference>
             </activeWhen>
         </handler>
@@ -127,19 +127,19 @@
 	<extension
 		point="org.eclipse.emf.ecore.extension_parser">
 		<parser
-			class="org.eclipse.ocl.examples.xtext.markup.ui.MarkupExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
+			class="org.eclipse.ocl.xtext.markup.ui.MarkupExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
 			type="markupocl">
 		</parser>
 	</extension>
 	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
         <resourceServiceProvider
-            class="org.eclipse.ocl.examples.xtext.markup.ui.MarkupExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
+            class="org.eclipse.ocl.xtext.markup.ui.MarkupExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
             uriExtension="markupocl">
         </resourceServiceProvider>
     </extension>
 
 
-    <!-- marker definitions for org.eclipse.ocl.examples.xtext.markup.Markup -->
+    <!-- marker definitions for org.eclipse.ocl.xtext.markup.Markup -->
     <extension
             id="markup.check.fast"
             name="%MF_Problem"
@@ -166,11 +166,11 @@
 	<extension
 		point="org.eclipse.ui.handlers">
 		<handler 
-			class="org.eclipse.ocl.examples.xtext.markup.ui.MarkupExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
+			class="org.eclipse.ocl.xtext.markup.ui.MarkupExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
 			commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline">
 			<activeWhen>
 				<reference
-					definitionId="org.eclipse.ocl.examples.xtext.markup.Markup.Editor.opened">
+					definitionId="org.eclipse.ocl.xtext.markup.Markup.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -190,33 +190,33 @@
 				style="push"
 				tooltip="%MF_OpenQuickOutline">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.eclipse.ocl.examples.xtext.markup.Markup.Editor.opened"/>
+					<reference definitionId="org.eclipse.ocl.xtext.markup.Markup.Editor.opened"/>
 				</visibleWhen>
 			</command>
 		</menuContribution>
 	</extension>
-    <!-- quickfix marker resolution generator for org.eclipse.ocl.examples.xtext.markup.Markup -->
+    <!-- quickfix marker resolution generator for org.eclipse.ocl.xtext.markup.Markup -->
    <extension
          point="org.eclipse.ui.ide.markerResolution">
       <markerResolutionGenerator
-            class="org.eclipse.ocl.examples.xtext.markup.ui.MarkupExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-            markerType="org.eclipse.ocl.examples.xtext.markup.ui.markup.check.fast">
+            class="org.eclipse.ocl.xtext.markup.ui.MarkupExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            markerType="org.eclipse.ocl.xtext.markup.ui.markup.check.fast">
             <attribute
                 name="FIXABLE_KEY"
                 value="true">
             </attribute>
         </markerResolutionGenerator>
         <markerResolutionGenerator
-            class="org.eclipse.ocl.examples.xtext.markup.ui.MarkupExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-            markerType="org.eclipse.ocl.examples.xtext.markup.ui.markup.check.normal">
+            class="org.eclipse.ocl.xtext.markup.ui.MarkupExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            markerType="org.eclipse.ocl.xtext.markup.ui.markup.check.normal">
             <attribute
                 name="FIXABLE_KEY"
                 value="true">
             </attribute>
         </markerResolutionGenerator>
         <markerResolutionGenerator
-            class="org.eclipse.ocl.examples.xtext.markup.ui.MarkupExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-            markerType="org.eclipse.ocl.examples.xtext.markup.ui.markup.check.expensive">
+            class="org.eclipse.ocl.xtext.markup.ui.MarkupExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            markerType="org.eclipse.ocl.xtext.markup.ui.markup.check.expensive">
             <attribute
                 name="FIXABLE_KEY"
                 value="true">

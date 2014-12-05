@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.ocl.examples.xtext.markup/emf-gen"
-    editDirectory="/org.eclipse.ocl.examples.xtext.markup.edit/src" editorDirectory="/org.eclipse.ocl.examples.xtext.markup.editor/src"
-    modelPluginID="org.eclipse.ocl.examples.xtext.markup" forceOverwrite="true" modelName="Markup"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.ocl.xtext.markup/emf-gen"
+    editDirectory="/org.eclipse.ocl.xtext.markup.edit/src" editorDirectory="/org.eclipse.ocl.xtext.markup.editor/src"
+    modelPluginID="org.eclipse.ocl.xtext.markup" forceOverwrite="true" modelName="Markup"
     updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
-    editPluginID="org.eclipse.ocl.examples.xtext.markup.edit" editorPluginID="org.eclipse.ocl.examples.xtext.markup.editor"
+    editPluginID="org.eclipse.ocl.xtext.markup.edit" editorPluginID="org.eclipse.ocl.xtext.markup.editor"
     runtimeVersion="2.7">
   <genAnnotations source="http://www.eclipse.org/OCL/GenModel/ToString">
-    <details key="org.eclipse.ocl.examples.xtext.markup.MarkupElement" value="&lt;%org.eclipse.ocl.examples.xtext.markup.MarkupToTree%> toString = new &lt;%org.eclipse.ocl.examples.xtext.markup.MarkupToTree%>();&#xD;&#xA;return toString.doSwitch(this).toString();"/>
+    <details key="org.eclipse.ocl.xtext.markup.MarkupElement" value="&lt;%org.eclipse.ocl.xtext.markup.MarkupToTree%> toString = new &lt;%org.eclipse.ocl.xtext.markup.MarkupToTree%>();&#xD;&#xA;return toString.doSwitch(this).toString();"/>
   </genAnnotations>
   <genAnnotations source="http://www.eclipse.org/OCL/GenModel/CopyAndPaste">
-    <details key="org.eclipse.ocl.examples.xtext.markup.FigureElement" value="model/FigureElement.javacopy"/>
+    <details key="org.eclipse.ocl.xtext.markup.FigureElement" value="model/FigureElement.javacopy"/>
   </genAnnotations>
   <foreignModel>Markup.ecore</foreignModel>
-  <genPackages prefix="Markup" basePackage="org.eclipse.ocl.examples.xtext" disposableProviderFactory="true"
+  <genPackages prefix="Markup" basePackage="org.eclipse.ocl.xtext" disposableProviderFactory="true"
       ecorePackage="Markup.ecore#/">
     <genClasses ecoreClass="Markup.ecore#//BulletElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Markup.ecore#//BulletElement/level"/>

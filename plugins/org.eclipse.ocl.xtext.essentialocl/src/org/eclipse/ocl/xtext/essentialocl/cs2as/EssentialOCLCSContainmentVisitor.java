@@ -1,0 +1,519 @@
+/*******************************************************************************
+ * Copyright (c) 2012, 2013 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   E.D.Willink - initial API and implementation
+ * 	 E.D.Willink (Obeo) - Bug 416287 - tuple-valued constraints
+ *******************************************************************************/
+package org.eclipse.ocl.xtext.essentialocl.cs2as;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.domain.values.Unlimited;
+import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
+import org.eclipse.ocl.examples.pivot.CollectionItem;
+import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
+import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
+import org.eclipse.ocl.examples.pivot.CollectionRange;
+import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.ConstructorPart;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.IfExp;
+import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
+import org.eclipse.ocl.examples.pivot.NullLiteralExp;
+import org.eclipse.ocl.examples.pivot.OCLExpression;
+import org.eclipse.ocl.examples.pivot.PivotConstants;
+import org.eclipse.ocl.examples.pivot.PivotFactory;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.PropertyCallExp;
+import org.eclipse.ocl.examples.pivot.RealLiteralExp;
+import org.eclipse.ocl.examples.pivot.StringLiteralExp;
+import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
+import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
+import org.eclipse.ocl.examples.pivot.TupleType;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
+import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.VariableExp;
+import org.eclipse.ocl.examples.pivot.context.ParserContext;
+import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
+import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
+import org.eclipse.ocl.xtext.base.cs2as.Continuation;
+import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
+import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
+import org.eclipse.ocl.xtext.basecs.ConstraintCS;
+import org.eclipse.ocl.xtext.basecs.ContextLessElementCS;
+import org.eclipse.ocl.xtext.basecs.PathElementCS;
+import org.eclipse.ocl.xtext.basecs.PathNameCS;
+import org.eclipse.ocl.xtext.basecs.SpecificationCS;
+import org.eclipse.ocl.xtext.essentialoclcs.BooleanLiteralExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralPartCS;
+import org.eclipse.ocl.xtext.essentialoclcs.CollectionTypeCS;
+import org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS;
+import org.eclipse.ocl.xtext.essentialoclcs.ContextCS;
+import org.eclipse.ocl.xtext.essentialoclcs.ExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.ExpSpecificationCS;
+import org.eclipse.ocl.xtext.essentialoclcs.IfExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.InfixExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.InvalidLiteralExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.LetVariableCS;
+import org.eclipse.ocl.xtext.essentialoclcs.LiteralExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.NameExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.NavigatingArgCS;
+import org.eclipse.ocl.xtext.essentialoclcs.NavigationRole;
+import org.eclipse.ocl.xtext.essentialoclcs.NestedExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.NullLiteralExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.NumberLiteralExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.PrefixExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.PrimitiveLiteralExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.RoundBracketedClauseCS;
+import org.eclipse.ocl.xtext.essentialoclcs.SelfExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.StringLiteralExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.TupleLiteralExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.TupleLiteralPartCS;
+import org.eclipse.ocl.xtext.essentialoclcs.TypeLiteralExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.UnlimitedNaturalLiteralExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.VariableCS;
+import org.eclipse.ocl.xtext.essentialoclcs.util.AbstractEssentialOCLCSContainmentVisitor;
+import org.eclipse.xtext.nodemodel.ICompositeNode;
+import org.eclipse.xtext.nodemodel.ILeafNode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
+
+public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSContainmentVisitor
+{
+	private static final Logger logger = Logger.getLogger(EssentialOCLCSContainmentVisitor.class);
+
+	public EssentialOCLCSContainmentVisitor(@NonNull CS2ASConversion context) {
+		super(context);
+	}
+
+	private void setParameterRole(@NonNull NavigatingArgCS csArgument, @NonNull NavigationRole aRole) {
+		csArgument.setRole(aRole);
+/*		if ((csArgument.getOwnedType() == null) && (csArgument.getInit() == null)) {
+			ExpCS csExp = csArgument.getName();
+			if (csExp instanceof InfixExpCS) {
+				InfixExpCS csInfixExp = (InfixExpCS)csExp;
+				// If init without type is ever legal; Fixup a = b				
+			}
+		} */
+		ExpCS csName = csArgument.getOwnedNameExpression();
+		if (csName instanceof NameExpCS) {
+			PathNameCS csPathName = ((NameExpCS)csName).getOwnedPathName();
+			@NonNull Variable parameter = context.refreshModelElement(Variable.class, PivotPackage.Literals.VARIABLE, csName);
+			ICompositeNode node = NodeModelUtils.getNode(csName);
+			if (node != null) {
+				ILeafNode leafNode = ElementUtil.getLeafNode(node);
+				if (leafNode != null) {
+					String varName = leafNode.getText();
+					assert varName != null;
+					context.refreshName(parameter, varName);
+					List<PathElementCS> path = csPathName.getOwnedPathElements();
+					PathElementCS csPathElement = path.get(path.size()-1);
+					csPathElement.setReferredElement(parameter);	// Resolve the reference that is actually a definition
+					csPathElement.setElementType(null);		// Indicate a definition to the syntax colouring
+				}
+			}
+		}
+	}
+
+	@Override
+	public Continuation<?> visitBooleanLiteralExpCS(@NonNull BooleanLiteralExpCS csElement) {
+		@NonNull BooleanLiteralExp pivotElement = context.refreshModelElement(BooleanLiteralExp.class, PivotPackage.Literals.BOOLEAN_LITERAL_EXP, csElement);
+		pivotElement.setBooleanSymbol(Boolean.valueOf(csElement.getSymbol()));
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitCollectionLiteralExpCS(@NonNull CollectionLiteralExpCS csElement) {
+		@NonNull CollectionLiteralExp pivotElement = context.refreshModelElement(CollectionLiteralExp.class, PivotPackage.Literals.COLLECTION_LITERAL_EXP, csElement);
+		context.refreshPivotList(CollectionLiteralPart.class, pivotElement.getPart(), csElement.getOwnedParts());
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitCollectionLiteralPartCS(@NonNull CollectionLiteralPartCS csElement) {
+		if (csElement.getOwnedLastExpression() == null) {
+			context.refreshModelElement(CollectionItem.class, PivotPackage.Literals.COLLECTION_ITEM, csElement);	
+		}
+		else {
+			context.refreshModelElement(CollectionRange.class, PivotPackage.Literals.COLLECTION_RANGE, csElement);
+		}
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitCollectionTypeCS(@NonNull CollectionTypeCS csElement) {
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitConstraintCS(@NonNull ConstraintCS csElement) {
+		@NonNull Constraint asConstraint = refreshNamedElement(Constraint.class, PivotPackage.Literals.CONSTRAINT, csElement);
+		ExpSpecificationCS csStatusSpecification = (ExpSpecificationCS)csElement.getOwnedSpecification();
+		ExpSpecificationCS csMessageSpecification = (ExpSpecificationCS)csElement.getOwnedMessageSpecification();
+		if (csMessageSpecification == null) {
+			ExpressionInOCL asSpecification = PivotUtil.getPivot(ExpressionInOCL.class, csStatusSpecification);
+			asConstraint.setSpecification(asSpecification);
+		}
+		else {
+			Map<String, Type> tupleParts = new HashMap<String, Type>();
+			tupleParts.put(PivotConstants.MESSAGE_PART_NAME, standardLibrary.getStringType());
+			tupleParts.put(PivotConstants.STATUS_PART_NAME, standardLibrary.getBooleanType());
+			TupleType tupleType = metaModelManager.getCompleteModel().getTupleManager().getTupleType("Tuple", tupleParts);
+			Property statusProperty = DomainUtil.getNamedElement(tupleType.getOwnedProperties(), PivotConstants.STATUS_PART_NAME);
+			LanguageExpression asSpecification = asConstraint.getSpecification();
+			//
+			ExpressionInOCL asExpressionInOCL;
+			if (asSpecification instanceof ExpressionInOCL) {
+				asExpressionInOCL = (ExpressionInOCL) asSpecification;	
+			}
+			else {
+				asExpressionInOCL = PivotFactory.eINSTANCE.createExpressionInOCL();
+				asConstraint.setSpecification(asExpressionInOCL);
+			}
+			OCLExpression asExpression = asExpressionInOCL.getBodyExpression();
+			//
+			PropertyCallExp asTuplePartExp;
+			if (asExpression instanceof PropertyCallExp) {
+				asTuplePartExp = (PropertyCallExp) asExpression;	
+			}
+			else {
+				asTuplePartExp = PivotFactory.eINSTANCE.createPropertyCallExp();
+				asExpressionInOCL.setBodyExpression(asTuplePartExp);
+			}
+			asTuplePartExp.setReferredProperty(statusProperty);
+			asTuplePartExp.setType(statusProperty.getType());
+			asTuplePartExp.setIsRequired(true);
+			asExpression = asTuplePartExp.getSource();
+			//
+			TupleLiteralExp asTupleLiteralExp;
+			if (asExpression instanceof TupleLiteralExp) {
+				asTupleLiteralExp = (TupleLiteralExp) asExpression;	
+			}
+			else {
+				asTupleLiteralExp = PivotFactory.eINSTANCE.createTupleLiteralExp();
+				asTuplePartExp.setSource(asTupleLiteralExp);
+			}
+			asTupleLiteralExp.setType(tupleType);
+			asTupleLiteralExp.setIsRequired(true);
+			List<TupleLiteralPart> parts = new ArrayList<TupleLiteralPart>();
+			TupleLiteralPart asStatusPart = PivotUtil.getPivot(TupleLiteralPart.class, csStatusSpecification);
+			TupleLiteralPart asMessagePart = PivotUtil.getPivot(TupleLiteralPart.class, csMessageSpecification);
+			if ((asMessagePart != null) && (asStatusPart != null)) {
+				parts.add(asMessagePart);
+				parts.add(asStatusPart);
+			}
+			context.refreshList(asTupleLiteralExp.getPart(), parts);
+		}
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitConstructorPartCS(@NonNull ConstructorPartCS csElement) {
+		context.refreshModelElement(ConstructorPart.class, PivotPackage.Literals.CONSTRUCTOR_PART, csElement);	
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitContextCS(@NonNull ContextCS csElement) {
+		@NonNull ExpressionInOCL pivotElement = context.refreshModelElement(ExpressionInOCL.class, PivotPackage.Literals.EXPRESSION_IN_OCL, csElement);
+		PivotUtil.setBody(pivotElement, null, null);
+		Resource resource = csElement.eResource();
+		if (resource instanceof BaseResource) {	
+			ParserContext parserContext = ((BaseResource)resource).getParserContext();
+			if (parserContext != null) {
+				parserContext.initialize(context, pivotElement);
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public @Nullable Continuation<?> visitContextLessElementCS(@NonNull ContextLessElementCS csElement) {
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitExpCS(@NonNull ExpCS csElement) {
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitExpSpecificationCS(@NonNull ExpSpecificationCS csElement) {
+		EObject eContainer = csElement.eContainer();
+		if (eContainer instanceof ConstraintCS) {
+			ConstraintCS csConstraint = (ConstraintCS) eContainer;
+			SpecificationCS csStatusSpecification = csConstraint.getOwnedSpecification();
+			SpecificationCS csMessageSpecification = csConstraint.getOwnedMessageSpecification();
+			if ((csStatusSpecification != null) && (csMessageSpecification != null)) {
+				@NonNull TupleLiteralPart csTupleLiteralPart = context.refreshModelElement(TupleLiteralPart.class, PivotPackage.Literals.TUPLE_LITERAL_PART, csElement);
+				EStructuralFeature eContainingFeature = csElement.eContainingFeature();
+				if (eContainingFeature == BaseCSPackage.Literals.CONSTRAINT_CS__OWNED_SPECIFICATION) {
+					csTupleLiteralPart.setName(PivotConstants.STATUS_PART_NAME);
+					csTupleLiteralPart.setType(standardLibrary.getBooleanType());
+				}
+				else if (eContainingFeature == BaseCSPackage.Literals.CONSTRAINT_CS__OWNED_MESSAGE_SPECIFICATION) {
+					csTupleLiteralPart.setName(PivotConstants.MESSAGE_PART_NAME);
+					csTupleLiteralPart.setType(standardLibrary.getStringType());
+				}
+				else {
+					logger.error("unknown ExpSpecificationCS.eContainingFeature" + eContainingFeature);
+				}
+				return null;
+			}
+		}
+		context.refreshModelElement(ExpressionInOCL.class, PivotPackage.Literals.EXPRESSION_IN_OCL, csElement);
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitIfExpCS(@NonNull IfExpCS csElement) {
+		context.refreshModelElement(IfExp.class, PivotPackage.Literals.IF_EXP, csElement);
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitInfixExpCS(@NonNull InfixExpCS csElement) {
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitInvalidLiteralExpCS(@NonNull InvalidLiteralExpCS csElement) {
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitLetVariableCS(@NonNull LetVariableCS csElement) {
+		return visitVariableCS(csElement);	// Follow the second superclass
+	}
+
+	@Override
+	public Continuation<?> visitLiteralExpCS(@NonNull LiteralExpCS csElement) {
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitNameExpCS(@NonNull NameExpCS csElement) {
+//		PathNameCS pathName = csElement.getPathName();
+//		assert pathName != null;
+//		CS2AS.setElementType(pathName, PivotPackage.Literals.ELEMENT, csElement, NotOperationNotPackageFilter.INSTANCE);
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitNavigatingArgCS(@NonNull NavigatingArgCS csElement) {
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitNestedExpCS(@NonNull NestedExpCS csElement) {
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitNullLiteralExpCS(@NonNull NullLiteralExpCS csElement) {
+		context.refreshModelElement(NullLiteralExp.class, PivotPackage.Literals.NULL_LITERAL_EXP, csElement);
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitNumberLiteralExpCS(@NonNull NumberLiteralExpCS csElement) {
+		Number number = csElement.getSymbol();
+		if ((number instanceof BigDecimal) || (number instanceof Double) || (number instanceof Float)) {
+			@NonNull RealLiteralExp pivotElement = context.refreshModelElement(RealLiteralExp.class, PivotPackage.Literals.REAL_LITERAL_EXP, csElement);
+			pivotElement.setRealSymbol(number);
+		}
+		else {
+			boolean isNegative;
+			if (number instanceof BigInteger) {
+				BigInteger bigInteger = (BigInteger) number;
+				isNegative = bigInteger.signum() < 0;
+				if (isNegative) {
+					if (bigInteger.compareTo(ValuesUtil.INTEGER_MIN_VALUE) >= 0) {
+						number = Integer.valueOf(bigInteger.intValue());
+					}
+					else if (bigInteger.compareTo(ValuesUtil.LONG_MIN_VALUE) >= 0) {
+						number = Long.valueOf(bigInteger.longValue());
+					}
+				}
+				else {
+					if (bigInteger.compareTo(ValuesUtil.INTEGER_MAX_VALUE) <= 0) {
+						number = Integer.valueOf(bigInteger.intValue());
+					}
+					else if (bigInteger.compareTo(ValuesUtil.LONG_MAX_VALUE) <= 0) {
+						number = Long.valueOf(bigInteger.longValue());
+					}
+				}
+			}
+			else {
+				long longValue = number.longValue();
+				isNegative = longValue < 0;
+				if (isNegative) {
+					if (longValue >= Integer.MIN_VALUE) {
+						number = Integer.valueOf((int)longValue);
+					}
+					else {
+						number = Long.valueOf(longValue);
+					}
+				}
+				else {
+					if (longValue <= Integer.MAX_VALUE) {
+						number = Integer.valueOf((int)longValue);
+					}
+					else {
+						number = Long.valueOf(longValue);
+					}
+				}
+			}				
+			if (isNegative) {
+				@NonNull IntegerLiteralExp pivotElement = context.refreshModelElement(IntegerLiteralExp.class, PivotPackage.Literals.INTEGER_LITERAL_EXP, csElement);
+				pivotElement.setIntegerSymbol(number);
+			}
+			else {
+				@NonNull UnlimitedNaturalLiteralExp pivotElement = context.refreshModelElement(UnlimitedNaturalLiteralExp.class, PivotPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP, csElement);
+				pivotElement.setUnlimitedNaturalSymbol(number);
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitPrefixExpCS(@NonNull PrefixExpCS csElement) {
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitPrimitiveLiteralExpCS(@NonNull PrimitiveLiteralExpCS csElement) {
+		return null;
+	}
+
+	@Override
+	public @Nullable Continuation<?> visitRoundBracketedClauseCS(@NonNull RoundBracketedClauseCS csElement) {
+		List<NavigatingArgCS> csArguments = csElement.getOwnedArguments();
+		if (csArguments.size() > 0) {
+			// Last argument is always an expression
+			//	then preceding initialized terms are accumulators
+			//	 then preceding terms are iterators
+			NavigationRole role = NavigationRole.EXPRESSION;
+			for (int i = csArguments.size()-1; i >= 0; i--) {
+				@SuppressWarnings("null")@NonNull NavigatingArgCS csArgument = csArguments.get(i);
+				switch (role) {
+					case EXPRESSION: {
+						csArgument.setRole(NavigationRole.EXPRESSION);
+						if ("|".equals(csArgument.getPrefix())) {
+							role = NavigationRole.ACCUMULATOR;
+						}
+						break;
+					}
+					case ACCUMULATOR: {
+						if (csArgument.getOwnedInitExpression() != null) {
+							setParameterRole(csArgument, NavigationRole.ACCUMULATOR);
+							if (";".equals(csArgument.getPrefix())) {
+								role = NavigationRole.ITERATOR;
+							}
+						}
+						else {
+							role = NavigationRole.ITERATOR;
+							setParameterRole(csArgument, NavigationRole.ITERATOR);
+						}
+						break;
+					}
+					case ITERATOR: {
+						setParameterRole(csArgument, NavigationRole.ITERATOR);
+						break;
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitSelfExpCS(@NonNull SelfExpCS csElement) {
+		context.refreshModelElement(VariableExp.class, PivotPackage.Literals.VARIABLE_EXP, csElement);
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitStringLiteralExpCS(@NonNull StringLiteralExpCS csElement) {
+		@NonNull StringLiteralExp pivotElement = context.refreshModelElement(StringLiteralExp.class, PivotPackage.Literals.STRING_LITERAL_EXP, csElement);
+		List<String> segments = csElement.getSegments();
+		if (segments.size() == 0) {
+			pivotElement.setStringSymbol("");
+		}
+		else if (segments.size() == 1) {
+			pivotElement.setStringSymbol(segments.get(0));
+		}
+		else {
+			StringBuilder s = new StringBuilder();
+			for (String segment : segments) {
+				s.append(segment);
+			}
+			pivotElement.setStringSymbol(s.toString());
+		}
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitTupleLiteralExpCS(@NonNull TupleLiteralExpCS csElement) {
+		@NonNull TupleLiteralExp pivotElement = context.refreshModelElement(TupleLiteralExp.class, PivotPackage.Literals.TUPLE_LITERAL_EXP, csElement);	
+		context.refreshPivotList(TupleLiteralPart.class, pivotElement.getPart(), csElement.getOwnedParts());
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitTupleLiteralPartCS(@NonNull TupleLiteralPartCS csElement) {
+		refreshNamedElement(TupleLiteralPart.class, PivotPackage.Literals.TUPLE_LITERAL_PART, csElement);	
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitTypeLiteralExpCS(@NonNull TypeLiteralExpCS csElement) {
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitTypeNameExpCS(@NonNull TypeNameExpCS csElement) {
+		PathNameCS pathName = csElement.getOwnedPathName();
+		assert pathName != null;
+		CS2AS.setElementType(pathName, PivotPackage.Literals.TYPE, csElement, null);
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitUnlimitedNaturalLiteralExpCS(@NonNull UnlimitedNaturalLiteralExpCS csElement) {
+		@NonNull UnlimitedNaturalLiteralExp pivotElement = context.refreshModelElement(UnlimitedNaturalLiteralExp.class, PivotPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP, csElement);
+		pivotElement.setName("*");
+		pivotElement.setUnlimitedNaturalSymbol(Unlimited.INSTANCE);
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitVariableCS(@NonNull VariableCS csElement) {
+		refreshNamedElement(Variable.class, PivotPackage.Literals.VARIABLE, csElement);
+		return null;
+	}
+}

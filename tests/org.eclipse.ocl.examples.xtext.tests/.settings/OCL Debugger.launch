@@ -425,9 +425,9 @@
 <mapEntry key="org.eclipse.ocl.examples.pivot/uml2as/addStereotypeApplication" value="false"/>
 <mapEntry key="org.eclipse.ocl.examples.pivot/validate/instance" value="false"/>
 <mapEntry key="org.eclipse.ocl.examples.pivot/validate/opaqueElement" value="false"/>
-<mapEntry key="org.eclipse.ocl.examples.xtext.base/continuation" value="false"/>
-<mapEntry key="org.eclipse.ocl.examples.xtext.base/lookup" value="false"/>
-<mapEntry key="org.eclipse.ocl.examples.xtext.base/work" value="false"/>
+<mapEntry key="org.eclipse.ocl.xtext.base/continuation" value="false"/>
+<mapEntry key="org.eclipse.ocl.xtext.base/lookup" value="false"/>
+<mapEntry key="org.eclipse.ocl.xtext.base/work" value="false"/>
 <mapEntry key="org.eclipse.ocl/debug" value="true"/>
 <mapEntry key="org.eclipse.ocl/debug/evaluation" value="false"/>
 <mapEntry key="org.eclipse.ocl/debug/exceptions/catching" value="false"/>

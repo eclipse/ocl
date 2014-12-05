@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates>
 <template name="minimal OCL Standard Library" description="template for a minimal OCL Standard Library"
-	id="org.eclipse.ocl.examples.xtext.oclstdlib.ui.templates.library"
-	context="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib.LibraryCS"
+	id="org.eclipse.ocl.xtext.oclstdlib.ui.templates.library"
+	context="org.eclipse.ocl.xtext.oclstdlib.OCLstdlib.LibraryCS"
 	enabled="true">library ocl : ocl = 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib'
 {
 	type AnyClassifier(T) : ClassifierType conformsTo OclAny {}
@@ -32,7 +32,7 @@
 
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib.ClassCS" 
+	context="org.eclipse.ocl.xtext.oclstdlib.OCLstdlib.ClassCS" 
 	deleted="false" 
 	description="type declaration" 
 	enabled="true" 
@@ -42,7 +42,7 @@
 </template>
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib.LibIterationCS" 
+	context="org.eclipse.ocl.xtext.oclstdlib.OCLstdlib.LibIterationCS" 
 	deleted="false" 
 	description="iteration declaration" 
 	enabled="true" 
@@ -51,7 +51,7 @@
 </template>
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib.LibraryCS" 
+	context="org.eclipse.ocl.xtext.oclstdlib.OCLstdlib.LibraryCS" 
 	deleted="false" 
 	description="library declaration" 
 	enabled="true" 
@@ -60,7 +60,7 @@
 </template>
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib.LibOperationCS" 
+	context="org.eclipse.ocl.xtext.oclstdlib.OCLstdlib.LibOperationCS" 
 	deleted="false" 
 	description="operation declaration" 
 	enabled="true" 
@@ -69,7 +69,7 @@
 </template>
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib.PackageCS" 
+	context="org.eclipse.ocl.xtext.oclstdlib.OCLstdlib.PackageCS" 
 	deleted="false" 
 	description="package declaration" 
 	enabled="true" 
@@ -80,7 +80,7 @@
 </template>
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib.LibPropertyCS" 
+	context="org.eclipse.ocl.xtext.oclstdlib.OCLstdlib.LibPropertyCS" 
 	deleted="false" 
 	description="property declaration" 
 	enabled="true" 
@@ -91,7 +91,7 @@
 	
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL.IfExpCS" 
+	context="org.eclipse.ocl.xtext.essentialocl.EssentialOCL.IfExpCS" 
 	deleted="false" 
 	description="if then else expression" 
 	enabled="true" 
@@ -99,7 +99,7 @@
 	id="IfExpCS">if ${cursor}true then ${line_selection} else null endif</template>
 <template 
 	autoinsert="false" 
-	context="org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL.LetExpCS" 
+	context="org.eclipse.ocl.xtext.essentialocl.EssentialOCL.LetExpCS" 
 	deleted="false" 
 	description="let expression" 
 	enabled="true" 

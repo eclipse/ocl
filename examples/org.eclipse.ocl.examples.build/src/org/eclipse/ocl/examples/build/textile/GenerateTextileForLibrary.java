@@ -34,8 +34,8 @@ import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlibStandaloneSetup;
+import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.xtext.oclstdlib.OCLstdlibStandaloneSetup;
 
 public abstract class GenerateTextileForLibrary extends AbstractWorkflowComponent
 {

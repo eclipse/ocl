@@ -11,7 +11,7 @@
 package org.eclipse.ocl.examples.xtext.console;
 
 import org.eclipse.ocl.examples.xtext.console.OCLConsolePage.InterrogatableContentAssistantFactory;
-import org.eclipse.ocl.examples.xtext.essentialocl.ui.EssentialOCLUiModule;
+import org.eclipse.ocl.xtext.essentialocl.ui.EssentialOCLUiModule;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.editor.contentassist.IContentAssistantFactory;
 import org.eclipse.xtext.ui.editor.model.edit.IssueModificationContext;

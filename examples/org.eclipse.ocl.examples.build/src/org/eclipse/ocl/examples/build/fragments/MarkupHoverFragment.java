@@ -12,9 +12,9 @@ package org.eclipse.ocl.examples.build.fragments;
 
 import java.util.Set;
 
-import org.eclipse.ocl.examples.xtext.base.ui.model.BaseDocumentationProvider;
-import org.eclipse.ocl.examples.xtext.markup.ui.hover.MarkupHover;
-import org.eclipse.ocl.examples.xtext.markup.ui.hover.MarkupHoverProvider;
+import org.eclipse.ocl.xtext.base.ui.model.BaseDocumentationProvider;
+import org.eclipse.ocl.xtext.markup.ui.hover.MarkupHover;
+import org.eclipse.ocl.xtext.markup.ui.hover.MarkupHoverProvider;
 import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.documentation.IEObjectDocumentationProvider;
 import org.eclipse.xtext.generator.BindFactory;

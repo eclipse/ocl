@@ -50,7 +50,7 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.utilities.ASSaver;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage;
 
 public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend

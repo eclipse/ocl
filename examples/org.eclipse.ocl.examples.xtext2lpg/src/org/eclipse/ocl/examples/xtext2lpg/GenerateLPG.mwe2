@@ -20,7 +20,7 @@ import org.eclipse.m2m.internal.qvt.oml.runtime.ant.QvtoAntTransformationTask
 var projectName = "org.eclipse.ocl.examples.xtext2lpg"
 var projectURI = "platform:/resource/${projectName}"
 var syntaxName // e.g. "OCLinEcore"
-var grammarPath // e.g. "platform:/resource/org.eclipse.ocl.examples.xtext.oclinecore/src/org/eclipse/ocl/examples/xtext/oclinecore/OCLinEcore.xtext"
+var grammarPath // e.g. "platform:/resource/org.eclipse.ocl.xtext.oclinecore/src/org/eclipse/ocl/examples/xtext/oclinecore/OCLinEcore.xtext"
 var grammar.XBNF = "platform:/resource/${projectName}/lpg-gen/${syntaxName}.xtext.XBNF"
 var normalized.XBNF = "platform:/resource/${projectName}/lpg-gen/${syntaxName}.normal.XBNF"
 var inlined.XBNF = "platform:/resource/${projectName}/lpg-gen/${syntaxName}.inline.XBNF"

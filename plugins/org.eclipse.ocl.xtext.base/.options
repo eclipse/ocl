@@ -1,11 +1,11 @@
-# Debugging options for the org.eclipse.ocl.examples.xtext.base plug-in
+# Debugging options for the org.eclipse.ocl.xtext.base plug-in
 
 # Turn on general reference lookup tracing
-org.eclipse.ocl.examples.xtext.base/lookup=false
+org.eclipse.ocl.xtext.base/lookup=false
 
 # Turn on general work tracing
-org.eclipse.ocl.examples.xtext.base/work=false
+org.eclipse.ocl.xtext.base/work=false
 
 # Turn on c2 2 pivot continuation tracing
-org.eclipse.ocl.examples.xtext.base/continuation=false
+org.eclipse.ocl.xtext.base/continuation=false
 

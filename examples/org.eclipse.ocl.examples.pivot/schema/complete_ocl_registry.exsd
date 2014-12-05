@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.ocl.examples.xtext.completeocl" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.ocl.xtext.completeocl" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.ocl.examples.xtext.completeocl" id="complete_ocl_registry" name="Complete OCL Registry"/>
+         <meta.schema plugin="org.eclipse.ocl.xtext.completeocl" id="complete_ocl_registry" name="Complete OCL Registry"/>
       </appInfo>
       <documentation>
          The complete OCL Registry allows clients to register their completeOCL files so that they can be reused to validate workspace models when the contributing plugin is installed.
@@ -103,7 +103,7 @@
       <documentation>
          This could be used to register the CompleteOCL file &quot;EcoreValidation.ocl&quot; located within a &quot;model&quot; subfolder at the root of the plugin :
 
-&lt;extension point=&quot;org.eclipse.ocl.examples.xtext.completeocl.complete_ocl_registry&quot;&gt;
+&lt;extension point=&quot;org.eclipse.ocl.xtext.completeocl.complete_ocl_registry&quot;&gt;
  &lt;completeOCLResource resource=&quot;model/EcoreValidation.ocl&quot;&gt;
 &lt;/completeOCLResource&gt;
       </documentation>

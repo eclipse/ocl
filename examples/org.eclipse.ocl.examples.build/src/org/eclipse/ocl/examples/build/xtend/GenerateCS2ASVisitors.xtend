@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.jdt.annotation.NonNull
 import java.util.List
-import java.util.ArrayListimport org.eclipse.ocl.examples.xtext.base.cs2as.Continuation
+import java.util.ArrayListimport org.eclipse.ocl.xtext.base.cs2as.Continuation
 import org.eclipse.ocl.examples.pivot.Element
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
 
@@ -102,7 +102,7 @@ public class GenerateCS2ASVisitors extends GenerateCSVisitors
 			
 			import org.eclipse.jdt.annotation.NonNull;
 			import org.eclipse.jdt.annotation.Nullable;
-			import org.eclipse.ocl.examples.xtext.base.cs2as.CS2ASConversion;
+			import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
 			import «superProjectName».cs2as.«extendedClassName»;
 			«FOR addtionalImport : additionalImports»
 			import «addtionalImport.getName()»;

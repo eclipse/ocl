@@ -12,7 +12,7 @@ package org.eclipse.ocl.examples.build.fragments;
 
 import java.util.Set;
 
-import org.eclipse.ocl.examples.xtext.base.services.CompatibilityGrammarProvider;
+import org.eclipse.ocl.xtext.base.services.CompatibilityGrammarProvider;
 import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.generator.BindFactory;
 import org.eclipse.xtext.generator.Binding;

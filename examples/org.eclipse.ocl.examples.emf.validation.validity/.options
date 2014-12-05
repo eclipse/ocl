@@ -1,4 +1,4 @@
-# Debugging options for the org.eclipse.ocl.examples.xtext.base plug-in
+# Debugging options for the org.eclipse.ocl.xtext.base plug-in
 
 # Turn on analyzeResource discovery announcements
 org.eclipse.ocl.examples.emf.validation.validity/analyze/resource=false
