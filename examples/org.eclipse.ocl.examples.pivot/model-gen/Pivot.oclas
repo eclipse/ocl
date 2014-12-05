@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pivot:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:pivot="http://www.eclipse.org/ocl/3.1.0/Pivot" xsi:schemaLocation="http://www.eclipse.org/ocl/3.1.0/Pivot java://org.eclipse.ocl.examples.pivot.PivotPackage"
+    xmlns:pivot="http://www.eclipse.org/ocl/2015/Pivot" xsi:schemaLocation="http://www.eclipse.org/ocl/2015/Pivot java://org.eclipse.ocl.examples.pivot.PivotPackage"
     externalURI="platform:/resource/org.eclipse.ocl.examples.pivot/model/Pivot.ecore"
     name="Pivot.ecore">
-  <ownedPackages xmi:id="P.pivot" URI="http://www.eclipse.org/ocl/3.1.0/Pivot" name="pivot"
+  <ownedPackages xmi:id="P.pivot" URI="http://www.eclipse.org/ocl/2015/Pivot" name="pivot"
       nsPrefix="pivot">
     <ownedClasses xsi:type="pivot:PrimitiveType" xmi:id="Boolean" instanceClassName="boolean"
         name="Boolean" superClasses="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#T.ocl.OclAny">

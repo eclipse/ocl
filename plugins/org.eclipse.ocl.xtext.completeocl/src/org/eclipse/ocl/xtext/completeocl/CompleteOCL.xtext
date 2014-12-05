@@ -14,7 +14,7 @@ with org.eclipse.ocl.xtext.essentialocl.EssentialOCL
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 import "http://www.eclipse.org/ocl/2015/BaseCS" as base
 import "http://www.eclipse.org/ocl/2015/EssentialOCLCS" as essentialocl
-import "http://www.eclipse.org/ocl/3.1.0/Pivot" as pivot
+import "http://www.eclipse.org/ocl/2015/Pivot" as pivot
 import "http://www.eclipse.org/ocl/2015/CompleteOCLCS"
 //generate completeOCL "http://www.eclipse.org/ocl/examples/xtext/completeocl/CompleteOCL"
 CompleteOCLDocumentCS returns CompleteOCLDocumentCS:

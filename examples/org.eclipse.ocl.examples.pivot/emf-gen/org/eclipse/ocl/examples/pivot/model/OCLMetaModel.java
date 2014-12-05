@@ -37,7 +37,7 @@ import org.eclipse.ocl.examples.pivot.resource.OCLASResourceFactory;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
- * This is the http://www.eclipse.org/ocl/3.1.0/Pivot Pivot Model of the Pivot Model
+ * This is the http://www.eclipse.org/ocl/2015/Pivot Pivot Model of the Pivot Model
  * auto-generated from /org.eclipse.ocl.examples.pivot/model/Pivot.ecore.
  * It facilitates efficient model loading without the overheads of model reading.
  */
@@ -47,7 +47,7 @@ public class OCLMetaModel extends ASResourceImpl
 	/**
 	 *	The URI of this Standard Library.
 	 */
-	public static final @NonNull String PIVOT_URI = "http://www.eclipse.org/ocl/3.1.0/Pivot";
+	public static final @NonNull String PIVOT_URI = "http://www.eclipse.org/ocl/2015/Pivot";
 
 	public static @NonNull Package create(@NonNull PivotStandardLibrary standardLibrary, @NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
 		OCLMetaModel resource = new OCLMetaModel(DomainUtil.nonNullEMF(URI.createURI(PIVOT_URI)));
@@ -116,7 +116,7 @@ public class OCLMetaModel extends ASResourceImpl
 
 		protected Contents(@NonNull PivotStandardLibrary standardLibrary, @NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
 			super(standardLibrary);
-			root = createModel("http://www.eclipse.org/ocl/3.1.0/Pivot");
+			root = createModel("http://www.eclipse.org/ocl/2015/Pivot");
 			metamodel = createPackage(name, nsPrefix, nsURI, IdManager.METAMODEL);
 			installPackages();
 			installOclTypes();

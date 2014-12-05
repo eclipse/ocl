@@ -971,7 +971,7 @@ public class LoadTests extends XtextTestCase
 		Model root = (Model) oclResource.getContents().get(0);
 		org.eclipse.ocl.examples.pivot.Package oclDocPackage = root.getOwnedPackages().get(0);
 		assertEquals("pivot", oclDocPackage.getName());
-		assertEquals("http://www.eclipse.org/ocl/3.1.0/Pivot", oclDocPackage.getURI());
+		assertEquals("http://www.eclipse.org/ocl/2015/Pivot", oclDocPackage.getURI());
 		
 		Import _import = root.getImports().get(0);
 		assertEquals("pivot", _import.getName());
@@ -979,7 +979,7 @@ public class LoadTests extends XtextTestCase
 		assertTrue(nSpace instanceof org.eclipse.ocl.examples.pivot.Package);
 		org.eclipse.ocl.examples.pivot.Package refPackage = (org.eclipse.ocl.examples.pivot.Package)nSpace;
 		assertEquals("pivot", nSpace.getName());
-		assertEquals("http://www.eclipse.org/ocl/3.1.0/Pivot", refPackage.getURI());
+		assertEquals("http://www.eclipse.org/ocl/2015/Pivot", refPackage.getURI());
 		assertNotSame(oclDocPackage, nSpace);
 		assertEquals(metaModelManager.getPrimaryPackage(oclDocPackage), metaModelManager.getPrimaryPackage(refPackage));
 	}
@@ -998,7 +998,7 @@ public class LoadTests extends XtextTestCase
 		assertTrue(nSpace instanceof org.eclipse.ocl.examples.pivot.Package);
 		org.eclipse.ocl.examples.pivot.Package refPackage = (org.eclipse.ocl.examples.pivot.Package)nSpace;
 		assertEquals("pivot", nSpace.getName());
-		assertEquals("http://www.eclipse.org/ocl/3.1.0/Pivot", ((org.eclipse.ocl.examples.pivot.Package)nSpace).getURI());
+		assertEquals("http://www.eclipse.org/ocl/2015/Pivot", ((org.eclipse.ocl.examples.pivot.Package)nSpace).getURI());
 		assertNotSame(oclDocPackage, nSpace);
 		assertEquals(metaModelManager.getPrimaryPackage(oclDocPackage), metaModelManager.getPrimaryPackage(refPackage));
 	}

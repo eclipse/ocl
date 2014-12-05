@@ -215,7 +215,7 @@ public abstract class AbstractValidityTestCase extends TestCase
 			ValidityManager.addConstraintLocator("http://www.eclipse.org/emf/2002/Ecore", EClassConstraintLocator.INSTANCE);
 			ValidityManager.addConstraintLocator("http://www.eclipse.org/emf/2002/Ecore", EClassifierConstraintLocator.INSTANCE);
 			ValidityManager.addConstraintLocator("http://www.eclipse.org/emf/2002/Ecore", EValidatorConstraintLocator.INSTANCE);
-			ValidityManager.addConstraintLocator("http://www.eclipse.org/ocl/3.1.0/Pivot", PivotConstraintLocator.INSTANCE);
+			ValidityManager.addConstraintLocator("http://www.eclipse.org/ocl/2015/Pivot", PivotConstraintLocator.INSTANCE);
 			ValidityManager.addConstraintLocator("http://www.eclipse.org/uml2/2.0.0/UML", UMLConstraintLocator.INSTANCE);
 			ValidityManager.addConstraintLocator("http://www.eclipse.org/uml2/3.0.0/UML", UMLConstraintLocator.INSTANCE);
 			ValidityManager.addConstraintLocator("http://www.eclipse.org/uml2/4.0.0/UML", UMLConstraintLocator.INSTANCE);

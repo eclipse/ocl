@@ -91,7 +91,7 @@ public abstract class GenerateMetamodelWorkflowComponent extends AbstractWorkflo
 	}
 	
 	/**
-	 * The nsURI for use in the generated metamodel. (e.g. "http://www.eclipse.org/ocl/3.1.0/Pivot").
+	 * The nsURI for use in the generated metamodel. (e.g. "http://www.eclipse.org/ocl/2015/Pivot").
 	 */
 	public void setUri(String uri) {
 		this.uri = uri;

@@ -13,7 +13,7 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://www.eclipse.org/ocl/3.1.0/Pivot"
+            uri="http://www.eclipse.org/ocl/2015/Pivot"
             class="org.eclipse.ocl.examples.pivot.PivotPackage"
             genModel="model/Pivot.merged.genmodel"/>
    </extension>
@@ -52,7 +52,7 @@
             name="%_UI_Pivot_content_type"
             priority="normal">
          <describer class="org.eclipse.emf.ecore.xmi.impl.RootXMLContentHandlerImpl$Describer">
-            <parameter name="namespace" value="http://www.eclipse.org/ocl/3.1.0/Pivot"/>
+            <parameter name="namespace" value="http://www.eclipse.org/ocl/2015/Pivot"/>
             <parameter name="kind" value="xmi"/>
          </describer>
       </content-type>

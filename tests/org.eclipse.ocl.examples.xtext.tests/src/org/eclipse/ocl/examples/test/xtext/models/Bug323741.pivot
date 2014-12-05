@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:pivot="http://www.eclipse.org/ocl/3.1.0/Pivot">
+    xmlns:pivot="http://www.eclipse.org/ocl/2015/Pivot">
   <pivot:Package xmi:id="Bug323741.ecore" name="Bug323741.ecore">
     <nestedPackage xmi:id="my" name="my" nsPrefix="my" nsURI="http://my/1.0">
-      <ownedType xsi:type="pivot:Class" xmi:id="my!Model" name="Model" superClass="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.2 http://www.eclipse.org/ocl/3.1.0/Pivot#//@ownedType.10">
+      <ownedType xsi:type="pivot:Class" xmi:id="my!Model" name="Model" superClass="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.2 http://www.eclipse.org/ocl/2015/Pivot#//@ownedType.10">
         <ownedAttribute xmi:id="my!Model!bs" name="bs" type="#my!BType" lower="0"
             upper="-1" isComposite="true" opposite="#my!BType!Model"/>
       </ownedType>
-      <ownedType xsi:type="pivot:Class" xmi:id="my!Entity" name="Entity" superClass="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.2 http://www.eclipse.org/ocl/3.1.0/Pivot#//@ownedType.10">
+      <ownedType xsi:type="pivot:Class" xmi:id="my!Entity" name="Entity" superClass="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.2 http://www.eclipse.org/ocl/2015/Pivot#//@ownedType.10">
         <ownedAttribute xmi:id="my!Entity!name" name="name" type="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.19"
             lower="0"/>
       </ownedType>
@@ -168,7 +168,7 @@
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:ClassifierType" xmi:id="ocl!Classifier[my!BType]" name="Classifier"
-        superClass="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.2 http://www.eclipse.org/ocl/3.1.0/Pivot#//@ownedType.10"
+        superClass="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.2 http://www.eclipse.org/ocl/2015/Pivot#//@ownedType.10"
         instanceType="#my!BType">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.2/@ownedTemplateSignature">
         <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.2/@ownedTemplateSignature/@ownedParameter.0"

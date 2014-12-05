@@ -1915,7 +1915,7 @@
       <appliedProfile href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
     </profileApplication>
   </uml:Package>
-  <Ecore:EPackage xmi:id="PA.Ppivot" base_Package="Ppivot" nsURI="http://www.eclipse.org/ocl/3.1.0/Pivot"/>
+  <Ecore:EPackage xmi:id="PA.Ppivot" base_Package="Ppivot" nsURI="http://www.eclipse.org/ocl/2015/Pivot"/>
   <Ecore:EReference xmi:id="PA.Ppivot.TConstraint.Pcontext" isTransient="true" isVolatile="true" base_Property="Ppivot.TConstraint.Pcontext"
       isResolveProxies="false"/>
   <Ecore:EAttribute xmi:id="PA.Ppivot.TLanguageExpression.Planguage" isTransient="true" isVolatile="true" base_Property="Ppivot.TLanguageExpression.Planguage"/>

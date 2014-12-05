@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
-  <uml:Model xmi:id="_zzSzAHvXEeSfY7DIIV8YQg" name="pivot" URI="http://www.eclipse.org/ocl/3.1.0/Pivot">
+  <uml:Model xmi:id="_zzSzAHvXEeSfY7DIIV8YQg" name="pivot" URI="http://www.eclipse.org/ocl/2015/Pivot">
     <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_zzSzAXvXEeSfY7DIIV8YQg" name="Boolean">
       <ownedComment xmi:id="_zzSzAnvXEeSfY7DIIV8YQg" annotatedElement="_zzSzAXvXEeSfY7DIIV8YQg">
         <body>A Boolean type is used for logical expression, consisting of the predefined values true and false.</body>

@@ -11,7 +11,7 @@
  * This code is 100% auto-generated
  * from:
  *   platform:/resource/org.eclipse.ocl.examples.library/model/OCL-2.5.oclstdlib
- *   http://www.eclipse.org/ocl/3.1.0/Pivot
+ *   http://www.eclipse.org/ocl/2015/Pivot
  * using:
  *   platform:/resource/org.eclipse.ocl.examples.library/model/oclstdlib.genmodel
  *   org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreTables

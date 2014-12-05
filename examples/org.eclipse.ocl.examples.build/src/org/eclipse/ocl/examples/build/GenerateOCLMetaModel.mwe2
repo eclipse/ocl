@@ -35,7 +35,7 @@ Workflow {
     component = GenerateOCLMetaModelXtend { resourceSet = resourceSet
     	projectName = "${projectName}"
     	modelFile = "model/Pivot.ecore"
-    	uri = "http://www.eclipse.org/ocl/3.1.0/Pivot"
+    	uri = "http://www.eclipse.org/ocl/2015/Pivot"
     	javaFolder = "emf-gen/temp"
     	javaPackageName = "${projectName}.model"
     	javaClassName = "OCLMetaModel"

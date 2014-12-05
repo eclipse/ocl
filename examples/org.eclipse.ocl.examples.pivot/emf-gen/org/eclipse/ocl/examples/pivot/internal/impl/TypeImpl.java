@@ -100,7 +100,7 @@ public abstract class TypeImpl
 	@Override
 	public org.eclipse.ocl.examples.pivot.Class isClass()
 	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Type!isClass()
+		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!Type!isClass()
 	}
 
 	/**
@@ -111,7 +111,7 @@ public abstract class TypeImpl
 	@Override
 	public TemplateParameter isTemplateParameter()
 	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Type!isTemplateParameter()
+		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!Type!isTemplateParameter()
 	}
 
 	/**

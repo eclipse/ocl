@@ -14,7 +14,7 @@ grammar org.eclipse.ocl.xtext.oclinecore.OCLinEcore with org.eclipse.ocl.xtext.e
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 import "http://www.eclipse.org/ocl/2015/BaseCS" as base
 import "http://www.eclipse.org/ocl/2015/EssentialOCLCS" as essentialocl
-import "http://www.eclipse.org/ocl/3.1.0/Pivot" as pivot
+import "http://www.eclipse.org/ocl/2015/Pivot" as pivot
 import "http://www.eclipse.org/ocl/2015/OCLinEcoreCS"
 //generate oclinEcore2 "http://www.eclipse.org/ocl/examples/xtext/oclinecore/OCLinEcore"
 

@@ -1,4 +1,4 @@
-import pivot : 'http://www.eclipse.org/ocl/3.1.0/Pivot#/'
+import pivot : 'http://www.eclipse.org/ocl/2015/Pivot#/'
 
 package ocl
 context Element

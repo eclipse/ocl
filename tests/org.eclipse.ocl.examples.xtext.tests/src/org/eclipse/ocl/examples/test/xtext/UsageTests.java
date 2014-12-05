@@ -891,7 +891,7 @@ public class UsageTests
 		String testProjectName = "bug414855";
 		String testProjectPath = EMFPlugin.IS_ECLIPSE_RUNNING ? testProjectName : ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS;
 		String oclinecoreFile =
-			"import pivot : 'http://www.eclipse.org/ocl/3.1.0/Pivot#/';\n"
+			"import pivot : 'http://www.eclipse.org/ocl/2015/Pivot#/';\n"
 			+ "package bug414855 : bug414855 = 'http://bug414855'\n"
 			+ "{\n"
 			+ "    datatype MyString : 'java.lang.String' { serializable };\n"
