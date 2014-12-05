@@ -30,33 +30,33 @@ import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreTablesUtils;
-import org.eclipse.ocl.examples.domain.ids.TypeId;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
-import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.IPackageDescriptor;
-import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.IProjectDescriptor;
-import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.LoadDynamicResourceStrategy;
-import org.eclipse.ocl.examples.domain.values.IntegerValue;
-import org.eclipse.ocl.examples.pivot.CollectionType;
-import org.eclipse.ocl.examples.pivot.DataType;
-import org.eclipse.ocl.examples.pivot.Enumeration;
-import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
-import org.eclipse.ocl.examples.pivot.LambdaType;
-import org.eclipse.ocl.examples.pivot.Library;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.PrimitiveType;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.TemplateableElement;
-import org.eclipse.ocl.examples.pivot.TupleType;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2AS;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
-import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
-import org.eclipse.ocl.examples.pivot.resource.ASResource;
-import org.eclipse.ocl.examples.pivot.utilities.ASSaver;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.domain.ids.TypeId;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.utilities.StandaloneProjectMap;
+import org.eclipse.ocl.domain.utilities.StandaloneProjectMap.IPackageDescriptor;
+import org.eclipse.ocl.domain.utilities.StandaloneProjectMap.IProjectDescriptor;
+import org.eclipse.ocl.domain.utilities.StandaloneProjectMap.LoadDynamicResourceStrategy;
+import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.pivot.CollectionType;
+import org.eclipse.ocl.pivot.DataType;
+import org.eclipse.ocl.pivot.Enumeration;
+import org.eclipse.ocl.pivot.EnumerationLiteral;
+import org.eclipse.ocl.pivot.LambdaType;
+import org.eclipse.ocl.pivot.Library;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.PrimitiveType;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.TemplateableElement;
+import org.eclipse.ocl.pivot.TupleType;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceAdapter;
+import org.eclipse.ocl.pivot.model.OCLstdlib;
+import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.utilities.ASSaver;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 {	
@@ -90,9 +90,9 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 		}
 	};
 
-	protected CollectionType findCollectionType(Iterable<org.eclipse.ocl.examples.pivot.Class> types, String name) {
+	protected CollectionType findCollectionType(Iterable<org.eclipse.ocl.pivot.Class> types, String name) {
 		CollectionType collType = null;
-		for (org.eclipse.ocl.examples.pivot.Class type : types) {
+		for (org.eclipse.ocl.pivot.Class type : types) {
 			if (type instanceof CollectionType) {
 				TemplateableElement unspecializedElement = type.getUnspecializedElement();
 				if (unspecializedElement instanceof CollectionType) {
@@ -106,7 +106,7 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 		if (collType != null) {
 			EObject eContainer = collType.eContainer();
 			if (eContainer instanceof Library) {
-				for (org.eclipse.ocl.examples.pivot.Class type : ((Library)eContainer).getOwnedClasses()) {
+				for (org.eclipse.ocl.pivot.Class type : ((Library)eContainer).getOwnedClasses()) {
 					if ((type instanceof CollectionType) && (type.getName().equals(name))) {
 						return (CollectionType)type;
 					}
@@ -116,8 +116,8 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 		return null;
 	}
 
-	protected org.eclipse.ocl.examples.pivot.Package findPackage(Iterable<org.eclipse.ocl.examples.pivot.Package> packages) {
-		for (org.eclipse.ocl.examples.pivot.Package pkg : packages) {
+	protected org.eclipse.ocl.pivot.Package findPackage(Iterable<org.eclipse.ocl.pivot.Package> packages) {
+		for (org.eclipse.ocl.pivot.Package pkg : packages) {
 			if (!"$$".equals(pkg.getName())) {
 				return pkg;
 			}
@@ -125,7 +125,7 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 		return null;
 	}
 	
-	protected DataType findPrimitiveType(Iterable<org.eclipse.ocl.examples.pivot.Class> types, String name) {
+	protected DataType findPrimitiveType(Iterable<org.eclipse.ocl.pivot.Class> types, String name) {
 		for (Type type : types) {
 			if ((type instanceof DataType) && (type.getName().equals(name))) {
 				return (DataType)type;
@@ -136,7 +136,7 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 
 	protected abstract String generateMetamodel(@NonNull Model pivotModel);
 	
-	protected String getEcoreLiteral(@NonNull org.eclipse.ocl.examples.pivot.Class elem) {
+	protected String getEcoreLiteral(@NonNull org.eclipse.ocl.pivot.Class elem) {
 		return NameQueries.getEcoreLiteral(elem);
 	}
 
@@ -155,16 +155,16 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 	}
 
 	@Override
-	protected @NonNull Collection<org.eclipse.ocl.examples.pivot.Class> getOclTypes(@NonNull Model root) {
-		Map<String, org.eclipse.ocl.examples.pivot.Class> allElements = new HashMap<String, org.eclipse.ocl.examples.pivot.Class>();
+	protected @NonNull Collection<org.eclipse.ocl.pivot.Class> getOclTypes(@NonNull Model root) {
+		Map<String, org.eclipse.ocl.pivot.Class> allElements = new HashMap<String, org.eclipse.ocl.pivot.Class>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
 			EObject eObject = tit.next();
-			if ((eObject instanceof org.eclipse.ocl.examples.pivot.Class) && !(eObject instanceof Enumeration) && !(eObject instanceof LambdaType) &&
+			if ((eObject instanceof org.eclipse.ocl.pivot.Class) && !(eObject instanceof Enumeration) && !(eObject instanceof LambdaType) &&
 				!(eObject instanceof CollectionType) && !(eObject instanceof PrimitiveType) &&
 				!(eObject instanceof TupleType) &&
-				(((org.eclipse.ocl.examples.pivot.Class)eObject).isTemplateParameter() == null)) {
-				allElements.put(((org.eclipse.ocl.examples.pivot.Class)eObject).getName(), (org.eclipse.ocl.examples.pivot.Class)eObject);
+				(((org.eclipse.ocl.pivot.Class)eObject).isTemplateParameter() == null)) {
+				allElements.put(((org.eclipse.ocl.pivot.Class)eObject).getName(), (org.eclipse.ocl.pivot.Class)eObject);
 			}
 		}
 //		if (allElements.containsKey("Boolean")) {
@@ -175,7 +175,7 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 			allElements.remove("String");
 			allElements.remove("UnlimitedNatural");
 //		}
-		@SuppressWarnings("null")@NonNull Collection<org.eclipse.ocl.examples.pivot.Class> values = allElements.values();
+		@SuppressWarnings("null")@NonNull Collection<org.eclipse.ocl.pivot.Class> values = allElements.values();
 		return values;
 	}
 	
@@ -247,8 +247,8 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 			log.info("Saving '" + saveURI + "'");
 			for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {
 				EObject eObject = tit.next();
-				if (eObject instanceof org.eclipse.ocl.examples.pivot.Class) {
-					List<Property> ownedAttribute = ((org.eclipse.ocl.examples.pivot.Class)eObject).getOwnedProperties();
+				if (eObject instanceof org.eclipse.ocl.pivot.Class) {
+					List<Property> ownedAttribute = ((org.eclipse.ocl.pivot.Class)eObject).getOwnedProperties();
 					List<Property> properties = new ArrayList<Property>(ownedAttribute);
 					Collections.sort(properties, OCLinEcoreTablesUtils.propertyComparator);
 					ownedAttribute.clear();

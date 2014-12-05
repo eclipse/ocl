@@ -30,24 +30,24 @@ import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.ids.TypeId;
-import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.LanguageExpression;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.TemplateBinding;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
-import org.eclipse.ocl.examples.pivot.TemplateSignature;
-import org.eclipse.ocl.examples.pivot.TemplateableElement;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.resource.ASResource;
-import org.eclipse.ocl.examples.pivot.scoping.Attribution;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.domain.ids.TypeId;
+import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.LanguageExpression;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.Namespace;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.TemplateBinding;
+import org.eclipse.ocl.pivot.TemplateParameter;
+import org.eclipse.ocl.pivot.TemplateSignature;
+import org.eclipse.ocl.pivot.TemplateableElement;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.scoping.Attribution;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.attributes.RootCSAttribution;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.ImportDiagnostic;
@@ -250,8 +250,8 @@ public class ElementUtil
 			ASResource asResource = cs2asAdapter.getASResource(csResource);
 			for (EObject eRoot: asResource.getContents()) {
 				if (eRoot instanceof Model) {
-					for (org.eclipse.ocl.examples.pivot.Package asPackage: ((Model)eRoot).getOwnedPackages()) {
-						for (org.eclipse.ocl.examples.pivot.Class asType: asPackage.getOwnedClasses()) {
+					for (org.eclipse.ocl.pivot.Package asPackage: ((Model)eRoot).getOwnedPackages()) {
+						for (org.eclipse.ocl.pivot.Class asType: asPackage.getOwnedClasses()) {
 							for (Constraint asConstraint : asType.getOwnedInvariants()) {
 								LanguageExpression specification = asConstraint.getSpecification();
 								if (specification != null) {

@@ -37,12 +37,12 @@ import org.eclipse.ocl.examples.emf.validation.validity.manager.ConstrainingURI;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.TypeURI;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityManager;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityModel;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.utilities.ConstraintEvaluator;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.ConstraintEvaluator;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
@@ -291,7 +291,7 @@ public class UMLConstraintLocator extends AbstractPivotConstraintLocator
 		}
 		Severity severity = Severity.UNKNOWN;
 		try {
-			final org.eclipse.ocl.examples.pivot.Constraint pivotConstraint = metaModelManager.getPivotOf(org.eclipse.ocl.examples.pivot.Constraint.class, umlConstraint);
+			final org.eclipse.ocl.pivot.Constraint pivotConstraint = metaModelManager.getPivotOf(org.eclipse.ocl.pivot.Constraint.class, umlConstraint);
 			if (pivotConstraint == null) {
 				throw new ParserException("Failed to create pivot Constraint");
 			}
@@ -303,8 +303,8 @@ public class UMLConstraintLocator extends AbstractPivotConstraintLocator
 				{
 					@Override
 					protected String getObjectLabel() {
-						org.eclipse.ocl.examples.pivot.Type type = PivotUtil.getContainingType(pivotConstraint);
-						org.eclipse.ocl.examples.pivot.Type primaryType = type != null ? metaModelManager.getPrimaryType(type) : null;
+						org.eclipse.ocl.pivot.Type type = PivotUtil.getContainingType(pivotConstraint);
+						org.eclipse.ocl.pivot.Type primaryType = type != null ? metaModelManager.getPrimaryType(type) : null;
 						Classifier classifier = primaryType != null ?  (Classifier)primaryType.getETarget() : null;
 						return classifier != null ? classifier.getName() : "??";
 //									return DomainUtil.getLabel(classifier, object, context);

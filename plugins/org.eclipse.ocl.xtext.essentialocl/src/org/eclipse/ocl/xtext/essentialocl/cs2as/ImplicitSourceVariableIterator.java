@@ -11,7 +11,7 @@
 package org.eclipse.ocl.xtext.essentialocl.cs2as;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.xtext.basecs.ElementCS;
 
 /**

@@ -12,8 +12,8 @@ package org.eclipse.ocl.xtext.essentialocl.as2cs;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.xtext.base.as2cs.BaseLocationInFileProvider;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.basecs.ElementCS;

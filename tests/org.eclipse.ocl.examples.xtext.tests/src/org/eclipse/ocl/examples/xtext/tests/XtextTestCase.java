@@ -45,33 +45,33 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
-import org.eclipse.ocl.examples.domain.values.Bag;
-import org.eclipse.ocl.examples.domain.values.impl.BagImpl;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.LambdaType;
-import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.PivotConstants;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.TemplateableElement;
-import org.eclipse.ocl.examples.pivot.TupleType;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.VariableExp;
-import org.eclipse.ocl.examples.pivot.context.ModelContext;
-import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.examples.pivot.ecore.AS2Ecore;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
-import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
-import org.eclipse.ocl.examples.pivot.resource.ASResource;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.utilities.ProjectMap;
+import org.eclipse.ocl.domain.values.Bag;
+import org.eclipse.ocl.domain.values.impl.BagImpl;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestCase;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.LambdaType;
+import org.eclipse.ocl.pivot.LoopExp;
+import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.OCL;
+import org.eclipse.ocl.pivot.OperationCallExp;
+import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.TemplateableElement;
+import org.eclipse.ocl.pivot.TupleType;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.Variable;
+import org.eclipse.ocl.pivot.VariableExp;
+import org.eclipse.ocl.pivot.context.ModelContext;
+import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.pivot.ecore.AS2Ecore;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.model.OCLstdlib;
+import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;
@@ -483,7 +483,7 @@ public class XtextTestCase extends PivotTestCase
 	}
 	
 	protected static boolean isValidPivot(Element pivotElement) {
-		if (pivotElement instanceof org.eclipse.ocl.examples.pivot.Package) {
+		if (pivotElement instanceof org.eclipse.ocl.pivot.Package) {
 			if ((pivotElement.eContainer() == null) && PivotConstants.ORPHANAGE_NAME.equals(((NamedElement) pivotElement).getName())) {
 				return false;
 			}
@@ -499,7 +499,7 @@ public class XtextTestCase extends PivotTestCase
 		}
 		if (pivotElement instanceof Type) {
 			EObject eContainer = pivotElement.eContainer();
-			if ((eContainer instanceof org.eclipse.ocl.examples.pivot.Package) && (eContainer.eContainer() == null)
+			if ((eContainer instanceof org.eclipse.ocl.pivot.Package) && (eContainer.eContainer() == null)
 					&& PivotConstants.ORPHANAGE_NAME.equals(((NamedElement) pivotElement).getName())
 					&& PivotConstants.ORPHANAGE_NAME.equals(((NamedElement) eContainer).getName())) {
 				return false;

@@ -15,11 +15,11 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.OCLDebugPlugin;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationVisitor;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMModelManager;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitorImpl;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.pivot.evaluation.EvaluationVisitorImpl;
 
 /**
  * OCLVMEvaluationVisitorImpl is the class for ...
@@ -79,7 +79,7 @@ public class OCLVMEvaluationVisitorImpl extends EvaluationVisitorImpl implements
 	}
 
 	/* (non-Javadoc)
-     * @see org.eclipse.ocl.examples.pivot.evaluation.AbstractEvaluationVisitor#getModelManager()
+     * @see org.eclipse.ocl.pivot.evaluation.AbstractEvaluationVisitor#getModelManager()
      */
     @Override
 	public @NonNull IVMModelManager getModelManager() {

@@ -19,13 +19,13 @@ import org.eclipse.emf.codegen.util.CodeGenUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.generator.AbstractGenModelHelper;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.CollectionType;
-import org.eclipse.ocl.examples.pivot.Enumeration;
-import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.CollectionType;
+import org.eclipse.ocl.pivot.Enumeration;
+import org.eclipse.ocl.pivot.EnumerationLiteral;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
 
 public class NameQueries
 {
@@ -70,7 +70,7 @@ public class NameQueries
 	
 	public static @NonNull String getEcoreLiteral(@NonNull Property property) {
 		if (!property.isImplicit()) {
-			org.eclipse.ocl.examples.pivot.Class type = property.getOwningClass();
+			org.eclipse.ocl.pivot.Class type = property.getOwningClass();
 			if (type != null) {
 				String nsURI = DomainUtil.nonNullModel(type.getOwningPackage().getURI());
 				GenPackage genPackage = DomainUtil.nonNullState(metaModelManager).getGenPackage(nsURI);
@@ -87,7 +87,7 @@ public class NameQueries
 		return "\"" + property.getName() + "\"";
 	}
 	
-	public static @NonNull String getEcoreLiteral(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
+	public static @NonNull String getEcoreLiteral(@NonNull org.eclipse.ocl.pivot.Class type) {
 		String nsURI = DomainUtil.nonNullModel(type.getOwningPackage().getURI());
 		GenPackage genPackage = DomainUtil.nonNullState(metaModelManager).getGenPackage(nsURI);
 		if (genPackage != null) {
@@ -118,7 +118,7 @@ public class NameQueries
 //		}
 		if ((elem instanceof CollectionType) && (((CollectionType)elem).getUnspecializedElement() != null)) {
 		}
-		else if (elem instanceof org.eclipse.ocl.examples.pivot.Class) {
+		else if (elem instanceof org.eclipse.ocl.pivot.Class) {
 			if (metaModelManager != null) {
 				elem = metaModelManager.getCompleteModel().getCompleteClass((Type)elem);
 			}

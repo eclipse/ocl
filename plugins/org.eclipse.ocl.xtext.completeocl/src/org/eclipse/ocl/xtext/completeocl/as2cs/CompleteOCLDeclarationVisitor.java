@@ -19,26 +19,26 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.domain.elements.DomainPackage;
-import org.eclipse.ocl.examples.pivot.CompletePackage;
-import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.DataType;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.LanguageExpression;
-import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Package;
-import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.UMLReflection;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.domain.elements.DomainPackage;
+import org.eclipse.ocl.pivot.CompletePackage;
+import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.DataType;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.LanguageExpression;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.Namespace;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Package;
+import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.UMLReflection;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.prettyprint.PrettyPrintOptions;
+import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.as2cs.AS2CSConversion;
 import org.eclipse.ocl.xtext.base.as2cs.AliasAnalysis;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
@@ -87,18 +87,18 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 //		return collectionTypeCS;
 	}
 
-	protected void gatherPackages(@NonNull List<org.eclipse.ocl.examples.pivot.Package> allPackages, @NonNull List<org.eclipse.ocl.examples.pivot.Package> nestedPackages) {
+	protected void gatherPackages(@NonNull List<org.eclipse.ocl.pivot.Package> allPackages, @NonNull List<org.eclipse.ocl.pivot.Package> nestedPackages) {
 		allPackages.addAll(nestedPackages);
-		for (org.eclipse.ocl.examples.pivot.Package nestedPackage : nestedPackages) {
-			List<org.eclipse.ocl.examples.pivot.Package> nestedNestedPackages = nestedPackage.getOwnedPackages();
+		for (org.eclipse.ocl.pivot.Package nestedPackage : nestedPackages) {
+			List<org.eclipse.ocl.pivot.Package> nestedNestedPackages = nestedPackage.getOwnedPackages();
 			assert nestedNestedPackages != null;
 			gatherPackages(allPackages, nestedNestedPackages);
 		}
 	}
 
-	protected void importPackage(@NonNull org.eclipse.ocl.examples.pivot.Package aPackage) {
+	protected void importPackage(@NonNull org.eclipse.ocl.pivot.Package aPackage) {
 		context.importNamespace(aPackage, null);
-		org.eclipse.ocl.examples.pivot.Package nestingPackage = null;
+		org.eclipse.ocl.pivot.Package nestingPackage = null;
 		while ((nestingPackage = aPackage.getOwningPackage()) != null) {
 			aPackage = nestingPackage;
 			context.importNamespace(aPackage, null);
@@ -124,12 +124,12 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 	}
 
 	@Override
-	public ElementCS visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class object) {
+	public ElementCS visitClass(@NonNull org.eclipse.ocl.pivot.Class object) {
 		List<Constraint> ownedInvariant = object.getOwnedInvariants();
 		if (ownedInvariant.size() <= 0) {
 			return null;
 		}
-		org.eclipse.ocl.examples.pivot.Package objectPackage = object.getOwningPackage();
+		org.eclipse.ocl.pivot.Package objectPackage = object.getOwningPackage();
 		ClassifierContextDeclCS csContext = context.refreshElement(ClassifierContextDeclCS.class, CompleteOCLCSPackage.Literals.CLASSIFIER_CONTEXT_DECL_CS, object);
 		if ((csContext != null) && (objectPackage != null)) {
 			refreshPathNamedElement(csContext, object, objectPackage);
@@ -188,7 +188,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 	}
 
 	@Override
-	public ElementCS visitEnumeration(@NonNull org.eclipse.ocl.examples.pivot.Enumeration object) {
+	public ElementCS visitEnumeration(@NonNull org.eclipse.ocl.pivot.Enumeration object) {
 		return visitType(object);
 	}
 
@@ -203,15 +203,15 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		if ((object.getPrecondition().size() <= 0) && (object.getBodyExpression() == null) && (object.getPostcondition().size() <= 0)) {
 			return null;
 		}
-		org.eclipse.ocl.examples.pivot.Class modelType = object.getOwningClass();
-		org.eclipse.ocl.examples.pivot.Package modelPackage = modelType.getOwningPackage();
-		org.eclipse.ocl.examples.pivot.Class savedScope = context.setScope(modelType);
+		org.eclipse.ocl.pivot.Class modelType = object.getOwningClass();
+		org.eclipse.ocl.pivot.Package modelPackage = modelType.getOwningPackage();
+		org.eclipse.ocl.pivot.Class savedScope = context.setScope(modelType);
 		OperationContextDeclCS csContext = context.refreshElement(OperationContextDeclCS.class, CompleteOCLCSPackage.Literals.OPERATION_CONTEXT_DECL_CS, object);
 		if (csContext != null) {
 			refreshPathNamedElement(csContext, object, modelPackage);
 //			csContext.getNamespace().add(owningType);
 			csContext.setOwnedType(convertTypeRef(object));
-			org.eclipse.ocl.examples.pivot.Package owningPackage = object.getOwningClass().getOwningPackage();
+			org.eclipse.ocl.pivot.Package owningPackage = object.getOwningClass().getOwningPackage();
 			if (owningPackage != null) {
 				importPackage(owningPackage);
 			}
@@ -225,11 +225,11 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 	}
 
 	@Override
-	public ElementCS visitPackage(@NonNull org.eclipse.ocl.examples.pivot.Package object) {
+	public ElementCS visitPackage(@NonNull org.eclipse.ocl.pivot.Package object) {
 		ElementCS csElement = null;
 		assert object.eContainer() != null;
 		List<ContextDeclCS> contexts = new ArrayList<ContextDeclCS>();
-		for (org.eclipse.ocl.examples.pivot.Class type : object.getOwnedClasses()) {
+		for (org.eclipse.ocl.pivot.Class type : object.getOwnedClasses()) {
 			assert type != null;
 			ClassifierContextDeclCS classifierContext = context.visitDeclaration(ClassifierContextDeclCS.class, type);
 			if (classifierContext !=  null) {
@@ -276,9 +276,9 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		if (object.getDefaultExpression() == null) {
 			return null;
 		}
-		org.eclipse.ocl.examples.pivot.Class modelType = object.getOwningClass();
-		org.eclipse.ocl.examples.pivot.Package modelPackage = modelType.getOwningPackage();
-		org.eclipse.ocl.examples.pivot.Class savedScope = context.setScope(modelType);
+		org.eclipse.ocl.pivot.Class modelType = object.getOwningClass();
+		org.eclipse.ocl.pivot.Package modelPackage = modelType.getOwningPackage();
+		org.eclipse.ocl.pivot.Class savedScope = context.setScope(modelType);
 		PropertyContextDeclCS csContext = context.refreshElement(PropertyContextDeclCS.class, CompleteOCLCSPackage.Literals.PROPERTY_CONTEXT_DECL_CS, object);
 		if ((csContext != null) && (modelPackage != null)) {
 			refreshPathNamedElement(csContext, object, modelPackage);
@@ -313,7 +313,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		ElementCS csElement;
 		assert object.eContainer() == null;
 		CompleteOCLDocumentCS csDocument = context.refreshElement(CompleteOCLDocumentCS.class, CompleteOCLCSPackage.Literals.COMPLETE_OCL_DOCUMENT_CS, object);
-		List<org.eclipse.ocl.examples.pivot.Package> allPackages = new ArrayList<org.eclipse.ocl.examples.pivot.Package>();
+		List<org.eclipse.ocl.pivot.Package> allPackages = new ArrayList<org.eclipse.ocl.pivot.Package>();
 		List<Package> nestedPackages = object.getOwnedPackages();
 		assert nestedPackages != null;
 		gatherPackages(allPackages, nestedPackages); 

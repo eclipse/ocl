@@ -13,13 +13,13 @@ package org.eclipse.ocl.xtext.essentialocl.attributes;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
-import org.eclipse.ocl.examples.pivot.ConstructorExp;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
-import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
-import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.domain.elements.FeatureFilter;
+import org.eclipse.ocl.pivot.ConstructorExp;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.scoping.AbstractAttribution;
+import org.eclipse.ocl.pivot.scoping.EnvironmentView;
+import org.eclipse.ocl.pivot.scoping.ScopeView;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.essentialoclcs.AbstractNameExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CurlyBracketedClauseCS;
@@ -39,8 +39,8 @@ public class ConstructorPartCSAttribution extends AbstractAttribution
 			ConstructorExp pivot = PivotUtil.getPivot(ConstructorExp.class, csNameExp);
 			if (pivot != null) {
 				Type type = pivot.getType();
-				if (type instanceof org.eclipse.ocl.examples.pivot.Class) {
-					environmentView.addAllProperties((org.eclipse.ocl.examples.pivot.Class)type, FeatureFilter.SELECT_NON_STATIC);
+				if (type instanceof org.eclipse.ocl.pivot.Class) {
+					environmentView.addAllProperties((org.eclipse.ocl.pivot.Class)type, FeatureFilter.SELECT_NON_STATIC);
 				}
 			}
 			return null;

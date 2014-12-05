@@ -39,17 +39,17 @@ import org.eclipse.ocl.examples.debug.vm.request.VMVariableRequest;
 import org.eclipse.ocl.examples.debug.vm.response.VMResponse;
 import org.eclipse.ocl.examples.debug.vm.response.VMVariableResponse;
 import org.eclipse.ocl.examples.debug.vm.utils.VMRuntimeException;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
-import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.domain.values.CollectionValue;
-import org.eclipse.ocl.examples.domain.values.Value;
-import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
-import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.VoidType;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.domain.elements.DomainType;
+import org.eclipse.ocl.domain.elements.DomainTypedElement;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.values.CollectionValue;
+import org.eclipse.ocl.domain.values.Value;
+import org.eclipse.ocl.domain.values.impl.InvalidValueException;
+import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.Variable;
+import org.eclipse.ocl.pivot.VoidType;
+import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 
 public class VariableFinder
 {

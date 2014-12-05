@@ -12,7 +12,7 @@ package org.eclipse.ocl.xtext.oclinecore.ui.labeling;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.pivot.UMLReflection;
+import org.eclipse.ocl.pivot.UMLReflection;
 import org.eclipse.ocl.xtext.basecs.AnnotationCS;
 import org.eclipse.ocl.xtext.basecs.AttributeCS;
 import org.eclipse.ocl.xtext.basecs.DataTypeCS;

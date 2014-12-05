@@ -19,20 +19,20 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.CompleteModel;
-import org.eclipse.ocl.examples.pivot.CompletePackage;
-import org.eclipse.ocl.examples.pivot.Iteration;
-import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutionVisitor;
-import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutions;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.domain.elements.DomainType;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.CompleteModel;
+import org.eclipse.ocl.pivot.CompletePackage;
+import org.eclipse.ocl.pivot.Iteration;
+import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.manager.TemplateParameterSubstitutionVisitor;
+import org.eclipse.ocl.pivot.manager.TemplateParameterSubstitutions;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.essentialocl.cs2as.EssentialOCLCSLeft2RightVisitor.Invocations;
 
 public abstract class AbstractOperationMatcher
@@ -99,8 +99,8 @@ public abstract class AbstractOperationMatcher
 		CompleteModel.Internal completeModel = metaModelManager.getCompleteModel();
 		@NonNull Operation reference = (Operation) match1;
 		@NonNull Operation candidate = (Operation) match2;
-		org.eclipse.ocl.examples.pivot.Class referenceClass = reference.getOwningClass();
-		org.eclipse.ocl.examples.pivot.Class candidateClass = candidate.getOwningClass();
+		org.eclipse.ocl.pivot.Class referenceClass = reference.getOwningClass();
+		org.eclipse.ocl.pivot.Class candidateClass = candidate.getOwningClass();
 		Type referenceType = referenceClass != null ? PivotUtil.getType(referenceClass) : null;
 		Type candidateType = candidateClass != null ? PivotUtil.getType(candidateClass) : null;
 		Type specializedReferenceType = referenceType != null ? completeModel.getSpecializedType(referenceType, referenceBindings) : null;
@@ -171,8 +171,8 @@ public abstract class AbstractOperationMatcher
 		if (isRedefinitionOf(candidate, reference)) {
 			return -1;				// match1 inferior			
 		}
-		org.eclipse.ocl.examples.pivot.Package p1 = PivotUtil.getContainingPackage(reference);
-		org.eclipse.ocl.examples.pivot.Package p2 = PivotUtil.getContainingPackage(candidate);
+		org.eclipse.ocl.pivot.Package p1 = PivotUtil.getContainingPackage(reference);
+		org.eclipse.ocl.pivot.Package p2 = PivotUtil.getContainingPackage(candidate);
 		if (p1 == null) {
 			return 0;
 		}

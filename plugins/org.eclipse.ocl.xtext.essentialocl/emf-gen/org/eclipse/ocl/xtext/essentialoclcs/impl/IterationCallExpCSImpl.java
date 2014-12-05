@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectEList;
-import org.eclipse.ocl.examples.pivot.Iteration;
+import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.xtext.essentialoclcs.IterationCallExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.VariableCS;

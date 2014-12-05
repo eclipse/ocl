@@ -31,24 +31,24 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Environment;
-import org.eclipse.ocl.examples.pivot.Iteration;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.VariableDeclaration;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManagedAdapter;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.resource.ASResource;
-import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
-import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
-import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
-import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.Environment;
+import org.eclipse.ocl.pivot.Iteration;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.VariableDeclaration;
+import org.eclipse.ocl.pivot.manager.MetaModelManagedAdapter;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.scoping.EnvironmentView;
+import org.eclipse.ocl.pivot.scoping.ScopeFilter;
+import org.eclipse.ocl.pivot.scoping.ScopeView;
+import org.eclipse.ocl.pivot.utilities.AbstractConversion;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.scoping.AbstractJavaClassScope;
 import org.eclipse.ocl.xtext.base.scoping.BaseScopeView;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
@@ -275,7 +275,7 @@ public abstract class CS2AS extends AbstractConversion implements MetaModelManag
 
 		@Override
 		public boolean matches(@NonNull EnvironmentView environmentView, @NonNull Object object) {
-			return !(object instanceof Operation) && !(object instanceof org.eclipse.ocl.examples.pivot.Package);
+			return !(object instanceof Operation) && !(object instanceof org.eclipse.ocl.pivot.Package);
 		}
 	}
 

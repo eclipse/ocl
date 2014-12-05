@@ -12,8 +12,8 @@ package org.eclipse.ocl.xtext.base.utilities;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.common.label.AbstractLabelGenerator;
-import org.eclipse.ocl.examples.domain.elements.Nameable;
-import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.domain.elements.Nameable;
+import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.xtext.basecs.NamedElementCS;
 
 public final class NamedElementCSLabelGenerator extends AbstractLabelGenerator<NamedElementCS>

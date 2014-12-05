@@ -14,9 +14,9 @@ package org.eclipse.ocl.examples.test.xtext;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.OCL;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
 
 /**
  * Tests that exercise the Xtext OCL Console using a UML model.
@@ -75,7 +75,7 @@ public class UMLConsoleTests extends AbstractConsoleTests
         Resource umlProfileResource = resourceSet.getResource(getTestModelURI("model/Internationalized.profile.uml"), true);
 //        ASResource asResource = ocl.uml2as(umlResource);
 //        Root root = (Root) asResource.getContents().get(0);
-//        org.eclipse.ocl.examples.pivot.Package modelPackage = DomainUtil.getNamedElement(root.getNestedPackage(), "Model");
+//        org.eclipse.ocl.pivot.Package modelPackage = DomainUtil.getNamedElement(root.getNestedPackage(), "Model");
         org.eclipse.uml2.uml.Package umlPackage = (org.eclipse.uml2.uml.Package) umlResource.getContents().get(0);
         org.eclipse.uml2.uml.Type umlEnglishClass = umlPackage.getOwnedType("EnglishClass");
         org.eclipse.uml2.uml.Profile umlProfile = (org.eclipse.uml2.uml.Profile) umlProfileResource.getContents().get(0);

@@ -15,12 +15,12 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.codegen.analyzer.AnalysisVisitor;
 import org.eclipse.ocl.examples.codegen.analyzer.NameManager;
-import org.eclipse.ocl.examples.domain.elements.DomainOperation;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.manager.FinalAnalysis;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.manager.FinalAnalysis;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
 
 public abstract class AbstractCodeGenerator implements CodeGenerator
 {
@@ -100,7 +100,7 @@ public abstract class AbstractCodeGenerator implements CodeGenerator
 	}
 
 	@Override
-	public @Nullable DomainOperation isFinal(@NonNull Operation anOperation, @NonNull org.eclipse.ocl.examples.pivot.Class staticType) {
+	public @Nullable DomainOperation isFinal(@NonNull Operation anOperation, @NonNull org.eclipse.ocl.pivot.Class staticType) {
 		FinalAnalysis finalAnalysis = metaModelManager.getFinalAnalysis();
 		return finalAnalysis.isFinal(anOperation, metaModelManager.getCompleteClass(staticType));
 	}

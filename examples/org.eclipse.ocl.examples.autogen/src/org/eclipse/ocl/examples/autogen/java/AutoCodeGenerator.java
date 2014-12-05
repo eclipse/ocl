@@ -47,9 +47,9 @@ import org.eclipse.ocl.examples.codegen.java.CG2JavaPreVisitor;
 import org.eclipse.ocl.examples.codegen.java.ImportUtils;
 import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
 import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreGenModelGeneratorAdapter;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
 
 /**
  * AutoCodeGenerator supports generation of the content of a JavaClassFile to
@@ -60,8 +60,8 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 //	private static final Logger logger = Logger.getLogger(AutoCodeGenerator.class);
 	
 	protected final @NonNull AutoAnalyzer cgAnalyzer;
-	protected final @NonNull org.eclipse.ocl.examples.pivot.Package asPackage;
-	protected final @Nullable org.eclipse.ocl.examples.pivot.Package asSuperPackage;
+	protected final @NonNull org.eclipse.ocl.pivot.Package asPackage;
+	protected final @Nullable org.eclipse.ocl.pivot.Package asSuperPackage;
 	protected final @NonNull GenModel genModel;
 	protected final @NonNull GenPackage genPackage;
 	//protected final @Nullable GenPackage superGenPackage;
@@ -75,8 +75,8 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 	protected final @Nullable String superVisitorClass;
 
 	public AutoCodeGenerator(@NonNull MetaModelManager metaModelManager,
-			@NonNull org.eclipse.ocl.examples.pivot.Package asPackage,
-			@Nullable org.eclipse.ocl.examples.pivot.Package asSuperPackage,
+			@NonNull org.eclipse.ocl.pivot.Package asPackage,
+			@Nullable org.eclipse.ocl.pivot.Package asSuperPackage,
 			@NonNull GenPackage genPackage, // @Nullable GenPackage superGenPackage,
 			@NonNull String projectPrefix,	// FIXME Since visitors/visitable package/name are really configured in the MWE file
 			@NonNull String projectName,    // there is no point of providing a different to compute it here. To improve the framework, make use of the

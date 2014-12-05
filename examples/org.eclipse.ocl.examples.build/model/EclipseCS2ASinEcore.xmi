@@ -23,7 +23,7 @@
       newName="basecs">
     <createTypes
         newName="ScopeFilter"
-        newInstanceTypeName="org.eclipse.ocl.examples.pivot.scoping.ScopeFilter">
+        newInstanceTypeName="org.eclipse.ocl.pivot.scoping.ScopeFilter">
       <oldTypes
           xsi:type="uml:PrimitiveType"
           href="../model-gen/BaseCS.uml#basecs-ScopeFilter"/>

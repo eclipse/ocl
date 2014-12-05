@@ -13,15 +13,15 @@ package org.eclipse.ocl.examples.pivot.tests;
 
 import java.util.Iterator;
 
-import org.eclipse.ocl.examples.domain.elements.DomainFragment;
-import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.AnyType;
-import org.eclipse.ocl.examples.pivot.PrimitiveType;
-import org.eclipse.ocl.examples.pivot.SetType;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
-import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary2;
+import org.eclipse.ocl.domain.elements.DomainFragment;
+import org.eclipse.ocl.domain.elements.DomainInheritance;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.AnyType;
+import org.eclipse.ocl.pivot.PrimitiveType;
+import org.eclipse.ocl.pivot.SetType;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
+import org.eclipse.ocl.pivot.manager.PivotStandardLibrary2;
 
 /**
  * Tests for OclAny operations.

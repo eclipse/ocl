@@ -13,10 +13,10 @@
 package org.eclipse.ocl.examples.pivot.tests;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.domain.ids.CollectionTypeId;
-import org.eclipse.ocl.examples.domain.ids.TypeId;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.domain.ids.CollectionTypeId;
+import org.eclipse.ocl.domain.ids.TypeId;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.xtext.base.services.BaseLinkingService;
 
 /**

@@ -38,12 +38,12 @@ public interface LibraryCS extends NamespaceCS {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Referred Package</em>' reference.
-	 * @see #setReferredPackage(org.eclipse.ocl.examples.pivot.Package)
+	 * @see #setReferredPackage(org.eclipse.ocl.pivot.Package)
 	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getLibraryCS_ReferredPackage()
 	 * @model
 	 * @generated
 	 */
-	org.eclipse.ocl.examples.pivot.Package getReferredPackage();
+	org.eclipse.ocl.pivot.Package getReferredPackage();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.xtext.basecs.LibraryCS#getReferredPackage <em>Referred Package</em>}' reference.
@@ -53,6 +53,6 @@ public interface LibraryCS extends NamespaceCS {
 	 * @see #getReferredPackage()
 	 * @generated
 	 */
-	void setReferredPackage(org.eclipse.ocl.examples.pivot.Package value);
+	void setReferredPackage(org.eclipse.ocl.pivot.Package value);
 
 } // LibraryCS

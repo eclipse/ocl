@@ -11,9 +11,9 @@
 package org.eclipse.ocl.xtext.basecs;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
-import org.eclipse.ocl.examples.pivot.util.Pivotable;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.scoping.ScopeFilter;
+import org.eclipse.ocl.pivot.util.Pivotable;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,7 +31,7 @@ import org.eclipse.ocl.examples.pivot.util.Pivotable;
  * </p>
  *
  * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getPathNameCS()
- * @model superTypes="org.eclipse.ocl.xtext.basecs.ElementCS org.eclipse.ocl.examples.pivot.Pivotable"
+ * @model superTypes="org.eclipse.ocl.xtext.basecs.ElementCS org.eclipse.ocl.pivot.Pivotable"
  * @generated
  */
 public interface PathNameCS extends ElementCS, Pivotable

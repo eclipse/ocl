@@ -1,0 +1,142 @@
+/*******************************************************************************
+ * Copyright (c) 2012, 2013 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *******************************************************************************/
+package org.eclipse.ocl.pivot.manager;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.domain.elements.DomainInheritance;
+import org.eclipse.ocl.domain.elements.DomainOperation;
+import org.eclipse.ocl.domain.ids.ParametersId;
+import org.eclipse.ocl.domain.library.LibraryFeature;
+import org.eclipse.ocl.pivot.CompleteClass;
+import org.eclipse.ocl.pivot.CompleteModel;
+import org.eclipse.ocl.pivot.CompletePackage;
+import org.eclipse.ocl.pivot.Operation;
+
+public class FinalAnalysis
+{
+	protected final @NonNull CompleteModel.Internal completeModel;
+	protected final @NonNull MetaModelManager metaModelManager;
+	private final @NonNull Map<CompleteClass, Set<CompleteClass>> superCompleteClass2subCompleteClasses = new HashMap<CompleteClass, Set<CompleteClass>>();
+	private final @NonNull Map<DomainOperation, Set<DomainOperation>> operation2overrides = new HashMap<DomainOperation, Set<DomainOperation>>();
+
+	public FinalAnalysis(@NonNull CompleteModel.Internal completeModel) {
+		this.completeModel = completeModel;
+		this.metaModelManager = completeModel.getMetaModelManager();
+		for (CompletePackage completePackage :  completeModel.getAllCompletePackages()) {
+			for (CompleteClass subCompleteClass :  completePackage.getOwnedCompleteClasses()) {
+				for (CompleteClass superCompleteClass : subCompleteClass.getSuperCompleteClasses()) {
+					Set<CompleteClass> subCompleteClasses = superCompleteClass2subCompleteClasses.get(superCompleteClass);
+					if (subCompleteClasses == null) {
+						subCompleteClasses = new HashSet<CompleteClass>();
+						superCompleteClass2subCompleteClasses.put(superCompleteClass, subCompleteClasses);
+					}
+					subCompleteClasses.add(subCompleteClass);
+				}
+			}
+		}
+		for (CompleteClass superCompleteClass : superCompleteClass2subCompleteClasses.keySet()) {
+			Set<CompleteClass> subCompleteClasses = superCompleteClass2subCompleteClasses.get(superCompleteClass);
+			for (DomainOperation domainOperation : superCompleteClass.getOperations(null)) {
+				String opName = domainOperation.getName();
+				ParametersId parametersId = domainOperation.getParametersId();
+				LibraryFeature domainImplementation = metaModelManager.getImplementation((Operation)domainOperation);
+				Set<DomainOperation> overrides = null;
+				for (CompleteClass subCompleteClass : subCompleteClasses) {
+					if (subCompleteClass != superCompleteClass) {
+						for (DomainOperation subOperation : subCompleteClass.getOperations(null)) {
+							if (opName.equals(subOperation.getName()) && parametersId.equals(subOperation.getParametersId())) {
+								LibraryFeature subImplementation = metaModelManager.getImplementation((Operation)subOperation);
+								if (domainImplementation != subImplementation) {
+									if (overrides == null) {
+										overrides = new HashSet<DomainOperation>();
+										overrides.add(domainOperation);
+									}
+									overrides.add(subOperation);
+								}
+							}
+						}
+					}
+				}
+				operation2overrides.put(domainOperation, overrides);
+			}
+		}
+//		StringBuilder s = new StringBuilder();
+//		print(s);
+//		System.out.println(s);
+	}
+	
+	public boolean isFinal(@NonNull CompleteClass completeClass) {
+		Set<CompleteClass> subCompleteClasses = superCompleteClass2subCompleteClasses.get(completeClass);
+		return subCompleteClasses.size() <= 1;
+	}
+	
+	public boolean isFinal(@NonNull DomainOperation operation) {
+		Set<DomainOperation> overrides = operation2overrides.get(operation);
+		return overrides == null;
+	}
+	
+	public @Nullable DomainOperation isFinal(@NonNull DomainOperation operation, @NonNull CompleteClass completeClass) {
+		Set<DomainOperation> overrides = operation2overrides.get(operation);
+		if (overrides == null) {
+			return operation;
+		}
+		DomainOperation candidate = null;
+		PivotStandardLibrary standardLibrary = completeModel.getStandardLibrary();
+		for (DomainOperation override : overrides) {
+			DomainInheritance overrideInheritance = override.getInheritance(standardLibrary);
+			if ((overrideInheritance != null) && overrideInheritance.getType().conformsTo(standardLibrary, completeClass.getPivotClass())) {
+				if (candidate != null) {
+					return null;
+				}
+				candidate = override;
+			}
+		}
+		return candidate;
+	}
+	
+	public void print(@NonNull StringBuilder s) {
+		List<CompleteClass> completeClasses = new ArrayList<CompleteClass>(superCompleteClass2subCompleteClasses.keySet());
+		Collections.sort(completeClasses, new Comparator<CompleteClass>()
+		{
+			@Override
+			public int compare(CompleteClass o1, CompleteClass o2) {
+				return o1.getName().compareTo(o2.getName());
+			}
+		});
+		s.append("Final types");
+		for (CompleteClass completeClass : completeClasses) {
+			assert completeClass != null;
+			if (isFinal(completeClass)) {
+				s.append("\n\t");
+				s.append(completeClass.getName());
+			}
+		}
+		s.append("\nNon-final types");
+		for (CompleteClass completeClass : completeClasses) {
+			assert completeClass != null;
+			if (!isFinal(completeClass)) {
+				s.append("\n\t");
+				s.append(completeClass.getName());
+			}
+		}	
+	}
+
+}

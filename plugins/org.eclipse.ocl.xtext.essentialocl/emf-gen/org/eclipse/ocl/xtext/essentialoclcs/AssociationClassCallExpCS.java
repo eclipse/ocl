@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.essentialoclcs;
 
-import org.eclipse.ocl.examples.pivot.AssociationClass;
+import org.eclipse.ocl.pivot.AssociationClass;
 
 /**
  * <!-- begin-user-doc -->

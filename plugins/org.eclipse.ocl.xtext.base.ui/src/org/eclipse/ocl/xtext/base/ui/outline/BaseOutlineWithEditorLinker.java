@@ -13,7 +13,7 @@ package org.eclipse.ocl.xtext.base.ui.outline;
 import org.apache.log4j.Logger;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.xtext.base.ui.BaseUiPluginHelper;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;

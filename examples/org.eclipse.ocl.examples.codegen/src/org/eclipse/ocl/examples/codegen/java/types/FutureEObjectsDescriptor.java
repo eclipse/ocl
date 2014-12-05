@@ -16,9 +16,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
-import org.eclipse.ocl.examples.domain.ids.CollectionTypeId;
 
 /**
  * A FutureEObjectsDescriptor describes a yet-to-be-created collection type. It has a pivot CollectionTypeId, and EClassifier and a Java class name.

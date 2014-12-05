@@ -11,9 +11,9 @@
 package org.eclipse.ocl.examples.build.xtend
 
 import org.eclipse.emf.ecore.EPackage
-import org.eclipse.ocl.examples.pivot.utilities.AS2Moniker
-import org.eclipse.ocl.examples.pivot.utilities.AS2XMIid
-import org.eclipse.ocl.examples.pivot.utilities.ASSaver
+import org.eclipse.ocl.pivot.utilities.AS2Moniker
+import org.eclipse.ocl.pivot.utilities.AS2XMIid
+import org.eclipse.ocl.pivot.utilities.ASSaver
 import org.eclipse.jdt.annotation.NonNull
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
 
@@ -38,6 +38,6 @@ public class GenerateASVisitors extends GenerateVisitors
 			ePackage.generateAbstractGenericVisitor("ASSaverResolve", typeof(Object), typeof(ASSaver));
 //			ePackage.generateAbstractGenericVisitor("Stepper", typeof(IStepper), typeof(Object));
 		}
-		/* ePackage.generateDecorableVisitorInterface("org.eclipse.ocl.examples.pivot.util.Visitor"); */
+		/* ePackage.generateDecorableVisitorInterface("org.eclipse.ocl.pivot.util.Visitor"); */
 	}
 }

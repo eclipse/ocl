@@ -11,7 +11,7 @@
 package org.eclipse.ocl.examples.debug.vm.evaluator;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.pivot.Element;
 
 /**
  * The IStepperVisitor supports lookup of the Element-type specific IStepper strategy. 

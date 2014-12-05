@@ -8,8 +8,8 @@
     <details key="Use Null Annotations" value="true"/>
   </genAnnotations>
   <foreignModel>SysML_ValueTypes_QUDV.ecore</foreignModel>
-  <modelPluginVariables>org.eclipse.ocl.examples.library</modelPluginVariables>
-  <modelPluginVariables>org.eclipse.ocl.examples.pivot</modelPluginVariables>
+  <modelPluginVariables>org.eclipse.ocl.library</modelPluginVariables>
+  <modelPluginVariables>org.eclipse.ocl.pivot</modelPluginVariables>
   <modelPluginVariables>org.eclipse.ocl.examples.codegen</modelPluginVariables>
   <modelPluginVariables>org.eclipse.jdt.annotation</modelPluginVariables>
   <genPackages prefix="SysML_ValueTypes_QUDV" disposableProviderFactory="true" ecorePackage="SysML_ValueTypes_QUDV.ecore#/">

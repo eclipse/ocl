@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="oclstdlib" nsURI="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib"
+    nsPrefix="oclstdlib">
+  <eAnnotations source="http://www.eclipse.org/OCL/ASLibrary"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Boolean" instanceClassName="java.lang.Boolean"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Integer" instanceClassName="org.eclipse.ocl.domain.values.IntegerValue"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Real" instanceClassName="org.eclipse.ocl.domain.values.RealValue"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="String" instanceClassName="java.lang.String"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="UnlimitedNatural" instanceClassName="org.eclipse.ocl.domain.values.IntegerValue"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Bag" instanceClassName="org.eclipse.ocl.domain.values.Bag">
+    <eTypeParameters name="T"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Collection" instanceClassName="java.util.Collection">
+    <eTypeParameters name="T"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OclInvalid"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OclVoid"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="OrderedSet" instanceClassName="org.eclipse.ocl.domain.values.OrderedSet">
+    <eTypeParameters name="T"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Sequence" instanceClassName="java.util.List">
+    <eTypeParameters name="T"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Set" instanceClassName="java.util.Set">
+    <eTypeParameters name="T"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="UniqueCollection" instanceClassName="java.util.Set">
+    <eTypeParameters name="T"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="OclAny" instanceClassName="java.lang.Object"/>
+</ecore:EPackage>

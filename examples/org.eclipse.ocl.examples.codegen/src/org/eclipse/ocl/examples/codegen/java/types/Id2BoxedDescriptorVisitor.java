@@ -15,51 +15,51 @@ import java.math.BigInteger;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.domain.elements.DomainClass;
+import org.eclipse.ocl.domain.elements.DomainLambdaType;
+import org.eclipse.ocl.domain.elements.DomainOperation;
+import org.eclipse.ocl.domain.elements.DomainPackage;
+import org.eclipse.ocl.domain.elements.DomainProperty;
+import org.eclipse.ocl.domain.elements.DomainType;
+import org.eclipse.ocl.domain.ids.ClassId;
+import org.eclipse.ocl.domain.ids.CollectionTypeId;
+import org.eclipse.ocl.domain.ids.DataTypeId;
+import org.eclipse.ocl.domain.ids.ElementId;
+import org.eclipse.ocl.domain.ids.EnumerationId;
+import org.eclipse.ocl.domain.ids.EnumerationLiteralId;
+import org.eclipse.ocl.domain.ids.IdVisitor;
+import org.eclipse.ocl.domain.ids.LambdaTypeId;
+import org.eclipse.ocl.domain.ids.NestedPackageId;
+import org.eclipse.ocl.domain.ids.NsURIPackageId;
+import org.eclipse.ocl.domain.ids.OclInvalidTypeId;
+import org.eclipse.ocl.domain.ids.OclVoidTypeId;
+import org.eclipse.ocl.domain.ids.OperationId;
+import org.eclipse.ocl.domain.ids.PrimitiveTypeId;
+import org.eclipse.ocl.domain.ids.PropertyId;
+import org.eclipse.ocl.domain.ids.RootPackageId;
+import org.eclipse.ocl.domain.ids.TemplateBinding;
+import org.eclipse.ocl.domain.ids.TemplateParameterId;
+import org.eclipse.ocl.domain.ids.TemplateableTypeId;
+import org.eclipse.ocl.domain.ids.TuplePartId;
+import org.eclipse.ocl.domain.ids.TupleTypeId;
+import org.eclipse.ocl.domain.ids.TypeId;
+import org.eclipse.ocl.domain.ids.UnspecifiedId;
+import org.eclipse.ocl.domain.values.BagValue;
+import org.eclipse.ocl.domain.values.CollectionValue;
+import org.eclipse.ocl.domain.values.IntegerRange;
+import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.OrderedSetValue;
+import org.eclipse.ocl.domain.values.RealValue;
+import org.eclipse.ocl.domain.values.SequenceValue;
+import org.eclipse.ocl.domain.values.SetValue;
+import org.eclipse.ocl.domain.values.TupleValue;
+import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.codegen.generator.GenModelHelper;
 import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
-import org.eclipse.ocl.examples.domain.elements.DomainClass;
-import org.eclipse.ocl.examples.domain.elements.DomainLambdaType;
-import org.eclipse.ocl.examples.domain.elements.DomainOperation;
-import org.eclipse.ocl.examples.domain.elements.DomainPackage;
-import org.eclipse.ocl.examples.domain.elements.DomainProperty;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
-import org.eclipse.ocl.examples.domain.ids.ClassId;
-import org.eclipse.ocl.examples.domain.ids.CollectionTypeId;
-import org.eclipse.ocl.examples.domain.ids.DataTypeId;
-import org.eclipse.ocl.examples.domain.ids.ElementId;
-import org.eclipse.ocl.examples.domain.ids.EnumerationId;
-import org.eclipse.ocl.examples.domain.ids.EnumerationLiteralId;
-import org.eclipse.ocl.examples.domain.ids.IdVisitor;
-import org.eclipse.ocl.examples.domain.ids.LambdaTypeId;
-import org.eclipse.ocl.examples.domain.ids.NestedPackageId;
-import org.eclipse.ocl.examples.domain.ids.NsURIPackageId;
-import org.eclipse.ocl.examples.domain.ids.OclInvalidTypeId;
-import org.eclipse.ocl.examples.domain.ids.OclVoidTypeId;
-import org.eclipse.ocl.examples.domain.ids.OperationId;
-import org.eclipse.ocl.examples.domain.ids.PrimitiveTypeId;
-import org.eclipse.ocl.examples.domain.ids.PropertyId;
-import org.eclipse.ocl.examples.domain.ids.RootPackageId;
-import org.eclipse.ocl.examples.domain.ids.TemplateBinding;
-import org.eclipse.ocl.examples.domain.ids.TemplateParameterId;
-import org.eclipse.ocl.examples.domain.ids.TemplateableTypeId;
-import org.eclipse.ocl.examples.domain.ids.TuplePartId;
-import org.eclipse.ocl.examples.domain.ids.TupleTypeId;
-import org.eclipse.ocl.examples.domain.ids.TypeId;
-import org.eclipse.ocl.examples.domain.ids.UnspecifiedId;
-import org.eclipse.ocl.examples.domain.values.BagValue;
-import org.eclipse.ocl.examples.domain.values.CollectionValue;
-import org.eclipse.ocl.examples.domain.values.IntegerRange;
-import org.eclipse.ocl.examples.domain.values.IntegerValue;
-import org.eclipse.ocl.examples.domain.values.OrderedSetValue;
-import org.eclipse.ocl.examples.domain.values.RealValue;
-import org.eclipse.ocl.examples.domain.values.SequenceValue;
-import org.eclipse.ocl.examples.domain.values.SetValue;
-import org.eclipse.ocl.examples.domain.values.TupleValue;
-import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.Orphanage;
-import org.eclipse.ocl.examples.pivot.manager.PivotIdResolver;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.manager.Orphanage;
+import org.eclipse.ocl.pivot.manager.PivotIdResolver;
 
 /**
  * An Id2BoxedDescriptorVisitor visit returns a descriptor for the boxed type and a delegation to a descriptor for the unboxed type,
@@ -81,8 +81,8 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 
 	protected EClassifier getEClassifier(@NonNull Type type) {
 		for (DomainClass dType : metaModelManager.getPartialClasses(type)) {
-			if (dType instanceof org.eclipse.ocl.examples.pivot.Class) {
-				org.eclipse.ocl.examples.pivot.Class pType = (org.eclipse.ocl.examples.pivot.Class) dType;
+			if (dType instanceof org.eclipse.ocl.pivot.Class) {
+				org.eclipse.ocl.pivot.Class pType = (org.eclipse.ocl.pivot.Class) dType;
 				EClassifier eClass = (EClassifier) pType.getETarget();
 				if (eClass != null) {
 					return eClass;
@@ -94,7 +94,7 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 
 	@Override
 	public @NonNull BoxedDescriptor visitClassId(@NonNull ClassId id) {
-		org.eclipse.ocl.examples.pivot.Class type = idResolver.getClass(id, null);
+		org.eclipse.ocl.pivot.Class type = idResolver.getClass(id, null);
 		EClassifier eClassifier = getEClassifier(type);
 		if (eClassifier != null) {
 			try {
@@ -121,8 +121,8 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 			}
 			catch (Exception e) {}
 		} */
-//		if (type instanceof org.eclipse.ocl.examples.pivot.Class) {
-			org.eclipse.ocl.examples.pivot.Package asPackage = type.getOwningPackage();
+//		if (type instanceof org.eclipse.ocl.pivot.Class) {
+			org.eclipse.ocl.pivot.Package asPackage = type.getOwningPackage();
 			if ((asPackage != null) && (asPackage.eContainer() instanceof Orphanage)) {
 				return new SimpleDataTypeDescriptor(id, asPackage.getName() + "." + type.getName());
 			}
@@ -133,7 +133,7 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 	@Override
 	public @NonNull BoxedDescriptor visitCollectionTypeId(@NonNull CollectionTypeId id) {
 		TypeId generalizedId = id.getGeneralizedId();
-		org.eclipse.ocl.examples.pivot.Class type;
+		org.eclipse.ocl.pivot.Class type;
 		if (generalizedId == id) {
 			type = idResolver.getClass(id, null);
 		}
@@ -185,7 +185,7 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 
 	@Override
 	public @NonNull BoxedDescriptor visitDataTypeId(@NonNull DataTypeId id) {
-		org.eclipse.ocl.examples.pivot.Class type = idResolver.getClass(id, null);
+		org.eclipse.ocl.pivot.Class type = idResolver.getClass(id, null);
 		String instanceClassName = type.getInstanceClassName();
 		if (instanceClassName != null) {
 			if (BigDecimal.class.getName().equals(instanceClassName)) {

@@ -11,7 +11,7 @@
 package org.eclipse.ocl.examples.codegen.cgmodel;
 
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.ids.TypeId;
+import org.eclipse.ocl.domain.ids.TypeId;
 
 
 /**

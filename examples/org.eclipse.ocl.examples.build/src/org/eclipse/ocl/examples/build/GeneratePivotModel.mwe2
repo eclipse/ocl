@@ -22,7 +22,7 @@ import org.eclipse.uml2.uml.resource.XMI2UMLResource
 
 var ecoreSlot = "ecore"
 var umlSlot = "uml"
-var projectName = "org.eclipse.ocl.examples.pivot"
+var projectName = "org.eclipse.ocl.pivot"
 //var platformURI = ".."
 
 /**
@@ -118,7 +118,7 @@ Workflow {
 //    	uri = "/org.eclipse.ocl.examples.build/qvtoTransf/VisitorPatternTransf.qvto"
 //    	in = "/${projectName}/model/Pivot.ecore" 
 //    	visitorInterfaceName = "Visitor"
-//    	visitorInterfaceQualifiedName = "org.eclipse.ocl.examples.pivot.util.Visitor"
+//    	visitorInterfaceQualifiedName = "org.eclipse.ocl.pivot.util.Visitor"
 //    }
 //    
 //    component = ResourceWriter { resourceSet = resourceSet skipOnErrors = true

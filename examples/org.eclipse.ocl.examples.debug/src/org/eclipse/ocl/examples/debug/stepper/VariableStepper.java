@@ -13,8 +13,8 @@ package org.eclipse.ocl.examples.debug.stepper;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMRootEvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.Variable;
 
 public class VariableStepper extends AbstractStepper
 {

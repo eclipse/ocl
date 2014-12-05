@@ -12,7 +12,7 @@ package org.eclipse.ocl.examples.build.utilities;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
+import org.eclipse.ocl.domain.utilities.ProjectMap;
 
 /**
  * Initializes Eclipse standalone support.
@@ -31,7 +31,7 @@ public class ProjectMapSetup
 		else {
 			log.info("Reusing project map.");
 		}
-//		IProjectDescriptor projectDescriptor = projectMap.getProjectDescriptor("org.eclipse.ocl.examples.pivot");
+//		IProjectDescriptor projectDescriptor = projectMap.getProjectDescriptor("org.eclipse.ocl.pivot");
 //		IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(URI.createURI(PivotPackage.eNS_URI));
 //		packageDescriptor.setUseModel(true, ProjectMap.getPackageRegistry(null));
 	}

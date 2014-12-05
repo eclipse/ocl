@@ -11,7 +11,7 @@
 package org.eclipse.ocl.examples.build.utilities;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ocl.examples.pivot.resource.ASResourceFactoryRegistry;
+import org.eclipse.ocl.pivot.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.xtext.base.services.BaseLinkingService;
 import org.eclipse.ocl.xtext.essentialocl.EssentialOCLStandaloneSetup;
 

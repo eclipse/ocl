@@ -11,12 +11,12 @@
 package org.eclipse.ocl.examples.codegen.java.types;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.domain.ids.ElementId;
+import org.eclipse.ocl.domain.values.RealValue;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGUnboxExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
-import org.eclipse.ocl.examples.domain.ids.ElementId;
-import org.eclipse.ocl.examples.domain.values.RealValue;
 
 /**
  * A RealValueDescriptor describes the boxed unbounded polymorphic representation of an OCL Real.

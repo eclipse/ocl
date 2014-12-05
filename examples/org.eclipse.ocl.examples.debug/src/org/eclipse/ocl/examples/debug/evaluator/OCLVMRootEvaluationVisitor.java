@@ -46,16 +46,16 @@ import org.eclipse.ocl.examples.debug.vm.utils.ASTBindingHelper;
 import org.eclipse.ocl.examples.debug.vm.utils.CompiledUnit;
 import org.eclipse.ocl.examples.debug.vm.utils.DebugOptions;
 import org.eclipse.ocl.examples.debug.vm.utils.VMInterruptedExecutionException;
-import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.PivotFactory;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.domain.elements.DomainTypedElement;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.LoopExp;
+import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.PivotFactory;
+import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.Variable;
 
 public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implements IVMRootEvaluationVisitor<ExpressionInOCL>
 {

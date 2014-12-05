@@ -21,6 +21,10 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.domain.ids.ElementId;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.values.impl.InvalidValueException;
+import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.codegen.analyzer.CGUtils;
 import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
@@ -36,20 +40,16 @@ import org.eclipse.ocl.examples.codegen.generator.CodeGenOptions;
 import org.eclipse.ocl.examples.codegen.generator.CodeGenerator;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.java.types.EObjectDescriptor;
-import org.eclipse.ocl.examples.domain.ids.ElementId;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
-import org.eclipse.ocl.examples.pivot.util.Visitable;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.Namespace;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.prettyprint.PrettyPrintOptions;
+import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.xtext.util.Strings;
 
 /**
@@ -68,7 +68,7 @@ public class JavaStream
 					scope = (Namespace) eObject;
 					break;
 				}
-				if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
+				if (eObject instanceof org.eclipse.ocl.pivot.Package) {
 					scope = (Namespace) eObject;
 					break;
 				}
@@ -695,7 +695,7 @@ public class JavaStream
 	}
 
 	public void appendQualifiedLiteralName(@NonNull Operation anOperation) {
-		org.eclipse.ocl.examples.pivot.Class type = anOperation.getOwningClass();
+		org.eclipse.ocl.pivot.Class type = anOperation.getOwningClass();
 		if (type != null) {
 			GenPackage genPackage = codeGenerator.getGenModelHelper().getGenPackage(type);
 			if (genPackage != null) {

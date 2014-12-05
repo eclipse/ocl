@@ -38,10 +38,10 @@ import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.utils.Mapping;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.uml.UMLXMIID;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.uml.UMLXMIID;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
@@ -272,7 +272,7 @@ public class IdAssigner extends AbstractWorkflowComponent
 	//			new UMLXMIID(toResource).assign();
 				for (TreeIterator<EObject> tit = toResource.getAllContents(); tit.hasNext(); ) {
 					EObject eObject = tit.next();
-					if ((eObject instanceof org.eclipse.ocl.examples.pivot.Package) || (eObject instanceof Type) || (eObject instanceof Property) || (eObject instanceof Operation)) {
+					if ((eObject instanceof org.eclipse.ocl.pivot.Package) || (eObject instanceof Type) || (eObject instanceof Property) || (eObject instanceof Operation)) {
 						@SuppressWarnings("null")@NonNull NamedElement namedElement = (NamedElement) eObject;
 						toResource.setID(eObject, computeId(new StringBuilder(), namedElement));
 					}

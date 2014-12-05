@@ -91,7 +91,7 @@ public abstract class GenerateLaTeX extends AbstractWorkflowComponent
 	}
 
 	/**
-	 * The project name hosting the Metamodel. (e.g. "org.eclipse.ocl.examples.pivot")
+	 * The project name hosting the Metamodel. (e.g. "org.eclipse.ocl.pivot")
 	 */
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;

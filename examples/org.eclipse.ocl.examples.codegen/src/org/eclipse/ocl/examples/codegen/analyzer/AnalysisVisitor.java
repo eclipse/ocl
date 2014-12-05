@@ -12,6 +12,10 @@ package org.eclipse.ocl.examples.codegen.analyzer;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.domain.ids.ElementId;
+import org.eclipse.ocl.domain.ids.TypeId;
+import org.eclipse.ocl.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
@@ -35,12 +39,8 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGVariable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGVariableExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.util.AbstractExtendingCGModelVisitor;
 import org.eclipse.ocl.examples.codegen.generator.LocalContext;
-import org.eclipse.ocl.examples.domain.ids.ElementId;
-import org.eclipse.ocl.examples.domain.ids.TypeId;
-import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypeExp;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.TypeExp;
 
 /**
  * A CGElementVisitor handles the Pivot AST visits on behalf of a CodeGenAnalyzer.

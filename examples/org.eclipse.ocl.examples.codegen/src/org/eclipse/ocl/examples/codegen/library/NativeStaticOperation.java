@@ -12,9 +12,9 @@ package org.eclipse.ocl.examples.codegen.library;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
-import org.eclipse.ocl.examples.domain.ids.TypeId;
-import org.eclipse.ocl.examples.domain.library.AbstractBinaryOperation;
+import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.domain.ids.TypeId;
+import org.eclipse.ocl.domain.library.AbstractBinaryOperation;
 
 /**
  * The instance of NativeStaticOperation supports evaluation of an operation using native language facilities

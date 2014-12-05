@@ -26,8 +26,8 @@ import org.eclipse.ocl.examples.debug.vm.data.VMBreakpointData;
 import org.eclipse.ocl.examples.debug.vm.data.VMNewBreakpointData;
 import org.eclipse.ocl.examples.debug.vm.utils.CompiledUnit;
 import org.eclipse.ocl.examples.debug.vm.utils.LineNumberProvider;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
 
 
 public class VMBreakpointManager

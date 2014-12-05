@@ -17,12 +17,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
 import org.eclipse.ocl.examples.codegen.analyzer.DependencyVisitor;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;

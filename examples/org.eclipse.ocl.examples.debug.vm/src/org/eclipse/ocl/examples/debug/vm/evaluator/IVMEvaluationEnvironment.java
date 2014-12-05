@@ -21,11 +21,11 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.UnitLocation;
 import org.eclipse.ocl.examples.debug.vm.core.VMDebugCore;
 import org.eclipse.ocl.examples.debug.vm.utils.VMRuntimeException;
-import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.domain.elements.DomainTypedElement;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.Variable;
+import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 
 public interface IVMEvaluationEnvironment<T extends NamedElement> extends EvaluationEnvironment
 {

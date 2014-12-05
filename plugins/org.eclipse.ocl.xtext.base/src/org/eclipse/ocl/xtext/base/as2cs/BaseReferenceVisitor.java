@@ -16,14 +16,14 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.pivot.PrimitiveType;
-import org.eclipse.ocl.examples.pivot.TemplateBinding;
-import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.WildcardType;
-import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
-import org.eclipse.ocl.examples.pivot.util.Visitable;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.PrimitiveType;
+import org.eclipse.ocl.pivot.TemplateBinding;
+import org.eclipse.ocl.pivot.TemplateParameterSubstitution;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.WildcardType;
+import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
+import org.eclipse.ocl.pivot.util.Visitable;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.basecs.BaseCSFactory;
 import org.eclipse.ocl.xtext.basecs.ElementCS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
@@ -43,9 +43,9 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, AS
 	}
 
 	@Override
-	public ElementCS visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class object) {
-		org.eclipse.ocl.examples.pivot.Class scopeClass = context.getScope();
-		org.eclipse.ocl.examples.pivot.Package scopePackage = scopeClass != null ? PivotUtil.getPackage(scopeClass) : null;
+	public ElementCS visitClass(@NonNull org.eclipse.ocl.pivot.Class object) {
+		org.eclipse.ocl.pivot.Class scopeClass = context.getScope();
+		org.eclipse.ocl.pivot.Package scopePackage = scopeClass != null ? PivotUtil.getPackage(scopeClass) : null;
 		TypedTypeRefCS csRef = BaseCSFactory.eINSTANCE.createTypedTypeRefCS();
 		Type type = PivotUtil.getUnspecializedTemplateableElement(object);
 		PathNameCS csPathName = csRef.getOwnedPathName();
@@ -57,7 +57,7 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, AS
 		context.refreshPathName(csPathName, type, context.getScope());
 		csRef.setPivot(type);		// FIXME object ??
 		if (!(type instanceof PrimitiveType)) {
-			org.eclipse.ocl.examples.pivot.Package objectPackage = PivotUtil.getPackage(type);
+			org.eclipse.ocl.pivot.Package objectPackage = PivotUtil.getPackage(type);
 			if ((objectPackage != null) && (scopePackage != null) && objectPackage.eResource() != scopePackage.eResource()) {
 				context.importNamespace(objectPackage, null);
 			}

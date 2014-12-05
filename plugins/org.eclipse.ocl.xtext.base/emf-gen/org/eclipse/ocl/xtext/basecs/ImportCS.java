@@ -11,7 +11,7 @@
 
 package org.eclipse.ocl.xtext.basecs;
 
-import org.eclipse.ocl.examples.pivot.Namespace;
+import org.eclipse.ocl.pivot.Namespace;
 
 
 /**

@@ -30,10 +30,10 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
-import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
+import org.eclipse.ocl.pivot.OCL;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.oclinecore.ui.OCLinEcoreUiModule;
 import org.eclipse.ocl.xtext.oclinecore.ui.internal.OCLinEcoreActivator;
 import org.eclipse.ocl.xtext.oclstdlib.ui.OCLstdlibUiModule;
@@ -268,7 +268,7 @@ public class CompletionProposalTests extends XtextTestCase
 			"Bundle-SymbolicName: CompletionProposalTests\n"+
 			"Bundle-Version: 1.0.0.qualifier\n"+
 			"Bundle-RequiredExecutionEnvironment: JavaSE-1.6\n"+
-			"Require-Bundle: org.eclipse.ocl.examples.library\n"+
+			"Require-Bundle: org.eclipse.ocl.library\n"+
 			"");
 		createFile(project, ".classpath",
 			"<classpath>\n" + 
@@ -336,13 +336,13 @@ public class CompletionProposalTests extends XtextTestCase
 			//
 			//	Completion proposal that probably resolves to a folder entry.
 			//
-			IReferenceCompletionProposal proposal3a = new ReferenceConfigurableCompletionProposal("org.eclipse.ocl.examples.domain.ids.impl.OclInvalidTypeIdImpl");
-			IReferenceCompletionProposal proposal3b = new ReferenceConfigurableCompletionProposal("org.eclipse.ocl.examples.domain.ids.impl.OclVoidTypeIdImpl");
+			IReferenceCompletionProposal proposal3a = new ReferenceConfigurableCompletionProposal("org.eclipse.ocl.domain.ids.impl.OclInvalidTypeIdImpl");
+			IReferenceCompletionProposal proposal3b = new ReferenceConfigurableCompletionProposal("org.eclipse.ocl.domain.ids.impl.OclVoidTypeIdImpl");
 			doTestEditor(
 				"import 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib';\n" +
 				"library ocl : ocl = 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib' {\n" +
 				"	type Complex : PrimitiveType {\n" +
-				"		operation testing() : String => 'org.eclipse.ocl.examples.domain.ids.impl.O$';\n" +
+				"		operation testing() : String => 'org.eclipse.ocl.domain.ids.impl.O$';\n" +
 				"	}\n" +
 				"}';\n",
 				new IReferenceCompletionProposal[]{proposal3a, proposal3b}, null);

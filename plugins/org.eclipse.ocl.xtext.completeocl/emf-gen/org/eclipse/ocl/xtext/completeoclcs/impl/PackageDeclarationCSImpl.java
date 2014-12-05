@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.basecs.ConstraintCS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
@@ -228,13 +228,13 @@ public class PackageDeclarationCSImpl
 	 * @generated NOT
 	 */
 	@Override
-	public org.eclipse.ocl.examples.pivot.Package getReferredPackage() {
+	public org.eclipse.ocl.pivot.Package getReferredPackage() {
 		PathNameCS ownedPathName2 = ownedPathName;
 		if (ownedPathName2 == null) {
 			return null;
 		}
 		CS2AS.setElementType(ownedPathName2, PivotPackage.Literals.PACKAGE, this,
 			null);
-		return (org.eclipse.ocl.examples.pivot.Package) ownedPathName2.getReferredElement();
+		return (org.eclipse.ocl.pivot.Package) ownedPathName2.getReferredElement();
 	}
 } //PackageDeclarationCSImpl

@@ -27,43 +27,43 @@ import org.eclipse.emf.codegen.util.CodeGenUtil;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.elements.DomainPackage;
-import org.eclipse.ocl.examples.domain.elements.DomainParameterTypes;
-import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
-import org.eclipse.ocl.examples.domain.ids.IdManager;
-import org.eclipse.ocl.examples.domain.ids.TemplateParameterId;
-import org.eclipse.ocl.examples.domain.ids.TypeId;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.library.ecore.EcoreExecutorEnumeration;
-import org.eclipse.ocl.examples.library.ecore.EcoreExecutorEnumerationLiteral;
-import org.eclipse.ocl.examples.library.ecore.EcoreExecutorInvalidType;
-import org.eclipse.ocl.examples.library.ecore.EcoreExecutorPackage;
-import org.eclipse.ocl.examples.library.ecore.EcoreExecutorProperty;
-import org.eclipse.ocl.examples.library.ecore.EcoreExecutorType;
-import org.eclipse.ocl.examples.library.ecore.EcoreExecutorVoidType;
-import org.eclipse.ocl.examples.library.ecore.EcoreLibraryOppositeProperty;
-import org.eclipse.ocl.examples.library.executor.ExecutorFragment;
-import org.eclipse.ocl.examples.library.executor.ExecutorOperation;
-import org.eclipse.ocl.examples.library.executor.ExecutorProperty;
-import org.eclipse.ocl.examples.library.executor.ExecutorPropertyWithImplementation;
-import org.eclipse.ocl.examples.library.executor.ExecutorStandardLibrary;
-import org.eclipse.ocl.examples.library.executor.ExecutorType;
-import org.eclipse.ocl.examples.library.executor.ExecutorTypeParameter;
-import org.eclipse.ocl.examples.pivot.Enumeration;
-import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
-import org.eclipse.ocl.examples.pivot.InvalidType;
-import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.OrderedSetType;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.SequenceType;
-import org.eclipse.ocl.examples.pivot.SetType;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
-import org.eclipse.ocl.examples.pivot.TemplateSignature;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.VoidType;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.domain.elements.DomainPackage;
+import org.eclipse.ocl.domain.elements.DomainParameterTypes;
+import org.eclipse.ocl.domain.elements.DomainTypeParameters;
+import org.eclipse.ocl.domain.ids.IdManager;
+import org.eclipse.ocl.domain.ids.TemplateParameterId;
+import org.eclipse.ocl.domain.ids.TypeId;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.library.ecore.EcoreExecutorEnumeration;
+import org.eclipse.ocl.library.ecore.EcoreExecutorEnumerationLiteral;
+import org.eclipse.ocl.library.ecore.EcoreExecutorInvalidType;
+import org.eclipse.ocl.library.ecore.EcoreExecutorPackage;
+import org.eclipse.ocl.library.ecore.EcoreExecutorProperty;
+import org.eclipse.ocl.library.ecore.EcoreExecutorType;
+import org.eclipse.ocl.library.ecore.EcoreExecutorVoidType;
+import org.eclipse.ocl.library.ecore.EcoreLibraryOppositeProperty;
+import org.eclipse.ocl.library.executor.ExecutorFragment;
+import org.eclipse.ocl.library.executor.ExecutorOperation;
+import org.eclipse.ocl.library.executor.ExecutorProperty;
+import org.eclipse.ocl.library.executor.ExecutorPropertyWithImplementation;
+import org.eclipse.ocl.library.executor.ExecutorStandardLibrary;
+import org.eclipse.ocl.library.executor.ExecutorType;
+import org.eclipse.ocl.library.executor.ExecutorTypeParameter;
+import org.eclipse.ocl.pivot.Enumeration;
+import org.eclipse.ocl.pivot.EnumerationLiteral;
+import org.eclipse.ocl.pivot.InvalidType;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.OrderedSetType;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.SequenceType;
+import org.eclipse.ocl.pivot.SetType;
+import org.eclipse.ocl.pivot.TemplateParameter;
+import org.eclipse.ocl.pivot.TemplateSignature;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.VoidType;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 {
@@ -135,16 +135,16 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		}
 	}
 
-	protected @NonNull LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, List<Operation>>> computeFragmentOperations() {
-		LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, List<Operation>>> fragmentOperations = new LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, List<Operation>>>();
-		for (/*@NonNull*/ org.eclipse.ocl.examples.pivot.Class pClass : activeClassesSortedByName) {
+	protected @NonNull LinkedHashMap<org.eclipse.ocl.pivot.Class, LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Operation>>> computeFragmentOperations() {
+		LinkedHashMap<org.eclipse.ocl.pivot.Class, LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Operation>>> fragmentOperations = new LinkedHashMap<org.eclipse.ocl.pivot.Class, LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Operation>>>();
+		for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : activeClassesSortedByName) {
 			assert pClass != null;
-			LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, List<Operation>> classOperations = new LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, List<Operation>>();
+			LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Operation>> classOperations = new LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Operation>>();
 			fragmentOperations.put(pClass, classOperations);
 			List<Operation> sortedOperations = new ArrayList<Operation>(getOperations(pClass));
 			Collections.sort(sortedOperations, signatureComparator);
 			classOperations.put(pClass, sortedOperations);
-			for (/*@NonNull*/ org.eclipse.ocl.examples.pivot.Class pSuperClass : getAllProperSupertypesSortedByName(pClass)) {
+			for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pSuperClass : getAllProperSupertypesSortedByName(pClass)) {
 				assert pSuperClass != null;
 				List<Operation> sortedSuperOperations = new ArrayList<Operation>(getOperations(pSuperClass));
 				Collections.sort(sortedSuperOperations, signatureComparator);
@@ -154,12 +154,12 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		return fragmentOperations;
 	}	
 	
-	public @NonNull LinkedHashMap<org.eclipse.ocl.examples.pivot.Class,List<Property>> computeFragmentProperties() {
-		LinkedHashMap<org.eclipse.ocl.examples.pivot.Class,List<Property>> fragmentProperties = new LinkedHashMap<org.eclipse.ocl.examples.pivot.Class,List<Property>>();
-		for (/*@NonNull*/ org.eclipse.ocl.examples.pivot.Class pClass : activeClassesSortedByName) {
+	public @NonNull LinkedHashMap<org.eclipse.ocl.pivot.Class,List<Property>> computeFragmentProperties() {
+		LinkedHashMap<org.eclipse.ocl.pivot.Class,List<Property>> fragmentProperties = new LinkedHashMap<org.eclipse.ocl.pivot.Class,List<Property>>();
+		for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : activeClassesSortedByName) {
 			assert pClass != null;
 			Set<Property> allProperties = new HashSet<Property>();
-			for (/*@NonNull*/ org.eclipse.ocl.examples.pivot.Class pSuperClass : getAllSupertypesSortedByName(pClass)) {
+			for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pSuperClass : getAllSupertypesSortedByName(pClass)) {
 				assert pSuperClass != null;
 				for (/*@NonNull*/ Property prop : getLocalPropertiesSortedByName(pSuperClass)) {
 					assert prop != null;
@@ -180,7 +180,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append("	 *	The lists of enumeration literals for each enumeration.\n");
 		s.append("	 */\n");
 		s.append("	public static class EnumerationLiterals {");
-		for (org.eclipse.ocl.examples.pivot.Class pClass : activeClassesSortedByName) {
+		for (org.eclipse.ocl.pivot.Class pClass : activeClassesSortedByName) {
 			if (pClass instanceof Enumeration) {
 				s.append("\n");
 				List<EnumerationLiteral> enumerationLiterals = ((Enumeration)pClass).getOwnedLiteral();
@@ -228,7 +228,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append("		 *	Install the enumeration literals in the enumerations.\n");
 		s.append("		 */\n");
 		s.append("		static {\n");
-		for (org.eclipse.ocl.examples.pivot.Class pClass : activeClassesSortedByName) {
+		for (org.eclipse.ocl.pivot.Class pClass : activeClassesSortedByName) {
 			if (pClass instanceof Enumeration) {
 				s.append("			Types.");
 				s.appendScopedTypeName(pClass);
@@ -248,11 +248,11 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append("	 *	The fragment descriptors for the local elements of each type and its supertypes.\n");
 		s.append("	 */\n");
 		s.append("	public static class Fragments {");
-		for (/*@NonNull*/ org.eclipse.ocl.examples.pivot.Class pClass : activeClassesSortedByName) {
+		for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : activeClassesSortedByName) {
 			assert pClass != null;
 			s.append("\n");
-			List<org.eclipse.ocl.examples.pivot.Class> allSupertypesSortedByName = getAllSupertypesSortedByName(pClass);
-			for (/*@NonNull*/ org.eclipse.ocl.examples.pivot.Class pSuperClass : allSupertypesSortedByName) {
+			List<org.eclipse.ocl.pivot.Class> allSupertypesSortedByName = getAllSupertypesSortedByName(pClass);
+			for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pSuperClass : allSupertypesSortedByName) {
 				assert pSuperClass != null;
 				s.append("		private static final " + atNonNull() + " ");
 				s.appendClassReference(ExecutorFragment.class);
@@ -279,21 +279,21 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append("	}\n");
 	}
 
-	protected void declareFragmentOperations(@NonNull List<LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, List<Operation>>>> paginatedFragmentOperations) {
+	protected void declareFragmentOperations(@NonNull List<LinkedHashMap<org.eclipse.ocl.pivot.Class, LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Operation>>>> paginatedFragmentOperations) {
 		s.append("	/**\n");
 		s.append("	 *	The lists of local operations or local operation overrides for each fragment of each type.\n");
 		s.append("	 */\n");
 		int page = 1;
 		int pageMax = paginatedFragmentOperations.size();
-		for (LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, List<Operation>>> fragmentOperations : paginatedFragmentOperations) {
+		for (LinkedHashMap<org.eclipse.ocl.pivot.Class, LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Operation>>> fragmentOperations : paginatedFragmentOperations) {
 			s.append("	public static class FragmentOperations");
 			s.appendPage(page, pageMax);
 			s.append(" {");
-			for (/*@NonNull*/ org.eclipse.ocl.examples.pivot.Class pClass : fragmentOperations.keySet()) {
+			for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : fragmentOperations.keySet()) {
 				assert pClass != null;
 				s.append("\n");
-				LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, List<Operation>> classOperations = fragmentOperations.get(pClass);
-				for (/*@NonNull*/ org.eclipse.ocl.examples.pivot.Class pSuperClass : classOperations.keySet()) {
+				LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Operation>> classOperations = fragmentOperations.get(pClass);
+				for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pSuperClass : classOperations.keySet()) {
 					assert pSuperClass != null;
 					List<Operation> sortedOperations = classOperations.get(pSuperClass);
 					s.append("		private static final " + atNonNull() + " ");
@@ -332,10 +332,10 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 			s.append("		 */\n");
 			s.append("		public static void init() {\n");
 			s.append("			TypeFragments.init();\n");
-			for (/*@NonNull*/ org.eclipse.ocl.examples.pivot.Class pClass : fragmentOperations.keySet()) {
+			for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : fragmentOperations.keySet()) {
 				assert pClass != null;
 				s.append("\n");
-				for (org.eclipse.ocl.examples.pivot.Class pSuperClass : getAllSupertypesSortedByName(pClass)) {
+				for (org.eclipse.ocl.pivot.Class pSuperClass : getAllSupertypesSortedByName(pClass)) {
 					assert pSuperClass != null;
 					s.append("			Fragments.");
 					s.appendScopedTypeName(pClass);
@@ -355,17 +355,17 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		}
 	}	
 	
-	public void declareFragmentProperties(@NonNull List<LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, List<Property>>> paginatedFragmentProperties) {
+	public void declareFragmentProperties(@NonNull List<LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Property>>> paginatedFragmentProperties) {
 		s.append("	/**\n");
 		s.append("	 *	The lists of local properties for the local fragment of each type.\n");
 		s.append("	 */\n");
 		int page = 1;
 		int pageMax = paginatedFragmentProperties.size();
-		for (LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, List<Property>> fragmentProperties : paginatedFragmentProperties) {
+		for (LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Property>> fragmentProperties : paginatedFragmentProperties) {
 			s.append("	public static class FragmentProperties");
 			s.appendPage(page, pageMax);
 			s.append(" {");
-			for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.examples.pivot.Class pClass : fragmentProperties.keySet()) {
+			for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Class pClass : fragmentProperties.keySet()) {
 				List<Property> sortedProperties = fragmentProperties.get(pClass);
 				s.append("\n");
 				s.append("		private static final " + atNonNull() + " ");
@@ -401,7 +401,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 			s.append("		public static void init() {\n");
 			s.append("			TypeFragments.init();\n");
 			s.append("\n");
-			for (/*@NonNull*/ org.eclipse.ocl.examples.pivot.Class pClass : fragmentProperties.keySet()) {
+			for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : fragmentProperties.keySet()) {
 				assert pClass != null;
 				s.append("			Fragments.");
 				s.appendScopedTypeName(pClass);
@@ -423,7 +423,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append("	 *	The operation descriptors for each operation of each type.\n");
 		s.append("	 */\n");
 		s.append("	public static class Operations {");
-		for (/*@NonNull*/ org.eclipse.ocl.examples.pivot.Class pClass : activeClassesSortedByName) {
+		for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : activeClassesSortedByName) {
 			assert pClass != null;
 			List<Operation> sortedOperations = new ArrayList<Operation>(getOperations(pClass));
 			Collections.sort(sortedOperations, signatureComparator);
@@ -475,7 +475,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 
 	protected void declareParameterLists() {
 		Set<DomainParameterTypes> allLists = new HashSet<DomainParameterTypes>();
-		for (/*@NonNull*/ org.eclipse.ocl.examples.pivot.Class pClass : activeClassesSortedByName) {
+		for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : activeClassesSortedByName) {
 			assert pClass != null;
 			for (Operation operation : getOperations(pClass)) {
 				allLists.add(operation.getParameterTypes());
@@ -513,7 +513,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append("	 *	The property descriptors for each property of each type.\n");
 		s.append("	 */\n");
 		s.append("	public static class Properties {");
-		for (/*@NonNull*/ org.eclipse.ocl.examples.pivot.Class pClass : activeClassesSortedByName) {
+		for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : activeClassesSortedByName) {
 			assert pClass != null;
 			boolean isFirst = true;
 			List<Property> sortedProperties = getLocalPropertiesSortedByName(pClass);
@@ -544,7 +544,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 					}
 					else if (hasEcore(prop)) {
 //					    List<Constraint> constraints = prop.getOwnedRule();
-						org.eclipse.ocl.examples.pivot.Class owningType = DomainUtil.nonNullModel(prop.getOwningClass());
+						org.eclipse.ocl.pivot.Class owningType = DomainUtil.nonNullModel(prop.getOwningClass());
 /*						if (constraints.size() > 0) {
 							s.appendClassReference(ExecutorPropertyWithImplementation.class);
 							s.append("(");
@@ -613,7 +613,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append("	}\n");
 	}
 
-	protected void declareType(@NonNull org.eclipse.ocl.examples.pivot.Class pClass) {
+	protected void declareType(@NonNull org.eclipse.ocl.pivot.Class pClass) {
 		Class<?> typeClass =
 				pClass instanceof Enumeration ? EcoreExecutorEnumeration.class :
 				pClass instanceof InvalidType ? EcoreExecutorInvalidType.class :
@@ -658,12 +658,12 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append(");\n");
 	}
 
-	protected void declareTypes(@NonNull List<LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, List<Operation>>>> paginatedFragmentOperations, @NonNull List<LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, List<Property>>> paginatedFragmentProperties) {
+	protected void declareTypes(@NonNull List<LinkedHashMap<org.eclipse.ocl.pivot.Class, LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Operation>>>> paginatedFragmentOperations, @NonNull List<LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Property>>> paginatedFragmentProperties) {
 		s.append("	/**\n");
 		s.append("	 *	The type descriptors for each type.\n");
 		s.append("	 */\n");
 		s.append("	public static class Types {\n");
-		for (/*@NonNull*/ org.eclipse.ocl.examples.pivot.Class pClass : activeClassesSortedByName) {
+		for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : activeClassesSortedByName) {
 			assert pClass != null;
 			declareType(pClass);
 		}
@@ -673,7 +673,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append("[] types = {");
 		boolean isFirst = true;
 		boolean hasEnumeration = false;
-		for (/*@NonNull*/ org.eclipse.ocl.examples.pivot.Class pClass : activeClassesSortedByName) {
+		for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : activeClassesSortedByName) {
 			assert pClass != null;
 			if (pClass instanceof Enumeration) {
 				hasEnumeration = true;
@@ -694,7 +694,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append("		 */\n");
 		s.append("		static {\n");
 		s.append("			PACKAGE.init(LIBRARY, types);\n");
-		org.eclipse.ocl.examples.pivot.Package extendedPackage = getExtendedPackage(pPackage);
+		org.eclipse.ocl.pivot.Package extendedPackage = getExtendedPackage(pPackage);
 		if (extendedPackage != null) {
 			s.append("			LIBRARY.addExtension(");
 			s.appendClassReference(getQualifiedTablesClassName(extendedPackage));
@@ -727,9 +727,9 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append("	 *	The fragments for all base types in depth order: OclAny first, OclSelf last.\n");
 		s.append("	 */\n");
 		s.append("	public static class TypeFragments {");
-		for (/*@NonNull*/ org.eclipse.ocl.examples.pivot.Class pClass : activeClassesSortedByName) {
+		for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : activeClassesSortedByName) {
 			assert pClass != null;
-			final Map<org.eclipse.ocl.examples.pivot.Class, Integer> allSuperTypes = new HashMap<org.eclipse.ocl.examples.pivot.Class, Integer>();
+			final Map<org.eclipse.ocl.pivot.Class, Integer> allSuperTypes = new HashMap<org.eclipse.ocl.pivot.Class, Integer>();
 			int myDepth = getAllSuperClasses(allSuperTypes, pClass);
 			int[] typesPerDepth = new int[myDepth+1];
 			for (int i = 0; i <= myDepth; i++) {
@@ -795,7 +795,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append("			Fragments.init();\n");
 		s.append("			Properties.init();\n");
 		s.append("\n");
-		for (/*@NonNull*/ org.eclipse.ocl.examples.pivot.Class pClass : activeClassesSortedByName) {
+		for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : activeClassesSortedByName) {
 			assert pClass != null;
 			s.append("			");
 			pClass.accept(emitLiteralVisitor);
@@ -818,7 +818,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append("	 *	The type parameters for templated types and operations.\n");
 		s.append("	 */\n");
 		s.append("	public static class TypeParameters {");
-		for (/*@NonNull*/ org.eclipse.ocl.examples.pivot.Class pClass : activeClassesSortedByName) {
+		for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : activeClassesSortedByName) {
 			TemplateSignature templateSignature = pClass.getOwnedTemplateSignature();
 			if (templateSignature != null) {
 				s.append("\n");
@@ -889,10 +889,10 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 
 	public @NonNull String generateTablesClass(@Nullable String constants) {
 		String tablesClassName = getTablesClassName(genPackage);
-		LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, List<Operation>>> fragmentOperations = computeFragmentOperations();
-		LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, List<Property>> fragmentProperties = computeFragmentProperties();
-		List<LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, List<Operation>>>> paginatedFragmentOperations = paginateFragmentOperations(fragmentOperations);
-		List<LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, List<Property>>> paginatedFragmentProperties = paginateFragmentProperties(fragmentProperties);
+		LinkedHashMap<org.eclipse.ocl.pivot.Class, LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Operation>>> fragmentOperations = computeFragmentOperations();
+		LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Property>> fragmentProperties = computeFragmentProperties();
+		List<LinkedHashMap<org.eclipse.ocl.pivot.Class, LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Operation>>>> paginatedFragmentOperations = paginateFragmentOperations(fragmentOperations);
+		List<LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Property>>> paginatedFragmentProperties = paginateFragmentProperties(fragmentProperties);
 		s.append("/**\n");
 		s.append(" * " + tablesClassName + " provides the dispatch tables for the " + pPackage.getName() + " for use by the OCL dispatcher.\n");
 		s.append(" *\n");
@@ -977,18 +977,18 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		return s.toString();
 	}
 	
-	public @NonNull List<LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, List<Operation>>>> paginateFragmentOperations(@NonNull LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, List<Operation>>> fragmentOperations) {
-		List<LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, List<Operation>>>> paginatedFragmentOperations = new ArrayList<LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, List<Operation>>>>();
-		LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, List<Operation>>> pageOfFragmentOperations = null;
+	public @NonNull List<LinkedHashMap<org.eclipse.ocl.pivot.Class, LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Operation>>>> paginateFragmentOperations(@NonNull LinkedHashMap<org.eclipse.ocl.pivot.Class, LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Operation>>> fragmentOperations) {
+		List<LinkedHashMap<org.eclipse.ocl.pivot.Class, LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Operation>>>> paginatedFragmentOperations = new ArrayList<LinkedHashMap<org.eclipse.ocl.pivot.Class, LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Operation>>>>();
+		LinkedHashMap<org.eclipse.ocl.pivot.Class, LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Operation>>> pageOfFragmentOperations = null;
 		int size = 0;
-		for (org.eclipse.ocl.examples.pivot.Class pClass : fragmentOperations.keySet()) {
-			LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, List<Operation>> line = fragmentOperations.get(pClass);
+		for (org.eclipse.ocl.pivot.Class pClass : fragmentOperations.keySet()) {
+			LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Operation>> line = fragmentOperations.get(pClass);
 			int lineSize = 0;
 			for (List<Operation> operations : line.values()) {
 				lineSize += operations.size();
 			}
 			if ((pageOfFragmentOperations == null) || size+lineSize > 4000) {
-				pageOfFragmentOperations = new LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, List<Operation>>>();
+				pageOfFragmentOperations = new LinkedHashMap<org.eclipse.ocl.pivot.Class, LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Operation>>>();
 				size = 0;
 				paginatedFragmentOperations.add(pageOfFragmentOperations);
 			}
@@ -998,15 +998,15 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		return paginatedFragmentOperations;
 	}
 	
-	public @NonNull List<LinkedHashMap<org.eclipse.ocl.examples.pivot.Class,List<Property>>> paginateFragmentProperties(@NonNull LinkedHashMap<org.eclipse.ocl.examples.pivot.Class, List<Property>> fragmentProperties) {
-		List<LinkedHashMap<org.eclipse.ocl.examples.pivot.Class,List<Property>>> paginatedFragmentProperties = new ArrayList<LinkedHashMap<org.eclipse.ocl.examples.pivot.Class,List<Property>>>();
-		LinkedHashMap<org.eclipse.ocl.examples.pivot.Class,List<Property>> pageOfFragmentProperties = null;
+	public @NonNull List<LinkedHashMap<org.eclipse.ocl.pivot.Class,List<Property>>> paginateFragmentProperties(@NonNull LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Property>> fragmentProperties) {
+		List<LinkedHashMap<org.eclipse.ocl.pivot.Class,List<Property>>> paginatedFragmentProperties = new ArrayList<LinkedHashMap<org.eclipse.ocl.pivot.Class,List<Property>>>();
+		LinkedHashMap<org.eclipse.ocl.pivot.Class,List<Property>> pageOfFragmentProperties = null;
 		int size = 0;
-		for (org.eclipse.ocl.examples.pivot.Class pClass : fragmentProperties.keySet()) {
+		for (org.eclipse.ocl.pivot.Class pClass : fragmentProperties.keySet()) {
 			List<Property> line = fragmentProperties.get(pClass);
 			int lineSize = line.size();
 			if ((pageOfFragmentProperties == null) || size+lineSize > 4000) {
-				pageOfFragmentProperties = new LinkedHashMap<org.eclipse.ocl.examples.pivot.Class,List<Property>>();
+				pageOfFragmentProperties = new LinkedHashMap<org.eclipse.ocl.pivot.Class,List<Property>>();
 				size = 0;
 				paginatedFragmentProperties.add(pageOfFragmentProperties);
 			}

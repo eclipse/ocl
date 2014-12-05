@@ -25,18 +25,18 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.elements.DomainNamedElement;
-import org.eclipse.ocl.examples.domain.elements.DomainPackage;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.CompletePackage;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.RootCompletePackage;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.util.Pivotable;
-import org.eclipse.ocl.examples.pivot.utilities.PathElement;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.domain.elements.DomainNamedElement;
+import org.eclipse.ocl.domain.elements.DomainPackage;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.CompletePackage;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.Namespace;
+import org.eclipse.ocl.pivot.RootCompletePackage;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.util.Pivotable;
+import org.eclipse.ocl.pivot.utilities.PathElement;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.basecs.ImportCS;
 import org.eclipse.ocl.xtext.basecs.NamedElementCS;
 import org.eclipse.ocl.xtext.basecs.RootPackageCS;
@@ -78,8 +78,8 @@ public class AliasAnalysis extends AdapterImpl
 			}
 		}
 		AliasAnalysis aliasAnalysis = new AliasAnalysis(resource, metaModelManager);
-		Set<org.eclipse.ocl.examples.pivot.Package> localPackages = new HashSet<org.eclipse.ocl.examples.pivot.Package>();
-		Set<org.eclipse.ocl.examples.pivot.Package> otherPackages = new HashSet<org.eclipse.ocl.examples.pivot.Package>();
+		Set<org.eclipse.ocl.pivot.Package> localPackages = new HashSet<org.eclipse.ocl.pivot.Package>();
+		Set<org.eclipse.ocl.pivot.Package> otherPackages = new HashSet<org.eclipse.ocl.pivot.Package>();
 		aliasAnalysis.computePackages(localPackages, otherPackages);
 		aliasAnalysis.computeAliases(localPackages, otherPackages);
 		return aliasAnalysis;
@@ -107,9 +107,9 @@ public class AliasAnalysis extends AdapterImpl
 	/**
 	 * Assign a unique alias to each localPackage then to each otherPackage.
 	 */
-	private void computeAliases(@NonNull Set<org.eclipse.ocl.examples.pivot.Package> localPackages,
-			@NonNull Set<org.eclipse.ocl.examples.pivot.Package> otherPackages) {		
-		for (org.eclipse.ocl.examples.pivot.Package localPackage : localPackages) {
+	private void computeAliases(@NonNull Set<org.eclipse.ocl.pivot.Package> localPackages,
+			@NonNull Set<org.eclipse.ocl.pivot.Package> otherPackages) {		
+		for (org.eclipse.ocl.pivot.Package localPackage : localPackages) {
 			if (localPackage != null) {
 				CompletePackage primaryPackage = metaModelManager.getCompletePackage(localPackage);
 				if ((primaryPackage.getNsPrefix() != null) || (primaryPackage instanceof RootCompletePackage)) {
@@ -120,7 +120,7 @@ public class AliasAnalysis extends AdapterImpl
 				}
 			}
 		}
-		for (org.eclipse.ocl.examples.pivot.Package otherPackage : otherPackages) {
+		for (org.eclipse.ocl.pivot.Package otherPackage : otherPackages) {
 			if (otherPackage != null) {
 				CompletePackage primaryPackage = metaModelManager.getCompletePackage(otherPackage);
 				if (!allAliases.containsKey(primaryPackage)) {
@@ -167,15 +167,15 @@ public class AliasAnalysis extends AdapterImpl
 	 * defined within the target resource all all otherPackages. Nested packages
 	 * of localPackages are excluded from localPackages.
 	 */
-	private void computePackages(@NonNull Set<org.eclipse.ocl.examples.pivot.Package> localPackages,
-			@NonNull Set<org.eclipse.ocl.examples.pivot.Package> otherPackages) {
+	private void computePackages(@NonNull Set<org.eclipse.ocl.pivot.Package> localPackages,
+			@NonNull Set<org.eclipse.ocl.pivot.Package> otherPackages) {
 		for (TreeIterator<EObject> tit = ((Resource)target).getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
 			if (eObject instanceof ImportCS) {
 				String name = ((ImportCS)eObject).getName();
 				Namespace namespace = ((ImportCS)eObject).getReferredNamespace();
-				if (namespace instanceof org.eclipse.ocl.examples.pivot.Package) {
-					org.eclipse.ocl.examples.pivot.Package namespace2 = (org.eclipse.ocl.examples.pivot.Package) namespace;
+				if (namespace instanceof org.eclipse.ocl.pivot.Package) {
+					org.eclipse.ocl.pivot.Package namespace2 = (org.eclipse.ocl.pivot.Package) namespace;
 					CompletePackage completePackage = metaModelManager.getCompletePackage(namespace2);
 					allAliases.put(completePackage, name);
 				}
@@ -201,8 +201,8 @@ public class AliasAnalysis extends AdapterImpl
 				if (name != null) {
 					addName(name, domainNamedElement);
 				}
-				if ((eObject instanceof org.eclipse.ocl.examples.pivot.Package) && (csObject instanceof RootPackageCS)) {			// FIXME
-					org.eclipse.ocl.examples.pivot.Package pivotPackage = (org.eclipse.ocl.examples.pivot.Package)eObject;
+				if ((eObject instanceof org.eclipse.ocl.pivot.Package) && (csObject instanceof RootPackageCS)) {			// FIXME
+					org.eclipse.ocl.pivot.Package pivotPackage = (org.eclipse.ocl.pivot.Package)eObject;
 					String nsPrefix = pivotPackage.getNsPrefix();
 					if (nsPrefix != null) {
 						addName(nsPrefix, domainNamedElement);
@@ -211,24 +211,24 @@ public class AliasAnalysis extends AdapterImpl
 				}
 				else {
 					for (EObject eContainer = eObject; eContainer != null; eContainer = eContainer.eContainer()) {
-						if (eContainer instanceof org.eclipse.ocl.examples.pivot.Package) {
-							otherPackages.add((org.eclipse.ocl.examples.pivot.Package)eContainer);
+						if (eContainer instanceof org.eclipse.ocl.pivot.Package) {
+							otherPackages.add((org.eclipse.ocl.pivot.Package)eContainer);
 							break;
 						}
-						if (eContainer instanceof org.eclipse.ocl.examples.pivot.Class) {
-							eContainer = PivotUtil.getUnspecializedTemplateableElement((org.eclipse.ocl.examples.pivot.Class)eContainer);
+						if (eContainer instanceof org.eclipse.ocl.pivot.Class) {
+							eContainer = PivotUtil.getUnspecializedTemplateableElement((org.eclipse.ocl.pivot.Class)eContainer);
 						}
 					}
 				}
 			}
 		}
 		otherPackages.removeAll(localPackages);
-		Set<org.eclipse.ocl.examples.pivot.Package> nestedPackages = new HashSet<org.eclipse.ocl.examples.pivot.Package>();
-		for (org.eclipse.ocl.examples.pivot.Package localPackage : localPackages) {
+		Set<org.eclipse.ocl.pivot.Package> nestedPackages = new HashSet<org.eclipse.ocl.pivot.Package>();
+		for (org.eclipse.ocl.pivot.Package localPackage : localPackages) {
 			EObject eContainer = localPackage.eContainer();
-			if (eContainer instanceof org.eclipse.ocl.examples.pivot.Package) {
+			if (eContainer instanceof org.eclipse.ocl.pivot.Package) {
 				EObject eContainerContainer = eContainer.eContainer();
-				if (eContainerContainer instanceof org.eclipse.ocl.examples.pivot.Package) {
+				if (eContainerContainer instanceof org.eclipse.ocl.pivot.Package) {
 					nestedPackages.add(localPackage);
 				}
 			}

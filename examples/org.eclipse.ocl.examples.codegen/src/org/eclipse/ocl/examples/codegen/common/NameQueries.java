@@ -16,14 +16,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
-import org.eclipse.ocl.examples.pivot.TupleType;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.TupleLiteralPart;
+import org.eclipse.ocl.pivot.TupleType;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.Variable;
 
 public class NameQueries
 {
@@ -92,7 +92,7 @@ public class NameQueries
 	
 	private static Map<Element, NameAllocation<Constraint>> uniqueConstraints = new HashMap<Element, NameAllocation<Constraint>>();
 	private static Map<Element, NameAllocation<Operation>> uniqueOperations = new HashMap<Element, NameAllocation<Operation>>();
-	private static Map<Element, NameAllocation<org.eclipse.ocl.examples.pivot.Package>> uniquePackages = new HashMap<Element, NameAllocation<org.eclipse.ocl.examples.pivot.Package>>();
+	private static Map<Element, NameAllocation<org.eclipse.ocl.pivot.Package>> uniquePackages = new HashMap<Element, NameAllocation<org.eclipse.ocl.pivot.Package>>();
 	private static Map<Element, NameAllocation<Property>> uniqueProperties = new HashMap<Element, NameAllocation<Property>>();
 	private static Map<Element, NameAllocation<String>> uniqueStrings = new HashMap<Element, NameAllocation<String>>();
 	private static Map<Element, TuplePartAllocation> uniqueTupleParts = new HashMap<Element, TuplePartAllocation>();
@@ -231,13 +231,13 @@ public class NameQueries
 	/**
 	 * Return a valid Java identifier suffix encoding of a property name that is unique within the scope of element.
 	 */
-	public static String getUniqueText(Element context, org.eclipse.ocl.examples.pivot.Package pkg) {
-		NameAllocation<org.eclipse.ocl.examples.pivot.Package> allocation = uniquePackages.get(context);
+	public static String getUniqueText(Element context, org.eclipse.ocl.pivot.Package pkg) {
+		NameAllocation<org.eclipse.ocl.pivot.Package> allocation = uniquePackages.get(context);
 		if (allocation == null) {
-			allocation = new NameAllocation<org.eclipse.ocl.examples.pivot.Package>()
+			allocation = new NameAllocation<org.eclipse.ocl.pivot.Package>()
 			{
 				@Override
-				protected String computeUniqueText(org.eclipse.ocl.examples.pivot.Package pkg) {
+				protected String computeUniqueText(org.eclipse.ocl.pivot.Package pkg) {
 					StringBuilder s = new StringBuilder();
 					appendJavaCharacters(s, pkg.getName());
 					if (isUsed(s.toString())) {

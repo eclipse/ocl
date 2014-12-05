@@ -12,7 +12,7 @@
 package org.eclipse.ocl.xtext.basecs;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.pivot.Property;
 
 
 /**
@@ -61,7 +61,7 @@ public interface ReferenceCS extends StructuralFeatureCS {
 
 	/**
 	 * Returns the value of the '<em><b>Referred Keys</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Property}.
+	 * The list contents are of type {@link org.eclipse.ocl.pivot.Property}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Keys</em>' containment reference list isn't clear,

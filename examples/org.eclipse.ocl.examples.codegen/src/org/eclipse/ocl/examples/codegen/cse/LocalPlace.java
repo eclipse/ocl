@@ -15,9 +15,9 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 
 /**
  * A LocalPlace describes a forest of CG trees that cannot be resolved as global constants. 

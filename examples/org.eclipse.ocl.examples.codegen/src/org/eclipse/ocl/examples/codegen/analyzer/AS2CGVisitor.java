@@ -27,6 +27,16 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.domain.elements.DomainOperation;
+import org.eclipse.ocl.domain.ids.TuplePartId;
+import org.eclipse.ocl.domain.ids.TypeId;
+import org.eclipse.ocl.domain.library.LibraryFeature;
+import org.eclipse.ocl.domain.library.LibraryIteration;
+import org.eclipse.ocl.domain.library.LibraryOperation;
+import org.eclipse.ocl.domain.library.LibraryProperty;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.values.Unlimited;
+import org.eclipse.ocl.domain.values.UnlimitedValue;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGAccumulator;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBuiltInIterationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
@@ -95,79 +105,69 @@ import org.eclipse.ocl.examples.codegen.generator.IterationHelper;
 import org.eclipse.ocl.examples.codegen.library.NativeProperty;
 import org.eclipse.ocl.examples.codegen.library.NativeStaticOperation;
 import org.eclipse.ocl.examples.codegen.library.NativeVisitorOperation;
-import org.eclipse.ocl.examples.domain.elements.DomainOperation;
-import org.eclipse.ocl.examples.domain.ids.TuplePartId;
-import org.eclipse.ocl.examples.domain.ids.TypeId;
-import org.eclipse.ocl.examples.domain.library.LibraryFeature;
-import org.eclipse.ocl.examples.domain.library.LibraryIteration;
-import org.eclipse.ocl.examples.domain.library.LibraryOperation;
-import org.eclipse.ocl.examples.domain.library.LibraryProperty;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.domain.values.Unlimited;
-import org.eclipse.ocl.examples.domain.values.UnlimitedValue;
-import org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation;
-import org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation;
-import org.eclipse.ocl.examples.library.oclany.OclAnyOclIsInvalidOperation;
-import org.eclipse.ocl.examples.library.oclany.OclAnyOclIsUndefinedOperation;
-import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
-import org.eclipse.ocl.examples.pivot.CollectionItem;
-import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
-import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
-import org.eclipse.ocl.examples.pivot.CollectionRange;
-import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.ConstructorExp;
-import org.eclipse.ocl.examples.pivot.ConstructorPart;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.IfExp;
-import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
-import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
-import org.eclipse.ocl.examples.pivot.IterateExp;
-import org.eclipse.ocl.examples.pivot.Iteration;
-import org.eclipse.ocl.examples.pivot.IteratorExp;
-import org.eclipse.ocl.examples.pivot.LanguageExpression;
-import org.eclipse.ocl.examples.pivot.LetExp;
-import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.NullLiteralExp;
-import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
-import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.PropertyCallExp;
-import org.eclipse.ocl.examples.pivot.RealLiteralExp;
-import org.eclipse.ocl.examples.pivot.StateExp;
-import org.eclipse.ocl.examples.pivot.StringLiteralExp;
-import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
-import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypeExp;
-import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
-import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
-import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.VariableDeclaration;
-import org.eclipse.ocl.examples.pivot.VariableExp;
-import org.eclipse.ocl.examples.pivot.ecore.EObjectOperation;
-import org.eclipse.ocl.examples.pivot.ecore.EObjectProperty;
-import org.eclipse.ocl.examples.pivot.internal.impl.TuplePartImpl;
-import org.eclipse.ocl.examples.pivot.library.CompositionProperty;
-import org.eclipse.ocl.examples.pivot.library.ConstrainedOperation;
-import org.eclipse.ocl.examples.pivot.library.ConstrainedProperty;
-import org.eclipse.ocl.examples.pivot.library.EInvokeOperation;
-import org.eclipse.ocl.examples.pivot.library.ExplicitNavigationProperty;
-import org.eclipse.ocl.examples.pivot.library.ImplicitNonCompositionProperty;
-import org.eclipse.ocl.examples.pivot.library.StaticProperty;
-import org.eclipse.ocl.examples.pivot.library.StereotypeProperty;
-import org.eclipse.ocl.examples.pivot.library.TuplePartProperty;
-import org.eclipse.ocl.examples.pivot.manager.FinalAnalysis;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
-import org.eclipse.ocl.examples.pivot.util.Visitable;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.library.oclany.OclAnyEqualOperation;
+import org.eclipse.ocl.library.oclany.OclAnyNotEqualOperation;
+import org.eclipse.ocl.library.oclany.OclAnyOclIsInvalidOperation;
+import org.eclipse.ocl.library.oclany.OclAnyOclIsUndefinedOperation;
+import org.eclipse.ocl.pivot.BooleanLiteralExp;
+import org.eclipse.ocl.pivot.CollectionItem;
+import org.eclipse.ocl.pivot.CollectionLiteralExp;
+import org.eclipse.ocl.pivot.CollectionLiteralPart;
+import org.eclipse.ocl.pivot.CollectionRange;
+import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.ConstructorExp;
+import org.eclipse.ocl.pivot.ConstructorPart;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.EnumLiteralExp;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.IfExp;
+import org.eclipse.ocl.pivot.IntegerLiteralExp;
+import org.eclipse.ocl.pivot.InvalidLiteralExp;
+import org.eclipse.ocl.pivot.IterateExp;
+import org.eclipse.ocl.pivot.Iteration;
+import org.eclipse.ocl.pivot.IteratorExp;
+import org.eclipse.ocl.pivot.LanguageExpression;
+import org.eclipse.ocl.pivot.LetExp;
+import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.NullLiteralExp;
+import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.OperationCallExp;
+import org.eclipse.ocl.pivot.OppositePropertyCallExp;
+import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.PropertyCallExp;
+import org.eclipse.ocl.pivot.RealLiteralExp;
+import org.eclipse.ocl.pivot.StateExp;
+import org.eclipse.ocl.pivot.StringLiteralExp;
+import org.eclipse.ocl.pivot.TupleLiteralExp;
+import org.eclipse.ocl.pivot.TupleLiteralPart;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.TypeExp;
+import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
+import org.eclipse.ocl.pivot.UnspecifiedValueExp;
+import org.eclipse.ocl.pivot.Variable;
+import org.eclipse.ocl.pivot.VariableDeclaration;
+import org.eclipse.ocl.pivot.VariableExp;
+import org.eclipse.ocl.pivot.ecore.EObjectOperation;
+import org.eclipse.ocl.pivot.ecore.EObjectProperty;
+import org.eclipse.ocl.pivot.internal.impl.TuplePartImpl;
+import org.eclipse.ocl.pivot.library.CompositionProperty;
+import org.eclipse.ocl.pivot.library.ConstrainedOperation;
+import org.eclipse.ocl.pivot.library.ConstrainedProperty;
+import org.eclipse.ocl.pivot.library.EInvokeOperation;
+import org.eclipse.ocl.pivot.library.ExplicitNavigationProperty;
+import org.eclipse.ocl.pivot.library.ImplicitNonCompositionProperty;
+import org.eclipse.ocl.pivot.library.StaticProperty;
+import org.eclipse.ocl.pivot.library.StereotypeProperty;
+import org.eclipse.ocl.pivot.library.TuplePartProperty;
+import org.eclipse.ocl.pivot.manager.FinalAnalysis;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
+import org.eclipse.ocl.pivot.util.Visitable;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 /**
  * The AS2CGVisitor performs the first stage of code generation by converting the Pivot AST to the CG AST.
@@ -539,7 +539,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 	 * @since 1.3
 	 */
 	@Override
-	public @Nullable CGClass visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class element) {
+	public @Nullable CGClass visitClass(@NonNull org.eclipse.ocl.pivot.Class element) {
 		CGClass cgClass = CGModelFactory.eINSTANCE.createCGClass();
 		setAst(cgClass, element);
 		for (Constraint asConstraint : element.getOwnedInvariants()) {
@@ -1001,7 +1001,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		else if (libraryOperation instanceof ConstrainedOperation) {
 			if (pSource != null) {
 				Type sourceType = DomainUtil.nonNullState(pSource.getType());
-				DomainOperation finalOperation = codeGenerator.isFinal(asOperation, (org.eclipse.ocl.examples.pivot.Class)sourceType);	// FIXME cast
+				DomainOperation finalOperation = codeGenerator.isFinal(asOperation, (org.eclipse.ocl.pivot.Class)sourceType);	// FIXME cast
 				if (finalOperation != null) {
 					LanguageExpression bodyExpression = asOperation.getBodyExpression();
 					if (bodyExpression != null) {
@@ -1026,7 +1026,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 					}
 					cgOperationCallExp = cgEcoreOperationCallExp;
 				} catch (GenModelException e) {
-					org.eclipse.ocl.examples.pivot.Class asType = asOperation.getOwningClass();
+					org.eclipse.ocl.pivot.Class asType = asOperation.getOwningClass();
 					String className = asType.getInstanceClassName();
 					if (className != null) {
 						CGNativeOperationCallExp cgNativeOperationCallExp = CGModelFactory.eINSTANCE.createCGNativeOperationCallExp();
@@ -1119,10 +1119,10 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 	}
 
 	@Override
-	public @Nullable CGPackage visitPackage(@NonNull org.eclipse.ocl.examples.pivot.Package element) {
+	public @Nullable CGPackage visitPackage(@NonNull org.eclipse.ocl.pivot.Package element) {
 		CGPackage cgPackage = CGModelFactory.eINSTANCE.createCGPackage();
 		setAst(cgPackage, element);
-		for (org.eclipse.ocl.examples.pivot.Class asType : element.getOwnedClasses()) {
+		for (org.eclipse.ocl.pivot.Class asType : element.getOwnedClasses()) {
 			CGClass cgClass = doVisit(CGClass.class, asType);
 			cgPackage.getClasses().add(cgClass);
 		}

@@ -47,60 +47,60 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.common.CodeGenHelper;
 import org.eclipse.ocl.examples.codegen.dynamic.JavaGenModelCodeGenHelper;
-import org.eclipse.ocl.examples.domain.elements.DomainPackage;
-import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
-import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
-import org.eclipse.ocl.examples.domain.ids.TypeId;
-import org.eclipse.ocl.examples.domain.library.LibraryUnaryOperation;
-import org.eclipse.ocl.examples.domain.types.IdResolver;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
-import org.eclipse.ocl.examples.domain.values.CollectionValue;
-import org.eclipse.ocl.examples.domain.values.OrderedSetValue;
-import org.eclipse.ocl.examples.domain.values.RealValue;
-import org.eclipse.ocl.examples.domain.values.Value;
-import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
-import org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager;
-import org.eclipse.ocl.examples.pivot.Comment;
-import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.ElementExtension;
-import org.eclipse.ocl.examples.pivot.Enumeration;
-import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
-import org.eclipse.ocl.examples.pivot.Environment;
-import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.PivotFactory;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.PivotTables;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.SemanticException;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.context.ClassContext;
-import org.eclipse.ocl.examples.pivot.context.ParserContext;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2AS;
-import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
-import org.eclipse.ocl.examples.pivot.manager.AbstractMetaModelManagerResourceAdapter;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
-import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
-import org.eclipse.ocl.examples.pivot.util.Visitable;
-import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
-import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironment;
-import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.domain.elements.DomainPackage;
+import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.domain.elements.DomainType;
+import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.domain.ids.TypeId;
+import org.eclipse.ocl.domain.library.LibraryUnaryOperation;
+import org.eclipse.ocl.domain.types.IdResolver;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.utilities.ProjectMap;
+import org.eclipse.ocl.domain.values.CollectionValue;
+import org.eclipse.ocl.domain.values.OrderedSetValue;
+import org.eclipse.ocl.domain.values.RealValue;
+import org.eclipse.ocl.domain.values.Value;
+import org.eclipse.ocl.domain.values.impl.InvalidValueException;
+import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
+import org.eclipse.ocl.library.ecore.EcoreExecutorManager;
+import org.eclipse.ocl.pivot.Comment;
+import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.ElementExtension;
+import org.eclipse.ocl.pivot.Enumeration;
+import org.eclipse.ocl.pivot.EnumerationLiteral;
+import org.eclipse.ocl.pivot.Environment;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.Namespace;
+import org.eclipse.ocl.pivot.OCL;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.OperationCallExp;
+import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.PivotFactory;
+import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.PivotTables;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.SemanticException;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.Variable;
+import org.eclipse.ocl.pivot.context.ClassContext;
+import org.eclipse.ocl.pivot.context.ParserContext;
+import org.eclipse.ocl.pivot.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.helper.OCLHelper;
+import org.eclipse.ocl.pivot.manager.AbstractMetaModelManagerResourceAdapter;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.model.OCLstdlib;
+import org.eclipse.ocl.pivot.util.Visitable;
+import org.eclipse.ocl.pivot.utilities.BaseResource;
+import org.eclipse.ocl.pivot.utilities.PivotEnvironment;
+import org.eclipse.ocl.pivot.utilities.PivotEnvironmentFactory;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.xtext.diagnostics.ExceptionDiagnostic;
@@ -203,7 +203,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		this.useCodeGen = useCodeGen;
 	}
 	
-	public void addSupertype(@NonNull org.eclipse.ocl.examples.pivot.Class aClass, @NonNull org.eclipse.ocl.examples.pivot.Class superClass) {
+	public void addSupertype(@NonNull org.eclipse.ocl.pivot.Class aClass, @NonNull org.eclipse.ocl.pivot.Class superClass) {
 		aClass.getSuperClasses().add(superClass);
 	}
     
@@ -219,7 +219,7 @@ public abstract class PivotTestSuite extends PivotTestCase
         try {
     		PivotEnvironment environment = (PivotEnvironment) helper.getEnvironment();
     		MetaModelManager metaModelManager = environment.getMetaModelManager();
-    		org.eclipse.ocl.examples.pivot.Class contextClassifier = environment.getContextClassifier();
+    		org.eclipse.ocl.pivot.Class contextClassifier = environment.getContextClassifier();
     		ParserContext semanticContext = new ClassContext(metaModelManager, null, contextClassifier, null);
 			resource = semanticContext.createBaseResource(expression);
 			PivotUtil.checkResourceErrors(DomainUtil.bind(OCLMessages.ErrorsInResource, expression), resource);
@@ -256,7 +256,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		try {
    		PivotEnvironment environment = (PivotEnvironment) helper.getEnvironment();
    		MetaModelManager metaModelManager = environment.getMetaModelManager();
-   		org.eclipse.ocl.examples.pivot.Class contextClassifier = environment.getContextClassifier();
+   		org.eclipse.ocl.pivot.Class contextClassifier = environment.getContextClassifier();
    		ParserContext classContext = new ClassContext(metaModelManager, null, contextClassifier, null);
    		csResource = (BaseCSResource) classContext.createBaseResource(expression);
 			PivotUtil.checkResourceErrors(DomainUtil.bind(OCLMessages.ErrorsInResource, expression), csResource);
@@ -282,14 +282,14 @@ public abstract class PivotTestSuite extends PivotTestCase
 		}	   
 	}
     @SuppressWarnings("null")
-	protected void assertBadQuery2(@NonNull Class<?> exception, int severity, @Nullable org.eclipse.ocl.examples.pivot.Class contextType, @NonNull String expression, /*@NonNull*/ String messageTemplate, Object... bindings) {
+	protected void assertBadQuery2(@NonNull Class<?> exception, int severity, @Nullable org.eclipse.ocl.pivot.Class contextType, @NonNull String expression, /*@NonNull*/ String messageTemplate, Object... bindings) {
 		BaseCSResource csResource = null;
 		try {
 			OCLHelper helper = getHelper();
 			helper.setContext(contextType);
 			PivotEnvironment environment = (PivotEnvironment) helper.getEnvironment();
 			MetaModelManager metaModelManager = environment.getMetaModelManager();
-			org.eclipse.ocl.examples.pivot.Class contextClassifier = environment.getContextClassifier();
+			org.eclipse.ocl.pivot.Class contextClassifier = environment.getContextClassifier();
 			ParserContext classContext = new ClassContext(metaModelManager, null, contextClassifier, null);
 			csResource = (BaseCSResource) classContext.createBaseResource(expression);
 			PivotUtil.checkResourceErrors(DomainUtil.bind(OCLMessages.ErrorsInResource, expression), csResource);
@@ -318,7 +318,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	/**
 	 * Assert that an expression can be parsed as an invariant for a context and return the invariant.
 	 */
-	protected @Nullable ExpressionInOCL assertInvariant(@NonNull org.eclipse.ocl.examples.pivot.Class context, @NonNull String expression) {
+	protected @Nullable ExpressionInOCL assertInvariant(@NonNull org.eclipse.ocl.pivot.Class context, @NonNull String expression) {
 		getHelper().setContext(context);
 		try {
 			ExpressionInOCL result = getHelper().createInvariant(expression);
@@ -403,7 +403,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	 * Assert that an expression can be parsed as a query for a context and return the query.
 	 */
 	@SuppressWarnings("null")
-	protected @NonNull ExpressionInOCL assertQuery(org.eclipse.ocl.examples.pivot.Class context, @NonNull String expression) {
+	protected @NonNull ExpressionInOCL assertQuery(org.eclipse.ocl.pivot.Class context, @NonNull String expression) {
 		getHelper().setContext(context);
 		try {
 			ExpressionInOCL result = getHelper().createQuery(expression);
@@ -755,7 +755,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	protected void assertSemanticErrorQuery(@NonNull String expression, String messageTemplate, Object... bindings) {
 		assertBadQuery(SemanticException.class, Diagnostic.ERROR, expression, messageTemplate, bindings);	   
 	}
-	protected void assertSemanticErrorQuery2(@NonNull org.eclipse.ocl.examples.pivot.Class contextType, @NonNull String expression, String messageTemplate, Object... bindings) {
+	protected void assertSemanticErrorQuery2(@NonNull org.eclipse.ocl.pivot.Class contextType, @NonNull String expression, String messageTemplate, Object... bindings) {
 		assertBadQuery2(SemanticException.class, Diagnostic.ERROR, contextType, expression, messageTemplate, bindings);	   
 	}
 	 
@@ -771,7 +771,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		try {
 	   		PivotEnvironment environment = (PivotEnvironment) getHelper().getEnvironment();
 	   		MetaModelManager metaModelManager = environment.getMetaModelManager();
-	   		org.eclipse.ocl.examples.pivot.Class contextClassifier = environment.getContextClassifier();
+	   		org.eclipse.ocl.pivot.Class contextClassifier = environment.getContextClassifier();
 	   		ParserContext classContext = new ClassContext(metaModelManager, null, contextClassifier, null);
 	   		csResource = (BaseCSResource) classContext.createBaseResource(expression);
 			PivotUtil.checkResourceErrors(DomainUtil.bind(OCLMessages.ErrorsInResource, expression), csResource);
@@ -788,14 +788,14 @@ public abstract class PivotTestSuite extends PivotTestCase
 		}	   
 	}
    @SuppressWarnings("null")
-   protected void assertValidationErrorQuery2(@Nullable org.eclipse.ocl.examples.pivot.Class contextType, @NonNull String expression, String messageTemplate, Object... bindings) {
+   protected void assertValidationErrorQuery2(@Nullable org.eclipse.ocl.pivot.Class contextType, @NonNull String expression, String messageTemplate, Object... bindings) {
 		BaseCSResource csResource = null;
 		try {
 			OCLHelper helper = getHelper();
 			helper.setContext(contextType);
 	   		PivotEnvironment environment = (PivotEnvironment) helper.getEnvironment();
 	   		MetaModelManager metaModelManager = environment.getMetaModelManager();
-	   		org.eclipse.ocl.examples.pivot.Class contextClassifier = environment.getContextClassifier();
+	   		org.eclipse.ocl.pivot.Class contextClassifier = environment.getContextClassifier();
 	   		ParserContext classContext = new ClassContext(metaModelManager, null, contextClassifier, null);
 	   		csResource = (BaseCSResource) classContext.createBaseResource(expression);
 			PivotUtil.checkResourceErrors(DomainUtil.bind(OCLMessages.ErrorsInResource, expression), csResource);
@@ -817,7 +817,7 @@ public abstract class PivotTestSuite extends PivotTestCase
    	 * for evaluation on an object of contextType. No evaluation is performed since no
    	 * object of contextType need exist. 
    	 */
-	protected void assertValidQuery(@NonNull org.eclipse.ocl.examples.pivot.Class contextType, @NonNull String expression) throws Exception {
+	protected void assertValidQuery(@NonNull org.eclipse.ocl.pivot.Class contextType, @NonNull String expression) throws Exception {
 		OCLHelper helper = getHelper();
 		helper.setContext(contextType);
 		ExpressionInOCL query = helper.createQuery(expression);
@@ -921,7 +921,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		return result;
 	}
 
-	public org.eclipse.ocl.examples.pivot.Class createClass() {
+	public org.eclipse.ocl.pivot.Class createClass() {
 		return PivotFactory.eINSTANCE.createClass();
 	}
 
@@ -945,7 +945,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 //        }
 	}
 
-	public void createGeneralization(org.eclipse.ocl.examples.pivot.Class special, org.eclipse.ocl.examples.pivot.Class general) {
+	public void createGeneralization(org.eclipse.ocl.pivot.Class special, org.eclipse.ocl.pivot.Class general) {
 		special.getSuperClasses().add(general);
 	}
 
@@ -953,7 +953,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		return ocl.createOCLHelper();
 	}
 	
-	protected ExpressionInOCL createInvariant(@NonNull org.eclipse.ocl.examples.pivot.Class context, @NonNull String expression) {
+	protected ExpressionInOCL createInvariant(@NonNull org.eclipse.ocl.pivot.Class context, @NonNull String expression) {
 		return assertInvariant(context, expression);
 	}
 
@@ -962,7 +962,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		return aRoot;
 	}
 
-	protected Property createOwnedAttribute(org.eclipse.ocl.examples.pivot.Class aClass, String name, Type type) {
+	protected Property createOwnedAttribute(org.eclipse.ocl.pivot.Class aClass, String name, Type type) {
 		Property eAttribute = PivotFactory.eINSTANCE.createProperty();
 		eAttribute.setName(name);
 		eAttribute.setType(type);
@@ -970,15 +970,15 @@ public abstract class PivotTestSuite extends PivotTestCase
 		return eAttribute;
 	}
 
-	protected @NonNull org.eclipse.ocl.examples.pivot.Class createOwnedClass(org.eclipse.ocl.examples.pivot.Package aPackage, String name, boolean isAbstract) {
-		org.eclipse.ocl.examples.pivot.Class eClass = PivotFactory.eINSTANCE.createClass();
+	protected @NonNull org.eclipse.ocl.pivot.Class createOwnedClass(org.eclipse.ocl.pivot.Package aPackage, String name, boolean isAbstract) {
+		org.eclipse.ocl.pivot.Class eClass = PivotFactory.eINSTANCE.createClass();
 		eClass.setName(name);
 		eClass.setIsAbstract(isAbstract);
 		aPackage.getOwnedClasses().add(eClass);
 		return eClass;
 	}
 
-	protected Enumeration createOwnedEnumeration(org.eclipse.ocl.examples.pivot.Package aPackage, String name) {
+	protected Enumeration createOwnedEnumeration(org.eclipse.ocl.pivot.Package aPackage, String name) {
 		Enumeration eEnum = PivotFactory.eINSTANCE.createEnumeration();
 		eEnum.setName(name);
 		aPackage.getOwnedClasses().add(eEnum);
@@ -992,7 +992,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		return eLiteral;
 	}
 
-	protected Operation createOwnedOperation(org.eclipse.ocl.examples.pivot.Class aClass, String name, List<String> paramNames, List<Type> paramTypes, Type type, boolean isQuery) {
+	protected Operation createOwnedOperation(org.eclipse.ocl.pivot.Class aClass, String name, List<String> paramNames, List<Type> paramTypes, Type type, boolean isQuery) {
 		Operation eOperation = PivotFactory.eINSTANCE.createOperation();
 		eOperation.setName(name);
 		eOperation.setType(type);
@@ -1013,18 +1013,18 @@ public abstract class PivotTestSuite extends PivotTestCase
 		return eParameter;
 	}
 
-	protected Operation createOwnedPrimitiveOperation(org.eclipse.ocl.examples.pivot.Class aPrimitiveType, String name, EList<String> paramNames, EList<Type> paramTypes, Type type, boolean isQuery) {
+	protected Operation createOwnedPrimitiveOperation(org.eclipse.ocl.pivot.Class aPrimitiveType, String name, EList<String> paramNames, EList<Type> paramTypes, Type type, boolean isQuery) {
 		return createOwnedOperation(aPrimitiveType, name, paramNames, paramTypes, type, isQuery);
 	}
 
-	protected org.eclipse.ocl.examples.pivot.Class createOwnedPrimitiveType(org.eclipse.ocl.examples.pivot.Package aPackage, String name) {
-		org.eclipse.ocl.examples.pivot.Class eClass = PivotFactory.eINSTANCE.createClass();
+	protected org.eclipse.ocl.pivot.Class createOwnedPrimitiveType(org.eclipse.ocl.pivot.Package aPackage, String name) {
+		org.eclipse.ocl.pivot.Class eClass = PivotFactory.eINSTANCE.createClass();
 		eClass.setName(name);
 		aPackage.getOwnedClasses().add(eClass);
 		return eClass;
 	}
 
-	protected Property createOwnedReference(org.eclipse.ocl.examples.pivot.Class aClass, String name, org.eclipse.ocl.examples.pivot.Class type) {
+	protected Property createOwnedReference(org.eclipse.ocl.pivot.Class aClass, String name, org.eclipse.ocl.pivot.Class type) {
 		Property eReference = PivotFactory.eINSTANCE.createProperty();
 		eReference.setName(name);
 		eReference.setType(type);
@@ -1042,16 +1042,16 @@ public abstract class PivotTestSuite extends PivotTestCase
 		return OCL.newInstance(envFactory);
 	}
 
-	protected @NonNull org.eclipse.ocl.examples.pivot.Package createPackage(@NonNull Model parentRoot, @NonNull String name) {
+	protected @NonNull org.eclipse.ocl.pivot.Package createPackage(@NonNull Model parentRoot, @NonNull String name) {
 		@SuppressWarnings("null")
-		org.eclipse.ocl.examples.pivot.Package aPackage = metaModelManager.createPackage(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, name, null, null);
+		org.eclipse.ocl.pivot.Package aPackage = metaModelManager.createPackage(org.eclipse.ocl.pivot.Package.class, PivotPackage.Literals.PACKAGE, name, null, null);
 		parentRoot.getOwnedPackages().add(aPackage);
 		return aPackage;
 	}
 
-	protected @NonNull org.eclipse.ocl.examples.pivot.Package createPackage(@NonNull org.eclipse.ocl.examples.pivot.Package parentPackage, @NonNull String name) {
+	protected @NonNull org.eclipse.ocl.pivot.Package createPackage(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name) {
 		@SuppressWarnings("null")
-		org.eclipse.ocl.examples.pivot.Package aPackage = metaModelManager.createPackage(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, name, null, null);
+		org.eclipse.ocl.pivot.Package aPackage = metaModelManager.createPackage(org.eclipse.ocl.pivot.Package.class, PivotPackage.Literals.PACKAGE, name, null, null);
 		parentPackage.getOwnedPackages().add(aPackage);
 		return aPackage;
 	}
@@ -1090,14 +1090,14 @@ public abstract class PivotTestSuite extends PivotTestCase
 		return result;
 	}
 	
-	protected @NonNull ExpressionInOCL createQuery(@NonNull org.eclipse.ocl.examples.pivot.Class context, @NonNull String expression) {
+	protected @NonNull ExpressionInOCL createQuery(@NonNull org.eclipse.ocl.pivot.Class context, @NonNull String expression) {
 		return assertQuery(context, expression);
 	}
 	
 	@SuppressWarnings("null")
 	protected @NonNull ExpressionInOCL createQuery(
 			@NonNull EnvironmentFactory envFactory,
-			@NonNull org.eclipse.ocl.examples.pivot.Class context, @NonNull String text) {
+			@NonNull org.eclipse.ocl.pivot.Class context, @NonNull String text) {
 		
 		OCL localOcl = OCL.newInstance(envFactory);
 		OCLHelper helper = localOcl.createOCLHelper();
@@ -1166,7 +1166,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	}
 
 	protected @Nullable Object evaluate(@NonNull OCLHelper aHelper, @Nullable Object context, @NonNull String expression) throws Exception {
-		org.eclipse.ocl.examples.pivot.Class classContext = /*context instanceof ElementExtension ? ((ElementExtension)context).getStereotype() :*/ metaModelManager.getType(idResolver.getStaticTypeOf(context));
+		org.eclipse.ocl.pivot.Class classContext = /*context instanceof ElementExtension ? ((ElementExtension)context).getStereotype() :*/ metaModelManager.getType(idResolver.getStaticTypeOf(context));
 		aHelper.setContext(classContext);
 //		ExpressionInOCL query = aHelper.createQuery(expression);
 		ParserContext parserContext = new ClassContext(metaModelManager, null, classContext, (context instanceof Type) && !(context instanceof ElementExtension) ? (Type)context : null);
@@ -1180,7 +1180,7 @@ public abstract class PivotTestSuite extends PivotTestCase
     }
 
 	protected @Nullable Object evaluateWithoutValidation(@NonNull OCLHelper aHelper, @Nullable Object context, @NonNull String expression) throws Exception {
-		org.eclipse.ocl.examples.pivot.Class contextType = metaModelManager.getType(idResolver.getStaticTypeOf(context));
+		org.eclipse.ocl.pivot.Class contextType = metaModelManager.getType(idResolver.getStaticTypeOf(context));
 		aHelper.setContext(contextType);
 		ExpressionInOCL query = aHelper.createQuery(expression);
         try {
@@ -1191,7 +1191,7 @@ public abstract class PivotTestSuite extends PivotTestCase
     }
 
 	protected @Nullable Object evaluateLocal(@NonNull OCLHelper aHelper, @Nullable Object context, @NonNull String expression) throws Exception {
-		org.eclipse.ocl.examples.pivot.Class contextType = metaModelManager.getType(idResolver.getStaticTypeOf(context));
+		org.eclipse.ocl.pivot.Class contextType = metaModelManager.getType(idResolver.getStaticTypeOf(context));
 		aHelper.setContext(contextType);
 		ExpressionInOCL query = aHelper.createQuery(expression);
         try {
@@ -1243,7 +1243,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	 * @param type The '<em><b>Type</b></em>' of the {@link org.eclipse.uml2.uml.Property} to retrieve, or <code>null</code>.
 	 * @return The first {@link org.eclipse.uml2.uml.Property} with the specified '<em><b>Name</b></em>', and '<em><b>Type</b></em>', or <code>null</code>.
 	 */
-	protected Property getAttribute(@NonNull org.eclipse.ocl.examples.pivot.Class classifier, @NonNull String name, @NonNull Type type) {
+	protected Property getAttribute(@NonNull org.eclipse.ocl.pivot.Class classifier, @NonNull String name, @NonNull Type type) {
 		Property feature = DomainUtil.getNamedElement(classifier.getOwnedProperties(), name);
 		if (feature == null)
 			return null;
@@ -1254,7 +1254,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	@SuppressWarnings("null")
 	public CodeGenHelper getCodeGenHelper(@NonNull MetaModelManager metaModelManager) throws IOException {
 		URI genModelURI = URI.createPlatformResourceURI(
-				"/org.eclipse.ocl.examples.pivot/model/Pivot.merged.genmodel",
+				"/org.eclipse.ocl.pivot/model/Pivot.merged.genmodel",
 				true);
 //		ResourceSet resourceSet = getResourceSet();
 		Resource genModelResource = resourceSet.getResource(genModelURI, true);
@@ -1300,7 +1300,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		return DomainUtil.nonNullState(helper);
 	}
    
-	protected @NonNull org.eclipse.ocl.examples.pivot.Class getMetaclass(@NonNull String name) {
+	protected @NonNull org.eclipse.ocl.pivot.Class getMetaclass(@NonNull String name) {
 		return metaModelManager.getStandardLibrary().getRequiredLibraryType(name);
 	}
 	
@@ -1464,7 +1464,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	/**
 	 * Create a Resource to register a binding-dependent pkg for access with a given nsPrefix and nsUri.
 	 */
-	protected @NonNull org.eclipse.ocl.examples.pivot.Package registerPackage(@NonNull org.eclipse.ocl.examples.pivot.Package pkg, @NonNull String nsPrefix, @NonNull String nsUri) {
+	protected @NonNull org.eclipse.ocl.pivot.Package registerPackage(@NonNull org.eclipse.ocl.pivot.Package pkg, @NonNull String nsPrefix, @NonNull String nsUri) {
 		pkg.setNsPrefix(nsPrefix);
         pkg.setURI(nsUri);
 		Resource resource = new ResourceImpl(URI.createURI(nsUri));

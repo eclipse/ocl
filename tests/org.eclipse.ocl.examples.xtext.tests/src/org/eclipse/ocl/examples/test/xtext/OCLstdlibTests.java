@@ -26,31 +26,31 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.domain.elements.DomainOperation;
-import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
-import org.eclipse.ocl.examples.domain.library.LibraryFeature;
-import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
-import org.eclipse.ocl.examples.pivot.Annotation;
-import org.eclipse.ocl.examples.pivot.AnyType;
-import org.eclipse.ocl.examples.pivot.Comment;
-import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.Feature;
-import org.eclipse.ocl.examples.pivot.Library;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
-import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
-import org.eclipse.ocl.examples.pivot.model.OCLMetaModel;
-import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
-import org.eclipse.ocl.examples.pivot.resource.ASResourceFactoryRegistry;
-import org.eclipse.ocl.examples.pivot.utilities.AS2Moniker;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.domain.elements.DomainOperation;
+import org.eclipse.ocl.domain.elements.FeatureFilter;
+import org.eclipse.ocl.domain.library.LibraryFeature;
+import org.eclipse.ocl.domain.utilities.ProjectMap;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
+import org.eclipse.ocl.pivot.Annotation;
+import org.eclipse.ocl.pivot.AnyType;
+import org.eclipse.ocl.pivot.Comment;
+import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.Feature;
+import org.eclipse.ocl.pivot.Library;
+import org.eclipse.ocl.pivot.TemplateParameter;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceAdapter;
+import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
+import org.eclipse.ocl.pivot.model.OCLMetaModel;
+import org.eclipse.ocl.pivot.model.OCLstdlib;
+import org.eclipse.ocl.pivot.resource.ASResourceFactoryRegistry;
+import org.eclipse.ocl.pivot.utilities.AS2Moniker;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.xtext.oclstdlib.scoping.JavaClassScope;
@@ -168,9 +168,9 @@ public class OCLstdlibTests extends XtextTestCase
 				}
 				assertEquals(fileClass, javaClass);
 			}
-			if (fileElement instanceof org.eclipse.ocl.examples.pivot.Class) {
-				List<Element> fileTypes = new ArrayList<Element>(((org.eclipse.ocl.examples.pivot.Class)fileElement).getSuperClasses());
-				List<Element> javaTypes = new ArrayList<Element>(((org.eclipse.ocl.examples.pivot.Class)javaElement).getSuperClasses());
+			if (fileElement instanceof org.eclipse.ocl.pivot.Class) {
+				List<Element> fileTypes = new ArrayList<Element>(((org.eclipse.ocl.pivot.Class)fileElement).getSuperClasses());
+				List<Element> javaTypes = new ArrayList<Element>(((org.eclipse.ocl.pivot.Class)javaElement).getSuperClasses());
 				Collections.sort(fileTypes, MonikeredComparator.INSTANCE);
 				Collections.sort(javaTypes, MonikeredComparator.INSTANCE);
 				assertEquals(fileTypes.size(), javaTypes.size());
@@ -258,7 +258,7 @@ public class OCLstdlibTests extends XtextTestCase
 		//	Load OCL stdlib as a file.
 		//
 		new ProjectMap().initializeResourceSet(resourceSet);
-		URI libraryURI = URI.createPlatformResourceURI("org.eclipse.ocl.examples.library/model/OCL-2.5.oclstdlib", true);
+		URI libraryURI = URI.createPlatformResourceURI("org.eclipse.ocl.library/model/OCL-2.5.oclstdlib", true);
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(libraryURI);
 		JavaClassScope.getAdapter(xtextResource, getClass().getClassLoader());
 		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
@@ -333,9 +333,9 @@ public class OCLstdlibTests extends XtextTestCase
 				}
 				assertEquals(fileClass, javaClass);
 			}
-			if (fileElement instanceof org.eclipse.ocl.examples.pivot.Class) {
-				List<Element> fileTypes = new ArrayList<Element>(((org.eclipse.ocl.examples.pivot.Class)fileElement).getSuperClasses());
-				List<Element> javaTypes = new ArrayList<Element>(((org.eclipse.ocl.examples.pivot.Class)javaElement).getSuperClasses());
+			if (fileElement instanceof org.eclipse.ocl.pivot.Class) {
+				List<Element> fileTypes = new ArrayList<Element>(((org.eclipse.ocl.pivot.Class)fileElement).getSuperClasses());
+				List<Element> javaTypes = new ArrayList<Element>(((org.eclipse.ocl.pivot.Class)javaElement).getSuperClasses());
 				Collections.sort(fileTypes, MonikeredComparator.INSTANCE);
 				Collections.sort(javaTypes, MonikeredComparator.INSTANCE);
 				assertEquals(fileTypes.size(), javaTypes.size());
@@ -362,7 +362,7 @@ public class OCLstdlibTests extends XtextTestCase
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {			
 			new ProjectMap().initializeResourceSet(resourceSet);
 		}
-		URI libraryURI = URI.createPlatformResourceURI("org.eclipse.ocl.examples.library/model-gen/OCL-2.5.oclas", true);
+		URI libraryURI = URI.createPlatformResourceURI("org.eclipse.ocl.library/model-gen/OCL-2.5.oclas", true);
 		//
 		//	Load 'oclstdlib.oclstdlib' as pre-code-generated Java.
 		//
@@ -382,13 +382,13 @@ public class OCLstdlibTests extends XtextTestCase
 		ResourceSet resourceSet = new ResourceSetImpl();
 		new ProjectMap().initializeResourceSet(resourceSet);
 		ASResourceFactoryRegistry.INSTANCE.configureResourceSet(resourceSet);
-		URI pivotURI = URI.createPlatformResourceURI("org.eclipse.ocl.examples.pivot/model-gen/Pivot.oclas", true);
+		URI pivotURI = URI.createPlatformResourceURI("org.eclipse.ocl.pivot/model-gen/Pivot.oclas", true);
 		//
 		//	Load OCLmetamodel as pre-code-generated Java.
 		//
 		PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
 		Library asLibrary = (Library) standardLibrary.getOclAnyType().getOwningPackage();
-		org.eclipse.ocl.examples.pivot.Package oclMetamodel = OCLMetaModel.create(standardLibrary, asLibrary.getName(), asLibrary.getNsPrefix(), OCLMetaModel.PIVOT_URI);
+		org.eclipse.ocl.pivot.Package oclMetamodel = OCLMetaModel.create(standardLibrary, asLibrary.getName(), asLibrary.getNsPrefix(), OCLMetaModel.PIVOT_URI);
 		Resource javaResource = oclMetamodel.eResource();
 		Resource asResource = doLoadAS(resourceSet, pivotURI, javaResource, false);		// FIXME Contents are far from identical
 		PivotUtil.getMetaModelManager(asResource).dispose();

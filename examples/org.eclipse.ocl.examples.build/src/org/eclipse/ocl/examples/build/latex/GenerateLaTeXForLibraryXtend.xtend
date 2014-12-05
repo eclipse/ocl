@@ -11,9 +11,9 @@
 package org.eclipse.ocl.examples.build.latex
 
 import org.eclipse.jdt.annotation.NonNull
-import org.eclipse.ocl.examples.pivot.Namespace
-import org.eclipse.ocl.examples.pivot.Element
-import org.eclipse.ocl.examples.pivot.Library
+import org.eclipse.ocl.pivot.Namespace
+import org.eclipse.ocl.pivot.Element
+import org.eclipse.ocl.pivot.Library
 
 public class GenerateLaTeXForLibraryXtend extends GenerateLaTeXForLibrary
 {
@@ -25,7 +25,7 @@ public class GenerateLaTeXForLibraryXtend extends GenerateLaTeXForLibrary
 		'''
 	}
 
-	protected def emitAssociations(org.eclipse.ocl.examples.pivot.Class asClass) {
+	protected def emitAssociations(org.eclipse.ocl.pivot.Class asClass) {
 		var asAssociations = getSortedAssociations(asClass);
 		if (asAssociations.size() > 0) {
 		'''
@@ -40,7 +40,7 @@ public class GenerateLaTeXForLibraryXtend extends GenerateLaTeXForLibrary
 		}
 	}
 
-	protected def emitAttributes(org.eclipse.ocl.examples.pivot.Class asClass) {
+	protected def emitAttributes(org.eclipse.ocl.pivot.Class asClass) {
 		var asAttributes = getSortedAttributes(asClass);
 		if ( asAttributes.size() > 0) {
 		'''
@@ -55,7 +55,7 @@ public class GenerateLaTeXForLibraryXtend extends GenerateLaTeXForLibrary
 		}
 	}
 
-	protected def emitClasses(@NonNull org.eclipse.ocl.examples.pivot.Package asPackage) {
+	protected def emitClasses(@NonNull org.eclipse.ocl.pivot.Package asPackage) {
 		var asClasses = getSortedClasses(asPackage);
 		'''
 		«FOR asClass : asClasses»
@@ -85,7 +85,7 @@ public class GenerateLaTeXForLibraryXtend extends GenerateLaTeXForLibrary
 		}
 	}
 
-	protected def emitIterations(org.eclipse.ocl.examples.pivot.Class asClass) {
+	protected def emitIterations(org.eclipse.ocl.pivot.Class asClass) {
 		var asIterations = getSortedIterations(asClass);
 		if (asIterations.size() > 0) {
 		'''
@@ -105,7 +105,7 @@ public class GenerateLaTeXForLibraryXtend extends GenerateLaTeXForLibrary
 		}
 	}
 
-	protected def emitOperations(org.eclipse.ocl.examples.pivot.Class asClass) {
+	protected def emitOperations(org.eclipse.ocl.pivot.Class asClass) {
 		var asOperations = getSortedOperations(asClass);
 		if (asOperations.size() > 0) {
 		'''

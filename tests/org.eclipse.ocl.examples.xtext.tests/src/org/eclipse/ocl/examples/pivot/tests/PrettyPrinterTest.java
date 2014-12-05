@@ -13,9 +13,9 @@ package org.eclipse.ocl.examples.pivot.tests;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
 
 /**
  * Tests for OclAny operations.

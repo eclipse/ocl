@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.basecs;
 
-import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.pivot.Element;
 
 /**
  * <!-- begin-user-doc -->

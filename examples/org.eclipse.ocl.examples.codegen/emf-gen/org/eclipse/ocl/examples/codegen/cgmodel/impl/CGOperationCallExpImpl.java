@@ -27,7 +27,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGOperationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.utilities.EquivalenceUtils;
-import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.pivot.Operation;
 
 /**
  * <!-- begin-user-doc -->

@@ -12,11 +12,11 @@ package org.eclipse.ocl.xtext.base.attributes;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
-import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
-import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.scoping.AbstractAttribution;
+import org.eclipse.ocl.pivot.scoping.EnvironmentView;
+import org.eclipse.ocl.pivot.scoping.ScopeView;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.basecs.PivotableElementCS;
 
 public class PivotableElementCSAttribution extends AbstractAttribution

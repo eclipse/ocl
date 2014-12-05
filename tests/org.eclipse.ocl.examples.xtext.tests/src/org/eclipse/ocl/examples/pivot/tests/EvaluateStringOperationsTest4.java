@@ -16,9 +16,9 @@ import java.util.Collection;
 import java.util.regex.PatternSyntaxException;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.osgi.util.NLS;
 import org.junit.After;
 import org.junit.Before;

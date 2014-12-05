@@ -11,17 +11,17 @@
 package org.eclipse.ocl.examples.codegen.java.types;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.domain.ids.ElementId;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGUnboxExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
-import org.eclipse.ocl.examples.domain.ids.ElementId;
 
 /**
  * A BoxedValueDescriptor describes a type whose boxed representation differs from its unboxed representation. It has a pivot ElementId and a Java class.
  * <p>
- * Thus an IntegerValue is a TypeId.INTEGER and an org.eclipse.ocl.examples.domain.values.IntegerValue.
+ * Thus an IntegerValue is a TypeId.INTEGER and an org.eclipse.ocl.domain.values.IntegerValue.
  */
 public class BoxedValuesDescriptor extends AbstractValueDescriptor implements BoxedDescriptor
 {

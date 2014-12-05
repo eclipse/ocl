@@ -13,7 +13,7 @@ package org.eclipse.ocl.xtext.essentialoclcs.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.xtext.essentialoclcs.OperationCallExpCS;
 

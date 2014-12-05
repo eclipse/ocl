@@ -34,7 +34,7 @@ import org.eclipse.ocl.examples.debug.vm.utils.SafeRunner;
 import org.eclipse.ocl.examples.debug.vm.utils.ShallowProcess;
 import org.eclipse.ocl.examples.debug.vm.utils.StreamsProxy;
 import org.eclipse.ocl.examples.debug.vm.utils.VMRuntimeException;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
 
 public class OCLLaunchConfigurationDelegate extends LaunchConfigurationDelegate implements OCLLaunchConstants
 { 

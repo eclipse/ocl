@@ -34,29 +34,29 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.domain.ids.CollectionTypeId;
-import org.eclipse.ocl.examples.domain.ids.TypeId;
-import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.domain.values.BagValue;
-import org.eclipse.ocl.examples.domain.values.CollectionValue;
-import org.eclipse.ocl.examples.domain.values.OrderedSetValue;
-import org.eclipse.ocl.examples.domain.values.SequenceValue;
-import org.eclipse.ocl.examples.domain.values.SetValue;
-import org.eclipse.ocl.examples.domain.values.Value;
-import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
-import org.eclipse.ocl.examples.library.LibraryConstants;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.PivotTables;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.SemanticException;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.CompleteEnvironment;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary2;
-import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.domain.ids.CollectionTypeId;
+import org.eclipse.ocl.domain.ids.TypeId;
+import org.eclipse.ocl.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.values.BagValue;
+import org.eclipse.ocl.domain.values.CollectionValue;
+import org.eclipse.ocl.domain.values.OrderedSetValue;
+import org.eclipse.ocl.domain.values.SequenceValue;
+import org.eclipse.ocl.domain.values.SetValue;
+import org.eclipse.ocl.domain.values.Value;
+import org.eclipse.ocl.domain.values.impl.InvalidValueException;
+import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.library.LibraryConstants;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.PivotTables;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.SemanticException;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.manager.CompleteEnvironment;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.manager.PivotStandardLibrary2;
+import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.xtext.oclinecore.OCLinEcoreStandaloneSetup;
 import org.junit.After;
 import org.junit.Before;
@@ -86,14 +86,14 @@ public class IteratorsTest4 extends PivotTestSuite
 	}
 
 	Model root;
-	org.eclipse.ocl.examples.pivot.Package pkg1;
-	org.eclipse.ocl.examples.pivot.Package pkg2;
-	org.eclipse.ocl.examples.pivot.Package pkg3;
-	org.eclipse.ocl.examples.pivot.Package pkg4;
-	org.eclipse.ocl.examples.pivot.Package pkg5;
-	org.eclipse.ocl.examples.pivot.Package jim;
-	org.eclipse.ocl.examples.pivot.Package bob;
-	org.eclipse.ocl.examples.pivot.Package george;
+	org.eclipse.ocl.pivot.Package pkg1;
+	org.eclipse.ocl.pivot.Package pkg2;
+	org.eclipse.ocl.pivot.Package pkg3;
+	org.eclipse.ocl.pivot.Package pkg4;
+	org.eclipse.ocl.pivot.Package pkg5;
+	org.eclipse.ocl.pivot.Package jim;
+	org.eclipse.ocl.pivot.Package bob;
+	org.eclipse.ocl.pivot.Package george;
 
 	@Override
 	protected @NonNull String getTestPackageName() {
@@ -409,7 +409,7 @@ public class IteratorsTest4 extends PivotTestSuite
         assertQueryEquals(pkg1, expected1, "ownedPackages->collectNested(name)");
 
         // nested collections not flattened
-		Set<org.eclipse.ocl.examples.pivot.Package> e1 = Collections.singleton(jim);
+		Set<org.eclipse.ocl.pivot.Package> e1 = Collections.singleton(jim);
         Set<?> e2 = Collections.EMPTY_SET;
         HashSet<Object> e3 = new HashSet<Object>(Arrays.asList(new Object[] {pkg4, pkg5}));
 		CollectionValue expected2 = idResolver.createBagOfEach(typeId, e1, e2, e3);
@@ -486,7 +486,7 @@ public class IteratorsTest4 extends PivotTestSuite
      * Tests that the closure() iterator handles cycles.
      */
     @Test public void test_closure_cycles() {
-    	@SuppressWarnings("null") @NonNull org.eclipse.ocl.examples.pivot.Class packageMetaclass = metaModelManager.getPivotType("Package");
+    	@SuppressWarnings("null") @NonNull org.eclipse.ocl.pivot.Class packageMetaclass = metaModelManager.getPivotType("Package");
 		CollectionTypeId typeId = TypeId.SET.getSpecializedId(packageMetaclass.getTypeId());
         Property ownedPackages = getAttribute(packageMetaclass, "ownedPackages", packageMetaclass);
         Property owningPackage = getAttribute(packageMetaclass, "owningPackage", packageMetaclass);
@@ -501,9 +501,9 @@ public class IteratorsTest4 extends PivotTestSuite
     @Test public void test_closure_operations() {
     	Resource fakeResource = new XMIResourceFactoryImpl().createResource(URI.createURI("fake"));
     	Model fakeRoot = metaModelManager.createModel(null);
-    	org.eclipse.ocl.examples.pivot.Package fakePkg = createPackage(fakeRoot, "fake");
+    	org.eclipse.ocl.pivot.Package fakePkg = createPackage(fakeRoot, "fake");
     	fakeResource.getContents().add(fakePkg);
-        org.eclipse.ocl.examples.pivot.Class fake = createOwnedClass(fakePkg, "Fake", false);
+        org.eclipse.ocl.pivot.Class fake = createOwnedClass(fakePkg, "Fake", false);
         createGeneralization(fake, metaModelManager.getStandardLibrary().getOclAnyType());
         Operation getFakes = createOwnedOperation(fake, "getFakes", null, null, fake, true);
         getFakes.setType(metaModelManager.getCompleteEnvironment().getSetType(fake, null, null));
@@ -531,14 +531,14 @@ public class IteratorsTest4 extends PivotTestSuite
         CompleteEnvironment completeEnvironment = metaModelManager.getCompleteEnvironment();
     	Resource fakeResource = new XMIResourceFactoryImpl().createResource(URI.createURI("fake"));
     	Model fakeRoot = metaModelManager.createModel(null);
-    	org.eclipse.ocl.examples.pivot.Package fakePkg = createPackage(fakeRoot, "fake");
+    	org.eclipse.ocl.pivot.Package fakePkg = createPackage(fakeRoot, "fake");
     	fakeResource.getContents().add(fakePkg);
-        org.eclipse.ocl.examples.pivot.Class fake = createOwnedClass(fakePkg, "Fake", false);
+        org.eclipse.ocl.pivot.Class fake = createOwnedClass(fakePkg, "Fake", false);
 		@SuppressWarnings("unused")
         Operation getFakes = createOwnedOperation(fake, "getFakes", null, null, completeEnvironment.getSetType(fake, null, null), true);
 
         // subclass the Fake class
-        org.eclipse.ocl.examples.pivot.Class subFake = createOwnedClass(fakePkg, "Subfake", false);
+        org.eclipse.ocl.pivot.Class subFake = createOwnedClass(fakePkg, "Subfake", false);
         createGeneralization(subFake, fake);
         createGeneralization(fake, standardLibrary.getOclAnyType());
 
@@ -564,8 +564,8 @@ public class IteratorsTest4 extends PivotTestSuite
      * Tests that the closure() body is not necessarily compatible.
      */
     @Test public void test_closure_body_393509() {
-    	@SuppressWarnings("null") @NonNull org.eclipse.ocl.examples.pivot.Class packageMetaclass = metaModelManager.getPivotType("Package");
-    	@SuppressWarnings("null") @NonNull org.eclipse.ocl.examples.pivot.Class propertyMetaclass = metaModelManager.getPivotType("Property");
+    	@SuppressWarnings("null") @NonNull org.eclipse.ocl.pivot.Class packageMetaclass = metaModelManager.getPivotType("Package");
+    	@SuppressWarnings("null") @NonNull org.eclipse.ocl.pivot.Class propertyMetaclass = metaModelManager.getPivotType("Property");
 		CollectionTypeId typeId = TypeId.SET.getSpecializedId(packageMetaclass.getTypeId());
         Property owningPackage = getAttribute(packageMetaclass, "owningPackage", packageMetaclass);
         SetValue expected = idResolver.createSetOfEach(typeId, owningPackage, packageMetaclass, packageMetaclass.eContainer(), packageMetaclass.eContainer().eContainer());
@@ -904,8 +904,8 @@ public class IteratorsTest4 extends PivotTestSuite
      * the body expression type has a <tt>&lt;</tt> operation.
      */
     @Test public void test_sortedByRequiresComparability_192729() {
-    	org.eclipse.ocl.examples.pivot.Class context = metaModelManager.getPivotType("Package");
-    	org.eclipse.ocl.examples.pivot.Class type = metaModelManager.getPivotType("Class");
+    	org.eclipse.ocl.pivot.Class context = metaModelManager.getPivotType("Package");
+    	org.eclipse.ocl.pivot.Class type = metaModelManager.getPivotType("Class");
      	assertValidationErrorQuery("ownedClasses->sortedBy(e | e)",
         	OCLMessages.UnresolvedOperation_ERROR_, type + "", LibraryConstants.COMPARE_TO);
        

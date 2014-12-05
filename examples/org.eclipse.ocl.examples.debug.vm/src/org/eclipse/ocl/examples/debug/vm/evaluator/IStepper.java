@@ -13,7 +13,7 @@ package org.eclipse.ocl.examples.debug.vm.evaluator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.UnitLocation;
-import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.pivot.Element;
 
 /**
  * An IStepper provides the element-type specific strategy for a variety of actions while stepping through source code.

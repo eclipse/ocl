@@ -28,24 +28,24 @@ import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
-import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.IProjectDescriptor;
-import org.eclipse.ocl.examples.pivot.CompleteClass;
-import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.LanguageExpression;
-import org.eclipse.ocl.examples.pivot.Library;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.ecore.AS2Ecore;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2AS;
-import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
-import org.eclipse.ocl.examples.pivot.manager.Orphanage;
-import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.utilities.StandaloneProjectMap;
+import org.eclipse.ocl.domain.utilities.StandaloneProjectMap.IProjectDescriptor;
+import org.eclipse.ocl.pivot.CompleteClass;
+import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.LanguageExpression;
+import org.eclipse.ocl.pivot.Library;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.ecore.AS2Ecore;
+import org.eclipse.ocl.pivot.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.library.StandardLibraryContribution;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceAdapter;
+import org.eclipse.ocl.pivot.manager.Orphanage;
+import org.eclipse.ocl.pivot.model.OCLstdlib;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 import org.eclipse.ocl.xtext.essentialocl.utilities.EssentialOCLCSResource;
 
@@ -115,7 +115,7 @@ public class ConstraintMerger extends AbstractProjectComponent
 //			Resource oclResource = cs2as.getPivotResource(xtextResource);
 //			Set<Resource> primaryPivotResources = new HashSet<Resource>();
 //			Set<Resource> libraryPivotResources = new HashSet<Resource>();
-//			Iterable<org.eclipse.ocl.examples.pivot.Package> somePackages = metaModelManager.getPackageManager().getAllPackages();
+//			Iterable<org.eclipse.ocl.pivot.Package> somePackages = metaModelManager.getPackageManager().getAllPackages();
 //			identifyResources(metaModelManager, somePackages, primaryPivotResources, libraryPivotResources);
 //			Set<Resource> secondaryPivotResources = new HashSet<Resource>(metaModelManager.getPivotResourceSet().getResources());
 //			secondaryPivotResources.removeAll(primaryPivotResources);
@@ -129,10 +129,10 @@ public class ConstraintMerger extends AbstractProjectComponent
 						if ((eObject instanceof Library) || (eObject instanceof Orphanage)) {
 							tit.prune();
 						}
-						else if (eObject instanceof org.eclipse.ocl.examples.pivot.Class) {
-							org.eclipse.ocl.examples.pivot.Class mergeType = (org.eclipse.ocl.examples.pivot.Class)eObject;
+						else if (eObject instanceof org.eclipse.ocl.pivot.Class) {
+							org.eclipse.ocl.pivot.Class mergeType = (org.eclipse.ocl.pivot.Class)eObject;
 							CompleteClass completeClass = metaModelManager.getCompleteClass(mergeType);
-							for (org.eclipse.ocl.examples.pivot.Class partialClass : completeClass.getPartialClasses()) {
+							for (org.eclipse.ocl.pivot.Class partialClass : completeClass.getPartialClasses()) {
 								if (partialClass != null) {
 									if (partialClass.eResource() == asResource) {
 										mergeType(metaModelManager, partialClass, mergeType);
@@ -161,8 +161,8 @@ public class ConstraintMerger extends AbstractProjectComponent
 			projectDescriptor.configure(ecoreResource2.getResourceSet(), StandaloneProjectMap.LoadBothStrategy.INSTANCE, null);
 			
 //			for (EObject eObject : oclResource.getContents()) {
-//				if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
-//					org.eclipse.ocl.examples.pivot.Package pivotPackage = (org.eclipse.ocl.examples.pivot.Package)eObject;
+//				if (eObject instanceof org.eclipse.ocl.pivot.Package) {
+//					org.eclipse.ocl.pivot.Package pivotPackage = (org.eclipse.ocl.pivot.Package)eObject;
 //					PackageTracker packageTracker = metaModelManager.getPackageTracker(pivotPackage);
 //					PackageServer packageServer = packageTracker.getPackageServer();
 //					packageServer.removePackage(pivotPackage);
@@ -176,7 +176,7 @@ public class ConstraintMerger extends AbstractProjectComponent
 		}
 	}
 
-	protected void mergeType(@NonNull MetaModelManager metaModelManager, @NonNull org.eclipse.ocl.examples.pivot.Class primaryType, @NonNull org.eclipse.ocl.examples.pivot.Class mergeType) {
+	protected void mergeType(@NonNull MetaModelManager metaModelManager, @NonNull org.eclipse.ocl.pivot.Class primaryType, @NonNull org.eclipse.ocl.pivot.Class mergeType) {
 		List<Constraint> mergeInvariants = mergeType.getOwnedInvariants();
 		List<Constraint> primaryInvariants = primaryType.getOwnedInvariants();
 		for (Constraint mergeInvariant : new ArrayList<Constraint>(mergeInvariants)) {
@@ -223,9 +223,9 @@ public class ConstraintMerger extends AbstractProjectComponent
 		}
 	}
 
-/*	public void identifyResources(MetaModelManager metaModelManager, Iterable<org.eclipse.ocl.examples.pivot.Package> somePackages,
+/*	public void identifyResources(MetaModelManager metaModelManager, Iterable<org.eclipse.ocl.pivot.Package> somePackages,
 			Set<Resource> primaryPivotResources, Set<Resource> libraryPivotResources) {
-		for (org.eclipse.ocl.examples.pivot.Package pPackage : somePackages) {
+		for (org.eclipse.ocl.pivot.Package pPackage : somePackages) {
 			if (pPackage instanceof Library) {
 				libraryPivotResources.add(pPackage.eResource());
 			}

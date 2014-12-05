@@ -18,8 +18,8 @@ import org.eclipse.ocl.examples.debug.core.OCLEvaluationContext;
 import org.eclipse.ocl.examples.debug.evaluator.OCLVMEnvironmentFactory;
 import org.eclipse.ocl.examples.debug.evaluator.OCLVMEvaluator;
 import org.eclipse.ocl.examples.debug.vm.launching.InternalDebuggableExecutor;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.ParserException;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.ParserException;
 
 /**
  * Internal transformation executor

@@ -1,0 +1,25 @@
+# Debugging options for the org.eclipse.ocl.domain plug-in
+
+# Turn on tracing of the nsURI to *.ecore mapping discovery
+org.eclipse.ocl.domain/projectMap/addEPackage=false
+
+# Turn on tracing of the nsURI to GenModel location discovery 
+org.eclipse.ocl.domain/projectMap/addGenModel=false
+
+# Turn on tracing of the plgin.xml generated_package extension point 
+org.eclipse.ocl.domain/projectMap/addGeneratedPackage=false
+
+# Turn on tracing of the ResourceSet.Converter.URI_MAP URI initialisation 
+org.eclipse.ocl.domain/projectMap/addURIMap=false
+
+# Turn on tracing of the resource load strategy configuration commands
+org.eclipse.ocl.domain/projectMap/configure=false
+
+# Turn on tracing of the package/resource gets that trigger resolutions
+org.eclipse.ocl.domain/projectMap/get=false
+
+# Turn on tracing of the install/uninstall of EPackage.Registry descriptors
+org.eclipse.ocl.domain/projectMap/install=false
+
+# Turn on tracing of the resolution of EPackage.Registry and ResourceSet.URIResourceMap entries 
+org.eclipse.ocl.domain/projectMap/resolve=false

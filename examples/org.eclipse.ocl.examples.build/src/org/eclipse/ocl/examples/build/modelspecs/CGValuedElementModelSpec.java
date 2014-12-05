@@ -102,8 +102,8 @@ import org.eclipse.ocl.examples.codegen.cse.StackPlace;
 import org.eclipse.ocl.examples.codegen.cse.ThrowPlace;
 import org.eclipse.ocl.examples.codegen.java.ImportUtils;
 import org.eclipse.ocl.examples.codegen.utilities.EquivalenceUtils;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.values.util.ValuesUtil;
 
 /**
  * CGValuedElementModelSpec supports generation of the many methods that contribute to the CGValuedElement.xxxx() method hierarchy.

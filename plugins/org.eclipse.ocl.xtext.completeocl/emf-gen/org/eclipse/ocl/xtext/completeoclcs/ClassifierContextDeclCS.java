@@ -75,7 +75,7 @@ public interface ClassifierContextDeclCS
 	 * @model resolveProxies="false" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
-	org.eclipse.ocl.examples.pivot.Class getReferredClass();
+	org.eclipse.ocl.pivot.Class getReferredClass();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Invariants</b></em>' containment reference list.

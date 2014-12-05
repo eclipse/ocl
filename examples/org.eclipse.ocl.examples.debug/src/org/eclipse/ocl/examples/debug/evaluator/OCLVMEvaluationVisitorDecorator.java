@@ -15,19 +15,19 @@ import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.OCLDebugPlugin;
-import org.eclipse.ocl.examples.domain.elements.DomainClass;
-import org.eclipse.ocl.examples.domain.elements.DomainEnvironment;
-import org.eclipse.ocl.examples.domain.elements.DomainExpression;
-import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.examples.domain.evaluation.DomainLogger;
-import org.eclipse.ocl.examples.domain.types.IdResolver;
-import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.evaluation.AbstractEvaluationVisitorDecorator;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.util.Visitable;
+import org.eclipse.ocl.domain.elements.DomainClass;
+import org.eclipse.ocl.domain.elements.DomainEnvironment;
+import org.eclipse.ocl.domain.elements.DomainExpression;
+import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.domain.evaluation.DomainLogger;
+import org.eclipse.ocl.domain.types.IdResolver;
+import org.eclipse.ocl.domain.values.impl.InvalidValueException;
+import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.evaluation.AbstractEvaluationVisitorDecorator;
+import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.util.Visitable;
 
 /**
  * OCLVMEvaluationVisitorDecorator is the class for ...

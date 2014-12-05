@@ -14,19 +14,19 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IStepper;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IStepperVisitor;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.IfExp;
-import org.eclipse.ocl.examples.pivot.IterateExp;
-import org.eclipse.ocl.examples.pivot.IteratorExp;
-import org.eclipse.ocl.examples.pivot.LetExp;
-import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.PropertyCallExp;
-import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
-import org.eclipse.ocl.examples.pivot.util.Visitable;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.IfExp;
+import org.eclipse.ocl.pivot.IterateExp;
+import org.eclipse.ocl.pivot.IteratorExp;
+import org.eclipse.ocl.pivot.LetExp;
+import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.OperationCallExp;
+import org.eclipse.ocl.pivot.PropertyCallExp;
+import org.eclipse.ocl.pivot.Variable;
+import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
+import org.eclipse.ocl.pivot.util.Visitable;
 
 public class OCLStepperVisitor extends AbstractExtendingVisitor<IStepper, Object> implements IStepperVisitor
 {

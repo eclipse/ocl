@@ -14,7 +14,7 @@ package org.eclipse.ocl.examples.debug.evaluator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
-import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.pivot.Element;
 
 public class OCLVMNestedEvaluationVisitor extends OCLVMEvaluationVisitor
 {

@@ -25,15 +25,15 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.domain.library.LibraryOperation;
 import org.eclipse.ocl.examples.codegen.common.CodeGenHelper;
 import org.eclipse.ocl.examples.codegen.oclinjunit.JUnitCodeGenerator;
-import org.eclipse.ocl.examples.domain.library.LibraryOperation;
-import org.eclipse.ocl.examples.library.LibraryConstants;
-import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.library.LibraryConstants;
+import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
 
 public class JavaGenModelCodeGenHelper implements CodeGenHelper
 {	// FIXME Isn't all this functionality available elsewhere?
@@ -91,8 +91,8 @@ public class JavaGenModelCodeGenHelper implements CodeGenHelper
 	}
 
 	@Override
-	public @NonNull GenPackage getGenPackage(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
-		org.eclipse.ocl.examples.pivot.Package pPackage = type.getOwningPackage();
+	public @NonNull GenPackage getGenPackage(@NonNull org.eclipse.ocl.pivot.Class type) {
+		org.eclipse.ocl.pivot.Package pPackage = type.getOwningPackage();
 		String nsURI = pPackage.getURI();
 		GenPackage genPackage = uriMap.get(nsURI);
 		if (nsURI != null) {

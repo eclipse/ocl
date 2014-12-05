@@ -11,7 +11,7 @@
 package org.eclipse.ocl.xtext.basecs;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.ocl.examples.domain.elements.Nameable;
+import org.eclipse.ocl.domain.elements.Nameable;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,7 +29,7 @@ import org.eclipse.ocl.examples.domain.elements.Nameable;
  * </p>
  *
  * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getLambdaTypeCS()
- * @model superTypes="org.eclipse.ocl.xtext.basecs.TypedRefCS org.eclipse.ocl.xtext.basecs.TemplateableElementCS org.eclipse.ocl.examples.pivot.Nameable"
+ * @model superTypes="org.eclipse.ocl.xtext.basecs.TypedRefCS org.eclipse.ocl.xtext.basecs.TemplateableElementCS org.eclipse.ocl.pivot.Nameable"
  * @generated
  */
 public interface LambdaTypeCS extends TypedRefCS, TemplateableElementCS, Nameable

@@ -38,20 +38,20 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
-import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.domain.validation.DomainSubstitutionLabelProvider;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.delegate.InvocationBehavior;
-import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.examples.pivot.delegate.SettingBehavior;
-import org.eclipse.ocl.examples.pivot.delegate.ValidationBehavior;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
-import org.eclipse.ocl.examples.pivot.resource.OCLASResourceFactory;
-import org.eclipse.ocl.examples.pivot.validation.EcoreOCLEValidator;
+import org.eclipse.ocl.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.validation.DomainSubstitutionLabelProvider;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.OCL;
+import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.delegate.InvocationBehavior;
+import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.pivot.delegate.SettingBehavior;
+import org.eclipse.ocl.pivot.delegate.ValidationBehavior;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.resource.OCLASResourceFactory;
+import org.eclipse.ocl.pivot.validation.EcoreOCLEValidator;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;
 import org.eclipse.ocl.xtext.completeocl.utilities.CompleteOCLLoader;
@@ -173,7 +173,7 @@ public class ValidateTests extends AbstractValidateTests
 		//
 		OCL ocl = OCL.newInstance();
 		MetaModelManager metaModelManager = ocl.getMetaModelManager();
-		URI ecoreURI = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.pivot/model/Pivot.ecore", true);
+		URI ecoreURI = URI.createPlatformResourceURI("/org.eclipse.ocl.pivot/model/Pivot.ecore", true);
 		Resource ecoreResource = metaModelManager.getExternalResourceSet().getResource(ecoreURI, true);
 		//
 		//	Check EObjectValidator errors
@@ -192,7 +192,7 @@ public class ValidateTests extends AbstractValidateTests
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {			
 			getProjectMap().initializeResourceSet(resourceSet);
 		}
-		Resource resource = resourceSet.getResource(URI.createPlatformResourceURI("org.eclipse.ocl.examples.library/model-gen/OCL-2.5.oclas", true), true);
+		Resource resource = resourceSet.getResource(URI.createPlatformResourceURI("org.eclipse.ocl.library/model-gen/OCL-2.5.oclas", true), true);
 		assertNoValidationErrors("Validating", DomainUtil.nonNullState(resource));
 	}
 
@@ -202,7 +202,7 @@ public class ValidateTests extends AbstractValidateTests
 			getProjectMap().initializeResourceSet(resourceSet);
 			OCLASResourceFactory.INSTANCE.configure(resourceSet);
 		}
-		Resource resource = resourceSet.getResource(URI.createPlatformResourceURI("org.eclipse.ocl.examples.pivot/model-gen/Pivot.oclas", true), true);
+		Resource resource = resourceSet.getResource(URI.createPlatformResourceURI("org.eclipse.ocl.pivot/model-gen/Pivot.oclas", true), true);
 		assertNoValidationErrors("Validating", DomainUtil.nonNullState(resource));
 	}
 

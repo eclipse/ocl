@@ -12,9 +12,9 @@ package org.eclipse.ocl.examples.codegen.library;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
-import org.eclipse.ocl.examples.domain.ids.TypeId;
-import org.eclipse.ocl.examples.domain.library.AbstractProperty;
+import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.domain.ids.TypeId;
+import org.eclipse.ocl.domain.library.AbstractProperty;
 
 /**
  * The instance of NativeProperty supports evaluation of a property using native language facilities

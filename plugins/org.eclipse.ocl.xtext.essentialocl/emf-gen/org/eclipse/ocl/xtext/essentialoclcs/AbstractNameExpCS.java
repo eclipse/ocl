@@ -3,7 +3,7 @@
 package org.eclipse.ocl.xtext.essentialoclcs;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
 
 /**

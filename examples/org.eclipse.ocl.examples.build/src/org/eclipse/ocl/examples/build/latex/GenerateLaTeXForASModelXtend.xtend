@@ -11,10 +11,10 @@
 package org.eclipse.ocl.examples.build.latex
 
 import org.eclipse.jdt.annotation.NonNull
-import org.eclipse.ocl.examples.pivot.Class
-import org.eclipse.ocl.examples.pivot.Element
-import org.eclipse.ocl.examples.pivot.Namespace
-import org.eclipse.ocl.examples.pivot.Package
+import org.eclipse.ocl.pivot.Class
+import org.eclipse.ocl.pivot.Element
+import org.eclipse.ocl.pivot.Namespace
+import org.eclipse.ocl.pivot.Package
 
 public class GenerateLaTeXForASModelXtend extends GenerateLaTeXForASModel
 {

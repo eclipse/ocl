@@ -33,7 +33,7 @@ public abstract class GenericFruitTestSuite
 	 */
 	protected boolean expectModified = false;
 
-	public org.eclipse.ocl.examples.pivot.Package fruitPackage;
+	public org.eclipse.ocl.pivot.Package fruitPackage;
 
 	protected abstract void initFruitPackage();
 	

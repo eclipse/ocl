@@ -15,13 +15,13 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.Class;
-import org.eclipse.ocl.examples.pivot.Enumeration;
-import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.PrimitiveType;
-import org.eclipse.ocl.examples.pivot.utilities.AS2XMIid;
-import org.eclipse.ocl.examples.pivot.utilities.AS2XMIidVisitor;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.Class;
+import org.eclipse.ocl.pivot.Enumeration;
+import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.PrimitiveType;
+import org.eclipse.ocl.pivot.utilities.AS2XMIid;
+import org.eclipse.ocl.pivot.utilities.AS2XMIidVisitor;
 
 public class CompleteOCLAS2XMIidVisitor extends AS2XMIidVisitor
 {

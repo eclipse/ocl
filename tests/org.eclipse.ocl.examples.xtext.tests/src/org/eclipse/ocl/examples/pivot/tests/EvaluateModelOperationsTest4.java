@@ -26,13 +26,13 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.ids.TypeId;
-import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.domain.values.OrderedSetValue;
-import org.eclipse.ocl.examples.domain.values.Value;
-import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.domain.ids.TypeId;
+import org.eclipse.ocl.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.values.OrderedSetValue;
+import org.eclipse.ocl.domain.values.Value;
+import org.eclipse.ocl.pivot.OCL;
+import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -284,7 +284,7 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
         eAdd(a, "bs", b1);
         eAdd(a, "bs", b2);
 
-        org.eclipse.ocl.examples.pivot.Class aType = metaModelManager.getIdResolver().getType(aClass);
+        org.eclipse.ocl.pivot.Class aType = metaModelManager.getIdResolver().getType(aClass);
         //
 		Object b1_value = idResolver.boxedValueOf(b1);
 		Object b2_value = idResolver.boxedValueOf(b2);
@@ -354,11 +354,11 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
         eAdd(parent, "children1", children1);
         eAdd(parent, "children2", children2);
 
-        org.eclipse.ocl.examples.pivot.Class parentType = metaModelManager.getIdResolver().getType(parentClass);
-        org.eclipse.ocl.examples.pivot.Class child1Type = metaModelManager.getIdResolver().getType(child1Class);
-        org.eclipse.ocl.examples.pivot.Class child2Type = metaModelManager.getIdResolver().getType(child2Class);
-        org.eclipse.ocl.examples.pivot.Class children1Type = metaModelManager.getIdResolver().getType(children1Class);
-        org.eclipse.ocl.examples.pivot.Class children2Type = metaModelManager.getIdResolver().getType(children2Class);
+        org.eclipse.ocl.pivot.Class parentType = metaModelManager.getIdResolver().getType(parentClass);
+        org.eclipse.ocl.pivot.Class child1Type = metaModelManager.getIdResolver().getType(child1Class);
+        org.eclipse.ocl.pivot.Class child2Type = metaModelManager.getIdResolver().getType(child2Class);
+        org.eclipse.ocl.pivot.Class children1Type = metaModelManager.getIdResolver().getType(children1Class);
+        org.eclipse.ocl.pivot.Class children2Type = metaModelManager.getIdResolver().getType(children2Class);
         //
 		OrderedSetValue kids1 = idResolver.createOrderedSetOfEach(TypeId.ORDERED_SET.getSpecializedId(children1Type.getTypeId()), children1);
 		OrderedSetValue kids2 = idResolver.createOrderedSetOfEach(TypeId.ORDERED_SET.getSpecializedId(children2Type.getTypeId()), children2);
@@ -436,7 +436,7 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
         eAdd(parent, "left", leftChild);
         eAdd(parent, "right", rightChild);
 
-        org.eclipse.ocl.examples.pivot.Class childType = metaModelManager.getIdResolver().getType(childClass);
+        org.eclipse.ocl.pivot.Class childType = metaModelManager.getIdResolver().getType(childClass);
 		//
 		helper.setContext(childType);
 		//

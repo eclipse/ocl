@@ -10,13 +10,13 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.oclstdlibcs;
 
-import org.eclipse.ocl.examples.domain.elements.Nameable;
+import org.eclipse.ocl.domain.elements.Nameable;
 import org.eclipse.ocl.xtext.basecs.ElementCS;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Meta Type Name</b></em>'.
- * @extends org.eclipse.ocl.examples.domain.elements.DomainNamedElement
+ * @extends org.eclipse.ocl.domain.elements.DomainNamedElement
  * <!-- end-user-doc -->
  *
  * <p>
@@ -27,11 +27,11 @@ import org.eclipse.ocl.xtext.basecs.ElementCS;
  * </p>
  *
  * @see org.eclipse.ocl.xtext.oclstdlibcs.OCLstdlibCSPackage#getMetaclassNameCS()
- * @model superTypes="org.eclipse.ocl.xtext.basecs.ElementCS org.eclipse.ocl.examples.pivot.Nameable"
+ * @model superTypes="org.eclipse.ocl.xtext.basecs.ElementCS org.eclipse.ocl.pivot.Nameable"
  * @generated
  */
 public interface MetaclassNameCS
-		extends ElementCS, Nameable, org.eclipse.ocl.examples.domain.elements.DomainNamedElement {
+		extends ElementCS, Nameable, org.eclipse.ocl.domain.elements.DomainNamedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.

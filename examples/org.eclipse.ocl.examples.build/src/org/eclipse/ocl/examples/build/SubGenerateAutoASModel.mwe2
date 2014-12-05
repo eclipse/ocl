@@ -91,9 +91,9 @@ var superVisitorPackageName = "${superModelPackageName}.util"
 var superVisitorClassName = "${superProjectPrefix}Visitor"
 
 /**
- * (Optional) The package of the visitable interface class; default: "org.eclipse.ocl.examples.pivot.util"
+ * (Optional) The package of the visitable interface class; default: "org.eclipse.ocl.pivot.util"
  */
-var visitablePackageName = "org.eclipse.ocl.examples.pivot.util"
+var visitablePackageName = "org.eclipse.ocl.pivot.util"
 
 /**
  * (Optional) The name of the visitable interface class; default: "Visitable"

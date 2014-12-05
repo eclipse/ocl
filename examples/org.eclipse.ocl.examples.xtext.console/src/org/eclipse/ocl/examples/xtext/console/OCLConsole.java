@@ -14,7 +14,7 @@ package org.eclipse.ocl.examples.xtext.console;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.xtext.console.messages.ConsoleMessages;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.ui.console.AbstractConsole;

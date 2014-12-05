@@ -11,7 +11,7 @@
 package org.eclipse.ocl.xtext.completeoclcs;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.xtext.basecs.ConstraintCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ExpSpecificationCS;
 

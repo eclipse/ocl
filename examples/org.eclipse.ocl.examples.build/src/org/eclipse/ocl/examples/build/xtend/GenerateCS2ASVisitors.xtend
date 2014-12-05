@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EPackage
 import org.eclipse.jdt.annotation.NonNull
 import java.util.List
 import java.util.ArrayListimport org.eclipse.ocl.xtext.base.cs2as.Continuation
-import org.eclipse.ocl.examples.pivot.Element
+import org.eclipse.ocl.pivot.Element
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
 
 public class GenerateCS2ASVisitors extends GenerateCSVisitors

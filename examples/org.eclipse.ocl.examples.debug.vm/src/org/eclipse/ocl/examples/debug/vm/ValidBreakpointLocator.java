@@ -21,9 +21,9 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.vm.utils.ASTBindingHelper;
 import org.eclipse.ocl.examples.debug.vm.utils.CompiledUnit;
 import org.eclipse.ocl.examples.debug.vm.utils.LineNumberProvider;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 
 public class ValidBreakpointLocator
 {

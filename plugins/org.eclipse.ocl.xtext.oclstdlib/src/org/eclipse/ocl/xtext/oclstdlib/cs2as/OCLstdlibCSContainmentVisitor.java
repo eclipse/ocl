@@ -16,17 +16,17 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
-import org.eclipse.ocl.examples.domain.ids.IdManager;
-import org.eclipse.ocl.examples.domain.ids.PackageId;
-import org.eclipse.ocl.examples.pivot.AssociativityKind;
-import org.eclipse.ocl.examples.pivot.Iteration;
-import org.eclipse.ocl.examples.pivot.Library;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Precedence;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.domain.ids.IdManager;
+import org.eclipse.ocl.domain.ids.PackageId;
+import org.eclipse.ocl.pivot.AssociativityKind;
+import org.eclipse.ocl.pivot.Iteration;
+import org.eclipse.ocl.pivot.Library;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.Precedence;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
@@ -73,9 +73,9 @@ public class OCLstdlibCSContainmentVisitor extends AbstractOCLstdlibCSContainmen
 			eClass = PivotPackage.Literals.CLASS;
 		}
 		@SuppressWarnings("unchecked")
-		Class<org.eclipse.ocl.examples.pivot.Class> instanceClass = (Class<org.eclipse.ocl.examples.pivot.Class>)eClass.getInstanceClass();
+		Class<org.eclipse.ocl.pivot.Class> instanceClass = (Class<org.eclipse.ocl.pivot.Class>)eClass.getInstanceClass();
 		if (instanceClass != null) {
-			org.eclipse.ocl.examples.pivot.Class pivotElement = refreshNamedElement(instanceClass, eClass, csElement);
+			org.eclipse.ocl.pivot.Class pivotElement = refreshNamedElement(instanceClass, eClass, csElement);
 			refreshClass(pivotElement, csElement);
 		}
 		return null;

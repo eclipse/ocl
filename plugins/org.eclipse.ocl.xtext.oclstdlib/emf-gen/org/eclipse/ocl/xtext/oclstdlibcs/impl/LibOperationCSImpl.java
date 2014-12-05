@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.xtext.basecs.impl.OperationCSImpl;
 import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.xtext.oclstdlibcs.JavaClassCS;

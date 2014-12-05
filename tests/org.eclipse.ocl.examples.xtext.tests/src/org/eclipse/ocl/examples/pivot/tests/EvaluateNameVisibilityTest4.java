@@ -29,22 +29,22 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.CollectionItem;
-import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
-import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
-import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.uml.UML2AS;
+import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.values.impl.InvalidValueException;
+import org.eclipse.ocl.pivot.CollectionItem;
+import org.eclipse.ocl.pivot.CollectionLiteralExp;
+import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
+import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.uml.UML2AS;
 import org.eclipse.ocl.xtext.oclinecore.OCLinEcoreStandaloneSetup;
 import org.eclipse.osgi.util.NLS;
 import org.junit.After;
@@ -177,7 +177,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 			    "let bodyConstraint : Constraint = null\n" + 
 			    "in bodyConstraint <> null implies\n" +
 			    "bodyConstraint.specification = null";
-		org.eclipse.ocl.examples.pivot.Class testType = standardLibrary.getIntegerType();
+		org.eclipse.ocl.pivot.Class testType = standardLibrary.getIntegerType();
 		assert testType.getOwnedInvariants().isEmpty();
 		assertQueryTrue(testType, textQuery);
 //		assertQueryTrue(ValuesUtil.createTypeValue(metaModelManager.getMetaclass(testType)), textQuery);
@@ -193,7 +193,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 			    "bodySpecification.oclIsKindOf(ExpressionInOCL) implies\n" +
 			    "true";
 //	    "CompatibleBody(bodySpecification)";
-		org.eclipse.ocl.examples.pivot.Class testType = standardLibrary.getIntegerType();
+		org.eclipse.ocl.pivot.Class testType = standardLibrary.getIntegerType();
 		assert testType.getOwnedInvariants().isEmpty();
 		assertQueryTrue(-1, textQuery);
 	}
@@ -236,8 +236,8 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 				"}\n";
 		Resource metaModel = cs2as(getOCL(), metaModelText);
 		Model pivotModel = (Model) metaModel.getContents().get(0);
-		org.eclipse.ocl.examples.pivot.Package pivotPackage = pivotModel.getOwnedPackages().get(0);
-		org.eclipse.ocl.examples.pivot.Class pivotType = pivotPackage.getOwnedClasses().get(0);
+		org.eclipse.ocl.pivot.Package pivotPackage = pivotModel.getOwnedPackages().get(0);
+		org.eclipse.ocl.pivot.Class pivotType = pivotPackage.getOwnedClasses().get(0);
 		Constraint pivotConstraint = pivotType.getOwnedInvariants().get(0);
 		String textQuery = "context.oclAsType(Class).ownedInvariants->excluding(self)->forAll(name <> self.name or isCallable <> self.isCallable)";
 		assertQueryTrue(pivotConstraint, textQuery);
@@ -258,7 +258,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 				"}\n";
 		Resource metaModel = cs2as(getOCL(), metaModelText);
 		Root pivotModel = (Root) metaModel.getContents().get(0);
-		org.eclipse.ocl.examples.pivot.Package pivotPackage = pivotModel.getNestedPackage().get(0);
+		org.eclipse.ocl.pivot.Package pivotPackage = pivotModel.getNestedPackage().get(0);
 		Type pivotType = pivotPackage.getOwnedType().get(0);
 		EClass eClass = metaModelManager.getEcoreOfPivot(EClass.class, pivotType);
 		Object testObject = eClass.getEPackage().getEFactoryInstance().create(eClass);
@@ -281,8 +281,8 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 				"}\n";
 		Resource metaModel = cs2as(getOCL(), metaModelText);
 		Model pivotModel = (Model) metaModel.getContents().get(0);
-		org.eclipse.ocl.examples.pivot.Package pivotPackage = pivotModel.getOwnedPackages().get(0);
-		org.eclipse.ocl.examples.pivot.Class pivotType = pivotPackage.getOwnedClasses().get(0);
+		org.eclipse.ocl.pivot.Package pivotPackage = pivotModel.getOwnedPackages().get(0);
+		org.eclipse.ocl.pivot.Class pivotType = pivotPackage.getOwnedClasses().get(0);
 		EClass eClass = metaModelManager.getEcoreOfPivot(EClass.class, pivotType);
 		Object testObject = eClass.getEPackage().getEFactoryInstance().create(eClass);
 		String textQuery = "self.derivedDerivedInteger";
@@ -314,9 +314,9 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 				"}\n";
 		Resource metaModel = cs2as(getOCL(), metaModelText);
 		Model pivotModel = (Model) metaModel.getContents().get(0);
-		org.eclipse.ocl.examples.pivot.Package pivotPackage = pivotModel.getOwnedPackages().get(0);
-		org.eclipse.ocl.examples.pivot.Class pivotTypeA = DomainUtil.getNamedElement(pivotPackage.getOwnedClasses(), "A");
-		org.eclipse.ocl.examples.pivot.Class pivotTypeB = DomainUtil.getNamedElement(pivotPackage.getOwnedClasses(), "B");
+		org.eclipse.ocl.pivot.Package pivotPackage = pivotModel.getOwnedPackages().get(0);
+		org.eclipse.ocl.pivot.Class pivotTypeA = DomainUtil.getNamedElement(pivotPackage.getOwnedClasses(), "A");
+		org.eclipse.ocl.pivot.Class pivotTypeB = DomainUtil.getNamedElement(pivotPackage.getOwnedClasses(), "B");
 		EPackage ePackage = metaModelManager.getEcoreOfPivot(EPackage.class, pivotPackage);
 		EClass eClassA = metaModelManager.getEcoreOfPivot(EClass.class, pivotTypeA);
 		EClass eClassB = metaModelManager.getEcoreOfPivot(EClass.class, pivotTypeB);
@@ -397,7 +397,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	 */
 	@Test public void test_nested_names() throws InvocationTargetException {
 		initFruitPackage();
-		org.eclipse.ocl.examples.pivot.Class appleType = metaModelManager.getPivotOfEcore(org.eclipse.ocl.examples.pivot.Class.class, apple);
+		org.eclipse.ocl.pivot.Class appleType = metaModelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Class.class, apple);
 		//
 		//	Simple model: appleTree contains redApple
 		//
@@ -464,8 +464,8 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		UML2AS.initialize(resourceSet);
 		URI uri = getTestModelURI("model/Fruit.uml");
 		Element element = metaModelManager.loadResource(uri, null, resourceSet);
-		org.eclipse.ocl.examples.pivot.Package fruitPackage = ((Model)element).getOwnedPackages().get(0);
-		org.eclipse.ocl.examples.pivot.Class treeClass = DomainUtil.getNamedElement(fruitPackage.getOwnedClasses(), "Tree");
+		org.eclipse.ocl.pivot.Package fruitPackage = ((Model)element).getOwnedPackages().get(0);
+		org.eclipse.ocl.pivot.Class treeClass = DomainUtil.getNamedElement(fruitPackage.getOwnedClasses(), "Tree");
 		ExpressionInOCL query = createQuery(treeClass, "self.height>20");
 		assertNotNull(query);
 	}
@@ -525,14 +525,14 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 				"}\n";
 		Resource metaModel = cs2as(getOCL(), metaModelText);
 		Model pivotModel = (Model) metaModel.getContents().get(0);
-		org.eclipse.ocl.examples.pivot.Package pivotPackage = pivotModel.getOwnedPackages().get(0);
-		org.eclipse.ocl.examples.pivot.Class pivotTypeDomain = DomainUtil.getNamedElement(pivotPackage.getOwnedClasses(), "Domain");
-//		org.eclipse.ocl.examples.pivot.Class pivotTypeT1 = DomainUtil.getNamedElement(pivotPackage.getOwnedType(), "T1");
-		org.eclipse.ocl.examples.pivot.Class pivotTypeT2a = DomainUtil.getNamedElement(pivotPackage.getOwnedClasses(), "T2a");
-		org.eclipse.ocl.examples.pivot.Class pivotTypeT2b = DomainUtil.getNamedElement(pivotPackage.getOwnedClasses(), "T2b");
-		org.eclipse.ocl.examples.pivot.Class pivotTypeT3a = DomainUtil.getNamedElement(pivotPackage.getOwnedClasses(), "T3a");
-		org.eclipse.ocl.examples.pivot.Class pivotTypeT3b = DomainUtil.getNamedElement(pivotPackage.getOwnedClasses(), "T3b");
-		org.eclipse.ocl.examples.pivot.Class pivotTypeT4 = DomainUtil.getNamedElement(pivotPackage.getOwnedClasses(), "T4");
+		org.eclipse.ocl.pivot.Package pivotPackage = pivotModel.getOwnedPackages().get(0);
+		org.eclipse.ocl.pivot.Class pivotTypeDomain = DomainUtil.getNamedElement(pivotPackage.getOwnedClasses(), "Domain");
+//		org.eclipse.ocl.pivot.Class pivotTypeT1 = DomainUtil.getNamedElement(pivotPackage.getOwnedType(), "T1");
+		org.eclipse.ocl.pivot.Class pivotTypeT2a = DomainUtil.getNamedElement(pivotPackage.getOwnedClasses(), "T2a");
+		org.eclipse.ocl.pivot.Class pivotTypeT2b = DomainUtil.getNamedElement(pivotPackage.getOwnedClasses(), "T2b");
+		org.eclipse.ocl.pivot.Class pivotTypeT3a = DomainUtil.getNamedElement(pivotPackage.getOwnedClasses(), "T3a");
+		org.eclipse.ocl.pivot.Class pivotTypeT3b = DomainUtil.getNamedElement(pivotPackage.getOwnedClasses(), "T3b");
+		org.eclipse.ocl.pivot.Class pivotTypeT4 = DomainUtil.getNamedElement(pivotPackage.getOwnedClasses(), "T4");
 		EPackage ePackage = metaModelManager.getEcoreOfPivot(EPackage.class, pivotPackage);
 		EClass eClassDomain = metaModelManager.getEcoreOfPivot(EClass.class, pivotTypeDomain);
 //		EClass eClassT1 = metaModelManager.getEcoreOfPivot(EClass.class, pivotTypeT1);

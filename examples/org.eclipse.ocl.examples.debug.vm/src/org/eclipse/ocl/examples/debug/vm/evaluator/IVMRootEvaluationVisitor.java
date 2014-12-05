@@ -15,8 +15,8 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.vm.UnitLocation;
-import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.pivot.LoopExp;
+import org.eclipse.ocl.pivot.NamedElement;
 
 public interface IVMRootEvaluationVisitor<T extends NamedElement> extends IVMEvaluationVisitor<T>
 {

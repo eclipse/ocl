@@ -20,8 +20,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.OCL;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
 
 /**
  * Tests that exercise the Xtext OCL Console using simple Ecore models.

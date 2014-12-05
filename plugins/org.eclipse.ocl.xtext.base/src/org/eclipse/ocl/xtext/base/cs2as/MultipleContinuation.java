@@ -15,7 +15,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.pivot.NamedElement;
 
 public abstract class MultipleContinuation<T extends EObject> extends BasicContinuation<List<? extends T>>
 {

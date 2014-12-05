@@ -23,11 +23,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.PivotConstants;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.uml.UML2AS;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.uml.UML2AS;
 import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.UML2EcoreConverter;
 
@@ -40,7 +40,7 @@ public abstract class PivotStateMachineTestSuite extends PivotTestSuite
 	protected EPackage statefulEPackage;
 	protected EFactory statefulEFactory;
 
-//	protected org.eclipse.ocl.examples.pivot.Package fruitPackage;
+//	protected org.eclipse.ocl.pivot.Package fruitPackage;
 	
 	protected EClass c1Class;
 

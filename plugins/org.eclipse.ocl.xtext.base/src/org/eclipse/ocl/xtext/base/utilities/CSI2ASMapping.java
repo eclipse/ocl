@@ -24,10 +24,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerListener;
-import org.eclipse.ocl.examples.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.manager.MetaModelManagerListener;
+import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;
 
 /**

@@ -16,9 +16,9 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.delegate.AbstractOCLDelegateFactory;
-import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.delegate.AbstractOCLDelegateFactory;
+import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
 
 /**
  * Factory for OCL query delegates.

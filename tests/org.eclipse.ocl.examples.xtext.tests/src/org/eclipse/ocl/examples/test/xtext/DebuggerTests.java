@@ -43,11 +43,11 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jface.dialogs.MessageDialogWithToggle;
 import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
+import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.intro.IIntroManager;
@@ -134,7 +134,7 @@ public class DebuggerTests extends XtextTestCase
 		EObject eObject = customers.get(0);
 		
 		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(oclResource);
-		org.eclipse.ocl.examples.pivot.Class customerClass = metaModelManager.getPivotOf(org.eclipse.ocl.examples.pivot.Class.class, eObject.eClass());
+		org.eclipse.ocl.pivot.Class customerClass = metaModelManager.getPivotOf(org.eclipse.ocl.pivot.Class.class, eObject.eClass());
 		Iterable<Constraint> customerInvariants = metaModelManager.getAllInvariants(customerClass);
 		Constraint constraint = DomainUtil.getNamedElement(customerInvariants, "invariant_sizesAgree");
 

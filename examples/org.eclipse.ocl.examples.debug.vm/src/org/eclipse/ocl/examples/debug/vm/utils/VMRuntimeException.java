@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.ocl.examples.domain.evaluation.EvaluationHaltedException;
+import org.eclipse.ocl.domain.evaluation.EvaluationHaltedException;
 
 /**
 * Represents a runtime (unchecked) exception possibly thrown during OCL code execution.

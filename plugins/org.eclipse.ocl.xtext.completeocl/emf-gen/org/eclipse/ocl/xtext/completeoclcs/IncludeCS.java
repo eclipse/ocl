@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.completeoclcs;
 
-import org.eclipse.ocl.examples.pivot.Namespace;
+import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.xtext.basecs.NamespaceCS;
 
 /**

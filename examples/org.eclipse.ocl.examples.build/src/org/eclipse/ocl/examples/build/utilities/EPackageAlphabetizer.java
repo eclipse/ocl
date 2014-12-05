@@ -32,7 +32,7 @@ import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.WorkflowComponentWithModelSlot;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
 
 /**
  * Alphabeticizes a designated <tt>modelSlot</tt> so that primitive types

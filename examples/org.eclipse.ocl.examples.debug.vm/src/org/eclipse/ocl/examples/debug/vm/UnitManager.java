@@ -25,8 +25,8 @@ import org.eclipse.ocl.examples.debug.vm.utils.ASTBindingHelper;
 import org.eclipse.ocl.examples.debug.vm.utils.CompiledUnit;
 import org.eclipse.ocl.examples.debug.vm.utils.IModuleSourceInfo;
 import org.eclipse.ocl.examples.debug.vm.utils.LineNumberProvider;
-import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
 
 public class UnitManager
 {

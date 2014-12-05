@@ -12,11 +12,11 @@ package org.eclipse.ocl.examples.build.latex
 
 import org.eclipse.jdt.annotation.NonNull
 import org.eclipse.jdt.annotation.Nullable
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil
-import org.eclipse.ocl.examples.pivot.Class
-import org.eclipse.ocl.examples.pivot.Element
-import org.eclipse.ocl.examples.pivot.Namespace
-import org.eclipse.ocl.examples.pivot.Package
+import org.eclipse.ocl.domain.utilities.DomainUtil
+import org.eclipse.ocl.pivot.Class
+import org.eclipse.ocl.pivot.Element
+import org.eclipse.ocl.pivot.Namespace
+import org.eclipse.ocl.pivot.Package
 import org.eclipse.xtext.AbstractElement
 import org.eclipse.xtext.AbstractMetamodelDeclaration
 import org.eclipse.xtext.Action
@@ -278,7 +278,7 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 		}
 	}
 	
-/*	protected def String emitParserRule(@NonNull org.eclipse.ocl.examples.pivot.Class asClass, @NonNull Collection<ParserRule> parserRules) {
+/*	protected def String emitParserRule(@NonNull org.eclipse.ocl.pivot.Class asClass, @NonNull Collection<ParserRule> parserRules) {
 		'''
 		«asClass.name» ::=
 		  «FOR parserRule : parserRules BEFORE " " SEPARATOR "\n|"» «parserRule.name»«ENDFOR»

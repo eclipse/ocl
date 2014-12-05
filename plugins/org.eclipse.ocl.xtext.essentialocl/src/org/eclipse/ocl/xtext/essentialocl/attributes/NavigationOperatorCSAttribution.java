@@ -12,11 +12,11 @@ package org.eclipse.ocl.xtext.essentialocl.attributes;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
-import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
-import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
+import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.scoping.AbstractAttribution;
+import org.eclipse.ocl.pivot.scoping.EnvironmentView;
+import org.eclipse.ocl.pivot.scoping.ScopeView;
 import org.eclipse.ocl.xtext.essentialoclcs.ExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.InfixExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.NameExpCS;

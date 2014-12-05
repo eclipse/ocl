@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.pivot.Comment;
-import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.pivot.Comment;
+import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.xtext.base.services.BaseGrammarAccess;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;
 import org.eclipse.ocl.xtext.basecs.RootCS;

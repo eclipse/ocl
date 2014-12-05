@@ -13,7 +13,7 @@ package org.eclipse.ocl.examples.build.xtend;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.autogen.lookup.LookupCodeGenerator;
-import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
+import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 
 public class GenerateAutoLookupVisitors extends GenerateVisitors

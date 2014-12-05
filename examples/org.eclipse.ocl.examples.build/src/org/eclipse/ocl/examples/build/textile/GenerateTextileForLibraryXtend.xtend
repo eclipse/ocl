@@ -11,9 +11,9 @@
 package org.eclipse.ocl.examples.build.textile
 
 import org.eclipse.jdt.annotation.NonNull
-import org.eclipse.ocl.examples.pivot.Namespace
-import org.eclipse.ocl.examples.pivot.Element
-import org.eclipse.ocl.examples.pivot.Model
+import org.eclipse.ocl.pivot.Namespace
+import org.eclipse.ocl.pivot.Element
+import org.eclipse.ocl.pivot.Model
 
 public class GenerateTextileForLibraryXtend extends GenerateTextileForLibraryUtils
 {
@@ -22,7 +22,7 @@ public class GenerateTextileForLibraryXtend extends GenerateTextileForLibraryUti
 		h1(#StandardLibrary). The OCL Standard Library
 		
 		This documentation on the OCL Standard Library is auto-generated from the
-		org.eclipse.ocl.examples.library/model/OCL-2.5.oclstdlib that defines
+		org.eclipse.ocl.library/model/OCL-2.5.oclstdlib that defines
 		the behaviour of the Pivot evaluator and the Xtext editors. It is similar to the OCL 2.4 functionality.
 		It is a prototype of functionality for OCL 2.5 where the use of models may eliminate ambiguities.
 		
@@ -35,7 +35,7 @@ public class GenerateTextileForLibraryXtend extends GenerateTextileForLibraryUti
 		'''
 	}
 
-	protected def emitAssociations(org.eclipse.ocl.examples.pivot.Class asClass) {
+	protected def emitAssociations(org.eclipse.ocl.pivot.Class asClass) {
 		var asAssociations = getSortedAssociations(asClass);
 		if (asAssociations.size() > 0) {
 		'''
@@ -50,7 +50,7 @@ public class GenerateTextileForLibraryXtend extends GenerateTextileForLibraryUti
 		}
 	}
 
-	protected def emitAttributes(org.eclipse.ocl.examples.pivot.Class asClass) {
+	protected def emitAttributes(org.eclipse.ocl.pivot.Class asClass) {
 		var asAttributes = getSortedAttributes(asClass);
 		if ( asAttributes.size() > 0) {
 		'''
@@ -95,7 +95,7 @@ public class GenerateTextileForLibraryXtend extends GenerateTextileForLibraryUti
 		}
 	}
 
-	protected def emitIterations(org.eclipse.ocl.examples.pivot.Class asClass) {
+	protected def emitIterations(org.eclipse.ocl.pivot.Class asClass) {
 		var asIterations = getSortedIterations(asClass);
 		if (asIterations.size() > 0) {
 		'''
@@ -116,7 +116,7 @@ public class GenerateTextileForLibraryXtend extends GenerateTextileForLibraryUti
 		}
 	}
 
-	protected def emitOperations(org.eclipse.ocl.examples.pivot.Class asClass) {
+	protected def emitOperations(org.eclipse.ocl.pivot.Class asClass) {
 		var asOperations = getSortedOperations(asClass);
 		if (asOperations.size() > 0) {
 		'''

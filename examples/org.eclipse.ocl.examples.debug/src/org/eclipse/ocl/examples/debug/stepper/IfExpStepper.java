@@ -14,8 +14,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMRootEvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.IfExp;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.IfExp;
 
 public class IfExpStepper extends AbstractStepper
 {

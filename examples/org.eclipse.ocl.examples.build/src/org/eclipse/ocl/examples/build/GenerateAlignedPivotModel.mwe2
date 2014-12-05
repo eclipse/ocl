@@ -82,7 +82,7 @@ Workflow {
     //
     component = ResourceReader { resourceSet = resourceSet skipOnErrors = true
     	modelSlot = "${ecoreSlot}"
-    	uri = "/org.eclipse.ocl.examples.pivot/model/Pivot.ecore"
+    	uri = "/org.eclipse.ocl.pivot/model/Pivot.ecore"
     }
     component = EcoreNormalizer { resourceSet = resourceSet skipOnErrors = true
     	modelSlot = "${ecoreSlot}"

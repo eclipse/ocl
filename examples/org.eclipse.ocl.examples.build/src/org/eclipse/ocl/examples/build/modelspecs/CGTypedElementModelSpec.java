@@ -17,9 +17,9 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorType;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGText;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTypeId;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTypedElement;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
-import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
-import org.eclipse.ocl.examples.domain.ids.TypeId;
+import org.eclipse.ocl.domain.elements.DomainType;
+import org.eclipse.ocl.domain.elements.DomainTypedElement;
+import org.eclipse.ocl.domain.ids.TypeId;
 
 /**
  * CGTypedElementModelSpec supports generation of the CGTypedElement.getASTypeId() method hierarchy.

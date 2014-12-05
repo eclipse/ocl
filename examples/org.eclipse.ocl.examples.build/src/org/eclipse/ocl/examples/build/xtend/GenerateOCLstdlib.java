@@ -36,20 +36,20 @@ import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.domain.values.Bag;
-import org.eclipse.ocl.examples.domain.values.IntegerValue;
-import org.eclipse.ocl.examples.domain.values.OrderedSet;
-import org.eclipse.ocl.examples.domain.values.RealValue;
-import org.eclipse.ocl.examples.pivot.CollectionType;
-import org.eclipse.ocl.examples.pivot.Library;
-import org.eclipse.ocl.examples.pivot.PivotConstants;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.ecore.AS2Ecore;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.resource.ASResource;
-import org.eclipse.ocl.examples.pivot.utilities.ASSaver;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.values.Bag;
+import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.OrderedSet;
+import org.eclipse.ocl.domain.values.RealValue;
+import org.eclipse.ocl.pivot.CollectionType;
+import org.eclipse.ocl.pivot.Library;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.ecore.AS2Ecore;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.utilities.ASSaver;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage;
 
@@ -200,7 +200,7 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 	}
 
 	/**
-	 * The platform relative path to the Java generated source folder (e.g. "/org.eclipse.ocl.examples.pivot/emf-src")
+	 * The platform relative path to the Java generated source folder (e.g. "/org.eclipse.ocl.pivot/emf-src")
 	 */
 	public void setJavaFolder(String javaFolder) {
 		this.javaFolder = javaFolder;

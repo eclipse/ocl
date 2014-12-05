@@ -12,8 +12,8 @@ package org.eclipse.ocl.examples.debug.stepper;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.pivot.CallExp;
-import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.pivot.CallExp;
+import org.eclipse.ocl.pivot.Element;
 
 public abstract class CallExpStepper extends PostStepper
 {

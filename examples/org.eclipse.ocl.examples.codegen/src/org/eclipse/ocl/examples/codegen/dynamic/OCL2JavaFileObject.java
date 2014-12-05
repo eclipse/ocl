@@ -27,7 +27,7 @@ import javax.tools.ToolProvider;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.library.LibraryOperation;
+import org.eclipse.ocl.domain.library.LibraryOperation;
 
 public class OCL2JavaFileObject extends SimpleJavaFileObject
 {

@@ -16,8 +16,8 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.utilities.PathElement;
+import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.utilities.PathElement;
 import org.eclipse.ocl.xtext.base.as2cs.AliasAnalysis;
 import org.eclipse.ocl.xtext.basecs.PathElementCS;
 import org.eclipse.ocl.xtext.basecs.RootPackageCS;
@@ -122,7 +122,7 @@ public class QualifiedPath extends QualifiedName
 			else {
 				firstElement = pathElements.get(0).getElement();
 			}
-			if (firstElement instanceof org.eclipse.ocl.examples.pivot.Package) {
+			if (firstElement instanceof org.eclipse.ocl.pivot.Package) {
 				Resource elementResource = firstElement.eResource();
 				if ((csResource != null) && (elementResource != csResource) && (elementResource != asResource)) {
 					AliasAnalysis adapter = AliasAnalysis.getAdapter(csResource);

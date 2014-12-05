@@ -12,9 +12,9 @@ package org.eclipse.ocl.examples.codegen.java.types;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.ids.IdVisitor;
-import org.eclipse.ocl.examples.domain.ids.PrimitiveTypeId;
-import org.eclipse.ocl.examples.domain.ids.impl.UnscopedId;
+import org.eclipse.ocl.domain.ids.IdVisitor;
+import org.eclipse.ocl.domain.ids.PrimitiveTypeId;
+import org.eclipse.ocl.domain.ids.impl.UnscopedId;
 
 /**
  * A JavaTypeId enables a Java class to be represented as a typeid singleton.

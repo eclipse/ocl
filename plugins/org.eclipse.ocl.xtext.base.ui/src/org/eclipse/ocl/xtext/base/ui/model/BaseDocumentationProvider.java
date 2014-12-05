@@ -13,8 +13,8 @@ package org.eclipse.ocl.xtext.base.ui.model;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.pivot.Comment;
-import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.pivot.Comment;
+import org.eclipse.ocl.pivot.Element;
 import org.eclipse.xtext.documentation.impl.MultiLineCommentDocumentationProvider;
 
 public class BaseDocumentationProvider extends MultiLineCommentDocumentationProvider

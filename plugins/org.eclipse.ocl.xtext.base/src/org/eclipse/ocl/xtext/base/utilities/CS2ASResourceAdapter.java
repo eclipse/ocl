@@ -17,11 +17,11 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.pivot.manager.AbstractMetaModelManagerResourceAdapter;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.resource.ASResource;
-import org.eclipse.ocl.examples.pivot.resource.ASResourceImpl;
-import org.eclipse.ocl.examples.pivot.resource.AbstractASResourceFactory;
+import org.eclipse.ocl.pivot.manager.AbstractMetaModelManagerResourceAdapter;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.resource.ASResourceImpl;
+import org.eclipse.ocl.pivot.resource.AbstractASResourceFactory;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
 

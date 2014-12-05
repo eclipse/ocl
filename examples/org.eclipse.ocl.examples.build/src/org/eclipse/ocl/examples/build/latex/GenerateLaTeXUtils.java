@@ -28,22 +28,22 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.elements.Nameable;
-import org.eclipse.ocl.examples.pivot.Comment;
-import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.DataType;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Iteration;
-import org.eclipse.ocl.examples.pivot.Library;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Precedence;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
-import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
+import org.eclipse.ocl.domain.elements.Nameable;
+import org.eclipse.ocl.pivot.Comment;
+import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.DataType;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.Iteration;
+import org.eclipse.ocl.pivot.Library;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.Namespace;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Precedence;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.prettyprint.PrettyPrintOptions;
+import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.xtext.basecs.RootCS;
 import org.eclipse.ocl.xtext.markup.MarkupUtils;
 import org.eclipse.ocl.xtext.markupcs.FontElement;
@@ -323,7 +323,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		return s.toString();
 	}
 
-	protected String emitClassDef(@NonNull org.eclipse.ocl.examples.pivot.Class asClass) {
+	protected String emitClassDef(@NonNull org.eclipse.ocl.pivot.Class asClass) {
 		String className = asClass.getName();
 		String packageName = asClass.getOwningPackage().getName();
 		if (className == null) className = "<<anon>>";
@@ -331,7 +331,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		return  "#\\hypertarget#{" + encodeLabelText(packageName) + ":" + encodeLabelText(className) + "#}#{" /*+ encodeLabelText(className)*/ + "#}";
 	}
 
-	protected String emitClassRef(@NonNull org.eclipse.ocl.examples.pivot.Class asClass) {
+	protected String emitClassRef(@NonNull org.eclipse.ocl.pivot.Class asClass) {
 		String className = asClass.getName();
 		String packageName = asClass.getOwningPackage().getName();
 		if (className == null) className = "<<anon>>";
@@ -558,13 +558,13 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		return precedences;
 	}
 	
-	protected @Nullable org.eclipse.ocl.examples.pivot.Package getPrimaryPackage(@NonNull MetaModelManager metaModelManager, @Nullable Resource oclResource) {
+	protected @Nullable org.eclipse.ocl.pivot.Package getPrimaryPackage(@NonNull MetaModelManager metaModelManager, @Nullable Resource oclResource) {
 		if (oclResource != null) {
 			for (EObject eContent : oclResource.getContents()) {
 				if (eContent instanceof RootCS) {
 					Element asRoot = ((RootCS)eContent).getPivot();
 					if (asRoot instanceof Model) {
-						for (org.eclipse.ocl.examples.pivot.Package asPackage : ((Model)asRoot).getOwnedPackages()) {
+						for (org.eclipse.ocl.pivot.Package asPackage : ((Model)asRoot).getOwnedPackages()) {
 							return asPackage;
 						}
 					}
@@ -574,13 +574,13 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		return null;
 	}
 	
-	protected @Nullable org.eclipse.ocl.examples.pivot.Package getSecondaryPackage(@NonNull MetaModelManager metaModelManager, @Nullable Resource oclResource) {
+	protected @Nullable org.eclipse.ocl.pivot.Package getSecondaryPackage(@NonNull MetaModelManager metaModelManager, @Nullable Resource oclResource) {
 		if (oclResource != null) {
 			for (EObject eContent : oclResource.getContents()) {
 				if (eContent instanceof RootCS) {
 					Element asRoot = ((RootCS)eContent).getPivot();
 					if (asRoot instanceof Model) {
-						for (org.eclipse.ocl.examples.pivot.Package asPackage : ((Model)asRoot).getOwnedPackages()) {
+						for (org.eclipse.ocl.pivot.Package asPackage : ((Model)asRoot).getOwnedPackages()) {
 							return asPackage;
 						}
 					}
@@ -590,7 +590,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		return null;
 	}
 
-	protected @NonNull List<Property> getSortedAssociations(@NonNull org.eclipse.ocl.examples.pivot.Class asClass) {
+	protected @NonNull List<Property> getSortedAssociations(@NonNull org.eclipse.ocl.pivot.Class asClass) {
 		Set<Property> allElements = new HashSet<Property>();
 		for (Property asProperty : asClass.getOwnedProperties()) {
 //			[let pAssociations : Sequence(Property) = pClass.ownedAttribute->select(e | not e.type.oclIsKindOf(DataType) and e.type.owningTemplateParameter->isEmpty())->asSequence()]
@@ -603,7 +603,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		return sortedElements;
 	}
 
-	protected @NonNull List<Property> getSortedAttributes(@NonNull org.eclipse.ocl.examples.pivot.Class asClass) {
+	protected @NonNull List<Property> getSortedAttributes(@NonNull org.eclipse.ocl.pivot.Class asClass) {
 		Set<Property> allElements = new HashSet<Property>();
 		for (Property asProperty : asClass.getOwnedProperties()) {
 			if (asProperty.getType() instanceof DataType) {
@@ -615,10 +615,10 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		return sortedElements;
 	}
 
-	protected @NonNull List<org.eclipse.ocl.examples.pivot.Class> getSortedClasses(@NonNull org.eclipse.ocl.examples.pivot.Package asPackage) {
-		Set<org.eclipse.ocl.examples.pivot.Class> allElements = new HashSet<org.eclipse.ocl.examples.pivot.Class>();
+	protected @NonNull List<org.eclipse.ocl.pivot.Class> getSortedClasses(@NonNull org.eclipse.ocl.pivot.Package asPackage) {
+		Set<org.eclipse.ocl.pivot.Class> allElements = new HashSet<org.eclipse.ocl.pivot.Class>();
 		allElements.addAll(asPackage.getOwnedClasses());
-		List<org.eclipse.ocl.examples.pivot.Class> sortedElements = new ArrayList<org.eclipse.ocl.examples.pivot.Class>(allElements);
+		List<org.eclipse.ocl.pivot.Class> sortedElements = new ArrayList<org.eclipse.ocl.pivot.Class>(allElements);
 		Collections.sort(sortedElements, nameableComparator);
 		return sortedElements;
 	}
@@ -647,7 +647,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		return sortedElements;
 	}
 
-	protected @NonNull List<Iteration> getSortedIterations(@NonNull org.eclipse.ocl.examples.pivot.Class asClass) {
+	protected @NonNull List<Iteration> getSortedIterations(@NonNull org.eclipse.ocl.pivot.Class asClass) {
 		Set<Iteration> allElements = new HashSet<Iteration>();
 		for (Operation asOperation : asClass.getOwnedOperations()) {
 			if (asOperation instanceof Iteration) {
@@ -671,7 +671,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		return sortedMetamodels;
 	}
 
-	protected @NonNull List<Operation> getSortedOperations(@NonNull org.eclipse.ocl.examples.pivot.Class asClass) {
+	protected @NonNull List<Operation> getSortedOperations(@NonNull org.eclipse.ocl.pivot.Class asClass) {
 		Set<Operation> allElements = new HashSet<Operation>();
 		for (Operation asOperation : asClass.getOwnedOperations()) {
 			if (!(asOperation instanceof Iteration)) {
@@ -694,7 +694,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		return sortedRules;
 	}
 
-	protected @NonNull List<ParserRule> getSortedParserRules(@NonNull org.eclipse.ocl.examples.pivot.Class asClass, @NonNull Grammar grammar) {
+	protected @NonNull List<ParserRule> getSortedParserRules(@NonNull org.eclipse.ocl.pivot.Class asClass, @NonNull Grammar grammar) {
 		EClassifier eClassifier = (EClassifier) ((PivotObjectImpl)asClass).getTarget();
 		List<ParserRule> sortedRules = new ArrayList<ParserRule>();
 		for (AbstractRule rule : grammar.getRules()) {

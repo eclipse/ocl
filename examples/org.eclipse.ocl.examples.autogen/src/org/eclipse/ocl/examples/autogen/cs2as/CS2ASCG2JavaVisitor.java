@@ -28,12 +28,12 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.java.JavaConstants;
 import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
-import org.eclipse.ocl.examples.domain.ids.TypeId;
-import org.eclipse.ocl.examples.domain.types.IdResolver;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.domain.ids.TypeId;
+import org.eclipse.ocl.domain.types.IdResolver;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.xtext.base.cs2as.Continuation;
@@ -100,7 +100,7 @@ public class CS2ASCG2JavaVisitor extends AutoCG2JavaVisitor<CS2ASCodeGenerator>
 
 	@Override
 	public @NonNull Boolean visitCGContainmentBody(@NonNull CGContainmentBody object) {
-		org.eclipse.ocl.examples.pivot.Class asType = (org.eclipse.ocl.examples.pivot.Class)DomainUtil.nonNullState(((Operation) object.getAst()).getType());	// FIXME cast
+		org.eclipse.ocl.pivot.Class asType = (org.eclipse.ocl.pivot.Class)DomainUtil.nonNullState(((Operation) object.getAst()).getType());	// FIXME cast
 		String factoryName = context.getGenModelHelper().getQualifiedFactoryInterfaceName(asType);
 		// TypeDescriptor typeDescriptor = context.getTypeDescriptor(asType.getTypeId(), false);
 		String typeQualifiedName = context.getGenModelHelper().getEcoreInterfaceName(asType);

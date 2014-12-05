@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.essentialoclcs;
 
-import org.eclipse.ocl.examples.domain.elements.Nameable;
+import org.eclipse.ocl.domain.elements.Nameable;
 import org.eclipse.ocl.xtext.basecs.TypedRefCS;
 
 /**
@@ -27,7 +27,7 @@ import org.eclipse.ocl.xtext.basecs.TypedRefCS;
  * </p>
  *
  * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getCollectionTypeCS()
- * @model superTypes="org.eclipse.ocl.xtext.basecs.TypedRefCS org.eclipse.ocl.examples.pivot.Nameable"
+ * @model superTypes="org.eclipse.ocl.xtext.basecs.TypedRefCS org.eclipse.ocl.pivot.Nameable"
  * @generated
  */
 public interface CollectionTypeCS

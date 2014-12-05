@@ -14,13 +14,13 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.domain.elements.DomainNamespace;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
-import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
-import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
+import org.eclipse.ocl.domain.elements.DomainNamespace;
+import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.scoping.AbstractAttribution;
+import org.eclipse.ocl.pivot.scoping.EnvironmentView;
+import org.eclipse.ocl.pivot.scoping.ScopeView;
 import org.eclipse.ocl.xtext.base.attributes.RootCSAttribution;
 
 public abstract class AbstractRootCSAttribution extends AbstractAttribution implements RootCSAttribution

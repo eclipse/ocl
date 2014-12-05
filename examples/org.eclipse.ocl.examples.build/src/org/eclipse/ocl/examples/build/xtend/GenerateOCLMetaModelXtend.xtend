@@ -11,10 +11,10 @@
 package org.eclipse.ocl.examples.build.xtend
 
 import java.util.Set
-import org.eclipse.ocl.examples.pivot.CollectionType
-import org.eclipse.ocl.examples.pivot.DataType
-import org.eclipse.ocl.examples.pivot.Package
-import org.eclipse.ocl.examples.pivot.Model
+import org.eclipse.ocl.pivot.CollectionType
+import org.eclipse.ocl.pivot.DataType
+import org.eclipse.ocl.pivot.Package
+import org.eclipse.ocl.pivot.Model
 
 public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 {
@@ -48,7 +48,7 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 			«ENDFOR»
 	'''}
 	
-	protected def String defineCollectionTypeName(Set<org.eclipse.ocl.examples.pivot.Class> allTypes, String typeName) {
+	protected def String defineCollectionTypeName(Set<org.eclipse.ocl.pivot.Class> allTypes, String typeName) {
 		var CollectionType collectionType = allTypes.findCollectionType(typeName);
 		var collectionName = collectionType.getPrefixedSymbolName("_"+typeName);
 		var signatureName = collectionType.ownedTemplateSignature.getPrefixedSymbolName("_"+typeName+"_");
@@ -61,7 +61,7 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 	'''
 	}
 	
-	protected def String definePrimitiveTypeName(Set<org.eclipse.ocl.examples.pivot.Class> allTypes, String typeName) {
+	protected def String definePrimitiveTypeName(Set<org.eclipse.ocl.pivot.Class> allTypes, String typeName) {
 		var DataType primitiveType = allTypes.findPrimitiveType(typeName);
 	'''
 		private final @NonNull PrimitiveType «primitiveType.getPrefixedSymbolName("_"+typeName)» = standardLibrary.get«typeName»Type();
@@ -108,17 +108,17 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 			import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 			import org.eclipse.jdt.annotation.NonNull;
 			import org.eclipse.jdt.annotation.Nullable;
-			import org.eclipse.ocl.examples.domain.ids.IdManager;
-			import org.eclipse.ocl.examples.domain.library.LibraryFeature;
-			import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-			import org.eclipse.ocl.examples.pivot.*;
-			import org.eclipse.ocl.examples.pivot.Class;
-			import org.eclipse.ocl.examples.pivot.Package;
-			import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
-			import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
-			import org.eclipse.ocl.examples.pivot.resource.ASResourceImpl;
-			import org.eclipse.ocl.examples.pivot.resource.OCLASResourceFactory;
-			import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+			import org.eclipse.ocl.domain.ids.IdManager;
+			import org.eclipse.ocl.domain.library.LibraryFeature;
+			import org.eclipse.ocl.domain.utilities.DomainUtil;
+			import org.eclipse.ocl.pivot.*;
+			import org.eclipse.ocl.pivot.Class;
+			import org.eclipse.ocl.pivot.Package;
+			import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
+			import org.eclipse.ocl.pivot.model.OCLstdlib;
+			import org.eclipse.ocl.pivot.resource.ASResourceImpl;
+			import org.eclipse.ocl.pivot.resource.OCLASResourceFactory;
+			import org.eclipse.ocl.pivot.utilities.PivotUtil;
 			
 			/**
 			 * This is the «uri» Pivot Model of the Pivot Model

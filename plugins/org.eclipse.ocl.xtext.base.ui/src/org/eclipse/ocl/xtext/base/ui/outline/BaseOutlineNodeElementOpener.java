@@ -11,7 +11,7 @@
 package org.eclipse.ocl.xtext.base.ui.outline;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.basecs.ElementCS;
 import org.eclipse.xtext.ui.editor.outline.impl.OutlineNodeElementOpener;

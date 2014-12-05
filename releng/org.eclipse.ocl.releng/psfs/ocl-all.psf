@@ -74,8 +74,8 @@ ocl-pivot.psf
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.debug"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.debug.ui"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.debug.vm"/>
-<project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.domain"/>
-<project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.library"/>
+<project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.domain"/>
+<project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.library"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.pivot"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.standalone"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.uml25"/>
@@ -105,8 +105,8 @@ ocl-pivot.psf
 <item elementID="=org.eclipse.ocl.examples.debug" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.ocl.examples.debug.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.ocl.examples.debug.vm" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.ocl.examples.domain" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.ocl.examples.library" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.ocl.domain" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.ocl.library" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.ocl.examples.pivot" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.ocl.examples.standalone" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.ocl.examples.uml25" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>

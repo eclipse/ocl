@@ -25,8 +25,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
 
 
 /**

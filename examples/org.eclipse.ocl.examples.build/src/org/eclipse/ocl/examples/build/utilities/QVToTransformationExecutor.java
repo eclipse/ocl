@@ -39,9 +39,9 @@ import org.eclipse.m2m.qvt.oml.ExecutionDiagnostic;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.m2m.qvt.oml.TransformationExecutor;
 import org.eclipse.m2m.qvt.oml.util.StringBufferLog;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.domain.validation.DomainSubstitutionLabelProvider;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.validation.DomainSubstitutionLabelProvider;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 public class QVToTransformationExecutor extends AbstractWorkflowComponent
 {

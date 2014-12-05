@@ -23,18 +23,18 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.elements.Nameable;
-import org.eclipse.ocl.examples.pivot.Comment;
-import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.DataType;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Iteration;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.domain.elements.Nameable;
+import org.eclipse.ocl.pivot.Comment;
+import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.DataType;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.Iteration;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.Namespace;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.prettyprint.PrettyPrintOptions;
+import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.xtext.markup.MarkupUtils;
 import org.eclipse.ocl.xtext.markupcs.FontElement;
 import org.eclipse.ocl.xtext.markupcs.Markup;
@@ -211,7 +211,7 @@ public abstract class GenerateTextileForLibraryUtils extends GenerateTextileForL
 		return markup;
 	}
 
-	protected @NonNull List<Property> getSortedAssociations(@NonNull org.eclipse.ocl.examples.pivot.Class asClass) {
+	protected @NonNull List<Property> getSortedAssociations(@NonNull org.eclipse.ocl.pivot.Class asClass) {
 		Set<Property> allElements = new HashSet<Property>();
 		for (Property asProperty : asClass.getOwnedProperties()) {
 //			[let pAssociations : Sequence(Property) = pClass.ownedAttribute->select(e | not e.type.oclIsKindOf(DataType) and e.type.owningTemplateParameter->isEmpty())->asSequence()]
@@ -224,7 +224,7 @@ public abstract class GenerateTextileForLibraryUtils extends GenerateTextileForL
 		return sortedElements;
 	}
 
-	protected @NonNull List<Property> getSortedAttributes(@NonNull org.eclipse.ocl.examples.pivot.Class asClass) {
+	protected @NonNull List<Property> getSortedAttributes(@NonNull org.eclipse.ocl.pivot.Class asClass) {
 		Set<Property> allElements = new HashSet<Property>();
 		for (Property asProperty : asClass.getOwnedProperties()) {
 			if (asProperty.getType() instanceof DataType) {
@@ -236,16 +236,16 @@ public abstract class GenerateTextileForLibraryUtils extends GenerateTextileForL
 		return sortedElements;
 	}
 
-	protected @NonNull List<org.eclipse.ocl.examples.pivot.Class> getSortedClasses(@NonNull Model model) {
-		Set<org.eclipse.ocl.examples.pivot.Class> allElements = new HashSet<org.eclipse.ocl.examples.pivot.Class>();
+	protected @NonNull List<org.eclipse.ocl.pivot.Class> getSortedClasses(@NonNull Model model) {
+		Set<org.eclipse.ocl.pivot.Class> allElements = new HashSet<org.eclipse.ocl.pivot.Class>();
 		TreeIterator<EObject> tit = model.eAllContents();
 		while (tit.hasNext()) {
 			EObject eObject = tit.next();
-			if (eObject instanceof org.eclipse.ocl.examples.pivot.Class) {
-				allElements.add((org.eclipse.ocl.examples.pivot.Class)eObject);
+			if (eObject instanceof org.eclipse.ocl.pivot.Class) {
+				allElements.add((org.eclipse.ocl.pivot.Class)eObject);
 			}
 		}
-		List<org.eclipse.ocl.examples.pivot.Class> sortedElements = new ArrayList<org.eclipse.ocl.examples.pivot.Class>(allElements);
+		List<org.eclipse.ocl.pivot.Class> sortedElements = new ArrayList<org.eclipse.ocl.pivot.Class>(allElements);
 		Collections.sort(sortedElements, nameableComparator);
 		return sortedElements;
 	}
@@ -260,7 +260,7 @@ public abstract class GenerateTextileForLibraryUtils extends GenerateTextileForL
 		return sortedElements;
 	}
 
-	protected @NonNull List<Iteration> getSortedIterations(@NonNull org.eclipse.ocl.examples.pivot.Class asClass) {
+	protected @NonNull List<Iteration> getSortedIterations(@NonNull org.eclipse.ocl.pivot.Class asClass) {
 		Set<Iteration> allElements = new HashSet<Iteration>();
 		for (Operation asOperation : asClass.getOwnedOperations()) {
 			if (asOperation instanceof Iteration) {
@@ -272,7 +272,7 @@ public abstract class GenerateTextileForLibraryUtils extends GenerateTextileForL
 		return sortedElements;
 	}
 
-	protected @NonNull List<Operation> getSortedOperations(@NonNull org.eclipse.ocl.examples.pivot.Class asClass) {
+	protected @NonNull List<Operation> getSortedOperations(@NonNull org.eclipse.ocl.pivot.Class asClass) {
 		Set<Operation> allElements = new HashSet<Operation>();
 		for (Operation asOperation : asClass.getOwnedOperations()) {
 			if (!(asOperation instanceof Iteration)) {

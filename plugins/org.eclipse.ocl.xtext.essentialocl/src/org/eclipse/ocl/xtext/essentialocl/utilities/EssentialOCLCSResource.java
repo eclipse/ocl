@@ -26,22 +26,22 @@ import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
-import org.eclipse.ocl.examples.pivot.Feature;
-import org.eclipse.ocl.examples.pivot.LetExp;
-import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.PivotConstants;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.context.ParserContext;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
-import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
-import org.eclipse.ocl.examples.pivot.resource.ASResource;
-import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.EnumerationLiteral;
+import org.eclipse.ocl.pivot.Feature;
+import org.eclipse.ocl.pivot.LetExp;
+import org.eclipse.ocl.pivot.LoopExp;
+import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.Namespace;
+import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.Variable;
+import org.eclipse.ocl.pivot.context.ParserContext;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
+import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.utilities.IllegalLibraryException;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.as2cs.AS2CS;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.ImportDiagnostic;
@@ -409,7 +409,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 		MetaModelManager metaModelManager = PivotUtil.findMetaModelManager(this);
 		if (metaModelManager != null) {
 			PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
-//			if (metaModelManager.getLibraryResource() != org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib.INSTANCE) {
+//			if (metaModelManager.getLibraryResource() != org.eclipse.ocl.library.oclstdlib.OCLstdlib.INSTANCE) {
 //				metaModelManager.resetLibrary();		// FIXME is this needed; if so test it
 //			}
 			try {

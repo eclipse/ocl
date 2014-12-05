@@ -13,7 +13,7 @@ package org.eclipse.ocl.examples.debug.vm.utils;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.pivot.Element;
 
 public final class ASTSyntheticNodeAccess {
 		

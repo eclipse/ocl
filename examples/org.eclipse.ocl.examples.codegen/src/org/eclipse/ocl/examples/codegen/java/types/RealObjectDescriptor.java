@@ -11,12 +11,12 @@
 package org.eclipse.ocl.examples.codegen.java.types;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.domain.ids.ElementId;
+import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBoxExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
-import org.eclipse.ocl.examples.domain.ids.ElementId;
-import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
 
 /**
  * n RealObjectDescriptor describes the unboxed representations of an OCL Real.

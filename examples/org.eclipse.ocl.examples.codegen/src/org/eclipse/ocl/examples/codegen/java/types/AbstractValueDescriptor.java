@@ -12,8 +12,8 @@ package org.eclipse.ocl.examples.codegen.java.types;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.domain.ids.ElementId;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
-import org.eclipse.ocl.examples.domain.ids.ElementId;
 
 /**
  * An AbstractValueDescriptor extends an AbstractDescriptor to describe a type for which a Java Class as well as a pivot ElementId is available.

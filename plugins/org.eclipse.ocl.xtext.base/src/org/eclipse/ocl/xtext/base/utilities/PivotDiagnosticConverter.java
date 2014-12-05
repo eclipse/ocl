@@ -12,7 +12,7 @@ package org.eclipse.ocl.xtext.base.utilities;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;
 import org.eclipse.xtext.validation.DiagnosticConverterImpl;
 

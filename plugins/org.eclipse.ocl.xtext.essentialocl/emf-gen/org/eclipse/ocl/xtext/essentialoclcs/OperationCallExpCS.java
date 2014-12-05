@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.essentialoclcs;
 
-import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.pivot.Operation;
 
 /**
  * <!-- begin-user-doc -->

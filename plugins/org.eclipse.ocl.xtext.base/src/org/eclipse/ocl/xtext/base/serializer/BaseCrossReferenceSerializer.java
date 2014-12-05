@@ -18,9 +18,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.elements.Nameable;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.domain.elements.Nameable;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.xtext.base.as2cs.AliasAnalysis;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.basecs.PathElementCS;
@@ -167,7 +167,7 @@ public class BaseCrossReferenceSerializer extends CrossReferenceSerializer
 				NamedElement namedElement = csResource instanceof BaseCSResource ? ((BaseCSResource)csResource).isPathable(element) : null;
 				if (namedElement != null) {
 					String name = namedElement.getName();
-					if ((index == 0) && (namedElement instanceof org.eclipse.ocl.examples.pivot.Package)) {
+					if ((index == 0) && (namedElement instanceof org.eclipse.ocl.pivot.Package)) {
 						EObject root = EcoreUtil.getRootContainer(semanticObject);
 						Resource asResource = null;
 						if (root instanceof RootPackageCS) {

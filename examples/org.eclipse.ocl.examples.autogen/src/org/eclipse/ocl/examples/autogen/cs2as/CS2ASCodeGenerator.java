@@ -33,18 +33,18 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGParameter;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.CG2JavaPreVisitor;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.ConstructorExp;
-import org.eclipse.ocl.examples.pivot.ConstructorPart;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.LanguageExpression;
-import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Package;
-import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.ConstructorExp;
+import org.eclipse.ocl.pivot.ConstructorPart;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.LanguageExpression;
+import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Package;
+import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.Variable;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.xtext.basecs.util.VisitableCS;
@@ -73,17 +73,17 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 	
 		AutoCG2StringVisitor.FACTORY.getClass();
 		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(DomainUtil.nonNullState(ePackage.eResource()));
-		org.eclipse.ocl.examples.pivot.Package asPackage = metaModelManager.getPivotOfEcore(org.eclipse.ocl.examples.pivot.Package.class, ePackage);
+		org.eclipse.ocl.pivot.Package asPackage = metaModelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Package.class, ePackage);
 		if (asPackage != null) {
 			GenPackage superGenPackage = null;
-			org.eclipse.ocl.examples.pivot.Package asSuperPackage = null;
+			org.eclipse.ocl.pivot.Package asSuperPackage = null;
 			if (superProjectPrefix != null) {
 				for (GenPackage gPackage : genPackage.getGenModel().getAllUsedGenPackagesWithClassifiers()) {
 					String name = gPackage.getPrefix();
 					if (name.startsWith(superProjectPrefix)) {
 						superGenPackage = gPackage;
 						EPackage eSuperPackage = gPackage.getEcorePackage();
-						asSuperPackage = metaModelManager.getPivotOfEcore(org.eclipse.ocl.examples.pivot.Package.class, eSuperPackage);
+						asSuperPackage = metaModelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Package.class, eSuperPackage);
 						break;
 					}
 				}
@@ -166,7 +166,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 			cgClass.getSuperTypes().add(superClass);
 		}
 		cgPackage.getClasses().add(cgClass);
-		for (org.eclipse.ocl.examples.pivot.Class asType : asPackage.getOwnedClasses()) {
+		for (org.eclipse.ocl.pivot.Class asType : asPackage.getOwnedClasses()) {
 			boolean hasCS2ASmappingOperation = false;
 			Operation astOperation = DomainUtil.getNamedElement(asType.getOwnedOperations(), "ast");			
 			if (astOperation != null) {
@@ -192,7 +192,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 						cgParameters.add(cgContext);
 					}
 					
-					org.eclipse.ocl.examples.pivot.Class constructorType = DomainUtil.nonNullState(constructorExp.getType());
+					org.eclipse.ocl.pivot.Class constructorType = DomainUtil.nonNullState(constructorExp.getType());
 					GenClass genClass = DomainUtil.nonNullState((GenClass) genModelHelper.getGenClassifier(constructorType));
 					EClass eClass = DomainUtil.nonNullState(genClass.getEcoreClass());
 					for (ConstructorPart constructorPart : constructorExp.getPart()) {

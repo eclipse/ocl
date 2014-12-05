@@ -26,7 +26,7 @@ import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.basecs.StructuredClassCS;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
@@ -49,7 +49,7 @@ public class CreateDynamicInstanceHandler extends AbstractHandler
 // Based on org.eclipse.emf.ecore.action.CreateDynamicInstanceAction
 {
 	protected static final URI PLATFORM_RESOURCE = URI.createPlatformResourceURI("/", false);
-	private org.eclipse.ocl.examples.pivot.Class selectedClass = null;
+	private org.eclipse.ocl.pivot.Class selectedClass = null;
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -106,9 +106,9 @@ public class CreateDynamicInstanceHandler extends AbstractHandler
 		XtextEditor xtextEditor = (XtextEditor)o;
 		final ITextSelection selection = (ITextSelection) xtextEditor.getSelectionProvider().getSelection();	// FIXME this is the 'double-clicked' selection
 		IXtextDocument document = xtextEditor.getDocument();
-		selectedClass = document.readOnly(new IUnitOfWork<org.eclipse.ocl.examples.pivot.Class, XtextResource>() {
+		selectedClass = document.readOnly(new IUnitOfWork<org.eclipse.ocl.pivot.Class, XtextResource>() {
 			@Override
-			public org.eclipse.ocl.examples.pivot.Class exec(@Nullable XtextResource xtextResource) {
+			public org.eclipse.ocl.pivot.Class exec(@Nullable XtextResource xtextResource) {
 				if (xtextResource == null) {
 					return null;
 				}
@@ -127,7 +127,7 @@ public class CreateDynamicInstanceHandler extends AbstractHandler
 					return null; 
 				}		
 				StructuredClassCS oclInEcoreClass = (StructuredClassCS) currentModel;
-				return PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Class.class, oclInEcoreClass);
+				return PivotUtil.getPivot(org.eclipse.ocl.pivot.Class.class, oclInEcoreClass);
 			}					
 		});
 	}

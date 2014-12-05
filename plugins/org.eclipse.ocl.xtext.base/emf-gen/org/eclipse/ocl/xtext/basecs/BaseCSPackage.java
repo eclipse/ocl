@@ -4355,7 +4355,7 @@ public interface BaseCSPackage extends EPackage {
 	 * The meta object id for the '<em>Scope Filter</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.scoping.ScopeFilter
+	 * @see org.eclipse.ocl.pivot.scoping.ScopeFilter
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getScopeFilter()
 	 * @generated
 	 */
@@ -5872,12 +5872,12 @@ public interface BaseCSPackage extends EPackage {
 	EDataType getBigNumber();
 
 	/**
-	 * Returns the meta object for data type '{@link org.eclipse.ocl.examples.pivot.scoping.ScopeFilter <em>Scope Filter</em>}'.
+	 * Returns the meta object for data type '{@link org.eclipse.ocl.pivot.scoping.ScopeFilter <em>Scope Filter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Scope Filter</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.scoping.ScopeFilter
-	 * @model instanceClass="org.eclipse.ocl.examples.pivot.scoping.ScopeFilter"
+	 * @see org.eclipse.ocl.pivot.scoping.ScopeFilter
+	 * @model instanceClass="org.eclipse.ocl.pivot.scoping.ScopeFilter"
 	 * @generated
 	 */
 	EDataType getScopeFilter();
@@ -7154,7 +7154,7 @@ public interface BaseCSPackage extends EPackage {
 		 * The meta object literal for the '<em>Scope Filter</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.pivot.scoping.ScopeFilter
+		 * @see org.eclipse.ocl.pivot.scoping.ScopeFilter
 		 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getScopeFilter()
 		 * @generated
 		 */

@@ -12,6 +12,8 @@ package org.eclipse.ocl.examples.codegen.generator;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.domain.elements.DomainOperation;
+import org.eclipse.ocl.domain.ids.ElementId;
 import org.eclipse.ocl.examples.codegen.analyzer.AnalysisVisitor;
 import org.eclipse.ocl.examples.codegen.analyzer.BoxingAnalyzer;
 import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
@@ -24,13 +26,11 @@ import org.eclipse.ocl.examples.codegen.cse.CommonSubexpressionEliminator;
 import org.eclipse.ocl.examples.codegen.cse.GlobalPlace;
 import org.eclipse.ocl.examples.codegen.java.types.BoxedDescriptor;
 import org.eclipse.ocl.examples.codegen.java.types.UnboxedDescriptor;
-import org.eclipse.ocl.examples.domain.elements.DomainOperation;
-import org.eclipse.ocl.examples.domain.ids.ElementId;
-import org.eclipse.ocl.examples.pivot.Iteration;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.Iteration;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.OperationCallExp;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
 
 public interface CodeGenerator
 {
@@ -54,7 +54,7 @@ public interface CodeGenerator
 	@NonNull ReferencesVisitor createReferencesVisitor();
 	@NonNull TypeDescriptor getTypeDescriptor(@NonNull CGValuedElement cgElement);
 	@NonNull UnboxedDescriptor getUnboxedDescriptor(@NonNull ElementId elementId);
-	@Nullable DomainOperation isFinal(@NonNull Operation anOperation, @NonNull org.eclipse.ocl.examples.pivot.Class staticType);
+	@Nullable DomainOperation isFinal(@NonNull Operation anOperation, @NonNull org.eclipse.ocl.pivot.Class staticType);
 
 	/**
 	 * Return true if asOperationCallExp may return a nonNull value,

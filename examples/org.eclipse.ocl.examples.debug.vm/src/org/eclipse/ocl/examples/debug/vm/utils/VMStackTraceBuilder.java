@@ -19,11 +19,11 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.FeatureCallExp;
-import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.VariableExp;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.FeatureCallExp;
+import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.VariableExp;
 
 /**
  * Helps to build VM stack trace from a given state of OCL code execution.

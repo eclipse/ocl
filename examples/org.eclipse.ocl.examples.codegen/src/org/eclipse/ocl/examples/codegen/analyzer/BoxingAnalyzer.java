@@ -15,6 +15,11 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.domain.elements.DomainClass;
+import org.eclipse.ocl.domain.elements.DomainOperation;
+import org.eclipse.ocl.domain.ids.ElementId;
+import org.eclipse.ocl.domain.ids.OperationId;
+import org.eclipse.ocl.domain.library.LibraryIteration;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGAssertNonNullExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBoxExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBuiltInIterationCallExp;
@@ -54,16 +59,11 @@ import org.eclipse.ocl.examples.codegen.generator.CodeGenerator;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.java.types.BoxedDescriptor;
 import org.eclipse.ocl.examples.codegen.java.types.UnboxedDescriptor;
-import org.eclipse.ocl.examples.domain.elements.DomainClass;
-import org.eclipse.ocl.examples.domain.elements.DomainOperation;
-import org.eclipse.ocl.examples.domain.ids.ElementId;
-import org.eclipse.ocl.examples.domain.ids.OperationId;
-import org.eclipse.ocl.examples.domain.library.LibraryIteration;
-import org.eclipse.ocl.examples.library.iterator.IterateIteration;
-import org.eclipse.ocl.examples.pivot.CompleteClass;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.library.iterator.IterateIteration;
+import org.eclipse.ocl.pivot.CompleteClass;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
 
 /**
  * A BoxingAnalyzer performs a bottom up tree-traversal inserting:

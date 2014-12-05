@@ -695,7 +695,7 @@
   </uml:Model>
   <Ecore:EPackage xmi:id="_zxW7AnvXEeSfY7DIIV8YQg" base_Package="_zxW5UHvXEeSfY7DIIV8YQg" nsPrefix="basecs"/>
   <Ecore:EDataType xmi:id="_zxW7A3vXEeSfY7DIIV8YQg" instanceClassName="java.lang.Number" base_PrimitiveType="_zxW5UXvXEeSfY7DIIV8YQg"/>
-  <Ecore:EDataType xmi:id="_zxW7BHvXEeSfY7DIIV8YQg" instanceClassName="org.eclipse.ocl.examples.pivot.scoping.ScopeFilter" base_PrimitiveType="_zxW5UnvXEeSfY7DIIV8YQg"/>
+  <Ecore:EDataType xmi:id="_zxW7BHvXEeSfY7DIIV8YQg" instanceClassName="org.eclipse.ocl.pivot.scoping.ScopeFilter" base_PrimitiveType="_zxW5UnvXEeSfY7DIIV8YQg"/>
   <Ecore:EClass xmi:id="_zxW7BXvXEeSfY7DIIV8YQg" base_Class="_zxW5U3vXEeSfY7DIIV8YQg"/>
   <Ecore:EReference xmi:id="_zxW7BnvXEeSfY7DIIV8YQg" base_Property="_zxW5VXvXEeSfY7DIIV8YQg"/>
   <Ecore:EReference xmi:id="_zxW7B3vXEeSfY7DIIV8YQg" base_Property="_zxW5WHvXEeSfY7DIIV8YQg"/>

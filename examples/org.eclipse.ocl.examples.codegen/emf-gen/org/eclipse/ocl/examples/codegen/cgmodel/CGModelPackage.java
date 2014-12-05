@@ -8223,10 +8223,10 @@ public interface CGModelPackage extends EPackage {
 	int CG_VARIABLE_EXP_FEATURE_COUNT = CG_VALUED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.domain.elements.Nameable <em>Nameable</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.domain.elements.Nameable <em>Nameable</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.domain.elements.Nameable
+	 * @see org.eclipse.ocl.domain.elements.Nameable
 	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getNameable()
 	 * @generated
 	 */
@@ -8245,7 +8245,7 @@ public interface CGModelPackage extends EPackage {
 	 * The meta object id for the '<em>Element</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.Element
+	 * @see org.eclipse.ocl.pivot.Element
 	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getElement()
 	 * @generated
 	 */
@@ -8255,7 +8255,7 @@ public interface CGModelPackage extends EPackage {
 	 * The meta object id for the '<em>Element Id</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.domain.ids.ElementId
+	 * @see org.eclipse.ocl.domain.ids.ElementId
 	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getElementId()
 	 * @generated
 	 */
@@ -8265,7 +8265,7 @@ public interface CGModelPackage extends EPackage {
 	 * The meta object id for the '<em>Enumeration Literal Id</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.domain.ids.EnumerationLiteralId
+	 * @see org.eclipse.ocl.domain.ids.EnumerationLiteralId
 	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getEnumerationLiteralId()
 	 * @generated
 	 */
@@ -8275,7 +8275,7 @@ public interface CGModelPackage extends EPackage {
 	 * The meta object id for the '<em>Iteration</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.Iteration
+	 * @see org.eclipse.ocl.pivot.Iteration
 	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getIteration()
 	 * @generated
 	 */
@@ -8295,7 +8295,7 @@ public interface CGModelPackage extends EPackage {
 	 * The meta object id for the '<em>Library Iteration</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.domain.library.LibraryIteration
+	 * @see org.eclipse.ocl.domain.library.LibraryIteration
 	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getLibraryIteration()
 	 * @generated
 	 */
@@ -8305,7 +8305,7 @@ public interface CGModelPackage extends EPackage {
 	 * The meta object id for the '<em>Library Operation</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.domain.library.LibraryOperation
+	 * @see org.eclipse.ocl.domain.library.LibraryOperation
 	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getLibraryOperation()
 	 * @generated
 	 */
@@ -8315,7 +8315,7 @@ public interface CGModelPackage extends EPackage {
 	 * The meta object id for the '<em>Library Property</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.domain.library.LibraryProperty
+	 * @see org.eclipse.ocl.domain.library.LibraryProperty
 	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getLibraryProperty()
 	 * @generated
 	 */
@@ -8355,7 +8355,7 @@ public interface CGModelPackage extends EPackage {
 	 * The meta object id for the '<em>Operation</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.Operation
+	 * @see org.eclipse.ocl.pivot.Operation
 	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getOperation()
 	 * @generated
 	 */
@@ -8365,7 +8365,7 @@ public interface CGModelPackage extends EPackage {
 	 * The meta object id for the '<em>Property</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.Property
+	 * @see org.eclipse.ocl.pivot.Property
 	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getProperty()
 	 * @generated
 	 */
@@ -8375,7 +8375,7 @@ public interface CGModelPackage extends EPackage {
 	 * The meta object id for the '<em>Tuple Part Id</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.domain.ids.TuplePartId
+	 * @see org.eclipse.ocl.domain.ids.TuplePartId
 	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getTuplePartId()
 	 * @generated
 	 */
@@ -8385,7 +8385,7 @@ public interface CGModelPackage extends EPackage {
 	 * The meta object id for the '<em>Type</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.Type
+	 * @see org.eclipse.ocl.pivot.Type
 	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getType()
 	 * @generated
 	 */
@@ -8395,7 +8395,7 @@ public interface CGModelPackage extends EPackage {
 	 * The meta object id for the '<em>Type Id</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.domain.ids.TypeId
+	 * @see org.eclipse.ocl.domain.ids.TypeId
 	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getTypeId()
 	 * @generated
 	 */
@@ -10231,51 +10231,51 @@ public interface CGModelPackage extends EPackage {
 	EReference getCGVariableExp_ReferredVariable();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.domain.elements.Nameable <em>Nameable</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.domain.elements.Nameable <em>Nameable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Nameable</em>'.
-	 * @see org.eclipse.ocl.examples.domain.elements.Nameable
+	 * @see org.eclipse.ocl.domain.elements.Nameable
 	 * @generated
 	 */
 	EClass getNameable();
 
 	/**
-	 * Returns the meta object for data type '{@link org.eclipse.ocl.examples.pivot.Element <em>Element</em>}'.
+	 * Returns the meta object for data type '{@link org.eclipse.ocl.pivot.Element <em>Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Element</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Element
+	 * @see org.eclipse.ocl.pivot.Element
 	 * @generated
 	 */
 	EDataType getElement();
 
 	/**
-	 * Returns the meta object for data type '{@link org.eclipse.ocl.examples.domain.ids.ElementId <em>Element Id</em>}'.
+	 * Returns the meta object for data type '{@link org.eclipse.ocl.domain.ids.ElementId <em>Element Id</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Element Id</em>'.
-	 * @see org.eclipse.ocl.examples.domain.ids.ElementId
+	 * @see org.eclipse.ocl.domain.ids.ElementId
 	 * @generated
 	 */
 	EDataType getElementId();
 
 	/**
-	 * Returns the meta object for data type '{@link org.eclipse.ocl.examples.domain.ids.EnumerationLiteralId <em>Enumeration Literal Id</em>}'.
+	 * Returns the meta object for data type '{@link org.eclipse.ocl.domain.ids.EnumerationLiteralId <em>Enumeration Literal Id</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Enumeration Literal Id</em>'.
-	 * @see org.eclipse.ocl.examples.domain.ids.EnumerationLiteralId
+	 * @see org.eclipse.ocl.domain.ids.EnumerationLiteralId
 	 * @generated
 	 */
 	EDataType getEnumerationLiteralId();
 
 	/**
-	 * Returns the meta object for data type '{@link org.eclipse.ocl.examples.pivot.Iteration <em>Iteration</em>}'.
+	 * Returns the meta object for data type '{@link org.eclipse.ocl.pivot.Iteration <em>Iteration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Iteration</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Iteration
+	 * @see org.eclipse.ocl.pivot.Iteration
 	 * @generated
 	 */
 	EDataType getIteration();
@@ -10291,31 +10291,31 @@ public interface CGModelPackage extends EPackage {
 	EDataType getField();
 
 	/**
-	 * Returns the meta object for data type '{@link org.eclipse.ocl.examples.domain.library.LibraryIteration <em>Library Iteration</em>}'.
+	 * Returns the meta object for data type '{@link org.eclipse.ocl.domain.library.LibraryIteration <em>Library Iteration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Library Iteration</em>'.
-	 * @see org.eclipse.ocl.examples.domain.library.LibraryIteration
+	 * @see org.eclipse.ocl.domain.library.LibraryIteration
 	 * @generated
 	 */
 	EDataType getLibraryIteration();
 
 	/**
-	 * Returns the meta object for data type '{@link org.eclipse.ocl.examples.domain.library.LibraryOperation <em>Library Operation</em>}'.
+	 * Returns the meta object for data type '{@link org.eclipse.ocl.domain.library.LibraryOperation <em>Library Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Library Operation</em>'.
-	 * @see org.eclipse.ocl.examples.domain.library.LibraryOperation
+	 * @see org.eclipse.ocl.domain.library.LibraryOperation
 	 * @generated
 	 */
 	EDataType getLibraryOperation();
 
 	/**
-	 * Returns the meta object for data type '{@link org.eclipse.ocl.examples.domain.library.LibraryProperty <em>Library Property</em>}'.
+	 * Returns the meta object for data type '{@link org.eclipse.ocl.domain.library.LibraryProperty <em>Library Property</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Library Property</em>'.
-	 * @see org.eclipse.ocl.examples.domain.library.LibraryProperty
+	 * @see org.eclipse.ocl.domain.library.LibraryProperty
 	 * @generated
 	 */
 	EDataType getLibraryProperty();
@@ -10351,51 +10351,51 @@ public interface CGModelPackage extends EPackage {
 	EDataType getObject();
 
 	/**
-	 * Returns the meta object for data type '{@link org.eclipse.ocl.examples.pivot.Operation <em>Operation</em>}'.
+	 * Returns the meta object for data type '{@link org.eclipse.ocl.pivot.Operation <em>Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Operation</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Operation
+	 * @see org.eclipse.ocl.pivot.Operation
 	 * @generated
 	 */
 	EDataType getOperation();
 
 	/**
-	 * Returns the meta object for data type '{@link org.eclipse.ocl.examples.pivot.Property <em>Property</em>}'.
+	 * Returns the meta object for data type '{@link org.eclipse.ocl.pivot.Property <em>Property</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Property</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Property
+	 * @see org.eclipse.ocl.pivot.Property
 	 * @generated
 	 */
 	EDataType getProperty();
 
 	/**
-	 * Returns the meta object for data type '{@link org.eclipse.ocl.examples.domain.ids.TuplePartId <em>Tuple Part Id</em>}'.
+	 * Returns the meta object for data type '{@link org.eclipse.ocl.domain.ids.TuplePartId <em>Tuple Part Id</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Tuple Part Id</em>'.
-	 * @see org.eclipse.ocl.examples.domain.ids.TuplePartId
+	 * @see org.eclipse.ocl.domain.ids.TuplePartId
 	 * @generated
 	 */
 	EDataType getTuplePartId();
 
 	/**
-	 * Returns the meta object for data type '{@link org.eclipse.ocl.examples.pivot.Type <em>Type</em>}'.
+	 * Returns the meta object for data type '{@link org.eclipse.ocl.pivot.Type <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Type</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Type
+	 * @see org.eclipse.ocl.pivot.Type
 	 * @generated
 	 */
 	EDataType getType();
 
 	/**
-	 * Returns the meta object for data type '{@link org.eclipse.ocl.examples.domain.ids.TypeId <em>Type Id</em>}'.
+	 * Returns the meta object for data type '{@link org.eclipse.ocl.domain.ids.TypeId <em>Type Id</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Type Id</em>'.
-	 * @see org.eclipse.ocl.examples.domain.ids.TypeId
+	 * @see org.eclipse.ocl.domain.ids.TypeId
 	 * @generated
 	 */
 	EDataType getTypeId();
@@ -11986,10 +11986,10 @@ public interface CGModelPackage extends EPackage {
 		EReference CG_VARIABLE_EXP__REFERRED_VARIABLE = eINSTANCE.getCGVariableExp_ReferredVariable();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.domain.elements.Nameable <em>Nameable</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.domain.elements.Nameable <em>Nameable</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.domain.elements.Nameable
+		 * @see org.eclipse.ocl.domain.elements.Nameable
 		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getNameable()
 		 * @generated
 		 */
@@ -11999,7 +11999,7 @@ public interface CGModelPackage extends EPackage {
 		 * The meta object literal for the '<em>Element</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.pivot.Element
+		 * @see org.eclipse.ocl.pivot.Element
 		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getElement()
 		 * @generated
 		 */
@@ -12009,7 +12009,7 @@ public interface CGModelPackage extends EPackage {
 		 * The meta object literal for the '<em>Element Id</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.domain.ids.ElementId
+		 * @see org.eclipse.ocl.domain.ids.ElementId
 		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getElementId()
 		 * @generated
 		 */
@@ -12019,7 +12019,7 @@ public interface CGModelPackage extends EPackage {
 		 * The meta object literal for the '<em>Enumeration Literal Id</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.domain.ids.EnumerationLiteralId
+		 * @see org.eclipse.ocl.domain.ids.EnumerationLiteralId
 		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getEnumerationLiteralId()
 		 * @generated
 		 */
@@ -12029,7 +12029,7 @@ public interface CGModelPackage extends EPackage {
 		 * The meta object literal for the '<em>Iteration</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.pivot.Iteration
+		 * @see org.eclipse.ocl.pivot.Iteration
 		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getIteration()
 		 * @generated
 		 */
@@ -12049,7 +12049,7 @@ public interface CGModelPackage extends EPackage {
 		 * The meta object literal for the '<em>Library Iteration</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.domain.library.LibraryIteration
+		 * @see org.eclipse.ocl.domain.library.LibraryIteration
 		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getLibraryIteration()
 		 * @generated
 		 */
@@ -12059,7 +12059,7 @@ public interface CGModelPackage extends EPackage {
 		 * The meta object literal for the '<em>Library Operation</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.domain.library.LibraryOperation
+		 * @see org.eclipse.ocl.domain.library.LibraryOperation
 		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getLibraryOperation()
 		 * @generated
 		 */
@@ -12069,7 +12069,7 @@ public interface CGModelPackage extends EPackage {
 		 * The meta object literal for the '<em>Library Property</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.domain.library.LibraryProperty
+		 * @see org.eclipse.ocl.domain.library.LibraryProperty
 		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getLibraryProperty()
 		 * @generated
 		 */
@@ -12109,7 +12109,7 @@ public interface CGModelPackage extends EPackage {
 		 * The meta object literal for the '<em>Operation</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.pivot.Operation
+		 * @see org.eclipse.ocl.pivot.Operation
 		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getOperation()
 		 * @generated
 		 */
@@ -12119,7 +12119,7 @@ public interface CGModelPackage extends EPackage {
 		 * The meta object literal for the '<em>Property</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.pivot.Property
+		 * @see org.eclipse.ocl.pivot.Property
 		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getProperty()
 		 * @generated
 		 */
@@ -12129,7 +12129,7 @@ public interface CGModelPackage extends EPackage {
 		 * The meta object literal for the '<em>Tuple Part Id</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.domain.ids.TuplePartId
+		 * @see org.eclipse.ocl.domain.ids.TuplePartId
 		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getTuplePartId()
 		 * @generated
 		 */
@@ -12139,7 +12139,7 @@ public interface CGModelPackage extends EPackage {
 		 * The meta object literal for the '<em>Type</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.pivot.Type
+		 * @see org.eclipse.ocl.pivot.Type
 		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getType()
 		 * @generated
 		 */
@@ -12149,7 +12149,7 @@ public interface CGModelPackage extends EPackage {
 		 * The meta object literal for the '<em>Type Id</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.domain.ids.TypeId
+		 * @see org.eclipse.ocl.domain.ids.TypeId
 		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getTypeId()
 		 * @generated
 		 */

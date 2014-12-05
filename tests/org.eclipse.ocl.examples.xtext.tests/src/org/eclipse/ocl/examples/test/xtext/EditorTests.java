@@ -34,13 +34,13 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.library.LibraryConstants;
-import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.PivotConstants;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseLogger;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
+import org.eclipse.ocl.library.LibraryConstants;
+import org.eclipse.ocl.pivot.OCL;
+import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
@@ -244,7 +244,7 @@ public class EditorTests extends XtextTestCase
 	}	
 	
 	public void testEditor_OpenCompleteOCLEditor4Pivot_OCL() throws Exception {
-		URI uri = URI.createPlatformPluginURI("org.eclipse.ocl.examples.pivot/model/Pivot.ocl", true);
+		URI uri = URI.createPlatformPluginURI("org.eclipse.ocl.pivot/model/Pivot.ocl", true);
 		String documentText = doTestEditor(CompleteOCLUiModule.EDITOR_ID, uri);
 		assertTrue(documentText.contains("inv CollectNestedTypeIsBag: name = 'collectNested' implies type.oclIsKindOf(BagType)"));
 	}	
@@ -274,7 +274,7 @@ public class EditorTests extends XtextTestCase
 	}	
 	
 	public void testEditor_OpenOCLStdLibEditor4OCL_OCLstdlib() throws Exception {
-		URI uri = URI.createPlatformPluginURI("org.eclipse.ocl.examples.library/model/OCL-2.5.oclstdlib", true);
+		URI uri = URI.createPlatformPluginURI("org.eclipse.ocl.library/model/OCL-2.5.oclstdlib", true);
 		String documentText = doTestEditor(OCLstdlibUiModule.EDITOR_ID, uri);
 		assertTrue(documentText.contains("type UniqueCollection(T) : CollectionType conformsTo Collection(T) {"));
 	}	
@@ -295,7 +295,7 @@ public class EditorTests extends XtextTestCase
 	public void zztestEditor_OpenOCLinEcoreEditor4Pivot_Ecore() throws Exception {
 		URI uri = URI.createPlatformPluginURI(PivotConstants.PIVOT_ECORE, true);
 		String documentText = doTestEditor(OCLinEcoreUiModule.EDITOR_ID, uri);
-		assertTrue(documentText.contains("abstract class Visitable : 'org.eclipse.ocl.examples.pivot.util.Visitable' { interface };"));
+		assertTrue(documentText.contains("abstract class Visitable : 'org.eclipse.ocl.pivot.util.Visitable' { interface };"));
 		assertTrue(documentText.contains("reference Type::ownedAttribute"));							// Tests Bug 363141 EAnnotation reference
 	}
 	

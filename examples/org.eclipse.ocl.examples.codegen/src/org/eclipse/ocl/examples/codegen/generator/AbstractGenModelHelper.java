@@ -27,26 +27,26 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.domain.elements.DomainClass;
+import org.eclipse.ocl.domain.elements.DomainNamedElement;
+import org.eclipse.ocl.domain.elements.DomainOperation;
+import org.eclipse.ocl.domain.library.AbstractBinaryOperation;
+import org.eclipse.ocl.domain.library.AbstractOperation;
+import org.eclipse.ocl.domain.library.AbstractTernaryOperation;
+import org.eclipse.ocl.domain.library.AbstractUnaryOperation;
+import org.eclipse.ocl.domain.library.LibraryBinaryOperation;
+import org.eclipse.ocl.domain.library.LibraryOperation;
+import org.eclipse.ocl.domain.library.LibraryTernaryOperation;
+import org.eclipse.ocl.domain.library.LibraryUnaryOperation;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.codegen.java.ImportUtils;
 import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
-import org.eclipse.ocl.examples.domain.elements.DomainClass;
-import org.eclipse.ocl.examples.domain.elements.DomainNamedElement;
-import org.eclipse.ocl.examples.domain.elements.DomainOperation;
-import org.eclipse.ocl.examples.domain.library.AbstractBinaryOperation;
-import org.eclipse.ocl.examples.domain.library.AbstractOperation;
-import org.eclipse.ocl.examples.domain.library.AbstractTernaryOperation;
-import org.eclipse.ocl.examples.domain.library.AbstractUnaryOperation;
-import org.eclipse.ocl.examples.domain.library.LibraryBinaryOperation;
-import org.eclipse.ocl.examples.domain.library.LibraryOperation;
-import org.eclipse.ocl.examples.domain.library.LibraryTernaryOperation;
-import org.eclipse.ocl.examples.domain.library.LibraryUnaryOperation;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
 
 public class AbstractGenModelHelper implements GenModelHelper
 {
@@ -166,7 +166,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	}
 
 	@Override
-	public @NonNull Class<?> getEcoreInterfaceClass(@NonNull org.eclipse.ocl.examples.pivot.Class type) throws GenModelException {
+	public @NonNull Class<?> getEcoreInterfaceClass(@NonNull org.eclipse.ocl.pivot.Class type) throws GenModelException {
 		GenClassifier genClassifier = getGenClassifier(type);
 		String qualifiedInterfaceName;
 		if (genClassifier instanceof GenDataType) {
@@ -258,7 +258,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	}
 	
 	@Override
-	public @Nullable String getEcoreInterfaceName(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
+	public @Nullable String getEcoreInterfaceName(@NonNull org.eclipse.ocl.pivot.Class type) {
 		try {
 			GenClassifier genClassifier = getGenClassifier(type);
 			return genClassifier instanceof GenDataType  
@@ -270,7 +270,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	}
 	
 	@Override
-	public @Nullable String getEcoreClassName(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
+	public @Nullable String getEcoreClassName(@NonNull org.eclipse.ocl.pivot.Class type) {
 		try {
 			GenClassifier genClassifier = getGenClassifier(type);
 			return genClassifier instanceof GenDataType  
@@ -281,7 +281,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 		}
 	}
 	
-	protected @NonNull GenClass getGenClass(@NonNull org.eclipse.ocl.examples.pivot.Class type) throws GenModelException {
+	protected @NonNull GenClass getGenClass(@NonNull org.eclipse.ocl.pivot.Class type) throws GenModelException {
 		GenPackage genPackage = getGenPackage(type);
 		if (genPackage != null) {
 			String name = type.getName();
@@ -335,7 +335,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	} */
 	
 	@Override
-	public @NonNull GenClassifier getGenClassifier(@NonNull org.eclipse.ocl.examples.pivot.Class type) throws GenModelException {
+	public @NonNull GenClassifier getGenClassifier(@NonNull org.eclipse.ocl.pivot.Class type) throws GenModelException {
 		GenPackage genPackage = getGenPackage(type);
 		if (genPackage != null) {
 			String name = type.getName();
@@ -347,8 +347,8 @@ public class AbstractGenModelHelper implements GenModelHelper
 			}
 		}
 		for (DomainClass partialType : metaModelManager.getPartialClasses(type)) {
-			if (partialType instanceof org.eclipse.ocl.examples.pivot.Class) {
-				genPackage = getGenPackage((org.eclipse.ocl.examples.pivot.Class)partialType);
+			if (partialType instanceof org.eclipse.ocl.pivot.Class) {
+				genPackage = getGenPackage((org.eclipse.ocl.pivot.Class)partialType);
 				if (genPackage != null) {
 					String name = partialType.getName();
 					for (GenClassifier genClassifier : genPackage.getGenClassifiers()) {
@@ -364,7 +364,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	}
 	
 	public @NonNull GenFeature getGenFeature(@NonNull Property property) throws GenModelException {
-		org.eclipse.ocl.examples.pivot.Class owningType = property.getOwningClass();
+		org.eclipse.ocl.pivot.Class owningType = property.getOwningClass();
 		if (owningType != null) {
 			GenClass genClass = getGenClass(owningType);
 			String name = property.getName();
@@ -420,7 +420,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 		for ( ; baseOperation.getRedefinedOperation().size() > 0; baseOperation = baseOperation.getRedefinedOperation().get(0)) {
 			;
 		}
-		org.eclipse.ocl.examples.pivot.Class owningType = baseOperation.getOwningClass();
+		org.eclipse.ocl.pivot.Class owningType = baseOperation.getOwningClass();
 		if (owningType != null) {
 			GenClass genClass = getGenClass(owningType);
 			String name = operation.getName();
@@ -440,7 +440,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	}
 
 	@Override
-	public @Nullable GenPackage getGenPackage(@NonNull org.eclipse.ocl.examples.pivot.Package asPackage) {
+	public @Nullable GenPackage getGenPackage(@NonNull org.eclipse.ocl.pivot.Package asPackage) {
 		EObject eContainer = asPackage.eContainer();
 		if (eContainer instanceof Model) {
 			String nsURI = ((Model)eContainer).getExternalURI();
@@ -459,8 +459,8 @@ public class AbstractGenModelHelper implements GenModelHelper
 	}
 
 	@Override
-	public @Nullable GenPackage getGenPackage(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
-		org.eclipse.ocl.examples.pivot.Package asPackage = type.getOwningPackage();
+	public @Nullable GenPackage getGenPackage(@NonNull org.eclipse.ocl.pivot.Class type) {
+		org.eclipse.ocl.pivot.Package asPackage = type.getOwningPackage();
 		if (asPackage == null) {
 			return null;
 		}
@@ -567,7 +567,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	
 	@Override
 	public @NonNull String getOperationReturnType(@NonNull Operation operation) throws GenModelException {
-		org.eclipse.ocl.examples.pivot.Class owningType = operation.getOwningClass();
+		org.eclipse.ocl.pivot.Class owningType = operation.getOwningClass();
 		if (owningType == null) {
 			throw new GenModelException("No owningType for " + operation);
 		}
@@ -582,7 +582,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	
 	@Override
 	public @NonNull String getPropertyResultType(@NonNull Property property) throws GenModelException {
-		org.eclipse.ocl.examples.pivot.Class owningType = property.getOwningClass();
+		org.eclipse.ocl.pivot.Class owningType = property.getOwningClass();
 		if (owningType == null) {
 			throw new GenModelException("No owningType for " + property);
 		}
@@ -605,7 +605,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	}
 	
 	@Override
-	public @Nullable String getQualifiedFactoryInterfaceName(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
+	public @Nullable String getQualifiedFactoryInterfaceName(@NonNull org.eclipse.ocl.pivot.Class type) {
 		GenPackage genPackage = getGenPackage(type);
 		if (genPackage == null) {
 			return null;
@@ -623,7 +623,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	}
 	
 	@Override
-	public @Nullable String getQualifiedFactoryInstanceAccessor(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
+	public @Nullable String getQualifiedFactoryInstanceAccessor(@NonNull org.eclipse.ocl.pivot.Class type) {
 		GenPackage genPackage = getGenPackage(type);
 		if (genPackage == null) {
 			return null;

@@ -16,26 +16,26 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.pivot.CollectionType;
-import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.DataType;
-import org.eclipse.ocl.examples.pivot.Detail;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.Import;
-import org.eclipse.ocl.examples.pivot.LanguageExpression;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
-import org.eclipse.ocl.examples.pivot.TemplateSignature;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
-import org.eclipse.ocl.examples.pivot.util.Visitable;
+import org.eclipse.ocl.pivot.CollectionType;
+import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.DataType;
+import org.eclipse.ocl.pivot.Detail;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.EnumerationLiteral;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.Import;
+import org.eclipse.ocl.pivot.LanguageExpression;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.Namespace;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.TemplateParameter;
+import org.eclipse.ocl.pivot.TemplateSignature;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
+import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.basecs.AnnotationCS;
 import org.eclipse.ocl.xtext.basecs.AttributeCS;
@@ -77,7 +77,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	public void postProcess(@NonNull BaseCSResource csResource, @NonNull Map<Namespace, List<String>> importedNamespaces) {}
 
 	@Override
-	public ElementCS visitAnnotation(@NonNull org.eclipse.ocl.examples.pivot.Annotation object) {
+	public ElementCS visitAnnotation(@NonNull org.eclipse.ocl.pivot.Annotation object) {
 		AnnotationCS csElement = context.refreshNamedElement(AnnotationCS.class, BaseCSPackage.Literals.ANNOTATION_CS, object);
 		context.refreshList(csElement.getOwnedContents(), context.visitDeclarations(ModelElementCS.class, object.getOwnedContent(), null));
 		context.refreshList(csElement.getOwnedDetails(), context.visitDeclarations(DetailCS.class, object.getOwnedDetail(), null));
@@ -102,8 +102,8 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	}
 
 	@Override
-	public ElementCS visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class object) {
-		org.eclipse.ocl.examples.pivot.Class savedScope = context.setScope(object);
+	public ElementCS visitClass(@NonNull org.eclipse.ocl.pivot.Class object) {
+		org.eclipse.ocl.pivot.Class savedScope = context.setScope(object);
 		StructuredClassCS csElement = context.refreshClassifier(StructuredClassCS.class, BaseCSPackage.Literals.STRUCTURED_CLASS_CS, object);
 		context.refreshList(csElement.getOwnedProperties(), context.visitDeclarations(StructuralFeatureCS.class, object.getOwnedProperties(),
 			new AS2CS.Predicate<Property>()
@@ -160,7 +160,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	}
 
 	@Override
-	public ElementCS visitEnumeration(@NonNull org.eclipse.ocl.examples.pivot.Enumeration object) {
+	public ElementCS visitEnumeration(@NonNull org.eclipse.ocl.pivot.Enumeration object) {
 		EnumerationCS csElement = context.refreshClassifier(EnumerationCS.class, BaseCSPackage.Literals.ENUMERATION_CS, object);
 		context.refreshList(csElement.getOwnedLiterals(), context.visitDeclarations(EnumerationLiteralCS.class, object.getOwnedLiteral(), null));
 		context.refreshQualifiers(csElement.getQualifiers(), "serializable", object.isSerializable());
@@ -221,7 +221,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	}
 
 	@Override
-	public ElementCS visitPackage(@NonNull org.eclipse.ocl.examples.pivot.Package object) {
+	public ElementCS visitPackage(@NonNull org.eclipse.ocl.pivot.Package object) {
 		PackageCS csPackage = context.refreshNamedElement(PackageCS.class, BaseCSPackage.Literals.PACKAGE_CS, object);
 		context.refreshList(csPackage.getOwnedClasses(), context.visitDeclarations(ClassCS.class, object.getOwnedClasses(), null));
 		csPackage.setNsPrefix(object.getNsPrefix());

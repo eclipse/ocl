@@ -14,7 +14,7 @@ package org.eclipse.ocl.examples.debug.evaluator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
 
 public interface IOCLVMEvaluationEnvironment extends IVMEvaluationEnvironment<ExpressionInOCL>
 {

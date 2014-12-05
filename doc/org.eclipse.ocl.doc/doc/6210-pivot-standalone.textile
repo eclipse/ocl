@@ -13,7 +13,7 @@ org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain.initialize(resourceSet
 org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup.doSetup();
 org.eclipse.ocl.xtext.oclinecore.OCLinEcoreStandaloneSetup.doSetup();
 org.eclipse.ocl.xtext.oclstdlib.OCLstdlibStandaloneSetup.doSetup();
-org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.getAdapter(resourceSet);
+org.eclipse.ocl.domain.utilities.StandaloneProjectMap.getAdapter(resourceSet);
 
 p. 
 
@@ -30,7 +30,7 @@ This initialization ensures that *.uml is understood and that standard pathmap: 
 
 h3. OCL Standard Library
 
-If you want to use the default OCL Standard Library you should invoke @org.eclipse.ocl.examples.pivot.model.OCLstdlib.install()@ which installs a compiled shareable form of @/org.eclipse.ocl.examples.library/model/OCL-2.5.oclstdlib@.
+If you want to use the default OCL Standard Library you should invoke @org.eclipse.ocl.examples.pivot.model.OCLstdlib.install()@ which installs a compiled shareable form of @/org.eclipse.ocl.library/model/OCL-2.5.oclstdlib@.
 
 If you want to use an alternate library examine the code for the standard installation above, and if you want to compile your library examine the @/org.eclipse.ocl.examples.build/src/org/eclipse/ocl/examples/build/GenerateOCLstdlibModel.mwe2@ launcher for the
 @/org.eclipse.ocl.examples.build/src/org/eclipse/ocl/examples/build/acceleo/generateOCLstdlib.mtl@ Acceleo template.
@@ -73,7 +73,7 @@ h3. platform:/plugin and platform:/resource URIs
 If you want to be able to use @platform:/plugin/...@ or @platform:/resource/...@ URIs in a standalone configuration you need to configure the EMF package and URI map registries appropriately. This is a costly activity that involves scanning the classpath and exploiting the content of any plugin.xml and MANIFEST.MF files that are found.
 
 bc.. 
-org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.getAdapter(resourceSet);
+org.eclipse.ocl.domain.utilities.StandaloneProjectMap.getAdapter(resourceSet);
 p. 
 
 creates a @StandaloneProjectMap@ to cache all the scan results, initializes the ResourceSet and installs itself as an adapter on the ResourceSet so that it can be retrieved again if needed. Users are strongly recommended to ensure that a single @StandaloneProjectMap@ is shared by all clients and so avoid incurring the classpath scan cost more than once.
@@ -91,8 +91,8 @@ The dependency tree for the basic parsing and evaluation is:
 bc.. 
 org.eclipse.ocl.common
   org.eclipse.ocl.examples.common
-    org.eclipse.ocl.examples.domain
-      org.eclipse.ocl.examples.library
+    org.eclipse.ocl.domain
+      org.eclipse.ocl.library
         org.eclipse.ocl.examples.pivot
           org.eclipse.ocl.xtext.base
             org.eclipse.ocl.xtext.essentialocl

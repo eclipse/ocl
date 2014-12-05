@@ -12,12 +12,12 @@ package org.eclipse.ocl.examples.codegen.oclinecore;
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenParameter;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.codegen.analyzer.AS2CGVisitor;
 import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGParameter;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.Variable;
 
 public final class OCLinEcoreAS2CGVisitor extends AS2CGVisitor
 {

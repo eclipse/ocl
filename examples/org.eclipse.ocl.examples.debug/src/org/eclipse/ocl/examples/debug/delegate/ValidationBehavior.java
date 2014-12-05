@@ -12,7 +12,7 @@ package org.eclipse.ocl.examples.debug.delegate;
 
 import org.eclipse.jdt.annotation.NonNull;
 
-public class ValidationBehavior extends org.eclipse.ocl.examples.pivot.delegate.ValidationBehavior
+public class ValidationBehavior extends org.eclipse.ocl.pivot.delegate.ValidationBehavior
 {
 	public static final @NonNull ValidationBehavior INSTANCE = new ValidationBehavior();
 }

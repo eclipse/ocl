@@ -14,11 +14,11 @@ package org.eclipse.ocl.examples.test.generic;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestSuite;
+import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 
 /**
  * Tests for usages of model features whose names coincide with "keywords"
@@ -30,13 +30,13 @@ import org.eclipse.ocl.examples.pivot.tests.PivotTestSuite;
 public abstract class GenericKeywordsTest
 	extends PivotTestSuite {
 
-    org.eclipse.ocl.examples.pivot.Package smalltalk;
-    org.eclipse.ocl.examples.pivot.Class collection;
-    org.eclipse.ocl.examples.pivot.Class block;
-    protected org.eclipse.ocl.examples.pivot.Class elseClass;
-    org.eclipse.ocl.examples.pivot.Class clazz;
-    org.eclipse.ocl.examples.pivot.Class property;
-    org.eclipse.ocl.examples.pivot.Class constraint;
+    org.eclipse.ocl.pivot.Package smalltalk;
+    org.eclipse.ocl.pivot.Class collection;
+    org.eclipse.ocl.pivot.Class block;
+    protected org.eclipse.ocl.pivot.Class elseClass;
+    org.eclipse.ocl.pivot.Class clazz;
+    org.eclipse.ocl.pivot.Class property;
+    org.eclipse.ocl.pivot.Class constraint;
 
     @Override
     protected void setUp() throws Exception {
@@ -45,10 +45,10 @@ public abstract class GenericKeywordsTest
 
         // create a little test model for a Smalltalk-like collection class that
         // defines operations corresponding to OCL iterators
-        smalltalk = metaModelManager.createPackage(org.eclipse.ocl.examples.pivot.Package.class, DomainUtil.nonNullEMF(PivotPackage.Literals.PACKAGE), "Smalltalk", null, null);
+        smalltalk = metaModelManager.createPackage(org.eclipse.ocl.pivot.Package.class, DomainUtil.nonNullEMF(PivotPackage.Literals.PACKAGE), "Smalltalk", null, null);
         registerPackage(smalltalk, "st", "foo://smalltalk");
 
-        org.eclipse.ocl.examples.pivot.Class object = createOwnedClass(smalltalk, "Object", false);
+        org.eclipse.ocl.pivot.Class object = createOwnedClass(smalltalk, "Object", false);
         collection = createOwnedClass(smalltalk, "Collection", false);
         block = createOwnedClass(smalltalk, "Block", false);
         clazz = createOwnedClass(smalltalk, "Class", false);
@@ -60,7 +60,7 @@ public abstract class GenericKeywordsTest
         addSupertype(block, object);
         addSupertype(collection, object);
 
-        org.eclipse.ocl.examples.pivot.Enumeration visibilityKind = createOwnedEnumeration(smalltalk, "VisibilityKind");
+        org.eclipse.ocl.pivot.Enumeration visibilityKind = createOwnedEnumeration(smalltalk, "VisibilityKind");
         createOwnedLiteral(visibilityKind, "public");
         createOwnedLiteral(visibilityKind, "protected");
         createOwnedLiteral(visibilityKind, "package");
@@ -95,8 +95,8 @@ public abstract class GenericKeywordsTest
 
         // create some qualified classifier and package names that need
         // escaping of one or more segments. Likewise state names
-        org.eclipse.ocl.examples.pivot.Package nested = createPackage(smalltalk, "runtime");
-        org.eclipse.ocl.examples.pivot.Package contextPackage = createPackage(nested, "context");
+        org.eclipse.ocl.pivot.Package nested = createPackage(smalltalk, "runtime");
+        org.eclipse.ocl.pivot.Package contextPackage = createPackage(nested, "context");
 
         createOwnedClass(contextPackage, "language", false);
         elseClass = createOwnedClass(contextPackage, "else", false);

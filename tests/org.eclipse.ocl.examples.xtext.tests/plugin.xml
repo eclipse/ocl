@@ -5,13 +5,13 @@
 
    <extension point="org.eclipse.emf.validation.constraintProviders"
          id="umlProvider">
-      <category id="org.eclipse.ocl.examples.pivot.validation.UMLProfile/Internationalized.profile.uml"
+      <category id="org.eclipse.ocl.pivot.validation.UMLProfile/Internationalized.profile.uml"
             name="Internationalized.profile.uml">
          Constraints determined by parsing Internationalized.profile.uml
       </category>
       <constraintProvider>
          <package namespaceUri="http://www.eclipse.org/ocl/examples/Internationalized"/>
-         <constraints categories="org.eclipse.ocl.examples.pivot.validation.UMLProfile/Internationalized.profile.uml">
+         <constraints categories="org.eclipse.ocl.pivot.validation.UMLProfile/Internationalized.profile.uml">
             <constraint id="placeholderA" lang="Path"
                   name="=== The Internationalized.profile.uml Constraints A ==="
                   statusCode="101">
@@ -24,9 +24,9 @@ The actual constraints are lazily loaded by the first validation run that uses t
             </constraint>
          </constraints>
       </constraintProvider>
-      <constraintProvider class="org.eclipse.ocl.examples.pivot.uml.UMLProfileConstraintProvider">
+      <constraintProvider class="org.eclipse.ocl.pivot.uml.UMLProfileConstraintProvider">
          <package namespaceUri="http://www.eclipse.org/ocl/examples/Internationalized"/>
-         <constraints categories="org.eclipse.ocl.examples.pivot.validation.UMLProfile/Internationalized.profile.uml">
+         <constraints categories="org.eclipse.ocl.pivot.validation.UMLProfile/Internationalized.profile.uml">
             <constraint id="placeholderB" lang="Path" statusCode="101"
                 name="=== The Internationalized.profile.uml Constraints B ===">
                <description>
@@ -41,10 +41,10 @@ The actual constraints are lazily loaded by the first validation run that uses t
   </extension>
    <extension point="org.eclipse.emf.validation.constraintBindings">
       <clientContext id="umlProvider.context" default="false">
-         <selector class="org.eclipse.ocl.examples.pivot.validation.PivotClientSelector"/>
+         <selector class="org.eclipse.ocl.pivot.validation.PivotClientSelector"/>
       </clientContext>
       <binding context="umlProvider.context"
-            category="org.eclipse.ocl.examples.pivot.validation.UMLProfile/Internationalized.profile.uml"/>
+            category="org.eclipse.ocl.pivot.validation.UMLProfile/Internationalized.profile.uml"/>
    </extension>
 
    <!-- These declarations ensure that a Java version cannot be loaded -->
@@ -154,7 +154,7 @@ The actual constraints are lazily loaded by the first validation run that uses t
             class="codegen.company.CodegencompanyPackage"/>
    </extension>
    
-   <extension point="org.eclipse.ocl.examples.pivot.complete_ocl_registry">
+   <extension point="org.eclipse.ocl.pivot.complete_ocl_registry">
       <document resource="model/ModelWithErrors.ocl">
          <for uri="http://www.eclipse.org/emf/2002/Ecore"/>
       </document>

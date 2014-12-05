@@ -34,44 +34,44 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.domain.values.IntegerValue;
-import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
-import org.eclipse.ocl.examples.pivot.Annotation;
-import org.eclipse.ocl.examples.pivot.AnyType;
-import org.eclipse.ocl.examples.pivot.CollectionType;
-import org.eclipse.ocl.examples.pivot.Comment;
-import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Environment;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
-import org.eclipse.ocl.examples.pivot.Iteration;
-import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.PivotConstants;
-import org.eclipse.ocl.examples.pivot.PivotFactory;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.TemplateBinding;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
-import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
-import org.eclipse.ocl.examples.pivot.TemplateSignature;
-import org.eclipse.ocl.examples.pivot.TemplateableElement;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.context.AbstractBase2ASConversion;
-import org.eclipse.ocl.examples.pivot.resource.ASResource;
-import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
-import org.eclipse.ocl.examples.pivot.util.MorePivotable;
-import org.eclipse.ocl.examples.pivot.util.Pivotable;
-import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.Annotation;
+import org.eclipse.ocl.pivot.AnyType;
+import org.eclipse.ocl.pivot.CollectionType;
+import org.eclipse.ocl.pivot.Comment;
+import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.Environment;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.InvalidLiteralExp;
+import org.eclipse.ocl.pivot.Iteration;
+import org.eclipse.ocl.pivot.LoopExp;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.OperationCallExp;
+import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotFactory;
+import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.TemplateBinding;
+import org.eclipse.ocl.pivot.TemplateParameter;
+import org.eclipse.ocl.pivot.TemplateParameterSubstitution;
+import org.eclipse.ocl.pivot.TemplateSignature;
+import org.eclipse.ocl.pivot.TemplateableElement;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.context.AbstractBase2ASConversion;
+import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.scoping.ScopeFilter;
+import org.eclipse.ocl.pivot.util.MorePivotable;
+import org.eclipse.ocl.pivot.util.Pivotable;
+import org.eclipse.ocl.pivot.utilities.IllegalLibraryException;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.cs2as.BaseCSPreOrderVisitor.OperatorExpContinuation;
 import org.eclipse.ocl.xtext.base.cs2as.BaseCSPreOrderVisitor.TemplateSignatureContinuation;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
@@ -144,8 +144,8 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 	 */
 	private final @NonNull Map<CacheKey<?>, Object> intermediateCache = new HashMap<CacheKey<?>, Object>();
 
-	private Map<String, org.eclipse.ocl.examples.pivot.Package> oldPackagesByName = null;
-	private Map<String, org.eclipse.ocl.examples.pivot.Package> oldPackagesByQualifiedName = null;	// WIP lose this since using nsURIs
+	private Map<String, org.eclipse.ocl.pivot.Package> oldPackagesByName = null;
+	private Map<String, org.eclipse.ocl.pivot.Package> oldPackagesByQualifiedName = null;	// WIP lose this since using nsURIs
 
 	/**
 	 * The handler for any generated diagnostics. If null (which is deprecated) diagnostics are inserted
@@ -263,13 +263,13 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		allPivotResources.add(metaModelManager.getOrphanPackage());
 		for (TreeIterator<Object> tit = EcoreUtil.getAllContents(allPivotResources); tit.hasNext(); ) {
 			Object object = tit.next();
-			if (object instanceof org.eclipse.ocl.examples.pivot.Package) {
-				for (Type type : ((org.eclipse.ocl.examples.pivot.Package)object).getOwnedType()) {
-					if (type instanceof org.eclipse.ocl.examples.pivot.Class) {
-						List<org.eclipse.ocl.examples.pivot.Class> superClasses = ((org.eclipse.ocl.examples.pivot.Class)type).getSuperClass();
+			if (object instanceof org.eclipse.ocl.pivot.Package) {
+				for (Type type : ((org.eclipse.ocl.pivot.Package)object).getOwnedType()) {
+					if (type instanceof org.eclipse.ocl.pivot.Class) {
+						List<org.eclipse.ocl.pivot.Class> superClasses = ((org.eclipse.ocl.pivot.Class)type).getSuperClass();
 						if (superClasses.isEmpty()) {
 							if (type != oclAny) {
-								if (type instanceof org.eclipse.ocl.examples.pivot.Enumeration) {
+								if (type instanceof org.eclipse.ocl.pivot.Enumeration) {
 									superClasses.add(metaModelManager.getEnumerationType());
 								}
 								else {
@@ -315,8 +315,8 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 	 *     this is what we're cleaning up
 	 */
 	public void garbageCollect(@NonNull Map<? extends Resource, ? extends ASResource> cs2asResourceMap) {
-//		org.eclipse.ocl.examples.pivot.Class orphanClass = metaModelManager.getOrphanClass();
-//		org.eclipse.ocl.examples.pivot.Package orphanPackage = metaModelManager.getOrphanPackage();
+//		org.eclipse.ocl.pivot.Class orphanClass = metaModelManager.getOrphanClass();
+//		org.eclipse.ocl.pivot.Package orphanPackage = metaModelManager.getOrphanPackage();
 //		Resource orphanResource = orphanPackage.eResource();
 		final Collection<Notifier> prunableResources = new ArrayList<Notifier>(cs2asResourceMap.values());
 //		prunableResources.add(orphanResource);
@@ -480,9 +480,9 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 //		}
 	}
 
-	protected void gatherNewPackage(@NonNull Set<org.eclipse.ocl.examples.pivot.Package> newPackages, @NonNull EObject pivot) {
-		if (pivot instanceof org.eclipse.ocl.examples.pivot.Package) {
-			newPackages.add((org.eclipse.ocl.examples.pivot.Package)pivot);
+	protected void gatherNewPackage(@NonNull Set<org.eclipse.ocl.pivot.Package> newPackages, @NonNull EObject pivot) {
+		if (pivot instanceof org.eclipse.ocl.pivot.Package) {
+			newPackages.add((org.eclipse.ocl.pivot.Package)pivot);
 		}
 		EObject eContainer = pivot.eContainer();
 		if (eContainer != null) {
@@ -494,12 +494,12 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 	 * Add any packages and nested packages pivoted by csResource to newPackages. This
 	 * is invoked at the end of an update to identify redundant packages. 
 	 */
-	protected void gatherNewPackages(@NonNull Set<org.eclipse.ocl.examples.pivot.Package> newPackages, @NonNull Resource csResource) {
+	protected void gatherNewPackages(@NonNull Set<org.eclipse.ocl.pivot.Package> newPackages, @NonNull Resource csResource) {
 		for (TreeIterator<EObject> tit = csResource.getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
 			if (eObject instanceof Pivotable) {
 				Element pObject = ((Pivotable)eObject).getPivot();
-				if (pObject instanceof org.eclipse.ocl.examples.pivot.Package) {
+				if (pObject instanceof org.eclipse.ocl.pivot.Package) {
 					gatherNewPackage(newPackages, pObject);
 				}
 				else if (pObject instanceof Model) {
@@ -532,14 +532,14 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 	 * Add any packages and nested packages in eObjects to oldPackages. This
 	 * is invoked at the start of an update to cache the packages for re-use. 
 	 */
-	protected void gatherOldPackages(@NonNull List<? extends org.eclipse.ocl.examples.pivot.Package> pkgs) {
-		for (org.eclipse.ocl.examples.pivot.Package pkg : pkgs) {
+	protected void gatherOldPackages(@NonNull List<? extends org.eclipse.ocl.pivot.Package> pkgs) {
+		for (org.eclipse.ocl.pivot.Package pkg : pkgs) {
 			String name = pkg.getName();
 			if (name == null) {
 				name = PivotConstants.NULL_ROOT;
 			}
 			String qualifiedName = getQualifiedName(new StringBuilder(), pkg);
-			org.eclipse.ocl.examples.pivot.Package oldPkg = oldPackagesByQualifiedName.put(qualifiedName, pkg);
+			org.eclipse.ocl.pivot.Package oldPkg = oldPackagesByQualifiedName.put(qualifiedName, pkg);
 			if (oldPkg != null) {
 				logger.warn("Duplicate qualified package name: " + qualifiedName);
 			}
@@ -555,7 +555,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 					oldPackagesByName.put(name, pkg);
 				}
 			}
-			@NonNull List<org.eclipse.ocl.examples.pivot.Package> nestedPackage = pkg.getOwnedPackages();
+			@NonNull List<org.eclipse.ocl.pivot.Package> nestedPackage = pkg.getOwnedPackages();
 			gatherOldPackages(nestedPackage);
 		}
 	}
@@ -569,12 +569,12 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		return (T) intermediateCache.get(key);
 	}
 
-	public @Nullable org.eclipse.ocl.examples.pivot.Package getOldPackageByQualifiedName(@NonNull PackageCS csElement) {
+	public @Nullable org.eclipse.ocl.pivot.Package getOldPackageByQualifiedName(@NonNull PackageCS csElement) {
 		String qualifiedName = getQualifiedName(new StringBuilder(), csElement);
 		return oldPackagesByQualifiedName.get(qualifiedName);
 	}
 
-	public @Nullable org.eclipse.ocl.examples.pivot.Package getOldPackageBySimpleName(@NonNull String name) {
+	public @Nullable org.eclipse.ocl.pivot.Package getOldPackageBySimpleName(@NonNull String name) {
 		return oldPackagesByName.get(name);
 	}
 
@@ -582,8 +582,8 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		return operatorsHavePrecedence;
 	}
 
-	protected @NonNull String getQualifiedName(@NonNull StringBuilder s, @NonNull org.eclipse.ocl.examples.pivot.Package pkg) {
-		org.eclipse.ocl.examples.pivot.Package nestingPackage = pkg.getOwningPackage();
+	protected @NonNull String getQualifiedName(@NonNull StringBuilder s, @NonNull org.eclipse.ocl.pivot.Package pkg) {
+		org.eclipse.ocl.pivot.Package nestingPackage = pkg.getOwningPackage();
 		if (nestingPackage != null) {
 			getQualifiedName(s, nestingPackage);
 			s.append("$$");
@@ -1206,7 +1206,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 	protected @Nullable TemplateableElement specializeTemplates(@NonNull TypedTypeRefCS csElement) {
 		TemplateBindingCS ownedTemplateBinding = csElement.getOwnedBinding();
 		assert ownedTemplateBinding != null;
-		org.eclipse.ocl.examples.pivot.Class unspecializedPivotElement = (org.eclipse.ocl.examples.pivot.Class)csElement.getReferredType();	// FIXME cast
+		org.eclipse.ocl.pivot.Class unspecializedPivotElement = (org.eclipse.ocl.pivot.Class)csElement.getReferredType();	// FIXME cast
 //		logger.trace("Specializing " + moniker); //$NON-NLS-1$
 		if ((unspecializedPivotElement == null) || unspecializedPivotElement.eIsProxy()) {
 			String moniker = csElement.toString();
@@ -1216,7 +1216,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		//
 		//	Refresh the pivot specialization root
 		//
-		org.eclipse.ocl.examples.pivot.Class specializedPivotElement = PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Class.class, csElement);
+		org.eclipse.ocl.pivot.Class specializedPivotElement = PivotUtil.getPivot(org.eclipse.ocl.pivot.Class.class, csElement);
 		if (specializedPivotElement == null) {
 			if (unspecializedPivotElement instanceof CollectionType) {
 				TemplateParameterSubstitutionCS csTemplateParameterSubstitution = ownedTemplateBinding.getOwnedSubstitutions().get(0);
@@ -1250,14 +1250,14 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 	 */
 	public boolean update() {
 		resetPivotMappings(csResources);
-		oldPackagesByName = new HashMap<String, org.eclipse.ocl.examples.pivot.Package>();
-		oldPackagesByQualifiedName = new HashMap<String, org.eclipse.ocl.examples.pivot.Package>();
+		oldPackagesByName = new HashMap<String, org.eclipse.ocl.pivot.Package>();
+		oldPackagesByQualifiedName = new HashMap<String, org.eclipse.ocl.pivot.Package>();
 		for (BaseCSResource csResource : converter.csResources) {
 			ASResource asResource = converter.csi2asMapping.getASResource(csResource);
 			if (asResource != null) {
 				for (EObject eObject : asResource.getContents()) {
 					if (eObject instanceof Model) {
-						List<org.eclipse.ocl.examples.pivot.Package> nestedPackage = ((Model)eObject).getOwnedPackages();
+						List<org.eclipse.ocl.pivot.Package> nestedPackage = ((Model)eObject).getOwnedPackages();
 						gatherOldPackages(nestedPackage);
 					}
 				}
@@ -1377,21 +1377,21 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		//
 		//	Prune obsolete packages
 		//
-		Set<org.eclipse.ocl.examples.pivot.Package> newPackages = new HashSet<org.eclipse.ocl.examples.pivot.Package>();
+		Set<org.eclipse.ocl.pivot.Package> newPackages = new HashSet<org.eclipse.ocl.pivot.Package>();
 		for (BaseCSResource csResource : csResources) {
 			if (csResource != null) {
 				gatherNewPackages(newPackages, csResource);
 			}
 		}
-		Set<org.eclipse.ocl.examples.pivot.Package> obsoletePackages = new HashSet<org.eclipse.ocl.examples.pivot.Package>(oldPackagesByQualifiedName.values());
-//		for (org.eclipse.ocl.examples.pivot.Package oldPackage : obsoletePackages) {
+		Set<org.eclipse.ocl.pivot.Package> obsoletePackages = new HashSet<org.eclipse.ocl.pivot.Package>(oldPackagesByQualifiedName.values());
+//		for (org.eclipse.ocl.pivot.Package oldPackage : obsoletePackages) {
 //			System.out.println("Old package @" + Integer.toHexString(oldPackage.hashCode()) + " " + oldPackage.eResource().getURI() + " " + oldPackage.getName());
 //		}
-//		for (org.eclipse.ocl.examples.pivot.Package newPackage : newPackages) {
+//		for (org.eclipse.ocl.pivot.Package newPackage : newPackages) {
 //			System.out.println("New package @" + Integer.toHexString(newPackage.hashCode()) + " " + newPackage.eResource().getURI() + " " + newPackage.getName());
 //		}
 		obsoletePackages.removeAll(newPackages);
-		for (org.eclipse.ocl.examples.pivot.Package obsoletePackage : obsoletePackages) {
+		for (org.eclipse.ocl.pivot.Package obsoletePackage : obsoletePackages) {
 			EObject eContainer = obsoletePackage.eContainer();
 			if (eContainer != null) {
 				EReference eContainmentFeature = obsoletePackage.eContainmentFeature();

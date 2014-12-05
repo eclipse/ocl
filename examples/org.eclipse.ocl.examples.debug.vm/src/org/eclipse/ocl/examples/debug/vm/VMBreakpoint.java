@@ -14,7 +14,7 @@ package org.eclipse.ocl.examples.debug.vm;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.ocl.examples.debug.vm.data.VMNewBreakpointData;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.pivot.Element;
 
 
 public class VMBreakpoint {

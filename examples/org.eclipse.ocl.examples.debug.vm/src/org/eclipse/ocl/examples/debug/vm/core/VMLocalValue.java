@@ -21,7 +21,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.vm.VariableFinder;
 import org.eclipse.ocl.examples.debug.vm.data.VMVariableData;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 
 public class VMLocalValue extends VMValue {
 	

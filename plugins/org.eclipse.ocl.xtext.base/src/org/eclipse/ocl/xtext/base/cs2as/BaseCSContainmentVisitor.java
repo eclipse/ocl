@@ -21,26 +21,26 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.domain.ids.PackageId;
-import org.eclipse.ocl.examples.pivot.Annotation;
-import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.DataType;
-import org.eclipse.ocl.examples.pivot.Detail;
-import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.Import;
-import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
-import org.eclipse.ocl.examples.pivot.TemplateSignature;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary2;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.domain.ids.PackageId;
+import org.eclipse.ocl.pivot.Annotation;
+import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.DataType;
+import org.eclipse.ocl.pivot.Detail;
+import org.eclipse.ocl.pivot.EnumerationLiteral;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.Import;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.TemplateParameter;
+import org.eclipse.ocl.pivot.TemplateSignature;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.manager.PivotStandardLibrary2;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.basecs.AnnotationCS;
@@ -111,7 +111,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 	}
 
 
-	protected Continuation<?> refreshClass(@NonNull org.eclipse.ocl.examples.pivot.Class pivotElement, @NonNull StructuredClassCS csElement) {
+	protected Continuation<?> refreshClass(@NonNull org.eclipse.ocl.pivot.Class pivotElement, @NonNull StructuredClassCS csElement) {
 		List<String> qualifiers = csElement.getQualifiers();
 		pivotElement.setIsAbstract(qualifiers.contains("abstract"));
 		pivotElement.setIsInterface(qualifiers.contains("interface"));
@@ -122,7 +122,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		return null;
 	}
 
-	protected Type refreshClassifier(@NonNull org.eclipse.ocl.examples.pivot.Class pivotElement, @NonNull ClassCS csElement) {
+	protected Type refreshClassifier(@NonNull org.eclipse.ocl.pivot.Class pivotElement, @NonNull ClassCS csElement) {
 		if (csElement.eIsSet(BaseCSPackage.Literals.CLASS_CS__INSTANCE_CLASS_NAME)) {
 			pivotElement.setInstanceClassName(csElement.getInstanceClassName());
 		}
@@ -149,7 +149,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		return pivotElement;
 	}
 
-	protected <T extends org.eclipse.ocl.examples.pivot.Package> T refreshPackage(@NonNull Class<T> pivotClass, /*@NonNull*/ EClass pivotEClass, @NonNull PackageCS csElement) {
+	protected <T extends org.eclipse.ocl.pivot.Package> T refreshPackage(@NonNull Class<T> pivotClass, /*@NonNull*/ EClass pivotEClass, @NonNull PackageCS csElement) {
 		assert pivotEClass != null;
 		Object pivotObject = context.getConverter().getPivotElement(csElement);
 		if (pivotObject == null) {
@@ -196,8 +196,8 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		if ((newNsURI != oldNsURI) && ((newNsURI == null) || !newNsURI.equals(oldNsURI))) {
 			pivotElement.setURI(newNsURI);
 		}
-		context.refreshPivotList(org.eclipse.ocl.examples.pivot.Package.class, pivotElement.getOwnedPackages(), csElement.getOwnedPackages());
-		context.refreshPivotList(org.eclipse.ocl.examples.pivot.Class.class, pivotElement.getOwnedClasses(), csElement.getOwnedClasses());
+		context.refreshPivotList(org.eclipse.ocl.pivot.Package.class, pivotElement.getOwnedPackages(), csElement.getOwnedPackages());
+		context.refreshPivotList(org.eclipse.ocl.pivot.Class.class, pivotElement.getOwnedClasses(), csElement.getOwnedClasses());
 		return pivotElement;
 	}
 
@@ -253,7 +253,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 	 */
 	protected @NonNull <T extends Model> T refreshRootPackage(@NonNull Class<T> pivotClass, /*@NonNull*/ EClass pivotEClass, @NonNull RootPackageCS csElement) {
 		@NonNull T pivotElement = refreshRoot(pivotClass, pivotEClass,  csElement);
-		context.refreshPivotList(org.eclipse.ocl.examples.pivot.Package.class, pivotElement.getOwnedPackages(), csElement.getOwnedPackages());
+		context.refreshPivotList(org.eclipse.ocl.pivot.Package.class, pivotElement.getOwnedPackages(), csElement.getOwnedPackages());
 		return pivotElement;
 	}
 
@@ -320,7 +320,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 	@Override
 	public Continuation<?> visitEnumerationCS(@NonNull EnumerationCS csElement) {
 		@SuppressWarnings("null") @NonNull EClass eClass = PivotPackage.Literals.ENUMERATION;
-		org.eclipse.ocl.examples.pivot.Enumeration pivotElement = refreshNamedElement(org.eclipse.ocl.examples.pivot.Enumeration.class, eClass, csElement);
+		org.eclipse.ocl.pivot.Enumeration pivotElement = refreshNamedElement(org.eclipse.ocl.pivot.Enumeration.class, eClass, csElement);
 		context.refreshPivotList(EnumerationLiteral.class, pivotElement.getOwnedLiteral(), csElement.getOwnedLiterals());
 		refreshSerializable(pivotElement, csElement);
 		refreshClassifier(pivotElement, csElement);
@@ -396,7 +396,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 	@Override
 	public Continuation<?> visitPackageCS(@NonNull PackageCS csElement) {
 		@SuppressWarnings("null") @NonNull EClass eClass = PivotPackage.Literals.PACKAGE;
-		refreshPackage(org.eclipse.ocl.examples.pivot.Package.class, eClass, csElement);
+		refreshPackage(org.eclipse.ocl.pivot.Package.class, eClass, csElement);
 		return null;
 	}
 
@@ -456,7 +456,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 	@Override
 	public Continuation<?> visitStructuredClassCS(@NonNull StructuredClassCS csElement) {
 		@SuppressWarnings("null") @NonNull EClass eClass = PivotPackage.Literals.CLASS;
-		org.eclipse.ocl.examples.pivot.Class pivotElement = refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class, eClass, csElement);
+		org.eclipse.ocl.pivot.Class pivotElement = refreshNamedElement(org.eclipse.ocl.pivot.Class.class, eClass, csElement);
 		refreshClass(pivotElement, csElement);
 		return null;
 	}
@@ -553,7 +553,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 	@Override
 	public Continuation<?> visitWildcardTypeRefCS(@NonNull WildcardTypeRefCS csElement) {
 		@SuppressWarnings("null") @NonNull EClass eClass = PivotPackage.Literals.CLASS;
-		org.eclipse.ocl.examples.pivot.Class pivotElement = context.refreshModelElement(org.eclipse.ocl.examples.pivot.Class.class, eClass, null);
+		org.eclipse.ocl.pivot.Class pivotElement = context.refreshModelElement(org.eclipse.ocl.pivot.Class.class, eClass, null);
 		context.installPivotReference(csElement, pivotElement, BaseCSPackage.Literals.PIVOTABLE_ELEMENT_CS__PIVOT);
 		return null;
 	}

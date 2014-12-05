@@ -18,7 +18,7 @@ import org.eclipse.emf.mwe.utils.*
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.emf.ecore.resource.impl.*
 
-var projectName = "org.eclipse.ocl.examples.pivot"
+var projectName = "org.eclipse.ocl.pivot"
 
 /**
  *	Generate the OCL Meta Model, by converting Pivot.ecore to OCLMetaModel.java.

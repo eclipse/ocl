@@ -59,23 +59,23 @@ import org.eclipse.ocl.common.OCLCommon;
 import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.common.internal.options.CodeGenerationMode;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.codegen.common.PivotQueries;
 import org.eclipse.ocl.examples.codegen.generator.AbstractGenModelHelper;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.library.LibraryConstants;
-import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.PivotConstants;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2AS;
-import org.eclipse.ocl.examples.pivot.ecore.AS2Ecore;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
-import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
-import org.eclipse.ocl.examples.pivot.utilities.AS2Moniker;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.library.LibraryConstants;
+import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.pivot.ecore.AS2Ecore;
+import org.eclipse.ocl.pivot.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.util.PivotPlugin;
+import org.eclipse.ocl.pivot.utilities.AS2Moniker;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.uml2.codegen.ecore.genmodel.util.UML2GenModelUtil;
 
 public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
@@ -132,7 +132,7 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 	}
 
 	protected void convertConstraintToOperation(@NonNull Ecore2AS ecore2as, @NonNull GenModel genModel, @NonNull EClassifier eClassifier, @NonNull String key, @NonNull String body, @Nullable String message) {
-		org.eclipse.ocl.examples.pivot.Class pType = ecore2as.getCreated(org.eclipse.ocl.examples.pivot.Class.class, eClassifier);
+		org.eclipse.ocl.pivot.Class pType = ecore2as.getCreated(org.eclipse.ocl.pivot.Class.class, eClassifier);
 		if (pType != null) {
 			List<Constraint> ownedInvariants = pType.getOwnedInvariants();
 			for (Constraint rule : ownedInvariants) {
@@ -361,7 +361,7 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		}
 	}
 	
-	protected boolean hasConstraints(org.eclipse.ocl.examples.pivot.Class pivotClass) {
+	protected boolean hasConstraints(org.eclipse.ocl.pivot.Class pivotClass) {
 		if (pivotClass.getOwnedInvariants().size() > 0) {
 			return true;
 		}

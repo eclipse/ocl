@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="basecs" nsURI="http://www.eclipse.org/ocl/2015/BaseCS" nsPrefix="basecs">
   <eClassifiers xsi:type="ecore:EDataType" name="BigNumber" instanceClassName="java.lang.Number"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="ScopeFilter" instanceClassName="org.eclipse.ocl.examples.pivot.scoping.ScopeFilter"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="ScopeFilter" instanceClassName="org.eclipse.ocl.pivot.scoping.ScopeFilter"/>
   <eClassifiers xsi:type="ecore:EClass" name="AnnotationCS" eSuperTypes="#//AnnotationElementCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedContents" upperBound="-1"
         eType="#//ModelElementCS" containment="true"/>
@@ -61,10 +61,10 @@
         defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPathName" eType="#//PathNameCS"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referredNamespace" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Namespace"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredNamespace" eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Namespace"
         changeable="false" volatile="true" transient="true" derived="true" resolveProxies="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LambdaTypeCS" eSuperTypes="#//TypedRefCS #//TemplateableElementCS ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Nameable">
+  <eClassifiers xsi:type="ecore:EClass" name="LambdaTypeCS" eSuperTypes="#//TypedRefCS #//TemplateableElementCS ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Nameable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedContextType" eType="#//TypedRefCS"
         containment="true"/>
@@ -74,7 +74,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LibraryCS" eSuperTypes="#//NamespaceCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referredPackage" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Package"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredPackage" eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Package"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelElementCS" abstract="true" eSuperTypes="#//PivotableElementCS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="csi" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -87,7 +87,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ModelElementRefCS" eSuperTypes="#//ElementRefCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPathName" eType="#//PathNameCS"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referredElement" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Element"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredElement" eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Element"
         changeable="false" volatile="true" transient="true" derived="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MultiplicityBoundsCS" eSuperTypes="#//MultiplicityCS">
@@ -103,7 +103,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stringBounds" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral="1"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NamedElementCS" abstract="true" eSuperTypes="#//ModelElementCS ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Nameable">
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElementCS" abstract="true" eSuperTypes="#//ModelElementCS ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Nameable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamespaceCS" abstract="true" interface="true"
@@ -136,41 +136,41 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningOperation" eType="#//OperationCS"
         eOpposite="#//OperationCS/ownedParameters"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PathElementCS" eSuperTypes="#//ElementCS ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Pivotable">
+  <eClassifiers xsi:type="ecore:EClass" name="PathElementCS" eSuperTypes="#//ElementCS ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Pivotable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elementType" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"
         transient="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningPathName" lowerBound="1"
         eType="#//PathNameCS" eOpposite="#//PathNameCS/ownedPathElements"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredElement" lowerBound="1"
-        eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Element"/>
+        eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Element"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PathElementWithURICS" eSuperTypes="#//PathElementCS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         transient="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PathNameCS" eSuperTypes="#//ElementCS ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Pivotable">
+  <eClassifiers xsi:type="ecore:EClass" name="PathNameCS" eSuperTypes="#//ElementCS ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Pivotable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//ElementCS"
         transient="true" unsettable="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPathElements" lowerBound="1"
         upperBound="-1" eType="#//PathElementCS" containment="true" eOpposite="#//PathElementCS/owningPathName"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredElement" lowerBound="1"
-        eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Element"
+        eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Element"
         changeable="false" volatile="true" transient="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="scopeFilter" eType="#//ScopeFilter"
         transient="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PivotableElementCS" abstract="true"
-      eSuperTypes="#//ElementCS ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Pivotable">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="pivot" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Element"
+      eSuperTypes="#//ElementCS ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Pivotable">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pivot" eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Element"
         transient="true" resolveProxies="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveTypeRefCS" eSuperTypes="#//TypedRefCS ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Nameable">
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveTypeRefCS" eSuperTypes="#//TypedRefCS ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Nameable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ReferenceCS" eSuperTypes="#//StructuralFeatureCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredKeys" upperBound="-1"
-        eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Property"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referredOpposite" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Property"/>
+        eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Property"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredOpposite" eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Property"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RootCS" abstract="true" eSuperTypes="#//ModelElementCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedImports" upperBound="-1"
@@ -229,7 +229,7 @@
         containment="true" eOpposite="#//TemplateSignatureCS/owningElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TuplePartCS" eSuperTypes="#//TypedElementCS"/>
-  <eClassifiers xsi:type="ecore:EClass" name="TupleTypeCS" eSuperTypes="#//TypedRefCS ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Nameable">
+  <eClassifiers xsi:type="ecore:EClass" name="TupleTypeCS" eSuperTypes="#//TypedRefCS ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Nameable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedParts" upperBound="-1"
         eType="#//TuplePartCS" containment="true"/>
@@ -261,7 +261,7 @@
         containment="true" eOpposite="#//TemplateBindingCS/owningElement"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPathName" eType="#//PathNameCS"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referredType" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Type"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredType" eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Type"
         changeable="false" volatile="true" transient="true" derived="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VisitableCS" instanceClassName="org.eclipse.ocl.xtext.basecs.util.VisitableCS"

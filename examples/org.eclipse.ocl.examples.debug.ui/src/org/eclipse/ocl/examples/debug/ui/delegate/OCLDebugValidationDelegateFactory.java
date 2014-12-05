@@ -23,11 +23,11 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.delegate.AbstractOCLDelegateFactory;
-import org.eclipse.ocl.examples.pivot.delegate.DelegateEClassifierAdapter;
-import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.examples.pivot.delegate.ValidationDelegate;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.delegate.AbstractOCLDelegateFactory;
+import org.eclipse.ocl.pivot.delegate.DelegateEClassifierAdapter;
+import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.pivot.delegate.ValidationDelegate;
 
 /**
  * Factory for OCL derived-classifier validation delegates.

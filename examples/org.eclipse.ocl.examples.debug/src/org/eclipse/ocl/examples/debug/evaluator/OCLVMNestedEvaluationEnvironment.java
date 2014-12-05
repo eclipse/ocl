@@ -21,10 +21,10 @@ import org.eclipse.ocl.examples.debug.vm.evaluator.VMNestedEvaluationEnvironment
 import org.eclipse.ocl.examples.debug.vm.utils.ASTBindingHelper;
 import org.eclipse.ocl.examples.debug.vm.utils.VMRuntimeException;
 import org.eclipse.ocl.examples.debug.vm.utils.VMStackTraceBuilder;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.Variable;
 
 public class OCLVMNestedEvaluationEnvironment extends VMNestedEvaluationEnvironment<ExpressionInOCL> implements IOCLVMEvaluationEnvironment
 {

@@ -33,42 +33,42 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
-import org.eclipse.ocl.examples.domain.elements.DomainPackage;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
-import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
-import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.IPackageDescriptor;
-import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.IProjectDescriptor;
-import org.eclipse.ocl.examples.domain.values.Unlimited;
-import org.eclipse.ocl.examples.pivot.CollectionType;
-import org.eclipse.ocl.examples.pivot.CompletePackage;
-import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.Import;
-import org.eclipse.ocl.examples.pivot.LanguageExpression;
-import org.eclipse.ocl.examples.pivot.Library;
-import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.PivotConstants;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.VariableDeclaration;
-import org.eclipse.ocl.examples.pivot.VariableExp;
-import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2AS;
-import org.eclipse.ocl.examples.pivot.ecore.AS2Ecore;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
-import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.resource.ASResource;
-import org.eclipse.ocl.examples.pivot.resource.ASResourceFactoryRegistry;
-import org.eclipse.ocl.examples.pivot.uml.UML2AS;
-import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
+import org.eclipse.ocl.domain.elements.DomainPackage;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.utilities.ProjectMap;
+import org.eclipse.ocl.domain.utilities.StandaloneProjectMap;
+import org.eclipse.ocl.domain.utilities.StandaloneProjectMap.IPackageDescriptor;
+import org.eclipse.ocl.domain.utilities.StandaloneProjectMap.IProjectDescriptor;
+import org.eclipse.ocl.domain.values.Unlimited;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
+import org.eclipse.ocl.pivot.CollectionType;
+import org.eclipse.ocl.pivot.CompletePackage;
+import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.Import;
+import org.eclipse.ocl.pivot.LanguageExpression;
+import org.eclipse.ocl.pivot.Library;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.Namespace;
+import org.eclipse.ocl.pivot.OCL;
+import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.VariableDeclaration;
+import org.eclipse.ocl.pivot.VariableExp;
+import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.pivot.ecore.AS2Ecore;
+import org.eclipse.ocl.pivot.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceAdapter;
+import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.resource.ASResourceFactoryRegistry;
+import org.eclipse.ocl.pivot.uml.UML2AS;
+import org.eclipse.ocl.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.xtext.completeocl.as2cs.CompleteOCLSplitter;
@@ -884,8 +884,8 @@ public class LoadTests extends XtextTestCase
 		createOCLinEcoreFile("Bug402767.oclinecore", testFile);
 		Resource resource = doLoad_Concrete("Bug402767", "oclinecore");
 		Model root = (Model) resource.getContents().get(0);
-		org.eclipse.ocl.examples.pivot.Package pkg = root.getOwnedPackages().get(0);
-		org.eclipse.ocl.examples.pivot.Class cls = pkg.getOwnedClasses().get(0);
+		org.eclipse.ocl.pivot.Package pkg = root.getOwnedPackages().get(0);
+		org.eclipse.ocl.pivot.Class cls = pkg.getOwnedClasses().get(0);
 		List<Property> ownedAttributes = cls.getOwnedProperties();
 		checkMultiplicity(DomainUtil.getNamedElement(ownedAttributes, "vBlank"), 1, 1);
 		checkMultiplicity(DomainUtil.getNamedElement(ownedAttributes, "vQuery"), 0, 1);
@@ -969,15 +969,15 @@ public class LoadTests extends XtextTestCase
 		BaseCSResource csResource = (BaseCSResource) doLoad_Pivot("Bug441620", "ocl");
 		Resource oclResource = csResource.getASResource(metaModelManager);
 		Model root = (Model) oclResource.getContents().get(0);
-		org.eclipse.ocl.examples.pivot.Package oclDocPackage = root.getOwnedPackages().get(0);
+		org.eclipse.ocl.pivot.Package oclDocPackage = root.getOwnedPackages().get(0);
 		assertEquals("pivot", oclDocPackage.getName());
 		assertEquals("http://www.eclipse.org/ocl/2015/Pivot", oclDocPackage.getURI());
 		
 		Import _import = root.getImports().get(0);
 		assertEquals("pivot", _import.getName());
 		Namespace nSpace = _import.getImportedNamespace();
-		assertTrue(nSpace instanceof org.eclipse.ocl.examples.pivot.Package);
-		org.eclipse.ocl.examples.pivot.Package refPackage = (org.eclipse.ocl.examples.pivot.Package)nSpace;
+		assertTrue(nSpace instanceof org.eclipse.ocl.pivot.Package);
+		org.eclipse.ocl.pivot.Package refPackage = (org.eclipse.ocl.pivot.Package)nSpace;
 		assertEquals("pivot", nSpace.getName());
 		assertEquals("http://www.eclipse.org/ocl/2015/Pivot", refPackage.getURI());
 		assertNotSame(oclDocPackage, nSpace);
@@ -988,17 +988,17 @@ public class LoadTests extends XtextTestCase
 		BaseCSResource csResource = (BaseCSResource) doLoad_Pivot("Bug441620b", "ocl");
 		Resource oclResource = csResource.getASResource(metaModelManager);
 		Model root = (Model) oclResource.getContents().get(0);
-		org.eclipse.ocl.examples.pivot.Package oclDocPackage = root.getOwnedPackages().get(0);
+		org.eclipse.ocl.pivot.Package oclDocPackage = root.getOwnedPackages().get(0);
 		assertEquals("ocl", oclDocPackage.getName());
 		assertEquals("http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib", oclDocPackage.getURI());
 
 		Import _import = root.getImports().get(0);
 		assertEquals("pivot", _import.getName());
 		Namespace nSpace = _import.getImportedNamespace();
-		assertTrue(nSpace instanceof org.eclipse.ocl.examples.pivot.Package);
-		org.eclipse.ocl.examples.pivot.Package refPackage = (org.eclipse.ocl.examples.pivot.Package)nSpace;
+		assertTrue(nSpace instanceof org.eclipse.ocl.pivot.Package);
+		org.eclipse.ocl.pivot.Package refPackage = (org.eclipse.ocl.pivot.Package)nSpace;
 		assertEquals("pivot", nSpace.getName());
-		assertEquals("http://www.eclipse.org/ocl/2015/Pivot", ((org.eclipse.ocl.examples.pivot.Package)nSpace).getURI());
+		assertEquals("http://www.eclipse.org/ocl/2015/Pivot", ((org.eclipse.ocl.pivot.Package)nSpace).getURI());
 		assertNotSame(oclDocPackage, nSpace);
 		assertEquals(metaModelManager.getPrimaryPackage(oclDocPackage), metaModelManager.getPrimaryPackage(refPackage));
 	}
@@ -1041,7 +1041,7 @@ public class LoadTests extends XtextTestCase
 
 	public void testLoad_Pivot_ocl() throws IOException, InterruptedException {
 //		Abstract2Moniker.TRACE_MONIKERS.setState(true);
-		doLoad_OCL(URI.createPlatformResourceURI("/org.eclipse.ocl.examples.pivot/model/Pivot.ocl", true));
+		doLoad_OCL(URI.createPlatformResourceURI("/org.eclipse.ocl.pivot/model/Pivot.ocl", true));
 	}	
 
 	public void testLoad_RoyalAndLoyal_ocl() throws IOException, InterruptedException {
@@ -1104,7 +1104,7 @@ public class LoadTests extends XtextTestCase
 		Model pivotModel1 = (Model) asResource.getContents().get(0);
 		assertEquals(ecoreFileName, pivotModel1.getName());
 		assertEquals(1, pivotModel1.getOwnedPackages().size());
-		org.eclipse.ocl.examples.pivot.Package pivotPackage1 = pivotModel1.getOwnedPackages().get(0);
+		org.eclipse.ocl.pivot.Package pivotPackage1 = pivotModel1.getOwnedPackages().get(0);
 		assertEquals("PackageA", pivotPackage1.getName());
 		assertEquals("nsPrefixA", pivotPackage1.getNsPrefix());
 		assertEquals(1, pivotPackage1.getOwnedClasses().size());
@@ -1119,7 +1119,7 @@ public class LoadTests extends XtextTestCase
 		Model pivotModel2 = (Model) asResource.getContents().get(0);
 		assertEquals(ecoreFileName, pivotModel2.getName());
 		assertEquals(1, pivotModel2.getOwnedPackages().size());
-		org.eclipse.ocl.examples.pivot.Package pivotPackage2 = pivotModel2.getOwnedPackages().get(0);
+		org.eclipse.ocl.pivot.Package pivotPackage2 = pivotModel2.getOwnedPackages().get(0);
 		assertEquals("PackageB", pivotPackage2.getName());
 		assertEquals("nsPrefixB", pivotPackage2.getNsPrefix());
 		assertEquals(1, pivotPackage2.getOwnedClasses().size());
@@ -1128,9 +1128,9 @@ public class LoadTests extends XtextTestCase
 		assertEquals("DataType", pivotType2.eClass().getName());
 //		
 		List<DomainPackage> allPackages = new ArrayList<DomainPackage>();
-//		for (org.eclipse.ocl.examples.pivot.Package aPackage : metaModelManager2.getAllPackages()) {
+//		for (org.eclipse.ocl.pivot.Package aPackage : metaModelManager2.getAllPackages()) {
 		for (CompletePackage completePackage : metaModelManager2.getStandardLibrary().getAllCompletePackages()) {
-			org.eclipse.ocl.examples.pivot.Package aPackage = completePackage.getPivotPackage();
+			org.eclipse.ocl.pivot.Package aPackage = completePackage.getPivotPackage();
 			if (aPackage instanceof Model) {}
 			else if (aPackage instanceof Library) {}
 			else if (PivotConstants.ORPHANAGE_NAME.equals(aPackage.getName())) {}
@@ -1170,14 +1170,14 @@ public class LoadTests extends XtextTestCase
 		Model pivotModelXXX = (Model) asResource.getContents().get(0);
 		assertEquals(ecoreFileName, pivotModelXXX.getName());
 		assertEquals(1, pivotModelXXX.getOwnedPackages().size());
-		org.eclipse.ocl.examples.pivot.Package pivotPackageXXX = pivotModelXXX.getOwnedPackages().get(0);
+		org.eclipse.ocl.pivot.Package pivotPackageXXX = pivotModelXXX.getOwnedPackages().get(0);
 		assertEquals("PackageXXX", pivotPackageXXX.getName());
 		assertEquals("nsPrefixXXX", pivotPackageXXX.getNsPrefix());
 		assertEquals(2, pivotPackageXXX.getOwnedClasses().size());
-		org.eclipse.ocl.examples.pivot.Class pivotTypeXXX0 = pivotPackageXXX.getOwnedClasses().get(0);
+		org.eclipse.ocl.pivot.Class pivotTypeXXX0 = pivotPackageXXX.getOwnedClasses().get(0);
 		assertEquals("MutableXXX", pivotTypeXXX0.getName());
 		assertEquals("Class", pivotTypeXXX0.eClass().getName());
-		org.eclipse.ocl.examples.pivot.Class pivotTypeXXX1 = pivotPackageXXX.getOwnedClasses().get(1);
+		org.eclipse.ocl.pivot.Class pivotTypeXXX1 = pivotPackageXXX.getOwnedClasses().get(1);
 		assertEquals("ClassXXX", pivotTypeXXX1.getName());
 		assertEquals("Class", pivotTypeXXX1.eClass().getName());
 		assertEquals(2, pivotTypeXXX1.getOwnedProperties().size());
@@ -1195,14 +1195,14 @@ public class LoadTests extends XtextTestCase
 		Model pivotModelYYY = (Model) asResource.getContents().get(0);
 		assertEquals(ecoreFileName, pivotModelYYY.getName());
 		assertEquals(1, pivotModelYYY.getOwnedPackages().size());
-		org.eclipse.ocl.examples.pivot.Package pivotPackageYYY = pivotModelYYY.getOwnedPackages().get(0);
+		org.eclipse.ocl.pivot.Package pivotPackageYYY = pivotModelYYY.getOwnedPackages().get(0);
 		assertEquals("PackageYYY", pivotPackageYYY.getName());
 		assertEquals("nsPrefixYYY", pivotPackageYYY.getNsPrefix());
 		assertEquals(2, pivotPackageYYY.getOwnedClasses().size());
-		org.eclipse.ocl.examples.pivot.Class pivotTypeYYY0 = pivotPackageYYY.getOwnedClasses().get(0);
+		org.eclipse.ocl.pivot.Class pivotTypeYYY0 = pivotPackageYYY.getOwnedClasses().get(0);
 		assertEquals("MutableYYY", pivotTypeYYY0.getName());
 		assertEquals("DataType", pivotTypeYYY0.eClass().getName());
-		org.eclipse.ocl.examples.pivot.Class pivotTypeYYY1 = pivotPackageYYY.getOwnedClasses().get(1);
+		org.eclipse.ocl.pivot.Class pivotTypeYYY1 = pivotPackageYYY.getOwnedClasses().get(1);
 		assertEquals("ClassYYY", pivotTypeYYY1.getName());
 		assertEquals("Class", pivotTypeYYY1.eClass().getName());
 		assertEquals(2, pivotTypeYYY1.getOwnedProperties().size());
@@ -1215,9 +1215,9 @@ public class LoadTests extends XtextTestCase
 		
 //		
 		List<DomainPackage> allPackages = new ArrayList<DomainPackage>();
-//		for (org.eclipse.ocl.examples.pivot.Package aPackage : metaModelManager2.getAllPackages()) {
+//		for (org.eclipse.ocl.pivot.Package aPackage : metaModelManager2.getAllPackages()) {
 		for (CompletePackage completePackage : metaModelManager2.getStandardLibrary().getAllCompletePackages()) {
-			org.eclipse.ocl.examples.pivot.Package aPackage = completePackage.getPivotPackage();
+			org.eclipse.ocl.pivot.Package aPackage = completePackage.getPivotPackage();
 			if (aPackage instanceof Model) {}
 			else if (aPackage instanceof Library) {}
 			else if (PivotConstants.ORPHANAGE_NAME.equals(aPackage.getName())) {}

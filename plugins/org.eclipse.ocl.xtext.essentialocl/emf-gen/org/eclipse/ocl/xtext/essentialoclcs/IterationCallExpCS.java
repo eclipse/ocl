@@ -11,8 +11,7 @@
 package org.eclipse.ocl.xtext.essentialoclcs;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.ocl.examples.pivot.Iteration;
+import org.eclipse.ocl.pivot.Iteration;
 
 /**
  * <!-- begin-user-doc -->

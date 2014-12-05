@@ -63,7 +63,7 @@ public abstract class GenerateMetamodelWorkflowComponent extends AbstractWorkflo
 	}
 
 	/**
-	 * The Java package path for the metamodel. (e.g. "org.eclipse.ocl.examples.pivot.path")
+	 * The Java package path for the metamodel. (e.g. "org.eclipse.ocl.pivot.path")
 	 */
 	public void setJavaPackageName(String javaPackageName) {
 		this.javaPackageName = javaPackageName;
@@ -77,7 +77,7 @@ public abstract class GenerateMetamodelWorkflowComponent extends AbstractWorkflo
 	}
 
 	/**
-	 * The project name hosting the Metamodel. (e.g. "org.eclipse.ocl.examples.pivot")
+	 * The project name hosting the Metamodel. (e.g. "org.eclipse.ocl.pivot")
 	 */
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;

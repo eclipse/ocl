@@ -1,0 +1,256 @@
+/*******************************************************************************
+ * Copyright (c) 2010, 2013 E.D.Willink and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   E.D.Willink - Initial API and implementation
+ *******************************************************************************/
+package org.eclipse.ocl.domain.values.impl;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.domain.ids.CollectionTypeId;
+import org.eclipse.ocl.domain.ids.TypeId;
+import org.eclipse.ocl.domain.values.CollectionValue;
+import org.eclipse.ocl.domain.values.OrderedSetValue;
+import org.eclipse.ocl.domain.values.SequenceValue;
+import org.eclipse.ocl.domain.values.SetValue;
+import org.eclipse.ocl.domain.values.UniqueCollectionValue;
+import org.eclipse.ocl.domain.values.ValuesPackage;
+
+//
+//	Note that it is not necessary to adjust set uniqueness for OCL value equivalence
+//	since Value.equals realises OCL equivalence, and so Collection operations that
+//	inherently use Object.equals automatically observe OCL uniqueness.
+//
+/**
+ * @generated NOT
+ */
+public class SetValueImpl extends CollectionValueImpl implements SetValue
+{
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return ValuesPackage.Literals.SET_VALUE;
+	}
+
+	public static @NonNull Set<Object> createSetOfEach(@NonNull Object[] boxedValues) {
+		Set<Object> result = new HashSet<Object>();
+		for (Object boxedValue : boxedValues) {
+			result.add(boxedValue);
+		}
+		return result;
+	}
+	
+	public static class Accumulator extends SetValueImpl implements SetValue.Accumulator
+	{
+		public Accumulator(@NonNull CollectionTypeId typeId) {
+			super(typeId, new HashSet<Object>());
+		}
+
+		@Override
+		@SuppressWarnings("unchecked")
+		public boolean add(@Nullable Object value) {
+			return ((Collection<Object>)elements).add(value);			
+		}		
+	}
+
+	public SetValueImpl(@NonNull CollectionTypeId typeId, @NonNull Collection<? extends Object> boxedValues) {
+		super(typeId, boxedValues);
+		assert checkElementsAreUnique(elements);
+	}
+
+    @Override
+	public @NonNull UniqueCollectionValue asUniqueCollectionValue() {
+        return this;
+	}
+
+    @Override
+	public @NonNull SetValue asSetValue() {
+        return this;
+    }
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof SetValue)) {
+			return false;
+		}
+		int thisSize = elements.size();
+		Collection<? extends Object> thoseElements = ((SetValue)obj).getElements();
+		int thatSize = thoseElements.size();
+		if (thisSize != thatSize) {
+			return false;
+		}
+		if (thoseElements instanceof Set<?>) {
+			return thoseElements.containsAll(elements);
+		}
+		else {
+			return elements.containsAll(thoseElements);
+		}
+	}
+
+	@Override
+	public @NonNull SetValue excluding(@Nullable Object value) {
+		Set<Object> result = new HashSet<Object>();
+		if (value == null) {
+			for (Object element : elements) {
+				if (element != null) {
+					result.add(element);
+				}
+			}
+		}
+		else {
+			for (Object element : elements) {
+				if (!value.equals(element)) {
+					result.add(element);
+				}
+			}
+		}
+		if (result.size() < elements.size()) {
+			return new SetValueImpl(getTypeId(), result);
+		}
+		else {
+			return this;
+		}
+	}
+
+	@Override
+	public @NonNull SetValue excludingAll(@NonNull CollectionValue values) {
+		Set<Object> result = new HashSet<Object>();
+		for (Object element : elements) {
+			boolean reject = false;
+			if (element == null) {
+				for (Object value : values) {
+					if (value == null) {
+						reject = true;
+						break;
+					}
+				}
+			}
+			else {
+				for (Object value : values) {
+					if ((value != null) && value.equals(element)) {
+						reject = true;
+						break;
+					}
+				}
+			}
+			if (!reject) {
+				result.add(element);
+			}
+		}
+		if (result.size() < elements.size()) {
+			return new SetValueImpl(getTypeId(), result);
+		}
+		else {
+			return this;
+		}
+	}
+
+    @Override
+	public @NonNull SetValue flatten() {
+    	Set<Object> flattened = new HashSet<Object>();
+    	if (flatten(flattened)) {
+    		return new SetValueImpl(getTypeId(), flattened);
+    	}
+    	else {
+    		return this;
+    	}
+    }
+
+//    @Override
+//	public @NonNull CollectionTypeId getCollectionTypeId() {
+//		return TypeId.SET;
+//	}
+	
+//	@Override
+//	protected @NonNull Set<? extends Object> getElements() {
+//		return (Set<? extends Object>) elements;
+//	}
+
+	@Override
+	public @NonNull String getKind() {
+	    return TypeId.SET_NAME;
+	}
+
+	@Override
+	public @NonNull SetValue including(@Nullable Object value) {
+		assert !(value instanceof InvalidValueException);
+		Set<Object> result = new HashSet<Object>(elements);
+		result.add(value);
+		return new SetValueImpl(getTypeId(), result);
+	}
+
+	@Override
+	public @NonNull SetValue includingAll(@NonNull CollectionValue values) {
+		Set<Object> result = new HashSet<Object>(elements);
+		for (Object value : values) {
+			result.add(value);
+		}
+		return new SetValueImpl(getTypeId(), result);
+	}
+
+	@Override
+	public boolean isOrdered() {
+		return false;
+	}
+
+	@Override
+	public boolean isUnique() {
+		return true;
+	}
+
+    @Override
+	public @NonNull SetValue minus(@NonNull UniqueCollectionValue set) {
+    	Set<Object> result = new HashSet<Object>(elements);
+        result.removeAll(set.asCollection());
+        return new SetValueImpl(getTypeId(), result);
+    }
+    
+    @Override
+	public @NonNull OrderedSetValue sort(@NonNull Comparator<Object> comparator) {
+    	List<Object> values = new ArrayList<Object>(elements);
+    	Collections.sort(values, comparator);
+    	return new SparseOrderedSetValueImpl(getOrderedSetTypeId(), values);
+    }
+
+    @Override
+	public @NonNull SetValue symmetricDifference(@NonNull UniqueCollectionValue set) {       
+    	Set<Object> result = new HashSet<Object>(elements);       
+        for (Object e : set.iterable()) {
+            if (result.contains(e)) {
+                result.remove(e);
+            } else {
+                result.add(e);
+            }
+        }        
+        return new SetValueImpl(getTypeId(), result);
+    }
+    
+	@Override
+	public SequenceValue toSequenceValue() {
+		return new SparseSequenceValueImpl(getSequenceTypeId(), SparseSequenceValueImpl.createSequenceOfEach(elements));
+	}
+
+	@Override
+	public void toString(@NonNull StringBuilder s, int lengthLimit) {
+		s.append(TypeId.SET_NAME);
+		super.toString(s, lengthLimit);
+	}
+}

@@ -11,17 +11,17 @@
 package org.eclipse.ocl.examples.codegen.java;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.domain.elements.DomainClass;
+import org.eclipse.ocl.domain.elements.DomainProperty;
+import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.domain.ids.TypeId;
+import org.eclipse.ocl.domain.ids.impl.WeakHashMapOfWeakReference;
+import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.examples.codegen.java.types.JavaTypeId;
-import org.eclipse.ocl.examples.domain.elements.DomainClass;
-import org.eclipse.ocl.examples.domain.elements.DomainProperty;
-import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
-import org.eclipse.ocl.examples.domain.ids.TypeId;
-import org.eclipse.ocl.examples.domain.ids.impl.WeakHashMapOfWeakReference;
-import org.eclipse.ocl.examples.domain.types.IdResolver;
-import org.eclipse.ocl.examples.pivot.library.UnboxedCompositionProperty;
-import org.eclipse.ocl.examples.pivot.library.UnboxedExplicitNavigationProperty;
-import org.eclipse.ocl.examples.pivot.library.UnboxedOppositeNavigationProperty;
+import org.eclipse.ocl.pivot.library.UnboxedCompositionProperty;
+import org.eclipse.ocl.pivot.library.UnboxedExplicitNavigationProperty;
+import org.eclipse.ocl.pivot.library.UnboxedOppositeNavigationProperty;
 
 public class JavaConstants
 {

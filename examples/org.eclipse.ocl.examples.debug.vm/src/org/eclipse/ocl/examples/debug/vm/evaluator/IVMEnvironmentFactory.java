@@ -13,7 +13,7 @@ package org.eclipse.ocl.examples.debug.vm.evaluator;
 
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.IVMDebuggerShell;
-import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 
 public interface IVMEnvironmentFactory extends EnvironmentFactory
 {

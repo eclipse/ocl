@@ -37,12 +37,12 @@ import org.eclipse.ocl.examples.emf.validation.validity.RootNode;
 import org.eclipse.ocl.examples.emf.validation.validity.export.IValidityExporter;
 import org.eclipse.ocl.examples.emf.validation.validity.export.IValidityExporterDescriptor;
 import org.eclipse.ocl.examples.emf.validation.validity.export.ValidityExporterRegistry;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
-import org.eclipse.ocl.examples.pivot.validation.PivotEObjectValidator.ValidationAdapter;
 import org.eclipse.ocl.examples.standalone.StandaloneApplication;
 import org.eclipse.ocl.examples.standalone.StandaloneCommand;
 import org.eclipse.ocl.examples.standalone.StandaloneResponse;
 import org.eclipse.ocl.examples.standalone.messages.StandaloneMessages;
+import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.validation.PivotEObjectValidator.ValidationAdapter;
 import org.eclipse.ocl.xtext.completeocl.utilities.CompleteOCLLoader;
 
 /**

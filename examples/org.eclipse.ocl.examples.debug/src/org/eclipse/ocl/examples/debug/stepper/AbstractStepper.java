@@ -18,7 +18,7 @@ import org.eclipse.ocl.examples.debug.vm.evaluator.IStepper;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IStepperVisitor;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMRootEvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.xtext.base.as2cs.BaseLocationInFileProvider;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;

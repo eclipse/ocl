@@ -29,17 +29,17 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.elements.DomainPackage;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2AS;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
-import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
-import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.validation.PivotEObjectValidator;
+import org.eclipse.ocl.domain.elements.DomainPackage;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.utilities.BaseResource;
+import org.eclipse.ocl.pivot.utilities.PivotObjectImpl;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.validation.PivotEObjectValidator;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 
 public abstract class CompleteOCLLoader
@@ -129,8 +129,8 @@ public abstract class CompleteOCLLoader
 		//
 		for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
-			if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
-				DomainPackage aPackage = metaModelManager.getPrimaryPackage((org.eclipse.ocl.examples.pivot.Package)eObject);
+			if (eObject instanceof org.eclipse.ocl.pivot.Package) {
+				DomainPackage aPackage = metaModelManager.getPrimaryPackage((org.eclipse.ocl.pivot.Package)eObject);
 				if (aPackage instanceof PivotObjectImpl) {
 					EObject mmPackage = ((PivotObjectImpl)aPackage).getETarget();
 					if (mmPackage instanceof EPackage) {

@@ -17,11 +17,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.resource.ASResource;
-import org.eclipse.ocl.examples.pivot.resource.AbstractASResourceFactory;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.resource.AbstractASResourceFactory;
 import org.eclipse.ocl.xtext.basecs.PackageCS;
 import org.eclipse.ocl.xtext.basecs.RootPackageCS;
 
@@ -59,8 +59,8 @@ public final class OCLinEcoreASResourceFactory extends AbstractASResourceFactory
 		}
 		else if (eObject instanceof PackageCS) {
 			Element pivot = ((PackageCS)eObject).getPivot();
-			if (pivot instanceof org.eclipse.ocl.examples.pivot.Package) {
-				String uri = ((org.eclipse.ocl.examples.pivot.Package)pivot).getURI();
+			if (pivot instanceof org.eclipse.ocl.pivot.Package) {
+				String uri = ((org.eclipse.ocl.pivot.Package)pivot).getURI();
 				if (uri != null) {
 					return URI.createURI(uri);
 				}

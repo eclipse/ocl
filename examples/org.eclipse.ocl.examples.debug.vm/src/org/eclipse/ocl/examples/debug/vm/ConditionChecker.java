@@ -18,9 +18,9 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 
 public class ConditionChecker {
 

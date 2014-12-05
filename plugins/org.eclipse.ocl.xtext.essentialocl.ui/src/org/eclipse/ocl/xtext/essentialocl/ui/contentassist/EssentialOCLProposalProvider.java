@@ -19,14 +19,14 @@ import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
-import org.eclipse.ocl.examples.pivot.Iteration;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.PivotFactory;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.util.Pivotable;
+import org.eclipse.ocl.pivot.Iteration;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.PivotFactory;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.Variable;
+import org.eclipse.ocl.pivot.util.Pivotable;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
@@ -199,7 +199,7 @@ public class EssentialOCLProposalProvider extends AbstractEssentialOCLProposalPr
 		else if (eObject instanceof Variable) {
 			return BOOST_VARIABLE;
 		}
-		else if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
+		else if (eObject instanceof org.eclipse.ocl.pivot.Package) {
 			return BOOST_PACKAGE;
 		}
 		else {

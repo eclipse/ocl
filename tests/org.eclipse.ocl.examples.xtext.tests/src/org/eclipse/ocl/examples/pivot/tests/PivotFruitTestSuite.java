@@ -23,11 +23,11 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.AssociationClass;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2AS;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.AssociationClass;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.ecore.Ecore2AS;
 import org.eclipse.uml2.uml.Association;
 
 /**
@@ -39,7 +39,7 @@ public abstract class PivotFruitTestSuite extends PivotTestSuite
 	protected EPackage fruitEPackage;
 	protected EFactory fruitEFactory;
 
-	protected org.eclipse.ocl.examples.pivot.Package fruitPackage;
+	protected org.eclipse.ocl.pivot.Package fruitPackage;
 	
 	protected EClass fruit;
 	protected EOperation fruit_ripen;
@@ -75,7 +75,7 @@ public abstract class PivotFruitTestSuite extends PivotTestSuite
 	protected EEnumLiteral color_brown;
 	protected EEnumLiteral color_pink;
 	
-	protected org.eclipse.ocl.examples.pivot.Class forest;
+	protected org.eclipse.ocl.pivot.Class forest;
 	protected Property forest_trees;
 	protected Property forest_trees_zoneQualifier;
 	protected Property forest_trees_indexQualifier;
@@ -84,7 +84,7 @@ public abstract class PivotFruitTestSuite extends PivotTestSuite
 	protected Association a_forest_tree;
 	protected Property a_forest_tree_forest;
 	
-	protected org.eclipse.ocl.examples.pivot.Class util;
+	protected org.eclipse.ocl.pivot.Class util;
 	protected Property util_orderedSet;
 	protected Property util_set;
 	protected Property util_bag;
@@ -160,7 +160,7 @@ public abstract class PivotFruitTestSuite extends PivotTestSuite
 		color_brown = getELiteral(color, "brown");
 		color_pink = getELiteral(color, "pink");
 /*		
-//		forest = (org.eclipse.ocl.examples.pivot.Class) getOwnedType(fruitPackage, "Forest");
+//		forest = (org.eclipse.ocl.pivot.Class) getOwnedType(fruitPackage, "Forest");
 //		forest_trees = getOwnedAttribute(forest, "trees", null);
 //		forest_trees_zoneQualifier = forest_trees.getQualifier("zone", null);
 //		forest_trees_indexQualifier = forest_trees.getQualifier("index", null);
@@ -169,7 +169,7 @@ public abstract class PivotFruitTestSuite extends PivotTestSuite
 //		a_forest_tree = (Association) getOwnedType(fruitPackage, "A_Forest_Tree");
 //		a_forest_tree_forest = a_forest_tree.getOwnedEnd("forest", null);
 		
-		util = (org.eclipse.ocl.examples.pivot.Class) getOwnedType(fruitPackage, "FruitUtil");
+		util = (org.eclipse.ocl.pivot.Class) getOwnedType(fruitPackage, "FruitUtil");
 		util_orderedSet = getOwnedAttribute(util, "orderedSet", null);
 		util_set = getOwnedAttribute(util, "set", null);
 		util_bag = getOwnedAttribute(util, "bag", null);

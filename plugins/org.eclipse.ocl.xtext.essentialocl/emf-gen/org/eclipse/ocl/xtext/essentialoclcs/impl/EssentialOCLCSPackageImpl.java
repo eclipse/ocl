@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
 import org.eclipse.ocl.xtext.essentialoclcs.AbstractNameExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.AssociationClassCallExpCS;

@@ -13,7 +13,7 @@ package org.eclipse.ocl.examples.debug.vm.evaluator;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.vm.core.VMDebugCore;
-import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.pivot.NamedElement;
 
 public abstract class VMNestedEvaluationEnvironment<T extends NamedElement> extends VMEvaluationEnvironment<T>
 {

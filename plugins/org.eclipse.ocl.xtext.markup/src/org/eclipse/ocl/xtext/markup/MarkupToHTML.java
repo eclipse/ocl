@@ -19,16 +19,16 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2AS;
-import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
-import org.eclipse.ocl.examples.pivot.utilities.HTMLBuffer;
-import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.OCL;
+import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.helper.OCLHelper;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.prettyprint.PrettyPrintOptions;
+import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.pivot.utilities.HTMLBuffer;
+import org.eclipse.ocl.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.xtext.markupcs.BulletElement;
 import org.eclipse.ocl.xtext.markupcs.CompoundElement;
 import org.eclipse.ocl.xtext.markupcs.FigureElement;
@@ -261,12 +261,12 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 			EClass eClass = ((EObject)context).eClass();
 			String name = eClass.getName();
 			assert name != null;
-			org.eclipse.ocl.examples.pivot.Class pivotType = metaModelManager.getPivotType(name);
+			org.eclipse.ocl.pivot.Class pivotType = metaModelManager.getPivotType(name);
 			if (pivotType == null) {
 				Resource resource = eClass.eResource();
 				if (resource != null) {
 					Ecore2AS ecore2as = Ecore2AS.getAdapter(resource, metaModelManager);
-					pivotType = ecore2as.getCreated(org.eclipse.ocl.examples.pivot.Class.class, eClass);
+					pivotType = ecore2as.getCreated(org.eclipse.ocl.pivot.Class.class, eClass);
 				}
 			}
 			if (pivotType != null) {

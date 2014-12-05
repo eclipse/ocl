@@ -11,7 +11,7 @@
       <details key="documentation" value="A Boolean type is used for logical expression, consisting of the predefined values true and false."/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="CallableImplementation" instanceClassName="org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="CallableImplementation" instanceClassName="org.eclipse.ocl.pivot.evaluation.CallableImplementation"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Int" instanceClassName="int"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Integer" instanceClassName="java.math.BigInteger">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -386,7 +386,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Nameable" instanceClassName="org.eclipse.ocl.examples.pivot.util.Nameable"
+  <eClassifiers xsi:type="ecore:EClass" name="Nameable" instanceClassName="org.eclipse.ocl.pivot.util.Nameable"
       abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="#//MonikeredElement #//Nameable">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -579,7 +579,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Pivotable" instanceClassName="org.eclipse.ocl.examples.pivot.util.Pivotable"
+  <eClassifiers xsi:type="ecore:EClass" name="Pivotable" instanceClassName="org.eclipse.ocl.pivot.util.Pivotable"
       abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Precedence" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="associativity" ordered="false"
@@ -967,9 +967,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="implicit" ordered="false"
         eType="#//Boolean" defaultValueLiteral="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Visitable" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitable"
+  <eClassifiers xsi:type="ecore:EClass" name="Visitable" instanceClassName="org.eclipse.ocl.pivot.util.Visitable"
       abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Visitor" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitor"
+  <eClassifiers xsi:type="ecore:EClass" name="Visitor" instanceClassName="org.eclipse.ocl.pivot.util.Visitor"
       abstract="true" interface="true">
     <eTypeParameters name="R"/>
     <eTypeParameters name="C"/>

@@ -19,8 +19,8 @@ import org.eclipse.emf.mwe.utils.*
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.emf.ecore.resource.impl.*
 
-var sourceName = "org.eclipse.ocl.examples.library"
-var targetName = "org.eclipse.ocl.examples.pivot"
+var sourceName = "org.eclipse.ocl.library"
+var targetName = "org.eclipse.ocl.pivot"
 
 /**
  *	Generate the OCLstdlib Model, by converting oclstdlib.oclstdlib to OCLstdlib.java.

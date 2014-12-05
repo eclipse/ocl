@@ -22,82 +22,82 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.ocl.examples.domain.elements.Nameable;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.Annotation;
-import org.eclipse.ocl.examples.pivot.AnyType;
-import org.eclipse.ocl.examples.pivot.AssociationClassCallExp;
-import org.eclipse.ocl.examples.pivot.BagType;
-import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
-import org.eclipse.ocl.examples.pivot.CallExp;
-import org.eclipse.ocl.examples.pivot.CollectionItem;
-import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
-import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
-import org.eclipse.ocl.examples.pivot.CollectionRange;
-import org.eclipse.ocl.examples.pivot.CollectionType;
-import org.eclipse.ocl.examples.pivot.Comment;
-import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.DataType;
-import org.eclipse.ocl.examples.pivot.Detail;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
-import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.IfExp;
-import org.eclipse.ocl.examples.pivot.Import;
-import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
-import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
-import org.eclipse.ocl.examples.pivot.InvalidType;
-import org.eclipse.ocl.examples.pivot.IterateExp;
-import org.eclipse.ocl.examples.pivot.Iteration;
-import org.eclipse.ocl.examples.pivot.IteratorExp;
-import org.eclipse.ocl.examples.pivot.LambdaType;
-import org.eclipse.ocl.examples.pivot.LetExp;
-import org.eclipse.ocl.examples.pivot.LiteralExp;
-import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.MessageExp;
-import org.eclipse.ocl.examples.pivot.MessageType;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.NavigationCallExp;
-import org.eclipse.ocl.examples.pivot.NullLiteralExp;
-import org.eclipse.ocl.examples.pivot.NumericLiteralExp;
-import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
-import org.eclipse.ocl.examples.pivot.OrderedSetType;
-import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.PivotConstants;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Precedence;
-import org.eclipse.ocl.examples.pivot.PrimitiveLiteralExp;
-import org.eclipse.ocl.examples.pivot.PrimitiveType;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.PropertyCallExp;
-import org.eclipse.ocl.examples.pivot.RealLiteralExp;
-import org.eclipse.ocl.examples.pivot.SequenceType;
-import org.eclipse.ocl.examples.pivot.SetType;
-import org.eclipse.ocl.examples.pivot.StateExp;
-import org.eclipse.ocl.examples.pivot.StringLiteralExp;
-import org.eclipse.ocl.examples.pivot.TemplateBinding;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
-import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
-import org.eclipse.ocl.examples.pivot.TemplateSignature;
-import org.eclipse.ocl.examples.pivot.TemplateableElement;
-import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
-import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
-import org.eclipse.ocl.examples.pivot.TupleType;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypeExp;
-import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
-import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.VariableExp;
-import org.eclipse.ocl.examples.pivot.VoidType;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
-import org.eclipse.ocl.examples.pivot.utilities.AS2Moniker;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.domain.elements.Nameable;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.Annotation;
+import org.eclipse.ocl.pivot.AnyType;
+import org.eclipse.ocl.pivot.AssociationClassCallExp;
+import org.eclipse.ocl.pivot.BagType;
+import org.eclipse.ocl.pivot.BooleanLiteralExp;
+import org.eclipse.ocl.pivot.CallExp;
+import org.eclipse.ocl.pivot.CollectionItem;
+import org.eclipse.ocl.pivot.CollectionLiteralExp;
+import org.eclipse.ocl.pivot.CollectionLiteralPart;
+import org.eclipse.ocl.pivot.CollectionRange;
+import org.eclipse.ocl.pivot.CollectionType;
+import org.eclipse.ocl.pivot.Comment;
+import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.DataType;
+import org.eclipse.ocl.pivot.Detail;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.EnumLiteralExp;
+import org.eclipse.ocl.pivot.EnumerationLiteral;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.IfExp;
+import org.eclipse.ocl.pivot.Import;
+import org.eclipse.ocl.pivot.IntegerLiteralExp;
+import org.eclipse.ocl.pivot.InvalidLiteralExp;
+import org.eclipse.ocl.pivot.InvalidType;
+import org.eclipse.ocl.pivot.IterateExp;
+import org.eclipse.ocl.pivot.Iteration;
+import org.eclipse.ocl.pivot.IteratorExp;
+import org.eclipse.ocl.pivot.LambdaType;
+import org.eclipse.ocl.pivot.LetExp;
+import org.eclipse.ocl.pivot.LiteralExp;
+import org.eclipse.ocl.pivot.LoopExp;
+import org.eclipse.ocl.pivot.MessageExp;
+import org.eclipse.ocl.pivot.MessageType;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.Namespace;
+import org.eclipse.ocl.pivot.NavigationCallExp;
+import org.eclipse.ocl.pivot.NullLiteralExp;
+import org.eclipse.ocl.pivot.NumericLiteralExp;
+import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.OperationCallExp;
+import org.eclipse.ocl.pivot.OppositePropertyCallExp;
+import org.eclipse.ocl.pivot.OrderedSetType;
+import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.Precedence;
+import org.eclipse.ocl.pivot.PrimitiveLiteralExp;
+import org.eclipse.ocl.pivot.PrimitiveType;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.PropertyCallExp;
+import org.eclipse.ocl.pivot.RealLiteralExp;
+import org.eclipse.ocl.pivot.SequenceType;
+import org.eclipse.ocl.pivot.SetType;
+import org.eclipse.ocl.pivot.StateExp;
+import org.eclipse.ocl.pivot.StringLiteralExp;
+import org.eclipse.ocl.pivot.TemplateBinding;
+import org.eclipse.ocl.pivot.TemplateParameter;
+import org.eclipse.ocl.pivot.TemplateParameterSubstitution;
+import org.eclipse.ocl.pivot.TemplateSignature;
+import org.eclipse.ocl.pivot.TemplateableElement;
+import org.eclipse.ocl.pivot.TupleLiteralExp;
+import org.eclipse.ocl.pivot.TupleLiteralPart;
+import org.eclipse.ocl.pivot.TupleType;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.TypeExp;
+import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
+import org.eclipse.ocl.pivot.Variable;
+import org.eclipse.ocl.pivot.VariableExp;
+import org.eclipse.ocl.pivot.VoidType;
+import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.pivot.utilities.AS2Moniker;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.basecs.NamedElementCS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
 import org.eclipse.ocl.xtext.basecs.PivotableElementCS;
@@ -362,11 +362,11 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 		return "/org.eclipse.ocl.edit/icons/full/obj16/BooleanLiteralExp.gif";
 	}
 
-	protected String image(org.eclipse.ocl.examples.pivot.Class ele) {
+	protected String image(org.eclipse.ocl.pivot.Class ele) {
 		return "/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif";
 	}
 
-	protected String text(org.eclipse.ocl.examples.pivot.Class ele) {
+	protected String text(org.eclipse.ocl.pivot.Class ele) {
 		StringBuilder s = new StringBuilder();
 		appendName(s, ele);
 		appendTemplateSignature(s, ele);
@@ -474,7 +474,7 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 		return "/org.eclipse.ocl.edit/icons/full/obj16/EnumLiteralExp.gif";
 	}
 
-	protected String text(org.eclipse.ocl.examples.pivot.Enumeration ele) {
+	protected String text(org.eclipse.ocl.pivot.Enumeration ele) {
 		StringBuilder s = new StringBuilder();
 		appendName(s, ele);
 		appendTemplateSignature(s, ele);
@@ -556,7 +556,7 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 	}
 
 	protected String image(Iteration ele) {
-		return "/org.eclipse.ocl.examples.pivot/icons/full/obj16/Iteration.gif";
+		return "/org.eclipse.ocl.pivot/icons/full/obj16/Iteration.gif";
 	}
 
 	protected String text(Iteration ele) {
@@ -575,7 +575,7 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 	}
 
 	protected String image(LambdaType ele) {
-		return "/org.eclipse.ocl.examples.pivot/icons/full/obj16/LambdaType.gif";
+		return "/org.eclipse.ocl.pivot/icons/full/obj16/LambdaType.gif";
 	}
 
 	protected String image(LetExp ele) {
@@ -700,11 +700,11 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 		return "/org.eclipse.ocl.edit/icons/full/obj16/OrderedSetType.gif";
 	}
 
-	protected String image(org.eclipse.ocl.examples.pivot.Package ele) {
+	protected String image(org.eclipse.ocl.pivot.Package ele) {
 		return "/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif";
 	}
 
-	protected String text(org.eclipse.ocl.examples.pivot.Package ele) {
+	protected String text(org.eclipse.ocl.pivot.Package ele) {
 		String uri = ele.getURI();
 		if (uri != null) {
 			StringBuilder s = new StringBuilder();

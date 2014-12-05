@@ -14,12 +14,12 @@ import java.util.List;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.basecs.ParameterCS;
 import org.eclipse.ocl.xtext.basecs.TypedRefCS;
 import org.eclipse.ocl.xtext.completeoclcs.ClassifierContextDeclCS;
@@ -61,7 +61,7 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 	}
 
 	protected String text(ClassifierContextDeclCS ele) {
-		org.eclipse.ocl.examples.pivot.Class classifier = ele.getReferredClass();
+		org.eclipse.ocl.pivot.Class classifier = ele.getReferredClass();
 		if (classifier == null) {
 			return "<<null>>";
 		}

@@ -17,7 +17,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.xtext.base.ui.wizards.AbstractFileDialog;
 import org.eclipse.ocl.xtext.base.ui.wizards.AbstractFileNewWizardPage;
 import org.eclipse.ocl.xtext.oclinecore.ui.messages.OCLinEcoreUIMessages;

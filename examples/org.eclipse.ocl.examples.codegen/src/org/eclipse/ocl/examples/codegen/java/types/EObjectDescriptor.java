@@ -12,7 +12,7 @@ package org.eclipse.ocl.examples.codegen.java.types;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.domain.ids.ElementId;
+import org.eclipse.ocl.domain.ids.ElementId;
 
 /**
  * An EObjectDescriptor describes a type gor an (unboxed) EObjecte. It has a pivot ElementId, a Java class name and an EClassifier.

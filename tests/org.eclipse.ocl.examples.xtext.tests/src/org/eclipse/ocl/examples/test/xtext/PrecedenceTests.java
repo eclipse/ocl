@@ -14,12 +14,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.ocl.examples.pivot.AssociativityKind;
-import org.eclipse.ocl.examples.pivot.Library;
-import org.eclipse.ocl.examples.pivot.PivotFactory;
-import org.eclipse.ocl.examples.pivot.Precedence;
-import org.eclipse.ocl.examples.pivot.manager.PrecedenceManager;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
+import org.eclipse.ocl.pivot.AssociativityKind;
+import org.eclipse.ocl.pivot.Library;
+import org.eclipse.ocl.pivot.PivotFactory;
+import org.eclipse.ocl.pivot.Precedence;
+import org.eclipse.ocl.pivot.manager.PrecedenceManager;
 
 /**
  * Tests the PrecedenceManager and Precedence relationships.

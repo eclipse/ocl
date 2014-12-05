@@ -28,12 +28,12 @@ import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.Library;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.Precedence;
-import org.eclipse.ocl.examples.pivot.resource.ASResource;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.Library;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.Precedence;
+import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.oclstdlib.OCLstdlibStandaloneSetup;
 
@@ -83,7 +83,7 @@ public abstract class GenerateTextileForLibrary extends AbstractWorkflowComponen
 	
 	protected Iterable<Precedence> getPrecedences(@NonNull Model asModel) {
 		List<Precedence> precedences = new ArrayList<Precedence>();
-		for (org.eclipse.ocl.examples.pivot.Package asPackage : asModel.getOwnedPackages()) {
+		for (org.eclipse.ocl.pivot.Package asPackage : asModel.getOwnedPackages()) {
 			if (asPackage instanceof Library) {
 				precedences.addAll(((Library)asPackage).getOwnedPrecedence());
 			}
@@ -141,7 +141,7 @@ public abstract class GenerateTextileForLibrary extends AbstractWorkflowComponen
 	}
 
 	/**
-	 * The project name hosting the Metamodel. (e.g. "org.eclipse.ocl.examples.pivot")
+	 * The project name hosting the Metamodel. (e.g. "org.eclipse.ocl.pivot")
 	 */
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;

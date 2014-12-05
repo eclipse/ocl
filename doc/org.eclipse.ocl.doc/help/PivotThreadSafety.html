@@ -35,7 +35,7 @@
 <p>The code-generated evaluator is intended to be thread-safe; all shared objects update their caches within relatively fine-grained synchronized regions. However there are a number of class static variables that are not synchronized and might therefore experience at best a redundant multiple initialization and at worst an assumed uniqueness violation. Thread safe code must therefore invoke:</p>
 <div class="literallayout">
 <p>
-<code class="code">	org.eclipse.ocl.examples.domain.values.util.ValuesUtil.initAllStatics()<br>
+<code class="code">	org.eclipse.ocl.domain.values.util.ValuesUtil.initAllStatics()<br>
 
 </code>
 </p>

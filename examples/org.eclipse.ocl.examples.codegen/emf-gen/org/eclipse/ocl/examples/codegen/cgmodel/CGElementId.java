@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.codegen.cgmodel;
 
-import org.eclipse.ocl.examples.domain.ids.ElementId;
+import org.eclipse.ocl.domain.ids.ElementId;
 
 /**
  * <!-- begin-user-doc -->

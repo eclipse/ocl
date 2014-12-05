@@ -47,7 +47,7 @@
 	description="iteration declaration" 
 	enabled="true" 
 	name="Iteration"
-	id="LibIterationCS">iteration ${cursor}${name}(${param1} : T | body : ${type}) : ${type} => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
+	id="LibIterationCS">iteration ${cursor}${name}(${param1} : T | body : ${type}) : ${type} => 'org.eclipse.ocl.library.oclany.OclAnyUnsupportedOperation';
 </template>
 <template 
 	autoinsert="false" 
@@ -65,7 +65,7 @@
 	description="operation declaration" 
 	enabled="true" 
 	name="Operation"
-	id="LibOperationCS">operation ${cursor}${name}(${param1} : ${type1}) : ${type2} => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
+	id="LibOperationCS">operation ${cursor}${name}(${param1} : ${type1}) : ${type2} => 'org.eclipse.ocl.library.oclany.OclAnyUnsupportedOperation';
 </template>
 <template 
 	autoinsert="false" 
@@ -85,7 +85,7 @@
 	description="property declaration" 
 	enabled="true" 
 	name="Property"
-	id="LibPropertyCS">property ${cursor}${name} : ${type} => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
+	id="LibPropertyCS">property ${cursor}${name} : ${type} => 'org.eclipse.ocl.library.oclany.OclAnyUnsupportedOperation';
 </template>
 
 	

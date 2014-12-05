@@ -17,10 +17,10 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.domain.values.impl.BigIntegerValueImpl;
-import org.eclipse.ocl.examples.domain.values.impl.IntIntegerValueImpl;
-import org.eclipse.ocl.examples.domain.values.impl.LongIntegerValueImpl;
-import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.domain.values.impl.BigIntegerValueImpl;
+import org.eclipse.ocl.domain.values.impl.IntIntegerValueImpl;
+import org.eclipse.ocl.domain.values.impl.LongIntegerValueImpl;
+import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;

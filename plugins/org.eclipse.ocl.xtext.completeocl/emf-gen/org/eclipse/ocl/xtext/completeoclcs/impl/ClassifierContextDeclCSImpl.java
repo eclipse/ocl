@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
 import org.eclipse.ocl.xtext.basecs.ConstraintCS;
@@ -352,13 +352,13 @@ public class ClassifierContextDeclCSImpl
 	 * @generated NOT
 	 */
 	@Override
-	public org.eclipse.ocl.examples.pivot.Class getReferredClass() {
+	public org.eclipse.ocl.pivot.Class getReferredClass() {
 		PathNameCS ownedPathName2 = ownedPathName;
 		if (ownedPathName2 == null) {
 			return null;
 		}
 		CS2AS.setElementType(ownedPathName2, PivotPackage.Literals.TYPE, this, null);
-		return (org.eclipse.ocl.examples.pivot.Class) ownedPathName2.getReferredElement();
+		return (org.eclipse.ocl.pivot.Class) ownedPathName2.getReferredElement();
 	}
 
 	/**

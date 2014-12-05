@@ -20,6 +20,13 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.domain.ids.ElementId;
+import org.eclipse.ocl.domain.ids.EnumerationLiteralId;
+import org.eclipse.ocl.domain.ids.TuplePartId;
+import org.eclipse.ocl.domain.ids.TypeId;
+import org.eclipse.ocl.domain.library.LibraryIteration;
+import org.eclipse.ocl.domain.library.LibraryOperation;
+import org.eclipse.ocl.domain.library.LibraryProperty;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGAccumulator;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGAssertNonNullExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBoolean;
@@ -90,18 +97,11 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGTypeId;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGUnboxExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGUnlimited;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGVariableExp;
-import org.eclipse.ocl.examples.domain.ids.ElementId;
-import org.eclipse.ocl.examples.domain.ids.EnumerationLiteralId;
-import org.eclipse.ocl.examples.domain.ids.TuplePartId;
-import org.eclipse.ocl.examples.domain.ids.TypeId;
-import org.eclipse.ocl.examples.domain.library.LibraryIteration;
-import org.eclipse.ocl.examples.domain.library.LibraryOperation;
-import org.eclipse.ocl.examples.domain.library.LibraryProperty;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Iteration;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.Iteration;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.Type;
 
 /**
  * <!-- begin-user-doc -->

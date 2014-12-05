@@ -20,22 +20,22 @@ import org.eclipse.ocl.examples.debug.OCLDebugPlugin;
 import org.eclipse.ocl.examples.debug.vm.VMVirtualMachine;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
 import org.eclipse.ocl.examples.debug.vm.utils.VMInterruptedExecutionException;
-import org.eclipse.ocl.examples.domain.elements.DomainClass;
-import org.eclipse.ocl.examples.domain.elements.DomainEnvironment;
-import org.eclipse.ocl.examples.domain.elements.DomainExpression;
-import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.examples.domain.evaluation.DomainLogger;
-import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
-import org.eclipse.ocl.examples.domain.types.IdResolver;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitorImpl;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.util.AbstractWrappingVisitor;
-import org.eclipse.ocl.examples.pivot.util.Visitable;
+import org.eclipse.ocl.domain.elements.DomainClass;
+import org.eclipse.ocl.domain.elements.DomainEnvironment;
+import org.eclipse.ocl.domain.elements.DomainExpression;
+import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.domain.evaluation.DomainLogger;
+import org.eclipse.ocl.domain.evaluation.DomainModelManager;
+import org.eclipse.ocl.domain.types.IdResolver;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.Variable;
+import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.pivot.evaluation.EvaluationVisitorImpl;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.util.AbstractWrappingVisitor;
+import org.eclipse.ocl.pivot.util.Visitable;
 
 public abstract class OCLVMEvaluationVisitor extends AbstractWrappingVisitor<Object, Object, IOCLVMEvaluationVisitor, Element> implements IOCLVMEvaluationVisitor
 {

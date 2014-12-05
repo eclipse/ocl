@@ -26,14 +26,14 @@ import org.eclipse.ocl.examples.debug.vm.data.VMStackFrameData;
 import org.eclipse.ocl.examples.debug.vm.data.VMVariableData;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
 import org.eclipse.ocl.examples.debug.vm.launching.DebuggableRunner;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.Feature;
-import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.Feature;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.Type;
 
 public class OCLVMVirtualMachine extends VMVirtualMachine
 {
@@ -55,11 +55,11 @@ public class OCLVMVirtualMachine extends VMVirtualMachine
         if (eObject instanceof Model) {
         	return false;
         }
-        else if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
+        else if (eObject instanceof org.eclipse.ocl.pivot.Package) {
         	if (appendElementSignature(s, eObject.eContainer())) {
     	        s.append("::");
         	}
-	        s.append(((org.eclipse.ocl.examples.pivot.Package)eObject).getName());        
+	        s.append(((org.eclipse.ocl.pivot.Package)eObject).getName());        
 			return true;
         }
         else if (eObject instanceof Type) {

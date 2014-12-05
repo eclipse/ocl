@@ -12,7 +12,7 @@ package org.eclipse.ocl.examples.debug.stepper;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMRootEvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.pivot.Element;
 
 /**
  * An ElementStepper provides the non-standard behaviour of stopping before and after execution of an AST node.

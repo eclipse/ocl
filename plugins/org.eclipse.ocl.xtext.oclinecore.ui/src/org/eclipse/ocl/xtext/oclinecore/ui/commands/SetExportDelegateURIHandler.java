@@ -15,7 +15,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.common.OCLConstants;
-import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.xtext.oclinecore.ui.model.OCLinEcoreDocumentProvider;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchWindow;

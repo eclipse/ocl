@@ -13,10 +13,10 @@ package org.eclipse.ocl.examples.consumers.tests;
 import java.io.IOException;
 
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.tests.AbstractValidateTests;
+import org.eclipse.ocl.pivot.OCL;
+import org.eclipse.ocl.pivot.messages.OCLMessages;
 
 /**
  * Tests that OCL validation works on consumer models such as SysML.

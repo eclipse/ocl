@@ -11,28 +11,28 @@
 package org.eclipse.ocl.examples.codegen.java;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.domain.ids.ClassId;
-import org.eclipse.ocl.examples.domain.ids.CollectionTypeId;
-import org.eclipse.ocl.examples.domain.ids.DataTypeId;
-import org.eclipse.ocl.examples.domain.ids.ElementId;
-import org.eclipse.ocl.examples.domain.ids.EnumerationId;
-import org.eclipse.ocl.examples.domain.ids.EnumerationLiteralId;
-import org.eclipse.ocl.examples.domain.ids.IdVisitor;
-import org.eclipse.ocl.examples.domain.ids.LambdaTypeId;
-import org.eclipse.ocl.examples.domain.ids.NestedPackageId;
-import org.eclipse.ocl.examples.domain.ids.NsURIPackageId;
-import org.eclipse.ocl.examples.domain.ids.OclInvalidTypeId;
-import org.eclipse.ocl.examples.domain.ids.OclVoidTypeId;
-import org.eclipse.ocl.examples.domain.ids.OperationId;
-import org.eclipse.ocl.examples.domain.ids.PrimitiveTypeId;
-import org.eclipse.ocl.examples.domain.ids.PropertyId;
-import org.eclipse.ocl.examples.domain.ids.RootPackageId;
-import org.eclipse.ocl.examples.domain.ids.TemplateBinding;
-import org.eclipse.ocl.examples.domain.ids.TemplateParameterId;
-import org.eclipse.ocl.examples.domain.ids.TemplateableTypeId;
-import org.eclipse.ocl.examples.domain.ids.TuplePartId;
-import org.eclipse.ocl.examples.domain.ids.TupleTypeId;
-import org.eclipse.ocl.examples.domain.ids.UnspecifiedId;
+import org.eclipse.ocl.domain.ids.ClassId;
+import org.eclipse.ocl.domain.ids.CollectionTypeId;
+import org.eclipse.ocl.domain.ids.DataTypeId;
+import org.eclipse.ocl.domain.ids.ElementId;
+import org.eclipse.ocl.domain.ids.EnumerationId;
+import org.eclipse.ocl.domain.ids.EnumerationLiteralId;
+import org.eclipse.ocl.domain.ids.IdVisitor;
+import org.eclipse.ocl.domain.ids.LambdaTypeId;
+import org.eclipse.ocl.domain.ids.NestedPackageId;
+import org.eclipse.ocl.domain.ids.NsURIPackageId;
+import org.eclipse.ocl.domain.ids.OclInvalidTypeId;
+import org.eclipse.ocl.domain.ids.OclVoidTypeId;
+import org.eclipse.ocl.domain.ids.OperationId;
+import org.eclipse.ocl.domain.ids.PrimitiveTypeId;
+import org.eclipse.ocl.domain.ids.PropertyId;
+import org.eclipse.ocl.domain.ids.RootPackageId;
+import org.eclipse.ocl.domain.ids.TemplateBinding;
+import org.eclipse.ocl.domain.ids.TemplateParameterId;
+import org.eclipse.ocl.domain.ids.TemplateableTypeId;
+import org.eclipse.ocl.domain.ids.TuplePartId;
+import org.eclipse.ocl.domain.ids.TupleTypeId;
+import org.eclipse.ocl.domain.ids.UnspecifiedId;
 
 /**
  * An Id2JavaClassVisitor return the Java Interface for an Id.

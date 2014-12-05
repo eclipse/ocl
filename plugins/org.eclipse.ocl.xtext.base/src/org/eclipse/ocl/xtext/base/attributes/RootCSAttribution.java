@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.base.attributes;
 
-import org.eclipse.ocl.examples.pivot.scoping.Attribution;
+import org.eclipse.ocl.pivot.scoping.Attribution;
 
 public interface RootCSAttribution extends Attribution
 {

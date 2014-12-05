@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.base.services;
 
-import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.xtext.naming.DefaultDeclarativeQualifiedNameProvider;
 
 public class BaseQualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvider

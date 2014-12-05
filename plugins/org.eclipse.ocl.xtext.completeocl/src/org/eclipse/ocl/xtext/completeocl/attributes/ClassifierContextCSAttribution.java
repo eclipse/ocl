@@ -13,10 +13,10 @@ package org.eclipse.ocl.xtext.completeocl.attributes;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
-import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
-import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
-import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
+import org.eclipse.ocl.domain.elements.FeatureFilter;
+import org.eclipse.ocl.pivot.scoping.AbstractAttribution;
+import org.eclipse.ocl.pivot.scoping.EnvironmentView;
+import org.eclipse.ocl.pivot.scoping.ScopeView;
 import org.eclipse.ocl.xtext.completeoclcs.ClassifierContextDeclCS;
 import org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage;
 
@@ -29,7 +29,7 @@ public class ClassifierContextCSAttribution extends AbstractAttribution
 		ClassifierContextDeclCS targetElement = (ClassifierContextDeclCS)target;
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == CompleteOCLCSPackage.Literals.CLASSIFIER_CONTEXT_DECL_CS__OWNED_INVARIANTS) {
-			org.eclipse.ocl.examples.pivot.Class type = targetElement.getReferredClass();
+			org.eclipse.ocl.pivot.Class type = targetElement.getReferredClass();
 			if (type != null) {
 				environmentView.addAllOperations(type, FeatureFilter.SELECT_NON_STATIC);
 				environmentView.addAllProperties(type, FeatureFilter.SELECT_NON_STATIC);

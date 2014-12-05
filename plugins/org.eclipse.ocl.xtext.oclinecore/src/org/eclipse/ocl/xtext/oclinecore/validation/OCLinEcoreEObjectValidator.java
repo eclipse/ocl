@@ -16,7 +16,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateValidator;
+import org.eclipse.ocl.pivot.delegate.OCLDelegateValidator;
 
 /**
  * A OCLinEcoreEObjectValidator enhances the standard EObjectValidator to allow validation failures

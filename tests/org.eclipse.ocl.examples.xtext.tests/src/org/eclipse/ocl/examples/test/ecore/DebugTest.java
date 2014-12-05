@@ -11,8 +11,8 @@
 
 package org.eclipse.ocl.examples.test.ecore;
 
-import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.test.generic.GenericDebugTest;
+import org.eclipse.ocl.pivot.Model;
 
 /**
  * The JUnit4 GUI does not support re-running individual tests in isolation.
@@ -21,7 +21,7 @@ import org.eclipse.ocl.examples.test.generic.GenericDebugTest;
  */
 @SuppressWarnings("nls")
 public class DebugTest extends GenericDebugTest {
-	public org.eclipse.ocl.examples.pivot.Package pkg1;
+	public org.eclipse.ocl.pivot.Package pkg1;
 
     @Override
     protected void setUp() throws Exception {

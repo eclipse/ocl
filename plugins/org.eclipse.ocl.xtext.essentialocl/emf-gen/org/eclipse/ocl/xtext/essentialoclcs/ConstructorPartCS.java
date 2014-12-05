@@ -10,8 +10,8 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.essentialoclcs;
 
-import org.eclipse.ocl.examples.domain.elements.Nameable;
-import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.domain.elements.Nameable;
+import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;
 
 /**
@@ -29,7 +29,7 @@ import org.eclipse.ocl.xtext.basecs.ModelElementCS;
  * </p>
  *
  * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getConstructorPartCS()
- * @model superTypes="org.eclipse.ocl.xtext.basecs.ModelElementCS org.eclipse.ocl.examples.pivot.Nameable"
+ * @model superTypes="org.eclipse.ocl.xtext.basecs.ModelElementCS org.eclipse.ocl.pivot.Nameable"
  * @generated
  */
 public interface ConstructorPartCS

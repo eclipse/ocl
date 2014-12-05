@@ -18,23 +18,23 @@ import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.Class;
-import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.Import;
-import org.eclipse.ocl.examples.pivot.Iteration;
-import org.eclipse.ocl.examples.pivot.LanguageExpression;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
-import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.Class;
+import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.Import;
+import org.eclipse.ocl.pivot.Iteration;
+import org.eclipse.ocl.pivot.LanguageExpression;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.Namespace;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.scoping.EnvironmentView;
+import org.eclipse.ocl.pivot.scoping.ScopeFilter;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.xtext.base.cs2as.Continuation;
@@ -105,7 +105,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		ownedOperations = operationContextDecls->collect(o | contextOperation(o))->union(defOperations.ast())->sortedBy(name),
 		ownedProperties = propertyContextDecls->collect(p | contextProperty(p))->union(defProperties.ast())->sortedBy(name)
 	} */
-	private @NonNull org.eclipse.ocl.examples.pivot.Class contextClass(@NonNull org.eclipse.ocl.examples.pivot.Class modelClass,
+	private @NonNull org.eclipse.ocl.pivot.Class contextClass(@NonNull org.eclipse.ocl.pivot.Class modelClass,
 			@NonNull List<ContextDeclCS> contextDecls) {
 		List<ConstraintCS> allInvariants = new ArrayList<ConstraintCS>();
 		List<ClassifierContextDeclCS> classifierContextDecls = new ArrayList<ClassifierContextDeclCS>();
@@ -165,7 +165,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		}
 		Collections.sort(contextProperties, PivotUtil.NAMEABLE_COMPARATOR);
 		ClassifierContextDeclCS csElement = classifierContextDecls.size() > 0 ? classifierContextDecls.get(0) : null;
-		org.eclipse.ocl.examples.pivot.Class contextClass = context.refreshModelElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, csElement);
+		org.eclipse.ocl.pivot.Class contextClass = context.refreshModelElement(org.eclipse.ocl.pivot.Class.class, PivotPackage.Literals.CLASS, csElement);
 		contextClass.setName(modelClass.getName());
 		context.refreshPivotList(Constraint.class, contextClass.getOwnedInvariants(), allInvariants);
 		context.refreshList(contextClass.getOwnedOperations(), contextOperations);
@@ -213,7 +213,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 --		ownedInvariants = packageInvariants.ast(),
 		ownedClasses = modelClasses->sortedBy(name)->collect(c | contextClass(c, allContextDecls->select(cd | cd.referredClass() = c)))
 	} */
-	private @NonNull org.eclipse.ocl.examples.pivot.Package contextPackage(@NonNull org.eclipse.ocl.examples.pivot.Package modelPackage,
+	private @NonNull org.eclipse.ocl.pivot.Package contextPackage(@NonNull org.eclipse.ocl.pivot.Package modelPackage,
 			@NonNull List<PackageDeclarationCS> packageDecls, @NonNull List<ContextDeclCS> contextDecls) {
 		List<ConstraintCS> packageInvariants = new ArrayList<ConstraintCS>();
 		List<ContextDeclCS> allContextDecls = new ArrayList<ContextDeclCS>(contextDecls);
@@ -221,31 +221,31 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 			packageInvariants.addAll(packageDecl.getOwnedInvariants());
 			allContextDecls.addAll(packageDecl.getOwnedContexts());
 		}
-		Set<org.eclipse.ocl.examples.pivot.Class> modelClasses = new HashSet<org.eclipse.ocl.examples.pivot.Class>();
+		Set<org.eclipse.ocl.pivot.Class> modelClasses = new HashSet<org.eclipse.ocl.pivot.Class>();
 		for (ContextDeclCS contextDecl : allContextDecls) {
 			Class modelClass = getReferredClass(contextDecl);
 			if (modelClass != null) {
 				modelClasses.add(modelClass);
 			}
 		}
-		List<org.eclipse.ocl.examples.pivot.Class> sortedModelClasses = new ArrayList<org.eclipse.ocl.examples.pivot.Class>(modelClasses);
+		List<org.eclipse.ocl.pivot.Class> sortedModelClasses = new ArrayList<org.eclipse.ocl.pivot.Class>(modelClasses);
 		Collections.sort(sortedModelClasses, PivotUtil.NAMEABLE_COMPARATOR);
-		List<org.eclipse.ocl.examples.pivot.Class> contextClasses = new ArrayList<org.eclipse.ocl.examples.pivot.Class>();
-		for (org.eclipse.ocl.examples.pivot.Class modelClass : sortedModelClasses) {
+		List<org.eclipse.ocl.pivot.Class> contextClasses = new ArrayList<org.eclipse.ocl.pivot.Class>();
+		for (org.eclipse.ocl.pivot.Class modelClass : sortedModelClasses) {
 			if (modelClass != null) {
 				List<ContextDeclCS> selectedContexts = new ArrayList<ContextDeclCS>();
 				for (ContextDeclCS csContext : allContextDecls) {
-					org.eclipse.ocl.examples.pivot.Class asClass = getReferredClass(csContext);
+					org.eclipse.ocl.pivot.Class asClass = getReferredClass(csContext);
 					if (modelClass == asClass) {
 						selectedContexts.add(csContext);
 					}
 				}
-				org.eclipse.ocl.examples.pivot.Class contextClass = contextClass(modelClass, selectedContexts);
+				org.eclipse.ocl.pivot.Class contextClass = contextClass(modelClass, selectedContexts);
 				contextClasses.add(contextClass);
 			}
 		}
 		PackageDeclarationCS csElement = packageDecls.size() > 0 ? packageDecls.get(0) : null;
-		org.eclipse.ocl.examples.pivot.Package contextPackage = context.refreshModelElement(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, csElement);
+		org.eclipse.ocl.pivot.Package contextPackage = context.refreshModelElement(org.eclipse.ocl.pivot.Package.class, PivotPackage.Literals.PACKAGE, csElement);
 		contextPackage.setName(modelPackage.getName());
 		contextPackage.setURI(modelPackage.getURI());
 		context.refreshList(contextPackage.getOwnedClasses(), contextClasses);
@@ -282,7 +282,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		return contextProperty;
 	}
 
-	private @Nullable org.eclipse.ocl.examples.pivot.Class getReferredClass(ContextDeclCS csContext) {
+	private @Nullable org.eclipse.ocl.pivot.Class getReferredClass(ContextDeclCS csContext) {
 		if (csContext instanceof ClassifierContextDeclCS) {
 			return ((ClassifierContextDeclCS)csContext).getReferredClass();
 		}
@@ -297,8 +297,8 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		return null;
 	}
 
-	private @Nullable org.eclipse.ocl.examples.pivot.Package getReferredPackage(@NonNull ContextDeclCS csContext) {
-		org.eclipse.ocl.examples.pivot.Class modelClass = getReferredClass(csContext);
+	private @Nullable org.eclipse.ocl.pivot.Package getReferredPackage(@NonNull ContextDeclCS csContext) {
+		org.eclipse.ocl.pivot.Class modelClass = getReferredClass(csContext);
 		return modelClass != null ? modelClass.getOwningPackage() : null;
 	}
 
@@ -318,10 +318,10 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		for (IncludeCS csInclude : csElement.getOwnedIncludes()) {
 			csInclude.getReferredNamespace();					// Resolve the proxy to perform the import.
 		}
-		Set<org.eclipse.ocl.examples.pivot.Package> modelPackages = new HashSet<org.eclipse.ocl.examples.pivot.Package>();
+		Set<org.eclipse.ocl.pivot.Package> modelPackages = new HashSet<org.eclipse.ocl.pivot.Package>();
 		List<PackageDeclarationCS> ownedPackages = csElement.getOwnedPackages();
 		for (PackageDeclarationCS csPackage : ownedPackages) {
-			org.eclipse.ocl.examples.pivot.Package modelPackage = csPackage.getReferredPackage();
+			org.eclipse.ocl.pivot.Package modelPackage = csPackage.getReferredPackage();
 			if (modelPackage != null) {
 				modelPackages.add(modelPackage);
 			}
@@ -329,20 +329,20 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		List<ContextDeclCS> ownedContexts = csElement.getOwnedContexts();
 		for (ContextDeclCS csContext : ownedContexts) {
 			if (csContext != null) {
-				org.eclipse.ocl.examples.pivot.Package modelPackage = getReferredPackage(csContext);
+				org.eclipse.ocl.pivot.Package modelPackage = getReferredPackage(csContext);
 				if (modelPackage != null) {
 					modelPackages.add(modelPackage);
 				}
 			}
 		}
-		List<org.eclipse.ocl.examples.pivot.Package> sortedModelPackages = new ArrayList<org.eclipse.ocl.examples.pivot.Package>(modelPackages);
+		List<org.eclipse.ocl.pivot.Package> sortedModelPackages = new ArrayList<org.eclipse.ocl.pivot.Package>(modelPackages);
 		Collections.sort(sortedModelPackages, PivotUtil.NAMEABLE_COMPARATOR);
-		List<org.eclipse.ocl.examples.pivot.Package> contextPackages = new ArrayList<org.eclipse.ocl.examples.pivot.Package>();
-		for (org.eclipse.ocl.examples.pivot.Package modelPackage : sortedModelPackages) {
+		List<org.eclipse.ocl.pivot.Package> contextPackages = new ArrayList<org.eclipse.ocl.pivot.Package>();
+		for (org.eclipse.ocl.pivot.Package modelPackage : sortedModelPackages) {
 			if (modelPackage != null) {
 				List<PackageDeclarationCS> selectedPackageDecls = new ArrayList<PackageDeclarationCS>();
 				for (PackageDeclarationCS csPackage : ownedPackages) {
-					org.eclipse.ocl.examples.pivot.Package asPackage = csPackage.getReferredPackage();
+					org.eclipse.ocl.pivot.Package asPackage = csPackage.getReferredPackage();
 					if (modelPackage == asPackage) {
 						selectedPackageDecls.add(csPackage);
 					}
@@ -350,13 +350,13 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 				List<ContextDeclCS> selectedContexts = new ArrayList<ContextDeclCS>();
 				for (ContextDeclCS csContext : ownedContexts) {
 					if (csContext != null) {
-						org.eclipse.ocl.examples.pivot.Package asPackage = getReferredPackage(csContext);
+						org.eclipse.ocl.pivot.Package asPackage = getReferredPackage(csContext);
 						if (modelPackage == asPackage) {
 							selectedContexts.add(csContext);
 						}
 					}
 				}
-				org.eclipse.ocl.examples.pivot.Package contextPackage = contextPackage(modelPackage, selectedPackageDecls, selectedContexts);
+				org.eclipse.ocl.pivot.Package contextPackage = contextPackage(modelPackage, selectedPackageDecls, selectedContexts);
 				contextPackages.add(contextPackage);
 			}
 		}

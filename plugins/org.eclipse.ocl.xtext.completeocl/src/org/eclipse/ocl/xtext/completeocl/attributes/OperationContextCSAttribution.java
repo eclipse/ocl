@@ -15,11 +15,11 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
-import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
-import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
+import org.eclipse.ocl.domain.elements.FeatureFilter;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.scoping.AbstractAttribution;
+import org.eclipse.ocl.pivot.scoping.EnvironmentView;
+import org.eclipse.ocl.pivot.scoping.ScopeView;
 import org.eclipse.ocl.xtext.basecs.PathElementCS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
 import org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage;
@@ -63,14 +63,14 @@ public class OperationContextCSAttribution extends AbstractAttribution
 				List<PathElementCS> path = pathName.getOwnedPathElements();
 				if (path.size() > 1) {
 					Element element = path.get(path.size()-2).getReferredElement();
-					if (element instanceof org.eclipse.ocl.examples.pivot.Class) {
-						org.eclipse.ocl.examples.pivot.Class type = (org.eclipse.ocl.examples.pivot.Class) element;
+					if (element instanceof org.eclipse.ocl.pivot.Class) {
+						org.eclipse.ocl.pivot.Class type = (org.eclipse.ocl.pivot.Class) element;
 //						MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 						environmentView.addAllOperations(type, FeatureFilter.SELECT_NON_STATIC);
 						environmentView.addAllProperties(type, FeatureFilter.SELECT_NON_STATIC);
 //						if (!environmentView.hasFinalResult()) {
 //							Set<Type> alreadyVisitedTypes = new HashSet<Type>();
-		//					org.eclipse.ocl.examples.pivot.Class unspecializedTarget = PivotUtil.getUnspecializedTemplateableElement(target);	// FIXME
+		//					org.eclipse.ocl.pivot.Class unspecializedTarget = PivotUtil.getUnspecializedTemplateableElement(target);	// FIXME
 //							for (Type superClass : metaModelManager.getSuperClasses(type)) {
 //								environmentView.addAllContents(type, scopeView, superClass, Boolean.FALSE, alreadyVisitedTypes);
 //							}

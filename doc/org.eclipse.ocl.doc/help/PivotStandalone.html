@@ -31,7 +31,7 @@ org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain.initialize(resourceSet
 org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup.doSetup();<br>
 org.eclipse.ocl.xtext.oclinecore.OCLinEcoreStandaloneSetup.doSetup();<br>
 org.eclipse.ocl.xtext.oclstdlib.OCLstdlibStandaloneSetup.doSetup();<br>
-org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.getAdapter(resourceSet);<br>
+org.eclipse.ocl.domain.utilities.StandaloneProjectMap.getAdapter(resourceSet);<br>
 
 <br>
 
@@ -71,7 +71,7 @@ org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.getAdapter(resour
 </div>
 <p>If you want to use the default OCL Standard Library you should invoke 
 					<code class="code">org.eclipse.ocl.examples.pivot.model.OCLstdlib.install()</code> which installs a compiled shareable form of 
-					<code class="code">/org.eclipse.ocl.examples.library/model/OCL-2.5.oclstdlib</code>.
+					<code class="code">/org.eclipse.ocl.library/model/OCL-2.5.oclstdlib</code>.
 				</p>
 <p>If you want to use an alternate library examine the code for the standard installation above, and if you want to compile your library examine the 
 					<code class="code">/org.eclipse.ocl.examples.build/src/org/eclipse/ocl/examples/build/GenerateOCLstdlibModel.mwe2</code> launcher for the
@@ -148,7 +148,7 @@ org.eclipse.ocl.xtext.oclstdlib.<br>
 				</p>
 <div class="literallayout">
 <p>
-<code class="code">org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.getAdapter(resourceSet);<br>
+<code class="code">org.eclipse.ocl.domain.utilities.StandaloneProjectMap.getAdapter(resourceSet);<br>
 
 </code>
 </p>
@@ -180,8 +180,8 @@ org.eclipse.ocl.xtext.oclstdlib.<br>
 <p>
 <code class="code">org.eclipse.ocl.common<br>
 &nbsp;&nbsp;org.eclipse.ocl.examples.common<br>
-&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.examples.domain<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.examples.library<br>
+&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.domain<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.library<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.examples.pivot<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.base<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.essentialocl<br>

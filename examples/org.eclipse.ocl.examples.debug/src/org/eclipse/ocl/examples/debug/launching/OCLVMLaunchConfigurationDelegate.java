@@ -33,7 +33,7 @@ import org.eclipse.ocl.examples.debug.vm.core.VMVirtualProcess;
 import org.eclipse.ocl.examples.debug.vm.launching.DebuggableRunner;
 import org.eclipse.ocl.examples.debug.vm.launching.DebuggableRunnerFactory;
 import org.eclipse.ocl.examples.debug.vm.launching.VMLaunchConfigurationDelegate;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
 
 public class OCLVMLaunchConfigurationDelegate extends VMLaunchConfigurationDelegate<OCLEvaluationContext> implements OCLLaunchConstants
 {

@@ -43,40 +43,40 @@ import org.eclipse.ocl.examples.codegen.library.NativeProperty;
 import org.eclipse.ocl.examples.codegen.library.NativeStaticOperation;
 import org.eclipse.ocl.examples.codegen.library.NativeVisitorOperation;
 import org.eclipse.ocl.examples.codegen.utilities.RereferencingCopier;
-import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
-import org.eclipse.ocl.examples.domain.ids.IdManager;
-import org.eclipse.ocl.examples.domain.ids.OperationId;
-import org.eclipse.ocl.examples.domain.ids.ParametersId;
-import org.eclipse.ocl.examples.domain.ids.RootPackageId;
-import org.eclipse.ocl.examples.domain.types.IdResolver;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.CallExp;
-import org.eclipse.ocl.examples.pivot.CompleteClass;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.IfExp;
-import org.eclipse.ocl.examples.pivot.LanguageExpression;
-import org.eclipse.ocl.examples.pivot.LetExp;
-import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.PivotFactory;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.PropertyCallExp;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.VariableExp;
-import org.eclipse.ocl.examples.pivot.lookup.Environment;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.Orphanage;
-import org.eclipse.ocl.examples.pivot.util.Visitable;
-import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.domain.ids.IdManager;
+import org.eclipse.ocl.domain.ids.OperationId;
+import org.eclipse.ocl.domain.ids.ParametersId;
+import org.eclipse.ocl.domain.ids.RootPackageId;
+import org.eclipse.ocl.domain.types.IdResolver;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.CallExp;
+import org.eclipse.ocl.pivot.CompleteClass;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.IfExp;
+import org.eclipse.ocl.pivot.LanguageExpression;
+import org.eclipse.ocl.pivot.LetExp;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.OCL;
+import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.OperationCallExp;
+import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.PivotFactory;
+import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.PropertyCallExp;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.Variable;
+import org.eclipse.ocl.pivot.VariableExp;
+import org.eclipse.ocl.pivot.lookup.Environment;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.manager.Orphanage;
+import org.eclipse.ocl.pivot.util.Visitable;
+import org.eclipse.ocl.pivot.utilities.PivotEnvironmentFactory;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.essentialocl.utilities.EssentialOCLASResourceFactory;
 
 /**
@@ -117,16 +117,16 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		
 		for (EObject root : resource.getContents()) {
 			if (root instanceof Model) {
-				for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.examples.pivot.Package asPackage : ((Model)root).getOwnedPackages()) {
+				for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Package asPackage : ((Model)root).getOwnedPackages()) {
 					GenPackage superGenPackage = null;
-					org.eclipse.ocl.examples.pivot.Package asSuperPackage = null;
+					org.eclipse.ocl.pivot.Package asSuperPackage = null;
 					if (superProjectPrefix != null) {
 						for (GenPackage gPackage : genPackage.getGenModel().getAllUsedGenPackagesWithClassifiers()) {
 							String name = gPackage.getPrefix();
 							if (name.startsWith(superProjectPrefix)) {
 								superGenPackage = gPackage;
 								EPackage eSuperPackage = gPackage.getEcorePackage();
-								asSuperPackage = metaModelManager.getPivotOfEcore(org.eclipse.ocl.examples.pivot.Package.class, eSuperPackage);
+								asSuperPackage = metaModelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Package.class, eSuperPackage);
 								break;
 							}
 						}
@@ -156,7 +156,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	//
 	//	New AS elements
 	//
-	protected final @NonNull org.eclipse.ocl.examples.pivot.Class asVisitorClass;
+	protected final @NonNull org.eclipse.ocl.pivot.Class asVisitorClass;
 	protected final @NonNull Variable asThisVariable;
 	protected final @NonNull Variable asContextVariable;
 	protected final @NonNull Property asChildProperty;
@@ -172,8 +172,8 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	private @Nullable CGProperty cgIdResolverVariable = null;
 	private @Nullable CGProperty cgChildVariable = null;
 
-	protected LookupCodeGenerator(@NonNull MetaModelManager metaModelManager, @NonNull org.eclipse.ocl.examples.pivot.Package asPackage,
-			@Nullable org.eclipse.ocl.examples.pivot.Package asSuperPackage, @NonNull GenPackage genPackage,
+	protected LookupCodeGenerator(@NonNull MetaModelManager metaModelManager, @NonNull org.eclipse.ocl.pivot.Package asPackage,
+			@Nullable org.eclipse.ocl.pivot.Package asSuperPackage, @NonNull GenPackage genPackage,
 			@NonNull String projectPrefix, @NonNull String projectName, @NonNull String visitorPackage, @NonNull String visitorClass,
 			@Nullable String superProjectPrefix, @Nullable String superManualVisitorPackage, @Nullable String superVisitorClass) {
 		super(metaModelManager, asPackage, asSuperPackage, genPackage, projectPrefix, projectName,
@@ -186,7 +186,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		//	Find expected AS elements
 		//
 		ParametersId emptyParametersId = IdManager.getParametersId();
-		org.eclipse.ocl.examples.pivot.Class asElementType = DomainUtil.nonNullState(DomainUtil.getNamedElement(asPackage.getOwnedClasses(), PivotPackage.Literals.ELEMENT.getName()));
+		org.eclipse.ocl.pivot.Class asElementType = DomainUtil.nonNullState(DomainUtil.getNamedElement(asPackage.getOwnedClasses(), PivotPackage.Literals.ELEMENT.getName()));
 		CompleteClass asElementCompleteClass = metaModelManager.getCompleteClass(asElementType);
 		OperationId envOperationId = asElementType.getTypeId().getOperationId(0, LookupClassContext.ENV_NAME, IdManager.getParametersId(asElementType.getTypeId()));
 		this.asElementEnvOperation = DomainUtil.nonNullState((Operation)asElementCompleteClass.getOperation(envOperationId));
@@ -292,10 +292,10 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		}
 	}
 
-	protected @NonNull org.eclipse.ocl.examples.pivot.Class createASVisitorClass(@NonNull String packageName, @NonNull String className) {
-		org.eclipse.ocl.examples.pivot.Class asVisitorClass = PivotUtil.createClass(className);
+	protected @NonNull org.eclipse.ocl.pivot.Class createASVisitorClass(@NonNull String packageName, @NonNull String className) {
+		org.eclipse.ocl.pivot.Class asVisitorClass = PivotUtil.createClass(className);
 		String nsURI = "java://"+packageName;		// java: has no significance other than diagnostic readability
-		org.eclipse.ocl.examples.pivot.Package asVisitorPackage = PivotUtil.createPackage(packageName, "viz", nsURI, IdManager.getRootPackageId(nsURI));
+		org.eclipse.ocl.pivot.Package asVisitorPackage = PivotUtil.createPackage(packageName, "viz", nsURI, IdManager.getRootPackageId(nsURI));
 		asVisitorPackage.getOwnedClasses().add(asVisitorClass);
 		Model asVisitorRoot = PivotUtil.createModel(nsURI + ".java");
 		asVisitorRoot.getOwnedPackages().add(asVisitorPackage);
@@ -353,12 +353,12 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		@SuppressWarnings("null")@NonNull String className = javaClass.getSimpleName();
 		RootPackageId javaPackageId = IdManager.getRootPackageId(packageName);
 		Orphanage orphanage = metaModelManager.getCompleteModel().getOrphanage();
-		org.eclipse.ocl.examples.pivot.Package asPackage = DomainUtil.getNamedElement(orphanage.getOwnedPackages(), packageName);
+		org.eclipse.ocl.pivot.Package asPackage = DomainUtil.getNamedElement(orphanage.getOwnedPackages(), packageName);
 		if (asPackage == null) {
 			asPackage = PivotUtil.createPackage(packageName, packageName, packageName, javaPackageId);
 			orphanage.getOwnedPackages().add(asPackage);
 		}
-		org.eclipse.ocl.examples.pivot.Class asType = DomainUtil.getNamedElement(asPackage.getOwnedClasses(), className);
+		org.eclipse.ocl.pivot.Class asType = DomainUtil.getNamedElement(asPackage.getOwnedClasses(), className);
 		if (asType == null) {
 			asType = PivotUtil.createClass(className);
 			asPackage.getOwnedClasses().add(asType);
@@ -376,7 +376,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 
 	protected @NonNull Map<Operation, Operation> createVisitOperationDeclarations(@NonNull Map<Element, Element> reDefinitions) throws ParserException {
 		Map<Operation,Operation> envOperation2asOperation = new HashMap<Operation,Operation>();
-		for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.examples.pivot.Class asType : asPackage.getOwnedClasses()) {
+		for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Class asType : asPackage.getOwnedClasses()) {
 			for (Operation envOperation : asType.getOwnedOperations()) {
 				if (LookupClassContext.ENV_NAME.equals(envOperation.getName())) {
 					List<Parameter> asParameters = envOperation.getOwnedParameter();
@@ -402,7 +402,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		LanguageExpression envSpecification = DomainUtil.nonNullState(envOperation.getBodyExpression());
 		ExpressionInOCL envExpressionInOCL = metaModelManager.getQueryOrThrow(envSpecification);
 		//
-		org.eclipse.ocl.examples.pivot.Class asType = DomainUtil.nonNullState(envOperation.getOwningClass());
+		org.eclipse.ocl.pivot.Class asType = DomainUtil.nonNullState(envOperation.getOwningClass());
 		Variable asElement = PivotUtil.createVariable(LookupClassContext.ELEMENT_NAME, asType, true, null);
 		reDefinitions.put(envExpressionInOCL.getContextVariable(), asElement);
 		//

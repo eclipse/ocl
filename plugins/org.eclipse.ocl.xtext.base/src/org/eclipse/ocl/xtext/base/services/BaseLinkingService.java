@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
+import org.eclipse.ocl.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.xtext.base.cs2as.AmbiguitiesAdapter;
 import org.eclipse.ocl.xtext.base.cs2as.ExceptionAdapter;
 import org.eclipse.ocl.xtext.base.scoping.BaseScopeProvider;

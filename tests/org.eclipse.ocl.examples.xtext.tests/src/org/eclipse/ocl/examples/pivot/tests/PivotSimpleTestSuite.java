@@ -11,8 +11,8 @@
 
 package org.eclipse.ocl.examples.pivot.tests;
 
-import org.eclipse.ocl.examples.pivot.PivotConstants;
-import org.eclipse.ocl.examples.pivot.Model;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.PivotConstants;
 
 /**
  * Test suite with a simple model.
@@ -21,14 +21,14 @@ import org.eclipse.ocl.examples.pivot.Model;
 public abstract class PivotSimpleTestSuite extends PivotTestSuite
 {
     Model root;
-	org.eclipse.ocl.examples.pivot.Package pkg1;
-	org.eclipse.ocl.examples.pivot.Package pkg2;
-	org.eclipse.ocl.examples.pivot.Package pkg3;
-	org.eclipse.ocl.examples.pivot.Package pkg4;
-	org.eclipse.ocl.examples.pivot.Package pkg5;
-	org.eclipse.ocl.examples.pivot.Package jim;
-	org.eclipse.ocl.examples.pivot.Package bob;
-	org.eclipse.ocl.examples.pivot.Package george;
+	org.eclipse.ocl.pivot.Package pkg1;
+	org.eclipse.ocl.pivot.Package pkg2;
+	org.eclipse.ocl.pivot.Package pkg3;
+	org.eclipse.ocl.pivot.Package pkg4;
+	org.eclipse.ocl.pivot.Package pkg5;
+	org.eclipse.ocl.pivot.Package jim;
+	org.eclipse.ocl.pivot.Package bob;
+	org.eclipse.ocl.pivot.Package george;
 
 	protected PivotSimpleTestSuite(boolean useCodeGen) {
 		super(useCodeGen);

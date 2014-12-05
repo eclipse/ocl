@@ -21,11 +21,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 //import org.eclipse.ocl.common.OCLCommon;
-//import org.eclipse.ocl.examples.pivot.Constraint;
-//import org.eclipse.ocl.examples.pivot.PivotConstants;
-//import org.eclipse.ocl.examples.pivot.PivotFactory;
-//import org.eclipse.ocl.examples.pivot.UMLReflection;
-//import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+//import org.eclipse.ocl.pivot.Constraint;
+//import org.eclipse.ocl.pivot.PivotConstants;
+//import org.eclipse.ocl.pivot.PivotFactory;
+//import org.eclipse.ocl.pivot.UMLReflection;
+//import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.emf.validation.validity.LeafConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityModel;
 

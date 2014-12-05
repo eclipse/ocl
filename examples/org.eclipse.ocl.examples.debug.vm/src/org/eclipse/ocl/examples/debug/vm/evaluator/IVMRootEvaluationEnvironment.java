@@ -11,7 +11,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.debug.vm.evaluator;
 
-import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.pivot.NamedElement;
 
 public interface IVMRootEvaluationEnvironment<T extends NamedElement> extends IVMEvaluationEnvironment<T>
 {

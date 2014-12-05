@@ -35,13 +35,13 @@ Workflow {
 //    	genModel = "/org.eclipse.ocl.xtext.markup/model/Markup.genmodel"
 //    }
     component = @SubGenerateAutoASModel { resourceSet = resourceSet
-    	projectName = "org.eclipse.ocl.examples.pivot"
+    	projectName = "org.eclipse.ocl.pivot"
     	modelName = "pivot"
     	projectPrefix = "Pivot"
     	superProjectName = ""
     	superModelName = ""
     	genModelFile = "model/Pivot.merged.genmodel"
-		visitorPackageName = "org.eclipse.ocl.examples.pivot.util"
+		visitorPackageName = "org.eclipse.ocl.pivot.util"
     }
 /*    component = @SubGenerateAutoCSModel { resourceSet = resourceSet
     	projectName = "org.eclipse.ocl.xtext.essentialocl"

@@ -15,9 +15,9 @@ package org.eclipse.ocl.examples.test.ecore;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
+import org.eclipse.ocl.pivot.PivotPackage;
 
 /**
  */

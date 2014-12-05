@@ -26,12 +26,12 @@ import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.build.utilities.ClasspathURIHandler;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2AS;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.OCL;
+import org.eclipse.ocl.pivot.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.XtextStandaloneSetup;
@@ -41,9 +41,9 @@ public abstract class GenerateLaTeXForCSModel extends GenerateLaTeXUtils
 	protected String cs2asFile;
 	protected String cs2csFile;
 
-	protected abstract @NonNull String generateLaTeX(@NonNull org.eclipse.ocl.examples.pivot.Package asPackage,
-			@NonNull Grammar grammar, @Nullable org.eclipse.ocl.examples.pivot.Package cs2asPackage,
-			@Nullable org.eclipse.ocl.examples.pivot.Package cs2csPackage);
+	protected abstract @NonNull String generateLaTeX(@NonNull org.eclipse.ocl.pivot.Package asPackage,
+			@NonNull Grammar grammar, @Nullable org.eclipse.ocl.pivot.Package cs2asPackage,
+			@Nullable org.eclipse.ocl.pivot.Package cs2csPackage);
 
 	@Override
 	protected void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor, Issues issues) {
@@ -59,9 +59,9 @@ public abstract class GenerateLaTeXForCSModel extends GenerateLaTeXUtils
 		EList<URIHandler> uriHandlers = resourceSet.getURIConverter().getURIHandlers();
 		uriHandlers.add(0, new ClasspathURIHandler());
 		try {
-			org.eclipse.ocl.examples.pivot.Package asPackage = null;
-			org.eclipse.ocl.examples.pivot.Package cs2asPackage = null;
-			org.eclipse.ocl.examples.pivot.Package cs2csPackage = null;
+			org.eclipse.ocl.pivot.Package asPackage = null;
+			org.eclipse.ocl.pivot.Package cs2asPackage = null;
+			org.eclipse.ocl.pivot.Package cs2csPackage = null;
 			if ((cs2asFile != null) && (cs2asFile.length() > 0)) {
 				String cs2asSourceFile = "/" + projectName + "/" + cs2asFile;
 				URI cs2asURI = DomainUtil.nonNullState(URI.createPlatformResourceURI(cs2asSourceFile, true));
@@ -77,10 +77,10 @@ public abstract class GenerateLaTeXForCSModel extends GenerateLaTeXUtils
 				cs2csPackage = getSecondaryPackage(metaModelManager, oclResource);
 			}
 			if (cs2asPackage != null) {
-				asPackage = (org.eclipse.ocl.examples.pivot.Package)metaModelManager.getPrimaryPackage(cs2asPackage);
+				asPackage = (org.eclipse.ocl.pivot.Package)metaModelManager.getPrimaryPackage(cs2asPackage);
 			}
 			else if (cs2csPackage != null) {
-				asPackage = (org.eclipse.ocl.examples.pivot.Package)metaModelManager.getPrimaryPackage(cs2csPackage);
+				asPackage = (org.eclipse.ocl.pivot.Package)metaModelManager.getPrimaryPackage(cs2csPackage);
 			}
 			else {
 				String sourceFile = "/" + projectName + "/" + modelFile;

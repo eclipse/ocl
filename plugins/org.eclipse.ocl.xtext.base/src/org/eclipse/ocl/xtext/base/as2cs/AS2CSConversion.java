@@ -28,28 +28,28 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.elements.DomainPackage;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.domain.values.Unlimited;
-import org.eclipse.ocl.examples.pivot.CollectionType;
-import org.eclipse.ocl.examples.pivot.CompletePackage;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.Package;
-import org.eclipse.ocl.examples.pivot.PivotConstants;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.TemplateSignature;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.UMLReflection;
-import org.eclipse.ocl.examples.pivot.VoidType;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.util.Visitable;
-import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.domain.elements.DomainPackage;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.values.Unlimited;
+import org.eclipse.ocl.pivot.CollectionType;
+import org.eclipse.ocl.pivot.CompletePackage;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.Namespace;
+import org.eclipse.ocl.pivot.Package;
+import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.TemplateSignature;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.UMLReflection;
+import org.eclipse.ocl.pivot.VoidType;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.util.Visitable;
+import org.eclipse.ocl.pivot.utilities.AbstractConversion;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.as2cs.AS2CS.Factory;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.basecs.AnnotationCS;
@@ -84,7 +84,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 	protected final @NonNull BaseDeclarationVisitor defaultDeclarationVisitor;
 	protected final @NonNull BaseReferenceVisitor defaultReferenceVisitor;
 	
-	private org.eclipse.ocl.examples.pivot.Class scope = null;
+	private org.eclipse.ocl.pivot.Class scope = null;
 
 	private final @NonNull Map<EClass, BaseDeclarationVisitor> declarationVisitorMap = new HashMap<EClass, BaseDeclarationVisitor>();
 	private final @NonNull Map<EClass, BaseReferenceVisitor> referenceVisitorMap = new HashMap<EClass, BaseReferenceVisitor>();
@@ -124,8 +124,8 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 		List<ImportCS> imports = new ArrayList<ImportCS>();
 		for (Namespace importedNamespace : importedNamespaces.keySet()) {
 			if (importedNamespace != null) {
-				if (importedNamespace instanceof org.eclipse.ocl.examples.pivot.Package){
-					Package pivotPackage = metaModelManager.getCompletePackage((org.eclipse.ocl.examples.pivot.Package)importedNamespace).getPivotPackage();
+				if (importedNamespace instanceof org.eclipse.ocl.pivot.Package){
+					Package pivotPackage = metaModelManager.getCompletePackage((org.eclipse.ocl.pivot.Package)importedNamespace).getPivotPackage();
 		//			ModelElementCS csElement = createMap.get(importedPackage);
 		//			if ((csElement != null) && (csElement.eResource() == xtextResource)) {
 		//				continue;		// Don't import defined packages
@@ -182,8 +182,8 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 				alias = aliasAnalysis.getAlias(namespace, null);
 				if (alias == null) {
 					String hint = null;
-					if (namespace instanceof org.eclipse.ocl.examples.pivot.Package) {
-						hint = ((org.eclipse.ocl.examples.pivot.Package)namespace).getNsPrefix();
+					if (namespace instanceof org.eclipse.ocl.pivot.Package) {
+						hint = ((org.eclipse.ocl.pivot.Package)namespace).getNsPrefix();
 					}
 					if (hint == null) {
 						String name = namespace.getName();
@@ -269,7 +269,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 		}
 	}
 
-	public org.eclipse.ocl.examples.pivot.Class getScope() {
+	public org.eclipse.ocl.pivot.Class getScope() {
 		return scope;
 	}
 
@@ -304,7 +304,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 		}
 	}
 
-	protected <T extends ClassCS> T refreshClassifier(@NonNull Class<T> csClass, /*@NonNull*/ EClass csEClass, @NonNull org.eclipse.ocl.examples.pivot.Class object) {
+	protected <T extends ClassCS> T refreshClassifier(@NonNull Class<T> csClass, /*@NonNull*/ EClass csEClass, @NonNull org.eclipse.ocl.pivot.Class object) {
 		T csElement = refreshNamedElement(csClass, csEClass, object);
 		List<ConstraintCS> csInvariants = visitDeclarations(ConstraintCS.class, object.getOwnedInvariants(), null);
 		for (ConstraintCS csInvariant : csInvariants) {
@@ -368,7 +368,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 				}
 				if (eObject instanceof DomainPackage) {
 					CompletePackage completePackage = metaModelManager.getCompletePackage((DomainPackage)eObject);
-					org.eclipse.ocl.examples.pivot.Class memberType = completePackage.getMemberType(name);
+					org.eclipse.ocl.pivot.Class memberType = completePackage.getMemberType(name);
 					if (memberType == primaryElement) {
 						if ((eObject != scope) && (eObject != PivotUtil.getContainingPackage(scope))) {
 							eObject = eObject.eContainer(); // If eObject is needed in path, optional scope is its container
@@ -545,8 +545,8 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 		return csElement;
 	}
 
-	public org.eclipse.ocl.examples.pivot.Class setScope(org.eclipse.ocl.examples.pivot.Class object) {
-		org.eclipse.ocl.examples.pivot.Class savedScope = scope;
+	public org.eclipse.ocl.pivot.Class setScope(org.eclipse.ocl.pivot.Class object) {
+		org.eclipse.ocl.pivot.Class savedScope = scope;
 		this.scope = object;
 		return savedScope;
 	}

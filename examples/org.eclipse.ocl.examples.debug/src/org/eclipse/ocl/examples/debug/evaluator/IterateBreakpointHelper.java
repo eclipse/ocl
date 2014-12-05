@@ -20,8 +20,8 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.vm.UnitLocation;
 import org.eclipse.ocl.examples.debug.vm.VMBreakpoint;
 import org.eclipse.ocl.examples.debug.vm.VMBreakpointManager;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.LoopExp;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.LoopExp;
 
 public class IterateBreakpointHelper {
 

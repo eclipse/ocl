@@ -3342,7 +3342,7 @@ ValueSpecification specializes ParameterableElement to specify that a value spec
   <Ecore:EPackage xmi:id="_zzS6jnvXEeSfY7DIIV8YQg" base_Package="_zzSzAHvXEeSfY7DIIV8YQg" nsPrefix="pivot"/>
   <Ecore:EDataType xmi:id="_zzS6j3vXEeSfY7DIIV8YQg" instanceClassName="boolean" base_PrimitiveType="_zzSzAXvXEeSfY7DIIV8YQg"/>
   <Ecore:EDataType xmi:id="_zzS6kHvXEeSfY7DIIV8YQg" instanceClassName="java.lang.Number" base_PrimitiveType="_zzSzA3vXEeSfY7DIIV8YQg"/>
-  <Ecore:EDataType xmi:id="_zzS6kXvXEeSfY7DIIV8YQg" instanceClassName="org.eclipse.ocl.examples.domain.library.LibraryFeature" base_PrimitiveType="_zzSzBXvXEeSfY7DIIV8YQg"/>
+  <Ecore:EDataType xmi:id="_zzS6kXvXEeSfY7DIIV8YQg" instanceClassName="org.eclipse.ocl.domain.library.LibraryFeature" base_PrimitiveType="_zzSzBXvXEeSfY7DIIV8YQg"/>
   <Ecore:EDataType xmi:id="_zzS6knvXEeSfY7DIIV8YQg" instanceClassName="java.lang.Object" base_PrimitiveType="_zzSzBnvXEeSfY7DIIV8YQg"/>
   <Ecore:EDataType xmi:id="_zzS6k3vXEeSfY7DIIV8YQg" instanceClassName="java.lang.Number" base_PrimitiveType="_zzSzB3vXEeSfY7DIIV8YQg"/>
   <Ecore:EDataType xmi:id="_zzS6lHvXEeSfY7DIIV8YQg" instanceClassName="java.lang.String" base_PrimitiveType="_zzSzCHvXEeSfY7DIIV8YQg"/>
@@ -3386,7 +3386,7 @@ ValueSpecification specializes ParameterableElement to specify that a value spec
   <Ecore:EOperation xmi:id="_zzS6unvXEeSfY7DIIV8YQg" base_Operation="_zzSzXHvXEeSfY7DIIV8YQg"/>
   <Ecore:EParameter xmi:id="_zzS6u3vXEeSfY7DIIV8YQg" base_Parameter="_zzSzYXvXEeSfY7DIIV8YQg"/>
   <Ecore:EParameter xmi:id="_zzS6vHvXEeSfY7DIIV8YQg" base_Parameter="_zzSzYnvXEeSfY7DIIV8YQg"/>
-  <Ecore:EClass xmi:id="_zzS6vXvXEeSfY7DIIV8YQg" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitable" base_Interface="_zzSzY3vXEeSfY7DIIV8YQg"/>
+  <Ecore:EClass xmi:id="_zzS6vXvXEeSfY7DIIV8YQg" instanceClassName="org.eclipse.ocl.pivot.util.Visitable" base_Interface="_zzSzY3vXEeSfY7DIIV8YQg"/>
   <Ecore:EClass xmi:id="_zzS6vnvXEeSfY7DIIV8YQg" base_Class="_zzSzZHvXEeSfY7DIIV8YQg"/>
   <Ecore:EReference xmi:id="_zzS6v3vXEeSfY7DIIV8YQg" base_Property="_zzSzZ3vXEeSfY7DIIV8YQg"/>
   <Ecore:EOperation xmi:id="_zzS6wHvXEeSfY7DIIV8YQg" base_Operation="_zzSzanvXEeSfY7DIIV8YQg"/>
@@ -3868,7 +3868,7 @@ ValueSpecification specializes ParameterableElement to specify that a value spec
   <Ecore:EClass xmi:id="_zzvfCHvXEeSfY7DIIV8YQg" base_Class="_zzS563vXEeSfY7DIIV8YQg"/>
   <Ecore:EReference xmi:id="_zzvfCXvXEeSfY7DIIV8YQg" base_Property="_zzS57XvXEeSfY7DIIV8YQg"/>
   <Ecore:EReference xmi:id="_zzvfCnvXEeSfY7DIIV8YQg" base_Property="_zzS573vXEeSfY7DIIV8YQg"/>
-  <Ecore:EClass xmi:id="_zzvfC3vXEeSfY7DIIV8YQg" instanceClassName="org.eclipse.ocl.examples.pivot.util.MorePivotable" base_Interface="_zzS59XvXEeSfY7DIIV8YQg"/>
+  <Ecore:EClass xmi:id="_zzvfC3vXEeSfY7DIIV8YQg" instanceClassName="org.eclipse.ocl.pivot.util.MorePivotable" base_Interface="_zzS59XvXEeSfY7DIIV8YQg"/>
   <Ecore:EClass xmi:id="_zzvfDHvXEeSfY7DIIV8YQg" base_Class="_zzS59nvXEeSfY7DIIV8YQg"/>
   <Ecore:EClass xmi:id="_zzvfDXvXEeSfY7DIIV8YQg" base_Class="_zzS5-HvXEeSfY7DIIV8YQg"/>
   <Ecore:EReference xmi:id="_zzvfDnvXEeSfY7DIIV8YQg" base_Property="_zzS5-nvXEeSfY7DIIV8YQg"/>
@@ -3884,7 +3884,7 @@ ValueSpecification specializes ParameterableElement to specify that a value spec
   <Ecore:EReference xmi:id="_zzvfGHvXEeSfY7DIIV8YQg" base_Property="_zzS6HHvXEeSfY7DIIV8YQg"/>
   <Ecore:EClass xmi:id="_zzvfGXvXEeSfY7DIIV8YQg" base_Class="_zzS6IHvXEeSfY7DIIV8YQg"/>
   <Ecore:EClass xmi:id="_zzvfGnvXEeSfY7DIIV8YQg" base_Class="_zzS6InvXEeSfY7DIIV8YQg"/>
-  <Ecore:EClass xmi:id="_zzvfG3vXEeSfY7DIIV8YQg" instanceClassName="org.eclipse.ocl.examples.pivot.util.Pivotable" base_Interface="_zzS6JHvXEeSfY7DIIV8YQg"/>
+  <Ecore:EClass xmi:id="_zzvfG3vXEeSfY7DIIV8YQg" instanceClassName="org.eclipse.ocl.pivot.util.Pivotable" base_Interface="_zzS6JHvXEeSfY7DIIV8YQg"/>
   <Ecore:EClass xmi:id="_zzvfHHvXEeSfY7DIIV8YQg" base_Class="_zzS6JXvXEeSfY7DIIV8YQg"/>
   <Ecore:EClass xmi:id="_zzvfHXvXEeSfY7DIIV8YQg" base_Class="_zzS6KHvXEeSfY7DIIV8YQg"/>
   <Ecore:EReference xmi:id="_zzvfHnvXEeSfY7DIIV8YQg" base_Property="_zzS6KnvXEeSfY7DIIV8YQg"/>
@@ -3919,5 +3919,5 @@ ValueSpecification specializes ParameterableElement to specify that a value spec
   <Ecore:EClass xmi:id="_zzvfO3vXEeSfY7DIIV8YQg" base_Class="_zzS6gHvXEeSfY7DIIV8YQg"/>
   <Ecore:EReference xmi:id="_zzvfPHvXEeSfY7DIIV8YQg" base_Property="_zzS6hHvXEeSfY7DIIV8YQg"/>
   <Ecore:EClass xmi:id="_zzvfPXvXEeSfY7DIIV8YQg" base_Class="_zzS6iXvXEeSfY7DIIV8YQg"/>
-  <Ecore:EClass xmi:id="_zzvfPnvXEeSfY7DIIV8YQg" instanceClassName="org.eclipse.ocl.examples.domain.elements.Nameable" base_Interface="_zzS6i3vXEeSfY7DIIV8YQg"/>
+  <Ecore:EClass xmi:id="_zzvfPnvXEeSfY7DIIV8YQg" instanceClassName="org.eclipse.ocl.domain.elements.Nameable" base_Interface="_zzS6i3vXEeSfY7DIIV8YQg"/>
 </xmi:XMI>

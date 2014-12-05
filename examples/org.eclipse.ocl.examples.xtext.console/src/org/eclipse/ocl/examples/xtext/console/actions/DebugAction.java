@@ -47,16 +47,16 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
-import org.eclipse.ocl.examples.domain.elements.DomainClass;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.PivotIdResolver;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.domain.elements.DomainClass;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.manager.PivotIdResolver;
+import org.eclipse.ocl.pivot.prettyprint.PrettyPrintOptions;
+import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.console.OCLConsolePage;
 import org.eclipse.ocl.examples.xtext.console.XtextConsolePlugin;
 import org.eclipse.ocl.examples.xtext.console.messages.ConsoleMessages;
@@ -99,11 +99,11 @@ public final class DebugAction extends Action
 		protected @NonNull URI createDocument(IProgressMonitor monitor) throws IOException, CoreException {
 			PivotIdResolver idResolver = metaModelManager.getIdResolver();
 			DomainClass staticType = idResolver.getStaticTypeOf(contextObject);
-			org.eclipse.ocl.examples.pivot.Class contextType = metaModelManager.getType(staticType);
+			org.eclipse.ocl.pivot.Class contextType = metaModelManager.getType(staticType);
 //			if (contextType instanceof Metaclass) {
-//				contextType = (org.eclipse.ocl.examples.pivot.Class)((Metaclass<?>)contextType).getInstanceType();	// FIXME cast
+//				contextType = (org.eclipse.ocl.pivot.Class)((Metaclass<?>)contextType).getInstanceType();	// FIXME cast
 //			}
-			org.eclipse.ocl.examples.pivot.Package contextPackage = contextType.getOwningPackage();
+			org.eclipse.ocl.pivot.Package contextPackage = contextType.getOwningPackage();
 			IPath documentPath = XtextConsolePlugin.getInstance().getStateLocation().append("debug" + EcoreUtil.generateUUID() + ".ocl");
 			IFileStore documentStore = EFS.getLocalFileSystem().getStore(documentPath);
 			OutputStream documentStream = documentStore.openOutputStream(0, monitor);

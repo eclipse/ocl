@@ -13,11 +13,11 @@ package org.eclipse.ocl.xtext.completeocl.attributes;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
-import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
-import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
+import org.eclipse.ocl.domain.elements.FeatureFilter;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.scoping.AbstractAttribution;
+import org.eclipse.ocl.pivot.scoping.EnvironmentView;
+import org.eclipse.ocl.pivot.scoping.ScopeView;
 import org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage;
 import org.eclipse.ocl.xtext.completeoclcs.PropertyContextDeclCS;
 
@@ -33,7 +33,7 @@ public class PropertyContextCSAttribution extends AbstractAttribution
 		 || (containmentFeature == CompleteOCLCSPackage.Literals.PROPERTY_CONTEXT_DECL_CS__OWNED_DERIVED_INVARIANTS)) {
 			Property property = targetElement.getReferredProperty();
 			if (property != null) {
-				org.eclipse.ocl.examples.pivot.Class type = property.getOwningClass();
+				org.eclipse.ocl.pivot.Class type = property.getOwningClass();
 				if (type != null) {
 					environmentView.addAllOperations(type, FeatureFilter.SELECT_NON_STATIC);
 					environmentView.addAllProperties(type, FeatureFilter.SELECT_NON_STATIC);

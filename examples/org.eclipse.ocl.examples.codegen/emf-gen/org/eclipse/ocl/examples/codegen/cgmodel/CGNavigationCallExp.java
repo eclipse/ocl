@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.codegen.cgmodel;
 
-import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.pivot.Property;
 
 /**
  * <!-- begin-user-doc -->

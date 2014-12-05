@@ -20,9 +20,9 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.JavaConstants;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.lookup.Environment;
-import org.eclipse.ocl.examples.pivot.util.Visitable;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.lookup.Environment;
+import org.eclipse.ocl.pivot.util.Visitable;
 
 /**
  * LookupCG2JavaVisitor refines the regular generation of Java code from an optimized Auto CG transformation tree

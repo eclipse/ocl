@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.codegen.cgmodel;
 
-import org.eclipse.ocl.examples.domain.library.LibraryProperty;
+import org.eclipse.ocl.domain.library.LibraryProperty;
 
 
 /**

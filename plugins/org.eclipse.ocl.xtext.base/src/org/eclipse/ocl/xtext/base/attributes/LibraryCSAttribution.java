@@ -23,22 +23,22 @@ import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.elements.DomainElement;
-import org.eclipse.ocl.examples.domain.elements.DomainNamedElement;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Library;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
-import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
-import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
-import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
-import org.eclipse.ocl.examples.pivot.util.Pivotable;
-import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.domain.elements.DomainElement;
+import org.eclipse.ocl.domain.elements.DomainNamedElement;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.Library;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.library.StandardLibraryContribution;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.scoping.AbstractAttribution;
+import org.eclipse.ocl.pivot.scoping.EnvironmentView;
+import org.eclipse.ocl.pivot.scoping.ScopeView;
+import org.eclipse.ocl.pivot.util.Pivotable;
+import org.eclipse.ocl.pivot.utilities.IllegalLibraryException;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.cs2as.ValidationDiagnostic;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS.UnresolvedProxyMessageProvider;
 import org.eclipse.ocl.xtext.base.scoping.AbstractJavaClassScope;
@@ -71,7 +71,7 @@ public class LibraryCSAttribution extends AbstractAttribution implements Unresol
 						if (name != null) {
 							environmentView.addElement(name, importedElement2);
 							if (importedElement instanceof Model) {
-								for (org.eclipse.ocl.examples.pivot.Package rootPackage : ((Model)importedElement2).getOwnedPackages()) {
+								for (org.eclipse.ocl.pivot.Package rootPackage : ((Model)importedElement2).getOwnedPackages()) {
 									environmentView.addElement(name, rootPackage);
 								}
 							}

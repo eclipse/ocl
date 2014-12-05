@@ -10,10 +10,10 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.build.xtend
 
-import org.eclipse.ocl.examples.pivot.DataType
+import org.eclipse.ocl.pivot.DataType
 import org.eclipse.jdt.annotation.NonNull
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil
-import org.eclipse.ocl.examples.pivot.Model
+import org.eclipse.ocl.domain.utilities.DomainUtil
+import org.eclipse.ocl.pivot.Model
 
 public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 {
@@ -69,18 +69,18 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 			import org.eclipse.emf.ecore.resource.ResourceSet;
 			import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 			import org.eclipse.jdt.annotation.NonNull;
-			import org.eclipse.ocl.examples.domain.ids.IdManager;
-			import org.eclipse.ocl.examples.domain.ids.PackageId;
-			import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-			import org.eclipse.ocl.examples.pivot.*;
-			import org.eclipse.ocl.examples.pivot.Class;
-			import org.eclipse.ocl.examples.pivot.Package;
-			import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
-			import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-			import org.eclipse.ocl.examples.pivot.resource.ASResourceImpl;
-			import org.eclipse.ocl.examples.pivot.resource.OCLASResourceFactory;
-			import org.eclipse.ocl.examples.pivot.utilities.AS2XMIid;
-			import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+			import org.eclipse.ocl.domain.ids.IdManager;
+			import org.eclipse.ocl.domain.ids.PackageId;
+			import org.eclipse.ocl.domain.utilities.DomainUtil;
+			import org.eclipse.ocl.pivot.*;
+			import org.eclipse.ocl.pivot.Class;
+			import org.eclipse.ocl.pivot.Package;
+			import org.eclipse.ocl.pivot.library.StandardLibraryContribution;
+			import org.eclipse.ocl.pivot.manager.MetaModelManager;
+			import org.eclipse.ocl.pivot.resource.ASResourceImpl;
+			import org.eclipse.ocl.pivot.resource.OCLASResourceFactory;
+			import org.eclipse.ocl.pivot.utilities.AS2XMIid;
+			import org.eclipse.ocl.pivot.utilities.PivotUtil;
 			
 			/**
 			 * This is the «uri» Standard Library

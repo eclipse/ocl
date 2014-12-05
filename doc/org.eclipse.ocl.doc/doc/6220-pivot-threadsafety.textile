@@ -12,7 +12,7 @@ h3. Code Generated Evaluation
 The code-generated evaluator is intended to be thread-safe; all shared objects update their caches within relatively fine-grained synchronized regions. However there are a number of class static variables that are not synchronized and might therefore experience at best a redundant multiple initialization and at worst an assumed uniqueness violation. Thread safe code must therefore invoke:
 
 bc.. 
-	org.eclipse.ocl.examples.domain.values.util.ValuesUtil.initAllStatics()
+	org.eclipse.ocl.domain.values.util.ValuesUtil.initAllStatics()
 p. 
 
 to ensure eager initialization of unsynchronized class variables. This routine is itself synchronized and so may be safely invoked on all threads, if it is not practical to invoke it solely from just a startup thread.

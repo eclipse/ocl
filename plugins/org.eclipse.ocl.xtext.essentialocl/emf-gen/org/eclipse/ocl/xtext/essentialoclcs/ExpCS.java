@@ -12,7 +12,7 @@ package org.eclipse.ocl.xtext.essentialoclcs;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;
 
 /**

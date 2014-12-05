@@ -20,13 +20,13 @@ import org.eclipse.emf.mwe2.runtime.workflow.*
  */
 Workflow {
 	component = @GenerateLaTeXForLibrary {
-		sourceName="org.eclipse.ocl.examples.library"
+		sourceName="org.eclipse.ocl.library"
 		modelFile="model/OCL-2.5.oclstdlib"
 		latexFileName="ocl-standard-library"
 //		labelPrefix="ocl:StandardLibrary:"
 	}
 	component = @GenerateLaTeXForASModel {
-		sourceName="org.eclipse.ocl.examples.pivot"
+		sourceName="org.eclipse.ocl.pivot"
 		modelFile="model/Pivot.ecore"
 		latexFileName="abstract-syntax"
 //		labelPrefix="ocl:AbstractSyntax:"

@@ -18,6 +18,23 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.domain.elements.DomainClass;
+import org.eclipse.ocl.domain.elements.DomainConstraint;
+import org.eclipse.ocl.domain.elements.DomainEnumeration;
+import org.eclipse.ocl.domain.elements.DomainExpression;
+import org.eclipse.ocl.domain.elements.DomainNamedElement;
+import org.eclipse.ocl.domain.elements.DomainNamespace;
+import org.eclipse.ocl.domain.elements.DomainOperation;
+import org.eclipse.ocl.domain.elements.DomainPackage;
+import org.eclipse.ocl.domain.elements.DomainParameter;
+import org.eclipse.ocl.domain.elements.DomainProperty;
+import org.eclipse.ocl.domain.elements.DomainType;
+import org.eclipse.ocl.domain.ids.ElementId;
+import org.eclipse.ocl.domain.ids.IdManager;
+import org.eclipse.ocl.domain.ids.TypeId;
+import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.RealValue;
+import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBoxExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGUnboxExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
@@ -25,38 +42,21 @@ import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
 import org.eclipse.ocl.examples.codegen.java.JavaStream.SubStream;
-import org.eclipse.ocl.examples.domain.elements.DomainClass;
-import org.eclipse.ocl.examples.domain.elements.DomainConstraint;
-import org.eclipse.ocl.examples.domain.elements.DomainEnumeration;
-import org.eclipse.ocl.examples.domain.elements.DomainExpression;
-import org.eclipse.ocl.examples.domain.elements.DomainNamedElement;
-import org.eclipse.ocl.examples.domain.elements.DomainNamespace;
-import org.eclipse.ocl.examples.domain.elements.DomainOperation;
-import org.eclipse.ocl.examples.domain.elements.DomainPackage;
-import org.eclipse.ocl.examples.domain.elements.DomainParameter;
-import org.eclipse.ocl.examples.domain.elements.DomainProperty;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
-import org.eclipse.ocl.examples.domain.ids.ElementId;
-import org.eclipse.ocl.examples.domain.ids.IdManager;
-import org.eclipse.ocl.examples.domain.ids.TypeId;
-import org.eclipse.ocl.examples.domain.values.IntegerValue;
-import org.eclipse.ocl.examples.domain.values.RealValue;
-import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
-import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.VoidType;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutions;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.Namespace;
+import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.VoidType;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.manager.TemplateParameterSubstitutions;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 /**
  * An AbstractDescriptor provides the most fundamental capabilities of any type description: the correspondence to a pivot ElementId.
@@ -94,7 +94,7 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 		else if (javaClass == Operation.class) {
 			javaClass = DomainOperation.class;
 		}
-		else if (javaClass == org.eclipse.ocl.examples.pivot.Package.class) {
+		else if (javaClass == org.eclipse.ocl.pivot.Package.class) {
 			javaClass = DomainPackage.class;
 		}
 		else if (javaClass == Parameter.class) {
@@ -103,7 +103,7 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 		else if (javaClass == Property.class) {
 			javaClass = DomainProperty.class;
 		}
-		else if (javaClass == org.eclipse.ocl.examples.pivot.Class.class) {
+		else if (javaClass == org.eclipse.ocl.pivot.Class.class) {
 			javaClass = DomainClass.class;
 		}
 		else if (javaClass == Type.class) {

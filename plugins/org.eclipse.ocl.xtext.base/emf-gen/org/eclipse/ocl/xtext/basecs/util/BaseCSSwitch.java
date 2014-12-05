@@ -14,8 +14,8 @@ package org.eclipse.ocl.xtext.basecs.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
-import org.eclipse.ocl.examples.domain.elements.Nameable;
-import org.eclipse.ocl.examples.pivot.util.Pivotable;
+import org.eclipse.ocl.domain.elements.Nameable;
+import org.eclipse.ocl.pivot.util.Pivotable;
 import org.eclipse.ocl.xtext.basecs.*;
 
 /**

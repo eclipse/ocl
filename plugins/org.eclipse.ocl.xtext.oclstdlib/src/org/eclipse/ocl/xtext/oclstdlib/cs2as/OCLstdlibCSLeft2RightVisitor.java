@@ -12,7 +12,7 @@
 package org.eclipse.ocl.xtext.oclstdlib.cs2as;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.xtext.oclstdlibcs.PrecedenceCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.util.AbstractOCLstdlibCSLeft2RightVisitor;

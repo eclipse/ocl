@@ -47,7 +47,7 @@ public interface PackageDeclarationCS
 	 * @model resolveProxies="false" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
-	org.eclipse.ocl.examples.pivot.Package getReferredPackage();
+	org.eclipse.ocl.pivot.Package getReferredPackage();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Contexts</b></em>' containment reference list.

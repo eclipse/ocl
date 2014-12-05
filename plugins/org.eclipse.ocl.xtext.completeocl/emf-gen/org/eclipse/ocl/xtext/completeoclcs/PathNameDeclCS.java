@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.completeoclcs;
 
-import org.eclipse.ocl.examples.pivot.util.MorePivotable;
+import org.eclipse.ocl.pivot.util.MorePivotable;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
 
@@ -27,7 +27,7 @@ import org.eclipse.ocl.xtext.basecs.PathNameCS;
  * </p>
  *
  * @see org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage#getPathNameDeclCS()
- * @model abstract="true" superTypes="org.eclipse.ocl.xtext.basecs.ModelElementCS org.eclipse.ocl.examples.pivot.MorePivotable"
+ * @model abstract="true" superTypes="org.eclipse.ocl.xtext.basecs.ModelElementCS org.eclipse.ocl.pivot.MorePivotable"
  * @generated
  */
 public interface PathNameDeclCS

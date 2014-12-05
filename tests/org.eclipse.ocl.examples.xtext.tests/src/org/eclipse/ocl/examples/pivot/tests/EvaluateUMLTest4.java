@@ -19,11 +19,11 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.domain.DomainConstants;
-import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.domain.DomainConstants;
+import org.eclipse.ocl.pivot.OCL;
+import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -75,7 +75,7 @@ public class EvaluateUMLTest4 extends PivotStateMachineTestSuite
 	@Test public void test_oclIsInState() throws InvocationTargetException, ParserException {
 		initStateMachinePackage();
 		EObject context = statefulEFactory.create(c1Class);
-		org.eclipse.ocl.examples.pivot.Class contextType = metaModelManager.getPivotOfEcore(org.eclipse.ocl.examples.pivot.Class.class, c1Class);
+		org.eclipse.ocl.pivot.Class contextType = metaModelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Class.class, c1Class);
 		assert contextType != null;
 		assertSemanticErrorQuery2(contextType, "self.oclIsInState(S2b)", OCLMessages.UnresolvedProperty_ERROR_, "Model::C1", "S2b");	
 		assertQueryInvalid(context, "self.oclIsInState(S1a)", "Failed to evaluate OclAny::oclIsInState(OclState) : Boolean", UnsupportedOperationException.class);	
@@ -101,8 +101,8 @@ public class EvaluateUMLTest4 extends PivotStateMachineTestSuite
 //		AbstractTypeServer.ADD_EXTENSION_PROPERTY.setState(true);
 		EObject context = doLoadUML(ocl, "Bug431638", "Bug431638Model.Class1.Attribute1");
 		assertNotNull(context);
-		org.eclipse.ocl.examples.pivot.Class contextType = (org.eclipse.ocl.examples.pivot.Class)metaModelManager.getIdResolver().getStaticTypeOf(context);	// FIXME cast
-		org.eclipse.ocl.examples.pivot.Package contextPackage = contextType.getOwningPackage();
+		org.eclipse.ocl.pivot.Class contextType = (org.eclipse.ocl.pivot.Class)metaModelManager.getIdResolver().getStaticTypeOf(context);	// FIXME cast
+		org.eclipse.ocl.pivot.Package contextPackage = contextType.getOwningPackage();
 //		assertEquals(XMI2UMLResource.UML_METAMODEL_NS_URI, contextPackage.getNsURI());
 //		assertEquals(IdManager.METAMODEL, contextPackage.getPackageId());
 		assertEquals(DomainConstants.UML_METAMODEL_NAME, contextPackage.getPackageId().getDisplayName());

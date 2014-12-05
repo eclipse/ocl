@@ -32,7 +32,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cse.AbstractPlace;
 import org.eclipse.ocl.examples.codegen.cse.InnerStackPlace;
 import org.eclipse.ocl.examples.codegen.utilities.EquivalenceUtils;
-import org.eclipse.ocl.examples.pivot.Iteration;
+import org.eclipse.ocl.pivot.Iteration;
 
 /**
  * <!-- begin-user-doc -->

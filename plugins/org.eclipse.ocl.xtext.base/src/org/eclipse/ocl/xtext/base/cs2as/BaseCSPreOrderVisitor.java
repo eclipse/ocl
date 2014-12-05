@@ -14,21 +14,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
-import org.eclipse.ocl.examples.domain.types.AbstractTuplePart;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.AnyType;
-import org.eclipse.ocl.examples.pivot.DataType;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.LambdaType;
-import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.TemplateableElement;
-import org.eclipse.ocl.examples.pivot.TupleType;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.domain.elements.DomainTypedElement;
+import org.eclipse.ocl.domain.types.AbstractTuplePart;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.AnyType;
+import org.eclipse.ocl.pivot.DataType;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.LambdaType;
+import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.TemplateableElement;
+import org.eclipse.ocl.pivot.TupleType;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.basecs.AnnotationCS;
 import org.eclipse.ocl.xtext.basecs.ClassCS;
@@ -80,18 +80,18 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 			return dependencies.toArray(new Dependency[dependencies.size()]);
 		}
 
-		public ClassSupersContinuation(@NonNull CS2ASConversion context, org.eclipse.ocl.examples.pivot.Class pivotParent, @NonNull StructuredClassCS csElement) {
+		public ClassSupersContinuation(@NonNull CS2ASConversion context, org.eclipse.ocl.pivot.Class pivotParent, @NonNull StructuredClassCS csElement) {
 			super(context, pivotParent, null, csElement, computeDependencies(context, csElement));
 		}
 
 		@Override
 		public BasicContinuation<?> execute() {
-			org.eclipse.ocl.examples.pivot.Class pivotElement = PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Class.class, csElement);
+			org.eclipse.ocl.pivot.Class pivotElement = PivotUtil.getPivot(org.eclipse.ocl.pivot.Class.class, csElement);
 			if (pivotElement != null) {
-				List<org.eclipse.ocl.examples.pivot.Class> superClasses = pivotElement.getSuperClasses();
-				context.refreshList(org.eclipse.ocl.examples.pivot.Class.class, superClasses, csElement.getOwnedSuperTypes());
+				List<org.eclipse.ocl.pivot.Class> superClasses = pivotElement.getSuperClasses();
+				context.refreshList(org.eclipse.ocl.pivot.Class.class, superClasses, csElement.getOwnedSuperTypes());
 				if (superClasses.isEmpty()) {
-					org.eclipse.ocl.examples.pivot.Class oclElementType = context.getStandardLibrary().getOclElementType();
+					org.eclipse.ocl.pivot.Class oclElementType = context.getStandardLibrary().getOclElementType();
 					pivotElement.getSuperClasses().add(oclElementType);
 				}
 			}
@@ -259,8 +259,8 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 				return false;
 			}
 			Type pivotType = csElement.getReferredType();
-			if (pivotType instanceof org.eclipse.ocl.examples.pivot.Class) {
-				if (((org.eclipse.ocl.examples.pivot.Class)pivotType).getSuperClasses().size() <= 0) {
+			if (pivotType instanceof org.eclipse.ocl.pivot.Class) {
+				if (((org.eclipse.ocl.pivot.Class)pivotType).getSuperClasses().size() <= 0) {
 					return false;
 				}
 				TemplateBindingCS csTemplateBinding = csElement.getOwnedBinding();
@@ -418,9 +418,9 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 	public Continuation<?> visitDataTypeCS(@NonNull DataTypeCS csDataType) {
 		DataType pivotElement = PivotUtil.getPivot(DataType.class, csDataType);
 		if (pivotElement != null) {
-			List<org.eclipse.ocl.examples.pivot.Class> pivotSuperClasses = pivotElement.getSuperClasses();
+			List<org.eclipse.ocl.pivot.Class> pivotSuperClasses = pivotElement.getSuperClasses();
 			pivotSuperClasses.clear();
-			org.eclipse.ocl.examples.pivot.Class oclElementType = context.getStandardLibrary().getOclElementType();
+			org.eclipse.ocl.pivot.Class oclElementType = context.getStandardLibrary().getOclElementType();
 			pivotSuperClasses.add(oclElementType);
 		}
 		return null;
@@ -433,11 +433,11 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 
 	@Override
 	public Continuation<?> visitEnumerationCS(@NonNull EnumerationCS csEnumeration) {
-		org.eclipse.ocl.examples.pivot.Enumeration pivotElement = PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Enumeration.class, csEnumeration);
+		org.eclipse.ocl.pivot.Enumeration pivotElement = PivotUtil.getPivot(org.eclipse.ocl.pivot.Enumeration.class, csEnumeration);
 		if (pivotElement != null) {
-			List<org.eclipse.ocl.examples.pivot.Class> pivotSuperClasses = pivotElement.getSuperClasses();
+			List<org.eclipse.ocl.pivot.Class> pivotSuperClasses = pivotElement.getSuperClasses();
 			pivotSuperClasses.clear();
-			org.eclipse.ocl.examples.pivot.Class oclElementType = context.getStandardLibrary().getOclElementType();
+			org.eclipse.ocl.pivot.Class oclElementType = context.getStandardLibrary().getOclElementType();
 			pivotSuperClasses.add(oclElementType);
 		}
 		return null;
@@ -510,7 +510,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 
 	@Override
 	public Continuation<?> visitStructuredClassCS(@NonNull StructuredClassCS csClass) {
-		org.eclipse.ocl.examples.pivot.Class pivotElement = PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Class.class, csClass);
+		org.eclipse.ocl.pivot.Class pivotElement = PivotUtil.getPivot(org.eclipse.ocl.pivot.Class.class, csClass);
 		if (pivotElement == null) {
 			return null;
 		}

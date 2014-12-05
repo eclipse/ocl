@@ -12,8 +12,8 @@ package org.eclipse.ocl.xtext.essentialocl.utilities;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.pivot.resource.ASResource;
-import org.eclipse.ocl.examples.pivot.resource.AbstractASResourceFactory;
+import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.resource.AbstractASResourceFactory;
 
 public class EssentialOCLASResourceFactory extends AbstractASResourceFactory
 {

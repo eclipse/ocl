@@ -13,23 +13,23 @@ package org.eclipse.ocl.examples.build.xtend
 import java.util.HashSet
 import java.util.List
 import org.eclipse.emf.ecore.EObject
-import org.eclipse.ocl.examples.pivot.AnyType
-import org.eclipse.ocl.examples.pivot.Class
-import org.eclipse.ocl.examples.pivot.CollectionType
-import org.eclipse.ocl.examples.pivot.Comment
-import org.eclipse.ocl.examples.pivot.EnumerationLiteral
-import org.eclipse.ocl.examples.pivot.Iteration
-import org.eclipse.ocl.examples.pivot.LambdaType
-import org.eclipse.ocl.examples.pivot.Operation
-import org.eclipse.ocl.examples.pivot.Package
-import org.eclipse.ocl.examples.pivot.Parameter
-import org.eclipse.ocl.examples.pivot.Precedence
-import org.eclipse.ocl.examples.pivot.Property
-import org.eclipse.ocl.examples.pivot.TemplateBinding
-import org.eclipse.ocl.examples.pivot.TemplateParameter
-import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution
-import org.eclipse.ocl.examples.pivot.TemplateSignature
-import org.eclipse.ocl.examples.pivot.Model
+import org.eclipse.ocl.pivot.AnyType
+import org.eclipse.ocl.pivot.Class
+import org.eclipse.ocl.pivot.CollectionType
+import org.eclipse.ocl.pivot.Comment
+import org.eclipse.ocl.pivot.EnumerationLiteral
+import org.eclipse.ocl.pivot.Iteration
+import org.eclipse.ocl.pivot.LambdaType
+import org.eclipse.ocl.pivot.Operation
+import org.eclipse.ocl.pivot.Package
+import org.eclipse.ocl.pivot.Parameter
+import org.eclipse.ocl.pivot.Precedence
+import org.eclipse.ocl.pivot.Property
+import org.eclipse.ocl.pivot.TemplateBinding
+import org.eclipse.ocl.pivot.TemplateParameter
+import org.eclipse.ocl.pivot.TemplateParameterSubstitution
+import org.eclipse.ocl.pivot.TemplateSignature
+import org.eclipse.ocl.pivot.Model
 
 public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 {

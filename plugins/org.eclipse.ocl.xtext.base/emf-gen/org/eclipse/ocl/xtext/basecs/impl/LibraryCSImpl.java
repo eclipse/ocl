@@ -44,7 +44,7 @@ public class LibraryCSImpl extends NamedElementCSImpl implements LibraryCS {
 	 * @generated
 	 * @ordered
 	 */
-	protected org.eclipse.ocl.examples.pivot.Package referredPackage;
+	protected org.eclipse.ocl.pivot.Package referredPackage;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,11 +70,11 @@ public class LibraryCSImpl extends NamedElementCSImpl implements LibraryCS {
 	 * @generated
 	 */
 	@Override
-	public org.eclipse.ocl.examples.pivot.Package getReferredPackage() {
+	public org.eclipse.ocl.pivot.Package getReferredPackage() {
 		if (referredPackage != null && ((EObject)referredPackage).eIsProxy())
 		{
 			InternalEObject oldReferredPackage = (InternalEObject)referredPackage;
-			referredPackage = (org.eclipse.ocl.examples.pivot.Package)eResolveProxy(oldReferredPackage);
+			referredPackage = (org.eclipse.ocl.pivot.Package)eResolveProxy(oldReferredPackage);
 			if (referredPackage != oldReferredPackage)
 			{
 				if (eNotificationRequired())
@@ -89,7 +89,7 @@ public class LibraryCSImpl extends NamedElementCSImpl implements LibraryCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.ocl.examples.pivot.Package basicGetReferredPackage()
+	public org.eclipse.ocl.pivot.Package basicGetReferredPackage()
 	{
 		return referredPackage;
 	}
@@ -100,9 +100,9 @@ public class LibraryCSImpl extends NamedElementCSImpl implements LibraryCS {
 	 * @generated
 	 */
 	@Override
-	public void setReferredPackage(org.eclipse.ocl.examples.pivot.Package newReferredPackage)
+	public void setReferredPackage(org.eclipse.ocl.pivot.Package newReferredPackage)
 	{
-		org.eclipse.ocl.examples.pivot.Package oldReferredPackage = referredPackage;
+		org.eclipse.ocl.pivot.Package oldReferredPackage = referredPackage;
 		referredPackage = newReferredPackage;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.LIBRARY_CS__REFERRED_PACKAGE, oldReferredPackage, referredPackage));
@@ -134,7 +134,7 @@ public class LibraryCSImpl extends NamedElementCSImpl implements LibraryCS {
 		switch (featureID)
 		{
 			case BaseCSPackage.LIBRARY_CS__REFERRED_PACKAGE:
-				setReferredPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
+				setReferredPackage((org.eclipse.ocl.pivot.Package)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -150,7 +150,7 @@ public class LibraryCSImpl extends NamedElementCSImpl implements LibraryCS {
 		switch (featureID)
 		{
 			case BaseCSPackage.LIBRARY_CS__REFERRED_PACKAGE:
-				setReferredPackage((org.eclipse.ocl.examples.pivot.Package)null);
+				setReferredPackage((org.eclipse.ocl.pivot.Package)null);
 				return;
 		}
 		super.eUnset(featureID);

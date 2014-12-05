@@ -13,19 +13,19 @@ package org.eclipse.ocl.examples.test.xtext;
 import java.io.IOException;
 
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.library.AbstractSimpleUnaryOperation;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.domain.values.Bag;
-import org.eclipse.ocl.examples.domain.values.Value;
-import org.eclipse.ocl.examples.domain.values.impl.BagImpl;
-import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
-import org.eclipse.ocl.examples.library.LibraryConstants;
-import org.eclipse.ocl.examples.pivot.Model;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.resource.ASResource;
+import org.eclipse.ocl.domain.library.AbstractSimpleUnaryOperation;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.values.Bag;
+import org.eclipse.ocl.domain.values.Value;
+import org.eclipse.ocl.domain.values.impl.BagImpl;
+import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
+import org.eclipse.ocl.library.LibraryConstants;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.resource.ASResource;
 
 /**
  * Tests that load a model and verify that there are no unresolved proxies as a result.

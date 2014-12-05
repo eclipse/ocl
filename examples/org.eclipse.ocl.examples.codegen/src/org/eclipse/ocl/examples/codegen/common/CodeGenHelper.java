@@ -15,8 +15,8 @@ import java.io.File;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.library.LibraryOperation;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.domain.library.LibraryOperation;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
 
 public interface CodeGenHelper
 {
@@ -34,5 +34,5 @@ public interface CodeGenHelper
 	/**
 	 * Return the GenPackage for a type.
 	 */
-	@NonNull GenPackage getGenPackage(@NonNull org.eclipse.ocl.examples.pivot.Class type);
+	@NonNull GenPackage getGenPackage(@NonNull org.eclipse.ocl.pivot.Class type);
 }
