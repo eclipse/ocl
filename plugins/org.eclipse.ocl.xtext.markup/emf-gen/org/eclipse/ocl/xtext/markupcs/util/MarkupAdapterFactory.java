@@ -14,7 +14,6 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.xtext.markup.*;
 import org.eclipse.ocl.xtext.markupcs.BulletElement;
 import org.eclipse.ocl.xtext.markupcs.CompoundElement;
 import org.eclipse.ocl.xtext.markupcs.FigureElement;

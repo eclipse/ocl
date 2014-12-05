@@ -16,7 +16,7 @@
     <details key="Derived Visitor Class" value="org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor"/>
   </genAnnotations>
   <foreignModel>EssentialOCLCS.ecore</foreignModel>
-  <genPackages prefix="EssentialOCLCS" basePackage="org.eclipse.ocl.xtext.essentialocl"
+  <genPackages prefix="EssentialOCLCS" basePackage="org.eclipse.ocl.xtext"
       disposableProviderFactory="true" generateExampleClass="false" ecorePackage="EssentialOCLCS.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="EssentialOCLCS.ecore#//NavigationRole">
       <genEnumLiterals ecoreEnumLiteral="EssentialOCLCS.ecore#//NavigationRole/ITERATOR"/>

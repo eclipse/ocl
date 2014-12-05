@@ -264,7 +264,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredType" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Type"
         changeable="false" volatile="true" transient="true" derived="true" resolveProxies="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="VisitableCS" instanceClassName="org.eclipse.ocl.xtext.base.basecs.util.VisitableCS"
+  <eClassifiers xsi:type="ecore:EClass" name="VisitableCS" instanceClassName="org.eclipse.ocl.xtext.basecs.util.VisitableCS"
       abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="WildcardTypeRefCS" eSuperTypes="#//TypeRefCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedExtends" eType="#//TypedRefCS"

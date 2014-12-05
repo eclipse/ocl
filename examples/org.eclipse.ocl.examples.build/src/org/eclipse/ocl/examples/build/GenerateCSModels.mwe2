@@ -36,41 +36,60 @@ Workflow {
     }
     component = @SubGenerateCSModel { resourceSet = resourceSet
     	projectName = "org.eclipse.ocl.xtext.base"
+    	visitablePackageName = "org.eclipse.ocl.xtext.basecs.util"
+    	visitorPackageName = "org.eclipse.ocl.xtext.basecs.util"
     	modelName = "basecs"
+    	modelPackageName = "org.eclipse.ocl.xtext.basecs"
     	projectPrefix = "BaseCS"
     	superProjectName = ""
     	superModelName = ""
     }
     component = @SubGenerateCSModel { resourceSet = resourceSet
     	projectName = "org.eclipse.ocl.xtext.essentialocl"
+    	visitablePackageName = "org.eclipse.ocl.xtext.basecs.util"
+    	visitorPackageName = "org.eclipse.ocl.xtext.essentialoclcs.util"
     	modelName = "essentialoclcs"
+    	modelPackageName = "org.eclipse.ocl.xtext.essentialoclcs"
     	projectPrefix = "EssentialOCLCS"
     	superProjectName = "org.eclipse.ocl.xtext.base"
     	superModelName = "basecs"
     	superProjectPrefix = "BaseCS"
+    	superVisitorPackageName = "org.eclipse.ocl.xtext.basecs.util"
     }
     component = @SubGenerateCSModel { resourceSet = resourceSet
     	projectName = "org.eclipse.ocl.xtext.oclstdlib"
+    	visitablePackageName = "org.eclipse.ocl.xtext.basecs.util"
+    	visitorPackageName = "org.eclipse.ocl.xtext.oclstdlibcs.util"
     	modelName = "oclstdlibcs"
+    	modelPackageName = "org.eclipse.ocl.xtext.oclstdlibcs"
     	projectPrefix = "OCLstdlibCS"
     	superProjectName = "org.eclipse.ocl.xtext.essentialocl"
     	superModelName = "essentialoclcs"
     	superProjectPrefix = "EssentialOCLCS"
+    	superVisitorPackageName = "org.eclipse.ocl.xtext.essentialoclcs.util"
     }
     component = @SubGenerateCSModel { resourceSet = resourceSet
     	projectName = "org.eclipse.ocl.xtext.oclinecore"
+    	visitablePackageName = "org.eclipse.ocl.xtext.basecs.util"
+    	visitorPackageName = "org.eclipse.ocl.xtext.oclinecorecs.util"
     	modelName = "oclinecorecs"
+    	modelPackageName = "org.eclipse.ocl.xtext.oclinecorecs"
     	projectPrefix = "OCLinEcoreCS"
     	superProjectName = "org.eclipse.ocl.xtext.essentialocl"
     	superModelName = "essentialoclcs"
     	superProjectPrefix = "EssentialOCLCS"
+    	superVisitorPackageName = "org.eclipse.ocl.xtext.essentialoclcs.util"
     }
     component = @SubGenerateCSModel { resourceSet = resourceSet
     	projectName = "org.eclipse.ocl.xtext.completeocl"
+    	visitablePackageName = "org.eclipse.ocl.xtext.basecs.util"
+    	visitorPackageName = "org.eclipse.ocl.xtext.completeoclcs.util"
     	modelName = "completeoclcs"
+    	modelPackageName = "org.eclipse.ocl.xtext.completeoclcs"
     	projectPrefix = "CompleteOCLCS"
     	superProjectName = "org.eclipse.ocl.xtext.essentialocl"
     	superModelName = "essentialoclcs"
     	superProjectPrefix = "EssentialOCLCS"
+    	superVisitorPackageName = "org.eclipse.ocl.xtext.essentialoclcs.util"
     }
 }

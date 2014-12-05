@@ -12,7 +12,7 @@
       <!-- @generated Markup -->
       <package
             uri="http://www.eclipse.org/ocl/2015/MarkupCS"
-            class="org.eclipse.ocl.xtext.markup.MarkupPackage"
+            class="org.eclipse.ocl.xtext.markupcs.MarkupPackage"
             genModel="model/Markup.genmodel"/>
    </extension>
 

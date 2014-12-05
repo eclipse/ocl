@@ -20,8 +20,8 @@ package	org.eclipse.ocl.xtext.oclinecorecs.util;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
-import org.eclipse.ocl.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.xtext.essentialocl.cs2as.EssentialOCLCSPreOrderVisitor;
+import org.eclipse.ocl.xtext.base.cs2as.Continuation;
 
 /**
  * An AbstractOCLinEcoreCSPreOrderVisitor provides a default implementation for each

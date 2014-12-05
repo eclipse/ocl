@@ -19,7 +19,7 @@
     <details key="Visitable Classes" value="org.eclipse.ocl.xtext.basecs.ElementCS"/>
   </genAnnotations>
   <foreignModel>BaseCS.ecore</foreignModel>
-  <genPackages prefix="BaseCS" basePackage="org.eclipse.ocl.xtext.base" disposableProviderFactory="true"
+  <genPackages prefix="BaseCS" basePackage="org.eclipse.ocl.xtext" disposableProviderFactory="true"
       generateExampleClass="false" ecorePackage="BaseCS.ecore#/">
     <genDataTypes ecoreDataType="BaseCS.ecore#//BigNumber"/>
     <genDataTypes ecoreDataType="BaseCS.ecore#//ScopeFilter"/>

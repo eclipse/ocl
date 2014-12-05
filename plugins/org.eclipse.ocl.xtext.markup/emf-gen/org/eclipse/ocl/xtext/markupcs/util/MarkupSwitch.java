@@ -13,7 +13,6 @@ package org.eclipse.ocl.xtext.markupcs.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
-import org.eclipse.ocl.xtext.markup.*;
 import org.eclipse.ocl.xtext.markupcs.BulletElement;
 import org.eclipse.ocl.xtext.markupcs.CompoundElement;
 import org.eclipse.ocl.xtext.markupcs.FigureElement;

@@ -37,7 +37,7 @@ public interface MarkupPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "markup";
+	String eNAME = "markupcs";
 
 	/**
 	 * The package namespace URI.
