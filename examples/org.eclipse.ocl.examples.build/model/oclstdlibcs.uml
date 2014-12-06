@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
-  <uml:Model xmi:id="_z_Bh4HvXEeSfY7DIIV8YQg" name="oclstdlibcs" URI="http://www.eclipse.org/ocl/3.1.0/OCLstdlibCST">
+  <uml:Model xmi:id="_z_Bh4HvXEeSfY7DIIV8YQg" name="oclstdlibcs" URI="http://www.eclipse.org/ocl/2015/OCLstdlibCS">
     <packagedElement xmi:type="uml:Class" xmi:id="_z_Bh4XvXEeSfY7DIIV8YQg" name="JavaClassCS">
       <generalization xmi:id="_z_Bh4nvXEeSfY7DIIV8YQg">
         <general xmi:type="uml:Class" href="basecs.uml#_zxW5YHvXEeSfY7DIIV8YQg"/>

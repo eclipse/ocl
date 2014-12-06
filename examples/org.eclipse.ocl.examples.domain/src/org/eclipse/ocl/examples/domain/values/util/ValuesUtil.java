@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
 import org.eclipse.ocl.examples.domain.elements.DomainEnumerationLiteral;
@@ -139,6 +140,15 @@ public abstract class ValuesUtil
 		}
 		else {
 			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.BOOLEAN_NAME, getTypeName(value));
+		}
+	}
+
+	public static @NonNull DomainClass asClass(@Nullable Object value) {
+		if (value instanceof DomainClass) {
+			return (DomainClass)value;
+		}
+		else {
+			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, "Class", getTypeName(value));
 		}
 	}
 

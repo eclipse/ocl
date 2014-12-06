@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
-  <uml:Model xmi:id="_ztRqkHvXEeSfY7DIIV8YQg" name="completeoclcs" URI="http://www.eclipse.org/ocl/3.1.0/CompleteOCLCST">
+  <uml:Model xmi:id="_ztRqkHvXEeSfY7DIIV8YQg" name="completeoclcs" URI="http://www.eclipse.org/ocl/2015/CompleteOCLCS">
     <packagedElement xmi:type="uml:Class" xmi:id="_ztRqkXvXEeSfY7DIIV8YQg" name="ClassifierContextDeclCS">
       <generalization xmi:id="_ztRqknvXEeSfY7DIIV8YQg" general="_ztRqnnvXEeSfY7DIIV8YQg"/>
       <generalization xmi:id="_ztRqk3vXEeSfY7DIIV8YQg">

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+  <extension point="org.eclipse.core.contenttype.contentTypes">
+	<content-type id="org.eclipse.ocl.examples.completeOCL" name="%completeOCLName" 
+		base-type="org.eclipse.core.runtime.text"
+		file-extensions="ocl"
+        default-charset="UTF-8"/>
+  </extension>
+
+   <extension point="org.eclipse.emf.validation.constraintProviders"
+         id="org.eclipse.ocl.examples.xtext.completeocl.validation.provider">
+      <category id="org.eclipse.ocl.examples.xtext.completeocl.validation.CompleteOCL"
+            name="Complete OCL Documents">
+         Constraints determined by parsing Complete OCL Documents
+      </category>
+  </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated CompleteOCLCS -->
+      <package
+            uri="http://www.eclipse.org/ocl/2015/CompleteOCLCS"
+            class="org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage"
+            genModel="model/CompleteOCLCS.genmodel"/>
+   </extension>
+   <extension point="org.eclipse.team.core.fileTypes">
+      <fileTypes extension="ocl" type="text" />
+   </extension>
+
+</plugin>

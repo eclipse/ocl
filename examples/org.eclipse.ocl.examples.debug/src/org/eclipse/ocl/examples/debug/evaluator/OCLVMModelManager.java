@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.vm.evaluator.VMModelManager;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.ParserException;
@@ -54,7 +55,7 @@ public class OCLVMModelManager extends VMModelManager
 //		allInstancesTypes.clear();
 	}
 
-	public @NonNull Set<EObject> get(@NonNull DomainType type) {
+	public @NonNull Set<EObject> get(@NonNull DomainClass type) {
 		throw new UnsupportedOperationException();
 	}
 

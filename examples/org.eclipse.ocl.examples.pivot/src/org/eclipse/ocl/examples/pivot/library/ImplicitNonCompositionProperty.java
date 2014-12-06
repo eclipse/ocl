@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
@@ -51,8 +52,8 @@ public class ImplicitNonCompositionProperty extends AbstractProperty
 			thatType = ((DomainCollectionType)thatType).getElementType();
 		}
 		List<Object> results = new ArrayList<Object>();
-		if (thatType != null) {
-			for (EObject eObject : modelManager.get(thatType)) {
+		if (thatType instanceof DomainClass) {
+			for (EObject eObject : modelManager.get((DomainClass)thatType)) {
 				EClass eClass = eObject.eClass();
 				EStructuralFeature eFeature = eClass.getEStructuralFeature(thatProperty.getName());
 				Object eGet = eObject.eGet(eFeature);

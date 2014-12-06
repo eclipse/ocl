@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
-  <uml:Model xmi:id="_z6tCkHvXEeSfY7DIIV8YQg" name="essentialoclcs" URI="http://www.eclipse.org/ocl/3.1.0/EssentialOCLCST">
+  <uml:Model xmi:id="_z6tCkHvXEeSfY7DIIV8YQg" name="essentialoclcs" URI="http://www.eclipse.org/ocl/2015/EssentialOCLCS">
     <packagedElement xmi:type="uml:Enumeration" xmi:id="_z62zkHvXEeSfY7DIIV8YQg" name="NavigationRole">
       <ownedLiteral xmi:id="_z62zkXvXEeSfY7DIIV8YQg" name="ITERATOR"/>
       <ownedLiteral xmi:id="_z62zknvXEeSfY7DIIV8YQg" name="ACCUMULATOR">
