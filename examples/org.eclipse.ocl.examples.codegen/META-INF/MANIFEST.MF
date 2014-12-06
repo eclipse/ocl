@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.ocl.examples.codegen;singleton:=true
-Bundle-Version: 0.9.0.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.core.resources;bundle-version="[3.5.0,4.0.0)",
@@ -10,8 +10,8 @@ Require-Bundle: org.eclipse.core.resources;bundle-version="[3.5.0,4.0.0)",
  org.eclipse.emf.codegen.ecore;bundle-version="[2.7.0,3.0.0)";visibility:=reexport,
  org.eclipse.uml2.codegen.ecore;bundle-version="[1.7.0,3.0.0)",
  org.eclipse.ocl.xtext.essentialocl;bundle-version="[1.0.0,2.0.0)";visibility:=reexport,
- org.eclipse.ocl.examples.codegen.asm5;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.ocl.examples.codegen.asm3;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.ocl.examples.codegen.asm5;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.ocl.examples.codegen.asm3;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.ocl.domain
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.ocl.examples.codegen,

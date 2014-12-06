@@ -8,7 +8,7 @@
  * Contributors:
  *   E.D.Willink (CEA LIST) - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.emf.validation.validity.utilities;
+package org.eclipse.ocl.domain.validation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,6 +82,7 @@ public class ComposedEValidator implements EValidator
 		return eValidators.remove(eValidator);
 	}
 
+	@Override
 	public boolean validate(EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		for (EValidator eValidator : eValidators) {
 			if (!eValidator.validate(eObject, diagnostics, context)) {
@@ -91,6 +92,7 @@ public class ComposedEValidator implements EValidator
 		return true;
 	}
 
+	@Override
 	public boolean validate(EClass eClass, EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		for (EValidator eValidator : eValidators) {
 			if (!eValidator.validate(eClass, eObject, diagnostics, context)) {
@@ -100,6 +102,7 @@ public class ComposedEValidator implements EValidator
 		return true;
 	}
 
+	@Override
 	public boolean validate(EDataType eDataType, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		for (EValidator eValidator : eValidators) {
 			if (!eValidator.validate(eDataType, value, diagnostics, context)) {
