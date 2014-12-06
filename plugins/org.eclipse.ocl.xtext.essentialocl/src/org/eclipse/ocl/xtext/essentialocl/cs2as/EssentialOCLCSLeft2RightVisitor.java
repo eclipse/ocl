@@ -244,22 +244,31 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	 * let leafIterations = bestSizeIterations->select(leafClasses->includes(owningClass.unspecializedClass)) in
 	 * leafIterations->any(true)
 	 */
-	protected @Nullable Iteration getBestIteration(@NonNull Invocations invocations) {
+	protected @Nullable Iteration getBestIteration(@NonNull Invocations invocations, @Nullable RoundBracketedClauseCS csRoundBracketedClause) {
+		int requiredIterators = 0;
+		if (csRoundBracketedClause != null) {
+			for (NavigatingArgCS csArgument : csRoundBracketedClause.getOwnedArguments()) {
+				if (csArgument.getRole() == NavigationRole.ITERATOR) {
+					requiredIterators++;
+				}
+			}
+		}
+		if (requiredIterators == 0) {
+			requiredIterators = 1;				// Implicit is always one iterator.
+		}
 		Iteration bestIteration = null;
 		org.eclipse.ocl.pivot.Class bestType = null;
-		int bestIteratorsSize = Integer.MAX_VALUE;
 		for (NamedElement operation : invocations) {
 			if (operation instanceof Iteration) {
 				Iteration iteration = (Iteration) operation;
 				int iteratorsSize = iteration.getOwnedIterator().size();
-				if ((bestIteration == null) || (iteratorsSize <= bestIteratorsSize)) {
+				if (iteratorsSize == requiredIterators) {
 					org.eclipse.ocl.pivot.Class specializedType = iteration.getOwningClass();
 					if (specializedType != null) {
 						org.eclipse.ocl.pivot.Class unspecializedType = PivotUtil.getUnspecializedTemplateableElement(specializedType);
 						if ((bestType == null) || !metaModelManager.isSuperClassOf(unspecializedType, bestType)) {
 							bestIteration = iteration;
 							bestType = unspecializedType;
-							bestIteratorsSize = iteratorsSize;
 						}
 					}
 				}
@@ -507,7 +516,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		if (csPathName == null) {
 			return null;
 		}
-		Iteration iteration = getBestIteration(invocations);
+		Iteration iteration = getBestIteration(invocations, csRoundBracketedClause);
 		if (iteration != null) {
 			if (sourceExp == null) {
 				sourceExp = createImplicitSourceVariableExp(csNameExp, iteration.getOwningClass());
@@ -628,7 +637,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		if (invocations == null) {
 			return null;
 		}
-		Iteration asIteration = getBestIteration(invocations);
+		Iteration asIteration = getBestIteration(invocations, null);
 		if (asIteration == null) {
 			return null;
 		}
