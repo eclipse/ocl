@@ -353,6 +353,11 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	}
 
 	@Override
+	public void addClass(@NonNull org.eclipse.ocl.pivot.Class partialClass) {
+		partialClasses.add(partialClass);
+	}
+
+	@Override
 	public boolean conformsTo(@NonNull DomainType elementType) {
 		DomainStandardLibrary standardLibrary = getStandardLibrary();
 		DomainInheritance thisInheritance = getCompleteInheritance();
@@ -387,7 +392,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	@Override
 	public boolean didRemoveClass(@NonNull org.eclipse.ocl.pivot.Class partialClass) {
 		partialClasses.remove(partialClass);
-		return partialClasses.size() <= 0;
+		return partialClasses.size() <= 0;		// FIXME Need to invalidate all derived inheritances
 	}
 
 	@Override

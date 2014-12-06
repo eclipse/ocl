@@ -11,7 +11,6 @@
 package org.eclipse.ocl.examples.build.xtend;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -29,7 +28,6 @@ import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreTablesUtils;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.utilities.StandaloneProjectMap;
@@ -37,6 +35,7 @@ import org.eclipse.ocl.domain.utilities.StandaloneProjectMap.IPackageDescriptor;
 import org.eclipse.ocl.domain.utilities.StandaloneProjectMap.IProjectDescriptor;
 import org.eclipse.ocl.domain.utilities.StandaloneProjectMap.LoadDynamicResourceStrategy;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreTablesUtils;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Enumeration;
@@ -249,10 +248,7 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 				EObject eObject = tit.next();
 				if (eObject instanceof org.eclipse.ocl.pivot.Class) {
 					List<Property> ownedAttribute = ((org.eclipse.ocl.pivot.Class)eObject).getOwnedProperties();
-					List<Property> properties = new ArrayList<Property>(ownedAttribute);
-					Collections.sort(properties, OCLinEcoreTablesUtils.propertyComparator);
-					ownedAttribute.clear();
-					ownedAttribute.addAll(properties);
+					DomainUtil.sort(ownedAttribute, OCLinEcoreTablesUtils.propertyComparator);
 				}
 			}
 			asResource.setURI(saveURI);

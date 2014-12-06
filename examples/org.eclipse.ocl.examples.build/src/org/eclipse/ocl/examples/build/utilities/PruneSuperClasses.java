@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -98,8 +99,7 @@ public class PruneSuperClasses extends WorkflowComponentWithModelSlot
 						superTypes.removeAll(superSuperTypes);
 						Orderer orderer = new Orderer(orderedNames, superTypes);
 						Collections.sort(superTypes, orderer);
-						eSuperTypes.clear();
-						eSuperTypes.addAll(superTypes);
+						ECollections.setEList(eSuperTypes, superTypes);
 					}
 				}
 				pruneSuperClasses(ePackage.getESubpackages());

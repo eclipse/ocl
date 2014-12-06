@@ -11,11 +11,14 @@
 package org.eclipse.ocl.domain.utilities;
 
 import java.math.BigInteger;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.ECollections;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
@@ -557,6 +560,20 @@ public class DomainUtil
 		return object == null
 			? otherObject == null
 			: object.equals(otherObject);
+	}
+
+	/**
+	 * Sort aList using comparator, using an Ecollections.sort if aLIst is an EList.
+	 */
+	public static <T> void sort(@NonNull List<T> aList, @NonNull Comparator<T> comparator) {
+		if (aList.size() > 1) {
+			if (aList instanceof EList<?>) {
+				ECollections.sort((EList<T>)aList, comparator);
+			}
+			else {
+				Collections.sort(aList, comparator);
+			}
+		}
 	}
 
 	/**

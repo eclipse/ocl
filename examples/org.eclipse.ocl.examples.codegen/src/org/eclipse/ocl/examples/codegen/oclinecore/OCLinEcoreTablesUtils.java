@@ -104,7 +104,7 @@ public class OCLinEcoreTablesUtils
 		}
 	};
 
-	public static Comparator<Property> propertyComparator = new Comparator<Property>()
+	public static final @NonNull Comparator<Property> propertyComparator = new Comparator<Property>()
 	{
 		@Override
 		public int compare(Property p1, Property p2) {

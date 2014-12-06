@@ -10,12 +10,11 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.utilities;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.manager.Orphanage;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
@@ -66,17 +65,10 @@ public class ASSaverNormalizeVisitor extends AbstractExtendingVisitor<Object, AS
 		super(context);
 	}
 
-	protected <T> void sort(@NonNull List<T> ownedElements, @NonNull Comparator<T> comparator) {
-		List<T> sortedList = new ArrayList<T>(ownedElements);
-		Collections.sort(sortedList, comparator);
-		ownedElements.clear();
-		ownedElements.addAll(sortedList);
-	}
-
 	@Override
 	public Object visitClass(@NonNull org.eclipse.ocl.pivot.Class object) {
 		List<Property> ownedAttributes = object.getOwnedProperties();
-		sort(ownedAttributes, PropertyComparator.INSTANCE);
+		DomainUtil.sort(ownedAttributes, PropertyComparator.INSTANCE);
 		return null;
 	}
 
@@ -84,7 +76,7 @@ public class ASSaverNormalizeVisitor extends AbstractExtendingVisitor<Object, AS
 	public Object visitPackage(@NonNull org.eclipse.ocl.pivot.Package object) {
 		if (!(object instanceof Orphanage)) {			// The Orphanage is not assignable/sortable
 			@NonNull List<org.eclipse.ocl.pivot.Class> ownedTypes = object.getOwnedClasses();
-			sort(ownedTypes, TypeComparator.INSTANCE);
+			DomainUtil.sort(ownedTypes, TypeComparator.INSTANCE);
 		}
 		return null;
 	}

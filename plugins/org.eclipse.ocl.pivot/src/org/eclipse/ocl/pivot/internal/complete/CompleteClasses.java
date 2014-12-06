@@ -184,12 +184,12 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 
 	public void didAddClass(@NonNull org.eclipse.ocl.pivot.Class partialClass) {
 		if (name2completeClass != null) {
-			CompleteClass completeClass = name2completeClass.get(partialClass.getName());
+			CompleteClass.Internal completeClass = name2completeClass.get(partialClass.getName());
 			if (completeClass == null) {
 				doRefreshPartialClass(partialClass);
 			}
 			else {
-				completeClass.getPartialClasses().add(partialClass);
+				completeClass.addClass(partialClass);
 			}
 		}
 	}
@@ -280,7 +280,7 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 					add(completeClass);
 				}
 			}
-			completeClass.getPartialClasses().add(partialClass);
+			completeClass.addClass(partialClass);
 		}
 	}
 

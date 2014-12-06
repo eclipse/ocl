@@ -10,15 +10,13 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.build.utilities;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -102,10 +100,7 @@ public class EPackageAlphabetizer extends WorkflowComponentWithModelSlot
 		for (Map.Entry<EList<? extends EObject>, Comparator<? extends EObject>> entry : listOfLists.entrySet()) {
 			@SuppressWarnings("unchecked") EList<EObject> eList = (EList<EObject>)entry.getKey();
 			@SuppressWarnings("unchecked") Comparator<EObject> comparator = (Comparator<EObject>) entry.getValue();
-			List<EObject> list = new ArrayList<EObject>(eList);
-			Collections.sort(list, comparator);
-			eList.clear();
-			eList.addAll(list);
+			ECollections.sort(eList, comparator);
 		}
 	}
 }
