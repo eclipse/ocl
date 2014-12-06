@@ -23,7 +23,7 @@ public interface LibraryConstants
 	/**
 	 *	The URI of this Standard Library.
 	 */
-	public static final @NonNull String STDLIB_URI = "http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib"; //$NON-NLS-1$
+	public static final @NonNull String STDLIB_URI = "http://www.eclipse.org/ocl/2015/Library"; //$NON-NLS-1$
 	
 	/**
 	 *	The URI of the Ecore serialization of this Standard Library.

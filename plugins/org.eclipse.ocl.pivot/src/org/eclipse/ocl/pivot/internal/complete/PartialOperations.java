@@ -110,7 +110,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 
 		public void add(@NonNull Operation pivotOperation) {
 			OverloadsList list;
-			if (pivotOperation.isStatic ()) {
+			if (pivotOperation.isStatic()) {
 				if (staticOperations == null) {
 					staticOperations = new OverloadsList();
 				}

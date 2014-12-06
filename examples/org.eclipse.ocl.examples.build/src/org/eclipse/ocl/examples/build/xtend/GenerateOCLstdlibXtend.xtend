@@ -194,7 +194,7 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 			
 					public @NonNull Resource getResource() {
 						Contents contents = new Contents();
-						Model libraryModel = contents.create("http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib", "ocl", "ocl", metamodelNsUri);
+						Model libraryModel = contents.create("http://www.eclipse.org/ocl/2015/Library", "ocl", "ocl", metamodelNsUri);
 						Resource resource = new OCLstdlib(STDLIB_URI + PivotConstants.DOT_OCL_AS_FILE_EXTENSION, libraryModel);
 						return resource;
 					}

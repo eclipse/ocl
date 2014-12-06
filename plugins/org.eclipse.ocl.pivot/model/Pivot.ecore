@@ -1121,8 +1121,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MorePivotable" instanceClassName="org.eclipse.ocl.pivot.util.MorePivotable" abstract="true"
       interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Nameable" instanceClassName="org.eclipse.ocl.domain.elements.Nameable" abstract="true"
-      interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Nameable" instanceClassName="org.eclipse.ocl.domain.elements.Nameable" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="#//Element #//Nameable">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A named element represents an element with a name."/>
@@ -1311,8 +1310,7 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParentCompletePackage" eSuperTypes="#//RootCompletePackage"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Pivotable" instanceClassName="org.eclipse.ocl.pivot.util.Pivotable" abstract="true"
-      interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Pivotable" instanceClassName="org.eclipse.ocl.pivot.util.Pivotable" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Precedence" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="associativity" eType="#//AssociativityKind" defaultValueLiteral="Left"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="order" lowerBound="1" eType="#//Integer" defaultValueLiteral="0"/>
@@ -1965,8 +1963,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Visitable" instanceClassName="org.eclipse.ocl.pivot.util.Visitable" abstract="true"
-      interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Visitable" instanceClassName="org.eclipse.ocl.pivot.util.Visitable" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="VoidType" eSuperTypes="#//Class"/>
   <eClassifiers xsi:type="ecore:EClass" name="WildcardType" eSuperTypes="#//Class">
     <eStructuralFeatures xsi:type="ecore:EReference" name="lowerBound" eType="#//Type">

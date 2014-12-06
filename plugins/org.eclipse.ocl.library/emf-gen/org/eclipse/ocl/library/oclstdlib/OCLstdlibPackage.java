@@ -56,7 +56,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String eNS_URI = "http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib"; //$NON-NLS-1$
+	public static final String eNS_URI = "http://www.eclipse.org/ocl/2015/Library"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.

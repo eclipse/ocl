@@ -5,7 +5,7 @@ org.eclipse.emf.examples.generator.validator plug-in to illustrate how EMF's
 code generator can be extended.
 This can be disabled with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
 
-Package oclstdlib <http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib>
+Package oclstdlib <http://www.eclipse.org/ocl/2015/Library>
 
   DataType Boolean <java.lang.Boolean>
 

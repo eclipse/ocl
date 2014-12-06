@@ -151,9 +151,9 @@ public interface PivotConstants extends DomainConstants
 	static final @NonNull String LIBRARY_MONIKER_PREFIX = "$";
 	static final @NonNull String ORPHANAGE_NAME = "$$";
 	static final @NonNull String ORPHANAGE_PREFIX = "orphanage";
-	static final @NonNull String ORPHANAGE_URI = "http://www.eclipse.org/ocl/0.9.0/orphanage";
+	static final @NonNull String ORPHANAGE_URI = "http://www.eclipse.org/ocl/2015/Orphanage";
 	static final @NonNull String OLD_ORPHANAGE_URI = "http://www.eclipse.org/ocl/3.1.0/orphanage";
-	static final @NonNull String PRIMITIVES_URI = "http://www.eclipse.org/ocl/0.9.0/primitives";
+	static final @NonNull String PRIMITIVES_URI = "http://www.eclipse.org/ocl/2015/Primitives";
 	
 	static final @NonNull String UNKNOWN_TYPE_TEXT = "unknown-type";
 

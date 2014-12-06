@@ -68,7 +68,7 @@ public interface PivotPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@NonNull String eCONTENT_TYPE = "org.eclipse.ocl.examples.oclas"; //$NON-NLS-1$
+	@NonNull String eCONTENT_TYPE = "org.eclipse.ocl.oclas"; //$NON-NLS-1$
 
 	/**
 	 * The singleton instance of the package.

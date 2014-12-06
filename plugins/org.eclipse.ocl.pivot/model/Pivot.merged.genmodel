@@ -32,7 +32,7 @@
     <details key="Visitable Classes" value="org.eclipse.ocl.pivot.Element"/>
   </genAnnotations>
   <foreignModel>Pivot.merged.uml</foreignModel>
-  <genPackages xsi:type="genmodel:GenPackage" prefix="Pivot" basePackage="org.eclipse.ocl.examples" disposableProviderFactory="true" classPackageSuffix="internal.impl" providerPackageSuffix="edit.provider" presentationPackageSuffix="editor.presentation" generateExampleClass="false" multipleEditorPages="false" extensibleProviderFactory="true" childCreationExtenders="true" contentTypeIdentifier="org.eclipse.ocl.examples.oclas" fileExtensions="oclas" resourceInterfaces="true" operationsPackage="">
+  <genPackages xsi:type="genmodel:GenPackage" prefix="Pivot" basePackage="org.eclipse.ocl" disposableProviderFactory="true" classPackageSuffix="internal.impl" providerPackageSuffix="edit.provider" presentationPackageSuffix="editor.presentation" generateExampleClass="false" multipleEditorPages="false" extensibleProviderFactory="true" childCreationExtenders="true" contentTypeIdentifier="org.eclipse.ocl.oclas" fileExtensions="oclas" resourceInterfaces="true" operationsPackage="">
     <ecorePackage href="Pivot.ecore#/"/>
     <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false">
       <ecoreEnum href="Pivot.ecore#//AssociativityKind"/>

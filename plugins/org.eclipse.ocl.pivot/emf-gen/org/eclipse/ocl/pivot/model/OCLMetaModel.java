@@ -27,29 +27,9 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.pivot.AssociativityKind;
-import org.eclipse.ocl.pivot.BagType;
+import org.eclipse.ocl.pivot.*;
 import org.eclipse.ocl.pivot.Class;
-import org.eclipse.ocl.pivot.CollectionKind;
-import org.eclipse.ocl.pivot.CollectionType;
-import org.eclipse.ocl.pivot.DataType;
-import org.eclipse.ocl.pivot.Enumeration;
-import org.eclipse.ocl.pivot.EnumerationLiteral;
-import org.eclipse.ocl.pivot.Iteration;
-import org.eclipse.ocl.pivot.Model;
-import org.eclipse.ocl.pivot.Operation;
-import org.eclipse.ocl.pivot.OrderedSetType;
 import org.eclipse.ocl.pivot.Package;
-import org.eclipse.ocl.pivot.Parameter;
-import org.eclipse.ocl.pivot.PivotPackage;
-import org.eclipse.ocl.pivot.PrimitiveType;
-import org.eclipse.ocl.pivot.Property;
-import org.eclipse.ocl.pivot.PseudostateKind;
-import org.eclipse.ocl.pivot.SequenceType;
-import org.eclipse.ocl.pivot.SetType;
-import org.eclipse.ocl.pivot.TemplateParameter;
-import org.eclipse.ocl.pivot.TemplateSignature;
-import org.eclipse.ocl.pivot.TransitionKind;
 import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResourceImpl;
@@ -150,7 +130,7 @@ public class OCLMetaModel extends ASResourceImpl
 			installComments();
 		}
 	
-		private final @NonNull Package pk_$$ = createPackage("$$", "orphanage", "http://www.eclipse.org/ocl/0.9.0/orphanage", null);
+		private final @NonNull Package pk_$$ = createPackage("$$", "orphanage", "http://www.eclipse.org/ocl/2015/Orphanage", null);
 		
 		private void installPackages() {
 			root.getOwnedPackages().add(pk_$$);

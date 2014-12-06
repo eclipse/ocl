@@ -990,7 +990,7 @@ public class LoadTests extends XtextTestCase
 		Model root = (Model) oclResource.getContents().get(0);
 		org.eclipse.ocl.pivot.Package oclDocPackage = root.getOwnedPackages().get(0);
 		assertEquals("ocl", oclDocPackage.getName());
-		assertEquals("http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib", oclDocPackage.getURI());
+		assertEquals("http://www.eclipse.org/ocl/2015/Library", oclDocPackage.getURI());
 
 		Import _import = root.getImports().get(0);
 		assertEquals("pivot", _import.getName());

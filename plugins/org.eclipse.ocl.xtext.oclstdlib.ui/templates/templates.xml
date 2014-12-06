@@ -3,7 +3,7 @@
 <template name="minimal OCL Standard Library" description="template for a minimal OCL Standard Library"
 	id="org.eclipse.ocl.xtext.oclstdlib.ui.templates.library"
 	context="org.eclipse.ocl.xtext.oclstdlib.OCLstdlib.LibraryCS"
-	enabled="true">library ocl : ocl = 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib'
+	enabled="true">library ocl : ocl = 'http://www.eclipse.org/ocl/2015/Library'
 {
 	type AnyClassifier(T) : ClassifierType conformsTo OclAny {}
 	type Bag(T) : BagType conformsTo Collection(T) {}

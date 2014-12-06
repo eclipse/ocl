@@ -38,30 +38,9 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.pivot.AnyType;
-import org.eclipse.ocl.pivot.AssociativityKind;
-import org.eclipse.ocl.pivot.BagType;
+import org.eclipse.ocl.pivot.*;
 import org.eclipse.ocl.pivot.Class;
-import org.eclipse.ocl.pivot.CollectionType;
-import org.eclipse.ocl.pivot.InvalidType;
-import org.eclipse.ocl.pivot.Iteration;
-import org.eclipse.ocl.pivot.LambdaType;
-import org.eclipse.ocl.pivot.Library;
-import org.eclipse.ocl.pivot.Model;
-import org.eclipse.ocl.pivot.Operation;
-import org.eclipse.ocl.pivot.OrderedSetType;
 import org.eclipse.ocl.pivot.Package;
-import org.eclipse.ocl.pivot.Parameter;
-import org.eclipse.ocl.pivot.PivotConstants;
-import org.eclipse.ocl.pivot.Precedence;
-import org.eclipse.ocl.pivot.PrimitiveType;
-import org.eclipse.ocl.pivot.Property;
-import org.eclipse.ocl.pivot.SelfType;
-import org.eclipse.ocl.pivot.SequenceType;
-import org.eclipse.ocl.pivot.SetType;
-import org.eclipse.ocl.pivot.TemplateParameter;
-import org.eclipse.ocl.pivot.TupleType;
-import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.resource.ASResourceImpl;
@@ -70,7 +49,7 @@ import org.eclipse.ocl.pivot.utilities.AS2XMIid;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 /**
- * This is the http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib Standard Library
+ * This is the http://www.eclipse.org/ocl/2015/Library Standard Library
  * auto-generated from /org.eclipse.ocl.library/model/OCL-2.5.oclstdlib.
  * It facilitates efficient library loading without the overheads of model reading.
  * <p>
@@ -92,7 +71,7 @@ public class OCLstdlib extends ASResourceImpl
 	/**
 	 *	The URI of this Standard Library.
 	 */
-	public static final @NonNull String STDLIB_URI = "http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib";
+	public static final @NonNull String STDLIB_URI = "http://www.eclipse.org/ocl/2015/Library";
 
 	/**
 	 * Return the default OCL standard Library. 
@@ -103,7 +82,7 @@ public class OCLstdlib extends ASResourceImpl
 		OCLstdlib oclstdlib = INSTANCE;
 		if (oclstdlib == null) {
 			Contents contents = new Contents();
-			Model libraryModel = contents.create("http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib", "ocl", "ocl", "http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib");
+			Model libraryModel = contents.create("http://www.eclipse.org/ocl/2015/Library", "ocl", "ocl", "http://www.eclipse.org/ocl/2015/Library");
 			oclstdlib = INSTANCE = new OCLstdlib(STDLIB_URI + PivotConstants.DOT_OCL_AS_FILE_EXTENSION, libraryModel);
 		}
 		return oclstdlib;
@@ -153,12 +132,10 @@ public class OCLstdlib extends ASResourceImpl
 	 */
 	public static class Loader implements StandardLibraryContribution
 	{
-		@Override
 		public @NonNull StandardLibraryContribution getContribution() {
 			return this;
 		}
 		
-		@Override
 		public @NonNull Resource getResource() {
 			return getDefault();
 		}
@@ -177,15 +154,13 @@ public class OCLstdlib extends ASResourceImpl
 			this.metamodelNsUri = metamodelNsUri;
 		}
 		
-		@Override
 		public @NonNull StandardLibraryContribution getContribution() {
 			return this;
 		}
 
-		@Override
 		public @NonNull Resource getResource() {
 			Contents contents = new Contents();
-			Model libraryModel = contents.create("http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib", "ocl", "ocl", metamodelNsUri);
+			Model libraryModel = contents.create("http://www.eclipse.org/ocl/2015/Library", "ocl", "ocl", metamodelNsUri);
 			Resource resource = new OCLstdlib(STDLIB_URI + PivotConstants.DOT_OCL_AS_FILE_EXTENSION, libraryModel);
 			return resource;
 		}
@@ -298,7 +273,7 @@ public class OCLstdlib extends ASResourceImpl
 			return theRoot;
 		}
 	
-		private final @NonNull Package orphans = createPackage("$$", "orphanage", "http://www.eclipse.org/ocl/0.9.0/orphanage", null);
+		private final @NonNull Package orphans = createPackage("$$", "orphanage", "http://www.eclipse.org/ocl/2015/Orphanage", null);
 		
 		private void installPackages() {
 			root.getOwnedPackages().add(orphans);

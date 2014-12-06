@@ -10,7 +10,7 @@
  *************************************************************************
  * This code is 100% auto-generated
  * from:
- *   http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib
+ *   http://www.eclipse.org/ocl/2015/Library
  *   platform:/resource/org.eclipse.ocl.pivot/model/Pivot.ecore
  * using:
  *   platform:/resource/org.eclipse.ocl.pivot/model/Pivot.merged.genmodel
@@ -21,7 +21,6 @@
 package org.eclipse.ocl.pivot;
 
 import java.lang.String;
-
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.DomainParameterTypes;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;

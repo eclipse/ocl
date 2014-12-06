@@ -4,12 +4,12 @@
     xmlns:pivot="http://www.eclipse.org/ocl/2015/Pivot">
   <pivot:Package xmi:id="Bug323741.ecore" name="Bug323741.ecore">
     <nestedPackage xmi:id="my" name="my" nsPrefix="my" nsURI="http://my/1.0">
-      <ownedType xsi:type="pivot:Class" xmi:id="my!Model" name="Model" superClass="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.2 http://www.eclipse.org/ocl/2015/Pivot#//@ownedType.10">
+      <ownedType xsi:type="pivot:Class" xmi:id="my!Model" name="Model" superClass="http://www.eclipse.org/ocl/2015/Library#//@ownedType.2 http://www.eclipse.org/ocl/2015/Pivot#//@ownedType.10">
         <ownedAttribute xmi:id="my!Model!bs" name="bs" type="#my!BType" lower="0"
             upper="-1" isComposite="true" opposite="#my!BType!Model"/>
       </ownedType>
-      <ownedType xsi:type="pivot:Class" xmi:id="my!Entity" name="Entity" superClass="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.2 http://www.eclipse.org/ocl/2015/Pivot#//@ownedType.10">
-        <ownedAttribute xmi:id="my!Entity!name" name="name" type="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.19"
+      <ownedType xsi:type="pivot:Class" xmi:id="my!Entity" name="Entity" superClass="http://www.eclipse.org/ocl/2015/Library#//@ownedType.2 http://www.eclipse.org/ocl/2015/Pivot#//@ownedType.10">
+        <ownedAttribute xmi:id="my!Entity!name" name="name" type="http://www.eclipse.org/ocl/2015/Library#//@ownedType.19"
             lower="0"/>
       </ownedType>
       <ownedType xsi:type="pivot:Class" xmi:id="my!AType" name="AType" superClass="#my!Entity">
@@ -32,7 +32,7 @@
                           type="#ocl!Classifier[my!BType]" referredType="#my!BType"/>
                     </source>
                     <body xsi:type="pivot:OperationCallExp" xmi:id="my!AType!referencedAttr!derivation~!specification!bodyExpression~first!source~asSequence!source~select!argument~includes"
-                        type="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.1"
+                        type="http://www.eclipse.org/ocl/2015/Library#//@ownedType.1"
                         referredOperation="#ocl!Collection{T}!includes[my!AType](ocl!OclAny)">
                       <source xsi:type="pivot:PropertyCallExp" xmi:id="my!AType!referencedAttr!derivation~!specification!bodyExpression~first!source~asSequence!source~select!argument~includes!source~references"
                           type="#ocl!Set[my!AType]" referredProperty="#my!BType!references">
@@ -75,7 +75,7 @@
                           type="#ocl!Classifier[my!BType]" referredType="#my!BType"/>
                     </source>
                     <body xsi:type="pivot:OperationCallExp" xmi:id="my!AType!referenced()!body~!specification!bodyExpression~first!source~asSequence!source~select!argument~includes"
-                        type="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.1"
+                        type="http://www.eclipse.org/ocl/2015/Library#//@ownedType.1"
                         referredOperation="#ocl!Collection{T}!includes[my!AType](ocl!OclAny)">
                       <source xsi:type="pivot:PropertyCallExp" xmi:id="my!AType!referenced()!body~!specification!bodyExpression~first!source~asSequence!source~select!argument~includes!source~references"
                           type="#ocl!Set[my!AType]" referredProperty="#my!BType!references">
@@ -110,22 +110,22 @@
     <ownedType xsi:type="pivot:Class" xmi:id="$orphanage!$orphanage" name="$orphanage">
       <ownedOperation xmi:id="ocl!OrderedCollection{T}!first[my!BType]()" name="first"
           type="#my!BType" implementationClass="org.eclipse.ocl.library.collection.OrderedCollectionFirstOperation">
-        <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.14/@ownedTemplateSignature">
-          <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.14/@ownedTemplateSignature/@ownedParameter.0"
+        <templateBinding signature="http://www.eclipse.org/ocl/2015/Library#//@ownedType.14/@ownedTemplateSignature">
+          <parameterSubstitution formal="http://www.eclipse.org/ocl/2015/Library#//@ownedType.14/@ownedTemplateSignature/@ownedParameter.0"
               actual="#my!BType"/>
         </templateBinding>
       </ownedOperation>
       <ownedOperation xmi:id="ocl!Collection{T}!asSequence[my!BType]()" name="asSequence"
           type="#ocl!Sequence[my!BType]" implementationClass="org.eclipse.ocl.library.collection.CollectionAsSequenceOperation">
-        <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.3/@ownedTemplateSignature">
-          <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.3/@ownedTemplateSignature/@ownedParameter.0"
+        <templateBinding signature="http://www.eclipse.org/ocl/2015/Library#//@ownedType.3/@ownedTemplateSignature">
+          <parameterSubstitution formal="http://www.eclipse.org/ocl/2015/Library#//@ownedType.3/@ownedTemplateSignature/@ownedParameter.0"
               actual="#my!BType"/>
         </templateBinding>
       </ownedOperation>
       <ownedOperation xsi:type="pivot:Iteration" xmi:id="ocl!Set{T}!select[my!BType](my!BType|Lambda~my!BType()Boolean)"
           name="select" type="#ocl!Set[my!BType]" implementationClass="org.eclipse.ocl.library.iterator.SelectIteration">
-        <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.18/@ownedTemplateSignature">
-          <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.18/@ownedTemplateSignature/@ownedParameter.0"
+        <templateBinding signature="http://www.eclipse.org/ocl/2015/Library#//@ownedType.18/@ownedTemplateSignature">
+          <parameterSubstitution formal="http://www.eclipse.org/ocl/2015/Library#//@ownedType.18/@ownedTemplateSignature/@ownedParameter.0"
               actual="#my!BType"/>
         </templateBinding>
         <ownedParameter xmi:id="ocl!Set{T}!select[my!BType](my!BType|Lambda~my!BType()Boolean)!body"
@@ -135,123 +135,123 @@
       </ownedOperation>
       <ownedOperation xmi:id="ocl!Classifier{T}!allInstances[my!BType,my!BType]()"
           name="allInstances" isStatic="true" type="#ocl!Set[my!BType]" implementationClass="org.eclipse.ocl.library.classifier.ClassifierAllInstancesOperation">
-        <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.2/@ownedTemplateSignature">
-          <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.2/@ownedTemplateSignature/@ownedParameter.0"
+        <templateBinding signature="http://www.eclipse.org/ocl/2015/Library#//@ownedType.2/@ownedTemplateSignature">
+          <parameterSubstitution formal="http://www.eclipse.org/ocl/2015/Library#//@ownedType.2/@ownedTemplateSignature/@ownedParameter.0"
               actual="#my!BType"/>
         </templateBinding>
-        <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.2/@ownedOperation.0/@ownedTemplateSignature">
-          <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.2/@ownedOperation.0/@ownedTemplateSignature/@ownedParameter.0"
+        <templateBinding signature="http://www.eclipse.org/ocl/2015/Library#//@ownedType.2/@ownedOperation.0/@ownedTemplateSignature">
+          <parameterSubstitution formal="http://www.eclipse.org/ocl/2015/Library#//@ownedType.2/@ownedOperation.0/@ownedTemplateSignature/@ownedParameter.0"
               actual="#my!BType"/>
         </templateBinding>
       </ownedOperation>
       <ownedOperation xmi:id="ocl!Collection{T}!includes[my!AType](ocl!OclAny)" name="includes"
-          type="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.1" implementationClass="org.eclipse.ocl.library.collection.CollectionIncludesOperation">
-        <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.3/@ownedTemplateSignature">
-          <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.3/@ownedTemplateSignature/@ownedParameter.0"
+          type="http://www.eclipse.org/ocl/2015/Library#//@ownedType.1" implementationClass="org.eclipse.ocl.library.collection.CollectionIncludesOperation">
+        <templateBinding signature="http://www.eclipse.org/ocl/2015/Library#//@ownedType.3/@ownedTemplateSignature">
+          <parameterSubstitution formal="http://www.eclipse.org/ocl/2015/Library#//@ownedType.3/@ownedTemplateSignature/@ownedParameter.0"
               actual="#my!AType"/>
         </templateBinding>
         <ownedParameter xmi:id="ocl!Collection{T}!includes[my!AType](ocl!OclAny)!object"
-            name="object" type="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.8"/>
+            name="object" type="http://www.eclipse.org/ocl/2015/Library#//@ownedType.8"/>
       </ownedOperation>
     </ownedType>
     <ownedType xsi:type="pivot:LambdaType" xmi:id="Lambda~my!BType()Boolean" name="Lambda"
-        contextType="#my!BType" resultType="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.1">
+        contextType="#my!BType" resultType="http://www.eclipse.org/ocl/2015/Library#//@ownedType.1">
       <templateBinding>
-        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.18/@ownedTemplateSignature/@ownedParameter.0"
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/2015/Library#//@ownedType.18/@ownedTemplateSignature/@ownedParameter.0"
             actual="#my!BType"/>
-        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.6/@ownedTemplateSignature/@ownedParameter.0"
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/2015/Library#//@ownedType.6/@ownedTemplateSignature/@ownedParameter.0"
             actual="#my!BType"/>
-        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.3/@ownedTemplateSignature/@ownedParameter.0"
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/2015/Library#//@ownedType.3/@ownedTemplateSignature/@ownedParameter.0"
             actual="#my!BType"/>
-        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.21/@ownedTemplateSignature/@ownedParameter.0"
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/2015/Library#//@ownedType.21/@ownedTemplateSignature/@ownedParameter.0"
             actual="#my!BType"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:ClassifierType" xmi:id="ocl!Classifier[my!BType]" name="Classifier"
-        superClass="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.2 http://www.eclipse.org/ocl/2015/Pivot#//@ownedType.10"
+        superClass="http://www.eclipse.org/ocl/2015/Library#//@ownedType.2 http://www.eclipse.org/ocl/2015/Pivot#//@ownedType.10"
         instanceType="#my!BType">
-      <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.2/@ownedTemplateSignature">
-        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.2/@ownedTemplateSignature/@ownedParameter.0"
+      <templateBinding signature="http://www.eclipse.org/ocl/2015/Library#//@ownedType.2/@ownedTemplateSignature">
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/2015/Library#//@ownedType.2/@ownedTemplateSignature/@ownedParameter.0"
             actual="#my!BType"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" xmi:id="ocl!Collection[my!AType]" name="Collection"
-        superClass="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.8"
+        superClass="http://www.eclipse.org/ocl/2015/Library#//@ownedType.8"
         elementType="#my!AType">
-      <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.3/@ownedTemplateSignature">
-        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.3/@ownedTemplateSignature/@ownedParameter.0"
+      <templateBinding signature="http://www.eclipse.org/ocl/2015/Library#//@ownedType.3/@ownedTemplateSignature">
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/2015/Library#//@ownedType.3/@ownedTemplateSignature/@ownedParameter.0"
             actual="#my!AType"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" xmi:id="ocl!Collection[my!BType]" name="Collection"
-        superClass="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.8"
+        superClass="http://www.eclipse.org/ocl/2015/Library#//@ownedType.8"
         elementType="#my!BType">
-      <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.3/@ownedTemplateSignature">
-        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.3/@ownedTemplateSignature/@ownedParameter.0"
+      <templateBinding signature="http://www.eclipse.org/ocl/2015/Library#//@ownedType.3/@ownedTemplateSignature">
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/2015/Library#//@ownedType.3/@ownedTemplateSignature/@ownedParameter.0"
             actual="#my!BType"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" xmi:id="ocl!NonOrderedCollection[my!AType]"
         name="NonOrderedCollection" superClass="#ocl!Collection[my!AType]" elementType="#my!AType">
-      <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.6/@ownedTemplateSignature">
-        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.6/@ownedTemplateSignature/@ownedParameter.0"
+      <templateBinding signature="http://www.eclipse.org/ocl/2015/Library#//@ownedType.6/@ownedTemplateSignature">
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/2015/Library#//@ownedType.6/@ownedTemplateSignature/@ownedParameter.0"
             actual="#my!AType"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" xmi:id="ocl!NonOrderedCollection[my!BType]"
         name="NonOrderedCollection" superClass="#ocl!Collection[my!BType]" elementType="#my!BType">
-      <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.6/@ownedTemplateSignature">
-        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.6/@ownedTemplateSignature/@ownedParameter.0"
+      <templateBinding signature="http://www.eclipse.org/ocl/2015/Library#//@ownedType.6/@ownedTemplateSignature">
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/2015/Library#//@ownedType.6/@ownedTemplateSignature/@ownedParameter.0"
             actual="#my!BType"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" xmi:id="ocl!NonUniqueCollection[my!BType]"
         name="NonUniqueCollection" superClass="#ocl!Collection[my!BType]" elementType="#my!BType">
-      <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.7/@ownedTemplateSignature">
-        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.7/@ownedTemplateSignature/@ownedParameter.0"
+      <templateBinding signature="http://www.eclipse.org/ocl/2015/Library#//@ownedType.7/@ownedTemplateSignature">
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/2015/Library#//@ownedType.7/@ownedTemplateSignature/@ownedParameter.0"
             actual="#my!BType"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" xmi:id="ocl!OrderedCollection[my!BType]"
         name="OrderedCollection" superClass="#ocl!Collection[my!BType]" elementType="#my!BType">
-      <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.14/@ownedTemplateSignature">
-        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.14/@ownedTemplateSignature/@ownedParameter.0"
+      <templateBinding signature="http://www.eclipse.org/ocl/2015/Library#//@ownedType.14/@ownedTemplateSignature">
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/2015/Library#//@ownedType.14/@ownedTemplateSignature/@ownedParameter.0"
             actual="#my!BType"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SequenceType" xmi:id="ocl!Sequence[my!BType]" name="Sequence"
         superClass="#ocl!OrderedCollection[my!BType] #ocl!NonUniqueCollection[my!BType]"
         elementType="#my!BType">
-      <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.17/@ownedTemplateSignature">
-        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.17/@ownedTemplateSignature/@ownedParameter.0"
+      <templateBinding signature="http://www.eclipse.org/ocl/2015/Library#//@ownedType.17/@ownedTemplateSignature">
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/2015/Library#//@ownedType.17/@ownedTemplateSignature/@ownedParameter.0"
             actual="#my!BType"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" xmi:id="ocl!Set[my!AType]" name="Set" superClass="#ocl!UniqueCollection[my!AType] #ocl!NonOrderedCollection[my!AType]"
         elementType="#my!AType">
-      <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.18/@ownedTemplateSignature">
-        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.18/@ownedTemplateSignature/@ownedParameter.0"
+      <templateBinding signature="http://www.eclipse.org/ocl/2015/Library#//@ownedType.18/@ownedTemplateSignature">
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/2015/Library#//@ownedType.18/@ownedTemplateSignature/@ownedParameter.0"
             actual="#my!AType"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" xmi:id="ocl!Set[my!BType]" name="Set" superClass="#ocl!UniqueCollection[my!BType] #ocl!NonOrderedCollection[my!BType]"
         elementType="#my!BType">
-      <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.18/@ownedTemplateSignature">
-        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.18/@ownedTemplateSignature/@ownedParameter.0"
+      <templateBinding signature="http://www.eclipse.org/ocl/2015/Library#//@ownedType.18/@ownedTemplateSignature">
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/2015/Library#//@ownedType.18/@ownedTemplateSignature/@ownedParameter.0"
             actual="#my!BType"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" xmi:id="ocl!UniqueCollection[my!AType]"
         name="UniqueCollection" superClass="#ocl!Collection[my!AType]" elementType="#my!AType">
-      <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.21/@ownedTemplateSignature">
-        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.21/@ownedTemplateSignature/@ownedParameter.0"
+      <templateBinding signature="http://www.eclipse.org/ocl/2015/Library#//@ownedType.21/@ownedTemplateSignature">
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/2015/Library#//@ownedType.21/@ownedTemplateSignature/@ownedParameter.0"
             actual="#my!AType"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" xmi:id="ocl!UniqueCollection[my!BType]"
         name="UniqueCollection" superClass="#ocl!Collection[my!BType]" elementType="#my!BType">
-      <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.21/@ownedTemplateSignature">
-        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.21/@ownedTemplateSignature/@ownedParameter.0"
+      <templateBinding signature="http://www.eclipse.org/ocl/2015/Library#//@ownedType.21/@ownedTemplateSignature">
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/2015/Library#//@ownedType.21/@ownedTemplateSignature/@ownedParameter.0"
             actual="#my!BType"/>
       </templateBinding>
     </ownedType>

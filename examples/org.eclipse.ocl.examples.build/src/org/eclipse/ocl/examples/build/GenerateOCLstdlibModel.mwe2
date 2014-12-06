@@ -28,13 +28,13 @@ var targetName = "org.eclipse.ocl.pivot"
 Workflow {
 	bean = ResourceSetImpl : resourceSet {}
     bean = StandaloneSetup { resourceSet = resourceSet
-    	platformUri = ".."
+    	platformUri = "../../plugins"
     }
     bean = GenModelSetup { resourceSet = resourceSet }
     component = GenerateOCLstdlibXtend { resourceSet = resourceSet
     	projectName = "${sourceName}"
     	modelFile = "model/OCL-2.5.oclstdlib"
-    	uri = "http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib"
+    	uri = "http://www.eclipse.org/ocl/2015/Library"
     	javaFolder = "/${targetName}/emf-gen"
     	javaPackageName = "${targetName}.model"
     	javaClassName = "OCLstdlib"

@@ -32,6 +32,7 @@ import org.eclipse.ocl.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.pivot.CollectionRange;
 import org.eclipse.ocl.pivot.CollectionType;
+import org.eclipse.ocl.pivot.CompleteClass;
 import org.eclipse.ocl.pivot.ConstructorExp;
 import org.eclipse.ocl.pivot.ConstructorPart;
 import org.eclipse.ocl.pivot.Element;
@@ -282,18 +283,23 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		if (namedElement != null) {
 			return namedElement instanceof Operation ? (Operation)namedElement : null;
 		}
-//		@SuppressWarnings("null")@NonNull EReference aReferredOperation = PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION;
-//		EnvironmentView environmentView = new EnvironmentView(metaModelManager, aReferredOperation, invocations.get(0).getName());
-//		environmentView.addFilter(new OperationFilter(sourceExp != null ? sourceExp.getType() : null, sourceExp != null ? sourceExp.isTypeof() : false, csRoundBracketedClause));
-//		environmentView.addElements(invocations);
-//		environmentView.resolveDuplicates();
-//		Object content = environmentView.getEntries().iterator().next().getValue();
-//		if (content instanceof List<?>) {
-//			content = ((List<?>)content).get(0);
-//		}
-//		return (Operation) content;
-		namedElement = invocations.iterator().next();
-		return namedElement instanceof Operation ? (Operation)namedElement : null;
+		Operation bestOperation = null;
+		int bestDepth = 0;
+		for (NamedElement invocation : invocations) {
+			if (invocation instanceof Operation) {
+				Operation operation = (Operation)invocation;
+				org.eclipse.ocl.pivot.Class owningClass = operation.getOwningClass();
+				if (owningClass != null) {
+					CompleteClass completeClass = metaModelManager.getCompleteClass(owningClass);
+					int depth = completeClass.getCompleteInheritance().getDepth();
+					if ((bestOperation == null) || (depth > bestDepth)) {
+						bestOperation = operation;
+						bestDepth = depth;
+					}
+				}
+			}
+		}
+		return bestOperation;
 	}
 
 	protected @Nullable VariableDeclaration getImplicitSource(@NonNull ModelElementCS csExp, @NonNull Type requiredType) {

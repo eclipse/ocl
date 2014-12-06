@@ -305,8 +305,8 @@ public class CompletionProposalTests extends XtextTestCase
 	public void testEditor_OCLstdlib_Completions() throws Exception {
 		Injector injector = OCLstdlibActivator.getInstance().getInjector(OCLstdlibActivator.ORG_ECLIPSE_OCL_XTEXT_OCLSTDLIB_OCLSTDLIB);
 		doSetUp(OCLstdlibUiModule.EDITOR_ID, injector, "completion.oclstdlib",
-			"import 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib';\n" +
-			"library ocl : ocl = 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib' {\n" +
+			"import 'http://www.eclipse.org/ocl/2015/Library';\n" +
+			"library ocl : ocl = 'http://www.eclipse.org/ocl/2015/Library' {\n" +
 			"	type Complex : PrimitiveType {\n" +
 			"	}\n" +
 			"}';\n");
@@ -314,8 +314,8 @@ public class CompletionProposalTests extends XtextTestCase
 			IReferenceCompletionProposal proposal1a = new ReferenceConfigurableCompletionProposal("PrimitiveType");
 			IReferenceCompletionProposal proposal1b = new ReferenceConfigurableCompletionProposal("{");
 			doTestEditor(
-				"import 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib';\n" +
-				"library ocl : ocl = 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib' {\n" +
+				"import 'http://www.eclipse.org/ocl/2015/Library';\n" +
+				"library ocl : ocl = 'http://www.eclipse.org/ocl/2015/Library' {\n" +
 				"	type Complex : Primitive$ {\n" +
 				"	}\n" +
 				"}';\n",
@@ -326,8 +326,8 @@ public class CompletionProposalTests extends XtextTestCase
 			IReferenceCompletionProposal proposal2a = new ReferenceConfigurableCompletionProposal("org.eclipse.emf.common.util.Reflect");
 			IReferenceCompletionProposal proposal2b = new ReferenceConfigurableCompletionProposal("org.eclipse.emf.common.util.ResourceLocator");
 			doTestEditor(
-				"import 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib';\n" +
-				"library ocl : ocl = 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib' {\n" +
+				"import 'http://www.eclipse.org/ocl/2015/Library';\n" +
+				"library ocl : ocl = 'http://www.eclipse.org/ocl/2015/Library' {\n" +
 				"	type Complex : PrimitiveType {\n" +
 				"		operation testing() : String => 'org.eclipse.emf.common.util.R$';\n" +
 				"	}\n" +
@@ -339,8 +339,8 @@ public class CompletionProposalTests extends XtextTestCase
 			IReferenceCompletionProposal proposal3a = new ReferenceConfigurableCompletionProposal("org.eclipse.ocl.domain.ids.impl.OclInvalidTypeIdImpl");
 			IReferenceCompletionProposal proposal3b = new ReferenceConfigurableCompletionProposal("org.eclipse.ocl.domain.ids.impl.OclVoidTypeIdImpl");
 			doTestEditor(
-				"import 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib';\n" +
-				"library ocl : ocl = 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib' {\n" +
+				"import 'http://www.eclipse.org/ocl/2015/Library';\n" +
+				"library ocl : ocl = 'http://www.eclipse.org/ocl/2015/Library' {\n" +
 				"	type Complex : PrimitiveType {\n" +
 				"		operation testing() : String => 'org.eclipse.ocl.domain.ids.impl.O$';\n" +
 				"	}\n" +
