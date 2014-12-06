@@ -118,25 +118,16 @@ public class ModelImpl extends NamespaceImpl implements Model
 			ownedPackages = ownedPackages2 = new EObjectContainmentEList<org.eclipse.ocl.pivot.Package>(org.eclipse.ocl.pivot.Package.class, this, PivotPackage.MODEL__OWNED_PACKAGES)
 			{
 				private static final long serialVersionUID = 1L;
-
-				@Override
-				public void addUnique(org.eclipse.ocl.pivot.Package partialPackage) {
-					assert partialPackage != null;
-					super.addUnique(partialPackage);
-					didAddPackage(partialPackage);
-				}
 	
 				@Override
-				public void addUnique(int index, org.eclipse.ocl.pivot.Package partialPackage) {
+				public void didAdd(int index, org.eclipse.ocl.pivot.Package partialPackage) {
 					assert partialPackage != null;
-					super.addUnique(index, partialPackage);
 					didAddPackage(partialPackage);
 				}
 	
 				@Override
 				protected void didRemove(int index, org.eclipse.ocl.pivot.Package partialPackage) {
 					assert partialPackage != null;
-					super.didRemove(index, partialPackage);
 					didRemovePackage(partialPackage);
 				}
 			};

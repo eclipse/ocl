@@ -1139,29 +1139,21 @@ public class ClassImpl
 				private static final long serialVersionUID = 1L;
 
 				@Override
-				public void addUnique(Operation partialOperation) {
-					assert partialOperation != null;
-					super.addUnique(partialOperation);
-					if (classListeners != null) {
-						classListeners.didAddOperation(partialOperation);
-					}
-				}
-
-				@Override
-				public void addUnique(int index, Operation partialOperation) {
-					assert partialOperation != null;
-					super.addUnique(index, partialOperation);
-					if (classListeners != null) {
-						classListeners.didAddOperation(partialOperation);
-					}
-				}
-
-				@Override
 				protected void didRemove(int index, Operation partialOperation) {
 					assert partialOperation != null;
 					if (classListeners != null) {
 						classListeners.didRemoveOperation(partialOperation);
 					}
+				}
+
+				@Override
+				public NotificationChain inverseAdd(Operation partialOperation, NotificationChain notifications) {
+					assert partialOperation != null;
+					NotificationChain inverseAdd = super.inverseAdd(partialOperation, notifications);
+					if (classListeners != null) {
+						classListeners.didAddOperation(partialOperation);		// inverseAdd rather than didAdd so that eContainer is defined
+					}
+					return inverseAdd;
 				}
 			};
 		}
@@ -1179,29 +1171,21 @@ public class ClassImpl
 				private static final long serialVersionUID = 1L;
 
 				@Override
-				public void addUnique(Property partialProperty) {
-					assert partialProperty != null;
-					super.addUnique(partialProperty);
-					if (classListeners != null) {
-						classListeners.didAddProperty(partialProperty);
-					}
-				}
-
-				@Override
-				public void addUnique(int index, Property partialProperty) {
-					assert partialProperty != null;
-					super.addUnique(index, partialProperty);
-					if (classListeners != null) {
-						classListeners.didAddProperty(partialProperty);
-					}
-				}
-
-				@Override
 				protected void didRemove(int index, Property partialProperty) {
 					assert partialProperty != null;
 					if (classListeners != null) {
 						classListeners.didRemoveProperty(partialProperty);
 					}
+				}
+
+				@Override
+				public NotificationChain inverseAdd(Property partialProperty, NotificationChain notifications) {
+					assert partialProperty != null;
+					NotificationChain inverseAdd = super.inverseAdd(partialProperty, notifications);
+					if (classListeners != null) {
+						classListeners.didAddProperty(partialProperty);		// inverseAdd rather than didAdd so that eContainer is defined
+					}
+					return inverseAdd;
 				}
 			};
 		}
@@ -1219,18 +1203,8 @@ public class ClassImpl
 				private static final long serialVersionUID = 1L;
 
 				@Override
-				public void addUnique(org.eclipse.ocl.pivot.Class partialClass) {
+				public void didAdd(int index, org.eclipse.ocl.pivot.Class partialClass) {
 					assert partialClass != null;
-					super.addUnique(partialClass);
-					if (classListeners != null) {
-						classListeners.didAddSuperClass(partialClass);
-					}
-				}
-
-				@Override
-				public void addUnique(int index, org.eclipse.ocl.pivot.Class partialClass) {
-					assert partialClass != null;
-					super.addUnique(index, partialClass);
 					if (classListeners != null) {
 						classListeners.didAddSuperClass(partialClass);
 					}

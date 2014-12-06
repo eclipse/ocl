@@ -660,24 +660,17 @@ public class PackageImpl
 				private static final long serialVersionUID = 1L;
 
 				@Override
-				public void addUnique(org.eclipse.ocl.pivot.Class partialClass) {
-					assert partialClass != null;
-					super.addUnique(partialClass);
-					didAddClass(partialClass);
-				}
-
-				@Override
-				public void addUnique(int index, org.eclipse.ocl.pivot.Class partialClass) {
-					assert partialClass != null;
-					super.addUnique(index, partialClass);
-					didAddClass(partialClass);
-				}
-
-				@Override
 				protected void didRemove(int index, org.eclipse.ocl.pivot.Class partialClass) {
 					assert partialClass != null;
-					super.didRemove(index, partialClass);
 					didRemoveClass(partialClass);
+				}
+
+				@Override
+				public NotificationChain inverseAdd(org.eclipse.ocl.pivot.Class partialClass, NotificationChain notifications) {
+					assert partialClass != null;
+					NotificationChain inverseAdd = super.inverseAdd(partialClass, notifications);
+					didAddClass(partialClass);
+					return inverseAdd;
 				}
 			};
 		}
@@ -693,26 +686,19 @@ public class PackageImpl
 			ownedPackages = ownedPackages2 = new EObjectContainmentWithInverseEList<org.eclipse.ocl.pivot.Package>(org.eclipse.ocl.pivot.Package.class, this, PivotPackage.PACKAGE__OWNED_PACKAGES, PivotPackage.PACKAGE__OWNING_PACKAGE)
 			{
 				private static final long serialVersionUID = 1L;
-
-				@Override
-				public void addUnique(org.eclipse.ocl.pivot.Package partialPackage) {
-					assert partialPackage != null;
-					super.addUnique(partialPackage);
-					didAddPackage(partialPackage);
-				}
-	
-				@Override
-				public void addUnique(int index, org.eclipse.ocl.pivot.Package partialPackage) {
-					assert partialPackage != null;
-					super.addUnique(index, partialPackage);
-					didAddPackage(partialPackage);
-				}
 	
 				@Override
 				protected void didRemove(int index, org.eclipse.ocl.pivot.Package partialPackage) {
 					assert partialPackage != null;
-					super.didRemove(index, partialPackage);
 					didRemovePackage(partialPackage);
+				}
+
+				@Override
+				public NotificationChain inverseAdd(org.eclipse.ocl.pivot.Package partialPackage, NotificationChain notifications) {
+					assert partialPackage != null;
+					NotificationChain inverseAdd = super.inverseAdd(partialPackage, notifications);
+					didAddPackage(partialPackage);
+					return inverseAdd;
 				}
 			};
 		}

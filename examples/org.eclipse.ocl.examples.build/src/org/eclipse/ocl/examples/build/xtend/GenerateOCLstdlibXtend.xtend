@@ -166,10 +166,12 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 				 */
 				public static class Loader implements StandardLibraryContribution
 				{
+					@Override
 					public @NonNull StandardLibraryContribution getContribution() {
 						return this;
 					}
 					
+					@Override
 					public @NonNull Resource getResource() {
 						return getDefault();
 					}
@@ -188,10 +190,12 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 						this.metamodelNsUri = metamodelNsUri;
 					}
 					
+					@Override
 					public @NonNull StandardLibraryContribution getContribution() {
 						return this;
 					}
 			
+					@Override
 					public @NonNull Resource getResource() {
 						Contents contents = new Contents();
 						Model libraryModel = contents.create("http://www.eclipse.org/ocl/2015/Library", "ocl", "ocl", metamodelNsUri);

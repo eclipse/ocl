@@ -66,11 +66,11 @@ public class ASSaverNormalizeVisitor extends AbstractExtendingVisitor<Object, AS
 		super(context);
 	}
 
-	protected <T> void sort(@NonNull List<T> ownedTypes, @NonNull Comparator<T> comparator) {
-		List<T> sortedList = new ArrayList<T>(ownedTypes);
+	protected <T> void sort(@NonNull List<T> ownedElements, @NonNull Comparator<T> comparator) {
+		List<T> sortedList = new ArrayList<T>(ownedElements);
 		Collections.sort(sortedList, comparator);
-		ownedTypes.clear();
-		ownedTypes.addAll(sortedList);
+		ownedElements.clear();
+		ownedElements.addAll(sortedList);
 	}
 
 	@Override
