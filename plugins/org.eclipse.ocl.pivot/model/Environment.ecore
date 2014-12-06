@@ -6,12 +6,12 @@
       <eParameters name="element" lowerBound="1" eType="ecore:EClass Pivot.ecore#//NamedElement"/>
     </eOperations>
     <eOperations name="addElement" lowerBound="1" eType="#//Environment">
-      <eParameters name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/ocl/2015/Library#//String"/>
+      <eParameters name="name" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.ocl.library/model-gen/oclstdlib.ecore#//String"/>
       <eParameters name="element" lowerBound="1" eType="ecore:EClass Pivot.ecore#//NamedElement"/>
     </eOperations>
     <eOperations name="addElements" lowerBound="1" eType="#//Environment">
       <eParameters name="elements" lowerBound="1">
-        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/ocl/2015/Library#//Collection">
+        <eGenericType eClassifier="ecore:EDataType ../../org.eclipse.ocl.library/model-gen/oclstdlib.ecore#//Collection">
           <eTypeArguments eClassifier="ecore:EClass Pivot.ecore#//NamedElement"/>
         </eGenericType>
       </eParameters>
