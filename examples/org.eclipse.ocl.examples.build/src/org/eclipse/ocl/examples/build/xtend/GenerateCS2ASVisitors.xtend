@@ -14,9 +14,12 @@ import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.jdt.annotation.NonNull
 import java.util.List
-import java.util.ArrayListimport org.eclipse.ocl.xtext.base.cs2as.Continuation
+import java.util.ArrayList
+import org.eclipse.ocl.xtext.base.cs2as.Continuation
 import org.eclipse.ocl.pivot.Element
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
+import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion
+import java.util.Collections
 
 public class GenerateCS2ASVisitors extends GenerateCSVisitors
 {
@@ -95,6 +98,13 @@ public class GenerateCS2ASVisitors extends GenerateCSVisitors
 	protected def void generateContextfulAbstractExtendingVisitor(@NonNull EPackage ePackage, 
 		@NonNull String className, @NonNull String extendedClassName, @NonNull String interfaceName,
 		@NonNull String resultTypeName, @NonNull List<Class<?>> additionalImports) {
+		var List<String> allImports = new ArrayList<String>();
+		allImports.add(typeof(CS2ASConversion).getName());
+		allImports.add(superProjectName + ".cs2as." +extendedClassName);
+		for (Class<?> anImport : additionalImports) {
+			allImports.add(anImport.getName());
+		}
+		Collections.sort(allImports);
 		var boolean needsOverride = needsOverride();
 		var MergeWriter writer = new MergeWriter(outputFolder + className + ".java");
 		writer.append('''
@@ -102,10 +112,8 @@ public class GenerateCS2ASVisitors extends GenerateCSVisitors
 			
 			import org.eclipse.jdt.annotation.NonNull;
 			import org.eclipse.jdt.annotation.Nullable;
-			import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
-			import «superProjectName».cs2as.«extendedClassName»;
-			«FOR addtionalImport : additionalImports»
-			import «addtionalImport.getName()»;
+			«FOR anImport : allImports»
+			import «anImport»;
 			«ENDFOR»
 			
 			/**

@@ -20,8 +20,8 @@ package	org.eclipse.ocl.xtext.essentialoclcs.util;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.xtext.base.cs2as.BaseCSLeft2RightVisitor;
+import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
 
 /**
  * An AbstractEssentialOCLCSLeft2RightVisitor provides a default implementation for each
