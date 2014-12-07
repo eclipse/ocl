@@ -258,7 +258,7 @@ This constraint locator supports OCL constraints represented as EAnnotations in 
 
 h4. org.eclipse.ocl.examples.validity.locator.PivotUIConstraintLocator
 
-This constraint locator supports discovery of org.eclipse.ocl.examples.pivot.Constraint classes in Pivot metamodels.
+This constraint locator supports discovery of org.eclipse.ocl.pivot.Constraint classes in Pivot metamodels.
 
 h4. org.eclipse.ocl.examples.validity.locator.UMLUIConstraintLocator
 

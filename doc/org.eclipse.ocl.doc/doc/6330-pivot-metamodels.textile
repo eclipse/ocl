@@ -11,7 +11,7 @@ The OCL API implements support for different target metamodels via the "@Environ
 
 h3. The Pivot Metamodel Binding
 
-A preliminary OCL binding for the Pivot metamodel is provided in the Indigo release by the @org.eclipse.ocl.examples.pivot@ plug-in. It is planned to promote this to @org.eclipse.ocl.pivot@ in the Mars release.
+A preliminary OCL binding for the Pivot metamodel is provided in the Indigo release by the @org.eclipse.ocl.pivot@ plug-in. It is planned to promote this to @org.eclipse.ocl.pivot@ in the Mars release.
 
 The Pivot metamodel prototypes resolutions of the following problems in the OCL 2.4 specification
 * UML-alignment
@@ -44,7 +44,7 @@ The Pivot binding is provided by the
 
 The Pivot binding for OCL will provide the full capabilities of the UML binding, but at present only the Ecore facilities have been tested. The Pivot binding has the additional ability to support extensions to the library.
 
-For applications that work exclusively with the Pivot binding for OCL, the @org.eclipse.ocl.examples.pivot@ package defines an @OCL@ class that provides similar facilities to the corresponding Ecore and UML binding equivalents.
+For applications that work exclusively with the Pivot binding for OCL, the @org.eclipse.ocl.pivot@ package defines an @OCL@ class that provides similar facilities to the corresponding Ecore and UML binding equivalents.
 
 The Pivot metamodel is used by Eclipse OCL for:
 * all Xtext editors; editing, parsing, analysis and validation

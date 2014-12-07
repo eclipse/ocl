@@ -24,10 +24,10 @@
 <p>However if you use Eclipse OCL outside Eclipse, for instance in JUnit tests, you must provide the corresponding registrations in your code.</p>
 <div class="literallayout">
 <p>
-<code class="code">org.eclipse.ocl.examples.pivot.OCL.initialize(resourceSet);<br>
-org.eclipse.ocl.examples.pivot.uml.UML2AS.initialize(resourceSet);<br>
-org.eclipse.ocl.examples.pivot.model.OCLstdlib.install();<br>
-org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain.initialize(resourceSet);<br>
+<code class="code">org.eclipse.ocl.pivot.OCL.initialize(resourceSet);<br>
+org.eclipse.ocl.pivot.uml.UML2AS.initialize(resourceSet);<br>
+org.eclipse.ocl.pivot.model.OCLstdlib.install();<br>
+org.eclipse.ocl.pivot.delegate.OCLDelegateDomain.initialize(resourceSet);<br>
 org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup.doSetup();<br>
 org.eclipse.ocl.xtext.oclinecore.OCLinEcoreStandaloneSetup.doSetup();<br>
 org.eclipse.ocl.xtext.oclstdlib.OCLstdlibStandaloneSetup.doSetup();<br>
@@ -51,11 +51,11 @@ org.eclipse.ocl.domain.utilities.StandaloneProjectMap.getAdapter(resourceSet);<b
 </div>
 <p>For the Pivot metamodel, the required registrations should be provided by invoking
 
-					<code class="code">org.eclipse.ocl.examples.pivot.OCL.initialize(ResourceSet)</code>. This initialization ensures that *.ecore is understood.
+					<code class="code">org.eclipse.ocl.pivot.OCL.initialize(ResourceSet)</code>. This initialization ensures that *.ecore is understood.
 				</p>
 <p>If *.uml support is also required, invoke
 
-					<code class="code">org.eclipse.ocl.examples.pivot.uml.UML2AS.initialize(ResourceSet)</code> as well. 
+					<code class="code">org.eclipse.ocl.pivot.uml.UML2AS.initialize(ResourceSet)</code> as well. 
 					This initialization ensures that *.uml is understood and that standard pathmap: locations are resolvable. It also invokes 
 					<code class="code">org.eclipse.uml2.uml.resources.util.UMLResourcesUtil.init(ResourceSet)</code> to ensure that all Eclipse and OMG UML namespaces and extensions are registered.
 				</p>
@@ -70,7 +70,7 @@ org.eclipse.ocl.domain.utilities.StandaloneProjectMap.getAdapter(resourceSet);<b
 </div>
 </div>
 <p>If you want to use the default OCL Standard Library you should invoke 
-					<code class="code">org.eclipse.ocl.examples.pivot.model.OCLstdlib.install()</code> which installs a compiled shareable form of 
+					<code class="code">org.eclipse.ocl.pivot.model.OCLstdlib.install()</code> which installs a compiled shareable form of 
 					<code class="code">/org.eclipse.ocl.library/model/OCL-2.5.oclstdlib</code>.
 				</p>
 <p>If you want to use an alternate library examine the code for the standard installation above, and if you want to compile your library examine the 
@@ -92,7 +92,7 @@ org.eclipse.ocl.domain.utilities.StandaloneProjectMap.getAdapter(resourceSet);<b
 </div>
 <p>If you have textual OCL embedded within Ecore models you need to register the EMF delegates so that EMF gets, calls or validates dispatch the embedded OCL to the OCL delegates. The required registrations may be provided by 
 					<code class="code">OCLDelegateDomain.initialize(ResourceSet)</code> from the 
-					<code class="code">org.eclipse.ocl.examples.pivot.delegate</code> package.
+					<code class="code">org.eclipse.ocl.pivot.delegate</code> package.
 				</p>
 <p>This may be invoked with a null argument to install the registrations in the global EPackage.Registry rather than a specified local registry.</p>
 <p>If you neglect to register delegates before generated EMF classes are initialized, you may get an NPE or an error of the form "An exception occurred while delegating evaluation of the ..."</p>
@@ -182,7 +182,7 @@ org.eclipse.ocl.xtext.oclstdlib.<br>
 &nbsp;&nbsp;org.eclipse.ocl.examples.common<br>
 &nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.domain<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.library<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.examples.pivot<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.pivot<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.base<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.essentialocl<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.completeocl<br>

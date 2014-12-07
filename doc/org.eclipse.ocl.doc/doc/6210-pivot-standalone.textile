@@ -6,10 +6,10 @@ If you use Eclipse OCL within Eclipse you should find that the appropriate regis
 However if you use Eclipse OCL outside Eclipse, for instance in JUnit tests, you must provide the corresponding registrations in your code.
 
 bc.. 
-org.eclipse.ocl.examples.pivot.OCL.initialize(resourceSet);
-org.eclipse.ocl.examples.pivot.uml.UML2AS.initialize(resourceSet);
-org.eclipse.ocl.examples.pivot.model.OCLstdlib.install();
-org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain.initialize(resourceSet);
+org.eclipse.ocl.pivot.OCL.initialize(resourceSet);
+org.eclipse.ocl.pivot.uml.UML2AS.initialize(resourceSet);
+org.eclipse.ocl.pivot.model.OCLstdlib.install();
+org.eclipse.ocl.pivot.delegate.OCLDelegateDomain.initialize(resourceSet);
 org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup.doSetup();
 org.eclipse.ocl.xtext.oclinecore.OCLinEcoreStandaloneSetup.doSetup();
 org.eclipse.ocl.xtext.oclstdlib.OCLstdlibStandaloneSetup.doSetup();
@@ -22,15 +22,15 @@ These are elaborated on below.
 h3. Models
 
 For the Pivot metamodel, the required registrations should be provided by invoking
-@org.eclipse.ocl.examples.pivot.OCL.initialize(ResourceSet)@. This initialization ensures that *.ecore is understood.
+@org.eclipse.ocl.pivot.OCL.initialize(ResourceSet)@. This initialization ensures that *.ecore is understood.
 
 If *.uml support is also required, invoke
-@org.eclipse.ocl.examples.pivot.uml.UML2AS.initialize(ResourceSet)@ as well. 
+@org.eclipse.ocl.pivot.uml.UML2AS.initialize(ResourceSet)@ as well. 
 This initialization ensures that *.uml is understood and that standard pathmap: locations are resolvable. It also invokes @org.eclipse.uml2.uml.resources.util.UMLResourcesUtil.init(ResourceSet)@ to ensure that all Eclipse and OMG UML namespaces and extensions are registered.
 
 h3. OCL Standard Library
 
-If you want to use the default OCL Standard Library you should invoke @org.eclipse.ocl.examples.pivot.model.OCLstdlib.install()@ which installs a compiled shareable form of @/org.eclipse.ocl.library/model/OCL-2.5.oclstdlib@.
+If you want to use the default OCL Standard Library you should invoke @org.eclipse.ocl.pivot.model.OCLstdlib.install()@ which installs a compiled shareable form of @/org.eclipse.ocl.library/model/OCL-2.5.oclstdlib@.
 
 If you want to use an alternate library examine the code for the standard installation above, and if you want to compile your library examine the @/org.eclipse.ocl.examples.build/src/org/eclipse/ocl/examples/build/GenerateOCLstdlibModel.mwe2@ launcher for the
 @/org.eclipse.ocl.examples.build/src/org/eclipse/ocl/examples/build/acceleo/generateOCLstdlib.mtl@ Acceleo template.
@@ -41,7 +41,7 @@ If you neglect to install an OCL Standard Library, you get the error "No OCL Sta
 
 h3. Pivot Delegates
 
-If you have textual OCL embedded within Ecore models you need to register the EMF delegates so that EMF gets, calls or validates dispatch the embedded OCL to the OCL delegates. The required registrations may be provided by @OCLDelegateDomain.initialize(ResourceSet)@ from the @org.eclipse.ocl.examples.pivot.delegate@ package.
+If you have textual OCL embedded within Ecore models you need to register the EMF delegates so that EMF gets, calls or validates dispatch the embedded OCL to the OCL delegates. The required registrations may be provided by @OCLDelegateDomain.initialize(ResourceSet)@ from the @org.eclipse.ocl.pivot.delegate@ package.
 
 This may be invoked with a null argument to install the registrations in the global EPackage.Registry rather than a specified local registry.
 
@@ -93,7 +93,7 @@ org.eclipse.ocl.common
   org.eclipse.ocl.examples.common
     org.eclipse.ocl.domain
       org.eclipse.ocl.library
-        org.eclipse.ocl.examples.pivot
+        org.eclipse.ocl.pivot
           org.eclipse.ocl.xtext.base
             org.eclipse.ocl.xtext.essentialocl
               org.eclipse.ocl.xtext.completeocl

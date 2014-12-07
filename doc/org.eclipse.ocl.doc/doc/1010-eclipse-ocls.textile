@@ -80,7 +80,7 @@ Eclipse OCL has two different styles of APIs
 
 h4. Tool APIs
 
-The major tool APIs originally provided by the org.eclipse.ocl.OCL class have evolved only slightly to org.eclipse.ocl.ecore.OCL and org.eclipse.ocl.uml.OCL for the classic metamodels and org.eclipse.ocl.examples.pivot.OCL for the Pivot metamodel.
+The major tool APIs originally provided by the org.eclipse.ocl.OCL class have evolved only slightly to org.eclipse.ocl.ecore.OCL and org.eclipse.ocl.uml.OCL for the classic metamodels and org.eclipse.ocl.pivot.OCL for the Pivot metamodel.
 
 These APIs support the use of OCL as a tool to parse and evaluate constraints and queries.
 
