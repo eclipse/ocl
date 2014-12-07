@@ -111,7 +111,7 @@ org.eclipse.ocl.common.ui
         org.eclipse.ocl.xtext.completeocl.ui
         org.eclipse.ocl.xtext.oclinecore.ui
         org.eclipse.ocl.xtext.oclstdlib.ui
-        org.eclipse.ocl.examples.console
+        org.eclipse.ocl.examples.xtext.console
 p. 
 
 You may also need the Xtext, EMF, MWE, Orbit plugins and their dependencies
