@@ -29,7 +29,7 @@
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.ocl.examples.unified"
+         id="org.eclipse.ocl.unified"
          version="0.0.0"/>
 
    <plugin

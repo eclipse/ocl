@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.ocl.examples.unified"
+      id="org.eclipse.ocl.unified"
       label="%featureName"
-      version="3.5.0.qualifier"
+      version="1.0.0.qualifier"
       provider-name="%providerName"
-      plugin="org.eclipse.ocl.examples.unified"
+      plugin="org.eclipse.ocl.unified"
       license-feature="org.eclipse.license"
       license-feature-version="0.0.0">
 
@@ -22,11 +22,11 @@
    </url>
 
    <includes
-         id="org.eclipse.ocl.examples.unified.core.source"
+         id="org.eclipse.ocl.unified.core.source"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.ocl.examples.unified.source"
+         id="org.eclipse.ocl.unified.source"
          version="0.0.0"/>
 
    <includes
@@ -38,7 +38,7 @@
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.ocl.examples.unified.core"
+         id="org.eclipse.ocl.unified.core"
          version="0.0.0"/>
 
    <plugin
