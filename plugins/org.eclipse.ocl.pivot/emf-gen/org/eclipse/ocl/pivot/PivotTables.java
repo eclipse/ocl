@@ -135,6 +135,7 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Parameter = PivotTables.PACKid_$metamodel$.getClassId("Parameter", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Precedence = PivotTables.PACKid_$metamodel$.getClassId("Precedence", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_PrimitiveCompletePackage = PivotTables.PACKid_$metamodel$.getClassId("PrimitiveCompletePackage", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_PrimitiveType = PivotTables.PACKid_$metamodel$.getClassId("PrimitiveType", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Profile = PivotTables.PACKid_$metamodel$.getClassId("Profile", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_ProfileApplication = PivotTables.PACKid_$metamodel$.getClassId("ProfileApplication", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Property = PivotTables.PACKid_$metamodel$.getClassId("Property", 0);
@@ -215,6 +216,7 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_OperationCallExp = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_OperationCallExp);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_OppositePropertyCallExp = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_OppositePropertyCallExp);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Package = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_Package);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_PrimitiveType = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_PrimitiveType);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Property = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_Property);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_PropertyCallExp = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_PropertyCallExp);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Region = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_Region);
@@ -2226,7 +2228,8 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _Operation__CallOperationAction__operation = new ExecutorPropertyWithImplementation("CallOperationAction", Types._Operation, 11, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CALL_OPERATION_ACTION__OPERATION));
 		public static final @NonNull ExecutorProperty _Operation__MessageType__referredOperation = new ExecutorPropertyWithImplementation("MessageType", Types._Operation, 12, new EcoreLibraryOppositeProperty(PivotPackage.Literals.MESSAGE_TYPE__REFERRED_OPERATION));
 		public static final @NonNull ExecutorProperty _Operation__OperationCallExp__referredOperation = new ExecutorPropertyWithImplementation("OperationCallExp", Types._Operation, 13, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION));
-		public static final @NonNull ExecutorProperty _Operation__operation__redefinedOperation = new ExecutorPropertyWithImplementation("operation", Types._Operation, 14, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION__REDEFINED_OPERATION));
+		public static final @NonNull ExecutorProperty _Operation__PrimitiveType__coercions = new ExecutorPropertyWithImplementation("PrimitiveType", Types._Operation, 14, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PRIMITIVE_TYPE__COERCIONS));
+		public static final @NonNull ExecutorProperty _Operation__operation__redefinedOperation = new ExecutorPropertyWithImplementation("operation", Types._Operation, 15, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION__REDEFINED_OPERATION));
 
 		public static final @NonNull ExecutorProperty _OperationCallExp__argument = new EcoreExecutorProperty(PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT, Types._OperationCallExp, 0);
 		public static final @NonNull ExecutorProperty _OperationCallExp__referredOperation = new EcoreExecutorProperty(PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION, Types._OperationCallExp, 1);
@@ -2259,6 +2262,8 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _Precedence__Operation__precedence = new ExecutorPropertyWithImplementation("Operation", Types._Precedence, 3, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION__PRECEDENCE));
 
 		public static final @NonNull ExecutorProperty _PrimitiveCompletePackage__CompleteModel__primitiveCompletePackage = new ExecutorPropertyWithImplementation("CompleteModel", Types._PrimitiveCompletePackage, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.COMPLETE_MODEL__PRIMITIVE_COMPLETE_PACKAGE));
+
+		public static final @NonNull ExecutorProperty _PrimitiveType__coercions = new EcoreExecutorProperty(PivotPackage.Literals.PRIMITIVE_TYPE__COERCIONS, Types._PrimitiveType, 0);
 
 		public static final @NonNull ExecutorProperty _Profile__application = new EcoreExecutorProperty(PivotPackage.Literals.PROFILE__APPLICATION, Types._Profile, 0);
 
@@ -11917,6 +11922,7 @@ public class PivotTables
 			PivotTables.Properties._Iteration__LoopExp__referredIteration,
 			PivotTables.Properties._Operation__MessageType__referredOperation,
 			PivotTables.Properties._Operation__OperationCallExp__referredOperation,
+			PivotTables.Properties._Operation__PrimitiveType__coercions,
 			PivotTables.Properties._Operation__operation__redefinedOperation
 		};
 
@@ -12494,6 +12500,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__Import__importedNamespace,
 			PivotTables.Properties._Operation__MessageType__referredOperation,
 			PivotTables.Properties._Operation__OperationCallExp__referredOperation,
+			PivotTables.Properties._Operation__PrimitiveType__coercions,
 			PivotTables.Properties._Operation__operation__redefinedOperation
 		};
 
@@ -12777,6 +12784,7 @@ public class PivotTables
 
 		private static final @NonNull ExecutorProperty[] _PrimitiveType = {
 			PivotTables.Properties._DataType__behavioralClass,
+			PivotTables.Properties._PrimitiveType__coercions,
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,

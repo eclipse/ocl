@@ -16256,13 +16256,22 @@ public interface PivotPackage
 	int PRIMITIVE_TYPE__IS_SERIALIZABLE = DATA_TYPE__IS_SERIALIZABLE;
 
 	/**
+	 * The feature id for the '<em><b>Coercions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE__COERCIONS = DATA_TYPE_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Primitive Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_TYPE_FEATURE_COUNT = DATA_TYPE_FEATURE_COUNT + 0;
+	int PRIMITIVE_TYPE_FEATURE_COUNT = DATA_TYPE_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -24640,6 +24649,17 @@ public interface PivotPackage
 	EClass getPrimitiveType();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.pivot.PrimitiveType#getCoercions <em>Coercions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Coercions</em>'.
+	 * @see org.eclipse.ocl.pivot.PrimitiveType#getCoercions()
+	 * @see #getPrimitiveType()
+	 * @generated
+	 */
+	EReference getPrimitiveType_Coercions();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.Profile <em>Profile</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -29269,6 +29289,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EClass PRIMITIVE_TYPE = eINSTANCE.getPrimitiveType();
+
+		/**
+		 * The meta object literal for the '<em><b>Coercions</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PRIMITIVE_TYPE__COERCIONS = eINSTANCE.getPrimitiveType_Coercions();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.internal.impl.ProfileImpl <em>Profile</em>}' class.

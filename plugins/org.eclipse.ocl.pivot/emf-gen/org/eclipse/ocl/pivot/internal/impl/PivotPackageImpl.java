@@ -3128,6 +3128,17 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
+	public EReference getPrimitiveType_Coercions()
+	{
+		return (EReference)primitiveTypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getProfile()
 	{
 		return profileEClass;
@@ -6582,6 +6593,7 @@ public class PivotPackageImpl
 		primitiveLiteralExpEClass = createEClass(PRIMITIVE_LITERAL_EXP);
 
 		primitiveTypeEClass = createEClass(PRIMITIVE_TYPE);
+		createEReference(primitiveTypeEClass, PRIMITIVE_TYPE__COERCIONS);
 
 		profileEClass = createEClass(PROFILE);
 		createEReference(profileEClass, PROFILE__APPLICATION);
@@ -7807,6 +7819,7 @@ public class PivotPackageImpl
 		initEClass(primitiveLiteralExpEClass, PrimitiveLiteralExp.class, "PrimitiveLiteralExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(primitiveTypeEClass, PrimitiveType.class, "PrimitiveType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getPrimitiveType_Coercions(), this.getOperation(), null, "coercions", null, 0, -1, PrimitiveType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(profileEClass, Profile.class, "Profile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getProfile_Application(), this.getProfileApplication(), this.getProfileApplication_AppliedProfile(), "application", null, 0, -1, Profile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$

@@ -314,6 +314,7 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull BagType _Bag_OperationCallExp = createBagType(_Bag, _OperationCallExp);
 		private final @NonNull BagType _Bag_OppositePropertyCallExp = createBagType(_Bag, _OppositePropertyCallExp);
 		private final @NonNull BagType _Bag_Package = createBagType(_Bag, _Package);
+		private final @NonNull BagType _Bag_PrimitiveType = createBagType(_Bag, _PrimitiveType);
 		private final @NonNull BagType _Bag_Property = createBagType(_Bag, _Property);
 		private final @NonNull BagType _Bag_PropertyCallExp = createBagType(_Bag, _PropertyCallExp);
 		private final @NonNull BagType _Bag_Region = createBagType(_Bag, _Region);
@@ -365,6 +366,7 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull CollectionType _Collection_Package = createCollectionType(_Collection, _Package);
 		private final @NonNull CollectionType _Collection_Parameter = createCollectionType(_Collection, _Parameter);
 		private final @NonNull CollectionType _Collection_Precedence = createCollectionType(_Collection, _Precedence);
+		private final @NonNull CollectionType _Collection_PrimitiveType = createCollectionType(_Collection, _PrimitiveType);
 		private final @NonNull CollectionType _Collection_ProfileApplication = createCollectionType(_Collection, _ProfileApplication);
 		private final @NonNull CollectionType _Collection_Property = createCollectionType(_Collection, _Property);
 		private final @NonNull CollectionType _Collection_PropertyCallExp = createCollectionType(_Collection, _PropertyCallExp);
@@ -1020,6 +1022,9 @@ public class OCLMetaModel extends ASResourceImpl
 			orphanTypes.add(type = _Bag_Package);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Package);
+			orphanTypes.add(type = _Bag_PrimitiveType);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Collection_PrimitiveType);
 			orphanTypes.add(type = _Bag_Property);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Property);
@@ -1171,6 +1176,9 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclAny);
 			orphanTypes.add(type = _Collection_Precedence);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclAny);
+			orphanTypes.add(type = _Collection_PrimitiveType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclAny);
 			orphanTypes.add(type = _Collection_ProfileApplication);
@@ -1866,6 +1874,7 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_Operation_CallOperationAction_operation = createProperty("CallOperationAction", _Bag_CallOperationAction);
 		private final @NonNull Property pr_Operation_MessageType_referredOperation = createProperty("MessageType", _Bag_MessageType);
 		private final @NonNull Property pr_Operation_OperationCallExp_referredOperation = createProperty("OperationCallExp", _Bag_OperationCallExp);
+		private final @NonNull Property pr_Operation_PrimitiveType_coercions = createProperty("PrimitiveType", _Bag_PrimitiveType);
 		private final @NonNull Property pr_Operation_operation_redefinedOperation = createProperty("operation", _Operation);
 		private final @NonNull Property pr_OperationCallExp_argument = createProperty(PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT, _OrderedSet_OCLExpression);
 		private final @NonNull Property pr_OperationCallExp_referredOperation = createProperty(PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION, _Operation);
@@ -1892,6 +1901,7 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_Precedence_Library_ownedPrecedence = createProperty("Library", _Library);
 		private final @NonNull Property pr_Precedence_Operation_precedence = createProperty("Operation", _Bag_Operation);
 		private final @NonNull Property pr_PrimitiveCompletePackage_CompleteModel_primitiveCompletePackage = createProperty("CompleteModel", _Bag_CompleteModel);
+		private final @NonNull Property pr_PrimitiveType_coercions = createProperty(PivotPackage.Literals.PRIMITIVE_TYPE__COERCIONS, _OrderedSet_Operation);
 		private final @NonNull Property pr_Profile_application = createProperty(PivotPackage.Literals.PROFILE__APPLICATION, _Set_ProfileApplication);
 		private final @NonNull Property pr_ProfileApplication_appliedProfile = createProperty(PivotPackage.Literals.PROFILE_APPLICATION__APPLIED_PROFILE, _Profile);
 		private final @NonNull Property pr_ProfileApplication_applyingPackage = createProperty(PivotPackage.Literals.PROFILE_APPLICATION__APPLYING_PACKAGE, _Package);
@@ -2817,6 +2827,10 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_OperationCallExp_referredOperation);
+			ownedProperties.add(property = pr_Operation_PrimitiveType_coercions);
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_PrimitiveType_coercions);
 			ownedProperties.add(property = pr_Operation_operation_redefinedOperation);
 			property.setImplicit(true);
 			property.setIsRequired(false);
@@ -2925,6 +2939,10 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_CompleteModel_primitiveCompletePackage);
+			ownedProperties = _PrimitiveType.getOwnedProperties();
+			ownedProperties.add(property = pr_PrimitiveType_coercions);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Operation_PrimitiveType_coercions);
 			ownedProperties = _Profile.getOwnedProperties();
 			ownedProperties.add(property = pr_Profile_application);
 			property.setIsResolveProxies(true);
@@ -3593,6 +3611,8 @@ public class OCLMetaModel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Bag_T, _OppositePropertyCallExp)));
 			_Bag_Package.getOwnedTemplateBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _Package)));
+			_Bag_PrimitiveType.getOwnedTemplateBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_Bag_T, _PrimitiveType)));
 			_Bag_PropertyCallExp.getOwnedTemplateBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _PropertyCallExp)));
 			_Bag_Property.getOwnedTemplateBindings().add(createTemplateBinding(
@@ -3697,6 +3717,8 @@ public class OCLMetaModel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Collection_T, _Parameter)));
 			_Collection_Precedence.getOwnedTemplateBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _Precedence)));
+			_Collection_PrimitiveType.getOwnedTemplateBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_Collection_T, _PrimitiveType)));
 			_Collection_ProfileApplication.getOwnedTemplateBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _ProfileApplication)));
 			_Collection_PropertyCallExp.getOwnedTemplateBindings().add(createTemplateBinding(

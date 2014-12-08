@@ -429,6 +429,12 @@
       <packagedElement xmi:type="uml:Class" xmi:id="_PSf6UBGeEeCsy5gumoi3HA" name="Package"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_l0ihkAbiEeC3-uphdlDm-Q" name="Operation"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_2vcHMI9nEd-UToJjGuajxg" name="Parameter"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_FMDVgH7AEeS76aP_Ky3LhA" name="PrimitiveType">
+        <ownedAttribute xmi:id="_Ira_YH7AEeS76aP_Ky3LhA" name="coercions" type="_l0ihkAbiEeC3-uphdlDm-Q" isOrdered="true">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Ira_YX7AEeS76aP_Ky3LhA"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Ira_Yn7AEeS76aP_Ky3LhA" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_tASF0IgKEd-aGOJuUCcZBA" name="OCL_PrimitiveTypes">
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_Hcolt4gHEd-aGOJuUCcZBA" name="Boolean"/>

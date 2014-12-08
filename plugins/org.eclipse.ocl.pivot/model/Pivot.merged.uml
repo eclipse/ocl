@@ -994,6 +994,10 @@
         <body>A primitive type is a data type implemented by the underlying infrastructure and made available for modeling.</body>
       </ownedComment>
       <generalization xmi:id="Ppivot.TPrimitiveType.g0" general="Ppivot.TDataType"/>
+      <ownedAttribute xmi:id="Ppivot.TPrimitiveType.Pcoercions" name="coercions" type="Ppivot.TOperation" isOrdered="true">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TPrimitiveType.Pcoercions.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TPrimitiveType.Pcoercions.uV" value="*"/>
+      </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TProfile" name="Profile">
       <generalization xmi:id="Ppivot.TProfile.g0" general="Ppivot.TPackage"/>
