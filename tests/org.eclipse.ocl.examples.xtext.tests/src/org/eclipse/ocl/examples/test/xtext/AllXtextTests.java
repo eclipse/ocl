@@ -12,6 +12,7 @@
 
 package org.eclipse.ocl.examples.test.xtext;
 
+import java.io.File;
 import java.util.Arrays;
 
 import junit.framework.Test;
@@ -37,6 +38,7 @@ import org.eclipse.ocl.examples.pivot.tests.EvaluateTupleOperationsTest;
 import org.eclipse.ocl.examples.pivot.tests.EvaluateUMLTest;
 import org.eclipse.ocl.examples.pivot.tests.InheritanceTests;
 import org.eclipse.ocl.examples.pivot.tests.IteratorsTest;
+import org.eclipse.ocl.examples.pivot.tests.PivotTestCase;
 import org.eclipse.ocl.examples.pivot.tests.PrettyPrinterTest;
 import org.eclipse.ocl.examples.pivot.tests.StereotypesTest;
 import org.eclipse.ocl.examples.pivot.tests.UMLValidateTest;
@@ -65,6 +67,10 @@ public class AllXtextTests
 //		}
 
     	String testSuiteName = System.getProperty("testSuiteName", "Xtext Editor Support");
+    	String testLogFile = System.getProperty("testLogFile", null);
+    	if (testLogFile != null) {
+    		PivotTestCase.createTestLog(new File(testLogFile));
+    	}
 		TestSuite result = new TestSuite(testSuiteName);			
 		result.addTestSuite(MonikerTests.class);
 		result.addTestSuite(PivotTests.class);
@@ -126,6 +132,7 @@ public class AllXtextTests
 		throws Exception {
 
 		TestRunner.run(suite());
+    	PivotTestCase.closeTestLog();
 		return Arrays
 			.asList(new String[] {"Please see raw test suite output for details."});
 	}

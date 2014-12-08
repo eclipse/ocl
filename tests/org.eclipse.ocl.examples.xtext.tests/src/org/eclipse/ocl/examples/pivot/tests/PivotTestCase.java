@@ -101,6 +101,7 @@ public class PivotTestCase extends TestCase
 {
 	public static final @NonNull String PLUGIN_ID = "org.eclipse.ocl.examples.xtext.tests";
 	private static ProjectMap projectMap = null;
+	private static Writer testLog = null;
 	
 	protected static boolean noDebug = false;
 
@@ -115,7 +116,45 @@ public class PivotTestCase extends TestCase
 //		MetaModelManager.liveMetaModelManagers = new WeakHashMap<MetaModelManager,Object>();	// Prints the create/finalize of each MetaModelManager
 //		StandaloneProjectMap.liveStandaloneProjectMaps = new WeakHashMap<StandaloneProjectMap,Object>();	// Prints the create/finalize of each StandaloneProjectMap
 //		ResourceSetImpl.liveResourceSets = new WeakHashMap<ResourceSet,Object>();				// Requires edw-debug privater EMF branch
-	}	
+	}
+	
+	public static void appendLog(String name, Object context, String testExpression, String parseVerdict, String evaluationVerdict, String evaluationTolerance) {
+		if (testLog != null) {
+			try {
+				testLog.append("\"" + name.replace("\"", "\"\"") + "\"");
+				testLog.append(";");
+				try {
+					if (context instanceof EObject) {
+						URI contextURI = EcoreUtil.getURI((EObject)context);
+						if (contextURI != null) {
+							testLog.append("\"" + contextURI.toString().replace("\"", "\"\"") + "\"");
+						}
+					}
+				} catch(Throwable e) {
+					testLog.append("\"null\"");
+				}
+				testLog.append(";");
+				if (testExpression != null) {
+					testLog.append("\"" + DomainUtil.convertToOCLString(testExpression) + "\"");
+				}
+				testLog.append(";");
+				if (parseVerdict != null) {
+					testLog.append("\"" + DomainUtil.convertToOCLString(parseVerdict) + "\"");
+				}
+				testLog.append(";");
+				if (evaluationVerdict != null) {
+					testLog.append("\"" + DomainUtil.convertToOCLString(evaluationVerdict) + "\"");
+				}
+				testLog.append(";");
+				if (evaluationTolerance != null) {
+					testLog.append("\"" + evaluationTolerance.replace("\"", "\"\"") + "\"");
+				}
+				testLog.append("\n");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
 	public static @NonNull XtextResource as2cs(@NonNull OCL ocl, @NonNull ResourceSet resourceSet, @NonNull ASResource asResource, @NonNull URI outputURI) throws IOException {
 		XtextResource xtextResource = DomainUtil.nonNullState((XtextResource) resourceSet.createResource(outputURI, OCLinEcoreCSPackage.eCONTENT_TYPE));
@@ -352,6 +391,16 @@ public class PivotTestCase extends TestCase
 		return projectMap;
 	}
 
+	public static void closeTestLog() {
+		if (testLog != null) {
+			try {
+				testLog.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	/**
 	 * Install a platform:/resource/project... mapping for all folders in
 	 * $WORKSPACE_LOC/* if defined, or $user.dir/../* otherwise.
@@ -373,6 +422,32 @@ public class PivotTestCase extends TestCase
 					EcorePlugin.getPlatformResourceMap().put(name, URI.createFileURI(file.toString() + "/"));
 				}
 			}
+		}
+	}
+
+	public static void createTestLog(File file) {
+		try {
+			testLog = file != null ? new FileWriter(file) : null;
+			if (testLog != null) {
+				try {
+					testLog.append("Test Group");
+					testLog.append(";");
+					testLog.append("Context Object");
+					testLog.append(";");
+					testLog.append("Test Expression");
+					testLog.append(";");
+					testLog.append("Parser Result");
+					testLog.append(";");
+					testLog.append("Evaluation Result");
+					testLog.append(";");
+					testLog.append("Result Tolerance");
+					testLog.append("\n");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	

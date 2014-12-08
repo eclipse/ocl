@@ -273,6 +273,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 //       	assertEquals("Severity for \"" + expression + "\"", severity, diagnostic.getSeverity());
        	String expectedMessage = DomainUtil.bind(messageTemplate, bindings);
        	assertEquals("Message for \"" + expression + "\"", expectedMessage, diagnostic.getMessage());
+		appendLog(getName(), null, expression, expectedMessage, null, null);
        } catch (IOException e) {
 			fail(e.getMessage());
 		} finally {
@@ -306,6 +307,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 //       	assertEquals("Severity for \"" + expression + "\"", severity, diagnostic.getSeverity());
 			String expectedMessage = DomainUtil.bind(messageTemplate, bindings);
 			assertEquals("Message for \"" + expression + "\"", expectedMessage, diagnostic.getMessage());
+			appendLog(getName(), contextType, expression, expectedMessage, null, null);
 		} catch (IOException e) {
 			fail(e.getMessage());
 		} finally {
@@ -441,6 +443,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 //			String expectedAsString = String.valueOf(expected);
 //			String valueAsString = String.valueOf(value);
 			assertOCLEquals(expression, expectedValue, value);
+			appendLog(getName(), context, expression, null, expectedValue != null ? expectedValue.toString() : null, null);
 			// FIXME Following is probably redundant
 			if (expectedValue instanceof OrderedSetValue) {
 				assertTrue(expression, value instanceof OrderedSetValue);
@@ -469,6 +472,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		try {
 			BigDecimal value = (BigDecimal) evaluate(getHelper(), context, expression);
 			assertTrue(expression, (value.compareTo(expected.add(delta)) >= 0) && (value.compareTo(expected.subtract(delta)) >= 0));
+			appendLog(getName(), context, expression, null, expected.toString(), delta.toString());
 			return value;
 		} catch (Exception e) {
 			failOn(expression, e);
@@ -492,6 +496,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 			if ((delta < -tolerance) || (tolerance < delta)) {
 				assertEquals(expression, expected, value);
 			}
+			appendLog(getName(), context, expression, null, expected.toString(), Double.toString(tolerance));
 			return value;
 		} catch (Exception e) {
 			failOn(expression, e);
@@ -520,6 +525,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		try {
 			Object value = evaluate(getHelper(), context, expression);
 			assertEquals(expression, Boolean.FALSE, value);
+			appendLog(getName(), context, expression, null, "false", null);
 			return value;
 		} catch (Exception e) {
 			failOn(expression, e);
@@ -536,6 +542,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 			Object value = evaluateWithoutValidation(getHelper(), context, expression);
 			fail(expression + " expected: invalid but was: " + value);
 		} catch (InvalidValueException e) {		// OCL invalid is always an InvalidValueException
+			appendLog(getName(), context, expression, null, "invalid", null);
 		} catch (Exception e) {					// Something else is nasty
 			failOn(expression, e);
 		}
@@ -621,6 +628,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		try {
 			Object value = evaluate(getHelper(), context, expression);
 			assertEquals(expression, null, value);
+			appendLog(getName(), context, expression, null, "null", null);
 			return value;
 		} catch (Exception e) {
 			failOn(expression, e);
@@ -647,6 +655,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		try {
 			Object expectedResultQuery = evaluateLocal(getHelper(), context, expectedResultExpression);
 			Object result = assertQueryEquals(context, expectedResultQuery, expression);
+			appendLog(getName(), context, expression, null, expectedResultExpression, null);
 			return result;
 		} catch (Exception e) {
 			failOn(expectedResultExpression, e);
@@ -727,6 +736,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		try {
 			Object value = evaluate(getHelper(), context, expression);
 			assertEquals(expression, Boolean.TRUE, value);
+			appendLog(getName(), context, expression, null, "true", null);
 			return value;
 		} catch (Exception e) {
 			failOn(expression, e);
@@ -744,6 +754,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 			if (!ValuesUtil.isUnlimited(value)) {
 				assertEquals(expression, ValuesUtil.UNLIMITED_VALUE, value);
 			}
+			appendLog(getName(), context, expression, null, "*", null);
 			return value;
 		} catch (Exception e) {
 			failOn(expression, e);
@@ -779,6 +790,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 			Resource asResource = cs2as.getASResource(csResource);
 	       	String expectedMessage = DomainUtil.bind(messageTemplate, bindings);
 			assertValidationDiagnostics("Validating", asResource, new String[] {expectedMessage});
+			appendLog(getName(), null, expression, expectedMessage, null, null);
 		} catch (Exception e) {
 			fail(e.getMessage());
 		} finally {
@@ -803,6 +815,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 			Resource asResource = cs2as.getASResource(csResource);
 	       	String expectedMessage = DomainUtil.bind(messageTemplate, bindings);
 			assertValidationDiagnostics("Validating", asResource, new String[] {expectedMessage});
+			appendLog(getName(), contextType, expression, expectedMessage, null, null);
 		} catch (Exception e) {
 			fail(e.getMessage());
 		} finally {
