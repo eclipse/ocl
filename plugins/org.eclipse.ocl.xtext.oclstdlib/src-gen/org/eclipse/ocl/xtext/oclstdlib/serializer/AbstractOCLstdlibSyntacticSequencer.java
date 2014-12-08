@@ -19,6 +19,7 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public abstract class AbstractOCLstdlibSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected OCLstdlibGrammarAccess grammarAccess;
+	protected AbstractElementAlias match_LibCoercionCS_SemicolonKeyword_7_1_or___LeftCurlyBracketKeyword_7_0_0_RightCurlyBracketKeyword_7_0_2__;
 	protected AbstractElementAlias match_LibIterationCS_SemicolonKeyword_14_1_or___LeftCurlyBracketKeyword_14_0_0_RightCurlyBracketKeyword_14_0_2__;
 	protected AbstractElementAlias match_LibOperationCS_SemicolonKeyword_13_1_or___LeftCurlyBracketKeyword_13_0_0_RightCurlyBracketKeyword_13_0_2__;
 	protected AbstractElementAlias match_LibOperationCS_UnrestrictedNameParserRuleCall_13_0_1_1_1_q;
@@ -29,6 +30,7 @@ public abstract class AbstractOCLstdlibSyntacticSequencer extends AbstractSyntac
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (OCLstdlibGrammarAccess) access;
+		match_LibCoercionCS_SemicolonKeyword_7_1_or___LeftCurlyBracketKeyword_7_0_0_RightCurlyBracketKeyword_7_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getLibCoercionCSAccess().getLeftCurlyBracketKeyword_7_0_0()), new TokenAlias(false, false, grammarAccess.getLibCoercionCSAccess().getRightCurlyBracketKeyword_7_0_2())), new TokenAlias(false, false, grammarAccess.getLibCoercionCSAccess().getSemicolonKeyword_7_1()));
 		match_LibIterationCS_SemicolonKeyword_14_1_or___LeftCurlyBracketKeyword_14_0_0_RightCurlyBracketKeyword_14_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getLibIterationCSAccess().getLeftCurlyBracketKeyword_14_0_0()), new TokenAlias(false, false, grammarAccess.getLibIterationCSAccess().getRightCurlyBracketKeyword_14_0_2())), new TokenAlias(false, false, grammarAccess.getLibIterationCSAccess().getSemicolonKeyword_14_1()));
 		match_LibOperationCS_SemicolonKeyword_13_1_or___LeftCurlyBracketKeyword_13_0_0_RightCurlyBracketKeyword_13_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getLibOperationCSAccess().getLeftCurlyBracketKeyword_13_0_0()), new TokenAlias(false, false, grammarAccess.getLibOperationCSAccess().getRightCurlyBracketKeyword_13_0_2())), new TokenAlias(false, false, grammarAccess.getLibOperationCSAccess().getSemicolonKeyword_13_1()));
 		match_LibOperationCS_UnrestrictedNameParserRuleCall_13_0_1_1_1_q = new TokenAlias(false, true, grammarAccess.getLibOperationCSAccess().getUnrestrictedNameParserRuleCall_13_0_1_1_1());
@@ -59,7 +61,9 @@ public abstract class AbstractOCLstdlibSyntacticSequencer extends AbstractSyntac
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if(match_LibIterationCS_SemicolonKeyword_14_1_or___LeftCurlyBracketKeyword_14_0_0_RightCurlyBracketKeyword_14_0_2__.equals(syntax))
+			if(match_LibCoercionCS_SemicolonKeyword_7_1_or___LeftCurlyBracketKeyword_7_0_0_RightCurlyBracketKeyword_7_0_2__.equals(syntax))
+				emit_LibCoercionCS_SemicolonKeyword_7_1_or___LeftCurlyBracketKeyword_7_0_0_RightCurlyBracketKeyword_7_0_2__(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_LibIterationCS_SemicolonKeyword_14_1_or___LeftCurlyBracketKeyword_14_0_0_RightCurlyBracketKeyword_14_0_2__.equals(syntax))
 				emit_LibIterationCS_SemicolonKeyword_14_1_or___LeftCurlyBracketKeyword_14_0_0_RightCurlyBracketKeyword_14_0_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_LibOperationCS_SemicolonKeyword_13_1_or___LeftCurlyBracketKeyword_13_0_0_RightCurlyBracketKeyword_13_0_2__.equals(syntax))
 				emit_LibOperationCS_SemicolonKeyword_13_1_or___LeftCurlyBracketKeyword_13_0_0_RightCurlyBracketKeyword_13_0_2__(semanticObject, getLastNavigableState(), syntaxNodes);
@@ -75,6 +79,14 @@ public abstract class AbstractOCLstdlibSyntacticSequencer extends AbstractSyntac
 		}
 	}
 
+	/**
+	 * Syntax:
+	 *     ';' | ('{' '}')
+	 */
+	protected void emit_LibCoercionCS_SemicolonKeyword_7_1_or___LeftCurlyBracketKeyword_7_0_0_RightCurlyBracketKeyword_7_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
 	/**
 	 * Syntax:
 	 *     ';' | ('{' '}')

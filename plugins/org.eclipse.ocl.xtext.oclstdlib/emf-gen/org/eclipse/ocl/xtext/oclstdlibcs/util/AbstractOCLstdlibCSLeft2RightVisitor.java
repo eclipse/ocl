@@ -59,6 +59,11 @@ public abstract class AbstractOCLstdlibCSLeft2RightVisitor
 	}
 
 	@Override
+	public @Nullable Element visitLibCoercionCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.LibCoercionCS csElement) {
+		return visitOperationCS(csElement);
+	}
+
+	@Override
 	public @Nullable Element visitLibConstraintCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.LibConstraintCS csElement) {
 		return visitConstraintCS(csElement);
 	}

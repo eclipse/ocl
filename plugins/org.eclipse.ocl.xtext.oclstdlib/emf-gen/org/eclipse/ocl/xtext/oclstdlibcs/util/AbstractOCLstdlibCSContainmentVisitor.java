@@ -59,6 +59,11 @@ public abstract class AbstractOCLstdlibCSContainmentVisitor
 	}
 
 	@Override
+	public @Nullable Continuation<?> visitLibCoercionCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.LibCoercionCS csElement) {
+		return visitOperationCS(csElement);
+	}
+
+	@Override
 	public @Nullable Continuation<?> visitLibConstraintCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.LibConstraintCS csElement) {
 		return visitConstraintCS(csElement);
 	}

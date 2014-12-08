@@ -51,6 +51,15 @@ public interface OCLstdlibCSFactory
 	LibClassCS createLibClassCS();
 
 	/**
+	 * Returns a new object of class '<em>Lib Coercion CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Lib Coercion CS</em>'.
+	 * @generated
+	 */
+	LibCoercionCS createLibCoercionCS();
+
+	/**
 	 * Returns a new object of class '<em>Lib Constraint CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

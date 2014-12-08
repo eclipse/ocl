@@ -61,6 +61,7 @@ import org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.UnlimitedNaturalLiteralExpCS;
 import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess;
 import org.eclipse.ocl.xtext.oclstdlibcs.LibClassCS;
+import org.eclipse.ocl.xtext.oclstdlibcs.LibCoercionCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.LibConstraintCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.LibIterationCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.LibOperationCS;
@@ -605,6 +606,13 @@ public abstract class AbstractOCLstdlibSemanticSequencer extends EssentialOCLSem
 					return; 
 				}
 				else break;
+			case OCLstdlibCSPackage.LIB_COERCION_CS:
+				if(context == grammarAccess.getLibCoercionCSRule() ||
+				   context == grammarAccess.getOperationCSRule()) {
+					sequence_LibCoercionCS(context, (LibCoercionCS) semanticObject); 
+					return; 
+				}
+				else break;
 			case OCLstdlibCSPackage.LIB_CONSTRAINT_CS:
 				if(context == grammarAccess.getInvCSRule()) {
 					sequence_InvCS(context, (LibConstraintCS) semanticObject); 
@@ -766,6 +774,20 @@ public abstract class AbstractOCLstdlibSemanticSequencer extends EssentialOCLSem
 	 *     )
 	 */
 	protected void sequence_LibClassCS(EObject context, LibClassCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (
+	 *         name=Name 
+	 *         ownedType=TypedMultiplicityRefCS 
+	 *         implementation=[JavaClassCS|SINGLE_QUOTED_STRING]? 
+	 *         (ownedAnnotations+=AnnotationElementCS | ownedPreconditions+=PostCS | ownedPostconditions+=PreCS)*
+	 *     )
+	 */
+	protected void sequence_LibCoercionCS(EObject context, LibCoercionCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

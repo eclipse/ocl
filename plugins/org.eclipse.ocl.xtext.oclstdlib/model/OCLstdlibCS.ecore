@@ -10,6 +10,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="LibClassCS" eSuperTypes="../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//StructuredClassCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="metaclassName" eType="#//MetaclassNameCS"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LibCoercionCS" eSuperTypes="../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//OperationCS #//JavaImplementationCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="LibConstraintCS" eSuperTypes="../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//ConstraintCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="LibIterationCS" eSuperTypes="../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//OperationCS #//JavaImplementationCS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInvalidating" eType="ecore:EDataType ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Boolean"

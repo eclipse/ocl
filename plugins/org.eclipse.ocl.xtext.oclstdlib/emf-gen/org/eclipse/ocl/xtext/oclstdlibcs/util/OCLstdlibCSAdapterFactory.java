@@ -37,6 +37,7 @@ import org.eclipse.ocl.xtext.basecs.TemplateableElementCS;
 import org.eclipse.ocl.xtext.basecs.TypeCS;
 import org.eclipse.ocl.xtext.basecs.TypedElementCS;
 import org.eclipse.ocl.xtext.basecs.util.VisitableCS;
+import org.eclipse.ocl.xtext.oclstdlibcs.*;
 import org.eclipse.ocl.xtext.oclstdlibcs.JavaClassCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.JavaImplementationCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.LibClassCS;
@@ -125,6 +126,11 @@ public class OCLstdlibCSAdapterFactory
 			public Adapter caseLibClassCS(LibClassCS object)
 			{
 				return createLibClassCSAdapter();
+			}
+			@Override
+			public Adapter caseLibCoercionCS(LibCoercionCS object)
+			{
+				return createLibCoercionCSAdapter();
 			}
 			@Override
 			public Adapter caseLibConstraintCS(LibConstraintCS object)
@@ -227,11 +233,6 @@ public class OCLstdlibCSAdapterFactory
 				return createStructuredClassCSAdapter();
 			}
 			@Override
-			public Adapter caseConstraintCS(ConstraintCS object)
-			{
-				return createConstraintCSAdapter();
-			}
-			@Override
 			public Adapter caseTypedElementCS(TypedElementCS object)
 			{
 				return createTypedElementCSAdapter();
@@ -245,6 +246,11 @@ public class OCLstdlibCSAdapterFactory
 			public Adapter caseOperationCS(OperationCS object)
 			{
 				return createOperationCSAdapter();
+			}
+			@Override
+			public Adapter caseConstraintCS(ConstraintCS object)
+			{
+				return createConstraintCSAdapter();
 			}
 			@Override
 			public Adapter casePackageOwnerCS(PackageOwnerCS object)
@@ -322,6 +328,21 @@ public class OCLstdlibCSAdapterFactory
 	 * @generated
 	 */
 	public Adapter createLibClassCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.xtext.oclstdlibcs.LibCoercionCS <em>Lib Coercion CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.xtext.oclstdlibcs.LibCoercionCS
+	 * @generated
+	 */
+	public Adapter createLibCoercionCSAdapter()
+	{
 		return null;
 	}
 

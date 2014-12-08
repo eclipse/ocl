@@ -20,6 +20,7 @@ import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.Documenta
 import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.InvCSElements;
 import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LambdaTypeCSElements;
 import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibClassCSElements;
+import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibCoercionCSElements;
 import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibIterationCSElements;
 import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibOperationCSElements;
 import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibPackageCSElements;
@@ -100,6 +101,14 @@ public class OCLstdlibFormatter extends AbstractEssentialOCLFormatter {
 			c.setNoSpace().around(a.getRightParenthesisKeyword_1_1_2());
 			c.setNoSpace().before(a.getColonKeyword_2());
 			setNoSpaceLineWrap(c, a.getSemicolonKeyword_4());
+	    }
+	    {
+			LibCoercionCSElements a = f.getLibCoercionCSAccess();
+			c.setNoSpace().around(a.getLeftParenthesisKeyword_2());
+			c.setNoSpace().before(a.getRightParenthesisKeyword_3());
+			c.setLinewrap().before(a.getEqualsSignGreaterThanSignKeyword_6_0());
+			setBraces(c, a.getLeftCurlyBracketKeyword_7_0_0(), a.getRightCurlyBracketKeyword_7_0_2());
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_7_1());
 	    }
 	    {
 			LibIterationCSElements a = f.getLibIterationCSAccess();

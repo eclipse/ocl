@@ -52,6 +52,11 @@ public abstract class AbstractDelegatingOCLstdlibCSVisitor<R, C, D extends OCLst
 	}
 
 	@Override
+	public @Nullable R visitLibCoercionCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.LibCoercionCS object) {
+		return delegate.visitLibCoercionCS(object);
+	}
+
+	@Override
 	public @Nullable R visitLibConstraintCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.LibConstraintCS object) {
 		return delegate.visitLibConstraintCS(object);
 	}

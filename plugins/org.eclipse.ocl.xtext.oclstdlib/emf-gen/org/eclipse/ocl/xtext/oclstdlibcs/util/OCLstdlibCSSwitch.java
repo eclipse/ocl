@@ -36,6 +36,7 @@ import org.eclipse.ocl.xtext.basecs.TemplateableElementCS;
 import org.eclipse.ocl.xtext.basecs.TypeCS;
 import org.eclipse.ocl.xtext.basecs.TypedElementCS;
 import org.eclipse.ocl.xtext.basecs.util.VisitableCS;
+import org.eclipse.ocl.xtext.oclstdlibcs.*;
 import org.eclipse.ocl.xtext.oclstdlibcs.JavaClassCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.JavaImplementationCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.LibClassCS;
@@ -149,6 +150,25 @@ public class OCLstdlibCSSwitch<T>
 				if (result == null) result = caseElementCS(libClassCS);
 				if (result == null) result = casePivotable(libClassCS);
 				if (result == null) result = caseVisitableCS(libClassCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OCLstdlibCSPackage.LIB_COERCION_CS:
+			{
+				LibCoercionCS libCoercionCS = (LibCoercionCS)theEObject;
+				T result = caseLibCoercionCS(libCoercionCS);
+				if (result == null) result = caseOperationCS(libCoercionCS);
+				if (result == null) result = caseJavaImplementationCS(libCoercionCS);
+				if (result == null) result = caseFeatureCS(libCoercionCS);
+				if (result == null) result = caseTemplateableElementCS(libCoercionCS);
+				if (result == null) result = caseTypedElementCS(libCoercionCS);
+				if (result == null) result = caseNamedElementCS(libCoercionCS);
+				if (result == null) result = caseModelElementCS(libCoercionCS);
+				if (result == null) result = caseNameable(libCoercionCS);
+				if (result == null) result = casePivotableElementCS(libCoercionCS);
+				if (result == null) result = caseElementCS(libCoercionCS);
+				if (result == null) result = casePivotable(libCoercionCS);
+				if (result == null) result = caseVisitableCS(libCoercionCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -312,6 +332,22 @@ public class OCLstdlibCSSwitch<T>
 	 * @generated
 	 */
 	public T caseLibClassCS(LibClassCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Lib Coercion CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Lib Coercion CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLibCoercionCS(LibCoercionCS object)
+	{
 		return null;
 	}
 

@@ -120,6 +120,16 @@ InvCS returns LibConstraintCS:
 	stereotype='inv' (name=UnrestrictedName ('(' ownedMessageSpecification=SpecificationCS ')')?)? ':' ownedSpecification=SpecificationCS ';'
 ;
 
+LibCoercionCS returns LibCoercionCS:
+	'coercion' name=Name '(' ')' ':' ownedType=TypedMultiplicityRefCS
+	('=>' implementation=[JavaClassCS|SINGLE_QUOTED_STRING])?
+	(('{' (ownedAnnotations+=AnnotationElementCS
+	     | ownedPreconditions+=PostCS
+	     | ownedPostconditions+=PreCS)* '}')
+	|';'
+	)
+;
+
 LibIterationCS returns LibIterationCS:
 	'iteration' name=Name
 	(ownedSignature=TemplateSignatureCS)?
@@ -157,7 +167,7 @@ LibraryCS returns base::LibraryCS :
 ;
 
 OperationCS returns base::OperationCS:
-	LibIterationCS|LibOperationCS
+	LibCoercionCS|LibIterationCS|LibOperationCS
 ;
 
 LibOperationCS returns LibOperationCS:

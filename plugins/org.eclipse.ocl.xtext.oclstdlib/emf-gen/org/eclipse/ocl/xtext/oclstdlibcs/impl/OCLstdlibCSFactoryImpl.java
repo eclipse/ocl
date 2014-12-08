@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.ocl.xtext.oclstdlibcs.*;
 import org.eclipse.ocl.xtext.oclstdlibcs.JavaClassCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.LibClassCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.LibConstraintCS;
@@ -82,6 +83,7 @@ public class OCLstdlibCSFactoryImpl
 		{
 			case OCLstdlibCSPackage.JAVA_CLASS_CS: return createJavaClassCS();
 			case OCLstdlibCSPackage.LIB_CLASS_CS: return createLibClassCS();
+			case OCLstdlibCSPackage.LIB_COERCION_CS: return createLibCoercionCS();
 			case OCLstdlibCSPackage.LIB_CONSTRAINT_CS: return createLibConstraintCS();
 			case OCLstdlibCSPackage.LIB_ITERATION_CS: return createLibIterationCS();
 			case OCLstdlibCSPackage.LIB_OPERATION_CS: return createLibOperationCS();
@@ -116,6 +118,18 @@ public class OCLstdlibCSFactoryImpl
 	public LibClassCS createLibClassCS() {
 		LibClassCSImpl libClassCS = new LibClassCSImpl();
 		return libClassCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public LibCoercionCS createLibCoercionCS()
+	{
+		LibCoercionCSImpl libCoercionCS = new LibCoercionCSImpl();
+		return libCoercionCS;
 	}
 
 	/**

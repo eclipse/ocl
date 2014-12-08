@@ -791,6 +791,123 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getSemicolonKeyword_4() { return cSemicolonKeyword_4; }
 	}
 
+	public class LibCoercionCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LibCoercionCS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cCoercionKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cColonKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cOwnedTypeAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cOwnedTypeTypedMultiplicityRefCSParserRuleCall_5_0 = (RuleCall)cOwnedTypeAssignment_5.eContents().get(0);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final Keyword cEqualsSignGreaterThanSignKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Assignment cImplementationAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final CrossReference cImplementationJavaClassCSCrossReference_6_1_0 = (CrossReference)cImplementationAssignment_6_1.eContents().get(0);
+		private final RuleCall cImplementationJavaClassCSSINGLE_QUOTED_STRINGTerminalRuleCall_6_1_0_1 = (RuleCall)cImplementationJavaClassCSCrossReference_6_1_0.eContents().get(1);
+		private final Alternatives cAlternatives_7 = (Alternatives)cGroup.eContents().get(7);
+		private final Group cGroup_7_0 = (Group)cAlternatives_7.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_7_0_0 = (Keyword)cGroup_7_0.eContents().get(0);
+		private final Alternatives cAlternatives_7_0_1 = (Alternatives)cGroup_7_0.eContents().get(1);
+		private final Assignment cOwnedAnnotationsAssignment_7_0_1_0 = (Assignment)cAlternatives_7_0_1.eContents().get(0);
+		private final RuleCall cOwnedAnnotationsAnnotationElementCSParserRuleCall_7_0_1_0_0 = (RuleCall)cOwnedAnnotationsAssignment_7_0_1_0.eContents().get(0);
+		private final Assignment cOwnedPreconditionsAssignment_7_0_1_1 = (Assignment)cAlternatives_7_0_1.eContents().get(1);
+		private final RuleCall cOwnedPreconditionsPostCSParserRuleCall_7_0_1_1_0 = (RuleCall)cOwnedPreconditionsAssignment_7_0_1_1.eContents().get(0);
+		private final Assignment cOwnedPostconditionsAssignment_7_0_1_2 = (Assignment)cAlternatives_7_0_1.eContents().get(2);
+		private final RuleCall cOwnedPostconditionsPreCSParserRuleCall_7_0_1_2_0 = (RuleCall)cOwnedPostconditionsAssignment_7_0_1_2.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_7_0_2 = (Keyword)cGroup_7_0.eContents().get(2);
+		private final Keyword cSemicolonKeyword_7_1 = (Keyword)cAlternatives_7.eContents().get(1);
+		
+		//LibCoercionCS:
+		//	"coercion" name=Name "(" ")" ":" ownedType=TypedMultiplicityRefCS ("=>"
+		//	implementation=[JavaClassCS|SINGLE_QUOTED_STRING])? ("{" (ownedAnnotations+=AnnotationElementCS |
+		//	ownedPreconditions+=PostCS | ownedPostconditions+=PreCS)* "}" | ";");
+		@Override
+		public ParserRule getRule() { return rule; }
+
+		//"coercion" name=Name "(" ")" ":" ownedType=TypedMultiplicityRefCS ("=>"
+		//implementation=[JavaClassCS|SINGLE_QUOTED_STRING])? ("{" (ownedAnnotations+=AnnotationElementCS |
+		//ownedPreconditions+=PostCS | ownedPostconditions+=PreCS)* "}" | ";")
+		public Group getGroup() { return cGroup; }
+
+		//"coercion"
+		public Keyword getCoercionKeyword_0() { return cCoercionKeyword_0; }
+
+		//name=Name
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+
+		//Name
+		public RuleCall getNameNameParserRuleCall_1_0() { return cNameNameParserRuleCall_1_0; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
+
+		//":"
+		public Keyword getColonKeyword_4() { return cColonKeyword_4; }
+
+		//ownedType=TypedMultiplicityRefCS
+		public Assignment getOwnedTypeAssignment_5() { return cOwnedTypeAssignment_5; }
+
+		//TypedMultiplicityRefCS
+		public RuleCall getOwnedTypeTypedMultiplicityRefCSParserRuleCall_5_0() { return cOwnedTypeTypedMultiplicityRefCSParserRuleCall_5_0; }
+
+		//("=>" implementation=[JavaClassCS|SINGLE_QUOTED_STRING])?
+		public Group getGroup_6() { return cGroup_6; }
+
+		//"=>"
+		public Keyword getEqualsSignGreaterThanSignKeyword_6_0() { return cEqualsSignGreaterThanSignKeyword_6_0; }
+
+		//implementation=[JavaClassCS|SINGLE_QUOTED_STRING]
+		public Assignment getImplementationAssignment_6_1() { return cImplementationAssignment_6_1; }
+
+		//[JavaClassCS|SINGLE_QUOTED_STRING]
+		public CrossReference getImplementationJavaClassCSCrossReference_6_1_0() { return cImplementationJavaClassCSCrossReference_6_1_0; }
+
+		//SINGLE_QUOTED_STRING
+		public RuleCall getImplementationJavaClassCSSINGLE_QUOTED_STRINGTerminalRuleCall_6_1_0_1() { return cImplementationJavaClassCSSINGLE_QUOTED_STRINGTerminalRuleCall_6_1_0_1; }
+
+		//"{" (ownedAnnotations+=AnnotationElementCS | ownedPreconditions+=PostCS | ownedPostconditions+=PreCS)* "}" | ";"
+		public Alternatives getAlternatives_7() { return cAlternatives_7; }
+
+		//"{" (ownedAnnotations+=AnnotationElementCS | ownedPreconditions+=PostCS | ownedPostconditions+=PreCS)* "}"
+		public Group getGroup_7_0() { return cGroup_7_0; }
+
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_7_0_0() { return cLeftCurlyBracketKeyword_7_0_0; }
+
+		//(ownedAnnotations+=AnnotationElementCS | ownedPreconditions+=PostCS | ownedPostconditions+=PreCS)*
+		public Alternatives getAlternatives_7_0_1() { return cAlternatives_7_0_1; }
+
+		//ownedAnnotations+=AnnotationElementCS
+		public Assignment getOwnedAnnotationsAssignment_7_0_1_0() { return cOwnedAnnotationsAssignment_7_0_1_0; }
+
+		//AnnotationElementCS
+		public RuleCall getOwnedAnnotationsAnnotationElementCSParserRuleCall_7_0_1_0_0() { return cOwnedAnnotationsAnnotationElementCSParserRuleCall_7_0_1_0_0; }
+
+		//ownedPreconditions+=PostCS
+		public Assignment getOwnedPreconditionsAssignment_7_0_1_1() { return cOwnedPreconditionsAssignment_7_0_1_1; }
+
+		//PostCS
+		public RuleCall getOwnedPreconditionsPostCSParserRuleCall_7_0_1_1_0() { return cOwnedPreconditionsPostCSParserRuleCall_7_0_1_1_0; }
+
+		//ownedPostconditions+=PreCS
+		public Assignment getOwnedPostconditionsAssignment_7_0_1_2() { return cOwnedPostconditionsAssignment_7_0_1_2; }
+
+		//PreCS
+		public RuleCall getOwnedPostconditionsPreCSParserRuleCall_7_0_1_2_0() { return cOwnedPostconditionsPreCSParserRuleCall_7_0_1_2_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_7_0_2() { return cRightCurlyBracketKeyword_7_0_2; }
+
+		//";"
+		public Keyword getSemicolonKeyword_7_1() { return cSemicolonKeyword_7_1; }
+	}
+
 	public class LibIterationCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LibIterationCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -1195,22 +1312,26 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	public class OperationCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "OperationCS");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cLibIterationCSParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cLibOperationCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cLibCoercionCSParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cLibIterationCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cLibOperationCSParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//OperationCS returns base::OperationCS:
-		//	LibIterationCS | LibOperationCS;
+		//	LibCoercionCS | LibIterationCS | LibOperationCS;
 		@Override
 		public ParserRule getRule() { return rule; }
 
-		//LibIterationCS | LibOperationCS
+		//LibCoercionCS | LibIterationCS | LibOperationCS
 		public Alternatives getAlternatives() { return cAlternatives; }
 
+		//LibCoercionCS
+		public RuleCall getLibCoercionCSParserRuleCall_0() { return cLibCoercionCSParserRuleCall_0; }
+
 		//LibIterationCS
-		public RuleCall getLibIterationCSParserRuleCall_0() { return cLibIterationCSParserRuleCall_0; }
+		public RuleCall getLibIterationCSParserRuleCall_1() { return cLibIterationCSParserRuleCall_1; }
 
 		//LibOperationCS
-		public RuleCall getLibOperationCSParserRuleCall_1() { return cLibOperationCSParserRuleCall_1; }
+		public RuleCall getLibOperationCSParserRuleCall_2() { return cLibOperationCSParserRuleCall_2; }
 	}
 
 	public class LibOperationCSElements extends AbstractParserRuleElementFinder {
@@ -2164,6 +2285,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	private final DetailCSElements pDetailCS;
 	private final DocumentationCSElements pDocumentationCS;
 	private final InvCSElements pInvCS;
+	private final LibCoercionCSElements pLibCoercionCS;
 	private final LibIterationCSElements pLibIterationCS;
 	private final IteratorCSElements pIteratorCS;
 	private final LambdaTypeCSElements pLambdaTypeCS;
@@ -2208,6 +2330,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		this.pDetailCS = new DetailCSElements();
 		this.pDocumentationCS = new DocumentationCSElements();
 		this.pInvCS = new InvCSElements();
+		this.pLibCoercionCS = new LibCoercionCSElements();
 		this.pLibIterationCS = new LibIterationCSElements();
 		this.pIteratorCS = new IteratorCSElements();
 		this.pLambdaTypeCS = new LambdaTypeCSElements();
@@ -2419,6 +2542,18 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getInvCSAccess().getRule();
 	}
 
+	//LibCoercionCS:
+	//	"coercion" name=Name "(" ")" ":" ownedType=TypedMultiplicityRefCS ("=>"
+	//	implementation=[JavaClassCS|SINGLE_QUOTED_STRING])? ("{" (ownedAnnotations+=AnnotationElementCS |
+	//	ownedPreconditions+=PostCS | ownedPostconditions+=PreCS)* "}" | ";");
+	public LibCoercionCSElements getLibCoercionCSAccess() {
+		return pLibCoercionCS;
+	}
+	
+	public ParserRule getLibCoercionCSRule() {
+		return getLibCoercionCSAccess().getRule();
+	}
+
 	//LibIterationCS:
 	//	"iteration" name=Name ownedSignature=TemplateSignatureCS? "(" ownedIterators+=IteratorCS (","
 	//	ownedIterators+=IteratorCS)* (";" ownedAccumulators+=AccumulatorCS ("," ownedAccumulators+=AccumulatorCS)*)? ("|"
@@ -2476,7 +2611,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//OperationCS returns base::OperationCS:
-	//	LibIterationCS | LibOperationCS;
+	//	LibCoercionCS | LibIterationCS | LibOperationCS;
 	public OperationCSElements getOperationCSAccess() {
 		return pOperationCS;
 	}

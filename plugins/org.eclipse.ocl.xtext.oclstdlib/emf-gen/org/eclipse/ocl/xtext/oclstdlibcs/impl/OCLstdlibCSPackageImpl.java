@@ -22,6 +22,7 @@ import org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.xtext.oclstdlibcs.JavaClassCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.JavaImplementationCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.LibClassCS;
+import org.eclipse.ocl.xtext.oclstdlibcs.LibCoercionCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.LibConstraintCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.LibIterationCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.LibOperationCS;
@@ -56,6 +57,13 @@ public class OCLstdlibCSPackageImpl
 	 * @generated
 	 */
 	private EClass libClassCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass libCoercionCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -214,6 +222,17 @@ public class OCLstdlibCSPackageImpl
 	public EReference getLibClassCS_MetaclassName()
 	{
 		return (EReference)libClassCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getLibCoercionCS()
+	{
+		return libCoercionCSEClass;
 	}
 
 	/**
@@ -488,6 +507,8 @@ public class OCLstdlibCSPackageImpl
 		libClassCSEClass = createEClass(LIB_CLASS_CS);
 		createEReference(libClassCSEClass, LIB_CLASS_CS__METACLASS_NAME);
 
+		libCoercionCSEClass = createEClass(LIB_COERCION_CS);
+
 		libConstraintCSEClass = createEClass(LIB_CONSTRAINT_CS);
 
 		libIterationCSEClass = createEClass(LIB_ITERATION_CS);
@@ -552,6 +573,8 @@ public class OCLstdlibCSPackageImpl
 		javaClassCSEClass.getESuperTypes().add(theBaseCSPackage.getNamedElementCS());
 		javaImplementationCSEClass.getESuperTypes().add(theBaseCSPackage.getElementCS());
 		libClassCSEClass.getESuperTypes().add(theBaseCSPackage.getStructuredClassCS());
+		libCoercionCSEClass.getESuperTypes().add(theBaseCSPackage.getOperationCS());
+		libCoercionCSEClass.getESuperTypes().add(this.getJavaImplementationCS());
 		libConstraintCSEClass.getESuperTypes().add(theBaseCSPackage.getConstraintCS());
 		libIterationCSEClass.getESuperTypes().add(theBaseCSPackage.getOperationCS());
 		libIterationCSEClass.getESuperTypes().add(this.getJavaImplementationCS());
@@ -573,6 +596,8 @@ public class OCLstdlibCSPackageImpl
 
 		initEClass(libClassCSEClass, LibClassCS.class, "LibClassCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLibClassCS_MetaclassName(), this.getMetaclassNameCS(), null, "metaclassName", null, 0, 1, LibClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(libCoercionCSEClass, LibCoercionCS.class, "LibCoercionCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(libConstraintCSEClass, LibConstraintCS.class, "LibConstraintCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

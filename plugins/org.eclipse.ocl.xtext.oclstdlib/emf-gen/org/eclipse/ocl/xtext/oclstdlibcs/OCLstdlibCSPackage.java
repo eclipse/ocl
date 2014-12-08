@@ -148,7 +148,7 @@ public interface OCLstdlibCSPackage
 	 * @see org.eclipse.ocl.xtext.oclstdlibcs.impl.OCLstdlibCSPackageImpl#getLibConstraintCS()
 	 * @generated
 	 */
-	int LIB_CONSTRAINT_CS = 3;
+	int LIB_CONSTRAINT_CS = 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.oclstdlibcs.impl.LibIterationCSImpl <em>Lib Iteration CS</em>}' class.
@@ -158,7 +158,7 @@ public interface OCLstdlibCSPackage
 	 * @see org.eclipse.ocl.xtext.oclstdlibcs.impl.OCLstdlibCSPackageImpl#getLibIterationCS()
 	 * @generated
 	 */
-	int LIB_ITERATION_CS = 4;
+	int LIB_ITERATION_CS = 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.oclstdlibcs.impl.LibOperationCSImpl <em>Lib Operation CS</em>}' class.
@@ -168,7 +168,7 @@ public interface OCLstdlibCSPackage
 	 * @see org.eclipse.ocl.xtext.oclstdlibcs.impl.OCLstdlibCSPackageImpl#getLibOperationCS()
 	 * @generated
 	 */
-	int LIB_OPERATION_CS = 5;
+	int LIB_OPERATION_CS = 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.oclstdlibcs.impl.LibPropertyCSImpl <em>Lib Property CS</em>}' class.
@@ -178,7 +178,7 @@ public interface OCLstdlibCSPackage
 	 * @see org.eclipse.ocl.xtext.oclstdlibcs.impl.OCLstdlibCSPackageImpl#getLibPropertyCS()
 	 * @generated
 	 */
-	int LIB_PROPERTY_CS = 7;
+	int LIB_PROPERTY_CS = 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.oclstdlibcs.impl.JavaImplementationCSImpl <em>Java Implementation CS</em>}' class.
@@ -379,6 +379,178 @@ public interface OCLstdlibCSPackage
 	 * @ordered
 	 */
 	int LIB_CLASS_CS_FEATURE_COUNT = BaseCSPackage.STRUCTURED_CLASS_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.xtext.oclstdlibcs.impl.LibCoercionCSImpl <em>Lib Coercion CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.xtext.oclstdlibcs.impl.LibCoercionCSImpl
+	 * @see org.eclipse.ocl.xtext.oclstdlibcs.impl.OCLstdlibCSPackageImpl#getLibCoercionCS()
+	 * @generated
+	 */
+	int LIB_COERCION_CS = 3;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_COERCION_CS__PARENT = BaseCSPackage.OPERATION_CS__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Pivot</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_COERCION_CS__PIVOT = BaseCSPackage.OPERATION_CS__PIVOT;
+
+	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_COERCION_CS__CSI = BaseCSPackage.OPERATION_CS__CSI;
+
+	/**
+	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_COERCION_CS__ORIGINAL_XMI_ID = BaseCSPackage.OPERATION_CS__ORIGINAL_XMI_ID;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_COERCION_CS__OWNED_ANNOTATIONS = BaseCSPackage.OPERATION_CS__OWNED_ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_COERCION_CS__NAME = BaseCSPackage.OPERATION_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_COERCION_CS__IS_OPTIONAL = BaseCSPackage.OPERATION_CS__IS_OPTIONAL;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_COERCION_CS__OWNED_TYPE = BaseCSPackage.OPERATION_CS__OWNED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_COERCION_CS__QUALIFIERS = BaseCSPackage.OPERATION_CS__QUALIFIERS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_COERCION_CS__OWNED_SIGNATURE = BaseCSPackage.OPERATION_CS__OWNED_SIGNATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Body Expressions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_COERCION_CS__OWNED_BODY_EXPRESSIONS = BaseCSPackage.OPERATION_CS__OWNED_BODY_EXPRESSIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Exceptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_COERCION_CS__OWNED_EXCEPTIONS = BaseCSPackage.OPERATION_CS__OWNED_EXCEPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_COERCION_CS__OWNED_PARAMETERS = BaseCSPackage.OPERATION_CS__OWNED_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Postconditions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_COERCION_CS__OWNED_POSTCONDITIONS = BaseCSPackage.OPERATION_CS__OWNED_POSTCONDITIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Preconditions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_COERCION_CS__OWNED_PRECONDITIONS = BaseCSPackage.OPERATION_CS__OWNED_PRECONDITIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_COERCION_CS__OWNING_CLASS = BaseCSPackage.OPERATION_CS__OWNING_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Implementation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_COERCION_CS__IMPLEMENTATION = BaseCSPackage.OPERATION_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Lib Coercion CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_COERCION_CS_FEATURE_COUNT = BaseCSPackage.OPERATION_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -874,7 +1046,7 @@ public interface OCLstdlibCSPackage
 	 * @see org.eclipse.ocl.xtext.oclstdlibcs.impl.OCLstdlibCSPackageImpl#getLibPackageCS()
 	 * @generated
 	 */
-	int LIB_PACKAGE_CS = 6;
+	int LIB_PACKAGE_CS = 7;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -1127,7 +1299,7 @@ public interface OCLstdlibCSPackage
 	 * @see org.eclipse.ocl.xtext.oclstdlibcs.impl.OCLstdlibCSPackageImpl#getLibRootPackageCS()
 	 * @generated
 	 */
-	int LIB_ROOT_PACKAGE_CS = 8;
+	int LIB_ROOT_PACKAGE_CS = 9;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -1218,7 +1390,7 @@ public interface OCLstdlibCSPackage
 	 * @see org.eclipse.ocl.xtext.oclstdlibcs.impl.OCLstdlibCSPackageImpl#getMetaclassNameCS()
 	 * @generated
 	 */
-	int METACLASS_NAME_CS = 9;
+	int METACLASS_NAME_CS = 10;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -1255,7 +1427,7 @@ public interface OCLstdlibCSPackage
 	 * @see org.eclipse.ocl.xtext.oclstdlibcs.impl.OCLstdlibCSPackageImpl#getPrecedenceCS()
 	 * @generated
 	 */
-	int PRECEDENCE_CS = 10;
+	int PRECEDENCE_CS = 11;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -1359,6 +1531,16 @@ public interface OCLstdlibCSPackage
 	 * @generated
 	 */
 	EReference getLibClassCS_MetaclassName();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.oclstdlibcs.LibCoercionCS <em>Lib Coercion CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Lib Coercion CS</em>'.
+	 * @see org.eclipse.ocl.xtext.oclstdlibcs.LibCoercionCS
+	 * @generated
+	 */
+	EClass getLibCoercionCS();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.oclstdlibcs.LibConstraintCS <em>Lib Constraint CS</em>}'.
@@ -1643,6 +1825,16 @@ public interface OCLstdlibCSPackage
 		 * @generated
 		 */
 		EReference LIB_CLASS_CS__METACLASS_NAME = eINSTANCE.getLibClassCS_MetaclassName();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.oclstdlibcs.impl.LibCoercionCSImpl <em>Lib Coercion CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.xtext.oclstdlibcs.impl.LibCoercionCSImpl
+		 * @see org.eclipse.ocl.xtext.oclstdlibcs.impl.OCLstdlibCSPackageImpl#getLibCoercionCS()
+		 * @generated
+		 */
+		EClass LIB_COERCION_CS = eINSTANCE.getLibCoercionCS();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.oclstdlibcs.impl.LibConstraintCSImpl <em>Lib Constraint CS</em>}' class.

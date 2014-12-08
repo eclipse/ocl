@@ -19,6 +19,7 @@ import org.eclipse.ocl.xtext.essentialocl.cs2as.NewEssentialOCLCSContainmentVisi
 import org.eclipse.ocl.xtext.oclstdlibcs.JavaClassCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.JavaImplementationCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.LibClassCS;
+import org.eclipse.ocl.xtext.oclstdlibcs.LibCoercionCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.LibConstraintCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.LibIterationCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.LibOperationCS;
@@ -60,6 +61,11 @@ public class AutoOCLstdlibCSContainmentVisitor
     @Override
 	public @Nullable Continuation<?> visitLibClassCS(@NonNull LibClassCS self) {
         throw new UnsupportedOperationException("visitLibClassCS is not supported by " + getClass().getName());
+    }
+    
+    @Override
+	public @Nullable Continuation<?> visitLibCoercionCS(@NonNull LibCoercionCS self) {
+        throw new UnsupportedOperationException("visitLibCoercionCS is not supported by " + getClass().getName());
     }
     
     @Override

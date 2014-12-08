@@ -47,6 +47,8 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLibClassCSAccess().getAlternatives_6(), "rule__LibClassCS__Alternatives_6");
 					put(grammarAccess.getDetailCSAccess().getNameAlternatives_0_0(), "rule__DetailCS__NameAlternatives_0_0");
 					put(grammarAccess.getDetailCSAccess().getValuesAlternatives_2_0(), "rule__DetailCS__ValuesAlternatives_2_0");
+					put(grammarAccess.getLibCoercionCSAccess().getAlternatives_7(), "rule__LibCoercionCS__Alternatives_7");
+					put(grammarAccess.getLibCoercionCSAccess().getAlternatives_7_0_1(), "rule__LibCoercionCS__Alternatives_7_0_1");
 					put(grammarAccess.getLibIterationCSAccess().getAlternatives_14(), "rule__LibIterationCS__Alternatives_14");
 					put(grammarAccess.getLibIterationCSAccess().getAlternatives_14_0_1(), "rule__LibIterationCS__Alternatives_14_0_1");
 					put(grammarAccess.getOperationCSAccess().getAlternatives(), "rule__OperationCS__Alternatives");
@@ -110,6 +112,9 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getInvCSAccess().getGroup(), "rule__InvCS__Group__0");
 					put(grammarAccess.getInvCSAccess().getGroup_1(), "rule__InvCS__Group_1__0");
 					put(grammarAccess.getInvCSAccess().getGroup_1_1(), "rule__InvCS__Group_1_1__0");
+					put(grammarAccess.getLibCoercionCSAccess().getGroup(), "rule__LibCoercionCS__Group__0");
+					put(grammarAccess.getLibCoercionCSAccess().getGroup_6(), "rule__LibCoercionCS__Group_6__0");
+					put(grammarAccess.getLibCoercionCSAccess().getGroup_7_0(), "rule__LibCoercionCS__Group_7_0__0");
 					put(grammarAccess.getLibIterationCSAccess().getGroup(), "rule__LibIterationCS__Group__0");
 					put(grammarAccess.getLibIterationCSAccess().getGroup_5(), "rule__LibIterationCS__Group_5__0");
 					put(grammarAccess.getLibIterationCSAccess().getGroup_6(), "rule__LibIterationCS__Group_6__0");
@@ -266,6 +271,12 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getInvCSAccess().getNameAssignment_1_0(), "rule__InvCS__NameAssignment_1_0");
 					put(grammarAccess.getInvCSAccess().getOwnedMessageSpecificationAssignment_1_1_1(), "rule__InvCS__OwnedMessageSpecificationAssignment_1_1_1");
 					put(grammarAccess.getInvCSAccess().getOwnedSpecificationAssignment_3(), "rule__InvCS__OwnedSpecificationAssignment_3");
+					put(grammarAccess.getLibCoercionCSAccess().getNameAssignment_1(), "rule__LibCoercionCS__NameAssignment_1");
+					put(grammarAccess.getLibCoercionCSAccess().getOwnedTypeAssignment_5(), "rule__LibCoercionCS__OwnedTypeAssignment_5");
+					put(grammarAccess.getLibCoercionCSAccess().getImplementationAssignment_6_1(), "rule__LibCoercionCS__ImplementationAssignment_6_1");
+					put(grammarAccess.getLibCoercionCSAccess().getOwnedAnnotationsAssignment_7_0_1_0(), "rule__LibCoercionCS__OwnedAnnotationsAssignment_7_0_1_0");
+					put(grammarAccess.getLibCoercionCSAccess().getOwnedPreconditionsAssignment_7_0_1_1(), "rule__LibCoercionCS__OwnedPreconditionsAssignment_7_0_1_1");
+					put(grammarAccess.getLibCoercionCSAccess().getOwnedPostconditionsAssignment_7_0_1_2(), "rule__LibCoercionCS__OwnedPostconditionsAssignment_7_0_1_2");
 					put(grammarAccess.getLibIterationCSAccess().getNameAssignment_1(), "rule__LibIterationCS__NameAssignment_1");
 					put(grammarAccess.getLibIterationCSAccess().getOwnedSignatureAssignment_2(), "rule__LibIterationCS__OwnedSignatureAssignment_2");
 					put(grammarAccess.getLibIterationCSAccess().getOwnedIteratorsAssignment_4(), "rule__LibIterationCS__OwnedIteratorsAssignment_4");

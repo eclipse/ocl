@@ -1360,6 +1360,168 @@ ruleInvCS returns [EObject current=null]
 
 
 
+// Entry rule entryRuleLibCoercionCS
+entryRuleLibCoercionCS returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getLibCoercionCSRule()); }
+	 iv_ruleLibCoercionCS=ruleLibCoercionCS 
+	 { $current=$iv_ruleLibCoercionCS.current; } 
+	 EOF 
+;
+
+// Rule LibCoercionCS
+ruleLibCoercionCS returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='coercion' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getLibCoercionCSAccess().getCoercionKeyword_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getLibCoercionCSAccess().getNameNameParserRuleCall_1_0()); 
+	    }
+		lv_name_1_0=ruleName		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getLibCoercionCSRule());
+	        }
+       		set(
+       			$current, 
+       			"name",
+        		lv_name_1_0, 
+        		"Name");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_2='(' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getLibCoercionCSAccess().getLeftParenthesisKeyword_2());
+    }
+	otherlv_3=')' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getLibCoercionCSAccess().getRightParenthesisKeyword_3());
+    }
+	otherlv_4=':' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getLibCoercionCSAccess().getColonKeyword_4());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getLibCoercionCSAccess().getOwnedTypeTypedMultiplicityRefCSParserRuleCall_5_0()); 
+	    }
+		lv_ownedType_5_0=ruleTypedMultiplicityRefCS		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getLibCoercionCSRule());
+	        }
+       		set(
+       			$current, 
+       			"ownedType",
+        		lv_ownedType_5_0, 
+        		"TypedMultiplicityRefCS");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(	otherlv_6='=>' 
+    {
+    	newLeafNode(otherlv_6, grammarAccess.getLibCoercionCSAccess().getEqualsSignGreaterThanSignKeyword_6_0());
+    }
+(
+(
+		{ 
+		  /* */ 
+		}
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getLibCoercionCSRule());
+	        }
+        }
+	otherlv_7=RULE_SINGLE_QUOTED_STRING
+	{
+		newLeafNode(otherlv_7, grammarAccess.getLibCoercionCSAccess().getImplementationJavaClassCSCrossReference_6_1_0()); 
+	}
+
+)
+))?((	otherlv_8='{' 
+    {
+    	newLeafNode(otherlv_8, grammarAccess.getLibCoercionCSAccess().getLeftCurlyBracketKeyword_7_0_0());
+    }
+((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getLibCoercionCSAccess().getOwnedAnnotationsAnnotationElementCSParserRuleCall_7_0_1_0_0()); 
+	    }
+		lv_ownedAnnotations_9_0=ruleAnnotationElementCS		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getLibCoercionCSRule());
+	        }
+       		add(
+       			$current, 
+       			"ownedAnnotations",
+        		lv_ownedAnnotations_9_0, 
+        		"AnnotationElementCS");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)
+    |(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getLibCoercionCSAccess().getOwnedPreconditionsPostCSParserRuleCall_7_0_1_1_0()); 
+	    }
+		lv_ownedPreconditions_10_0=rulePostCS		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getLibCoercionCSRule());
+	        }
+       		add(
+       			$current, 
+       			"ownedPreconditions",
+        		lv_ownedPreconditions_10_0, 
+        		"PostCS");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)
+    |(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getLibCoercionCSAccess().getOwnedPostconditionsPreCSParserRuleCall_7_0_1_2_0()); 
+	    }
+		lv_ownedPostconditions_11_0=rulePreCS		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getLibCoercionCSRule());
+	        }
+       		add(
+       			$current, 
+       			"ownedPostconditions",
+        		lv_ownedPostconditions_11_0, 
+        		"PreCS");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))*	otherlv_12='}' 
+    {
+    	newLeafNode(otherlv_12, grammarAccess.getLibCoercionCSAccess().getRightCurlyBracketKeyword_7_0_2());
+    }
+)
+    |	otherlv_13=';' 
+    {
+    	newLeafNode(otherlv_13, grammarAccess.getLibCoercionCSAccess().getSemicolonKeyword_7_1());
+    }
+))
+;
+
+
+
+
+
 // Entry rule entryRuleLibIterationCS
 entryRuleLibIterationCS returns [EObject current=null] 
 	:
@@ -2002,11 +2164,11 @@ ruleOperationCS returns [EObject current=null]
 	  /* */ 
 	}
     { 
-        newCompositeNode(grammarAccess.getOperationCSAccess().getLibIterationCSParserRuleCall_0()); 
+        newCompositeNode(grammarAccess.getOperationCSAccess().getLibCoercionCSParserRuleCall_0()); 
     }
-    this_LibIterationCS_0=ruleLibIterationCS
+    this_LibCoercionCS_0=ruleLibCoercionCS
     { 
-        $current = $this_LibIterationCS_0.current; 
+        $current = $this_LibCoercionCS_0.current; 
         afterParserOrEnumRuleCall();
     }
 
@@ -2015,11 +2177,24 @@ ruleOperationCS returns [EObject current=null]
 	  /* */ 
 	}
     { 
-        newCompositeNode(grammarAccess.getOperationCSAccess().getLibOperationCSParserRuleCall_1()); 
+        newCompositeNode(grammarAccess.getOperationCSAccess().getLibIterationCSParserRuleCall_1()); 
     }
-    this_LibOperationCS_1=ruleLibOperationCS
+    this_LibIterationCS_1=ruleLibIterationCS
     { 
-        $current = $this_LibOperationCS_1.current; 
+        $current = $this_LibIterationCS_1.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+	{ 
+	  /* */ 
+	}
+    { 
+        newCompositeNode(grammarAccess.getOperationCSAccess().getLibOperationCSParserRuleCall_2()); 
+    }
+    this_LibOperationCS_2=ruleLibOperationCS
+    { 
+        $current = $this_LibOperationCS_2.current; 
         afterParserOrEnumRuleCall();
     }
 )
