@@ -13,20 +13,28 @@ package org.eclipse.ocl.library.numeric;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.library.AbstractSimpleBinaryOperation;
-import org.eclipse.ocl.domain.values.IntegerValue;
-import org.eclipse.ocl.domain.values.RealValue;
+import org.eclipse.ocl.domain.values.util.ValuesUtil;
 
 /**
  * NumericCompareToOperation realises the numeric compareTo() library operation.
  */
+@Deprecated		// Use OclComparableCompareToOperation
 public class NumericCompareToOperation extends AbstractSimpleBinaryOperation
 {
 	public static final @NonNull NumericCompareToOperation INSTANCE = new NumericCompareToOperation();
 
 	@Override
-	public @NonNull IntegerValue evaluate(@Nullable Object left, @Nullable Object right) {
-		RealValue leftNumeric = asRealValue(left);
-		RealValue rightNumeric = asRealValue(right);
-		return integerValueOf(leftNumeric.compareTo(rightNumeric));
+	public @NonNull Object evaluate(@Nullable Object left, @Nullable Object right) {
+		if (left instanceof Comparable<?>) {
+			@SuppressWarnings("unchecked") int compareTo = ((Comparable<Object>)left).compareTo(right);
+			return compareTo;
+		}
+		else {
+			@SuppressWarnings("null")@NonNull Integer valueOf = Integer.valueOf(ValuesUtil.throwUnsupportedCompareTo(left, right));
+			return valueOf;
+		}
+//		RealValue leftNumeric = asRealValue(left);
+//		RealValue rightNumeric = asRealValue(right);
+//		return integerValueOf(leftNumeric.compareTo(rightNumeric));
 	}
 }

@@ -16,6 +16,7 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.CollectionType;
@@ -200,7 +201,7 @@ public class AS2UMLReferenceVisitor
 				umlMultiplicityElement.setIsOrdered(collectionType.isOrdered());
 				umlMultiplicityElement.setIsUnique(collectionType.isUnique());
 				IntegerValue lower = collectionType.getLowerValue();
-				IntegerValue upper = collectionType.getUpperValue();
+				UnlimitedNaturalValue upper = collectionType.getUpperValue();
 				try {
 					umlMultiplicityElement.setLower(lower.intValue());
 				} catch (InvalidValueException e) {

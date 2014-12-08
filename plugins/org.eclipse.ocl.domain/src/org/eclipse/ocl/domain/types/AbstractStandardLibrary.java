@@ -31,6 +31,7 @@ import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.PrimitiveTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 
 public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 {
@@ -66,8 +67,8 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 		if (firstLower.compareTo(secondLower) < 0) {
 			return false;
 		}
-		IntegerValue firstUpper = firstCollectionType.getUpperValue();
-		IntegerValue secondUpper = secondCollectionType.getUpperValue();
+		UnlimitedNaturalValue firstUpper = firstCollectionType.getUpperValue();
+		UnlimitedNaturalValue secondUpper = secondCollectionType.getUpperValue();
 		if (firstUpper.compareTo(secondUpper) > 0) {
 			return false;
 		}

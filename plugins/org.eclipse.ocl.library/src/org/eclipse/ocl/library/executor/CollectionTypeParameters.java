@@ -16,6 +16,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 
 public class CollectionTypeParameters<T extends DomainType> implements Iterable<Object>
@@ -48,9 +49,9 @@ public class CollectionTypeParameters<T extends DomainType> implements Iterable<
 	private final int hashCode;
 	private final @NonNull T elementType;
 	private final @NonNull IntegerValue lower;
-	private final @NonNull IntegerValue upper;
+	private final @NonNull UnlimitedNaturalValue upper;
 
-	public CollectionTypeParameters(@NonNull T elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
+	public CollectionTypeParameters(@NonNull T elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		this.elementType = elementType;
 		this.lower = lower != null ? lower : ValuesUtil.ZERO_VALUE;
 		this.upper = upper != null ? upper : ValuesUtil.UNLIMITED_VALUE;
@@ -89,7 +90,7 @@ public class CollectionTypeParameters<T extends DomainType> implements Iterable<
 		return lower;
 	}
 
-	public @NonNull IntegerValue getUpper() {
+	public @NonNull UnlimitedNaturalValue getUpper() {
 		return upper;
 	}
 

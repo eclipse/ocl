@@ -268,11 +268,8 @@ public class OCLstdlibTables
 		private static final @NonNull ExecutorFragment _UniqueCollection__OclAny = new ExecutorFragment(Types._UniqueCollection, OCLstdlibTables.Types._OclAny);
 		private static final @NonNull ExecutorFragment _UniqueCollection__UniqueCollection = new ExecutorFragment(Types._UniqueCollection, OCLstdlibTables.Types._UniqueCollection);
 
-		private static final @NonNull ExecutorFragment _UnlimitedNatural__Integer = new ExecutorFragment(Types._UnlimitedNatural, OCLstdlibTables.Types._Integer);
 		private static final @NonNull ExecutorFragment _UnlimitedNatural__OclAny = new ExecutorFragment(Types._UnlimitedNatural, OCLstdlibTables.Types._OclAny);
 		private static final @NonNull ExecutorFragment _UnlimitedNatural__OclComparable = new ExecutorFragment(Types._UnlimitedNatural, OCLstdlibTables.Types._OclComparable);
-		private static final @NonNull ExecutorFragment _UnlimitedNatural__OclSummable = new ExecutorFragment(Types._UnlimitedNatural, OCLstdlibTables.Types._OclSummable);
-		private static final @NonNull ExecutorFragment _UnlimitedNatural__Real = new ExecutorFragment(Types._UnlimitedNatural, OCLstdlibTables.Types._Real);
 		private static final @NonNull ExecutorFragment _UnlimitedNatural__UnlimitedNatural = new ExecutorFragment(Types._UnlimitedNatural, OCLstdlibTables.Types._UnlimitedNatural);
 
 		/*
@@ -508,18 +505,18 @@ public class OCLstdlibTables
 			4, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.NumericDivideOperation.INSTANCE);
 		public static final @NonNull ExecutorOperation _Integer__abs = new ExecutorOperation("abs", Parameters._, Types._Integer,
 			5, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.NumericAbsOperation.INSTANCE);
-		public static final @NonNull ExecutorOperation _Integer__compareTo = new ExecutorOperation("compareTo", Parameters._OclSelf, Types._Integer,
-			6, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.NumericCompareToOperation.INSTANCE);
 		public static final @NonNull ExecutorOperation _Integer__div = new ExecutorOperation("div", Parameters._Integer, Types._Integer,
-			7, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.NumericDivOperation.INSTANCE);
+			6, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.NumericDivOperation.INSTANCE);
 		public static final @NonNull ExecutorOperation _Integer__max = new ExecutorOperation("max", Parameters._OclSelf, Types._Integer,
-			8, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.NumericMaxOperation.INSTANCE);
+			7, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.NumericMaxOperation.INSTANCE);
 		public static final @NonNull ExecutorOperation _Integer__min = new ExecutorOperation("min", Parameters._OclSelf, Types._Integer,
-			9, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.NumericMinOperation.INSTANCE);
+			8, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.NumericMinOperation.INSTANCE);
 		public static final @NonNull ExecutorOperation _Integer__mod = new ExecutorOperation("mod", Parameters._Integer, Types._Integer,
-			10, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.NumericModOperation.INSTANCE);
+			9, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.NumericModOperation.INSTANCE);
 		public static final @NonNull ExecutorOperation _Integer__toString = new ExecutorOperation("toString", Parameters._, Types._Integer,
-			11, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.oclany.OclAnyToStringOperation.INSTANCE);
+			10, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.oclany.OclAnyToStringOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _Integer__toUnlimitedNatural = new ExecutorOperation("toUnlimitedNatural", Parameters._, Types._Integer,
+			11, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.IntegerToUnlimitedNaturalOperation.INSTANCE);
 
 		public static final @NonNull ExecutorOperation _OclAny___lt__gt_ = new ExecutorOperation("<>", Parameters._OclSelf, Types._OclAny,
 			0, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.oclany.OclAnyNotEqualOperation.INSTANCE);
@@ -702,32 +699,22 @@ public class OCLstdlibTables
 			3, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.NumericMinusOperation.INSTANCE);
 		public static final @NonNull ExecutorOperation _Real___div_ = new ExecutorOperation("/", Parameters._OclSelf, Types._Real,
 			4, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.NumericDivideOperation.INSTANCE);
-		public static final @NonNull ExecutorOperation _Real___lt_ = new ExecutorOperation("<", Parameters._OclSelf, Types._Real,
-			5, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.NumericLessThanOperation.INSTANCE);
-		public static final @NonNull ExecutorOperation _Real___lt__eq_ = new ExecutorOperation("<=", Parameters._OclSelf, Types._Real,
-			6, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.NumericLessThanEqualOperation.INSTANCE);
 		public static final @NonNull ExecutorOperation _Real___lt__gt_ = new ExecutorOperation("<>", Parameters._OclSelf, Types._Real,
-			7, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.oclany.OclAnyNotEqualOperation.INSTANCE);
+			5, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.oclany.OclAnyNotEqualOperation.INSTANCE);
 		public static final @NonNull ExecutorOperation _Real___eq_ = new ExecutorOperation("=", Parameters._OclSelf, Types._Real,
-			8, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.oclany.OclAnyEqualOperation.INSTANCE);
-		public static final @NonNull ExecutorOperation _Real___gt_ = new ExecutorOperation(">", Parameters._OclSelf, Types._Real,
-			9, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.NumericGreaterThanOperation.INSTANCE);
-		public static final @NonNull ExecutorOperation _Real___gt__eq_ = new ExecutorOperation(">=", Parameters._OclSelf, Types._Real,
-			10, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.NumericGreaterThanEqualOperation.INSTANCE);
+			6, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.oclany.OclAnyEqualOperation.INSTANCE);
 		public static final @NonNull ExecutorOperation _Real__abs = new ExecutorOperation("abs", Parameters._, Types._Real,
-			11, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.NumericAbsOperation.INSTANCE);
-		public static final @NonNull ExecutorOperation _Real__compareTo = new ExecutorOperation("compareTo", Parameters._OclSelf, Types._Real,
-			12, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.NumericCompareToOperation.INSTANCE);
+			7, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.NumericAbsOperation.INSTANCE);
 		public static final @NonNull ExecutorOperation _Real__floor = new ExecutorOperation("floor", Parameters._, Types._Real,
-			13, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.NumericFloorOperation.INSTANCE);
+			8, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.NumericFloorOperation.INSTANCE);
 		public static final @NonNull ExecutorOperation _Real__max = new ExecutorOperation("max", Parameters._OclSelf, Types._Real,
-			14, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.NumericMaxOperation.INSTANCE);
+			9, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.NumericMaxOperation.INSTANCE);
 		public static final @NonNull ExecutorOperation _Real__min = new ExecutorOperation("min", Parameters._OclSelf, Types._Real,
-			15, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.NumericMinOperation.INSTANCE);
+			10, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.NumericMinOperation.INSTANCE);
 		public static final @NonNull ExecutorOperation _Real__round = new ExecutorOperation("round", Parameters._, Types._Real,
-			16, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.NumericRoundOperation.INSTANCE);
+			11, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.NumericRoundOperation.INSTANCE);
 		public static final @NonNull ExecutorOperation _Real__toString = new ExecutorOperation("toString", Parameters._, Types._Real,
-			17, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.oclany.OclAnyToStringOperation.INSTANCE);
+			12, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.oclany.OclAnyToStringOperation.INSTANCE);
 
 		public static final @NonNull ExecutorOperation _Sequence___lt__gt_ = new ExecutorOperation("<>", Parameters._OclSelf, Types._Sequence,
 			0, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.oclany.OclAnyNotEqualOperation.INSTANCE);
@@ -887,8 +874,14 @@ public class OCLstdlibTables
 		public static final @NonNull ExecutorOperation _UniqueCollection__union = new ExecutorOperation("union", Parameters._UniqueCollection, Types._UniqueCollection,
 			4, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.collection.CollectionUnionOperation.INSTANCE);
 
+		public static final @NonNull ExecutorOperation _UnlimitedNatural__max = new ExecutorOperation("max", Parameters._OclSelf, Types._UnlimitedNatural,
+			0, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.UnlimitedNaturalMaxOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _UnlimitedNatural__min = new ExecutorOperation("min", Parameters._OclSelf, Types._UnlimitedNatural,
+			1, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.UnlimitedNaturalMinOperation.INSTANCE);
 		public static final @NonNull ExecutorOperation _UnlimitedNatural__oclAsType = new ExecutorOperation("oclAsType", Parameters._UnlimitedNatural_oclAsType_TT, Types._UnlimitedNatural,
-			0, new DomainTypeParameters(TypeParameters.__UnlimitedNatural__oclAsType_TT), org.eclipse.ocl.library.numeric.UnlimitedNaturalOclAsTypeOperation.INSTANCE);
+			2, new DomainTypeParameters(TypeParameters.__UnlimitedNatural__oclAsType_TT), org.eclipse.ocl.library.numeric.UnlimitedNaturalOclAsTypeOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _UnlimitedNatural__toInteger = new ExecutorOperation("toInteger", Parameters._, Types._UnlimitedNatural,
+			3, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.numeric.UnlimitedNaturalToIntegerOperation.INSTANCE);
 
 	}
 
@@ -1092,12 +1085,9 @@ public class OCLstdlibTables
 		{
 			Fragments._UnlimitedNatural__OclAny /* 0 */,
 			Fragments._UnlimitedNatural__OclComparable /* 1 */,
-			Fragments._UnlimitedNatural__OclSummable /* 1 */,
-			Fragments._UnlimitedNatural__Real /* 2 */,
-			Fragments._UnlimitedNatural__Integer /* 3 */,
-			Fragments._UnlimitedNatural__UnlimitedNatural /* 4 */
+			Fragments._UnlimitedNatural__UnlimitedNatural /* 2 */
 		};
-		private static final @NonNull int[] __UnlimitedNatural = { 1,2,1,1,1 };
+		private static final @NonNull int[] __UnlimitedNatural = { 1,1,1 };
 
 		/**
 		 *	Install the fragment descriptors in the class descriptors.
@@ -1309,12 +1299,12 @@ public class OCLstdlibTables
 			OCLstdlibTables.Operations._Integer___sub_ /* _'-'(OclSelf) */,
 			OCLstdlibTables.Operations._Integer___div_ /* _'/'(OclSelf) */,
 			OCLstdlibTables.Operations._Integer__abs /* abs() */,
-			OCLstdlibTables.Operations._Integer__compareTo /* compareTo(OclSelf) */,
 			OCLstdlibTables.Operations._Integer__div /* div(Integer) */,
 			OCLstdlibTables.Operations._Integer__max /* max(OclSelf) */,
 			OCLstdlibTables.Operations._Integer__min /* min(OclSelf) */,
 			OCLstdlibTables.Operations._Integer__mod /* mod(Integer) */,
-			OCLstdlibTables.Operations._Integer__toString /* toString() */
+			OCLstdlibTables.Operations._Integer__toString /* toString() */,
+			OCLstdlibTables.Operations._Integer__toUnlimitedNatural /* toUnlimitedNatural() */
 		};
 		private static final @NonNull ExecutorOperation[] _Integer__OclAny = {
 			OCLstdlibTables.Operations._Real___lt__gt_ /* _'<>'(OclSelf) */,
@@ -1333,11 +1323,11 @@ public class OCLstdlibTables
 			OCLstdlibTables.Operations._Integer__toString /* toString() */
 		};
 		private static final @NonNull ExecutorOperation[] _Integer__OclComparable = {
-			OCLstdlibTables.Operations._Real___lt_ /* _'<'(OclSelf) */,
-			OCLstdlibTables.Operations._Real___lt__eq_ /* _'<='(OclSelf) */,
-			OCLstdlibTables.Operations._Real___gt_ /* _'>'(OclSelf) */,
-			OCLstdlibTables.Operations._Real___gt__eq_ /* _'>='(OclSelf) */,
-			OCLstdlibTables.Operations._Integer__compareTo /* compareTo(OclSelf) */
+			OCLstdlibTables.Operations._OclComparable___lt_ /* _'<'(OclSelf) */,
+			OCLstdlibTables.Operations._OclComparable___lt__eq_ /* _'<='(OclSelf) */,
+			OCLstdlibTables.Operations._OclComparable___gt_ /* _'>'(OclSelf) */,
+			OCLstdlibTables.Operations._OclComparable___gt__eq_ /* _'>='(OclSelf) */,
+			OCLstdlibTables.Operations._OclComparable__compareTo /* compareTo(OclSelf) */
 		};
 		private static final @NonNull ExecutorOperation[] _Integer__OclSummable = {
 			OCLstdlibTables.Operations._OclSummable__sum /* sum(OclSelf) */,
@@ -1349,14 +1339,9 @@ public class OCLstdlibTables
 			OCLstdlibTables.Operations._Integer___neg_ /* _'-'() */,
 			OCLstdlibTables.Operations._Integer___sub_ /* _'-'(OclSelf) */,
 			OCLstdlibTables.Operations._Integer___div_ /* _'/'(OclSelf) */,
-			OCLstdlibTables.Operations._Real___lt_ /* _'<'(OclSelf) */,
-			OCLstdlibTables.Operations._Real___lt__eq_ /* _'<='(OclSelf) */,
 			OCLstdlibTables.Operations._Real___lt__gt_ /* _'<>'(OclSelf) */,
 			OCLstdlibTables.Operations._Real___eq_ /* _'='(OclSelf) */,
-			OCLstdlibTables.Operations._Real___gt_ /* _'>'(OclSelf) */,
-			OCLstdlibTables.Operations._Real___gt__eq_ /* _'>='(OclSelf) */,
 			OCLstdlibTables.Operations._Integer__abs /* abs() */,
-			OCLstdlibTables.Operations._Integer__compareTo /* compareTo(OclSelf) */,
 			OCLstdlibTables.Operations._Real__floor /* floor() */,
 			OCLstdlibTables.Operations._Integer__max /* max(OclSelf) */,
 			OCLstdlibTables.Operations._Integer__min /* min(OclSelf) */,
@@ -1812,14 +1797,9 @@ public class OCLstdlibTables
 			OCLstdlibTables.Operations._Real___neg_ /* _'-'() */,
 			OCLstdlibTables.Operations._Real___sub_ /* _'-'(OclSelf) */,
 			OCLstdlibTables.Operations._Real___div_ /* _'/'(OclSelf) */,
-			OCLstdlibTables.Operations._Real___lt_ /* _'<'(OclSelf) */,
-			OCLstdlibTables.Operations._Real___lt__eq_ /* _'<='(OclSelf) */,
 			OCLstdlibTables.Operations._Real___lt__gt_ /* _'<>'(OclSelf) */,
 			OCLstdlibTables.Operations._Real___eq_ /* _'='(OclSelf) */,
-			OCLstdlibTables.Operations._Real___gt_ /* _'>'(OclSelf) */,
-			OCLstdlibTables.Operations._Real___gt__eq_ /* _'>='(OclSelf) */,
 			OCLstdlibTables.Operations._Real__abs /* abs() */,
-			OCLstdlibTables.Operations._Real__compareTo /* compareTo(OclSelf) */,
 			OCLstdlibTables.Operations._Real__floor /* floor() */,
 			OCLstdlibTables.Operations._Real__max /* max(OclSelf) */,
 			OCLstdlibTables.Operations._Real__min /* min(OclSelf) */,
@@ -1843,11 +1823,11 @@ public class OCLstdlibTables
 			OCLstdlibTables.Operations._Real__toString /* toString() */
 		};
 		private static final @NonNull ExecutorOperation[] _Real__OclComparable = {
-			OCLstdlibTables.Operations._Real___lt_ /* _'<'(OclSelf) */,
-			OCLstdlibTables.Operations._Real___lt__eq_ /* _'<='(OclSelf) */,
-			OCLstdlibTables.Operations._Real___gt_ /* _'>'(OclSelf) */,
-			OCLstdlibTables.Operations._Real___gt__eq_ /* _'>='(OclSelf) */,
-			OCLstdlibTables.Operations._Real__compareTo /* compareTo(OclSelf) */
+			OCLstdlibTables.Operations._OclComparable___lt_ /* _'<'(OclSelf) */,
+			OCLstdlibTables.Operations._OclComparable___lt__eq_ /* _'<='(OclSelf) */,
+			OCLstdlibTables.Operations._OclComparable___gt_ /* _'>'(OclSelf) */,
+			OCLstdlibTables.Operations._OclComparable___gt__eq_ /* _'>='(OclSelf) */,
+			OCLstdlibTables.Operations._OclComparable__compareTo /* compareTo(OclSelf) */
 		};
 		private static final @NonNull ExecutorOperation[] _Real__OclSummable = {
 			OCLstdlibTables.Operations._OclSummable__sum /* sum(OclSelf) */,
@@ -2161,25 +2141,14 @@ public class OCLstdlibTables
 		};
 
 		private static final @NonNull ExecutorOperation[] _UnlimitedNatural__UnlimitedNatural = {
-			OCLstdlibTables.Operations._UnlimitedNatural__oclAsType /* oclAsType(TT)(TT) */
-		};
-		private static final @NonNull ExecutorOperation[] _UnlimitedNatural__Integer = {
-			OCLstdlibTables.Operations._Integer___mul_ /* _'*'(OclSelf) */,
-			OCLstdlibTables.Operations._Integer___add_ /* _'+'(OclSelf) */,
-			OCLstdlibTables.Operations._Integer___neg_ /* _'-'() */,
-			OCLstdlibTables.Operations._Integer___sub_ /* _'-'(OclSelf) */,
-			OCLstdlibTables.Operations._Integer___div_ /* _'/'(OclSelf) */,
-			OCLstdlibTables.Operations._Integer__abs /* abs() */,
-			OCLstdlibTables.Operations._Integer__compareTo /* compareTo(OclSelf) */,
-			OCLstdlibTables.Operations._Integer__div /* div(Integer) */,
-			OCLstdlibTables.Operations._Integer__max /* max(OclSelf) */,
-			OCLstdlibTables.Operations._Integer__min /* min(OclSelf) */,
-			OCLstdlibTables.Operations._Integer__mod /* mod(Integer) */,
-			OCLstdlibTables.Operations._Integer__toString /* toString() */
+			OCLstdlibTables.Operations._UnlimitedNatural__max /* max(OclSelf) */,
+			OCLstdlibTables.Operations._UnlimitedNatural__min /* min(OclSelf) */,
+			OCLstdlibTables.Operations._UnlimitedNatural__oclAsType /* oclAsType(TT)(TT) */,
+			OCLstdlibTables.Operations._UnlimitedNatural__toInteger /* toInteger() */
 		};
 		private static final @NonNull ExecutorOperation[] _UnlimitedNatural__OclAny = {
-			OCLstdlibTables.Operations._Real___lt__gt_ /* _'<>'(OclSelf) */,
-			OCLstdlibTables.Operations._Real___eq_ /* _'='(OclSelf) */,
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
 			OCLstdlibTables.Operations._UnlimitedNatural__oclAsType /* oclAsType(TT)(TT) */,
 			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState) */,
@@ -2191,38 +2160,14 @@ public class OCLstdlibTables
 			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
 			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String) */,
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
-			OCLstdlibTables.Operations._Integer__toString /* toString() */
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 		private static final @NonNull ExecutorOperation[] _UnlimitedNatural__OclComparable = {
-			OCLstdlibTables.Operations._Real___lt_ /* _'<'(OclSelf) */,
-			OCLstdlibTables.Operations._Real___lt__eq_ /* _'<='(OclSelf) */,
-			OCLstdlibTables.Operations._Real___gt_ /* _'>'(OclSelf) */,
-			OCLstdlibTables.Operations._Real___gt__eq_ /* _'>='(OclSelf) */,
-			OCLstdlibTables.Operations._Integer__compareTo /* compareTo(OclSelf) */
-		};
-		private static final @NonNull ExecutorOperation[] _UnlimitedNatural__OclSummable = {
-			OCLstdlibTables.Operations._OclSummable__sum /* sum(OclSelf) */,
-			OCLstdlibTables.Operations._OclSummable__zero /* zero() */
-		};
-		private static final @NonNull ExecutorOperation[] _UnlimitedNatural__Real = {
-			OCLstdlibTables.Operations._Integer___mul_ /* _'*'(OclSelf) */,
-			OCLstdlibTables.Operations._Integer___add_ /* _'+'(OclSelf) */,
-			OCLstdlibTables.Operations._Integer___neg_ /* _'-'() */,
-			OCLstdlibTables.Operations._Integer___sub_ /* _'-'(OclSelf) */,
-			OCLstdlibTables.Operations._Integer___div_ /* _'/'(OclSelf) */,
-			OCLstdlibTables.Operations._Real___lt_ /* _'<'(OclSelf) */,
-			OCLstdlibTables.Operations._Real___lt__eq_ /* _'<='(OclSelf) */,
-			OCLstdlibTables.Operations._Real___lt__gt_ /* _'<>'(OclSelf) */,
-			OCLstdlibTables.Operations._Real___eq_ /* _'='(OclSelf) */,
-			OCLstdlibTables.Operations._Real___gt_ /* _'>'(OclSelf) */,
-			OCLstdlibTables.Operations._Real___gt__eq_ /* _'>='(OclSelf) */,
-			OCLstdlibTables.Operations._Integer__abs /* abs() */,
-			OCLstdlibTables.Operations._Integer__compareTo /* compareTo(OclSelf) */,
-			OCLstdlibTables.Operations._Real__floor /* floor() */,
-			OCLstdlibTables.Operations._Integer__max /* max(OclSelf) */,
-			OCLstdlibTables.Operations._Integer__min /* min(OclSelf) */,
-			OCLstdlibTables.Operations._Real__round /* round() */,
-			OCLstdlibTables.Operations._Integer__toString /* toString() */
+			OCLstdlibTables.Operations._OclComparable___lt_ /* _'<'(OclSelf) */,
+			OCLstdlibTables.Operations._OclComparable___lt__eq_ /* _'<='(OclSelf) */,
+			OCLstdlibTables.Operations._OclComparable___gt_ /* _'>'(OclSelf) */,
+			OCLstdlibTables.Operations._OclComparable___gt__eq_ /* _'>='(OclSelf) */,
+			OCLstdlibTables.Operations._OclComparable__compareTo /* compareTo(OclSelf) */
 		};
 
 		/*
@@ -2318,11 +2263,8 @@ public class OCLstdlibTables
 			Fragments._UniqueCollection__OclAny.initOperations(_UniqueCollection__OclAny);
 			Fragments._UniqueCollection__UniqueCollection.initOperations(_UniqueCollection__UniqueCollection);
 
-			Fragments._UnlimitedNatural__Integer.initOperations(_UnlimitedNatural__Integer);
 			Fragments._UnlimitedNatural__OclAny.initOperations(_UnlimitedNatural__OclAny);
 			Fragments._UnlimitedNatural__OclComparable.initOperations(_UnlimitedNatural__OclComparable);
-			Fragments._UnlimitedNatural__OclSummable.initOperations(_UnlimitedNatural__OclSummable);
-			Fragments._UnlimitedNatural__Real.initOperations(_UnlimitedNatural__Real);
 			Fragments._UnlimitedNatural__UnlimitedNatural.initOperations(_UnlimitedNatural__UnlimitedNatural);
 		}
 	}

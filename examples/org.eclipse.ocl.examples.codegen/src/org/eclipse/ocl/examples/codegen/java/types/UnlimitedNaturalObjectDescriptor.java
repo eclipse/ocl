@@ -19,9 +19,9 @@ import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
 
 /**
- * n UnlimitedNaturalObjectDescriptor describes the unboxed representations of an OCL UnlimitedNatural.
+ * An UnlimitedNaturalObjectDescriptor describes the unboxed representations of an OCL UnlimitedNatural.
  */
-public class UnlimitedNaturalObjectDescriptor extends UnboxedValueDescriptor implements UnboxedDescriptor
+public class UnlimitedNaturalObjectDescriptor extends UnboxedValueDescriptor
 {
 	public UnlimitedNaturalObjectDescriptor(@NonNull ElementId elementId) {
 		super(elementId, Number.class);

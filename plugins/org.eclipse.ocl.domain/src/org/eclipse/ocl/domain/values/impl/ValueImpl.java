@@ -32,6 +32,7 @@ import org.eclipse.ocl.domain.values.SequenceValue;
 import org.eclipse.ocl.domain.values.SetValue;
 import org.eclipse.ocl.domain.values.TupleValue;
 import org.eclipse.ocl.domain.values.UniqueCollectionValue;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.Value;
 import org.eclipse.ocl.domain.values.ValuesPackage;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
@@ -155,7 +156,7 @@ public abstract class ValueImpl extends ValuesUtil implements Value
 	}
 
 	@Override
-	public @NonNull Value asUnlimitedNaturalValue() {
+	public @NonNull UnlimitedNaturalValue asUnlimitedNaturalValue() {
 		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.UNLIMITED_NATURAL_NAME, getTypeName());
 	}
 

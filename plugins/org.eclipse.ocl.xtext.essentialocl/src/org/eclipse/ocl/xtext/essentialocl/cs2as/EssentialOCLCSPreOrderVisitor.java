@@ -12,6 +12,7 @@ package org.eclipse.ocl.xtext.essentialocl.cs2as;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Precedence;
@@ -84,12 +85,12 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 				Type elementType = PivotUtil.getPivot(Type.class, csElementType);
 				if (elementType != null) {
 					IntegerValue lowerValue;
-					IntegerValue upperValue;
+					UnlimitedNaturalValue upperValue;
 					MultiplicityCS csMultiplicity = csElement.getOwnedMultiplicity();
 					if (csMultiplicity != null) {
 						lowerValue = ValuesUtil.integerValueOf(csMultiplicity.getLower());
 						int upper = csMultiplicity.getUpper();
-						upperValue = upper != -1 ? ValuesUtil.integerValueOf(upper) : ValuesUtil.UNLIMITED_VALUE;
+						upperValue = upper != -1 ? ValuesUtil.unlimitedNaturalValueOf(upper) : ValuesUtil.UNLIMITED_VALUE;
 					}
 					else {
 						lowerValue = null;

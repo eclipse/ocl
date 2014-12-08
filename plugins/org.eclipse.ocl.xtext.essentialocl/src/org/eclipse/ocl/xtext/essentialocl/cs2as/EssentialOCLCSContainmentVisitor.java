@@ -388,14 +388,8 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 					}
 				}
 			}				
-			if (isNegative) {
-				@NonNull IntegerLiteralExp pivotElement = context.refreshModelElement(IntegerLiteralExp.class, PivotPackage.Literals.INTEGER_LITERAL_EXP, csElement);
-				pivotElement.setIntegerSymbol(number);
-			}
-			else {
-				@NonNull UnlimitedNaturalLiteralExp pivotElement = context.refreshModelElement(UnlimitedNaturalLiteralExp.class, PivotPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP, csElement);
-				pivotElement.setUnlimitedNaturalSymbol(number);
-			}
+			@NonNull IntegerLiteralExp pivotElement = context.refreshModelElement(IntegerLiteralExp.class, PivotPackage.Literals.INTEGER_LITERAL_EXP, csElement);
+			pivotElement.setIntegerSymbol(number);
 		}
 		return null;
 	}

@@ -16,7 +16,7 @@ import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.AbstractProperty;
-import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 
 /**
  * CollectionUpperProperty realizes the Collection::upper() library property.
@@ -26,7 +26,7 @@ public class CollectionUpperProperty extends AbstractProperty
 	public static final @NonNull CollectionUpperProperty INSTANCE = new CollectionUpperProperty();
 
 	@Override
-	public @NonNull IntegerValue evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
+	public @NonNull UnlimitedNaturalValue evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		DomainCollectionType sourceType = asCollectionType(sourceValue);
 		return sourceType.getUpperValue();
 	}

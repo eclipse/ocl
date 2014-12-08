@@ -204,8 +204,8 @@ public class ValuesSwitch<T> extends Switch<T> {
 			case ValuesPackage.UNLIMITED_VALUE: {
 				UnlimitedValue unlimitedValue = (UnlimitedValue)theEObject;
 				T result = caseUnlimitedValue(unlimitedValue);
-				if (result == null) result = caseIntegerValue(unlimitedValue);
-				if (result == null) result = caseRealValue(unlimitedValue);
+//				if (result == null) result = caseIntegerValue(unlimitedValue);
+//				if (result == null) result = caseRealValue(unlimitedValue);
 				if (result == null) result = caseValue(unlimitedValue);
 				if (result == null) result = defaultCase(theEObject);
 				return result;

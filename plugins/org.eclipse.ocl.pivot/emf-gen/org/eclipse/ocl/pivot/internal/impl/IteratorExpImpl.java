@@ -30,7 +30,6 @@ import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
@@ -46,7 +45,6 @@ import org.eclipse.ocl.library.iterator.ClosureIteration;
 import org.eclipse.ocl.library.iterator.SortedByIteration;
 import org.eclipse.ocl.library.oclany.OclAnyOclAsTypeOperation;
 import org.eclipse.ocl.library.oclany.OclAnyOclIsKindOfOperation;
-import org.eclipse.ocl.library.oclany.OclComparableCompareToOperation;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.IteratorExp;
@@ -147,24 +145,30 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(DomainUtil.nonNullState(eResource()));
 		PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
 		try {
-			OCLExpression source2 = this.getSource();
-			OCLExpression body2 = this.getBody();
-			Type sourceType = source2.getType();
-			Type sourceTypeValue = source2.getTypeValue();
-			Type bodyType = body2.getType();
-			Type specializedBodyType = bodyType != null ? TemplateParameterSubstitutionVisitor.specializeType(bodyType, this, metaModelManager, sourceType, sourceTypeValue) : null;
-			DomainInheritance comparableType = standardLibrary.getOclComparableType().getInheritance(standardLibrary);
+			org.eclipse.ocl.pivot.Class oclComparableType = standardLibrary.getOclComparableType();
+			DomainInheritance comparableInheritance = oclComparableType.getInheritance(standardLibrary);
 			DomainInheritance selfType = standardLibrary.getOclSelfType().getInheritance(standardLibrary);
-			DomainOperation staticOperation = comparableType.lookupLocalOperation(standardLibrary, LibraryConstants.COMPARE_TO, selfType);
+			DomainOperation staticOperation = comparableInheritance.lookupLocalOperation(standardLibrary, LibraryConstants.COMPARE_TO, selfType);
 			if (staticOperation == null) {
 				if (diagnostics == null) {
 					return false;
 				}
-				diagnostic = new ValidationWarning(OCLMessages.UnresolvedOperation_ERROR_, String.valueOf(comparableType), LibraryConstants.COMPARE_TO);
+				diagnostic = new ValidationWarning(OCLMessages.UnresolvedOperation_ERROR_, String.valueOf(comparableInheritance), LibraryConstants.COMPARE_TO);
 			}
-			else if (specializedBodyType instanceof org.eclipse.ocl.pivot.Class) {
-				LibraryFeature implementation = ((org.eclipse.ocl.pivot.Class)specializedBodyType).lookupImplementation(standardLibrary, staticOperation);
-				if (implementation == OclComparableCompareToOperation.INSTANCE) {
+			else {
+				OCLExpression source2 = this.getSource();
+				OCLExpression body2 = this.getBody();
+				Type sourceType = source2.getType();
+				Type sourceTypeValue = source2.getTypeValue();
+				Type bodyType = body2.getType();
+				Type specializedBodyType = bodyType != null ? TemplateParameterSubstitutionVisitor.specializeType(bodyType, this, metaModelManager, sourceType, sourceTypeValue) : null;
+				boolean isOk = false;
+				if (bodyType != null) {
+					if ((specializedBodyType != null) && metaModelManager.conformsTo(specializedBodyType, TemplateParameterSubstitutions.EMPTY, oclComparableType, TemplateParameterSubstitutions.EMPTY)) {
+						isOk = true;
+					}
+				}
+				if (!isOk) {
 					if (diagnostics == null) {
 						return false;
 					}

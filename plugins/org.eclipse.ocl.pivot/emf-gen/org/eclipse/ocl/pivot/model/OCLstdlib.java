@@ -270,6 +270,7 @@ public class OCLstdlib extends ASResourceImpl
 			installTupleTypes();
 			installOperations();
 			installIterations();
+			installCoercions();
 			installProperties();
 			installTemplateBindings();
 			installPrecedences();
@@ -546,7 +547,7 @@ public class OCLstdlib extends ASResourceImpl
 			type.getSuperClasses().add(_OclComparable);
 			type.getSuperClasses().add(_OclSummable);
 			ownedTypes.add(type = _UnlimitedNatural);
-			type.getSuperClasses().add(_Integer);
+			type.getSuperClasses().add(_OclComparable);
 		}
 
 		private void installParameterTypes() {
@@ -1124,25 +1125,20 @@ public class OCLstdlib extends ASResourceImpl
 		private final @NonNull Operation op_Integer__neg__1 = createOperation("-", _Integer, "org.eclipse.ocl.library.numeric.NumericMinusOperation", org.eclipse.ocl.library.numeric.NumericMinusOperation.INSTANCE);
 		private final @NonNull Operation op_Integer__div_ = createOperation("/", _Real, "org.eclipse.ocl.library.numeric.NumericDivideOperation", org.eclipse.ocl.library.numeric.NumericDivideOperation.INSTANCE);
 		private final @NonNull Operation op_Integer_abs = createOperation("abs", _Integer, "org.eclipse.ocl.library.numeric.NumericAbsOperation", org.eclipse.ocl.library.numeric.NumericAbsOperation.INSTANCE);
-		private final @NonNull Operation op_Integer_compareTo = createOperation("compareTo", _Integer, "org.eclipse.ocl.library.numeric.NumericCompareToOperation", org.eclipse.ocl.library.numeric.NumericCompareToOperation.INSTANCE);
 		private final @NonNull Operation op_Integer_div = createOperation("div", _Integer, "org.eclipse.ocl.library.numeric.NumericDivOperation", org.eclipse.ocl.library.numeric.NumericDivOperation.INSTANCE);
 		private final @NonNull Operation op_Integer_max = createOperation("max", _Integer, "org.eclipse.ocl.library.numeric.NumericMaxOperation", org.eclipse.ocl.library.numeric.NumericMaxOperation.INSTANCE);
 		private final @NonNull Operation op_Integer_min = createOperation("min", _Integer, "org.eclipse.ocl.library.numeric.NumericMinOperation", org.eclipse.ocl.library.numeric.NumericMinOperation.INSTANCE);
 		private final @NonNull Operation op_Integer_mod = createOperation("mod", _Integer, "org.eclipse.ocl.library.numeric.NumericModOperation", org.eclipse.ocl.library.numeric.NumericModOperation.INSTANCE);
 		private final @NonNull Operation op_Integer_toString = createOperation("toString", _String, "org.eclipse.ocl.library.oclany.OclAnyToStringOperation", org.eclipse.ocl.library.oclany.OclAnyToStringOperation.INSTANCE);
+		private final @NonNull Operation op_Integer_toUnlimitedNatural = createOperation("toUnlimitedNatural", _UnlimitedNatural, "org.eclipse.ocl.library.numeric.IntegerToUnlimitedNaturalOperation", org.eclipse.ocl.library.numeric.IntegerToUnlimitedNaturalOperation.INSTANCE);
 		private final @NonNull Operation op_Real__mul_ = createOperation("*", _Real, "org.eclipse.ocl.library.numeric.NumericTimesOperation", org.eclipse.ocl.library.numeric.NumericTimesOperation.INSTANCE);
 		private final @NonNull Operation op_Real__add_ = createOperation("+", _Real, "org.eclipse.ocl.library.numeric.NumericPlusOperation", org.eclipse.ocl.library.numeric.NumericPlusOperation.INSTANCE);
 		private final @NonNull Operation op_Real__neg_ = createOperation("-", _Real, "org.eclipse.ocl.library.numeric.NumericNegateOperation", org.eclipse.ocl.library.numeric.NumericNegateOperation.INSTANCE);
 		private final @NonNull Operation op_Real__neg__1 = createOperation("-", _Real, "org.eclipse.ocl.library.numeric.NumericMinusOperation", org.eclipse.ocl.library.numeric.NumericMinusOperation.INSTANCE);
 		private final @NonNull Operation op_Real__div_ = createOperation("/", _Real, "org.eclipse.ocl.library.numeric.NumericDivideOperation", org.eclipse.ocl.library.numeric.NumericDivideOperation.INSTANCE);
-		private final @NonNull Operation op_Real__lt_ = createOperation("<", _Boolean, "org.eclipse.ocl.library.numeric.NumericLessThanOperation", org.eclipse.ocl.library.numeric.NumericLessThanOperation.INSTANCE);
-		private final @NonNull Operation op_Real__lt__eq_ = createOperation("<=", _Boolean, "org.eclipse.ocl.library.numeric.NumericLessThanEqualOperation", org.eclipse.ocl.library.numeric.NumericLessThanEqualOperation.INSTANCE);
 		private final @NonNull Operation op_Real__lt__gt_ = createOperation("<>", _Boolean, "org.eclipse.ocl.library.oclany.OclAnyNotEqualOperation", org.eclipse.ocl.library.oclany.OclAnyNotEqualOperation.INSTANCE);
 		private final @NonNull Operation op_Real__eq_ = createOperation("=", _Boolean, "org.eclipse.ocl.library.oclany.OclAnyEqualOperation", org.eclipse.ocl.library.oclany.OclAnyEqualOperation.INSTANCE);
-		private final @NonNull Operation op_Real__gt_ = createOperation(">", _Boolean, "org.eclipse.ocl.library.numeric.NumericGreaterThanOperation", org.eclipse.ocl.library.numeric.NumericGreaterThanOperation.INSTANCE);
-		private final @NonNull Operation op_Real__gt__eq_ = createOperation(">=", _Boolean, "org.eclipse.ocl.library.numeric.NumericGreaterThanEqualOperation", org.eclipse.ocl.library.numeric.NumericGreaterThanEqualOperation.INSTANCE);
 		private final @NonNull Operation op_Real_abs = createOperation("abs", _Real, "org.eclipse.ocl.library.numeric.NumericAbsOperation", org.eclipse.ocl.library.numeric.NumericAbsOperation.INSTANCE);
-		private final @NonNull Operation op_Real_compareTo = createOperation("compareTo", _Integer, "org.eclipse.ocl.library.numeric.NumericCompareToOperation", org.eclipse.ocl.library.numeric.NumericCompareToOperation.INSTANCE);
 		private final @NonNull Operation op_Real_floor = createOperation("floor", _Integer, "org.eclipse.ocl.library.numeric.NumericFloorOperation", org.eclipse.ocl.library.numeric.NumericFloorOperation.INSTANCE);
 		private final @NonNull Operation op_Real_max = createOperation("max", _Real, "org.eclipse.ocl.library.numeric.NumericMaxOperation", org.eclipse.ocl.library.numeric.NumericMaxOperation.INSTANCE);
 		private final @NonNull Operation op_Real_min = createOperation("min", _Real, "org.eclipse.ocl.library.numeric.NumericMinOperation", org.eclipse.ocl.library.numeric.NumericMinOperation.INSTANCE);
@@ -1183,7 +1179,10 @@ public class OCLstdlib extends ASResourceImpl
 		private final @NonNull Operation op_String_tokenize_1 = createOperation("tokenize", _Sequence_String, "org.eclipse.ocl.library.string.StringTokenizeOperation", org.eclipse.ocl.library.string.StringTokenizeOperation.INSTANCE);
 		private final @NonNull Operation op_String_tokenize_2 = createOperation("tokenize", _Sequence_String, "org.eclipse.ocl.library.string.StringTokenizeOperation", org.eclipse.ocl.library.string.StringTokenizeOperation.INSTANCE);
 		private final @NonNull Operation op_String_trim = createOperation("trim", _String, "org.eclipse.ocl.library.string.StringTrimOperation", org.eclipse.ocl.library.string.StringTrimOperation.INSTANCE);
+		private final @NonNull Operation op_UnlimitedNatural_max = createOperation("max", _UnlimitedNatural, "org.eclipse.ocl.library.numeric.UnlimitedNaturalMaxOperation", org.eclipse.ocl.library.numeric.UnlimitedNaturalMaxOperation.INSTANCE);
+		private final @NonNull Operation op_UnlimitedNatural_min = createOperation("min", _UnlimitedNatural, "org.eclipse.ocl.library.numeric.UnlimitedNaturalMinOperation", org.eclipse.ocl.library.numeric.UnlimitedNaturalMinOperation.INSTANCE);
 		private final @NonNull Operation op_UnlimitedNatural_oclAsType = createOperation("oclAsType", tp_UnlimitedNatural_oclAsType_TT, "org.eclipse.ocl.library.numeric.UnlimitedNaturalOclAsTypeOperation", org.eclipse.ocl.library.numeric.UnlimitedNaturalOclAsTypeOperation.INSTANCE, tp_UnlimitedNatural_oclAsType_TT);
+		private final @NonNull Operation op_UnlimitedNatural_toInteger = createOperation("toInteger", _Integer, "org.eclipse.ocl.library.numeric.UnlimitedNaturalToIntegerOperation", org.eclipse.ocl.library.numeric.UnlimitedNaturalToIntegerOperation.INSTANCE);
 		private final @NonNull Operation op_Bag__lt__gt_ = createOperation("<>", _Boolean, "org.eclipse.ocl.library.oclany.OclAnyNotEqualOperation", org.eclipse.ocl.library.oclany.OclAnyNotEqualOperation.INSTANCE);
 		private final @NonNull Operation op_Bag__eq_ = createOperation("=", _Boolean, "org.eclipse.ocl.library.oclany.OclAnyEqualOperation", org.eclipse.ocl.library.oclany.OclAnyEqualOperation.INSTANCE);
 		private final @NonNull Operation op_Bag_excluding = createOperation("excluding", _Bag_Bag_T, "org.eclipse.ocl.library.collection.CollectionExcludingOperation", org.eclipse.ocl.library.collection.CollectionExcludingOperation.INSTANCE);
@@ -1386,9 +1385,6 @@ public class OCLstdlib extends ASResourceImpl
 			ownedParameters = operation.getOwnedParameter();
 			ownedParameters.add(parameter = createParameter("i", _OclSelf, true));
 			ownedOperations.add(operation = op_Integer_abs);
-			ownedOperations.add(operation = op_Integer_compareTo);
-			ownedParameters = operation.getOwnedParameter();
-			ownedParameters.add(parameter = createParameter("that", _OclSelf, true));
 			ownedOperations.add(operation = op_Integer_div);
 			ownedParameters = operation.getOwnedParameter();
 			ownedParameters.add(parameter = createParameter("i", _Integer, true));
@@ -1402,6 +1398,7 @@ public class OCLstdlib extends ASResourceImpl
 			ownedParameters = operation.getOwnedParameter();
 			ownedParameters.add(parameter = createParameter("i", _Integer, true));
 			ownedOperations.add(operation = op_Integer_toString);
+			ownedOperations.add(operation = op_Integer_toUnlimitedNatural);
 			ownedOperations = _Real.getOwnedOperations();
 			ownedOperations.add(operation = op_Real__mul_);
 			ownedParameters = operation.getOwnedParameter();
@@ -1416,28 +1413,13 @@ public class OCLstdlib extends ASResourceImpl
 			ownedOperations.add(operation = op_Real__div_);
 			ownedParameters = operation.getOwnedParameter();
 			ownedParameters.add(parameter = createParameter("r", _OclSelf, true));
-			ownedOperations.add(operation = op_Real__lt_);
-			ownedParameters = operation.getOwnedParameter();
-			ownedParameters.add(parameter = createParameter("r", _OclSelf, true));
-			ownedOperations.add(operation = op_Real__lt__eq_);
-			ownedParameters = operation.getOwnedParameter();
-			ownedParameters.add(parameter = createParameter("r", _OclSelf, true));
 			ownedOperations.add(operation = op_Real__lt__gt_);
 			ownedParameters = operation.getOwnedParameter();
 			ownedParameters.add(parameter = createParameter("object2", _OclSelf, true));
 			ownedOperations.add(operation = op_Real__eq_);
 			ownedParameters = operation.getOwnedParameter();
 			ownedParameters.add(parameter = createParameter("object2", _OclSelf, true));
-			ownedOperations.add(operation = op_Real__gt_);
-			ownedParameters = operation.getOwnedParameter();
-			ownedParameters.add(parameter = createParameter("r", _OclSelf, true));
-			ownedOperations.add(operation = op_Real__gt__eq_);
-			ownedParameters = operation.getOwnedParameter();
-			ownedParameters.add(parameter = createParameter("r", _OclSelf, true));
 			ownedOperations.add(operation = op_Real_abs);
-			ownedOperations.add(operation = op_Real_compareTo);
-			ownedParameters = operation.getOwnedParameter();
-			ownedParameters.add(parameter = createParameter("that", _OclSelf, true));
 			ownedOperations.add(operation = op_Real_floor);
 			ownedOperations.add(operation = op_Real_max);
 			ownedParameters = operation.getOwnedParameter();
@@ -1543,10 +1525,17 @@ public class OCLstdlib extends ASResourceImpl
 			ownedParameters.add(parameter = createParameter("returnDelimiters", _Boolean, true));
 			ownedOperations.add(operation = op_String_trim);
 			ownedOperations = _UnlimitedNatural.getOwnedOperations();
+			ownedOperations.add(operation = op_UnlimitedNatural_max);
+			ownedParameters = operation.getOwnedParameter();
+			ownedParameters.add(parameter = createParameter("i", _OclSelf, true));
+			ownedOperations.add(operation = op_UnlimitedNatural_min);
+			ownedParameters = operation.getOwnedParameter();
+			ownedParameters.add(parameter = createParameter("i", _OclSelf, true));
 			ownedOperations.add(operation = op_UnlimitedNatural_oclAsType);
 			ownedParameters = operation.getOwnedParameter();
 			ownedParameters.add(parameter = createParameter("type", tp_UnlimitedNatural_oclAsType_TT, true));
 			parameter.setIsTypeof(true);
+			ownedOperations.add(operation = op_UnlimitedNatural_toInteger);
 			ownedOperations = _Bag_Bag_T.getOwnedOperations();
 			ownedOperations.add(operation = op_Bag__lt__gt_);
 			ownedParameters = operation.getOwnedParameter();
@@ -2209,6 +2198,13 @@ public class OCLstdlib extends ASResourceImpl
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_UniqueCollection_T, true));
 		}
 
+		private void installCoercions() {
+			List<Operation> ownedCoercions;
+			Operation coercion;
+			ownedCoercions = _Integer.getCoercions();
+			ownedCoercions.add(coercion = op_Integer_toUnlimitedNatural);
+		}
+
 		private final @NonNull Property pr_Collection_elementType = createProperty("elementType", tp_Collection_T);
 		private final @NonNull Property pr_Collection_lower = createProperty("lower", _Integer);
 		private final @NonNull Property pr_Collection_upper = createProperty("upper", _Integer);
@@ -2524,12 +2520,8 @@ public class OCLstdlib extends ASResourceImpl
 			op_Real__neg_.setPrecedence(prec_UNARY);
 			op_Real__neg__1.setPrecedence(prec_ADDITIVE);
 			op_Real__div_.setPrecedence(prec_MULTIPLICATIVE);
-			op_Real__lt_.setPrecedence(prec_RELATIONAL);
-			op_Real__lt__eq_.setPrecedence(prec_RELATIONAL);
 			op_Real__lt__gt_.setPrecedence(prec_EQUALITY);
 			op_Real__eq_.setPrecedence(prec_EQUALITY);
-			op_Real__gt_.setPrecedence(prec_RELATIONAL);
-			op_Real__gt__eq_.setPrecedence(prec_RELATIONAL);
 			op_String__add_.setPrecedence(prec_ADDITIVE);
 			op_String__lt_.setPrecedence(prec_RELATIONAL);
 			op_String__lt__eq_.setPrecedence(prec_RELATIONAL);
@@ -2586,25 +2578,20 @@ public class OCLstdlib extends ASResourceImpl
 			installComment(op_Integer__neg__1, "The value of the subtraction of i from oclText[self].");
 			installComment(op_Integer__div_, "The value of oclText[self] divided by i.\nEvaluates to oclText[invalid] if r is equal to zero.");
 			installComment(op_Integer_abs, "The absolute value of oclText[self].");
-			installComment(op_Integer_compareTo, "The comparison of oclText[self] with oclText[that]. -ve if less than, 0 if equal, +ve if greater than.");
 			installComment(op_Integer_div, "The number of times that i fits completely within oclText[self].");
 			installComment(op_Integer_max, "The maximum of oclText[self] an i.");
 			installComment(op_Integer_min, "The minimum of oclText[self] an i.");
 			installComment(op_Integer_mod, "The result is oclText[self] modulo i.");
 			installComment(op_Integer_toString, "Converts oclText[self] to a string value.");
+			installComment(op_Integer_toUnlimitedNatural, "Converts a non-negative oclText[self] to an UnlimitedNatural value. A negative oclText[self] is converted to oclText[invalid].\nAn automatic coersion may be synthesized if the coercion enables an operation reference to be resolved\nin an expression where no operation was available without coercion.");
 			installComment(op_Real__mul_, "The value of the multiplication of oclText[self] and r.");
 			installComment(op_Real__add_, "The value of the addition of oclText[self] and r.");
 			installComment(op_Real__neg_, "The negative value of oclText[self].");
 			installComment(op_Real__neg__1, "The value of the subtraction of r from oclText[self].");
 			installComment(op_Real__div_, "The value of oclText[self] divided by r. Evaluates to oclText[invalid] if r is equal to zero.");
-			installComment(op_Real__lt_, "True if oclText[self] is less than r.");
-			installComment(op_Real__lt__eq_, "True if oclText[self] is less than or equal to r.");
 			installComment(op_Real__lt__gt_, "Returns oclText[true] if the numeric value of oclText[self] is the not the same as the numeric value of object2, oclText[false] otherwise.");
 			installComment(op_Real__eq_, "Returns oclText[true] if the numeric value of oclText[self] is the same as the numeric value of object2, oclText[false] otherwise.");
-			installComment(op_Real__gt_, "True if oclText[self] is greater than r.");
-			installComment(op_Real__gt__eq_, "True if oclText[self] is greater than or equal to r.");
 			installComment(op_Real_abs, "The absolute value of oclText[self].");
-			installComment(op_Real_compareTo, "The comparison of oclText[self] with oclText[that]. -ve if less than, 0 if equal, +ve if greater than.");
 			installComment(op_Real_floor, "The largest integer that is less than or equal to oclText[self].");
 			installComment(op_Real_max, "The maximum of oclText[self] and r.");
 			installComment(op_Real_min, "The minimum of oclText[self] and r.");
@@ -2643,7 +2630,10 @@ public class OCLstdlib extends ASResourceImpl
 			installComment(op_String_tokenize_1, "Partition oclText[self] into a sequence substrings separated by characters in the delimiters. The delimiters are omitted from the return.");
 			installComment(op_String_tokenize_2, "Partition oclText[self] into a sequence substrings separated by characters in the delimiters. If returnDelimeters is\ntrue the returned sequence includes the delimiters, otherwise the delimiters are omitted.");
 			installComment(op_String_trim, "Return oclText[self] with leading and trailing whitespace removed.");
+			installComment(op_UnlimitedNatural_max, "The maximum of oclText[self] an i.");
+			installComment(op_UnlimitedNatural_min, "The minimum of oclText[self] an i.");
 			installComment(op_UnlimitedNatural_oclAsType, "Evaluates to oclText[self], where oclText[self] is of the type identified by T.\nThe type T may be any classifier defined in the UML model;\nif the actual type of oclText[self] at evaluation time does not conform to T,\nthen the oclAsType operation evaluates to oclText[invalid].\n\nThe standard behavior is redefined for UnlimitedNatural. Numeric values may be converted to\nReal or Integer, but the e[unlimited] value may not.\nConversion of e[unlimited] to Real or Integer returns oclText[invalid].");
+			installComment(op_UnlimitedNatural_toInteger, "Converts oclText[self] to an Integer value unless oclText[self] is oclText[unlimited] in which oclText[self] is converted to oclText[invalid].");
 			installComment(library, "This clause describes the OCL Standard Library of predefined types, their operations, and predefined expression templates in the OCL.\nThis sub clause contains all standard types defined within OCL, including all the operations defined on those types.\nFor each operation the signature and a description of the semantics is given.\nWithin the description, the reserved word \u2018result\u2019 is used to refer to the value that results from evaluating the operation.\nIn several places, post conditions are used to describe properties of the result.\nWhen there is more than one postcondition, all postconditions must be true.\nA similar thing is true for multiple preconditions.\nIf these are used, the operation is only defined if all preconditions evaluate to oclText[true].\n\nheading:1[Introduction]\n\nThe structure, syntax, and semantics of the OCL is defined in Clauses 8 (\u201CAbstract Syntax\u201D), 9 (\u201CConcrete Syntax\u201D),\nand 10 (\u201CSemantics Described using UML\u201D).\nThis sub clause adds another part to the OCL definition: a library of predefined types and operations.\nAny implementation of OCL must include this library package. This approach has also been taken by e.g., the Java definition,\nwhere the language definition and the standard libraries are both mandatory parts of the complete language definition.\n\nThe OCL standard library defines a number of types.\nIt includes several primitive types: UnlimitedNatural, Integer, Real, String, and Boolean.\nThese are familiar from many other languages. The second part of the standard library consists of the collection types.\nThey are Bag, Set, Sequence, and Collection where Collection is an abstract type.\nNote that all types defined in the OCL standard library are instances of an abstract syntax class.\nThe OCL standard library exists at the modeling level, also referred to as the M1 level, where the abstract syntax is the metalevel or M2 level.\n\nNext to definitions of types the OCL standard library defines a number of template expressions.\nMany operations defined on collections map not on the abstract syntax metaclass FeatureCallExp, but on the IteratorExp.\nFor each of these a template expression that defines the name and format of the expression is defined in 11.8, Predefined Iterator Expressions.\n\nThe Standard Library may be extended with new types, new operations and new iterators.\nIn particular new operations can be defined for collections.\n\nCertain String operations depend on the prevailing locale to ensure that Strings are collated and characters are case-converted\nin an appropriate fashion.\nA locale is defined as a concatenation of up to three character sequences separated by underscores,\nwith the first sequence identifying the language and the second sequence identifying the country.\nThe third sequence is empty but may encode an implementation-specific variant.\nTrailing empty strings and separators may be omitted.\n\nThe character sequences for languages are defined by ISO 639.\n\nThe character sequences for countries are defined by ISO 3166.\n\n\u2018fr_CA\u2019 therefore identifies the locale for the French language in the Canada country.\n\nComparison of strings and consequently the collation order of Collection::sortedBy()\nconforms to the Unicode Collation algorithm defined by Unicode Technical Standard#10.\n\nThe locale is \u2018en_us\u2019 by default but may be configured by a property constraint on OclAny::oclLocale.\n\nThe prevailing locale is defined by the prevailing value of oclLocale within the current environment;\nit may therefore be changed temporarily by using a Let expression.\nlet oclLocale : String = \u2018fr_CA\u2019 in aString.toUpperCase()\n\nheading:1[Iterators]\n\nThis sub clause defines the standard OCL iterator expressions.\nIn the abstract syntax these are all instances of IteratorExp.\nThese iterator expressions always have a collection expression as their source,\nas is defined in the well-formedness rules in Clause 8 (\u201CAbstract Syntax\u201D).\nThe defined iterator expressions are shown per source collection type.\nThe semantics of each iterator expression is defined through a mapping from the iterator to the \u2018iterate\u2019 construct.\nThis means that the semantics of the iterator expressions do not need to be defined separately in the semantics sub clauses.\n\nIn all of the following OCL expressions, the lefthand side of the equals sign is the IteratorExp to be defined,\nand the righthand side of the equals sign is the equivalent as an IterateExp.\nThe names source, body, and iterator refer to the role names in the abstract syntax:\n\nsource\tThe source expression of the IteratorExp.\n\nbody\tThe body expression of the IteratorExp.\n\niterator\tThe iterator variable of the IteratorExp.\n\nresult\tThe result variable of the IterateExp.\n\nheading:2[Extending the Standard Library with Iterator Expressions]\n\nIt is possible to add new iterator expressions in the standard library.\nIf this is done the semantics of a new iterator should be defined by mapping it to existing constructs,\nin the same way the semantics of pre-defined iterators is done (see sub clause 11.9)");
 			installComment(op_Bag__eq_, "True if oclText[self] and bag contain the same elements, the same number of times.");
 			installComment(it_Bag_closure, "The closure of applying body transitively to every distinct element of the source collection.");
@@ -2692,7 +2682,7 @@ public class OCLstdlib extends ASResourceImpl
 			installComment(it_Collection_select, "The sub-collection of the source collection for which body is oclText[true].");
 			installComment(op_Collection_size, "The number of elements in the collection oclText[self].");
 			installComment(it_Collection_sortedBy, "Results in the Collection containing all elements of the source collection.\nThe element for which body has the lowest value comes first, and so on.\nThe type of the body expression must have the < operation defined.\nThe < operation must return a Boolean value and must be transitive (i.e., if a < b and b < c then a < c).");
-			installComment(op_Collection_sum, "The addition of all elements in oclText[self].\nElements must be of an oclText[OclSummable] type to provide the zero() and sum() operations.\nThe e[sum] operation must be both associative: a.sum(b).sum(c) = a.sum(b.sum(c)), and commutative: a.sum(b) = b.sum(a).\nUnlimitedNatural, Integer and Real fulfill this condition.\n\nIf the e[sum] operation is not both associative and commutative, the e[sum] expression is not well-formed,\nwhich may result in unpredictable results during evaluation.\nIf an implementation is able to detect a lack of associativity or commutativity,\nthe implementation may bypass the evaluation and return an oclText[invalid] result.");
+			installComment(op_Collection_sum, "The addition of all elements in oclText[self].\nElements must be of an oclText[OclSummable] type to provide the zero() and sum() operations.\nThe e[sum] operation must be both associative: a.sum(b).sum(c) = a.sum(b.sum(c)), and commutative: a.sum(b) = b.sum(a).\nInteger and Real fulfill this condition.\n\nIf the e[sum] operation is not both associative and commutative, the e[sum] expression is not well-formed,\nwhich may result in unpredictable results during evaluation.\nIf an implementation is able to detect a lack of associativity or commutativity,\nthe implementation may bypass the evaluation and return an oclText[invalid] result.");
 			installComment(op_Collection_union, "The bag consisting of all elements in oclText[self] and all elements in c.");
 			installComment(pr_Collection_upper, "Evaluates to the upper bound on the number of collection elements.");
 			installComment(_Enumeration, "The Enumeration type is the type of an OrderedSet of EnumerationLiteral.");

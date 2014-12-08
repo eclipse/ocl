@@ -580,7 +580,7 @@ public class EditTests extends XtextTestCase
 		//	Changing "testOperation(i : Integer)" to "testOperation(s : String)" mismatches the operation signature and breaks the invariant.
 		//
 		doRename(xtextResource, asResource, "testOperation(i : Integer)", "testOperation(s : String)",
-			DomainUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, pivotTestClass1 + "", "testOperation", "UnlimitedNatural"));
+			DomainUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, pivotTestClass1 + "", "testOperation", "Integer"));
 		//
 		//	Changing "testOperation()" back to "testOperation(i : Integer)" restores the operation and the invariant.
 		//

@@ -62,6 +62,7 @@ import org.eclipse.ocl.domain.values.SetValue;
 import org.eclipse.ocl.domain.values.TupleValue;
 import org.eclipse.ocl.domain.values.UniqueCollectionValue;
 import org.eclipse.ocl.domain.values.Unlimited;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.UnlimitedValue;
 import org.eclipse.ocl.domain.values.Value;
 import org.eclipse.ocl.domain.values.ValuesPackage;
@@ -115,6 +116,7 @@ public abstract class ValuesUtil
 	public static final @NonNull InvalidValueException INVALID_VALUE = new InvalidValueException("invalid"); 
 	public static final @NonNull NullValue NULL_VALUE = new NullValueImpl(); 
 	public static final @NonNull IntegerValue ONE_VALUE = integerValueOf(1);
+	public static final @NonNull UnlimitedNaturalValue UNLIMITED_ONE_VALUE = (UnlimitedNaturalValue)ONE_VALUE;
 	@SuppressWarnings("null")
 	public static final @NonNull Boolean TRUE_VALUE = Boolean.TRUE;
 	public static final @NonNull UnlimitedValue UNLIMITED_VALUE = new UnlimitedValueImpl(); 
@@ -173,6 +175,9 @@ public abstract class ValuesUtil
 	public static @NonNull Integer asInteger(@Nullable Object value) {
 		if (value instanceof Value) {
 			return ((Value)value).asInteger();
+		}
+		else if (value instanceof Integer) {
+			return (Integer)value;
 		}
 		else {
 			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.INTEGER_NAME, getTypeName(value));
@@ -293,7 +298,7 @@ public abstract class ValuesUtil
 		}
 	}
 
-	public static @NonNull Value asUnlimitedNaturalValue(@Nullable Object value) {
+	public static @NonNull UnlimitedNaturalValue asUnlimitedNaturalValue(@Nullable Object value) {
 		if (value instanceof Value) {
 			return ((Value)value).asUnlimitedNaturalValue();
 		}
@@ -629,7 +634,7 @@ public abstract class ValuesUtil
 
 	public static @NonNull IntegerValue integerValueOf(long value) {
 		if ((Integer.MIN_VALUE <= value) && (value <= Integer.MAX_VALUE)) {
-			return new IntIntegerValueImpl((int) value);
+			return integerValueOf((int) value);
 		}
 		else {
 			return new LongIntegerValueImpl(value);
@@ -658,14 +663,14 @@ public abstract class ValuesUtil
 		}
 		return new BigIntegerValueImpl(value);
 	}
-    
+
 	public static @NonNull IntegerValue integerValueOf(@Nullable Object aValue) {
 		if (aValue instanceof BigInteger) {
 			return new BigIntegerValueImpl((BigInteger)aValue);
 		}
-		else if (aValue instanceof Unlimited) {
-			return UNLIMITED_VALUE;
-		}
+//		else if (aValue instanceof Unlimited) {
+//			return UNLIMITED_VALUE;
+//		}
 		else if (aValue instanceof Number) {
 			return integerValueOf(((Number)aValue).longValue());
 		}
@@ -681,7 +686,7 @@ public abstract class ValuesUtil
 	}
 	
 	/**
-	 * Creates a BigInteger representation for aValue.
+	 * Creates an IntegerValue representation for aValue.
 	 * @param aValue the string representation of a (non-negative) integer number
 	 * @return the numeric representation
 	 */
@@ -714,7 +719,7 @@ public abstract class ValuesUtil
 		if (object instanceof Enumerator) {
 			return false;
 		}
-		if ((object instanceof Number) && !(object instanceof RealValue)) {
+		if ((object instanceof Number) && !(object instanceof RealValue) && !(object instanceof UnlimitedNaturalValue)) {
 			return false;
 		}
 		if ((object instanceof Iterable<?>) && !(object instanceof CollectionValue)) {
@@ -882,6 +887,12 @@ public abstract class ValuesUtil
 	public static Object throwInvalidValueException() {
 		throw new InvalidValueException("invalid");
 	}
+
+	public static int throwUnsupportedCompareTo(@Nullable Object left, @Nullable Object right) {
+		throw new InvalidValueException(EvaluatorMessages.UnsupportedCompareTo,
+			left != null ? left.getClass().getName() : "null", //$NON-NLS-1$
+			right != null ? right.getClass().getName() : "null"); //$NON-NLS-1$
+	}
 	
 	public static void toString(@Nullable Object value, @NonNull StringBuilder s, int sizeLimit) {
 		if (value instanceof Value) {
@@ -911,6 +922,63 @@ public abstract class ValuesUtil
 				s.append(string.substring(0, available));
 			}
 			s.append("...");
+		}
+	}
+	
+	public static @NonNull UnlimitedNaturalValue unlimitedNaturalValueOf(@Nullable BigInteger value) {
+		return (UnlimitedNaturalValue)integerValueOf(value);
+	}
+
+	public static @NonNull UnlimitedNaturalValue unlimitedNaturalValueOf(int value) {
+		return (UnlimitedNaturalValue)integerValueOf(value);
+	}
+
+	public static @NonNull UnlimitedNaturalValue unlimitedNaturalValueOf(long value) {
+		return (UnlimitedNaturalValue)integerValueOf(value);
+	}
+
+	public static @NonNull UnlimitedNaturalValue unlimitedNaturalValueOf(@Nullable Object aValue) {
+		if (aValue instanceof BigInteger) {
+			return new BigIntegerValueImpl((BigInteger)aValue);
+		}
+		else if (aValue instanceof Unlimited) {
+			return UNLIMITED_VALUE;
+		}
+		else if (aValue instanceof Number) {
+			return unlimitedNaturalValueOf(((Number)aValue).longValue());
+		}
+		else if (aValue instanceof Character) {
+			return unlimitedNaturalValueOf(((Character)aValue).charValue());
+		}
+		else if (aValue instanceof UnlimitedNaturalValue) {
+			return (UnlimitedNaturalValue)aValue;					// Never happens
+		}
+		else {
+			throw new InvalidValueException(EvaluatorMessages.InvalidInteger, aValue);
+		}
+	}
+	
+	/**
+	 * Creates an IntegerValue representation for aValue.
+	 * @param aValue the string representation of a (non-negative) integer number
+	 * @return the numeric representation
+	 */
+	public static @NonNull UnlimitedNaturalValue unlimitedNaturalValueOf(@NonNull String aValue) {
+		try {
+			int len = aValue.length();
+			if ((len == 1) && "*".equals(aValue)) {
+				return UNLIMITED_VALUE;
+			}
+			if ((len < maxLongSize) || ((len == maxLongSize) && (maxLongValue.compareTo(aValue) >= 0))) {
+				@SuppressWarnings("null") @NonNull BigInteger result = BigInteger.valueOf(Long.parseLong(aValue));
+				return unlimitedNaturalValueOf(result);
+			}
+			else {
+				return unlimitedNaturalValueOf(new BigInteger(aValue));
+			}
+		}
+		catch (NumberFormatException e) {
+			throw new InvalidValueException(e, EvaluatorMessages.InvalidInteger, aValue);
 		}
 	}
 }

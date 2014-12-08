@@ -29,6 +29,7 @@ import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.library.executor.CollectionTypeParameters;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Comment;
@@ -517,7 +518,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 		return completeEnvironment.getCollectionType(completeClass, typeParameters);
 	}
 
-	public @NonNull CollectionType getCollectionType(@NonNull CompleteClass.Internal completeClass, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
+	public @NonNull CollectionType getCollectionType(@NonNull CompleteClass.Internal completeClass, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return completeEnvironment.getCollectionType(completeClass, new CollectionTypeParameters<Type>(elementType, lower, upper));
 	}
 	

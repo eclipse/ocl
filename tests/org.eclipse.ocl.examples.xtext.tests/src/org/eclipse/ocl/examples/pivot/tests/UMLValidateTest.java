@@ -37,6 +37,7 @@ import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.domain.validation.DomainSubstitutionLabelProvider;
+import org.eclipse.ocl.domain.values.impl.IntIntegerValueImpl;
 import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
@@ -117,7 +118,7 @@ public class UMLValidateTest extends AbstractValidateTests
 //			DomainUtil.bind(UMLMessages.BodyLanguageSupportError, IllegalStateException.class.getName() + ": " + NLS.bind(UMLMessages.MissingBodyLanguageSupport, "Natural language"), DomainUtil.getLabel(opaqueExpression)),
 			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, book.getName(), constraint.getName(), DomainUtil.getLabel(invalidBook)),
 			DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, book.getName(), constraint.getName(), DomainUtil.getLabel(partialBook),
-				DomainUtil.bind(EvaluatorMessages.TypedValueRequired, "Real", "OclVoid")));
+				DomainUtil.bind(EvaluatorMessages.UnsupportedCompareTo, "null", IntIntegerValueImpl.class.getName())));
 //		ocl.dispose();
 		ocl = null;		// UMLOCLEValidator.WeakOCLReference will dispose.
 	}

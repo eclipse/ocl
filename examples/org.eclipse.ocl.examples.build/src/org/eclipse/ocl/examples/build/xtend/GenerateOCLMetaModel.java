@@ -35,6 +35,7 @@ import org.eclipse.ocl.domain.utilities.StandaloneProjectMap.IPackageDescriptor;
 import org.eclipse.ocl.domain.utilities.StandaloneProjectMap.IProjectDescriptor;
 import org.eclipse.ocl.domain.utilities.StandaloneProjectMap.LoadDynamicResourceStrategy;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreTablesUtils;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.DataType;
@@ -83,8 +84,8 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 			if (i != 0) {
 				return i;
 			}
-			IntegerValue u1 = o1.getUpperValue(); 
-			IntegerValue u2 = o2.getUpperValue();
+			UnlimitedNaturalValue u1 = o1.getUpperValue(); 
+			UnlimitedNaturalValue u2 = o2.getUpperValue();
 			return u1.compareTo(u2);
 		}
 	};

@@ -18,6 +18,7 @@ import org.eclipse.ocl.domain.values.RealValue;
 /**
  * NumericGreaterThanEqualOperation realises the >=() library operation.
  */
+@Deprecated		// Use OclComparableGreaterThanEqualOperation
 public class NumericGreaterThanEqualOperation extends AbstractSimpleBinaryOperation
 {
 	public static final @NonNull NumericGreaterThanEqualOperation INSTANCE = new NumericGreaterThanEqualOperation();

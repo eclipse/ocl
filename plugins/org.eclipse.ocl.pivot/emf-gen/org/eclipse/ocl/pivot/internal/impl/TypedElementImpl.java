@@ -28,7 +28,7 @@ import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.types.IdResolver;
-import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.UnlimitedValue;
 import org.eclipse.ocl.library.classifier.OclTypeConformsToOperation;
 import org.eclipse.ocl.pivot.CollectionType;
@@ -407,7 +407,7 @@ public abstract class TypedElementImpl
 		Type type = getType();
 		if (type instanceof CollectionType) {
 			CollectionType collectionType = (CollectionType)type;
-			IntegerValue upperValue = collectionType.getUpperValue();
+			UnlimitedNaturalValue upperValue = collectionType.getUpperValue();
 			return (upperValue instanceof UnlimitedValue) || (upperValue.intValue() > 1);
 		}
 		return false;

@@ -129,8 +129,8 @@ public class ValidateTests extends AbstractValidateTests
 			DomainUtil.bind(EcoreOCLEValidator.MISSING_CONSTRAINTS_ANNOTATION_ENTRY, "extraInvariant", DomainUtil.getLabel(tester)),
 			DomainUtil.bind(EcoreOCLEValidator.EXTRA_CONSTRAINTS_ANNOTATION_ENTRY, "missingInvariant", DomainUtil.getLabel(tester)),
 			DomainUtil.bind(EcoreOCLEValidator.INCOMPATIBLE_TYPE_2, "String", DomainUtil.getLabel(badOp), "body"),
-			DomainUtil.bind(EcoreOCLEValidator.INCOMPATIBLE_TYPE_2, "UnlimitedNatural", DomainUtil.getLabel(badOp), "pre"),
-			DomainUtil.bind(EcoreOCLEValidator.INCOMPATIBLE_TYPE_2, "UnlimitedNatural", DomainUtil.getLabel(badOp), "post"),
+			DomainUtil.bind(EcoreOCLEValidator.INCOMPATIBLE_TYPE_2, "Integer", DomainUtil.getLabel(badOp), "pre"),
+			DomainUtil.bind(EcoreOCLEValidator.INCOMPATIBLE_TYPE_2, "Integer", DomainUtil.getLabel(badOp), "post"),
 			DomainUtil.bind(EcoreOCLEValidator.INCOMPATIBLE_TYPE_1, "Boolean", DomainUtil.getLabel(tester.getEStructuralFeature("badType"))),
 			DomainUtil.bind(EcoreOCLEValidator.MISSING_PROPERTY_KEY, DomainUtil.getLabel(tester.getEStructuralFeature("badDetailName"))),
 			DomainUtil.bind(EcoreOCLEValidator.DOUBLE_PROPERTY_KEY, DomainUtil.getLabel(tester.getEStructuralFeature("derivationAndInitial"))));

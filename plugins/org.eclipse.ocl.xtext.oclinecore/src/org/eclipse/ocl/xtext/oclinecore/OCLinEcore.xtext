@@ -228,7 +228,7 @@ ParameterCS returns base::ParameterCS:
 ReferenceCS returns base::ReferenceCS:
 	((qualifiers+='static' (qualifiers+='definition')?) | (qualifiers+='definition' (qualifiers+='static')?))?
 	'property' name=UnrestrictedName
-	('#' referredOpposite=[pivot::Property|UnrestrictedName])?	
+	('#' referredOpposite=[pivot::Property|UnrestrictedName])?
 	(':' ownedType=TypedMultiplicityRefCS)?
 	('=' default=SINGLE_QUOTED_STRING)?
 	('{'((qualifiers+='composes' | qualifiers+='!composes' |

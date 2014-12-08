@@ -26,6 +26,7 @@ import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.library.executor.CollectionTypeParameters;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteClass;
@@ -182,8 +183,8 @@ public class CompleteEnvironmentImpl implements CompleteEnvironment.Internal
 		if (firstLower.compareTo(secondLower) < 0) {
 			return false;
 		}
-		IntegerValue firstUpper = firstType.getUpperValue();
-		IntegerValue secondUpper = secondType.getUpperValue();
+		UnlimitedNaturalValue firstUpper = firstType.getUpperValue();
+		UnlimitedNaturalValue secondUpper = secondType.getUpperValue();
 		if (firstUpper.compareTo(secondUpper) > 0) {
 			return false;
 		}
@@ -282,11 +283,11 @@ public class CompleteEnvironmentImpl implements CompleteEnvironment.Internal
 	}
 
 	@Override
-	public @NonNull CollectionType getBagType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
+	public @NonNull CollectionType getBagType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return getBagType(metaModelManager.getType(elementType), lower, upper);
 	}
 
-	public @NonNull CollectionType getBagType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
+	public @NonNull CollectionType getBagType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return getCollectionType(standardLibrary.getBagType(), elementType, lower, upper);
 	}
 
@@ -296,12 +297,12 @@ public class CompleteEnvironmentImpl implements CompleteEnvironment.Internal
 	}
 	
 	@Override
-	public @NonNull CollectionType getCollectionType(@NonNull DomainClass containerType, @NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
+	public @NonNull CollectionType getCollectionType(@NonNull DomainClass containerType, @NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return getCollectionType((CollectionType)metaModelManager.getType(containerType), metaModelManager.getType(elementType), lower, upper);
 	}
 
 	@Override
-	public @NonNull <T extends CollectionType> T getCollectionType(@NonNull T containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
+	public @NonNull <T extends CollectionType> T getCollectionType(@NonNull T containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		assert containerType == PivotUtil.getUnspecializedTemplateableElement(containerType);
 		TemplateSignature templateSignature = containerType.getOwnedTemplateSignature();
 		if (templateSignature == null) {
@@ -399,30 +400,30 @@ public class CompleteEnvironmentImpl implements CompleteEnvironment.Internal
 	}
 
 	@Override
-	public @NonNull CollectionType getOrderedSetType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
+	public @NonNull CollectionType getOrderedSetType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return getOrderedSetType(metaModelManager.getType(elementType), lower, upper);
 	}
 
-	public @NonNull CollectionType getOrderedSetType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
+	public @NonNull CollectionType getOrderedSetType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return getCollectionType(standardLibrary.getOrderedSetType(), elementType, lower, upper);
 	}
 
 	@Override
-	public @NonNull CollectionType getSequenceType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
+	public @NonNull CollectionType getSequenceType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return getSequenceType(metaModelManager.getType(elementType), lower, upper);
 	}
 
-	public @NonNull CollectionType getSequenceType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
+	public @NonNull CollectionType getSequenceType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return getCollectionType(standardLibrary.getSequenceType(), elementType, lower, upper);
 	}
 
 	@Override
-	public @NonNull CollectionType getSetType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
+	public @NonNull CollectionType getSetType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return getSetType(metaModelManager.getType(elementType), lower, upper);
 	}
 
 	@Override
-	public @NonNull CollectionType getSetType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
+	public @NonNull CollectionType getSetType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return getCollectionType(standardLibrary.getSetType(), elementType, lower, upper);
 	}
 

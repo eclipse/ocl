@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.DomainConstants;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 
 public interface PivotConstants extends DomainConstants
@@ -81,7 +82,7 @@ public interface PivotConstants extends DomainConstants
 	static final @NonNull IntegerValue DEFAULT_IMPLICIT_OPPOSITE_LOWER_VALUE = ValuesUtil.ZERO_VALUE;
 	static final boolean DEFAULT_IMPLICIT_OPPOSITE_ORDERED = false;
 	static final boolean DEFAULT_IMPLICIT_OPPOSITE_UNIQUE = false;
-	static final @NonNull IntegerValue DEFAULT_IMPLICIT_OPPOSITE_UPPER_VALUE = ValuesUtil.UNLIMITED_VALUE;
+	static final @NonNull UnlimitedNaturalValue DEFAULT_IMPLICIT_OPPOSITE_UPPER_VALUE = ValuesUtil.UNLIMITED_VALUE;
 
 	/**
 	 * The default values for annotated implicit opposites are determined by what is pragmatic.
@@ -95,7 +96,7 @@ public interface PivotConstants extends DomainConstants
 	static final @NonNull IntegerValue ANNOTATED_IMPLICIT_OPPOSITE_LOWER_VALUE = ValuesUtil.ZERO_VALUE;
 	static final boolean ANNOTATED_IMPLICIT_OPPOSITE_ORDERED = false;
 	static final boolean ANNOTATED_IMPLICIT_OPPOSITE_UNIQUE = true;
-	static final @NonNull IntegerValue ANNOTATED_IMPLICIT_OPPOSITE_UPPER_VALUE = ValuesUtil.ONE_VALUE;
+	static final @NonNull UnlimitedNaturalValue ANNOTATED_IMPLICIT_OPPOSITE_UPPER_VALUE = ValuesUtil.UNLIMITED_ONE_VALUE;
 
 	@Deprecated // Tuples are now used for rich invariants
 	static final @NonNull String MESSAGE_ANNOTATION_DETAIL_SUFFIX = "$message";

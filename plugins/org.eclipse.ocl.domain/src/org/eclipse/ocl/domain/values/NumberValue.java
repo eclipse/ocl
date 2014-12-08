@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010, 2014 E.D.Willink and others.
+ * Copyright (c) 2014 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,24 @@
  *******************************************************************************/
 package org.eclipse.ocl.domain.values;
 
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
-public interface UnlimitedValue extends UnlimitedNaturalValue
+
+public interface NumberValue extends ComparableValue<NumberValue>
 {
+	/**
+	 * @generated NOT
+	 */
+	int commutatedCompareToInteger(@NonNull IntegerValue right);
+
+	/**
+	 * @generated NOT
+	 */
+	int commutatedCompareToReal(@NonNull RealValue left);
+	
+	/**
+	 * @generated NOT
+	 */
+	@Nullable UnlimitedNaturalValue isUnlimitedNaturalValue();
 }

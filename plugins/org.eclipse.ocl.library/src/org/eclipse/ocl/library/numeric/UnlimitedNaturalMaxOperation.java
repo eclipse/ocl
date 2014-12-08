@@ -13,20 +13,19 @@ package org.eclipse.ocl.library.numeric;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.library.AbstractSimpleBinaryOperation;
-import org.eclipse.ocl.domain.values.RealValue;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 
 /**
- * NumericGreaterThanOperation realises the >() library operation.
+ * UnlimitedNaturalMaxOperation realises the max() library operation.
  */
-@Deprecated		// Use OclComparableGreaterThanOperation
-public class NumericGreaterThanOperation extends AbstractSimpleBinaryOperation
+public class UnlimitedNaturalMaxOperation extends AbstractSimpleBinaryOperation
 {
-	public static final @NonNull NumericGreaterThanOperation INSTANCE = new NumericGreaterThanOperation();
+	public static final @NonNull UnlimitedNaturalMaxOperation INSTANCE = new UnlimitedNaturalMaxOperation();
 
 	@Override
-	public @NonNull Boolean evaluate(@Nullable Object left, @Nullable Object right) {
-		RealValue leftNumeric = asRealValue(left);
-		RealValue rightNumeric = asRealValue(right);
-		return leftNumeric.compareTo(rightNumeric) > 0;
+	public @NonNull UnlimitedNaturalValue evaluate(@Nullable Object left, @Nullable Object right) {
+		UnlimitedNaturalValue leftNumeric = asUnlimitedNaturalValue(left);
+		UnlimitedNaturalValue rightNumeric = asUnlimitedNaturalValue(right);
+		return leftNumeric.max(rightNumeric);
 	}
 }

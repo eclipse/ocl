@@ -73,12 +73,12 @@ public class EvaluateTupleOperationsTest4 extends PivotTestSuite
 	}
 
 	@Test public void testTupleType_Collections() {
-		TuplePartId aTuplePartId = IdManager.getTuplePartId(0, "a", TypeId.UNLIMITED_NATURAL);
+		TuplePartId aTuplePartId = IdManager.getTuplePartId(0, "a", TypeId.INTEGER);
 		@SuppressWarnings("null") TupleTypeId aTupleTypeId = IdManager.getTupleTypeId("Tuple", Collections.singletonList(aTuplePartId));
 		Map<TuplePartId, Object> aValues = new HashMap<TuplePartId, Object>();
 		aValues.put(aTuplePartId, ValuesUtil.integerValueOf(3));
 		TupleValue aValue = ValuesUtil.createTupleValue(aTupleTypeId, aValues);
-		TuplePartId bTuplePartId = IdManager.getTuplePartId(0, "b", TypeId.UNLIMITED_NATURAL);
+		TuplePartId bTuplePartId = IdManager.getTuplePartId(0, "b", TypeId.INTEGER);
 		@SuppressWarnings("null") TupleTypeId bTupleTypeId = IdManager.getTupleTypeId("Tuple", Collections.singletonList(bTuplePartId));
 		Map<TuplePartId, Object> bValues = new HashMap<TuplePartId, Object>();
 		bValues.put(bTuplePartId, ValuesUtil.integerValueOf(4));
@@ -86,9 +86,9 @@ public class EvaluateTupleOperationsTest4 extends PivotTestSuite
 		CollectionTypeId collectionTypeId = TypeId.SET.getSpecializedId(TypeId.OCL_ANY);
 		SetValue setValue = ValuesUtil.createSetOfEach(collectionTypeId,  aValue, bValue);
 		assertQueryEquals(null, setValue, "Set{Tuple{a = 3}, Tuple{b = 4}, Tuple{a = 3}}");						// BUG 4404404
-		assertValidationErrorQuery2(null, "let s : Set(Tuple(a:UnlimitedNatural)) = Set{Tuple{a = 3}, Tuple{b = 4}} in s",
+		assertValidationErrorQuery2(null, "let s : Set(Tuple(a:Integer)) = Set{Tuple{a = 3}, Tuple{b = 4}} in s",
 			EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Variable", "CompatibleInitialiserType",
-			"s : Set(Tuple(a:UnlimitedNatural)) = Set{Tuple{a : UnlimitedNatural = 3}, Tuple{b : UnlimitedNatural = 4}}");
+			"s : Set(Tuple(a:Integer)) = Set{Tuple{a : Integer = 3}, Tuple{b : Integer = 4}}");
 		assertQueryEquals(null, setValue, "let s : Set(OclAny) = Set{Tuple{a = 3}, Tuple{b = 4}} in s");
 	}
 
@@ -134,7 +134,7 @@ public class EvaluateTupleOperationsTest4 extends PivotTestSuite
 		assertQueryEquals(null, "3", "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.b.a");
 		assertQueryEquals(null, 3.1, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.b.b.a");
 		assertSemanticErrorQuery("Tuple{}.a", "no viable alternative at ''{''");
-		assertSemanticErrorQuery("Tuple{a = 3, b = '4'}.c", OCLMessages.UnresolvedProperty_ERROR_, "Tuple(a:UnlimitedNatural,b:String)", "c");
+		assertSemanticErrorQuery("Tuple{a = 3, b = '4'}.c", OCLMessages.UnresolvedProperty_ERROR_, "Tuple(a:Integer,b:String)", "c");
 // FIXME Duplicate parts warning		assertQueryEquals(null, 3, "Tuple{a = 1, a = 1}.a");
 	}
 }

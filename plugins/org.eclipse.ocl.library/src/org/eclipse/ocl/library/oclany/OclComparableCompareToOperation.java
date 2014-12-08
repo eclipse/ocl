@@ -13,7 +13,7 @@ package org.eclipse.ocl.library.oclany;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.library.AbstractSimpleBinaryOperation;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
+import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 
 /**
@@ -24,17 +24,13 @@ public class OclComparableCompareToOperation extends AbstractSimpleBinaryOperati
 	public static final @NonNull OclComparableCompareToOperation INSTANCE = new OclComparableCompareToOperation();
 
 	@Override
-	public @NonNull Object evaluate(@Nullable Object left, @Nullable Object right) {
-		Object leftObject = asObject(left);
-		Object rightObject = asObject(right);
-		if (left == null) {
-			return ValuesUtil.integerValueOf(right == null);
+	public @NonNull IntegerValue evaluate(@Nullable Object left, @Nullable Object right) {
+		if (left instanceof Comparable<?>) {
+			@SuppressWarnings("unchecked") int compareTo = ((Comparable<Object>)left).compareTo(right);
+			return integerValueOf(compareTo);
 		}
-		if (!(leftObject instanceof Comparable<?>)) {
-			throw new InvalidValueException("Unsupported compareTo for ''{0}''", left.getClass().getName()); //$NON-NLS-1$
+		else {
+			return integerValueOf(ValuesUtil.throwUnsupportedCompareTo(left, right));
 		}
-		@SuppressWarnings("unchecked")
-		int intComparison = ((Comparable<Object>)leftObject).compareTo(rightObject);
-		return ValuesUtil.integerValueOf(intComparison);
 	}
 }

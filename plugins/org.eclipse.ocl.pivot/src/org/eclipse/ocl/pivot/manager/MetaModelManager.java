@@ -66,6 +66,7 @@ import org.eclipse.ocl.domain.utilities.ProjectMap;
 import org.eclipse.ocl.domain.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.domain.utilities.StandaloneProjectMap.DelegatedSinglePackageResource;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.library.executor.CollectionTypeParameters;
 import org.eclipse.ocl.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.pivot.CallExp;
@@ -934,11 +935,11 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		}
 	}
 
-	public @NonNull CollectionType getCollectionType(boolean isOrdered, boolean isUnique, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
+	public @NonNull CollectionType getCollectionType(boolean isOrdered, boolean isUnique, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return completeEnvironment.getCollectionType(getCollectionType(isOrdered, isUnique), elementType, lower, upper);
 	}
 
-	public @NonNull org.eclipse.ocl.pivot.Class getCollectionType(@NonNull String collectionTypeName, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
+	public @NonNull org.eclipse.ocl.pivot.Class getCollectionType(@NonNull String collectionTypeName, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		if (elementType.eIsProxy()) {
 			return standardLibrary.getOclInvalidType();
 		}

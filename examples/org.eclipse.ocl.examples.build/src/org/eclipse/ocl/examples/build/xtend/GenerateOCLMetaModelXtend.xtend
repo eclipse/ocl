@@ -72,6 +72,7 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 		if (pkg == null) {
 			return null;
 		}
+		var allCoercions = root.getSortedCoercions();
 		var allCollectionTypes = root.getAllCollectionTypes();
 		var allEnumerations = root.getAllEnumerations();
 		var allLambdaTypes = root.getAllLambdaTypes();
@@ -208,6 +209,9 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 						«ENDIF»
 						installOperations();
 						installIterations();
+						«IF allCoercions.size() > 0»
+						installCoercions();
+						«ENDIF»
 						installProperties();
 						«IF allTemplateBindings.size() > 0»
 						installTemplateBindings();
@@ -265,6 +269,10 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 					«pkg.defineOperations()»
 
 					«pkg.defineIterations()»	
+					«IF allCoercions.size() > 0»
+
+					«pkg.defineCoercions()»	
+					«ENDIF»
 
 					«pkg.declareProperties()»
 

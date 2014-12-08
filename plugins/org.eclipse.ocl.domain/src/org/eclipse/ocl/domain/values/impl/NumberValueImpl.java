@@ -22,6 +22,7 @@ import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.values.BagValue;
 import org.eclipse.ocl.domain.values.CollectionValue;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.NumberValue;
 import org.eclipse.ocl.domain.values.OCLValue;
 import org.eclipse.ocl.domain.values.ObjectValue;
 import org.eclipse.ocl.domain.values.OrderedCollectionValue;
@@ -31,13 +32,14 @@ import org.eclipse.ocl.domain.values.SequenceValue;
 import org.eclipse.ocl.domain.values.SetValue;
 import org.eclipse.ocl.domain.values.TupleValue;
 import org.eclipse.ocl.domain.values.UniqueCollectionValue;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.Value;
 import org.eclipse.ocl.domain.values.ValuesPackage;
 
 /**
  * @generated NOT
  */
-public abstract class NumberValueImpl extends Number implements Value
+public abstract class NumberValueImpl extends Number implements NumberValue
 {
 	private static final long serialVersionUID = 1L;
 
@@ -150,7 +152,7 @@ public abstract class NumberValueImpl extends Number implements Value
 	}
 
 	@Override
-	public @NonNull Value asUnlimitedNaturalValue() {
+	public @NonNull UnlimitedNaturalValue asUnlimitedNaturalValue() {
 		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.UNLIMITED_NATURAL_NAME, getTypeName());
 	}
 
@@ -172,10 +174,12 @@ public abstract class NumberValueImpl extends Number implements Value
 		return false;
 	}
 	
+	@Override
 	public boolean oclEquals(@NonNull OCLValue thatValue) {
 		return equals(thatValue);
 	}
 
+	@Override
 	public int oclHashCode() {
 		return hashCode();
 	}

@@ -143,7 +143,7 @@ public interface Value
 	/**
 	 * @generated NOT
 	 */
-	@NonNull Value asUnlimitedNaturalValue();
+	@NonNull UnlimitedNaturalValue asUnlimitedNaturalValue();
 	
 	/**
 	 * Return the type of this value determined from its content. In the case of collections

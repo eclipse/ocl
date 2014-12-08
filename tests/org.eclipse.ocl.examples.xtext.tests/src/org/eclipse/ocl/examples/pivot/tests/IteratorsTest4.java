@@ -787,7 +787,7 @@ public class IteratorsTest4 extends PivotTestSuite
         // in the case of a null value, null is allowed in a collection, so
         // it does not result in invalid
         assertQueryResults(null, "Set{5, null}",
-    		"let c : Set(UnlimitedNatural) = Set{null} in 5->closure(c)");
+    		"let c : Set(Integer) = Set{null} in 5->closure(c)");
  
 //        Set<Object> expected = Collections.singleton(getNull());
 //        assertQueryEquals(EcorePackage.eINSTANCE, expected,

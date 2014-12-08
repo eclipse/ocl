@@ -19,17 +19,19 @@ import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.domain.values.ComparableValue;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.NumberValue;
 import org.eclipse.ocl.domain.values.RealValue;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.UnlimitedValue;
-import org.eclipse.ocl.domain.values.Value;
 import org.eclipse.ocl.domain.values.ValuesPackage;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 
 /**
  * @generated NOT
  */
-public abstract class IntegerValueImpl extends NumberValueImpl implements IntegerValue
+public abstract class IntegerValueImpl extends NumberValueImpl implements IntegerValue, UnlimitedNaturalValue
 {
 	private static final long serialVersionUID = 1L;
 
@@ -64,7 +66,7 @@ public abstract class IntegerValueImpl extends NumberValueImpl implements Intege
 	}
 
 	@Override
-	public @NonNull Value asUnlimitedNaturalValue() {
+	public @NonNull UnlimitedNaturalValue asUnlimitedNaturalValue() {
 		if (isUnlimitedNatural()) {
 			return this;
 		}
@@ -76,6 +78,21 @@ public abstract class IntegerValueImpl extends NumberValueImpl implements Intege
 	@Override
 	public @NonNull RealValue commutatedAdd(@NonNull RealValue left) {
 		return left.addInteger(this);
+	}
+
+	@Override
+	public int commutatedCompareTo(@NonNull ComparableValue<?> left) {
+		if (left instanceof NumberValue) {
+			return ((NumberValue)left).commutatedCompareToReal(this);
+		}
+		else {
+			return ValuesUtil.throwUnsupportedCompareTo(left, this);
+		}
+	}
+
+	@Override
+	public int commutatedCompareToReal(@NonNull RealValue left) {
+		return bigDecimalValue().compareTo(left.bigDecimalValue());
 	}
 
 	@Override
@@ -104,18 +121,8 @@ public abstract class IntegerValueImpl extends NumberValueImpl implements Intege
 	}
 
 	@Override
-	public int compareTo(/*@NonNull*/ RealValue left) {
-		return -left.compareToInteger(this);
-	}
-
-	@Override
-	public int compareToReal(@NonNull RealValue o) {
-		return bigDecimalValue().compareTo(o.bigDecimalValue());
-	}
-
-	@Override
-	public int compareToUnlimited(@NonNull UnlimitedValue right) {
-		return -1;
+	public int compareTo(/*@NonNull*/ NumberValue right) {
+		return -right.commutatedCompareToInteger(this);
 	}
 
 	@Override
@@ -139,7 +146,7 @@ public abstract class IntegerValueImpl extends NumberValueImpl implements Intege
 
 	@Override
 	public @NonNull TypeId getTypeId() {
-		return isUnlimitedNatural() ? TypeId.UNLIMITED_NATURAL : TypeId.INTEGER;
+		return TypeId.INTEGER;
 	}
 	
 	@Override
@@ -154,12 +161,22 @@ public abstract class IntegerValueImpl extends NumberValueImpl implements Intege
 	
 	@Override
 	public boolean isUnlimitedNatural() {
-		return false;
+		return signum() >= 0;
+	}
+
+	@Override
+	public @Nullable UnlimitedNaturalValue isUnlimitedNaturalValue() {
+		return signum() >= 0 ?this : null;
 	}
 
 	@Override
 	public @NonNull RealValue max(@NonNull RealValue rightValue) {
 		return rightValue.maxInteger(this);
+	}
+
+	@Override
+	public @NonNull UnlimitedNaturalValue max(@NonNull UnlimitedNaturalValue rightValue) {
+		return rightValue.maxUnlimited(this);
 	}
 
 	@Override
@@ -169,7 +186,7 @@ public abstract class IntegerValueImpl extends NumberValueImpl implements Intege
 	}
 
 	@Override
-	public @NonNull RealValue maxUnlimited(@NonNull UnlimitedValue rightValue) {
+	public @NonNull UnlimitedNaturalValue maxUnlimited(@NonNull UnlimitedNaturalValue rightValue) {
 		return rightValue;
 	}
 
@@ -179,13 +196,18 @@ public abstract class IntegerValueImpl extends NumberValueImpl implements Intege
 	}
 
 	@Override
+	public @NonNull UnlimitedNaturalValue min(@NonNull UnlimitedNaturalValue rightValue) {
+		return rightValue.minUnlimited(this);
+	}
+
+	@Override
 	public @NonNull RealValue minReal(@NonNull RealValue right) {
 		BigDecimal bigDecimalValue = bigDecimalValue();
 		return bigDecimalValue.compareTo(right.bigDecimalValue()) < 0 ? ValuesUtil.realValueOf(bigDecimalValue) : right;
 	}
 
 	@Override
-	public @NonNull RealValue minUnlimited(@NonNull UnlimitedValue rightValue) {
+	public @NonNull UnlimitedNaturalValue minUnlimited(@NonNull UnlimitedNaturalValue rightValue) {
 		return this;
 	}
 

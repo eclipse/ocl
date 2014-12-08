@@ -38,6 +38,7 @@ import org.eclipse.ocl.xtext.basecs.OperationCS;
 import org.eclipse.ocl.xtext.basecs.PackageCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.JavaClassCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.LibClassCS;
+import org.eclipse.ocl.xtext.oclstdlibcs.LibCoercionCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.LibIterationCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.LibOperationCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.LibPackageCS;
@@ -84,13 +85,12 @@ public class OCLstdlibCSContainmentVisitor extends AbstractOCLstdlibCSContainmen
 			refreshClass(pivotElement, csElement);
 			List<Operation> coercions = null;
 			for (OperationCS csOperation : csElement.getOwnedOperations()) {
-				if (csOperation instanceof LibOperationCS) {
+				if (csOperation instanceof LibCoercionCS) {
 					if (pivotElement instanceof PrimitiveType) {
 						if (coercions == null) {
 							coercions = new ArrayList<Operation>();
 						}
 						coercions.add(PivotUtil.getPivot(Operation.class, csOperation));
-						context.refreshPivotList(Operation.class, ((PrimitiveType)pivotElement).getCoercions(), csElement.getOwnedCoercions());
 					}
 					else {
 						context.addDiagnostic(csOperation, "Only PrimitiveTypes may have coercions");

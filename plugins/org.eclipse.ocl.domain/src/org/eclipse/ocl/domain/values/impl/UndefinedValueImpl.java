@@ -31,8 +31,10 @@ import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.values.BagValue;
 import org.eclipse.ocl.domain.values.CollectionValue;
+import org.eclipse.ocl.domain.values.ComparableValue;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.NullValue;
+import org.eclipse.ocl.domain.values.NumberValue;
 import org.eclipse.ocl.domain.values.ObjectValue;
 import org.eclipse.ocl.domain.values.OrderedCollectionValue;
 import org.eclipse.ocl.domain.values.OrderedSetValue;
@@ -41,8 +43,10 @@ import org.eclipse.ocl.domain.values.SequenceValue;
 import org.eclipse.ocl.domain.values.SetValue;
 import org.eclipse.ocl.domain.values.TupleValue;
 import org.eclipse.ocl.domain.values.UniqueCollectionValue;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.UnlimitedValue;
 import org.eclipse.ocl.domain.values.Value;
+import org.eclipse.ocl.domain.values.util.ValuesUtil;
 
 /**
  * @generated NOT
@@ -192,7 +196,7 @@ public abstract class UndefinedValueImpl extends DomainException implements Null
 	}
 
 	@Override
-	public @NonNull Value asUnlimitedNaturalValue() {
+	public @NonNull UnlimitedNaturalValue asUnlimitedNaturalValue() {
 		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.UNLIMITED_NATURAL_NAME, getTypeName());
 	}
 
@@ -242,23 +246,23 @@ public abstract class UndefinedValueImpl extends DomainException implements Null
 	}
 
 	@Override
-	public int compareTo(/*@NonNull*/ RealValue o) {
-		throw new UnsupportedOperationException("UndefinedValueImpl.compareTo");
+	public int commutatedCompareTo(@NonNull ComparableValue<?> left) {
+		return ValuesUtil.throwUnsupportedCompareTo(left, this);
 	}
 
 	@Override
-	public int compareToInteger(@NonNull IntegerValue right) {
-		throw new UnsupportedOperationException("UndefinedValueImpl.compareTo");
+	public int commutatedCompareToInteger(@NonNull IntegerValue left) {
+		return ValuesUtil.throwUnsupportedCompareTo(left, this);
 	}
 
 	@Override
-	public int compareToReal(@NonNull RealValue right) {
-		throw new UnsupportedOperationException("UndefinedValueImpl.compareTo");
+	public int commutatedCompareToReal(@NonNull RealValue left) {
+		return ValuesUtil.throwUnsupportedCompareTo(left, this);
 	}
 
 	@Override
-	public int compareToUnlimited(@NonNull UnlimitedValue right) {
-		throw new UnsupportedOperationException("UndefinedValueImpl.compareTo");
+	public int compareTo(/*@NonNull*/ NumberValue right) {
+		return ValuesUtil.throwUnsupportedCompareTo(this, right);
 	}
 
     @Override
@@ -462,6 +466,11 @@ public abstract class UndefinedValueImpl extends DomainException implements Null
 	public boolean isUnlimitedNatural() {
 		return false;
 	}
+	
+	@Override
+	public @Nullable UnlimitedNaturalValue isUnlimitedNaturalValue() {
+		return null;
+	}
 
 	@Override
 	@SuppressWarnings("null")
@@ -485,6 +494,11 @@ public abstract class UndefinedValueImpl extends DomainException implements Null
 	}
 
 	@Override
+	public @NonNull NullValue max(@NonNull UnlimitedNaturalValue right) {
+		return toInvalidValue();
+	}
+
+	@Override
 	public @NonNull NullValue maxInteger(@NonNull IntegerValue right) {
 		return toInvalidValue();
 	}
@@ -495,12 +509,17 @@ public abstract class UndefinedValueImpl extends DomainException implements Null
 	}
 
 	@Override
-	public @NonNull NullValue maxUnlimited(@NonNull UnlimitedValue right) {
+	public @NonNull NullValue maxUnlimited(@NonNull UnlimitedNaturalValue right) {
 		return toInvalidValue();
 	}
 
 	@Override
 	public @NonNull NullValue min(@NonNull RealValue right) {
+		return toInvalidValue();
+	}
+
+	@Override
+	public @NonNull NullValue min(@NonNull UnlimitedNaturalValue right) {
 		return toInvalidValue();
 	}
 
@@ -515,7 +534,7 @@ public abstract class UndefinedValueImpl extends DomainException implements Null
 	}
 
 	@Override
-	public @NonNull NullValue minUnlimited(@NonNull UnlimitedValue right) {
+	public @NonNull NullValue minUnlimited(@NonNull UnlimitedNaturalValue right) {
 		return toInvalidValue();
 	}
 

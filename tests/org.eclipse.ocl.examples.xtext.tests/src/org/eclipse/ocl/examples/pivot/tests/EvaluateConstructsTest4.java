@@ -81,7 +81,7 @@ public class EvaluateConstructsTest4 extends PivotTestSuite
 		//
 		assertQueryTrue(null, "if self.oclIsUndefined() then true else false endif");
 		assertQueryInvalid(null, "if 4 then 4 else 4 endif",
-			NLS.bind(EvaluatorMessages.TypedValueRequired, "Boolean", "UnlimitedNatural"), null);
+			NLS.bind(EvaluatorMessages.TypedValueRequired, "Boolean", "Integer"), null);
 		assertQueryEquals(null, 4, "if 4=4 then 4 else 4 endif");
 		//
 		assertValidQuery(metaModelManager.getStandardLibrary().getOclAnyType(), "let a : Boolean = false in if true then OrderedSet{5} else OrderedSet{} endif->first()+5");
@@ -99,7 +99,7 @@ public class EvaluateConstructsTest4 extends PivotTestSuite
 		assertQueryEquals(null, (64.0 / 16) / (8 / 4), "64 / 16 / let b : Integer = 0 in 8 / let c : Integer = 0 in 4");
 		assertQueryEquals(null, -5, "-let a : Integer = 5 in a");
 		//
-		assertQueryEquals(null, 5 * 7 * 9, "let a : Integer = 5, b : Real = 7, c : UnlimitedNatural = 9 in a * b * c");
+		assertQueryEquals(null, 5 * 7 * 9, "let a : Integer = 5, b : Real = 7, c : UnlimitedNatural = 9 in a * b * c.toInteger()");
 		//
 		assertQueryNull(null, "let a : Integer = null in a");
 		//

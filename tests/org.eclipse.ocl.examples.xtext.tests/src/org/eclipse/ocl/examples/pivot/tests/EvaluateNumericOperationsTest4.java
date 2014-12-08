@@ -21,6 +21,7 @@ import org.eclipse.ocl.domain.values.impl.BigIntegerValueImpl;
 import org.eclipse.ocl.domain.values.impl.IntIntegerValueImpl;
 import org.eclipse.ocl.domain.values.impl.LongIntegerValueImpl;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -819,11 +820,12 @@ public class EvaluateNumericOperationsTest4 extends PivotTestSuite
 	}
 
 	@Test public void testUnlimitedAbs() {
-		assertQueryUnlimited(null, "*.abs()");
+		assertSemanticErrorQuery("*.abs()", OCLMessages.UnresolvedOperation_ERROR_, "UnlimitedNatural", "abs");
 		// invalid
-		assertQueryInvalid(null, "let u : UnlimitedNatural = invalid in u.abs()");
+		assertSemanticErrorQuery("let u : UnlimitedNatural = invalid in u.abs()", OCLMessages.UnresolvedOperation_ERROR_, "UnlimitedNatural", "abs");
 		// null
-		assertQueryInvalid(null, "let u : UnlimitedNatural = null in u.abs()");
+		assertSemanticErrorQuery("let u : UnlimitedNatural = null in u.abs()", OCLMessages.UnresolvedOperation_ERROR_, "UnlimitedNatural", "abs");
+
 	}
 
 /* FIXME	@Test public void testUnlimitedDiv() {
@@ -845,29 +847,25 @@ public class EvaluateNumericOperationsTest4 extends PivotTestSuite
 	} */
 
 	@Test public void testUnlimitedDivide() {
-		assertQueryInvalid(null, "1 / *");
-		assertQueryInvalid(null, "* / 1");
+		assertSemanticErrorQuery("1 / *", OCLMessages.UnresolvedOperationCall_ERROR_, "Integer", "/", "UnlimitedNatural");
+		assertSemanticErrorQuery("* / 1", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "/", "Integer");
 
-		assertQueryInvalid(null, "1.0 / *");
-		assertQueryInvalid(null, "* / 1.0");
+		assertSemanticErrorQuery("1.0 / *", OCLMessages.UnresolvedOperationCall_ERROR_, "Real", "/", "UnlimitedNatural");
+		assertSemanticErrorQuery("* / 1.0", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "/", "Real");
 
-		assertQueryInvalid(null, "* / *");
-
-		// by zero
-		assertQueryInvalid(null, "* / 0");
-		assertQueryInvalid(null, "* / 0.0");
+		assertSemanticErrorQuery("* / *", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "/", "UnlimitedNatural");
 
 		// invalid
-		assertQueryInvalid(null, "let u : UnlimitedNatural = invalid in * / u");
-		assertQueryInvalid(null, "let u : UnlimitedNatural = invalid in u / *");
+		assertSemanticErrorQuery("let u : UnlimitedNatural = invalid in * / u", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "/", "UnlimitedNatural");
+		assertSemanticErrorQuery("let u : UnlimitedNatural = invalid in u / *", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "/", "UnlimitedNatural");
 
-		assertQueryInvalid(null, "let u1 : UnlimitedNatural = invalid, u2 : UnlimitedNatural = invalid in u1 / u2");
+		assertSemanticErrorQuery("let u1 : UnlimitedNatural = invalid, u2 : UnlimitedNatural = invalid in u1 / u2", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "/", "UnlimitedNatural");
 
 		// null
-		assertQueryInvalid(null, "let u : UnlimitedNatural = null in * / u");
-		assertQueryInvalid(null, "let u : UnlimitedNatural = null in u / *");
+		assertSemanticErrorQuery("let u : UnlimitedNatural = null in * / u", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "/", "UnlimitedNatural");
+		assertSemanticErrorQuery("let u : UnlimitedNatural = null in u / *", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "/", "UnlimitedNatural");
 
-		assertQueryInvalid(null, "let u1 : UnlimitedNatural = null, u2 : UnlimitedNatural = null in u1 / u2");
+		assertSemanticErrorQuery("let u1 : UnlimitedNatural = null, u2 : UnlimitedNatural = null in u1 / u2", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "/", "UnlimitedNatural");
 	}
 
 	@Test public void testUnlimitedEqual() {
@@ -892,13 +890,13 @@ public class EvaluateNumericOperationsTest4 extends PivotTestSuite
 	}
 
 	@Test public void testUnlimitedFloor() {
-		assertQueryInvalid(null, "*.floor()");
+		assertSemanticErrorQuery("*.floor()", OCLMessages.UnresolvedOperation_ERROR_, "UnlimitedNatural", "floor");
 
 		// invalid
-		assertQueryInvalid(null, "let u : UnlimitedNatural = invalid in u.floor()");
+		assertSemanticErrorQuery("let u : UnlimitedNatural = invalid in u.floor()", OCLMessages.UnresolvedOperation_ERROR_, "UnlimitedNatural", "floor");
 
 		// null
-		assertQueryInvalid(null, "let u : UnlimitedNatural = null in u.floor()");
+		assertSemanticErrorQuery("let u : UnlimitedNatural = null in u.floor()", OCLMessages.UnresolvedOperation_ERROR_, "UnlimitedNatural", "floor");
 	}
 
 	@Test public void testUnlimitedGreaterThan() {
@@ -969,18 +967,18 @@ public class EvaluateNumericOperationsTest4 extends PivotTestSuite
 		 * behavior with Double.POSITIVE_INFINITY.
 		 */
 		assertQueryTrue(null, "1 <= *");
-		assertQueryFalse(null, "* <= 1");
+		assertQueryFalse(null, "* <= 1.toUnlimitedNatural()");
 		assertQueryTrue(null, "* <= *");
 
 		// invalid
-		assertQueryInvalid(null, "let u : UnlimitedNatural = invalid in u <= 0");
-		assertQueryInvalid(null, "let u : UnlimitedNatural = invalid in 0 <= u");
+		assertQueryInvalid(null, "let u : UnlimitedNatural = invalid in u <= 0.toUnlimitedNatural()");
+		assertQueryInvalid(null, "let u : UnlimitedNatural = invalid in 0.toUnlimitedNatural() <= u");
 
 		assertQueryInvalid(null, "let u1 : UnlimitedNatural = invalid, u2 : UnlimitedNatural = invalid in u1 <= u2");
 
 		// null
-		assertQueryInvalid(null, "let u : UnlimitedNatural = null in u <= 0");
-		assertQueryInvalid(null, "let u : UnlimitedNatural = null in 0 <= u");
+		assertQueryInvalid(null, "let u : UnlimitedNatural = null in u <= 0.toUnlimitedNatural()");
+		assertQueryInvalid(null, "let u : UnlimitedNatural = null in 0.toUnlimitedNatural() <= u");
 
 		assertQueryInvalid(null, "let u1 : UnlimitedNatural = null, u2 : UnlimitedNatural = null in u1 <= u2");
 	}
@@ -989,10 +987,14 @@ public class EvaluateNumericOperationsTest4 extends PivotTestSuite
 		assertQueryUnlimited(null, "1.max(*)");
 		assertQueryUnlimited(null, "*.max(1)");
 
-//		assertQueryInvalid(null, "(1.0).max(*)");
-//		assertQueryInvalid(null, "*.max(1.0)");
-		assertQueryUnlimited(null, "(1.0).max(*)");
-		assertQueryUnlimited(null, "*.max(1.0)");
+		assertQueryUnlimited(null, "0.max(*)");
+		assertQueryUnlimited(null, "*.max(0)");
+
+		assertQueryInvalid(null, "(-1).max(*)");
+		assertQueryInvalid(null, "*.max(-1)");
+
+		assertSemanticErrorQuery("(1.0).max(*)", OCLMessages.UnresolvedOperationCall_ERROR_, "Real", "max", "UnlimitedNatural");
+		assertSemanticErrorQuery("*.max(1.0)", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "max", "Real");
 
 		assertQueryUnlimited(null, "*.max(*)");
 
@@ -1013,10 +1015,14 @@ public class EvaluateNumericOperationsTest4 extends PivotTestSuite
 		assertQueryEquals(null, 1, "1.min(*)");
 		assertQueryEquals(null, 1, "*.min(1)");
 
-//		assertQueryInvalid(null, "(1.0).min(*)");
-//		assertQueryInvalid(null, "*.min(1.0)");
-		assertQueryEquals(null, 1.0, "(1.0).min(*)");
-		assertQueryEquals(null, 1.0, "*.min(1.0)");
+		assertQueryEquals(null, 0, "0.min(*)");
+		assertQueryEquals(null, 0, "*.min(0)");
+
+		assertQueryInvalid(null, "(-1).min(*)");
+		assertQueryInvalid(null, "*.min(-1)");
+
+		assertSemanticErrorQuery("(1.0).min(*)", OCLMessages.UnresolvedOperationCall_ERROR_, "Real", "min", "UnlimitedNatural");
+		assertSemanticErrorQuery("*.min(1.0)", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "min", "Real");
 
 		assertQueryUnlimited(null, "*.min(*)");
 
@@ -1034,25 +1040,25 @@ public class EvaluateNumericOperationsTest4 extends PivotTestSuite
 	}
 
 	@Test public void testUnlimitedMinus() {
-		assertQueryInvalid(null, "1 - *");
-		assertQueryInvalid(null, "* - 1");
+		assertSemanticErrorQuery("1 - *", OCLMessages.UnresolvedOperationCall_ERROR_, "Integer", "-", "UnlimitedNatural");
+		assertSemanticErrorQuery("* - 1", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "-", "Integer");
 
-		assertQueryInvalid(null, "1.0 - *");
-		assertQueryInvalid(null, "* - 1.0");
+		assertSemanticErrorQuery("1.0 - *", OCLMessages.UnresolvedOperationCall_ERROR_, "Real", "-", "UnlimitedNatural");
+		assertSemanticErrorQuery("* - 1.0", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "-", "Real");
 
-		assertQueryInvalid(null, "* - *");
+		assertSemanticErrorQuery("* - *", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "-", "UnlimitedNatural");
 
 		// invalid
-		assertQueryInvalid(null, "let u : UnlimitedNatural = invalid in * - u");
-		assertQueryInvalid(null, "let u : UnlimitedNatural = invalid in u - *");
+		assertSemanticErrorQuery("let u : UnlimitedNatural = invalid in * - u", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "-", "UnlimitedNatural");
+		assertSemanticErrorQuery("let u : UnlimitedNatural = invalid in u - *", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "-", "UnlimitedNatural");
 
-		assertQueryInvalid(null, "let u1 : UnlimitedNatural = invalid, u2 : UnlimitedNatural = invalid in u1 - u2");
+		assertSemanticErrorQuery("let u1 : UnlimitedNatural = invalid, u2 : UnlimitedNatural = invalid in u1 - u2", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "-", "UnlimitedNatural");
 
 		// null
-		assertQueryInvalid(null, "let u : UnlimitedNatural = null in * - u");
-		assertQueryInvalid(null, "let u : UnlimitedNatural = null in u - *");
+		assertSemanticErrorQuery("let u : UnlimitedNatural = null in * - u", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "-", "UnlimitedNatural");
+		assertSemanticErrorQuery("let u : UnlimitedNatural = null in u - *", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "-", "UnlimitedNatural");
 
-		assertQueryInvalid(null, "let u1 : UnlimitedNatural = null, u2 : UnlimitedNatural = null in u1 - u2");
+		assertSemanticErrorQuery("let u1 : UnlimitedNatural = null, u2 : UnlimitedNatural = null in u1 - u2", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "-", "UnlimitedNatural");
 	}
 
 /* FIXME	@Test public void testUnlimitedMod() {
@@ -1076,9 +1082,9 @@ public class EvaluateNumericOperationsTest4 extends PivotTestSuite
 	} */
 
 	@Test public void testUnlimitedNegate() {
-		assertQueryInvalid(null, "-*");
+		assertSemanticErrorQuery("-*", OCLMessages.UnresolvedOperation_ERROR_, "UnlimitedNatural", "-");
 		// invalid
-		assertQueryInvalid(null, "let u : UnlimitedNatural = invalid in -u");
+		assertSemanticErrorQuery("let u : UnlimitedNatural = invalid in -u", OCLMessages.UnresolvedOperation_ERROR_, "UnlimitedNatural", "-");
 		// null
 	}
 
@@ -1104,49 +1110,49 @@ public class EvaluateNumericOperationsTest4 extends PivotTestSuite
 	}
 
 	@Test public void testUnlimitedPlus() {
-		assertQueryInvalid(null, "1 + *");
-		assertQueryInvalid(null, "* + 1");
+		assertSemanticErrorQuery("1 + *", OCLMessages.UnresolvedOperationCall_ERROR_, "Integer", "+", "UnlimitedNatural");
+		assertSemanticErrorQuery("* + 1", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "+", "Integer");
 
-		assertQueryInvalid(null, "1.0 + *");
-		assertQueryInvalid(null, "* + 1.0");
+		assertSemanticErrorQuery("1.0 + *", OCLMessages.UnresolvedOperationCall_ERROR_, "Real", "+", "UnlimitedNatural");
+		assertSemanticErrorQuery("* + 1.0", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "+", "Real");
 
-		assertQueryInvalid(null, "* + *");
+		assertSemanticErrorQuery("* + *", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "+", "UnlimitedNatural");
 		// invalid
-		assertQueryInvalid(null, "let u : UnlimitedNatural = invalid in * + u");
-		assertQueryInvalid(null, "let u : UnlimitedNatural = invalid in u + *");
-		assertQueryInvalid(null, "let u1 : UnlimitedNatural = invalid, u2 : UnlimitedNatural = invalid in u1 + u2");
+		assertSemanticErrorQuery("let u : UnlimitedNatural = invalid in * + u", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "+", "UnlimitedNatural");
+		assertSemanticErrorQuery("let u : UnlimitedNatural = invalid in u + *", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "+", "UnlimitedNatural");
+		assertSemanticErrorQuery("let u1 : UnlimitedNatural = invalid, u2 : UnlimitedNatural = invalid in u1 + u2", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "+", "UnlimitedNatural");
 		// null
-		assertQueryInvalid(null, "let u : UnlimitedNatural = null in * + u");
-		assertQueryInvalid(null, "let u : UnlimitedNatural = null in u + *");
-		assertQueryInvalid(null, "let u1 : UnlimitedNatural = null, u2 : UnlimitedNatural = null in u1 + u2");
+		assertSemanticErrorQuery("let u : UnlimitedNatural = null in * + u", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "+", "UnlimitedNatural");
+		assertSemanticErrorQuery("let u : UnlimitedNatural = null in u + *", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "+", "UnlimitedNatural");
+		assertSemanticErrorQuery("let u1 : UnlimitedNatural = null, u2 : UnlimitedNatural = null in u1 + u2", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "+", "UnlimitedNatural");
 	}
 
 	@Test public void testUnlimitedRound() {
-		assertQueryInvalid(null, "*.round()");
+		assertSemanticErrorQuery("*.round()", OCLMessages.UnresolvedOperation_ERROR_, "UnlimitedNatural", "round");
 		// invalid
-		assertQueryInvalid(null, "let u : UnlimitedNatural = invalid in u.round()");
+		assertSemanticErrorQuery("let u : UnlimitedNatural = invalid in u.round()", OCLMessages.UnresolvedOperation_ERROR_, "UnlimitedNatural", "round");
 		// null
-		assertQueryInvalid(null, "let u : UnlimitedNatural = null in u.round()");
+		assertSemanticErrorQuery("let u : UnlimitedNatural = null in u.round()", OCLMessages.UnresolvedOperation_ERROR_, "UnlimitedNatural", "round");
 	}
 
 	@Test public void testUnlimitedTimes() {
-		assertQueryInvalid(null, "1 * *");
-		assertQueryInvalid(null, "* * 1");
+		assertSemanticErrorQuery("1 * *", OCLMessages.UnresolvedOperationCall_ERROR_, "Integer", "*", "UnlimitedNatural");
+		assertSemanticErrorQuery("* * 1", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "*", "Integer");
 
-		assertQueryInvalid(null, "1.0 * *");
-		assertQueryInvalid(null, "* * 1.0");
+		assertSemanticErrorQuery("1.0 * *", OCLMessages.UnresolvedOperationCall_ERROR_, "Real", "*", "UnlimitedNatural");
+		assertSemanticErrorQuery("* * 1.0", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "*", "Real");
 
-		assertQueryInvalid(null, "* * *");
+		assertSemanticErrorQuery("* * *", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "*", "UnlimitedNatural");
 
 		// invalid
-		assertQueryInvalid(null, "let u : UnlimitedNatural = invalid in * * u");
-		assertQueryInvalid(null, "let u : UnlimitedNatural = invalid in u * *");
+		assertSemanticErrorQuery("let u : UnlimitedNatural = invalid in * * u", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "*", "UnlimitedNatural");
+		assertSemanticErrorQuery("let u : UnlimitedNatural = invalid in u * *", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "*", "UnlimitedNatural");
 
-		assertQueryInvalid(null, "let u1 : UnlimitedNatural = invalid, u2 : UnlimitedNatural = invalid in u1 * u2");
+		assertSemanticErrorQuery("let u1 : UnlimitedNatural = invalid, u2 : UnlimitedNatural = invalid in u1 * u2", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "*", "UnlimitedNatural");
 		// null
-		assertQueryInvalid(null, "let u : UnlimitedNatural = null in * * u");
-		assertQueryInvalid(null, "let u : UnlimitedNatural = null in u * *");
+		assertSemanticErrorQuery("let u : UnlimitedNatural = null in * * u", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "*", "UnlimitedNatural");
+		assertSemanticErrorQuery("let u : UnlimitedNatural = null in u * *", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "*", "UnlimitedNatural");
 
-		assertQueryInvalid(null, "let u1 : UnlimitedNatural = null, u2 : UnlimitedNatural = null in u1 * u2");
+		assertSemanticErrorQuery("let u1 : UnlimitedNatural = null, u2 : UnlimitedNatural = null in u1 * u2", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "*", "UnlimitedNatural");
 	}
 }

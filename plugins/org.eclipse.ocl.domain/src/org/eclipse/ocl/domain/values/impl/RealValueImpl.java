@@ -22,9 +22,11 @@ import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.types.IdResolver;
+import org.eclipse.ocl.domain.values.ComparableValue;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.NumberValue;
 import org.eclipse.ocl.domain.values.RealValue;
-import org.eclipse.ocl.domain.values.UnlimitedValue;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.ValuesPackage;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 
@@ -152,6 +154,26 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 	}
 
 	@Override
+	public int commutatedCompareTo(@NonNull ComparableValue<?> left) {
+		if (left instanceof NumberValue) {
+			return ((NumberValue)left).commutatedCompareToReal(this);
+		}
+		else {
+			return ValuesUtil.throwUnsupportedCompareTo(left, this);
+		}
+	}
+
+	@Override
+	public int commutatedCompareToInteger(@NonNull IntegerValue left) {
+		return value.compareTo(left.bigDecimalValue());
+	}
+
+	@Override
+	public int commutatedCompareToReal(@NonNull RealValue left) {
+		return value.compareTo(left.bigDecimalValue());
+	}
+
+	@Override
 	public @NonNull RealValue commutatedDivide(@NonNull RealValue left) {
 		return left.divideReal(this);
 	}
@@ -167,23 +189,8 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 	}
 
 	@Override
-	public int compareTo(/*@NonNull*/ RealValue left) {
-		return -left.compareToReal(this);
-	}
-
-	@Override
-	public int compareToInteger(@NonNull IntegerValue o) {
-		return value.compareTo(o.bigDecimalValue());
-	}
-
-	@Override
-	public int compareToReal(@NonNull RealValue o) {
-		return value.compareTo(o.bigDecimalValue());
-	}
-
-	@Override
-	public int compareToUnlimited(@NonNull UnlimitedValue right) {
-		return -1;
+	public int compareTo(/*@NonNull*/ NumberValue right) {
+		return -right.commutatedCompareToReal(this);
 	}
 
 	@Override
@@ -272,8 +279,8 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 	}
 
 	@Override
-	public boolean isUnlimited() {
-		return false;
+	public @Nullable UnlimitedNaturalValue isUnlimitedNaturalValue() {
+		return null;
 	}
 
 	@Override
@@ -307,11 +314,6 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 	}
 
 	@Override
-	public @NonNull RealValue maxUnlimited(@NonNull UnlimitedValue rightValue) {
-		return rightValue;
-	}
-
-	@Override
 	public @NonNull RealValue min(@NonNull RealValue rightValue) {
 		return rightValue.minReal(this);
 	}
@@ -334,11 +336,6 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 		} catch (InvalidValueException e) {
 			throw new InvalidValueException(EvaluatorMessages.InvalidReal, e, null, rightValue);
 		}
-	}
-
-	@Override
-	public @NonNull RealValue minUnlimited(@NonNull UnlimitedValue rightValue) {
-		return this;
 	}
 
 	@Override

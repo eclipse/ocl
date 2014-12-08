@@ -13,6 +13,7 @@ package org.eclipse.ocl.domain.elements;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 
 public interface DomainCollectionType extends DomainClass
 {
@@ -21,7 +22,7 @@ public interface DomainCollectionType extends DomainClass
 	@NonNull IntegerValue getLowerValue();		
 	@Override
 	@NonNull CollectionTypeId getTypeId();
-	@NonNull IntegerValue getUpperValue();
+	@NonNull UnlimitedNaturalValue getUpperValue();
 	@Override
 	boolean isOrdered();
 	@Override

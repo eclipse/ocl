@@ -335,8 +335,8 @@ public class EvaluateCollectionOperationsTest4 extends PivotTestSuite
 		DomainStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
 		assertQueryEquals(null, standardLibrary.getStringType(), "Sequence{'1', '2', '3'}->oclType().elementType");
 		assertQueryEquals(null, standardLibrary.getOclAnyType(), "Sequence{1, 2.0, '3'}->oclType().elementType");
-		assertQueryEquals(null, standardLibrary.getUnlimitedNaturalType(), "Sequence{1, 2, 3}->oclType().elementType");
-		assertQueryEquals(null, standardLibrary.getUnlimitedNaturalType(), "Sequence{1, 2, 3}->oclAsType(Collection(Real))->oclType().elementType");
+		assertQueryEquals(null, standardLibrary.getIntegerType(), "Sequence{1, 2, 3}->oclType().elementType");
+		assertQueryEquals(null, standardLibrary.getIntegerType(), "Sequence{1, 2, 3}->oclAsType(Collection(Real))->oclType().elementType");
 // FIXME fails because common type is Set(T) and then because T is not type-servable and has no OclAny inheritance
 //		assertQueryEquals(null, metaModelManager.getSetType(), "Sequence{Set{1}, Set{2.0}, Set{'3'}}->elementType");
 // FIXME fails because common type is inadequate for implicit collect
@@ -1085,11 +1085,12 @@ public class EvaluateCollectionOperationsTest4 extends PivotTestSuite
 
 //		assertSemanticErrorQuery("let s : Set(Integer) = invalid in Set{4}->intersection(s)",
 //		OCLMessages.UnresolvedOperationCall_ERROR_, "intersection", "Set(UnlimitedNatural)", "Set(Integer)");
-		assertQueryInvalid(null, "let s : Set(Integer) = invalid in Set{4}->intersection(s)");
-		assertQueryInvalid(null, "let s : Set(UnlimitedNatural) = invalid in Set{4}->intersection(s)");
-		assertQueryInvalid(null, "let s : Set(UnlimitedNatural) = invalid in Bag{4}->intersection(s)");
-		assertQueryInvalid(null, "let b : Bag(UnlimitedNatural) = invalid in Set{4}->intersection(b)");
-		assertQueryInvalid(null, "let b : Bag(UnlimitedNatural) = invalid in Bag{4}->intersection(b)");
+//		assertSemanticErrorQuery("let s : Set(Real) = invalid in Set{4}->intersection(s)",
+//			OCLMessages.UnresolvedOperationCall_ERROR_, "Set(Integer)", "intersection", "Set(Real)");
+		assertQueryInvalid(null, "let s : Set(Integer) = invalid in Set{4.0}->intersection(s)");
+		assertQueryInvalid(null, "let s : Set(Integer) = invalid in Bag{4.0}->intersection(s)");
+		assertQueryInvalid(null, "let b : Bag(Integer) = invalid in Set{4.0}->intersection(b)");
+		assertQueryInvalid(null, "let b : Bag(Integer) = invalid in Bag{4.0}->intersection(b)");
 		// invalid collection element
 		assertQueryInvalid(null, "Set{3, 4}->intersection(Set{invalid})");
 		assertQueryInvalid(null, "Set{3, invalid}->intersection(Bag{4})");
@@ -1101,10 +1102,10 @@ public class EvaluateCollectionOperationsTest4 extends PivotTestSuite
 		assertQueryInvalid(null, "let b : Bag(Integer) = null in b->intersection(Set{4})");
 		assertQueryInvalid(null, "let b : Bag(Integer) = null in b->intersection(Bag{4})");
 
-		assertQueryInvalid(null, "let s : Set(UnlimitedNatural) = null in Set{4}->intersection(s)");
-		assertQueryInvalid(null, "let s : Set(UnlimitedNatural) = null in Bag{4}->intersection(s)");
-		assertQueryInvalid(null, "let b : Bag(UnlimitedNatural) = null in Set{4}->intersection(b)");
-		assertQueryInvalid(null, "let b : Bag(UnlimitedNatural) = null in Bag{4}->intersection(b)");
+		assertQueryInvalid(null, "let s : Set(Integer) = null in Set{4.0}->intersection(s)");
+		assertQueryInvalid(null, "let s : Set(Integer) = null in Bag{4.0}->intersection(s)");
+		assertQueryInvalid(null, "let b : Bag(Integer) = null in Set{4.0}->intersection(b)");
+		assertQueryInvalid(null, "let b : Bag(Integer) = null in Bag{4.0}->intersection(b)");
 		// null collection element
 		assertQueryResults(null, "Set{2, null}", "Set{2, 3, null}->intersection(Set{2, 4, null})");
 		assertQueryResults(null, "Set{2, null}", "Set{2, 3, null}->intersection(Bag{2, 4, null})");
@@ -1511,19 +1512,19 @@ public class EvaluateCollectionOperationsTest4 extends PivotTestSuite
 		assertQueryResults(null, "Set{Tuple{first = null, second = 3}, Tuple{first = null, second = 4}}", "Set{null}->product(Bag{3, 4})");
 		assertQueryResults(null, "Set{Tuple{first = null, second = 3}, Tuple{first = null, second = 4}}", "OrderedSet{null}->product(Sequence{3, 4})");
 
-		assertQueryResults(null, "let nu : UnlimitedNatural = null in Set{Tuple{first = nu, second = 3}, Tuple{first = 4, second = 3}}", "Sequence{null, 4}->product(Sequence{3})");
-		assertQueryResults(null, "let nu : UnlimitedNatural = null in Set{Tuple{first = nu, second = 3}, Tuple{first = 4, second = 3}}", "Bag{null, 4}->product(Set{3})");
-		assertQueryResults(null, "let nu : UnlimitedNatural = null in Set{Tuple{first = nu, second = 3}, Tuple{first = 4, second = 3}}", "Set{null, 4}->product(Bag{3})");
-		assertQueryResults(null, "let nu : UnlimitedNatural = null in Set{Tuple{first = nu, second = 3}, Tuple{first = 4, second = 3}}", "OrderedSet{null, 4}->product(Sequence{3})");
+		assertQueryResults(null, "let nu : Integer = null in Set{Tuple{first = nu, second = 3}, Tuple{first = 4, second = 3}}", "Sequence{null, 4}->product(Sequence{3})");
+		assertQueryResults(null, "let nu : Integer = null in Set{Tuple{first = nu, second = 3}, Tuple{first = 4, second = 3}}", "Bag{null, 4}->product(Set{3})");
+		assertQueryResults(null, "let nu : Integer = null in Set{Tuple{first = nu, second = 3}, Tuple{first = 4, second = 3}}", "Set{null, 4}->product(Bag{3})");
+		assertQueryResults(null, "let nu : Integer = null in Set{Tuple{first = nu, second = 3}, Tuple{first = 4, second = 3}}", "OrderedSet{null, 4}->product(Sequence{3})");
 
-		assertQueryResults(null, "let n : UnlimitedNatural = null in Set{Tuple{first = n, second = 3}, Tuple{first = 4, second = 3}}", "Sequence{null, 4}->product(Sequence{3})");
-		assertQueryResults(null, "let n : UnlimitedNatural = null in Set{Tuple{first = n, second = 3}, Tuple{first = 4, second = 3}}", "Bag{null, 4}->product(Sequence{3})");
-		assertQueryResults(null, "let n : UnlimitedNatural = null in Set{Tuple{first = n, second = 3}, Tuple{first = 4, second = 3}}", "Set{null, 4}->product(Sequence{3})");
-		assertQueryResults(null, "let n : UnlimitedNatural = null in Set{Tuple{first = n, second = 3}, Tuple{first = 4, second = 3}}", "OrderedSet{null, 4}->product(Sequence{3})");
+		assertQueryResults(null, "let n : Real = null in Set{Tuple{first = n, second = 3}, Tuple{first = 4.0, second = 3}}", "Sequence{null, 4.0}->product(Sequence{3})");
+		assertQueryResults(null, "let n : Real = null in Set{Tuple{first = n, second = 3}, Tuple{first = 4.0, second = 3}}", "Bag{null, 4.0}->product(Sequence{3})");
+		assertQueryResults(null, "let n : Real = null in Set{Tuple{first = n, second = 3}, Tuple{first = 4.0, second = 3}}", "Set{null, 4.0}->product(Sequence{3})");
+		assertQueryResults(null, "let n : Real = null in Set{Tuple{first = n, second = 3}, Tuple{first = 4.0, second = 3}}", "OrderedSet{null, 4.0}->product(Sequence{3})");
 	}
 
 	@Test public void testCollectionReverse() {
-		assertSemanticErrorQuery("Bag{1,3,null,2}->reverse()", OCLMessages.UnresolvedOperation_ERROR_, "Bag(UnlimitedNatural)", "reverse");
+		assertSemanticErrorQuery("Bag{1,3,null,2}->reverse()", OCLMessages.UnresolvedOperation_ERROR_, "Bag(Integer)", "reverse");
 		assertQueryResults(null, "OrderedSet{}", "OrderedSet{}->reverse()");
 		assertQueryResults(null, "OrderedSet{null}", "OrderedSet{null}->reverse()");
 		assertQueryResults(null, "OrderedSet{2,1}", "OrderedSet{1,2}->reverse()");
@@ -1562,21 +1563,21 @@ public class EvaluateCollectionOperationsTest4 extends PivotTestSuite
 		assertQueryResults(null, "Sequence{}", "Sequence{null}->selectByKind(OclInvalid)");
 		assertQueryResults(null, "Set{}", "Set{null}->selectByKind(OclInvalid)");
 		//
-		assertQueryResults(null, "Bag{4, 4}", "Bag{4, 4, 5.0, 'test'}->selectByKind(UnlimitedNatural)");
-		assertQueryResults(null, "OrderedSet{4}", "OrderedSet{4, 4, 5.0, 'test'}->selectByKind(UnlimitedNatural)");
-		assertQueryResults(null, "Sequence{4, 4}", "Sequence{4, 4, 5.0, 'test'}->selectByKind(UnlimitedNatural)");
-		assertQueryResults(null, "Set{4}", "Set{4, 4, 5.0, 'test'}->selectByKind(UnlimitedNatural)");
+		assertQueryResults(null, "Bag{*, *}", "Bag{4, 4, *, 5.0, 'test', *}->selectByKind(UnlimitedNatural)");
+		assertQueryResults(null, "OrderedSet{*}", "OrderedSet{4, 4, *, 5.0, 'test', *}->selectByKind(UnlimitedNatural)");
+		assertQueryResults(null, "Sequence{*, *}", "Sequence{4, 4, *, 5.0, 'test', *}->selectByKind(UnlimitedNatural)");
+		assertQueryResults(null, "Set{*}", "Set{4, 4, *, 5.0, 'test', *}->selectByKind(UnlimitedNatural)");
 		//
 		assertQueryResults(null, "Sequence{'TEST'}", "Sequence{4, 4, 5.0, 'test'}->selectByKind(String).toUpper()");
 		assertQueryEquals(null, 9.0, "Set{4, 4, 5.0, 'test'}->selectByKind(Real)->sum()");
-		assertQueryEquals(null, 4, "Set{4, 4, 5.0, 'test'}->selectByKind(UnlimitedNatural)->sum()");
+		assertQueryEquals(null, 4, "Set{4, 4, 5.0, 'test'}->selectByKind(Integer)->sum()");
 	}
 
 	@Test public void testCollectionSelectByType() {
-		assertQueryResults(null, "Bag{}", "Bag{4, 4, 5.0, 'test', null}->selectByType(Integer)");
-		assertQueryResults(null, "OrderedSet{}", "OrderedSet{4, 4, 5.0, 'test', null}->selectByType(Integer)");
-		assertQueryResults(null, "Sequence{}", "Sequence{4, 4, 5.0, 'test', null}->selectByType(Integer)");
-		assertQueryResults(null, "Set{}", "Set{4, 4, 5.0, 'test', null}->selectByType(Integer)");
+		assertQueryResults(null, "Bag{4,4}", "Bag{4, 4, 5.0, 'test', null}->selectByType(Integer)");
+		assertQueryResults(null, "OrderedSet{4}", "OrderedSet{4, 4, 5.0, 'test', null}->selectByType(Integer)");
+		assertQueryResults(null, "Sequence{4,4}", "Sequence{4, 4, 5.0, 'test', null}->selectByType(Integer)");
+		assertQueryResults(null, "Set{4}", "Set{4, 4, 5.0, 'test', null}->selectByType(Integer)");
 		//
 		assertQueryResults(null, "Bag{}", "Bag{}->selectByType(Integer)");
 		assertQueryResults(null, "OrderedSet{}", "OrderedSet{}->selectByType(Integer)");
@@ -1598,14 +1599,14 @@ public class EvaluateCollectionOperationsTest4 extends PivotTestSuite
 		assertQueryResults(null, "Sequence{}", "Sequence{null}->selectByType(OclInvalid)");
 		assertQueryResults(null, "Set{}", "Set{null}->selectByType(OclInvalid)");
 		//
-		assertQueryResults(null, "Bag{4, 4}", "Bag{4, 4, 5.0, 'test'}->selectByType(UnlimitedNatural)");
-		assertQueryResults(null, "OrderedSet{4}", "OrderedSet{4, 4, 5.0, 'test'}->selectByType(UnlimitedNatural)");
-		assertQueryResults(null, "Sequence{4, 4}", "Sequence{4, 4, 5.0, 'test'}->selectByType(UnlimitedNatural)");
-		assertQueryResults(null, "Set{4}", "Set{4, 4, 5.0, 'test'}->selectByType(UnlimitedNatural)");
+		assertQueryResults(null, "Bag{*, *}", "Bag{4, 4, *, 5.0, 'test', *}->selectByType(UnlimitedNatural)");
+		assertQueryResults(null, "OrderedSet{*}", "OrderedSet{4, 4, *, 5.0, 'test', *}->selectByType(UnlimitedNatural)");
+		assertQueryResults(null, "Sequence{*, *}", "Sequence{4, 4, *, 5.0, 'test', *}->selectByType(UnlimitedNatural)");
+		assertQueryResults(null, "Set{*}", "Set{4, 4, *, 5.0, 'test', *}->selectByType(UnlimitedNatural)");
 		//
 		assertQueryResults(null, "Sequence{'TEST'}", "Sequence{4, 4, 5.0, 'test'}->selectByType(String).toUpper()");
 		assertQueryEquals(null, 5.0, "Set{4, 4, 5.0, 'test'}->selectByType(Real)->sum()");
-		assertQueryEquals(null, 4, "Set{4, 4, 5.0, 'test'}->selectByType(UnlimitedNatural)->sum()");
+		assertQueryEquals(null, 4, "Set{4, 4, 5.0, 'test'}->selectByType(Integer)->sum()");
 	}
 
 	@Test public void testCollectionSize() {
@@ -1680,7 +1681,7 @@ public class EvaluateCollectionOperationsTest4 extends PivotTestSuite
 		assertQueryEquals(null, 9.0, "OrderedSet{4.0, 4.0, 5.0}->sum()");
 		assertQueryEquals(null, standardLibrary.getRealType(), "Bag{4.0, 4, 5}->sum().oclType()");
 		assertQueryEquals(null, standardLibrary.getIntegerType(), "Bag{4, -4, -5}->sum().oclType()");
-		assertQueryEquals(null, standardLibrary.getUnlimitedNaturalType(), "Bag{4, 4, 5}->sum().oclType()");
+		assertQueryEquals(null, standardLibrary.getIntegerType(), "Bag{4, 4, 5}->sum().oclType()");
 
 		assertQueryEquals(null, 4, "4->sum()");
 		// invalid collection

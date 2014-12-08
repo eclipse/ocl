@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.xmi.impl.EMOFExtendedMetaData;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.library.LibraryConstants;
 import org.eclipse.ocl.pivot.Annotation;
@@ -210,10 +211,11 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 						logger.error("Invalid " + PROPERTY_OPPOSITE_ROLE_LOWER_KEY + " " + lower);
 						lower = one;
 					}
-					IntegerValue upper = upperValue != null ? ValuesUtil.integerValueOf(upperValue) : one;
+					UnlimitedNaturalValue unlimitedOne = ValuesUtil.UNLIMITED_ONE_VALUE;
+					UnlimitedNaturalValue upper = upperValue != null ? ValuesUtil.unlimitedNaturalValueOf(upperValue) : unlimitedOne;
 					if (upper.isInvalid()) {
 						logger.error("Invalid " + PROPERTY_OPPOSITE_ROLE_UPPER_KEY + " " + upper);
-						upper = one;
+						upper = unlimitedOne;
 					}
 					if (upper != one) {
 						oppositeProperty.setType(metaModelManager.getCollectionType(isOrdered, isUnique, localType, lower, upper));
@@ -252,7 +254,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 								lower = PivotConstants.ANNOTATED_IMPLICIT_OPPOSITE_LOWER_VALUE;
 							}
 							String upperValue = details.get("upper");
-							IntegerValue upper = upperValue != null ? ValuesUtil.integerValueOf(upperValue) : PivotConstants.ANNOTATED_IMPLICIT_OPPOSITE_UPPER_VALUE;
+							UnlimitedNaturalValue upper = upperValue != null ? ValuesUtil.unlimitedNaturalValueOf(upperValue) : PivotConstants.ANNOTATED_IMPLICIT_OPPOSITE_UPPER_VALUE;
 							if (upper.isInvalid()) {
 								logger.error("Invalid " + PROPERTY_OPPOSITE_ROLE_UPPER_KEY + " " + upper);
 								upper = PivotConstants.ANNOTATED_IMPLICIT_OPPOSITE_UPPER_VALUE;
@@ -357,7 +359,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 							IntegerValue oldLowerValue;
 							boolean oldOrdered;
 							boolean oldUnique;
-							IntegerValue oldUpperValue;
+							UnlimitedNaturalValue oldUpperValue;
 							Type oldType = pivotElement.getType();
 							if (oldType instanceof CollectionType) {
 								CollectionType oldCollectionType = (CollectionType)oldType;
@@ -371,12 +373,12 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 								oldLowerValue = pivotElement.isRequired() ? ValuesUtil.ONE_VALUE : ValuesUtil.ZERO_VALUE;
 								oldOrdered = false;
 								oldUnique = false;
-								oldUpperValue = ValuesUtil.ONE_VALUE;
+								oldUpperValue = ValuesUtil.UNLIMITED_ONE_VALUE;
 							}
 							boolean isOrdered = newOrdered != null ? newOrdered.booleanValue() : oldOrdered;
 							IntegerValue lowerValue = newLowerBound != null ? ValuesUtil.integerValueOf(newLowerBound) : oldLowerValue;
 							boolean isUnique = newUnique != null ? newUnique.booleanValue() : oldUnique;
-							IntegerValue upperValue = newUpperBound != null ? ValuesUtil.integerValueOf(newUpperBound) : oldUpperValue;
+							UnlimitedNaturalValue upperValue = newUpperBound != null ? ValuesUtil.unlimitedNaturalValueOf(newUpperBound) : oldUpperValue;
 							Type type = newType != null ? newType : oldType;
 							boolean isRequired;
 							Type pivotType;
@@ -425,7 +427,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 					boolean isUnique = eObject.isUnique();
 					if (pivotType != null) {
 						IntegerValue lowerValue = ValuesUtil.integerValueOf(lower);
-						IntegerValue upperValue = upper != -1 ? ValuesUtil.integerValueOf(upper) : ValuesUtil.UNLIMITED_VALUE;
+						UnlimitedNaturalValue upperValue = upper != -1 ? ValuesUtil.unlimitedNaturalValueOf(upper) : ValuesUtil.UNLIMITED_VALUE;
 						pivotType = metaModelManager.getCollectionType(isOrdered, isUnique, pivotType, lowerValue, upperValue);
 					}
 				}

@@ -36,6 +36,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.Annotation;
 import org.eclipse.ocl.pivot.AnyType;
@@ -753,7 +754,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 				isUnique = ElementUtil.isUnique((TypedElementCS) eContainer);
 			}
 			IntegerValue lowerValue = ValuesUtil.integerValueOf(lower);
-			IntegerValue upperValue = upper != -1 ? ValuesUtil.integerValueOf(upper) : ValuesUtil.UNLIMITED_VALUE;
+			UnlimitedNaturalValue upperValue = upper != -1 ? ValuesUtil.unlimitedNaturalValueOf(upper) : ValuesUtil.UNLIMITED_VALUE;
 			CollectionType pivotCollectionType = metaModelManager.getCollectionType(isOrdered, isUnique, pivotType, lowerValue, upperValue);
 			installPivotReference(csElement, pivotCollectionType, BaseCSPackage.Literals.PIVOTABLE_ELEMENT_CS__PIVOT);
 		}

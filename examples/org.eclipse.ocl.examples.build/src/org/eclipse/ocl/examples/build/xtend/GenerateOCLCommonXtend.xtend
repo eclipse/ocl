@@ -20,16 +20,17 @@ import org.eclipse.ocl.pivot.Comment
 import org.eclipse.ocl.pivot.EnumerationLiteral
 import org.eclipse.ocl.pivot.Iteration
 import org.eclipse.ocl.pivot.LambdaType
+import org.eclipse.ocl.pivot.Model
 import org.eclipse.ocl.pivot.Operation
 import org.eclipse.ocl.pivot.Package
 import org.eclipse.ocl.pivot.Parameter
 import org.eclipse.ocl.pivot.Precedence
+import org.eclipse.ocl.pivot.PrimitiveType
 import org.eclipse.ocl.pivot.Property
 import org.eclipse.ocl.pivot.TemplateBinding
 import org.eclipse.ocl.pivot.TemplateParameter
 import org.eclipse.ocl.pivot.TemplateParameterSubstitution
 import org.eclipse.ocl.pivot.TemplateSignature
-import org.eclipse.ocl.pivot.Model
 
 public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 {
@@ -95,6 +96,25 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 				«FOR property : type.getSortedTupleParts() BEFORE ("\t") SEPARATOR (",\n\t")»
 				createProperty("«property.name»", «property.type.getSymbolName()»)«ENDFOR»);
 			«ENDFOR»
+		'''
+	}
+
+	protected def String defineCoercions(Package pkg) {
+		var allCoercions = pkg.getRootPackage().getSortedCoercions();
+		'''
+			private void installCoercions() {
+				List<Operation> ownedCoercions;
+				Operation coercion;
+				«FOR type : allCoercions.getSortedOwningTypes()»
+					ownedCoercions = «type.getSymbolName()».getCoercions();
+					«FOR coercion : (type as PrimitiveType).getSortedCoercions(allCoercions)»
+						ownedCoercions.add(coercion = «coercion.getSymbolName()»);
+						«IF coercion.bodyExpression != null»
+							operation.setBodyExpression(createExpressionInOCL(«coercion.type.getSymbolName()», "«coercion.bodyExpression.javaString()»"));
+						«ENDIF»
+					«ENDFOR»
+				«ENDFOR»
+			}
 		'''
 	}
 

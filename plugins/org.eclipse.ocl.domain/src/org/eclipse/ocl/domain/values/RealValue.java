@@ -16,7 +16,7 @@ import java.math.BigInteger;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
-public interface RealValue extends Value, OCLValue, Comparable<RealValue>
+public interface RealValue extends NumberValue
 {
 	/**
 	 * @generated NOT
@@ -71,21 +71,6 @@ public interface RealValue extends Value, OCLValue, Comparable<RealValue>
 	/**
 	 * @generated NOT
 	 */
-	int compareToInteger(@NonNull IntegerValue right);
-
-	/**
-	 * @generated NOT
-	 */
-	int compareToReal(@NonNull RealValue right);
-
-	/**
-	 * @generated NOT
-	 */
-	int compareToUnlimited(@NonNull UnlimitedValue right);
-
-	/**
-	 * @generated NOT
-	 */
 	@NonNull RealValue divideInteger(@NonNull IntegerValue right);
 
 	/**
@@ -111,11 +96,6 @@ public interface RealValue extends Value, OCLValue, Comparable<RealValue>
 	/**
 	 * @generated NOT
 	 */
-	boolean isUnlimited();
-
-	/**
-	 * @generated NOT
-	 */
 	@NonNull RealValue max(@NonNull RealValue right);
 
 	/**
@@ -131,7 +111,7 @@ public interface RealValue extends Value, OCLValue, Comparable<RealValue>
 	/**
 	 * @generated NOT
 	 */
-	@NonNull RealValue maxUnlimited(@NonNull UnlimitedValue right);
+//	@NonNull RealValue maxUnlimited(@NonNull UnlimitedValue right);
 
 	/**
 	 * @generated NOT
@@ -146,7 +126,7 @@ public interface RealValue extends Value, OCLValue, Comparable<RealValue>
 	/**
 	 * @generated NOT
 	 */
-	@NonNull RealValue minUnlimited(@NonNull UnlimitedValue right);
+//	@NonNull RealValue minUnlimited(@NonNull UnlimitedValue right);
 
 	/**
 	 * @generated NOT

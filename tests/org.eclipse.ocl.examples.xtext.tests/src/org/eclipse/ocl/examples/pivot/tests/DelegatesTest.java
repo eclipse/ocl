@@ -572,7 +572,7 @@ public class DelegatesTest extends PivotTestSuite
 		delegate = factory.createQueryDelegate(companyClass, variables, "self");
 		delegate.prepare();
 		executeWithException(delegate, acme, okBindings,
-			OCLMessages.MismatchedArgumentType_ERROR_, okName, "UnlimitedNatural", "String");
+			OCLMessages.MismatchedArgumentType_ERROR_, okName, "Integer", "String");
 	}
 
 	public void test_allInstances() {
@@ -672,7 +672,7 @@ public class DelegatesTest extends PivotTestSuite
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		getWithException(badClassInstance, "attributeParsingToSemanticError",
 			getErrorsInMessage(badClassInstance.eClass().getName(), "attributeParsingToSemanticError", "'5' and 6") +
-			DomainUtil.bind("1: " + OCLMessages.UnresolvedOperationCall_ERROR_, "String", "and", "UnlimitedNatural"));
+			DomainUtil.bind("1: " + OCLMessages.UnresolvedOperationCall_ERROR_, "String", "and", "Integer"));
 	}
 
 	public void test_attributeParsingToSyntacticError() {

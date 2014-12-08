@@ -85,6 +85,7 @@ import org.eclipse.ocl.domain.values.OrderedSet;
 import org.eclipse.ocl.domain.values.OrderedSetValue;
 import org.eclipse.ocl.domain.values.SequenceValue;
 import org.eclipse.ocl.domain.values.SetValue;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.Value;
 import org.eclipse.ocl.domain.values.impl.BagImpl;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
@@ -536,7 +537,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		return getCollectionType(typeId, null, null);
 	}
 
-	public @NonNull DomainClass getCollectionType(@NonNull CollectionTypeId typeId, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
+	public @NonNull DomainClass getCollectionType(@NonNull CollectionTypeId typeId, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		CollectionTypeId generalizedId = typeId.getGeneralizedId();
 		if ((typeId == generalizedId) && (lower == null) && (upper == null)) {
 			if (generalizedId == TypeId.BAG) {
@@ -598,7 +599,7 @@ public abstract class AbstractIdResolver implements IdResolver
 			TypeId elementTypeId = elementType.getTypeId();
 			collectedId = collectionId.getSpecializedId(elementTypeId);
 			final IntegerValue size = collectionValue.size();
-			return getCollectionType(collectedId, size, size);
+			return getCollectionType(collectedId, size, size.asUnlimitedNaturalValue());
 		}
 		else {
 			return getStaticTypeOf(value);

@@ -121,7 +121,7 @@ public interface CompleteModel extends NamedElement
 	boolean conformsTo(@NonNull Type firstType, @NonNull TemplateParameterSubstitutions firstSubstitutions,
 			@NonNull Type secondType, @NonNull TemplateParameterSubstitutions secondSubstitutions);
 	@NonNull Iterable<? extends CompletePackage> getAllCompletePackages();
-//	@NonNull <T extends CollectionType> T getCollectionType(@NonNull T containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper);
+//	@NonNull <T extends CollectionType> T getCollectionType(@NonNull T containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
 	@NonNull CompleteClass getCompleteClass(@NonNull DomainType partialClass);
 	@NonNull CompleteEnvironment getCompleteEnvironment();
 	@NonNull CompletePackage getCompletePackage(@NonNull DomainPackage asPackage);

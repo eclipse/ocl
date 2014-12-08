@@ -31,6 +31,7 @@ import org.eclipse.ocl.domain.elements.Nameable;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.Iteration;
@@ -313,6 +314,32 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		} else {
 			return elem.getName() + "()";
 		}
+	}
+
+	protected @NonNull List<Operation> getSortedCoercions(@NonNull Model root) {
+		Set<Operation> allElements = new HashSet<Operation>();
+		TreeIterator<EObject> tit = root.eAllContents();
+		while (tit.hasNext()) {
+			EObject eObject = tit.next();
+			if (eObject instanceof PrimitiveType) {
+				allElements.addAll(((PrimitiveType)eObject).getCoercions());
+			}
+		}
+		List<Operation> sortedElements = new ArrayList<Operation>(allElements);
+		Collections.sort(sortedElements, monikerComparator);
+		return sortedElements;
+	}
+
+	protected @NonNull List<Operation> getSortedCoercions(@NonNull PrimitiveType type, @NonNull List<Operation> allCoercions) {
+		Set<Operation> allElements = new HashSet<Operation>();
+		for (Operation coercion : type.getCoercions()) {
+			if (allCoercions.contains(coercion)) {
+				allElements.add(coercion);
+			}
+		}
+		List<Operation> sortedElements = new ArrayList<Operation>(allElements);
+		Collections.sort(sortedElements, monikerComparator);
+		return sortedElements;
 	}
 	
 	protected @NonNull List<CollectionType> getSortedCollectionTypes(@NonNull Model root) {

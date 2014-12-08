@@ -30,6 +30,7 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 
 	@NonNull protected override String generateMetamodel(@NonNull Model root) {
 		var lib = DomainUtil.nonNullState(root.getLibrary());
+		var allCoercions = root.getSortedCoercions();
 		var allEnumerations = root.getSortedEnumerations();
 		'''
 			/*******************************************************************************
@@ -298,15 +299,18 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 						installPackages();
 						installOclTypes();
 						installPrimitiveTypes();
-			«IF allEnumerations.size() > 0»
+						«IF allEnumerations.size() > 0»
 						installEnumerations();
-			«ENDIF»
+						«ENDIF»
 						installParameterTypes();
 						installCollectionTypes();
 						installLambdaTypes();
 						installTupleTypes();
 						installOperations();
 						installIterations();
+						«IF allCoercions.size() > 0»
+						installCoercions();
+						«ENDIF»
 						installProperties();
 						installTemplateBindings();
 						installPrecedences();
@@ -349,6 +353,10 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 					«lib.defineOperations()»	
 
 					«lib.defineIterations()»	
+					«IF allCoercions.size() > 0»
+
+					«lib.defineCoercions()»	
+					«ENDIF»
 
 					«lib.declareProperties()»
 

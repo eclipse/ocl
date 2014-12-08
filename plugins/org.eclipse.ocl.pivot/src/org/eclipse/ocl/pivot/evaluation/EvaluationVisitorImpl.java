@@ -48,6 +48,8 @@ import org.eclipse.ocl.domain.values.CollectionValue;
 import org.eclipse.ocl.domain.values.IntegerRange;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.NullValue;
+import org.eclipse.ocl.domain.values.Unlimited;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.AssociationClassCallExp;
@@ -864,13 +866,19 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		if (unlimitedNaturalSymbol == null) {
 			return null;
 		}
+		if (unlimitedNaturalSymbol instanceof Unlimited) {
+			return ValuesUtil.UNLIMITED_VALUE;
+		}
+		if (unlimitedNaturalSymbol instanceof UnlimitedNaturalValue) {
+			return unlimitedNaturalSymbol;
+		}
 		IntegerValue integerValue = ValuesUtil.integerValueOf(unlimitedNaturalSymbol);
 		if (integerValue.signum() < 0) {
 			if (integerValue == ValuesUtil.integerValueOf(-1)) {
-				integerValue = ValuesUtil.UNLIMITED_VALUE;
+				return ValuesUtil.UNLIMITED_VALUE;
 			}
 		}
-		return integerValue;
+		return integerValue.asUnlimitedNaturalValue();
 	}
 	
 	/**

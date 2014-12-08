@@ -12,6 +12,7 @@ package org.eclipse.ocl.pivot;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 
 
 /**
@@ -114,7 +115,7 @@ public interface CollectionType
 	void setUpper(Number value);
 
 	void setLowerValue(@NonNull IntegerValue lower);
-	void setUpperValue(@NonNull IntegerValue upper);
+	void setUpperValue(@NonNull UnlimitedNaturalValue upper);
 	
 	@Override
 	@NonNull CollectionType getContainerType();

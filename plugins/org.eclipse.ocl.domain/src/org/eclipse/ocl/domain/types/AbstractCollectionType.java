@@ -23,17 +23,18 @@ import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 
 public class AbstractCollectionType extends AbstractSpecializedType implements DomainCollectionType
 {
 	protected final @NonNull DomainType elementType;
 	protected final @NonNull IntegerValue lower;
-	protected final @NonNull IntegerValue upper;
+	protected final @NonNull UnlimitedNaturalValue upper;
 	protected final @NonNull CollectionTypeId typeId;
 	
 	public AbstractCollectionType(@NonNull DomainEnvironment environment, @NonNull String name,
-			@NonNull DomainClass containerType, @NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
+			@NonNull DomainClass containerType, @NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		super(environment, name, containerType);
 		this.elementType = elementType;
 		this.lower = lower != null ? lower : ValuesUtil.ZERO_VALUE;
@@ -118,7 +119,7 @@ public class AbstractCollectionType extends AbstractSpecializedType implements D
 	}
 
 	@Override
-	public @NonNull IntegerValue getUpperValue() {
+	public @NonNull UnlimitedNaturalValue getUpperValue() {
 		return upper;
 	}
 

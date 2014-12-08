@@ -40,7 +40,7 @@ public class IntegerRangeImpl extends AbstractList<Value> implements IntegerRang
 		@Override
 		public boolean hasNext() {
 			if (curr == null) {
-				return first.compareToInteger(last) <= 0;
+				return first.commutatedCompareToInteger(last) <= 0;
 			}
 			else {
 				return !last.equals(curr);
@@ -52,7 +52,7 @@ public class IntegerRangeImpl extends AbstractList<Value> implements IntegerRang
 			if (curr == null) {
 				curr = first;
 			}
-			else if (curr.compareToInteger(last) < 0) {
+			else if (curr.commutatedCompareToInteger(last) < 0) {
 				try {
 					curr = curr.addInteger(ValuesUtil.ONE_VALUE);
 				} catch (InvalidValueException e) {
@@ -101,7 +101,7 @@ public class IntegerRangeImpl extends AbstractList<Value> implements IntegerRang
 			return false;
 		}
 		IntegerValue value = (IntegerValue)o;
-		return (first.compareToInteger(value) <= 0) && (value.compareToInteger(last) <= 0);
+		return (first.commutatedCompareToInteger(value) <= 0) && (value.commutatedCompareToInteger(last) <= 0);
 	}
 	
 	@Override

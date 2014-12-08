@@ -26,6 +26,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.Unlimited;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.pivot.Constraint;
@@ -556,7 +557,7 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 					boolean isOrdered = umlMultiplicity.isOrdered();
 					boolean isUnique = umlMultiplicity.isUnique();
 					IntegerValue lowerValue = ValuesUtil.integerValueOf(lower);
-					IntegerValue upperValue = upper == -1 ? ValuesUtil.UNLIMITED_VALUE : ValuesUtil.integerValueOf(upper);
+					UnlimitedNaturalValue upperValue = upper == -1 ? ValuesUtil.UNLIMITED_VALUE : ValuesUtil.unlimitedNaturalValueOf(upper);
 					pivotType = metaModelManager.getCollectionType(isOrdered, isUnique, pivotType, lowerValue, upperValue);
 				}
 			}

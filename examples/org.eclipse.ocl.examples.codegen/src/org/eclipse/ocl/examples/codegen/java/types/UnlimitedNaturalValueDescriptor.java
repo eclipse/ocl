@@ -12,7 +12,7 @@ package org.eclipse.ocl.examples.codegen.java.types;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.ids.ElementId;
-import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGUnboxExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
@@ -24,7 +24,7 @@ import org.eclipse.ocl.examples.codegen.java.JavaStream;
 public class UnlimitedNaturalValueDescriptor extends BoxedValueDescriptor
 {
 	public UnlimitedNaturalValueDescriptor(@NonNull ElementId elementId) {
-		super(elementId, IntegerValue.class, new UnlimitedNaturalObjectDescriptor(elementId));
+		super(elementId, UnlimitedNaturalValue.class, new UnlimitedNaturalObjectDescriptor(elementId));
 	}
 
 	@Override

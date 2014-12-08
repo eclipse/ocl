@@ -123,7 +123,7 @@ public class IntIntegerValueImpl extends IntegerValueImpl
 	}
 
 	@Override
-	public int compareToInteger(@NonNull IntegerValue o) {
+	public int commutatedCompareToInteger(@NonNull IntegerValue o) {
 		try {
 			if (o instanceof IntIntegerValueImpl) {
 				int thatValue = ((IntIntegerValueImpl)o).intValue();

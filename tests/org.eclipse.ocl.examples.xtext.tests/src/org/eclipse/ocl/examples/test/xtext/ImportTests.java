@@ -378,16 +378,16 @@ public class ImportTests extends XtextTestCase
 		TestCaseAppender.INSTANCE.uninstall();
 		String moreCompleteOCL =
 			"package ocl\n" +
-			"context _'Integer'\n" +
+			"context _'Real'\n" +
 			"def: isPositive(z : Integer) : Boolean = true\n" +
 			"endpackage\n";
 		createOCLinEcoreFile("more.ocl", moreCompleteOCL);
 		String testFile =
 			"include 'more.ocl'\n" +
 			"package ocl\n" +
-			"context _'Integer'\n" +
+			"context _'Real'\n" +
 			"def: signum : Integer = 0\n" +
-			"context _'UnlimitedNatural'\n" +
+			"context _'Integer'\n" +
 			"inv CheckIt: isPositive(1) = signum > 0\n" +
 			"endpackage\n";
 		doLoadFromString("string.ocl", testFile);
@@ -397,21 +397,21 @@ public class ImportTests extends XtextTestCase
 		TestCaseAppender.INSTANCE.uninstall();
 		String moreCompleteOCL =
 			"package ocl\n" +
-			"context _'Integer'\n" +
+			"context _'Real'\n" +
 			"def: isPositive() : Boolean = true\n" +
 			"endpackage\n";
 		createOCLinEcoreFile("more.ocl", moreCompleteOCL);
 		String testFile =
 			"include 'more.ocl'\n" +
 			"package ocl\n" +
-			"context _'Integer'\n" +
+			"context _'Real'\n" +
 			"def: signum : Integer = 0\n" +
-			"context _'UnlimitedNatural'\n" +
+			"context _'Integer'\n" +
 			"inv CheckIt: isPositive() = signum > 0\n" +
 			"inv unCheckIt: isNegative() = signum < 0\n" +
 			"endpackage\n";
 		Bag<String> bag = new BagImpl<String>();
-		bag.add(DomainUtil.bind(OCLMessages.UnresolvedOperation_ERROR_, "UnlimitedNatural", "isNegative"));
+		bag.add(DomainUtil.bind(OCLMessages.UnresolvedOperation_ERROR_, "Integer", "isNegative"));
 		doBadLoadFromString("string.ocl", testFile, bag);
 	}
 	

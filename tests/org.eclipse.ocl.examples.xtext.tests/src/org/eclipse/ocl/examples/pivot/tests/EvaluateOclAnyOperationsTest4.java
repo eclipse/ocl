@@ -139,7 +139,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
 	    // invalid
         //
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("invalid > 0", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstants.GREATER_THAN_OPERATOR, standardLibrary.getUnlimitedNaturalType());
+		assertSemanticErrorQuery("invalid > 0", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstants.GREATER_THAN_OPERATOR, standardLibrary.getIntegerType());
 //		assertQueryInvalid(null, "invalid > 0");
 //		assertSemanticErrorQuery("0 > invalid", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.GREATER_THAN_OPERATOR);
 		assertQueryInvalid(null, "0 > invalid");
@@ -148,7 +148,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
 		// null
 		//
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("null > 0", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstants.GREATER_THAN_OPERATOR, standardLibrary.getUnlimitedNaturalType());
+		assertSemanticErrorQuery("null > 0", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstants.GREATER_THAN_OPERATOR, standardLibrary.getIntegerType());
 //		assertQueryInvalid(null, "null > 0");
 //		assertSemanticErrorQuery("0 > null", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.GREATER_THAN_OPERATOR);
 		assertQueryInvalid(null, "0 > null");
@@ -165,7 +165,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
 	    // invalid
         //
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("invalid >= 0", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR, standardLibrary.getUnlimitedNaturalType());
+		assertSemanticErrorQuery("invalid >= 0", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR, standardLibrary.getIntegerType());
 //		assertQueryInvalid(null, "invalid >= 0");
 //		assertSemanticErrorQuery("0 >= invalid", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR);
 		assertQueryInvalid(null, "0 >= invalid");
@@ -174,7 +174,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
 		// null
 		//
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("null >= 0", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR, standardLibrary.getUnlimitedNaturalType());
+		assertSemanticErrorQuery("null >= 0", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR, standardLibrary.getIntegerType());
 //		assertQueryInvalid(null, "null >= 0");
 //		assertSemanticErrorQuery("0 >= null", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR);
 		assertQueryInvalid(null, "0 >= null");
@@ -191,7 +191,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
 	    // invalid
         //
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("invalid < 0", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstants.LESS_THAN_OPERATOR, standardLibrary.getUnlimitedNaturalType());
+		assertSemanticErrorQuery("invalid < 0", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstants.LESS_THAN_OPERATOR, standardLibrary.getIntegerType());
 //		assertQueryInvalid(null, "invalid < 0");
 //		assertSemanticErrorQuery("0 < invalid", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.LESS_THAN_OPERATOR);
 		assertQueryInvalid(null, "0 < invalid");
@@ -200,7 +200,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
 		// null
 		//
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("null < 0", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstants.LESS_THAN_OPERATOR, standardLibrary.getUnlimitedNaturalType());
+		assertSemanticErrorQuery("null < 0", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstants.LESS_THAN_OPERATOR, standardLibrary.getIntegerType());
 //		assertQueryInvalid(null, "null < 0");
 //		assertSemanticErrorQuery("0 < null", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.LESS_THAN_OPERATOR);
 		assertQueryInvalid(null, "0 < null");
@@ -217,7 +217,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
 	    // invalid
         //
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("invalid <= 0", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR, standardLibrary.getUnlimitedNaturalType());
+		assertSemanticErrorQuery("invalid <= 0", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR, standardLibrary.getIntegerType());
 //		assertQueryInvalid(null, "invalid <= 0");
 //		assertSemanticErrorQuery("0 <= invalid", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR);
 		assertQueryInvalid(null, "0 <= invalid");
@@ -226,7 +226,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
 		// null
 		//
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("null <= 0", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR, standardLibrary.getUnlimitedNaturalType());
+		assertSemanticErrorQuery("null <= 0", OCLMessages.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR, standardLibrary.getIntegerType());
 //		assertQueryInvalid(null, "null <= 0");
 //		assertSemanticErrorQuery("0 <= null", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR);
 		assertQueryInvalid(null, "0 <= null");
@@ -377,22 +377,22 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
 		assertQueryInvalid(null, "*.oclAsType(OclVoid)");
 		assertQueryInvalid(null, "*.oclAsType(OclInvalid)");
 		//
-		assertQueryResults(null, "Set{1,2}", "Set{1,2}->oclAsType(Set(UnlimitedNatural))");
+		assertQueryInvalid(null, "Set{1,2}->oclAsType(Set(UnlimitedNatural))");
 		assertQueryResults(null, "Set{1,2}", "Set{1,2}->oclAsType(Set(Integer))");
 		assertQueryResults(null, "Set{1,2}", "Set{1,2}->oclAsType(Collection(Real))");
-		assertQueryResults(null, "Set{1,2}", "Set{1,2}->oclAsType(Collection(UnlimitedNatural))");
+		assertQueryInvalid(null, "Set{1,2}->oclAsType(Collection(UnlimitedNatural))");
 		assertQueryInvalid(null, "Set{1.0,2}->oclAsType(Collection(UnlimitedNatural))");
 		assertQueryInvalid(null, "Set{1,2}->oclAsType(Sequence(UnlimitedNatural))");
 		assertQueryInvalid(null, "Set{1,2}.oclAsType(Set(UnlimitedNatural))");		// Cannot cast non-collection (elements) to collection
-		assertQueryResults(null, "Bag{1,2}", "Set{1,2}.oclAsType(UnlimitedNatural)");
+		assertQueryResults(null, "Bag{1,2}", "Set{1,2}.oclAsType(Integer)");
 		assertQueryInvalid(null, "Set{1,2}.oclAsType(Set(Integer))");				// Cannot cast non-collection (elements) to collection
 		assertQueryResults(null, "Bag{1,2}", "Set{1,2}.oclAsType(Integer)");
-		assertQueryResults(null, "Set{Set{1,2},Set{3,4}}", "Set{Set{1,2},Set{3,4}}->oclAsType(Set(Set(UnlimitedNatural)))");
-		assertQueryResults(null, "Set{Set{1,2},Set{3,4}}", "Set{Set{1,2},Set{3,4}}->oclAsType(Set(Collection(UnlimitedNatural)))");
-		assertQueryResults(null, "Set{Set{1,2},Set{3,4}}", "Set{Set{1,2},Set{3,4}}->oclAsType(Collection(Set(UnlimitedNatural)))");
 		assertQueryResults(null, "Set{Set{1,2},Set{3,4}}", "Set{Set{1,2},Set{3,4}}->oclAsType(Set(Set(Integer)))");
-		assertQueryInvalid(null, "Set{Set{1,2},Set{3,4}}->oclAsType(Set(Sequence(UnlimitedNatural)))");
-		assertQueryInvalid(null, "Set{Set{1,2},Set{3,4}}->oclAsType(Sequence(Set(UnlimitedNatural)))");
+		assertQueryResults(null, "Set{Set{1,2},Set{3,4}}", "Set{Set{1,2},Set{3,4}}->oclAsType(Set(Collection(Integer)))");
+		assertQueryResults(null, "Set{Set{1,2},Set{3,4}}", "Set{Set{1,2},Set{3,4}}->oclAsType(Collection(Set(Integer)))");
+		assertQueryResults(null, "Set{Set{1,2},Set{3,4}}", "Set{Set{1,2},Set{3,4}}->oclAsType(Set(Set(Real)))");
+		assertQueryInvalid(null, "Set{Set{1,2},Set{3,4}}->oclAsType(Set(Sequence(Integer)))");
+		assertQueryInvalid(null, "Set{Set{1,2},Set{3,4}}->oclAsType(Sequence(Set(Integer)))");
 		//
 		assertSemanticErrorQuery("3.oclAsType(OclAny).abs()", OCLMessages.UnresolvedOperation_ERROR_, "OclAny", "abs");
 		assertSemanticErrorQuery("let v : OclAny = 3 in v.abs()", OCLMessages.UnresolvedOperation_ERROR_, "OclAny", "abs");
@@ -464,7 +464,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
         assertQueryTrue(null, "1.oclIsKindOf(Real)");
         assertQueryTrue(null, "1.oclIsKindOf(Integer)");
         assertQueryTrue(null, "(-1).oclIsKindOf(Integer)");
-        assertQueryTrue(null, "1.oclIsKindOf(UnlimitedNatural)");
+        assertQueryTrue(null, "1.oclIsKindOf(Integer)");
         assertQueryFalse(null, "1.oclIsKindOf(String)");
         assertQueryTrue(null, "1.oclIsKindOf(OclAny)");
         assertQueryFalse(null, "1.oclIsKindOf(ocl::Package)");
@@ -472,8 +472,8 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
         assertQueryFalse(null, "*.oclIsKindOf(OclInvalid)");
         assertQueryFalse(null, "*.oclIsKindOf(OclVoid)");
         assertQueryFalse(null, "*.oclIsKindOf(Boolean)");
-        assertQueryTrue(null, "*.oclIsKindOf(Real)");
-        assertQueryTrue(null, "*.oclIsKindOf(Integer)");
+        assertQueryFalse(null, "*.oclIsKindOf(Real)");
+        assertQueryFalse(null, "*.oclIsKindOf(Integer)");
         assertQueryTrue(null, "*.oclIsKindOf(UnlimitedNatural)");
         assertQueryFalse(null, "*.oclIsKindOf(String)");
         assertQueryTrue(null, "*.oclIsKindOf(OclAny)");
@@ -542,9 +542,9 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
         assertQueryFalse(null, "1.oclIsTypeOf(OclVoid)");
         assertQueryFalse(null, "1.oclIsTypeOf(Boolean)");
         assertQueryFalse(null, "1.oclIsTypeOf(Real)");
-        assertQueryFalse(null, "1.oclIsTypeOf(Integer)");
+        assertQueryTrue(null, "1.oclIsTypeOf(Integer)");
         assertQueryTrue(null, "(-1).oclIsTypeOf(Integer)");
-        assertQueryTrue(null, "1.oclIsTypeOf(UnlimitedNatural)");
+        assertQueryFalse(null, "1.oclIsTypeOf(UnlimitedNatural)");
         assertQueryFalse(null, "1.oclIsTypeOf(String)");
         assertQueryFalse(null, "1.oclIsTypeOf(OclAny)");
         assertQueryFalse(null, "1.oclIsTypeOf(ocl::Package)");
@@ -644,15 +644,15 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
     	PivotStandardLibrary standardLibrary = completeEnvironment.getStandardLibrary();
     	assertQueryEquals(null, 1, "Set{1}->oclType().ownedOperations->select(name = 'flatten')->size()");
     	assertQueryEquals(null, completeEnvironment.getSetType(standardLibrary.getOclVoidType(), null, null), "Set{}->oclType()");
-    	assertQueryEquals(null, completeEnvironment.getSetType(standardLibrary.getUnlimitedNaturalType(), null, null), "Set{1}->oclType()");
-    	assertQueryResults(null, "Bag{'UnlimitedNatural'}", "Set{1}.oclType().name");
+    	assertQueryEquals(null, completeEnvironment.getSetType(standardLibrary.getIntegerType(), null, null), "Set{1}->oclType()");
+    	assertQueryResults(null, "Bag{'Integer'}", "Set{1}.oclType().name");
     	assertQueryEquals(null, "Set", "Set{1}->oclType().name");
-    	assertSemanticErrorQuery("Set{1}.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "Set(UnlimitedNatural)", "allInstances");
-    	assertSemanticErrorQuery("Set{1}->allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "Set(UnlimitedNatural)", "allInstances");
+    	assertSemanticErrorQuery("Set{1}.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "Set(Integer)", "allInstances");
+    	assertSemanticErrorQuery("Set{1}->allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "Set(Integer)", "allInstances");
     	assertSemanticErrorQuery("Set{1}.oclType().allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "Bag(Class)", "allInstances");
-    	assertSemanticErrorQuery("Set{1}->oclType().allInstances()", OCLMessages.UnresolvedStaticOperationCall_ERROR_, "Set(UnlimitedNatural)", "allInstances", "");
+    	assertSemanticErrorQuery("Set{1}->oclType().allInstances()", OCLMessages.UnresolvedStaticOperationCall_ERROR_, "Set(Integer)", "allInstances", "");
     	assertQueryResults(null, "Set{}", "Set.oclType().allInstances()");
-    	assertQueryEquals(null, standardLibrary.getUnlimitedNaturalType(), "Set{1}->oclType().elementType");
+    	assertQueryEquals(null, standardLibrary.getIntegerType(), "Set{1}->oclType().elementType");
     }
 
     /**
@@ -681,15 +681,15 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
     @Test public void test_oclType_Numeric() {
     	PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
     	PrimitiveType integerType = standardLibrary.getIntegerType();
-    	assertQueryEquals(null, standardLibrary.getUnlimitedNaturalType(), "3.oclType()");
+    	assertQueryEquals(null, standardLibrary.getIntegerType(), "3.oclType()");
     	assertQueryEquals(null, standardLibrary.getRealType(), "3.0.oclType()");
     	assertQueryEquals(null, standardLibrary.getUnlimitedNaturalType(), "*.oclType()");
 		assertQueryEquals(null, standardLibrary.getClassType(), "Integer.oclType()");
     	assertQueryEquals(null, integerType, "Integer");
     	assertSemanticErrorQuery("Integer.allInstances()", OCLMessages.UnresolvedStaticOperationCall_ERROR_, "Integer", "allInstances", "");
-    	assertSemanticErrorQuery("3.oclType().allInstances()", OCLMessages.UnresolvedStaticOperationCall_ERROR_, "UnlimitedNatural", "allInstances", "");
+    	assertSemanticErrorQuery("3.oclType().allInstances()", OCLMessages.UnresolvedStaticOperationCall_ERROR_, "Integer", "allInstances", "");
     	assertQueryResults(null, "Set{}", "Integer.oclType().allInstances()");
-		assertQueryEquals(null, "UnlimitedNatural", "4.oclType().name");
+		assertQueryEquals(null, "Integer", "4.oclType().name");
      }
 
     /**
@@ -771,7 +771,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
     	assertQueryEquals(null, standardLibrary.getClassType(), "3.oclType().oclType().oclType()");
     	assertQueryEquals(null, standardLibrary.getClassType(), "Boolean.oclType()");
     	assertQueryEquals(null, "Class", "Boolean.oclType().name");
-    	assertSemanticErrorQuery("3.oclType(OclAny)", OCLMessages.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "oclType", "OclAny");
+    	assertSemanticErrorQuery("3.oclType(OclAny)", OCLMessages.UnresolvedOperationCall_ERROR_, "Integer", "oclType", "OclAny");
     }
 
 //	@Test public void testMetaclassInstanceType() {

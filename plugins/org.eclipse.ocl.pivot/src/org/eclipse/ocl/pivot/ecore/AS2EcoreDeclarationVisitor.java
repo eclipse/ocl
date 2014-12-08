@@ -44,6 +44,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.common.utils.StringUtils;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.Annotation;
 import org.eclipse.ocl.pivot.Class;
@@ -282,7 +283,7 @@ public class AS2EcoreDeclarationVisitor
 		String unique = null;
 		String upper = null;
 		IntegerValue lowerValue;
-		IntegerValue upperValue;
+		UnlimitedNaturalValue upperValue;
 		Type propertyType = property.getType();
 		Type type;
 		if (propertyType instanceof CollectionType) {
@@ -306,11 +307,11 @@ public class AS2EcoreDeclarationVisitor
 		else {
 			type = propertyType;
 			lowerValue = property.isRequired() ? ValuesUtil.ONE_VALUE : ValuesUtil.ZERO_VALUE;
-			upperValue = ValuesUtil.ONE_VALUE;
+			upperValue = ValuesUtil.UNLIMITED_ONE_VALUE;
 			if (!ValuesUtil.ZERO_VALUE.equals(lowerValue)) {
 				lower = lowerValue.toString();
 			}
-			if (!ValuesUtil.ONE_VALUE.equals(upperValue)) {
+			if (!ValuesUtil.UNLIMITED_ONE_VALUE.equals(upperValue)) {
 				upper = upperValue.toString();
 			}
 		}

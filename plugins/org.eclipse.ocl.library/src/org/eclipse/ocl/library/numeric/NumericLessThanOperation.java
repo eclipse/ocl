@@ -18,6 +18,7 @@ import org.eclipse.ocl.domain.values.RealValue;
 /**
  * NumericLessThanOperation realises the <() library operation.
  */
+@Deprecated		// Use OclComparableLessThanOperation
 public class NumericLessThanOperation extends AbstractSimpleBinaryOperation
 {
 	public static final @NonNull NumericLessThanOperation INSTANCE = new NumericLessThanOperation();

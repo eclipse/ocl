@@ -427,13 +427,14 @@
             name="b" type="#Boolean"/>
       </ownedOperations>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:PrimitiveType" xmi:id="Integer" name="Integer" superClasses="#Real">
+    <ownedClasses xsi:type="pivot:PrimitiveType" xmi:id="Integer" coercions="#o.ocl.Integer.toUnlimitedNatural"
+        name="Integer" superClasses="#Real">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>Primitive</value>
         </ownedDetail>
       </ownedAnnotation>
-      <ownedComment body="The standard type Integer represents the mathematical concept of integer.&#xA;Note that UnlimitedNatural is a subclass of Integer, so for each parameter of type Integer,&#xA;you can use an unlimited natural as the actual parameter.&#xA;Integer is itself an instance of the metatype PrimitiveType (from UML).&#xA;"/>
+      <ownedComment body="The standard type Integer represents the mathematical concept of integer.&#xA;Integer is itself an instance of the metatype PrimitiveType (from UML).&#xA;"/>
       <ownedOperations xmi:id="o.ocl.Integer.%45%" implementationClass="org.eclipse.ocl.library.numeric.NumericNegateOperation"
           name="-" precedence="#Z.UNARY" type="#Integer">
         <ownedComment body="The negative value of oclText[self].&#xA;"/>
@@ -462,12 +463,6 @@
           name="abs" type="#Integer">
         <ownedComment body="The absolute value of oclText[self].&#xA;"/>
       </ownedOperations>
-      <ownedOperations xmi:id="o.ocl.Integer.compareTo..ocl.OclSelf" implementationClass="org.eclipse.ocl.library.numeric.NumericCompareToOperation"
-          name="compareTo" type="#Integer">
-        <ownedComment body="The comparison of oclText[self] with oclText[that]. -ve if less than, 0 if equal, +ve if greater than.&#xA;"/>
-        <ownedParameter xmi:id="p0o.ocl.Integer.compareTo..ocl.OclSelf" name="that"
-            type="#OclSelf"/>
-      </ownedOperations>
       <ownedOperations xmi:id="o.ocl.Integer.div..ocl.Integer" implementationClass="org.eclipse.ocl.library.numeric.NumericDivOperation"
           name="div" type="#Integer">
         <ownedComment body="The number of times that i fits completely within oclText[self].&#xA;"/>
@@ -492,6 +487,10 @@
           name="toString" type="#String">
         <ownedComment body="Converts oclText[self] to a string value.&#xA;"/>
       </ownedOperations>
+      <ownedOperations xmi:id="o.ocl.Integer.toUnlimitedNatural" implementationClass="org.eclipse.ocl.library.numeric.IntegerToUnlimitedNaturalOperation"
+          name="toUnlimitedNatural" type="#UnlimitedNatural">
+        <ownedComment body="Converts a non-negative oclText[self] to an UnlimitedNatural value. A negative oclText[self] is converted to oclText[invalid].&#xA;An automatic coersion may be synthesized if the coercion enables an operation reference to be resolved&#xA;in an expression where no operation was available without coercion.&#xA;"/>
+      </ownedOperations>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:PrimitiveType" xmi:id="Real" name="Real" superClasses="#T.ocl.OclComparable #T.ocl.OclSummable">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
@@ -499,7 +498,7 @@
           <value>Primitive</value>
         </ownedDetail>
       </ownedAnnotation>
-      <ownedComment body="The standard type Real represents the mathematical concept of real.&#xA;Note that UnlimitedNatural is a subclass of Integer and that Integer is a subclass of Real,&#xA;so for each parameter of type Real, you can use an unlimited natural or an integer as the actual parameter.&#xA;Real is itself an instance of the metatype PrimitiveType (from UML).&#xA;"/>
+      <ownedComment body="The standard type Real represents the mathematical concept of real.&#xA;Note that Integer is a subclass of Real,&#xA;so for each parameter of type Real, you can use an integer as the actual parameter.&#xA;Real is itself an instance of the metatype PrimitiveType (from UML).&#xA;"/>
       <ownedOperations xmi:id="o.ocl.Real.%61%..ocl.OclSelf" implementationClass="org.eclipse.ocl.library.oclany.OclAnyEqualOperation"
           name="=" precedence="#Z.EQUALITY" type="#Boolean">
         <ownedComment body="Returns oclText[true] if the numeric value of oclText[self] is the same as the numeric value of object2, oclText[false] otherwise."/>
@@ -535,34 +534,9 @@
         <ownedComment body="The value of oclText[self] divided by r. Evaluates to oclText[invalid] if r is equal to zero.&#xA;"/>
         <ownedParameter xmi:id="p0o.ocl.Real.%47%..ocl.OclSelf" name="r" type="#OclSelf"/>
       </ownedOperations>
-      <ownedOperations xmi:id="o.ocl.Real.%62%..ocl.OclSelf" implementationClass="org.eclipse.ocl.library.numeric.NumericGreaterThanOperation"
-          name=">" precedence="#Z.RELATIONAL" type="#Boolean">
-        <ownedComment body="True if oclText[self] is greater than r.&#xA;"/>
-        <ownedParameter xmi:id="p0o.ocl.Real.%62%..ocl.OclSelf" name="r" type="#OclSelf"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="o.ocl.Real.%60%..ocl.OclSelf" implementationClass="org.eclipse.ocl.library.numeric.NumericLessThanOperation"
-          name="&lt;" precedence="#Z.RELATIONAL" type="#Boolean">
-        <ownedComment body="True if oclText[self] is less than r.&#xA;"/>
-        <ownedParameter xmi:id="p0o.ocl.Real.%60%..ocl.OclSelf" name="r" type="#OclSelf"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="o.ocl.Real.%60%%61%..ocl.OclSelf" implementationClass="org.eclipse.ocl.library.numeric.NumericLessThanEqualOperation"
-          name="&lt;=" precedence="#Z.RELATIONAL" type="#Boolean">
-        <ownedComment body="True if oclText[self] is less than or equal to r.&#xA;"/>
-        <ownedParameter xmi:id="p0o.ocl.Real.%60%%61%..ocl.OclSelf" name="r" type="#OclSelf"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="o.ocl.Real.%62%%61%..ocl.OclSelf" implementationClass="org.eclipse.ocl.library.numeric.NumericGreaterThanEqualOperation"
-          name=">=" precedence="#Z.RELATIONAL" type="#Boolean">
-        <ownedComment body="True if oclText[self] is greater than or equal to r.&#xA;"/>
-        <ownedParameter xmi:id="p0o.ocl.Real.%62%%61%..ocl.OclSelf" name="r" type="#OclSelf"/>
-      </ownedOperations>
       <ownedOperations xmi:id="o.ocl.Real.abs" implementationClass="org.eclipse.ocl.library.numeric.NumericAbsOperation"
           name="abs" type="#Real">
         <ownedComment body="The absolute value of oclText[self].&#xA;"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="o.ocl.Real.compareTo..ocl.OclSelf" implementationClass="org.eclipse.ocl.library.numeric.NumericCompareToOperation"
-          name="compareTo" type="#Integer">
-        <ownedComment body="The comparison of oclText[self] with oclText[that]. -ve if less than, 0 if equal, +ve if greater than.&#xA;"/>
-        <ownedParameter xmi:id="p0o.ocl.Real.compareTo..ocl.OclSelf" name="that" type="#OclSelf"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.Real.floor" implementationClass="org.eclipse.ocl.library.numeric.NumericFloorOperation"
           name="floor" type="#Integer">
@@ -782,13 +756,25 @@
       </ownedOperations>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:PrimitiveType" xmi:id="UnlimitedNatural" name="UnlimitedNatural"
-        superClasses="#Integer">
+        superClasses="#T.ocl.OclComparable">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>Primitive</value>
         </ownedDetail>
       </ownedAnnotation>
-      <ownedComment body="The standard type UnlimitedNatural is used to encode the non-negative values of a multiplicity specification.&#xA;This includes a special e[unlimited] value (*) that encodes the upper value of  a multiplicity specification.&#xA;UnlimitedNatural is itself an instance of the metatype UnlimitedNaturalType.&#xA;&#xA;Note that although UnlimitedNatural is a subclass of Integer, the e[unlimited] value cannot be represented as an Integer.&#xA;Any use of the e[unlimited] value as an integer or real is replaced by the oclText[invalid] value.&#xA;"/>
+      <ownedComment body="The standard type UnlimitedNatural is used to encode the non-negative values of a multiplicity specification.&#xA;This includes a special e[unlimited] value (*) that encodes the upper value of  a multiplicity specification.&#xA;UnlimitedNatural is itself an instance of the metatype UnlimitedNaturalType.&#xA;&#xA;Note that UnlimitedNatural is not a subclass of Integer.&#xA;"/>
+      <ownedOperations xmi:id="o.ocl.UnlimitedNatural.max..ocl.OclSelf" implementationClass="org.eclipse.ocl.library.numeric.UnlimitedNaturalMaxOperation"
+          name="max" type="#UnlimitedNatural">
+        <ownedComment body="The maximum of oclText[self] an i.&#xA;"/>
+        <ownedParameter xmi:id="p0o.ocl.UnlimitedNatural.max..ocl.OclSelf" name="i"
+            type="#OclSelf"/>
+      </ownedOperations>
+      <ownedOperations xmi:id="o.ocl.UnlimitedNatural.min..ocl.OclSelf" implementationClass="org.eclipse.ocl.library.numeric.UnlimitedNaturalMinOperation"
+          name="min" type="#UnlimitedNatural">
+        <ownedComment body="The minimum of oclText[self] an i.&#xA;"/>
+        <ownedParameter xmi:id="p0o.ocl.UnlimitedNatural.min..ocl.OclSelf" name="i"
+            type="#OclSelf"/>
+      </ownedOperations>
       <ownedOperations xmi:id="o.ocl.UnlimitedNatural.oclAsType..TT" implementationClass="org.eclipse.ocl.library.numeric.UnlimitedNaturalOclAsTypeOperation"
           name="oclAsType" type="#t.ocl.UnlimitedNatural..oclAsTypeTT">
         <ownedComment body="Evaluates to oclText[self], where oclText[self] is of the type identified by T.&#xA;The type T may be any classifier defined in the UML model;&#xA;if the actual type of oclText[self] at evaluation time does not conform to T,&#xA;then the oclAsType operation evaluates to oclText[invalid].&#xA;&#xA;The standard behavior is redefined for UnlimitedNatural. Numeric values may be converted to&#xA;Real or Integer, but the e[unlimited] value may not.&#xA;Conversion of e[unlimited] to Real or Integer returns oclText[invalid].&#xA;&#xA;"/>
@@ -797,6 +783,10 @@
         <ownedTemplateSignature xmi:id="s.o.ocl.UnlimitedNatural.oclAsType..TT">
           <ownedTemplateParameters xmi:id="t.ocl.UnlimitedNatural..oclAsTypeTT" name="TT"/>
         </ownedTemplateSignature>
+      </ownedOperations>
+      <ownedOperations xmi:id="o.ocl.UnlimitedNatural.toInteger" implementationClass="org.eclipse.ocl.library.numeric.UnlimitedNaturalToIntegerOperation"
+          name="toInteger" type="#Integer">
+        <ownedComment body="Converts oclText[self] to an Integer value unless oclText[self] is oclText[unlimited] in which oclText[self] is converted to oclText[invalid].&#xA;"/>
       </ownedOperations>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:BagType" xmi:id="Bag" elementType="#t.ocl..BagT"
@@ -1205,7 +1195,7 @@
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.Collection.sum" implementationClass="org.eclipse.ocl.library.collection.CollectionSumOperation"
           name="sum" type="#t.ocl..CollectionT">
-        <ownedComment body="The addition of all elements in oclText[self].&#xA;Elements must be of an oclText[OclSummable] type to provide the zero() and sum() operations.&#xA;The e[sum] operation must be both associative: a.sum(b).sum(c) = a.sum(b.sum(c)), and commutative: a.sum(b) = b.sum(a).&#xA;UnlimitedNatural, Integer and Real fulfill this condition.&#xA;&#xA;If the e[sum] operation is not both associative and commutative, the e[sum] expression is not well-formed,&#xA;which may result in unpredictable results during evaluation.&#xA;If an implementation is able to detect a lack of associativity or commutativity,&#xA;the implementation may bypass the evaluation and return an oclText[invalid] result.&#xA;"/>
+        <ownedComment body="The addition of all elements in oclText[self].&#xA;Elements must be of an oclText[OclSummable] type to provide the zero() and sum() operations.&#xA;The e[sum] operation must be both associative: a.sum(b).sum(c) = a.sum(b.sum(c)), and commutative: a.sum(b) = b.sum(a).&#xA;Integer and Real fulfill this condition.&#xA;&#xA;If the e[sum] operation is not both associative and commutative, the e[sum] expression is not well-formed,&#xA;which may result in unpredictable results during evaluation.&#xA;If an implementation is able to detect a lack of associativity or commutativity,&#xA;the implementation may bypass the evaluation and return an oclText[invalid] result.&#xA;"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.Collection.union..ocl.Collection" implementationClass="org.eclipse.ocl.library.collection.CollectionUnionOperation"
           name="union" type="#//@ownedPackages.1/@ownedClasses.32">
@@ -1833,8 +1823,7 @@
                 type="#Boolean">
               <argument xsi:type="pivot:OperationCallExp" name="+" referredOperation="#o.ocl.Integer.%43%..ocl.OclSelf"
                   type="#Integer">
-                <argument xsi:type="pivot:UnlimitedNaturalLiteralExp" type="#UnlimitedNatural"
-                    unlimitedNaturalSymbol="1"/>
+                <argument xsi:type="pivot:IntegerLiteralExp" integerSymbol="1" type="#Integer"/>
                 <source xsi:type="pivot:OperationCallExp" referredOperation="#o.ocl.Collection.size"
                     type="#Integer">
                   <source xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.23/@ownedOperations.16/@postcondition.0/@specification/@contextVariable"
@@ -1862,8 +1851,7 @@
                   type="#t.ocl..OrderedSetT"/>
               <source xsi:type="pivot:OperationCallExp" isRequired="false" referredOperation="#o.ocl.OrderedCollection.at..ocl.Integer"
                   type="#t.ocl..OrderedSetT">
-                <argument xsi:type="pivot:UnlimitedNaturalLiteralExp" type="#UnlimitedNatural"
-                    unlimitedNaturalSymbol="1"/>
+                <argument xsi:type="pivot:IntegerLiteralExp" integerSymbol="1" type="#Integer"/>
                 <source xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.23/@ownedOperations.16/@postcondition.1/@specification/@resultVariable"
                     type="#OrderedSet"/>
               </source>
@@ -1885,8 +1873,8 @@
                     type="#t.ocl..OrderedSetT">
                   <argument xsi:type="pivot:OperationCallExp" name="+" referredOperation="#o.ocl.Integer.%43%..ocl.OclSelf"
                       type="#Integer">
-                    <argument xsi:type="pivot:UnlimitedNaturalLiteralExp" type="#UnlimitedNatural"
-                        unlimitedNaturalSymbol="1"/>
+                    <argument xsi:type="pivot:IntegerLiteralExp" integerSymbol="1"
+                        type="#Integer"/>
                     <source xsi:type="pivot:VariableExp" isRequired="false" referredVariable="#//@ownedPackages.0/@ownedClasses.23/@ownedOperations.16/@postcondition.2/@specification/@bodyExpression/@iterator.0"
                         type="#Integer"/>
                   </argument>
@@ -1905,8 +1893,7 @@
                   type="#Integer"/>
               <source xsi:type="pivot:CollectionLiteralExp" kind="Sequence" type="#//@ownedPackages.1/@ownedClasses.106">
                 <part xsi:type="pivot:CollectionRange" type="#Integer">
-                  <first xsi:type="pivot:UnlimitedNaturalLiteralExp" type="#UnlimitedNatural"
-                      unlimitedNaturalSymbol="1"/>
+                  <first xsi:type="pivot:IntegerLiteralExp" integerSymbol="1" type="#Integer"/>
                   <last xsi:type="pivot:OperationCallExp" referredOperation="#o.ocl.Collection.size"
                       type="#Integer">
                     <source xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.23/@ownedOperations.16/@postcondition.2/@specification/@contextVariable"

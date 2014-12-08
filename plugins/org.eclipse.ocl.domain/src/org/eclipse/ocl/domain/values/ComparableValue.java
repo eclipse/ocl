@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010, 2012 E.D.Willink and others.
+ * Copyright (c) 2014 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,17 +11,15 @@
 package org.eclipse.ocl.domain.values;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.ids.OclVoidTypeId;
 
-public interface NullValue
-	extends ObjectValue, IntegerValue, UnlimitedValue,
-		BagValue, OrderedSetValue, SequenceValue, SetValue, TupleValue
+public interface ComparableValue<T> extends Value, OCLValue, Comparable<T>
 {
-	@Override
-	@NonNull OclVoidTypeId getTypeId();
 	/**
-	 * @generated NOT
+	 * Return -left.compareTo(this).
+	 * <p>
+	 * This is an internal method used to give righthand argument an opportunity to coerce its tyope to suit the lefthand. It is invoked
+	 * when a direct compareTo is unable to compare left with this. Derived implementations must not invoke comoareTo in order to avoid
+	 * an infinite commutation.
 	 */
-	@Override
-	@NonNull NullValue negate();	
+	int commutatedCompareTo(@NonNull ComparableValue<?> left);
 }

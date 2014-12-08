@@ -34,6 +34,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.Annotation;
@@ -93,7 +94,7 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 				eRedefinesAnnotation.getReferences().add(eRedefined);
 				//
 				IntegerValue redefinedLower = redefinedProperty.isRequired() ? ValuesUtil.ONE_VALUE :  ValuesUtil.ZERO_VALUE;
-				IntegerValue redefinedUpper = ValuesUtil.ONE_VALUE;
+				UnlimitedNaturalValue redefinedUpper = ValuesUtil.UNLIMITED_ONE_VALUE;
 				Type redefinedType = redefinedProperty.getType();
 				Type redefinedElementType = redefinedType;
 				if (redefinedElementType instanceof CollectionType) {
@@ -104,7 +105,7 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 				}
 				//
 				IntegerValue redefiningLower = pivotProperty.isRequired() ? ValuesUtil.ONE_VALUE :  ValuesUtil.ZERO_VALUE;
-				IntegerValue redefiningUpper = ValuesUtil.ONE_VALUE;
+				UnlimitedNaturalValue redefiningUpper = ValuesUtil.UNLIMITED_ONE_VALUE;
 				Type redefiningElementType = redefiningType;
 				if (redefiningElementType instanceof CollectionType) {
 					CollectionType redefiningCollectionType = (CollectionType)redefiningElementType;
@@ -244,7 +245,7 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 			eTypedElement.setOrdered(collectionType.isOrdered());
 			eTypedElement.setUnique(collectionType.isUnique());
 			IntegerValue lower = collectionType.getLowerValue();
-			IntegerValue upper = collectionType.getUpperValue();
+			UnlimitedNaturalValue upper = collectionType.getUpperValue();
 			try {
 				eTypedElement.setLowerBound(lower.intValue());
 			} catch (InvalidValueException e) {

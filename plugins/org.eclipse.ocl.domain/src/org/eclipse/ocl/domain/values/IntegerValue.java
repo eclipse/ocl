@@ -30,18 +30,18 @@ public interface IntegerValue extends RealValue
 	/**
 	 * @generated NOT
 	 */
+	@Override
+	int commutatedCompareToInteger(@NonNull IntegerValue right);
+
+	/**
+	 * @generated NOT
+	 */
 	@NonNull IntegerValue commutatedDiv(@NonNull IntegerValue left);
 
 	/**
 	 * @generated NOT
 	 */
 	@NonNull IntegerValue commutatedMod(@NonNull IntegerValue left);
-
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	int compareToInteger(@NonNull IntegerValue right);
 
 	/**
 	 * @generated NOT
@@ -63,11 +63,6 @@ public interface IntegerValue extends RealValue
 	 * @generated NOT
 	 */
 	int intValue();
-
-	/**
-	 * @generated NOT
-	 */
-	boolean isUnlimitedNatural();
 
 	/**
 	 * @generated NOT

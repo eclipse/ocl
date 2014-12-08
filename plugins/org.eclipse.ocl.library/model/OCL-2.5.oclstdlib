@@ -469,7 +469,7 @@ type Collection(T) : CollectionType conformsTo OclAny {
 	The addition of all elements in oclText[self].
 	Elements must be of an oclText[OclSummable] type to provide the zero() and sum() operations.
 	The e[sum] operation must be both associative: a.sum(b).sum(c) = a.sum(b.sum(c)), and commutative: a.sum(b) = b.sum(a).
-	UnlimitedNatural, Integer and Real fulfill this condition.
+	Integer and Real fulfill this condition.
 
 	If the e[sum] operation is not both associative and commutative, the e[sum] expression is not well-formed,
 	which may result in unpredictable results during evaluation.
@@ -520,8 +520,6 @@ type EnumerationLiteral conformsTo OclAny {
 
 /**
 The standard type Integer represents the mathematical concept of integer.
-Note that UnlimitedNatural is a subclass of Integer, so for each parameter of type Integer,
-you can use an unlimited natural as the actual parameter.
 Integer is itself an instance of the metatype PrimitiveType (from UML).
 **/
 type Integer : PrimitiveType conformsTo Real {
@@ -552,10 +550,6 @@ type Integer : PrimitiveType conformsTo Real {
 	**/
 	operation abs() : Integer => 'org.eclipse.ocl.library.numeric.NumericAbsOperation';
 	/**
-	The comparison of oclText[self] with oclText[that]. -ve if less than, 0 if equal, +ve if greater than.
-	**/ 
-	operation compareTo(that : OclSelf) : Integer  => 'org.eclipse.ocl.library.numeric.NumericCompareToOperation';	
-	/**
 	The number of times that i fits completely within oclText[self].
 	**/
 	operation div(i : Integer) : Integer => 'org.eclipse.ocl.library.numeric.NumericDivOperation';
@@ -575,6 +569,12 @@ type Integer : PrimitiveType conformsTo Real {
 	Converts oclText[self] to a string value.
 	**/
 	operation toString() : String => 'org.eclipse.ocl.library.oclany.OclAnyToStringOperation';
+	/**
+	Converts a non-negative oclText[self] to an UnlimitedNatural value. A negative oclText[self] is converted to oclText[invalid].
+	An automatic coersion may be synthesized if the coercion enables an operation reference to be resolved
+	in an expression where no operation was available without coercion.
+	**/ 
+	coercion toUnlimitedNatural() : UnlimitedNatural => 'org.eclipse.ocl.library.numeric.IntegerToUnlimitedNaturalOperation';
 }
 
 /**
@@ -1026,8 +1026,8 @@ type OrderedSet(T) : OrderedSetType conformsTo OrderedCollection(T),UniqueCollec
 
 /**
 The standard type Real represents the mathematical concept of real.
-Note that UnlimitedNatural is a subclass of Integer and that Integer is a subclass of Real,
-so for each parameter of type Real, you can use an unlimited natural or an integer as the actual parameter.
+Note that Integer is a subclass of Real,
+so for each parameter of type Real, you can use an integer as the actual parameter.
 Real is itself an instance of the metatype PrimitiveType (from UML).
 **/
 type Real : PrimitiveType conformsTo OclComparable, OclSummable {
@@ -1061,29 +1061,9 @@ type Real : PrimitiveType conformsTo OclComparable, OclSummable {
 	**/
 	operation "/"(r : OclSelf) : Real precedence=MULTIPLICATIVE => 'org.eclipse.ocl.library.numeric.NumericDivideOperation';
 	/**
-	True if oclText[self] is greater than r.
-	**/
-	operation ">"(r : OclSelf) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.library.numeric.NumericGreaterThanOperation';
-	/**
-	True if oclText[self] is less than r.
-	**/
-	operation "<"(r : OclSelf) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.library.numeric.NumericLessThanOperation';
-	/**
-	True if oclText[self] is less than or equal to r.
-	**/
-	operation "<="(r : OclSelf) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.library.numeric.NumericLessThanEqualOperation';
-	/**
-	True if oclText[self] is greater than or equal to r.
-	**/
-	operation ">="(r : OclSelf) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.library.numeric.NumericGreaterThanEqualOperation';
-	/**
 	The absolute value of oclText[self].
 	**/
 	operation abs() : Real => 'org.eclipse.ocl.library.numeric.NumericAbsOperation';
-	/**
-	The comparison of oclText[self] with oclText[that]. -ve if less than, 0 if equal, +ve if greater than.
-	**/ 
-	operation compareTo(that : OclSelf) : Integer  => 'org.eclipse.ocl.library.numeric.NumericCompareToOperation';	
 	/**
 	The largest integer that is less than or equal to oclText[self].
 	**/
@@ -1459,11 +1439,18 @@ The standard type UnlimitedNatural is used to encode the non-negative values of 
 This includes a special e[unlimited] value (*) that encodes the upper value of  a multiplicity specification.
 UnlimitedNatural is itself an instance of the metatype UnlimitedNaturalType.
 
-Note that although UnlimitedNatural is a subclass of Integer, the e[unlimited] value cannot be represented as an Integer.
-Any use of the e[unlimited] value as an integer or real is replaced by the oclText[invalid] value.
+Note that UnlimitedNatural is not a subclass of Integer.
 **/
-type UnlimitedNatural : PrimitiveType conformsTo Integer {
+type UnlimitedNatural : PrimitiveType conformsTo OclComparable {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='Primitive');
+	/**
+	The maximum of oclText[self] an i.
+	**/
+	operation max(i : OclSelf) : UnlimitedNatural => 'org.eclipse.ocl.library.numeric.UnlimitedNaturalMaxOperation';
+	/**
+	The minimum of oclText[self] an i.
+	**/
+	operation min(i : OclSelf) : UnlimitedNatural => 'org.eclipse.ocl.library.numeric.UnlimitedNaturalMinOperation';
 	/**
 	Evaluates to oclText[self], where oclText[self] is of the type identified by T.
 	The type T may be any classifier defined in the UML model;
@@ -1476,6 +1463,10 @@ type UnlimitedNatural : PrimitiveType conformsTo Integer {
 	
 	**/
 	operation oclAsType(TT)(type : typeof(TT)) : TT => 'org.eclipse.ocl.library.numeric.UnlimitedNaturalOclAsTypeOperation';
+	/**
+	Converts oclText[self] to an Integer value unless oclText[self] is oclText[unlimited] in which oclText[self] is converted to oclText[invalid].
+	**/
+	operation toInteger() : Integer => 'org.eclipse.ocl.library.numeric.UnlimitedNaturalToIntegerOperation';
 }
 
 }

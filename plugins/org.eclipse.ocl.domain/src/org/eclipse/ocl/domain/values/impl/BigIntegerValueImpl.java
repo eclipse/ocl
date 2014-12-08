@@ -88,7 +88,7 @@ public class BigIntegerValueImpl extends IntegerValueImpl
 	}
 
 	@Override
-	public int compareToInteger(@NonNull IntegerValue o) {
+	public int commutatedCompareToInteger(@NonNull IntegerValue o) {
 		try {
 			return value.compareTo(o.bigIntegerValue());
 		} catch (InvalidValueException e) {

@@ -29,6 +29,7 @@ import org.eclipse.ocl.xtext.base.cs2as.Continuations;
 import org.eclipse.ocl.xtext.base.cs2as.SingleContinuation;
 import org.eclipse.ocl.xtext.oclstdlibcs.JavaClassCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.LibClassCS;
+import org.eclipse.ocl.xtext.oclstdlibcs.LibCoercionCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.LibIterationCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.LibOperationCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.LibPropertyCS;
@@ -75,6 +76,20 @@ public class OCLstdlibCSPreOrderVisitor extends AbstractOCLstdlibCSPreOrderVisit
 //			lamdbaType.setResultType(lamdbaType);
 //		}
 		return continuation;
+	}
+
+	@Override
+	public Continuation<?> visitLibCoercionCS(@NonNull LibCoercionCS csCoercion) {
+		Operation pivotCoercion = PivotUtil.getPivot(Operation.class, csCoercion);
+		if (pivotCoercion != null) {
+//			pivotElement.setPrecedence(csIteration.getPrecedence());
+//			pivotElement.setIsStatic(csIteration.isStatic());
+			JavaClassCS implementation = csCoercion.getImplementation();
+			if ((implementation != null) && !implementation.eIsProxy()) {
+				pivotCoercion.setImplementationClass(implementation.getName());
+			}
+		}
+		return null;
 	}
 
 	@Override

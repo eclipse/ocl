@@ -21,6 +21,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.CompleteClass;
 import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Iteration;
@@ -28,6 +29,7 @@ import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.TemplateParameterSubstitutionVisitor;
@@ -95,7 +97,7 @@ public abstract class AbstractOperationMatcher
 	}
 
 	protected int compareMatches(@NonNull Object match1, @NonNull TemplateParameterSubstitutions referenceBindings,
-			@NonNull Object match2, @NonNull TemplateParameterSubstitutions candidateBindings) {
+			@NonNull Object match2, @NonNull TemplateParameterSubstitutions candidateBindings, boolean useCoercions) {
 		CompleteModel.Internal completeModel = metaModelManager.getCompleteModel();
 		@NonNull Operation reference = (Operation) match1;
 		@NonNull Operation candidate = (Operation) match2;
@@ -209,7 +211,7 @@ public abstract class AbstractOperationMatcher
 
 	protected abstract int getArgumentCount();
 
-	public @Nullable Operation getBestOperation(@NonNull Invocations invocations) {
+	public @Nullable Operation getBestOperation(@NonNull Invocations invocations, boolean useCoercions) {
 		ambiguities = null;
 		Operation bestOperation = null;
 		TemplateParameterSubstitutions bestBindings = TemplateParameterSubstitutions.EMPTY;
@@ -217,14 +219,14 @@ public abstract class AbstractOperationMatcher
 		for (NamedElement namedElement : invocations) {
 			if (namedElement instanceof Operation) {
 				Operation candidateOperation = (Operation)namedElement;
-				TemplateParameterSubstitutions candidateBindings = matches(candidateOperation);
+				TemplateParameterSubstitutions candidateBindings = matches(candidateOperation, useCoercions);
 				if (candidateBindings != null) {
 					if (bestOperation == null) {
 						bestOperation = candidateOperation;
 						bestBindings = candidateBindings;
 					}
 					else {
-						int comparison = compareMatches(bestOperation, bestBindings, candidateOperation, candidateBindings);
+						int comparison = compareMatches(bestOperation, bestBindings, candidateOperation, candidateBindings, useCoercions);
 						if (comparison < 0) {
 							bestOperation = candidateOperation;
 							bestBindings = candidateBindings;
@@ -262,7 +264,7 @@ public abstract class AbstractOperationMatcher
 		return false;
 	}
 
-	protected @Nullable TemplateParameterSubstitutions matches(@NonNull Operation candidateOperation) {
+	protected @Nullable TemplateParameterSubstitutions matches(@NonNull Operation candidateOperation, boolean useCoercions) {
 		List<Parameter> candidateParameters = candidateOperation.getOwnedParameter();
 		int iSize = getArgumentCount();
 		if (iSize != candidateParameters.size()) {
@@ -285,7 +287,27 @@ public abstract class AbstractOperationMatcher
 					return null;
 				}
 				if (!metaModelManager.conformsTo(expressionType, TemplateParameterSubstitutions.EMPTY, candidateType, bindings)) {
-					return null;
+					boolean coerceable = false;
+					if (useCoercions) {
+						CompleteClass completeClass = metaModelManager.getCompleteClass(expressionType);
+						for (org.eclipse.ocl.pivot.Class partialClass : completeClass.getPartialClasses()) {
+							if (partialClass instanceof PrimitiveType) {
+								for (Operation coercion : ((PrimitiveType)partialClass).getCoercions()) {
+									Type corcedSourceType = coercion.getType();
+									if ((corcedSourceType != null) && metaModelManager.conformsTo(corcedSourceType, TemplateParameterSubstitutions.EMPTY, candidateType, TemplateParameterSubstitutions.EMPTY)) {
+										coerceable = true;
+										break;
+									}
+								}
+								if (coerceable) {
+									break;
+								}
+							}
+						}
+					}
+					if (!coerceable) {
+						return null;
+					}
 				}
 			}
 		}

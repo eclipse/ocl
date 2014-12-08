@@ -31,6 +31,7 @@ import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.Unlimited;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.Behavior;
 import org.eclipse.ocl.pivot.CollectionType;
@@ -667,10 +668,10 @@ public class CollectionTypeImpl
 	}
 
 	@Override
-	public @NonNull IntegerValue getUpperValue() {
+	public @NonNull UnlimitedNaturalValue getUpperValue() {
 		Number upper2 = upper;
 		assert upper2 != null;
-		return ValuesUtil.integerValueOf(upper2);
+		return ValuesUtil.unlimitedNaturalValueOf(upper2);
 	}
 
 	@Override
@@ -679,7 +680,7 @@ public class CollectionTypeImpl
 	}
 
 	@Override
-	public void setUpperValue(@NonNull IntegerValue upper) {
+	public void setUpperValue(@NonNull UnlimitedNaturalValue upper) {
 		setUpper(upper.isUnlimited() ? Unlimited.INSTANCE : upper.intValue());
 	}
 } //CollectionTypeImpl
