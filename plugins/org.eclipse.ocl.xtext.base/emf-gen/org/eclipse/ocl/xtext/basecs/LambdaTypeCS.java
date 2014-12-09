@@ -45,7 +45,7 @@ public interface LambdaTypeCS extends TypedRefCS, TemplateableElementCS, Nameabl
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getLambdaTypeCS_Name()
-	 * @model
+	 * @model dataType="org.eclipse.ocl.pivot.String"
 	 * @generated
 	 */
 	@Override

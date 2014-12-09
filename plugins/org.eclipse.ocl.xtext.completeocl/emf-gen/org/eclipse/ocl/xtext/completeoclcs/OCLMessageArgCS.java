@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.completeoclcs;
 
-import org.eclipse.ocl.xtext.basecs.TypeCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ExpCS;
 
 /**
@@ -18,12 +17,6 @@ import org.eclipse.ocl.xtext.essentialoclcs.ExpCS;
  * A representation of the model object '<em><b>Ocl Message Arg CS</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.OCLMessageArgCS#getType <em>Type</em>}</li>
- * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage#getOCLMessageArgCS()
  * @model
@@ -31,31 +24,5 @@ import org.eclipse.ocl.xtext.essentialoclcs.ExpCS;
  */
 public interface OCLMessageArgCS
 		extends ExpCS {
-
-	/**
-	 * Returns the value of the '<em><b>Type</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Type</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' containment reference.
-	 * @see #setType(TypeCS)
-	 * @see org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage#getOCLMessageArgCS_Type()
-	 * @model containment="true"
-	 * @generated
-	 */
-	TypeCS getType();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.xtext.completeoclcs.OCLMessageArgCS#getType <em>Type</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' containment reference.
-	 * @see #getType()
-	 * @generated
-	 */
-	void setType(TypeCS value);
 
 } // OclMessageArgCS

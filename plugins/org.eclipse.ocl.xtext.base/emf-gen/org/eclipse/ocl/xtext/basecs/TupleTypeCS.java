@@ -43,7 +43,7 @@ public interface TupleTypeCS extends TypedRefCS, Nameable
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getTupleTypeCS_Name()
-	 * @model
+	 * @model dataType="org.eclipse.ocl.pivot.String"
 	 * @generated
 	 */
 	@Override

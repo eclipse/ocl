@@ -61,7 +61,7 @@ public interface PackageCS extends PackageOwnerCS, NamespaceCS {
 	 * @return the value of the '<em>Ns Prefix</em>' attribute.
 	 * @see #setNsPrefix(String)
 	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getPackageCS_NsPrefix()
-	 * @model
+	 * @model dataType="org.eclipse.ocl.pivot.String"
 	 * @generated
 	 */
 	String getNsPrefix();
@@ -87,7 +87,7 @@ public interface PackageCS extends PackageOwnerCS, NamespaceCS {
 	 * @return the value of the '<em>Ns URI</em>' attribute.
 	 * @see #setNsURI(String)
 	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getPackageCS_NsURI()
-	 * @model
+	 * @model dataType="org.eclipse.ocl.pivot.String"
 	 * @generated
 	 */
 	String getNsURI();

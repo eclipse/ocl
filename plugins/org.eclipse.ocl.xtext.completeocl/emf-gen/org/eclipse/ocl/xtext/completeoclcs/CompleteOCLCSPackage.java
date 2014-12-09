@@ -1161,22 +1161,13 @@ public interface CompleteOCLCSPackage
 	int OCL_MESSAGE_ARG_CS__PRECEDENCE = EssentialOCLCSPackage.EXP_CS__PRECEDENCE;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_MESSAGE_ARG_CS__TYPE = EssentialOCLCSPackage.EXP_CS_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>OCL Message Arg CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_MESSAGE_ARG_CS_FEATURE_COUNT = EssentialOCLCSPackage.EXP_CS_FEATURE_COUNT + 1;
+	int OCL_MESSAGE_ARG_CS_FEATURE_COUNT = EssentialOCLCSPackage.EXP_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -1778,17 +1769,6 @@ public interface CompleteOCLCSPackage
 	EClass getOCLMessageArgCS();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.xtext.completeoclcs.OCLMessageArgCS#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Type</em>'.
-	 * @see org.eclipse.ocl.xtext.completeoclcs.OCLMessageArgCS#getType()
-	 * @see #getOCLMessageArgCS()
-	 * @generated
-	 */
-	EReference getOCLMessageArgCS_Type();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.completeoclcs.DefCS <em>Def CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2289,14 +2269,6 @@ public interface CompleteOCLCSPackage
 		 * @generated
 		 */
 		EClass OCL_MESSAGE_ARG_CS = eINSTANCE.getOCLMessageArgCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OCL_MESSAGE_ARG_CS__TYPE = eINSTANCE.getOCLMessageArgCS_Type();
 
 	}
 

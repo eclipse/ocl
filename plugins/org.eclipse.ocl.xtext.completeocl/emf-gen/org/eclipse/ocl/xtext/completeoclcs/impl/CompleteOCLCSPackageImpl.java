@@ -479,16 +479,6 @@ public class CompleteOCLCSPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EReference getOCLMessageArgCS_Type() {
-		return (EReference)oclMessageArgCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getDefCS() {
 		return defCSEClass;
 	}
@@ -682,7 +672,6 @@ public class CompleteOCLCSPackageImpl
 		createEReference(includeCSEClass, INCLUDE_CS__REFERRED_NAMESPACE);
 
 		oclMessageArgCSEClass = createEClass(OCL_MESSAGE_ARG_CS);
-		createEReference(oclMessageArgCSEClass, OCL_MESSAGE_ARG_CS__TYPE);
 
 		operationContextDeclCSEClass = createEClass(OPERATION_CONTEXT_DECL_CS);
 		createEReference(operationContextDeclCSEClass, OPERATION_CONTEXT_DECL_CS__OWNED_BODIES);
@@ -789,7 +778,6 @@ public class CompleteOCLCSPackageImpl
 		initEReference(getIncludeCS_ReferredNamespace(), thePivotPackage.getNamespace(), null, "referredNamespace", null, 0, 1, IncludeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(oclMessageArgCSEClass, OCLMessageArgCS.class, "OCLMessageArgCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getOCLMessageArgCS_Type(), theBaseCSPackage.getTypeCS(), null, "type", null, 0, 1, OCLMessageArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(operationContextDeclCSEClass, OperationContextDeclCS.class, "OperationContextDeclCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOperationContextDeclCS_OwnedBodies(), theEssentialOCLCSPackage.getExpSpecificationCS(), null, "ownedBodies", null, 0, -1, OperationContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -72,7 +72,7 @@ public interface ClassCS extends NamedElementCS, TypeCS, TemplateableElementCS {
 	 * @return the value of the '<em>Instance Class Name</em>' attribute.
 	 * @see #setInstanceClassName(String)
 	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getClassCS_InstanceClassName()
-	 * @model
+	 * @model dataType="org.eclipse.ocl.pivot.String"
 	 * @generated
 	 */
 	String getInstanceClassName();
@@ -114,7 +114,7 @@ public interface ClassCS extends NamedElementCS, TypeCS, TemplateableElementCS {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Qualifiers</em>' attribute list.
 	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getClassCS_Qualifiers()
-	 * @model
+	 * @model dataType="org.eclipse.ocl.pivot.String"
 	 * @generated
 	 */
 	EList<String> getQualifiers();

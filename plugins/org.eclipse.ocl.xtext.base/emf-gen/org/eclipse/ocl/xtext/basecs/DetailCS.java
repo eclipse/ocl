@@ -42,7 +42,7 @@ public interface DetailCS extends NamedElementCS {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Values</em>' attribute list.
 	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getDetailCS_Values()
-	 * @model
+	 * @model dataType="org.eclipse.ocl.pivot.String"
 	 * @generated
 	 */
 	EList<String> getValues();

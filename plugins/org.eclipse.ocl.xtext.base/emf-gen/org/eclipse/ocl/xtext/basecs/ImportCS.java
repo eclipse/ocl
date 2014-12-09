@@ -86,7 +86,7 @@ public interface ImportCS extends NamespaceCS {
 	 * @return the value of the '<em>Is All</em>' attribute.
 	 * @see #setIsAll(boolean)
 	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getImportCS_IsAll()
-	 * @model default="false"
+	 * @model default="false" dataType="org.eclipse.ocl.pivot.Boolean"
 	 * @generated
 	 */
 	boolean isIsAll();
