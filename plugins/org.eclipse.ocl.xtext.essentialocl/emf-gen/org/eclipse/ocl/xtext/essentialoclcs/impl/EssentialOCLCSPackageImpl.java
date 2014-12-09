@@ -1146,7 +1146,8 @@ public class EssentialOCLCSPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EReference getNestedExpCS_Source() {
+	public EReference getNestedExpCS_OwnedExpression()
+	{
 		return (EReference)nestedExpCSEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -2046,7 +2047,7 @@ public class EssentialOCLCSPackageImpl
 		createEAttribute(navigatingArgCSEClass, NAVIGATING_ARG_CS__ROLE);
 
 		nestedExpCSEClass = createEClass(NESTED_EXP_CS);
-		createEReference(nestedExpCSEClass, NESTED_EXP_CS__SOURCE);
+		createEReference(nestedExpCSEClass, NESTED_EXP_CS__OWNED_EXPRESSION);
 
 		nullLiteralExpCSEClass = createEClass(NULL_LITERAL_EXP_CS);
 
@@ -2326,7 +2327,7 @@ public class EssentialOCLCSPackageImpl
 		initEAttribute(getNavigatingArgCS_Role(), this.getNavigationRole(), "role", null, 0, 1, NavigatingArgCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(nestedExpCSEClass, NestedExpCS.class, "NestedExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getNestedExpCS_Source(), this.getExpCS(), null, "source", null, 0, 1, NestedExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getNestedExpCS_OwnedExpression(), this.getExpCS(), null, "ownedExpression", null, 0, 1, NestedExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(nullLiteralExpCSEClass, NullLiteralExpCS.class, "NullLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

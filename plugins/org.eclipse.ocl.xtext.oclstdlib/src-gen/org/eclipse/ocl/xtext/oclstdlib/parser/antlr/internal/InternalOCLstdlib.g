@@ -7606,16 +7606,16 @@ ruleNestedExpCS returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getNestedExpCSAccess().getSourceExpCSParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getNestedExpCSAccess().getOwnedExpressionExpCSParserRuleCall_1_0()); 
 	    }
-		lv_source_1_0=ruleExpCS		{
+		lv_ownedExpression_1_0=ruleExpCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getNestedExpCSRule());
 	        }
        		set(
        			$current, 
-       			"source",
-        		lv_source_1_0, 
+       			"ownedExpression",
+        		lv_ownedExpression_1_0, 
         		"ExpCS");
 	        afterParserOrEnumRuleCall();
 	    }

@@ -1712,7 +1712,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 
 	@Override
 	public Element visitNestedExpCS(@NonNull NestedExpCS csNestedExp) {
-		ExpCS csSource = csNestedExp.getSource();
+		ExpCS csSource = csNestedExp.getOwnedExpression();
 		if (csSource == null) {
 			return null;
 		}

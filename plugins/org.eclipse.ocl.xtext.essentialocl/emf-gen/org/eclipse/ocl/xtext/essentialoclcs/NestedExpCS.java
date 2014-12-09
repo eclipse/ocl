@@ -19,7 +19,7 @@ package org.eclipse.ocl.xtext.essentialoclcs;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.NestedExpCS#getSource <em>Source</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.NestedExpCS#getOwnedExpression <em>Owned Expression</em>}</li>
  * </ul>
  * </p>
  *
@@ -31,28 +31,28 @@ public interface NestedExpCS
 		extends ExpCS {
 
 	/**
-	 * Returns the value of the '<em><b>Source</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source</em>' containment reference.
-	 * @see #setSource(ExpCS)
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getNestedExpCS_Source()
+	 * @return the value of the '<em>Owned Expression</em>' containment reference.
+	 * @see #setOwnedExpression(ExpCS)
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getNestedExpCS_OwnedExpression()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ExpCS getSource();
+	ExpCS getOwnedExpression();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.xtext.essentialoclcs.NestedExpCS#getSource <em>Source</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.xtext.essentialoclcs.NestedExpCS#getOwnedExpression <em>Owned Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Source</em>' containment reference.
-	 * @see #getSource()
+	 * @param value the new value of the '<em>Owned Expression</em>' containment reference.
+	 * @see #getOwnedExpression()
 	 * @generated
 	 */
-	void setSource(ExpCS value);
+	void setOwnedExpression(ExpCS value);
 } // NestedExpCS

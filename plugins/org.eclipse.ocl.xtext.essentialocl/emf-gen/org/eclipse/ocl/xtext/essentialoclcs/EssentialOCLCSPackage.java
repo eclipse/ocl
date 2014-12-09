@@ -4405,13 +4405,13 @@ public interface EssentialOCLCSPackage
 	int NESTED_EXP_CS__PRECEDENCE = EXP_CS__PRECEDENCE;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_EXP_CS__SOURCE = EXP_CS_FEATURE_COUNT + 0;
+	int NESTED_EXP_CS__OWNED_EXPRESSION = EXP_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Nested Exp CS</em>' class.
@@ -7277,15 +7277,15 @@ public interface EssentialOCLCSPackage
 	EClass getNestedExpCS();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.xtext.essentialoclcs.NestedExpCS#getSource <em>Source</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.xtext.essentialoclcs.NestedExpCS#getOwnedExpression <em>Owned Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Source</em>'.
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.NestedExpCS#getSource()
+	 * @return the meta object for the containment reference '<em>Owned Expression</em>'.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.NestedExpCS#getOwnedExpression()
 	 * @see #getNestedExpCS()
 	 * @generated
 	 */
-	EReference getNestedExpCS_Source();
+	EReference getNestedExpCS_OwnedExpression();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralExpCS <em>Collection Literal Exp CS</em>}'.
@@ -8598,12 +8598,12 @@ public interface EssentialOCLCSPackage
 		EClass NESTED_EXP_CS = eINSTANCE.getNestedExpCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Owned Expression</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NESTED_EXP_CS__SOURCE = eINSTANCE.getNestedExpCS_Source();
+		EReference NESTED_EXP_CS__OWNED_EXPRESSION = eINSTANCE.getNestedExpCS_OwnedExpression();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.CollectionLiteralExpCSImpl <em>Collection Literal Exp CS</em>}' class.

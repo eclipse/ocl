@@ -2430,26 +2430,26 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NestedExpCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cSourceAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cSourceExpCSParserRuleCall_1_0 = (RuleCall)cSourceAssignment_1.eContents().get(0);
+		private final Assignment cOwnedExpressionAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOwnedExpressionExpCSParserRuleCall_1_0 = (RuleCall)cOwnedExpressionAssignment_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//NestedExpCS:
-		//	"(" source=ExpCS ")";
+		//	"(" ownedExpression=ExpCS ")";
 		@Override
 		public ParserRule getRule() { return rule; }
 
-		//"(" source=ExpCS ")"
+		//"(" ownedExpression=ExpCS ")"
 		public Group getGroup() { return cGroup; }
 
 		//"("
 		public Keyword getLeftParenthesisKeyword_0() { return cLeftParenthesisKeyword_0; }
 
-		//source=ExpCS
-		public Assignment getSourceAssignment_1() { return cSourceAssignment_1; }
+		//ownedExpression=ExpCS
+		public Assignment getOwnedExpressionAssignment_1() { return cOwnedExpressionAssignment_1; }
 
 		//ExpCS
-		public RuleCall getSourceExpCSParserRuleCall_1_0() { return cSourceExpCSParserRuleCall_1_0; }
+		public RuleCall getOwnedExpressionExpCSParserRuleCall_1_0() { return cOwnedExpressionExpCSParserRuleCall_1_0; }
 
 		//")"
 		public Keyword getRightParenthesisKeyword_2() { return cRightParenthesisKeyword_2; }
@@ -3303,7 +3303,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NestedExpCS:
-	//	"(" source=ExpCS ")";
+	//	"(" ownedExpression=ExpCS ")";
 	public NestedExpCSElements getNestedExpCSAccess() {
 		return pNestedExpCS;
 	}

@@ -9210,9 +9210,9 @@ rule__NestedExpCS__Group__1__Impl
     }
 :
 (
-{ before(grammarAccess.getNestedExpCSAccess().getSourceAssignment_1()); }
-(rule__NestedExpCS__SourceAssignment_1)
-{ after(grammarAccess.getNestedExpCSAccess().getSourceAssignment_1()); }
+{ before(grammarAccess.getNestedExpCSAccess().getOwnedExpressionAssignment_1()); }
+(rule__NestedExpCS__OwnedExpressionAssignment_1)
+{ after(grammarAccess.getNestedExpCSAccess().getOwnedExpressionAssignment_1()); }
 )
 
 ;
@@ -11905,14 +11905,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__NestedExpCS__SourceAssignment_1
+rule__NestedExpCS__OwnedExpressionAssignment_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getNestedExpCSAccess().getSourceExpCSParserRuleCall_1_0()); }
-	ruleExpCS{ after(grammarAccess.getNestedExpCSAccess().getSourceExpCSParserRuleCall_1_0()); }
+{ before(grammarAccess.getNestedExpCSAccess().getOwnedExpressionExpCSParserRuleCall_1_0()); }
+	ruleExpCS{ after(grammarAccess.getNestedExpCSAccess().getOwnedExpressionExpCSParserRuleCall_1_0()); }
 )
 
 ;

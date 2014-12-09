@@ -306,7 +306,7 @@ LetVariableCS returns LetVariableCS:
 	name=UnrestrictedName ownedRoundBracketedClause=RoundBracketedClauseCS? (':' ownedType=TypeExpCS)? '=' ownedInitExpression=ExpCS;
 
 NestedExpCS returns NestedExpCS:
-	'(' source=ExpCS ')';
+	'(' ownedExpression=ExpCS ')';
 
 SelfExpCS returns SelfExpCS:
 	{SelfExpCS} 'self';

@@ -560,7 +560,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 			if (isLowerPrecedence(asSource, asPrecedence)) {
 				ExpCS csExp = createExpCS(asSource);
 				NestedExpCS csNested = EssentialOCLCSFactory.eINSTANCE.createNestedExpCS();
-				csNested.setSource(csExp);
+				csNested.setOwnedExpression(csExp);
 				csSource = csNested;
 			}
 			else {
@@ -571,7 +571,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 			if (isLowerPrecedence(asArgument, asPrecedence)) {
 				ExpCS csExp = createExpCS(asArgument);
 				NestedExpCS csNested = EssentialOCLCSFactory.eINSTANCE.createNestedExpCS();
-				csNested.setSource(csExp);
+				csNested.setOwnedExpression(csExp);
 				csArgument = csNested;
 			}
 			else {

@@ -717,7 +717,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	
 	/**
 	 * Constraint:
-	 *     source=ExpCS
+	 *     ownedExpression=ExpCS
 	 */
 	protected void sequence_NestedExpCS(EObject context, NestedExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
