@@ -116,14 +116,14 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 		pivotElement.setName(source);
 		converter.addMapping(eObject, pivotElement);
 		copyAnnotatedElement(pivotElement, eObject, null);
-		doSwitchAll(pivotElement.getOwnedContent(), eObject.getContents());
+		doSwitchAll(pivotElement.getOwnedContents(), eObject.getContents());
 		for (Map.Entry<String, String> entry : details) {
 			String key = entry.getKey();
 			if ((details.size() != 1) || !isDocumentationKey(source, key)) {
 				Detail pivotDetail = PivotFactory.eINSTANCE.createDetail();
 				pivotDetail.setName(key);
 				pivotDetail.getValue().add(entry.getValue());
-				pivotElement.getOwnedDetail().add(pivotDetail);	// FIXME refreshList
+				pivotElement.getOwnedDetails().add(pivotDetail);	// FIXME refreshList
 			}
 		}
 		if (!eObject.getReferences().isEmpty()) {

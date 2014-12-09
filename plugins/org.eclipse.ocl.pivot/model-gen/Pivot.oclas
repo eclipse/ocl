@@ -24,17 +24,17 @@
       <ownedComment body="An unlimited natural is a primitive type representing unlimited natural values."/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.Annotation" name="Annotation" superClasses="#T.pivot.NamedElement">
-      <ownedProperties xmi:id="p.pivot.Annotation.ownedContent" isComposite="true"
-          name="ownedContent" opposite="#//@ownedPackages.0/@ownedClasses.37/@ownedProperties.4"
+      <ownedProperties xmi:id="p.pivot.Annotation.ownedContents" isComposite="true"
+          name="ownedContents" opposite="#//@ownedPackages.0/@ownedClasses.37/@ownedProperties.4"
           type="#//@ownedPackages.1/@ownedClasses.121"/>
-      <ownedProperties xmi:id="p.pivot.Annotation.ownedDetail" isComposite="true"
-          name="ownedDetail" opposite="#p.pivot.Detail.Annotation" type="#//@ownedPackages.1/@ownedClasses.120"/>
-      <ownedProperties xmi:id="p.pivot.Annotation.reference" name="reference" opposite="#//@ownedPackages.0/@ownedClasses.37/@ownedProperties.5"
+      <ownedProperties xmi:id="p.pivot.Annotation.ownedDetails" isComposite="true"
+          name="ownedDetails" opposite="#p.pivot.Detail.Annotation" type="#//@ownedPackages.1/@ownedClasses.120"/>
+      <ownedProperties xmi:id="p.pivot.Annotation.references" name="references" opposite="#//@ownedPackages.0/@ownedClasses.37/@ownedProperties.5"
           type="#//@ownedPackages.1/@ownedClasses.121"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.AnyType" name="AnyType" superClasses="#T.pivot.Class"/>
     <ownedClasses xmi:id="T.pivot.AssociationClass" name="AssociationClass" superClasses="#T.pivot.Class">
-      <ownedProperties xmi:id="p.pivot.AssociationClass.unownedAttribute" name="unownedAttribute"
+      <ownedProperties xmi:id="p.pivot.AssociationClass.unownedAttributes" name="unownedAttributes"
           opposite="#p.pivot.Property.associationClass" type="#//@ownedPackages.1/@ownedClasses.150"/>
       <ownedProperties xmi:id="p.pivot.AssociationClass.AssociationClassCallExp" implicit="true"
           name="AssociationClassCallExp" opposite="#p.pivot.AssociationClassCallExp.referredAssociationClass"
@@ -333,7 +333,7 @@
     <ownedClasses xmi:id="T.pivot.Detail" name="Detail" superClasses="#T.pivot.NamedElement">
       <ownedProperties xmi:id="p.pivot.Detail.value" name="value" type="#//@ownedPackages.1/@ownedClasses.134"/>
       <ownedProperties xmi:id="p.pivot.Detail.Annotation" implicit="true" isRequired="false"
-          name="Annotation" opposite="#p.pivot.Annotation.ownedDetail" type="#T.pivot.Annotation"/>
+          name="Annotation" opposite="#p.pivot.Annotation.ownedDetails" type="#T.pivot.Annotation"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.DynamicBehavior" name="DynamicBehavior" superClasses="#T.pivot.DynamicType #T.pivot.Behavior"/>
     <ownedClasses xmi:id="T.pivot.DynamicElement" name="DynamicElement" superClasses="#T.pivot.Element">
@@ -379,9 +379,9 @@
           opposite="#p.pivot.Comment.owningElement" type="#//@ownedPackages.1/@ownedClasses.137">
         <ownedComment body="The Comments owned by this element."/>
       </ownedProperties>
-      <ownedProperties implicit="true" isRequired="false" name="Annotation" opposite="#p.pivot.Annotation.ownedContent"
+      <ownedProperties implicit="true" isRequired="false" name="Annotation" opposite="#p.pivot.Annotation.ownedContents"
           type="#T.pivot.Annotation"/>
-      <ownedProperties implicit="true" name="Annotation" opposite="#p.pivot.Annotation.reference"
+      <ownedProperties implicit="true" name="Annotation" opposite="#p.pivot.Annotation.references"
           type="#//@ownedPackages.1/@ownedClasses.0"/>
       <ownedProperties xmi:id="p.pivot.Element.Constraint" implicit="true" name="Constraint"
           opposite="#p.pivot.Constraint.constrainedElement" type="#//@ownedPackages.1/@ownedClasses.7"/>
@@ -1027,7 +1027,7 @@
             type="#T.pivot.Property"/>
       </ownedOperations>
       <ownedProperties xmi:id="p.pivot.Property.associationClass" isRequired="false"
-          name="associationClass" opposite="#p.pivot.AssociationClass.unownedAttribute"
+          name="associationClass" opposite="#p.pivot.AssociationClass.unownedAttributes"
           type="#T.pivot.AssociationClass"/>
       <ownedProperties xmi:id="p.pivot.Property.default" isRequired="false" name="default"
           type="#String">

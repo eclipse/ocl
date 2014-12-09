@@ -7,21 +7,21 @@
   <ownedPackages xsi:type="pivot:Library" xmi:id="P.ocl" URI="http://www.eclipse.org/ocl/2015/Library"
       name="ocl" nsPrefix="ocl">
     <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
-      <ownedDetail name="PackageRole">
+      <ownedDetails name="PackageRole">
         <value>StandardLibrary</value>
-      </ownedDetail>
-      <ownedDetail name="ClassGroup_Collection">
+      </ownedDetails>
+      <ownedDetails name="ClassGroup_Collection">
         <value>This sub clause defines the collection types and their operations. As defined in this sub clause, each collection type is actually a template type with one parameter. ‘T’ denotes the parameter. A concrete collection type is created by substituting a type for the T. So Set (Integer) and Bag (Person) are collection types.</value>
-      </ownedDetail>
-      <ownedDetail name="ClassGroup_PrimitiveTypes">
+      </ownedDetails>
+      <ownedDetails name="ClassGroup_PrimitiveTypes">
         <value>The primitive types defined in the OCL standard library are UnlimitedNatural, Integer, Real, String, and Boolean. They are all instances of the metaclass Primitive from the UML core package.</value>
-      </ownedDetail>
+      </ownedDetails>
     </ownedAnnotation>
     <ownedClasses xsi:type="pivot:PrimitiveType" xmi:id="Boolean" name="Boolean" superClasses="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
-        <ownedDetail name="ClassGroup">
+        <ownedDetails name="ClassGroup">
           <value>Primitive</value>
-        </ownedDetail>
+        </ownedDetails>
       </ownedAnnotation>
       <ownedComment body="The standard type Boolean represents the common true/false values.&#xA;Boolean is itself an instance of the metatype PrimitiveType (from UML).&#xA;"/>
       <ownedOperations xmi:id="o.ocl.Boolean.%61%..ocl.OclSelf" implementationClass="org.eclipse.ocl.library.oclany.OclAnyEqualOperation"
@@ -430,9 +430,9 @@
     <ownedClasses xsi:type="pivot:PrimitiveType" xmi:id="Integer" coercions="#o.ocl.Integer.toUnlimitedNatural"
         name="Integer" superClasses="#Real">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
-        <ownedDetail name="ClassGroup">
+        <ownedDetails name="ClassGroup">
           <value>Primitive</value>
-        </ownedDetail>
+        </ownedDetails>
       </ownedAnnotation>
       <ownedComment body="The standard type Integer represents the mathematical concept of integer.&#xA;Integer is itself an instance of the metatype PrimitiveType (from UML).&#xA;"/>
       <ownedOperations xmi:id="o.ocl.Integer.%45%" implementationClass="org.eclipse.ocl.library.numeric.NumericNegateOperation"
@@ -494,9 +494,9 @@
     </ownedClasses>
     <ownedClasses xsi:type="pivot:PrimitiveType" xmi:id="Real" name="Real" superClasses="#T.ocl.OclComparable #T.ocl.OclSummable">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
-        <ownedDetail name="ClassGroup">
+        <ownedDetails name="ClassGroup">
           <value>Primitive</value>
-        </ownedDetail>
+        </ownedDetails>
       </ownedAnnotation>
       <ownedComment body="The standard type Real represents the mathematical concept of real.&#xA;Note that Integer is a subclass of Real,&#xA;so for each parameter of type Real, you can use an integer as the actual parameter.&#xA;Real is itself an instance of the metatype PrimitiveType (from UML).&#xA;"/>
       <ownedOperations xmi:id="o.ocl.Real.%61%..ocl.OclSelf" implementationClass="org.eclipse.ocl.library.oclany.OclAnyEqualOperation"
@@ -563,9 +563,9 @@
     </ownedClasses>
     <ownedClasses xsi:type="pivot:PrimitiveType" xmi:id="String" name="String" superClasses="#T.ocl.OclComparable #T.ocl.OclSummable">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
-        <ownedDetail name="ClassGroup">
+        <ownedDetails name="ClassGroup">
           <value>Primitive</value>
-        </ownedDetail>
+        </ownedDetails>
       </ownedAnnotation>
       <ownedComment body="The standard type String represents strings, which can be both ASCII or Unicode.&#xA;String is itself an instance of the metatype PrimitiveType (from UML).&#xA;"/>
       <ownedOperations xmi:id="o.ocl.String.%61%..ocl.OclSelf" implementationClass="org.eclipse.ocl.library.oclany.OclAnyEqualOperation"
@@ -758,9 +758,9 @@
     <ownedClasses xsi:type="pivot:PrimitiveType" xmi:id="UnlimitedNatural" name="UnlimitedNatural"
         superClasses="#T.ocl.OclComparable">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
-        <ownedDetail name="ClassGroup">
+        <ownedDetails name="ClassGroup">
           <value>Primitive</value>
-        </ownedDetail>
+        </ownedDetails>
       </ownedAnnotation>
       <ownedComment body="The standard type UnlimitedNatural is used to encode the non-negative values of a multiplicity specification.&#xA;This includes a special e[unlimited] value (*) that encodes the upper value of  a multiplicity specification.&#xA;UnlimitedNatural is itself an instance of the metatype UnlimitedNaturalType.&#xA;&#xA;Note that UnlimitedNatural is not a subclass of Integer.&#xA;"/>
       <ownedOperations xmi:id="o.ocl.UnlimitedNatural.max..ocl.OclSelf" implementationClass="org.eclipse.ocl.library.numeric.UnlimitedNaturalMaxOperation"
@@ -792,9 +792,9 @@
     <ownedClasses xsi:type="pivot:BagType" xmi:id="Bag" elementType="#t.ocl..BagT"
         name="Bag" superClasses="#//@ownedPackages.1/@ownedClasses.44">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
-        <ownedDetail name="ClassGroup">
+        <ownedDetails name="ClassGroup">
           <value>Collection</value>
-        </ownedDetail>
+        </ownedDetails>
       </ownedAnnotation>
       <ownedComment body="A bag is a collection with duplicates allowed. That is, one object can be an element of a bag many times.&#xA;There is no ordering defined on the elements in a bag.&#xA;Bag is itself an instance of the metatype BagType.&#xA;"/>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Bag.closure..T" implementationClass="org.eclipse.ocl.library.iterator.ClosureIteration"
@@ -911,9 +911,9 @@
     <ownedClasses xsi:type="pivot:CollectionType" xmi:id="Collection" elementType="#t.ocl..CollectionT"
         name="Collection" superClasses="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
-        <ownedDetail name="ClassGroup">
+        <ownedDetails name="ClassGroup">
           <value>Collection</value>
-        </ownedDetail>
+        </ownedDetails>
       </ownedAnnotation>
       <ownedComment body="Collection is the abstract supertype of all collection types in the OCL Standard Library.&#xA;Each occurrence of an object in a collection is called an element.&#xA;If an object occurs twice in a collection, there are two elements.&#xA;&#xA;This sub clause defines the properties on Collections that have identical semantics for all collection subtypes.&#xA;Some operations may be defined within the subtype as well,&#xA;which means that there is an additional postcondition or a more specialized return value.&#xA;Collection is itself an instance of the metatype CollectionType.&#xA;&#xA;The definition of several common operations is different for each subtype.&#xA;These operations are not mentioned in this sub clause.&#xA;&#xA;The semantics of the collection operations is given in the form of a postcondition that uses the IterateExp of the IteratorExp construct.&#xA;The semantics of those constructs is defined in Clause 10 (“Semantics Described using UML”).&#xA;In several cases the postcondition refers to other collection operations,&#xA;which in turn are defined in terms of the IterateExp or IteratorExp constructs.&#xA;&#xA;Well-formedness rules&#xA;&#xA;[1] A collection cannot contain oclText[invalid] values.&#xA;&#xA;context Collection&#xA;inv: self->forAll(not oclIsInvalid())"/>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Collection.any..T"
@@ -1221,9 +1221,9 @@
     </ownedClasses>
     <ownedClasses xmi:id="T.ocl.Enumeration" name="Enumeration" superClasses="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
-        <ownedDetail name="ClassGroup">
+        <ownedDetails name="ClassGroup">
           <value>UML</value>
-        </ownedDetail>
+        </ownedDetails>
       </ownedAnnotation>
       <ownedComment body="The Enumeration type is the type of an OrderedSet of EnumerationLiteral.&#xA;"/>
       <ownedOperations xmi:id="o.ocl.Enumeration.allInstances" implementationClass="org.eclipse.ocl.library.enumeration.EnumerationAllInstancesOperation"
@@ -1238,9 +1238,9 @@
     </ownedClasses>
     <ownedClasses xmi:id="T.ocl.EnumerationLiteral" name="EnumerationLiteral" superClasses="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
-        <ownedDetail name="ClassGroup">
+        <ownedDetails name="ClassGroup">
           <value>UML</value>
-        </ownedDetail>
+        </ownedDetails>
       </ownedAnnotation>
       <ownedComment body="The standard type EnumerationLiteral represents a named constant value of an Enumeration.&#xA;"/>
       <ownedProperties xmi:id="p.ocl.EnumerationLiteral.Enumeration" implicit="true"
@@ -1248,9 +1248,9 @@
     </ownedClasses>
     <ownedClasses xsi:type="pivot:AnyType" xmi:id="T.ocl.OclAny" name="OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
-        <ownedDetail name="ClassGroup">
+        <ownedDetails name="ClassGroup">
           <value>OCL</value>
-        </ownedDetail>
+        </ownedDetails>
       </ownedAnnotation>
       <ownedComment body="All types in the UML model and the primitive and collection types in the OCL standard library conforms to the type OclAny.&#xA;Conceptually, OclAny behaves as a supertype for all the types.&#xA;Features of OclAny are available on each object in all OCL expressions.&#xA;OclAny is itself an instance of the metatype AnyType.&#xA;&#xA;All classes in a UML model inherit all operations defined on OclAny.&#xA;To avoid name conflicts between properties in the model and the properties inherited from OclAny,&#xA;all names on the properties of OclAny start with ‘ocl.’&#xA;Although theoretically there may still be name conflicts, they can be avoided.&#xA;One can also use qualification by OclAny (name of the type) to explicitly refer to the OclAny properties.&#xA;&#xA;Operations of OclAny, where the instance of OclAny is called object.&#xA;"/>
       <ownedOperations xmi:id="o.ocl.OclAny.%61%..ocl.OclSelf" implementationClass="org.eclipse.ocl.library.oclany.OclAnyEqualOperation"
@@ -1388,9 +1388,9 @@
     </ownedClasses>
     <ownedClasses xmi:id="T.ocl.OclComparable" name="OclComparable" superClasses="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
-        <ownedDetail name="ClassGroup">
+        <ownedDetails name="ClassGroup">
           <value>OCL</value>
-        </ownedDetail>
+        </ownedDetails>
       </ownedAnnotation>
       <ownedComment body="The type OclComparable defines the compareTo operation used by the sortedBy iteration. Only types that provide a derived&#xA;compareTo implementation may be sorted.&#xA;"/>
       <ownedOperations xmi:id="o.ocl.OclComparable.compareTo..ocl.OclSelf" implementationClass="org.eclipse.ocl.library.oclany.OclComparableCompareToOperation"
@@ -1426,9 +1426,9 @@
     </ownedClasses>
     <ownedClasses xmi:id="T.ocl.OclElement" name="OclElement" superClasses="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
-        <ownedDetail name="ClassGroup">
+        <ownedDetails name="ClassGroup">
           <value>OCL</value>
-        </ownedDetail>
+        </ownedDetails>
       </ownedAnnotation>
       <ownedComment body="The type OclElement is the implicit supertype of any user-defined type that has no explicit supertypes. Operations defined&#xA;for OclElement are therefore applicable to all user-defined types.&#xA;"/>
       <ownedOperations xmi:id="o.ocl.OclElement.allInstances" implementationClass="org.eclipse.ocl.library.classifier.ClassifierAllInstancesOperation"
@@ -1447,9 +1447,9 @@
     <ownedClasses xsi:type="pivot:InvalidType" xmi:id="T.ocl.OclInvalid" name="OclInvalid"
         superClasses="#T.ocl.OclVoid">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
-        <ownedDetail name="ClassGroup">
+        <ownedDetails name="ClassGroup">
           <value>OCL</value>
-        </ownedDetail>
+        </ownedDetails>
       </ownedAnnotation>
       <ownedComment body="The type OclInvalid is a type that conforms to all other types.&#xA;It has one single instance, identified as  oclText[invalid].&#xA;Any property call applied on invalid results in oclText[invalid], except for the operations oclIsUndefined() and oclIsInvalid().&#xA;OclInvalid is itself an instance of the metatype InvalidType.&#xA;"/>
       <ownedOperations xmi:id="o.ocl.OclInvalid.allInstances" implementationClass="org.eclipse.ocl.library.oclinvalid.OclInvalidAllInstancesOperation"
@@ -1517,17 +1517,17 @@
     </ownedClasses>
     <ownedClasses xmi:id="T.ocl.OclLambda" name="OclLambda" superClasses="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
-        <ownedDetail name="ClassGroup">
+        <ownedDetails name="ClassGroup">
           <value>OCL</value>
-        </ownedDetail>
+        </ownedDetails>
       </ownedAnnotation>
       <ownedComment body="The type OclLambda is the implicit supertype of all Lambda types. The operations defined for OclLambda&#xA;therefore apply to all lambda expressions.&#xA;"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.ocl.OclMessage" name="OclMessage" superClasses="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
-        <ownedDetail name="ClassGroup">
+        <ownedDetails name="ClassGroup">
           <value>UML</value>
-        </ownedDetail>
+        </ownedDetails>
       </ownedAnnotation>
       <ownedComment body="OclMessage&#xA;This sub clause contains the definition of the standard type OclMessage.&#xA;As defined in this sub clause, each ocl message type is actually a template type with one parameter.&#xA;‘T’ denotes the parameter.&#xA;A concrete ocl message type is created by substituting an operation or signal for the T.&#xA;&#xA;The predefined type OclMessage is an instance of MessageType.&#xA;Every OclMessage is fully determined by either the operation, or signal given as parameter.&#xA;Note that there is conceptually an undefined (infinite) number of these types,&#xA;as each is determined by a different operation or signal.&#xA;These types are unnamed. Every type has as attributes the name of the operation or signal,&#xA;and either all formal parameters of the operation, or all attributes of the signal.&#xA;OclMessage is itself an instance of the metatype MessageType.&#xA;&#xA;OclMessage has a number of predefined operations, as shown in the OCL Standard Library.&#xA;"/>
       <ownedOperations xmi:id="o.ocl.OclMessage.hasReturned" implementationClass="org.eclipse.ocl.library.oclany.OclAnyUnsupportedOperation"
@@ -1549,24 +1549,24 @@
     </ownedClasses>
     <ownedClasses xsi:type="pivot:SelfType" xmi:id="OclSelf" name="OclSelf" superClasses="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
-        <ownedDetail name="ClassGroup">
+        <ownedDetails name="ClassGroup">
           <value>OCL</value>
-        </ownedDetail>
+        </ownedDetails>
       </ownedAnnotation>
       <ownedComment body="The pseudo-type OclSelf denotes the statically determinate type of oclText[self] in Operation&#xA;and Iteration signatures. Instances of OclSelf are never created.&#xA;"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.ocl.OclState" name="OclState" superClasses="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
-        <ownedDetail name="ClassGroup">
+        <ownedDetails name="ClassGroup">
           <value>UML</value>
-        </ownedDetail>
+        </ownedDetails>
       </ownedAnnotation>
     </ownedClasses>
     <ownedClasses xmi:id="T.ocl.OclSummable" name="OclSummable" superClasses="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
-        <ownedDetail name="ClassGroup">
+        <ownedDetails name="ClassGroup">
           <value>OCL</value>
-        </ownedDetail>
+        </ownedDetails>
       </ownedAnnotation>
       <ownedComment body="The type OclSummable defines the sum and zero operations used by the Collection::sum iteration. Only types that provide derived&#xA;sum and zero implementations may be summed."/>
       <ownedOperations xmi:id="o.ocl.OclSummable.sum..ocl.OclSelf" name="sum" type="#OclSelf">
@@ -1580,9 +1580,9 @@
     </ownedClasses>
     <ownedClasses xmi:id="T.ocl.OclTuple" name="OclTuple" superClasses="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
-        <ownedDetail name="ClassGroup">
+        <ownedDetails name="ClassGroup">
           <value>OCL</value>
-        </ownedDetail>
+        </ownedDetails>
       </ownedAnnotation>
       <ownedComment body="The type OclTuple is the implicit supertype of all Tuple types. The operations defined for OclTuple&#xA;therefore apply to all tuples.&#xA;"/>
       <ownedOperations xmi:id="o.ocl.OclTuple.%61%..ocl.OclSelf" implementationClass="org.eclipse.ocl.library.oclany.OclAnyEqualOperation"
@@ -1598,9 +1598,9 @@
     </ownedClasses>
     <ownedClasses xmi:id="T.ocl.OclType" name="OclType" superClasses="#T.ocl.OclElement">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
-        <ownedDetail name="ClassGroup">
+        <ownedDetails name="ClassGroup">
           <value>OCL</value>
-        </ownedDetail>
+        </ownedDetails>
       </ownedAnnotation>
       <ownedComment body="The type OclType is the implicit supertype of any UML type. Operations defined&#xA;for OclType are therefore applicable to all UML types.&#xA;"/>
       <ownedOperations xmi:id="o.ocl.OclType.conformsTo..ocl.OclType" implementationClass="org.eclipse.ocl.library.classifier.OclTypeConformsToOperation"
@@ -1613,9 +1613,9 @@
     <ownedClasses xsi:type="pivot:VoidType" xmi:id="T.ocl.OclVoid" name="OclVoid"
         superClasses="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
-        <ownedDetail name="ClassGroup">
+        <ownedDetails name="ClassGroup">
           <value>OCL</value>
-        </ownedDetail>
+        </ownedDetails>
       </ownedAnnotation>
       <ownedComment body="The type OclVoid is a type that conforms to all other types except OclInvalid.&#xA;It has one single instance, identified as oclText[null], that corresponds with the UML LiteralNull value specification.&#xA;Any property call applied on oclText[null] results in oclText[invalid], except for the&#xA;oclIsUndefined(), oclIsInvalid(), =(OclAny) and &lt;>(OclAny) operations.&#xA;However, by virtue of the implicit conversion to a collection literal,&#xA;an expression evaluating to oclText[null] can be used as source of collection operations (such as ‘isEmpty’).&#xA;If the source is the oclText[null] literal, it is implicitly converted to Bag{}.&#xA;&#xA;OclVoid is itself an instance of the metatype VoidType.&#xA;"/>
       <ownedOperations xmi:id="o.ocl.OclVoid.allInstances" implementationClass="org.eclipse.ocl.library.oclvoid.OclVoidAllInstancesOperation"
@@ -1660,9 +1660,9 @@
     <ownedClasses xsi:type="pivot:CollectionType" xmi:id="OrderedCollection" elementType="#t.ocl..OrderedCollectionT"
         name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.59">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
-        <ownedDetail name="ClassGroup">
+        <ownedDetails name="ClassGroup">
           <value>Collection</value>
-        </ownedDetail>
+        </ownedDetails>
       </ownedAnnotation>
       <ownedComment body="The OrderedCollection type provides the shared functionality of the OrderedSet and Sequence&#xA;collections for which the elements are ordered.&#xA;The common supertype of OrderedCollection is Collection.&#xA;"/>
       <ownedOperations xmi:id="o.ocl.OrderedCollection.at..ocl.Integer" implementationClass="org.eclipse.ocl.library.collection.OrderedCollectionAtOperation"
@@ -1692,9 +1692,9 @@
     <ownedClasses xsi:type="pivot:OrderedSetType" xmi:id="OrderedSet" elementType="#t.ocl..OrderedSetT"
         name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.89 #//@ownedPackages.1/@ownedClasses.136">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
-        <ownedDetail name="ClassGroup">
+        <ownedDetails name="ClassGroup">
           <value>Collection</value>
-        </ownedDetail>
+        </ownedDetails>
       </ownedAnnotation>
       <ownedComment body="The OrderedSet is a Set, the elements of which are ordered.&#xA;It contains no duplicates. OrderedSet is itself an instance of the metatype OrderedSetType.&#xA;An OrderedSet is not a subtype of Set, neither a subtype of Sequence.&#xA;The common supertype of Sets and OrderedSets is Collection.&#xA;"/>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.OrderedSet.closure..T"
@@ -1952,9 +1952,9 @@
     <ownedClasses xsi:type="pivot:SequenceType" xmi:id="Sequence" elementType="#t.ocl..SequenceT"
         name="Sequence" superClasses="#//@ownedPackages.1/@ownedClasses.95">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
-        <ownedDetail name="ClassGroup">
+        <ownedDetails name="ClassGroup">
           <value>Collection</value>
-        </ownedDetail>
+        </ownedDetails>
       </ownedAnnotation>
       <ownedComment body="A sequence is a collection where the elements are ordered.&#xA;An element may be part of a sequence more than once.&#xA;Sequence is itself an instance of the metatype SequenceType.&#xA;A Sentence is not a subtype of Bag.&#xA;The common supertype of Sentence and Bags is Collection.&#xA;"/>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Sequence.closure..T"
@@ -2115,9 +2115,9 @@
     <ownedClasses xsi:type="pivot:SetType" xmi:id="Set" elementType="#t.ocl..SetT"
         name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.141">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
-        <ownedDetail name="ClassGroup">
+        <ownedDetails name="ClassGroup">
           <value>Collection</value>
-        </ownedDetail>
+        </ownedDetails>
       </ownedAnnotation>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Set.closure..T" implementationClass="org.eclipse.ocl.library.iterator.ClosureIteration"
           name="closure" type="#Set">
@@ -2236,16 +2236,16 @@
     </ownedClasses>
     <ownedClasses xmi:id="T.ocl.State" name="State" superClasses="#T.ocl.OclState">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
-        <ownedDetail name="ClassGroup">
+        <ownedDetails name="ClassGroup">
           <value>UML</value>
-        </ownedDetail>
+        </ownedDetails>
       </ownedAnnotation>
     </ownedClasses>
     <ownedClasses xmi:id="T.ocl.Type" name="Type" superClasses="#T.ocl.OclType">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
-        <ownedDetail name="ClassGroup">
+        <ownedDetails name="ClassGroup">
           <value>UML</value>
-        </ownedDetail>
+        </ownedDetails>
       </ownedAnnotation>
       <ownedComment body="The UML Type is the supertype of anything that may be used as a type.&#xA;"/>
       <ownedOperations xmi:id="o.ocl.Type.conformsTo..ocl.Type" implementationClass="org.eclipse.ocl.library.classifier.OclTypeConformsToOperation"
@@ -2257,9 +2257,9 @@
     <ownedClasses xsi:type="pivot:CollectionType" xmi:id="UniqueCollection" elementType="#t.ocl..UniqueCollectionT"
         name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedClasses.78">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
-        <ownedDetail name="ClassGroup">
+        <ownedDetails name="ClassGroup">
           <value>Collection</value>
-        </ownedDetail>
+        </ownedDetails>
       </ownedAnnotation>
       <ownedComment body="The UniqueCollection type provides the shared functionality of the OrderedSet and Set&#xA;collections for which the elements are unique.&#xA;The common supertype of UniqueCollection is Collection.&#xA;"/>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.UniqueCollection.sortedBy..T"

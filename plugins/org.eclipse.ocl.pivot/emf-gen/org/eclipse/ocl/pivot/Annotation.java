@@ -12,8 +12,6 @@ package org.eclipse.ocl.pivot;
 
 import java.util.List;
 
-import org.eclipse.jdt.annotation.NonNull;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Annotation</b></em>'.
@@ -22,9 +20,9 @@ import org.eclipse.jdt.annotation.NonNull;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.Annotation#getOwnedContent <em>Owned Content</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Annotation#getOwnedDetail <em>Owned Detail</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Annotation#getReference <em>Reference</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Annotation#getOwnedContents <em>Owned Contents</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Annotation#getOwnedDetails <em>Owned Details</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Annotation#getReferences <em>References</em>}</li>
  * </ul>
  * </p>
  *
@@ -35,48 +33,48 @@ public interface Annotation
 		extends NamedElement {
 
 	/**
-	 * Returns the value of the '<em><b>Owned Content</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Contents</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.Element}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owned Content</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Owned Contents</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Content</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getAnnotation_OwnedContent()
+	 * @return the value of the '<em>Owned Contents</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getAnnotation_OwnedContents()
 	 * @generated
 	 */
-	@NonNull List<Element> getOwnedContent();
+	List<Element> getOwnedContents();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Detail</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Details</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.Detail}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owned Detail</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Owned Details</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Detail</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getAnnotation_OwnedDetail()
+	 * @return the value of the '<em>Owned Details</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getAnnotation_OwnedDetails()
 	 * @generated
 	 */
-	@NonNull List<Detail> getOwnedDetail();
+	List<Detail> getOwnedDetails();
 
 	/**
-	 * Returns the value of the '<em><b>Reference</b></em>' reference list.
+	 * Returns the value of the '<em><b>References</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.Element}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Reference</em>' reference list isn't clear,
+	 * If the meaning of the '<em>References</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Reference</em>' reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getAnnotation_Reference()
+	 * @return the value of the '<em>References</em>' reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getAnnotation_References()
 	 * @generated
 	 */
-	@NonNull List<Element> getReference();
+	List<Element> getReferences();
 
 } // Annotation

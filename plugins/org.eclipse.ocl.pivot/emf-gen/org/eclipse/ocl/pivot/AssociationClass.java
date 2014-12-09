@@ -20,7 +20,7 @@ import java.util.List;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.AssociationClass#getUnownedAttribute <em>Unowned Attribute</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.AssociationClass#getUnownedAttributes <em>Unowned Attributes</em>}</li>
  * </ul>
  * </p>
  *
@@ -31,7 +31,7 @@ public interface AssociationClass
 		extends org.eclipse.ocl.pivot.Class {
 
 	/**
-	 * Returns the value of the '<em><b>Unowned Attribute</b></em>' reference list.
+	 * Returns the value of the '<em><b>Unowned Attributes</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.Property}.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Property#getAssociationClass <em>Association Class</em>}'.
 	 * <!-- begin-user-doc -->
@@ -40,11 +40,11 @@ public interface AssociationClass
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Unowned Attribute</em>' reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getAssociationClass_UnownedAttribute()
+	 * @return the value of the '<em>Unowned Attributes</em>' reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getAssociationClass_UnownedAttributes()
 	 * @see org.eclipse.ocl.pivot.Property#getAssociationClass
 	 * @generated
 	 */
-	List<Property> getUnownedAttribute();
+	List<Property> getUnownedAttributes();
 
 } // AssociationClass

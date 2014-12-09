@@ -232,7 +232,7 @@ public class AS2EcoreDeclarationVisitor
 		copyModelElement(eAnnotation, pivotAnnotation);
 		@SuppressWarnings("null")@NonNull List<EAnnotation> eAnnotations = eAnnotation.getEAnnotations();
 		safeVisitAll(eAnnotations, pivotAnnotation.getOwnedAnnotation());
-		for (Detail pivotDetail : pivotAnnotation.getOwnedDetail()) {
+		for (Detail pivotDetail : pivotAnnotation.getOwnedDetails()) {
 			String name = pivotDetail.getName();
 			String value = StringUtils.splice(pivotDetail.getValue(), "");
 			eAnnotation.getDetails().put(name, value);
@@ -380,8 +380,8 @@ public class AS2EcoreDeclarationVisitor
 		copyDetails(eAnnotation, pivotAnnotation);
 		eAnnotation.setSource(pivotAnnotation.getName());
 		@SuppressWarnings("null")@NonNull List<EObject> contents = eAnnotation.getContents();
-		safeVisitAll(contents, pivotAnnotation.getOwnedContent());
-		if (!pivotAnnotation.getReference().isEmpty()) {
+		safeVisitAll(contents, pivotAnnotation.getOwnedContents());
+		if (!pivotAnnotation.getReferences().isEmpty()) {
 			context.defer(pivotAnnotation);
 		}
 		return eAnnotation;

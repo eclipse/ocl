@@ -96,7 +96,7 @@ public class AS2UMLDeclarationVisitor
 	protected void copyDetails(@NonNull EAnnotation umlAnnotation, @NonNull Annotation pivotAnnotation) {
 		copyEModelElement(umlAnnotation, pivotAnnotation);
 		safeVisitAll(umlAnnotation.getEAnnotations(), pivotAnnotation.getOwnedAnnotation());
-		for (Detail pivotDetail : pivotAnnotation.getOwnedDetail()) {
+		for (Detail pivotDetail : pivotAnnotation.getOwnedDetails()) {
 			String name = pivotDetail.getName();
 			String value = StringUtils.splice(pivotDetail.getValue(), "");
 			umlAnnotation.getDetails().put(name, value);
@@ -145,8 +145,8 @@ public class AS2UMLDeclarationVisitor
 		@NonNull EAnnotation umlAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 		copyDetails(umlAnnotation, pivotAnnotation);
 		umlAnnotation.setSource(pivotAnnotation.getName());
-		safeVisitAll(umlAnnotation.getContents(), pivotAnnotation.getOwnedContent());
-		if (!pivotAnnotation.getReference().isEmpty()) {
+		safeVisitAll(umlAnnotation.getContents(), pivotAnnotation.getOwnedContents());
+		if (!pivotAnnotation.getReferences().isEmpty()) {
 			context.defer(pivotAnnotation);
 		}
 		return umlAnnotation;

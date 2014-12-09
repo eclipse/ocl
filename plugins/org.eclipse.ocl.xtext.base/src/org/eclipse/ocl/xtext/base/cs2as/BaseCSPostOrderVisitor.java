@@ -124,8 +124,8 @@ public class BaseCSPostOrderVisitor extends AbstractExtendingBaseCSVisitor<Conti
 		Annotation pivotElement = PivotUtil.getPivot(Annotation.class, csAnnotation);
 		if (pivotElement != null) {
 			context.handleVisitNamedElement(csAnnotation, pivotElement);
-			context.refreshPivotList(Detail.class, pivotElement.getOwnedDetail(), csAnnotation.getOwnedDetails());
-			context.refreshPivotList(Element.class, pivotElement.getOwnedContent(), csAnnotation.getOwnedContents());
+			context.refreshPivotList(Detail.class, pivotElement.getOwnedDetails(), csAnnotation.getOwnedDetails());
+			context.refreshPivotList(Element.class, pivotElement.getOwnedContents(), csAnnotation.getOwnedContents());
 			List<ModelElementRefCS> csReferences = csAnnotation.getOwnedReferences();
 			if (csReferences.size() > 0) {
 				List<Element> references = new ArrayList<Element>(csReferences.size());
@@ -135,10 +135,10 @@ public class BaseCSPostOrderVisitor extends AbstractExtendingBaseCSVisitor<Conti
 						references.add(element);
 					}
 				}
-				context.refreshList(pivotElement.getReference(), references);
+				context.refreshList(pivotElement.getReferences(), references);
 			}
 			else {
-				pivotElement.getReference().clear();
+				pivotElement.getReferences().clear();
 			}
 		}
 		return null;
@@ -178,7 +178,7 @@ public class BaseCSPostOrderVisitor extends AbstractExtendingBaseCSVisitor<Conti
 		Annotation pivotElement = PivotUtil.getPivot(Annotation.class, csDocumentation);
 		if (pivotElement != null) {
 			context.handleVisitNamedElement(csDocumentation, pivotElement);
-			context.refreshPivotList(Detail.class, pivotElement.getOwnedDetail(), csDocumentation.getOwnedDetails());
+			context.refreshPivotList(Detail.class, pivotElement.getOwnedDetails(), csDocumentation.getOwnedDetails());
 		}
 		return null;
 	}

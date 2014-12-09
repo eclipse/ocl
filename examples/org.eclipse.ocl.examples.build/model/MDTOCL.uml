@@ -5,15 +5,15 @@
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="MDTOCL-MDT_OCL_Annotations-String" name="String"/>
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Annotations-Annotation" name="Annotation">
         <generalization xmi:id="_Xp6OG37VEeOu79LxSz8Ylw" general="MDTOCL-MDT_OCL_Annotations-NamedElement"/>
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Annotations-Annotation-ownedContent" name="ownedContent" type="MDTOCL-MDT_OCL_Annotations-Element" isOrdered="true" aggregation="composite">
+        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Annotations-Annotation-ownedContent" name="ownedContents" type="MDTOCL-MDT_OCL_Annotations-Element" isOrdered="true" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xpwc937VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xpwc-H7VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Annotations-Annotation-ownedDetail" name="ownedDetail" type="MDTOCL-MDT_OCL_Annotations-Detail" isOrdered="true" aggregation="composite">
+        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Annotations-Annotation-ownedDetail" name="ownedDetails" type="MDTOCL-MDT_OCL_Annotations-Detail" isOrdered="true" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xpwc-X7VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xpwc-n7VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Annotations-Annotation-reference" name="reference" type="MDTOCL-MDT_OCL_Annotations-Element" isOrdered="true">
+        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Annotations-Annotation-reference" name="references" type="MDTOCL-MDT_OCL_Annotations-Element" isOrdered="true">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xpwc-37VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xpwc_H7VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>

@@ -162,7 +162,7 @@ def : cst() : ExpCS =
 -- TODO context NavigationOperatorCS
 
 context NestedExpCS
-def : cst() : ExpCS = self.source
+def : cst() : ExpCS = self.ownedExpression
 /*	
 context PrefixExpCS
 def : cst() : OperationCallExpCS = 

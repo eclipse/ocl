@@ -5,7 +5,7 @@
       <packagedElement xmi:type="uml:Class" xmi:id="_RAQocIquEd-VzsYvPRGeYg" name="Class"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_RlTPMIquEd-VzsYvPRGeYg" name="AssociationClass">
         <generalization xmi:id="_XpnTEH7VEeOu79LxSz8Ylw" general="_RAQocIquEd-VzsYvPRGeYg"/>
-        <ownedAttribute xmi:id="_o58aYIquEd-VzsYvPRGeYg" name="unownedAttribute" type="_c2jhAIquEd-VzsYvPRGeYg" association="_xpoHUIquEd-VzsYvPRGeYg">
+        <ownedAttribute xmi:id="_o58aYIquEd-VzsYvPRGeYg" name="unownedAttributes" type="_c2jhAIquEd-VzsYvPRGeYg" association="_xpoHUIquEd-VzsYvPRGeYg">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiAH7VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XpdiAX7VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>

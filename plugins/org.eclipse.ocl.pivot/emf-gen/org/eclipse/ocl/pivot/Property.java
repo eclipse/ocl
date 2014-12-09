@@ -59,7 +59,7 @@ public interface Property
 
 	/**
 	 * Returns the value of the '<em><b>Association Class</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.AssociationClass#getUnownedAttribute <em>Unowned Attribute</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.AssociationClass#getUnownedAttributes <em>Unowned Attributes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Association Class</em>' reference isn't clear,
@@ -69,7 +69,7 @@ public interface Property
 	 * @return the value of the '<em>Association Class</em>' reference.
 	 * @see #setAssociationClass(AssociationClass)
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_AssociationClass()
-	 * @see org.eclipse.ocl.pivot.AssociationClass#getUnownedAttribute
+	 * @see org.eclipse.ocl.pivot.AssociationClass#getUnownedAttributes
 	 * @generated
 	 */
 	AssociationClass getAssociationClass();

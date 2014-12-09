@@ -1125,31 +1125,31 @@ public interface PivotPackage
 	int ANNOTATION__NAME = NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Content</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Contents</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION__OWNED_CONTENT = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int ANNOTATION__OWNED_CONTENTS = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Owned Detail</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Details</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION__OWNED_DETAIL = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int ANNOTATION__OWNED_DETAILS = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Reference</b></em>' reference list.
+	 * The feature id for the '<em><b>References</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION__REFERENCE = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int ANNOTATION__REFERENCES = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Annotation</em>' class.
@@ -2236,13 +2236,13 @@ public interface PivotPackage
 	int ASSOCIATION_CLASS__SUPER_CLASSES = CLASS__SUPER_CLASSES;
 
 	/**
-	 * The feature id for the '<em><b>Unowned Attribute</b></em>' reference list.
+	 * The feature id for the '<em><b>Unowned Attributes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE = CLASS_FEATURE_COUNT + 0;
+	int ASSOCIATION_CLASS__UNOWNED_ATTRIBUTES = CLASS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Association Class</em>' class.
@@ -22750,37 +22750,37 @@ public interface PivotPackage
 	EClass getAnnotation();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.pivot.Annotation#getOwnedContent <em>Owned Content</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.pivot.Annotation#getOwnedContents <em>Owned Contents</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Content</em>'.
-	 * @see org.eclipse.ocl.pivot.Annotation#getOwnedContent()
+	 * @return the meta object for the containment reference list '<em>Owned Contents</em>'.
+	 * @see org.eclipse.ocl.pivot.Annotation#getOwnedContents()
 	 * @see #getAnnotation()
 	 * @generated
 	 */
-	EReference getAnnotation_OwnedContent();
+	EReference getAnnotation_OwnedContents();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.pivot.Annotation#getOwnedDetail <em>Owned Detail</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.pivot.Annotation#getOwnedDetails <em>Owned Details</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Detail</em>'.
-	 * @see org.eclipse.ocl.pivot.Annotation#getOwnedDetail()
+	 * @return the meta object for the containment reference list '<em>Owned Details</em>'.
+	 * @see org.eclipse.ocl.pivot.Annotation#getOwnedDetails()
 	 * @see #getAnnotation()
 	 * @generated
 	 */
-	EReference getAnnotation_OwnedDetail();
+	EReference getAnnotation_OwnedDetails();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.pivot.Annotation#getReference <em>Reference</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.pivot.Annotation#getReferences <em>References</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Reference</em>'.
-	 * @see org.eclipse.ocl.pivot.Annotation#getReference()
+	 * @return the meta object for the reference list '<em>References</em>'.
+	 * @see org.eclipse.ocl.pivot.Annotation#getReferences()
 	 * @see #getAnnotation()
 	 * @generated
 	 */
-	EReference getAnnotation_Reference();
+	EReference getAnnotation_References();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.NamedElement <em>Named Element</em>}'.
@@ -26558,15 +26558,15 @@ public interface PivotPackage
 	EClass getAssociationClass();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.pivot.AssociationClass#getUnownedAttribute <em>Unowned Attribute</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.pivot.AssociationClass#getUnownedAttributes <em>Unowned Attributes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Unowned Attribute</em>'.
-	 * @see org.eclipse.ocl.pivot.AssociationClass#getUnownedAttribute()
+	 * @return the meta object for the reference list '<em>Unowned Attributes</em>'.
+	 * @see org.eclipse.ocl.pivot.AssociationClass#getUnownedAttributes()
 	 * @see #getAssociationClass()
 	 * @generated
 	 */
-	EReference getAssociationClass_UnownedAttribute();
+	EReference getAssociationClass_UnownedAttributes();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.Operation <em>Operation</em>}'.
@@ -27737,28 +27737,28 @@ public interface PivotPackage
 		EClass ANNOTATION = eINSTANCE.getAnnotation();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Content</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Contents</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ANNOTATION__OWNED_CONTENT = eINSTANCE.getAnnotation_OwnedContent();
+		EReference ANNOTATION__OWNED_CONTENTS = eINSTANCE.getAnnotation_OwnedContents();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Detail</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Details</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ANNOTATION__OWNED_DETAIL = eINSTANCE.getAnnotation_OwnedDetail();
+		EReference ANNOTATION__OWNED_DETAILS = eINSTANCE.getAnnotation_OwnedDetails();
 
 		/**
-		 * The meta object literal for the '<em><b>Reference</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>References</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ANNOTATION__REFERENCE = eINSTANCE.getAnnotation_Reference();
+		EReference ANNOTATION__REFERENCES = eINSTANCE.getAnnotation_References();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.internal.impl.NamedElementImpl <em>Named Element</em>}' class.
@@ -30813,12 +30813,12 @@ public interface PivotPackage
 		EClass ASSOCIATION_CLASS = eINSTANCE.getAssociationClass();
 
 		/**
-		 * The meta object literal for the '<em><b>Unowned Attribute</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Unowned Attributes</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE = eINSTANCE.getAssociationClass_UnownedAttribute();
+		EReference ASSOCIATION_CLASS__UNOWNED_ATTRIBUTES = eINSTANCE.getAssociationClass_UnownedAttributes();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.internal.impl.OperationImpl <em>Operation</em>}' class.

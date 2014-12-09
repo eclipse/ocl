@@ -452,9 +452,9 @@ public class PropertyImpl
 		{
 			NotificationChain msgs = null;
 			if (associationClass != null)
-				msgs = ((InternalEObject)associationClass).eInverseRemove(this, PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE, AssociationClass.class, msgs);
+				msgs = ((InternalEObject)associationClass).eInverseRemove(this, PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTES, AssociationClass.class, msgs);
 			if (newAssociationClass != null)
-				msgs = ((InternalEObject)newAssociationClass).eInverseAdd(this, PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE, AssociationClass.class, msgs);
+				msgs = ((InternalEObject)newAssociationClass).eInverseAdd(this, PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTES, AssociationClass.class, msgs);
 			msgs = basicSetAssociationClass(newAssociationClass, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -1222,7 +1222,7 @@ public class PropertyImpl
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PROPERTY__ASSOCIATION_CLASS:
 				if (associationClass != null)
-					msgs = ((InternalEObject)associationClass).eInverseRemove(this, PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE, AssociationClass.class, msgs);
+					msgs = ((InternalEObject)associationClass).eInverseRemove(this, PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTES, AssociationClass.class, msgs);
 				return basicSetAssociationClass((AssociationClass)otherEnd, msgs);
 			case PivotPackage.PROPERTY__OWNING_CLASS:
 				if (eInternalContainer() != null)

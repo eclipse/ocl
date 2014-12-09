@@ -5,15 +5,15 @@
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_w5xgQMo_Ed-ZL8lMORCEkg" name="String"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_ysL5EMo_Ed-ZL8lMORCEkg" name="Annotation">
         <generalization xmi:id="_Xp6OG37VEeOu79LxSz8Ylw" general="_1A9YEMo_Ed-ZL8lMORCEkg"/>
-        <ownedAttribute xmi:id="_LzO2AMpAEd-ZL8lMORCEkg" name="ownedContent" type="_0IHrkMo_Ed-ZL8lMORCEkg" isOrdered="true" aggregation="composite">
+        <ownedAttribute xmi:id="_LzO2AMpAEd-ZL8lMORCEkg" name="ownedContents" type="_0IHrkMo_Ed-ZL8lMORCEkg" isOrdered="true" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xpwc937VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xpwc-H7VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_M68E8MpAEd-ZL8lMORCEkg" name="ownedDetail" type="_0GMY8Mo_Ed-ZL8lMORCEkg" isOrdered="true" aggregation="composite">
+        <ownedAttribute xmi:id="_M68E8MpAEd-ZL8lMORCEkg" name="ownedDetails" type="_0GMY8Mo_Ed-ZL8lMORCEkg" isOrdered="true" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xpwc-X7VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xpwc-n7VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_L2p9cMpAEd-ZL8lMORCEkg" name="reference" type="_0IHrkMo_Ed-ZL8lMORCEkg" isOrdered="true">
+        <ownedAttribute xmi:id="_L2p9cMpAEd-ZL8lMORCEkg" name="references" type="_0IHrkMo_Ed-ZL8lMORCEkg" isOrdered="true">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xpwc-37VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xpwc_H7VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>

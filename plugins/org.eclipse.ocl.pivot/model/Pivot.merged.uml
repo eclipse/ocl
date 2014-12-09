@@ -116,17 +116,17 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TAnnotation" name="Annotation">
       <generalization xmi:id="Ppivot.TAnnotation.g0" general="Ppivot.TNamedElement"/>
-      <ownedAttribute xmi:id="Ppivot.TAnnotation.PownedContent" name="ownedContent" type="Ppivot.TElement" isOrdered="true" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TAnnotation.PownedContent.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TAnnotation.PownedContent.uV" value="*"/>
+      <ownedAttribute xmi:id="Ppivot.TAnnotation.PownedContents" name="ownedContents" type="Ppivot.TElement" isOrdered="true" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TAnnotation.PownedContents.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TAnnotation.PownedContents.uV" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TAnnotation.PownedDetail" name="ownedDetail" type="Ppivot.TDetail" isOrdered="true" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TAnnotation.PownedDetail.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TAnnotation.PownedDetail.uV" value="*"/>
+      <ownedAttribute xmi:id="Ppivot.TAnnotation.PownedDetails" name="ownedDetails" type="Ppivot.TDetail" isOrdered="true" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TAnnotation.PownedDetails.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TAnnotation.PownedDetails.uV" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TAnnotation.Preference" name="reference" type="Ppivot.TElement" isOrdered="true">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TAnnotation.Preference.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TAnnotation.Preference.uV" value="*"/>
+      <ownedAttribute xmi:id="Ppivot.TAnnotation.Preferences" name="references" type="Ppivot.TElement" isOrdered="true">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TAnnotation.Preferences.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TAnnotation.Preferences.uV" value="*"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TAnyType" name="AnyType">
@@ -134,9 +134,9 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TAssociationClass" name="AssociationClass">
       <generalization xmi:id="Ppivot.TAssociationClass.g0" general="Ppivot.TClass"/>
-      <ownedAttribute xmi:id="Ppivot.TAssociationClass.PunownedAttribute" name="unownedAttribute" type="Ppivot.TProperty" association="Ppivot.A_associationClass_unownedAttribute">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TAssociationClass.PunownedAttribute.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TAssociationClass.PunownedAttribute.uV" value="*"/>
+      <ownedAttribute xmi:id="Ppivot.TAssociationClass.PunownedAttributes" name="unownedAttributes" type="Ppivot.TProperty" association="Ppivot.A_associationClass_unownedAttribute">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TAssociationClass.PunownedAttributes.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TAssociationClass.PunownedAttributes.uV" value="*"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TAssociationClassCallExp" name="AssociationClassCallExp">
@@ -1770,7 +1770,7 @@
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_applyingPackage_profileApplication" name="A_applyingPackage_profileApplication"
         memberEnd="Ppivot.TProfileApplication.PapplyingPackage Ppivot.TPackage.PprofileApplication"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_associationClass_unownedAttribute" name="A_associationClass_unownedAttribute"
-        memberEnd="Ppivot.TAssociationClass.PunownedAttribute Ppivot.TProperty.PassociationClass"/>
+        memberEnd="Ppivot.TAssociationClass.PunownedAttributes Ppivot.TProperty.PassociationClass"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_base_extension" name="A_base_extension" memberEnd="Ppivot.TElement.Pextension Ppivot.TElementExtension.Pbase"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_connectionPointReference_entry" name="A_connectionPointReference_entry"
         memberEnd="Ppivot.TConnectionPointReference.Pentry Ppivot.A_connectionPointReference_entry.PconnectionPointReference">

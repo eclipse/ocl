@@ -36,9 +36,9 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.internal.impl.AnnotationImpl#getOwnedContent <em>Owned Content</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.impl.AnnotationImpl#getOwnedDetail <em>Owned Detail</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.impl.AnnotationImpl#getReference <em>Reference</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.impl.AnnotationImpl#getOwnedContents <em>Owned Contents</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.impl.AnnotationImpl#getOwnedDetails <em>Owned Details</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.impl.AnnotationImpl#getReferences <em>References</em>}</li>
  * </ul>
  * </p>
  *
@@ -49,34 +49,34 @@ public class AnnotationImpl
 		implements Annotation {
 
 	/**
-	 * The cached value of the '{@link #getOwnedContent() <em>Owned Content</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedContents() <em>Owned Contents</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedContent()
+	 * @see #getOwnedContents()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Element> ownedContent;
+	protected EList<Element> ownedContents;
 
 	/**
-	 * The cached value of the '{@link #getOwnedDetail() <em>Owned Detail</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedDetails() <em>Owned Details</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedDetail()
+	 * @see #getOwnedDetails()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Detail> ownedDetail;
+	protected EList<Detail> ownedDetails;
 
 	/**
-	 * The cached value of the '{@link #getReference() <em>Reference</em>}' reference list.
+	 * The cached value of the '{@link #getReferences() <em>References</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getReference()
+	 * @see #getReferences()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Element> reference;
+	protected EList<Element> references;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -103,14 +103,13 @@ public class AnnotationImpl
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("null") 
-	public @NonNull List<Element> getOwnedContent()
+	public List<Element> getOwnedContents()
 	{
-		if (ownedContent == null)
+		if (ownedContents == null)
 		{
-			ownedContent = new EObjectContainmentEList<Element>(Element.class, this, PivotPackage.ANNOTATION__OWNED_CONTENT);
+			ownedContents = new EObjectContainmentEList<Element>(Element.class, this, PivotPackage.ANNOTATION__OWNED_CONTENTS);
 		}
-		return ownedContent;
+		return ownedContents;
 	}
 
 	/**
@@ -119,14 +118,13 @@ public class AnnotationImpl
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("null")
-	public @NonNull List<Detail> getOwnedDetail()
+	public List<Detail> getOwnedDetails()
 	{
-		if (ownedDetail == null)
+		if (ownedDetails == null)
 		{
-			ownedDetail = new EObjectContainmentEList<Detail>(Detail.class, this, PivotPackage.ANNOTATION__OWNED_DETAIL);
+			ownedDetails = new EObjectContainmentEList<Detail>(Detail.class, this, PivotPackage.ANNOTATION__OWNED_DETAILS);
 		}
-		return ownedDetail;
+		return ownedDetails;
 	}
 
 	/**
@@ -135,14 +133,13 @@ public class AnnotationImpl
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("null")
-	public @NonNull List<Element> getReference()
+	public List<Element> getReferences()
 	{
-		if (reference == null)
+		if (references == null)
 		{
-			reference = new EObjectResolvingEList<Element>(Element.class, this, PivotPackage.ANNOTATION__REFERENCE);
+			references = new EObjectResolvingEList<Element>(Element.class, this, PivotPackage.ANNOTATION__REFERENCES);
 		}
-		return reference;
+		return references;
 	}
 
 	/**
@@ -163,10 +160,10 @@ public class AnnotationImpl
 				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ANNOTATION__OWNED_COMMENT:
 				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ANNOTATION__OWNED_CONTENT:
-				return ((InternalEList<?>)getOwnedContent()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ANNOTATION__OWNED_DETAIL:
-				return ((InternalEList<?>)getOwnedDetail()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ANNOTATION__OWNED_CONTENTS:
+				return ((InternalEList<?>)getOwnedContents()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ANNOTATION__OWNED_DETAILS:
+				return ((InternalEList<?>)getOwnedDetails()).basicRemove(otherEnd, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -190,12 +187,12 @@ public class AnnotationImpl
 				return getOwnedComment();
 			case PivotPackage.ANNOTATION__NAME:
 				return getName();
-			case PivotPackage.ANNOTATION__OWNED_CONTENT:
-				return getOwnedContent();
-			case PivotPackage.ANNOTATION__OWNED_DETAIL:
-				return getOwnedDetail();
-			case PivotPackage.ANNOTATION__REFERENCE:
-				return getReference();
+			case PivotPackage.ANNOTATION__OWNED_CONTENTS:
+				return getOwnedContents();
+			case PivotPackage.ANNOTATION__OWNED_DETAILS:
+				return getOwnedDetails();
+			case PivotPackage.ANNOTATION__REFERENCES:
+				return getReferences();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -229,17 +226,17 @@ public class AnnotationImpl
 			case PivotPackage.ANNOTATION__NAME:
 				setName((String)newValue);
 				return;
-			case PivotPackage.ANNOTATION__OWNED_CONTENT:
-				getOwnedContent().clear();
-				getOwnedContent().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.ANNOTATION__OWNED_CONTENTS:
+				getOwnedContents().clear();
+				getOwnedContents().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.ANNOTATION__OWNED_DETAIL:
-				getOwnedDetail().clear();
-				getOwnedDetail().addAll((Collection<? extends Detail>)newValue);
+			case PivotPackage.ANNOTATION__OWNED_DETAILS:
+				getOwnedDetails().clear();
+				getOwnedDetails().addAll((Collection<? extends Detail>)newValue);
 				return;
-			case PivotPackage.ANNOTATION__REFERENCE:
-				getReference().clear();
-				getReference().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.ANNOTATION__REFERENCES:
+				getReferences().clear();
+				getReferences().addAll((Collection<? extends Element>)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -269,14 +266,14 @@ public class AnnotationImpl
 			case PivotPackage.ANNOTATION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case PivotPackage.ANNOTATION__OWNED_CONTENT:
-				getOwnedContent().clear();
+			case PivotPackage.ANNOTATION__OWNED_CONTENTS:
+				getOwnedContents().clear();
 				return;
-			case PivotPackage.ANNOTATION__OWNED_DETAIL:
-				getOwnedDetail().clear();
+			case PivotPackage.ANNOTATION__OWNED_DETAILS:
+				getOwnedDetails().clear();
 				return;
-			case PivotPackage.ANNOTATION__REFERENCE:
-				getReference().clear();
+			case PivotPackage.ANNOTATION__REFERENCES:
+				getReferences().clear();
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -301,12 +298,12 @@ public class AnnotationImpl
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.ANNOTATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.ANNOTATION__OWNED_CONTENT:
-				return ownedContent != null && !ownedContent.isEmpty();
-			case PivotPackage.ANNOTATION__OWNED_DETAIL:
-				return ownedDetail != null && !ownedDetail.isEmpty();
-			case PivotPackage.ANNOTATION__REFERENCE:
-				return reference != null && !reference.isEmpty();
+			case PivotPackage.ANNOTATION__OWNED_CONTENTS:
+				return ownedContents != null && !ownedContents.isEmpty();
+			case PivotPackage.ANNOTATION__OWNED_DETAILS:
+				return ownedDetails != null && !ownedDetails.isEmpty();
+			case PivotPackage.ANNOTATION__REFERENCES:
+				return references != null && !references.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
 	}

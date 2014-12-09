@@ -6,10 +6,10 @@ context  AnnotationCS
 def: ast() : ocl::Annotation = 
 	ocl::Annotation {
 		name = name,
-		ownedDetail = ownedDetails.ast(),
-		ownedContent = ownedContents.ast(),
+		ownedDetails = ownedDetails.ast(),
+		ownedContents = ownedContents.ast(),
 		ownedAnnotation = ownedAnnotations.ast(),
-		reference = ownedReferences.ast()
+		references = ownedReferences.ast()
 	}
 
 context AttributeCS

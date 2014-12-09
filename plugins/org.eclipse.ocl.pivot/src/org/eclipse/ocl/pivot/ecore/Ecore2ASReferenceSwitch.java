@@ -85,7 +85,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 		@SuppressWarnings("null") @NonNull EAnnotation eObject2 = eObject;
 		Annotation pivotElement = converter.getCreated(Annotation.class, eObject2);
 		if (pivotElement != null) {
-			doSwitchAll(Element.class, pivotElement.getReference(), eObject2.getReferences());
+			doSwitchAll(Element.class, pivotElement.getReferences(), eObject2.getReferences());
 		}
 		return null;
 	}
@@ -216,6 +216,9 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 					if (upper.isInvalid()) {
 						logger.error("Invalid " + PROPERTY_OPPOSITE_ROLE_UPPER_KEY + " " + upper);
 						upper = unlimitedOne;
+					}
+					if (localType == null) {
+						localType = metaModelManager.getStandardLibrary().getOclInvalidType();
 					}
 					if (upper != one) {
 						oppositeProperty.setType(metaModelManager.getCollectionType(isOrdered, isUnique, localType, lower, upper));

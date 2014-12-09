@@ -42,7 +42,7 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.internal.impl.AssociationClassImpl#getUnownedAttribute <em>Unowned Attribute</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.impl.AssociationClassImpl#getUnownedAttributes <em>Unowned Attributes</em>}</li>
  * </ul>
  * </p>
  *
@@ -53,14 +53,14 @@ public class AssociationClassImpl
 		implements AssociationClass {
 
 	/**
-	 * The cached value of the '{@link #getUnownedAttribute() <em>Unowned Attribute</em>}' reference list.
+	 * The cached value of the '{@link #getUnownedAttributes() <em>Unowned Attributes</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getUnownedAttribute()
+	 * @see #getUnownedAttributes()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Property> unownedAttribute;
+	protected EList<Property> unownedAttributes;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -86,13 +86,13 @@ public class AssociationClassImpl
 	 * @generated
 	 */
 	@Override
-	public List<Property> getUnownedAttribute()
+	public List<Property> getUnownedAttributes()
 	{
-		if (unownedAttribute == null)
+		if (unownedAttributes == null)
 		{
-			unownedAttribute = new EObjectWithInverseResolvingEList<Property>(Property.class, this, PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE, PivotPackage.PROPERTY__ASSOCIATION_CLASS);
+			unownedAttributes = new EObjectWithInverseResolvingEList<Property>(Property.class, this, PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTES, PivotPackage.PROPERTY__ASSOCIATION_CLASS);
 		}
-		return unownedAttribute;
+		return unownedAttributes;
 	}
 
 	/**
@@ -128,8 +128,8 @@ public class AssociationClassImpl
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningPackage((org.eclipse.ocl.pivot.Package)otherEnd, msgs);
-			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getUnownedAttribute()).basicAdd(otherEnd, msgs);
+			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getUnownedAttributes()).basicAdd(otherEnd, msgs);
 		}
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -170,8 +170,8 @@ public class AssociationClassImpl
 				return ((InternalEList<?>)getOwnedProperties()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNING_PACKAGE:
 				return basicSetOwningPackage(null, msgs);
-			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE:
-				return ((InternalEList<?>)getUnownedAttribute()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTES:
+				return ((InternalEList<?>)getUnownedAttributes()).basicRemove(otherEnd, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -225,8 +225,8 @@ public class AssociationClassImpl
 				return getOwningPackage();
 			case PivotPackage.ASSOCIATION_CLASS__SUPER_CLASSES:
 				return getSuperClasses();
-			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE:
-				return getUnownedAttribute();
+			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTES:
+				return getUnownedAttributes();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -313,9 +313,9 @@ public class AssociationClassImpl
 				getSuperClasses().clear();
 				getSuperClasses().addAll((Collection<? extends org.eclipse.ocl.pivot.Class>)newValue);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE:
-				getUnownedAttribute().clear();
-				getUnownedAttribute().addAll((Collection<? extends Property>)newValue);
+			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTES:
+				getUnownedAttributes().clear();
+				getUnownedAttributes().addAll((Collection<? extends Property>)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -390,8 +390,8 @@ public class AssociationClassImpl
 			case PivotPackage.ASSOCIATION_CLASS__SUPER_CLASSES:
 				getSuperClasses().clear();
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE:
-				getUnownedAttribute().clear();
+			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTES:
+				getUnownedAttributes().clear();
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -446,8 +446,8 @@ public class AssociationClassImpl
 				return getOwningPackage() != null;
 			case PivotPackage.ASSOCIATION_CLASS__SUPER_CLASSES:
 				return superClasses != null && !superClasses.isEmpty();
-			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE:
-				return unownedAttribute != null && !unownedAttribute.isEmpty();
+			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTES:
+				return unownedAttributes != null && !unownedAttributes.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
 	}

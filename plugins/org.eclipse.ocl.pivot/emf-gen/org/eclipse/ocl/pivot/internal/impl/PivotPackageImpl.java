@@ -1194,7 +1194,8 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EReference getAnnotation_OwnedContent() {
+	public EReference getAnnotation_OwnedContents()
+	{
 		return (EReference)annotationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1204,7 +1205,8 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EReference getAnnotation_OwnedDetail() {
+	public EReference getAnnotation_OwnedDetails()
+	{
 		return (EReference)annotationEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1214,7 +1216,8 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EReference getAnnotation_Reference() {
+	public EReference getAnnotation_References()
+	{
 		return (EReference)annotationEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -5047,7 +5050,8 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EReference getAssociationClass_UnownedAttribute() {
+	public EReference getAssociationClass_UnownedAttributes()
+	{
 		return (EReference)associationClassEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -6228,14 +6232,14 @@ public class PivotPackageImpl
 
 		// Create classes and their features
 		annotationEClass = createEClass(ANNOTATION);
-		createEReference(annotationEClass, ANNOTATION__OWNED_CONTENT);
-		createEReference(annotationEClass, ANNOTATION__OWNED_DETAIL);
-		createEReference(annotationEClass, ANNOTATION__REFERENCE);
+		createEReference(annotationEClass, ANNOTATION__OWNED_CONTENTS);
+		createEReference(annotationEClass, ANNOTATION__OWNED_DETAILS);
+		createEReference(annotationEClass, ANNOTATION__REFERENCES);
 
 		anyTypeEClass = createEClass(ANY_TYPE);
 
 		associationClassEClass = createEClass(ASSOCIATION_CLASS);
-		createEReference(associationClassEClass, ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE);
+		createEReference(associationClassEClass, ASSOCIATION_CLASS__UNOWNED_ATTRIBUTES);
 
 		associationClassCallExpEClass = createEClass(ASSOCIATION_CLASS_CALL_EXP);
 		createEReference(associationClassCallExpEClass, ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS);
@@ -6990,14 +6994,14 @@ public class PivotPackageImpl
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(annotationEClass, Annotation.class, "Annotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getAnnotation_OwnedContent(), this.getElement(), null, "ownedContent", null, 0, -1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getAnnotation_OwnedDetail(), this.getDetail(), null, "ownedDetail", null, 0, -1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getAnnotation_Reference(), this.getElement(), null, "reference", null, 0, -1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getAnnotation_OwnedContents(), this.getElement(), null, "ownedContents", null, 0, -1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getAnnotation_OwnedDetails(), this.getDetail(), null, "ownedDetails", null, 0, -1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getAnnotation_References(), this.getElement(), null, "references", null, 0, -1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(anyTypeEClass, AnyType.class, "AnyType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(associationClassEClass, AssociationClass.class, "AssociationClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getAssociationClass_UnownedAttribute(), this.getProperty(), this.getProperty_AssociationClass(), "unownedAttribute", null, 0, -1, AssociationClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getAssociationClass_UnownedAttributes(), this.getProperty(), this.getProperty_AssociationClass(), "unownedAttributes", null, 0, -1, AssociationClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(associationClassCallExpEClass, AssociationClassCallExp.class, "AssociationClassCallExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getAssociationClassCallExp_ReferredAssociationClass(), this.getAssociationClass(), null, "referredAssociationClass", null, 0, 1, AssociationClassCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -7830,7 +7834,7 @@ public class PivotPackageImpl
 		initEAttribute(getProfileApplication_IsStrict(), this.getBoolean(), "isStrict", "false", 1, 1, ProfileApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
 		initEClass(propertyEClass, Property.class, "Property", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getProperty_AssociationClass(), this.getAssociationClass(), this.getAssociationClass_UnownedAttribute(), "associationClass", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getProperty_AssociationClass(), this.getAssociationClass(), this.getAssociationClass_UnownedAttributes(), "associationClass", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getProperty_Default(), this.getString(), "default", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getProperty_DefaultExpression(), this.getLanguageExpression(), null, "defaultExpression", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getProperty_Implicit(), this.getBoolean(), "implicit", "false", 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
