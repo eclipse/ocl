@@ -12,13 +12,13 @@ package org.eclipse.ocl.examples.codegen.java;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainProperty;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.ids.impl.WeakHashMapOfWeakReference;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.examples.codegen.java.types.JavaTypeId;
+import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.library.UnboxedCompositionProperty;
 import org.eclipse.ocl.pivot.library.UnboxedExplicitNavigationProperty;
 import org.eclipse.ocl.pivot.library.UnboxedOppositeNavigationProperty;
@@ -47,7 +47,7 @@ public class JavaConstants
 	public static final @NonNull String TYPE_ID_NAME = "typeId";
 	
 
-	public static final @NonNull TypeId DOMAIN_PROPERTY_TYPE_ID = getJavaTypeId(DomainProperty.class);
+	public static final @NonNull TypeId PROPERTY_TYPE_ID = getJavaTypeId(Property.class);
 	public static final @NonNull TypeId DOMAIN_TYPE_TYPE_ID = getJavaTypeId(DomainClass.class);
 	public static final @NonNull TypeId EVALUATOR_TYPE_ID = getJavaTypeId(DomainEvaluator.class);
 	public static final @NonNull TypeId ID_RESOLVER_TYPE_ID = getJavaTypeId(IdResolver.class);

@@ -19,7 +19,6 @@ import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainLambdaType;
 import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainPackage;
-import org.eclipse.ocl.domain.elements.DomainProperty;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.ClassId;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
@@ -56,6 +55,7 @@ import org.eclipse.ocl.domain.values.TupleValue;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.codegen.generator.GenModelHelper;
 import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
+import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.Orphanage;
@@ -334,7 +334,7 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 
 	@Override
 	public @NonNull BoxedDescriptor visitPropertyId(@NonNull PropertyId id) {
-		return new SimpleValueDescriptor(id, DomainProperty.class);
+		return new SimpleValueDescriptor(id, Property.class);
 	}
 
 	@Override
@@ -359,7 +359,7 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 
 	@Override
 	public @NonNull BoxedDescriptor visitTuplePartId(@NonNull TuplePartId id) {
-		return new SimpleValueDescriptor(id, DomainProperty.class);
+		return new SimpleValueDescriptor(id, Property.class);
 	}
 
 	@Override

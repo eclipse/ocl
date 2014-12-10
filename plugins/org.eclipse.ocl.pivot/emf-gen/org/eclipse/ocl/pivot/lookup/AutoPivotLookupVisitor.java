@@ -19,7 +19,6 @@ import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainParameter;
-import org.eclipse.ocl.domain.elements.DomainProperty;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.ClassId;
@@ -214,7 +213,7 @@ public class AutoPivotLookupVisitor
             if (_1_0 == null) {
                 throw new InvalidValueException("Null source for \'pivot::Class::ownedProperties\'");
             }
-            final @NonNull /*@Thrown*/ List<? extends DomainProperty> ownedProperties = _1_0.getOwnedProperties();
+            final @NonNull /*@Thrown*/ List<? extends Property> ownedProperties = _1_0.getOwnedProperties();
             final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedProperties = idResolver.createOrderedSetOfAll(ORD_CLSSid_Property, ownedProperties);
             //
             for (Object value : BOXED_ownedProperties.flatten().getElements()) {
@@ -229,7 +228,7 @@ public class AutoPivotLookupVisitor
                 select = accumulator_0;
                 break;
             }
-            @Nullable /*@NonInvalid*/ DomainProperty _1_1 = (DomainProperty)ITERATOR__1_1.next();
+            @Nullable /*@NonInvalid*/ Property _1_1 = (Property)ITERATOR__1_1.next();
             /**
              * _'null' : Boolean[?]
              */
@@ -406,7 +405,7 @@ public class AutoPivotLookupVisitor
     public @Nullable /*@NonInvalid*/ Environment visitEnumeration(final @NonNull /*@NonInvalid*/ Enumeration element_2) {
         final @NonNull /*@Thrown*/ List<EnumerationLiteral> ownedLiteral = element_2.getOwnedLiteral();
         final @NonNull /*@Thrown*/ Environment addElements = context.addElements(ownedLiteral);
-        final @NonNull /*@Thrown*/ List<? extends DomainProperty> ownedProperties = element_2.getOwnedProperties();
+        final @NonNull /*@Thrown*/ List<? extends Property> ownedProperties = element_2.getOwnedProperties();
         final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedProperties = idResolver.createOrderedSetOfAll(ORD_CLSSid_Property, ownedProperties);
         @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator = ValuesUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Property);
         @Nullable Iterator<?> ITERATOR__1 = BOXED_ownedProperties.iterator();
@@ -416,7 +415,7 @@ public class AutoPivotLookupVisitor
                 select = accumulator;
                 break;
             }
-            @Nullable /*@NonInvalid*/ DomainProperty _1 = (DomainProperty)ITERATOR__1.next();
+            @Nullable /*@NonInvalid*/ Property _1 = (Property)ITERATOR__1.next();
             /**
              * _'null' : Boolean[?]
              */

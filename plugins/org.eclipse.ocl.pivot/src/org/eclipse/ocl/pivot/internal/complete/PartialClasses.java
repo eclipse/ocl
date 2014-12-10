@@ -34,7 +34,6 @@ import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainPackage;
-import org.eclipse.ocl.domain.elements.DomainProperty;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
@@ -197,7 +196,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 			partialProperties = new PartialProperties(getMetaModelManager());
 			name2partialProperties2.put(extensionPropertyName, partialProperties);
 		}
-		for (DomainProperty partialProperty : partialProperties) {
+		for (Property partialProperty : partialProperties) {
 			if (partialProperty instanceof Property) {
 				extensionProperty = (Property)partialProperty;
 				break;
@@ -592,16 +591,16 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 		return subItOps;
 	}
 
-	public @NonNull Iterable<? extends DomainProperty> getProperties(final @Nullable FeatureFilter featureFilter) {
+	public @NonNull Iterable<? extends Property> getProperties(final @Nullable FeatureFilter featureFilter) {
 		Map<String, PartialProperties> name2partialProperties2 = name2partialProperties;
 		if (name2partialProperties2 == null) {
 			name2partialProperties2 = initMemberProperties();
 		}
-		@SuppressWarnings("null")@NonNull Iterable<DomainProperty> transform = Iterables.transform(name2partialProperties2.values(),
-			new Function<PartialProperties, DomainProperty>()
+		@SuppressWarnings("null")@NonNull Iterable<Property> transform = Iterables.transform(name2partialProperties2.values(),
+			new Function<PartialProperties, Property>()
 			{
 				@Override
-				public DomainProperty apply(PartialProperties properties) {
+				public Property apply(PartialProperties properties) {
 					return properties.get();
 				}
 			});
@@ -609,18 +608,18 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 			return transform;
 		}
 		@SuppressWarnings("null")
-		@NonNull Iterable<DomainProperty> subItOps = Iterables.filter(transform,
-			new Predicate<DomainProperty>()
+		@NonNull Iterable<Property> subItOps = Iterables.filter(transform,
+			new Predicate<Property>()
 			{
 				@Override
-				public boolean apply(DomainProperty domainProperty) {
+				public boolean apply(Property domainProperty) {
 					return (domainProperty != null) && featureFilter.accept(domainProperty);
 				}
 			});
 		return subItOps;
 	}
 
-	public @NonNull Iterable<? extends DomainProperty> getProperties(final @Nullable FeatureFilter featureFilter, @Nullable String name) {
+	public @NonNull Iterable<? extends Property> getProperties(final @Nullable FeatureFilter featureFilter, @Nullable String name) {
 		Map<String, PartialProperties> name2partialProperties2 = name2partialProperties;
 		if (name2partialProperties2 == null) {
 			name2partialProperties2 = initMemberProperties();
@@ -634,18 +633,18 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 		if (featureFilter == null) {
 			return partials;
 		}
-		@SuppressWarnings("null")@NonNull Iterable<DomainProperty> subItOps = Iterables.filter(partials,
-			new Predicate<DomainProperty>()
+		@SuppressWarnings("null")@NonNull Iterable<Property> subItOps = Iterables.filter(partials,
+			new Predicate<Property>()
 			{
 				@Override
-				public boolean apply(DomainProperty domainProperty) {
+				public boolean apply(Property domainProperty) {
 					return (domainProperty != null) && featureFilter.accept(domainProperty);
 				}
 			});
 		return subItOps;
 	}
 
-	public @Nullable Iterable<DomainProperty> getProperties(@NonNull DomainProperty pivotProperty) {
+	public @Nullable Iterable<Property> getProperties(@NonNull Property pivotProperty) {
 		Map<String, PartialProperties> name2partialProperties2 = name2partialProperties;
 		if (name2partialProperties2 == null) {
 			name2partialProperties2 = initMemberProperties();
@@ -654,7 +653,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 		return name2partialProperties2.get(propertyName);
 	}
 
-	public @Nullable Iterable<DomainProperty> getProperties(@Nullable String propertyName) {
+	public @Nullable Iterable<Property> getProperties(@Nullable String propertyName) {
 		Map<String, PartialProperties> name2partialProperties2 = name2partialProperties;
 		if (name2partialProperties2 == null) {
 			name2partialProperties2 = initMemberProperties();
@@ -662,7 +661,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 		return name2partialProperties2.get(propertyName);
 	}
 
-	public @Nullable DomainProperty getProperty(@Nullable String propertyName) {
+	public @Nullable Property getProperty(@Nullable String propertyName) {
 		Map<String, PartialProperties> name2partialProperties2 = name2partialProperties;
 		if (name2partialProperties2 == null) {
 			name2partialProperties2 = initMemberProperties();
@@ -906,7 +905,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 			DomainType metatype = metaCompletePackage.getType(metatypeName);
 			if (metatype != null) {
 				CompleteClass metaCompleteClass = getCompleteModel().getCompleteClass(metatype);
-				for (DomainProperty property : metaCompleteClass.getProperties(FeatureFilter.SELECT_STATIC)) {
+				for (Property property : metaCompleteClass.getProperties(FeatureFilter.SELECT_STATIC)) {
 					if (property instanceof Property) {
 						didAddProperty((Property) property);
 					}
@@ -938,7 +937,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 //				initStereotypePropertiesFrom((Type)asPrimaryType, extension);
 			}
 		}
-		for (DomainProperty pivotProperty : asPrimaryType.getOwnedProperties()) {
+		for (Property pivotProperty : asPrimaryType.getOwnedProperties()) {
 			if (pivotProperty instanceof Property) {
 				didAddProperty((Property) pivotProperty);
 			}

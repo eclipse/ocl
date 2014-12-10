@@ -20,11 +20,11 @@ import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainLambdaType;
-import org.eclipse.ocl.domain.elements.DomainProperty;
 import org.eclipse.ocl.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.domain.elements.DomainTupleType;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateSignature;
 
 /**
@@ -58,7 +58,7 @@ public class TemplateSpecialisation
 		}
 		if (referencedType instanceof DomainTupleType) {
 			DomainTupleType tupleType = (DomainTupleType)referencedType;
-			for (DomainProperty tuplePart : tupleType.getOwnedProperties()) {
+			for (Property tuplePart : tupleType.getOwnedProperties()) {
 				DomainType tuplePartType = tuplePart.getType();
 				if (needsSpecialisation(tuplePartType)) {
 					return true;
@@ -166,9 +166,9 @@ public class TemplateSpecialisation
 			if (resolvedType instanceof DomainTupleType) {
 				DomainTupleType referencedTupleType = (DomainTupleType)referencedType;
 				DomainTupleType resolvedTupleType = (DomainTupleType)resolvedType;
-				Iterable<? extends DomainProperty> referencedTupleParts = referencedTupleType.getOwnedProperties();
-				for (DomainProperty resolvedTuplePart : resolvedTupleType.getOwnedProperties()) {
-					DomainProperty referencedTuplePart = DomainUtil.getNamedElement(referencedTupleParts, resolvedTuplePart.getName());
+				Iterable<? extends Property> referencedTupleParts = referencedTupleType.getOwnedProperties();
+				for (Property resolvedTuplePart : resolvedTupleType.getOwnedProperties()) {
+					Property referencedTuplePart = DomainUtil.getNamedElement(referencedTupleParts, resolvedTuplePart.getName());
 					if (referencedTuplePart != null) {
 						DomainType resolvedTuplePartType = resolvedTuplePart.getType();
 						DomainType referencedTuplePartType = referencedTuplePart.getType();

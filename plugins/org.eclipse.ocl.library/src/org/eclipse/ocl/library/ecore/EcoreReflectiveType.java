@@ -24,7 +24,6 @@ import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainPackage;
-import org.eclipse.ocl.domain.elements.DomainProperty;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.domain.elements.DomainType;
@@ -37,6 +36,7 @@ import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.library.executor.AbstractReflectiveInheritanceType;
 import org.eclipse.ocl.library.executor.DomainProperties;
 import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.Property;
 
 public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 {
@@ -60,7 +60,7 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 	}
 
 	@Override
-	public @NonNull Object createInstance() {
+	public @NonNull EObject createInstance() {
 		if (eClassifier instanceof EClass) {
 			EClass eClass = (EClass)eClassifier;
 			EObject element = eClass.getEPackage().getEFactoryInstance().create(eClass);
@@ -153,7 +153,7 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 	}
 
 	@Override
-	public @Nullable DomainProperty getMemberProperty(@NonNull String name) {
+	public @Nullable Property getMemberProperty(@NonNull String name) {
 		DomainProperties allProperties2 = allProperties;
 		if (allProperties2 == null) {
 			allProperties = allProperties2 = new DomainProperties(this);
@@ -172,7 +172,7 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 	}
 
 	@Override
-	public @NonNull List<? extends DomainProperty> getOwnedProperties() {
+	public @NonNull List<Property> getOwnedProperties() {
 		throw new UnsupportedOperationException();		// FIXME
 	}
 

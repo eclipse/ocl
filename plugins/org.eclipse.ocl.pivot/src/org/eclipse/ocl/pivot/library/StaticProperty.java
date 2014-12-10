@@ -12,11 +12,11 @@ package org.eclipse.ocl.pivot.library;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainProperty;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.AbstractProperty;
+import org.eclipse.ocl.pivot.Property;
 
 /**
  * The static instance of ExplicitNavigationProperty supports evaluation of
@@ -24,9 +24,9 @@ import org.eclipse.ocl.domain.library.AbstractProperty;
  */
 public class StaticProperty extends AbstractProperty
 {
-	protected @NonNull DomainProperty property;
+	protected @NonNull Property property;
 	
-	public StaticProperty(@NonNull DomainProperty property) {
+	public StaticProperty(@NonNull Property property) {
 		this.property = property;
 	}
 	

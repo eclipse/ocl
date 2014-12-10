@@ -34,7 +34,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainProperty;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.PropertyId;
@@ -61,7 +60,6 @@ import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.ValueSpecification;
 import org.eclipse.ocl.pivot.util.PivotValidator;
 import org.eclipse.ocl.pivot.util.Visitor;
@@ -935,7 +933,7 @@ public class PropertyImpl
 		    if (oclAsType == null) {
 		        throw new InvalidValueException("Null source for \'pivot::Class::ownedProperties\'");
 		    }
-		    final @NonNull /*@Thrown*/ List<? extends DomainProperty> ownedProperties = oclAsType.getOwnedProperties();
+		    final @NonNull /*@Thrown*/ List<Property> ownedProperties = oclAsType.getOwnedProperties();
 		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedProperties = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Property, ownedProperties);
 		    final /*@Thrown*/ boolean b = CollectionIncludesOperation.INSTANCE.evaluate(BOXED_ownedProperties, this).booleanValue();
 		    CAUGHT_b = b;
@@ -1124,7 +1122,7 @@ public class PropertyImpl
 		    @NonNull /*@Caught*/ Object CAUGHT_b_0;
 		    try {
 		        final @Nullable /*@Thrown*/ LanguageExpression defaultExpression_1 = this.getDefaultExpression();
-		        final /*@Thrown*/ boolean b_0 = ((TypedElement)this).CompatibleBody((ValueSpecification)defaultExpression_1);
+		        final /*@Thrown*/ boolean b_0 = this.CompatibleBody((ValueSpecification)defaultExpression_1);
 		        CAUGHT_b_0 = b_0;
 		    }
 		    catch (Exception e) {
@@ -1743,7 +1741,7 @@ public class PropertyImpl
 	}
 
 	@Override
-	public void initValue(@NonNull Object objectValue, @Nullable Object unboxedValue) {
+	public void initValue(@NonNull EObject objectValue, @Nullable Object unboxedValue) {
 		assert ValuesUtil.isUnboxed(unboxedValue);
 		EObject eTarget = getETarget();
 		if (eTarget instanceof EStructuralFeature) {

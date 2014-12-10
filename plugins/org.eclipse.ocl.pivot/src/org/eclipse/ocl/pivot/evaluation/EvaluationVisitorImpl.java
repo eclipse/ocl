@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
@@ -378,15 +379,16 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		String value = ce.getValue();
 		Object object;
 		if (value == null) {
-			object = type.createInstance();
+			EObject eObject = type.createInstance();
 			for (ConstructorPart part : ce.getPart()) {
 				OCLExpression initExpression = part.getInitExpression();
 				if (initExpression != null) {
 					Object boxedValue = undecoratedVisitor.evaluate(initExpression);
 					Object unboxedValue = getIdResolver().unboxedValueOf(boxedValue);
-					part.getReferredProperty().initValue(object, unboxedValue);
+					part.getReferredProperty().initValue(eObject, unboxedValue);
 				}
 			}
+			object = eObject;
 		}
 		else {
 			object = type.createInstance(value);

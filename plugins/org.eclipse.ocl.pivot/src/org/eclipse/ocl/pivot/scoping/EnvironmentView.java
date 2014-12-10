@@ -32,7 +32,6 @@ import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainNamedElement;
 import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainPackage;
-import org.eclipse.ocl.domain.elements.DomainProperty;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.domain.elements.Nameable;
 import org.eclipse.ocl.pivot.CompleteClass;
@@ -413,14 +412,14 @@ public class EnvironmentView
 			CompleteClass completeClass = metaModelManager.getCompleteClass(type);
 			String name2 = name;
 			if (name2 != null) {
-				for (DomainProperty property : completeClass.getProperties(featureFilter, name2)) {
+				for (Property property : completeClass.getProperties(featureFilter, name2)) {
 					if (property != null) {
 						addNamedElement(property);
 					}
 				}
 			}
 			else {
-				for (DomainProperty property : completeClass.getProperties(featureFilter)) {
+				for (Property property : completeClass.getProperties(featureFilter)) {
 					if (property != null) {
 						addNamedElement(property);
 					}
@@ -537,7 +536,7 @@ public class EnvironmentView
 			}
 		}
 		if ((name != null) && !name.equals(elementName)) {
-			assert !(element instanceof DomainProperty) &&  !(element instanceof DomainOperation);
+			assert !(element instanceof Property) &&  !(element instanceof DomainOperation);
 			return;
 		}
 		if (element instanceof CompletePackage) {

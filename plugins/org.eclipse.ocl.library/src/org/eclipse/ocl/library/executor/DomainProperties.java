@@ -18,8 +18,8 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainProperty;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
+import org.eclipse.ocl.pivot.Property;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
@@ -28,7 +28,7 @@ import com.google.common.collect.Iterables;
 public class DomainProperties
 {
 	protected final @NonNull DomainInheritance inheritance;
-	protected final @NonNull Map<String, DomainProperty> name2property = new HashMap<String, DomainProperty>();
+	protected final @NonNull Map<String, Property> name2property = new HashMap<String, Property>();
 
 	public DomainProperties(@NonNull DomainInheritance inheritance) {
 		this.inheritance = inheritance;
@@ -37,30 +37,30 @@ public class DomainProperties
 
 	protected void init(@NonNull Iterable<DomainFragment> allSuperFragments) {
 		for (DomainFragment fragment : allSuperFragments) {
-			for (DomainProperty property : fragment.getLocalProperties()) {
+			for (Property property : fragment.getLocalProperties()) {
 				name2property.put(property.getName(), property);
 			}		
 		}		
 	}
 
-	public @NonNull Iterable<? extends DomainProperty> getAllProperties(final @Nullable FeatureFilter featureFilter) {
-		@SuppressWarnings("null")@NonNull Collection<DomainProperty> values = name2property.values();
+	public @NonNull Iterable<? extends Property> getAllProperties(final @Nullable FeatureFilter featureFilter) {
+		@SuppressWarnings("null")@NonNull Collection<Property> values = name2property.values();
 		if (featureFilter == null) {
 			return values;
 		}
 		@SuppressWarnings("null")
-		@NonNull Iterable<DomainProperty> subItOps = Iterables.filter(values,
-			new Predicate<DomainProperty>()
+		@NonNull Iterable<Property> subItOps = Iterables.filter(values,
+			new Predicate<Property>()
 			{
 				@Override
-				public boolean apply(DomainProperty domainProperty) {
+				public boolean apply(Property domainProperty) {
 					return (domainProperty != null) && featureFilter.accept(domainProperty);
 				}
 			});
 		return subItOps;
 	}
 
-	public @Nullable DomainProperty getMemberProperty(@NonNull String name) {
+	public @Nullable Property getMemberProperty(@NonNull String name) {
 		return name2property.get(name);
 	}
 }

@@ -60,7 +60,7 @@ public class EcoreExecutorType extends ExecutorType
 	}
 
 	@Override
-	public @NonNull Object createInstance() {
+	public @NonNull EObject createInstance() {
 		EClassifier eClassifier2 = eClassifier;
 		if (eClassifier2 instanceof EClass) {
 			EClass eClass = (EClass)eClassifier2;

@@ -97,8 +97,7 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 
 	/**
 	 * The known classes that templates may use in unqualified form. The list is
-	 * here in a Java form to reduce the impact of refactoring on Acceleo
-	 * templates.
+	 * here in a Java form to reduce the impact of refactoring templates.
 	 */
 	public static final @NonNull Class<?>[] knownClasses = {
 		java.lang.Class.class,
@@ -108,7 +107,6 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 		org.eclipse.ocl.domain.elements.DomainElement.class,
 		org.eclipse.ocl.domain.elements.DomainCollectionType.class,
 		org.eclipse.ocl.domain.elements.DomainParameterTypes.class,
-		org.eclipse.ocl.domain.elements.DomainProperty.class,
 		org.eclipse.ocl.domain.elements.DomainStandardLibrary.class,
 		org.eclipse.ocl.domain.elements.DomainTupleType.class,
 		org.eclipse.ocl.domain.elements.DomainType.class,
@@ -170,6 +168,7 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 		org.eclipse.ocl.library.executor.ExecutorType.class,
 		org.eclipse.ocl.library.executor.ExecutorTypeParameter.class,
 		org.eclipse.ocl.pivot.PivotPackage.class,
+		org.eclipse.ocl.pivot.Property.class,
 		org.eclipse.ocl.pivot.utilities.PivotUtil.class,
 		org.eclipse.osgi.util.NLS.class
 	};

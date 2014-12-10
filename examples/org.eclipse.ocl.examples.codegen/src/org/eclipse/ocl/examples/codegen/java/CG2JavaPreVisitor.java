@@ -258,7 +258,7 @@ public class CG2JavaPreVisitor extends AbstractExtendingCGModelVisitor<Object, J
 	public @Nullable Object visitCGConstructorPart(@NonNull CGConstructorPart cgConstructorPart) {
 		CGExecutorConstructorPart cgExecutorConstructorPart = cgConstructorPart.getExecutorPart();
 		cgExecutorConstructorPart.accept(this);
-		TypeId javaPropertyTypeId = JavaConstants.DOMAIN_PROPERTY_TYPE_ID;
+		TypeId javaPropertyTypeId = JavaConstants.PROPERTY_TYPE_ID;
 		cgExecutorConstructorPart.setTypeId(analyzer.getTypeId(javaPropertyTypeId));
 //		localContext.addLocalVariable(cgExecutorConstructorPart);
 		installIdResolverVariable(cgExecutorConstructorPart);

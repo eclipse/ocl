@@ -20,7 +20,6 @@ import java.util.Map;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainProperty;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
@@ -29,29 +28,29 @@ import org.eclipse.ocl.pivot.scoping.EnvironmentView.Disambiguator;
 
 import com.google.common.collect.Iterators;
 
-public class PartialProperties implements Iterable<DomainProperty>
+public class PartialProperties implements Iterable<Property>
 {
 	//resolution = null, partials = null or empty => empty
 	// resolution = X, partials = null or empty or [X} => X
 	// resolution = null, partials not empty => lazy unresolved 'ambiguity'
 	private boolean isResolved = false;
-	private @Nullable DomainProperty resolution = null;
-	private @Nullable List<DomainProperty> partials = null;
+	private @Nullable Property resolution = null;
+	private @Nullable List<Property> partials = null;
 	protected final @NonNull MetaModelManager metaModelManager;
 
 	public PartialProperties(@NonNull MetaModelManager metaModelManager) {
 		this.metaModelManager = metaModelManager;
 	}
 
-	public synchronized void didAddProperty(@NonNull DomainProperty pivotProperty) {
-		List<DomainProperty> partials2 = partials;
+	public synchronized void didAddProperty(@NonNull Property pivotProperty) {
+		List<Property> partials2 = partials;
 		if (partials2 == null) {
 			if (resolution == null) {
 				resolution = pivotProperty;
 				isResolved = true;
 			}
 			else {
-				partials = partials2 = new ArrayList<DomainProperty>();
+				partials = partials2 = new ArrayList<Property>();
 				partials2.add(resolution);
 				if (resolution != pivotProperty) {
 					partials2.add(pivotProperty);
@@ -88,7 +87,7 @@ public class PartialProperties implements Iterable<DomainProperty>
 		return isEmpty();
 	}
 
-	public synchronized @Nullable DomainProperty get() {
+	public synchronized @Nullable Property get() {
 		if (isResolved) {
 			return resolution;
 		}
@@ -96,9 +95,9 @@ public class PartialProperties implements Iterable<DomainProperty>
 		if (isResolved) {
 			return resolution;
 		}
-		List<DomainProperty> values = new ArrayList<DomainProperty>(partials);
-		Map<DomainType, DomainProperty> primaryProperties = new HashMap<DomainType, DomainProperty>();
-		for (DomainProperty property : values) {
+		List<Property> values = new ArrayList<Property>(partials);
+		Map<DomainType, Property> primaryProperties = new HashMap<DomainType, Property>();
+		for (Property property : values) {
 			if (property != null) {
 				DomainClass owningType = property.getOwningClass();
 				if (owningType != null) {
@@ -123,7 +122,7 @@ public class PartialProperties implements Iterable<DomainProperty>
 		if (resolution != null) {
 			return false;
 		}
-		List<DomainProperty> partials2 = partials;
+		List<Property> partials2 = partials;
 		if (partials2 == null) {
 			return true;
 		}
@@ -132,7 +131,7 @@ public class PartialProperties implements Iterable<DomainProperty>
 
 	@Override
 	@SuppressWarnings("null")
-	public @NonNull Iterator<DomainProperty> iterator() {
+	public @NonNull Iterator<Property> iterator() {
 		if (!isResolved) {
 			resolve();
 		}
@@ -147,7 +146,7 @@ public class PartialProperties implements Iterable<DomainProperty>
 		}
 	}
 	
-	public synchronized void remove(@NonNull DomainProperty pivotProperty) {
+	public synchronized void remove(@NonNull Property pivotProperty) {
 		if (pivotProperty == resolution) {
 			resolution = null;
 		}
@@ -158,7 +157,7 @@ public class PartialProperties implements Iterable<DomainProperty>
 
 	private void resolve() {
 		assert !isResolved;
-		List<DomainProperty> partials2 = partials;
+		List<Property> partials2 = partials;
 		if (partials2 == null) {
 			return;
 		}
@@ -170,14 +169,14 @@ public class PartialProperties implements Iterable<DomainProperty>
 			isResolved = true;
 			resolution = partials2.get(0);
 		}
-		List<DomainProperty> values = new ArrayList<DomainProperty>(partials);
+		List<Property> values = new ArrayList<Property>(partials);
 		for (int i = 0; i < values.size()-1;) {
 			boolean iRemoved = false;
-			@SuppressWarnings("null") @NonNull DomainProperty iValue = values.get(i);
+			@SuppressWarnings("null") @NonNull Property iValue = values.get(i);
 			for (int j = i + 1; j < values.size();) {
-				Class<? extends DomainProperty> iClass = iValue.getClass();
-				@SuppressWarnings("null") @NonNull DomainProperty jValue = values.get(j);
-				Class<? extends DomainProperty> jClass = jValue.getClass();
+				Class<? extends Property> iClass = iValue.getClass();
+				@SuppressWarnings("null") @NonNull Property jValue = values.get(j);
+				Class<? extends Property> jClass = jValue.getClass();
 				int verdict = 0;
 				for (Class<?> key : EnvironmentView.getDisambiguatorKeys()) {
 					if (key.isAssignableFrom(iClass) && key.isAssignableFrom(jClass)) {
@@ -226,12 +225,12 @@ public class PartialProperties implements Iterable<DomainProperty>
 		if (resolution != null) {
 			return resolution.toString();
 		}
-		List<DomainProperty> partials2 = partials;
+		List<Property> partials2 = partials;
 		if (partials2 == null) {
 			return "";
 		}
 		StringBuilder s = new StringBuilder();
-		for (DomainProperty dProperty : partials2) {
+		for (Property dProperty : partials2) {
 			if (s.length() > 0) {
 				s.append(",");
 			}

@@ -20,7 +20,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
-import org.eclipse.ocl.domain.elements.DomainProperty;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.evaluation.DomainModelManager;
@@ -29,6 +28,7 @@ import org.eclipse.ocl.domain.library.AbstractProperty;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.Property;
 
 /**
  * The static instance of ImplicitNonCompositionProperty supports evaluation of
@@ -36,16 +36,16 @@ import org.eclipse.ocl.pivot.PivotConstants;
  */
 public class ImplicitNonCompositionProperty extends AbstractProperty
 {
-	protected @NonNull DomainProperty property;
+	protected @NonNull Property property;
 	
-	public ImplicitNonCompositionProperty(@NonNull DomainProperty property) {
+	public ImplicitNonCompositionProperty(@NonNull Property property) {
 		this.property = property;
 	}
 	
 	@Override
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		DomainModelManager modelManager = evaluator.getModelManager();
-		DomainProperty thatProperty = property.getOpposite();
+		Property thatProperty = property.getOpposite();
 		DomainType thatType = DomainUtil.nonNullModel(property.getType());
 		boolean isMany = thatType instanceof DomainCollectionType;
 		if (isMany) {

@@ -18,10 +18,10 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainOperation;
-import org.eclipse.ocl.domain.elements.DomainProperty;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.domain.types.AbstractFragment;
 import org.eclipse.ocl.library.oclany.OclAnyUnsupportedOperation;
+import org.eclipse.ocl.pivot.Property;
 
 /**
  * A ReflectiveFragment provides the description of the properties and operations defined by some class when accessed by the same
@@ -31,7 +31,7 @@ public abstract class ReflectiveFragment extends AbstractFragment
 {
 	protected Map<DomainOperation, LibraryFeature> operationMap = null;
 	protected Map<DomainOperation, DomainOperation> apparentOperation2actualOperation = null;
-	protected Map<DomainProperty, LibraryFeature> propertyMap = null;
+	protected Map<Property, LibraryFeature> propertyMap = null;
 
 	public ReflectiveFragment(@NonNull DomainInheritance derivedInheritance, @NonNull DomainInheritance baseInheritance) {
 		super(derivedInheritance, baseInheritance);
@@ -119,7 +119,7 @@ public abstract class ReflectiveFragment extends AbstractFragment
 	
 	@Override
 	@SuppressWarnings("null")
-	public @NonNull Iterable<? extends DomainProperty> getLocalProperties() {
-		return propertyMap != null ? propertyMap.keySet() : Collections.<DomainProperty>emptyList();
+	public @NonNull Iterable<? extends Property> getLocalProperties() {
+		return propertyMap != null ? propertyMap.keySet() : Collections.<Property>emptyList();
 	}
 }

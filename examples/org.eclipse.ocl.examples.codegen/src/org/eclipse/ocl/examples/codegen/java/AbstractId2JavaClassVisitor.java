@@ -16,7 +16,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainLambdaType;
 import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainPackage;
-import org.eclipse.ocl.domain.elements.DomainProperty;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.ClassId;
 import org.eclipse.ocl.domain.ids.ElementId;
@@ -43,6 +42,7 @@ import org.eclipse.ocl.domain.values.TupleValue;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.codegen.generator.GenModelHelper;
 import org.eclipse.ocl.examples.codegen.java.types.JavaTypeId;
+import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 
@@ -131,7 +131,7 @@ public abstract class AbstractId2JavaClassVisitor implements IdVisitor<Class<?>>
 
 	@Override
 	public @NonNull Class<?> visitPropertyId(@NonNull PropertyId id) {
-		return DomainProperty.class;
+		return Property.class;
 	}
 
 	@Override
@@ -156,7 +156,7 @@ public abstract class AbstractId2JavaClassVisitor implements IdVisitor<Class<?>>
 
 	@Override
 	public @NonNull Class<?> visitTuplePartId(@NonNull TuplePartId id) {
-		return DomainProperty.class;
+		return Property.class;
 	}
 
 	@Override

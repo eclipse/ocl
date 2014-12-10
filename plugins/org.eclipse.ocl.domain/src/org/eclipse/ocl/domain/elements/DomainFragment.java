@@ -13,6 +13,7 @@ package org.eclipse.ocl.domain.elements;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.library.LibraryFeature;
+import org.eclipse.ocl.pivot.Property;
 
 /**
  * A DomainFragment identifies the capabilities introduced by a particular inheritance.
@@ -59,5 +60,5 @@ public interface DomainFragment
 	/**
 	 * Return the properties within this fragment in property index order.
 	 */
-	@NonNull Iterable<? extends DomainProperty> getLocalProperties();
+	@NonNull Iterable<? extends Property> getLocalProperties();
 }

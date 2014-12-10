@@ -19,7 +19,6 @@ import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainPackage;
-import org.eclipse.ocl.domain.elements.DomainProperty;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
@@ -29,6 +28,7 @@ import org.eclipse.ocl.domain.types.AbstractFragment;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.Property;
 
 public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 {
@@ -111,7 +111,7 @@ public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 	}
 
 	@Override
-	public @Nullable DomainProperty getMemberProperty(@NonNull String name) {
+	public @Nullable Property getMemberProperty(@NonNull String name) {
 		DomainProperties allProperties2 = allProperties;
 		if (allProperties2 == null) {
 			allProperties = allProperties2 = new DomainProperties(this);
@@ -135,7 +135,7 @@ public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 	}
 
 	@Override
-	public @NonNull List<? extends DomainProperty> getOwnedProperties() {
+	public @NonNull List<Property> getOwnedProperties() {
 		return domainClass.getOwnedProperties();
 	}
 

@@ -20,7 +20,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
-import org.eclipse.ocl.domain.elements.DomainProperty;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.evaluation.DomainModelManager;
@@ -29,6 +28,7 @@ import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.AbstractProperty;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.Property;
 
 /**
  * @since 3.5
@@ -44,7 +44,7 @@ public class UnboxedOppositeNavigationProperty extends AbstractProperty
 	@Override
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		IdResolver idResolver = evaluator.getIdResolver();
-		DomainProperty oppositeProperty = idResolver.getProperty(oppositePropertyId);		
+		Property oppositeProperty = idResolver.getProperty(oppositePropertyId);		
 		DomainModelManager modelManager = evaluator.getModelManager();
 		DomainType thatType = DomainUtil.nonNullModel(oppositeProperty.getType());
 		if (thatType instanceof DomainCollectionType) {

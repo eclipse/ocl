@@ -17,10 +17,10 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainOperation;
-import org.eclipse.ocl.domain.elements.DomainProperty;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.domain.types.AbstractFragment;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.Property;
 
 import com.google.common.collect.Lists;
 
@@ -71,9 +71,9 @@ public class ExecutorFragment extends AbstractFragment
 	
 	@Override
 	@SuppressWarnings("null")
-	public @NonNull List<? extends DomainProperty> getLocalProperties() {
+	public @NonNull List<Property> getLocalProperties() {
 		assert properties != null;
-		return Lists.newArrayList(properties);
+		return Lists.<Property>newArrayList(properties);
 	}
 
 	public @NonNull List<? extends DomainClass> getSuperClasses() {

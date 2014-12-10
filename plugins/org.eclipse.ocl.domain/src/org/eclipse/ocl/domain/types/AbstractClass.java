@@ -12,6 +12,7 @@ package org.eclipse.ocl.domain.types;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
@@ -19,13 +20,12 @@ import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainPackage;
-import org.eclipse.ocl.domain.elements.DomainProperty;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
-import org.eclipse.ocl.domain.values.ObjectValue;
 import org.eclipse.ocl.domain.values.Value;
 import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.Property;
 
 public abstract class AbstractClass extends AbstractType implements DomainClass	// FIXME rename as perhaps DerivativeType
 {
@@ -34,7 +34,7 @@ public abstract class AbstractClass extends AbstractType implements DomainClass	
 	}
 
 	@Override
-	public @NonNull ObjectValue createInstance() {
+	public @NonNull EObject createInstance() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -64,7 +64,7 @@ public abstract class AbstractClass extends AbstractType implements DomainClass	
 	}
 
 	@Override
-	public @NonNull List<? extends DomainProperty> getOwnedProperties() {
+	public @NonNull List<Property> getOwnedProperties() {
 		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
 	}
 

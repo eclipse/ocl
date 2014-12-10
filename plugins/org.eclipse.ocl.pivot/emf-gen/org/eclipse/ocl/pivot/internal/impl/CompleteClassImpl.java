@@ -25,7 +25,6 @@ import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainOperation;
-import org.eclipse.ocl.domain.elements.DomainProperty;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
@@ -39,6 +38,7 @@ import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.State;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceImpl;
@@ -516,27 +516,27 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	}
 
 	@Override
-	public @Nullable Iterable<DomainProperty> getProperties(@NonNull DomainProperty pivotProperty) {
+	public @Nullable Iterable<Property> getProperties(@NonNull Property pivotProperty) {
 		return partialClasses.getProperties(pivotProperty);
 	}
 
 	@Override
-	public @NonNull Iterable<? extends DomainProperty> getProperties(final @Nullable FeatureFilter featureFilter) {
+	public @NonNull Iterable<? extends Property> getProperties(final @Nullable FeatureFilter featureFilter) {
 		return partialClasses.getProperties(featureFilter);
 	}
 
 	@Override
-	public @NonNull Iterable<? extends DomainProperty> getProperties(final @Nullable FeatureFilter featureFilter, @Nullable String name) {
+	public @NonNull Iterable<? extends Property> getProperties(final @Nullable FeatureFilter featureFilter, @Nullable String name) {
 		return partialClasses.getProperties(featureFilter, name);
 	}
 
 	@Override
-	public @Nullable Iterable<DomainProperty> getProperties(@Nullable String propertyName) {
+	public @Nullable Iterable<Property> getProperties(@Nullable String propertyName) {
 		return partialClasses.getProperties(propertyName);
 	}
 
 	@Override
-	public @Nullable DomainProperty getProperty(@Nullable String propertyName) {
+	public @Nullable Property getProperty(@Nullable String propertyName) {
 		return partialClasses.getProperty(propertyName);
 	}
 

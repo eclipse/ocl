@@ -18,7 +18,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainOperation;
-import org.eclipse.ocl.domain.elements.DomainProperty;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.ids.OperationId;
 import org.eclipse.ocl.domain.ids.TypeId;
@@ -28,6 +27,7 @@ import org.eclipse.ocl.library.executor.ReflectiveInheritance;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.PivotFactory;
+import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.pivot.Type;
@@ -87,7 +87,7 @@ public class CompleteInheritanceImpl extends ReflectiveInheritance implements Co
 		return DomainUtil.nonNullEMF(completeClass.getPivotClass().getOwnedOperations());			// FIXME Use local cache
 	}
 
-	public @NonNull List<? extends DomainProperty> getLocalProperties() {
+	public @NonNull List<? extends Property> getLocalProperties() {
 		return DomainUtil.nonNullEMF(completeClass.getPivotClass().getOwnedProperties());			// FIXME Use local cache
 	}
 
@@ -97,7 +97,7 @@ public class CompleteInheritanceImpl extends ReflectiveInheritance implements Co
 	}
 
 	@Override
-	public @Nullable DomainProperty getMemberProperty(@NonNull String propertyName) {
+	public @Nullable Property getMemberProperty(@NonNull String propertyName) {
 		return completeClass.getProperty(propertyName);
 	}
 
@@ -105,7 +105,7 @@ public class CompleteInheritanceImpl extends ReflectiveInheritance implements Co
 		return completeClass.getPivotClass().getMetaTypeName();
 	}
 
-	public @NonNull List<? extends DomainProperty> getOwnedProperties() {
+	public @NonNull List<? extends Property> getOwnedProperties() {
 		return DomainUtil.nonNullEMF(completeClass.getPivotClass().getOwnedProperties());			// FIXME Use local cache
 	}
 	

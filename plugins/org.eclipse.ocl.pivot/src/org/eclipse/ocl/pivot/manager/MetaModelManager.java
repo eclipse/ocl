@@ -53,7 +53,6 @@ import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainNamespace;
 import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainPackage;
-import org.eclipse.ocl.domain.elements.DomainProperty;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.domain.ids.IdManager;
@@ -833,27 +832,27 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return packageManager.getAllPackages();
 	} */
 	
-	public @NonNull Iterable<? extends DomainProperty> getAllProperties(@NonNull DomainType type, @Nullable FeatureFilter featureFilter) {
+	public @NonNull Iterable<? extends Property> getAllProperties(@NonNull DomainType type, @Nullable FeatureFilter featureFilter) {
 		CompleteClass completeClass = completeModel.getCompleteClass(type);
 		return completeClass.getProperties(featureFilter);
 	}
 	
-	public @NonNull Iterable<? extends DomainProperty> getAllProperties(@NonNull DomainType type, @Nullable FeatureFilter featureFilter, @NonNull String name) {
+	public @NonNull Iterable<? extends Property> getAllProperties(@NonNull DomainType type, @Nullable FeatureFilter featureFilter, @NonNull String name) {
 		CompleteClass completeClass = completeModel.getCompleteClass(type);
 		return completeClass.getProperties(featureFilter, name);
 	}
 
-	public @NonNull Iterable<? extends DomainProperty> getAllProperties(@NonNull DomainProperty pivotProperty) {
+	public @NonNull Iterable<? extends Property> getAllProperties(@NonNull Property pivotProperty) {
 		DomainInheritance pivotClass = pivotProperty.getInheritance(standardLibrary);
 		if (pivotClass == null) {
 			throw new IllegalStateException("Missing owning type");
 		}
 		CompleteClass completeClass = completeModel.getCompleteClass(pivotClass.getType());
-		Iterable<? extends DomainProperty> memberProperties = completeClass.getProperties(pivotProperty);
+		Iterable<? extends Property> memberProperties = completeClass.getProperties(pivotProperty);
 		if (memberProperties != null) {
 			return memberProperties;
 		}
-		@SuppressWarnings("null") @NonNull List<DomainProperty> singletonList = Collections.singletonList(pivotProperty);
+		@SuppressWarnings("null") @NonNull List<Property> singletonList = Collections.singletonList(pivotProperty);
 		return singletonList;
 	}
 	
@@ -1006,7 +1005,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 
 	public @Nullable ExpressionInOCL getDefaultExpression(@NonNull Property property) {
 		ExpressionInOCL defaultExpression = null;
-		for (DomainProperty domainProperty : getAllProperties(property)) {
+		for (Property domainProperty : getAllProperties(property)) {
 			if (domainProperty instanceof Property) {
 				LanguageExpression anExpression = ((Property)domainProperty).getDefaultExpression();
 				if (anExpression != null) {
@@ -1648,8 +1647,8 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		else if (element instanceof DomainPackage) {
 			return (T) getPrimaryPackage((DomainPackage)element);
 		}
-		else if (element instanceof DomainProperty) {
-			return (T) getPrimaryProperty((DomainProperty)element);
+		else if (element instanceof Property) {
+			return (T) getPrimaryProperty((Property)element);
 		}
 		else if (element instanceof Type) {
 			return (T) getPrimaryType((DomainType)element);
@@ -1708,21 +1707,21 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return DomainUtil.nonNullState(getCompletePackage(aPackage).getPivotPackage());
 	}
 
-	public @NonNull DomainProperty getPrimaryProperty(@NonNull DomainProperty pivotProperty) {
-		if ((pivotProperty instanceof Property) && (((Property)pivotProperty).eContainer() instanceof TupleType)) {		// FIXME Find a better way
+	public @NonNull Property getPrimaryProperty(@NonNull Property pivotProperty) {
+		if (pivotProperty.eContainer() instanceof TupleType) {		// FIXME Find a better way
 			return pivotProperty;
 		}
 		DomainInheritance owningInheritance = pivotProperty.getInheritance(standardLibrary);
 		if (owningInheritance != null) {
 			@NonNull String name = DomainUtil.nonNullModel(pivotProperty.getName());
-			DomainProperty opposite = pivotProperty.getOpposite();
+			Property opposite = pivotProperty.getOpposite();
 			String oppositeName = opposite != null ? opposite.getName() : null;
 			CompleteClass completeClass = completeModel.getCompleteClass(owningInheritance.getType());
-			Iterable<? extends DomainProperty> memberProperties = completeClass.getProperties(pivotProperty.isStatic() ? FeatureFilter.SELECT_STATIC : FeatureFilter.SELECT_NON_STATIC, name);
-			DomainProperty bestProperty = null;
-			for (DomainProperty memberProperty : memberProperties) {
+			Iterable<? extends Property> memberProperties = completeClass.getProperties(pivotProperty.isStatic() ? FeatureFilter.SELECT_STATIC : FeatureFilter.SELECT_NON_STATIC, name);
+			Property bestProperty = null;
+			for (Property memberProperty : memberProperties) {
 				if (memberProperty != null) {
-					DomainProperty memberOpposite = memberProperty.getOpposite();
+					Property memberOpposite = memberProperty.getOpposite();
 					String memberOppositeName = memberOpposite != null ? memberOpposite.getName() : null;
 					if ((oppositeName != null) && oppositeName.equals(memberOppositeName)) {
 						return memberProperty;

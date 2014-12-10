@@ -20,7 +20,6 @@ import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainPackage;
-import org.eclipse.ocl.domain.elements.DomainProperty;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.domain.elements.DomainType;
@@ -34,6 +33,7 @@ import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.OCLValue;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.Property;
 
 /**
  * An ExecutorType defines a Type using a compact representation suitable for efficient
@@ -136,7 +136,7 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 	}
 
 	@Override
-	public @Nullable DomainProperty getMemberProperty(@NonNull String name) {
+	public @Nullable Property getMemberProperty(@NonNull String name) {
 		DomainProperties allProperties2 = allProperties;
 		if (allProperties2 == null) {
 			allProperties = allProperties2 = new DomainProperties(this);
@@ -160,7 +160,7 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 	}
 
 	@Override
-	public @NonNull List<? extends DomainProperty> getOwnedProperties() {
+	public @NonNull List<Property> getOwnedProperties() {
 		return getSelfFragment().getLocalProperties();
 	}
 

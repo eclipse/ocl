@@ -14,13 +14,16 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.domain.elements.DomainInheritance;
+import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.PropertyId;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Property</b></em>'.
- * @extends org.eclipse.ocl.domain.elements.DomainProperty
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -54,8 +57,7 @@ import org.eclipse.ocl.domain.ids.PropertyId;
  * @see org.eclipse.ocl.pivot.PivotPackage#getProperty()
  * @generated
  */
-public interface Property
-		extends Feature, org.eclipse.ocl.domain.elements.DomainProperty {
+public interface Property extends Feature {
 
 	/**
 	 * Returns the value of the '<em><b>Association Class</b></em>' reference.
@@ -195,7 +197,6 @@ public interface Property
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_Opposite()
 	 * @generated
 	 */
-	@Override
 	Property getOpposite();
 
 	/**
@@ -247,7 +248,6 @@ public interface Property
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_DefaultExpression()
 	 * @generated
 	 */
-	@Override
 	LanguageExpression getDefaultExpression();
 
 	/**
@@ -502,4 +502,17 @@ public interface Property
 	void setOwningClass(org.eclipse.ocl.pivot.Class value);
 
 	@NonNull PropertyId getPropertyId();
+
+	/**
+	 * Return the Inheritance dispatch table for the owning type, or null for an orphan property owned by an Annotation.
+	 */
+	@Nullable DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary);
+	
+	/**
+	 * Initialize the value of this property within objectValue to propertyValue.
+	 * <p>
+	 * This method is not thread-safe and should only be invoked to complete construction of objectvalue before
+	 * making it visible to other threads.
+	 */
+	void initValue(@NonNull EObject object, @Nullable Object unboxedValue);
 } // Property

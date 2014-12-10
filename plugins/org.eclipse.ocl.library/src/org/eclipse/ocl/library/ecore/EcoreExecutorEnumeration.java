@@ -12,6 +12,7 @@ package org.eclipse.ocl.library.ecore;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainEnumeration;
@@ -19,7 +20,6 @@ import org.eclipse.ocl.domain.elements.DomainEnumerationLiteral;
 import org.eclipse.ocl.domain.ids.EnumerationId;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.utilities.ArrayIterable;
-import org.eclipse.ocl.domain.values.ObjectValue;
 import org.eclipse.osgi.util.NLS;
 
 public class EcoreExecutorEnumeration extends EcoreExecutorType implements DomainEnumeration
@@ -34,7 +34,7 @@ public class EcoreExecutorEnumeration extends EcoreExecutorType implements Domai
 	}
 
 	@Override
-	public @NonNull ObjectValue createInstance() {
+	public @NonNull EObject createInstance() {
 		throw new UnsupportedOperationException();
 	}
 

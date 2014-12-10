@@ -22,9 +22,9 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainOperation;
-import org.eclipse.ocl.domain.elements.DomainProperty;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.library.executor.ReflectiveFragment;
+import org.eclipse.ocl.pivot.Property;
 
 public class EcoreReflectiveFragment extends ReflectiveFragment
 {
@@ -40,8 +40,8 @@ public class EcoreReflectiveFragment extends ReflectiveFragment
 	}
 	
 	@Override
-	public @NonNull Iterable<? extends DomainProperty> getLocalProperties() {
-		Map<DomainProperty, LibraryFeature> propertyMap2 = propertyMap;
+	public @NonNull Iterable<? extends Property> getLocalProperties() {
+		Map<Property, LibraryFeature> propertyMap2 = propertyMap;
 		if (propertyMap2 == null) {
 			synchronized (this) {
 				propertyMap2 = propertyMap;
@@ -50,7 +50,7 @@ public class EcoreReflectiveFragment extends ReflectiveFragment
 				}
 			}
 		}
-		@SuppressWarnings("null")@NonNull Set<DomainProperty> keySet = propertyMap2.keySet();
+		@SuppressWarnings("null")@NonNull Set<Property> keySet = propertyMap2.keySet();
 		return keySet;
 	}
 
@@ -59,8 +59,8 @@ public class EcoreReflectiveFragment extends ReflectiveFragment
 		throw new UnsupportedOperationException();		// FIXME
 	}
 
-	protected @NonNull Map<DomainProperty, LibraryFeature> initProperties() {
-		Map<DomainProperty, LibraryFeature> map = new HashMap<DomainProperty, LibraryFeature>();
+	protected @NonNull Map<Property, LibraryFeature> initProperties() {
+		Map<Property, LibraryFeature> map = new HashMap<Property, LibraryFeature>();
 		List<EStructuralFeature> eStructuralFeatures = ((EClass) eClassifier).getEStructuralFeatures();
 		for (int i = 0; i < eStructuralFeatures.size(); i++) {
 			@SuppressWarnings("null")@NonNull EStructuralFeature eFeature = eStructuralFeatures.get(i);

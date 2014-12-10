@@ -15,6 +15,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.ids.OperationId;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.domain.utilities.IndexableIterable;
+import org.eclipse.ocl.pivot.Property;
 
 /**
  * An Inheritance provides access to the transitive inheritance relationships of a type
@@ -52,7 +53,7 @@ public interface DomainInheritance extends Nameable
 	int getIndex(int fragmentNumber);
 	int getIndexes();
 	@Nullable DomainOperation getMemberOperation(@NonNull OperationId id);
-	@Nullable DomainProperty getMemberProperty(@NonNull String name);
+	@Nullable Property getMemberProperty(@NonNull String name);
 
 	@NonNull DomainFragment getSelfFragment();
 	

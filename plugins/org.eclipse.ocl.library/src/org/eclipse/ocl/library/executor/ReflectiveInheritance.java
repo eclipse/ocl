@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
@@ -89,7 +90,7 @@ public abstract class ReflectiveInheritance extends AbstractInheritance
 
 	protected abstract AbstractFragment createFragment(@NonNull DomainInheritance baseInheritance);
 
-	public @NonNull Object createInstance() {
+	public @NonNull EObject createInstance() {
 		throw new UnsupportedOperationException();
 	}
 

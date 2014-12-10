@@ -44,7 +44,6 @@ import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainPackage;
-import org.eclipse.ocl.domain.elements.DomainProperty;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainTupleType;
 import org.eclipse.ocl.domain.elements.DomainType;
@@ -91,6 +90,7 @@ import org.eclipse.ocl.domain.values.impl.BagImpl;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.domain.values.impl.OrderedSetImpl;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.Property;
 
 public abstract class AbstractIdResolver implements IdResolver
 {
@@ -681,10 +681,10 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	@Override
-	public @NonNull DomainProperty getProperty(@NonNull PropertyId propertyId) {
+	public @NonNull Property getProperty(@NonNull PropertyId propertyId) {
 		DomainElement element = propertyId.accept(this);
-		if (element instanceof DomainProperty) {
-			return (DomainProperty) element;
+		if (element instanceof Property) {
+			return (Property) element;
 		}
 		throw new IllegalStateException("No " + propertyId); //$NON-NLS-1$
 	}
@@ -1133,13 +1133,13 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	@Override
-	public @NonNull DomainProperty visitPropertyId(@NonNull PropertyId id) {
+	public @NonNull Property visitPropertyId(@NonNull PropertyId id) {
 		DomainClass domainType = (DomainClass) id.getParent().accept(this);
 		if (domainType == null) {
 			throw new UnsupportedOperationException();
 		}
 		DomainInheritance inheritance = standardLibrary.getInheritance(domainType);
-		DomainProperty memberProperty = inheritance.getMemberProperty(id.getName());
+		Property memberProperty = inheritance.getMemberProperty(id.getName());
 		if (memberProperty == null) {
 			throw new UnsupportedOperationException();
 		}

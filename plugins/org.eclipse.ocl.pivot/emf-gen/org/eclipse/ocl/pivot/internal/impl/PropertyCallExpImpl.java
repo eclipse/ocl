@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainProperty;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
@@ -37,7 +36,6 @@ import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
-import org.eclipse.ocl.pivot.Feature;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
@@ -488,11 +486,11 @@ public class PropertyCallExpImpl
 		    try {
 		        @Nullable /*@Caught*/ Object CAUGHT_self_71;
 		        try {
-		            final @Nullable /*@Thrown*/ DomainProperty referredProperty = this.getReferredProperty();
+		            final @Nullable /*@Thrown*/ Property referredProperty = this.getReferredProperty();
 		            if (referredProperty == null) {
 		                throw new InvalidValueException("Null source for \'pivot::Feature::isStatic\'");
 		            }
-		            final @Nullable /*@Thrown*/ Boolean self_71 = ((Feature)referredProperty).isStatic();
+		            final @Nullable /*@Thrown*/ Boolean self_71 = referredProperty.isStatic();
 		            CAUGHT_self_71 = self_71;
 		        }
 		        catch (Exception e) {
