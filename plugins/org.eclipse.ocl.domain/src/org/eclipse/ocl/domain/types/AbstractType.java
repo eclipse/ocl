@@ -15,13 +15,13 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.DomainCallExp;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainConstraint;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.values.OCLValue;
+import org.eclipse.ocl.pivot.Constraint;
 
 public abstract class AbstractType implements DomainType	// FIXME rename as perhaps DerivativeType
 {
@@ -68,7 +68,7 @@ public abstract class AbstractType implements DomainType	// FIXME rename as perh
 	}
 
 	@Override
-	public @NonNull List<? extends DomainConstraint> getOwnedRule() {
+	public @NonNull List<? extends Constraint> getOwnedRule() {
 		throw new UnsupportedOperationException();			// FIXME
 	}
 	

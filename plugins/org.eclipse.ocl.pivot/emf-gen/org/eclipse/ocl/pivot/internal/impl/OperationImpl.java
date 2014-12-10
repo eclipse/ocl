@@ -34,7 +34,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainConstraint;
 import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainParameterTypes;
@@ -915,7 +914,7 @@ public class OperationImpl
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		@NonNull /*@Caught*/ Object CAUGHT_isUnique;
 		try {
-		    final @NonNull /*@Thrown*/ List<? extends DomainConstraint> precondition = this.getPrecondition();
+		    final @NonNull /*@Thrown*/ List<Constraint> precondition = this.getPrecondition();
 		    final @NonNull /*@Thrown*/ SetValue BOXED_precondition = idResolver.createSetOfAll(PivotTables.SET_CLSSid_Constraint, precondition);
 		    @NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValuesUtil.createSetAccumulatorValue(PivotTables.SET_CLSSid_Constraint);
 		    @Nullable Iterator<?> ITERATOR__1 = BOXED_precondition.iterator();
@@ -925,7 +924,7 @@ public class OperationImpl
 		            isUnique = ValuesUtil.TRUE_VALUE;
 		            break;
 		        }
-		        @Nullable /*@NonInvalid*/ DomainConstraint _1 = (DomainConstraint)ITERATOR__1.next();
+		        @Nullable /*@NonInvalid*/ Constraint _1 = (Constraint)ITERATOR__1.next();
 		        /**
 		         * name
 		         */
@@ -973,7 +972,7 @@ public class OperationImpl
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		@NonNull /*@Caught*/ Object CAUGHT_isUnique;
 		try {
-		    final @NonNull /*@Thrown*/ List<? extends DomainConstraint> postcondition = this.getPostcondition();
+		    final @NonNull /*@Thrown*/ List<Constraint> postcondition = this.getPostcondition();
 		    final @NonNull /*@Thrown*/ SetValue BOXED_postcondition = idResolver.createSetOfAll(PivotTables.SET_CLSSid_Constraint, postcondition);
 		    @NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValuesUtil.createSetAccumulatorValue(PivotTables.SET_CLSSid_Constraint);
 		    @Nullable Iterator<?> ITERATOR__1 = BOXED_postcondition.iterator();
@@ -983,7 +982,7 @@ public class OperationImpl
 		            isUnique = ValuesUtil.TRUE_VALUE;
 		            break;
 		        }
-		        @Nullable /*@NonInvalid*/ DomainConstraint _1 = (DomainConstraint)ITERATOR__1.next();
+		        @Nullable /*@NonInvalid*/ Constraint _1 = (Constraint)ITERATOR__1.next();
 		        /**
 		         * name
 		         */

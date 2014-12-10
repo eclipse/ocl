@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainConstraint;
 import org.eclipse.ocl.domain.elements.DomainEnumeration;
 import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.elements.DomainNamedElement;
@@ -43,7 +42,6 @@ import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
 import org.eclipse.ocl.examples.codegen.java.JavaStream.SubStream;
-import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.NamedElement;
@@ -76,10 +74,7 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 	 * FIXME Avoid two-level AS interfaces
 	 */
 	protected static @NonNull Class<?> reClass(@NonNull Class<?> javaClass) {
-		if (javaClass == Constraint.class) {
-			javaClass = DomainConstraint.class;
-		}
-		else if (javaClass == ExpressionInOCL.class) {
+		if (javaClass == ExpressionInOCL.class) {
 			javaClass = DomainExpression.class;
 		}
 		else if (javaClass == NamedElement.class) {

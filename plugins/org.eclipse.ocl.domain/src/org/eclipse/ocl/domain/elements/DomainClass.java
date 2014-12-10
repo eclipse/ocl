@@ -15,6 +15,7 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.library.LibraryFeature;
+import org.eclipse.ocl.pivot.Constraint;
 
 public interface DomainClass extends DomainType
 {
@@ -31,7 +32,7 @@ public interface DomainClass extends DomainType
 	 */
 	@Nullable Object createInstance( @NonNull String value);
 
-	@NonNull List<? extends DomainConstraint> getOwnedInvariants();
+	@NonNull List<? extends Constraint> getOwnedInvariants();
 
 	@NonNull List<? extends DomainOperation> getOwnedOperations();
 

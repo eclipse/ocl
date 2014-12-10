@@ -18,7 +18,6 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Constraint</b></em>'.
- * @extends org.eclipse.ocl.domain.elements.DomainConstraint
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -44,7 +43,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * @generated
  */
 public interface Constraint
-		extends NamedElement, org.eclipse.ocl.domain.elements.DomainConstraint {
+		extends NamedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Constrained Element</b></em>' reference list.
@@ -74,7 +73,6 @@ public interface Constraint
 	 * @see org.eclipse.ocl.pivot.LanguageExpression#getOwningConstraint
 	 * @generated
 	 */
-	@Override
 	LanguageExpression getSpecification();
 
 	/**
@@ -126,7 +124,6 @@ public interface Constraint
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getConstraint_Context()
 	 * @generated
 	 */
-	@Override
 	Namespace getContext();
 
 	/**
@@ -143,7 +140,6 @@ public interface Constraint
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getConstraint_IsCallable()
 	 * @generated
 	 */
-	@Override
 	boolean isCallable();
 
 	/**

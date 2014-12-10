@@ -13,8 +13,9 @@ package org.eclipse.ocl.domain.elements;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.Constraint;
 
 public interface DomainNamespace extends DomainNamedElement
 {
-	@NonNull List<? extends DomainConstraint> getOwnedRule();
+	@NonNull List<? extends Constraint> getOwnedRule();
 }

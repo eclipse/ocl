@@ -39,10 +39,10 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.OCLCommon;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
-import org.eclipse.ocl.domain.elements.DomainConstraint;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
+import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.OCL;
@@ -233,7 +233,7 @@ public class EcoreOCLEValidator implements EValidator
 	public static final @NonNull TracingOption VALIDATE_INSTANCE = new TracingOption(PivotPlugin.PLUGIN_ID, "validate/instance");
 	public static final @NonNull TracingOption VALIDATE_OPAQUE_ELEMENT = new TracingOption(PivotPlugin.PLUGIN_ID, "validate/opaqueElement");
 
-	protected static void gatherTypes(@NonNull Set<org.eclipse.ocl.pivot.Class> allTypes, @NonNull Set<DomainConstraint> allConstraints, @NonNull org.eclipse.ocl.pivot.Class newType) {
+	protected static void gatherTypes(@NonNull Set<org.eclipse.ocl.pivot.Class> allTypes, @NonNull Set<Constraint> allConstraints, @NonNull org.eclipse.ocl.pivot.Class newType) {
 		if (allTypes.add(newType)) {
 			allConstraints.addAll(newType.getOwnedInvariants());
 			for (org.eclipse.ocl.pivot.Class superType : newType.getSuperClasses()) {

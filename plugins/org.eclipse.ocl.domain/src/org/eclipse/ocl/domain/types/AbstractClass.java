@@ -15,7 +15,6 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainConstraint;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainOperation;
@@ -26,6 +25,7 @@ import org.eclipse.ocl.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.values.ObjectValue;
 import org.eclipse.ocl.domain.values.Value;
+import org.eclipse.ocl.pivot.Constraint;
 
 public abstract class AbstractClass extends AbstractType implements DomainClass	// FIXME rename as perhaps DerivativeType
 {
@@ -54,7 +54,7 @@ public abstract class AbstractClass extends AbstractType implements DomainClass	
 	}
 
 	@Override
-	public @NonNull List<? extends DomainConstraint> getOwnedInvariants() {
+	public @NonNull List<? extends Constraint> getOwnedInvariants() {
 		throw new UnsupportedOperationException();			// FIXME
 	}
 

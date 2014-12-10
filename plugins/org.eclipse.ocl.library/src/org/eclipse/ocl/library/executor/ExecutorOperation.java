@@ -15,7 +15,6 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainConstraint;
 import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainOperation;
@@ -29,6 +28,7 @@ import org.eclipse.ocl.domain.ids.ParametersId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.library.oclany.OclAnyUnsupportedOperation;
+import org.eclipse.ocl.pivot.Constraint;
 
 public class ExecutorOperation implements DomainOperation
 {
@@ -83,7 +83,7 @@ public class ExecutorOperation implements DomainOperation
 		return getParameterTypes().getParameters();
 	}
 
-	public @NonNull List<? extends DomainConstraint> getOwnedRule() {
+	public @NonNull List<? extends Constraint> getOwnedRule() {
 		throw new UnsupportedOperationException();			// FIXME
 	}
 
@@ -104,13 +104,13 @@ public class ExecutorOperation implements DomainOperation
 
 	
 	@Override
-	public @NonNull List<? extends DomainConstraint> getPostcondition() {
+	public @NonNull List<? extends Constraint> getPostcondition() {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException(); // WIP FIXME
 	}
 
 	@Override
-	public @NonNull List<? extends DomainConstraint> getPrecondition() {
+	public @NonNull List<? extends Constraint> getPrecondition() {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException(); // WIP FIXME
 	}

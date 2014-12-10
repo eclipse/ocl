@@ -36,7 +36,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainCallExp;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainConstraint;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
@@ -651,7 +650,7 @@ public class ClassImpl
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		@NonNull /*@Caught*/ Object CAUGHT_isUnique;
 		try {
-		    final @NonNull /*@Thrown*/ List<? extends DomainConstraint> ownedInvariants = this.getOwnedInvariants();
+		    final @NonNull /*@Thrown*/ List<Constraint> ownedInvariants = this.getOwnedInvariants();
 		    final @NonNull /*@Thrown*/ SetValue BOXED_ownedInvariants = idResolver.createSetOfAll(PivotTables.SET_CLSSid_Constraint, ownedInvariants);
 		    @NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValuesUtil.createSetAccumulatorValue(PivotTables.SET_CLSSid_Constraint);
 		    @Nullable Iterator<?> ITERATOR__1 = BOXED_ownedInvariants.iterator();
@@ -661,7 +660,7 @@ public class ClassImpl
 		            isUnique = ValuesUtil.TRUE_VALUE;
 		            break;
 		        }
-		        @Nullable /*@NonInvalid*/ DomainConstraint _1 = (DomainConstraint)ITERATOR__1.next();
+		        @Nullable /*@NonInvalid*/ Constraint _1 = (Constraint)ITERATOR__1.next();
 		        /**
 		         * name
 		         */

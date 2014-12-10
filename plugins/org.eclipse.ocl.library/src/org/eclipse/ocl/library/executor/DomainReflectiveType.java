@@ -16,7 +16,6 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainConstraint;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainPackage;
@@ -29,6 +28,7 @@ import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.types.AbstractFragment;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.Constraint;
 
 public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 {
@@ -125,7 +125,7 @@ public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 	}
 
 	@Override
-	public @NonNull List<? extends DomainConstraint> getOwnedInvariants() {
+	public @NonNull List<? extends Constraint> getOwnedInvariants() {
 		return domainClass.getOwnedInvariants();
 	}
 
@@ -140,7 +140,7 @@ public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 	}
 
 	@Override
-	public @NonNull List<? extends DomainConstraint> getOwnedRule() {
+	public @NonNull List<? extends Constraint> getOwnedRule() {
 		throw new UnsupportedOperationException();			// FIXME
 	}
 	

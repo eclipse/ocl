@@ -30,7 +30,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
-import org.eclipse.ocl.domain.elements.DomainConstraint;
 import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
@@ -38,8 +37,6 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.PivotConstants;
-import org.eclipse.ocl.pivot.Stereotype;
-import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
@@ -227,7 +224,7 @@ public class UMLOCLEValidator implements EValidator
 		}
 	}
 
-	protected static void gatherTypes(@NonNull Set<Type> allTypes, @NonNull Set<DomainConstraint> allConstraints, @NonNull org.eclipse.ocl.pivot.Class newType) {
+	protected static void gatherTypes(@NonNull Set<org.eclipse.ocl.pivot.Type> allTypes, @NonNull Set<org.eclipse.ocl.pivot.Constraint> allConstraints, @NonNull org.eclipse.ocl.pivot.Class newType) {
 		if (allTypes.add(newType)) {
 			allConstraints.addAll(newType.getOwnedInvariants());
 			for (org.eclipse.ocl.pivot.Class superType : newType.getSuperClasses()) {
@@ -297,12 +294,12 @@ public class UMLOCLEValidator implements EValidator
 						Map<EObject, List<org.eclipse.uml2.uml.Element>> umlStereotypeApplication2umlStereotypedElements = UML2ASUtil.computeAppliedStereotypes(umlStereotypeApplications);
 						for (@SuppressWarnings("null")@NonNull EObject umlStereotypeApplication : umlStereotypeApplications) {
 							@SuppressWarnings("null")@NonNull List<Element> umlStereotypedElements = umlStereotypeApplication2umlStereotypedElements.get(umlStereotypeApplication);
-							Stereotype stereotype = uml2as.resolveStereotype(umlStereotypeApplication, umlStereotypedElements);
+							org.eclipse.ocl.pivot.Stereotype stereotype = uml2as.resolveStereotype(umlStereotypeApplication, umlStereotypedElements);
 							if (stereotype != null) {
-								HashSet<Type> allClassifiers = new HashSet<Type>();
-								HashSet<DomainConstraint> allConstraints = new HashSet<DomainConstraint>();
+								HashSet<org.eclipse.ocl.pivot.Type> allClassifiers = new HashSet<org.eclipse.ocl.pivot.Type>();
+								HashSet<org.eclipse.ocl.pivot.Constraint> allConstraints = new HashSet<org.eclipse.ocl.pivot.Constraint>();
 								gatherTypes(allClassifiers, allConstraints, stereotype);
-								for (DomainConstraint constraint : allConstraints) {
+								for (org.eclipse.ocl.pivot.Constraint constraint : allConstraints) {
 									DomainExpression specification = constraint.getSpecification();
 									if (specification instanceof org.eclipse.ocl.pivot.ExpressionInOCL) {
 										try {

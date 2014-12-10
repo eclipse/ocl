@@ -16,7 +16,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainCallExp;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainConstraint;
 import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainOperation;
@@ -34,6 +33,7 @@ import org.eclipse.ocl.domain.utilities.ArrayIterable;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.OCLValue;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
+import org.eclipse.ocl.pivot.Constraint;
 
 /**
  * An ExecutorType defines a Type using a compact representation suitable for efficient
@@ -155,7 +155,7 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 	}
 
 	@Override
-	public @NonNull List<? extends DomainConstraint> getOwnedInvariants() {
+	public @NonNull List<? extends Constraint> getOwnedInvariants() {
 		throw new UnsupportedOperationException();			// FIXME
 	}
 
@@ -175,7 +175,7 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 	}
 
 	@Override
-	public @NonNull List<? extends DomainConstraint> getOwnedRule() {
+	public @NonNull List<? extends Constraint> getOwnedRule() {
 		throw new UnsupportedOperationException();			// FIXME
 	}
 

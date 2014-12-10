@@ -16,6 +16,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.ids.OperationId;
 import org.eclipse.ocl.domain.ids.ParametersId;
+import org.eclipse.ocl.pivot.Constraint;
 
 public interface DomainOperation extends DomainFeature
 {
@@ -41,9 +42,9 @@ public interface DomainOperation extends DomainFeature
 	 */
 	@NonNull DomainParameterTypes getParameterTypes();
 	
-	@NonNull List<? extends DomainConstraint> getPostcondition();
+	@NonNull List<? extends Constraint> getPostcondition();
 	
-	@NonNull List<? extends DomainConstraint> getPrecondition();
+	@NonNull List<? extends Constraint> getPrecondition();
 
 	/**
 	 * Return the ordered list of type parameters of this operation.

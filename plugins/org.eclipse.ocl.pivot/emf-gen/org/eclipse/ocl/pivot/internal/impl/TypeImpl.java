@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainCallExp;
-import org.eclipse.ocl.domain.elements.DomainConstraint;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
@@ -36,6 +35,7 @@ import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.OCLValue;
 import org.eclipse.ocl.pivot.Comment;
+import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.OCLExpression;
@@ -444,7 +444,7 @@ public abstract class TypeImpl
 
 	@Override
 	@NonNull
-	public List<? extends DomainConstraint> getOwnedRule() {
+	public List<? extends Constraint> getOwnedRule() {
 		throw new UnsupportedOperationException();		// FIXME
 	}
 
