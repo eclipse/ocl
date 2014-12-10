@@ -29,6 +29,7 @@ import org.eclipse.ocl.domain.ids.TupleTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TupleType;

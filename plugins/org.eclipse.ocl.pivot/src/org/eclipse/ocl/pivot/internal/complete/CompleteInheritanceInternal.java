@@ -8,7 +8,7 @@
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.pivot.manager;
+package org.eclipse.ocl.pivot.internal.complete;
 
 import java.util.Collections;
 import java.util.List;
@@ -25,7 +25,7 @@ import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.types.AbstractFragment;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.library.executor.ReflectiveInheritance;
-import org.eclipse.ocl.pivot.CompleteClass;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.TemplateParameter;
@@ -38,10 +38,10 @@ import com.google.common.base.Function;
 /**
  * An AbstractTypeServer provides the co-ordinated operation, property and superclass lookup caches for one or more merged types.
  */
-public class CompleteInheritance extends ReflectiveInheritance
+public class CompleteInheritanceInternal extends ReflectiveInheritance implements CompleteInheritance
 {
 	@SuppressWarnings("null")
-	public static final @NonNull List<CompleteInheritance> EMPTY_LIST = Collections.<CompleteInheritance>emptyList();
+	public static final @NonNull List<CompleteInheritanceInternal> EMPTY_LIST = Collections.<CompleteInheritanceInternal>emptyList();
 
 	public static final class BestOperation implements Function<List<DomainOperation>, DomainOperation> {
 
@@ -60,9 +60,9 @@ public class CompleteInheritance extends ReflectiveInheritance
 		return templateParameterSubstitution;
 	}
 
-	protected final @NonNull CompleteClass.Internal completeClass;
+	protected final @NonNull CompleteClassInternal completeClass;
 
-	public CompleteInheritance(@NonNull CompleteClass.Internal completeClass) {
+	public CompleteInheritanceInternal(@NonNull CompleteClassInternal completeClass) {
 		super(DomainUtil.nonNullModel(completeClass.getName()), computeFlags(completeClass.getPivotClass()));
 		this.completeClass = completeClass;
 		org.eclipse.ocl.pivot.Class pivotClass = completeClass.getPivotClass();
@@ -74,7 +74,7 @@ public class CompleteInheritance extends ReflectiveInheritance
 		return new PivotReflectiveFragment(this, baseInheritance);
 	}
 
-	public @NonNull CompleteClass.Internal getCompleteClass() {
+	public @NonNull CompleteClassInternal getCompleteClass() {
 		return completeClass;
 	}
 

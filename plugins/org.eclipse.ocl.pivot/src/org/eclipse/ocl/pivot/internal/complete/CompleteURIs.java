@@ -21,14 +21,13 @@ import org.eclipse.ocl.domain.DomainConstants;
 import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.PackageId;
-import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.utilities.IllegalMetamodelException;
 
 public class CompleteURIs
 {
-	protected final @NonNull CompleteModel.Internal completeModel;
+	protected final @NonNull CompleteModelInternal completeModel;
 	/**
 	 * Map of Complete URI to Package URIs
 	 */
@@ -42,13 +41,13 @@ public class CompleteURIs
 	/**
 	 * Map from Complete URI to Complete Package. 
 	 */
-	private final @NonNull Map<String, CompletePackage.Internal> completeURI2completePackage = new HashMap<String, CompletePackage.Internal>();
+	private final @NonNull Map<String, CompletePackageInternal> completeURI2completePackage = new HashMap<String, CompletePackageInternal>();
 
-	public CompleteURIs(@NonNull CompleteModel.Internal completeModel) {
+	public CompleteURIs(@NonNull CompleteModelInternal completeModel) {
 		this.completeModel = completeModel;
 	}
 
-	public void didAddCompletePackage(@NonNull CompletePackage.Internal completePackage) {
+	public void didAddCompletePackage(@NonNull CompletePackageInternal completePackage) {
 //		if ((completePackage != completeModel.getOrphanCompletePackage()) && (completePackage != completeModel.getPrimitiveCompletePackage())) {
 			String completeURI = completePackage.getURI();
 			if (completeURI != null) {
@@ -73,7 +72,7 @@ public class CompleteURIs
 		}
 	}
 
-	public void didRemoveCompletePackage(@NonNull CompletePackage.Internal completePackage) {
+	public void didRemoveCompletePackage(@NonNull CompletePackageInternal completePackage) {
 //		if ((completePackage != completeModel.getOrphanCompletePackage()) && (completePackage != completeModel.getPrimitiveCompletePackage())) {
 			String completeURI = completePackage.getURI();
 			if (completeURI != null) {
@@ -108,12 +107,12 @@ public class CompleteURIs
 	}
 
 	@SuppressWarnings("null")
-	public @NonNull Iterable<? extends CompletePackage.Internal> getAllCompletePackages() {
+	public @NonNull Iterable<? extends CompletePackageInternal> getAllCompletePackages() {
 		return completeURI2completePackage.values();
 	}
 
 	@SuppressWarnings("null")
-	public @NonNull Iterable<? extends CompletePackage.Internal> getAllCompletePackagesWithUris() {
+	public @NonNull Iterable<? extends CompletePackageInternal> getAllCompletePackagesWithUris() {
 		return completeURI2completePackage.values();
 	}
 
@@ -142,7 +141,7 @@ public class CompleteURIs
 		packageURIs.add(packageURI);
 	}
 
-	public @Nullable CompletePackage.Internal getCompletePackage(@NonNull DomainPackage pivotPackage) {
+	public @Nullable CompletePackageInternal getCompletePackage(@NonNull DomainPackage pivotPackage) {
 		String packageURI = pivotPackage.getURI();
 		if (packageURI == null) {
 			return null;
@@ -151,11 +150,11 @@ public class CompleteURIs
 		return completeURI != null ? completeURI2completePackage.get(completeURI) : null;
 	}
 
-	public @Nullable CompletePackage.Internal getCompletePackage(@Nullable String completeURI) {
+	public @Nullable CompletePackageInternal getCompletePackage(@Nullable String completeURI) {
 		return completeURI != null ? completeURI2completePackage.get(completeURI) : null;
 	}
 
-	public @Nullable CompletePackage.Internal getCompletePackageByURI(@NonNull String packageURI) {
+	public @Nullable CompletePackageInternal getCompletePackageByURI(@NonNull String packageURI) {
 		int lastIndex = packageURI.lastIndexOf("#/");
 		if (lastIndex > 0) {
 			@SuppressWarnings("null") @NonNull String substring = packageURI.substring(0, lastIndex);

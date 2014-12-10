@@ -34,6 +34,7 @@ import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.RealValue;
+import org.eclipse.ocl.domain.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBoxExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGUnboxExp;
@@ -55,7 +56,6 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.manager.TemplateParameterSubstitutions;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 /**

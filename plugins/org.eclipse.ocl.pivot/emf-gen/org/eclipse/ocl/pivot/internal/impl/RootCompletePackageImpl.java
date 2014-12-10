@@ -31,12 +31,13 @@ import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.NestedCompletePackage;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.RootCompletePackage;
+import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Root Complete Package</b></em>'.
- * @extends org.eclipse.ocl.pivot.RootCompletePackage.Internal
+ * @extends org.eclipse.ocl.pivot.RootCompletePackageInternal
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -47,7 +48,7 @@ import org.eclipse.ocl.pivot.util.Visitor;
  *
  * @generated
  */
-public abstract class RootCompletePackageImpl extends CompletePackageImpl implements RootCompletePackage, org.eclipse.ocl.pivot.RootCompletePackage.Internal
+public abstract class RootCompletePackageImpl extends CompletePackageImpl implements RootCompletePackage, org.eclipse.ocl.pivot.internal.complete.RootCompletePackageInternal
 {
 	/**
 	 * <!-- begin-user-doc -->
@@ -361,7 +362,7 @@ public abstract class RootCompletePackageImpl extends CompletePackageImpl implem
 //			assert serverBasedNsURI == null;
 		}
 		else {
-			CompleteModel.Internal completeModel = getCompleteModel();
+			CompleteModelInternal completeModel = getCompleteModel();
 			assert (serverBasedNsURI == null) || (completeModel.getCompletePackageByURI(typeBasedNsURI) == completeModel.getCompletePackageByURI(serverBasedNsURI));
 		}
 	}

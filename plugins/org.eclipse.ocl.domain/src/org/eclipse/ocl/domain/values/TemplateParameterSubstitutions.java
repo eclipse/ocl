@@ -8,7 +8,7 @@
  * Contributors:
  *   E.D. Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.pivot.manager;
+package org.eclipse.ocl.domain.values;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;

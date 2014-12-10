@@ -60,8 +60,4 @@ public interface RootCompletePackage extends CompletePackage
 	void setOwningCompleteModel(CompleteModel value);
 
 	@NonNull PackageId getMetapackageId();
-	
-	public interface Internal extends RootCompletePackage, CompletePackage.Internal
-	{
-	}
 } // RootCompletePackage

@@ -18,9 +18,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainType;
-import org.eclipse.ocl.domain.ids.PackageId;
-import org.eclipse.ocl.pivot.internal.complete.PartialPackages;
-import org.eclipse.ocl.pivot.manager.CompleteInheritance;
 
 /**
  * <!-- begin-user-doc -->
@@ -130,23 +127,4 @@ public interface CompletePackage extends NamedElement, org.eclipse.ocl.domain.el
 	@Nullable CompletePackage getOwnedCompletePackage(@Nullable String name);
 
 	@NonNull CompleteModel getCompleteModel();
-	
-	public interface Internal extends CompletePackage
-	{
-		@Override
-		@NonNull CompleteClass.Internal getCompleteClass(@NonNull DomainClass pivotType);
-		@NonNull CompleteInheritance getCompleteInheritance(@NonNull CompleteClass.Internal completeClass);
-		@Override
-		@NonNull CompleteModel.Internal getCompleteModel();
-		void dispose();
-		@Override
-		CompleteClass.Internal getOwnedCompleteClass(String name);
-		@Override
-		@Nullable CompletePackage.Internal getOwnedCompletePackage(@Nullable String name);
-//		@Nullable CompletePackage.Internal getOwnedCompletePackage(@NonNull DomainPackage partialPackage);
-		@Override
-		@NonNull PartialPackages getPartialPackages();
-		boolean hasNestedClasses();
-		void init(String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId);
-	}
 } // CompletePackage

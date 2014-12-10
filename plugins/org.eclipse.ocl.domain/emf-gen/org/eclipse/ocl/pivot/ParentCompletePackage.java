@@ -10,18 +10,15 @@
  */
 package org.eclipse.ocl.pivot;
 
-
-
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Orphan Complete Package</b></em>'.
+ * A representation of the model object '<em><b>Parent Complete Package</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.ocl.pivot.PivotPackage#getOrphanCompletePackage()
+ * @see org.eclipse.ocl.pivot.PivotPackage#getParentCompletePackage()
  * @generated
  */
-public interface OrphanCompletePackage extends RootCompletePackage
+public interface ParentCompletePackage extends RootCompletePackage
 {
-	public interface Internal extends OrphanCompletePackage, RootCompletePackage.Internal {}
-} // OrphanCompletePackage
+} // ParentCompletePackage

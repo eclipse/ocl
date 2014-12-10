@@ -1,0 +1,36 @@
+/**
+ * Copyright (c) 2014 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *   E.D.Willink - Initial API and implementation
+ */
+package org.eclipse.ocl.pivot.internal.complete;
+
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.domain.elements.DomainClass;
+import org.eclipse.ocl.domain.ids.PackageId;
+import org.eclipse.ocl.pivot.CompletePackage;
+
+public interface CompletePackageInternal extends CompletePackage
+{
+	@Override
+	@NonNull CompleteClassInternal getCompleteClass(@NonNull DomainClass pivotType);
+	@NonNull CompleteInheritanceInternal getCompleteInheritance(@NonNull CompleteClassInternal completeClass);
+	@Override
+	@NonNull CompleteModelInternal getCompleteModel();
+	void dispose();
+	@Override
+	CompleteClassInternal getOwnedCompleteClass(String name);
+	@Override
+	@Nullable CompletePackageInternal getOwnedCompletePackage(@Nullable String name);
+//	@Nullable CompletePackageInternal getOwnedCompletePackage(@NonNull DomainPackage partialPackage);
+	@Override
+	@NonNull PartialPackages getPartialPackages();
+	boolean hasNestedClasses();
+	void init(String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId);
+} // CompletePackage

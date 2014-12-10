@@ -21,8 +21,8 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.pivot.CompleteClass;
-import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.NamedElement;
@@ -31,9 +31,9 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.TemplateParameterSubstitutionVisitor;
-import org.eclipse.ocl.pivot.manager.TemplateParameterSubstitutions;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.essentialocl.cs2as.EssentialOCLCSLeft2RightVisitor.Invocations;
 
@@ -98,7 +98,7 @@ public abstract class AbstractOperationMatcher
 
 	protected int compareMatches(@NonNull Object match1, @NonNull TemplateParameterSubstitutions referenceBindings,
 			@NonNull Object match2, @NonNull TemplateParameterSubstitutions candidateBindings, boolean useCoercions) {
-		CompleteModel.Internal completeModel = metaModelManager.getCompleteModel();
+		CompleteModelInternal completeModel = metaModelManager.getCompleteModel();
 		@NonNull Operation reference = (Operation) match1;
 		@NonNull Operation candidate = (Operation) match2;
 		org.eclipse.ocl.pivot.Class referenceClass = reference.getOwningClass();

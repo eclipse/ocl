@@ -14,16 +14,12 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainProperty;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.domain.ids.OperationId;
-import org.eclipse.ocl.library.executor.CollectionTypeParameters;
-import org.eclipse.ocl.pivot.internal.complete.PartialClasses;
-import org.eclipse.ocl.pivot.manager.CompleteInheritance;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.domain.values.CollectionTypeParameters;
 
 /**
  * <!-- begin-user-doc -->
@@ -109,22 +105,4 @@ public interface CompleteClass extends NamedElement
 	@NonNull Iterable<? extends State>  getStates();
 	@NonNull Iterable<? extends State>  getStates(@Nullable String name);
 	@NonNull Iterable<CompleteClass> getSuperCompleteClasses();
-	
-	public interface Internal extends CompleteClass
-	{
-		void addClass(@NonNull org.eclipse.ocl.pivot.Class partialClass);
-		void didAddClass(@NonNull org.eclipse.ocl.pivot.Class partialClass);
-//		@NonNull CompleteInheritance createCompleteInheritance();
-		boolean didRemoveClass(@NonNull org.eclipse.ocl.pivot.Class partialClass);
-		void dispose();
-		void uninstall();
-		@NonNull CompleteModel.Internal getCompleteModel();
-		@NonNull MetaModelManager getMetaModelManager();
-		@Override
-		CompletePackage.Internal getOwningCompletePackage();
-		@Override
-		@NonNull PartialClasses getPartialClasses();
-		@NonNull Iterable<? extends DomainClass> getProperSuperClasses();
-	}
-
 } // CompleteClass

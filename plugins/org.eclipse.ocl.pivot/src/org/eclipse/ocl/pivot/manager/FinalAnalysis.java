@@ -26,18 +26,18 @@ import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.ids.ParametersId;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.pivot.CompleteClass;
-import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 
 public class FinalAnalysis
 {
-	protected final @NonNull CompleteModel.Internal completeModel;
+	protected final @NonNull CompleteModelInternal completeModel;
 	protected final @NonNull MetaModelManager metaModelManager;
 	private final @NonNull Map<CompleteClass, Set<CompleteClass>> superCompleteClass2subCompleteClasses = new HashMap<CompleteClass, Set<CompleteClass>>();
 	private final @NonNull Map<DomainOperation, Set<DomainOperation>> operation2overrides = new HashMap<DomainOperation, Set<DomainOperation>>();
 
-	public FinalAnalysis(@NonNull CompleteModel.Internal completeModel) {
+	public FinalAnalysis(@NonNull CompleteModelInternal completeModel) {
 		this.completeModel = completeModel;
 		this.metaModelManager = completeModel.getMetaModelManager();
 		for (CompletePackage completePackage :  completeModel.getAllCompletePackages()) {

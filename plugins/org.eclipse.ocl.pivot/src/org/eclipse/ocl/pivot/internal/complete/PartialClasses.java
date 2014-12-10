@@ -45,7 +45,6 @@ import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Behavior;
 import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.CompleteClass;
-import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.ElementExtension;
@@ -67,7 +66,6 @@ import org.eclipse.ocl.pivot.TypeExtension;
 import org.eclipse.ocl.pivot.Vertex;
 import org.eclipse.ocl.pivot.internal.impl.ClassImpl;
 import org.eclipse.ocl.pivot.internal.impl.CompleteClassImpl;
-import org.eclipse.ocl.pivot.manager.CompleteInheritance;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.Orphanage;
 import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
@@ -113,7 +111,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 	 */
 	private @Nullable Map<String, PartialProperties> name2partialProperties = null;
 	
-	private Set<CompleteClass.Internal> superCompleteClasses = null;
+	private Set<CompleteClassInternal> superCompleteClasses = null;
 
 	/**
 	 * Lazily created map from class name to the superclass. This is a map from unqualified name to
@@ -134,7 +132,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 	 */
 	private @Nullable Map<String, State> name2states = null;
 
-	protected /*@NonNull*/ CompleteInheritance completeInheritance;
+	protected /*@NonNull*/ CompleteInheritanceInternal completeInheritance;
 
 	/**
 	 * Map from actual types to specialization.
@@ -164,22 +162,22 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 		super.addUnique(index, partialClass);
 	}
 
-	public @NonNull Set<CompleteClass.Internal> computeSuperCompleteClasses() {
-		Set<CompleteClass.Internal> superCompleteClasses2 = superCompleteClasses;
+	public @NonNull Set<CompleteClassInternal> computeSuperCompleteClasses() {
+		Set<CompleteClassInternal> superCompleteClasses2 = superCompleteClasses;
 		if (superCompleteClasses2 == null) {
-			CompleteModel.Internal completeModel = getCompleteModel();
-			superCompleteClasses2 = superCompleteClasses = new HashSet<CompleteClass.Internal>();
+			CompleteModelInternal completeModel = getCompleteModel();
+			superCompleteClasses2 = superCompleteClasses = new HashSet<CompleteClassInternal>();
 			for (org.eclipse.ocl.pivot.Class partialClass : this) {
 				for (org.eclipse.ocl.pivot.Class partialSuperClass : partialClass.getSuperClasses()) {
 					if (partialSuperClass != null) {
-						CompleteClass.Internal superCompleteClass = completeModel.getCompleteClass(PivotUtil.getUnspecializedTemplateableElement(partialSuperClass));
+						CompleteClassInternal superCompleteClass = completeModel.getCompleteClass(PivotUtil.getUnspecializedTemplateableElement(partialSuperClass));
 						superCompleteClasses2.add(superCompleteClass);
 						superCompleteClasses2.addAll(superCompleteClass.getPartialClasses().computeSuperCompleteClasses());
 					}
 				}
 			}
 			if (superCompleteClasses2.isEmpty()) {
-				CompleteClass.Internal oclAnyCompleteClass = completeModel.getCompleteClass(completeModel.getStandardLibrary().getOclAnyType());
+				CompleteClassInternal oclAnyCompleteClass = completeModel.getCompleteClass(completeModel.getStandardLibrary().getOclAnyType());
 				if (getCompleteClass() != oclAnyCompleteClass) {
 					superCompleteClasses2.add(oclAnyCompleteClass);
 				}
@@ -240,7 +238,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 				DomainElement templateArgument = templateArguments.get(i);
 				if (templateArgument instanceof Type) {
 					Type actualType = (Type) templateArgument;
-					TemplateParameterSubstitution templateParameterSubstitution = CompleteInheritance.createTemplateParameterSubstitution(formalParameter, actualType);
+					TemplateParameterSubstitution templateParameterSubstitution = CompleteInheritanceInternal.createTemplateParameterSubstitution(formalParameter, actualType);
 					templateBinding.getOwnedTemplateParameterSubstitutions().add(templateParameterSubstitution);
 				}
 			}
@@ -409,8 +407,8 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 			stereotype = metaModelManager.getPrimaryElement(stereotype);
 			if (allStereotypes.add(stereotype)) {
 				CompleteClass superCompleteClass = null;
-				if (stereotype instanceof CompleteInheritance) {
-					superCompleteClass = ((CompleteInheritance)stereotype).getCompleteClass();
+				if (stereotype instanceof CompleteInheritanceInternal) {
+					superCompleteClass = ((CompleteInheritanceInternal)stereotype).getCompleteClass();
 				}
 				else {
 					superCompleteClass = getCompleteModel().getCompleteClass(stereotype);
@@ -439,14 +437,14 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 	}
 
 	@SuppressWarnings("null")
-	public @NonNull CompleteClass.Internal getCompleteClass() {
+	public @NonNull CompleteClassInternal getCompleteClass() {
 		return (CompleteClassImpl) owner;
 	}
 
-	public final @NonNull CompleteInheritance getCompleteInheritance() {
-		CompleteInheritance completeInheritance2 = completeInheritance;
+	public final @NonNull CompleteInheritanceInternal getCompleteInheritance() {
+		CompleteInheritanceInternal completeInheritance2 = completeInheritance;
 		if (completeInheritance2 == null) {
-			CompleteClass.Internal completeClass = getCompleteClass();
+			CompleteClassInternal completeClass = getCompleteClass();
 			org.eclipse.ocl.pivot.Class pivotClass = completeClass.getPivotClass();
 			if (pivotClass instanceof DataType) {
 				org.eclipse.ocl.pivot.Class behavioralClass = ((DataType)pivotClass).getBehavioralClass();
@@ -456,7 +454,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 				}
 			}
 			if (completeInheritance2 == null) {
-				CompletePackage.Internal completePackage = completeClass.getOwningCompletePackage();
+				CompletePackageInternal completePackage = completeClass.getOwningCompletePackage();
 				completeInheritance2 = completePackage.getCompleteInheritance(completeClass);
 			}
 			completeInheritance = completeInheritance2;
@@ -464,12 +462,12 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 		return completeInheritance2;
 	}
 
-	public @NonNull CompleteModel.Internal getCompleteModel() {
+	public @NonNull CompleteModelInternal getCompleteModel() {
 		return getCompleteClass().getCompleteModel();
 	}
 
 	public @NonNull Iterable<? extends DomainInheritance> getInitialSuperInheritances() {
-		final Iterator<CompleteClass.Internal> iterator = computeSuperCompleteClasses().iterator();			// FIXME Use local cache
+		final Iterator<CompleteClassInternal> iterator = computeSuperCompleteClasses().iterator();			// FIXME Use local cache
 		return new Iterable<DomainInheritance>()
 		{
 			@Override
@@ -483,7 +481,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 
 					@Override
 					public DomainInheritance next() {
-						CompleteClass.Internal next = iterator.next();
+						CompleteClassInternal next = iterator.next();
 						return next.getCompleteInheritance();
 					}
 
@@ -746,7 +744,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 		{
 			@Override
 			public CompleteClass apply(DomainFragment input) {
-				return ((CompleteInheritance)input.getBaseInheritance()).getCompleteClass();
+				return ((CompleteInheritanceInternal)input.getBaseInheritance()).getCompleteClass();
 			}
 		});
 	}

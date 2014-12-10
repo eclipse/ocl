@@ -25,18 +25,17 @@ import org.eclipse.ocl.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.values.CollectionTypeParameters;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
-import org.eclipse.ocl.library.executor.CollectionTypeParameters;
+import org.eclipse.ocl.domain.values.impl.CollectionTypeParametersImpl;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteClass;
-import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.LambdaType;
-import org.eclipse.ocl.pivot.OrphanCompletePackage;
-import org.eclipse.ocl.pivot.PrimitiveCompletePackage;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Stereotype;
@@ -45,20 +44,18 @@ import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.impl.CompleteModelImpl;
-import org.eclipse.ocl.pivot.manager.CompleteEnvironment;
 import org.eclipse.ocl.pivot.manager.LambdaTypeManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.PivotStandardLibrary2;
-import org.eclipse.ocl.pivot.manager.TemplateParameterSubstitutions;
 import org.eclipse.ocl.pivot.manager.TupleTypeManager;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
-public class CompleteEnvironmentImpl implements CompleteEnvironment.Internal
+public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 {
 	protected final @NonNull MetaModelManager metaModelManager;
-	protected final @NonNull CompleteModel.Internal completeModel;
+	protected final @NonNull CompleteModelInternal completeModel;
 	protected final @NonNull PivotStandardLibrary2 standardLibrary;
-	protected final @NonNull Map<DomainClass, CompleteClass.Internal> class2completeClass = new WeakHashMap<DomainClass, CompleteClass.Internal>();
+	protected final @NonNull Map<DomainClass, CompleteClassInternal> class2completeClass = new WeakHashMap<DomainClass, CompleteClassInternal>();
 	
 	/**
 	 * The known lambda types.
@@ -253,7 +250,7 @@ public class CompleteEnvironmentImpl implements CompleteEnvironment.Internal
 	}
 
 	@Override
-	public void didAddClass(@NonNull DomainClass partialClass, @NonNull CompleteClass.Internal completeClass) {
+	public void didAddClass(@NonNull DomainClass partialClass, @NonNull CompleteClassInternal completeClass) {
 //		assert partialClass.getUnspecializedElement() == null;
 		CompleteClass oldCompleteClass = class2completeClass.put(partialClass, completeClass);
 		assert (oldCompleteClass == null) ||(oldCompleteClass == completeClass);
@@ -278,7 +275,7 @@ public class CompleteEnvironmentImpl implements CompleteEnvironment.Internal
 	}
 
 	@Override
-	public @Nullable CollectionType findCollectionType(@NonNull CompleteClass.Internal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters) {
+	public @Nullable CollectionType findCollectionType(@NonNull CompleteClassInternal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters) {
 		return completeClass.findCollectionType(typeParameters);
 	}
 
@@ -292,7 +289,7 @@ public class CompleteEnvironmentImpl implements CompleteEnvironment.Internal
 	}
 
 	@Override
-	public @NonNull CollectionType getCollectionType(@NonNull CompleteClass.Internal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters) {
+	public @NonNull CollectionType getCollectionType(@NonNull CompleteClassInternal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters) {
 		return completeClass.getCollectionType(typeParameters);
 	}
 	
@@ -317,12 +314,12 @@ public class CompleteEnvironmentImpl implements CompleteEnvironment.Internal
 			return containerType;	
 		}
 		@SuppressWarnings("unchecked")
-		T specializedType = (T) completeModel.getCollectionType(completeModel.getCompleteClass(containerType), new CollectionTypeParameters<Type>(elementType, lower, upper));
+		T specializedType = (T) completeModel.getCollectionType(completeModel.getCompleteClass(containerType), new CollectionTypeParametersImpl<Type>(elementType, lower, upper));
 		return specializedType;
 	}
 	
 	@Override
-	public @NonNull CompleteClass.Internal getCompleteClass(@NonNull DomainType pivotType) {
+	public @NonNull CompleteClassInternal getCompleteClass(@NonNull DomainType pivotType) {
 		for (int recursions = 0; pivotType instanceof DomainTemplateParameter; recursions++) {
 			DomainType lowerBound = ((DomainTemplateParameter)pivotType).getLowerBound();
 			pivotType = lowerBound != null ? lowerBound : getStandardLibrary().getOclAnyType();
@@ -336,16 +333,16 @@ public class CompleteEnvironmentImpl implements CompleteEnvironment.Internal
 				pivotType = stereotype;
 			}
 		}
-		CompleteClass.Internal completeClass = class2completeClass.get(pivotType);
+		CompleteClassInternal completeClass = class2completeClass.get(pivotType);
 		if (completeClass != null) {
 			return completeClass;
 		}
 		else if (pivotType instanceof PrimitiveType) {
-			PrimitiveCompletePackage.Internal primitiveCompletePackage = completeModel.getPrimitiveCompletePackage();
+			PrimitiveCompletePackageInternal primitiveCompletePackage = completeModel.getPrimitiveCompletePackage();
 			return primitiveCompletePackage.getCompleteClass((PrimitiveType)pivotType);
 		}
 		else if ((pivotType instanceof CollectionType) && (((CollectionType)pivotType).getUnspecializedElement() != null)) {
-			OrphanCompletePackage.Internal orphanCompletePackage = completeModel.getOrphanCompletePackage();
+			OrphanCompletePackageInternal orphanCompletePackage = completeModel.getOrphanCompletePackage();
 			return orphanCompletePackage.getCompleteClass((CollectionType)pivotType);
 		}
 		else if (pivotType instanceof DomainClass) {
@@ -353,7 +350,7 @@ public class CompleteEnvironmentImpl implements CompleteEnvironment.Internal
 			if (pivotPackage == null) {
 				throw new IllegalStateException("type has no package");
 			}
-			CompletePackage.Internal completePackage = completeModel.getCompletePackage(pivotPackage);
+			CompletePackageInternal completePackage = completeModel.getCompletePackage(pivotPackage);
 			return completePackage.getCompleteClass((DomainClass) pivotType);
 		}
 		else {
@@ -362,7 +359,7 @@ public class CompleteEnvironmentImpl implements CompleteEnvironment.Internal
 	}
 
 	@Override
-	public @NonNull CompleteModel.Internal getCompleteModel() {
+	public @NonNull CompleteModelInternal getCompleteModel() {
 		return completeModel;
 	}
 

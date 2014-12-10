@@ -8,18 +8,19 @@
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.library.executor;
+package org.eclipse.ocl.domain.values.impl;
 
 import java.util.NoSuchElementException;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainType;
+import org.eclipse.ocl.domain.values.CollectionTypeParameters;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 
-public class CollectionTypeParameters<T extends DomainType> implements Iterable<Object>
+public class CollectionTypeParametersImpl<T extends DomainType> implements CollectionTypeParameters<T>
 {
 	protected class Iterator implements java.util.Iterator<Object>
 	{
@@ -51,7 +52,7 @@ public class CollectionTypeParameters<T extends DomainType> implements Iterable<
 	private final @NonNull IntegerValue lower;
 	private final @NonNull UnlimitedNaturalValue upper;
 
-	public CollectionTypeParameters(@NonNull T elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+	public CollectionTypeParametersImpl(@NonNull T elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		this.elementType = elementType;
 		this.lower = lower != null ? lower : ValuesUtil.ZERO_VALUE;
 		this.upper = upper != null ? upper : ValuesUtil.UNLIMITED_VALUE;
@@ -63,10 +64,10 @@ public class CollectionTypeParameters<T extends DomainType> implements Iterable<
 	
 	@Override
 	public boolean equals(Object o) {
-		if (!(o instanceof CollectionTypeParameters<?>)) {
+		if (!(o instanceof CollectionTypeParametersImpl<?>)) {
 			return false;
 		}
-		CollectionTypeParameters<?> that = (CollectionTypeParameters<?>)o;
+		CollectionTypeParametersImpl<?> that = (CollectionTypeParametersImpl<?>)o;
 		if (this.hashCode != that.hashCode){
 			return false;
 		}

@@ -43,6 +43,7 @@ import org.eclipse.ocl.domain.library.LibrarySimpleOperation;
 import org.eclipse.ocl.domain.library.LibraryUntypedOperation;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.CollectionValue;
+import org.eclipse.ocl.domain.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.domain.values.TupleValue;
 import org.eclipse.ocl.domain.values.impl.IntIntegerValueImpl;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
@@ -130,7 +131,6 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.manager.TemplateParameterSubstitutions;
 import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.xtext.util.Strings;
 

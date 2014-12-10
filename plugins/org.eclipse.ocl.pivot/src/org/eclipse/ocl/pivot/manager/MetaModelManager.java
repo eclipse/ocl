@@ -66,13 +66,13 @@ import org.eclipse.ocl.domain.utilities.ProjectMap;
 import org.eclipse.ocl.domain.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.domain.utilities.StandaloneProjectMap.DelegatedSinglePackageResource;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
-import org.eclipse.ocl.library.executor.CollectionTypeParameters;
+import org.eclipse.ocl.domain.values.impl.CollectionTypeParametersImpl;
 import org.eclipse.ocl.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteClass;
-import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.DataType;
@@ -125,7 +125,11 @@ import org.eclipse.ocl.pivot.context.ParserContext;
 import org.eclipse.ocl.pivot.context.PropertyContext;
 import org.eclipse.ocl.pivot.ecore.AS2Ecore;
 import org.eclipse.ocl.pivot.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.internal.complete.CompleteClassInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentImpl;
+import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
+import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceInternal;
+import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.internal.impl.PackageImpl;
 import org.eclipse.ocl.pivot.library.ConstrainedOperation;
 import org.eclipse.ocl.pivot.library.EInvokeOperation;
@@ -274,12 +278,12 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 	}
 	
 	private final @NonNull PivotStandardLibrary2 standardLibrary;
-	private final @NonNull CompleteEnvironment.Internal completeEnvironment;
+	private final @NonNull CompleteEnvironmentInternal completeEnvironment;
 
 	/**
 	 * The known packages.
 	 */
-	private final @NonNull CompleteModel.Internal completeModel;
+	private final @NonNull CompleteModelInternal completeModel;
 	
 	/**
 	 * The known precedences.
@@ -978,18 +982,18 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return getType(commonInheritance.getType()); 
 	}
 
-	public @NonNull CompleteClass.Internal getCompleteClass(@NonNull DomainType pivotType) {
+	public @NonNull CompleteClassInternal getCompleteClass(@NonNull DomainType pivotType) {
 		if (!libraryLoadInProgress && (asMetamodel == null) && !(pivotType instanceof CollectionType) && !(pivotType instanceof VoidType) && !(pivotType instanceof InvalidType)) {
 			getASMetamodel();
 		}
 		return completeModel.getCompleteClass(pivotType);
 	}
 
-	public @NonNull CompleteEnvironment.Internal getCompleteEnvironment() {
+	public @NonNull CompleteEnvironmentInternal getCompleteEnvironment() {
 		return completeModel.getCompleteEnvironment();
 	}
 
-	public @NonNull CompleteModel.Internal getCompleteModel() {
+	public @NonNull CompleteModelInternal getCompleteModel() {
 		return completeModel;
 	}
 	
@@ -1234,7 +1238,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		org.eclipse.ocl.pivot.Class type1 = getType(type);
 		org.eclipse.ocl.pivot.Class unspecializedType = (org.eclipse.ocl.pivot.Class) type1.getUnspecializedElement();
 		org.eclipse.ocl.pivot.Class theType = unspecializedType != null ? unspecializedType : type1;
-		CompleteInheritance completeInheritance = getCompleteClass(theType).getCompleteInheritance();
+		CompleteInheritanceInternal completeInheritance = getCompleteClass(theType).getCompleteInheritance();
 		return completeInheritance;
 	}
 	
@@ -1261,13 +1265,13 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		if (isUnspecialized) {
 			return libraryType;	
 		}
-		CompleteClass.Internal libraryCompleteClass = getCompleteClass(libraryType);
+		CompleteClassInternal libraryCompleteClass = getCompleteClass(libraryType);
 		org.eclipse.ocl.pivot.Class pivotClass = libraryCompleteClass.getPivotClass();
 		if (pivotClass instanceof DomainCollectionType) {
 			assert pivotClass instanceof DomainCollectionType;
 			assert templateArguments.size() == 1;
 			@SuppressWarnings("null")@NonNull Type templateArgument = templateArguments.get(0);
-			@SuppressWarnings("unchecked") T specializedType = (T) completeModel.getCollectionType(libraryCompleteClass, new CollectionTypeParameters<Type>(templateArgument, null, null));
+			@SuppressWarnings("unchecked") T specializedType = (T) completeModel.getCollectionType(libraryCompleteClass, new CollectionTypeParametersImpl<Type>(templateArgument, null, null));
 			return specializedType;
 		}
 		else {
@@ -1903,8 +1907,8 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		if (dType instanceof Type) {
 			return getPrimaryType(dType);
 		}
-		if (dType instanceof CompleteInheritance) {
-			return ((CompleteInheritance)dType).getCompleteClass().getPivotClass();
+		if (dType instanceof CompleteInheritanceInternal) {
+			return ((CompleteInheritanceInternal)dType).getCompleteClass().getPivotClass();
 		}
 		DomainPackage dPackage = ((DomainClass)dType).getOwningPackage();	// FIXME cast
 		if (dPackage != null) {

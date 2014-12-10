@@ -29,8 +29,10 @@ import org.eclipse.ocl.domain.types.AbstractCollectionType;
 import org.eclipse.ocl.domain.types.AbstractStandardLibrary;
 import org.eclipse.ocl.domain.types.AbstractTupleType;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.values.CollectionTypeParameters;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
+import org.eclipse.ocl.domain.values.impl.CollectionTypeParametersImpl;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
 
@@ -85,7 +87,7 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 		if (upper2 == null) {
 			upper2 = ValuesUtil.UNLIMITED_VALUE;
 		}
-		CollectionTypeParameters<DomainType> typeParameters = new CollectionTypeParameters<DomainType>(elementType, lower2, upper2);
+		CollectionTypeParameters<DomainType> typeParameters = new CollectionTypeParametersImpl<DomainType>(elementType, lower2, upper2);
 		AbstractCollectionType specializedType = null;
 		Map<CollectionTypeParameters<DomainType>, WeakReference<AbstractCollectionType>> map = specializations.get(genericType);
 		if (map == null) {

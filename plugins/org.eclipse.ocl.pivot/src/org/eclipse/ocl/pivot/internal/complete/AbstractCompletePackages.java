@@ -20,13 +20,12 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.domain.elements.DomainPackage;
-import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.internal.impl.NamedElementImpl;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
 
-public abstract class AbstractCompletePackages<Tinternal extends CompletePackage.Internal, T extends CompletePackage> extends EObjectContainmentWithInverseEList<T>
+public abstract class AbstractCompletePackages<Tinternal extends CompletePackageInternal, T extends CompletePackage> extends EObjectContainmentWithInverseEList<T>
 {
 	public static final @NonNull TracingOption COMPLETE_PACKAGES = new TracingOption(PivotPlugin.PLUGIN_ID, "completePackages");
 //	static { COMPLETE_PACKAGES.setState(true); }
@@ -123,15 +122,15 @@ public abstract class AbstractCompletePackages<Tinternal extends CompletePackage
 		Collection<Tinternal> savedCompletePackages = name2completePackage.values();
 		name2completePackage.clear();
 		for (Tinternal completePackage : savedCompletePackages) {
-			((CompletePackage.Internal)completePackage).dispose();
+			((CompletePackageInternal)completePackage).dispose();
 		}
 	}
 
-	protected abstract CompleteModel.Internal getCompleteModel();
+	protected abstract CompleteModelInternal getCompleteModel();
 
 	public @NonNull Tinternal getCompletePackage(@NonNull DomainPackage pivotPackage) {
 		Tinternal completePackage = null;
-		if (pivotPackage instanceof CompletePackage.Internal) {
+		if (pivotPackage instanceof CompletePackageInternal) {
 			((CompletePackage)pivotPackage).assertSamePackage(pivotPackage);
 			completePackage = (Tinternal)pivotPackage;
 		}
@@ -146,7 +145,7 @@ public abstract class AbstractCompletePackages<Tinternal extends CompletePackage
 					completePackage.assertSamePackage(pivotPackage);
 				}
 				else {
-					CompletePackage.Internal completeParentPackage = getCompletePackage(pivotPackageParent);
+					CompletePackageInternal completeParentPackage = getCompletePackage(pivotPackageParent);
 					@SuppressWarnings("unchecked")Tinternal completeChildPackage = (Tinternal)completeParentPackage.getOwnedCompletePackage(pivotPackage.getName());
 					assert completeChildPackage != null;
 					return completeChildPackage;

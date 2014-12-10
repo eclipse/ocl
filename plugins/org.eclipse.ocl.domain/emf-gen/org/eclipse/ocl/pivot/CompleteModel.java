@@ -10,25 +10,13 @@
  */
 package org.eclipse.ocl.pivot;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainType;
-import org.eclipse.ocl.domain.elements.DomainTypedElement;
-import org.eclipse.ocl.library.executor.CollectionTypeParameters;
-import org.eclipse.ocl.pivot.internal.complete.CompleteURIs;
-import org.eclipse.ocl.pivot.internal.complete.PartialModels;
-import org.eclipse.ocl.pivot.internal.complete.RootCompletePackages;
-import org.eclipse.ocl.pivot.manager.CompleteEnvironment;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.manager.Orphanage;
-import org.eclipse.ocl.pivot.manager.PivotStandardLibrary2;
-import org.eclipse.ocl.pivot.manager.TemplateParameterSubstitutions;
-import org.eclipse.ocl.pivot.manager.TupleTypeManager;
+import org.eclipse.ocl.domain.values.TemplateParameterSubstitutions;
 
 /**
  * <!-- begin-user-doc -->
@@ -129,48 +117,4 @@ public interface CompleteModel extends NamedElement
 	@NonNull Iterable<? extends CompletePackage> getAllCompletePackagesWithUris();
 	@NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType);
 	@Nullable org.eclipse.ocl.pivot.Package getRootPackage(@NonNull String completeURIorName);
-	
-	public interface Internal extends CompleteModel
-	{
-		void didAddClass(@NonNull DomainClass partialClass, @NonNull CompleteClass.Internal completeClass);
-		void didAddCompletePackage(@NonNull CompletePackage.Internal completePackage);
-		void didRemoveCompletePackage(@NonNull CompletePackage.Internal completePackage);
-		void didRemoveClass(@NonNull DomainClass partialClass);
-		@Nullable CollectionType findCollectionType(@NonNull CompleteClass.Internal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters);
-		@NonNull CollectionType getCollectionType(@NonNull CompleteClass.Internal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters);
-		@Override
-		@NonNull CompleteClass.Internal getCompleteClass(@NonNull DomainType partialClass);
-		@Override
-		@NonNull CompletePackage.Internal getCompletePackage(@NonNull DomainPackage partialPackage);
-		@Override
-		@Nullable CompletePackage getCompletePackageByURI(@NonNull String packageURI);
-		@NonNull CompleteURIs getCompleteURIs();
-		@NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType,
-				@Nullable TemplateParameterSubstitutions bindings);
-		@NonNull MetaModelManager getMetaModelManager();
-		@Override
-		@NonNull OrphanCompletePackage.Internal getOrphanCompletePackage();
-		@Override
-		@NonNull RootCompletePackages getOwnedCompletePackages();
-		@Override
-		@NonNull PartialModels getPartialModels();
-		@Override
-		@NonNull PrimitiveCompletePackage.Internal getPrimitiveCompletePackage();
-		@NonNull Type getSpecializedType(@NonNull Type type, @Nullable TemplateParameterSubstitutions substitutions);
-		@NonNull TupleType getTupleType(@NonNull String typeName, @NonNull Collection<? extends DomainTypedElement> parts,
-				@Nullable TemplateParameterSubstitutions bindings);	
-
-		void resolveSuperClasses(@NonNull org.eclipse.ocl.pivot.Class specializedClass, @NonNull org.eclipse.ocl.pivot.Class unspecializedClass);
-		void dispose();
-		void didAddPartialModel(@NonNull Model partialModel);
-		void didAddNestedPackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage);
-		void didRemoveNestedPackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage);
-		void didRemovePartialModel(@NonNull Model partialModel);
-		@Nullable String getCompleteURI(@Nullable String nsURI);
-		@NonNull TupleTypeManager getTupleManager();
-		@NonNull Orphanage getOrphanage();
-		@NonNull PivotStandardLibrary2 getStandardLibrary();
-		@Override
-		@NonNull CompleteEnvironment.Internal getCompleteEnvironment();
-	}
 } // CompleteModel

@@ -30,11 +30,10 @@ import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.domain.ids.OperationId;
-import org.eclipse.ocl.library.executor.CollectionTypeParameters;
+import org.eclipse.ocl.domain.values.CollectionTypeParameters;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.CompleteClass;
-import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Element;
@@ -42,8 +41,11 @@ import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.State;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.internal.complete.CompleteClassInternal;
+import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceInternal;
+import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
+import org.eclipse.ocl.pivot.internal.complete.CompletePackageInternal;
 import org.eclipse.ocl.pivot.internal.complete.PartialClasses;
-import org.eclipse.ocl.pivot.manager.CompleteInheritance;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.pivot.util.Visitor;
@@ -54,7 +56,7 @@ import com.google.common.collect.Iterables;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Complete Class</b></em>'.
- * @extends org.eclipse.ocl.pivot.CompleteClass.Internal
+ * @extends org.eclipse.ocl.pivot.CompleteClassInternal
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -66,7 +68,7 @@ import com.google.common.collect.Iterables;
  *
  * @generated
  */
-public class CompleteClassImpl extends NamedElementImpl implements CompleteClass, org.eclipse.ocl.pivot.CompleteClass.Internal
+public class CompleteClassImpl extends NamedElementImpl implements CompleteClass, CompleteClassInternal
 {
 
 	/**
@@ -91,9 +93,9 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 		return (CompletePackage)eInternalContainer();
 	}
 	@Override
-	public CompletePackage.Internal getOwningCompletePackage()
+	public CompletePackageInternal getOwningCompletePackage()
 	{
-		return (CompletePackage.Internal)getOwningCompletePackageGen();
+		return (CompletePackageInternal)getOwningCompletePackageGen();
 	}
 
 	/**
@@ -425,12 +427,12 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	}
 
 	@Override
-	public final @NonNull CompleteInheritance getCompleteInheritance() {
+	public final @NonNull CompleteInheritanceInternal getCompleteInheritance() {
 		return partialClasses.getCompleteInheritance();
 	}
 
 	@Override
-	public @NonNull CompleteModel.Internal getCompleteModel() {
+	public @NonNull CompleteModelInternal getCompleteModel() {
 		return getOwningCompletePackage().getCompleteModel();
 	}
 	
@@ -509,7 +511,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 		{
 			@Override
 			public CompleteClass apply(DomainFragment input) {
-				return ((CompleteInheritance)input.getBaseInheritance()).getCompleteClass();		// FIXME cast
+				return ((CompleteInheritanceInternal)input.getBaseInheritance()).getCompleteClass();		// FIXME cast
 			}
 		});
 	}

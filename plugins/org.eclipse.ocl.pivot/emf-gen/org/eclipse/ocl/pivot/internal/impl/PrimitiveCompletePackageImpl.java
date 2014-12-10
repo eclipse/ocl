@@ -15,25 +15,25 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.PackageId;
-import org.eclipse.ocl.pivot.CompleteClass;
 import org.eclipse.ocl.pivot.PivotConstants;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PrimitiveCompletePackage;
 import org.eclipse.ocl.pivot.PrimitiveType;
+import org.eclipse.ocl.pivot.internal.complete.CompleteClassInternal;
 import org.eclipse.ocl.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Primitive Complete Package</b></em>'.
- * @extends org.eclipse.ocl.pivot.PrimitiveCompletePackage.Internal
+ * @extends org.eclipse.ocl.pivot.PrimitiveCompletePackageInternal
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class PrimitiveCompletePackageImpl extends RootCompletePackageImpl implements PrimitiveCompletePackage, org.eclipse.ocl.pivot.PrimitiveCompletePackage.Internal
+public class PrimitiveCompletePackageImpl extends RootCompletePackageImpl implements PrimitiveCompletePackage, org.eclipse.ocl.pivot.internal.complete.PrimitiveCompletePackageInternal
 {
 	/**
 	 * <!-- begin-user-doc -->
@@ -58,11 +58,11 @@ public class PrimitiveCompletePackageImpl extends RootCompletePackageImpl implem
 	}
 
 	@Override
-	public @NonNull CompleteClass.Internal getCompleteClass(final @NonNull DomainClass primitiveType) {
+	public @NonNull CompleteClassInternal getCompleteClass(final @NonNull DomainClass primitiveType) {
 		String name = primitiveType.getName();
-		CompleteClass.Internal completeClass = getOwnedCompleteClass(name);
+		CompleteClassInternal completeClass = getOwnedCompleteClass(name);
 		if (completeClass == null) {
-			completeClass = (CompleteClass.Internal)PivotFactory.eINSTANCE.createCompleteClass();
+			completeClass = (CompleteClassInternal)PivotFactory.eINSTANCE.createCompleteClass();
 			completeClass.setName(name);
 			getOwnedCompleteClasses().add(completeClass);
 			completeClass.getPartialClasses().add((PrimitiveType)primitiveType);

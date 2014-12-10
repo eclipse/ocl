@@ -55,7 +55,9 @@ import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
-import org.eclipse.ocl.pivot.manager.CompleteInheritance;
+import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceInternal;
+import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
+import org.eclipse.ocl.pivot.internal.complete.CompletePackageInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.pivot.utilities.IllegalLibraryException;
@@ -160,8 +162,8 @@ public class EnvironmentView
 	{
 		@Override
 		public int compare(@NonNull MetaModelManager metaModelManager, @NonNull org.eclipse.ocl.pivot.Package match1, @NonNull org.eclipse.ocl.pivot.Package match2) {
-			CompletePackage.Internal completePackage1 = metaModelManager.getCompleteModel().getCompletePackage(match1);
-			CompletePackage.Internal completePackage2 = metaModelManager.getCompleteModel().getCompletePackage(match2);
+			CompletePackageInternal completePackage1 = metaModelManager.getCompleteModel().getCompletePackage(match1);
+			CompletePackageInternal completePackage2 = metaModelManager.getCompleteModel().getCompletePackage(match2);
 			if (completePackage1 == completePackage2) {
 				return 1;				// match2 inferior			
 			}
@@ -566,9 +568,9 @@ public class EnvironmentView
 		/*if (element instanceof PackageServer) {
 			element = ((PackageServer) element).getPrimaryPackage();		// FIXME lose casts
 		}
-		else*/ if (element instanceof CompleteInheritance) {
+		else*/ if (element instanceof CompleteInheritanceInternal) {
 			assert false;
-			element = ((CompleteInheritance) element).getCompleteClass().getPivotClass();		// FIXME lose casts
+			element = ((CompleteInheritanceInternal) element).getCompleteClass().getPivotClass();		// FIXME lose casts
 		}
 		if ((requiredType != null) && (name != null)) {
 			if (!requiredType.isInstance(element)) {
@@ -700,7 +702,7 @@ public class EnvironmentView
 	}
 
 	public void addRootPackages() {
-		CompleteModel.Internal completeModel = metaModelManager.getCompleteModel();
+		CompleteModelInternal completeModel = metaModelManager.getCompleteModel();
 		String name2 = name;
 		if (name2 != null) {
 			CompletePackage rootCompletePackage = completeModel.getOwnedCompletePackage(name2);

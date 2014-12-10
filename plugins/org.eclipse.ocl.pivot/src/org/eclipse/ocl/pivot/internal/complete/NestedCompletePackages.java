@@ -12,14 +12,12 @@ package org.eclipse.ocl.pivot.internal.complete;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.DomainPackage;
-import org.eclipse.ocl.pivot.CompleteModel;
-import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.NestedCompletePackage;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.internal.impl.CompletePackageImpl;
 
-public class NestedCompletePackages extends AbstractCompletePackages<NestedCompletePackage.Internal, NestedCompletePackage>
+public class NestedCompletePackages extends AbstractCompletePackages<NestedCompletePackageInternal, NestedCompletePackage>
 {
 	private static final long serialVersionUID = 1L;
 
@@ -30,8 +28,8 @@ public class NestedCompletePackages extends AbstractCompletePackages<NestedCompl
 	}
 
 	@Override
-	public @NonNull NestedCompletePackage.Internal createCompletePackage(@NonNull DomainPackage partialPackage) {
-		NestedCompletePackage.Internal completePackage = (NestedCompletePackage.Internal) PivotFactory.eINSTANCE.createNestedCompletePackage();
+	public @NonNull NestedCompletePackageInternal createCompletePackage(@NonNull DomainPackage partialPackage) {
+		NestedCompletePackageInternal completePackage = (NestedCompletePackageInternal) PivotFactory.eINSTANCE.createNestedCompletePackage();
 		completePackage.init(partialPackage.getName(), partialPackage.getNsPrefix(), partialPackage.getURI(), partialPackage.getPackageId());
 		return completePackage;
 	}
@@ -47,19 +45,19 @@ public class NestedCompletePackages extends AbstractCompletePackages<NestedCompl
 	}
 
 	@Override
-	public @NonNull CompleteModel.Internal getCompleteModel() {
+	public @NonNull CompleteModelInternal getCompleteModel() {
 		return getCompletePackage().getCompleteModel();
 	}
 
 	@SuppressWarnings("null")
-	public @NonNull CompletePackage.Internal getCompletePackage() {
-		return (CompletePackage.Internal)owner;
+	public @NonNull CompletePackageInternal getCompletePackage() {
+		return (CompletePackageInternal)owner;
 	}
 
 	@Override
-	public @NonNull NestedCompletePackage.Internal getOwnedCompletePackage(@NonNull DomainPackage partialPackage) {
+	public @NonNull NestedCompletePackageInternal getOwnedCompletePackage(@NonNull DomainPackage partialPackage) {
 		String name = partialPackage.getName();
-		NestedCompletePackage.Internal completePackage = super.getOwnedCompletePackage(name);
+		NestedCompletePackageInternal completePackage = super.getOwnedCompletePackage(name);
 		if (completePackage == null) {
 			completePackage = createCompletePackage(partialPackage);			
 			completePackage.getPartialPackages().add((org.eclipse.ocl.pivot.Package)partialPackage);		// FIXME cast

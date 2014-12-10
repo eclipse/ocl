@@ -34,11 +34,10 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.values.CollectionTypeParameters;
+import org.eclipse.ocl.domain.values.impl.CollectionTypeParametersImpl;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.library.LibraryConstants;
-import org.eclipse.ocl.library.executor.CollectionTypeParameters;
-import org.eclipse.ocl.pivot.CompleteClass;
-import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.PivotConstants;
 import org.eclipse.ocl.pivot.SequenceType;
@@ -46,6 +45,8 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.context.ModelContext;
 import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.internal.complete.CompleteClassInternal;
+import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
@@ -657,7 +658,7 @@ public class EditTests extends XtextTestCase
 			"}\n";
 		URI outputURI = getProjectFileURI("test.oclstdlib");
 		MetaModelManager metaModelManager = ocl.getMetaModelManager();
-		CompleteModel.Internal completeModel = metaModelManager.getCompleteModel();
+		CompleteModelInternal completeModel = metaModelManager.getCompleteModel();
 		ModelContext modelContext = new ModelContext(metaModelManager, outputURI);
 		EssentialOCLCSResource xtextResource = (EssentialOCLCSResource) modelContext.createBaseResource(testDocument);
 		Resource asResource = cs2as(ocl, xtextResource, null);
@@ -666,8 +667,8 @@ public class EditTests extends XtextTestCase
 		//
 		Type myType = metaModelManager.getPrimaryType(LibraryConstants.STDLIB_URI, "MyType");
 		SequenceType sequenceType = metaModelManager.getStandardLibrary().getSequenceType();
-		CollectionTypeParameters<Type> typeParameters = new CollectionTypeParameters<Type>(myType, null, null);
-		CompleteClass.Internal sequenceCompleteClass = metaModelManager.getCompleteClass(sequenceType);
+		CollectionTypeParameters<Type> typeParameters = new CollectionTypeParametersImpl<Type>(myType, null, null);
+		CompleteClassInternal sequenceCompleteClass = metaModelManager.getCompleteClass(sequenceType);
 		WeakReference<Type> sequenceMyType = new WeakReference<Type>(completeModel.findCollectionType(sequenceCompleteClass, typeParameters));
 		assertNull(sequenceMyType.get()); 
 		//

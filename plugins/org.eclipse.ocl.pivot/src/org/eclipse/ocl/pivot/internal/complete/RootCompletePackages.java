@@ -15,17 +15,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.ids.PackageId;
-import org.eclipse.ocl.pivot.CompleteModel;
-import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Model;
-import org.eclipse.ocl.pivot.ParentCompletePackage;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.RootCompletePackage;
 import org.eclipse.ocl.pivot.internal.impl.CompleteModelImpl;
 import org.eclipse.ocl.pivot.manager.Orphanage;
 
-public class RootCompletePackages extends AbstractCompletePackages<RootCompletePackage.Internal, RootCompletePackage>
+public class RootCompletePackages extends AbstractCompletePackages<RootCompletePackageInternal, RootCompletePackage>
 {
 	private static final Logger logger = Logger.getLogger(RootCompletePackages.class);
 
@@ -36,13 +33,13 @@ public class RootCompletePackages extends AbstractCompletePackages<RootCompleteP
 	}
 
 	@Override
-	public @NonNull RootCompletePackage.Internal createCompletePackage(@NonNull DomainPackage partialPackage) {
-		RootCompletePackage.Internal completePackage = (RootCompletePackage.Internal) PivotFactory.eINSTANCE.createParentCompletePackage();
+	public @NonNull RootCompletePackageInternal createCompletePackage(@NonNull DomainPackage partialPackage) {
+		RootCompletePackageInternal completePackage = (RootCompletePackageInternal) PivotFactory.eINSTANCE.createParentCompletePackage();
 		completePackage.init(partialPackage.getName(), partialPackage.getNsPrefix(), partialPackage.getURI(), partialPackage.getPackageId());
 		return completePackage;
 	}
 	
-	protected @NonNull RootCompletePackage.Internal createRootCompletePackage(@NonNull DomainPackage pivotPackage) {
+	protected @NonNull RootCompletePackageInternal createRootCompletePackage(@NonNull DomainPackage pivotPackage) {
 		String name = pivotPackage.getName();
 //		if (name == null) {
 //			throw new IllegalStateException("Unnamed package");
@@ -54,13 +51,13 @@ public class RootCompletePackages extends AbstractCompletePackages<RootCompleteP
 		String nsPrefix = pivotPackage.getNsPrefix();
 		String completeURI = getCompleteModel().getCompleteURIs().getCompleteURI(pivotPackage.getURI());
 		PackageId packageId = pivotPackage.getPackageId();
-		RootCompletePackage.Internal rootCompletePackage;
+		RootCompletePackageInternal rootCompletePackage;
 		if (Orphanage.isTypeOrphanage(pivotPackage)) {
 			rootCompletePackage = getCompleteModel().getOrphanCompletePackage();
 		}
 		else {
 			PackageId metapackageId = getCompleteModel().getMetaModelManager().getMetapackageId(pivotPackage);
-			ParentCompletePackage.Internal parentCompletePackage = (ParentCompletePackage.Internal) PivotFactory.eINSTANCE.createParentCompletePackage();
+			ParentCompletePackageInternal parentCompletePackage = (ParentCompletePackageInternal) PivotFactory.eINSTANCE.createParentCompletePackage();
 			parentCompletePackage.init(nonNullName, nsPrefix, completeURI, packageId, metapackageId);
 			rootCompletePackage = parentCompletePackage;
 			add(rootCompletePackage);
@@ -69,7 +66,7 @@ public class RootCompletePackages extends AbstractCompletePackages<RootCompleteP
 	}
 
 	@Override
-	protected void didAdd(@NonNull RootCompletePackage.Internal rootCompletePackage) {
+	protected void didAdd(@NonNull RootCompletePackageInternal rootCompletePackage) {
 		super.didAdd(rootCompletePackage);
 //		String nsURI = rootCompletePackage.getURI();			// FIXME complete/package/URI/name
 //		String sharedNsURI = getCompleteURI(nsURI);
@@ -87,18 +84,18 @@ public class RootCompletePackages extends AbstractCompletePackages<RootCompleteP
 
 	@Override
 	@SuppressWarnings("null")
-	public @NonNull CompleteModel.Internal getCompleteModel() {
-		return (CompleteModel.Internal)owner;
+	public @NonNull CompleteModelInternal getCompleteModel() {
+		return (CompleteModelInternal)owner;
 	}
 
 	@Override
-	public @NonNull RootCompletePackage.Internal getOwnedCompletePackage(@NonNull DomainPackage pivotPackage) {
+	public @NonNull RootCompletePackageInternal getOwnedCompletePackage(@NonNull DomainPackage pivotPackage) {
 		//
 		//	Try to find package by packageURI
 		//
-		CompletePackage.Internal completePackage = getCompleteModel().getCompleteURIs().getCompletePackage(pivotPackage);
+		CompletePackageInternal completePackage = getCompleteModel().getCompleteURIs().getCompletePackage(pivotPackage);
 		if (completePackage != null) {
-			return (RootCompletePackage.Internal) completePackage;
+			return (RootCompletePackageInternal) completePackage;
 		}
 		//
 		//	Else generate an error for a name-less Package, fatally if also packageURI-less.
@@ -127,7 +124,7 @@ public class RootCompletePackages extends AbstractCompletePackages<RootCompleteP
 		//
 		//	Try to find package by name, provided there is no packageURI conflict
 		//
-		RootCompletePackage.Internal rootCompletePackage = getOwnedCompletePackage(name);
+		RootCompletePackageInternal rootCompletePackage = getOwnedCompletePackage(name);
 		if (rootCompletePackage != null) {
 			String completeURI2 = rootCompletePackage.getURI();
 			if ((packageURI == null) || (completeURI2 == null) || packageURI.equals(completeURI2)) {

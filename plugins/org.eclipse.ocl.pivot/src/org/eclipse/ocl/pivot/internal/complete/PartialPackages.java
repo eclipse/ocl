@@ -16,15 +16,12 @@ import java.util.Map;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
-import org.eclipse.ocl.pivot.CompleteClass;
-import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.NestedCompletePackage;
 import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.internal.impl.CompletePackageImpl;
 import org.eclipse.ocl.pivot.internal.impl.PackageImpl;
-import org.eclipse.ocl.pivot.manager.CompleteInheritance;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
 
 import com.google.common.base.Function;
@@ -53,7 +50,7 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 	/**
 	 * Lazily created map of nested class-name to its inheritance.
 	 */
-	protected final @NonNull Map<String, CompleteInheritance> name2inheritance = new HashMap<String, CompleteInheritance>();
+	protected final @NonNull Map<String, CompleteInheritanceInternal> name2inheritance = new HashMap<String, CompleteInheritanceInternal>();
 
 	public PartialPackages(@NonNull CompletePackageImpl owner) {
 		super(org.eclipse.ocl.pivot.Package.class, owner, PivotPackage.COMPLETE_PACKAGE__PARTIAL_PACKAGES);
@@ -158,17 +155,17 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 		getCompletePackage().didRemoveClass(partialClass);
 	}
 
-	public @NonNull CompleteInheritance getCompleteInheritance(@NonNull CompleteClass.Internal completeClass) {
+	public @NonNull CompleteInheritanceInternal getCompleteInheritance(@NonNull CompleteClassInternal completeClass) {
 		String name = completeClass.getName();
-		CompleteInheritance completeInheritance = name2inheritance.get(name);
+		CompleteInheritanceInternal completeInheritance = name2inheritance.get(name);
 		if (completeInheritance == null) {
-			completeInheritance = new CompleteInheritance(completeClass);
+			completeInheritance = new CompleteInheritanceInternal(completeClass);
 			name2inheritance.put(name, completeInheritance);
 		}
 		return completeInheritance;
 	}
 
-	public @NonNull CompleteModel.Internal getCompleteModel() {
+	public @NonNull CompleteModelInternal getCompleteModel() {
 		return getCompletePackage().getCompleteModel();
 	}
 

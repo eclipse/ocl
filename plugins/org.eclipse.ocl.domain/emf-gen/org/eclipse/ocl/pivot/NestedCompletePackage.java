@@ -56,6 +56,4 @@ public interface NestedCompletePackage extends CompletePackage
 	 * @generated
 	 */
 	void setOwningCompletePackage(CompletePackage value);
-	
-	public interface Internal extends NestedCompletePackage, CompletePackage.Internal {}
 } // NestedCompletePackage

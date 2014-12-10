@@ -11,16 +11,16 @@
 package org.eclipse.ocl.pivot;
 
 
+
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Primitive Complete Package</b></em>'.
+ * A representation of the model object '<em><b>Orphan Complete Package</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.ocl.pivot.PivotPackage#getPrimitiveCompletePackage()
+ * @see org.eclipse.ocl.pivot.PivotPackage#getOrphanCompletePackage()
  * @generated
  */
-public interface PrimitiveCompletePackage extends RootCompletePackage
+public interface OrphanCompletePackage extends RootCompletePackage
 {
-	public interface Internal extends PrimitiveCompletePackage, RootCompletePackage.Internal {}
-} // PrimitiveCompletePackage
+} // OrphanCompletePackage

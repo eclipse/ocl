@@ -26,7 +26,6 @@ import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.domain.ids.ParametersId;
-import org.eclipse.ocl.pivot.CompleteClass;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 
@@ -201,11 +200,11 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 		}
 	}
 
-	protected final @NonNull CompleteClass.Internal completeClass;
+	protected final @NonNull CompleteClassInternal completeClass;
 	protected final @NonNull String name;
 	private final @NonNull Map<ParametersId, Object> map = new HashMap<ParametersId, Object>();
 	
-	public PartialOperations(@NonNull CompleteClass.Internal completeClass, @NonNull String name) {
+	public PartialOperations(@NonNull CompleteClassInternal completeClass, @NonNull String name) {
 		this.completeClass = completeClass;
 		this.name = name;
 	}

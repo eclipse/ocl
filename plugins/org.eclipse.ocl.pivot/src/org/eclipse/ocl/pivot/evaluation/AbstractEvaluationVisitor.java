@@ -31,7 +31,7 @@ import org.eclipse.ocl.pivot.Environment;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.OCLExpression;
-import org.eclipse.ocl.pivot.manager.CompleteEnvironment;
+import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironment2;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
@@ -61,7 +61,7 @@ public abstract class AbstractEvaluationVisitor
 	protected final @NonNull EvaluationEnvironment evaluationEnvironment;
 	protected final @NonNull Environment environment;
 	protected final @NonNull MetaModelManager metaModelManager;	
-	protected final @NonNull CompleteEnvironment completeEnvironment;
+	protected final @NonNull CompleteEnvironment2 completeEnvironment;
 	protected final @NonNull PivotStandardLibrary standardLibrary;
 	protected final @NonNull DomainModelManager modelManager;
 

@@ -38,10 +38,13 @@ import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.RootCompletePackage;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.internal.complete.CompleteClassInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteClasses;
+import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceInternal;
+import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
+import org.eclipse.ocl.pivot.internal.complete.CompletePackageInternal;
 import org.eclipse.ocl.pivot.internal.complete.NestedCompletePackages;
 import org.eclipse.ocl.pivot.internal.complete.PartialPackages;
-import org.eclipse.ocl.pivot.manager.CompleteInheritance;
 import org.eclipse.ocl.pivot.util.Visitor;
 
 import com.google.common.base.Function;
@@ -50,7 +53,7 @@ import com.google.common.collect.Iterables;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Complete Package</b></em>'.
- * @extends org.eclipse.ocl.pivot.CompletePackage.Internal
+ * @extends org.eclipse.ocl.pivot.CompletePackageInternal
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -63,7 +66,7 @@ import com.google.common.collect.Iterables;
  *
  * @generated
  */
-public abstract class CompletePackageImpl extends NamedElementImpl implements CompletePackage, org.eclipse.ocl.pivot.CompletePackage.Internal
+public abstract class CompletePackageImpl extends NamedElementImpl implements CompletePackage, org.eclipse.ocl.pivot.internal.complete.CompletePackageInternal
 {
 
 	/**
@@ -425,21 +428,21 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 	}
 
 	@Override
-	public @NonNull CompleteClass.Internal getCompleteClass(@NonNull DomainClass pivotType) {
+	public @NonNull CompleteClassInternal getCompleteClass(@NonNull DomainClass pivotType) {
 		return DomainUtil.nonNullState(getOwnedCompleteClass(pivotType.getName()));
 	}
 
 	@Override
-	public @NonNull CompleteInheritance getCompleteInheritance(@NonNull CompleteClass.Internal completeClass) {
+	public @NonNull CompleteInheritanceInternal getCompleteInheritance(@NonNull CompleteClassInternal completeClass) {
 		assert this != getCompleteModel().getOrphanCompletePackage();		// OrphanCompletePackage overrides
 		return getPartialPackages().getCompleteInheritance(completeClass);
 	}
 
 	@Override
-	public @NonNull CompleteModel.Internal getCompleteModel() {
+	public @NonNull CompleteModelInternal getCompleteModel() {
 		for (EObject eContainer = eContainer(); eContainer != null; eContainer = eContainer.eContainer()) {
-			if (eContainer instanceof CompleteModel.Internal) {
-				return (CompleteModel.Internal) eContainer;
+			if (eContainer instanceof CompleteModelInternal) {
+				return (CompleteModelInternal) eContainer;
 			}
 		}
 		throw new IllegalStateException();
@@ -473,12 +476,12 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 	}
 
 	@Override
-	public CompleteClass.Internal getOwnedCompleteClass(String name) {
+	public CompleteClassInternal getOwnedCompleteClass(String name) {
 		return getOwnedCompleteClasses().getOwnedCompleteClass(name);
 	}
 	
 	@Override
-	public CompletePackage.Internal getOwnedCompletePackage(@Nullable String name) {
+	public CompletePackageInternal getOwnedCompletePackage(@Nullable String name) {
 		return getOwnedCompletePackages().getOwnedCompletePackage(name);
 	}
 

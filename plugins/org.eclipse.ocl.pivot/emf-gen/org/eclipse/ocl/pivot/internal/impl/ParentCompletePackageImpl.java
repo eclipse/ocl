@@ -21,14 +21,14 @@ import org.eclipse.ocl.pivot.util.Visitor;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Parent Complete Package</b></em>'.
- * @extends org.eclipse.ocl.pivot.ParentCompletePackage.Internal
+ * @extends org.eclipse.ocl.pivot.ParentCompletePackageInternal
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class ParentCompletePackageImpl extends RootCompletePackageImpl implements ParentCompletePackage, org.eclipse.ocl.pivot.ParentCompletePackage.Internal
+public class ParentCompletePackageImpl extends RootCompletePackageImpl implements ParentCompletePackage, org.eclipse.ocl.pivot.internal.complete.ParentCompletePackageInternal
 {
 	/**
 	 * <!-- begin-user-doc -->

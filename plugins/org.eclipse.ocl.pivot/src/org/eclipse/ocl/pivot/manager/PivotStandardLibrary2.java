@@ -20,19 +20,19 @@ import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.PrimitiveType;
+import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 public class PivotStandardLibrary2 extends PivotStandardLibrary
 {
-	protected final @NonNull CompleteModel.Internal completeModel;
+	protected final @NonNull CompleteModelInternal completeModel;
 	protected final @NonNull MetaModelManager metaModelManager;
 	
-	public PivotStandardLibrary2(@NonNull CompleteModel.Internal completeModel) {
+	public PivotStandardLibrary2(@NonNull CompleteModelInternal completeModel) {
 		this.completeModel = completeModel;
 		this.metaModelManager = completeModel.getMetaModelManager();
 	}
@@ -42,7 +42,7 @@ public class PivotStandardLibrary2 extends PivotStandardLibrary
 		return metaModelManager.getAllCompletePackages();
 	}
 
-	public @NonNull CompleteModel.Internal getCompleteModel() {
+	public @NonNull CompleteModelInternal getCompleteModel() {
 		return completeModel;
 	}
 

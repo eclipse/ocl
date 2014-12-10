@@ -53,7 +53,7 @@ import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.SemanticException;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.manager.CompleteEnvironment;
+import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironment2;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.PivotStandardLibrary2;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
@@ -528,7 +528,7 @@ public class IteratorsTest4 extends PivotTestSuite
      */
     @Test public void test_closureValidation_typeConformance_154695() {
         PivotStandardLibrary2 standardLibrary = metaModelManager.getStandardLibrary();
-        CompleteEnvironment completeEnvironment = metaModelManager.getCompleteEnvironment();
+        CompleteEnvironment2 completeEnvironment = metaModelManager.getCompleteEnvironment();
     	Resource fakeResource = new XMIResourceFactoryImpl().createResource(URI.createURI("fake"));
     	Model fakeRoot = metaModelManager.createModel(null);
     	org.eclipse.ocl.pivot.Package fakePkg = createPackage(fakeRoot, "fake");

@@ -13,7 +13,6 @@ package org.eclipse.ocl.pivot.internal.complete;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
-import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.PivotPackage;
@@ -62,7 +61,7 @@ public class PartialModels extends EObjectResolvingEList<Model> implements Model
 		if (PARTIAL_MODELS.isActive()) {
 			PARTIAL_MODELS.println("Do-didAdd Model" + this + " " + partialModel);
 		}
-		CompleteModel.Internal completeModel = getCompleteModel();
+		CompleteModelInternal completeModel = getCompleteModel();
 		completeModel.didAddPartialModel(partialModel);
 		for (org.eclipse.ocl.pivot.Package pivotPackage : partialModel.getOwnedPackages()) {
 			if (pivotPackage != null) {
@@ -88,7 +87,7 @@ public class PartialModels extends EObjectResolvingEList<Model> implements Model
 
 	protected void didRemove(@NonNull Model partialModel) {
 		((ModelImpl)partialModel).removeRootListener(this);
-		CompleteModel.Internal completeModel = getCompleteModel();
+		CompleteModelInternal completeModel = getCompleteModel();
 		for (org.eclipse.ocl.pivot.Package pivotPackage : partialModel.getOwnedPackages()) {
 			if (pivotPackage != null) {
 				completeModel.didRemoveNestedPackage(pivotPackage);
@@ -103,8 +102,8 @@ public class PartialModels extends EObjectResolvingEList<Model> implements Model
 	}
 	
 	@SuppressWarnings("null")
-	protected @NonNull CompleteModel.Internal getCompleteModel() {
-		return (CompleteModel.Internal)owner;
+	protected @NonNull CompleteModelInternal getCompleteModel() {
+		return (CompleteModelInternal)owner;
 	}
 
 	protected @NonNull Iterable<org.eclipse.ocl.pivot.Package> getNestedPartialPackages() {
