@@ -21,6 +21,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
@@ -105,7 +106,7 @@ public class EcoreNormalizer extends WorkflowComponentWithModelSlot
 			}
 			if (eObject instanceof EModelElement) {
 				EModelElement eModelElement = (EModelElement) eObject;
-				EAnnotation eAnnotation = eModelElement.getEAnnotation("http://www.eclipse.org/emf/2002/GenModel");
+				EAnnotation eAnnotation = eModelElement.getEAnnotation(GenModelPackage.eNS_URI); // "http://www.eclipse.org/emf/2002/GenModel");
 				if (eAnnotation != null) {
 					removals.add(eAnnotation);
 				}

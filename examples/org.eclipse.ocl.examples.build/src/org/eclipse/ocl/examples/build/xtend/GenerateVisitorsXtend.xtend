@@ -11,63 +11,13 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.build.xtend
 
-import java.util.ArrayList
-import java.util.Collections
-import java.util.Comparator
-import java.util.List
+import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
 import org.eclipse.emf.ecore.EClass
-import org.eclipse.emf.ecore.EClassifier
-import org.eclipse.emf.ecore.ENamedElement
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.jdt.annotation.NonNull
-import org.eclipse.emf.ecore.ETypeParameter
 
-public abstract class GenerateVisitors extends GenerateVisitorsWorkflowComponent
+public abstract class GenerateVisitorsXtend extends GenerateVisitors
 {
-	protected def static EClass firstSuperClass(EClass eClass, EClass nullClass) {
-		if (eClass.getESuperTypes().size() == 0) {
-			return nullClass;
-		} else {
-			var EClass eSuperClass = eClass.getESuperTypes().get(0);
-			if (eSuperClass.interface) {
-				return firstSuperClass(eSuperClass, nullClass);
-			} else {
-				return eSuperClass;
-			}
-		}
-	}
-
-	@NonNull protected def static List<EClass> getSortedEClasses(@NonNull EPackage ePackage) {
-		var List<EClass> sortedEClasses = new ArrayList<EClass>();
-		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
-			if ((eClassifier instanceof EClass) && !(eClassifier as EClass).interface) {
-				sortedEClasses.add(eClassifier as EClass);
-			}
-		}
-		var Comparator<ENamedElement> comparator = [ENamedElement e1, ENamedElement e2|e1.name.compareTo(e2.name);];
-		Collections.sort(sortedEClasses, comparator);
-		return sortedEClasses;
-	}
-	
-	@NonNull protected def static String getTemplatedName(@NonNull EClass eClass) {
-		var StringBuilder s = new StringBuilder();
-		s.append(eClass.name);
-		var List<ETypeParameter> eTypeParameters = eClass.getETypeParameters();
-		if (eTypeParameters.size() > 0) {
-			s.append("<");
-			var int i = 0;
-			while (i < eTypeParameters.size()) {
-				if (i > 0) {
-					s.append(",");
-				}
-				s.append("?");
-				i = i + 1;
-			}
-			s.append(">");
-		}
-		return s.toString();
-	}
-
 	/*
 	 * Abstract«projectPrefix»«generic»Visitor
 	 */
@@ -681,16 +631,21 @@ public abstract class GenerateVisitors extends GenerateVisitorsWorkflowComponent
 		'''
 	}
 
-	protected def void generateVisitableInterface(@NonNull EPackage ePackage) {
-		var MergeWriter writer = new MergeWriter(outputFolder + visitableClassName + ".java");
+	protected def void generateVisitableInterface(@NonNull GenPackage genPackage) {
+		var genModel = genPackage.getGenModel();
+		var String directoryURI = getInterfaceModelDirectory(genModel);
+		var visitableClassName2 = getVisitableClassName(genModel);
+		var visitablePackageName2 = getVisitablePackageName(genModel);
+		var EPackage ePackage = genPackage.getEcorePackage();
+		var MergeWriter writer = new MergeWriter(directoryURI + visitablePackageName2.replace(".", "/") + "/" + visitableClassName2 + ".java");
 		writer.append('''
-			«ePackage.generateHeader(visitablePackageName)»
+			«ePackage.generateHeader(visitablePackageName2)»
 
 			import org.eclipse.emf.ecore.EClass;
 			import org.eclipse.jdt.annotation.NonNull;
 			import org.eclipse.jdt.annotation.Nullable;
 
-			public interface «visitableClassName»
+			public interface «visitableClassName2»
 			{
 				/**
 				 * Returns the result of accepting a visit from a visitor.
@@ -715,9 +670,16 @@ public abstract class GenerateVisitors extends GenerateVisitorsWorkflowComponent
 		writer.close();
 	}
 
-	protected def void generateVisitorInterface(@NonNull EPackage ePackage) {
+	protected def void generateVisitorInterface(@NonNull GenPackage genPackage) {
+		var genModel = genPackage.getGenModel();
+		var String directoryURI = getInterfaceModelDirectory(genModel);
+		var visitableClassName2 = getVisitableClassName(genModel);
+		var visitablePackageName2 = getVisitablePackageName(genModel);
+		var visitorClassName2 = visitorClassName; //getVisitableClassName(genModel);
+		var visitorPackageName2 = visitorPackageName; //getVisitablePackageName(genModel);
 		var boolean isDerived = isDerived();
-		var MergeWriter writer = new MergeWriter(outputFolder + visitorClassName + ".java");
+		var EPackage ePackage = genPackage.getEcorePackage();
+		var MergeWriter writer = new MergeWriter(directoryURI + visitorPackageName2.replace(".", "/") + "/" + visitorClassName2 + ".java");
 		writer.append('''
 			«ePackage.generateHeader(visitorPackageName)»
 
@@ -726,7 +688,7 @@ public abstract class GenerateVisitors extends GenerateVisitorsWorkflowComponent
 
 			/**
 			 */
-			public interface «visitorClassName»<R>«IF isDerived» extends «superVisitorPackageName».«superVisitorClassName»<R>«ENDIF»
+			public interface «visitorClassName2»<R>«IF isDerived» extends «superVisitorPackageName».«superVisitorClassName»<R>«ENDIF»
 			{
 				«IF !isDerived»
 				/**
@@ -745,7 +707,7 @@ public abstract class GenerateVisitors extends GenerateVisitorsWorkflowComponent
 				 * Return the result of visiting a visitable for which no more specific pivot type method
 				 * is available.
 				 */
-				@Nullable R visiting(@NonNull «visitablePackageName».«visitableClassName» visitable);
+				@Nullable R visiting(@NonNull «visitablePackageName2».«visitableClassName2» visitable);
 
 				«ENDIF»
 				«FOR eClass : getSortedEClasses(ePackage)»

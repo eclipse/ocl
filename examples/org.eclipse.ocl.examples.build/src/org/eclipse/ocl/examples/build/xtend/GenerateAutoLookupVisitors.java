@@ -16,7 +16,7 @@ import org.eclipse.ocl.examples.autogen.lookup.LookupCodeGenerator;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 
-public class GenerateAutoLookupVisitors extends GenerateVisitors
+public class GenerateAutoLookupVisitors extends GenerateVisitorsXtend
 {
 	
 	@Override

@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
@@ -79,8 +80,7 @@ public class OCLDelegateActivator extends WorkflowComponentWithModelSlot
 			if ((eObject instanceof EAnnotation) && (eContainer instanceof EOperation)) {
 				EAnnotation eAnnotation = (EAnnotation) eObject;
 				EOperation eOperation = (EOperation) eContainer;
-				if (EcoreUtil.isInvariant(eOperation) &&
-					"http://www.eclipse.org/emf/2002/GenModel".equals(eAnnotation.getSource())) {
+				if (EcoreUtil.isInvariant(eOperation) && GenModelPackage.eNS_URI.equals(eAnnotation.getSource())) {
 					EClass eClass = eOperation.getEContainingClass();
 					List<EAnnotation> list = eAnnotations.get(eClass);
 					if (list == null) {

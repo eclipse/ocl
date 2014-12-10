@@ -11,9 +11,9 @@
 package org.eclipse.ocl.examples.build.genmodel;
 
 import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory;
-import org.eclipse.emf.codegen.ecore.genmodel.GenClass;
+import org.eclipse.emf.codegen.ecore.genmodel.GenEnum;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
-import org.eclipse.emf.codegen.ecore.genmodel.generator.GenClassGeneratorAdapter;
+import org.eclipse.emf.codegen.ecore.genmodel.generator.GenEnumGeneratorAdapter;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
@@ -21,44 +21,25 @@ import org.eclipse.emf.ecore.EEnum;
 //
 //	Overridden to allow static templates to be invoked standalone.
 //
-public class SplitGenClassGeneratorAdapter extends GenClassGeneratorAdapter
+public class SplitGenEnumGeneratorAdapter extends GenEnumGeneratorAdapter
 {
-	public SplitGenClassGeneratorAdapter(GeneratorAdapterFactory generatorAdapterFactory) {
+	public SplitGenEnumGeneratorAdapter(GeneratorAdapterFactory generatorAdapterFactory) {
 		super(generatorAdapterFactory);
 	}
 
 	@Override
-	protected void generateClass(GenClass genClass, Monitor monitor) {
-	    GenModel genModel = genClass.getGenModel();
+	protected void generateEnumClass(GenEnum genEnum, Monitor monitor) {
+	    GenModel genModel = genEnum.getGenModel();
 	    String modelDirectory = genModel.getModelDirectory();
 		try {
-			EClassifier eClassifier = genClass.getEcoreClassifier();
+			EClassifier eClassifier = genEnum.getEcoreClassifier();
 			if (eClassifier instanceof EEnum) {
 			    String interfaceModelDirectory = SplitGenModelGeneratorAdapterFactory.getInterfaceModelDirectory(genModel);
 				if (interfaceModelDirectory != null) {
 					genModel.setModelDirectory(interfaceModelDirectory);
 				}
 			}
-			super.generateClass(genClass, monitor);
-		}
-		finally {
-			genModel.setModelDirectory(modelDirectory);
-		}
-	}
-
-	//
-	//	Overridden to adjust modelDirectory for interfaces.
-	//
-	@Override
-	protected void generateInterface(GenClass genClass, Monitor monitor) {
-	    GenModel genModel = genClass.getGenModel();
-	    String modelDirectory = genModel.getModelDirectory();
-		try {
-			String interfaceModelDirectory = SplitGenModelGeneratorAdapterFactory.getInterfaceModelDirectory(genModel);
-			if (interfaceModelDirectory != null) {
-				genModel.setModelDirectory(interfaceModelDirectory);
-			}
-			super.generateInterface(genClass, monitor);
+			super.generateEnumClass(genEnum, monitor);
 		}
 		finally {
 			genModel.setModelDirectory(modelDirectory);

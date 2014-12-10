@@ -17,14 +17,14 @@ import org.eclipse.ocl.pivot.utilities.ASSaver
 import org.eclipse.jdt.annotation.NonNull
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
 
-public class GenerateASVisitors extends GenerateVisitors
+public class GenerateASVisitors extends GenerateVisitorsXtend
 {
 	override void generateVisitors(@NonNull GenPackage genPackage) {
 		var EPackage ePackage = genPackage.getEcorePackage();
 		if (!isDerived()) {
-			ePackage.generateVisitableInterface();
+			genPackage.generateVisitableInterface();
 		}
-		ePackage.generateVisitorInterface();
+		genPackage.generateVisitorInterface();
 		ePackage.generateAbstractVisitor();
 		ePackage.generateAbstractNullVisitor();
 		ePackage.generateAbstractDelegatingVisitor();

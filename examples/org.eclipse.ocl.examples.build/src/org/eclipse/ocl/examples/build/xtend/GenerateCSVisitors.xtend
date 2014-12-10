@@ -14,14 +14,14 @@ import org.eclipse.emf.ecore.EPackage
 import org.eclipse.jdt.annotation.NonNull
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
 
-public class GenerateCSVisitors extends GenerateVisitors
+public class GenerateCSVisitors extends GenerateVisitorsXtend
 {
 	override void generateVisitors(@NonNull GenPackage genPackage) {
 		var EPackage ePackage = genPackage.getEcorePackage();
 		if (!isDerived()) {
-			ePackage.generateVisitableInterface();
+			genPackage.generateVisitableInterface();
 		}
-		ePackage.generateVisitorInterface();
+		genPackage.generateVisitorInterface();
 		ePackage.generateDecorableVisitorInterface("org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor");
 		ePackage.generateAbstractVisitor();
 		ePackage.generateAbstractNullVisitor();

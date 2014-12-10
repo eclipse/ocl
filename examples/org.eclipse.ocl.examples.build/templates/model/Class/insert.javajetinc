@@ -3,10 +3,10 @@
 <% *-------------------------------------------------------------------------------------*/%>
 <%if (isInterface) {%>
   <%boolean isRootVisitable = OCLBuildGenModelUtil.isRootVisitableClass(genClass);%>
-  <%GenAnnotation visitorAnnotation = genModel.getGenAnnotation("http://www.eclipse.org/OCL/GenModel/Visitor");%>
+  <%GenAnnotation visitorAnnotation = genModel.getGenAnnotation(OCLBuildGenModelUtil.OCL_GENMODEL_VISITOR_URI);%>
   <%if (visitorAnnotation != null) {%>
     <%if (isRootVisitable) {%>
-      <%String rootVisitorClassName = visitorAnnotation.getDetails().get("Root Visitor Class");%>
+      <%String rootVisitorClassName = visitorAnnotation.getDetails().get(OCLBuildGenModelUtil.ROOT_VISITOR_CLASS);%>
 	/**
 	 * Accept a visit from a visitor and return the result of a call to the derived type-specific visitXXX in the visitor.
 	 * @generated
@@ -18,11 +18,11 @@
 <%}%>
 <%if (isImplementation) {%>
   <%boolean isRootVisitable = OCLBuildGenModelUtil.isRootVisitableClass(genClass);%>
-  <%GenAnnotation visitorAnnotation = genModel.getGenAnnotation("http://www.eclipse.org/OCL/GenModel/Visitor");%>
+  <%GenAnnotation visitorAnnotation = genModel.getGenAnnotation(OCLBuildGenModelUtil.OCL_GENMODEL_VISITOR_URI);%>
   <%if (visitorAnnotation != null) {%>
     <%if (!genClass.getEcoreClass().isAbstract() || isRootVisitable) {%>
-      <%String rootVisitorClassName = visitorAnnotation.getDetails().get("Root Visitor Class");%>
-      <%String derivedVisitorClassName = visitorAnnotation.getDetails().get("Derived Visitor Class");%>
+      <%String rootVisitorClassName = visitorAnnotation.getDetails().get(OCLBuildGenModelUtil.ROOT_VISITOR_CLASS);%>
+      <%String derivedVisitorClassName = visitorAnnotation.getDetails().get(OCLBuildGenModelUtil.DERIVED_VISITOR_CLASS);%>
       <%boolean isDerivedVisitor = (derivedVisitorClassName != null) && !rootVisitorClassName.equals(derivedVisitorClassName);%>
 	/**
 	 * {@inheritDoc}

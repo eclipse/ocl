@@ -22,6 +22,8 @@
   <genAnnotations source="http://www.eclipse.org/OCL/GenModel">
     <details key="Use Delegates" value="false"/>
     <details key="Use Null Annotations" value="true"/>
+  </genAnnotations>
+  <genAnnotations source="http://www.eclipse.org/OCL/GenModel/Split">
     <details key="Interface Model Directory" value="/org.eclipse.ocl.domain/emf-gen"/>
   </genAnnotations>
   <genAnnotations source="http://www.eclipse.org/OCL/GenModel/ToString">
@@ -31,6 +33,7 @@
     <details key="Root Visitor Class" value="org.eclipse.ocl.pivot.util.Visitor"/>
     <details key="Derived Visitor Class" value="org.eclipse.ocl.pivot.util.Visitor"/>
     <details key="Visitable Classes" value="org.eclipse.ocl.pivot.Element"/>
+    <details key="Visitable Class" value="org.eclipse.ocl.pivot.util.Visitable"/>
   </genAnnotations>
   <foreignModel>Pivot.merged.uml</foreignModel>
   <genPackages xsi:type="genmodel:GenPackage" prefix="Pivot" basePackage="org.eclipse.ocl" disposableProviderFactory="true" classPackageSuffix="internal.impl" providerPackageSuffix="edit.provider" presentationPackageSuffix="editor.presentation" generateExampleClass="false" multipleEditorPages="false" extensibleProviderFactory="true" childCreationExtenders="true" contentTypeIdentifier="org.eclipse.ocl.oclas" fileExtensions="oclas" resourceInterfaces="true" operationsPackage="">

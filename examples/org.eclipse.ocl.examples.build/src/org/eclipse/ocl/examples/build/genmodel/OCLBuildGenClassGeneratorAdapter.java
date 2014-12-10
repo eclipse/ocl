@@ -15,6 +15,7 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenAnnotation;
 import org.eclipse.emf.codegen.ecore.genmodel.GenClass;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModelFactory;
+import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage;
 import org.eclipse.emf.codegen.ecore.genmodel.GenOperation;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenClassGeneratorAdapter;
 import org.eclipse.emf.common.util.Monitor;
@@ -39,7 +40,7 @@ public class OCLBuildGenClassGeneratorAdapter extends GenClassGeneratorAdapter
 	@Override
 	protected void generateClass(GenClass genClass, Monitor monitor) {
 		GenModel genModel = genClass.getGenModel();
-		GenAnnotation genAnnotation = genModel.getGenAnnotation("http://www.eclipse.org/OCL/GenModel/ToString");
+		GenAnnotation genAnnotation = genModel.getGenAnnotation(OCLBuildGenModelUtil.OCL_GENMODEL_TO_STRING_URI);
 		if (genAnnotation != null) {
 			if (genModel.isOperationReflection()) {
 				throw new RuntimeException("OperationReflection must be false to use ToString GenAnnotation");
@@ -52,7 +53,7 @@ public class OCLBuildGenClassGeneratorAdapter extends GenClassGeneratorAdapter
 				EOperation eOp = EcoreFactory.eINSTANCE.createEOperation();
 				eOp.setName("toString");
 				eOp.setEType(EcorePackage.Literals.ESTRING);
-				EcoreUtil.setAnnotation(eOp, "http://www.eclipse.org/emf/2002/GenModel", "body", body != null ? body : "return super.toString();");
+				EcoreUtil.setAnnotation(eOp, GenModelPackage.eNS_URI, "body", body != null ? body : "return super.toString();");
 				GenOperation genOp = GenModelFactory.eINSTANCE.createGenOperation();
 				genOp.setEcoreOperation(eOp);
 				genClass.getGenOperations().add(genOp);

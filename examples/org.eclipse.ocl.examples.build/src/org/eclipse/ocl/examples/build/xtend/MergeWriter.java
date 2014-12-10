@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.build.xtend;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -85,7 +86,9 @@ public class MergeWriter
 		jmerger.setTargetCompilationUnit(targetCompilationUnit);
 		jmerger.merge();
 		String merged = jmerger.getTargetCompilationUnit().getContents(); */
-		FileWriter w = new FileWriter(fileName);
+		File file = new File(fileName);
+		file.getParentFile().mkdirs();
+		FileWriter w = new FileWriter(file);
 		w.write(merged);
 		w.close();
 	}

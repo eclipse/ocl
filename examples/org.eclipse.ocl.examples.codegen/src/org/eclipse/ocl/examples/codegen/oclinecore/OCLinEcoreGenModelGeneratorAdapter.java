@@ -83,24 +83,6 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 	public static final @NonNull String OCL_GENMODEL_URI = "http://www.eclipse.org/OCL/GenModel";
 	public static final @NonNull String USE_DELEGATES_KEY = "Use Delegates";
 	public static final @NonNull String USE_NULL_ANNOTATIONS_KEY = "Use Null Annotations";
-	public static final @NonNull String INTERFACE_MODEL_DIRECTORY = "Interface Model Directory";
-
-	/**
-	 * Return a non-null model directory if a distinct directory has been specified for the interfaces as
-	 * opposed to the standard model directory for the implementation.
-	 * <p>
-	 * This facility is not supported by the OCLinEcoreGenModelGeneratorAdapter which complements the standard
-	 * Ecore or UML2 GenModelGeneratorAdapter. It is available when the SplitGenModelGeneratorAdapter has been
-	 * registered in place of the Ecore GenModelGeneratorAdapter.
-	 */
-	public static @Nullable String getInterfaceModelDirectory(@NonNull GenModel genModel) {
-		GenAnnotation genAnnotation = genModel.getGenAnnotation(OCL_GENMODEL_URI);
-		if (genAnnotation != null) {
-			EMap<String, String> details = genAnnotation.getDetails();
-			return details.get(INTERFACE_MODEL_DIRECTORY);
-		}
-		return null;
-	}
 
 	/**
 	 * Return true if the genModel has a {@link #OCL_GENMODEL_URI} GenAnnotation with a

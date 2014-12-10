@@ -14,13 +14,13 @@ import org.eclipse.emf.ecore.EPackage
 import org.eclipse.jdt.annotation.NonNull
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
 
-public class GenerateCGVisitors extends GenerateVisitors
+public class GenerateCGVisitors extends GenerateVisitorsXtend
 {
 	override void generateVisitors(@NonNull GenPackage genPackage) {
 		var EPackage ePackage = genPackage.getEcorePackage();
 		ePackage.generateAbstractExtendingVisitor();
 		ePackage.generateAbstractNonNullExtendingVisitor();
-		ePackage.generateVisitorInterface();
+		genPackage.generateVisitorInterface();
 		/* ePackage.generateDecorableVisitorInterface("org.eclipse.ocl.xtext.base.util.BaseCSVisitor"); */
 		ePackage.generateAbstractVisitor();
 		ePackage.generateAbstractNullVisitor();

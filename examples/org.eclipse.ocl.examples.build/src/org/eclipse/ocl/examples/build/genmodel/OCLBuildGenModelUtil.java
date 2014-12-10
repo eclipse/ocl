@@ -24,14 +24,27 @@ import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.java.ImportUtils;
+import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreGenModelGeneratorAdapter;
 
 
 public class OCLBuildGenModelUtil
 {
+
+	public static final @NonNull String OCL_GENMODEL_COPY_AND_PASTE_URI = OCLinEcoreGenModelGeneratorAdapter.OCL_GENMODEL_URI + "/CopyAndPaste";
+	public static final @NonNull String USE_NULL_ANNOTATIONS = "Use Null Annotations";
+
+	public static final @NonNull String OCL_GENMODEL_TO_STRING_URI = OCLinEcoreGenModelGeneratorAdapter.OCL_GENMODEL_URI + "/ToString";
+
+	public static final @NonNull String OCL_GENMODEL_VISITOR_URI = OCLinEcoreGenModelGeneratorAdapter.OCL_GENMODEL_URI + "/Visitor";
+	public static final @NonNull String ROOT_VISITOR_CLASS = "Root Visitor Class";
+	public static final @NonNull String DERIVED_VISITOR_CLASS = "Derived Visitor Class";
+	public static final @NonNull String VISITABLE_CLASSES = "Visitable Classes";
+	public static final @NonNull String VISITABLE_CLASS = "Visitable Class";
+
 	public static @NonNull String atNonNull(@NonNull GenModel genModel) {
-		GenAnnotation genAnnotation = genModel.getGenAnnotation("http://www.eclipse.org/OCL/GenModel");
+		GenAnnotation genAnnotation = genModel.getGenAnnotation(OCLinEcoreGenModelGeneratorAdapter.OCL_GENMODEL_URI);
 		if (genAnnotation != null) {
-			String value = genAnnotation.getDetails().get("Use Null Annotations");
+			String value = genAnnotation.getDetails().get(USE_NULL_ANNOTATIONS);
 			if (value != null) {
 			    boolean useAtNonNull = Boolean.valueOf(value);
 			    if (useAtNonNull) {
@@ -43,9 +56,9 @@ public class OCLBuildGenModelUtil
 	}
 	
 	public static @NonNull String atNullable(@NonNull GenModel genModel) {
-		GenAnnotation genAnnotation = genModel.getGenAnnotation("http://www.eclipse.org/OCL/GenModel");
+		GenAnnotation genAnnotation = genModel.getGenAnnotation(OCLinEcoreGenModelGeneratorAdapter.OCL_GENMODEL_URI);
 		if (genAnnotation != null) {
-			String value = genAnnotation.getDetails().get("Use Null Annotations");
+			String value = genAnnotation.getDetails().get(USE_NULL_ANNOTATIONS);
 			if (value != null) {
 			    boolean useAtNonNull = Boolean.valueOf(value);
 			    if (useAtNonNull) {
@@ -56,16 +69,10 @@ public class OCLBuildGenModelUtil
 		return "";
 	}
 
-	public static boolean isRootVisitableClass(@NonNull GenClass genClass) {
-		String interfaceName = genClass.getQualifiedInterfaceName();
-		String visitableClasses = GenModelUtil.getAnnotation(genClass.getGenModel(), "http://www.eclipse.org/OCL/GenModel/Visitor", "Visitable Classes");
-		return (visitableClasses != null) && visitableClasses.contains(interfaceName);
-	}
-
 	public static Object copyAndPaste(@NonNull GenClass genClass) {
 		String interfaceName = genClass.getQualifiedInterfaceName();
 		GenModel genModel = genClass.getGenModel();
-		String javaCopyFile = GenModelUtil.getAnnotation(genModel, "http://www.eclipse.org/OCL/GenModel/CopyAndPaste", interfaceName);
+		String javaCopyFile = GenModelUtil.getAnnotation(genModel, OCL_GENMODEL_COPY_AND_PASTE_URI, interfaceName);
 		if (javaCopyFile == null) {
 			return "";
 		}
@@ -95,6 +102,16 @@ public class OCLBuildGenModelUtil
 			e.printStackTrace();
 		}
 		return resolveImports(genModel, s.toString());
+	}
+
+	public static /*@Nullable*/ String getVisitableClass(@NonNull GenModel genModel) {		// @Nullable breaks Xtend
+		return GenModelUtil.getAnnotation(genModel, OCL_GENMODEL_VISITOR_URI, VISITABLE_CLASS);
+	}
+
+	public static boolean isRootVisitableClass(@NonNull GenClass genClass) {
+		String interfaceName = genClass.getQualifiedInterfaceName();
+		String visitableClasses = GenModelUtil.getAnnotation(genClass.getGenModel(), OCL_GENMODEL_VISITOR_URI, VISITABLE_CLASSES);
+		return (visitableClasses != null) && visitableClasses.contains(interfaceName);
 	}
 
 	public static @NonNull String resolveImports(GenModel genModel, String source)

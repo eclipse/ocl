@@ -58,6 +58,7 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 	protected String superVisitorPackageName;
 	protected String sourceFile;
 	protected String copyright;
+	protected String modelFolder;
 	protected String outputFolder;
 	private GenModel genModel = null;
 
@@ -150,9 +151,12 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 		URI projectFileURI = EcorePlugin.getPlatformResourceMap().get(projectName);
 		URI projectResourceURI = URI.createPlatformResourceURI("/" + projectName + "/", true);
 		URI genModelURI = URI.createURI(genModelFile).resolve(projectResourceURI);
-		URI outputURI = URI.createURI(javaFolder + '/' + visitorPackageName.replace('.', '/'));
-		URI resolvedOutputURI = outputURI.resolve(projectFileURI);
-		outputFolder = (resolvedOutputURI.isFile() ? resolvedOutputURI.toFileString() : resolvedOutputURI.toString()) + "/";
+		URI modelURI = URI.createURI(javaFolder);
+		URI resolvedModelURI = modelURI.resolve(projectFileURI);
+		modelFolder = (resolvedModelURI.isFile() ? resolvedModelURI.toFileString() : resolvedModelURI.toString()) + "/";
+//		URI outputURI = URI.createURI(javaFolder + '/' + visitorPackageName.replace('.', '/'));
+//		URI resolvedOutputURI = outputURI.resolve(projectFileURI);
+		outputFolder = modelFolder + visitorPackageName.replace('.', '/') + "/";
 
 		log.info("Loading GenModel '" + genModelURI);
 //		try {

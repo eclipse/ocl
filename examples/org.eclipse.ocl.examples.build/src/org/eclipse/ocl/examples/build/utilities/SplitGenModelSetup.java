@@ -11,11 +11,9 @@
 package org.eclipse.ocl.examples.build.utilities;
 
 import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory;
-import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.examples.build.genmodel.SplitGenModelGeneratorAdapterFactory;
-import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreGeneratorAdapterFactory;
 
 /**
  * Initializes UML genmodel support.
