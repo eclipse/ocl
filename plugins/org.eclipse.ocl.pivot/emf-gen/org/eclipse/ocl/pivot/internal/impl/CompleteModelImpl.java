@@ -70,7 +70,7 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Complete Model</b></em>'.
- * @extends org.eclipse.ocl.pivot.CompleteModelInternal
+ * @extends org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:

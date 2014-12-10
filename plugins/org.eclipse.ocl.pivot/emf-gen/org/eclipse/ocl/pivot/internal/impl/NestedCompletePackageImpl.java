@@ -32,7 +32,7 @@ import org.eclipse.ocl.pivot.util.Visitor;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Nested Complete Package</b></em>'.
- * @extends org.eclipse.ocl.pivot.NestedCompletePackageInternal
+ * @extends org.eclipse.ocl.pivot.internal.complete.NestedCompletePackageInternal
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:

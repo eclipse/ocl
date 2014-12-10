@@ -41,7 +41,6 @@ import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.State;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.complete.CompleteClassInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceImpl;
 import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompletePackageInternal;
@@ -56,7 +55,7 @@ import com.google.common.collect.Iterables;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Complete Class</b></em>'.
- * @extends org.eclipse.ocl.pivot.CompleteClassInternal
+ * @extends org.eclipse.ocl.pivot.internal.complete.CompleteClassInternal
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -68,7 +67,7 @@ import com.google.common.collect.Iterables;
  *
  * @generated
  */
-public class CompleteClassImpl extends NamedElementImpl implements CompleteClass, CompleteClassInternal
+public class CompleteClassImpl extends NamedElementImpl implements CompleteClass, org.eclipse.ocl.pivot.internal.complete.CompleteClassInternal
 {
 
 	/**

@@ -21,7 +21,7 @@ import org.eclipse.ocl.pivot.util.Visitor;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Parent Complete Package</b></em>'.
- * @extends org.eclipse.ocl.pivot.ParentCompletePackageInternal
+ * @extends org.eclipse.ocl.pivot.internal.complete.ParentCompletePackageInternal
  * <!-- end-user-doc -->
  * <p>
  * </p>

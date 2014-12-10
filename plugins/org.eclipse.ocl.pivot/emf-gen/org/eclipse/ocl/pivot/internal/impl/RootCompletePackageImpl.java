@@ -37,7 +37,7 @@ import org.eclipse.ocl.pivot.util.Visitor;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Root Complete Package</b></em>'.
- * @extends org.eclipse.ocl.pivot.RootCompletePackageInternal
+ * @extends org.eclipse.ocl.pivot.internal.complete.RootCompletePackageInternal
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:

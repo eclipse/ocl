@@ -26,7 +26,7 @@ import org.eclipse.ocl.pivot.util.Visitor;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Primitive Complete Package</b></em>'.
- * @extends org.eclipse.ocl.pivot.PrimitiveCompletePackageInternal
+ * @extends org.eclipse.ocl.pivot.internal.complete.PrimitiveCompletePackageInternal
  * <!-- end-user-doc -->
  * <p>
  * </p>

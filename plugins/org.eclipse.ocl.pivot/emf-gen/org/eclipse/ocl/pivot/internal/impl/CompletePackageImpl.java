@@ -53,7 +53,7 @@ import com.google.common.collect.Iterables;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Complete Package</b></em>'.
- * @extends org.eclipse.ocl.pivot.CompletePackageInternal
+ * @extends org.eclipse.ocl.pivot.internal.complete.CompletePackageInternal
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:

@@ -42,7 +42,7 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Orphan Complete Package</b></em>'.
- * @extends org.eclipse.ocl.pivot.OrphanCompletePackageInternal
+ * @extends org.eclipse.ocl.pivot.internal.complete.OrphanCompletePackageInternal
  * <!-- end-user-doc -->
  * <p>
  * </p>
