@@ -36,7 +36,8 @@ Workflow {
     bean = UMLStandaloneSetup { resourceSet = resourceSet }
     bean = OCLStandaloneSetup {}
 //    bean = GenModelSetup { resourceSet = resourceSet }
-    bean = UMLGenModelSetup { resourceSet = resourceSet }
+//    bean = UMLGenModelSetup { resourceSet = resourceSet }
+    bean = SplitGenModelSetup { resourceSet = resourceSet }
     component = ResourceReader { resourceSet = resourceSet skipOnErrors = true
     	modelSlot = "${umlSlot}"
     	uri = "/${projectName}/model/Pivot.uml"

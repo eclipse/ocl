@@ -22,6 +22,7 @@
   <genAnnotations source="http://www.eclipse.org/OCL/GenModel">
     <details key="Use Delegates" value="false"/>
     <details key="Use Null Annotations" value="true"/>
+    <details key="Interface Model Directory" value="/org.eclipse.ocl.domain/emf-gen"/>
   </genAnnotations>
   <genAnnotations source="http://www.eclipse.org/OCL/GenModel/ToString">
     <details key="org.eclipse.ocl.pivot.Element" value="return &lt;%org.eclipse.ocl.pivot.utilities.ToStringVisitor%>.toString(this);"/>
